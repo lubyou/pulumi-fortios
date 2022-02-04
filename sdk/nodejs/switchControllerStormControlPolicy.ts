@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch storm control policy to be applied on managed-switch ports.
+ * Configure FortiSwitch storm control policy to be applied on managed-switch ports. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -87,33 +87,31 @@ export class SwitchControllerStormControlPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerStormControlPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerStormControlPolicyArgs | SwitchControllerStormControlPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerStormControlPolicyState | undefined;
-            inputs["broadcast"] = state ? state.broadcast : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["rate"] = state ? state.rate : undefined;
-            inputs["stormControlMode"] = state ? state.stormControlMode : undefined;
-            inputs["unknownMulticast"] = state ? state.unknownMulticast : undefined;
-            inputs["unknownUnicast"] = state ? state.unknownUnicast : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["broadcast"] = state ? state.broadcast : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["rate"] = state ? state.rate : undefined;
+            resourceInputs["stormControlMode"] = state ? state.stormControlMode : undefined;
+            resourceInputs["unknownMulticast"] = state ? state.unknownMulticast : undefined;
+            resourceInputs["unknownUnicast"] = state ? state.unknownUnicast : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerStormControlPolicyArgs | undefined;
-            inputs["broadcast"] = args ? args.broadcast : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["rate"] = args ? args.rate : undefined;
-            inputs["stormControlMode"] = args ? args.stormControlMode : undefined;
-            inputs["unknownMulticast"] = args ? args.unknownMulticast : undefined;
-            inputs["unknownUnicast"] = args ? args.unknownUnicast : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["broadcast"] = args ? args.broadcast : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["rate"] = args ? args.rate : undefined;
+            resourceInputs["stormControlMode"] = args ? args.stormControlMode : undefined;
+            resourceInputs["unknownMulticast"] = args ? args.unknownMulticast : undefined;
+            resourceInputs["unknownUnicast"] = args ? args.unknownUnicast : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerStormControlPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerStormControlPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

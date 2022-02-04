@@ -77,7 +77,7 @@ export class WebfilterSearchEngine extends pulumi.CustomResource {
      */
     public readonly query!: pulumi.Output<string>;
     /**
-     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
      */
     public readonly safesearch!: pulumi.Output<string>;
     /**
@@ -102,33 +102,31 @@ export class WebfilterSearchEngine extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebfilterSearchEngineArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebfilterSearchEngineArgs | WebfilterSearchEngineState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebfilterSearchEngineState | undefined;
-            inputs["charset"] = state ? state.charset : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["query"] = state ? state.query : undefined;
-            inputs["safesearch"] = state ? state.safesearch : undefined;
-            inputs["safesearchStr"] = state ? state.safesearchStr : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["charset"] = state ? state.charset : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["query"] = state ? state.query : undefined;
+            resourceInputs["safesearch"] = state ? state.safesearch : undefined;
+            resourceInputs["safesearchStr"] = state ? state.safesearchStr : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebfilterSearchEngineArgs | undefined;
-            inputs["charset"] = args ? args.charset : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["query"] = args ? args.query : undefined;
-            inputs["safesearch"] = args ? args.safesearch : undefined;
-            inputs["safesearchStr"] = args ? args.safesearchStr : undefined;
-            inputs["url"] = args ? args.url : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["charset"] = args ? args.charset : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["query"] = args ? args.query : undefined;
+            resourceInputs["safesearch"] = args ? args.safesearch : undefined;
+            resourceInputs["safesearchStr"] = args ? args.safesearchStr : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebfilterSearchEngine.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebfilterSearchEngine.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -153,7 +151,7 @@ export interface WebfilterSearchEngineState {
      */
     query?: pulumi.Input<string>;
     /**
-     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
      */
     safesearch?: pulumi.Input<string>;
     /**
@@ -191,7 +189,7 @@ export interface WebfilterSearchEngineArgs {
      */
     query?: pulumi.Input<string>;
     /**
-     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+     * Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
      */
     safesearch?: pulumi.Input<string>;
     /**

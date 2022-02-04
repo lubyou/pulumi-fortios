@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -133,6 +133,7 @@ func NewSystemMobileTunnel(ctx *pulumi.Context,
 	if args.TunnelMode == nil {
 		return nil, errors.New("invalid value for required argument 'TunnelMode'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemMobileTunnel
 	err := ctx.RegisterResource("fortios:index/systemMobileTunnel:SystemMobileTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -319,7 +320,7 @@ type SystemMobileTunnelInput interface {
 }
 
 func (*SystemMobileTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemMobileTunnel)(nil))
+	return reflect.TypeOf((**SystemMobileTunnel)(nil)).Elem()
 }
 
 func (i *SystemMobileTunnel) ToSystemMobileTunnelOutput() SystemMobileTunnelOutput {
@@ -328,35 +329,6 @@ func (i *SystemMobileTunnel) ToSystemMobileTunnelOutput() SystemMobileTunnelOutp
 
 func (i *SystemMobileTunnel) ToSystemMobileTunnelOutputWithContext(ctx context.Context) SystemMobileTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelOutput)
-}
-
-func (i *SystemMobileTunnel) ToSystemMobileTunnelPtrOutput() SystemMobileTunnelPtrOutput {
-	return i.ToSystemMobileTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemMobileTunnel) ToSystemMobileTunnelPtrOutputWithContext(ctx context.Context) SystemMobileTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelPtrOutput)
-}
-
-type SystemMobileTunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemMobileTunnelPtrOutput() SystemMobileTunnelPtrOutput
-	ToSystemMobileTunnelPtrOutputWithContext(ctx context.Context) SystemMobileTunnelPtrOutput
-}
-
-type systemMobileTunnelPtrType SystemMobileTunnelArgs
-
-func (*systemMobileTunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemMobileTunnel)(nil))
-}
-
-func (i *systemMobileTunnelPtrType) ToSystemMobileTunnelPtrOutput() SystemMobileTunnelPtrOutput {
-	return i.ToSystemMobileTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemMobileTunnelPtrType) ToSystemMobileTunnelPtrOutputWithContext(ctx context.Context) SystemMobileTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelPtrOutput)
 }
 
 // SystemMobileTunnelArrayInput is an input type that accepts SystemMobileTunnelArray and SystemMobileTunnelArrayOutput values.
@@ -373,7 +345,7 @@ type SystemMobileTunnelArrayInput interface {
 type SystemMobileTunnelArray []SystemMobileTunnelInput
 
 func (SystemMobileTunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemMobileTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemMobileTunnel)(nil)).Elem()
 }
 
 func (i SystemMobileTunnelArray) ToSystemMobileTunnelArrayOutput() SystemMobileTunnelArrayOutput {
@@ -398,7 +370,7 @@ type SystemMobileTunnelMapInput interface {
 type SystemMobileTunnelMap map[string]SystemMobileTunnelInput
 
 func (SystemMobileTunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemMobileTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemMobileTunnel)(nil)).Elem()
 }
 
 func (i SystemMobileTunnelMap) ToSystemMobileTunnelMapOutput() SystemMobileTunnelMapOutput {
@@ -409,12 +381,10 @@ func (i SystemMobileTunnelMap) ToSystemMobileTunnelMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMobileTunnelMapOutput)
 }
 
-type SystemMobileTunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemMobileTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemMobileTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemMobileTunnel)(nil))
+	return reflect.TypeOf((**SystemMobileTunnel)(nil)).Elem()
 }
 
 func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutput() SystemMobileTunnelOutput {
@@ -425,36 +395,10 @@ func (o SystemMobileTunnelOutput) ToSystemMobileTunnelOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemMobileTunnelOutput) ToSystemMobileTunnelPtrOutput() SystemMobileTunnelPtrOutput {
-	return o.ToSystemMobileTunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemMobileTunnelOutput) ToSystemMobileTunnelPtrOutputWithContext(ctx context.Context) SystemMobileTunnelPtrOutput {
-	return o.ApplyT(func(v SystemMobileTunnel) *SystemMobileTunnel {
-		return &v
-	}).(SystemMobileTunnelPtrOutput)
-}
-
-type SystemMobileTunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemMobileTunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemMobileTunnel)(nil))
-}
-
-func (o SystemMobileTunnelPtrOutput) ToSystemMobileTunnelPtrOutput() SystemMobileTunnelPtrOutput {
-	return o
-}
-
-func (o SystemMobileTunnelPtrOutput) ToSystemMobileTunnelPtrOutputWithContext(ctx context.Context) SystemMobileTunnelPtrOutput {
-	return o
-}
-
 type SystemMobileTunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemMobileTunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemMobileTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemMobileTunnel)(nil)).Elem()
 }
 
 func (o SystemMobileTunnelArrayOutput) ToSystemMobileTunnelArrayOutput() SystemMobileTunnelArrayOutput {
@@ -466,15 +410,15 @@ func (o SystemMobileTunnelArrayOutput) ToSystemMobileTunnelArrayOutputWithContex
 }
 
 func (o SystemMobileTunnelArrayOutput) Index(i pulumi.IntInput) SystemMobileTunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemMobileTunnel {
-		return vs[0].([]SystemMobileTunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemMobileTunnel {
+		return vs[0].([]*SystemMobileTunnel)[vs[1].(int)]
 	}).(SystemMobileTunnelOutput)
 }
 
 type SystemMobileTunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemMobileTunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemMobileTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemMobileTunnel)(nil)).Elem()
 }
 
 func (o SystemMobileTunnelMapOutput) ToSystemMobileTunnelMapOutput() SystemMobileTunnelMapOutput {
@@ -486,14 +430,16 @@ func (o SystemMobileTunnelMapOutput) ToSystemMobileTunnelMapOutputWithContext(ct
 }
 
 func (o SystemMobileTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemMobileTunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemMobileTunnel {
-		return vs[0].(map[string]SystemMobileTunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemMobileTunnel {
+		return vs[0].(map[string]*SystemMobileTunnel)[vs[1].(string)]
 	}).(SystemMobileTunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemMobileTunnelInput)(nil)).Elem(), &SystemMobileTunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemMobileTunnelArrayInput)(nil)).Elem(), SystemMobileTunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemMobileTunnelMapInput)(nil)).Elem(), SystemMobileTunnelMap{})
 	pulumi.RegisterOutputType(SystemMobileTunnelOutput{})
-	pulumi.RegisterOutputType(SystemMobileTunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemMobileTunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemMobileTunnelMapOutput{})
 }

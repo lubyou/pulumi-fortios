@@ -82,25 +82,23 @@ export class SwitchControllerSwitchProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSwitchProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSwitchProfileArgs | SwitchControllerSwitchProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSwitchProfileState | undefined;
-            inputs["loginPasswd"] = state ? state.loginPasswd : undefined;
-            inputs["loginPasswdOverride"] = state ? state.loginPasswdOverride : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["loginPasswd"] = state ? state.loginPasswd : undefined;
+            resourceInputs["loginPasswdOverride"] = state ? state.loginPasswdOverride : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSwitchProfileArgs | undefined;
-            inputs["loginPasswd"] = args ? args.loginPasswd : undefined;
-            inputs["loginPasswdOverride"] = args ? args.loginPasswdOverride : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["loginPasswd"] = args ? args.loginPasswd : undefined;
+            resourceInputs["loginPasswdOverride"] = args ? args.loginPasswdOverride : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSwitchProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSwitchProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

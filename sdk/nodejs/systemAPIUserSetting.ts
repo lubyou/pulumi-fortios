@@ -89,15 +89,15 @@ export class SystemAPIUserSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAPIUserSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAPIUserSettingArgs | SystemAPIUserSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAPIUserSettingState | undefined;
-            inputs["accprofile"] = state ? state.accprofile : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["trusthosts"] = state ? state.trusthosts : undefined;
-            inputs["vdoms"] = state ? state.vdoms : undefined;
+            resourceInputs["accprofile"] = state ? state.accprofile : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["trusthosts"] = state ? state.trusthosts : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemAPIUserSettingArgs | undefined;
             if ((!args || args.accprofile === undefined) && !opts.urn) {
@@ -109,16 +109,14 @@ export class SystemAPIUserSetting extends pulumi.CustomResource {
             if ((!args || args.vdoms === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vdoms'");
             }
-            inputs["accprofile"] = args ? args.accprofile : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["trusthosts"] = args ? args.trusthosts : undefined;
-            inputs["vdoms"] = args ? args.vdoms : undefined;
+            resourceInputs["accprofile"] = args ? args.accprofile : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["trusthosts"] = args ? args.trusthosts : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAPIUserSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAPIUserSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

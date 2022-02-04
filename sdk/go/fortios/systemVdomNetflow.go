@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -54,6 +54,10 @@ type SystemVdomNetflow struct {
 	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
@@ -69,6 +73,7 @@ func NewSystemVdomNetflow(ctx *pulumi.Context,
 		args = &SystemVdomNetflowArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomNetflow
 	err := ctx.RegisterResource("fortios:index/systemVdomNetflow:SystemVdomNetflow", name, args, &resource, opts...)
 	if err != nil {
@@ -95,6 +100,10 @@ type systemVdomNetflowState struct {
 	CollectorIp *string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
@@ -108,6 +117,10 @@ type SystemVdomNetflowState struct {
 	CollectorIp pulumi.StringPtrInput
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp pulumi.StringPtrInput
 	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
@@ -125,6 +138,10 @@ type systemVdomNetflowArgs struct {
 	CollectorIp *string `pulumi:"collectorIp"`
 	// NetFlow collector port number.
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
@@ -139,6 +156,10 @@ type SystemVdomNetflowArgs struct {
 	CollectorIp pulumi.StringPtrInput
 	// NetFlow collector port number.
 	CollectorPort pulumi.IntPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp pulumi.StringPtrInput
 	// Enable/disable NetFlow per VDOM. Valid values: `enable`, `disable`.
@@ -159,7 +180,7 @@ type SystemVdomNetflowInput interface {
 }
 
 func (*SystemVdomNetflow) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomNetflow)(nil))
+	return reflect.TypeOf((**SystemVdomNetflow)(nil)).Elem()
 }
 
 func (i *SystemVdomNetflow) ToSystemVdomNetflowOutput() SystemVdomNetflowOutput {
@@ -168,35 +189,6 @@ func (i *SystemVdomNetflow) ToSystemVdomNetflowOutput() SystemVdomNetflowOutput 
 
 func (i *SystemVdomNetflow) ToSystemVdomNetflowOutputWithContext(ctx context.Context) SystemVdomNetflowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowOutput)
-}
-
-func (i *SystemVdomNetflow) ToSystemVdomNetflowPtrOutput() SystemVdomNetflowPtrOutput {
-	return i.ToSystemVdomNetflowPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomNetflow) ToSystemVdomNetflowPtrOutputWithContext(ctx context.Context) SystemVdomNetflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowPtrOutput)
-}
-
-type SystemVdomNetflowPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomNetflowPtrOutput() SystemVdomNetflowPtrOutput
-	ToSystemVdomNetflowPtrOutputWithContext(ctx context.Context) SystemVdomNetflowPtrOutput
-}
-
-type systemVdomNetflowPtrType SystemVdomNetflowArgs
-
-func (*systemVdomNetflowPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomNetflow)(nil))
-}
-
-func (i *systemVdomNetflowPtrType) ToSystemVdomNetflowPtrOutput() SystemVdomNetflowPtrOutput {
-	return i.ToSystemVdomNetflowPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomNetflowPtrType) ToSystemVdomNetflowPtrOutputWithContext(ctx context.Context) SystemVdomNetflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowPtrOutput)
 }
 
 // SystemVdomNetflowArrayInput is an input type that accepts SystemVdomNetflowArray and SystemVdomNetflowArrayOutput values.
@@ -213,7 +205,7 @@ type SystemVdomNetflowArrayInput interface {
 type SystemVdomNetflowArray []SystemVdomNetflowInput
 
 func (SystemVdomNetflowArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomNetflow)(nil))
+	return reflect.TypeOf((*[]*SystemVdomNetflow)(nil)).Elem()
 }
 
 func (i SystemVdomNetflowArray) ToSystemVdomNetflowArrayOutput() SystemVdomNetflowArrayOutput {
@@ -238,7 +230,7 @@ type SystemVdomNetflowMapInput interface {
 type SystemVdomNetflowMap map[string]SystemVdomNetflowInput
 
 func (SystemVdomNetflowMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomNetflow)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomNetflow)(nil)).Elem()
 }
 
 func (i SystemVdomNetflowMap) ToSystemVdomNetflowMapOutput() SystemVdomNetflowMapOutput {
@@ -249,12 +241,10 @@ func (i SystemVdomNetflowMap) ToSystemVdomNetflowMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomNetflowMapOutput)
 }
 
-type SystemVdomNetflowOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomNetflowOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomNetflowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomNetflow)(nil))
+	return reflect.TypeOf((**SystemVdomNetflow)(nil)).Elem()
 }
 
 func (o SystemVdomNetflowOutput) ToSystemVdomNetflowOutput() SystemVdomNetflowOutput {
@@ -265,36 +255,10 @@ func (o SystemVdomNetflowOutput) ToSystemVdomNetflowOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemVdomNetflowOutput) ToSystemVdomNetflowPtrOutput() SystemVdomNetflowPtrOutput {
-	return o.ToSystemVdomNetflowPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomNetflowOutput) ToSystemVdomNetflowPtrOutputWithContext(ctx context.Context) SystemVdomNetflowPtrOutput {
-	return o.ApplyT(func(v SystemVdomNetflow) *SystemVdomNetflow {
-		return &v
-	}).(SystemVdomNetflowPtrOutput)
-}
-
-type SystemVdomNetflowPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomNetflowPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomNetflow)(nil))
-}
-
-func (o SystemVdomNetflowPtrOutput) ToSystemVdomNetflowPtrOutput() SystemVdomNetflowPtrOutput {
-	return o
-}
-
-func (o SystemVdomNetflowPtrOutput) ToSystemVdomNetflowPtrOutputWithContext(ctx context.Context) SystemVdomNetflowPtrOutput {
-	return o
-}
-
 type SystemVdomNetflowArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomNetflowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomNetflow)(nil))
+	return reflect.TypeOf((*[]*SystemVdomNetflow)(nil)).Elem()
 }
 
 func (o SystemVdomNetflowArrayOutput) ToSystemVdomNetflowArrayOutput() SystemVdomNetflowArrayOutput {
@@ -306,15 +270,15 @@ func (o SystemVdomNetflowArrayOutput) ToSystemVdomNetflowArrayOutputWithContext(
 }
 
 func (o SystemVdomNetflowArrayOutput) Index(i pulumi.IntInput) SystemVdomNetflowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomNetflow {
-		return vs[0].([]SystemVdomNetflow)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomNetflow {
+		return vs[0].([]*SystemVdomNetflow)[vs[1].(int)]
 	}).(SystemVdomNetflowOutput)
 }
 
 type SystemVdomNetflowMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomNetflowMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomNetflow)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomNetflow)(nil)).Elem()
 }
 
 func (o SystemVdomNetflowMapOutput) ToSystemVdomNetflowMapOutput() SystemVdomNetflowMapOutput {
@@ -326,14 +290,16 @@ func (o SystemVdomNetflowMapOutput) ToSystemVdomNetflowMapOutputWithContext(ctx 
 }
 
 func (o SystemVdomNetflowMapOutput) MapIndex(k pulumi.StringInput) SystemVdomNetflowOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomNetflow {
-		return vs[0].(map[string]SystemVdomNetflow)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomNetflow {
+		return vs[0].(map[string]*SystemVdomNetflow)[vs[1].(string)]
 	}).(SystemVdomNetflowOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomNetflowInput)(nil)).Elem(), &SystemVdomNetflow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomNetflowArrayInput)(nil)).Elem(), SystemVdomNetflowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomNetflowMapInput)(nil)).Elem(), SystemVdomNetflowMap{})
 	pulumi.RegisterOutputType(SystemVdomNetflowOutput{})
-	pulumi.RegisterOutputType(SystemVdomNetflowPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomNetflowArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomNetflowMapOutput{})
 }

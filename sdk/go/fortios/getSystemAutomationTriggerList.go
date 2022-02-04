@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemAutomationTrigger`.
 func GetSystemAutomationTriggerList(ctx *pulumi.Context, args *GetSystemAutomationTriggerListArgs, opts ...pulumi.InvokeOption) (*GetSystemAutomationTriggerListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemAutomationTriggerListResult
 	err := ctx.Invoke("fortios:index/getSystemAutomationTriggerList:GetSystemAutomationTriggerList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemAutomationTriggerListResult struct {
 	// A list of the `SystemAutomationTrigger`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemAutomationTriggerListOutput(ctx *pulumi.Context, args GetSystemAutomationTriggerListOutputArgs, opts ...pulumi.InvokeOption) GetSystemAutomationTriggerListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemAutomationTriggerListResult, error) {
+			args := v.(GetSystemAutomationTriggerListArgs)
+			r, err := GetSystemAutomationTriggerList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemAutomationTriggerListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutomationTriggerList.
+type GetSystemAutomationTriggerListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemAutomationTriggerListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemAutomationTriggerListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutomationTriggerList.
+type GetSystemAutomationTriggerListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemAutomationTriggerListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemAutomationTriggerListResult)(nil)).Elem()
+}
+
+func (o GetSystemAutomationTriggerListResultOutput) ToGetSystemAutomationTriggerListResultOutput() GetSystemAutomationTriggerListResultOutput {
+	return o
+}
+
+func (o GetSystemAutomationTriggerListResultOutput) ToGetSystemAutomationTriggerListResultOutputWithContext(ctx context.Context) GetSystemAutomationTriggerListResultOutput {
+	return o
+}
+
+func (o GetSystemAutomationTriggerListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemAutomationTriggerListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemAutomationTriggerListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemAutomationTriggerListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemAutomationTrigger`.
+func (o GetSystemAutomationTriggerListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemAutomationTriggerListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemAutomationTriggerListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemAutomationTriggerListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemAutomationTriggerListResultOutput{})
 }

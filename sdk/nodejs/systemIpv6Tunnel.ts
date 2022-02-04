@@ -59,6 +59,10 @@ export class SystemIpv6Tunnel extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    public readonly autoAsicOffload!: pulumi.Output<string>;
+    /**
      * Remote IPv6 address of the tunnel.
      */
     public readonly destination!: pulumi.Output<string>;
@@ -75,6 +79,10 @@ export class SystemIpv6Tunnel extends pulumi.CustomResource {
      */
     public readonly source!: pulumi.Output<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    public readonly useSdwan!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -88,30 +96,32 @@ export class SystemIpv6Tunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemIpv6TunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemIpv6TunnelArgs | SystemIpv6TunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpv6TunnelState | undefined;
-            inputs["destination"] = state ? state.destination : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
+            resourceInputs["destination"] = state ? state.destination : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["useSdwan"] = state ? state.useSdwan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpv6TunnelArgs | undefined;
             if ((!args || args.destination === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            inputs["destination"] = args ? args.destination : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
+            resourceInputs["destination"] = args ? args.destination : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["useSdwan"] = args ? args.useSdwan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemIpv6Tunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemIpv6Tunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -119,6 +129,10 @@ export class SystemIpv6Tunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemIpv6Tunnel resources.
  */
 export interface SystemIpv6TunnelState {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * Remote IPv6 address of the tunnel.
      */
@@ -136,6 +150,10 @@ export interface SystemIpv6TunnelState {
      */
     source?: pulumi.Input<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -145,6 +163,10 @@ export interface SystemIpv6TunnelState {
  * The set of arguments for constructing a SystemIpv6Tunnel resource.
  */
 export interface SystemIpv6TunnelArgs {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * Remote IPv6 address of the tunnel.
      */
@@ -161,6 +183,10 @@ export interface SystemIpv6TunnelArgs {
      * Local IPv6 address of the tunnel.
      */
     source?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

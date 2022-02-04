@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Global settings for SAML authentication.
+ * Global settings for SAML authentication. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Example Usage
  *
@@ -62,6 +62,10 @@ export class SystemSaml extends pulumi.CustomResource {
         return obj['__pulumiType'] === SystemSaml.__pulumiType;
     }
 
+    /**
+     * IdP Binding protocol. Valid values: `post`, `redirect`.
+     */
+    public readonly bindingProtocol!: pulumi.Output<string>;
     /**
      * Certificate to sign SAML messages.
      */
@@ -148,55 +152,55 @@ export class SystemSaml extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSamlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSamlArgs | SystemSamlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSamlState | undefined;
-            inputs["cert"] = state ? state.cert : undefined;
-            inputs["defaultLoginPage"] = state ? state.defaultLoginPage : undefined;
-            inputs["defaultProfile"] = state ? state.defaultProfile : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["entityId"] = state ? state.entityId : undefined;
-            inputs["idpCert"] = state ? state.idpCert : undefined;
-            inputs["idpEntityId"] = state ? state.idpEntityId : undefined;
-            inputs["idpSingleLogoutUrl"] = state ? state.idpSingleLogoutUrl : undefined;
-            inputs["idpSingleSignOnUrl"] = state ? state.idpSingleSignOnUrl : undefined;
-            inputs["life"] = state ? state.life : undefined;
-            inputs["portalUrl"] = state ? state.portalUrl : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["serverAddress"] = state ? state.serverAddress : undefined;
-            inputs["serviceProviders"] = state ? state.serviceProviders : undefined;
-            inputs["singleLogoutUrl"] = state ? state.singleLogoutUrl : undefined;
-            inputs["singleSignOnUrl"] = state ? state.singleSignOnUrl : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tolerance"] = state ? state.tolerance : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bindingProtocol"] = state ? state.bindingProtocol : undefined;
+            resourceInputs["cert"] = state ? state.cert : undefined;
+            resourceInputs["defaultLoginPage"] = state ? state.defaultLoginPage : undefined;
+            resourceInputs["defaultProfile"] = state ? state.defaultProfile : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["entityId"] = state ? state.entityId : undefined;
+            resourceInputs["idpCert"] = state ? state.idpCert : undefined;
+            resourceInputs["idpEntityId"] = state ? state.idpEntityId : undefined;
+            resourceInputs["idpSingleLogoutUrl"] = state ? state.idpSingleLogoutUrl : undefined;
+            resourceInputs["idpSingleSignOnUrl"] = state ? state.idpSingleSignOnUrl : undefined;
+            resourceInputs["life"] = state ? state.life : undefined;
+            resourceInputs["portalUrl"] = state ? state.portalUrl : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["serverAddress"] = state ? state.serverAddress : undefined;
+            resourceInputs["serviceProviders"] = state ? state.serviceProviders : undefined;
+            resourceInputs["singleLogoutUrl"] = state ? state.singleLogoutUrl : undefined;
+            resourceInputs["singleSignOnUrl"] = state ? state.singleSignOnUrl : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tolerance"] = state ? state.tolerance : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSamlArgs | undefined;
-            inputs["cert"] = args ? args.cert : undefined;
-            inputs["defaultLoginPage"] = args ? args.defaultLoginPage : undefined;
-            inputs["defaultProfile"] = args ? args.defaultProfile : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["entityId"] = args ? args.entityId : undefined;
-            inputs["idpCert"] = args ? args.idpCert : undefined;
-            inputs["idpEntityId"] = args ? args.idpEntityId : undefined;
-            inputs["idpSingleLogoutUrl"] = args ? args.idpSingleLogoutUrl : undefined;
-            inputs["idpSingleSignOnUrl"] = args ? args.idpSingleSignOnUrl : undefined;
-            inputs["life"] = args ? args.life : undefined;
-            inputs["portalUrl"] = args ? args.portalUrl : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["serverAddress"] = args ? args.serverAddress : undefined;
-            inputs["serviceProviders"] = args ? args.serviceProviders : undefined;
-            inputs["singleLogoutUrl"] = args ? args.singleLogoutUrl : undefined;
-            inputs["singleSignOnUrl"] = args ? args.singleSignOnUrl : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tolerance"] = args ? args.tolerance : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bindingProtocol"] = args ? args.bindingProtocol : undefined;
+            resourceInputs["cert"] = args ? args.cert : undefined;
+            resourceInputs["defaultLoginPage"] = args ? args.defaultLoginPage : undefined;
+            resourceInputs["defaultProfile"] = args ? args.defaultProfile : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["entityId"] = args ? args.entityId : undefined;
+            resourceInputs["idpCert"] = args ? args.idpCert : undefined;
+            resourceInputs["idpEntityId"] = args ? args.idpEntityId : undefined;
+            resourceInputs["idpSingleLogoutUrl"] = args ? args.idpSingleLogoutUrl : undefined;
+            resourceInputs["idpSingleSignOnUrl"] = args ? args.idpSingleSignOnUrl : undefined;
+            resourceInputs["life"] = args ? args.life : undefined;
+            resourceInputs["portalUrl"] = args ? args.portalUrl : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["serverAddress"] = args ? args.serverAddress : undefined;
+            resourceInputs["serviceProviders"] = args ? args.serviceProviders : undefined;
+            resourceInputs["singleLogoutUrl"] = args ? args.singleLogoutUrl : undefined;
+            resourceInputs["singleSignOnUrl"] = args ? args.singleSignOnUrl : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tolerance"] = args ? args.tolerance : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSaml.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSaml.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -204,6 +208,10 @@ export class SystemSaml extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSaml resources.
  */
 export interface SystemSamlState {
+    /**
+     * IdP Binding protocol. Valid values: `post`, `redirect`.
+     */
+    bindingProtocol?: pulumi.Input<string>;
     /**
      * Certificate to sign SAML messages.
      */
@@ -286,6 +294,10 @@ export interface SystemSamlState {
  * The set of arguments for constructing a SystemSaml resource.
  */
 export interface SystemSamlArgs {
+    /**
+     * IdP Binding protocol. Valid values: `post`, `redirect`.
+     */
+    bindingProtocol?: pulumi.Input<string>;
     /**
      * Certificate to sign SAML messages.
      */

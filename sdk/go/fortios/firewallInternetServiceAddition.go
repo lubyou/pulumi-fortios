@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Internet Services Addition.
+// Configure Internet Services Addition. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -43,6 +43,7 @@ func NewFirewallInternetServiceAddition(ctx *pulumi.Context,
 		args = &FirewallInternetServiceAdditionArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceAddition
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceAddition:FirewallInternetServiceAddition", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type FirewallInternetServiceAdditionInput interface {
 }
 
 func (*FirewallInternetServiceAddition) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceAddition)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceAddition)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceAddition) ToFirewallInternetServiceAdditionOutput() FirewallInternetServiceAdditionOutput {
@@ -142,35 +143,6 @@ func (i *FirewallInternetServiceAddition) ToFirewallInternetServiceAdditionOutpu
 
 func (i *FirewallInternetServiceAddition) ToFirewallInternetServiceAdditionOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAdditionOutput)
-}
-
-func (i *FirewallInternetServiceAddition) ToFirewallInternetServiceAdditionPtrOutput() FirewallInternetServiceAdditionPtrOutput {
-	return i.ToFirewallInternetServiceAdditionPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceAddition) ToFirewallInternetServiceAdditionPtrOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAdditionPtrOutput)
-}
-
-type FirewallInternetServiceAdditionPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceAdditionPtrOutput() FirewallInternetServiceAdditionPtrOutput
-	ToFirewallInternetServiceAdditionPtrOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionPtrOutput
-}
-
-type firewallInternetServiceAdditionPtrType FirewallInternetServiceAdditionArgs
-
-func (*firewallInternetServiceAdditionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceAddition)(nil))
-}
-
-func (i *firewallInternetServiceAdditionPtrType) ToFirewallInternetServiceAdditionPtrOutput() FirewallInternetServiceAdditionPtrOutput {
-	return i.ToFirewallInternetServiceAdditionPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceAdditionPtrType) ToFirewallInternetServiceAdditionPtrOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAdditionPtrOutput)
 }
 
 // FirewallInternetServiceAdditionArrayInput is an input type that accepts FirewallInternetServiceAdditionArray and FirewallInternetServiceAdditionArrayOutput values.
@@ -187,7 +159,7 @@ type FirewallInternetServiceAdditionArrayInput interface {
 type FirewallInternetServiceAdditionArray []FirewallInternetServiceAdditionInput
 
 func (FirewallInternetServiceAdditionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceAddition)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceAddition)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceAdditionArray) ToFirewallInternetServiceAdditionArrayOutput() FirewallInternetServiceAdditionArrayOutput {
@@ -212,7 +184,7 @@ type FirewallInternetServiceAdditionMapInput interface {
 type FirewallInternetServiceAdditionMap map[string]FirewallInternetServiceAdditionInput
 
 func (FirewallInternetServiceAdditionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceAddition)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceAddition)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceAdditionMap) ToFirewallInternetServiceAdditionMapOutput() FirewallInternetServiceAdditionMapOutput {
@@ -223,12 +195,10 @@ func (i FirewallInternetServiceAdditionMap) ToFirewallInternetServiceAdditionMap
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceAdditionMapOutput)
 }
 
-type FirewallInternetServiceAdditionOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceAdditionOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceAdditionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceAddition)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceAddition)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceAdditionOutput) ToFirewallInternetServiceAdditionOutput() FirewallInternetServiceAdditionOutput {
@@ -239,36 +209,10 @@ func (o FirewallInternetServiceAdditionOutput) ToFirewallInternetServiceAddition
 	return o
 }
 
-func (o FirewallInternetServiceAdditionOutput) ToFirewallInternetServiceAdditionPtrOutput() FirewallInternetServiceAdditionPtrOutput {
-	return o.ToFirewallInternetServiceAdditionPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceAdditionOutput) ToFirewallInternetServiceAdditionPtrOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceAddition) *FirewallInternetServiceAddition {
-		return &v
-	}).(FirewallInternetServiceAdditionPtrOutput)
-}
-
-type FirewallInternetServiceAdditionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceAdditionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceAddition)(nil))
-}
-
-func (o FirewallInternetServiceAdditionPtrOutput) ToFirewallInternetServiceAdditionPtrOutput() FirewallInternetServiceAdditionPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceAdditionPtrOutput) ToFirewallInternetServiceAdditionPtrOutputWithContext(ctx context.Context) FirewallInternetServiceAdditionPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceAdditionArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceAdditionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceAddition)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceAddition)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceAdditionArrayOutput) ToFirewallInternetServiceAdditionArrayOutput() FirewallInternetServiceAdditionArrayOutput {
@@ -280,15 +224,15 @@ func (o FirewallInternetServiceAdditionArrayOutput) ToFirewallInternetServiceAdd
 }
 
 func (o FirewallInternetServiceAdditionArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceAdditionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceAddition {
-		return vs[0].([]FirewallInternetServiceAddition)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceAddition {
+		return vs[0].([]*FirewallInternetServiceAddition)[vs[1].(int)]
 	}).(FirewallInternetServiceAdditionOutput)
 }
 
 type FirewallInternetServiceAdditionMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceAdditionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceAddition)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceAddition)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceAdditionMapOutput) ToFirewallInternetServiceAdditionMapOutput() FirewallInternetServiceAdditionMapOutput {
@@ -300,14 +244,16 @@ func (o FirewallInternetServiceAdditionMapOutput) ToFirewallInternetServiceAddit
 }
 
 func (o FirewallInternetServiceAdditionMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceAdditionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceAddition {
-		return vs[0].(map[string]FirewallInternetServiceAddition)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceAddition {
+		return vs[0].(map[string]*FirewallInternetServiceAddition)[vs[1].(string)]
 	}).(FirewallInternetServiceAdditionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceAdditionInput)(nil)).Elem(), &FirewallInternetServiceAddition{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceAdditionArrayInput)(nil)).Elem(), FirewallInternetServiceAdditionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceAdditionMapInput)(nil)).Elem(), FirewallInternetServiceAdditionMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceAdditionOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceAdditionPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceAdditionArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceAdditionMapOutput{})
 }

@@ -155,57 +155,55 @@ export class ApplicationList extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ApplicationListArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApplicationListArgs | ApplicationListState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApplicationListState | undefined;
-            inputs["appReplacemsg"] = state ? state.appReplacemsg : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["controlDefaultNetworkServices"] = state ? state.controlDefaultNetworkServices : undefined;
-            inputs["deepAppInspection"] = state ? state.deepAppInspection : undefined;
-            inputs["defaultNetworkServices"] = state ? state.defaultNetworkServices : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["enforceDefaultAppPort"] = state ? state.enforceDefaultAppPort : undefined;
-            inputs["entries"] = state ? state.entries : undefined;
-            inputs["extendedLog"] = state ? state.extendedLog : undefined;
-            inputs["forceInclusionSslDiSigs"] = state ? state.forceInclusionSslDiSigs : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["otherApplicationAction"] = state ? state.otherApplicationAction : undefined;
-            inputs["otherApplicationLog"] = state ? state.otherApplicationLog : undefined;
-            inputs["p2pBlackList"] = state ? state.p2pBlackList : undefined;
-            inputs["p2pBlockList"] = state ? state.p2pBlockList : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["unknownApplicationAction"] = state ? state.unknownApplicationAction : undefined;
-            inputs["unknownApplicationLog"] = state ? state.unknownApplicationLog : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["appReplacemsg"] = state ? state.appReplacemsg : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["controlDefaultNetworkServices"] = state ? state.controlDefaultNetworkServices : undefined;
+            resourceInputs["deepAppInspection"] = state ? state.deepAppInspection : undefined;
+            resourceInputs["defaultNetworkServices"] = state ? state.defaultNetworkServices : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["enforceDefaultAppPort"] = state ? state.enforceDefaultAppPort : undefined;
+            resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
+            resourceInputs["forceInclusionSslDiSigs"] = state ? state.forceInclusionSslDiSigs : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["otherApplicationAction"] = state ? state.otherApplicationAction : undefined;
+            resourceInputs["otherApplicationLog"] = state ? state.otherApplicationLog : undefined;
+            resourceInputs["p2pBlackList"] = state ? state.p2pBlackList : undefined;
+            resourceInputs["p2pBlockList"] = state ? state.p2pBlockList : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["unknownApplicationAction"] = state ? state.unknownApplicationAction : undefined;
+            resourceInputs["unknownApplicationLog"] = state ? state.unknownApplicationLog : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as ApplicationListArgs | undefined;
-            inputs["appReplacemsg"] = args ? args.appReplacemsg : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["controlDefaultNetworkServices"] = args ? args.controlDefaultNetworkServices : undefined;
-            inputs["deepAppInspection"] = args ? args.deepAppInspection : undefined;
-            inputs["defaultNetworkServices"] = args ? args.defaultNetworkServices : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["enforceDefaultAppPort"] = args ? args.enforceDefaultAppPort : undefined;
-            inputs["entries"] = args ? args.entries : undefined;
-            inputs["extendedLog"] = args ? args.extendedLog : undefined;
-            inputs["forceInclusionSslDiSigs"] = args ? args.forceInclusionSslDiSigs : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["otherApplicationAction"] = args ? args.otherApplicationAction : undefined;
-            inputs["otherApplicationLog"] = args ? args.otherApplicationLog : undefined;
-            inputs["p2pBlackList"] = args ? args.p2pBlackList : undefined;
-            inputs["p2pBlockList"] = args ? args.p2pBlockList : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["unknownApplicationAction"] = args ? args.unknownApplicationAction : undefined;
-            inputs["unknownApplicationLog"] = args ? args.unknownApplicationLog : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["appReplacemsg"] = args ? args.appReplacemsg : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["controlDefaultNetworkServices"] = args ? args.controlDefaultNetworkServices : undefined;
+            resourceInputs["deepAppInspection"] = args ? args.deepAppInspection : undefined;
+            resourceInputs["defaultNetworkServices"] = args ? args.defaultNetworkServices : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["enforceDefaultAppPort"] = args ? args.enforceDefaultAppPort : undefined;
+            resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
+            resourceInputs["forceInclusionSslDiSigs"] = args ? args.forceInclusionSslDiSigs : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["otherApplicationAction"] = args ? args.otherApplicationAction : undefined;
+            resourceInputs["otherApplicationLog"] = args ? args.otherApplicationLog : undefined;
+            resourceInputs["p2pBlackList"] = args ? args.p2pBlackList : undefined;
+            resourceInputs["p2pBlockList"] = args ? args.p2pBlockList : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["unknownApplicationAction"] = args ? args.unknownApplicationAction : undefined;
+            resourceInputs["unknownApplicationLog"] = args ? args.unknownApplicationLog : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ApplicationList.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ApplicationList.__pulumiType, name, resourceInputs, opts);
     }
 }
 

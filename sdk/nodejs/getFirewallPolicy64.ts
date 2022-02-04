@@ -13,9 +13,7 @@ export function getFirewallPolicy64(args: GetFirewallPolicy64Args, opts?: pulumi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallPolicy64:GetFirewallPolicy64", {
         "policyid": args.policyid,
         "vdomparam": args.vdomparam,
@@ -137,4 +135,22 @@ export interface GetFirewallPolicy64Result {
      */
     readonly uuid: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallPolicy64Output(args: GetFirewallPolicy64OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallPolicy64Result> {
+    return pulumi.output(args).apply(a => getFirewallPolicy64(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallPolicy64.
+ */
+export interface GetFirewallPolicy64OutputArgs {
+    /**
+     * Specify the policyid of the desired firewall policy64.
+     */
+    policyid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

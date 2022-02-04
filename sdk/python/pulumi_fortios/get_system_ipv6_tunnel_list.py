@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemIpv6TunnelListResult',
     'AwaitableGetSystemIpv6TunnelListResult',
     'get_system_ipv6_tunnel_list',
+    'get_system_ipv6_tunnel_list_output',
 ]
 
 @pulumi.output_type
@@ -88,6 +89,8 @@ def get_system_ipv6_tunnel_list(filter: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemIpv6TunnelList:GetSystemIpv6TunnelList', __args__, opts=opts, typ=GetSystemIpv6TunnelListResult).value
 
     return AwaitableGetSystemIpv6TunnelListResult(
@@ -95,3 +98,16 @@ def get_system_ipv6_tunnel_list(filter: Optional[str] = None,
         id=__ret__.id,
         namelists=__ret__.namelists,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_ipv6_tunnel_list)
+def get_system_ipv6_tunnel_list_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
+                                       vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemIpv6TunnelListResult]:
+    """
+    Provides a list of `SystemIpv6Tunnel`.
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

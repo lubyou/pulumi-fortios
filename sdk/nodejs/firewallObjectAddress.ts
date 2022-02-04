@@ -141,42 +141,40 @@ export class FirewallObjectAddress extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallObjectAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectAddressArgs | FirewallObjectAddressState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectAddressState | undefined;
-            inputs["associatedInterface"] = state ? state.associatedInterface : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["country"] = state ? state.country : undefined;
-            inputs["endIp"] = state ? state.endIp : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["showInAddressList"] = state ? state.showInAddressList : undefined;
-            inputs["startIp"] = state ? state.startIp : undefined;
-            inputs["staticRouteConfigure"] = state ? state.staticRouteConfigure : undefined;
-            inputs["subnet"] = state ? state.subnet : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["associatedInterface"] = state ? state.associatedInterface : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["country"] = state ? state.country : undefined;
+            resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["showInAddressList"] = state ? state.showInAddressList : undefined;
+            resourceInputs["startIp"] = state ? state.startIp : undefined;
+            resourceInputs["staticRouteConfigure"] = state ? state.staticRouteConfigure : undefined;
+            resourceInputs["subnet"] = state ? state.subnet : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as FirewallObjectAddressArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["associatedInterface"] = args ? args.associatedInterface : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["country"] = args ? args.country : undefined;
-            inputs["endIp"] = args ? args.endIp : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["showInAddressList"] = args ? args.showInAddressList : undefined;
-            inputs["startIp"] = args ? args.startIp : undefined;
-            inputs["staticRouteConfigure"] = args ? args.staticRouteConfigure : undefined;
-            inputs["subnet"] = args ? args.subnet : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["associatedInterface"] = args ? args.associatedInterface : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["country"] = args ? args.country : undefined;
+            resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["showInAddressList"] = args ? args.showInAddressList : undefined;
+            resourceInputs["startIp"] = args ? args.startIp : undefined;
+            resourceInputs["staticRouteConfigure"] = args ? args.staticRouteConfigure : undefined;
+            resourceInputs["subnet"] = args ? args.subnet : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectAddress.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectAddress.__pulumiType, name, resourceInputs, opts);
     }
 }
 

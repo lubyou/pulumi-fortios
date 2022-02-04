@@ -14,9 +14,7 @@ export function getSystemCsf(args?: GetSystemCsfArgs, opts?: pulumi.InvokeOption
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemCsf:GetSystemCsf", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -53,6 +51,18 @@ export interface GetSystemCsfResult {
      */
     readonly configurationSync: string;
     /**
+     * Enable/disable downstream device access to this device's configuration and data.
+     */
+    readonly downstreamAccess: string;
+    /**
+     * Default access profile for requests from downstream devices.
+     */
+    readonly downstreamAccprofile: string;
+    /**
+     * Fabric connector configuration. The structure of `fabricConnector` block is documented below.
+     */
+    readonly fabricConnectors: outputs.GetSystemCsfFabricConnector[];
+    /**
      * Fabric device configuration. The structure of `fabricDevice` block is documented below.
      */
     readonly fabricDevices: outputs.GetSystemCsfFabricDevice[];
@@ -61,9 +71,17 @@ export interface GetSystemCsfResult {
      */
     readonly fabricObjectUnification: string;
     /**
+     * Number of worker processes for Security Fabric daemon.
+     */
+    readonly fabricWorkers: number;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     readonly fixedKey: string;
+    /**
+     * Fabric FortiCloud account unification.
+     */
+    readonly forticloudAccountEnforcement: string;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -76,6 +94,10 @@ export interface GetSystemCsfResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Enable/disable broadcast of discovery messages for log unification.
+     */
+    readonly logUnification: string;
     /**
      * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
      */
@@ -97,6 +119,10 @@ export interface GetSystemCsfResult {
      */
     readonly trustedLists: outputs.GetSystemCsfTrustedList[];
     /**
+     * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+     */
+    readonly upstream: string;
+    /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
     readonly upstreamIp: string;
@@ -105,4 +131,18 @@ export interface GetSystemCsfResult {
      */
     readonly upstreamPort: number;
     readonly vdomparam?: string;
+}
+
+export function getSystemCsfOutput(args?: GetSystemCsfOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemCsfResult> {
+    return pulumi.output(args).apply(a => getSystemCsf(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemCsf.
+ */
+export interface GetSystemCsfOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

@@ -173,53 +173,51 @@ export class RouterRip extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterRipArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterRipArgs | RouterRipState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterRipState | undefined;
-            inputs["defaultInformationOriginate"] = state ? state.defaultInformationOriginate : undefined;
-            inputs["defaultMetric"] = state ? state.defaultMetric : undefined;
-            inputs["distances"] = state ? state.distances : undefined;
-            inputs["distributeLists"] = state ? state.distributeLists : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["garbageTimer"] = state ? state.garbageTimer : undefined;
-            inputs["interfaces"] = state ? state.interfaces : undefined;
-            inputs["maxOutMetric"] = state ? state.maxOutMetric : undefined;
-            inputs["neighbors"] = state ? state.neighbors : undefined;
-            inputs["networks"] = state ? state.networks : undefined;
-            inputs["offsetLists"] = state ? state.offsetLists : undefined;
-            inputs["passiveInterfaces"] = state ? state.passiveInterfaces : undefined;
-            inputs["recvBufferSize"] = state ? state.recvBufferSize : undefined;
-            inputs["redistributes"] = state ? state.redistributes : undefined;
-            inputs["timeoutTimer"] = state ? state.timeoutTimer : undefined;
-            inputs["updateTimer"] = state ? state.updateTimer : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["defaultInformationOriginate"] = state ? state.defaultInformationOriginate : undefined;
+            resourceInputs["defaultMetric"] = state ? state.defaultMetric : undefined;
+            resourceInputs["distances"] = state ? state.distances : undefined;
+            resourceInputs["distributeLists"] = state ? state.distributeLists : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["garbageTimer"] = state ? state.garbageTimer : undefined;
+            resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["maxOutMetric"] = state ? state.maxOutMetric : undefined;
+            resourceInputs["neighbors"] = state ? state.neighbors : undefined;
+            resourceInputs["networks"] = state ? state.networks : undefined;
+            resourceInputs["offsetLists"] = state ? state.offsetLists : undefined;
+            resourceInputs["passiveInterfaces"] = state ? state.passiveInterfaces : undefined;
+            resourceInputs["recvBufferSize"] = state ? state.recvBufferSize : undefined;
+            resourceInputs["redistributes"] = state ? state.redistributes : undefined;
+            resourceInputs["timeoutTimer"] = state ? state.timeoutTimer : undefined;
+            resourceInputs["updateTimer"] = state ? state.updateTimer : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as RouterRipArgs | undefined;
-            inputs["defaultInformationOriginate"] = args ? args.defaultInformationOriginate : undefined;
-            inputs["defaultMetric"] = args ? args.defaultMetric : undefined;
-            inputs["distances"] = args ? args.distances : undefined;
-            inputs["distributeLists"] = args ? args.distributeLists : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["garbageTimer"] = args ? args.garbageTimer : undefined;
-            inputs["interfaces"] = args ? args.interfaces : undefined;
-            inputs["maxOutMetric"] = args ? args.maxOutMetric : undefined;
-            inputs["neighbors"] = args ? args.neighbors : undefined;
-            inputs["networks"] = args ? args.networks : undefined;
-            inputs["offsetLists"] = args ? args.offsetLists : undefined;
-            inputs["passiveInterfaces"] = args ? args.passiveInterfaces : undefined;
-            inputs["recvBufferSize"] = args ? args.recvBufferSize : undefined;
-            inputs["redistributes"] = args ? args.redistributes : undefined;
-            inputs["timeoutTimer"] = args ? args.timeoutTimer : undefined;
-            inputs["updateTimer"] = args ? args.updateTimer : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["version"] = args ? args.version : undefined;
+            resourceInputs["defaultInformationOriginate"] = args ? args.defaultInformationOriginate : undefined;
+            resourceInputs["defaultMetric"] = args ? args.defaultMetric : undefined;
+            resourceInputs["distances"] = args ? args.distances : undefined;
+            resourceInputs["distributeLists"] = args ? args.distributeLists : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["garbageTimer"] = args ? args.garbageTimer : undefined;
+            resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["maxOutMetric"] = args ? args.maxOutMetric : undefined;
+            resourceInputs["neighbors"] = args ? args.neighbors : undefined;
+            resourceInputs["networks"] = args ? args.networks : undefined;
+            resourceInputs["offsetLists"] = args ? args.offsetLists : undefined;
+            resourceInputs["passiveInterfaces"] = args ? args.passiveInterfaces : undefined;
+            resourceInputs["recvBufferSize"] = args ? args.recvBufferSize : undefined;
+            resourceInputs["redistributes"] = args ? args.redistributes : undefined;
+            resourceInputs["timeoutTimer"] = args ? args.timeoutTimer : undefined;
+            resourceInputs["updateTimer"] = args ? args.updateTimer : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterRip.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterRip.__pulumiType, name, resourceInputs, opts);
     }
 }
 

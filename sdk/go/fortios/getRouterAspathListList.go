@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `RouterAspathList`.
 func GetRouterAspathListList(ctx *pulumi.Context, args *GetRouterAspathListListArgs, opts ...pulumi.InvokeOption) (*GetRouterAspathListListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterAspathListListResult
 	err := ctx.Invoke("fortios:index/getRouterAspathListList:GetRouterAspathListList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetRouterAspathListListResult struct {
 	// A list of the `RouterAspathList`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetRouterAspathListListOutput(ctx *pulumi.Context, args GetRouterAspathListListOutputArgs, opts ...pulumi.InvokeOption) GetRouterAspathListListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterAspathListListResult, error) {
+			args := v.(GetRouterAspathListListArgs)
+			r, err := GetRouterAspathListList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterAspathListListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterAspathListList.
+type GetRouterAspathListListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterAspathListListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterAspathListListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterAspathListList.
+type GetRouterAspathListListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterAspathListListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterAspathListListResult)(nil)).Elem()
+}
+
+func (o GetRouterAspathListListResultOutput) ToGetRouterAspathListListResultOutput() GetRouterAspathListListResultOutput {
+	return o
+}
+
+func (o GetRouterAspathListListResultOutput) ToGetRouterAspathListListResultOutputWithContext(ctx context.Context) GetRouterAspathListListResultOutput {
+	return o
+}
+
+func (o GetRouterAspathListListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterAspathListListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterAspathListListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterAspathListListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterAspathList`.
+func (o GetRouterAspathListListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouterAspathListListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRouterAspathListListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterAspathListListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterAspathListListResultOutput{})
 }

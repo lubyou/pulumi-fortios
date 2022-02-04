@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname1 = new fortios.UserFsso("trname1", {
  *     port: 32381,
@@ -94,27 +94,25 @@ export class UserAdgrp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserAdgrpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserAdgrpArgs | UserAdgrpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserAdgrpState | undefined;
-            inputs["connectorSource"] = state ? state.connectorSource : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["serverName"] = state ? state.serverName : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["connectorSource"] = state ? state.connectorSource : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["serverName"] = state ? state.serverName : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserAdgrpArgs | undefined;
-            inputs["connectorSource"] = args ? args.connectorSource : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["serverName"] = args ? args.serverName : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["connectorSource"] = args ? args.connectorSource : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serverName"] = args ? args.serverName : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserAdgrp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserAdgrp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

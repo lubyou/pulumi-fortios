@@ -19,6 +19,7 @@ class WirelessControllerApcfgProfileArgs:
                  ac_port: Optional[pulumi.Input[int]] = None,
                  ac_timer: Optional[pulumi.Input[int]] = None,
                  ac_type: Optional[pulumi.Input[str]] = None,
+                 ap_family: Optional[pulumi.Input[str]] = None,
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerApcfgProfileCommandListArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -30,6 +31,7 @@ class WirelessControllerApcfgProfileArgs:
         :param pulumi.Input[int] ac_port: Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
         :param pulumi.Input[int] ac_timer: Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
         :param pulumi.Input[str] ac_type: Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
+        :param pulumi.Input[str] ap_family: FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerApcfgProfileCommandListArgs']]] command_lists: AP local configuration command list. The structure of `command_list` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -44,6 +46,8 @@ class WirelessControllerApcfgProfileArgs:
             pulumi.set(__self__, "ac_timer", ac_timer)
         if ac_type is not None:
             pulumi.set(__self__, "ac_type", ac_type)
+        if ap_family is not None:
+            pulumi.set(__self__, "ap_family", ap_family)
         if command_lists is not None:
             pulumi.set(__self__, "command_lists", command_lists)
         if comment is not None:
@@ -102,6 +106,18 @@ class WirelessControllerApcfgProfileArgs:
     @ac_type.setter
     def ac_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ac_type", value)
+
+    @property
+    @pulumi.getter(name="apFamily")
+    def ap_family(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
+        """
+        return pulumi.get(self, "ap_family")
+
+    @ap_family.setter
+    def ap_family(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ap_family", value)
 
     @property
     @pulumi.getter(name="commandLists")
@@ -171,6 +187,7 @@ class _WirelessControllerApcfgProfileState:
                  ac_port: Optional[pulumi.Input[int]] = None,
                  ac_timer: Optional[pulumi.Input[int]] = None,
                  ac_type: Optional[pulumi.Input[str]] = None,
+                 ap_family: Optional[pulumi.Input[str]] = None,
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerApcfgProfileCommandListArgs']]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -182,6 +199,7 @@ class _WirelessControllerApcfgProfileState:
         :param pulumi.Input[int] ac_port: Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
         :param pulumi.Input[int] ac_timer: Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
         :param pulumi.Input[str] ac_type: Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
+        :param pulumi.Input[str] ap_family: FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerApcfgProfileCommandListArgs']]] command_lists: AP local configuration command list. The structure of `command_list` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -196,6 +214,8 @@ class _WirelessControllerApcfgProfileState:
             pulumi.set(__self__, "ac_timer", ac_timer)
         if ac_type is not None:
             pulumi.set(__self__, "ac_type", ac_type)
+        if ap_family is not None:
+            pulumi.set(__self__, "ap_family", ap_family)
         if command_lists is not None:
             pulumi.set(__self__, "command_lists", command_lists)
         if comment is not None:
@@ -254,6 +274,18 @@ class _WirelessControllerApcfgProfileState:
     @ac_type.setter
     def ac_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ac_type", value)
+
+    @property
+    @pulumi.getter(name="apFamily")
+    def ap_family(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
+        """
+        return pulumi.get(self, "ap_family")
+
+    @ap_family.setter
+    def ap_family(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ap_family", value)
 
     @property
     @pulumi.getter(name="commandLists")
@@ -325,6 +357,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
                  ac_port: Optional[pulumi.Input[int]] = None,
                  ac_timer: Optional[pulumi.Input[int]] = None,
                  ac_type: Optional[pulumi.Input[str]] = None,
+                 ap_family: Optional[pulumi.Input[str]] = None,
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -350,6 +383,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
         :param pulumi.Input[int] ac_port: Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
         :param pulumi.Input[int] ac_timer: Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
         :param pulumi.Input[str] ac_type: Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
+        :param pulumi.Input[str] ap_family: FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]] command_lists: AP local configuration command list. The structure of `command_list` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -394,6 +428,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
                  ac_port: Optional[pulumi.Input[int]] = None,
                  ac_timer: Optional[pulumi.Input[int]] = None,
                  ac_type: Optional[pulumi.Input[str]] = None,
+                 ap_family: Optional[pulumi.Input[str]] = None,
                  command_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -406,6 +441,8 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -415,6 +452,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
             __props__.__dict__["ac_port"] = ac_port
             __props__.__dict__["ac_timer"] = ac_timer
             __props__.__dict__["ac_type"] = ac_type
+            __props__.__dict__["ap_family"] = ap_family
             __props__.__dict__["command_lists"] = command_lists
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -434,6 +472,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
             ac_port: Optional[pulumi.Input[int]] = None,
             ac_timer: Optional[pulumi.Input[int]] = None,
             ac_type: Optional[pulumi.Input[str]] = None,
+            ap_family: Optional[pulumi.Input[str]] = None,
             command_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
@@ -450,6 +489,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
         :param pulumi.Input[int] ac_port: Port of the validation controller that AP must be able to join after applying AP local configuration (1024 - 49150, default = 5246).
         :param pulumi.Input[int] ac_timer: Maximum waiting time for the AP to join the validation controller after applying AP local configuration (3 - 30 min, default = 10).
         :param pulumi.Input[str] ac_type: Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
+        :param pulumi.Input[str] ap_family: FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerApcfgProfileCommandListArgs']]]] command_lists: AP local configuration command list. The structure of `command_list` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -464,6 +504,7 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
         __props__.__dict__["ac_port"] = ac_port
         __props__.__dict__["ac_timer"] = ac_timer
         __props__.__dict__["ac_type"] = ac_type
+        __props__.__dict__["ap_family"] = ap_family
         __props__.__dict__["command_lists"] = command_lists
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
@@ -502,6 +543,14 @@ class WirelessControllerApcfgProfile(pulumi.CustomResource):
         Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
         """
         return pulumi.get(self, "ac_type")
+
+    @property
+    @pulumi.getter(name="apFamily")
+    def ap_family(self) -> pulumi.Output[str]:
+        """
+        FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
+        """
+        return pulumi.get(self, "ap_family")
 
     @property
     @pulumi.getter(name="commandLists")

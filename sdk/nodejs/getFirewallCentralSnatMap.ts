@@ -13,9 +13,7 @@ export function getFirewallCentralSnatMap(args: GetFirewallCentralSnatMapArgs, o
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallCentralSnatMap:GetFirewallCentralSnatMap", {
         "policyid": args.policyid,
         "vdomparam": args.vdomparam,
@@ -65,6 +63,14 @@ export interface GetFirewallCentralSnatMapResult {
      */
     readonly nat: string;
     /**
+     * Enable/disable NAT46.
+     */
+    readonly nat46: string;
+    /**
+     * Enable/disable NAT64.
+     */
+    readonly nat64: string;
+    /**
      * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
      */
     readonly natIppool6s: outputs.GetFirewallCentralSnatMapNatIppool6[];
@@ -113,4 +119,22 @@ export interface GetFirewallCentralSnatMapResult {
      */
     readonly uuid: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallCentralSnatMapOutput(args: GetFirewallCentralSnatMapOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallCentralSnatMapResult> {
+    return pulumi.output(args).apply(a => getFirewallCentralSnatMap(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallCentralSnatMap.
+ */
+export interface GetFirewallCentralSnatMapOutputArgs {
+    /**
+     * Specify the policyid of the desired firewall centralsnatmap.
+     */
+    policyid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

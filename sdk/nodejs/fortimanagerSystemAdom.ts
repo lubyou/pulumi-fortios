@@ -104,37 +104,35 @@ export class FortimanagerSystemAdom extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerSystemAdomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemAdomArgs | FortimanagerSystemAdomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemAdomState | undefined;
-            inputs["actionWhenConflictsOccurDuringPolicyCheck"] = state ? state.actionWhenConflictsOccurDuringPolicyCheck : undefined;
-            inputs["autoPushPolicyPackagesWhenDeviceBackOnline"] = state ? state.autoPushPolicyPackagesWhenDeviceBackOnline : undefined;
-            inputs["centralManagementFortiap"] = state ? state.centralManagementFortiap : undefined;
-            inputs["centralManagementSdwan"] = state ? state.centralManagementSdwan : undefined;
-            inputs["centralManagementVpn"] = state ? state.centralManagementVpn : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["performPolicyCheckBeforeEveryInstall"] = state ? state.performPolicyCheckBeforeEveryInstall : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["actionWhenConflictsOccurDuringPolicyCheck"] = state ? state.actionWhenConflictsOccurDuringPolicyCheck : undefined;
+            resourceInputs["autoPushPolicyPackagesWhenDeviceBackOnline"] = state ? state.autoPushPolicyPackagesWhenDeviceBackOnline : undefined;
+            resourceInputs["centralManagementFortiap"] = state ? state.centralManagementFortiap : undefined;
+            resourceInputs["centralManagementSdwan"] = state ? state.centralManagementSdwan : undefined;
+            resourceInputs["centralManagementVpn"] = state ? state.centralManagementVpn : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["performPolicyCheckBeforeEveryInstall"] = state ? state.performPolicyCheckBeforeEveryInstall : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemAdomArgs | undefined;
-            inputs["actionWhenConflictsOccurDuringPolicyCheck"] = args ? args.actionWhenConflictsOccurDuringPolicyCheck : undefined;
-            inputs["autoPushPolicyPackagesWhenDeviceBackOnline"] = args ? args.autoPushPolicyPackagesWhenDeviceBackOnline : undefined;
-            inputs["centralManagementFortiap"] = args ? args.centralManagementFortiap : undefined;
-            inputs["centralManagementSdwan"] = args ? args.centralManagementSdwan : undefined;
-            inputs["centralManagementVpn"] = args ? args.centralManagementVpn : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["performPolicyCheckBeforeEveryInstall"] = args ? args.performPolicyCheckBeforeEveryInstall : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["actionWhenConflictsOccurDuringPolicyCheck"] = args ? args.actionWhenConflictsOccurDuringPolicyCheck : undefined;
+            resourceInputs["autoPushPolicyPackagesWhenDeviceBackOnline"] = args ? args.autoPushPolicyPackagesWhenDeviceBackOnline : undefined;
+            resourceInputs["centralManagementFortiap"] = args ? args.centralManagementFortiap : undefined;
+            resourceInputs["centralManagementSdwan"] = args ? args.centralManagementSdwan : undefined;
+            resourceInputs["centralManagementVpn"] = args ? args.centralManagementVpn : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["performPolicyCheckBeforeEveryInstall"] = args ? args.performPolicyCheckBeforeEveryInstall : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemAdom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemAdom.__pulumiType, name, resourceInputs, opts);
     }
 }
 

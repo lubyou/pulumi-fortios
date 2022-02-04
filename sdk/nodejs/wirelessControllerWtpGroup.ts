@@ -76,27 +76,25 @@ export class WirelessControllerWtpGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerWtpGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerWtpGroupArgs | WirelessControllerWtpGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerWtpGroupState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["platformType"] = state ? state.platformType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wtps"] = state ? state.wtps : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["platformType"] = state ? state.platformType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wtps"] = state ? state.wtps : undefined;
         } else {
             const args = argsOrState as WirelessControllerWtpGroupArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["platformType"] = args ? args.platformType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wtps"] = args ? args.wtps : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["platformType"] = args ? args.platformType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wtps"] = args ? args.wtps : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerWtpGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerWtpGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

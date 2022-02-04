@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system fortiguard
 func LookupSystemFortiguard(ctx *pulumi.Context, args *LookupSystemFortiguardArgs, opts ...pulumi.InvokeOption) (*LookupSystemFortiguardResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFortiguardResult
 	err := ctx.Invoke("fortios:index/getSystemFortiguard:GetSystemFortiguard", args, &rv, opts...)
 	if err != nil {
@@ -47,6 +51,8 @@ type LookupSystemFortiguardResult struct {
 	AutoJoinForticloud string `pulumi:"autoJoinForticloud"`
 	// IP address of the FortiDDNS server.
 	DdnsServerIp string `pulumi:"ddnsServerIp"`
+	// IPv6 address of the FortiDDNS server.
+	DdnsServerIp6 string `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort int `pulumi:"ddnsServerPort"`
 	// Enable/disable use of FortiGuard's anycast network.
@@ -75,6 +81,8 @@ type LookupSystemFortiguardResult struct {
 	OutbreakPreventionLicense int `pulumi:"outbreakPreventionLicense"`
 	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
 	OutbreakPreventionTimeout int `pulumi:"outbreakPreventionTimeout"`
+	// Enable/disable use of persistent connection to receive update notification from FortiGuard.
+	PersistentConnection string `pulumi:"persistentConnection"`
 	// Port used to communicate with the FortiGuard servers.
 	Port string `pulumi:"port"`
 	// Protocol used to communicate with the FortiGuard servers.
@@ -101,9 +109,21 @@ type LookupSystemFortiguardResult struct {
 	SourceIp string `pulumi:"sourceIp"`
 	// Source IPv6 address used to communicate with FortiGuard.
 	SourceIp6 string `pulumi:"sourceIp6"`
+	// Enable/disable proxy dictionary rebuild.
+	UpdateBuildProxy string `pulumi:"updateBuildProxy"`
+	// Enable/disable external resource update.
+	UpdateExtdb string `pulumi:"updateExtdb"`
+	// Enable/disable Internet Service Database update.
+	UpdateFfdb string `pulumi:"updateFfdb"`
 	// Signature update server location.
-	UpdateServerLocation string  `pulumi:"updateServerLocation"`
-	Vdomparam            *string `pulumi:"vdomparam"`
+	UpdateServerLocation string `pulumi:"updateServerLocation"`
+	// Enable/disable allowlist update.
+	UpdateUwdb string  `pulumi:"updateUwdb"`
+	Vdomparam  *string `pulumi:"vdomparam"`
+	// Expiration date of the FortiGuard video filter contract.
+	VideofilterExpiration int `pulumi:"videofilterExpiration"`
+	// Interval of time between license checks for the FortiGuard video filter contract.
+	VideofilterLicense int `pulumi:"videofilterLicense"`
 	// Enable/disable FortiGuard web filter caching.
 	WebfilterCache string `pulumi:"webfilterCache"`
 	// Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -116,4 +136,311 @@ type LookupSystemFortiguardResult struct {
 	WebfilterLicense int `pulumi:"webfilterLicense"`
 	// Web filter query time out (1 - 30 sec, default = 7).
 	WebfilterTimeout int `pulumi:"webfilterTimeout"`
+}
+
+func LookupSystemFortiguardOutput(ctx *pulumi.Context, args LookupSystemFortiguardOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFortiguardResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemFortiguardResult, error) {
+			args := v.(LookupSystemFortiguardArgs)
+			r, err := LookupSystemFortiguard(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemFortiguardResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemFortiguard.
+type LookupSystemFortiguardOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemFortiguardOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemFortiguardArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemFortiguard.
+type LookupSystemFortiguardResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemFortiguardResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemFortiguardResult)(nil)).Elem()
+}
+
+func (o LookupSystemFortiguardResultOutput) ToLookupSystemFortiguardResultOutput() LookupSystemFortiguardResultOutput {
+	return o
+}
+
+func (o LookupSystemFortiguardResultOutput) ToLookupSystemFortiguardResultOutputWithContext(ctx context.Context) LookupSystemFortiguardResultOutput {
+	return o
+}
+
+// Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance.
+func (o LookupSystemFortiguardResultOutput) AntispamCache() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.AntispamCache }).(pulumi.StringOutput)
+}
+
+// Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
+func (o LookupSystemFortiguardResultOutput) AntispamCacheMpercent() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamCacheMpercent }).(pulumi.IntOutput)
+}
+
+// Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
+func (o LookupSystemFortiguardResultOutput) AntispamCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamCacheTtl }).(pulumi.IntOutput)
+}
+
+// Expiration date of the FortiGuard antispam contract.
+func (o LookupSystemFortiguardResultOutput) AntispamExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamExpiration }).(pulumi.IntOutput)
+}
+
+// Enable/disable turning off the FortiGuard antispam service.
+func (o LookupSystemFortiguardResultOutput) AntispamForceOff() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.AntispamForceOff }).(pulumi.StringOutput)
+}
+
+// Interval of time between license checks for the FortiGuard antispam contract.
+func (o LookupSystemFortiguardResultOutput) AntispamLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamLicense }).(pulumi.IntOutput)
+}
+
+// Antispam query time out (1 - 30 sec, default = 7).
+func (o LookupSystemFortiguardResultOutput) AntispamTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AntispamTimeout }).(pulumi.IntOutput)
+}
+
+// IP address of the FortiGuard anycast DNS rating server.
+func (o LookupSystemFortiguardResultOutput) AnycastSdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.AnycastSdnsServerIp }).(pulumi.StringOutput)
+}
+
+// Port to connect to on the FortiGuard anycast DNS rating server.
+func (o LookupSystemFortiguardResultOutput) AnycastSdnsServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.AnycastSdnsServerPort }).(pulumi.IntOutput)
+}
+
+// Automatically connect to and login to FortiCloud.
+func (o LookupSystemFortiguardResultOutput) AutoJoinForticloud() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.AutoJoinForticloud }).(pulumi.StringOutput)
+}
+
+// IP address of the FortiDDNS server.
+func (o LookupSystemFortiguardResultOutput) DdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.DdnsServerIp }).(pulumi.StringOutput)
+}
+
+// IPv6 address of the FortiDDNS server.
+func (o LookupSystemFortiguardResultOutput) DdnsServerIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.DdnsServerIp6 }).(pulumi.StringOutput)
+}
+
+// Port used to communicate with FortiDDNS servers.
+func (o LookupSystemFortiguardResultOutput) DdnsServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.DdnsServerPort }).(pulumi.IntOutput)
+}
+
+// Enable/disable use of FortiGuard's anycast network.
+func (o LookupSystemFortiguardResultOutput) FortiguardAnycast() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.FortiguardAnycast }).(pulumi.StringOutput)
+}
+
+// Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet.
+func (o LookupSystemFortiguardResultOutput) FortiguardAnycastSource() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.FortiguardAnycastSource }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemFortiguardResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o LookupSystemFortiguardResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o LookupSystemFortiguardResultOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Number of servers to alternate between as first FortiGuard option.
+func (o LookupSystemFortiguardResultOutput) LoadBalanceServers() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.LoadBalanceServers }).(pulumi.IntOutput)
+}
+
+// Enable/disable FortiGuard Virus Outbreak Prevention cache.
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCache() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.OutbreakPreventionCache }).(pulumi.StringOutput)
+}
+
+// Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCacheMpercent() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionCacheMpercent }).(pulumi.IntOutput)
+}
+
+// Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionCacheTtl }).(pulumi.IntOutput)
+}
+
+// Expiration date of FortiGuard Virus Outbreak Prevention contract.
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionExpiration }).(pulumi.IntOutput)
+}
+
+// Turn off FortiGuard Virus Outbreak Prevention service.
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionForceOff() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.OutbreakPreventionForceOff }).(pulumi.StringOutput)
+}
+
+// Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionLicense }).(pulumi.IntOutput)
+}
+
+// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
+func (o LookupSystemFortiguardResultOutput) OutbreakPreventionTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.OutbreakPreventionTimeout }).(pulumi.IntOutput)
+}
+
+// Enable/disable use of persistent connection to receive update notification from FortiGuard.
+func (o LookupSystemFortiguardResultOutput) PersistentConnection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.PersistentConnection }).(pulumi.StringOutput)
+}
+
+// Port used to communicate with the FortiGuard servers.
+func (o LookupSystemFortiguardResultOutput) Port() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.Port }).(pulumi.StringOutput)
+}
+
+// Protocol used to communicate with the FortiGuard servers.
+func (o LookupSystemFortiguardResultOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+// Proxy user password.
+func (o LookupSystemFortiguardResultOutput) ProxyPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.ProxyPassword }).(pulumi.StringOutput)
+}
+
+// IP address of the proxy server.
+func (o LookupSystemFortiguardResultOutput) ProxyServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.ProxyServerIp }).(pulumi.StringOutput)
+}
+
+// Port used to communicate with the proxy server.
+func (o LookupSystemFortiguardResultOutput) ProxyServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.ProxyServerPort }).(pulumi.IntOutput)
+}
+
+// Proxy user name.
+func (o LookupSystemFortiguardResultOutput) ProxyUsername() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.ProxyUsername }).(pulumi.StringOutput)
+}
+
+// Cloud sandbox region.
+func (o LookupSystemFortiguardResultOutput) SandboxRegion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.SandboxRegion }).(pulumi.StringOutput)
+}
+
+// Customization options for the FortiGuard DNS service.
+func (o LookupSystemFortiguardResultOutput) SdnsOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.SdnsOptions }).(pulumi.StringOutput)
+}
+
+// IP address of the FortiDNS server.
+func (o LookupSystemFortiguardResultOutput) SdnsServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.SdnsServerIp }).(pulumi.StringOutput)
+}
+
+// Port used to communicate with FortiDNS servers.
+func (o LookupSystemFortiguardResultOutput) SdnsServerPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.SdnsServerPort }).(pulumi.IntOutput)
+}
+
+// Service account ID.
+func (o LookupSystemFortiguardResultOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.ServiceAccountId }).(pulumi.StringOutput)
+}
+
+// Source IPv4 address used to communicate with FortiGuard.
+func (o LookupSystemFortiguardResultOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+// Source IPv6 address used to communicate with FortiGuard.
+func (o LookupSystemFortiguardResultOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+// Enable/disable proxy dictionary rebuild.
+func (o LookupSystemFortiguardResultOutput) UpdateBuildProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateBuildProxy }).(pulumi.StringOutput)
+}
+
+// Enable/disable external resource update.
+func (o LookupSystemFortiguardResultOutput) UpdateExtdb() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateExtdb }).(pulumi.StringOutput)
+}
+
+// Enable/disable Internet Service Database update.
+func (o LookupSystemFortiguardResultOutput) UpdateFfdb() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateFfdb }).(pulumi.StringOutput)
+}
+
+// Signature update server location.
+func (o LookupSystemFortiguardResultOutput) UpdateServerLocation() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateServerLocation }).(pulumi.StringOutput)
+}
+
+// Enable/disable allowlist update.
+func (o LookupSystemFortiguardResultOutput) UpdateUwdb() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.UpdateUwdb }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemFortiguardResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Expiration date of the FortiGuard video filter contract.
+func (o LookupSystemFortiguardResultOutput) VideofilterExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.VideofilterExpiration }).(pulumi.IntOutput)
+}
+
+// Interval of time between license checks for the FortiGuard video filter contract.
+func (o LookupSystemFortiguardResultOutput) VideofilterLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.VideofilterLicense }).(pulumi.IntOutput)
+}
+
+// Enable/disable FortiGuard web filter caching.
+func (o LookupSystemFortiguardResultOutput) WebfilterCache() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.WebfilterCache }).(pulumi.StringOutput)
+}
+
+// Time-to-live for web filter cache entries in seconds (300 - 86400).
+func (o LookupSystemFortiguardResultOutput) WebfilterCacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.WebfilterCacheTtl }).(pulumi.IntOutput)
+}
+
+// Expiration date of the FortiGuard web filter contract.
+func (o LookupSystemFortiguardResultOutput) WebfilterExpiration() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.WebfilterExpiration }).(pulumi.IntOutput)
+}
+
+// Enable/disable turning off the FortiGuard web filtering service.
+func (o LookupSystemFortiguardResultOutput) WebfilterForceOff() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) string { return v.WebfilterForceOff }).(pulumi.StringOutput)
+}
+
+// Interval of time between license checks for the FortiGuard web filter contract.
+func (o LookupSystemFortiguardResultOutput) WebfilterLicense() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.WebfilterLicense }).(pulumi.IntOutput)
+}
+
+// Web filter query time out (1 - 30 sec, default = 7).
+func (o LookupSystemFortiguardResultOutput) WebfilterTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFortiguardResult) int { return v.WebfilterTimeout }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemFortiguardResultOutput{})
 }

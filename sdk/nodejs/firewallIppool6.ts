@@ -58,6 +58,10 @@ export class FirewallIppool6 extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+     */
+    public readonly addNat46Route!: pulumi.Output<string>;
+    /**
      * Comment.
      */
     public readonly comments!: pulumi.Output<string | undefined>;
@@ -69,6 +73,10 @@ export class FirewallIppool6 extends pulumi.CustomResource {
      * IPv6 IP pool name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `disable`, `enable`.
+     */
+    public readonly nat46!: pulumi.Output<string>;
     /**
      * First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
      */
@@ -87,15 +95,17 @@ export class FirewallIppool6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallIppool6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallIppool6Args | FirewallIppool6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallIppool6State | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["endip"] = state ? state.endip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["startip"] = state ? state.startip : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addNat46Route"] = state ? state.addNat46Route : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["endip"] = state ? state.endip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nat46"] = state ? state.nat46 : undefined;
+            resourceInputs["startip"] = state ? state.startip : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallIppool6Args | undefined;
             if ((!args || args.endip === undefined) && !opts.urn) {
@@ -104,16 +114,16 @@ export class FirewallIppool6 extends pulumi.CustomResource {
             if ((!args || args.startip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startip'");
             }
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["endip"] = args ? args.endip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["startip"] = args ? args.startip : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addNat46Route"] = args ? args.addNat46Route : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["endip"] = args ? args.endip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nat46"] = args ? args.nat46 : undefined;
+            resourceInputs["startip"] = args ? args.startip : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallIppool6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallIppool6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -121,6 +131,10 @@ export class FirewallIppool6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIppool6 resources.
  */
 export interface FirewallIppool6State {
+    /**
+     * Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+     */
+    addNat46Route?: pulumi.Input<string>;
     /**
      * Comment.
      */
@@ -133,6 +147,10 @@ export interface FirewallIppool6State {
      * IPv6 IP pool name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `disable`, `enable`.
+     */
+    nat46?: pulumi.Input<string>;
     /**
      * First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
      */
@@ -148,6 +166,10 @@ export interface FirewallIppool6State {
  */
 export interface FirewallIppool6Args {
     /**
+     * Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+     */
+    addNat46Route?: pulumi.Input<string>;
+    /**
      * Comment.
      */
     comments?: pulumi.Input<string>;
@@ -159,6 +181,10 @@ export interface FirewallIppool6Args {
      * IPv6 IP pool name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `disable`, `enable`.
+     */
+    nat46?: pulumi.Input<string>;
     /**
      * First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
      */

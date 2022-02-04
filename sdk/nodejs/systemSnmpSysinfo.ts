@@ -72,6 +72,10 @@ export class SystemSnmpSysinfo extends pulumi.CustomResource {
      */
     public readonly engineId!: pulumi.Output<string>;
     /**
+     * Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+     */
+    public readonly engineIdType!: pulumi.Output<string>;
+    /**
      * System location.
      */
     public readonly location!: pulumi.Output<string | undefined>;
@@ -105,35 +109,35 @@ export class SystemSnmpSysinfo extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSnmpSysinfoArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSnmpSysinfoArgs | SystemSnmpSysinfoState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSnmpSysinfoState | undefined;
-            inputs["contactInfo"] = state ? state.contactInfo : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["engineId"] = state ? state.engineId : undefined;
-            inputs["location"] = state ? state.location : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
-            inputs["trapLogFullThreshold"] = state ? state.trapLogFullThreshold : undefined;
-            inputs["trapLowMemoryThreshold"] = state ? state.trapLowMemoryThreshold : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["contactInfo"] = state ? state.contactInfo : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["engineId"] = state ? state.engineId : undefined;
+            resourceInputs["engineIdType"] = state ? state.engineIdType : undefined;
+            resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
+            resourceInputs["trapLogFullThreshold"] = state ? state.trapLogFullThreshold : undefined;
+            resourceInputs["trapLowMemoryThreshold"] = state ? state.trapLowMemoryThreshold : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSnmpSysinfoArgs | undefined;
-            inputs["contactInfo"] = args ? args.contactInfo : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["engineId"] = args ? args.engineId : undefined;
-            inputs["location"] = args ? args.location : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
-            inputs["trapLogFullThreshold"] = args ? args.trapLogFullThreshold : undefined;
-            inputs["trapLowMemoryThreshold"] = args ? args.trapLowMemoryThreshold : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["contactInfo"] = args ? args.contactInfo : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["engineId"] = args ? args.engineId : undefined;
+            resourceInputs["engineIdType"] = args ? args.engineIdType : undefined;
+            resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
+            resourceInputs["trapLogFullThreshold"] = args ? args.trapLogFullThreshold : undefined;
+            resourceInputs["trapLowMemoryThreshold"] = args ? args.trapLowMemoryThreshold : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSnmpSysinfo.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSnmpSysinfo.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -153,6 +157,10 @@ export interface SystemSnmpSysinfoState {
      * Local SNMP engineID string (maximum 24 characters).
      */
     engineId?: pulumi.Input<string>;
+    /**
+     * Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+     */
+    engineIdType?: pulumi.Input<string>;
     /**
      * System location.
      */
@@ -195,6 +203,10 @@ export interface SystemSnmpSysinfoArgs {
      * Local SNMP engineID string (maximum 24 characters).
      */
     engineId?: pulumi.Input<string>;
+    /**
+     * Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+     */
+    engineIdType?: pulumi.Input<string>;
     /**
      * System location.
      */

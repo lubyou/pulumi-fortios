@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -99,6 +99,8 @@ type SystemFortiguard struct {
 	AutoJoinForticloud pulumi.StringOutput `pulumi:"autoJoinForticloud"`
 	// IP address of the FortiDDNS server.
 	DdnsServerIp pulumi.StringOutput `pulumi:"ddnsServerIp"`
+	// IPv6 address of the FortiDDNS server.
+	DdnsServerIp6 pulumi.StringOutput `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort pulumi.IntOutput `pulumi:"ddnsServerPort"`
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
@@ -125,6 +127,8 @@ type SystemFortiguard struct {
 	OutbreakPreventionLicense pulumi.IntOutput `pulumi:"outbreakPreventionLicense"`
 	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
 	OutbreakPreventionTimeout pulumi.IntOutput `pulumi:"outbreakPreventionTimeout"`
+	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+	PersistentConnection pulumi.StringOutput `pulumi:"persistentConnection"`
 	// Port used to communicate with the FortiGuard servers.
 	Port pulumi.StringOutput `pulumi:"port"`
 	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
@@ -151,10 +155,22 @@ type SystemFortiguard struct {
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Source IPv6 address used to communicate with FortiGuard.
 	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
-	// Signature update server location. Valid values: `usa`, `any`.
+	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+	UpdateBuildProxy pulumi.StringOutput `pulumi:"updateBuildProxy"`
+	// Enable/disable external resource update. Valid values: `enable`, `disable`.
+	UpdateExtdb pulumi.StringOutput `pulumi:"updateExtdb"`
+	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+	UpdateFfdb pulumi.StringOutput `pulumi:"updateFfdb"`
+	// Signature update server location.
 	UpdateServerLocation pulumi.StringOutput `pulumi:"updateServerLocation"`
+	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
+	UpdateUwdb pulumi.StringOutput `pulumi:"updateUwdb"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Expiration date of the FortiGuard video filter contract.
+	VideofilterExpiration pulumi.IntOutput `pulumi:"videofilterExpiration"`
+	// Interval of time between license checks for the FortiGuard video filter contract.
+	VideofilterLicense pulumi.IntOutput `pulumi:"videofilterLicense"`
 	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
 	WebfilterCache pulumi.StringOutput `pulumi:"webfilterCache"`
 	// Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -185,6 +201,7 @@ func NewSystemFortiguard(ctx *pulumi.Context,
 	if args.WebfilterTimeout == nil {
 		return nil, errors.New("invalid value for required argument 'WebfilterTimeout'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFortiguard
 	err := ctx.RegisterResource("fortios:index/systemFortiguard:SystemFortiguard", name, args, &resource, opts...)
 	if err != nil {
@@ -229,6 +246,8 @@ type systemFortiguardState struct {
 	AutoJoinForticloud *string `pulumi:"autoJoinForticloud"`
 	// IP address of the FortiDDNS server.
 	DdnsServerIp *string `pulumi:"ddnsServerIp"`
+	// IPv6 address of the FortiDDNS server.
+	DdnsServerIp6 *string `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort *int `pulumi:"ddnsServerPort"`
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
@@ -255,6 +274,8 @@ type systemFortiguardState struct {
 	OutbreakPreventionLicense *int `pulumi:"outbreakPreventionLicense"`
 	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
 	OutbreakPreventionTimeout *int `pulumi:"outbreakPreventionTimeout"`
+	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+	PersistentConnection *string `pulumi:"persistentConnection"`
 	// Port used to communicate with the FortiGuard servers.
 	Port *string `pulumi:"port"`
 	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
@@ -281,10 +302,22 @@ type systemFortiguardState struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source IPv6 address used to communicate with FortiGuard.
 	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Signature update server location. Valid values: `usa`, `any`.
+	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+	UpdateBuildProxy *string `pulumi:"updateBuildProxy"`
+	// Enable/disable external resource update. Valid values: `enable`, `disable`.
+	UpdateExtdb *string `pulumi:"updateExtdb"`
+	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+	UpdateFfdb *string `pulumi:"updateFfdb"`
+	// Signature update server location.
 	UpdateServerLocation *string `pulumi:"updateServerLocation"`
+	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
+	UpdateUwdb *string `pulumi:"updateUwdb"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Expiration date of the FortiGuard video filter contract.
+	VideofilterExpiration *int `pulumi:"videofilterExpiration"`
+	// Interval of time between license checks for the FortiGuard video filter contract.
+	VideofilterLicense *int `pulumi:"videofilterLicense"`
 	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
 	WebfilterCache *string `pulumi:"webfilterCache"`
 	// Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -322,6 +355,8 @@ type SystemFortiguardState struct {
 	AutoJoinForticloud pulumi.StringPtrInput
 	// IP address of the FortiDDNS server.
 	DdnsServerIp pulumi.StringPtrInput
+	// IPv6 address of the FortiDDNS server.
+	DdnsServerIp6 pulumi.StringPtrInput
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort pulumi.IntPtrInput
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
@@ -348,6 +383,8 @@ type SystemFortiguardState struct {
 	OutbreakPreventionLicense pulumi.IntPtrInput
 	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
 	OutbreakPreventionTimeout pulumi.IntPtrInput
+	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+	PersistentConnection pulumi.StringPtrInput
 	// Port used to communicate with the FortiGuard servers.
 	Port pulumi.StringPtrInput
 	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
@@ -374,10 +411,22 @@ type SystemFortiguardState struct {
 	SourceIp pulumi.StringPtrInput
 	// Source IPv6 address used to communicate with FortiGuard.
 	SourceIp6 pulumi.StringPtrInput
-	// Signature update server location. Valid values: `usa`, `any`.
+	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+	UpdateBuildProxy pulumi.StringPtrInput
+	// Enable/disable external resource update. Valid values: `enable`, `disable`.
+	UpdateExtdb pulumi.StringPtrInput
+	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+	UpdateFfdb pulumi.StringPtrInput
+	// Signature update server location.
 	UpdateServerLocation pulumi.StringPtrInput
+	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
+	UpdateUwdb pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Expiration date of the FortiGuard video filter contract.
+	VideofilterExpiration pulumi.IntPtrInput
+	// Interval of time between license checks for the FortiGuard video filter contract.
+	VideofilterLicense pulumi.IntPtrInput
 	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
 	WebfilterCache pulumi.StringPtrInput
 	// Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -419,6 +468,8 @@ type systemFortiguardArgs struct {
 	AutoJoinForticloud *string `pulumi:"autoJoinForticloud"`
 	// IP address of the FortiDDNS server.
 	DdnsServerIp *string `pulumi:"ddnsServerIp"`
+	// IPv6 address of the FortiDDNS server.
+	DdnsServerIp6 *string `pulumi:"ddnsServerIp6"`
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort *int `pulumi:"ddnsServerPort"`
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
@@ -445,6 +496,8 @@ type systemFortiguardArgs struct {
 	OutbreakPreventionLicense *int `pulumi:"outbreakPreventionLicense"`
 	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
 	OutbreakPreventionTimeout int `pulumi:"outbreakPreventionTimeout"`
+	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+	PersistentConnection *string `pulumi:"persistentConnection"`
 	// Port used to communicate with the FortiGuard servers.
 	Port *string `pulumi:"port"`
 	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
@@ -471,10 +524,22 @@ type systemFortiguardArgs struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source IPv6 address used to communicate with FortiGuard.
 	SourceIp6 *string `pulumi:"sourceIp6"`
-	// Signature update server location. Valid values: `usa`, `any`.
+	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+	UpdateBuildProxy *string `pulumi:"updateBuildProxy"`
+	// Enable/disable external resource update. Valid values: `enable`, `disable`.
+	UpdateExtdb *string `pulumi:"updateExtdb"`
+	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+	UpdateFfdb *string `pulumi:"updateFfdb"`
+	// Signature update server location.
 	UpdateServerLocation *string `pulumi:"updateServerLocation"`
+	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
+	UpdateUwdb *string `pulumi:"updateUwdb"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Expiration date of the FortiGuard video filter contract.
+	VideofilterExpiration *int `pulumi:"videofilterExpiration"`
+	// Interval of time between license checks for the FortiGuard video filter contract.
+	VideofilterLicense *int `pulumi:"videofilterLicense"`
 	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
 	WebfilterCache *string `pulumi:"webfilterCache"`
 	// Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -513,6 +578,8 @@ type SystemFortiguardArgs struct {
 	AutoJoinForticloud pulumi.StringPtrInput
 	// IP address of the FortiDDNS server.
 	DdnsServerIp pulumi.StringPtrInput
+	// IPv6 address of the FortiDDNS server.
+	DdnsServerIp6 pulumi.StringPtrInput
 	// Port used to communicate with FortiDDNS servers.
 	DdnsServerPort pulumi.IntPtrInput
 	// Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
@@ -539,6 +606,8 @@ type SystemFortiguardArgs struct {
 	OutbreakPreventionLicense pulumi.IntPtrInput
 	// FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
 	OutbreakPreventionTimeout pulumi.IntInput
+	// Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+	PersistentConnection pulumi.StringPtrInput
 	// Port used to communicate with the FortiGuard servers.
 	Port pulumi.StringPtrInput
 	// Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
@@ -565,10 +634,22 @@ type SystemFortiguardArgs struct {
 	SourceIp pulumi.StringPtrInput
 	// Source IPv6 address used to communicate with FortiGuard.
 	SourceIp6 pulumi.StringPtrInput
-	// Signature update server location. Valid values: `usa`, `any`.
+	// Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+	UpdateBuildProxy pulumi.StringPtrInput
+	// Enable/disable external resource update. Valid values: `enable`, `disable`.
+	UpdateExtdb pulumi.StringPtrInput
+	// Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+	UpdateFfdb pulumi.StringPtrInput
+	// Signature update server location.
 	UpdateServerLocation pulumi.StringPtrInput
+	// Enable/disable allowlist update. Valid values: `enable`, `disable`.
+	UpdateUwdb pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Expiration date of the FortiGuard video filter contract.
+	VideofilterExpiration pulumi.IntPtrInput
+	// Interval of time between license checks for the FortiGuard video filter contract.
+	VideofilterLicense pulumi.IntPtrInput
 	// Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
 	WebfilterCache pulumi.StringPtrInput
 	// Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -595,7 +676,7 @@ type SystemFortiguardInput interface {
 }
 
 func (*SystemFortiguard) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFortiguard)(nil))
+	return reflect.TypeOf((**SystemFortiguard)(nil)).Elem()
 }
 
 func (i *SystemFortiguard) ToSystemFortiguardOutput() SystemFortiguardOutput {
@@ -604,35 +685,6 @@ func (i *SystemFortiguard) ToSystemFortiguardOutput() SystemFortiguardOutput {
 
 func (i *SystemFortiguard) ToSystemFortiguardOutputWithContext(ctx context.Context) SystemFortiguardOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardOutput)
-}
-
-func (i *SystemFortiguard) ToSystemFortiguardPtrOutput() SystemFortiguardPtrOutput {
-	return i.ToSystemFortiguardPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFortiguard) ToSystemFortiguardPtrOutputWithContext(ctx context.Context) SystemFortiguardPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardPtrOutput)
-}
-
-type SystemFortiguardPtrInput interface {
-	pulumi.Input
-
-	ToSystemFortiguardPtrOutput() SystemFortiguardPtrOutput
-	ToSystemFortiguardPtrOutputWithContext(ctx context.Context) SystemFortiguardPtrOutput
-}
-
-type systemFortiguardPtrType SystemFortiguardArgs
-
-func (*systemFortiguardPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFortiguard)(nil))
-}
-
-func (i *systemFortiguardPtrType) ToSystemFortiguardPtrOutput() SystemFortiguardPtrOutput {
-	return i.ToSystemFortiguardPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFortiguardPtrType) ToSystemFortiguardPtrOutputWithContext(ctx context.Context) SystemFortiguardPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardPtrOutput)
 }
 
 // SystemFortiguardArrayInput is an input type that accepts SystemFortiguardArray and SystemFortiguardArrayOutput values.
@@ -649,7 +701,7 @@ type SystemFortiguardArrayInput interface {
 type SystemFortiguardArray []SystemFortiguardInput
 
 func (SystemFortiguardArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFortiguard)(nil))
+	return reflect.TypeOf((*[]*SystemFortiguard)(nil)).Elem()
 }
 
 func (i SystemFortiguardArray) ToSystemFortiguardArrayOutput() SystemFortiguardArrayOutput {
@@ -674,7 +726,7 @@ type SystemFortiguardMapInput interface {
 type SystemFortiguardMap map[string]SystemFortiguardInput
 
 func (SystemFortiguardMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFortiguard)(nil))
+	return reflect.TypeOf((*map[string]*SystemFortiguard)(nil)).Elem()
 }
 
 func (i SystemFortiguardMap) ToSystemFortiguardMapOutput() SystemFortiguardMapOutput {
@@ -685,12 +737,10 @@ func (i SystemFortiguardMap) ToSystemFortiguardMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortiguardMapOutput)
 }
 
-type SystemFortiguardOutput struct {
-	*pulumi.OutputState
-}
+type SystemFortiguardOutput struct{ *pulumi.OutputState }
 
 func (SystemFortiguardOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFortiguard)(nil))
+	return reflect.TypeOf((**SystemFortiguard)(nil)).Elem()
 }
 
 func (o SystemFortiguardOutput) ToSystemFortiguardOutput() SystemFortiguardOutput {
@@ -701,36 +751,10 @@ func (o SystemFortiguardOutput) ToSystemFortiguardOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemFortiguardOutput) ToSystemFortiguardPtrOutput() SystemFortiguardPtrOutput {
-	return o.ToSystemFortiguardPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFortiguardOutput) ToSystemFortiguardPtrOutputWithContext(ctx context.Context) SystemFortiguardPtrOutput {
-	return o.ApplyT(func(v SystemFortiguard) *SystemFortiguard {
-		return &v
-	}).(SystemFortiguardPtrOutput)
-}
-
-type SystemFortiguardPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFortiguardPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFortiguard)(nil))
-}
-
-func (o SystemFortiguardPtrOutput) ToSystemFortiguardPtrOutput() SystemFortiguardPtrOutput {
-	return o
-}
-
-func (o SystemFortiguardPtrOutput) ToSystemFortiguardPtrOutputWithContext(ctx context.Context) SystemFortiguardPtrOutput {
-	return o
-}
-
 type SystemFortiguardArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFortiguardArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFortiguard)(nil))
+	return reflect.TypeOf((*[]*SystemFortiguard)(nil)).Elem()
 }
 
 func (o SystemFortiguardArrayOutput) ToSystemFortiguardArrayOutput() SystemFortiguardArrayOutput {
@@ -742,15 +766,15 @@ func (o SystemFortiguardArrayOutput) ToSystemFortiguardArrayOutputWithContext(ct
 }
 
 func (o SystemFortiguardArrayOutput) Index(i pulumi.IntInput) SystemFortiguardOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFortiguard {
-		return vs[0].([]SystemFortiguard)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortiguard {
+		return vs[0].([]*SystemFortiguard)[vs[1].(int)]
 	}).(SystemFortiguardOutput)
 }
 
 type SystemFortiguardMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFortiguardMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFortiguard)(nil))
+	return reflect.TypeOf((*map[string]*SystemFortiguard)(nil)).Elem()
 }
 
 func (o SystemFortiguardMapOutput) ToSystemFortiguardMapOutput() SystemFortiguardMapOutput {
@@ -762,14 +786,16 @@ func (o SystemFortiguardMapOutput) ToSystemFortiguardMapOutputWithContext(ctx co
 }
 
 func (o SystemFortiguardMapOutput) MapIndex(k pulumi.StringInput) SystemFortiguardOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFortiguard {
-		return vs[0].(map[string]SystemFortiguard)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFortiguard {
+		return vs[0].(map[string]*SystemFortiguard)[vs[1].(string)]
 	}).(SystemFortiguardOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortiguardInput)(nil)).Elem(), &SystemFortiguard{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortiguardArrayInput)(nil)).Elem(), SystemFortiguardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortiguardMapInput)(nil)).Elem(), SystemFortiguardMap{})
 	pulumi.RegisterOutputType(SystemFortiguardOutput{})
-	pulumi.RegisterOutputType(SystemFortiguardPtrOutput{})
 	pulumi.RegisterOutputType(SystemFortiguardArrayOutput{})
 	pulumi.RegisterOutputType(SystemFortiguardMapOutput{})
 }

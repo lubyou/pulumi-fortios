@@ -83,28 +83,26 @@ export class LogCustomField extends pulumi.CustomResource {
      */
     constructor(name: string, args: LogCustomFieldArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogCustomFieldArgs | LogCustomFieldState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogCustomFieldState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["value"] = state ? state.value : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["value"] = state ? state.value : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogCustomFieldArgs | undefined;
             if ((!args || args.value === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'value'");
             }
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["value"] = args ? args.value : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["value"] = args ? args.value : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogCustomField.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogCustomField.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure logging by FortiSwitch device to a remote syslog server.
+// Configure logging by FortiSwitch device to a remote syslog server. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -49,6 +49,7 @@ func NewSwitchControllerRemoteLog(ctx *pulumi.Context,
 		args = &SwitchControllerRemoteLogArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerRemoteLog
 	err := ctx.RegisterResource("fortios:index/switchControllerRemoteLog:SwitchControllerRemoteLog", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type SwitchControllerRemoteLogInput interface {
 }
 
 func (*SwitchControllerRemoteLog) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerRemoteLog)(nil))
+	return reflect.TypeOf((**SwitchControllerRemoteLog)(nil)).Elem()
 }
 
 func (i *SwitchControllerRemoteLog) ToSwitchControllerRemoteLogOutput() SwitchControllerRemoteLogOutput {
@@ -172,35 +173,6 @@ func (i *SwitchControllerRemoteLog) ToSwitchControllerRemoteLogOutput() SwitchCo
 
 func (i *SwitchControllerRemoteLog) ToSwitchControllerRemoteLogOutputWithContext(ctx context.Context) SwitchControllerRemoteLogOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerRemoteLogOutput)
-}
-
-func (i *SwitchControllerRemoteLog) ToSwitchControllerRemoteLogPtrOutput() SwitchControllerRemoteLogPtrOutput {
-	return i.ToSwitchControllerRemoteLogPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerRemoteLog) ToSwitchControllerRemoteLogPtrOutputWithContext(ctx context.Context) SwitchControllerRemoteLogPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerRemoteLogPtrOutput)
-}
-
-type SwitchControllerRemoteLogPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerRemoteLogPtrOutput() SwitchControllerRemoteLogPtrOutput
-	ToSwitchControllerRemoteLogPtrOutputWithContext(ctx context.Context) SwitchControllerRemoteLogPtrOutput
-}
-
-type switchControllerRemoteLogPtrType SwitchControllerRemoteLogArgs
-
-func (*switchControllerRemoteLogPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerRemoteLog)(nil))
-}
-
-func (i *switchControllerRemoteLogPtrType) ToSwitchControllerRemoteLogPtrOutput() SwitchControllerRemoteLogPtrOutput {
-	return i.ToSwitchControllerRemoteLogPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerRemoteLogPtrType) ToSwitchControllerRemoteLogPtrOutputWithContext(ctx context.Context) SwitchControllerRemoteLogPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerRemoteLogPtrOutput)
 }
 
 // SwitchControllerRemoteLogArrayInput is an input type that accepts SwitchControllerRemoteLogArray and SwitchControllerRemoteLogArrayOutput values.
@@ -217,7 +189,7 @@ type SwitchControllerRemoteLogArrayInput interface {
 type SwitchControllerRemoteLogArray []SwitchControllerRemoteLogInput
 
 func (SwitchControllerRemoteLogArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerRemoteLog)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerRemoteLog)(nil)).Elem()
 }
 
 func (i SwitchControllerRemoteLogArray) ToSwitchControllerRemoteLogArrayOutput() SwitchControllerRemoteLogArrayOutput {
@@ -242,7 +214,7 @@ type SwitchControllerRemoteLogMapInput interface {
 type SwitchControllerRemoteLogMap map[string]SwitchControllerRemoteLogInput
 
 func (SwitchControllerRemoteLogMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerRemoteLog)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerRemoteLog)(nil)).Elem()
 }
 
 func (i SwitchControllerRemoteLogMap) ToSwitchControllerRemoteLogMapOutput() SwitchControllerRemoteLogMapOutput {
@@ -253,12 +225,10 @@ func (i SwitchControllerRemoteLogMap) ToSwitchControllerRemoteLogMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerRemoteLogMapOutput)
 }
 
-type SwitchControllerRemoteLogOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerRemoteLogOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerRemoteLogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerRemoteLog)(nil))
+	return reflect.TypeOf((**SwitchControllerRemoteLog)(nil)).Elem()
 }
 
 func (o SwitchControllerRemoteLogOutput) ToSwitchControllerRemoteLogOutput() SwitchControllerRemoteLogOutput {
@@ -269,36 +239,10 @@ func (o SwitchControllerRemoteLogOutput) ToSwitchControllerRemoteLogOutputWithCo
 	return o
 }
 
-func (o SwitchControllerRemoteLogOutput) ToSwitchControllerRemoteLogPtrOutput() SwitchControllerRemoteLogPtrOutput {
-	return o.ToSwitchControllerRemoteLogPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerRemoteLogOutput) ToSwitchControllerRemoteLogPtrOutputWithContext(ctx context.Context) SwitchControllerRemoteLogPtrOutput {
-	return o.ApplyT(func(v SwitchControllerRemoteLog) *SwitchControllerRemoteLog {
-		return &v
-	}).(SwitchControllerRemoteLogPtrOutput)
-}
-
-type SwitchControllerRemoteLogPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerRemoteLogPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerRemoteLog)(nil))
-}
-
-func (o SwitchControllerRemoteLogPtrOutput) ToSwitchControllerRemoteLogPtrOutput() SwitchControllerRemoteLogPtrOutput {
-	return o
-}
-
-func (o SwitchControllerRemoteLogPtrOutput) ToSwitchControllerRemoteLogPtrOutputWithContext(ctx context.Context) SwitchControllerRemoteLogPtrOutput {
-	return o
-}
-
 type SwitchControllerRemoteLogArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerRemoteLogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerRemoteLog)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerRemoteLog)(nil)).Elem()
 }
 
 func (o SwitchControllerRemoteLogArrayOutput) ToSwitchControllerRemoteLogArrayOutput() SwitchControllerRemoteLogArrayOutput {
@@ -310,15 +254,15 @@ func (o SwitchControllerRemoteLogArrayOutput) ToSwitchControllerRemoteLogArrayOu
 }
 
 func (o SwitchControllerRemoteLogArrayOutput) Index(i pulumi.IntInput) SwitchControllerRemoteLogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerRemoteLog {
-		return vs[0].([]SwitchControllerRemoteLog)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerRemoteLog {
+		return vs[0].([]*SwitchControllerRemoteLog)[vs[1].(int)]
 	}).(SwitchControllerRemoteLogOutput)
 }
 
 type SwitchControllerRemoteLogMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerRemoteLogMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerRemoteLog)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerRemoteLog)(nil)).Elem()
 }
 
 func (o SwitchControllerRemoteLogMapOutput) ToSwitchControllerRemoteLogMapOutput() SwitchControllerRemoteLogMapOutput {
@@ -330,14 +274,16 @@ func (o SwitchControllerRemoteLogMapOutput) ToSwitchControllerRemoteLogMapOutput
 }
 
 func (o SwitchControllerRemoteLogMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerRemoteLogOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerRemoteLog {
-		return vs[0].(map[string]SwitchControllerRemoteLog)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerRemoteLog {
+		return vs[0].(map[string]*SwitchControllerRemoteLog)[vs[1].(string)]
 	}).(SwitchControllerRemoteLogOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerRemoteLogInput)(nil)).Elem(), &SwitchControllerRemoteLog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerRemoteLogArrayInput)(nil)).Elem(), SwitchControllerRemoteLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerRemoteLogMapInput)(nil)).Elem(), SwitchControllerRemoteLogMap{})
 	pulumi.RegisterOutputType(SwitchControllerRemoteLogOutput{})
-	pulumi.RegisterOutputType(SwitchControllerRemoteLogPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerRemoteLogArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerRemoteLogMapOutput{})
 }

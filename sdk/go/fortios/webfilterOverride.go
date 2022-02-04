@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -101,6 +101,7 @@ func NewWebfilterOverride(ctx *pulumi.Context,
 	if args.User == nil {
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterOverride
 	err := ctx.RegisterResource("fortios:index/webfilterOverride:WebfilterOverride", name, args, &resource, opts...)
 	if err != nil {
@@ -247,7 +248,7 @@ type WebfilterOverrideInput interface {
 }
 
 func (*WebfilterOverride) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterOverride)(nil))
+	return reflect.TypeOf((**WebfilterOverride)(nil)).Elem()
 }
 
 func (i *WebfilterOverride) ToWebfilterOverrideOutput() WebfilterOverrideOutput {
@@ -256,35 +257,6 @@ func (i *WebfilterOverride) ToWebfilterOverrideOutput() WebfilterOverrideOutput 
 
 func (i *WebfilterOverride) ToWebfilterOverrideOutputWithContext(ctx context.Context) WebfilterOverrideOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverrideOutput)
-}
-
-func (i *WebfilterOverride) ToWebfilterOverridePtrOutput() WebfilterOverridePtrOutput {
-	return i.ToWebfilterOverridePtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterOverride) ToWebfilterOverridePtrOutputWithContext(ctx context.Context) WebfilterOverridePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverridePtrOutput)
-}
-
-type WebfilterOverridePtrInput interface {
-	pulumi.Input
-
-	ToWebfilterOverridePtrOutput() WebfilterOverridePtrOutput
-	ToWebfilterOverridePtrOutputWithContext(ctx context.Context) WebfilterOverridePtrOutput
-}
-
-type webfilterOverridePtrType WebfilterOverrideArgs
-
-func (*webfilterOverridePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterOverride)(nil))
-}
-
-func (i *webfilterOverridePtrType) ToWebfilterOverridePtrOutput() WebfilterOverridePtrOutput {
-	return i.ToWebfilterOverridePtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterOverridePtrType) ToWebfilterOverridePtrOutputWithContext(ctx context.Context) WebfilterOverridePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverridePtrOutput)
 }
 
 // WebfilterOverrideArrayInput is an input type that accepts WebfilterOverrideArray and WebfilterOverrideArrayOutput values.
@@ -301,7 +273,7 @@ type WebfilterOverrideArrayInput interface {
 type WebfilterOverrideArray []WebfilterOverrideInput
 
 func (WebfilterOverrideArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterOverride)(nil))
+	return reflect.TypeOf((*[]*WebfilterOverride)(nil)).Elem()
 }
 
 func (i WebfilterOverrideArray) ToWebfilterOverrideArrayOutput() WebfilterOverrideArrayOutput {
@@ -326,7 +298,7 @@ type WebfilterOverrideMapInput interface {
 type WebfilterOverrideMap map[string]WebfilterOverrideInput
 
 func (WebfilterOverrideMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterOverride)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterOverride)(nil)).Elem()
 }
 
 func (i WebfilterOverrideMap) ToWebfilterOverrideMapOutput() WebfilterOverrideMapOutput {
@@ -337,12 +309,10 @@ func (i WebfilterOverrideMap) ToWebfilterOverrideMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterOverrideMapOutput)
 }
 
-type WebfilterOverrideOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterOverrideOutput struct{ *pulumi.OutputState }
 
 func (WebfilterOverrideOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterOverride)(nil))
+	return reflect.TypeOf((**WebfilterOverride)(nil)).Elem()
 }
 
 func (o WebfilterOverrideOutput) ToWebfilterOverrideOutput() WebfilterOverrideOutput {
@@ -353,36 +323,10 @@ func (o WebfilterOverrideOutput) ToWebfilterOverrideOutputWithContext(ctx contex
 	return o
 }
 
-func (o WebfilterOverrideOutput) ToWebfilterOverridePtrOutput() WebfilterOverridePtrOutput {
-	return o.ToWebfilterOverridePtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterOverrideOutput) ToWebfilterOverridePtrOutputWithContext(ctx context.Context) WebfilterOverridePtrOutput {
-	return o.ApplyT(func(v WebfilterOverride) *WebfilterOverride {
-		return &v
-	}).(WebfilterOverridePtrOutput)
-}
-
-type WebfilterOverridePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterOverridePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterOverride)(nil))
-}
-
-func (o WebfilterOverridePtrOutput) ToWebfilterOverridePtrOutput() WebfilterOverridePtrOutput {
-	return o
-}
-
-func (o WebfilterOverridePtrOutput) ToWebfilterOverridePtrOutputWithContext(ctx context.Context) WebfilterOverridePtrOutput {
-	return o
-}
-
 type WebfilterOverrideArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterOverrideArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterOverride)(nil))
+	return reflect.TypeOf((*[]*WebfilterOverride)(nil)).Elem()
 }
 
 func (o WebfilterOverrideArrayOutput) ToWebfilterOverrideArrayOutput() WebfilterOverrideArrayOutput {
@@ -394,15 +338,15 @@ func (o WebfilterOverrideArrayOutput) ToWebfilterOverrideArrayOutputWithContext(
 }
 
 func (o WebfilterOverrideArrayOutput) Index(i pulumi.IntInput) WebfilterOverrideOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterOverride {
-		return vs[0].([]WebfilterOverride)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterOverride {
+		return vs[0].([]*WebfilterOverride)[vs[1].(int)]
 	}).(WebfilterOverrideOutput)
 }
 
 type WebfilterOverrideMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterOverrideMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterOverride)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterOverride)(nil)).Elem()
 }
 
 func (o WebfilterOverrideMapOutput) ToWebfilterOverrideMapOutput() WebfilterOverrideMapOutput {
@@ -414,14 +358,16 @@ func (o WebfilterOverrideMapOutput) ToWebfilterOverrideMapOutputWithContext(ctx 
 }
 
 func (o WebfilterOverrideMapOutput) MapIndex(k pulumi.StringInput) WebfilterOverrideOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterOverride {
-		return vs[0].(map[string]WebfilterOverride)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterOverride {
+		return vs[0].(map[string]*WebfilterOverride)[vs[1].(string)]
 	}).(WebfilterOverrideOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterOverrideInput)(nil)).Elem(), &WebfilterOverride{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterOverrideArrayInput)(nil)).Elem(), WebfilterOverrideArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterOverrideMapInput)(nil)).Elem(), WebfilterOverrideMap{})
 	pulumi.RegisterOutputType(WebfilterOverrideOutput{})
-	pulumi.RegisterOutputType(WebfilterOverridePtrOutput{})
 	pulumi.RegisterOutputType(WebfilterOverrideArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterOverrideMapOutput{})
 }

@@ -41,6 +41,7 @@ func NewSwitchControllerAutoConfigDefault(ctx *pulumi.Context,
 		args = &SwitchControllerAutoConfigDefaultArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerAutoConfigDefault
 	err := ctx.RegisterResource("fortios:index/switchControllerAutoConfigDefault:SwitchControllerAutoConfigDefault", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SwitchControllerAutoConfigDefaultInput interface {
 }
 
 func (*SwitchControllerAutoConfigDefault) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerAutoConfigDefault)(nil))
+	return reflect.TypeOf((**SwitchControllerAutoConfigDefault)(nil)).Elem()
 }
 
 func (i *SwitchControllerAutoConfigDefault) ToSwitchControllerAutoConfigDefaultOutput() SwitchControllerAutoConfigDefaultOutput {
@@ -132,35 +133,6 @@ func (i *SwitchControllerAutoConfigDefault) ToSwitchControllerAutoConfigDefaultO
 
 func (i *SwitchControllerAutoConfigDefault) ToSwitchControllerAutoConfigDefaultOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigDefaultOutput)
-}
-
-func (i *SwitchControllerAutoConfigDefault) ToSwitchControllerAutoConfigDefaultPtrOutput() SwitchControllerAutoConfigDefaultPtrOutput {
-	return i.ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerAutoConfigDefault) ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigDefaultPtrOutput)
-}
-
-type SwitchControllerAutoConfigDefaultPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerAutoConfigDefaultPtrOutput() SwitchControllerAutoConfigDefaultPtrOutput
-	ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultPtrOutput
-}
-
-type switchControllerAutoConfigDefaultPtrType SwitchControllerAutoConfigDefaultArgs
-
-func (*switchControllerAutoConfigDefaultPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerAutoConfigDefault)(nil))
-}
-
-func (i *switchControllerAutoConfigDefaultPtrType) ToSwitchControllerAutoConfigDefaultPtrOutput() SwitchControllerAutoConfigDefaultPtrOutput {
-	return i.ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerAutoConfigDefaultPtrType) ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigDefaultPtrOutput)
 }
 
 // SwitchControllerAutoConfigDefaultArrayInput is an input type that accepts SwitchControllerAutoConfigDefaultArray and SwitchControllerAutoConfigDefaultArrayOutput values.
@@ -177,7 +149,7 @@ type SwitchControllerAutoConfigDefaultArrayInput interface {
 type SwitchControllerAutoConfigDefaultArray []SwitchControllerAutoConfigDefaultInput
 
 func (SwitchControllerAutoConfigDefaultArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerAutoConfigDefault)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerAutoConfigDefault)(nil)).Elem()
 }
 
 func (i SwitchControllerAutoConfigDefaultArray) ToSwitchControllerAutoConfigDefaultArrayOutput() SwitchControllerAutoConfigDefaultArrayOutput {
@@ -202,7 +174,7 @@ type SwitchControllerAutoConfigDefaultMapInput interface {
 type SwitchControllerAutoConfigDefaultMap map[string]SwitchControllerAutoConfigDefaultInput
 
 func (SwitchControllerAutoConfigDefaultMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerAutoConfigDefault)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerAutoConfigDefault)(nil)).Elem()
 }
 
 func (i SwitchControllerAutoConfigDefaultMap) ToSwitchControllerAutoConfigDefaultMapOutput() SwitchControllerAutoConfigDefaultMapOutput {
@@ -213,12 +185,10 @@ func (i SwitchControllerAutoConfigDefaultMap) ToSwitchControllerAutoConfigDefaul
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigDefaultMapOutput)
 }
 
-type SwitchControllerAutoConfigDefaultOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerAutoConfigDefaultOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigDefaultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerAutoConfigDefault)(nil))
+	return reflect.TypeOf((**SwitchControllerAutoConfigDefault)(nil)).Elem()
 }
 
 func (o SwitchControllerAutoConfigDefaultOutput) ToSwitchControllerAutoConfigDefaultOutput() SwitchControllerAutoConfigDefaultOutput {
@@ -229,36 +199,10 @@ func (o SwitchControllerAutoConfigDefaultOutput) ToSwitchControllerAutoConfigDef
 	return o
 }
 
-func (o SwitchControllerAutoConfigDefaultOutput) ToSwitchControllerAutoConfigDefaultPtrOutput() SwitchControllerAutoConfigDefaultPtrOutput {
-	return o.ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerAutoConfigDefaultOutput) ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultPtrOutput {
-	return o.ApplyT(func(v SwitchControllerAutoConfigDefault) *SwitchControllerAutoConfigDefault {
-		return &v
-	}).(SwitchControllerAutoConfigDefaultPtrOutput)
-}
-
-type SwitchControllerAutoConfigDefaultPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerAutoConfigDefaultPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerAutoConfigDefault)(nil))
-}
-
-func (o SwitchControllerAutoConfigDefaultPtrOutput) ToSwitchControllerAutoConfigDefaultPtrOutput() SwitchControllerAutoConfigDefaultPtrOutput {
-	return o
-}
-
-func (o SwitchControllerAutoConfigDefaultPtrOutput) ToSwitchControllerAutoConfigDefaultPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigDefaultPtrOutput {
-	return o
-}
-
 type SwitchControllerAutoConfigDefaultArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigDefaultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerAutoConfigDefault)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerAutoConfigDefault)(nil)).Elem()
 }
 
 func (o SwitchControllerAutoConfigDefaultArrayOutput) ToSwitchControllerAutoConfigDefaultArrayOutput() SwitchControllerAutoConfigDefaultArrayOutput {
@@ -270,15 +214,15 @@ func (o SwitchControllerAutoConfigDefaultArrayOutput) ToSwitchControllerAutoConf
 }
 
 func (o SwitchControllerAutoConfigDefaultArrayOutput) Index(i pulumi.IntInput) SwitchControllerAutoConfigDefaultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerAutoConfigDefault {
-		return vs[0].([]SwitchControllerAutoConfigDefault)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerAutoConfigDefault {
+		return vs[0].([]*SwitchControllerAutoConfigDefault)[vs[1].(int)]
 	}).(SwitchControllerAutoConfigDefaultOutput)
 }
 
 type SwitchControllerAutoConfigDefaultMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigDefaultMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerAutoConfigDefault)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerAutoConfigDefault)(nil)).Elem()
 }
 
 func (o SwitchControllerAutoConfigDefaultMapOutput) ToSwitchControllerAutoConfigDefaultMapOutput() SwitchControllerAutoConfigDefaultMapOutput {
@@ -290,14 +234,16 @@ func (o SwitchControllerAutoConfigDefaultMapOutput) ToSwitchControllerAutoConfig
 }
 
 func (o SwitchControllerAutoConfigDefaultMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerAutoConfigDefaultOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerAutoConfigDefault {
-		return vs[0].(map[string]SwitchControllerAutoConfigDefault)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerAutoConfigDefault {
+		return vs[0].(map[string]*SwitchControllerAutoConfigDefault)[vs[1].(string)]
 	}).(SwitchControllerAutoConfigDefaultOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerAutoConfigDefaultInput)(nil)).Elem(), &SwitchControllerAutoConfigDefault{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerAutoConfigDefaultArrayInput)(nil)).Elem(), SwitchControllerAutoConfigDefaultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerAutoConfigDefaultMapInput)(nil)).Elem(), SwitchControllerAutoConfigDefaultMap{})
 	pulumi.RegisterOutputType(SwitchControllerAutoConfigDefaultOutput{})
-	pulumi.RegisterOutputType(SwitchControllerAutoConfigDefaultPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerAutoConfigDefaultArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerAutoConfigDefaultMapOutput{})
 }

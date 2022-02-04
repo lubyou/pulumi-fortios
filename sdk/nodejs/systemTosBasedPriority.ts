@@ -84,25 +84,23 @@ export class SystemTosBasedPriority extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemTosBasedPriorityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemTosBasedPriorityArgs | SystemTosBasedPriorityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemTosBasedPriorityState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["tos"] = state ? state.tos : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["tos"] = state ? state.tos : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemTosBasedPriorityArgs | undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["tos"] = args ? args.tos : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["tos"] = args ? args.tos : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemTosBasedPriority.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemTosBasedPriority.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewVpnPptp(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnPptp
 	err := ctx.RegisterResource("fortios:index/vpnPptp:VpnPptp", name, args, &resource, opts...)
 	if err != nil {
@@ -185,7 +186,7 @@ type VpnPptpInput interface {
 }
 
 func (*VpnPptp) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnPptp)(nil))
+	return reflect.TypeOf((**VpnPptp)(nil)).Elem()
 }
 
 func (i *VpnPptp) ToVpnPptpOutput() VpnPptpOutput {
@@ -194,35 +195,6 @@ func (i *VpnPptp) ToVpnPptpOutput() VpnPptpOutput {
 
 func (i *VpnPptp) ToVpnPptpOutputWithContext(ctx context.Context) VpnPptpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpOutput)
-}
-
-func (i *VpnPptp) ToVpnPptpPtrOutput() VpnPptpPtrOutput {
-	return i.ToVpnPptpPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnPptp) ToVpnPptpPtrOutputWithContext(ctx context.Context) VpnPptpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpPtrOutput)
-}
-
-type VpnPptpPtrInput interface {
-	pulumi.Input
-
-	ToVpnPptpPtrOutput() VpnPptpPtrOutput
-	ToVpnPptpPtrOutputWithContext(ctx context.Context) VpnPptpPtrOutput
-}
-
-type vpnPptpPtrType VpnPptpArgs
-
-func (*vpnPptpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnPptp)(nil))
-}
-
-func (i *vpnPptpPtrType) ToVpnPptpPtrOutput() VpnPptpPtrOutput {
-	return i.ToVpnPptpPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnPptpPtrType) ToVpnPptpPtrOutputWithContext(ctx context.Context) VpnPptpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpPtrOutput)
 }
 
 // VpnPptpArrayInput is an input type that accepts VpnPptpArray and VpnPptpArrayOutput values.
@@ -239,7 +211,7 @@ type VpnPptpArrayInput interface {
 type VpnPptpArray []VpnPptpInput
 
 func (VpnPptpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnPptp)(nil))
+	return reflect.TypeOf((*[]*VpnPptp)(nil)).Elem()
 }
 
 func (i VpnPptpArray) ToVpnPptpArrayOutput() VpnPptpArrayOutput {
@@ -264,7 +236,7 @@ type VpnPptpMapInput interface {
 type VpnPptpMap map[string]VpnPptpInput
 
 func (VpnPptpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnPptp)(nil))
+	return reflect.TypeOf((*map[string]*VpnPptp)(nil)).Elem()
 }
 
 func (i VpnPptpMap) ToVpnPptpMapOutput() VpnPptpMapOutput {
@@ -275,12 +247,10 @@ func (i VpnPptpMap) ToVpnPptpMapOutputWithContext(ctx context.Context) VpnPptpMa
 	return pulumi.ToOutputWithContext(ctx, i).(VpnPptpMapOutput)
 }
 
-type VpnPptpOutput struct {
-	*pulumi.OutputState
-}
+type VpnPptpOutput struct{ *pulumi.OutputState }
 
 func (VpnPptpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnPptp)(nil))
+	return reflect.TypeOf((**VpnPptp)(nil)).Elem()
 }
 
 func (o VpnPptpOutput) ToVpnPptpOutput() VpnPptpOutput {
@@ -291,36 +261,10 @@ func (o VpnPptpOutput) ToVpnPptpOutputWithContext(ctx context.Context) VpnPptpOu
 	return o
 }
 
-func (o VpnPptpOutput) ToVpnPptpPtrOutput() VpnPptpPtrOutput {
-	return o.ToVpnPptpPtrOutputWithContext(context.Background())
-}
-
-func (o VpnPptpOutput) ToVpnPptpPtrOutputWithContext(ctx context.Context) VpnPptpPtrOutput {
-	return o.ApplyT(func(v VpnPptp) *VpnPptp {
-		return &v
-	}).(VpnPptpPtrOutput)
-}
-
-type VpnPptpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnPptpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnPptp)(nil))
-}
-
-func (o VpnPptpPtrOutput) ToVpnPptpPtrOutput() VpnPptpPtrOutput {
-	return o
-}
-
-func (o VpnPptpPtrOutput) ToVpnPptpPtrOutputWithContext(ctx context.Context) VpnPptpPtrOutput {
-	return o
-}
-
 type VpnPptpArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnPptpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnPptp)(nil))
+	return reflect.TypeOf((*[]*VpnPptp)(nil)).Elem()
 }
 
 func (o VpnPptpArrayOutput) ToVpnPptpArrayOutput() VpnPptpArrayOutput {
@@ -332,15 +276,15 @@ func (o VpnPptpArrayOutput) ToVpnPptpArrayOutputWithContext(ctx context.Context)
 }
 
 func (o VpnPptpArrayOutput) Index(i pulumi.IntInput) VpnPptpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnPptp {
-		return vs[0].([]VpnPptp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnPptp {
+		return vs[0].([]*VpnPptp)[vs[1].(int)]
 	}).(VpnPptpOutput)
 }
 
 type VpnPptpMapOutput struct{ *pulumi.OutputState }
 
 func (VpnPptpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnPptp)(nil))
+	return reflect.TypeOf((*map[string]*VpnPptp)(nil)).Elem()
 }
 
 func (o VpnPptpMapOutput) ToVpnPptpMapOutput() VpnPptpMapOutput {
@@ -352,14 +296,16 @@ func (o VpnPptpMapOutput) ToVpnPptpMapOutputWithContext(ctx context.Context) Vpn
 }
 
 func (o VpnPptpMapOutput) MapIndex(k pulumi.StringInput) VpnPptpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnPptp {
-		return vs[0].(map[string]VpnPptp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnPptp {
+		return vs[0].(map[string]*VpnPptp)[vs[1].(string)]
 	}).(VpnPptpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnPptpInput)(nil)).Elem(), &VpnPptp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnPptpArrayInput)(nil)).Elem(), VpnPptpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnPptpMapInput)(nil)).Elem(), VpnPptpMap{})
 	pulumi.RegisterOutputType(VpnPptpOutput{})
-	pulumi.RegisterOutputType(VpnPptpPtrOutput{})
 	pulumi.RegisterOutputType(VpnPptpArrayOutput{})
 	pulumi.RegisterOutputType(VpnPptpMapOutput{})
 }

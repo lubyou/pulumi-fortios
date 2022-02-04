@@ -43,6 +43,7 @@ func NewFirewallCountry(ctx *pulumi.Context,
 		args = &FirewallCountryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallCountry
 	err := ctx.RegisterResource("fortios:index/firewallCountry:FirewallCountry", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type FirewallCountryInput interface {
 }
 
 func (*FirewallCountry) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCountry)(nil))
+	return reflect.TypeOf((**FirewallCountry)(nil)).Elem()
 }
 
 func (i *FirewallCountry) ToFirewallCountryOutput() FirewallCountryOutput {
@@ -142,35 +143,6 @@ func (i *FirewallCountry) ToFirewallCountryOutput() FirewallCountryOutput {
 
 func (i *FirewallCountry) ToFirewallCountryOutputWithContext(ctx context.Context) FirewallCountryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryOutput)
-}
-
-func (i *FirewallCountry) ToFirewallCountryPtrOutput() FirewallCountryPtrOutput {
-	return i.ToFirewallCountryPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallCountry) ToFirewallCountryPtrOutputWithContext(ctx context.Context) FirewallCountryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryPtrOutput)
-}
-
-type FirewallCountryPtrInput interface {
-	pulumi.Input
-
-	ToFirewallCountryPtrOutput() FirewallCountryPtrOutput
-	ToFirewallCountryPtrOutputWithContext(ctx context.Context) FirewallCountryPtrOutput
-}
-
-type firewallCountryPtrType FirewallCountryArgs
-
-func (*firewallCountryPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCountry)(nil))
-}
-
-func (i *firewallCountryPtrType) ToFirewallCountryPtrOutput() FirewallCountryPtrOutput {
-	return i.ToFirewallCountryPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallCountryPtrType) ToFirewallCountryPtrOutputWithContext(ctx context.Context) FirewallCountryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryPtrOutput)
 }
 
 // FirewallCountryArrayInput is an input type that accepts FirewallCountryArray and FirewallCountryArrayOutput values.
@@ -187,7 +159,7 @@ type FirewallCountryArrayInput interface {
 type FirewallCountryArray []FirewallCountryInput
 
 func (FirewallCountryArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallCountry)(nil))
+	return reflect.TypeOf((*[]*FirewallCountry)(nil)).Elem()
 }
 
 func (i FirewallCountryArray) ToFirewallCountryArrayOutput() FirewallCountryArrayOutput {
@@ -212,7 +184,7 @@ type FirewallCountryMapInput interface {
 type FirewallCountryMap map[string]FirewallCountryInput
 
 func (FirewallCountryMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallCountry)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCountry)(nil)).Elem()
 }
 
 func (i FirewallCountryMap) ToFirewallCountryMapOutput() FirewallCountryMapOutput {
@@ -223,12 +195,10 @@ func (i FirewallCountryMap) ToFirewallCountryMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCountryMapOutput)
 }
 
-type FirewallCountryOutput struct {
-	*pulumi.OutputState
-}
+type FirewallCountryOutput struct{ *pulumi.OutputState }
 
 func (FirewallCountryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCountry)(nil))
+	return reflect.TypeOf((**FirewallCountry)(nil)).Elem()
 }
 
 func (o FirewallCountryOutput) ToFirewallCountryOutput() FirewallCountryOutput {
@@ -239,36 +209,10 @@ func (o FirewallCountryOutput) ToFirewallCountryOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FirewallCountryOutput) ToFirewallCountryPtrOutput() FirewallCountryPtrOutput {
-	return o.ToFirewallCountryPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallCountryOutput) ToFirewallCountryPtrOutputWithContext(ctx context.Context) FirewallCountryPtrOutput {
-	return o.ApplyT(func(v FirewallCountry) *FirewallCountry {
-		return &v
-	}).(FirewallCountryPtrOutput)
-}
-
-type FirewallCountryPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallCountryPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCountry)(nil))
-}
-
-func (o FirewallCountryPtrOutput) ToFirewallCountryPtrOutput() FirewallCountryPtrOutput {
-	return o
-}
-
-func (o FirewallCountryPtrOutput) ToFirewallCountryPtrOutputWithContext(ctx context.Context) FirewallCountryPtrOutput {
-	return o
-}
-
 type FirewallCountryArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallCountryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallCountry)(nil))
+	return reflect.TypeOf((*[]*FirewallCountry)(nil)).Elem()
 }
 
 func (o FirewallCountryArrayOutput) ToFirewallCountryArrayOutput() FirewallCountryArrayOutput {
@@ -280,15 +224,15 @@ func (o FirewallCountryArrayOutput) ToFirewallCountryArrayOutputWithContext(ctx 
 }
 
 func (o FirewallCountryArrayOutput) Index(i pulumi.IntInput) FirewallCountryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallCountry {
-		return vs[0].([]FirewallCountry)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCountry {
+		return vs[0].([]*FirewallCountry)[vs[1].(int)]
 	}).(FirewallCountryOutput)
 }
 
 type FirewallCountryMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallCountryMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallCountry)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCountry)(nil)).Elem()
 }
 
 func (o FirewallCountryMapOutput) ToFirewallCountryMapOutput() FirewallCountryMapOutput {
@@ -300,14 +244,16 @@ func (o FirewallCountryMapOutput) ToFirewallCountryMapOutputWithContext(ctx cont
 }
 
 func (o FirewallCountryMapOutput) MapIndex(k pulumi.StringInput) FirewallCountryOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallCountry {
-		return vs[0].(map[string]FirewallCountry)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallCountry {
+		return vs[0].(map[string]*FirewallCountry)[vs[1].(string)]
 	}).(FirewallCountryOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCountryInput)(nil)).Elem(), &FirewallCountry{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCountryArrayInput)(nil)).Elem(), FirewallCountryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCountryMapInput)(nil)).Elem(), FirewallCountryMap{})
 	pulumi.RegisterOutputType(FirewallCountryOutput{})
-	pulumi.RegisterOutputType(FirewallCountryPtrOutput{})
 	pulumi.RegisterOutputType(FirewallCountryArrayOutput{})
 	pulumi.RegisterOutputType(FirewallCountryMapOutput{})
 }

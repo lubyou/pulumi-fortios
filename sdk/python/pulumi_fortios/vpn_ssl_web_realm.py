@@ -21,7 +21,8 @@ class VpnSslWebRealmArgs:
                  url_path: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_host: Optional[pulumi.Input[str]] = None,
-                 virtual_host_only: Optional[pulumi.Input[str]] = None):
+                 virtual_host_only: Optional[pulumi.Input[str]] = None,
+                 virtual_host_server_cert: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpnSslWebRealm resource.
         :param pulumi.Input[str] login_page: Replacement HTML for SSL-VPN login page.
@@ -33,6 +34,7 @@ class VpnSslWebRealmArgs:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_host: Virtual host name for realm.
         :param pulumi.Input[str] virtual_host_only: Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] virtual_host_server_cert: Name of the server certificate to used for this realm.
         """
         if login_page is not None:
             pulumi.set(__self__, "login_page", login_page)
@@ -52,6 +54,8 @@ class VpnSslWebRealmArgs:
             pulumi.set(__self__, "virtual_host", virtual_host)
         if virtual_host_only is not None:
             pulumi.set(__self__, "virtual_host_only", virtual_host_only)
+        if virtual_host_server_cert is not None:
+            pulumi.set(__self__, "virtual_host_server_cert", virtual_host_server_cert)
 
     @property
     @pulumi.getter(name="loginPage")
@@ -160,6 +164,18 @@ class VpnSslWebRealmArgs:
     @virtual_host_only.setter
     def virtual_host_only(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "virtual_host_only", value)
+
+    @property
+    @pulumi.getter(name="virtualHostServerCert")
+    def virtual_host_server_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the server certificate to used for this realm.
+        """
+        return pulumi.get(self, "virtual_host_server_cert")
+
+    @virtual_host_server_cert.setter
+    def virtual_host_server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_host_server_cert", value)
 
 
 @pulumi.input_type
@@ -173,7 +189,8 @@ class _VpnSslWebRealmState:
                  url_path: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_host: Optional[pulumi.Input[str]] = None,
-                 virtual_host_only: Optional[pulumi.Input[str]] = None):
+                 virtual_host_only: Optional[pulumi.Input[str]] = None,
+                 virtual_host_server_cert: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpnSslWebRealm resources.
         :param pulumi.Input[str] login_page: Replacement HTML for SSL-VPN login page.
@@ -185,6 +202,7 @@ class _VpnSslWebRealmState:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_host: Virtual host name for realm.
         :param pulumi.Input[str] virtual_host_only: Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] virtual_host_server_cert: Name of the server certificate to used for this realm.
         """
         if login_page is not None:
             pulumi.set(__self__, "login_page", login_page)
@@ -204,6 +222,8 @@ class _VpnSslWebRealmState:
             pulumi.set(__self__, "virtual_host", virtual_host)
         if virtual_host_only is not None:
             pulumi.set(__self__, "virtual_host_only", virtual_host_only)
+        if virtual_host_server_cert is not None:
+            pulumi.set(__self__, "virtual_host_server_cert", virtual_host_server_cert)
 
     @property
     @pulumi.getter(name="loginPage")
@@ -312,6 +332,18 @@ class _VpnSslWebRealmState:
     @virtual_host_only.setter
     def virtual_host_only(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "virtual_host_only", value)
+
+    @property
+    @pulumi.getter(name="virtualHostServerCert")
+    def virtual_host_server_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of the server certificate to used for this realm.
+        """
+        return pulumi.get(self, "virtual_host_server_cert")
+
+    @virtual_host_server_cert.setter
+    def virtual_host_server_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_host_server_cert", value)
 
 
 class VpnSslWebRealm(pulumi.CustomResource):
@@ -328,6 +360,7 @@ class VpnSslWebRealm(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_host: Optional[pulumi.Input[str]] = None,
                  virtual_host_only: Optional[pulumi.Input[str]] = None,
+                 virtual_host_server_cert: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Realm.
@@ -366,6 +399,7 @@ class VpnSslWebRealm(pulumi.CustomResource):
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_host: Virtual host name for realm.
         :param pulumi.Input[str] virtual_host_only: Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] virtual_host_server_cert: Name of the server certificate to used for this realm.
         """
         ...
     @overload
@@ -423,6 +457,7 @@ class VpnSslWebRealm(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_host: Optional[pulumi.Input[str]] = None,
                  virtual_host_only: Optional[pulumi.Input[str]] = None,
+                 virtual_host_server_cert: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -430,6 +465,8 @@ class VpnSslWebRealm(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -444,6 +481,7 @@ class VpnSslWebRealm(pulumi.CustomResource):
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["virtual_host"] = virtual_host
             __props__.__dict__["virtual_host_only"] = virtual_host_only
+            __props__.__dict__["virtual_host_server_cert"] = virtual_host_server_cert
         super(VpnSslWebRealm, __self__).__init__(
             'fortios:index/vpnSslWebRealm:VpnSslWebRealm',
             resource_name,
@@ -462,7 +500,8 @@ class VpnSslWebRealm(pulumi.CustomResource):
             url_path: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             virtual_host: Optional[pulumi.Input[str]] = None,
-            virtual_host_only: Optional[pulumi.Input[str]] = None) -> 'VpnSslWebRealm':
+            virtual_host_only: Optional[pulumi.Input[str]] = None,
+            virtual_host_server_cert: Optional[pulumi.Input[str]] = None) -> 'VpnSslWebRealm':
         """
         Get an existing VpnSslWebRealm resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -479,6 +518,7 @@ class VpnSslWebRealm(pulumi.CustomResource):
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_host: Virtual host name for realm.
         :param pulumi.Input[str] virtual_host_only: Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] virtual_host_server_cert: Name of the server certificate to used for this realm.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -493,6 +533,7 @@ class VpnSslWebRealm(pulumi.CustomResource):
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["virtual_host"] = virtual_host
         __props__.__dict__["virtual_host_only"] = virtual_host_only
+        __props__.__dict__["virtual_host_server_cert"] = virtual_host_server_cert
         return VpnSslWebRealm(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -566,4 +607,12 @@ class VpnSslWebRealm(pulumi.CustomResource):
         Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "virtual_host_only")
+
+    @property
+    @pulumi.getter(name="virtualHostServerCert")
+    def virtual_host_server_cert(self) -> pulumi.Output[str]:
+        """
+        Name of the server certificate to used for this realm.
+        """
+        return pulumi.get(self, "virtual_host_server_cert")
 

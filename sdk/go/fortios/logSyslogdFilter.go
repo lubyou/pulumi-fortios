@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -91,6 +91,8 @@ type LogSyslogdFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogSyslogdFilter registers a new resource with the given unique name, arguments, and options.
@@ -100,6 +102,7 @@ func NewLogSyslogdFilter(ctx *pulumi.Context,
 		args = &LogSyslogdFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogSyslogdFilter
 	err := ctx.RegisterResource("fortios:index/logSyslogdFilter:LogSyslogdFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -156,6 +159,8 @@ type logSyslogdFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogSyslogdFilterState struct {
@@ -193,6 +198,8 @@ type LogSyslogdFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogSyslogdFilterState) ElementType() reflect.Type {
@@ -234,6 +241,8 @@ type logSyslogdFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogSyslogdFilter resource.
@@ -272,6 +281,8 @@ type LogSyslogdFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogSyslogdFilterArgs) ElementType() reflect.Type {
@@ -286,7 +297,7 @@ type LogSyslogdFilterInput interface {
 }
 
 func (*LogSyslogdFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogdFilter)(nil))
+	return reflect.TypeOf((**LogSyslogdFilter)(nil)).Elem()
 }
 
 func (i *LogSyslogdFilter) ToLogSyslogdFilterOutput() LogSyslogdFilterOutput {
@@ -295,35 +306,6 @@ func (i *LogSyslogdFilter) ToLogSyslogdFilterOutput() LogSyslogdFilterOutput {
 
 func (i *LogSyslogdFilter) ToLogSyslogdFilterOutputWithContext(ctx context.Context) LogSyslogdFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdFilterOutput)
-}
-
-func (i *LogSyslogdFilter) ToLogSyslogdFilterPtrOutput() LogSyslogdFilterPtrOutput {
-	return i.ToLogSyslogdFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogSyslogdFilter) ToLogSyslogdFilterPtrOutputWithContext(ctx context.Context) LogSyslogdFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdFilterPtrOutput)
-}
-
-type LogSyslogdFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogSyslogdFilterPtrOutput() LogSyslogdFilterPtrOutput
-	ToLogSyslogdFilterPtrOutputWithContext(ctx context.Context) LogSyslogdFilterPtrOutput
-}
-
-type logSyslogdFilterPtrType LogSyslogdFilterArgs
-
-func (*logSyslogdFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogdFilter)(nil))
-}
-
-func (i *logSyslogdFilterPtrType) ToLogSyslogdFilterPtrOutput() LogSyslogdFilterPtrOutput {
-	return i.ToLogSyslogdFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logSyslogdFilterPtrType) ToLogSyslogdFilterPtrOutputWithContext(ctx context.Context) LogSyslogdFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdFilterPtrOutput)
 }
 
 // LogSyslogdFilterArrayInput is an input type that accepts LogSyslogdFilterArray and LogSyslogdFilterArrayOutput values.
@@ -340,7 +322,7 @@ type LogSyslogdFilterArrayInput interface {
 type LogSyslogdFilterArray []LogSyslogdFilterInput
 
 func (LogSyslogdFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogSyslogdFilter)(nil))
+	return reflect.TypeOf((*[]*LogSyslogdFilter)(nil)).Elem()
 }
 
 func (i LogSyslogdFilterArray) ToLogSyslogdFilterArrayOutput() LogSyslogdFilterArrayOutput {
@@ -365,7 +347,7 @@ type LogSyslogdFilterMapInput interface {
 type LogSyslogdFilterMap map[string]LogSyslogdFilterInput
 
 func (LogSyslogdFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogSyslogdFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogdFilter)(nil)).Elem()
 }
 
 func (i LogSyslogdFilterMap) ToLogSyslogdFilterMapOutput() LogSyslogdFilterMapOutput {
@@ -376,12 +358,10 @@ func (i LogSyslogdFilterMap) ToLogSyslogdFilterMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdFilterMapOutput)
 }
 
-type LogSyslogdFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogSyslogdFilterOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogdFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogdFilter)(nil))
+	return reflect.TypeOf((**LogSyslogdFilter)(nil)).Elem()
 }
 
 func (o LogSyslogdFilterOutput) ToLogSyslogdFilterOutput() LogSyslogdFilterOutput {
@@ -392,36 +372,10 @@ func (o LogSyslogdFilterOutput) ToLogSyslogdFilterOutputWithContext(ctx context.
 	return o
 }
 
-func (o LogSyslogdFilterOutput) ToLogSyslogdFilterPtrOutput() LogSyslogdFilterPtrOutput {
-	return o.ToLogSyslogdFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogSyslogdFilterOutput) ToLogSyslogdFilterPtrOutputWithContext(ctx context.Context) LogSyslogdFilterPtrOutput {
-	return o.ApplyT(func(v LogSyslogdFilter) *LogSyslogdFilter {
-		return &v
-	}).(LogSyslogdFilterPtrOutput)
-}
-
-type LogSyslogdFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogSyslogdFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogdFilter)(nil))
-}
-
-func (o LogSyslogdFilterPtrOutput) ToLogSyslogdFilterPtrOutput() LogSyslogdFilterPtrOutput {
-	return o
-}
-
-func (o LogSyslogdFilterPtrOutput) ToLogSyslogdFilterPtrOutputWithContext(ctx context.Context) LogSyslogdFilterPtrOutput {
-	return o
-}
-
 type LogSyslogdFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogdFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogSyslogdFilter)(nil))
+	return reflect.TypeOf((*[]*LogSyslogdFilter)(nil)).Elem()
 }
 
 func (o LogSyslogdFilterArrayOutput) ToLogSyslogdFilterArrayOutput() LogSyslogdFilterArrayOutput {
@@ -433,15 +387,15 @@ func (o LogSyslogdFilterArrayOutput) ToLogSyslogdFilterArrayOutputWithContext(ct
 }
 
 func (o LogSyslogdFilterArrayOutput) Index(i pulumi.IntInput) LogSyslogdFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogSyslogdFilter {
-		return vs[0].([]LogSyslogdFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogdFilter {
+		return vs[0].([]*LogSyslogdFilter)[vs[1].(int)]
 	}).(LogSyslogdFilterOutput)
 }
 
 type LogSyslogdFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogdFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogSyslogdFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogdFilter)(nil)).Elem()
 }
 
 func (o LogSyslogdFilterMapOutput) ToLogSyslogdFilterMapOutput() LogSyslogdFilterMapOutput {
@@ -453,14 +407,16 @@ func (o LogSyslogdFilterMapOutput) ToLogSyslogdFilterMapOutputWithContext(ctx co
 }
 
 func (o LogSyslogdFilterMapOutput) MapIndex(k pulumi.StringInput) LogSyslogdFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogSyslogdFilter {
-		return vs[0].(map[string]LogSyslogdFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogSyslogdFilter {
+		return vs[0].(map[string]*LogSyslogdFilter)[vs[1].(string)]
 	}).(LogSyslogdFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogdFilterInput)(nil)).Elem(), &LogSyslogdFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogdFilterArrayInput)(nil)).Elem(), LogSyslogdFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogdFilterMapInput)(nil)).Elem(), LogSyslogdFilterMap{})
 	pulumi.RegisterOutputType(LogSyslogdFilterOutput{})
-	pulumi.RegisterOutputType(LogSyslogdFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogSyslogdFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogSyslogdFilterMapOutput{})
 }

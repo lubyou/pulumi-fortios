@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemAutomationAction`.
 func GetSystemAutomationActionList(ctx *pulumi.Context, args *GetSystemAutomationActionListArgs, opts ...pulumi.InvokeOption) (*GetSystemAutomationActionListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemAutomationActionListResult
 	err := ctx.Invoke("fortios:index/getSystemAutomationActionList:GetSystemAutomationActionList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemAutomationActionListResult struct {
 	// A list of the `SystemAutomationAction`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemAutomationActionListOutput(ctx *pulumi.Context, args GetSystemAutomationActionListOutputArgs, opts ...pulumi.InvokeOption) GetSystemAutomationActionListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemAutomationActionListResult, error) {
+			args := v.(GetSystemAutomationActionListArgs)
+			r, err := GetSystemAutomationActionList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemAutomationActionListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutomationActionList.
+type GetSystemAutomationActionListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemAutomationActionListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemAutomationActionListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutomationActionList.
+type GetSystemAutomationActionListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemAutomationActionListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemAutomationActionListResult)(nil)).Elem()
+}
+
+func (o GetSystemAutomationActionListResultOutput) ToGetSystemAutomationActionListResultOutput() GetSystemAutomationActionListResultOutput {
+	return o
+}
+
+func (o GetSystemAutomationActionListResultOutput) ToGetSystemAutomationActionListResultOutputWithContext(ctx context.Context) GetSystemAutomationActionListResultOutput {
+	return o
+}
+
+func (o GetSystemAutomationActionListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemAutomationActionListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemAutomationActionListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemAutomationActionListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemAutomationAction`.
+func (o GetSystemAutomationActionListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemAutomationActionListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemAutomationActionListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemAutomationActionListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemAutomationActionListResultOutput{})
 }

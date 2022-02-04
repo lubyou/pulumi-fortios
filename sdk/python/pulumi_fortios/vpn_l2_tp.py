@@ -17,6 +17,7 @@ class VpnL2TpArgs:
                  compress: Optional[pulumi.Input[str]] = None,
                  eip: Optional[pulumi.Input[str]] = None,
                  enforce_ipsec: Optional[pulumi.Input[str]] = None,
+                 hello_interval: Optional[pulumi.Input[int]] = None,
                  lcp_echo_interval: Optional[pulumi.Input[int]] = None,
                  lcp_max_echo_fails: Optional[pulumi.Input[int]] = None,
                  sip: Optional[pulumi.Input[str]] = None,
@@ -28,6 +29,7 @@ class VpnL2TpArgs:
         :param pulumi.Input[str] compress: Enable/disable data compression. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eip: End IP.
         :param pulumi.Input[str] enforce_ipsec: Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] hello_interval: L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
         :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         :param pulumi.Input[int] lcp_max_echo_fails: Maximum number of missed LCP echo messages before disconnect.
         :param pulumi.Input[str] sip: Start IP.
@@ -41,6 +43,8 @@ class VpnL2TpArgs:
             pulumi.set(__self__, "eip", eip)
         if enforce_ipsec is not None:
             pulumi.set(__self__, "enforce_ipsec", enforce_ipsec)
+        if hello_interval is not None:
+            pulumi.set(__self__, "hello_interval", hello_interval)
         if lcp_echo_interval is not None:
             pulumi.set(__self__, "lcp_echo_interval", lcp_echo_interval)
         if lcp_max_echo_fails is not None:
@@ -99,6 +103,18 @@ class VpnL2TpArgs:
     @enforce_ipsec.setter
     def enforce_ipsec(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enforce_ipsec", value)
+
+    @property
+    @pulumi.getter(name="helloInterval")
+    def hello_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+        """
+        return pulumi.get(self, "hello_interval")
+
+    @hello_interval.setter
+    def hello_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hello_interval", value)
 
     @property
     @pulumi.getter(name="lcpEchoInterval")
@@ -167,6 +183,7 @@ class _VpnL2TpState:
                  compress: Optional[pulumi.Input[str]] = None,
                  eip: Optional[pulumi.Input[str]] = None,
                  enforce_ipsec: Optional[pulumi.Input[str]] = None,
+                 hello_interval: Optional[pulumi.Input[int]] = None,
                  lcp_echo_interval: Optional[pulumi.Input[int]] = None,
                  lcp_max_echo_fails: Optional[pulumi.Input[int]] = None,
                  sip: Optional[pulumi.Input[str]] = None,
@@ -178,6 +195,7 @@ class _VpnL2TpState:
         :param pulumi.Input[str] compress: Enable/disable data compression. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eip: End IP.
         :param pulumi.Input[str] enforce_ipsec: Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] hello_interval: L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
         :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         :param pulumi.Input[int] lcp_max_echo_fails: Maximum number of missed LCP echo messages before disconnect.
         :param pulumi.Input[str] sip: Start IP.
@@ -191,6 +209,8 @@ class _VpnL2TpState:
             pulumi.set(__self__, "eip", eip)
         if enforce_ipsec is not None:
             pulumi.set(__self__, "enforce_ipsec", enforce_ipsec)
+        if hello_interval is not None:
+            pulumi.set(__self__, "hello_interval", hello_interval)
         if lcp_echo_interval is not None:
             pulumi.set(__self__, "lcp_echo_interval", lcp_echo_interval)
         if lcp_max_echo_fails is not None:
@@ -239,6 +259,18 @@ class _VpnL2TpState:
     @enforce_ipsec.setter
     def enforce_ipsec(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "enforce_ipsec", value)
+
+    @property
+    @pulumi.getter(name="helloInterval")
+    def hello_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+        """
+        return pulumi.get(self, "hello_interval")
+
+    @hello_interval.setter
+    def hello_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "hello_interval", value)
 
     @property
     @pulumi.getter(name="lcpEchoInterval")
@@ -321,6 +353,7 @@ class VpnL2Tp(pulumi.CustomResource):
                  compress: Optional[pulumi.Input[str]] = None,
                  eip: Optional[pulumi.Input[str]] = None,
                  enforce_ipsec: Optional[pulumi.Input[str]] = None,
+                 hello_interval: Optional[pulumi.Input[int]] = None,
                  lcp_echo_interval: Optional[pulumi.Input[int]] = None,
                  lcp_max_echo_fails: Optional[pulumi.Input[int]] = None,
                  sip: Optional[pulumi.Input[str]] = None,
@@ -346,6 +379,7 @@ class VpnL2Tp(pulumi.CustomResource):
         :param pulumi.Input[str] compress: Enable/disable data compression. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eip: End IP.
         :param pulumi.Input[str] enforce_ipsec: Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] hello_interval: L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
         :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         :param pulumi.Input[int] lcp_max_echo_fails: Maximum number of missed LCP echo messages before disconnect.
         :param pulumi.Input[str] sip: Start IP.
@@ -390,6 +424,7 @@ class VpnL2Tp(pulumi.CustomResource):
                  compress: Optional[pulumi.Input[str]] = None,
                  eip: Optional[pulumi.Input[str]] = None,
                  enforce_ipsec: Optional[pulumi.Input[str]] = None,
+                 hello_interval: Optional[pulumi.Input[int]] = None,
                  lcp_echo_interval: Optional[pulumi.Input[int]] = None,
                  lcp_max_echo_fails: Optional[pulumi.Input[int]] = None,
                  sip: Optional[pulumi.Input[str]] = None,
@@ -403,6 +438,8 @@ class VpnL2Tp(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -411,6 +448,7 @@ class VpnL2Tp(pulumi.CustomResource):
             __props__.__dict__["compress"] = compress
             __props__.__dict__["eip"] = eip
             __props__.__dict__["enforce_ipsec"] = enforce_ipsec
+            __props__.__dict__["hello_interval"] = hello_interval
             __props__.__dict__["lcp_echo_interval"] = lcp_echo_interval
             __props__.__dict__["lcp_max_echo_fails"] = lcp_max_echo_fails
             __props__.__dict__["sip"] = sip
@@ -432,6 +470,7 @@ class VpnL2Tp(pulumi.CustomResource):
             compress: Optional[pulumi.Input[str]] = None,
             eip: Optional[pulumi.Input[str]] = None,
             enforce_ipsec: Optional[pulumi.Input[str]] = None,
+            hello_interval: Optional[pulumi.Input[int]] = None,
             lcp_echo_interval: Optional[pulumi.Input[int]] = None,
             lcp_max_echo_fails: Optional[pulumi.Input[int]] = None,
             sip: Optional[pulumi.Input[str]] = None,
@@ -448,6 +487,7 @@ class VpnL2Tp(pulumi.CustomResource):
         :param pulumi.Input[str] compress: Enable/disable data compression. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eip: End IP.
         :param pulumi.Input[str] enforce_ipsec: Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] hello_interval: L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
         :param pulumi.Input[int] lcp_echo_interval: Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
         :param pulumi.Input[int] lcp_max_echo_fails: Maximum number of missed LCP echo messages before disconnect.
         :param pulumi.Input[str] sip: Start IP.
@@ -462,6 +502,7 @@ class VpnL2Tp(pulumi.CustomResource):
         __props__.__dict__["compress"] = compress
         __props__.__dict__["eip"] = eip
         __props__.__dict__["enforce_ipsec"] = enforce_ipsec
+        __props__.__dict__["hello_interval"] = hello_interval
         __props__.__dict__["lcp_echo_interval"] = lcp_echo_interval
         __props__.__dict__["lcp_max_echo_fails"] = lcp_max_echo_fails
         __props__.__dict__["sip"] = sip
@@ -493,6 +534,14 @@ class VpnL2Tp(pulumi.CustomResource):
         Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "enforce_ipsec")
+
+    @property
+    @pulumi.getter(name="helloInterval")
+    def hello_interval(self) -> pulumi.Output[int]:
+        """
+        L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+        """
+        return pulumi.get(self, "hello_interval")
 
     @property
     @pulumi.getter(name="lcpEchoInterval")

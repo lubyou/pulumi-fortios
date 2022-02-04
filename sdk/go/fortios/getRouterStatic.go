@@ -4,6 +4,9 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,13 +18,14 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sample1, err := fortios.GetRouterStatic(ctx, &fortios.LookupRouterStaticArgs{
+// 		sample1, err := fortios.GetRouterStatic(ctx, &GetRouterStaticArgs{
 // 			SeqNum: 1,
 // 		}, nil)
 // 		if err != nil {
@@ -33,6 +37,7 @@ import (
 // }
 // ```
 func LookupRouterStatic(ctx *pulumi.Context, args *LookupRouterStaticArgs, opts ...pulumi.InvokeOption) (*LookupRouterStaticResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterStaticResult
 	err := ctx.Invoke("fortios:index/getRouterStatic:GetRouterStatic", args, &rv, opts...)
 	if err != nil {
@@ -81,6 +86,8 @@ type LookupRouterStaticResult struct {
 	Priority int `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN.
 	Sdwan string `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones []GetRouterStaticSdwanZone `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum int `pulumi:"seqNum"`
 	// Source prefix for this route.
@@ -94,4 +101,158 @@ type LookupRouterStaticResult struct {
 	Vrf int `pulumi:"vrf"`
 	// Administrative weight (0 - 255).
 	Weight int `pulumi:"weight"`
+}
+
+func LookupRouterStaticOutput(ctx *pulumi.Context, args LookupRouterStaticOutputArgs, opts ...pulumi.InvokeOption) LookupRouterStaticResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterStaticResult, error) {
+			args := v.(LookupRouterStaticArgs)
+			r, err := LookupRouterStatic(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterStaticResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterStatic.
+type LookupRouterStaticOutputArgs struct {
+	// Specify the seqNum of the desired router static.
+	SeqNum pulumi.IntInput `pulumi:"seqNum"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterStaticOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterStaticArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterStatic.
+type LookupRouterStaticResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterStaticResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterStaticResult)(nil)).Elem()
+}
+
+func (o LookupRouterStaticResultOutput) ToLookupRouterStaticResultOutput() LookupRouterStaticResultOutput {
+	return o
+}
+
+func (o LookupRouterStaticResultOutput) ToLookupRouterStaticResultOutputWithContext(ctx context.Context) LookupRouterStaticResultOutput {
+	return o
+}
+
+// Enable/disable Bidirectional Forwarding Detection (BFD).
+func (o LookupRouterStaticResultOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Bfd }).(pulumi.StringOutput)
+}
+
+// Enable/disable black hole.
+func (o LookupRouterStaticResultOutput) Blackhole() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Blackhole }).(pulumi.StringOutput)
+}
+
+// Optional comments.
+func (o LookupRouterStaticResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Gateway out interface or tunnel.
+func (o LookupRouterStaticResultOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Device }).(pulumi.StringOutput)
+}
+
+// Administrative distance (1 - 255).
+func (o LookupRouterStaticResultOutput) Distance() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.Distance }).(pulumi.IntOutput)
+}
+
+// Destination IP and mask for this route.
+func (o LookupRouterStaticResultOutput) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Dst }).(pulumi.StringOutput)
+}
+
+// Name of firewall address or address group.
+func (o LookupRouterStaticResultOutput) Dstaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Dstaddr }).(pulumi.StringOutput)
+}
+
+// Enable use of dynamic gateway retrieved from a DHCP or PPP server.
+func (o LookupRouterStaticResultOutput) DynamicGateway() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.DynamicGateway }).(pulumi.StringOutput)
+}
+
+// Gateway IP for this route.
+func (o LookupRouterStaticResultOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterStaticResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Application ID in the Internet service database.
+func (o LookupRouterStaticResultOutput) InternetService() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.InternetService }).(pulumi.IntOutput)
+}
+
+// Application name in the Internet service custom database.
+func (o LookupRouterStaticResultOutput) InternetServiceCustom() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.InternetServiceCustom }).(pulumi.StringOutput)
+}
+
+// Enable/disable withdrawing this route when link monitor or health check is down.
+func (o LookupRouterStaticResultOutput) LinkMonitorExempt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.LinkMonitorExempt }).(pulumi.StringOutput)
+}
+
+// Administrative priority (0 - 4294967295).
+func (o LookupRouterStaticResultOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Enable/disable egress through SD-WAN.
+func (o LookupRouterStaticResultOutput) Sdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Sdwan }).(pulumi.StringOutput)
+}
+
+// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+func (o LookupRouterStaticResultOutput) SdwanZones() GetRouterStaticSdwanZoneArrayOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) []GetRouterStaticSdwanZone { return v.SdwanZones }).(GetRouterStaticSdwanZoneArrayOutput)
+}
+
+// Sequence number.
+func (o LookupRouterStaticResultOutput) SeqNum() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.SeqNum }).(pulumi.IntOutput)
+}
+
+// Source prefix for this route.
+func (o LookupRouterStaticResultOutput) Src() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Src }).(pulumi.StringOutput)
+}
+
+// Enable/disable this static route.
+func (o LookupRouterStaticResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterStaticResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable egress through the virtual-wan-link.
+func (o LookupRouterStaticResultOutput) VirtualWanLink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) string { return v.VirtualWanLink }).(pulumi.StringOutput)
+}
+
+// Virtual Routing Forwarding ID.
+func (o LookupRouterStaticResultOutput) Vrf() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.Vrf }).(pulumi.IntOutput)
+}
+
+// Administrative weight (0 - 255).
+func (o LookupRouterStaticResultOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterStaticResult) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterStaticResultOutput{})
 }

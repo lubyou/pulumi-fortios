@@ -86,6 +86,10 @@ export class WebProxyGlobal extends pulumi.CustomResource {
      */
     public readonly forwardServerAffinityTimeout!: pulumi.Output<number>;
     /**
+     * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+     */
+    public readonly ldapUserCache!: pulumi.Output<string>;
+    /**
      * Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
      */
     public readonly learnClientIp!: pulumi.Output<string>;
@@ -117,6 +121,14 @@ export class WebProxyGlobal extends pulumi.CustomResource {
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
     public readonly proxyFqdn!: pulumi.Output<string>;
+    /**
+     * IPv4 source addresses to exempt proxy affinity.
+     */
+    public readonly srcAffinityExemptAddr!: pulumi.Output<string>;
+    /**
+     * IPv6 source addresses to exempt proxy affinity.
+     */
+    public readonly srcAffinityExemptAddr6!: pulumi.Output<string>;
     /**
      * SSL CA certificate for SSL interception.
      */
@@ -155,58 +167,62 @@ export class WebProxyGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebProxyGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyGlobalArgs | WebProxyGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyGlobalState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fastPolicyMatch"] = state ? state.fastPolicyMatch : undefined;
-            inputs["forwardProxyAuth"] = state ? state.forwardProxyAuth : undefined;
-            inputs["forwardServerAffinityTimeout"] = state ? state.forwardServerAffinityTimeout : undefined;
-            inputs["learnClientIp"] = state ? state.learnClientIp : undefined;
-            inputs["learnClientIpFromHeader"] = state ? state.learnClientIpFromHeader : undefined;
-            inputs["learnClientIpSrcaddr6s"] = state ? state.learnClientIpSrcaddr6s : undefined;
-            inputs["learnClientIpSrcaddrs"] = state ? state.learnClientIpSrcaddrs : undefined;
-            inputs["maxMessageLength"] = state ? state.maxMessageLength : undefined;
-            inputs["maxRequestLength"] = state ? state.maxRequestLength : undefined;
-            inputs["maxWafBodyCacheLength"] = state ? state.maxWafBodyCacheLength : undefined;
-            inputs["proxyFqdn"] = state ? state.proxyFqdn : undefined;
-            inputs["sslCaCert"] = state ? state.sslCaCert : undefined;
-            inputs["sslCert"] = state ? state.sslCert : undefined;
-            inputs["strictWebCheck"] = state ? state.strictWebCheck : undefined;
-            inputs["tunnelNonHttp"] = state ? state.tunnelNonHttp : undefined;
-            inputs["unknownHttpVersion"] = state ? state.unknownHttpVersion : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webproxyProfile"] = state ? state.webproxyProfile : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fastPolicyMatch"] = state ? state.fastPolicyMatch : undefined;
+            resourceInputs["forwardProxyAuth"] = state ? state.forwardProxyAuth : undefined;
+            resourceInputs["forwardServerAffinityTimeout"] = state ? state.forwardServerAffinityTimeout : undefined;
+            resourceInputs["ldapUserCache"] = state ? state.ldapUserCache : undefined;
+            resourceInputs["learnClientIp"] = state ? state.learnClientIp : undefined;
+            resourceInputs["learnClientIpFromHeader"] = state ? state.learnClientIpFromHeader : undefined;
+            resourceInputs["learnClientIpSrcaddr6s"] = state ? state.learnClientIpSrcaddr6s : undefined;
+            resourceInputs["learnClientIpSrcaddrs"] = state ? state.learnClientIpSrcaddrs : undefined;
+            resourceInputs["maxMessageLength"] = state ? state.maxMessageLength : undefined;
+            resourceInputs["maxRequestLength"] = state ? state.maxRequestLength : undefined;
+            resourceInputs["maxWafBodyCacheLength"] = state ? state.maxWafBodyCacheLength : undefined;
+            resourceInputs["proxyFqdn"] = state ? state.proxyFqdn : undefined;
+            resourceInputs["srcAffinityExemptAddr"] = state ? state.srcAffinityExemptAddr : undefined;
+            resourceInputs["srcAffinityExemptAddr6"] = state ? state.srcAffinityExemptAddr6 : undefined;
+            resourceInputs["sslCaCert"] = state ? state.sslCaCert : undefined;
+            resourceInputs["sslCert"] = state ? state.sslCert : undefined;
+            resourceInputs["strictWebCheck"] = state ? state.strictWebCheck : undefined;
+            resourceInputs["tunnelNonHttp"] = state ? state.tunnelNonHttp : undefined;
+            resourceInputs["unknownHttpVersion"] = state ? state.unknownHttpVersion : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webproxyProfile"] = state ? state.webproxyProfile : undefined;
         } else {
             const args = argsOrState as WebProxyGlobalArgs | undefined;
             if ((!args || args.proxyFqdn === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'proxyFqdn'");
             }
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fastPolicyMatch"] = args ? args.fastPolicyMatch : undefined;
-            inputs["forwardProxyAuth"] = args ? args.forwardProxyAuth : undefined;
-            inputs["forwardServerAffinityTimeout"] = args ? args.forwardServerAffinityTimeout : undefined;
-            inputs["learnClientIp"] = args ? args.learnClientIp : undefined;
-            inputs["learnClientIpFromHeader"] = args ? args.learnClientIpFromHeader : undefined;
-            inputs["learnClientIpSrcaddr6s"] = args ? args.learnClientIpSrcaddr6s : undefined;
-            inputs["learnClientIpSrcaddrs"] = args ? args.learnClientIpSrcaddrs : undefined;
-            inputs["maxMessageLength"] = args ? args.maxMessageLength : undefined;
-            inputs["maxRequestLength"] = args ? args.maxRequestLength : undefined;
-            inputs["maxWafBodyCacheLength"] = args ? args.maxWafBodyCacheLength : undefined;
-            inputs["proxyFqdn"] = args ? args.proxyFqdn : undefined;
-            inputs["sslCaCert"] = args ? args.sslCaCert : undefined;
-            inputs["sslCert"] = args ? args.sslCert : undefined;
-            inputs["strictWebCheck"] = args ? args.strictWebCheck : undefined;
-            inputs["tunnelNonHttp"] = args ? args.tunnelNonHttp : undefined;
-            inputs["unknownHttpVersion"] = args ? args.unknownHttpVersion : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webproxyProfile"] = args ? args.webproxyProfile : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fastPolicyMatch"] = args ? args.fastPolicyMatch : undefined;
+            resourceInputs["forwardProxyAuth"] = args ? args.forwardProxyAuth : undefined;
+            resourceInputs["forwardServerAffinityTimeout"] = args ? args.forwardServerAffinityTimeout : undefined;
+            resourceInputs["ldapUserCache"] = args ? args.ldapUserCache : undefined;
+            resourceInputs["learnClientIp"] = args ? args.learnClientIp : undefined;
+            resourceInputs["learnClientIpFromHeader"] = args ? args.learnClientIpFromHeader : undefined;
+            resourceInputs["learnClientIpSrcaddr6s"] = args ? args.learnClientIpSrcaddr6s : undefined;
+            resourceInputs["learnClientIpSrcaddrs"] = args ? args.learnClientIpSrcaddrs : undefined;
+            resourceInputs["maxMessageLength"] = args ? args.maxMessageLength : undefined;
+            resourceInputs["maxRequestLength"] = args ? args.maxRequestLength : undefined;
+            resourceInputs["maxWafBodyCacheLength"] = args ? args.maxWafBodyCacheLength : undefined;
+            resourceInputs["proxyFqdn"] = args ? args.proxyFqdn : undefined;
+            resourceInputs["srcAffinityExemptAddr"] = args ? args.srcAffinityExemptAddr : undefined;
+            resourceInputs["srcAffinityExemptAddr6"] = args ? args.srcAffinityExemptAddr6 : undefined;
+            resourceInputs["sslCaCert"] = args ? args.sslCaCert : undefined;
+            resourceInputs["sslCert"] = args ? args.sslCert : undefined;
+            resourceInputs["strictWebCheck"] = args ? args.strictWebCheck : undefined;
+            resourceInputs["tunnelNonHttp"] = args ? args.tunnelNonHttp : undefined;
+            resourceInputs["unknownHttpVersion"] = args ? args.unknownHttpVersion : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webproxyProfile"] = args ? args.webproxyProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -230,6 +246,10 @@ export interface WebProxyGlobalState {
      * Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
      */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
+    /**
+     * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+     */
+    ldapUserCache?: pulumi.Input<string>;
     /**
      * Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
      */
@@ -262,6 +282,14 @@ export interface WebProxyGlobalState {
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
     proxyFqdn?: pulumi.Input<string>;
+    /**
+     * IPv4 source addresses to exempt proxy affinity.
+     */
+    srcAffinityExemptAddr?: pulumi.Input<string>;
+    /**
+     * IPv6 source addresses to exempt proxy affinity.
+     */
+    srcAffinityExemptAddr6?: pulumi.Input<string>;
     /**
      * SSL CA certificate for SSL interception.
      */
@@ -313,6 +341,10 @@ export interface WebProxyGlobalArgs {
      */
     forwardServerAffinityTimeout?: pulumi.Input<number>;
     /**
+     * Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+     */
+    ldapUserCache?: pulumi.Input<string>;
+    /**
      * Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
      */
     learnClientIp?: pulumi.Input<string>;
@@ -344,6 +376,14 @@ export interface WebProxyGlobalArgs {
      * Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
      */
     proxyFqdn: pulumi.Input<string>;
+    /**
+     * IPv4 source addresses to exempt proxy affinity.
+     */
+    srcAffinityExemptAddr?: pulumi.Input<string>;
+    /**
+     * IPv6 source addresses to exempt proxy affinity.
+     */
+    srcAffinityExemptAddr6?: pulumi.Input<string>;
     /**
      * SSL CA certificate for SSL interception.
      */

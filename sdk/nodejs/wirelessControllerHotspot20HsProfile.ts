@@ -67,6 +67,10 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
      */
     public readonly accessNetworkUesa!: pulumi.Output<string>;
     /**
+     * Advice of charge.
+     */
+    public readonly adviceOfCharge!: pulumi.Output<string>;
+    /**
      * ANQP Domain ID (0-65535).
      */
     public readonly anqpDomainId!: pulumi.Output<number>;
@@ -135,6 +139,14 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
      */
     public readonly operFriendlyName!: pulumi.Output<string>;
     /**
+     * Operator icon.
+     */
+    public readonly operIcon!: pulumi.Output<string>;
+    /**
+     * OSU Provider NAI.
+     */
+    public readonly osuProviderNai!: pulumi.Output<string>;
+    /**
      * Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
      */
     public readonly osuProviders!: pulumi.Output<outputs.WirelessControllerHotspot20HsProfileOsuProvider[] | undefined>;
@@ -155,9 +167,17 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
      */
     public readonly qosMap!: pulumi.Output<string>;
     /**
+     * Hotspot 2.0 Release number (1, 2, 3, default = 2).
+     */
+    public readonly release!: pulumi.Output<number>;
+    /**
      * Roaming consortium list name.
      */
     public readonly roamingConsortium!: pulumi.Output<string>;
+    /**
+     * Terms and conditions.
+     */
+    public readonly termsAndConditions!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -174,6 +194,10 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
      * Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
      */
     public readonly venueType!: pulumi.Output<string>;
+    /**
+     * Venue name.
+     */
+    public readonly venueUrl!: pulumi.Output<string>;
     /**
      * WAN metric name.
      */
@@ -192,85 +216,95 @@ export class WirelessControllerHotspot20HsProfile extends pulumi.CustomResource 
      */
     constructor(name: string, args?: WirelessControllerHotspot20HsProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20HsProfileArgs | WirelessControllerHotspot20HsProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20HsProfileState | undefined;
-            inputs["accessNetworkAsra"] = state ? state.accessNetworkAsra : undefined;
-            inputs["accessNetworkEsr"] = state ? state.accessNetworkEsr : undefined;
-            inputs["accessNetworkInternet"] = state ? state.accessNetworkInternet : undefined;
-            inputs["accessNetworkType"] = state ? state.accessNetworkType : undefined;
-            inputs["accessNetworkUesa"] = state ? state.accessNetworkUesa : undefined;
-            inputs["anqpDomainId"] = state ? state.anqpDomainId : undefined;
-            inputs["bssTransition"] = state ? state.bssTransition : undefined;
-            inputs["connCap"] = state ? state.connCap : undefined;
-            inputs["deauthRequestTimeout"] = state ? state.deauthRequestTimeout : undefined;
-            inputs["dgaf"] = state ? state.dgaf : undefined;
-            inputs["domainName"] = state ? state.domainName : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["gasComebackDelay"] = state ? state.gasComebackDelay : undefined;
-            inputs["gasFragmentationLimit"] = state ? state.gasFragmentationLimit : undefined;
-            inputs["hessid"] = state ? state.hessid : undefined;
-            inputs["ipAddrType"] = state ? state.ipAddrType : undefined;
-            inputs["l2tif"] = state ? state.l2tif : undefined;
-            inputs["n3gppPlmn"] = state ? state.n3gppPlmn : undefined;
-            inputs["naiRealm"] = state ? state.naiRealm : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["networkAuth"] = state ? state.networkAuth : undefined;
-            inputs["operFriendlyName"] = state ? state.operFriendlyName : undefined;
-            inputs["osuProviders"] = state ? state.osuProviders : undefined;
-            inputs["osuSsid"] = state ? state.osuSsid : undefined;
-            inputs["pameBi"] = state ? state.pameBi : undefined;
-            inputs["proxyArp"] = state ? state.proxyArp : undefined;
-            inputs["qosMap"] = state ? state.qosMap : undefined;
-            inputs["roamingConsortium"] = state ? state.roamingConsortium : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["venueGroup"] = state ? state.venueGroup : undefined;
-            inputs["venueName"] = state ? state.venueName : undefined;
-            inputs["venueType"] = state ? state.venueType : undefined;
-            inputs["wanMetrics"] = state ? state.wanMetrics : undefined;
-            inputs["wnmSleepMode"] = state ? state.wnmSleepMode : undefined;
+            resourceInputs["accessNetworkAsra"] = state ? state.accessNetworkAsra : undefined;
+            resourceInputs["accessNetworkEsr"] = state ? state.accessNetworkEsr : undefined;
+            resourceInputs["accessNetworkInternet"] = state ? state.accessNetworkInternet : undefined;
+            resourceInputs["accessNetworkType"] = state ? state.accessNetworkType : undefined;
+            resourceInputs["accessNetworkUesa"] = state ? state.accessNetworkUesa : undefined;
+            resourceInputs["adviceOfCharge"] = state ? state.adviceOfCharge : undefined;
+            resourceInputs["anqpDomainId"] = state ? state.anqpDomainId : undefined;
+            resourceInputs["bssTransition"] = state ? state.bssTransition : undefined;
+            resourceInputs["connCap"] = state ? state.connCap : undefined;
+            resourceInputs["deauthRequestTimeout"] = state ? state.deauthRequestTimeout : undefined;
+            resourceInputs["dgaf"] = state ? state.dgaf : undefined;
+            resourceInputs["domainName"] = state ? state.domainName : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["gasComebackDelay"] = state ? state.gasComebackDelay : undefined;
+            resourceInputs["gasFragmentationLimit"] = state ? state.gasFragmentationLimit : undefined;
+            resourceInputs["hessid"] = state ? state.hessid : undefined;
+            resourceInputs["ipAddrType"] = state ? state.ipAddrType : undefined;
+            resourceInputs["l2tif"] = state ? state.l2tif : undefined;
+            resourceInputs["n3gppPlmn"] = state ? state.n3gppPlmn : undefined;
+            resourceInputs["naiRealm"] = state ? state.naiRealm : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["networkAuth"] = state ? state.networkAuth : undefined;
+            resourceInputs["operFriendlyName"] = state ? state.operFriendlyName : undefined;
+            resourceInputs["operIcon"] = state ? state.operIcon : undefined;
+            resourceInputs["osuProviderNai"] = state ? state.osuProviderNai : undefined;
+            resourceInputs["osuProviders"] = state ? state.osuProviders : undefined;
+            resourceInputs["osuSsid"] = state ? state.osuSsid : undefined;
+            resourceInputs["pameBi"] = state ? state.pameBi : undefined;
+            resourceInputs["proxyArp"] = state ? state.proxyArp : undefined;
+            resourceInputs["qosMap"] = state ? state.qosMap : undefined;
+            resourceInputs["release"] = state ? state.release : undefined;
+            resourceInputs["roamingConsortium"] = state ? state.roamingConsortium : undefined;
+            resourceInputs["termsAndConditions"] = state ? state.termsAndConditions : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["venueGroup"] = state ? state.venueGroup : undefined;
+            resourceInputs["venueName"] = state ? state.venueName : undefined;
+            resourceInputs["venueType"] = state ? state.venueType : undefined;
+            resourceInputs["venueUrl"] = state ? state.venueUrl : undefined;
+            resourceInputs["wanMetrics"] = state ? state.wanMetrics : undefined;
+            resourceInputs["wnmSleepMode"] = state ? state.wnmSleepMode : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20HsProfileArgs | undefined;
-            inputs["accessNetworkAsra"] = args ? args.accessNetworkAsra : undefined;
-            inputs["accessNetworkEsr"] = args ? args.accessNetworkEsr : undefined;
-            inputs["accessNetworkInternet"] = args ? args.accessNetworkInternet : undefined;
-            inputs["accessNetworkType"] = args ? args.accessNetworkType : undefined;
-            inputs["accessNetworkUesa"] = args ? args.accessNetworkUesa : undefined;
-            inputs["anqpDomainId"] = args ? args.anqpDomainId : undefined;
-            inputs["bssTransition"] = args ? args.bssTransition : undefined;
-            inputs["connCap"] = args ? args.connCap : undefined;
-            inputs["deauthRequestTimeout"] = args ? args.deauthRequestTimeout : undefined;
-            inputs["dgaf"] = args ? args.dgaf : undefined;
-            inputs["domainName"] = args ? args.domainName : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["gasComebackDelay"] = args ? args.gasComebackDelay : undefined;
-            inputs["gasFragmentationLimit"] = args ? args.gasFragmentationLimit : undefined;
-            inputs["hessid"] = args ? args.hessid : undefined;
-            inputs["ipAddrType"] = args ? args.ipAddrType : undefined;
-            inputs["l2tif"] = args ? args.l2tif : undefined;
-            inputs["n3gppPlmn"] = args ? args.n3gppPlmn : undefined;
-            inputs["naiRealm"] = args ? args.naiRealm : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["networkAuth"] = args ? args.networkAuth : undefined;
-            inputs["operFriendlyName"] = args ? args.operFriendlyName : undefined;
-            inputs["osuProviders"] = args ? args.osuProviders : undefined;
-            inputs["osuSsid"] = args ? args.osuSsid : undefined;
-            inputs["pameBi"] = args ? args.pameBi : undefined;
-            inputs["proxyArp"] = args ? args.proxyArp : undefined;
-            inputs["qosMap"] = args ? args.qosMap : undefined;
-            inputs["roamingConsortium"] = args ? args.roamingConsortium : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["venueGroup"] = args ? args.venueGroup : undefined;
-            inputs["venueName"] = args ? args.venueName : undefined;
-            inputs["venueType"] = args ? args.venueType : undefined;
-            inputs["wanMetrics"] = args ? args.wanMetrics : undefined;
-            inputs["wnmSleepMode"] = args ? args.wnmSleepMode : undefined;
+            resourceInputs["accessNetworkAsra"] = args ? args.accessNetworkAsra : undefined;
+            resourceInputs["accessNetworkEsr"] = args ? args.accessNetworkEsr : undefined;
+            resourceInputs["accessNetworkInternet"] = args ? args.accessNetworkInternet : undefined;
+            resourceInputs["accessNetworkType"] = args ? args.accessNetworkType : undefined;
+            resourceInputs["accessNetworkUesa"] = args ? args.accessNetworkUesa : undefined;
+            resourceInputs["adviceOfCharge"] = args ? args.adviceOfCharge : undefined;
+            resourceInputs["anqpDomainId"] = args ? args.anqpDomainId : undefined;
+            resourceInputs["bssTransition"] = args ? args.bssTransition : undefined;
+            resourceInputs["connCap"] = args ? args.connCap : undefined;
+            resourceInputs["deauthRequestTimeout"] = args ? args.deauthRequestTimeout : undefined;
+            resourceInputs["dgaf"] = args ? args.dgaf : undefined;
+            resourceInputs["domainName"] = args ? args.domainName : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["gasComebackDelay"] = args ? args.gasComebackDelay : undefined;
+            resourceInputs["gasFragmentationLimit"] = args ? args.gasFragmentationLimit : undefined;
+            resourceInputs["hessid"] = args ? args.hessid : undefined;
+            resourceInputs["ipAddrType"] = args ? args.ipAddrType : undefined;
+            resourceInputs["l2tif"] = args ? args.l2tif : undefined;
+            resourceInputs["n3gppPlmn"] = args ? args.n3gppPlmn : undefined;
+            resourceInputs["naiRealm"] = args ? args.naiRealm : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["networkAuth"] = args ? args.networkAuth : undefined;
+            resourceInputs["operFriendlyName"] = args ? args.operFriendlyName : undefined;
+            resourceInputs["operIcon"] = args ? args.operIcon : undefined;
+            resourceInputs["osuProviderNai"] = args ? args.osuProviderNai : undefined;
+            resourceInputs["osuProviders"] = args ? args.osuProviders : undefined;
+            resourceInputs["osuSsid"] = args ? args.osuSsid : undefined;
+            resourceInputs["pameBi"] = args ? args.pameBi : undefined;
+            resourceInputs["proxyArp"] = args ? args.proxyArp : undefined;
+            resourceInputs["qosMap"] = args ? args.qosMap : undefined;
+            resourceInputs["release"] = args ? args.release : undefined;
+            resourceInputs["roamingConsortium"] = args ? args.roamingConsortium : undefined;
+            resourceInputs["termsAndConditions"] = args ? args.termsAndConditions : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["venueGroup"] = args ? args.venueGroup : undefined;
+            resourceInputs["venueName"] = args ? args.venueName : undefined;
+            resourceInputs["venueType"] = args ? args.venueType : undefined;
+            resourceInputs["venueUrl"] = args ? args.venueUrl : undefined;
+            resourceInputs["wanMetrics"] = args ? args.wanMetrics : undefined;
+            resourceInputs["wnmSleepMode"] = args ? args.wnmSleepMode : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20HsProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20HsProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -298,6 +332,10 @@ export interface WirelessControllerHotspot20HsProfileState {
      * Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
      */
     accessNetworkUesa?: pulumi.Input<string>;
+    /**
+     * Advice of charge.
+     */
+    adviceOfCharge?: pulumi.Input<string>;
     /**
      * ANQP Domain ID (0-65535).
      */
@@ -367,6 +405,14 @@ export interface WirelessControllerHotspot20HsProfileState {
      */
     operFriendlyName?: pulumi.Input<string>;
     /**
+     * Operator icon.
+     */
+    operIcon?: pulumi.Input<string>;
+    /**
+     * OSU Provider NAI.
+     */
+    osuProviderNai?: pulumi.Input<string>;
+    /**
      * Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
      */
     osuProviders?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20HsProfileOsuProvider>[]>;
@@ -387,9 +433,17 @@ export interface WirelessControllerHotspot20HsProfileState {
      */
     qosMap?: pulumi.Input<string>;
     /**
+     * Hotspot 2.0 Release number (1, 2, 3, default = 2).
+     */
+    release?: pulumi.Input<number>;
+    /**
      * Roaming consortium list name.
      */
     roamingConsortium?: pulumi.Input<string>;
+    /**
+     * Terms and conditions.
+     */
+    termsAndConditions?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -406,6 +460,10 @@ export interface WirelessControllerHotspot20HsProfileState {
      * Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
      */
     venueType?: pulumi.Input<string>;
+    /**
+     * Venue name.
+     */
+    venueUrl?: pulumi.Input<string>;
     /**
      * WAN metric name.
      */
@@ -441,6 +499,10 @@ export interface WirelessControllerHotspot20HsProfileArgs {
      */
     accessNetworkUesa?: pulumi.Input<string>;
     /**
+     * Advice of charge.
+     */
+    adviceOfCharge?: pulumi.Input<string>;
+    /**
      * ANQP Domain ID (0-65535).
      */
     anqpDomainId?: pulumi.Input<number>;
@@ -509,6 +571,14 @@ export interface WirelessControllerHotspot20HsProfileArgs {
      */
     operFriendlyName?: pulumi.Input<string>;
     /**
+     * Operator icon.
+     */
+    operIcon?: pulumi.Input<string>;
+    /**
+     * OSU Provider NAI.
+     */
+    osuProviderNai?: pulumi.Input<string>;
+    /**
      * Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
      */
     osuProviders?: pulumi.Input<pulumi.Input<inputs.WirelessControllerHotspot20HsProfileOsuProvider>[]>;
@@ -529,9 +599,17 @@ export interface WirelessControllerHotspot20HsProfileArgs {
      */
     qosMap?: pulumi.Input<string>;
     /**
+     * Hotspot 2.0 Release number (1, 2, 3, default = 2).
+     */
+    release?: pulumi.Input<number>;
+    /**
      * Roaming consortium list name.
      */
     roamingConsortium?: pulumi.Input<string>;
+    /**
+     * Terms and conditions.
+     */
+    termsAndConditions?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -548,6 +626,10 @@ export interface WirelessControllerHotspot20HsProfileArgs {
      * Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
      */
     venueType?: pulumi.Input<string>;
+    /**
+     * Venue name.
+     */
+    venueUrl?: pulumi.Input<string>;
     /**
      * WAN metric name.
      */

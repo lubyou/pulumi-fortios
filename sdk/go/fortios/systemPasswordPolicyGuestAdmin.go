@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -65,6 +65,8 @@ type SystemPasswordPolicyGuestAdmin struct {
 	ExpireDay pulumi.IntOutput `pulumi:"expireDay"`
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus pulumi.StringOutput `pulumi:"expireStatus"`
+	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters pulumi.IntOutput `pulumi:"minChangeCharacters"`
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter pulumi.IntOutput `pulumi:"minLowerCaseLetter"`
 	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
@@ -90,6 +92,7 @@ func NewSystemPasswordPolicyGuestAdmin(ctx *pulumi.Context,
 		args = &SystemPasswordPolicyGuestAdminArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemPasswordPolicyGuestAdmin
 	err := ctx.RegisterResource("fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -120,6 +123,8 @@ type systemPasswordPolicyGuestAdminState struct {
 	ExpireDay *int `pulumi:"expireDay"`
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus *string `pulumi:"expireStatus"`
+	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
 	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
@@ -147,6 +152,8 @@ type SystemPasswordPolicyGuestAdminState struct {
 	ExpireDay pulumi.IntPtrInput
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus pulumi.StringPtrInput
+	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters pulumi.IntPtrInput
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter pulumi.IntPtrInput
 	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
@@ -178,6 +185,8 @@ type systemPasswordPolicyGuestAdminArgs struct {
 	ExpireDay *int `pulumi:"expireDay"`
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus *string `pulumi:"expireStatus"`
+	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters *int `pulumi:"minChangeCharacters"`
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter *int `pulumi:"minLowerCaseLetter"`
 	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
@@ -206,6 +215,8 @@ type SystemPasswordPolicyGuestAdminArgs struct {
 	ExpireDay pulumi.IntPtrInput
 	// Enable/disable password expiration. Valid values: `enable`, `disable`.
 	ExpireStatus pulumi.StringPtrInput
+	// Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+	MinChangeCharacters pulumi.IntPtrInput
 	// Minimum number of lowercase characters in password (0 - 128, default = 0).
 	MinLowerCaseLetter pulumi.IntPtrInput
 	// Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
@@ -236,7 +247,7 @@ type SystemPasswordPolicyGuestAdminInput interface {
 }
 
 func (*SystemPasswordPolicyGuestAdmin) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemPasswordPolicyGuestAdmin)(nil))
+	return reflect.TypeOf((**SystemPasswordPolicyGuestAdmin)(nil)).Elem()
 }
 
 func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminOutput() SystemPasswordPolicyGuestAdminOutput {
@@ -245,35 +256,6 @@ func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminOutput(
 
 func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminOutput)
-}
-
-func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminPtrOutput() SystemPasswordPolicyGuestAdminPtrOutput {
-	return i.ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemPasswordPolicyGuestAdmin) ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminPtrOutput)
-}
-
-type SystemPasswordPolicyGuestAdminPtrInput interface {
-	pulumi.Input
-
-	ToSystemPasswordPolicyGuestAdminPtrOutput() SystemPasswordPolicyGuestAdminPtrOutput
-	ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminPtrOutput
-}
-
-type systemPasswordPolicyGuestAdminPtrType SystemPasswordPolicyGuestAdminArgs
-
-func (*systemPasswordPolicyGuestAdminPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemPasswordPolicyGuestAdmin)(nil))
-}
-
-func (i *systemPasswordPolicyGuestAdminPtrType) ToSystemPasswordPolicyGuestAdminPtrOutput() SystemPasswordPolicyGuestAdminPtrOutput {
-	return i.ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *systemPasswordPolicyGuestAdminPtrType) ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminPtrOutput)
 }
 
 // SystemPasswordPolicyGuestAdminArrayInput is an input type that accepts SystemPasswordPolicyGuestAdminArray and SystemPasswordPolicyGuestAdminArrayOutput values.
@@ -290,7 +272,7 @@ type SystemPasswordPolicyGuestAdminArrayInput interface {
 type SystemPasswordPolicyGuestAdminArray []SystemPasswordPolicyGuestAdminInput
 
 func (SystemPasswordPolicyGuestAdminArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemPasswordPolicyGuestAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemPasswordPolicyGuestAdmin)(nil)).Elem()
 }
 
 func (i SystemPasswordPolicyGuestAdminArray) ToSystemPasswordPolicyGuestAdminArrayOutput() SystemPasswordPolicyGuestAdminArrayOutput {
@@ -315,7 +297,7 @@ type SystemPasswordPolicyGuestAdminMapInput interface {
 type SystemPasswordPolicyGuestAdminMap map[string]SystemPasswordPolicyGuestAdminInput
 
 func (SystemPasswordPolicyGuestAdminMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemPasswordPolicyGuestAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemPasswordPolicyGuestAdmin)(nil)).Elem()
 }
 
 func (i SystemPasswordPolicyGuestAdminMap) ToSystemPasswordPolicyGuestAdminMapOutput() SystemPasswordPolicyGuestAdminMapOutput {
@@ -326,12 +308,10 @@ func (i SystemPasswordPolicyGuestAdminMap) ToSystemPasswordPolicyGuestAdminMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPasswordPolicyGuestAdminMapOutput)
 }
 
-type SystemPasswordPolicyGuestAdminOutput struct {
-	*pulumi.OutputState
-}
+type SystemPasswordPolicyGuestAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemPasswordPolicyGuestAdminOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemPasswordPolicyGuestAdmin)(nil))
+	return reflect.TypeOf((**SystemPasswordPolicyGuestAdmin)(nil)).Elem()
 }
 
 func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminOutput() SystemPasswordPolicyGuestAdminOutput {
@@ -342,36 +322,10 @@ func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminOu
 	return o
 }
 
-func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminPtrOutput() SystemPasswordPolicyGuestAdminPtrOutput {
-	return o.ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(context.Background())
-}
-
-func (o SystemPasswordPolicyGuestAdminOutput) ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminPtrOutput {
-	return o.ApplyT(func(v SystemPasswordPolicyGuestAdmin) *SystemPasswordPolicyGuestAdmin {
-		return &v
-	}).(SystemPasswordPolicyGuestAdminPtrOutput)
-}
-
-type SystemPasswordPolicyGuestAdminPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemPasswordPolicyGuestAdminPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemPasswordPolicyGuestAdmin)(nil))
-}
-
-func (o SystemPasswordPolicyGuestAdminPtrOutput) ToSystemPasswordPolicyGuestAdminPtrOutput() SystemPasswordPolicyGuestAdminPtrOutput {
-	return o
-}
-
-func (o SystemPasswordPolicyGuestAdminPtrOutput) ToSystemPasswordPolicyGuestAdminPtrOutputWithContext(ctx context.Context) SystemPasswordPolicyGuestAdminPtrOutput {
-	return o
-}
-
 type SystemPasswordPolicyGuestAdminArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemPasswordPolicyGuestAdminArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemPasswordPolicyGuestAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemPasswordPolicyGuestAdmin)(nil)).Elem()
 }
 
 func (o SystemPasswordPolicyGuestAdminArrayOutput) ToSystemPasswordPolicyGuestAdminArrayOutput() SystemPasswordPolicyGuestAdminArrayOutput {
@@ -383,15 +337,15 @@ func (o SystemPasswordPolicyGuestAdminArrayOutput) ToSystemPasswordPolicyGuestAd
 }
 
 func (o SystemPasswordPolicyGuestAdminArrayOutput) Index(i pulumi.IntInput) SystemPasswordPolicyGuestAdminOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemPasswordPolicyGuestAdmin {
-		return vs[0].([]SystemPasswordPolicyGuestAdmin)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPasswordPolicyGuestAdmin {
+		return vs[0].([]*SystemPasswordPolicyGuestAdmin)[vs[1].(int)]
 	}).(SystemPasswordPolicyGuestAdminOutput)
 }
 
 type SystemPasswordPolicyGuestAdminMapOutput struct{ *pulumi.OutputState }
 
 func (SystemPasswordPolicyGuestAdminMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemPasswordPolicyGuestAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemPasswordPolicyGuestAdmin)(nil)).Elem()
 }
 
 func (o SystemPasswordPolicyGuestAdminMapOutput) ToSystemPasswordPolicyGuestAdminMapOutput() SystemPasswordPolicyGuestAdminMapOutput {
@@ -403,14 +357,16 @@ func (o SystemPasswordPolicyGuestAdminMapOutput) ToSystemPasswordPolicyGuestAdmi
 }
 
 func (o SystemPasswordPolicyGuestAdminMapOutput) MapIndex(k pulumi.StringInput) SystemPasswordPolicyGuestAdminOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemPasswordPolicyGuestAdmin {
-		return vs[0].(map[string]SystemPasswordPolicyGuestAdmin)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemPasswordPolicyGuestAdmin {
+		return vs[0].(map[string]*SystemPasswordPolicyGuestAdmin)[vs[1].(string)]
 	}).(SystemPasswordPolicyGuestAdminOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemPasswordPolicyGuestAdminInput)(nil)).Elem(), &SystemPasswordPolicyGuestAdmin{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemPasswordPolicyGuestAdminArrayInput)(nil)).Elem(), SystemPasswordPolicyGuestAdminArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemPasswordPolicyGuestAdminMapInput)(nil)).Elem(), SystemPasswordPolicyGuestAdminMap{})
 	pulumi.RegisterOutputType(SystemPasswordPolicyGuestAdminOutput{})
-	pulumi.RegisterOutputType(SystemPasswordPolicyGuestAdminPtrOutput{})
 	pulumi.RegisterOutputType(SystemPasswordPolicyGuestAdminArrayOutput{})
 	pulumi.RegisterOutputType(SystemPasswordPolicyGuestAdminMapOutput{})
 }

@@ -8,74 +8,89 @@ import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
-__all__ = [
-    'cabundlefile',
-    'cacert',
-    'clientcert',
-    'clientkey',
-    'fmg_cabundlefile',
-    'fmg_hostname',
-    'fmg_insecure',
-    'fmg_passwd',
-    'fmg_username',
-    'hostname',
-    'insecure',
-    'peerauth',
-    'token',
-    'vdom',
-]
+import types
 
 __config__ = pulumi.Config('fortios')
 
-cabundlefile = __config__.get('cabundlefile') or _utilities.get_env('FORTIOS_CA_CABUNDLE')
-"""
-CA Bundle file
-"""
 
-cacert = __config__.get('cacert')
-"""
-CA certtificate(Optional)
-"""
+class _ExportableConfig(types.ModuleType):
+    @property
+    def cabundlefile(self) -> Optional[str]:
+        """
+        CA Bundle file
+        """
+        return __config__.get('cabundlefile') or _utilities.get_env('FORTIOS_CA_CABUNDLE')
 
-clientcert = __config__.get('clientcert')
-"""
-User certificate
-"""
+    @property
+    def cacert(self) -> Optional[str]:
+        """
+        CA certtificate(Optional)
+        """
+        return __config__.get('cacert')
 
-clientkey = __config__.get('clientkey')
-"""
-User private key
-"""
+    @property
+    def clientcert(self) -> Optional[str]:
+        """
+        User certificate
+        """
+        return __config__.get('clientcert')
 
-fmg_cabundlefile = __config__.get('fmgCabundlefile') or _utilities.get_env('FORTIOS_FMG_CABUNDLE')
-"""
-CA Bundle file
-"""
+    @property
+    def clientkey(self) -> Optional[str]:
+        """
+        User private key
+        """
+        return __config__.get('clientkey')
 
-fmg_hostname = __config__.get('fmgHostname') or _utilities.get_env('FORTIOS_FMG_HOSTNAME')
-"""
-Hostname/IP address of the FortiManager to connect to
-"""
+    @property
+    def fmg_cabundlefile(self) -> Optional[str]:
+        """
+        CA Bundle file
+        """
+        return __config__.get('fmgCabundlefile') or _utilities.get_env('FORTIOS_FMG_CABUNDLE')
 
-fmg_insecure = __config__.get('fmgInsecure') or _utilities.get_env_bool('FORTIOS_FMG_INSECURE')
+    @property
+    def fmg_hostname(self) -> Optional[str]:
+        """
+        Hostname/IP address of the FortiManager to connect to
+        """
+        return __config__.get('fmgHostname') or _utilities.get_env('FORTIOS_FMG_HOSTNAME')
 
-fmg_passwd = __config__.get('fmgPasswd') or _utilities.get_env('FORTIOS_FMG_PASSWORD')
+    @property
+    def fmg_insecure(self) -> Optional[bool]:
+        return __config__.get_bool('fmgInsecure') or _utilities.get_env_bool('FORTIOS_FMG_INSECURE')
 
-fmg_username = __config__.get('fmgUsername') or _utilities.get_env('FORTIOS_FMG_USERNAME')
+    @property
+    def fmg_passwd(self) -> Optional[str]:
+        return __config__.get('fmgPasswd') or _utilities.get_env('FORTIOS_FMG_PASSWORD')
 
-hostname = __config__.get('hostname') or _utilities.get_env('FORTIOS_ACCESS_HOSTNAME')
-"""
-The hostname/IP address of the FortiOS to be connected
-"""
+    @property
+    def fmg_username(self) -> Optional[str]:
+        return __config__.get('fmgUsername') or _utilities.get_env('FORTIOS_FMG_USERNAME')
 
-insecure = __config__.get('insecure') or _utilities.get_env_bool('FORTIOS_INSECURE')
+    @property
+    def hostname(self) -> Optional[str]:
+        """
+        The hostname/IP address of the FortiOS to be connected
+        """
+        return __config__.get('hostname') or _utilities.get_env('FORTIOS_ACCESS_HOSTNAME')
 
-peerauth = __config__.get('peerauth')
-"""
-Enable/disable peer authentication, can be 'enable' or 'disable'
-"""
+    @property
+    def insecure(self) -> Optional[bool]:
+        return __config__.get_bool('insecure') or _utilities.get_env_bool('FORTIOS_INSECURE')
 
-token = __config__.get('token') or _utilities.get_env('FORTIOS_ACCESS_TOKEN')
+    @property
+    def peerauth(self) -> Optional[str]:
+        """
+        Enable/disable peer authentication, can be 'enable' or 'disable'
+        """
+        return __config__.get('peerauth')
 
-vdom = __config__.get('vdom')
+    @property
+    def token(self) -> Optional[str]:
+        return __config__.get('token') or _utilities.get_env('FORTIOS_ACCESS_TOKEN')
+
+    @property
+    def vdom(self) -> Optional[str]:
+        return __config__.get('vdom')
 

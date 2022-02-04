@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Internet Service owner.
+ * Internet Service owner. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -67,23 +67,21 @@ export class FirewallInternetServiceOwner extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallInternetServiceOwnerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallInternetServiceOwnerArgs | FirewallInternetServiceOwnerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceOwnerState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceOwnerArgs | undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallInternetServiceOwner.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallInternetServiceOwner.__pulumiType, name, resourceInputs, opts);
     }
 }
 

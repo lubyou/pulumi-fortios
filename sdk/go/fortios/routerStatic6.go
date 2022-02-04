@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,10 @@ type RouterStatic6 struct {
 	Distance pulumi.IntOutput `pulumi:"distance"`
 	// Destination IPv6 prefix.
 	Dst pulumi.StringOutput `pulumi:"dst"`
+	// Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+	DynamicGateway pulumi.StringOutput `pulumi:"dynamicGateway"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
@@ -80,6 +84,8 @@ type RouterStatic6 struct {
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones RouterStatic6SdwanZoneArrayOutput `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum pulumi.IntOutput `pulumi:"seqNum"`
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -88,6 +94,8 @@ type RouterStatic6 struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink pulumi.StringOutput `pulumi:"virtualWanLink"`
+	// Virtual Routing Forwarding ID.
+	Vrf pulumi.IntOutput `pulumi:"vrf"`
 }
 
 // NewRouterStatic6 registers a new resource with the given unique name, arguments, and options.
@@ -100,6 +108,7 @@ func NewRouterStatic6(ctx *pulumi.Context,
 	if args.Device == nil {
 		return nil, errors.New("invalid value for required argument 'Device'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterStatic6
 	err := ctx.RegisterResource("fortios:index/routerStatic6:RouterStatic6", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +145,10 @@ type routerStatic6State struct {
 	Distance *int `pulumi:"distance"`
 	// Destination IPv6 prefix.
 	Dst *string `pulumi:"dst"`
+	// Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+	DynamicGateway *string `pulumi:"dynamicGateway"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
@@ -144,6 +157,8 @@ type routerStatic6State struct {
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones []RouterStatic6SdwanZone `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum *int `pulumi:"seqNum"`
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -152,6 +167,8 @@ type routerStatic6State struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink *string `pulumi:"virtualWanLink"`
+	// Virtual Routing Forwarding ID.
+	Vrf *int `pulumi:"vrf"`
 }
 
 type RouterStatic6State struct {
@@ -169,6 +186,10 @@ type RouterStatic6State struct {
 	Distance pulumi.IntPtrInput
 	// Destination IPv6 prefix.
 	Dst pulumi.StringPtrInput
+	// Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+	DynamicGateway pulumi.StringPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
@@ -177,6 +198,8 @@ type RouterStatic6State struct {
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones RouterStatic6SdwanZoneArrayInput
 	// Sequence number.
 	SeqNum pulumi.IntPtrInput
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -185,6 +208,8 @@ type RouterStatic6State struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink pulumi.StringPtrInput
+	// Virtual Routing Forwarding ID.
+	Vrf pulumi.IntPtrInput
 }
 
 func (RouterStatic6State) ElementType() reflect.Type {
@@ -206,6 +231,10 @@ type routerStatic6Args struct {
 	Distance *int `pulumi:"distance"`
 	// Destination IPv6 prefix.
 	Dst *string `pulumi:"dst"`
+	// Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+	DynamicGateway *string `pulumi:"dynamicGateway"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// IPv6 address of the gateway.
 	Gateway *string `pulumi:"gateway"`
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
@@ -214,6 +243,8 @@ type routerStatic6Args struct {
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones []RouterStatic6SdwanZone `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum *int `pulumi:"seqNum"`
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -222,6 +253,8 @@ type routerStatic6Args struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink *string `pulumi:"virtualWanLink"`
+	// Virtual Routing Forwarding ID.
+	Vrf *int `pulumi:"vrf"`
 }
 
 // The set of arguments for constructing a RouterStatic6 resource.
@@ -240,6 +273,10 @@ type RouterStatic6Args struct {
 	Distance pulumi.IntPtrInput
 	// Destination IPv6 prefix.
 	Dst pulumi.StringPtrInput
+	// Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+	DynamicGateway pulumi.StringPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// IPv6 address of the gateway.
 	Gateway pulumi.StringPtrInput
 	// Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
@@ -248,6 +285,8 @@ type RouterStatic6Args struct {
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones RouterStatic6SdwanZoneArrayInput
 	// Sequence number.
 	SeqNum pulumi.IntPtrInput
 	// Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -256,6 +295,8 @@ type RouterStatic6Args struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
 	VirtualWanLink pulumi.StringPtrInput
+	// Virtual Routing Forwarding ID.
+	Vrf pulumi.IntPtrInput
 }
 
 func (RouterStatic6Args) ElementType() reflect.Type {
@@ -270,7 +311,7 @@ type RouterStatic6Input interface {
 }
 
 func (*RouterStatic6) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterStatic6)(nil))
+	return reflect.TypeOf((**RouterStatic6)(nil)).Elem()
 }
 
 func (i *RouterStatic6) ToRouterStatic6Output() RouterStatic6Output {
@@ -279,35 +320,6 @@ func (i *RouterStatic6) ToRouterStatic6Output() RouterStatic6Output {
 
 func (i *RouterStatic6) ToRouterStatic6OutputWithContext(ctx context.Context) RouterStatic6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6Output)
-}
-
-func (i *RouterStatic6) ToRouterStatic6PtrOutput() RouterStatic6PtrOutput {
-	return i.ToRouterStatic6PtrOutputWithContext(context.Background())
-}
-
-func (i *RouterStatic6) ToRouterStatic6PtrOutputWithContext(ctx context.Context) RouterStatic6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6PtrOutput)
-}
-
-type RouterStatic6PtrInput interface {
-	pulumi.Input
-
-	ToRouterStatic6PtrOutput() RouterStatic6PtrOutput
-	ToRouterStatic6PtrOutputWithContext(ctx context.Context) RouterStatic6PtrOutput
-}
-
-type routerStatic6PtrType RouterStatic6Args
-
-func (*routerStatic6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterStatic6)(nil))
-}
-
-func (i *routerStatic6PtrType) ToRouterStatic6PtrOutput() RouterStatic6PtrOutput {
-	return i.ToRouterStatic6PtrOutputWithContext(context.Background())
-}
-
-func (i *routerStatic6PtrType) ToRouterStatic6PtrOutputWithContext(ctx context.Context) RouterStatic6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6PtrOutput)
 }
 
 // RouterStatic6ArrayInput is an input type that accepts RouterStatic6Array and RouterStatic6ArrayOutput values.
@@ -324,7 +336,7 @@ type RouterStatic6ArrayInput interface {
 type RouterStatic6Array []RouterStatic6Input
 
 func (RouterStatic6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterStatic6)(nil))
+	return reflect.TypeOf((*[]*RouterStatic6)(nil)).Elem()
 }
 
 func (i RouterStatic6Array) ToRouterStatic6ArrayOutput() RouterStatic6ArrayOutput {
@@ -349,7 +361,7 @@ type RouterStatic6MapInput interface {
 type RouterStatic6Map map[string]RouterStatic6Input
 
 func (RouterStatic6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterStatic6)(nil))
+	return reflect.TypeOf((*map[string]*RouterStatic6)(nil)).Elem()
 }
 
 func (i RouterStatic6Map) ToRouterStatic6MapOutput() RouterStatic6MapOutput {
@@ -360,12 +372,10 @@ func (i RouterStatic6Map) ToRouterStatic6MapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStatic6MapOutput)
 }
 
-type RouterStatic6Output struct {
-	*pulumi.OutputState
-}
+type RouterStatic6Output struct{ *pulumi.OutputState }
 
 func (RouterStatic6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterStatic6)(nil))
+	return reflect.TypeOf((**RouterStatic6)(nil)).Elem()
 }
 
 func (o RouterStatic6Output) ToRouterStatic6Output() RouterStatic6Output {
@@ -376,36 +386,10 @@ func (o RouterStatic6Output) ToRouterStatic6OutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RouterStatic6Output) ToRouterStatic6PtrOutput() RouterStatic6PtrOutput {
-	return o.ToRouterStatic6PtrOutputWithContext(context.Background())
-}
-
-func (o RouterStatic6Output) ToRouterStatic6PtrOutputWithContext(ctx context.Context) RouterStatic6PtrOutput {
-	return o.ApplyT(func(v RouterStatic6) *RouterStatic6 {
-		return &v
-	}).(RouterStatic6PtrOutput)
-}
-
-type RouterStatic6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterStatic6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterStatic6)(nil))
-}
-
-func (o RouterStatic6PtrOutput) ToRouterStatic6PtrOutput() RouterStatic6PtrOutput {
-	return o
-}
-
-func (o RouterStatic6PtrOutput) ToRouterStatic6PtrOutputWithContext(ctx context.Context) RouterStatic6PtrOutput {
-	return o
-}
-
 type RouterStatic6ArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterStatic6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterStatic6)(nil))
+	return reflect.TypeOf((*[]*RouterStatic6)(nil)).Elem()
 }
 
 func (o RouterStatic6ArrayOutput) ToRouterStatic6ArrayOutput() RouterStatic6ArrayOutput {
@@ -417,15 +401,15 @@ func (o RouterStatic6ArrayOutput) ToRouterStatic6ArrayOutputWithContext(ctx cont
 }
 
 func (o RouterStatic6ArrayOutput) Index(i pulumi.IntInput) RouterStatic6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterStatic6 {
-		return vs[0].([]RouterStatic6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterStatic6 {
+		return vs[0].([]*RouterStatic6)[vs[1].(int)]
 	}).(RouterStatic6Output)
 }
 
 type RouterStatic6MapOutput struct{ *pulumi.OutputState }
 
 func (RouterStatic6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterStatic6)(nil))
+	return reflect.TypeOf((*map[string]*RouterStatic6)(nil)).Elem()
 }
 
 func (o RouterStatic6MapOutput) ToRouterStatic6MapOutput() RouterStatic6MapOutput {
@@ -437,14 +421,16 @@ func (o RouterStatic6MapOutput) ToRouterStatic6MapOutputWithContext(ctx context.
 }
 
 func (o RouterStatic6MapOutput) MapIndex(k pulumi.StringInput) RouterStatic6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterStatic6 {
-		return vs[0].(map[string]RouterStatic6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterStatic6 {
+		return vs[0].(map[string]*RouterStatic6)[vs[1].(string)]
 	}).(RouterStatic6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterStatic6Input)(nil)).Elem(), &RouterStatic6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterStatic6ArrayInput)(nil)).Elem(), RouterStatic6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterStatic6MapInput)(nil)).Elem(), RouterStatic6Map{})
 	pulumi.RegisterOutputType(RouterStatic6Output{})
-	pulumi.RegisterOutputType(RouterStatic6PtrOutput{})
 	pulumi.RegisterOutputType(RouterStatic6ArrayOutput{})
 	pulumi.RegisterOutputType(RouterStatic6MapOutput{})
 }

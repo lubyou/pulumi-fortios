@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -53,6 +53,7 @@ func NewFortimanagerSystemSyslogServer(ctx *pulumi.Context,
 		args = &FortimanagerSystemSyslogServerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemSyslogServer
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemSyslogServer:FortimanagerSystemSyslogServer", name, args, &resource, opts...)
 	if err != nil {
@@ -127,7 +128,7 @@ type FortimanagerSystemSyslogServerInput interface {
 }
 
 func (*FortimanagerSystemSyslogServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemSyslogServer)(nil))
+	return reflect.TypeOf((**FortimanagerSystemSyslogServer)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerOutput() FortimanagerSystemSyslogServerOutput {
@@ -136,35 +137,6 @@ func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerOutput(
 
 func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerOutput)
-}
-
-func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerPtrOutput() FortimanagerSystemSyslogServerPtrOutput {
-	return i.ToFortimanagerSystemSyslogServerPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemSyslogServer) ToFortimanagerSystemSyslogServerPtrOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerPtrOutput)
-}
-
-type FortimanagerSystemSyslogServerPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemSyslogServerPtrOutput() FortimanagerSystemSyslogServerPtrOutput
-	ToFortimanagerSystemSyslogServerPtrOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerPtrOutput
-}
-
-type fortimanagerSystemSyslogServerPtrType FortimanagerSystemSyslogServerArgs
-
-func (*fortimanagerSystemSyslogServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemSyslogServer)(nil))
-}
-
-func (i *fortimanagerSystemSyslogServerPtrType) ToFortimanagerSystemSyslogServerPtrOutput() FortimanagerSystemSyslogServerPtrOutput {
-	return i.ToFortimanagerSystemSyslogServerPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemSyslogServerPtrType) ToFortimanagerSystemSyslogServerPtrOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerPtrOutput)
 }
 
 // FortimanagerSystemSyslogServerArrayInput is an input type that accepts FortimanagerSystemSyslogServerArray and FortimanagerSystemSyslogServerArrayOutput values.
@@ -181,7 +153,7 @@ type FortimanagerSystemSyslogServerArrayInput interface {
 type FortimanagerSystemSyslogServerArray []FortimanagerSystemSyslogServerInput
 
 func (FortimanagerSystemSyslogServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemSyslogServer)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemSyslogServer)(nil)).Elem()
 }
 
 func (i FortimanagerSystemSyslogServerArray) ToFortimanagerSystemSyslogServerArrayOutput() FortimanagerSystemSyslogServerArrayOutput {
@@ -206,7 +178,7 @@ type FortimanagerSystemSyslogServerMapInput interface {
 type FortimanagerSystemSyslogServerMap map[string]FortimanagerSystemSyslogServerInput
 
 func (FortimanagerSystemSyslogServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemSyslogServer)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemSyslogServer)(nil)).Elem()
 }
 
 func (i FortimanagerSystemSyslogServerMap) ToFortimanagerSystemSyslogServerMapOutput() FortimanagerSystemSyslogServerMapOutput {
@@ -217,12 +189,10 @@ func (i FortimanagerSystemSyslogServerMap) ToFortimanagerSystemSyslogServerMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemSyslogServerMapOutput)
 }
 
-type FortimanagerSystemSyslogServerOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemSyslogServerOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemSyslogServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemSyslogServer)(nil))
+	return reflect.TypeOf((**FortimanagerSystemSyslogServer)(nil)).Elem()
 }
 
 func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerOutput() FortimanagerSystemSyslogServerOutput {
@@ -233,36 +203,10 @@ func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerOu
 	return o
 }
 
-func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerPtrOutput() FortimanagerSystemSyslogServerPtrOutput {
-	return o.ToFortimanagerSystemSyslogServerPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemSyslogServerOutput) ToFortimanagerSystemSyslogServerPtrOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerPtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemSyslogServer) *FortimanagerSystemSyslogServer {
-		return &v
-	}).(FortimanagerSystemSyslogServerPtrOutput)
-}
-
-type FortimanagerSystemSyslogServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemSyslogServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemSyslogServer)(nil))
-}
-
-func (o FortimanagerSystemSyslogServerPtrOutput) ToFortimanagerSystemSyslogServerPtrOutput() FortimanagerSystemSyslogServerPtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemSyslogServerPtrOutput) ToFortimanagerSystemSyslogServerPtrOutputWithContext(ctx context.Context) FortimanagerSystemSyslogServerPtrOutput {
-	return o
-}
-
 type FortimanagerSystemSyslogServerArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemSyslogServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemSyslogServer)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemSyslogServer)(nil)).Elem()
 }
 
 func (o FortimanagerSystemSyslogServerArrayOutput) ToFortimanagerSystemSyslogServerArrayOutput() FortimanagerSystemSyslogServerArrayOutput {
@@ -274,15 +218,15 @@ func (o FortimanagerSystemSyslogServerArrayOutput) ToFortimanagerSystemSyslogSer
 }
 
 func (o FortimanagerSystemSyslogServerArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemSyslogServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemSyslogServer {
-		return vs[0].([]FortimanagerSystemSyslogServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemSyslogServer {
+		return vs[0].([]*FortimanagerSystemSyslogServer)[vs[1].(int)]
 	}).(FortimanagerSystemSyslogServerOutput)
 }
 
 type FortimanagerSystemSyslogServerMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemSyslogServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemSyslogServer)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemSyslogServer)(nil)).Elem()
 }
 
 func (o FortimanagerSystemSyslogServerMapOutput) ToFortimanagerSystemSyslogServerMapOutput() FortimanagerSystemSyslogServerMapOutput {
@@ -294,14 +238,16 @@ func (o FortimanagerSystemSyslogServerMapOutput) ToFortimanagerSystemSyslogServe
 }
 
 func (o FortimanagerSystemSyslogServerMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemSyslogServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemSyslogServer {
-		return vs[0].(map[string]FortimanagerSystemSyslogServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemSyslogServer {
+		return vs[0].(map[string]*FortimanagerSystemSyslogServer)[vs[1].(string)]
 	}).(FortimanagerSystemSyslogServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemSyslogServerInput)(nil)).Elem(), &FortimanagerSystemSyslogServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemSyslogServerArrayInput)(nil)).Elem(), FortimanagerSystemSyslogServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemSyslogServerMapInput)(nil)).Elem(), FortimanagerSystemSyslogServerMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemSyslogServerOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemSyslogServerPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemSyslogServerArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemSyslogServerMapOutput{})
 }

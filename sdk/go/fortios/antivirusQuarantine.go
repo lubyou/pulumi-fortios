@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,8 @@ type AntivirusQuarantine struct {
 	DropHeuristic pulumi.StringOutput `pulumi:"dropHeuristic"`
 	// Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
 	DropInfected pulumi.StringOutput `pulumi:"dropInfected"`
+	// Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	DropMachineLearning pulumi.StringOutput `pulumi:"dropMachineLearning"`
 	// Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
 	Lowspace pulumi.StringOutput `pulumi:"lowspace"`
 	// Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
@@ -76,6 +78,8 @@ type AntivirusQuarantine struct {
 	StoreHeuristic pulumi.StringOutput `pulumi:"storeHeuristic"`
 	// Quarantine infected files found in sessions using the selected protocols.
 	StoreInfected pulumi.StringOutput `pulumi:"storeInfected"`
+	// Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	StoreMachineLearning pulumi.StringOutput `pulumi:"storeMachineLearning"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -87,6 +91,7 @@ func NewAntivirusQuarantine(ctx *pulumi.Context,
 		args = &AntivirusQuarantineArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AntivirusQuarantine
 	err := ctx.RegisterResource("fortios:index/antivirusQuarantine:AntivirusQuarantine", name, args, &resource, opts...)
 	if err != nil {
@@ -119,6 +124,8 @@ type antivirusQuarantineState struct {
 	DropHeuristic *string `pulumi:"dropHeuristic"`
 	// Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
 	DropInfected *string `pulumi:"dropInfected"`
+	// Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	DropMachineLearning *string `pulumi:"dropMachineLearning"`
 	// Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
 	Lowspace *string `pulumi:"lowspace"`
 	// Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
@@ -131,6 +138,8 @@ type antivirusQuarantineState struct {
 	StoreHeuristic *string `pulumi:"storeHeuristic"`
 	// Quarantine infected files found in sessions using the selected protocols.
 	StoreInfected *string `pulumi:"storeInfected"`
+	// Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	StoreMachineLearning *string `pulumi:"storeMachineLearning"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -146,6 +155,8 @@ type AntivirusQuarantineState struct {
 	DropHeuristic pulumi.StringPtrInput
 	// Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
 	DropInfected pulumi.StringPtrInput
+	// Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	DropMachineLearning pulumi.StringPtrInput
 	// Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
 	Lowspace pulumi.StringPtrInput
 	// Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
@@ -158,6 +169,8 @@ type AntivirusQuarantineState struct {
 	StoreHeuristic pulumi.StringPtrInput
 	// Quarantine infected files found in sessions using the selected protocols.
 	StoreInfected pulumi.StringPtrInput
+	// Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	StoreMachineLearning pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -177,6 +190,8 @@ type antivirusQuarantineArgs struct {
 	DropHeuristic *string `pulumi:"dropHeuristic"`
 	// Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
 	DropInfected *string `pulumi:"dropInfected"`
+	// Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	DropMachineLearning *string `pulumi:"dropMachineLearning"`
 	// Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
 	Lowspace *string `pulumi:"lowspace"`
 	// Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
@@ -189,6 +204,8 @@ type antivirusQuarantineArgs struct {
 	StoreHeuristic *string `pulumi:"storeHeuristic"`
 	// Quarantine infected files found in sessions using the selected protocols.
 	StoreInfected *string `pulumi:"storeInfected"`
+	// Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	StoreMachineLearning *string `pulumi:"storeMachineLearning"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -205,6 +222,8 @@ type AntivirusQuarantineArgs struct {
 	DropHeuristic pulumi.StringPtrInput
 	// Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
 	DropInfected pulumi.StringPtrInput
+	// Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	DropMachineLearning pulumi.StringPtrInput
 	// Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
 	Lowspace pulumi.StringPtrInput
 	// Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
@@ -217,6 +236,8 @@ type AntivirusQuarantineArgs struct {
 	StoreHeuristic pulumi.StringPtrInput
 	// Quarantine infected files found in sessions using the selected protocols.
 	StoreInfected pulumi.StringPtrInput
+	// Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+	StoreMachineLearning pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -233,7 +254,7 @@ type AntivirusQuarantineInput interface {
 }
 
 func (*AntivirusQuarantine) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusQuarantine)(nil))
+	return reflect.TypeOf((**AntivirusQuarantine)(nil)).Elem()
 }
 
 func (i *AntivirusQuarantine) ToAntivirusQuarantineOutput() AntivirusQuarantineOutput {
@@ -242,35 +263,6 @@ func (i *AntivirusQuarantine) ToAntivirusQuarantineOutput() AntivirusQuarantineO
 
 func (i *AntivirusQuarantine) ToAntivirusQuarantineOutputWithContext(ctx context.Context) AntivirusQuarantineOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantineOutput)
-}
-
-func (i *AntivirusQuarantine) ToAntivirusQuarantinePtrOutput() AntivirusQuarantinePtrOutput {
-	return i.ToAntivirusQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (i *AntivirusQuarantine) ToAntivirusQuarantinePtrOutputWithContext(ctx context.Context) AntivirusQuarantinePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantinePtrOutput)
-}
-
-type AntivirusQuarantinePtrInput interface {
-	pulumi.Input
-
-	ToAntivirusQuarantinePtrOutput() AntivirusQuarantinePtrOutput
-	ToAntivirusQuarantinePtrOutputWithContext(ctx context.Context) AntivirusQuarantinePtrOutput
-}
-
-type antivirusQuarantinePtrType AntivirusQuarantineArgs
-
-func (*antivirusQuarantinePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusQuarantine)(nil))
-}
-
-func (i *antivirusQuarantinePtrType) ToAntivirusQuarantinePtrOutput() AntivirusQuarantinePtrOutput {
-	return i.ToAntivirusQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (i *antivirusQuarantinePtrType) ToAntivirusQuarantinePtrOutputWithContext(ctx context.Context) AntivirusQuarantinePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantinePtrOutput)
 }
 
 // AntivirusQuarantineArrayInput is an input type that accepts AntivirusQuarantineArray and AntivirusQuarantineArrayOutput values.
@@ -287,7 +279,7 @@ type AntivirusQuarantineArrayInput interface {
 type AntivirusQuarantineArray []AntivirusQuarantineInput
 
 func (AntivirusQuarantineArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AntivirusQuarantine)(nil))
+	return reflect.TypeOf((*[]*AntivirusQuarantine)(nil)).Elem()
 }
 
 func (i AntivirusQuarantineArray) ToAntivirusQuarantineArrayOutput() AntivirusQuarantineArrayOutput {
@@ -312,7 +304,7 @@ type AntivirusQuarantineMapInput interface {
 type AntivirusQuarantineMap map[string]AntivirusQuarantineInput
 
 func (AntivirusQuarantineMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AntivirusQuarantine)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusQuarantine)(nil)).Elem()
 }
 
 func (i AntivirusQuarantineMap) ToAntivirusQuarantineMapOutput() AntivirusQuarantineMapOutput {
@@ -323,12 +315,10 @@ func (i AntivirusQuarantineMap) ToAntivirusQuarantineMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusQuarantineMapOutput)
 }
 
-type AntivirusQuarantineOutput struct {
-	*pulumi.OutputState
-}
+type AntivirusQuarantineOutput struct{ *pulumi.OutputState }
 
 func (AntivirusQuarantineOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusQuarantine)(nil))
+	return reflect.TypeOf((**AntivirusQuarantine)(nil)).Elem()
 }
 
 func (o AntivirusQuarantineOutput) ToAntivirusQuarantineOutput() AntivirusQuarantineOutput {
@@ -339,36 +329,10 @@ func (o AntivirusQuarantineOutput) ToAntivirusQuarantineOutputWithContext(ctx co
 	return o
 }
 
-func (o AntivirusQuarantineOutput) ToAntivirusQuarantinePtrOutput() AntivirusQuarantinePtrOutput {
-	return o.ToAntivirusQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (o AntivirusQuarantineOutput) ToAntivirusQuarantinePtrOutputWithContext(ctx context.Context) AntivirusQuarantinePtrOutput {
-	return o.ApplyT(func(v AntivirusQuarantine) *AntivirusQuarantine {
-		return &v
-	}).(AntivirusQuarantinePtrOutput)
-}
-
-type AntivirusQuarantinePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AntivirusQuarantinePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusQuarantine)(nil))
-}
-
-func (o AntivirusQuarantinePtrOutput) ToAntivirusQuarantinePtrOutput() AntivirusQuarantinePtrOutput {
-	return o
-}
-
-func (o AntivirusQuarantinePtrOutput) ToAntivirusQuarantinePtrOutputWithContext(ctx context.Context) AntivirusQuarantinePtrOutput {
-	return o
-}
-
 type AntivirusQuarantineArrayOutput struct{ *pulumi.OutputState }
 
 func (AntivirusQuarantineArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AntivirusQuarantine)(nil))
+	return reflect.TypeOf((*[]*AntivirusQuarantine)(nil)).Elem()
 }
 
 func (o AntivirusQuarantineArrayOutput) ToAntivirusQuarantineArrayOutput() AntivirusQuarantineArrayOutput {
@@ -380,15 +344,15 @@ func (o AntivirusQuarantineArrayOutput) ToAntivirusQuarantineArrayOutputWithCont
 }
 
 func (o AntivirusQuarantineArrayOutput) Index(i pulumi.IntInput) AntivirusQuarantineOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AntivirusQuarantine {
-		return vs[0].([]AntivirusQuarantine)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusQuarantine {
+		return vs[0].([]*AntivirusQuarantine)[vs[1].(int)]
 	}).(AntivirusQuarantineOutput)
 }
 
 type AntivirusQuarantineMapOutput struct{ *pulumi.OutputState }
 
 func (AntivirusQuarantineMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AntivirusQuarantine)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusQuarantine)(nil)).Elem()
 }
 
 func (o AntivirusQuarantineMapOutput) ToAntivirusQuarantineMapOutput() AntivirusQuarantineMapOutput {
@@ -400,14 +364,16 @@ func (o AntivirusQuarantineMapOutput) ToAntivirusQuarantineMapOutputWithContext(
 }
 
 func (o AntivirusQuarantineMapOutput) MapIndex(k pulumi.StringInput) AntivirusQuarantineOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AntivirusQuarantine {
-		return vs[0].(map[string]AntivirusQuarantine)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AntivirusQuarantine {
+		return vs[0].(map[string]*AntivirusQuarantine)[vs[1].(string)]
 	}).(AntivirusQuarantineOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusQuarantineInput)(nil)).Elem(), &AntivirusQuarantine{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusQuarantineArrayInput)(nil)).Elem(), AntivirusQuarantineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusQuarantineMapInput)(nil)).Elem(), AntivirusQuarantineMap{})
 	pulumi.RegisterOutputType(AntivirusQuarantineOutput{})
-	pulumi.RegisterOutputType(AntivirusQuarantinePtrOutput{})
 	pulumi.RegisterOutputType(AntivirusQuarantineArrayOutput{})
 	pulumi.RegisterOutputType(AntivirusQuarantineMapOutput{})
 }

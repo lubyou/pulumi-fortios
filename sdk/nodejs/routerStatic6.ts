@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -95,6 +96,14 @@ export class RouterStatic6 extends pulumi.CustomResource {
      */
     public readonly dst!: pulumi.Output<string>;
     /**
+     * Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+     */
+    public readonly dynamicGateway!: pulumi.Output<string>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
      * IPv6 address of the gateway.
      */
     public readonly gateway!: pulumi.Output<string>;
@@ -111,6 +120,10 @@ export class RouterStatic6 extends pulumi.CustomResource {
      */
     public readonly sdwan!: pulumi.Output<string>;
     /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    public readonly sdwanZones!: pulumi.Output<outputs.RouterStatic6SdwanZone[] | undefined>;
+    /**
      * Sequence number.
      */
     public readonly seqNum!: pulumi.Output<number>;
@@ -126,6 +139,10 @@ export class RouterStatic6 extends pulumi.CustomResource {
      * Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
      */
     public readonly virtualWanLink!: pulumi.Output<string>;
+    /**
+     * Virtual Routing Forwarding ID.
+     */
+    public readonly vrf!: pulumi.Output<number>;
 
     /**
      * Create a RouterStatic6 resource with the given unique name, arguments, and options.
@@ -136,50 +153,56 @@ export class RouterStatic6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: RouterStatic6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterStatic6Args | RouterStatic6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterStatic6State | undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["blackhole"] = state ? state.blackhole : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["devindex"] = state ? state.devindex : undefined;
-            inputs["distance"] = state ? state.distance : undefined;
-            inputs["dst"] = state ? state.dst : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["sdwan"] = state ? state.sdwan : undefined;
-            inputs["seqNum"] = state ? state.seqNum : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["virtualWanLink"] = state ? state.virtualWanLink : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["blackhole"] = state ? state.blackhole : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["devindex"] = state ? state.devindex : undefined;
+            resourceInputs["distance"] = state ? state.distance : undefined;
+            resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["sdwan"] = state ? state.sdwan : undefined;
+            resourceInputs["sdwanZones"] = state ? state.sdwanZones : undefined;
+            resourceInputs["seqNum"] = state ? state.seqNum : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["virtualWanLink"] = state ? state.virtualWanLink : undefined;
+            resourceInputs["vrf"] = state ? state.vrf : undefined;
         } else {
             const args = argsOrState as RouterStatic6Args | undefined;
             if ((!args || args.device === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'device'");
             }
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["blackhole"] = args ? args.blackhole : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["device"] = args ? args.device : undefined;
-            inputs["devindex"] = args ? args.devindex : undefined;
-            inputs["distance"] = args ? args.distance : undefined;
-            inputs["dst"] = args ? args.dst : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["sdwan"] = args ? args.sdwan : undefined;
-            inputs["seqNum"] = args ? args.seqNum : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["virtualWanLink"] = args ? args.virtualWanLink : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["blackhole"] = args ? args.blackhole : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["devindex"] = args ? args.devindex : undefined;
+            resourceInputs["distance"] = args ? args.distance : undefined;
+            resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["sdwan"] = args ? args.sdwan : undefined;
+            resourceInputs["sdwanZones"] = args ? args.sdwanZones : undefined;
+            resourceInputs["seqNum"] = args ? args.seqNum : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["virtualWanLink"] = args ? args.virtualWanLink : undefined;
+            resourceInputs["vrf"] = args ? args.vrf : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterStatic6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterStatic6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -216,6 +239,14 @@ export interface RouterStatic6State {
      */
     dst?: pulumi.Input<string>;
     /**
+     * Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+     */
+    dynamicGateway?: pulumi.Input<string>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * IPv6 address of the gateway.
      */
     gateway?: pulumi.Input<string>;
@@ -232,6 +263,10 @@ export interface RouterStatic6State {
      */
     sdwan?: pulumi.Input<string>;
     /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    sdwanZones?: pulumi.Input<pulumi.Input<inputs.RouterStatic6SdwanZone>[]>;
+    /**
      * Sequence number.
      */
     seqNum?: pulumi.Input<number>;
@@ -247,6 +282,10 @@ export interface RouterStatic6State {
      * Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
      */
     virtualWanLink?: pulumi.Input<string>;
+    /**
+     * Virtual Routing Forwarding ID.
+     */
+    vrf?: pulumi.Input<number>;
 }
 
 /**
@@ -282,6 +321,14 @@ export interface RouterStatic6Args {
      */
     dst?: pulumi.Input<string>;
     /**
+     * Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+     */
+    dynamicGateway?: pulumi.Input<string>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * IPv6 address of the gateway.
      */
     gateway?: pulumi.Input<string>;
@@ -298,6 +345,10 @@ export interface RouterStatic6Args {
      */
     sdwan?: pulumi.Input<string>;
     /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    sdwanZones?: pulumi.Input<pulumi.Input<inputs.RouterStatic6SdwanZone>[]>;
+    /**
      * Sequence number.
      */
     seqNum?: pulumi.Input<number>;
@@ -313,4 +364,8 @@ export interface RouterStatic6Args {
      * Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
      */
     virtualWanLink?: pulumi.Input<string>;
+    /**
+     * Virtual Routing Forwarding ID.
+     */
+    vrf?: pulumi.Input<number>;
 }

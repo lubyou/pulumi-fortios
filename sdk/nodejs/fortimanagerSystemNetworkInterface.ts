@@ -89,29 +89,27 @@ export class FortimanagerSystemNetworkInterface extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerSystemNetworkInterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemNetworkInterfaceArgs | FortimanagerSystemNetworkInterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemNetworkInterfaceState | undefined;
-            inputs["allowAccesses"] = state ? state.allowAccesses : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["serviceAccesses"] = state ? state.serviceAccesses : undefined;
-            inputs["status"] = state ? state.status : undefined;
+            resourceInputs["allowAccesses"] = state ? state.allowAccesses : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["serviceAccesses"] = state ? state.serviceAccesses : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemNetworkInterfaceArgs | undefined;
-            inputs["allowAccesses"] = args ? args.allowAccesses : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["serviceAccesses"] = args ? args.serviceAccesses : undefined;
-            inputs["status"] = args ? args.status : undefined;
+            resourceInputs["allowAccesses"] = args ? args.allowAccesses : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serviceAccesses"] = args ? args.serviceAccesses : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemNetworkInterface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemNetworkInterface.__pulumiType, name, resourceInputs, opts);
     }
 }
 

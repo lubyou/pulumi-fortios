@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewSystemDscpBasedPriority(ctx *pulumi.Context,
 		args = &SystemDscpBasedPriorityArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDscpBasedPriority
 	err := ctx.RegisterResource("fortios:index/systemDscpBasedPriority:SystemDscpBasedPriority", name, args, &resource, opts...)
 	if err != nil {
@@ -148,7 +149,7 @@ type SystemDscpBasedPriorityInput interface {
 }
 
 func (*SystemDscpBasedPriority) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDscpBasedPriority)(nil))
+	return reflect.TypeOf((**SystemDscpBasedPriority)(nil)).Elem()
 }
 
 func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityOutput() SystemDscpBasedPriorityOutput {
@@ -157,35 +158,6 @@ func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityOutput() SystemDscpBa
 
 func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityOutputWithContext(ctx context.Context) SystemDscpBasedPriorityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityOutput)
-}
-
-func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityPtrOutput() SystemDscpBasedPriorityPtrOutput {
-	return i.ToSystemDscpBasedPriorityPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDscpBasedPriority) ToSystemDscpBasedPriorityPtrOutputWithContext(ctx context.Context) SystemDscpBasedPriorityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityPtrOutput)
-}
-
-type SystemDscpBasedPriorityPtrInput interface {
-	pulumi.Input
-
-	ToSystemDscpBasedPriorityPtrOutput() SystemDscpBasedPriorityPtrOutput
-	ToSystemDscpBasedPriorityPtrOutputWithContext(ctx context.Context) SystemDscpBasedPriorityPtrOutput
-}
-
-type systemDscpBasedPriorityPtrType SystemDscpBasedPriorityArgs
-
-func (*systemDscpBasedPriorityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDscpBasedPriority)(nil))
-}
-
-func (i *systemDscpBasedPriorityPtrType) ToSystemDscpBasedPriorityPtrOutput() SystemDscpBasedPriorityPtrOutput {
-	return i.ToSystemDscpBasedPriorityPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDscpBasedPriorityPtrType) ToSystemDscpBasedPriorityPtrOutputWithContext(ctx context.Context) SystemDscpBasedPriorityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityPtrOutput)
 }
 
 // SystemDscpBasedPriorityArrayInput is an input type that accepts SystemDscpBasedPriorityArray and SystemDscpBasedPriorityArrayOutput values.
@@ -202,7 +174,7 @@ type SystemDscpBasedPriorityArrayInput interface {
 type SystemDscpBasedPriorityArray []SystemDscpBasedPriorityInput
 
 func (SystemDscpBasedPriorityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDscpBasedPriority)(nil))
+	return reflect.TypeOf((*[]*SystemDscpBasedPriority)(nil)).Elem()
 }
 
 func (i SystemDscpBasedPriorityArray) ToSystemDscpBasedPriorityArrayOutput() SystemDscpBasedPriorityArrayOutput {
@@ -227,7 +199,7 @@ type SystemDscpBasedPriorityMapInput interface {
 type SystemDscpBasedPriorityMap map[string]SystemDscpBasedPriorityInput
 
 func (SystemDscpBasedPriorityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDscpBasedPriority)(nil))
+	return reflect.TypeOf((*map[string]*SystemDscpBasedPriority)(nil)).Elem()
 }
 
 func (i SystemDscpBasedPriorityMap) ToSystemDscpBasedPriorityMapOutput() SystemDscpBasedPriorityMapOutput {
@@ -238,12 +210,10 @@ func (i SystemDscpBasedPriorityMap) ToSystemDscpBasedPriorityMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDscpBasedPriorityMapOutput)
 }
 
-type SystemDscpBasedPriorityOutput struct {
-	*pulumi.OutputState
-}
+type SystemDscpBasedPriorityOutput struct{ *pulumi.OutputState }
 
 func (SystemDscpBasedPriorityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDscpBasedPriority)(nil))
+	return reflect.TypeOf((**SystemDscpBasedPriority)(nil)).Elem()
 }
 
 func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityOutput() SystemDscpBasedPriorityOutput {
@@ -254,36 +224,10 @@ func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityOutputWithContex
 	return o
 }
 
-func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityPtrOutput() SystemDscpBasedPriorityPtrOutput {
-	return o.ToSystemDscpBasedPriorityPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDscpBasedPriorityOutput) ToSystemDscpBasedPriorityPtrOutputWithContext(ctx context.Context) SystemDscpBasedPriorityPtrOutput {
-	return o.ApplyT(func(v SystemDscpBasedPriority) *SystemDscpBasedPriority {
-		return &v
-	}).(SystemDscpBasedPriorityPtrOutput)
-}
-
-type SystemDscpBasedPriorityPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDscpBasedPriorityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDscpBasedPriority)(nil))
-}
-
-func (o SystemDscpBasedPriorityPtrOutput) ToSystemDscpBasedPriorityPtrOutput() SystemDscpBasedPriorityPtrOutput {
-	return o
-}
-
-func (o SystemDscpBasedPriorityPtrOutput) ToSystemDscpBasedPriorityPtrOutputWithContext(ctx context.Context) SystemDscpBasedPriorityPtrOutput {
-	return o
-}
-
 type SystemDscpBasedPriorityArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDscpBasedPriorityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDscpBasedPriority)(nil))
+	return reflect.TypeOf((*[]*SystemDscpBasedPriority)(nil)).Elem()
 }
 
 func (o SystemDscpBasedPriorityArrayOutput) ToSystemDscpBasedPriorityArrayOutput() SystemDscpBasedPriorityArrayOutput {
@@ -295,15 +239,15 @@ func (o SystemDscpBasedPriorityArrayOutput) ToSystemDscpBasedPriorityArrayOutput
 }
 
 func (o SystemDscpBasedPriorityArrayOutput) Index(i pulumi.IntInput) SystemDscpBasedPriorityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDscpBasedPriority {
-		return vs[0].([]SystemDscpBasedPriority)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDscpBasedPriority {
+		return vs[0].([]*SystemDscpBasedPriority)[vs[1].(int)]
 	}).(SystemDscpBasedPriorityOutput)
 }
 
 type SystemDscpBasedPriorityMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDscpBasedPriorityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDscpBasedPriority)(nil))
+	return reflect.TypeOf((*map[string]*SystemDscpBasedPriority)(nil)).Elem()
 }
 
 func (o SystemDscpBasedPriorityMapOutput) ToSystemDscpBasedPriorityMapOutput() SystemDscpBasedPriorityMapOutput {
@@ -315,14 +259,16 @@ func (o SystemDscpBasedPriorityMapOutput) ToSystemDscpBasedPriorityMapOutputWith
 }
 
 func (o SystemDscpBasedPriorityMapOutput) MapIndex(k pulumi.StringInput) SystemDscpBasedPriorityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDscpBasedPriority {
-		return vs[0].(map[string]SystemDscpBasedPriority)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDscpBasedPriority {
+		return vs[0].(map[string]*SystemDscpBasedPriority)[vs[1].(string)]
 	}).(SystemDscpBasedPriorityOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDscpBasedPriorityInput)(nil)).Elem(), &SystemDscpBasedPriority{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDscpBasedPriorityArrayInput)(nil)).Elem(), SystemDscpBasedPriorityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDscpBasedPriorityMapInput)(nil)).Elem(), SystemDscpBasedPriorityMap{})
 	pulumi.RegisterOutputType(SystemDscpBasedPriorityOutput{})
-	pulumi.RegisterOutputType(SystemDscpBasedPriorityPtrOutput{})
 	pulumi.RegisterOutputType(SystemDscpBasedPriorityArrayOutput{})
 	pulumi.RegisterOutputType(SystemDscpBasedPriorityMapOutput{})
 }

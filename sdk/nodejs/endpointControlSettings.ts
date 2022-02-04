@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure endpoint control settings.
+ * Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
  *
  * ## Example Usage
  *
@@ -141,49 +141,47 @@ export class EndpointControlSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: EndpointControlSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointControlSettingsArgs | EndpointControlSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointControlSettingsState | undefined;
-            inputs["downloadCustomLink"] = state ? state.downloadCustomLink : undefined;
-            inputs["downloadLocation"] = state ? state.downloadLocation : undefined;
-            inputs["forticlientAvdbUpdateInterval"] = state ? state.forticlientAvdbUpdateInterval : undefined;
-            inputs["forticlientDeregUnsupportedClient"] = state ? state.forticlientDeregUnsupportedClient : undefined;
-            inputs["forticlientDisconnectUnsupportedClient"] = state ? state.forticlientDisconnectUnsupportedClient : undefined;
-            inputs["forticlientEmsRestApiCallTimeout"] = state ? state.forticlientEmsRestApiCallTimeout : undefined;
-            inputs["forticlientKeepaliveInterval"] = state ? state.forticlientKeepaliveInterval : undefined;
-            inputs["forticlientOfflineGrace"] = state ? state.forticlientOfflineGrace : undefined;
-            inputs["forticlientOfflineGraceInterval"] = state ? state.forticlientOfflineGraceInterval : undefined;
-            inputs["forticlientRegKey"] = state ? state.forticlientRegKey : undefined;
-            inputs["forticlientRegKeyEnforce"] = state ? state.forticlientRegKeyEnforce : undefined;
-            inputs["forticlientRegTimeout"] = state ? state.forticlientRegTimeout : undefined;
-            inputs["forticlientSysUpdateInterval"] = state ? state.forticlientSysUpdateInterval : undefined;
-            inputs["forticlientUserAvatar"] = state ? state.forticlientUserAvatar : undefined;
-            inputs["forticlientWarningInterval"] = state ? state.forticlientWarningInterval : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["downloadCustomLink"] = state ? state.downloadCustomLink : undefined;
+            resourceInputs["downloadLocation"] = state ? state.downloadLocation : undefined;
+            resourceInputs["forticlientAvdbUpdateInterval"] = state ? state.forticlientAvdbUpdateInterval : undefined;
+            resourceInputs["forticlientDeregUnsupportedClient"] = state ? state.forticlientDeregUnsupportedClient : undefined;
+            resourceInputs["forticlientDisconnectUnsupportedClient"] = state ? state.forticlientDisconnectUnsupportedClient : undefined;
+            resourceInputs["forticlientEmsRestApiCallTimeout"] = state ? state.forticlientEmsRestApiCallTimeout : undefined;
+            resourceInputs["forticlientKeepaliveInterval"] = state ? state.forticlientKeepaliveInterval : undefined;
+            resourceInputs["forticlientOfflineGrace"] = state ? state.forticlientOfflineGrace : undefined;
+            resourceInputs["forticlientOfflineGraceInterval"] = state ? state.forticlientOfflineGraceInterval : undefined;
+            resourceInputs["forticlientRegKey"] = state ? state.forticlientRegKey : undefined;
+            resourceInputs["forticlientRegKeyEnforce"] = state ? state.forticlientRegKeyEnforce : undefined;
+            resourceInputs["forticlientRegTimeout"] = state ? state.forticlientRegTimeout : undefined;
+            resourceInputs["forticlientSysUpdateInterval"] = state ? state.forticlientSysUpdateInterval : undefined;
+            resourceInputs["forticlientUserAvatar"] = state ? state.forticlientUserAvatar : undefined;
+            resourceInputs["forticlientWarningInterval"] = state ? state.forticlientWarningInterval : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlSettingsArgs | undefined;
-            inputs["downloadCustomLink"] = args ? args.downloadCustomLink : undefined;
-            inputs["downloadLocation"] = args ? args.downloadLocation : undefined;
-            inputs["forticlientAvdbUpdateInterval"] = args ? args.forticlientAvdbUpdateInterval : undefined;
-            inputs["forticlientDeregUnsupportedClient"] = args ? args.forticlientDeregUnsupportedClient : undefined;
-            inputs["forticlientDisconnectUnsupportedClient"] = args ? args.forticlientDisconnectUnsupportedClient : undefined;
-            inputs["forticlientEmsRestApiCallTimeout"] = args ? args.forticlientEmsRestApiCallTimeout : undefined;
-            inputs["forticlientKeepaliveInterval"] = args ? args.forticlientKeepaliveInterval : undefined;
-            inputs["forticlientOfflineGrace"] = args ? args.forticlientOfflineGrace : undefined;
-            inputs["forticlientOfflineGraceInterval"] = args ? args.forticlientOfflineGraceInterval : undefined;
-            inputs["forticlientRegKey"] = args ? args.forticlientRegKey : undefined;
-            inputs["forticlientRegKeyEnforce"] = args ? args.forticlientRegKeyEnforce : undefined;
-            inputs["forticlientRegTimeout"] = args ? args.forticlientRegTimeout : undefined;
-            inputs["forticlientSysUpdateInterval"] = args ? args.forticlientSysUpdateInterval : undefined;
-            inputs["forticlientUserAvatar"] = args ? args.forticlientUserAvatar : undefined;
-            inputs["forticlientWarningInterval"] = args ? args.forticlientWarningInterval : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["downloadCustomLink"] = args ? args.downloadCustomLink : undefined;
+            resourceInputs["downloadLocation"] = args ? args.downloadLocation : undefined;
+            resourceInputs["forticlientAvdbUpdateInterval"] = args ? args.forticlientAvdbUpdateInterval : undefined;
+            resourceInputs["forticlientDeregUnsupportedClient"] = args ? args.forticlientDeregUnsupportedClient : undefined;
+            resourceInputs["forticlientDisconnectUnsupportedClient"] = args ? args.forticlientDisconnectUnsupportedClient : undefined;
+            resourceInputs["forticlientEmsRestApiCallTimeout"] = args ? args.forticlientEmsRestApiCallTimeout : undefined;
+            resourceInputs["forticlientKeepaliveInterval"] = args ? args.forticlientKeepaliveInterval : undefined;
+            resourceInputs["forticlientOfflineGrace"] = args ? args.forticlientOfflineGrace : undefined;
+            resourceInputs["forticlientOfflineGraceInterval"] = args ? args.forticlientOfflineGraceInterval : undefined;
+            resourceInputs["forticlientRegKey"] = args ? args.forticlientRegKey : undefined;
+            resourceInputs["forticlientRegKeyEnforce"] = args ? args.forticlientRegKeyEnforce : undefined;
+            resourceInputs["forticlientRegTimeout"] = args ? args.forticlientRegTimeout : undefined;
+            resourceInputs["forticlientSysUpdateInterval"] = args ? args.forticlientSysUpdateInterval : undefined;
+            resourceInputs["forticlientUserAvatar"] = args ? args.forticlientUserAvatar : undefined;
+            resourceInputs["forticlientWarningInterval"] = args ? args.forticlientWarningInterval : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EndpointControlSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EndpointControlSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

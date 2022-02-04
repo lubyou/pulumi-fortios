@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,7 +69,8 @@ type WirelessControllerGlobal struct {
 	ApLogServerPort pulumi.IntOutput `pulumi:"apLogServerPort"`
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringOutput `pulumi:"controlMessageOffload"`
-	DataEthernetIi        pulumi.StringOutput `pulumi:"dataEthernetIi"`
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	DataEthernetIi pulumi.StringOutput `pulumi:"dataEthernetIi"`
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr pulumi.StringOutput `pulumi:"discoveryMcAddr"`
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -88,10 +89,14 @@ type WirelessControllerGlobal struct {
 	MaxRetransmit pulumi.IntOutput `pulumi:"maxRetransmit"`
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType pulumi.IntOutput `pulumi:"meshEthType"`
+	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+	NacInterval pulumi.IntOutput `pulumi:"nacInterval"`
 	// Name of the wireless controller.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency pulumi.IntOutput `pulumi:"rogueScanMacAdjacency"`
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -105,6 +110,7 @@ func NewWirelessControllerGlobal(ctx *pulumi.Context,
 		args = &WirelessControllerGlobalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerGlobal
 	err := ctx.RegisterResource("fortios:index/wirelessControllerGlobal:WirelessControllerGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -135,7 +141,8 @@ type wirelessControllerGlobalState struct {
 	ApLogServerPort *int `pulumi:"apLogServerPort"`
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
-	DataEthernetIi        *string `pulumi:"dataEthernetIi"`
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	DataEthernetIi *string `pulumi:"dataEthernetIi"`
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr *string `pulumi:"discoveryMcAddr"`
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -154,10 +161,14 @@ type wirelessControllerGlobalState struct {
 	MaxRetransmit *int `pulumi:"maxRetransmit"`
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType *int `pulumi:"meshEthType"`
+	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+	NacInterval *int `pulumi:"nacInterval"`
 	// Name of the wireless controller.
 	Name *string `pulumi:"name"`
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency *int `pulumi:"rogueScanMacAdjacency"`
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -173,7 +184,8 @@ type WirelessControllerGlobalState struct {
 	ApLogServerPort pulumi.IntPtrInput
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringPtrInput
-	DataEthernetIi        pulumi.StringPtrInput
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	DataEthernetIi pulumi.StringPtrInput
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr pulumi.StringPtrInput
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -192,10 +204,14 @@ type WirelessControllerGlobalState struct {
 	MaxRetransmit pulumi.IntPtrInput
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType pulumi.IntPtrInput
+	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+	NacInterval pulumi.IntPtrInput
 	// Name of the wireless controller.
 	Name pulumi.StringPtrInput
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency pulumi.IntPtrInput
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -215,7 +231,8 @@ type wirelessControllerGlobalArgs struct {
 	ApLogServerPort *int `pulumi:"apLogServerPort"`
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
-	DataEthernetIi        *string `pulumi:"dataEthernetIi"`
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	DataEthernetIi *string `pulumi:"dataEthernetIi"`
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr *string `pulumi:"discoveryMcAddr"`
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -234,10 +251,14 @@ type wirelessControllerGlobalArgs struct {
 	MaxRetransmit *int `pulumi:"maxRetransmit"`
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType *int `pulumi:"meshEthType"`
+	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+	NacInterval *int `pulumi:"nacInterval"`
 	// Name of the wireless controller.
 	Name *string `pulumi:"name"`
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency *int `pulumi:"rogueScanMacAdjacency"`
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -254,7 +275,8 @@ type WirelessControllerGlobalArgs struct {
 	ApLogServerPort pulumi.IntPtrInput
 	// Configure CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringPtrInput
-	DataEthernetIi        pulumi.StringPtrInput
+	// Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+	DataEthernetIi pulumi.StringPtrInput
 	// Multicast IP address for AP discovery (default = 244.0.1.140).
 	DiscoveryMcAddr pulumi.StringPtrInput
 	// Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
@@ -273,10 +295,14 @@ type WirelessControllerGlobalArgs struct {
 	MaxRetransmit pulumi.IntPtrInput
 	// Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
 	MeshEthType pulumi.IntPtrInput
+	// Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+	NacInterval pulumi.IntPtrInput
 	// Name of the wireless controller.
 	Name pulumi.StringPtrInput
 	// Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
 	RogueScanMacAdjacency pulumi.IntPtrInput
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
@@ -295,7 +321,7 @@ type WirelessControllerGlobalInput interface {
 }
 
 func (*WirelessControllerGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerGlobal)(nil))
+	return reflect.TypeOf((**WirelessControllerGlobal)(nil)).Elem()
 }
 
 func (i *WirelessControllerGlobal) ToWirelessControllerGlobalOutput() WirelessControllerGlobalOutput {
@@ -304,35 +330,6 @@ func (i *WirelessControllerGlobal) ToWirelessControllerGlobalOutput() WirelessCo
 
 func (i *WirelessControllerGlobal) ToWirelessControllerGlobalOutputWithContext(ctx context.Context) WirelessControllerGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalOutput)
-}
-
-func (i *WirelessControllerGlobal) ToWirelessControllerGlobalPtrOutput() WirelessControllerGlobalPtrOutput {
-	return i.ToWirelessControllerGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerGlobal) ToWirelessControllerGlobalPtrOutputWithContext(ctx context.Context) WirelessControllerGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalPtrOutput)
-}
-
-type WirelessControllerGlobalPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerGlobalPtrOutput() WirelessControllerGlobalPtrOutput
-	ToWirelessControllerGlobalPtrOutputWithContext(ctx context.Context) WirelessControllerGlobalPtrOutput
-}
-
-type wirelessControllerGlobalPtrType WirelessControllerGlobalArgs
-
-func (*wirelessControllerGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerGlobal)(nil))
-}
-
-func (i *wirelessControllerGlobalPtrType) ToWirelessControllerGlobalPtrOutput() WirelessControllerGlobalPtrOutput {
-	return i.ToWirelessControllerGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerGlobalPtrType) ToWirelessControllerGlobalPtrOutputWithContext(ctx context.Context) WirelessControllerGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalPtrOutput)
 }
 
 // WirelessControllerGlobalArrayInput is an input type that accepts WirelessControllerGlobalArray and WirelessControllerGlobalArrayOutput values.
@@ -349,7 +346,7 @@ type WirelessControllerGlobalArrayInput interface {
 type WirelessControllerGlobalArray []WirelessControllerGlobalInput
 
 func (WirelessControllerGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerGlobal)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerGlobal)(nil)).Elem()
 }
 
 func (i WirelessControllerGlobalArray) ToWirelessControllerGlobalArrayOutput() WirelessControllerGlobalArrayOutput {
@@ -374,7 +371,7 @@ type WirelessControllerGlobalMapInput interface {
 type WirelessControllerGlobalMap map[string]WirelessControllerGlobalInput
 
 func (WirelessControllerGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerGlobal)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerGlobal)(nil)).Elem()
 }
 
 func (i WirelessControllerGlobalMap) ToWirelessControllerGlobalMapOutput() WirelessControllerGlobalMapOutput {
@@ -385,12 +382,10 @@ func (i WirelessControllerGlobalMap) ToWirelessControllerGlobalMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerGlobalMapOutput)
 }
 
-type WirelessControllerGlobalOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerGlobalOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerGlobal)(nil))
+	return reflect.TypeOf((**WirelessControllerGlobal)(nil)).Elem()
 }
 
 func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalOutput() WirelessControllerGlobalOutput {
@@ -401,36 +396,10 @@ func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalOutputWithCont
 	return o
 }
 
-func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalPtrOutput() WirelessControllerGlobalPtrOutput {
-	return o.ToWirelessControllerGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerGlobalOutput) ToWirelessControllerGlobalPtrOutputWithContext(ctx context.Context) WirelessControllerGlobalPtrOutput {
-	return o.ApplyT(func(v WirelessControllerGlobal) *WirelessControllerGlobal {
-		return &v
-	}).(WirelessControllerGlobalPtrOutput)
-}
-
-type WirelessControllerGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerGlobal)(nil))
-}
-
-func (o WirelessControllerGlobalPtrOutput) ToWirelessControllerGlobalPtrOutput() WirelessControllerGlobalPtrOutput {
-	return o
-}
-
-func (o WirelessControllerGlobalPtrOutput) ToWirelessControllerGlobalPtrOutputWithContext(ctx context.Context) WirelessControllerGlobalPtrOutput {
-	return o
-}
-
 type WirelessControllerGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerGlobal)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerGlobal)(nil)).Elem()
 }
 
 func (o WirelessControllerGlobalArrayOutput) ToWirelessControllerGlobalArrayOutput() WirelessControllerGlobalArrayOutput {
@@ -442,15 +411,15 @@ func (o WirelessControllerGlobalArrayOutput) ToWirelessControllerGlobalArrayOutp
 }
 
 func (o WirelessControllerGlobalArrayOutput) Index(i pulumi.IntInput) WirelessControllerGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerGlobal {
-		return vs[0].([]WirelessControllerGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerGlobal {
+		return vs[0].([]*WirelessControllerGlobal)[vs[1].(int)]
 	}).(WirelessControllerGlobalOutput)
 }
 
 type WirelessControllerGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerGlobal)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerGlobal)(nil)).Elem()
 }
 
 func (o WirelessControllerGlobalMapOutput) ToWirelessControllerGlobalMapOutput() WirelessControllerGlobalMapOutput {
@@ -462,14 +431,16 @@ func (o WirelessControllerGlobalMapOutput) ToWirelessControllerGlobalMapOutputWi
 }
 
 func (o WirelessControllerGlobalMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerGlobal {
-		return vs[0].(map[string]WirelessControllerGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerGlobal {
+		return vs[0].(map[string]*WirelessControllerGlobal)[vs[1].(string)]
 	}).(WirelessControllerGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerGlobalInput)(nil)).Elem(), &WirelessControllerGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerGlobalArrayInput)(nil)).Elem(), WirelessControllerGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerGlobalMapInput)(nil)).Elem(), WirelessControllerGlobalMap{})
 	pulumi.RegisterOutputType(WirelessControllerGlobalOutput{})
-	pulumi.RegisterOutputType(WirelessControllerGlobalPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerGlobalArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerGlobalMapOutput{})
 }

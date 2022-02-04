@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -118,6 +118,7 @@ func NewDlpFpDocSource(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DlpFpDocSource
 	err := ctx.RegisterResource("fortios:index/dlpFpDocSource:DlpFpDocSource", name, args, &resource, opts...)
 	if err != nil {
@@ -320,7 +321,7 @@ type DlpFpDocSourceInput interface {
 }
 
 func (*DlpFpDocSource) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpFpDocSource)(nil))
+	return reflect.TypeOf((**DlpFpDocSource)(nil)).Elem()
 }
 
 func (i *DlpFpDocSource) ToDlpFpDocSourceOutput() DlpFpDocSourceOutput {
@@ -329,35 +330,6 @@ func (i *DlpFpDocSource) ToDlpFpDocSourceOutput() DlpFpDocSourceOutput {
 
 func (i *DlpFpDocSource) ToDlpFpDocSourceOutputWithContext(ctx context.Context) DlpFpDocSourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourceOutput)
-}
-
-func (i *DlpFpDocSource) ToDlpFpDocSourcePtrOutput() DlpFpDocSourcePtrOutput {
-	return i.ToDlpFpDocSourcePtrOutputWithContext(context.Background())
-}
-
-func (i *DlpFpDocSource) ToDlpFpDocSourcePtrOutputWithContext(ctx context.Context) DlpFpDocSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourcePtrOutput)
-}
-
-type DlpFpDocSourcePtrInput interface {
-	pulumi.Input
-
-	ToDlpFpDocSourcePtrOutput() DlpFpDocSourcePtrOutput
-	ToDlpFpDocSourcePtrOutputWithContext(ctx context.Context) DlpFpDocSourcePtrOutput
-}
-
-type dlpFpDocSourcePtrType DlpFpDocSourceArgs
-
-func (*dlpFpDocSourcePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpFpDocSource)(nil))
-}
-
-func (i *dlpFpDocSourcePtrType) ToDlpFpDocSourcePtrOutput() DlpFpDocSourcePtrOutput {
-	return i.ToDlpFpDocSourcePtrOutputWithContext(context.Background())
-}
-
-func (i *dlpFpDocSourcePtrType) ToDlpFpDocSourcePtrOutputWithContext(ctx context.Context) DlpFpDocSourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourcePtrOutput)
 }
 
 // DlpFpDocSourceArrayInput is an input type that accepts DlpFpDocSourceArray and DlpFpDocSourceArrayOutput values.
@@ -374,7 +346,7 @@ type DlpFpDocSourceArrayInput interface {
 type DlpFpDocSourceArray []DlpFpDocSourceInput
 
 func (DlpFpDocSourceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DlpFpDocSource)(nil))
+	return reflect.TypeOf((*[]*DlpFpDocSource)(nil)).Elem()
 }
 
 func (i DlpFpDocSourceArray) ToDlpFpDocSourceArrayOutput() DlpFpDocSourceArrayOutput {
@@ -399,7 +371,7 @@ type DlpFpDocSourceMapInput interface {
 type DlpFpDocSourceMap map[string]DlpFpDocSourceInput
 
 func (DlpFpDocSourceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DlpFpDocSource)(nil))
+	return reflect.TypeOf((*map[string]*DlpFpDocSource)(nil)).Elem()
 }
 
 func (i DlpFpDocSourceMap) ToDlpFpDocSourceMapOutput() DlpFpDocSourceMapOutput {
@@ -410,12 +382,10 @@ func (i DlpFpDocSourceMap) ToDlpFpDocSourceMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DlpFpDocSourceMapOutput)
 }
 
-type DlpFpDocSourceOutput struct {
-	*pulumi.OutputState
-}
+type DlpFpDocSourceOutput struct{ *pulumi.OutputState }
 
 func (DlpFpDocSourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpFpDocSource)(nil))
+	return reflect.TypeOf((**DlpFpDocSource)(nil)).Elem()
 }
 
 func (o DlpFpDocSourceOutput) ToDlpFpDocSourceOutput() DlpFpDocSourceOutput {
@@ -426,36 +396,10 @@ func (o DlpFpDocSourceOutput) ToDlpFpDocSourceOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o DlpFpDocSourceOutput) ToDlpFpDocSourcePtrOutput() DlpFpDocSourcePtrOutput {
-	return o.ToDlpFpDocSourcePtrOutputWithContext(context.Background())
-}
-
-func (o DlpFpDocSourceOutput) ToDlpFpDocSourcePtrOutputWithContext(ctx context.Context) DlpFpDocSourcePtrOutput {
-	return o.ApplyT(func(v DlpFpDocSource) *DlpFpDocSource {
-		return &v
-	}).(DlpFpDocSourcePtrOutput)
-}
-
-type DlpFpDocSourcePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DlpFpDocSourcePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpFpDocSource)(nil))
-}
-
-func (o DlpFpDocSourcePtrOutput) ToDlpFpDocSourcePtrOutput() DlpFpDocSourcePtrOutput {
-	return o
-}
-
-func (o DlpFpDocSourcePtrOutput) ToDlpFpDocSourcePtrOutputWithContext(ctx context.Context) DlpFpDocSourcePtrOutput {
-	return o
-}
-
 type DlpFpDocSourceArrayOutput struct{ *pulumi.OutputState }
 
 func (DlpFpDocSourceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DlpFpDocSource)(nil))
+	return reflect.TypeOf((*[]*DlpFpDocSource)(nil)).Elem()
 }
 
 func (o DlpFpDocSourceArrayOutput) ToDlpFpDocSourceArrayOutput() DlpFpDocSourceArrayOutput {
@@ -467,15 +411,15 @@ func (o DlpFpDocSourceArrayOutput) ToDlpFpDocSourceArrayOutputWithContext(ctx co
 }
 
 func (o DlpFpDocSourceArrayOutput) Index(i pulumi.IntInput) DlpFpDocSourceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DlpFpDocSource {
-		return vs[0].([]DlpFpDocSource)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpFpDocSource {
+		return vs[0].([]*DlpFpDocSource)[vs[1].(int)]
 	}).(DlpFpDocSourceOutput)
 }
 
 type DlpFpDocSourceMapOutput struct{ *pulumi.OutputState }
 
 func (DlpFpDocSourceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DlpFpDocSource)(nil))
+	return reflect.TypeOf((*map[string]*DlpFpDocSource)(nil)).Elem()
 }
 
 func (o DlpFpDocSourceMapOutput) ToDlpFpDocSourceMapOutput() DlpFpDocSourceMapOutput {
@@ -487,14 +431,16 @@ func (o DlpFpDocSourceMapOutput) ToDlpFpDocSourceMapOutputWithContext(ctx contex
 }
 
 func (o DlpFpDocSourceMapOutput) MapIndex(k pulumi.StringInput) DlpFpDocSourceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DlpFpDocSource {
-		return vs[0].(map[string]DlpFpDocSource)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DlpFpDocSource {
+		return vs[0].(map[string]*DlpFpDocSource)[vs[1].(string)]
 	}).(DlpFpDocSourceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpFpDocSourceInput)(nil)).Elem(), &DlpFpDocSource{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpFpDocSourceArrayInput)(nil)).Elem(), DlpFpDocSourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpFpDocSourceMapInput)(nil)).Elem(), DlpFpDocSourceMap{})
 	pulumi.RegisterOutputType(DlpFpDocSourceOutput{})
-	pulumi.RegisterOutputType(DlpFpDocSourcePtrOutput{})
 	pulumi.RegisterOutputType(DlpFpDocSourceArrayOutput{})
 	pulumi.RegisterOutputType(DlpFpDocSourceMapOutput{})
 }

@@ -15,9 +15,12 @@ class SystemGlobalArgs:
     def __init__(__self__, *,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
                  admin_https_pki_required: Optional[pulumi.Input[str]] = None,
                  admin_https_redirect: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_banned_ciphers: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_ciphersuites: Optional[pulumi.Input[str]] = None,
                  admin_https_ssl_versions: Optional[pulumi.Input[str]] = None,
                  admin_lockout_duration: Optional[pulumi.Input[int]] = None,
                  admin_lockout_threshold: Optional[pulumi.Input[int]] = None,
@@ -61,6 +64,7 @@ class SystemGlobalArgs:
                  cli_audit_log: Optional[pulumi.Input[str]] = None,
                  cloud_communication: Optional[pulumi.Input[str]] = None,
                  clt_cert_req: Optional[pulumi.Input[str]] = None,
+                 cmdbsvr_affinity: Optional[pulumi.Input[str]] = None,
                  compliance_check: Optional[pulumi.Input[str]] = None,
                  compliance_check_time: Optional[pulumi.Input[str]] = None,
                  cpu_use_threshold: Optional[pulumi.Input[int]] = None,
@@ -72,8 +76,10 @@ class SystemGlobalArgs:
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
                  endpoint_control_portal_port: Optional[pulumi.Input[int]] = None,
+                 extender_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  faz_disk_buffer_size: Optional[pulumi.Input[int]] = None,
                  fds_statistics: Optional[pulumi.Input[str]] = None,
@@ -82,11 +88,13 @@ class SystemGlobalArgs:
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
+                 fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
                  fortiextender_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
                  gui_date_format: Optional[pulumi.Input[str]] = None,
@@ -101,16 +109,22 @@ class SystemGlobalArgs:
                  gui_fortisandbox_cloud: Optional[pulumi.Input[str]] = None,
                  gui_ipv6: Optional[pulumi.Input[str]] = None,
                  gui_lines_per_page: Optional[pulumi.Input[int]] = None,
+                 gui_local_out: Optional[pulumi.Input[str]] = None,
+                 gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_rest_api_cache: Optional[pulumi.Input[str]] = None,
                  gui_theme: Optional[pulumi.Input[str]] = None,
                  gui_wireless_opensecurity: Optional[pulumi.Input[str]] = None,
+                 ha_affinity: Optional[pulumi.Input[str]] = None,
                  honor_df: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 internet_service_database: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
@@ -126,6 +140,9 @@ class SystemGlobalArgs:
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
                  login_timestamp: Optional[pulumi.Input[str]] = None,
                  long_vdom_name: Optional[pulumi.Input[str]] = None,
+                 management_ip: Optional[pulumi.Input[str]] = None,
+                 management_port: Optional[pulumi.Input[int]] = None,
+                 management_port_use_admin_sport: Optional[pulumi.Input[str]] = None,
                  management_vdom: Optional[pulumi.Input[str]] = None,
                  max_dlpstat_memory: Optional[pulumi.Input[int]] = None,
                  max_route_cache_size: Optional[pulumi.Input[int]] = None,
@@ -140,6 +157,7 @@ class SystemGlobalArgs:
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
+                 pmtu_discovery: Optional[pulumi.Input[str]] = None,
                  policy_auth_concurrent: Optional[pulumi.Input[int]] = None,
                  post_login_banner: Optional[pulumi.Input[str]] = None,
                  pre_login_banner: Optional[pulumi.Input[str]] = None,
@@ -147,9 +165,12 @@ class SystemGlobalArgs:
                  proxy_auth_lifetime: Optional[pulumi.Input[str]] = None,
                  proxy_auth_lifetime_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
@@ -165,14 +186,19 @@ class SystemGlobalArgs:
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
+                 speedtest_server: Optional[pulumi.Input[str]] = None,
+                 split_port: Optional[pulumi.Input[str]] = None,
                  ssd_trim_date: Optional[pulumi.Input[int]] = None,
                  ssd_trim_freq: Optional[pulumi.Input[str]] = None,
                  ssd_trim_hour: Optional[pulumi.Input[int]] = None,
                  ssd_trim_min: Optional[pulumi.Input[int]] = None,
                  ssd_trim_weekday: Optional[pulumi.Input[str]] = None,
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
+                 ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
+                 ssh_mac_algo: Optional[pulumi.Input[str]] = None,
                  ssh_mac_weak: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_static_key_ciphers: Optional[pulumi.Input[str]] = None,
@@ -189,6 +215,7 @@ class SystemGlobalArgs:
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  tftp: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -204,6 +231,7 @@ class SystemGlobalArgs:
                  url_filter_affinity: Optional[pulumi.Input[str]] = None,
                  url_filter_count: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_devices: Optional[pulumi.Input[int]] = None,
+                 user_device_store_max_unified_mem: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_users: Optional[pulumi.Input[int]] = None,
                  user_server_cert: Optional[pulumi.Input[str]] = None,
                  vdom_admin: Optional[pulumi.Input[str]] = None,
@@ -212,6 +240,7 @@ class SystemGlobalArgs:
                  vip_arp_range: Optional[pulumi.Input[str]] = None,
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
@@ -227,9 +256,12 @@ class SystemGlobalArgs:
         The set of arguments for constructing a SystemGlobal resource.
         :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_hsts_max_age: HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
         :param pulumi.Input[str] admin_https_pki_required: Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_https_redirect: Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] admin_https_ssl_banned_ciphers: Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        :param pulumi.Input[str] admin_https_ssl_ciphersuites: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
         :param pulumi.Input[str] admin_https_ssl_versions: Allowed TLS versions for web administration.
         :param pulumi.Input[int] admin_lockout_duration: Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
         :param pulumi.Input[int] admin_lockout_threshold: Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
@@ -273,6 +305,7 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] cli_audit_log: Enable/disable CLI audit log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cloud_communication: Enable/disable all cloud communication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clt_cert_req: Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
         :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
@@ -284,8 +317,10 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] edit_vdom_prompt: Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] endpoint_control_fds_access: Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] endpoint_control_portal_port: Endpoint control portal port (1 - 65535).
+        :param pulumi.Input[str] extender_controller_reserved_network: Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
         :param pulumi.Input[int] failtime: Fail-time for server lost.
         :param pulumi.Input[int] faz_disk_buffer_size: Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
         :param pulumi.Input[str] fds_statistics: Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
@@ -294,11 +329,13 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] fgd_alert_subscription: Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiextender_data_port: FortiExtender data port (1024 - 49150, default = 25246).
+        :param pulumi.Input[str] fortiextender_discovery_lockdown: Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] fortiextender_vlan_mode: Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiipam_integration: Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiservice_port: FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_cdn_usage: Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_certificates: Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_custom_language: Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_date_format: Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
@@ -313,16 +350,22 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] gui_fortisandbox_cloud: Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ipv6: Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gui_lines_per_page: Number of lines to display per page for web administration.
+        :param pulumi.Input[str] gui_local_out: Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_rest_api_cache: Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_theme: Color scheme for the administration GUI.
         :param pulumi.Input[str] gui_wireless_opensecurity: Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_affinity: Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] honor_df: Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hostname: FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
         :param pulumi.Input[int] igmp_state_limit: Maximum number of IGMP memberships (96 - 64000, default = 3200).
         :param pulumi.Input[int] ike_embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] internet_service_database: Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
         :param pulumi.Input[int] interval: Dead gateway detection interval.
         :param pulumi.Input[str] ip_src_port_range: IP source port range used for traffic originating from the FortiGate unit.
         :param pulumi.Input[str] ips_affinity: Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
@@ -338,6 +381,9 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] log_uuid_policy: Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_timestamp: Enable/disable login time recording. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_vdom_name: Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
+        :param pulumi.Input[str] management_port_use_admin_sport: Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] management_vdom: Management virtual domain name.
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
@@ -352,6 +398,7 @@ class SystemGlobalArgs:
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policy_auth_concurrent: Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
         :param pulumi.Input[str] post_login_banner: Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pre_login_banner: Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
@@ -359,9 +406,12 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] proxy_auth_lifetime: Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_auth_lifetime_timeout: Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
         :param pulumi.Input[int] proxy_auth_timeout: Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
+        :param pulumi.Input[str] proxy_cert_use_mgmt_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_cipher_hardware_acceleration: Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] proxy_hardware_acceleration: Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_kxp_hardware_acceleration: Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_re_authentication_mode: Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
+        :param pulumi.Input[str] proxy_resource_mode: Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_worker_count: Proxy worker count.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
@@ -377,14 +427,19 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] send_pmtu_icmp: Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] snat_route_change: Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] special_file23_support: Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] speedtest_server: Enable/disable speed test server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] split_port: Split port(s) to multiple 10Gbps ports.
         :param pulumi.Input[int] ssd_trim_date: Date within a month to run ssd trim.
         :param pulumi.Input[str] ssd_trim_freq: How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] ssd_trim_hour: Hour of the day on which to run SSD Trim (0 - 23, default = 1).
         :param pulumi.Input[int] ssd_trim_min: Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
         :param pulumi.Input[str] ssd_trim_weekday: Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] ssh_cbc_cipher: Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_enc_algo: Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
         :param pulumi.Input[str] ssh_hmac_md5: Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_kex_algo: Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
         :param pulumi.Input[str] ssh_kex_sha1: Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_mac_algo: Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
         :param pulumi.Input[str] ssh_mac_weak: Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
         :param pulumi.Input[str] ssl_static_key_ciphers: Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
@@ -401,6 +456,7 @@ class SystemGlobalArgs:
         :param pulumi.Input[int] tcp_halfclose_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
         :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
@@ -416,14 +472,16 @@ class SystemGlobalArgs:
         :param pulumi.Input[str] url_filter_affinity: URL filter CPU affinity.
         :param pulumi.Input[int] url_filter_count: URL filter daemon count.
         :param pulumi.Input[int] user_device_store_max_devices: Maximum number of devices allowed in user device store.
+        :param pulumi.Input[int] user_device_store_max_unified_mem: Maximum unified memory allowed in user device store.
         :param pulumi.Input[int] user_device_store_max_users: Maximum number of users allowed in user device store.
         :param pulumi.Input[str] user_server_cert: Certificate to use for https user authentication.
         :param pulumi.Input[str] vdom_admin: Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip_arp_range: Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
         :param pulumi.Input[int] virtual_server_count: Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
         :param pulumi.Input[str] virtual_server_hardware_acceleration: Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] virtual_switch_vlan: Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wad_affinity: Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] wad_csvc_cs_count: Number of concurrent WAD-cache-service object-cache processes.
         :param pulumi.Input[int] wad_csvc_db_count: Number of concurrent WAD-cache-service byte-cache processes.
@@ -440,12 +498,18 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "admin_concurrent", admin_concurrent)
         if admin_console_timeout is not None:
             pulumi.set(__self__, "admin_console_timeout", admin_console_timeout)
+        if admin_forticloud_sso_login is not None:
+            pulumi.set(__self__, "admin_forticloud_sso_login", admin_forticloud_sso_login)
         if admin_hsts_max_age is not None:
             pulumi.set(__self__, "admin_hsts_max_age", admin_hsts_max_age)
         if admin_https_pki_required is not None:
             pulumi.set(__self__, "admin_https_pki_required", admin_https_pki_required)
         if admin_https_redirect is not None:
             pulumi.set(__self__, "admin_https_redirect", admin_https_redirect)
+        if admin_https_ssl_banned_ciphers is not None:
+            pulumi.set(__self__, "admin_https_ssl_banned_ciphers", admin_https_ssl_banned_ciphers)
+        if admin_https_ssl_ciphersuites is not None:
+            pulumi.set(__self__, "admin_https_ssl_ciphersuites", admin_https_ssl_ciphersuites)
         if admin_https_ssl_versions is not None:
             pulumi.set(__self__, "admin_https_ssl_versions", admin_https_ssl_versions)
         if admin_lockout_duration is not None:
@@ -532,6 +596,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "cloud_communication", cloud_communication)
         if clt_cert_req is not None:
             pulumi.set(__self__, "clt_cert_req", clt_cert_req)
+        if cmdbsvr_affinity is not None:
+            pulumi.set(__self__, "cmdbsvr_affinity", cmdbsvr_affinity)
         if compliance_check is not None:
             pulumi.set(__self__, "compliance_check", compliance_check)
         if compliance_check_time is not None:
@@ -554,10 +620,14 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
+        if edit_vdom_prompt is not None:
+            pulumi.set(__self__, "edit_vdom_prompt", edit_vdom_prompt)
         if endpoint_control_fds_access is not None:
             pulumi.set(__self__, "endpoint_control_fds_access", endpoint_control_fds_access)
         if endpoint_control_portal_port is not None:
             pulumi.set(__self__, "endpoint_control_portal_port", endpoint_control_portal_port)
+        if extender_controller_reserved_network is not None:
+            pulumi.set(__self__, "extender_controller_reserved_network", extender_controller_reserved_network)
         if failtime is not None:
             pulumi.set(__self__, "failtime", failtime)
         if faz_disk_buffer_size is not None:
@@ -574,6 +644,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "fortiextender", fortiextender)
         if fortiextender_data_port is not None:
             pulumi.set(__self__, "fortiextender_data_port", fortiextender_data_port)
+        if fortiextender_discovery_lockdown is not None:
+            pulumi.set(__self__, "fortiextender_discovery_lockdown", fortiextender_discovery_lockdown)
         if fortiextender_vlan_mode is not None:
             pulumi.set(__self__, "fortiextender_vlan_mode", fortiextender_vlan_mode)
         if fortiipam_integration is not None:
@@ -584,6 +656,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "fortitoken_cloud", fortitoken_cloud)
         if gui_allow_default_hostname is not None:
             pulumi.set(__self__, "gui_allow_default_hostname", gui_allow_default_hostname)
+        if gui_cdn_usage is not None:
+            pulumi.set(__self__, "gui_cdn_usage", gui_cdn_usage)
         if gui_certificates is not None:
             pulumi.set(__self__, "gui_certificates", gui_certificates)
         if gui_custom_language is not None:
@@ -612,10 +686,18 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "gui_ipv6", gui_ipv6)
         if gui_lines_per_page is not None:
             pulumi.set(__self__, "gui_lines_per_page", gui_lines_per_page)
+        if gui_local_out is not None:
+            pulumi.set(__self__, "gui_local_out", gui_local_out)
+        if gui_replacement_message_groups is not None:
+            pulumi.set(__self__, "gui_replacement_message_groups", gui_replacement_message_groups)
+        if gui_rest_api_cache is not None:
+            pulumi.set(__self__, "gui_rest_api_cache", gui_rest_api_cache)
         if gui_theme is not None:
             pulumi.set(__self__, "gui_theme", gui_theme)
         if gui_wireless_opensecurity is not None:
             pulumi.set(__self__, "gui_wireless_opensecurity", gui_wireless_opensecurity)
+        if ha_affinity is not None:
+            pulumi.set(__self__, "ha_affinity", ha_affinity)
         if honor_df is not None:
             pulumi.set(__self__, "honor_df", honor_df)
         if hostname is not None:
@@ -624,6 +706,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "igmp_state_limit", igmp_state_limit)
         if ike_embryonic_limit is not None:
             pulumi.set(__self__, "ike_embryonic_limit", ike_embryonic_limit)
+        if internet_service_database is not None:
+            pulumi.set(__self__, "internet_service_database", internet_service_database)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
         if ip_src_port_range is not None:
@@ -632,6 +716,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "ips_affinity", ips_affinity)
         if ipsec_asic_offload is not None:
             pulumi.set(__self__, "ipsec_asic_offload", ipsec_asic_offload)
+        if ipsec_ha_seqjump_rate is not None:
+            pulumi.set(__self__, "ipsec_ha_seqjump_rate", ipsec_ha_seqjump_rate)
         if ipsec_hmac_offload is not None:
             pulumi.set(__self__, "ipsec_hmac_offload", ipsec_hmac_offload)
         if ipsec_soft_dec_async is not None:
@@ -662,6 +748,12 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "login_timestamp", login_timestamp)
         if long_vdom_name is not None:
             pulumi.set(__self__, "long_vdom_name", long_vdom_name)
+        if management_ip is not None:
+            pulumi.set(__self__, "management_ip", management_ip)
+        if management_port is not None:
+            pulumi.set(__self__, "management_port", management_port)
+        if management_port_use_admin_sport is not None:
+            pulumi.set(__self__, "management_port_use_admin_sport", management_port_use_admin_sport)
         if management_vdom is not None:
             pulumi.set(__self__, "management_vdom", management_vdom)
         if max_dlpstat_memory is not None:
@@ -690,6 +782,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "per_user_bal", per_user_bal)
         if per_user_bwl is not None:
             pulumi.set(__self__, "per_user_bwl", per_user_bwl)
+        if pmtu_discovery is not None:
+            pulumi.set(__self__, "pmtu_discovery", pmtu_discovery)
         if policy_auth_concurrent is not None:
             pulumi.set(__self__, "policy_auth_concurrent", policy_auth_concurrent)
         if post_login_banner is not None:
@@ -704,12 +798,18 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "proxy_auth_lifetime_timeout", proxy_auth_lifetime_timeout)
         if proxy_auth_timeout is not None:
             pulumi.set(__self__, "proxy_auth_timeout", proxy_auth_timeout)
+        if proxy_cert_use_mgmt_vdom is not None:
+            pulumi.set(__self__, "proxy_cert_use_mgmt_vdom", proxy_cert_use_mgmt_vdom)
         if proxy_cipher_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_cipher_hardware_acceleration", proxy_cipher_hardware_acceleration)
+        if proxy_hardware_acceleration is not None:
+            pulumi.set(__self__, "proxy_hardware_acceleration", proxy_hardware_acceleration)
         if proxy_kxp_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_kxp_hardware_acceleration", proxy_kxp_hardware_acceleration)
         if proxy_re_authentication_mode is not None:
             pulumi.set(__self__, "proxy_re_authentication_mode", proxy_re_authentication_mode)
+        if proxy_resource_mode is not None:
+            pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
         if proxy_worker_count is not None:
             pulumi.set(__self__, "proxy_worker_count", proxy_worker_count)
         if radius_port is not None:
@@ -740,6 +840,10 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "snat_route_change", snat_route_change)
         if special_file23_support is not None:
             pulumi.set(__self__, "special_file23_support", special_file23_support)
+        if speedtest_server is not None:
+            pulumi.set(__self__, "speedtest_server", speedtest_server)
+        if split_port is not None:
+            pulumi.set(__self__, "split_port", split_port)
         if ssd_trim_date is not None:
             pulumi.set(__self__, "ssd_trim_date", ssd_trim_date)
         if ssd_trim_freq is not None:
@@ -752,10 +856,16 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "ssd_trim_weekday", ssd_trim_weekday)
         if ssh_cbc_cipher is not None:
             pulumi.set(__self__, "ssh_cbc_cipher", ssh_cbc_cipher)
+        if ssh_enc_algo is not None:
+            pulumi.set(__self__, "ssh_enc_algo", ssh_enc_algo)
         if ssh_hmac_md5 is not None:
             pulumi.set(__self__, "ssh_hmac_md5", ssh_hmac_md5)
+        if ssh_kex_algo is not None:
+            pulumi.set(__self__, "ssh_kex_algo", ssh_kex_algo)
         if ssh_kex_sha1 is not None:
             pulumi.set(__self__, "ssh_kex_sha1", ssh_kex_sha1)
+        if ssh_mac_algo is not None:
+            pulumi.set(__self__, "ssh_mac_algo", ssh_mac_algo)
         if ssh_mac_weak is not None:
             pulumi.set(__self__, "ssh_mac_weak", ssh_mac_weak)
         if ssl_min_proto_version is not None:
@@ -788,6 +898,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "tcp_halfopen_timer", tcp_halfopen_timer)
         if tcp_option is not None:
             pulumi.set(__self__, "tcp_option", tcp_option)
+        if tcp_rst_timer is not None:
+            pulumi.set(__self__, "tcp_rst_timer", tcp_rst_timer)
         if tcp_timewait_timer is not None:
             pulumi.set(__self__, "tcp_timewait_timer", tcp_timewait_timer)
         if tftp is not None:
@@ -818,6 +930,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "url_filter_count", url_filter_count)
         if user_device_store_max_devices is not None:
             pulumi.set(__self__, "user_device_store_max_devices", user_device_store_max_devices)
+        if user_device_store_max_unified_mem is not None:
+            pulumi.set(__self__, "user_device_store_max_unified_mem", user_device_store_max_unified_mem)
         if user_device_store_max_users is not None:
             pulumi.set(__self__, "user_device_store_max_users", user_device_store_max_users)
         if user_server_cert is not None:
@@ -834,6 +948,8 @@ class SystemGlobalArgs:
             pulumi.set(__self__, "virtual_server_count", virtual_server_count)
         if virtual_server_hardware_acceleration is not None:
             pulumi.set(__self__, "virtual_server_hardware_acceleration", virtual_server_hardware_acceleration)
+        if virtual_switch_vlan is not None:
+            pulumi.set(__self__, "virtual_switch_vlan", virtual_switch_vlan)
         if wad_affinity is not None:
             pulumi.set(__self__, "wad_affinity", wad_affinity)
         if wad_csvc_cs_count is not None:
@@ -882,6 +998,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "admin_console_timeout", value)
 
     @property
+    @pulumi.getter(name="adminForticloudSsoLogin")
+    def admin_forticloud_sso_login(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "admin_forticloud_sso_login")
+
+    @admin_forticloud_sso_login.setter
+    def admin_forticloud_sso_login(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_forticloud_sso_login", value)
+
+    @property
     @pulumi.getter(name="adminHstsMaxAge")
     def admin_hsts_max_age(self) -> Optional[pulumi.Input[int]]:
         """
@@ -916,6 +1044,30 @@ class SystemGlobalArgs:
     @admin_https_redirect.setter
     def admin_https_redirect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "admin_https_redirect", value)
+
+    @property
+    @pulumi.getter(name="adminHttpsSslBannedCiphers")
+    def admin_https_ssl_banned_ciphers(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        """
+        return pulumi.get(self, "admin_https_ssl_banned_ciphers")
+
+    @admin_https_ssl_banned_ciphers.setter
+    def admin_https_ssl_banned_ciphers(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_https_ssl_banned_ciphers", value)
+
+    @property
+    @pulumi.getter(name="adminHttpsSslCiphersuites")
+    def admin_https_ssl_ciphersuites(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        """
+        return pulumi.get(self, "admin_https_ssl_ciphersuites")
+
+    @admin_https_ssl_ciphersuites.setter
+    def admin_https_ssl_ciphersuites(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_https_ssl_ciphersuites", value)
 
     @property
     @pulumi.getter(name="adminHttpsSslVersions")
@@ -1434,6 +1586,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "clt_cert_req", value)
 
     @property
+    @pulumi.getter(name="cmdbsvrAffinity")
+    def cmdbsvr_affinity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "cmdbsvr_affinity")
+
+    @cmdbsvr_affinity.setter
+    def cmdbsvr_affinity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cmdbsvr_affinity", value)
+
+    @property
     @pulumi.getter(name="complianceCheck")
     def compliance_check(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1566,6 +1730,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "dst", value)
 
     @property
+    @pulumi.getter(name="editVdomPrompt")
+    def edit_vdom_prompt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "edit_vdom_prompt")
+
+    @edit_vdom_prompt.setter
+    def edit_vdom_prompt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "edit_vdom_prompt", value)
+
+    @property
     @pulumi.getter(name="endpointControlFdsAccess")
     def endpoint_control_fds_access(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1588,6 +1764,18 @@ class SystemGlobalArgs:
     @endpoint_control_portal_port.setter
     def endpoint_control_portal_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "endpoint_control_portal_port", value)
+
+    @property
+    @pulumi.getter(name="extenderControllerReservedNetwork")
+    def extender_controller_reserved_network(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+        """
+        return pulumi.get(self, "extender_controller_reserved_network")
+
+    @extender_controller_reserved_network.setter
+    def extender_controller_reserved_network(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extender_controller_reserved_network", value)
 
     @property
     @pulumi.getter
@@ -1686,6 +1874,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "fortiextender_data_port", value)
 
     @property
+    @pulumi.getter(name="fortiextenderDiscoveryLockdown")
+    def fortiextender_discovery_lockdown(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fortiextender_discovery_lockdown")
+
+    @fortiextender_discovery_lockdown.setter
+    def fortiextender_discovery_lockdown(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiextender_discovery_lockdown", value)
+
+    @property
     @pulumi.getter(name="fortiextenderVlanMode")
     def fortiextender_vlan_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1744,6 +1944,18 @@ class SystemGlobalArgs:
     @gui_allow_default_hostname.setter
     def gui_allow_default_hostname(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_allow_default_hostname", value)
+
+    @property
+    @pulumi.getter(name="guiCdnUsage")
+    def gui_cdn_usage(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_cdn_usage")
+
+    @gui_cdn_usage.setter
+    def gui_cdn_usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_cdn_usage", value)
 
     @property
     @pulumi.getter(name="guiCertificates")
@@ -1914,6 +2126,42 @@ class SystemGlobalArgs:
         pulumi.set(self, "gui_lines_per_page", value)
 
     @property
+    @pulumi.getter(name="guiLocalOut")
+    def gui_local_out(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_local_out")
+
+    @gui_local_out.setter
+    def gui_local_out(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_local_out", value)
+
+    @property
+    @pulumi.getter(name="guiReplacementMessageGroups")
+    def gui_replacement_message_groups(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_replacement_message_groups")
+
+    @gui_replacement_message_groups.setter
+    def gui_replacement_message_groups(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_replacement_message_groups", value)
+
+    @property
+    @pulumi.getter(name="guiRestApiCache")
+    def gui_rest_api_cache(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_rest_api_cache")
+
+    @gui_rest_api_cache.setter
+    def gui_rest_api_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_rest_api_cache", value)
+
+    @property
     @pulumi.getter(name="guiTheme")
     def gui_theme(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1936,6 +2184,18 @@ class SystemGlobalArgs:
     @gui_wireless_opensecurity.setter
     def gui_wireless_opensecurity(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_wireless_opensecurity", value)
+
+    @property
+    @pulumi.getter(name="haAffinity")
+    def ha_affinity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "ha_affinity")
+
+    @ha_affinity.setter
+    def ha_affinity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ha_affinity", value)
 
     @property
     @pulumi.getter(name="honorDf")
@@ -1986,6 +2246,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "ike_embryonic_limit", value)
 
     @property
+    @pulumi.getter(name="internetServiceDatabase")
+    def internet_service_database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+        """
+        return pulumi.get(self, "internet_service_database")
+
+    @internet_service_database.setter
+    def internet_service_database(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service_database", value)
+
+    @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2032,6 +2304,18 @@ class SystemGlobalArgs:
     @ipsec_asic_offload.setter
     def ipsec_asic_offload(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ipsec_asic_offload", value)
+
+    @property
+    @pulumi.getter(name="ipsecHaSeqjumpRate")
+    def ipsec_ha_seqjump_rate(self) -> Optional[pulumi.Input[int]]:
+        """
+        ESP jump ahead rate (1G - 10G pps equivalent).
+        """
+        return pulumi.get(self, "ipsec_ha_seqjump_rate")
+
+    @ipsec_ha_seqjump_rate.setter
+    def ipsec_ha_seqjump_rate(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipsec_ha_seqjump_rate", value)
 
     @property
     @pulumi.getter(name="ipsecHmacOffload")
@@ -2214,6 +2498,42 @@ class SystemGlobalArgs:
         pulumi.set(self, "long_vdom_name", value)
 
     @property
+    @pulumi.getter(name="managementIp")
+    def management_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        """
+        return pulumi.get(self, "management_ip")
+
+    @management_ip.setter
+    def management_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "management_ip", value)
+
+    @property
+    @pulumi.getter(name="managementPort")
+    def management_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Overriding port for management connection (Overrides admin port).
+        """
+        return pulumi.get(self, "management_port")
+
+    @management_port.setter
+    def management_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "management_port", value)
+
+    @property
+    @pulumi.getter(name="managementPortUseAdminSport")
+    def management_port_use_admin_sport(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "management_port_use_admin_sport")
+
+    @management_port_use_admin_sport.setter
+    def management_port_use_admin_sport(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "management_port_use_admin_sport", value)
+
+    @property
     @pulumi.getter(name="managementVdom")
     def management_vdom(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2382,6 +2702,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "per_user_bwl", value)
 
     @property
+    @pulumi.getter(name="pmtuDiscovery")
+    def pmtu_discovery(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pmtu_discovery")
+
+    @pmtu_discovery.setter
+    def pmtu_discovery(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pmtu_discovery", value)
+
+    @property
     @pulumi.getter(name="policyAuthConcurrent")
     def policy_auth_concurrent(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2466,6 +2798,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "proxy_auth_timeout", value)
 
     @property
+    @pulumi.getter(name="proxyCertUseMgmtVdom")
+    def proxy_cert_use_mgmt_vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_cert_use_mgmt_vdom")
+
+    @proxy_cert_use_mgmt_vdom.setter
+    def proxy_cert_use_mgmt_vdom(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_cert_use_mgmt_vdom", value)
+
+    @property
     @pulumi.getter(name="proxyCipherHardwareAcceleration")
     def proxy_cipher_hardware_acceleration(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2476,6 +2820,18 @@ class SystemGlobalArgs:
     @proxy_cipher_hardware_acceleration.setter
     def proxy_cipher_hardware_acceleration(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_cipher_hardware_acceleration", value)
+
+    @property
+    @pulumi.getter(name="proxyHardwareAcceleration")
+    def proxy_hardware_acceleration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "proxy_hardware_acceleration")
+
+    @proxy_hardware_acceleration.setter
+    def proxy_hardware_acceleration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_hardware_acceleration", value)
 
     @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
@@ -2500,6 +2856,18 @@ class SystemGlobalArgs:
     @proxy_re_authentication_mode.setter
     def proxy_re_authentication_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_re_authentication_mode", value)
+
+    @property
+    @pulumi.getter(name="proxyResourceMode")
+    def proxy_resource_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_resource_mode")
+
+    @proxy_resource_mode.setter
+    def proxy_resource_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_resource_mode", value)
 
     @property
     @pulumi.getter(name="proxyWorkerCount")
@@ -2682,6 +3050,30 @@ class SystemGlobalArgs:
         pulumi.set(self, "special_file23_support", value)
 
     @property
+    @pulumi.getter(name="speedtestServer")
+    def speedtest_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable speed test server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "speedtest_server")
+
+    @speedtest_server.setter
+    def speedtest_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "speedtest_server", value)
+
+    @property
+    @pulumi.getter(name="splitPort")
+    def split_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Split port(s) to multiple 10Gbps ports.
+        """
+        return pulumi.get(self, "split_port")
+
+    @split_port.setter
+    def split_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "split_port", value)
+
+    @property
     @pulumi.getter(name="ssdTrimDate")
     def ssd_trim_date(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2754,6 +3146,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "ssh_cbc_cipher", value)
 
     @property
+    @pulumi.getter(name="sshEncAlgo")
+    def ssh_enc_algo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+        """
+        return pulumi.get(self, "ssh_enc_algo")
+
+    @ssh_enc_algo.setter
+    def ssh_enc_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_enc_algo", value)
+
+    @property
     @pulumi.getter(name="sshHmacMd5")
     def ssh_hmac_md5(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2766,6 +3170,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "ssh_hmac_md5", value)
 
     @property
+    @pulumi.getter(name="sshKexAlgo")
+    def ssh_kex_algo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+        """
+        return pulumi.get(self, "ssh_kex_algo")
+
+    @ssh_kex_algo.setter
+    def ssh_kex_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_kex_algo", value)
+
+    @property
     @pulumi.getter(name="sshKexSha1")
     def ssh_kex_sha1(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2776,6 +3192,18 @@ class SystemGlobalArgs:
     @ssh_kex_sha1.setter
     def ssh_kex_sha1(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssh_kex_sha1", value)
+
+    @property
+    @pulumi.getter(name="sshMacAlgo")
+    def ssh_mac_algo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+        """
+        return pulumi.get(self, "ssh_mac_algo")
+
+    @ssh_mac_algo.setter
+    def ssh_mac_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_mac_algo", value)
 
     @property
     @pulumi.getter(name="sshMacWeak")
@@ -2970,6 +3398,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "tcp_option", value)
 
     @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
+
+    @tcp_rst_timer.setter
+    def tcp_rst_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tcp_rst_timer", value)
+
+    @property
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> Optional[pulumi.Input[int]]:
         """
@@ -3150,6 +3590,18 @@ class SystemGlobalArgs:
         pulumi.set(self, "user_device_store_max_devices", value)
 
     @property
+    @pulumi.getter(name="userDeviceStoreMaxUnifiedMem")
+    def user_device_store_max_unified_mem(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum unified memory allowed in user device store.
+        """
+        return pulumi.get(self, "user_device_store_max_unified_mem")
+
+    @user_device_store_max_unified_mem.setter
+    def user_device_store_max_unified_mem(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "user_device_store_max_unified_mem", value)
+
+    @property
     @pulumi.getter(name="userDeviceStoreMaxUsers")
     def user_device_store_max_users(self) -> Optional[pulumi.Input[int]]:
         """
@@ -3189,7 +3641,7 @@ class SystemGlobalArgs:
     @pulumi.getter(name="vdomMode")
     def vdom_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         """
         return pulumi.get(self, "vdom_mode")
 
@@ -3244,6 +3696,18 @@ class SystemGlobalArgs:
     @virtual_server_hardware_acceleration.setter
     def virtual_server_hardware_acceleration(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "virtual_server_hardware_acceleration", value)
+
+    @property
+    @pulumi.getter(name="virtualSwitchVlan")
+    def virtual_switch_vlan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "virtual_switch_vlan")
+
+    @virtual_switch_vlan.setter
+    def virtual_switch_vlan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_switch_vlan", value)
 
     @property
     @pulumi.getter(name="wadAffinity")
@@ -3383,9 +3847,12 @@ class _SystemGlobalState:
     def __init__(__self__, *,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
                  admin_https_pki_required: Optional[pulumi.Input[str]] = None,
                  admin_https_redirect: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_banned_ciphers: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_ciphersuites: Optional[pulumi.Input[str]] = None,
                  admin_https_ssl_versions: Optional[pulumi.Input[str]] = None,
                  admin_lockout_duration: Optional[pulumi.Input[int]] = None,
                  admin_lockout_threshold: Optional[pulumi.Input[int]] = None,
@@ -3429,6 +3896,7 @@ class _SystemGlobalState:
                  cli_audit_log: Optional[pulumi.Input[str]] = None,
                  cloud_communication: Optional[pulumi.Input[str]] = None,
                  clt_cert_req: Optional[pulumi.Input[str]] = None,
+                 cmdbsvr_affinity: Optional[pulumi.Input[str]] = None,
                  compliance_check: Optional[pulumi.Input[str]] = None,
                  compliance_check_time: Optional[pulumi.Input[str]] = None,
                  cpu_use_threshold: Optional[pulumi.Input[int]] = None,
@@ -3440,8 +3908,10 @@ class _SystemGlobalState:
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
                  endpoint_control_portal_port: Optional[pulumi.Input[int]] = None,
+                 extender_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  faz_disk_buffer_size: Optional[pulumi.Input[int]] = None,
                  fds_statistics: Optional[pulumi.Input[str]] = None,
@@ -3450,11 +3920,13 @@ class _SystemGlobalState:
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
+                 fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
                  fortiextender_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
                  gui_date_format: Optional[pulumi.Input[str]] = None,
@@ -3469,16 +3941,22 @@ class _SystemGlobalState:
                  gui_fortisandbox_cloud: Optional[pulumi.Input[str]] = None,
                  gui_ipv6: Optional[pulumi.Input[str]] = None,
                  gui_lines_per_page: Optional[pulumi.Input[int]] = None,
+                 gui_local_out: Optional[pulumi.Input[str]] = None,
+                 gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_rest_api_cache: Optional[pulumi.Input[str]] = None,
                  gui_theme: Optional[pulumi.Input[str]] = None,
                  gui_wireless_opensecurity: Optional[pulumi.Input[str]] = None,
+                 ha_affinity: Optional[pulumi.Input[str]] = None,
                  honor_df: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 internet_service_database: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
@@ -3494,6 +3972,9 @@ class _SystemGlobalState:
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
                  login_timestamp: Optional[pulumi.Input[str]] = None,
                  long_vdom_name: Optional[pulumi.Input[str]] = None,
+                 management_ip: Optional[pulumi.Input[str]] = None,
+                 management_port: Optional[pulumi.Input[int]] = None,
+                 management_port_use_admin_sport: Optional[pulumi.Input[str]] = None,
                  management_vdom: Optional[pulumi.Input[str]] = None,
                  max_dlpstat_memory: Optional[pulumi.Input[int]] = None,
                  max_route_cache_size: Optional[pulumi.Input[int]] = None,
@@ -3508,6 +3989,7 @@ class _SystemGlobalState:
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
+                 pmtu_discovery: Optional[pulumi.Input[str]] = None,
                  policy_auth_concurrent: Optional[pulumi.Input[int]] = None,
                  post_login_banner: Optional[pulumi.Input[str]] = None,
                  pre_login_banner: Optional[pulumi.Input[str]] = None,
@@ -3515,9 +3997,12 @@ class _SystemGlobalState:
                  proxy_auth_lifetime: Optional[pulumi.Input[str]] = None,
                  proxy_auth_lifetime_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
@@ -3533,14 +4018,19 @@ class _SystemGlobalState:
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
+                 speedtest_server: Optional[pulumi.Input[str]] = None,
+                 split_port: Optional[pulumi.Input[str]] = None,
                  ssd_trim_date: Optional[pulumi.Input[int]] = None,
                  ssd_trim_freq: Optional[pulumi.Input[str]] = None,
                  ssd_trim_hour: Optional[pulumi.Input[int]] = None,
                  ssd_trim_min: Optional[pulumi.Input[int]] = None,
                  ssd_trim_weekday: Optional[pulumi.Input[str]] = None,
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
+                 ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
+                 ssh_mac_algo: Optional[pulumi.Input[str]] = None,
                  ssh_mac_weak: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_static_key_ciphers: Optional[pulumi.Input[str]] = None,
@@ -3557,6 +4047,7 @@ class _SystemGlobalState:
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  tftp: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -3572,6 +4063,7 @@ class _SystemGlobalState:
                  url_filter_affinity: Optional[pulumi.Input[str]] = None,
                  url_filter_count: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_devices: Optional[pulumi.Input[int]] = None,
+                 user_device_store_max_unified_mem: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_users: Optional[pulumi.Input[int]] = None,
                  user_server_cert: Optional[pulumi.Input[str]] = None,
                  vdom_admin: Optional[pulumi.Input[str]] = None,
@@ -3580,6 +4072,7 @@ class _SystemGlobalState:
                  vip_arp_range: Optional[pulumi.Input[str]] = None,
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
@@ -3595,9 +4088,12 @@ class _SystemGlobalState:
         Input properties used for looking up and filtering SystemGlobal resources.
         :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_hsts_max_age: HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
         :param pulumi.Input[str] admin_https_pki_required: Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_https_redirect: Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] admin_https_ssl_banned_ciphers: Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        :param pulumi.Input[str] admin_https_ssl_ciphersuites: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
         :param pulumi.Input[str] admin_https_ssl_versions: Allowed TLS versions for web administration.
         :param pulumi.Input[int] admin_lockout_duration: Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
         :param pulumi.Input[int] admin_lockout_threshold: Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
@@ -3641,6 +4137,7 @@ class _SystemGlobalState:
         :param pulumi.Input[str] cli_audit_log: Enable/disable CLI audit log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cloud_communication: Enable/disable all cloud communication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clt_cert_req: Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
         :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
@@ -3652,8 +4149,10 @@ class _SystemGlobalState:
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] edit_vdom_prompt: Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] endpoint_control_fds_access: Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] endpoint_control_portal_port: Endpoint control portal port (1 - 65535).
+        :param pulumi.Input[str] extender_controller_reserved_network: Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
         :param pulumi.Input[int] failtime: Fail-time for server lost.
         :param pulumi.Input[int] faz_disk_buffer_size: Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
         :param pulumi.Input[str] fds_statistics: Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
@@ -3662,11 +4161,13 @@ class _SystemGlobalState:
         :param pulumi.Input[str] fgd_alert_subscription: Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiextender_data_port: FortiExtender data port (1024 - 49150, default = 25246).
+        :param pulumi.Input[str] fortiextender_discovery_lockdown: Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] fortiextender_vlan_mode: Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiipam_integration: Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiservice_port: FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_cdn_usage: Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_certificates: Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_custom_language: Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_date_format: Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
@@ -3681,16 +4182,22 @@ class _SystemGlobalState:
         :param pulumi.Input[str] gui_fortisandbox_cloud: Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ipv6: Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gui_lines_per_page: Number of lines to display per page for web administration.
+        :param pulumi.Input[str] gui_local_out: Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_rest_api_cache: Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_theme: Color scheme for the administration GUI.
         :param pulumi.Input[str] gui_wireless_opensecurity: Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_affinity: Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] honor_df: Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hostname: FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
         :param pulumi.Input[int] igmp_state_limit: Maximum number of IGMP memberships (96 - 64000, default = 3200).
         :param pulumi.Input[int] ike_embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] internet_service_database: Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
         :param pulumi.Input[int] interval: Dead gateway detection interval.
         :param pulumi.Input[str] ip_src_port_range: IP source port range used for traffic originating from the FortiGate unit.
         :param pulumi.Input[str] ips_affinity: Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
@@ -3706,6 +4213,9 @@ class _SystemGlobalState:
         :param pulumi.Input[str] log_uuid_policy: Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_timestamp: Enable/disable login time recording. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_vdom_name: Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
+        :param pulumi.Input[str] management_port_use_admin_sport: Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] management_vdom: Management virtual domain name.
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
@@ -3720,6 +4230,7 @@ class _SystemGlobalState:
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policy_auth_concurrent: Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
         :param pulumi.Input[str] post_login_banner: Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pre_login_banner: Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
@@ -3727,9 +4238,12 @@ class _SystemGlobalState:
         :param pulumi.Input[str] proxy_auth_lifetime: Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_auth_lifetime_timeout: Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
         :param pulumi.Input[int] proxy_auth_timeout: Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
+        :param pulumi.Input[str] proxy_cert_use_mgmt_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_cipher_hardware_acceleration: Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] proxy_hardware_acceleration: Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_kxp_hardware_acceleration: Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_re_authentication_mode: Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
+        :param pulumi.Input[str] proxy_resource_mode: Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_worker_count: Proxy worker count.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
@@ -3745,14 +4259,19 @@ class _SystemGlobalState:
         :param pulumi.Input[str] send_pmtu_icmp: Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] snat_route_change: Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] special_file23_support: Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] speedtest_server: Enable/disable speed test server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] split_port: Split port(s) to multiple 10Gbps ports.
         :param pulumi.Input[int] ssd_trim_date: Date within a month to run ssd trim.
         :param pulumi.Input[str] ssd_trim_freq: How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] ssd_trim_hour: Hour of the day on which to run SSD Trim (0 - 23, default = 1).
         :param pulumi.Input[int] ssd_trim_min: Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
         :param pulumi.Input[str] ssd_trim_weekday: Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] ssh_cbc_cipher: Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_enc_algo: Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
         :param pulumi.Input[str] ssh_hmac_md5: Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_kex_algo: Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
         :param pulumi.Input[str] ssh_kex_sha1: Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_mac_algo: Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
         :param pulumi.Input[str] ssh_mac_weak: Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
         :param pulumi.Input[str] ssl_static_key_ciphers: Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
@@ -3769,6 +4288,7 @@ class _SystemGlobalState:
         :param pulumi.Input[int] tcp_halfclose_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
         :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
@@ -3784,14 +4304,16 @@ class _SystemGlobalState:
         :param pulumi.Input[str] url_filter_affinity: URL filter CPU affinity.
         :param pulumi.Input[int] url_filter_count: URL filter daemon count.
         :param pulumi.Input[int] user_device_store_max_devices: Maximum number of devices allowed in user device store.
+        :param pulumi.Input[int] user_device_store_max_unified_mem: Maximum unified memory allowed in user device store.
         :param pulumi.Input[int] user_device_store_max_users: Maximum number of users allowed in user device store.
         :param pulumi.Input[str] user_server_cert: Certificate to use for https user authentication.
         :param pulumi.Input[str] vdom_admin: Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip_arp_range: Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
         :param pulumi.Input[int] virtual_server_count: Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
         :param pulumi.Input[str] virtual_server_hardware_acceleration: Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] virtual_switch_vlan: Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wad_affinity: Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] wad_csvc_cs_count: Number of concurrent WAD-cache-service object-cache processes.
         :param pulumi.Input[int] wad_csvc_db_count: Number of concurrent WAD-cache-service byte-cache processes.
@@ -3808,12 +4330,18 @@ class _SystemGlobalState:
             pulumi.set(__self__, "admin_concurrent", admin_concurrent)
         if admin_console_timeout is not None:
             pulumi.set(__self__, "admin_console_timeout", admin_console_timeout)
+        if admin_forticloud_sso_login is not None:
+            pulumi.set(__self__, "admin_forticloud_sso_login", admin_forticloud_sso_login)
         if admin_hsts_max_age is not None:
             pulumi.set(__self__, "admin_hsts_max_age", admin_hsts_max_age)
         if admin_https_pki_required is not None:
             pulumi.set(__self__, "admin_https_pki_required", admin_https_pki_required)
         if admin_https_redirect is not None:
             pulumi.set(__self__, "admin_https_redirect", admin_https_redirect)
+        if admin_https_ssl_banned_ciphers is not None:
+            pulumi.set(__self__, "admin_https_ssl_banned_ciphers", admin_https_ssl_banned_ciphers)
+        if admin_https_ssl_ciphersuites is not None:
+            pulumi.set(__self__, "admin_https_ssl_ciphersuites", admin_https_ssl_ciphersuites)
         if admin_https_ssl_versions is not None:
             pulumi.set(__self__, "admin_https_ssl_versions", admin_https_ssl_versions)
         if admin_lockout_duration is not None:
@@ -3900,6 +4428,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "cloud_communication", cloud_communication)
         if clt_cert_req is not None:
             pulumi.set(__self__, "clt_cert_req", clt_cert_req)
+        if cmdbsvr_affinity is not None:
+            pulumi.set(__self__, "cmdbsvr_affinity", cmdbsvr_affinity)
         if compliance_check is not None:
             pulumi.set(__self__, "compliance_check", compliance_check)
         if compliance_check_time is not None:
@@ -3922,10 +4452,14 @@ class _SystemGlobalState:
             pulumi.set(__self__, "dnsproxy_worker_count", dnsproxy_worker_count)
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
+        if edit_vdom_prompt is not None:
+            pulumi.set(__self__, "edit_vdom_prompt", edit_vdom_prompt)
         if endpoint_control_fds_access is not None:
             pulumi.set(__self__, "endpoint_control_fds_access", endpoint_control_fds_access)
         if endpoint_control_portal_port is not None:
             pulumi.set(__self__, "endpoint_control_portal_port", endpoint_control_portal_port)
+        if extender_controller_reserved_network is not None:
+            pulumi.set(__self__, "extender_controller_reserved_network", extender_controller_reserved_network)
         if failtime is not None:
             pulumi.set(__self__, "failtime", failtime)
         if faz_disk_buffer_size is not None:
@@ -3942,6 +4476,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "fortiextender", fortiextender)
         if fortiextender_data_port is not None:
             pulumi.set(__self__, "fortiextender_data_port", fortiextender_data_port)
+        if fortiextender_discovery_lockdown is not None:
+            pulumi.set(__self__, "fortiextender_discovery_lockdown", fortiextender_discovery_lockdown)
         if fortiextender_vlan_mode is not None:
             pulumi.set(__self__, "fortiextender_vlan_mode", fortiextender_vlan_mode)
         if fortiipam_integration is not None:
@@ -3952,6 +4488,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "fortitoken_cloud", fortitoken_cloud)
         if gui_allow_default_hostname is not None:
             pulumi.set(__self__, "gui_allow_default_hostname", gui_allow_default_hostname)
+        if gui_cdn_usage is not None:
+            pulumi.set(__self__, "gui_cdn_usage", gui_cdn_usage)
         if gui_certificates is not None:
             pulumi.set(__self__, "gui_certificates", gui_certificates)
         if gui_custom_language is not None:
@@ -3980,10 +4518,18 @@ class _SystemGlobalState:
             pulumi.set(__self__, "gui_ipv6", gui_ipv6)
         if gui_lines_per_page is not None:
             pulumi.set(__self__, "gui_lines_per_page", gui_lines_per_page)
+        if gui_local_out is not None:
+            pulumi.set(__self__, "gui_local_out", gui_local_out)
+        if gui_replacement_message_groups is not None:
+            pulumi.set(__self__, "gui_replacement_message_groups", gui_replacement_message_groups)
+        if gui_rest_api_cache is not None:
+            pulumi.set(__self__, "gui_rest_api_cache", gui_rest_api_cache)
         if gui_theme is not None:
             pulumi.set(__self__, "gui_theme", gui_theme)
         if gui_wireless_opensecurity is not None:
             pulumi.set(__self__, "gui_wireless_opensecurity", gui_wireless_opensecurity)
+        if ha_affinity is not None:
+            pulumi.set(__self__, "ha_affinity", ha_affinity)
         if honor_df is not None:
             pulumi.set(__self__, "honor_df", honor_df)
         if hostname is not None:
@@ -3992,6 +4538,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "igmp_state_limit", igmp_state_limit)
         if ike_embryonic_limit is not None:
             pulumi.set(__self__, "ike_embryonic_limit", ike_embryonic_limit)
+        if internet_service_database is not None:
+            pulumi.set(__self__, "internet_service_database", internet_service_database)
         if interval is not None:
             pulumi.set(__self__, "interval", interval)
         if ip_src_port_range is not None:
@@ -4000,6 +4548,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "ips_affinity", ips_affinity)
         if ipsec_asic_offload is not None:
             pulumi.set(__self__, "ipsec_asic_offload", ipsec_asic_offload)
+        if ipsec_ha_seqjump_rate is not None:
+            pulumi.set(__self__, "ipsec_ha_seqjump_rate", ipsec_ha_seqjump_rate)
         if ipsec_hmac_offload is not None:
             pulumi.set(__self__, "ipsec_hmac_offload", ipsec_hmac_offload)
         if ipsec_soft_dec_async is not None:
@@ -4030,6 +4580,12 @@ class _SystemGlobalState:
             pulumi.set(__self__, "login_timestamp", login_timestamp)
         if long_vdom_name is not None:
             pulumi.set(__self__, "long_vdom_name", long_vdom_name)
+        if management_ip is not None:
+            pulumi.set(__self__, "management_ip", management_ip)
+        if management_port is not None:
+            pulumi.set(__self__, "management_port", management_port)
+        if management_port_use_admin_sport is not None:
+            pulumi.set(__self__, "management_port_use_admin_sport", management_port_use_admin_sport)
         if management_vdom is not None:
             pulumi.set(__self__, "management_vdom", management_vdom)
         if max_dlpstat_memory is not None:
@@ -4058,6 +4614,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "per_user_bal", per_user_bal)
         if per_user_bwl is not None:
             pulumi.set(__self__, "per_user_bwl", per_user_bwl)
+        if pmtu_discovery is not None:
+            pulumi.set(__self__, "pmtu_discovery", pmtu_discovery)
         if policy_auth_concurrent is not None:
             pulumi.set(__self__, "policy_auth_concurrent", policy_auth_concurrent)
         if post_login_banner is not None:
@@ -4072,12 +4630,18 @@ class _SystemGlobalState:
             pulumi.set(__self__, "proxy_auth_lifetime_timeout", proxy_auth_lifetime_timeout)
         if proxy_auth_timeout is not None:
             pulumi.set(__self__, "proxy_auth_timeout", proxy_auth_timeout)
+        if proxy_cert_use_mgmt_vdom is not None:
+            pulumi.set(__self__, "proxy_cert_use_mgmt_vdom", proxy_cert_use_mgmt_vdom)
         if proxy_cipher_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_cipher_hardware_acceleration", proxy_cipher_hardware_acceleration)
+        if proxy_hardware_acceleration is not None:
+            pulumi.set(__self__, "proxy_hardware_acceleration", proxy_hardware_acceleration)
         if proxy_kxp_hardware_acceleration is not None:
             pulumi.set(__self__, "proxy_kxp_hardware_acceleration", proxy_kxp_hardware_acceleration)
         if proxy_re_authentication_mode is not None:
             pulumi.set(__self__, "proxy_re_authentication_mode", proxy_re_authentication_mode)
+        if proxy_resource_mode is not None:
+            pulumi.set(__self__, "proxy_resource_mode", proxy_resource_mode)
         if proxy_worker_count is not None:
             pulumi.set(__self__, "proxy_worker_count", proxy_worker_count)
         if radius_port is not None:
@@ -4108,6 +4672,10 @@ class _SystemGlobalState:
             pulumi.set(__self__, "snat_route_change", snat_route_change)
         if special_file23_support is not None:
             pulumi.set(__self__, "special_file23_support", special_file23_support)
+        if speedtest_server is not None:
+            pulumi.set(__self__, "speedtest_server", speedtest_server)
+        if split_port is not None:
+            pulumi.set(__self__, "split_port", split_port)
         if ssd_trim_date is not None:
             pulumi.set(__self__, "ssd_trim_date", ssd_trim_date)
         if ssd_trim_freq is not None:
@@ -4120,10 +4688,16 @@ class _SystemGlobalState:
             pulumi.set(__self__, "ssd_trim_weekday", ssd_trim_weekday)
         if ssh_cbc_cipher is not None:
             pulumi.set(__self__, "ssh_cbc_cipher", ssh_cbc_cipher)
+        if ssh_enc_algo is not None:
+            pulumi.set(__self__, "ssh_enc_algo", ssh_enc_algo)
         if ssh_hmac_md5 is not None:
             pulumi.set(__self__, "ssh_hmac_md5", ssh_hmac_md5)
+        if ssh_kex_algo is not None:
+            pulumi.set(__self__, "ssh_kex_algo", ssh_kex_algo)
         if ssh_kex_sha1 is not None:
             pulumi.set(__self__, "ssh_kex_sha1", ssh_kex_sha1)
+        if ssh_mac_algo is not None:
+            pulumi.set(__self__, "ssh_mac_algo", ssh_mac_algo)
         if ssh_mac_weak is not None:
             pulumi.set(__self__, "ssh_mac_weak", ssh_mac_weak)
         if ssl_min_proto_version is not None:
@@ -4156,6 +4730,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "tcp_halfopen_timer", tcp_halfopen_timer)
         if tcp_option is not None:
             pulumi.set(__self__, "tcp_option", tcp_option)
+        if tcp_rst_timer is not None:
+            pulumi.set(__self__, "tcp_rst_timer", tcp_rst_timer)
         if tcp_timewait_timer is not None:
             pulumi.set(__self__, "tcp_timewait_timer", tcp_timewait_timer)
         if tftp is not None:
@@ -4186,6 +4762,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "url_filter_count", url_filter_count)
         if user_device_store_max_devices is not None:
             pulumi.set(__self__, "user_device_store_max_devices", user_device_store_max_devices)
+        if user_device_store_max_unified_mem is not None:
+            pulumi.set(__self__, "user_device_store_max_unified_mem", user_device_store_max_unified_mem)
         if user_device_store_max_users is not None:
             pulumi.set(__self__, "user_device_store_max_users", user_device_store_max_users)
         if user_server_cert is not None:
@@ -4202,6 +4780,8 @@ class _SystemGlobalState:
             pulumi.set(__self__, "virtual_server_count", virtual_server_count)
         if virtual_server_hardware_acceleration is not None:
             pulumi.set(__self__, "virtual_server_hardware_acceleration", virtual_server_hardware_acceleration)
+        if virtual_switch_vlan is not None:
+            pulumi.set(__self__, "virtual_switch_vlan", virtual_switch_vlan)
         if wad_affinity is not None:
             pulumi.set(__self__, "wad_affinity", wad_affinity)
         if wad_csvc_cs_count is not None:
@@ -4250,6 +4830,18 @@ class _SystemGlobalState:
         pulumi.set(self, "admin_console_timeout", value)
 
     @property
+    @pulumi.getter(name="adminForticloudSsoLogin")
+    def admin_forticloud_sso_login(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "admin_forticloud_sso_login")
+
+    @admin_forticloud_sso_login.setter
+    def admin_forticloud_sso_login(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_forticloud_sso_login", value)
+
+    @property
     @pulumi.getter(name="adminHstsMaxAge")
     def admin_hsts_max_age(self) -> Optional[pulumi.Input[int]]:
         """
@@ -4284,6 +4876,30 @@ class _SystemGlobalState:
     @admin_https_redirect.setter
     def admin_https_redirect(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "admin_https_redirect", value)
+
+    @property
+    @pulumi.getter(name="adminHttpsSslBannedCiphers")
+    def admin_https_ssl_banned_ciphers(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        """
+        return pulumi.get(self, "admin_https_ssl_banned_ciphers")
+
+    @admin_https_ssl_banned_ciphers.setter
+    def admin_https_ssl_banned_ciphers(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_https_ssl_banned_ciphers", value)
+
+    @property
+    @pulumi.getter(name="adminHttpsSslCiphersuites")
+    def admin_https_ssl_ciphersuites(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        """
+        return pulumi.get(self, "admin_https_ssl_ciphersuites")
+
+    @admin_https_ssl_ciphersuites.setter
+    def admin_https_ssl_ciphersuites(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "admin_https_ssl_ciphersuites", value)
 
     @property
     @pulumi.getter(name="adminHttpsSslVersions")
@@ -4802,6 +5418,18 @@ class _SystemGlobalState:
         pulumi.set(self, "clt_cert_req", value)
 
     @property
+    @pulumi.getter(name="cmdbsvrAffinity")
+    def cmdbsvr_affinity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "cmdbsvr_affinity")
+
+    @cmdbsvr_affinity.setter
+    def cmdbsvr_affinity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cmdbsvr_affinity", value)
+
+    @property
     @pulumi.getter(name="complianceCheck")
     def compliance_check(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4934,6 +5562,18 @@ class _SystemGlobalState:
         pulumi.set(self, "dst", value)
 
     @property
+    @pulumi.getter(name="editVdomPrompt")
+    def edit_vdom_prompt(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "edit_vdom_prompt")
+
+    @edit_vdom_prompt.setter
+    def edit_vdom_prompt(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "edit_vdom_prompt", value)
+
+    @property
     @pulumi.getter(name="endpointControlFdsAccess")
     def endpoint_control_fds_access(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4956,6 +5596,18 @@ class _SystemGlobalState:
     @endpoint_control_portal_port.setter
     def endpoint_control_portal_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "endpoint_control_portal_port", value)
+
+    @property
+    @pulumi.getter(name="extenderControllerReservedNetwork")
+    def extender_controller_reserved_network(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+        """
+        return pulumi.get(self, "extender_controller_reserved_network")
+
+    @extender_controller_reserved_network.setter
+    def extender_controller_reserved_network(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extender_controller_reserved_network", value)
 
     @property
     @pulumi.getter
@@ -5054,6 +5706,18 @@ class _SystemGlobalState:
         pulumi.set(self, "fortiextender_data_port", value)
 
     @property
+    @pulumi.getter(name="fortiextenderDiscoveryLockdown")
+    def fortiextender_discovery_lockdown(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fortiextender_discovery_lockdown")
+
+    @fortiextender_discovery_lockdown.setter
+    def fortiextender_discovery_lockdown(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiextender_discovery_lockdown", value)
+
+    @property
     @pulumi.getter(name="fortiextenderVlanMode")
     def fortiextender_vlan_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5112,6 +5776,18 @@ class _SystemGlobalState:
     @gui_allow_default_hostname.setter
     def gui_allow_default_hostname(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_allow_default_hostname", value)
+
+    @property
+    @pulumi.getter(name="guiCdnUsage")
+    def gui_cdn_usage(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_cdn_usage")
+
+    @gui_cdn_usage.setter
+    def gui_cdn_usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_cdn_usage", value)
 
     @property
     @pulumi.getter(name="guiCertificates")
@@ -5282,6 +5958,42 @@ class _SystemGlobalState:
         pulumi.set(self, "gui_lines_per_page", value)
 
     @property
+    @pulumi.getter(name="guiLocalOut")
+    def gui_local_out(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_local_out")
+
+    @gui_local_out.setter
+    def gui_local_out(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_local_out", value)
+
+    @property
+    @pulumi.getter(name="guiReplacementMessageGroups")
+    def gui_replacement_message_groups(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_replacement_message_groups")
+
+    @gui_replacement_message_groups.setter
+    def gui_replacement_message_groups(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_replacement_message_groups", value)
+
+    @property
+    @pulumi.getter(name="guiRestApiCache")
+    def gui_rest_api_cache(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_rest_api_cache")
+
+    @gui_rest_api_cache.setter
+    def gui_rest_api_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_rest_api_cache", value)
+
+    @property
     @pulumi.getter(name="guiTheme")
     def gui_theme(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5304,6 +6016,18 @@ class _SystemGlobalState:
     @gui_wireless_opensecurity.setter
     def gui_wireless_opensecurity(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gui_wireless_opensecurity", value)
+
+    @property
+    @pulumi.getter(name="haAffinity")
+    def ha_affinity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "ha_affinity")
+
+    @ha_affinity.setter
+    def ha_affinity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ha_affinity", value)
 
     @property
     @pulumi.getter(name="honorDf")
@@ -5354,6 +6078,18 @@ class _SystemGlobalState:
         pulumi.set(self, "ike_embryonic_limit", value)
 
     @property
+    @pulumi.getter(name="internetServiceDatabase")
+    def internet_service_database(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+        """
+        return pulumi.get(self, "internet_service_database")
+
+    @internet_service_database.setter
+    def internet_service_database(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "internet_service_database", value)
+
+    @property
     @pulumi.getter
     def interval(self) -> Optional[pulumi.Input[int]]:
         """
@@ -5400,6 +6136,18 @@ class _SystemGlobalState:
     @ipsec_asic_offload.setter
     def ipsec_asic_offload(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ipsec_asic_offload", value)
+
+    @property
+    @pulumi.getter(name="ipsecHaSeqjumpRate")
+    def ipsec_ha_seqjump_rate(self) -> Optional[pulumi.Input[int]]:
+        """
+        ESP jump ahead rate (1G - 10G pps equivalent).
+        """
+        return pulumi.get(self, "ipsec_ha_seqjump_rate")
+
+    @ipsec_ha_seqjump_rate.setter
+    def ipsec_ha_seqjump_rate(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ipsec_ha_seqjump_rate", value)
 
     @property
     @pulumi.getter(name="ipsecHmacOffload")
@@ -5582,6 +6330,42 @@ class _SystemGlobalState:
         pulumi.set(self, "long_vdom_name", value)
 
     @property
+    @pulumi.getter(name="managementIp")
+    def management_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        """
+        return pulumi.get(self, "management_ip")
+
+    @management_ip.setter
+    def management_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "management_ip", value)
+
+    @property
+    @pulumi.getter(name="managementPort")
+    def management_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Overriding port for management connection (Overrides admin port).
+        """
+        return pulumi.get(self, "management_port")
+
+    @management_port.setter
+    def management_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "management_port", value)
+
+    @property
+    @pulumi.getter(name="managementPortUseAdminSport")
+    def management_port_use_admin_sport(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "management_port_use_admin_sport")
+
+    @management_port_use_admin_sport.setter
+    def management_port_use_admin_sport(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "management_port_use_admin_sport", value)
+
+    @property
     @pulumi.getter(name="managementVdom")
     def management_vdom(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5750,6 +6534,18 @@ class _SystemGlobalState:
         pulumi.set(self, "per_user_bwl", value)
 
     @property
+    @pulumi.getter(name="pmtuDiscovery")
+    def pmtu_discovery(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pmtu_discovery")
+
+    @pmtu_discovery.setter
+    def pmtu_discovery(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pmtu_discovery", value)
+
+    @property
     @pulumi.getter(name="policyAuthConcurrent")
     def policy_auth_concurrent(self) -> Optional[pulumi.Input[int]]:
         """
@@ -5834,6 +6630,18 @@ class _SystemGlobalState:
         pulumi.set(self, "proxy_auth_timeout", value)
 
     @property
+    @pulumi.getter(name="proxyCertUseMgmtVdom")
+    def proxy_cert_use_mgmt_vdom(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_cert_use_mgmt_vdom")
+
+    @proxy_cert_use_mgmt_vdom.setter
+    def proxy_cert_use_mgmt_vdom(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_cert_use_mgmt_vdom", value)
+
+    @property
     @pulumi.getter(name="proxyCipherHardwareAcceleration")
     def proxy_cipher_hardware_acceleration(self) -> Optional[pulumi.Input[str]]:
         """
@@ -5844,6 +6652,18 @@ class _SystemGlobalState:
     @proxy_cipher_hardware_acceleration.setter
     def proxy_cipher_hardware_acceleration(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_cipher_hardware_acceleration", value)
+
+    @property
+    @pulumi.getter(name="proxyHardwareAcceleration")
+    def proxy_hardware_acceleration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "proxy_hardware_acceleration")
+
+    @proxy_hardware_acceleration.setter
+    def proxy_hardware_acceleration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_hardware_acceleration", value)
 
     @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
@@ -5868,6 +6688,18 @@ class _SystemGlobalState:
     @proxy_re_authentication_mode.setter
     def proxy_re_authentication_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "proxy_re_authentication_mode", value)
+
+    @property
+    @pulumi.getter(name="proxyResourceMode")
+    def proxy_resource_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_resource_mode")
+
+    @proxy_resource_mode.setter
+    def proxy_resource_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "proxy_resource_mode", value)
 
     @property
     @pulumi.getter(name="proxyWorkerCount")
@@ -6050,6 +6882,30 @@ class _SystemGlobalState:
         pulumi.set(self, "special_file23_support", value)
 
     @property
+    @pulumi.getter(name="speedtestServer")
+    def speedtest_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable speed test server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "speedtest_server")
+
+    @speedtest_server.setter
+    def speedtest_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "speedtest_server", value)
+
+    @property
+    @pulumi.getter(name="splitPort")
+    def split_port(self) -> Optional[pulumi.Input[str]]:
+        """
+        Split port(s) to multiple 10Gbps ports.
+        """
+        return pulumi.get(self, "split_port")
+
+    @split_port.setter
+    def split_port(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "split_port", value)
+
+    @property
     @pulumi.getter(name="ssdTrimDate")
     def ssd_trim_date(self) -> Optional[pulumi.Input[int]]:
         """
@@ -6122,6 +6978,18 @@ class _SystemGlobalState:
         pulumi.set(self, "ssh_cbc_cipher", value)
 
     @property
+    @pulumi.getter(name="sshEncAlgo")
+    def ssh_enc_algo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+        """
+        return pulumi.get(self, "ssh_enc_algo")
+
+    @ssh_enc_algo.setter
+    def ssh_enc_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_enc_algo", value)
+
+    @property
     @pulumi.getter(name="sshHmacMd5")
     def ssh_hmac_md5(self) -> Optional[pulumi.Input[str]]:
         """
@@ -6134,6 +7002,18 @@ class _SystemGlobalState:
         pulumi.set(self, "ssh_hmac_md5", value)
 
     @property
+    @pulumi.getter(name="sshKexAlgo")
+    def ssh_kex_algo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+        """
+        return pulumi.get(self, "ssh_kex_algo")
+
+    @ssh_kex_algo.setter
+    def ssh_kex_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_kex_algo", value)
+
+    @property
     @pulumi.getter(name="sshKexSha1")
     def ssh_kex_sha1(self) -> Optional[pulumi.Input[str]]:
         """
@@ -6144,6 +7024,18 @@ class _SystemGlobalState:
     @ssh_kex_sha1.setter
     def ssh_kex_sha1(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssh_kex_sha1", value)
+
+    @property
+    @pulumi.getter(name="sshMacAlgo")
+    def ssh_mac_algo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+        """
+        return pulumi.get(self, "ssh_mac_algo")
+
+    @ssh_mac_algo.setter
+    def ssh_mac_algo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssh_mac_algo", value)
 
     @property
     @pulumi.getter(name="sshMacWeak")
@@ -6338,6 +7230,18 @@ class _SystemGlobalState:
         pulumi.set(self, "tcp_option", value)
 
     @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
+
+    @tcp_rst_timer.setter
+    def tcp_rst_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tcp_rst_timer", value)
+
+    @property
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> Optional[pulumi.Input[int]]:
         """
@@ -6518,6 +7422,18 @@ class _SystemGlobalState:
         pulumi.set(self, "user_device_store_max_devices", value)
 
     @property
+    @pulumi.getter(name="userDeviceStoreMaxUnifiedMem")
+    def user_device_store_max_unified_mem(self) -> Optional[pulumi.Input[int]]:
+        """
+        Maximum unified memory allowed in user device store.
+        """
+        return pulumi.get(self, "user_device_store_max_unified_mem")
+
+    @user_device_store_max_unified_mem.setter
+    def user_device_store_max_unified_mem(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "user_device_store_max_unified_mem", value)
+
+    @property
     @pulumi.getter(name="userDeviceStoreMaxUsers")
     def user_device_store_max_users(self) -> Optional[pulumi.Input[int]]:
         """
@@ -6557,7 +7473,7 @@ class _SystemGlobalState:
     @pulumi.getter(name="vdomMode")
     def vdom_mode(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         """
         return pulumi.get(self, "vdom_mode")
 
@@ -6612,6 +7528,18 @@ class _SystemGlobalState:
     @virtual_server_hardware_acceleration.setter
     def virtual_server_hardware_acceleration(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "virtual_server_hardware_acceleration", value)
+
+    @property
+    @pulumi.getter(name="virtualSwitchVlan")
+    def virtual_switch_vlan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "virtual_switch_vlan")
+
+    @virtual_switch_vlan.setter
+    def virtual_switch_vlan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "virtual_switch_vlan", value)
 
     @property
     @pulumi.getter(name="wadAffinity")
@@ -6753,9 +7681,12 @@ class SystemGlobal(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
                  admin_https_pki_required: Optional[pulumi.Input[str]] = None,
                  admin_https_redirect: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_banned_ciphers: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_ciphersuites: Optional[pulumi.Input[str]] = None,
                  admin_https_ssl_versions: Optional[pulumi.Input[str]] = None,
                  admin_lockout_duration: Optional[pulumi.Input[int]] = None,
                  admin_lockout_threshold: Optional[pulumi.Input[int]] = None,
@@ -6799,6 +7730,7 @@ class SystemGlobal(pulumi.CustomResource):
                  cli_audit_log: Optional[pulumi.Input[str]] = None,
                  cloud_communication: Optional[pulumi.Input[str]] = None,
                  clt_cert_req: Optional[pulumi.Input[str]] = None,
+                 cmdbsvr_affinity: Optional[pulumi.Input[str]] = None,
                  compliance_check: Optional[pulumi.Input[str]] = None,
                  compliance_check_time: Optional[pulumi.Input[str]] = None,
                  cpu_use_threshold: Optional[pulumi.Input[int]] = None,
@@ -6810,8 +7742,10 @@ class SystemGlobal(pulumi.CustomResource):
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
                  endpoint_control_portal_port: Optional[pulumi.Input[int]] = None,
+                 extender_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  faz_disk_buffer_size: Optional[pulumi.Input[int]] = None,
                  fds_statistics: Optional[pulumi.Input[str]] = None,
@@ -6820,11 +7754,13 @@ class SystemGlobal(pulumi.CustomResource):
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
+                 fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
                  fortiextender_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
                  gui_date_format: Optional[pulumi.Input[str]] = None,
@@ -6839,16 +7775,22 @@ class SystemGlobal(pulumi.CustomResource):
                  gui_fortisandbox_cloud: Optional[pulumi.Input[str]] = None,
                  gui_ipv6: Optional[pulumi.Input[str]] = None,
                  gui_lines_per_page: Optional[pulumi.Input[int]] = None,
+                 gui_local_out: Optional[pulumi.Input[str]] = None,
+                 gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_rest_api_cache: Optional[pulumi.Input[str]] = None,
                  gui_theme: Optional[pulumi.Input[str]] = None,
                  gui_wireless_opensecurity: Optional[pulumi.Input[str]] = None,
+                 ha_affinity: Optional[pulumi.Input[str]] = None,
                  honor_df: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 internet_service_database: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
@@ -6864,6 +7806,9 @@ class SystemGlobal(pulumi.CustomResource):
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
                  login_timestamp: Optional[pulumi.Input[str]] = None,
                  long_vdom_name: Optional[pulumi.Input[str]] = None,
+                 management_ip: Optional[pulumi.Input[str]] = None,
+                 management_port: Optional[pulumi.Input[int]] = None,
+                 management_port_use_admin_sport: Optional[pulumi.Input[str]] = None,
                  management_vdom: Optional[pulumi.Input[str]] = None,
                  max_dlpstat_memory: Optional[pulumi.Input[int]] = None,
                  max_route_cache_size: Optional[pulumi.Input[int]] = None,
@@ -6878,6 +7823,7 @@ class SystemGlobal(pulumi.CustomResource):
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
+                 pmtu_discovery: Optional[pulumi.Input[str]] = None,
                  policy_auth_concurrent: Optional[pulumi.Input[int]] = None,
                  post_login_banner: Optional[pulumi.Input[str]] = None,
                  pre_login_banner: Optional[pulumi.Input[str]] = None,
@@ -6885,9 +7831,12 @@ class SystemGlobal(pulumi.CustomResource):
                  proxy_auth_lifetime: Optional[pulumi.Input[str]] = None,
                  proxy_auth_lifetime_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
@@ -6903,14 +7852,19 @@ class SystemGlobal(pulumi.CustomResource):
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
+                 speedtest_server: Optional[pulumi.Input[str]] = None,
+                 split_port: Optional[pulumi.Input[str]] = None,
                  ssd_trim_date: Optional[pulumi.Input[int]] = None,
                  ssd_trim_freq: Optional[pulumi.Input[str]] = None,
                  ssd_trim_hour: Optional[pulumi.Input[int]] = None,
                  ssd_trim_min: Optional[pulumi.Input[int]] = None,
                  ssd_trim_weekday: Optional[pulumi.Input[str]] = None,
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
+                 ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
+                 ssh_mac_algo: Optional[pulumi.Input[str]] = None,
                  ssh_mac_weak: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_static_key_ciphers: Optional[pulumi.Input[str]] = None,
@@ -6927,6 +7881,7 @@ class SystemGlobal(pulumi.CustomResource):
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  tftp: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -6942,6 +7897,7 @@ class SystemGlobal(pulumi.CustomResource):
                  url_filter_affinity: Optional[pulumi.Input[str]] = None,
                  url_filter_count: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_devices: Optional[pulumi.Input[int]] = None,
+                 user_device_store_max_unified_mem: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_users: Optional[pulumi.Input[int]] = None,
                  user_server_cert: Optional[pulumi.Input[str]] = None,
                  vdom_admin: Optional[pulumi.Input[str]] = None,
@@ -6950,6 +7906,7 @@ class SystemGlobal(pulumi.CustomResource):
                  vip_arp_range: Optional[pulumi.Input[str]] = None,
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
@@ -6992,9 +7949,12 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_hsts_max_age: HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
         :param pulumi.Input[str] admin_https_pki_required: Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_https_redirect: Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] admin_https_ssl_banned_ciphers: Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        :param pulumi.Input[str] admin_https_ssl_ciphersuites: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
         :param pulumi.Input[str] admin_https_ssl_versions: Allowed TLS versions for web administration.
         :param pulumi.Input[int] admin_lockout_duration: Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
         :param pulumi.Input[int] admin_lockout_threshold: Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
@@ -7038,6 +7998,7 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] cli_audit_log: Enable/disable CLI audit log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cloud_communication: Enable/disable all cloud communication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clt_cert_req: Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
         :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
@@ -7049,8 +8010,10 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] edit_vdom_prompt: Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] endpoint_control_fds_access: Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] endpoint_control_portal_port: Endpoint control portal port (1 - 65535).
+        :param pulumi.Input[str] extender_controller_reserved_network: Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
         :param pulumi.Input[int] failtime: Fail-time for server lost.
         :param pulumi.Input[int] faz_disk_buffer_size: Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
         :param pulumi.Input[str] fds_statistics: Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
@@ -7059,11 +8022,13 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] fgd_alert_subscription: Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiextender_data_port: FortiExtender data port (1024 - 49150, default = 25246).
+        :param pulumi.Input[str] fortiextender_discovery_lockdown: Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] fortiextender_vlan_mode: Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiipam_integration: Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiservice_port: FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_cdn_usage: Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_certificates: Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_custom_language: Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_date_format: Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
@@ -7078,16 +8043,22 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] gui_fortisandbox_cloud: Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ipv6: Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gui_lines_per_page: Number of lines to display per page for web administration.
+        :param pulumi.Input[str] gui_local_out: Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_rest_api_cache: Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_theme: Color scheme for the administration GUI.
         :param pulumi.Input[str] gui_wireless_opensecurity: Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_affinity: Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] honor_df: Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hostname: FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
         :param pulumi.Input[int] igmp_state_limit: Maximum number of IGMP memberships (96 - 64000, default = 3200).
         :param pulumi.Input[int] ike_embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] internet_service_database: Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
         :param pulumi.Input[int] interval: Dead gateway detection interval.
         :param pulumi.Input[str] ip_src_port_range: IP source port range used for traffic originating from the FortiGate unit.
         :param pulumi.Input[str] ips_affinity: Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
@@ -7103,6 +8074,9 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] log_uuid_policy: Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_timestamp: Enable/disable login time recording. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_vdom_name: Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
+        :param pulumi.Input[str] management_port_use_admin_sport: Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] management_vdom: Management virtual domain name.
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
@@ -7117,6 +8091,7 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policy_auth_concurrent: Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
         :param pulumi.Input[str] post_login_banner: Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pre_login_banner: Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
@@ -7124,9 +8099,12 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] proxy_auth_lifetime: Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_auth_lifetime_timeout: Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
         :param pulumi.Input[int] proxy_auth_timeout: Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
+        :param pulumi.Input[str] proxy_cert_use_mgmt_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_cipher_hardware_acceleration: Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] proxy_hardware_acceleration: Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_kxp_hardware_acceleration: Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_re_authentication_mode: Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
+        :param pulumi.Input[str] proxy_resource_mode: Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_worker_count: Proxy worker count.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
@@ -7142,14 +8120,19 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] send_pmtu_icmp: Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] snat_route_change: Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] special_file23_support: Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] speedtest_server: Enable/disable speed test server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] split_port: Split port(s) to multiple 10Gbps ports.
         :param pulumi.Input[int] ssd_trim_date: Date within a month to run ssd trim.
         :param pulumi.Input[str] ssd_trim_freq: How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] ssd_trim_hour: Hour of the day on which to run SSD Trim (0 - 23, default = 1).
         :param pulumi.Input[int] ssd_trim_min: Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
         :param pulumi.Input[str] ssd_trim_weekday: Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] ssh_cbc_cipher: Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_enc_algo: Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
         :param pulumi.Input[str] ssh_hmac_md5: Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_kex_algo: Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
         :param pulumi.Input[str] ssh_kex_sha1: Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_mac_algo: Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
         :param pulumi.Input[str] ssh_mac_weak: Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
         :param pulumi.Input[str] ssl_static_key_ciphers: Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
@@ -7166,6 +8149,7 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] tcp_halfclose_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
         :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
@@ -7181,14 +8165,16 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] url_filter_affinity: URL filter CPU affinity.
         :param pulumi.Input[int] url_filter_count: URL filter daemon count.
         :param pulumi.Input[int] user_device_store_max_devices: Maximum number of devices allowed in user device store.
+        :param pulumi.Input[int] user_device_store_max_unified_mem: Maximum unified memory allowed in user device store.
         :param pulumi.Input[int] user_device_store_max_users: Maximum number of users allowed in user device store.
         :param pulumi.Input[str] user_server_cert: Certificate to use for https user authentication.
         :param pulumi.Input[str] vdom_admin: Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip_arp_range: Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
         :param pulumi.Input[int] virtual_server_count: Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
         :param pulumi.Input[str] virtual_server_hardware_acceleration: Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] virtual_switch_vlan: Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wad_affinity: Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] wad_csvc_cs_count: Number of concurrent WAD-cache-service object-cache processes.
         :param pulumi.Input[int] wad_csvc_db_count: Number of concurrent WAD-cache-service byte-cache processes.
@@ -7250,9 +8236,12 @@ class SystemGlobal(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  admin_concurrent: Optional[pulumi.Input[str]] = None,
                  admin_console_timeout: Optional[pulumi.Input[int]] = None,
+                 admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
                  admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
                  admin_https_pki_required: Optional[pulumi.Input[str]] = None,
                  admin_https_redirect: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_banned_ciphers: Optional[pulumi.Input[str]] = None,
+                 admin_https_ssl_ciphersuites: Optional[pulumi.Input[str]] = None,
                  admin_https_ssl_versions: Optional[pulumi.Input[str]] = None,
                  admin_lockout_duration: Optional[pulumi.Input[int]] = None,
                  admin_lockout_threshold: Optional[pulumi.Input[int]] = None,
@@ -7296,6 +8285,7 @@ class SystemGlobal(pulumi.CustomResource):
                  cli_audit_log: Optional[pulumi.Input[str]] = None,
                  cloud_communication: Optional[pulumi.Input[str]] = None,
                  clt_cert_req: Optional[pulumi.Input[str]] = None,
+                 cmdbsvr_affinity: Optional[pulumi.Input[str]] = None,
                  compliance_check: Optional[pulumi.Input[str]] = None,
                  compliance_check_time: Optional[pulumi.Input[str]] = None,
                  cpu_use_threshold: Optional[pulumi.Input[int]] = None,
@@ -7307,8 +8297,10 @@ class SystemGlobal(pulumi.CustomResource):
                  dh_params: Optional[pulumi.Input[str]] = None,
                  dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
                  endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
                  endpoint_control_portal_port: Optional[pulumi.Input[int]] = None,
+                 extender_controller_reserved_network: Optional[pulumi.Input[str]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  faz_disk_buffer_size: Optional[pulumi.Input[int]] = None,
                  fds_statistics: Optional[pulumi.Input[str]] = None,
@@ -7317,11 +8309,13 @@ class SystemGlobal(pulumi.CustomResource):
                  fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  fortiextender_data_port: Optional[pulumi.Input[int]] = None,
+                 fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
                  fortiextender_vlan_mode: Optional[pulumi.Input[str]] = None,
                  fortiipam_integration: Optional[pulumi.Input[str]] = None,
                  fortiservice_port: Optional[pulumi.Input[int]] = None,
                  fortitoken_cloud: Optional[pulumi.Input[str]] = None,
                  gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+                 gui_cdn_usage: Optional[pulumi.Input[str]] = None,
                  gui_certificates: Optional[pulumi.Input[str]] = None,
                  gui_custom_language: Optional[pulumi.Input[str]] = None,
                  gui_date_format: Optional[pulumi.Input[str]] = None,
@@ -7336,16 +8330,22 @@ class SystemGlobal(pulumi.CustomResource):
                  gui_fortisandbox_cloud: Optional[pulumi.Input[str]] = None,
                  gui_ipv6: Optional[pulumi.Input[str]] = None,
                  gui_lines_per_page: Optional[pulumi.Input[int]] = None,
+                 gui_local_out: Optional[pulumi.Input[str]] = None,
+                 gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+                 gui_rest_api_cache: Optional[pulumi.Input[str]] = None,
                  gui_theme: Optional[pulumi.Input[str]] = None,
                  gui_wireless_opensecurity: Optional[pulumi.Input[str]] = None,
+                 ha_affinity: Optional[pulumi.Input[str]] = None,
                  honor_df: Optional[pulumi.Input[str]] = None,
                  hostname: Optional[pulumi.Input[str]] = None,
                  igmp_state_limit: Optional[pulumi.Input[int]] = None,
                  ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+                 internet_service_database: Optional[pulumi.Input[str]] = None,
                  interval: Optional[pulumi.Input[int]] = None,
                  ip_src_port_range: Optional[pulumi.Input[str]] = None,
                  ips_affinity: Optional[pulumi.Input[str]] = None,
                  ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
+                 ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
                  ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
                  ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
                  ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
@@ -7361,6 +8361,9 @@ class SystemGlobal(pulumi.CustomResource):
                  log_uuid_policy: Optional[pulumi.Input[str]] = None,
                  login_timestamp: Optional[pulumi.Input[str]] = None,
                  long_vdom_name: Optional[pulumi.Input[str]] = None,
+                 management_ip: Optional[pulumi.Input[str]] = None,
+                 management_port: Optional[pulumi.Input[int]] = None,
+                 management_port_use_admin_sport: Optional[pulumi.Input[str]] = None,
                  management_vdom: Optional[pulumi.Input[str]] = None,
                  max_dlpstat_memory: Optional[pulumi.Input[int]] = None,
                  max_route_cache_size: Optional[pulumi.Input[int]] = None,
@@ -7375,6 +8378,7 @@ class SystemGlobal(pulumi.CustomResource):
                  ndp_max_entry: Optional[pulumi.Input[int]] = None,
                  per_user_bal: Optional[pulumi.Input[str]] = None,
                  per_user_bwl: Optional[pulumi.Input[str]] = None,
+                 pmtu_discovery: Optional[pulumi.Input[str]] = None,
                  policy_auth_concurrent: Optional[pulumi.Input[int]] = None,
                  post_login_banner: Optional[pulumi.Input[str]] = None,
                  pre_login_banner: Optional[pulumi.Input[str]] = None,
@@ -7382,9 +8386,12 @@ class SystemGlobal(pulumi.CustomResource):
                  proxy_auth_lifetime: Optional[pulumi.Input[str]] = None,
                  proxy_auth_lifetime_timeout: Optional[pulumi.Input[int]] = None,
                  proxy_auth_timeout: Optional[pulumi.Input[int]] = None,
+                 proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
                  proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+                 proxy_resource_mode: Optional[pulumi.Input[str]] = None,
                  proxy_worker_count: Optional[pulumi.Input[int]] = None,
                  radius_port: Optional[pulumi.Input[int]] = None,
                  reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
@@ -7400,14 +8407,19 @@ class SystemGlobal(pulumi.CustomResource):
                  send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
                  snat_route_change: Optional[pulumi.Input[str]] = None,
                  special_file23_support: Optional[pulumi.Input[str]] = None,
+                 speedtest_server: Optional[pulumi.Input[str]] = None,
+                 split_port: Optional[pulumi.Input[str]] = None,
                  ssd_trim_date: Optional[pulumi.Input[int]] = None,
                  ssd_trim_freq: Optional[pulumi.Input[str]] = None,
                  ssd_trim_hour: Optional[pulumi.Input[int]] = None,
                  ssd_trim_min: Optional[pulumi.Input[int]] = None,
                  ssd_trim_weekday: Optional[pulumi.Input[str]] = None,
                  ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
+                 ssh_enc_algo: Optional[pulumi.Input[str]] = None,
                  ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+                 ssh_kex_algo: Optional[pulumi.Input[str]] = None,
                  ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
+                 ssh_mac_algo: Optional[pulumi.Input[str]] = None,
                  ssh_mac_weak: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  ssl_static_key_ciphers: Optional[pulumi.Input[str]] = None,
@@ -7424,6 +8436,7 @@ class SystemGlobal(pulumi.CustomResource):
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_option: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  tftp: Optional[pulumi.Input[str]] = None,
                  timezone: Optional[pulumi.Input[str]] = None,
@@ -7439,6 +8452,7 @@ class SystemGlobal(pulumi.CustomResource):
                  url_filter_affinity: Optional[pulumi.Input[str]] = None,
                  url_filter_count: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_devices: Optional[pulumi.Input[int]] = None,
+                 user_device_store_max_unified_mem: Optional[pulumi.Input[int]] = None,
                  user_device_store_max_users: Optional[pulumi.Input[int]] = None,
                  user_server_cert: Optional[pulumi.Input[str]] = None,
                  vdom_admin: Optional[pulumi.Input[str]] = None,
@@ -7447,6 +8461,7 @@ class SystemGlobal(pulumi.CustomResource):
                  vip_arp_range: Optional[pulumi.Input[str]] = None,
                  virtual_server_count: Optional[pulumi.Input[int]] = None,
                  virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+                 virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
                  wad_affinity: Optional[pulumi.Input[str]] = None,
                  wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
                  wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
@@ -7465,6 +8480,8 @@ class SystemGlobal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -7472,9 +8489,12 @@ class SystemGlobal(pulumi.CustomResource):
 
             __props__.__dict__["admin_concurrent"] = admin_concurrent
             __props__.__dict__["admin_console_timeout"] = admin_console_timeout
+            __props__.__dict__["admin_forticloud_sso_login"] = admin_forticloud_sso_login
             __props__.__dict__["admin_hsts_max_age"] = admin_hsts_max_age
             __props__.__dict__["admin_https_pki_required"] = admin_https_pki_required
             __props__.__dict__["admin_https_redirect"] = admin_https_redirect
+            __props__.__dict__["admin_https_ssl_banned_ciphers"] = admin_https_ssl_banned_ciphers
+            __props__.__dict__["admin_https_ssl_ciphersuites"] = admin_https_ssl_ciphersuites
             __props__.__dict__["admin_https_ssl_versions"] = admin_https_ssl_versions
             __props__.__dict__["admin_lockout_duration"] = admin_lockout_duration
             __props__.__dict__["admin_lockout_threshold"] = admin_lockout_threshold
@@ -7518,6 +8538,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["cli_audit_log"] = cli_audit_log
             __props__.__dict__["cloud_communication"] = cloud_communication
             __props__.__dict__["clt_cert_req"] = clt_cert_req
+            __props__.__dict__["cmdbsvr_affinity"] = cmdbsvr_affinity
             __props__.__dict__["compliance_check"] = compliance_check
             __props__.__dict__["compliance_check_time"] = compliance_check_time
             __props__.__dict__["cpu_use_threshold"] = cpu_use_threshold
@@ -7529,8 +8550,10 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["dh_params"] = dh_params
             __props__.__dict__["dnsproxy_worker_count"] = dnsproxy_worker_count
             __props__.__dict__["dst"] = dst
+            __props__.__dict__["edit_vdom_prompt"] = edit_vdom_prompt
             __props__.__dict__["endpoint_control_fds_access"] = endpoint_control_fds_access
             __props__.__dict__["endpoint_control_portal_port"] = endpoint_control_portal_port
+            __props__.__dict__["extender_controller_reserved_network"] = extender_controller_reserved_network
             __props__.__dict__["failtime"] = failtime
             __props__.__dict__["faz_disk_buffer_size"] = faz_disk_buffer_size
             __props__.__dict__["fds_statistics"] = fds_statistics
@@ -7539,11 +8562,13 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["fgd_alert_subscription"] = fgd_alert_subscription
             __props__.__dict__["fortiextender"] = fortiextender
             __props__.__dict__["fortiextender_data_port"] = fortiextender_data_port
+            __props__.__dict__["fortiextender_discovery_lockdown"] = fortiextender_discovery_lockdown
             __props__.__dict__["fortiextender_vlan_mode"] = fortiextender_vlan_mode
             __props__.__dict__["fortiipam_integration"] = fortiipam_integration
             __props__.__dict__["fortiservice_port"] = fortiservice_port
             __props__.__dict__["fortitoken_cloud"] = fortitoken_cloud
             __props__.__dict__["gui_allow_default_hostname"] = gui_allow_default_hostname
+            __props__.__dict__["gui_cdn_usage"] = gui_cdn_usage
             __props__.__dict__["gui_certificates"] = gui_certificates
             __props__.__dict__["gui_custom_language"] = gui_custom_language
             __props__.__dict__["gui_date_format"] = gui_date_format
@@ -7558,16 +8583,22 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["gui_fortisandbox_cloud"] = gui_fortisandbox_cloud
             __props__.__dict__["gui_ipv6"] = gui_ipv6
             __props__.__dict__["gui_lines_per_page"] = gui_lines_per_page
+            __props__.__dict__["gui_local_out"] = gui_local_out
+            __props__.__dict__["gui_replacement_message_groups"] = gui_replacement_message_groups
+            __props__.__dict__["gui_rest_api_cache"] = gui_rest_api_cache
             __props__.__dict__["gui_theme"] = gui_theme
             __props__.__dict__["gui_wireless_opensecurity"] = gui_wireless_opensecurity
+            __props__.__dict__["ha_affinity"] = ha_affinity
             __props__.__dict__["honor_df"] = honor_df
             __props__.__dict__["hostname"] = hostname
             __props__.__dict__["igmp_state_limit"] = igmp_state_limit
             __props__.__dict__["ike_embryonic_limit"] = ike_embryonic_limit
+            __props__.__dict__["internet_service_database"] = internet_service_database
             __props__.__dict__["interval"] = interval
             __props__.__dict__["ip_src_port_range"] = ip_src_port_range
             __props__.__dict__["ips_affinity"] = ips_affinity
             __props__.__dict__["ipsec_asic_offload"] = ipsec_asic_offload
+            __props__.__dict__["ipsec_ha_seqjump_rate"] = ipsec_ha_seqjump_rate
             __props__.__dict__["ipsec_hmac_offload"] = ipsec_hmac_offload
             __props__.__dict__["ipsec_soft_dec_async"] = ipsec_soft_dec_async
             __props__.__dict__["ipv6_accept_dad"] = ipv6_accept_dad
@@ -7583,6 +8614,9 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["log_uuid_policy"] = log_uuid_policy
             __props__.__dict__["login_timestamp"] = login_timestamp
             __props__.__dict__["long_vdom_name"] = long_vdom_name
+            __props__.__dict__["management_ip"] = management_ip
+            __props__.__dict__["management_port"] = management_port
+            __props__.__dict__["management_port_use_admin_sport"] = management_port_use_admin_sport
             __props__.__dict__["management_vdom"] = management_vdom
             __props__.__dict__["max_dlpstat_memory"] = max_dlpstat_memory
             __props__.__dict__["max_route_cache_size"] = max_route_cache_size
@@ -7597,6 +8631,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["ndp_max_entry"] = ndp_max_entry
             __props__.__dict__["per_user_bal"] = per_user_bal
             __props__.__dict__["per_user_bwl"] = per_user_bwl
+            __props__.__dict__["pmtu_discovery"] = pmtu_discovery
             __props__.__dict__["policy_auth_concurrent"] = policy_auth_concurrent
             __props__.__dict__["post_login_banner"] = post_login_banner
             __props__.__dict__["pre_login_banner"] = pre_login_banner
@@ -7604,9 +8639,12 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["proxy_auth_lifetime"] = proxy_auth_lifetime
             __props__.__dict__["proxy_auth_lifetime_timeout"] = proxy_auth_lifetime_timeout
             __props__.__dict__["proxy_auth_timeout"] = proxy_auth_timeout
+            __props__.__dict__["proxy_cert_use_mgmt_vdom"] = proxy_cert_use_mgmt_vdom
             __props__.__dict__["proxy_cipher_hardware_acceleration"] = proxy_cipher_hardware_acceleration
+            __props__.__dict__["proxy_hardware_acceleration"] = proxy_hardware_acceleration
             __props__.__dict__["proxy_kxp_hardware_acceleration"] = proxy_kxp_hardware_acceleration
             __props__.__dict__["proxy_re_authentication_mode"] = proxy_re_authentication_mode
+            __props__.__dict__["proxy_resource_mode"] = proxy_resource_mode
             __props__.__dict__["proxy_worker_count"] = proxy_worker_count
             __props__.__dict__["radius_port"] = radius_port
             __props__.__dict__["reboot_upon_config_restore"] = reboot_upon_config_restore
@@ -7622,14 +8660,19 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["send_pmtu_icmp"] = send_pmtu_icmp
             __props__.__dict__["snat_route_change"] = snat_route_change
             __props__.__dict__["special_file23_support"] = special_file23_support
+            __props__.__dict__["speedtest_server"] = speedtest_server
+            __props__.__dict__["split_port"] = split_port
             __props__.__dict__["ssd_trim_date"] = ssd_trim_date
             __props__.__dict__["ssd_trim_freq"] = ssd_trim_freq
             __props__.__dict__["ssd_trim_hour"] = ssd_trim_hour
             __props__.__dict__["ssd_trim_min"] = ssd_trim_min
             __props__.__dict__["ssd_trim_weekday"] = ssd_trim_weekday
             __props__.__dict__["ssh_cbc_cipher"] = ssh_cbc_cipher
+            __props__.__dict__["ssh_enc_algo"] = ssh_enc_algo
             __props__.__dict__["ssh_hmac_md5"] = ssh_hmac_md5
+            __props__.__dict__["ssh_kex_algo"] = ssh_kex_algo
             __props__.__dict__["ssh_kex_sha1"] = ssh_kex_sha1
+            __props__.__dict__["ssh_mac_algo"] = ssh_mac_algo
             __props__.__dict__["ssh_mac_weak"] = ssh_mac_weak
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
             __props__.__dict__["ssl_static_key_ciphers"] = ssl_static_key_ciphers
@@ -7646,6 +8689,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["tcp_halfclose_timer"] = tcp_halfclose_timer
             __props__.__dict__["tcp_halfopen_timer"] = tcp_halfopen_timer
             __props__.__dict__["tcp_option"] = tcp_option
+            __props__.__dict__["tcp_rst_timer"] = tcp_rst_timer
             __props__.__dict__["tcp_timewait_timer"] = tcp_timewait_timer
             __props__.__dict__["tftp"] = tftp
             __props__.__dict__["timezone"] = timezone
@@ -7661,6 +8705,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["url_filter_affinity"] = url_filter_affinity
             __props__.__dict__["url_filter_count"] = url_filter_count
             __props__.__dict__["user_device_store_max_devices"] = user_device_store_max_devices
+            __props__.__dict__["user_device_store_max_unified_mem"] = user_device_store_max_unified_mem
             __props__.__dict__["user_device_store_max_users"] = user_device_store_max_users
             __props__.__dict__["user_server_cert"] = user_server_cert
             __props__.__dict__["vdom_admin"] = vdom_admin
@@ -7669,6 +8714,7 @@ class SystemGlobal(pulumi.CustomResource):
             __props__.__dict__["vip_arp_range"] = vip_arp_range
             __props__.__dict__["virtual_server_count"] = virtual_server_count
             __props__.__dict__["virtual_server_hardware_acceleration"] = virtual_server_hardware_acceleration
+            __props__.__dict__["virtual_switch_vlan"] = virtual_switch_vlan
             __props__.__dict__["wad_affinity"] = wad_affinity
             __props__.__dict__["wad_csvc_cs_count"] = wad_csvc_cs_count
             __props__.__dict__["wad_csvc_db_count"] = wad_csvc_db_count
@@ -7692,9 +8738,12 @@ class SystemGlobal(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             admin_concurrent: Optional[pulumi.Input[str]] = None,
             admin_console_timeout: Optional[pulumi.Input[int]] = None,
+            admin_forticloud_sso_login: Optional[pulumi.Input[str]] = None,
             admin_hsts_max_age: Optional[pulumi.Input[int]] = None,
             admin_https_pki_required: Optional[pulumi.Input[str]] = None,
             admin_https_redirect: Optional[pulumi.Input[str]] = None,
+            admin_https_ssl_banned_ciphers: Optional[pulumi.Input[str]] = None,
+            admin_https_ssl_ciphersuites: Optional[pulumi.Input[str]] = None,
             admin_https_ssl_versions: Optional[pulumi.Input[str]] = None,
             admin_lockout_duration: Optional[pulumi.Input[int]] = None,
             admin_lockout_threshold: Optional[pulumi.Input[int]] = None,
@@ -7738,6 +8787,7 @@ class SystemGlobal(pulumi.CustomResource):
             cli_audit_log: Optional[pulumi.Input[str]] = None,
             cloud_communication: Optional[pulumi.Input[str]] = None,
             clt_cert_req: Optional[pulumi.Input[str]] = None,
+            cmdbsvr_affinity: Optional[pulumi.Input[str]] = None,
             compliance_check: Optional[pulumi.Input[str]] = None,
             compliance_check_time: Optional[pulumi.Input[str]] = None,
             cpu_use_threshold: Optional[pulumi.Input[int]] = None,
@@ -7749,8 +8799,10 @@ class SystemGlobal(pulumi.CustomResource):
             dh_params: Optional[pulumi.Input[str]] = None,
             dnsproxy_worker_count: Optional[pulumi.Input[int]] = None,
             dst: Optional[pulumi.Input[str]] = None,
+            edit_vdom_prompt: Optional[pulumi.Input[str]] = None,
             endpoint_control_fds_access: Optional[pulumi.Input[str]] = None,
             endpoint_control_portal_port: Optional[pulumi.Input[int]] = None,
+            extender_controller_reserved_network: Optional[pulumi.Input[str]] = None,
             failtime: Optional[pulumi.Input[int]] = None,
             faz_disk_buffer_size: Optional[pulumi.Input[int]] = None,
             fds_statistics: Optional[pulumi.Input[str]] = None,
@@ -7759,11 +8811,13 @@ class SystemGlobal(pulumi.CustomResource):
             fgd_alert_subscription: Optional[pulumi.Input[str]] = None,
             fortiextender: Optional[pulumi.Input[str]] = None,
             fortiextender_data_port: Optional[pulumi.Input[int]] = None,
+            fortiextender_discovery_lockdown: Optional[pulumi.Input[str]] = None,
             fortiextender_vlan_mode: Optional[pulumi.Input[str]] = None,
             fortiipam_integration: Optional[pulumi.Input[str]] = None,
             fortiservice_port: Optional[pulumi.Input[int]] = None,
             fortitoken_cloud: Optional[pulumi.Input[str]] = None,
             gui_allow_default_hostname: Optional[pulumi.Input[str]] = None,
+            gui_cdn_usage: Optional[pulumi.Input[str]] = None,
             gui_certificates: Optional[pulumi.Input[str]] = None,
             gui_custom_language: Optional[pulumi.Input[str]] = None,
             gui_date_format: Optional[pulumi.Input[str]] = None,
@@ -7778,16 +8832,22 @@ class SystemGlobal(pulumi.CustomResource):
             gui_fortisandbox_cloud: Optional[pulumi.Input[str]] = None,
             gui_ipv6: Optional[pulumi.Input[str]] = None,
             gui_lines_per_page: Optional[pulumi.Input[int]] = None,
+            gui_local_out: Optional[pulumi.Input[str]] = None,
+            gui_replacement_message_groups: Optional[pulumi.Input[str]] = None,
+            gui_rest_api_cache: Optional[pulumi.Input[str]] = None,
             gui_theme: Optional[pulumi.Input[str]] = None,
             gui_wireless_opensecurity: Optional[pulumi.Input[str]] = None,
+            ha_affinity: Optional[pulumi.Input[str]] = None,
             honor_df: Optional[pulumi.Input[str]] = None,
             hostname: Optional[pulumi.Input[str]] = None,
             igmp_state_limit: Optional[pulumi.Input[int]] = None,
             ike_embryonic_limit: Optional[pulumi.Input[int]] = None,
+            internet_service_database: Optional[pulumi.Input[str]] = None,
             interval: Optional[pulumi.Input[int]] = None,
             ip_src_port_range: Optional[pulumi.Input[str]] = None,
             ips_affinity: Optional[pulumi.Input[str]] = None,
             ipsec_asic_offload: Optional[pulumi.Input[str]] = None,
+            ipsec_ha_seqjump_rate: Optional[pulumi.Input[int]] = None,
             ipsec_hmac_offload: Optional[pulumi.Input[str]] = None,
             ipsec_soft_dec_async: Optional[pulumi.Input[str]] = None,
             ipv6_accept_dad: Optional[pulumi.Input[int]] = None,
@@ -7803,6 +8863,9 @@ class SystemGlobal(pulumi.CustomResource):
             log_uuid_policy: Optional[pulumi.Input[str]] = None,
             login_timestamp: Optional[pulumi.Input[str]] = None,
             long_vdom_name: Optional[pulumi.Input[str]] = None,
+            management_ip: Optional[pulumi.Input[str]] = None,
+            management_port: Optional[pulumi.Input[int]] = None,
+            management_port_use_admin_sport: Optional[pulumi.Input[str]] = None,
             management_vdom: Optional[pulumi.Input[str]] = None,
             max_dlpstat_memory: Optional[pulumi.Input[int]] = None,
             max_route_cache_size: Optional[pulumi.Input[int]] = None,
@@ -7817,6 +8880,7 @@ class SystemGlobal(pulumi.CustomResource):
             ndp_max_entry: Optional[pulumi.Input[int]] = None,
             per_user_bal: Optional[pulumi.Input[str]] = None,
             per_user_bwl: Optional[pulumi.Input[str]] = None,
+            pmtu_discovery: Optional[pulumi.Input[str]] = None,
             policy_auth_concurrent: Optional[pulumi.Input[int]] = None,
             post_login_banner: Optional[pulumi.Input[str]] = None,
             pre_login_banner: Optional[pulumi.Input[str]] = None,
@@ -7824,9 +8888,12 @@ class SystemGlobal(pulumi.CustomResource):
             proxy_auth_lifetime: Optional[pulumi.Input[str]] = None,
             proxy_auth_lifetime_timeout: Optional[pulumi.Input[int]] = None,
             proxy_auth_timeout: Optional[pulumi.Input[int]] = None,
+            proxy_cert_use_mgmt_vdom: Optional[pulumi.Input[str]] = None,
             proxy_cipher_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+            proxy_hardware_acceleration: Optional[pulumi.Input[str]] = None,
             proxy_kxp_hardware_acceleration: Optional[pulumi.Input[str]] = None,
             proxy_re_authentication_mode: Optional[pulumi.Input[str]] = None,
+            proxy_resource_mode: Optional[pulumi.Input[str]] = None,
             proxy_worker_count: Optional[pulumi.Input[int]] = None,
             radius_port: Optional[pulumi.Input[int]] = None,
             reboot_upon_config_restore: Optional[pulumi.Input[str]] = None,
@@ -7842,14 +8909,19 @@ class SystemGlobal(pulumi.CustomResource):
             send_pmtu_icmp: Optional[pulumi.Input[str]] = None,
             snat_route_change: Optional[pulumi.Input[str]] = None,
             special_file23_support: Optional[pulumi.Input[str]] = None,
+            speedtest_server: Optional[pulumi.Input[str]] = None,
+            split_port: Optional[pulumi.Input[str]] = None,
             ssd_trim_date: Optional[pulumi.Input[int]] = None,
             ssd_trim_freq: Optional[pulumi.Input[str]] = None,
             ssd_trim_hour: Optional[pulumi.Input[int]] = None,
             ssd_trim_min: Optional[pulumi.Input[int]] = None,
             ssd_trim_weekday: Optional[pulumi.Input[str]] = None,
             ssh_cbc_cipher: Optional[pulumi.Input[str]] = None,
+            ssh_enc_algo: Optional[pulumi.Input[str]] = None,
             ssh_hmac_md5: Optional[pulumi.Input[str]] = None,
+            ssh_kex_algo: Optional[pulumi.Input[str]] = None,
             ssh_kex_sha1: Optional[pulumi.Input[str]] = None,
+            ssh_mac_algo: Optional[pulumi.Input[str]] = None,
             ssh_mac_weak: Optional[pulumi.Input[str]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
             ssl_static_key_ciphers: Optional[pulumi.Input[str]] = None,
@@ -7866,6 +8938,7 @@ class SystemGlobal(pulumi.CustomResource):
             tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
             tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
             tcp_option: Optional[pulumi.Input[str]] = None,
+            tcp_rst_timer: Optional[pulumi.Input[int]] = None,
             tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
             tftp: Optional[pulumi.Input[str]] = None,
             timezone: Optional[pulumi.Input[str]] = None,
@@ -7881,6 +8954,7 @@ class SystemGlobal(pulumi.CustomResource):
             url_filter_affinity: Optional[pulumi.Input[str]] = None,
             url_filter_count: Optional[pulumi.Input[int]] = None,
             user_device_store_max_devices: Optional[pulumi.Input[int]] = None,
+            user_device_store_max_unified_mem: Optional[pulumi.Input[int]] = None,
             user_device_store_max_users: Optional[pulumi.Input[int]] = None,
             user_server_cert: Optional[pulumi.Input[str]] = None,
             vdom_admin: Optional[pulumi.Input[str]] = None,
@@ -7889,6 +8963,7 @@ class SystemGlobal(pulumi.CustomResource):
             vip_arp_range: Optional[pulumi.Input[str]] = None,
             virtual_server_count: Optional[pulumi.Input[int]] = None,
             virtual_server_hardware_acceleration: Optional[pulumi.Input[str]] = None,
+            virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
             wad_affinity: Optional[pulumi.Input[str]] = None,
             wad_csvc_cs_count: Optional[pulumi.Input[int]] = None,
             wad_csvc_db_count: Optional[pulumi.Input[int]] = None,
@@ -7909,9 +8984,12 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] admin_concurrent: Enable/disable concurrent administrator logins. (Use policy-auth-concurrent for firewall authenticated users.) Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_console_timeout: Console login timeout that overrides the admintimeout value. (15 - 300 seconds) (15 seconds to 5 minutes). 0 the default, disables this timeout.
+        :param pulumi.Input[str] admin_forticloud_sso_login: Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] admin_hsts_max_age: HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
         :param pulumi.Input[str] admin_https_pki_required: Enable/disable admin login method. Enable to force administrators to provide a valid certificate to log in if PKI is enabled. Disable to allow administrators to log in with a certificate or password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] admin_https_redirect: Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] admin_https_ssl_banned_ciphers: Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        :param pulumi.Input[str] admin_https_ssl_ciphersuites: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
         :param pulumi.Input[str] admin_https_ssl_versions: Allowed TLS versions for web administration.
         :param pulumi.Input[int] admin_lockout_duration: Amount of time in seconds that an administrator account is locked out after reaching the admin-lockout-threshold for repeated failed login attempts.
         :param pulumi.Input[int] admin_lockout_threshold: Number of failed login attempts before an administrator account is locked out for the admin-lockout-duration.
@@ -7955,6 +9033,7 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] cli_audit_log: Enable/disable CLI audit log. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cloud_communication: Enable/disable all cloud communication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] clt_cert_req: Enable/disable requiring administrators to have a client certificate to log into the GUI using HTTPS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cmdbsvr_affinity: Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] compliance_check: Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] compliance_check_time: Time of day to run scheduled PCI DSS compliance checks.
         :param pulumi.Input[int] cpu_use_threshold: Threshold at which CPU usage is reported. (% of total CPU, default = 90).
@@ -7966,8 +9045,10 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] dh_params: Number of bits to use in the Diffie-Hellman exchange for HTTPS/SSH protocols. Valid values: `1024`, `1536`, `2048`, `3072`, `4096`, `6144`, `8192`.
         :param pulumi.Input[int] dnsproxy_worker_count: DNS proxy worker count.
         :param pulumi.Input[str] dst: Enable/disable daylight saving time. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] edit_vdom_prompt: Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] endpoint_control_fds_access: Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] endpoint_control_portal_port: Endpoint control portal port (1 - 65535).
+        :param pulumi.Input[str] extender_controller_reserved_network: Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
         :param pulumi.Input[int] failtime: Fail-time for server lost.
         :param pulumi.Input[int] faz_disk_buffer_size: Maximum disk buffer size to temporarily store logs destined for FortiAnalyzer. To be used in the event that FortiAnalyzer is unavailalble.
         :param pulumi.Input[str] fds_statistics: Enable/disable sending IPS, Application Control, and AntiVirus data to FortiGuard. This data is used to improve FortiGuard services and is not shared with external parties and is protected by Fortinet's privacy policy. Valid values: `enable`, `disable`.
@@ -7976,11 +9057,13 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] fgd_alert_subscription: Type of alert to retrieve from FortiGuard. Valid values: `advisory`, `latest-threat`, `latest-virus`, `latest-attack`, `new-antivirus-db`, `new-attack-db`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiextender_data_port: FortiExtender data port (1024 - 49150, default = 25246).
+        :param pulumi.Input[str] fortiextender_discovery_lockdown: Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] fortiextender_vlan_mode: Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiipam_integration: Enable/disable integration with the FortiIPAM cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fortiservice_port: FortiService port (1 - 65535, default = 8013). Used by FortiClient endpoint compliance. Older versions of FortiClient used a different port.
         :param pulumi.Input[str] fortitoken_cloud: Enable/disable FortiToken Cloud service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_allow_default_hostname: Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_cdn_usage: Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_certificates: Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_custom_language: Enable/disable custom languages in GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_date_format: Default date format used throughout GUI. Valid values: `yyyy/MM/dd`, `dd/MM/yyyy`, `MM/dd/yyyy`, `yyyy-MM-dd`, `dd-MM-yyyy`, `MM-dd-yyyy`.
@@ -7995,16 +9078,22 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] gui_fortisandbox_cloud: Enable/disable displaying FortiSandbox Cloud on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_ipv6: Enable/disable IPv6 settings on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gui_lines_per_page: Number of lines to display per page for web administration.
+        :param pulumi.Input[str] gui_local_out: Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_replacement_message_groups: Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_rest_api_cache: Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_theme: Color scheme for the administration GUI.
         :param pulumi.Input[str] gui_wireless_opensecurity: Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ha_affinity: Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[str] honor_df: Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] hostname: FortiGate unit's hostname. Most models will truncate names longer than 24 characters. Some models support hostnames up to 35 characters.
         :param pulumi.Input[int] igmp_state_limit: Maximum number of IGMP memberships (96 - 64000, default = 3200).
         :param pulumi.Input[int] ike_embryonic_limit: Maximum number of IPsec tunnels to negotiate simultaneously.
+        :param pulumi.Input[str] internet_service_database: Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
         :param pulumi.Input[int] interval: Dead gateway detection interval.
         :param pulumi.Input[str] ip_src_port_range: IP source port range used for traffic originating from the FortiGate unit.
         :param pulumi.Input[str] ips_affinity: Affinity setting for IPS (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx; allowed CPUs must be less than total number of IPS engine daemons).
         :param pulumi.Input[str] ipsec_asic_offload: Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ipsec_ha_seqjump_rate: ESP jump ahead rate (1G - 10G pps equivalent).
         :param pulumi.Input[str] ipsec_hmac_offload: Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ipsec_soft_dec_async: Enable/disable software decryption asynchronization (using multiple CPUs to do decryption) for IPsec VPN traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ipv6_accept_dad: Enable/disable acceptance of IPv6 Duplicate Address Detection (DAD).
@@ -8020,6 +9109,9 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] log_uuid_policy: Enable/disable insertion of policy UUIDs to traffic logs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login_timestamp: Enable/disable login time recording. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] long_vdom_name: Enable/disable long VDOM name support. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
+        :param pulumi.Input[str] management_port_use_admin_sport: Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] management_vdom: Management virtual domain name.
         :param pulumi.Input[int] max_dlpstat_memory: Maximum DLP stat memory (0 - 4294967295).
         :param pulumi.Input[int] max_route_cache_size: Maximum number of IP route cache entries (0 - 2147483647).
@@ -8034,6 +9126,7 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] ndp_max_entry: Maximum number of NDP table entries (set to 65,536 or higher; if set to 0, kernel holds 65,536 entries).
         :param pulumi.Input[str] per_user_bal: Enable/disable per-user block/allow list filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_user_bwl: Enable/disable per-user black/white list filter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pmtu_discovery: Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policy_auth_concurrent: Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
         :param pulumi.Input[str] post_login_banner: Enable/disable displaying the administrator access disclaimer message after an administrator successfully logs in. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] pre_login_banner: Enable/disable displaying the administrator access disclaimer message on the login page before an administrator logs in. Valid values: `enable`, `disable`.
@@ -8041,9 +9134,12 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] proxy_auth_lifetime: Enable/disable authenticated users lifetime control.  This is a cap on the total time a proxy user can be authenticated for after which re-authentication will take place. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_auth_lifetime_timeout: Lifetime timeout in minutes for authenticated users (5  - 65535 min, default=480 (8 hours)).
         :param pulumi.Input[int] proxy_auth_timeout: Authentication timeout in minutes for authenticated users (1 - 300 min, default = 10).
+        :param pulumi.Input[str] proxy_cert_use_mgmt_vdom: Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] proxy_cipher_hardware_acceleration: Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] proxy_hardware_acceleration: Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_kxp_hardware_acceleration: Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_re_authentication_mode: Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
+        :param pulumi.Input[str] proxy_resource_mode: Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] proxy_worker_count: Proxy worker count.
         :param pulumi.Input[int] radius_port: RADIUS service port number.
         :param pulumi.Input[str] reboot_upon_config_restore: Enable/disable reboot of system upon restoring configuration. Valid values: `enable`, `disable`.
@@ -8059,14 +9155,19 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] send_pmtu_icmp: Enable/disable sending of path maximum transmission unit (PMTU) - ICMP destination unreachable packet and to support PMTUD protocol on your network to reduce fragmentation of packets. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] snat_route_change: Enable/disable the ability to change the static NAT route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] special_file23_support: Enable/disable IPS detection of HIBUN format files when using Data Leak Protection. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] speedtest_server: Enable/disable speed test server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] split_port: Split port(s) to multiple 10Gbps ports.
         :param pulumi.Input[int] ssd_trim_date: Date within a month to run ssd trim.
         :param pulumi.Input[str] ssd_trim_freq: How often to run SSD Trim (default = weekly). SSD Trim prevents SSD drive data loss by finding and isolating errors. Valid values: `never`, `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] ssd_trim_hour: Hour of the day on which to run SSD Trim (0 - 23, default = 1).
         :param pulumi.Input[int] ssd_trim_min: Minute of the hour on which to run SSD Trim (0 - 59, 60 for random).
         :param pulumi.Input[str] ssd_trim_weekday: Day of week to run SSD Trim. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] ssh_cbc_cipher: Enable/disable CBC cipher for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_enc_algo: Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
         :param pulumi.Input[str] ssh_hmac_md5: Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_kex_algo: Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
         :param pulumi.Input[str] ssh_kex_sha1: Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssh_mac_algo: Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
         :param pulumi.Input[str] ssh_mac_weak: Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default = TLSv1.2).
         :param pulumi.Input[str] ssl_static_key_ciphers: Enable/disable static key ciphers in SSL/TLS connections (e.g. AES128-SHA, AES256-SHA, AES128-SHA256, AES256-SHA256). Valid values: `enable`, `disable`.
@@ -8083,6 +9184,7 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] tcp_halfclose_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent a FIN packet but the other has not responded (1 - 86400 sec (1 day), default = 120).
         :param pulumi.Input[int] tcp_halfopen_timer: Number of seconds the FortiGate unit should wait to close a session after one peer has sent an open session packet but the other has not responded (1 - 86400 sec (1 day), default = 10).
         :param pulumi.Input[str] tcp_option: Enable SACK, timestamp and MSS TCP options. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] tcp_rst_timer: Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
         :param pulumi.Input[int] tcp_timewait_timer: Length of the TCP TIME-WAIT state in seconds.
         :param pulumi.Input[str] tftp: Enable/disable TFTP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] timezone: Number corresponding to your time zone from 00 to 86. Enter set timezone ? to view the list of time zones and the numbers that represent them. Valid values: `01`, `02`, `03`, `04`, `05`, `81`, `06`, `07`, `08`, `09`, `10`, `11`, `12`, `13`, `74`, `14`, `77`, `15`, `87`, `16`, `17`, `18`, `19`, `20`, `75`, `21`, `22`, `23`, `24`, `80`, `79`, `25`, `26`, `27`, `28`, `78`, `29`, `30`, `31`, `32`, `33`, `34`, `35`, `36`, `37`, `38`, `83`, `84`, `40`, `85`, `41`, `42`, `43`, `39`, `44`, `46`, `47`, `51`, `48`, `45`, `49`, `50`, `52`, `53`, `54`, `55`, `56`, `57`, `58`, `59`, `60`, `62`, `63`, `61`, `64`, `65`, `66`, `67`, `68`, `69`, `70`, `71`, `72`, `00`, `82`, `73`, `86`, `76`.
@@ -8098,14 +9200,16 @@ class SystemGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] url_filter_affinity: URL filter CPU affinity.
         :param pulumi.Input[int] url_filter_count: URL filter daemon count.
         :param pulumi.Input[int] user_device_store_max_devices: Maximum number of devices allowed in user device store.
+        :param pulumi.Input[int] user_device_store_max_unified_mem: Maximum unified memory allowed in user device store.
         :param pulumi.Input[int] user_device_store_max_users: Maximum number of users allowed in user device store.
         :param pulumi.Input[str] user_server_cert: Certificate to use for https user authentication.
         :param pulumi.Input[str] vdom_admin: Enable/disable support for multiple virtual domains (VDOMs). Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        :param pulumi.Input[str] vdom_mode: Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vip_arp_range: Controls the number of ARPs that the FortiGate sends for a Virtual IP (VIP) address range. Valid values: `unlimited`, `restricted`.
         :param pulumi.Input[int] virtual_server_count: Maximum number of virtual server processes to create. The maximum is the number of CPU cores. This is not available on single-core CPUs.
         :param pulumi.Input[str] virtual_server_hardware_acceleration: Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] virtual_switch_vlan: Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wad_affinity: Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
         :param pulumi.Input[int] wad_csvc_cs_count: Number of concurrent WAD-cache-service object-cache processes.
         :param pulumi.Input[int] wad_csvc_db_count: Number of concurrent WAD-cache-service byte-cache processes.
@@ -8124,9 +9228,12 @@ class SystemGlobal(pulumi.CustomResource):
 
         __props__.__dict__["admin_concurrent"] = admin_concurrent
         __props__.__dict__["admin_console_timeout"] = admin_console_timeout
+        __props__.__dict__["admin_forticloud_sso_login"] = admin_forticloud_sso_login
         __props__.__dict__["admin_hsts_max_age"] = admin_hsts_max_age
         __props__.__dict__["admin_https_pki_required"] = admin_https_pki_required
         __props__.__dict__["admin_https_redirect"] = admin_https_redirect
+        __props__.__dict__["admin_https_ssl_banned_ciphers"] = admin_https_ssl_banned_ciphers
+        __props__.__dict__["admin_https_ssl_ciphersuites"] = admin_https_ssl_ciphersuites
         __props__.__dict__["admin_https_ssl_versions"] = admin_https_ssl_versions
         __props__.__dict__["admin_lockout_duration"] = admin_lockout_duration
         __props__.__dict__["admin_lockout_threshold"] = admin_lockout_threshold
@@ -8170,6 +9277,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["cli_audit_log"] = cli_audit_log
         __props__.__dict__["cloud_communication"] = cloud_communication
         __props__.__dict__["clt_cert_req"] = clt_cert_req
+        __props__.__dict__["cmdbsvr_affinity"] = cmdbsvr_affinity
         __props__.__dict__["compliance_check"] = compliance_check
         __props__.__dict__["compliance_check_time"] = compliance_check_time
         __props__.__dict__["cpu_use_threshold"] = cpu_use_threshold
@@ -8181,8 +9289,10 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["dh_params"] = dh_params
         __props__.__dict__["dnsproxy_worker_count"] = dnsproxy_worker_count
         __props__.__dict__["dst"] = dst
+        __props__.__dict__["edit_vdom_prompt"] = edit_vdom_prompt
         __props__.__dict__["endpoint_control_fds_access"] = endpoint_control_fds_access
         __props__.__dict__["endpoint_control_portal_port"] = endpoint_control_portal_port
+        __props__.__dict__["extender_controller_reserved_network"] = extender_controller_reserved_network
         __props__.__dict__["failtime"] = failtime
         __props__.__dict__["faz_disk_buffer_size"] = faz_disk_buffer_size
         __props__.__dict__["fds_statistics"] = fds_statistics
@@ -8191,11 +9301,13 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["fgd_alert_subscription"] = fgd_alert_subscription
         __props__.__dict__["fortiextender"] = fortiextender
         __props__.__dict__["fortiextender_data_port"] = fortiextender_data_port
+        __props__.__dict__["fortiextender_discovery_lockdown"] = fortiextender_discovery_lockdown
         __props__.__dict__["fortiextender_vlan_mode"] = fortiextender_vlan_mode
         __props__.__dict__["fortiipam_integration"] = fortiipam_integration
         __props__.__dict__["fortiservice_port"] = fortiservice_port
         __props__.__dict__["fortitoken_cloud"] = fortitoken_cloud
         __props__.__dict__["gui_allow_default_hostname"] = gui_allow_default_hostname
+        __props__.__dict__["gui_cdn_usage"] = gui_cdn_usage
         __props__.__dict__["gui_certificates"] = gui_certificates
         __props__.__dict__["gui_custom_language"] = gui_custom_language
         __props__.__dict__["gui_date_format"] = gui_date_format
@@ -8210,16 +9322,22 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["gui_fortisandbox_cloud"] = gui_fortisandbox_cloud
         __props__.__dict__["gui_ipv6"] = gui_ipv6
         __props__.__dict__["gui_lines_per_page"] = gui_lines_per_page
+        __props__.__dict__["gui_local_out"] = gui_local_out
+        __props__.__dict__["gui_replacement_message_groups"] = gui_replacement_message_groups
+        __props__.__dict__["gui_rest_api_cache"] = gui_rest_api_cache
         __props__.__dict__["gui_theme"] = gui_theme
         __props__.__dict__["gui_wireless_opensecurity"] = gui_wireless_opensecurity
+        __props__.__dict__["ha_affinity"] = ha_affinity
         __props__.__dict__["honor_df"] = honor_df
         __props__.__dict__["hostname"] = hostname
         __props__.__dict__["igmp_state_limit"] = igmp_state_limit
         __props__.__dict__["ike_embryonic_limit"] = ike_embryonic_limit
+        __props__.__dict__["internet_service_database"] = internet_service_database
         __props__.__dict__["interval"] = interval
         __props__.__dict__["ip_src_port_range"] = ip_src_port_range
         __props__.__dict__["ips_affinity"] = ips_affinity
         __props__.__dict__["ipsec_asic_offload"] = ipsec_asic_offload
+        __props__.__dict__["ipsec_ha_seqjump_rate"] = ipsec_ha_seqjump_rate
         __props__.__dict__["ipsec_hmac_offload"] = ipsec_hmac_offload
         __props__.__dict__["ipsec_soft_dec_async"] = ipsec_soft_dec_async
         __props__.__dict__["ipv6_accept_dad"] = ipv6_accept_dad
@@ -8235,6 +9353,9 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["log_uuid_policy"] = log_uuid_policy
         __props__.__dict__["login_timestamp"] = login_timestamp
         __props__.__dict__["long_vdom_name"] = long_vdom_name
+        __props__.__dict__["management_ip"] = management_ip
+        __props__.__dict__["management_port"] = management_port
+        __props__.__dict__["management_port_use_admin_sport"] = management_port_use_admin_sport
         __props__.__dict__["management_vdom"] = management_vdom
         __props__.__dict__["max_dlpstat_memory"] = max_dlpstat_memory
         __props__.__dict__["max_route_cache_size"] = max_route_cache_size
@@ -8249,6 +9370,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["ndp_max_entry"] = ndp_max_entry
         __props__.__dict__["per_user_bal"] = per_user_bal
         __props__.__dict__["per_user_bwl"] = per_user_bwl
+        __props__.__dict__["pmtu_discovery"] = pmtu_discovery
         __props__.__dict__["policy_auth_concurrent"] = policy_auth_concurrent
         __props__.__dict__["post_login_banner"] = post_login_banner
         __props__.__dict__["pre_login_banner"] = pre_login_banner
@@ -8256,9 +9378,12 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["proxy_auth_lifetime"] = proxy_auth_lifetime
         __props__.__dict__["proxy_auth_lifetime_timeout"] = proxy_auth_lifetime_timeout
         __props__.__dict__["proxy_auth_timeout"] = proxy_auth_timeout
+        __props__.__dict__["proxy_cert_use_mgmt_vdom"] = proxy_cert_use_mgmt_vdom
         __props__.__dict__["proxy_cipher_hardware_acceleration"] = proxy_cipher_hardware_acceleration
+        __props__.__dict__["proxy_hardware_acceleration"] = proxy_hardware_acceleration
         __props__.__dict__["proxy_kxp_hardware_acceleration"] = proxy_kxp_hardware_acceleration
         __props__.__dict__["proxy_re_authentication_mode"] = proxy_re_authentication_mode
+        __props__.__dict__["proxy_resource_mode"] = proxy_resource_mode
         __props__.__dict__["proxy_worker_count"] = proxy_worker_count
         __props__.__dict__["radius_port"] = radius_port
         __props__.__dict__["reboot_upon_config_restore"] = reboot_upon_config_restore
@@ -8274,14 +9399,19 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["send_pmtu_icmp"] = send_pmtu_icmp
         __props__.__dict__["snat_route_change"] = snat_route_change
         __props__.__dict__["special_file23_support"] = special_file23_support
+        __props__.__dict__["speedtest_server"] = speedtest_server
+        __props__.__dict__["split_port"] = split_port
         __props__.__dict__["ssd_trim_date"] = ssd_trim_date
         __props__.__dict__["ssd_trim_freq"] = ssd_trim_freq
         __props__.__dict__["ssd_trim_hour"] = ssd_trim_hour
         __props__.__dict__["ssd_trim_min"] = ssd_trim_min
         __props__.__dict__["ssd_trim_weekday"] = ssd_trim_weekday
         __props__.__dict__["ssh_cbc_cipher"] = ssh_cbc_cipher
+        __props__.__dict__["ssh_enc_algo"] = ssh_enc_algo
         __props__.__dict__["ssh_hmac_md5"] = ssh_hmac_md5
+        __props__.__dict__["ssh_kex_algo"] = ssh_kex_algo
         __props__.__dict__["ssh_kex_sha1"] = ssh_kex_sha1
+        __props__.__dict__["ssh_mac_algo"] = ssh_mac_algo
         __props__.__dict__["ssh_mac_weak"] = ssh_mac_weak
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
         __props__.__dict__["ssl_static_key_ciphers"] = ssl_static_key_ciphers
@@ -8298,6 +9428,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["tcp_halfclose_timer"] = tcp_halfclose_timer
         __props__.__dict__["tcp_halfopen_timer"] = tcp_halfopen_timer
         __props__.__dict__["tcp_option"] = tcp_option
+        __props__.__dict__["tcp_rst_timer"] = tcp_rst_timer
         __props__.__dict__["tcp_timewait_timer"] = tcp_timewait_timer
         __props__.__dict__["tftp"] = tftp
         __props__.__dict__["timezone"] = timezone
@@ -8313,6 +9444,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["url_filter_affinity"] = url_filter_affinity
         __props__.__dict__["url_filter_count"] = url_filter_count
         __props__.__dict__["user_device_store_max_devices"] = user_device_store_max_devices
+        __props__.__dict__["user_device_store_max_unified_mem"] = user_device_store_max_unified_mem
         __props__.__dict__["user_device_store_max_users"] = user_device_store_max_users
         __props__.__dict__["user_server_cert"] = user_server_cert
         __props__.__dict__["vdom_admin"] = vdom_admin
@@ -8321,6 +9453,7 @@ class SystemGlobal(pulumi.CustomResource):
         __props__.__dict__["vip_arp_range"] = vip_arp_range
         __props__.__dict__["virtual_server_count"] = virtual_server_count
         __props__.__dict__["virtual_server_hardware_acceleration"] = virtual_server_hardware_acceleration
+        __props__.__dict__["virtual_switch_vlan"] = virtual_switch_vlan
         __props__.__dict__["wad_affinity"] = wad_affinity
         __props__.__dict__["wad_csvc_cs_count"] = wad_csvc_cs_count
         __props__.__dict__["wad_csvc_db_count"] = wad_csvc_db_count
@@ -8351,6 +9484,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "admin_console_timeout")
 
     @property
+    @pulumi.getter(name="adminForticloudSsoLogin")
+    def admin_forticloud_sso_login(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "admin_forticloud_sso_login")
+
+    @property
     @pulumi.getter(name="adminHstsMaxAge")
     def admin_hsts_max_age(self) -> pulumi.Output[int]:
         """
@@ -8373,6 +9514,22 @@ class SystemGlobal(pulumi.CustomResource):
         Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "admin_https_redirect")
+
+    @property
+    @pulumi.getter(name="adminHttpsSslBannedCiphers")
+    def admin_https_ssl_banned_ciphers(self) -> pulumi.Output[str]:
+        """
+        Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+        """
+        return pulumi.get(self, "admin_https_ssl_banned_ciphers")
+
+    @property
+    @pulumi.getter(name="adminHttpsSslCiphersuites")
+    def admin_https_ssl_ciphersuites(self) -> pulumi.Output[str]:
+        """
+        Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        """
+        return pulumi.get(self, "admin_https_ssl_ciphersuites")
 
     @property
     @pulumi.getter(name="adminHttpsSslVersions")
@@ -8719,6 +9876,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "clt_cert_req")
 
     @property
+    @pulumi.getter(name="cmdbsvrAffinity")
+    def cmdbsvr_affinity(self) -> pulumi.Output[str]:
+        """
+        Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "cmdbsvr_affinity")
+
+    @property
     @pulumi.getter(name="complianceCheck")
     def compliance_check(self) -> pulumi.Output[str]:
         """
@@ -8807,6 +9972,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "dst")
 
     @property
+    @pulumi.getter(name="editVdomPrompt")
+    def edit_vdom_prompt(self) -> pulumi.Output[str]:
+        """
+        Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "edit_vdom_prompt")
+
+    @property
     @pulumi.getter(name="endpointControlFdsAccess")
     def endpoint_control_fds_access(self) -> pulumi.Output[str]:
         """
@@ -8821,6 +9994,14 @@ class SystemGlobal(pulumi.CustomResource):
         Endpoint control portal port (1 - 65535).
         """
         return pulumi.get(self, "endpoint_control_portal_port")
+
+    @property
+    @pulumi.getter(name="extenderControllerReservedNetwork")
+    def extender_controller_reserved_network(self) -> pulumi.Output[str]:
+        """
+        Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+        """
+        return pulumi.get(self, "extender_controller_reserved_network")
 
     @property
     @pulumi.getter
@@ -8887,6 +10068,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "fortiextender_data_port")
 
     @property
+    @pulumi.getter(name="fortiextenderDiscoveryLockdown")
+    def fortiextender_discovery_lockdown(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fortiextender_discovery_lockdown")
+
+    @property
     @pulumi.getter(name="fortiextenderVlanMode")
     def fortiextender_vlan_mode(self) -> pulumi.Output[str]:
         """
@@ -8925,6 +10114,14 @@ class SystemGlobal(pulumi.CustomResource):
         Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_allow_default_hostname")
+
+    @property
+    @pulumi.getter(name="guiCdnUsage")
+    def gui_cdn_usage(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_cdn_usage")
 
     @property
     @pulumi.getter(name="guiCertificates")
@@ -9039,6 +10236,30 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "gui_lines_per_page")
 
     @property
+    @pulumi.getter(name="guiLocalOut")
+    def gui_local_out(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_local_out")
+
+    @property
+    @pulumi.getter(name="guiReplacementMessageGroups")
+    def gui_replacement_message_groups(self) -> pulumi.Output[str]:
+        """
+        Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_replacement_message_groups")
+
+    @property
+    @pulumi.getter(name="guiRestApiCache")
+    def gui_rest_api_cache(self) -> pulumi.Output[str]:
+        """
+        Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_rest_api_cache")
+
+    @property
     @pulumi.getter(name="guiTheme")
     def gui_theme(self) -> pulumi.Output[str]:
         """
@@ -9053,6 +10274,14 @@ class SystemGlobal(pulumi.CustomResource):
         Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "gui_wireless_opensecurity")
+
+    @property
+    @pulumi.getter(name="haAffinity")
+    def ha_affinity(self) -> pulumi.Output[str]:
+        """
+        Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+        """
+        return pulumi.get(self, "ha_affinity")
 
     @property
     @pulumi.getter(name="honorDf")
@@ -9087,6 +10316,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "ike_embryonic_limit")
 
     @property
+    @pulumi.getter(name="internetServiceDatabase")
+    def internet_service_database(self) -> pulumi.Output[str]:
+        """
+        Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+        """
+        return pulumi.get(self, "internet_service_database")
+
+    @property
     @pulumi.getter
     def interval(self) -> pulumi.Output[int]:
         """
@@ -9117,6 +10354,14 @@ class SystemGlobal(pulumi.CustomResource):
         Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ipsec_asic_offload")
+
+    @property
+    @pulumi.getter(name="ipsecHaSeqjumpRate")
+    def ipsec_ha_seqjump_rate(self) -> pulumi.Output[int]:
+        """
+        ESP jump ahead rate (1G - 10G pps equivalent).
+        """
+        return pulumi.get(self, "ipsec_ha_seqjump_rate")
 
     @property
     @pulumi.getter(name="ipsecHmacOffload")
@@ -9239,6 +10484,30 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "long_vdom_name")
 
     @property
+    @pulumi.getter(name="managementIp")
+    def management_ip(self) -> pulumi.Output[str]:
+        """
+        Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+        """
+        return pulumi.get(self, "management_ip")
+
+    @property
+    @pulumi.getter(name="managementPort")
+    def management_port(self) -> pulumi.Output[int]:
+        """
+        Overriding port for management connection (Overrides admin port).
+        """
+        return pulumi.get(self, "management_port")
+
+    @property
+    @pulumi.getter(name="managementPortUseAdminSport")
+    def management_port_use_admin_sport(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "management_port_use_admin_sport")
+
+    @property
     @pulumi.getter(name="managementVdom")
     def management_vdom(self) -> pulumi.Output[str]:
         """
@@ -9351,6 +10620,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "per_user_bwl")
 
     @property
+    @pulumi.getter(name="pmtuDiscovery")
+    def pmtu_discovery(self) -> pulumi.Output[str]:
+        """
+        Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pmtu_discovery")
+
+    @property
     @pulumi.getter(name="policyAuthConcurrent")
     def policy_auth_concurrent(self) -> pulumi.Output[int]:
         """
@@ -9407,12 +10684,28 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "proxy_auth_timeout")
 
     @property
+    @pulumi.getter(name="proxyCertUseMgmtVdom")
+    def proxy_cert_use_mgmt_vdom(self) -> pulumi.Output[str]:
+        """
+        Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_cert_use_mgmt_vdom")
+
+    @property
     @pulumi.getter(name="proxyCipherHardwareAcceleration")
     def proxy_cipher_hardware_acceleration(self) -> pulumi.Output[str]:
         """
         Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "proxy_cipher_hardware_acceleration")
+
+    @property
+    @pulumi.getter(name="proxyHardwareAcceleration")
+    def proxy_hardware_acceleration(self) -> pulumi.Output[str]:
+        """
+        Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "proxy_hardware_acceleration")
 
     @property
     @pulumi.getter(name="proxyKxpHardwareAcceleration")
@@ -9429,6 +10722,14 @@ class SystemGlobal(pulumi.CustomResource):
         Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
         """
         return pulumi.get(self, "proxy_re_authentication_mode")
+
+    @property
+    @pulumi.getter(name="proxyResourceMode")
+    def proxy_resource_mode(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_resource_mode")
 
     @property
     @pulumi.getter(name="proxyWorkerCount")
@@ -9551,6 +10852,22 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "special_file23_support")
 
     @property
+    @pulumi.getter(name="speedtestServer")
+    def speedtest_server(self) -> pulumi.Output[str]:
+        """
+        Enable/disable speed test server. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "speedtest_server")
+
+    @property
+    @pulumi.getter(name="splitPort")
+    def split_port(self) -> pulumi.Output[str]:
+        """
+        Split port(s) to multiple 10Gbps ports.
+        """
+        return pulumi.get(self, "split_port")
+
+    @property
     @pulumi.getter(name="ssdTrimDate")
     def ssd_trim_date(self) -> pulumi.Output[int]:
         """
@@ -9599,6 +10916,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "ssh_cbc_cipher")
 
     @property
+    @pulumi.getter(name="sshEncAlgo")
+    def ssh_enc_algo(self) -> pulumi.Output[str]:
+        """
+        Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+        """
+        return pulumi.get(self, "ssh_enc_algo")
+
+    @property
     @pulumi.getter(name="sshHmacMd5")
     def ssh_hmac_md5(self) -> pulumi.Output[str]:
         """
@@ -9607,12 +10932,28 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "ssh_hmac_md5")
 
     @property
+    @pulumi.getter(name="sshKexAlgo")
+    def ssh_kex_algo(self) -> pulumi.Output[str]:
+        """
+        Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+        """
+        return pulumi.get(self, "ssh_kex_algo")
+
+    @property
     @pulumi.getter(name="sshKexSha1")
     def ssh_kex_sha1(self) -> pulumi.Output[str]:
         """
         Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ssh_kex_sha1")
+
+    @property
+    @pulumi.getter(name="sshMacAlgo")
+    def ssh_mac_algo(self) -> pulumi.Output[str]:
+        """
+        Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+        """
+        return pulumi.get(self, "ssh_mac_algo")
 
     @property
     @pulumi.getter(name="sshMacWeak")
@@ -9743,6 +11084,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "tcp_option")
 
     @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> pulumi.Output[int]:
+        """
+        Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
+
+    @property
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> pulumi.Output[int]:
         """
@@ -9863,6 +11212,14 @@ class SystemGlobal(pulumi.CustomResource):
         return pulumi.get(self, "user_device_store_max_devices")
 
     @property
+    @pulumi.getter(name="userDeviceStoreMaxUnifiedMem")
+    def user_device_store_max_unified_mem(self) -> pulumi.Output[int]:
+        """
+        Maximum unified memory allowed in user device store.
+        """
+        return pulumi.get(self, "user_device_store_max_unified_mem")
+
+    @property
     @pulumi.getter(name="userDeviceStoreMaxUsers")
     def user_device_store_max_users(self) -> pulumi.Output[int]:
         """
@@ -9890,7 +11247,7 @@ class SystemGlobal(pulumi.CustomResource):
     @pulumi.getter(name="vdomMode")
     def vdom_mode(self) -> pulumi.Output[str]:
         """
-        Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+        Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
         """
         return pulumi.get(self, "vdom_mode")
 
@@ -9925,6 +11282,14 @@ class SystemGlobal(pulumi.CustomResource):
         Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "virtual_server_hardware_acceleration")
+
+    @property
+    @pulumi.getter(name="virtualSwitchVlan")
+    def virtual_switch_vlan(self) -> pulumi.Output[str]:
+        """
+        Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "virtual_switch_vlan")
 
     @property
     @pulumi.getter(name="wadAffinity")

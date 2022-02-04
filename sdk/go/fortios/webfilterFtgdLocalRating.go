@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,7 @@ func NewWebfilterFtgdLocalRating(ctx *pulumi.Context,
 	if args.Rating == nil {
 		return nil, errors.New("invalid value for required argument 'Rating'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterFtgdLocalRating
 	err := ctx.RegisterResource("fortios:index/webfilterFtgdLocalRating:WebfilterFtgdLocalRating", name, args, &resource, opts...)
 	if err != nil {
@@ -162,7 +163,7 @@ type WebfilterFtgdLocalRatingInput interface {
 }
 
 func (*WebfilterFtgdLocalRating) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterFtgdLocalRating)(nil))
+	return reflect.TypeOf((**WebfilterFtgdLocalRating)(nil)).Elem()
 }
 
 func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingOutput() WebfilterFtgdLocalRatingOutput {
@@ -171,35 +172,6 @@ func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingOutput() WebfilterF
 
 func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingOutput)
-}
-
-func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingPtrOutput() WebfilterFtgdLocalRatingPtrOutput {
-	return i.ToWebfilterFtgdLocalRatingPtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterFtgdLocalRating) ToWebfilterFtgdLocalRatingPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingPtrOutput)
-}
-
-type WebfilterFtgdLocalRatingPtrInput interface {
-	pulumi.Input
-
-	ToWebfilterFtgdLocalRatingPtrOutput() WebfilterFtgdLocalRatingPtrOutput
-	ToWebfilterFtgdLocalRatingPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingPtrOutput
-}
-
-type webfilterFtgdLocalRatingPtrType WebfilterFtgdLocalRatingArgs
-
-func (*webfilterFtgdLocalRatingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterFtgdLocalRating)(nil))
-}
-
-func (i *webfilterFtgdLocalRatingPtrType) ToWebfilterFtgdLocalRatingPtrOutput() WebfilterFtgdLocalRatingPtrOutput {
-	return i.ToWebfilterFtgdLocalRatingPtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterFtgdLocalRatingPtrType) ToWebfilterFtgdLocalRatingPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingPtrOutput)
 }
 
 // WebfilterFtgdLocalRatingArrayInput is an input type that accepts WebfilterFtgdLocalRatingArray and WebfilterFtgdLocalRatingArrayOutput values.
@@ -216,7 +188,7 @@ type WebfilterFtgdLocalRatingArrayInput interface {
 type WebfilterFtgdLocalRatingArray []WebfilterFtgdLocalRatingInput
 
 func (WebfilterFtgdLocalRatingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterFtgdLocalRating)(nil))
+	return reflect.TypeOf((*[]*WebfilterFtgdLocalRating)(nil)).Elem()
 }
 
 func (i WebfilterFtgdLocalRatingArray) ToWebfilterFtgdLocalRatingArrayOutput() WebfilterFtgdLocalRatingArrayOutput {
@@ -241,7 +213,7 @@ type WebfilterFtgdLocalRatingMapInput interface {
 type WebfilterFtgdLocalRatingMap map[string]WebfilterFtgdLocalRatingInput
 
 func (WebfilterFtgdLocalRatingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterFtgdLocalRating)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterFtgdLocalRating)(nil)).Elem()
 }
 
 func (i WebfilterFtgdLocalRatingMap) ToWebfilterFtgdLocalRatingMapOutput() WebfilterFtgdLocalRatingMapOutput {
@@ -252,12 +224,10 @@ func (i WebfilterFtgdLocalRatingMap) ToWebfilterFtgdLocalRatingMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalRatingMapOutput)
 }
 
-type WebfilterFtgdLocalRatingOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterFtgdLocalRatingOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalRatingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterFtgdLocalRating)(nil))
+	return reflect.TypeOf((**WebfilterFtgdLocalRating)(nil)).Elem()
 }
 
 func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingOutput() WebfilterFtgdLocalRatingOutput {
@@ -268,36 +238,10 @@ func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingOutputWithCont
 	return o
 }
 
-func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingPtrOutput() WebfilterFtgdLocalRatingPtrOutput {
-	return o.ToWebfilterFtgdLocalRatingPtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterFtgdLocalRatingOutput) ToWebfilterFtgdLocalRatingPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingPtrOutput {
-	return o.ApplyT(func(v WebfilterFtgdLocalRating) *WebfilterFtgdLocalRating {
-		return &v
-	}).(WebfilterFtgdLocalRatingPtrOutput)
-}
-
-type WebfilterFtgdLocalRatingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterFtgdLocalRatingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterFtgdLocalRating)(nil))
-}
-
-func (o WebfilterFtgdLocalRatingPtrOutput) ToWebfilterFtgdLocalRatingPtrOutput() WebfilterFtgdLocalRatingPtrOutput {
-	return o
-}
-
-func (o WebfilterFtgdLocalRatingPtrOutput) ToWebfilterFtgdLocalRatingPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalRatingPtrOutput {
-	return o
-}
-
 type WebfilterFtgdLocalRatingArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalRatingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterFtgdLocalRating)(nil))
+	return reflect.TypeOf((*[]*WebfilterFtgdLocalRating)(nil)).Elem()
 }
 
 func (o WebfilterFtgdLocalRatingArrayOutput) ToWebfilterFtgdLocalRatingArrayOutput() WebfilterFtgdLocalRatingArrayOutput {
@@ -309,15 +253,15 @@ func (o WebfilterFtgdLocalRatingArrayOutput) ToWebfilterFtgdLocalRatingArrayOutp
 }
 
 func (o WebfilterFtgdLocalRatingArrayOutput) Index(i pulumi.IntInput) WebfilterFtgdLocalRatingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterFtgdLocalRating {
-		return vs[0].([]WebfilterFtgdLocalRating)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterFtgdLocalRating {
+		return vs[0].([]*WebfilterFtgdLocalRating)[vs[1].(int)]
 	}).(WebfilterFtgdLocalRatingOutput)
 }
 
 type WebfilterFtgdLocalRatingMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalRatingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterFtgdLocalRating)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterFtgdLocalRating)(nil)).Elem()
 }
 
 func (o WebfilterFtgdLocalRatingMapOutput) ToWebfilterFtgdLocalRatingMapOutput() WebfilterFtgdLocalRatingMapOutput {
@@ -329,14 +273,16 @@ func (o WebfilterFtgdLocalRatingMapOutput) ToWebfilterFtgdLocalRatingMapOutputWi
 }
 
 func (o WebfilterFtgdLocalRatingMapOutput) MapIndex(k pulumi.StringInput) WebfilterFtgdLocalRatingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterFtgdLocalRating {
-		return vs[0].(map[string]WebfilterFtgdLocalRating)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterFtgdLocalRating {
+		return vs[0].(map[string]*WebfilterFtgdLocalRating)[vs[1].(string)]
 	}).(WebfilterFtgdLocalRatingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFtgdLocalRatingInput)(nil)).Elem(), &WebfilterFtgdLocalRating{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFtgdLocalRatingArrayInput)(nil)).Elem(), WebfilterFtgdLocalRatingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFtgdLocalRatingMapInput)(nil)).Elem(), WebfilterFtgdLocalRatingMap{})
 	pulumi.RegisterOutputType(WebfilterFtgdLocalRatingOutput{})
-	pulumi.RegisterOutputType(WebfilterFtgdLocalRatingPtrOutput{})
 	pulumi.RegisterOutputType(WebfilterFtgdLocalRatingArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterFtgdLocalRatingMapOutput{})
 }

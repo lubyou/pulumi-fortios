@@ -13,9 +13,7 @@ export function getFirewallServiceCustom(args: GetFirewallServiceCustomArgs, opt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallServiceCustom:GetFirewallServiceCustom", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -68,6 +66,10 @@ export interface GetFirewallServiceCustomResult {
      * Comment.
      */
     readonly comment: string;
+    /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
     /**
      * Fully qualified domain name.
      */
@@ -129,6 +131,10 @@ export interface GetFirewallServiceCustomResult {
      */
     readonly tcpPortrange: string;
     /**
+     * Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+     */
+    readonly tcpRstTimer: number;
+    /**
      * Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
      */
     readonly tcpTimewaitTimer: number;
@@ -145,4 +151,22 @@ export interface GetFirewallServiceCustomResult {
      * Enable/disable the visibility of the service on the GUI.
      */
     readonly visibility: string;
+}
+
+export function getFirewallServiceCustomOutput(args: GetFirewallServiceCustomOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallServiceCustomResult> {
+    return pulumi.output(args).apply(a => getFirewallServiceCustom(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallServiceCustom.
+ */
+export interface GetFirewallServiceCustomOutputArgs {
+    /**
+     * Specify the name of the desired firewallservice custom.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

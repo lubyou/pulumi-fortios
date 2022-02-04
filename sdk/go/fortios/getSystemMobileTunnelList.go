@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemMobileTunnel`.
 func GetSystemMobileTunnelList(ctx *pulumi.Context, args *GetSystemMobileTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemMobileTunnelListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemMobileTunnelListResult
 	err := ctx.Invoke("fortios:index/getSystemMobileTunnelList:GetSystemMobileTunnelList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemMobileTunnelListResult struct {
 	// A list of the `SystemMobileTunnel`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemMobileTunnelListOutput(ctx *pulumi.Context, args GetSystemMobileTunnelListOutputArgs, opts ...pulumi.InvokeOption) GetSystemMobileTunnelListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemMobileTunnelListResult, error) {
+			args := v.(GetSystemMobileTunnelListArgs)
+			r, err := GetSystemMobileTunnelList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemMobileTunnelListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemMobileTunnelList.
+type GetSystemMobileTunnelListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemMobileTunnelListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemMobileTunnelListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemMobileTunnelList.
+type GetSystemMobileTunnelListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemMobileTunnelListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemMobileTunnelListResult)(nil)).Elem()
+}
+
+func (o GetSystemMobileTunnelListResultOutput) ToGetSystemMobileTunnelListResultOutput() GetSystemMobileTunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemMobileTunnelListResultOutput) ToGetSystemMobileTunnelListResultOutputWithContext(ctx context.Context) GetSystemMobileTunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemMobileTunnelListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemMobileTunnelListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemMobileTunnelListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemMobileTunnelListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemMobileTunnel`.
+func (o GetSystemMobileTunnelListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemMobileTunnelListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemMobileTunnelListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemMobileTunnelListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemMobileTunnelListResultOutput{})
 }

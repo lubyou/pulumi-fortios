@@ -14,6 +14,9 @@ __all__ = ['FirewallLdbMonitorArgs', 'FirewallLdbMonitor']
 class FirewallLdbMonitorArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[str],
+                 dns_match_ip: Optional[pulumi.Input[str]] = None,
+                 dns_protocol: Optional[pulumi.Input[str]] = None,
+                 dns_request_domain: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
                  http_match: Optional[pulumi.Input[str]] = None,
                  http_max_redirects: Optional[pulumi.Input[int]] = None,
@@ -27,6 +30,9 @@ class FirewallLdbMonitorArgs:
         """
         The set of arguments for constructing a FirewallLdbMonitor resource.
         :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
+        :param pulumi.Input[str] dns_match_ip: Response IP expected from DNS server.
+        :param pulumi.Input[str] dns_protocol: Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        :param pulumi.Input[str] dns_request_domain: Fully qualified domain name to resolve for the DNS probe.
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
@@ -39,6 +45,12 @@ class FirewallLdbMonitorArgs:
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "type", type)
+        if dns_match_ip is not None:
+            pulumi.set(__self__, "dns_match_ip", dns_match_ip)
+        if dns_protocol is not None:
+            pulumi.set(__self__, "dns_protocol", dns_protocol)
+        if dns_request_domain is not None:
+            pulumi.set(__self__, "dns_request_domain", dns_request_domain)
         if http_get is not None:
             pulumi.set(__self__, "http_get", http_get)
         if http_match is not None:
@@ -71,6 +83,42 @@ class FirewallLdbMonitorArgs:
     @type.setter
     def type(self, value: pulumi.Input[str]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter(name="dnsMatchIp")
+    def dns_match_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Response IP expected from DNS server.
+        """
+        return pulumi.get(self, "dns_match_ip")
+
+    @dns_match_ip.setter
+    def dns_match_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_match_ip", value)
+
+    @property
+    @pulumi.getter(name="dnsProtocol")
+    def dns_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "dns_protocol")
+
+    @dns_protocol.setter
+    def dns_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_protocol", value)
+
+    @property
+    @pulumi.getter(name="dnsRequestDomain")
+    def dns_request_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fully qualified domain name to resolve for the DNS probe.
+        """
+        return pulumi.get(self, "dns_request_domain")
+
+    @dns_request_domain.setter
+    def dns_request_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_request_domain", value)
 
     @property
     @pulumi.getter(name="httpGet")
@@ -196,6 +244,9 @@ class FirewallLdbMonitorArgs:
 @pulumi.input_type
 class _FirewallLdbMonitorState:
     def __init__(__self__, *,
+                 dns_match_ip: Optional[pulumi.Input[str]] = None,
+                 dns_protocol: Optional[pulumi.Input[str]] = None,
+                 dns_request_domain: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
                  http_match: Optional[pulumi.Input[str]] = None,
                  http_max_redirects: Optional[pulumi.Input[int]] = None,
@@ -209,6 +260,9 @@ class _FirewallLdbMonitorState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallLdbMonitor resources.
+        :param pulumi.Input[str] dns_match_ip: Response IP expected from DNS server.
+        :param pulumi.Input[str] dns_protocol: Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        :param pulumi.Input[str] dns_request_domain: Fully qualified domain name to resolve for the DNS probe.
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
@@ -221,6 +275,12 @@ class _FirewallLdbMonitorState:
         :param pulumi.Input[str] type: Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if dns_match_ip is not None:
+            pulumi.set(__self__, "dns_match_ip", dns_match_ip)
+        if dns_protocol is not None:
+            pulumi.set(__self__, "dns_protocol", dns_protocol)
+        if dns_request_domain is not None:
+            pulumi.set(__self__, "dns_request_domain", dns_request_domain)
         if http_get is not None:
             pulumi.set(__self__, "http_get", http_get)
         if http_match is not None:
@@ -243,6 +303,42 @@ class _FirewallLdbMonitorState:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="dnsMatchIp")
+    def dns_match_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Response IP expected from DNS server.
+        """
+        return pulumi.get(self, "dns_match_ip")
+
+    @dns_match_ip.setter
+    def dns_match_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_match_ip", value)
+
+    @property
+    @pulumi.getter(name="dnsProtocol")
+    def dns_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "dns_protocol")
+
+    @dns_protocol.setter
+    def dns_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_protocol", value)
+
+    @property
+    @pulumi.getter(name="dnsRequestDomain")
+    def dns_request_domain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fully qualified domain name to resolve for the DNS probe.
+        """
+        return pulumi.get(self, "dns_request_domain")
+
+    @dns_request_domain.setter
+    def dns_request_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dns_request_domain", value)
 
     @property
     @pulumi.getter(name="httpGet")
@@ -382,6 +478,9 @@ class FirewallLdbMonitor(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 dns_match_ip: Optional[pulumi.Input[str]] = None,
+                 dns_protocol: Optional[pulumi.Input[str]] = None,
+                 dns_request_domain: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
                  http_match: Optional[pulumi.Input[str]] = None,
                  http_max_redirects: Optional[pulumi.Input[int]] = None,
@@ -424,6 +523,9 @@ class FirewallLdbMonitor(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] dns_match_ip: Response IP expected from DNS server.
+        :param pulumi.Input[str] dns_protocol: Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        :param pulumi.Input[str] dns_request_domain: Fully qualified domain name to resolve for the DNS probe.
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
@@ -485,6 +587,9 @@ class FirewallLdbMonitor(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 dns_match_ip: Optional[pulumi.Input[str]] = None,
+                 dns_protocol: Optional[pulumi.Input[str]] = None,
+                 dns_request_domain: Optional[pulumi.Input[str]] = None,
                  http_get: Optional[pulumi.Input[str]] = None,
                  http_match: Optional[pulumi.Input[str]] = None,
                  http_max_redirects: Optional[pulumi.Input[int]] = None,
@@ -503,11 +608,16 @@ class FirewallLdbMonitor(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallLdbMonitorArgs.__new__(FirewallLdbMonitorArgs)
 
+            __props__.__dict__["dns_match_ip"] = dns_match_ip
+            __props__.__dict__["dns_protocol"] = dns_protocol
+            __props__.__dict__["dns_request_domain"] = dns_request_domain
             __props__.__dict__["http_get"] = http_get
             __props__.__dict__["http_match"] = http_match
             __props__.__dict__["http_max_redirects"] = http_max_redirects
@@ -531,6 +641,9 @@ class FirewallLdbMonitor(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            dns_match_ip: Optional[pulumi.Input[str]] = None,
+            dns_protocol: Optional[pulumi.Input[str]] = None,
+            dns_request_domain: Optional[pulumi.Input[str]] = None,
             http_get: Optional[pulumi.Input[str]] = None,
             http_match: Optional[pulumi.Input[str]] = None,
             http_max_redirects: Optional[pulumi.Input[int]] = None,
@@ -549,6 +662,9 @@ class FirewallLdbMonitor(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] dns_match_ip: Response IP expected from DNS server.
+        :param pulumi.Input[str] dns_protocol: Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        :param pulumi.Input[str] dns_request_domain: Fully qualified domain name to resolve for the DNS probe.
         :param pulumi.Input[str] http_get: URL used to send a GET request to check the health of an HTTP server.
         :param pulumi.Input[str] http_match: String to match the value expected in response to an HTTP-GET request.
         :param pulumi.Input[int] http_max_redirects: The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
@@ -565,6 +681,9 @@ class FirewallLdbMonitor(pulumi.CustomResource):
 
         __props__ = _FirewallLdbMonitorState.__new__(_FirewallLdbMonitorState)
 
+        __props__.__dict__["dns_match_ip"] = dns_match_ip
+        __props__.__dict__["dns_protocol"] = dns_protocol
+        __props__.__dict__["dns_request_domain"] = dns_request_domain
         __props__.__dict__["http_get"] = http_get
         __props__.__dict__["http_match"] = http_match
         __props__.__dict__["http_max_redirects"] = http_max_redirects
@@ -577,6 +696,30 @@ class FirewallLdbMonitor(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallLdbMonitor(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="dnsMatchIp")
+    def dns_match_ip(self) -> pulumi.Output[str]:
+        """
+        Response IP expected from DNS server.
+        """
+        return pulumi.get(self, "dns_match_ip")
+
+    @property
+    @pulumi.getter(name="dnsProtocol")
+    def dns_protocol(self) -> pulumi.Output[str]:
+        """
+        Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "dns_protocol")
+
+    @property
+    @pulumi.getter(name="dnsRequestDomain")
+    def dns_request_domain(self) -> pulumi.Output[str]:
+        """
+        Fully qualified domain name to resolve for the DNS probe.
+        """
+        return pulumi.get(self, "dns_request_domain")
 
     @property
     @pulumi.getter(name="httpGet")

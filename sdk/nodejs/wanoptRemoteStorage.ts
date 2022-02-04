@@ -87,27 +87,25 @@ export class WanoptRemoteStorage extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WanoptRemoteStorageArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptRemoteStorageArgs | WanoptRemoteStorageState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptRemoteStorageState | undefined;
-            inputs["localCacheId"] = state ? state.localCacheId : undefined;
-            inputs["remoteCacheId"] = state ? state.remoteCacheId : undefined;
-            inputs["remoteCacheIp"] = state ? state.remoteCacheIp : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["localCacheId"] = state ? state.localCacheId : undefined;
+            resourceInputs["remoteCacheId"] = state ? state.remoteCacheId : undefined;
+            resourceInputs["remoteCacheIp"] = state ? state.remoteCacheIp : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptRemoteStorageArgs | undefined;
-            inputs["localCacheId"] = args ? args.localCacheId : undefined;
-            inputs["remoteCacheId"] = args ? args.remoteCacheId : undefined;
-            inputs["remoteCacheIp"] = args ? args.remoteCacheIp : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["localCacheId"] = args ? args.localCacheId : undefined;
+            resourceInputs["remoteCacheId"] = args ? args.remoteCacheId : undefined;
+            resourceInputs["remoteCacheIp"] = args ? args.remoteCacheIp : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptRemoteStorage.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptRemoteStorage.__pulumiType, name, resourceInputs, opts);
     }
 }
 

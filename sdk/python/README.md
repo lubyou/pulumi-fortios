@@ -36,7 +36,7 @@ In order to properly build the sdks, the following tools are expected:
 
 In the root of the repository, run:
 
-- `(cd provider && go get github.com/terraform-providers/terraform-provider-foo)`  (where `foo` is the name of the provider - note the parenthesis to run this in a subshell)
+- `(cd provider && go get github.com/terraform-providers/terraform-provider-fortios)`  (where `foo` is the name of the provider - note the parenthesis to run this in a subshell)
 - `(cd provider && go mod download)`
 
 ### Build the provider:
@@ -83,3 +83,13 @@ For detailed reference documentation, please visit [the API docs][1].
 
 
 [1]: https://www.pulumi.com/docs/reference/pkg/x/
+
+
+## Update provider
+
+update version in `provider/go.mod`
+
+    (cd provider && go get -u && go mod tidy)
+    ./update_scripts/update.sh
+    make build_node
+    make build_python

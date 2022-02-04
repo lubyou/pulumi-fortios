@@ -75,27 +75,25 @@ export class SwitchControllerStormControl extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerStormControlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerStormControlArgs | SwitchControllerStormControlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerStormControlState | undefined;
-            inputs["broadcast"] = state ? state.broadcast : undefined;
-            inputs["rate"] = state ? state.rate : undefined;
-            inputs["unknownMulticast"] = state ? state.unknownMulticast : undefined;
-            inputs["unknownUnicast"] = state ? state.unknownUnicast : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["broadcast"] = state ? state.broadcast : undefined;
+            resourceInputs["rate"] = state ? state.rate : undefined;
+            resourceInputs["unknownMulticast"] = state ? state.unknownMulticast : undefined;
+            resourceInputs["unknownUnicast"] = state ? state.unknownUnicast : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerStormControlArgs | undefined;
-            inputs["broadcast"] = args ? args.broadcast : undefined;
-            inputs["rate"] = args ? args.rate : undefined;
-            inputs["unknownMulticast"] = args ? args.unknownMulticast : undefined;
-            inputs["unknownUnicast"] = args ? args.unknownUnicast : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["broadcast"] = args ? args.broadcast : undefined;
+            resourceInputs["rate"] = args ? args.rate : undefined;
+            resourceInputs["unknownMulticast"] = args ? args.unknownMulticast : undefined;
+            resourceInputs["unknownUnicast"] = args ? args.unknownUnicast : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerStormControl.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerStormControl.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -47,6 +47,7 @@ func NewSystemReplacemsgFortiguardWf(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgFortiguardWf
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgFortiguardWf:SystemReplacemsgFortiguardWf", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgFortiguardWfInput interface {
 }
 
 func (*SystemReplacemsgFortiguardWf) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgFortiguardWf)(nil))
+	return reflect.TypeOf((**SystemReplacemsgFortiguardWf)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgFortiguardWf) ToSystemReplacemsgFortiguardWfOutput() SystemReplacemsgFortiguardWfOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgFortiguardWf) ToSystemReplacemsgFortiguardWfOutput() Sy
 
 func (i *SystemReplacemsgFortiguardWf) ToSystemReplacemsgFortiguardWfOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfOutput)
-}
-
-func (i *SystemReplacemsgFortiguardWf) ToSystemReplacemsgFortiguardWfPtrOutput() SystemReplacemsgFortiguardWfPtrOutput {
-	return i.ToSystemReplacemsgFortiguardWfPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgFortiguardWf) ToSystemReplacemsgFortiguardWfPtrOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfPtrOutput)
-}
-
-type SystemReplacemsgFortiguardWfPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgFortiguardWfPtrOutput() SystemReplacemsgFortiguardWfPtrOutput
-	ToSystemReplacemsgFortiguardWfPtrOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfPtrOutput
-}
-
-type systemReplacemsgFortiguardWfPtrType SystemReplacemsgFortiguardWfArgs
-
-func (*systemReplacemsgFortiguardWfPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgFortiguardWf)(nil))
-}
-
-func (i *systemReplacemsgFortiguardWfPtrType) ToSystemReplacemsgFortiguardWfPtrOutput() SystemReplacemsgFortiguardWfPtrOutput {
-	return i.ToSystemReplacemsgFortiguardWfPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgFortiguardWfPtrType) ToSystemReplacemsgFortiguardWfPtrOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfPtrOutput)
 }
 
 // SystemReplacemsgFortiguardWfArrayInput is an input type that accepts SystemReplacemsgFortiguardWfArray and SystemReplacemsgFortiguardWfArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgFortiguardWfArrayInput interface {
 type SystemReplacemsgFortiguardWfArray []SystemReplacemsgFortiguardWfInput
 
 func (SystemReplacemsgFortiguardWfArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgFortiguardWf)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgFortiguardWf)(nil)).Elem()
 }
 
 func (i SystemReplacemsgFortiguardWfArray) ToSystemReplacemsgFortiguardWfArrayOutput() SystemReplacemsgFortiguardWfArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgFortiguardWfMapInput interface {
 type SystemReplacemsgFortiguardWfMap map[string]SystemReplacemsgFortiguardWfInput
 
 func (SystemReplacemsgFortiguardWfMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgFortiguardWf)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgFortiguardWf)(nil)).Elem()
 }
 
 func (i SystemReplacemsgFortiguardWfMap) ToSystemReplacemsgFortiguardWfMapOutput() SystemReplacemsgFortiguardWfMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgFortiguardWfMap) ToSystemReplacemsgFortiguardWfMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgFortiguardWfMapOutput)
 }
 
-type SystemReplacemsgFortiguardWfOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgFortiguardWfOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgFortiguardWfOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgFortiguardWf)(nil))
+	return reflect.TypeOf((**SystemReplacemsgFortiguardWf)(nil)).Elem()
 }
 
 func (o SystemReplacemsgFortiguardWfOutput) ToSystemReplacemsgFortiguardWfOutput() SystemReplacemsgFortiguardWfOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgFortiguardWfOutput) ToSystemReplacemsgFortiguardWfOutput
 	return o
 }
 
-func (o SystemReplacemsgFortiguardWfOutput) ToSystemReplacemsgFortiguardWfPtrOutput() SystemReplacemsgFortiguardWfPtrOutput {
-	return o.ToSystemReplacemsgFortiguardWfPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgFortiguardWfOutput) ToSystemReplacemsgFortiguardWfPtrOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgFortiguardWf) *SystemReplacemsgFortiguardWf {
-		return &v
-	}).(SystemReplacemsgFortiguardWfPtrOutput)
-}
-
-type SystemReplacemsgFortiguardWfPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgFortiguardWfPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgFortiguardWf)(nil))
-}
-
-func (o SystemReplacemsgFortiguardWfPtrOutput) ToSystemReplacemsgFortiguardWfPtrOutput() SystemReplacemsgFortiguardWfPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgFortiguardWfPtrOutput) ToSystemReplacemsgFortiguardWfPtrOutputWithContext(ctx context.Context) SystemReplacemsgFortiguardWfPtrOutput {
-	return o
-}
-
 type SystemReplacemsgFortiguardWfArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgFortiguardWfArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgFortiguardWf)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgFortiguardWf)(nil)).Elem()
 }
 
 func (o SystemReplacemsgFortiguardWfArrayOutput) ToSystemReplacemsgFortiguardWfArrayOutput() SystemReplacemsgFortiguardWfArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgFortiguardWfArrayOutput) ToSystemReplacemsgFortiguardWfA
 }
 
 func (o SystemReplacemsgFortiguardWfArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgFortiguardWfOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgFortiguardWf {
-		return vs[0].([]SystemReplacemsgFortiguardWf)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgFortiguardWf {
+		return vs[0].([]*SystemReplacemsgFortiguardWf)[vs[1].(int)]
 	}).(SystemReplacemsgFortiguardWfOutput)
 }
 
 type SystemReplacemsgFortiguardWfMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgFortiguardWfMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgFortiguardWf)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgFortiguardWf)(nil)).Elem()
 }
 
 func (o SystemReplacemsgFortiguardWfMapOutput) ToSystemReplacemsgFortiguardWfMapOutput() SystemReplacemsgFortiguardWfMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgFortiguardWfMapOutput) ToSystemReplacemsgFortiguardWfMap
 }
 
 func (o SystemReplacemsgFortiguardWfMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgFortiguardWfOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgFortiguardWf {
-		return vs[0].(map[string]SystemReplacemsgFortiguardWf)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgFortiguardWf {
+		return vs[0].(map[string]*SystemReplacemsgFortiguardWf)[vs[1].(string)]
 	}).(SystemReplacemsgFortiguardWfOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgFortiguardWfInput)(nil)).Elem(), &SystemReplacemsgFortiguardWf{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgFortiguardWfArrayInput)(nil)).Elem(), SystemReplacemsgFortiguardWfArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgFortiguardWfMapInput)(nil)).Elem(), SystemReplacemsgFortiguardWfMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgFortiguardWfOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgFortiguardWfPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgFortiguardWfArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgFortiguardWfMapOutput{})
 }

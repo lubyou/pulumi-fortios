@@ -47,9 +47,13 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
     }
 
     /**
-     * Action names. The structure of `action` block is documented below.
+     * Configure stitch actions. The structure of `actions` block is documented below.
      */
     public readonly actions!: pulumi.Output<outputs.SystemAutomationStitchAction[] | undefined>;
+    /**
+     * Description.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
     /**
      * Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
      */
@@ -84,17 +88,18 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAutomationStitchArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutomationStitchArgs | SystemAutomationStitchState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutomationStitchState | undefined;
-            inputs["actions"] = state ? state.actions : undefined;
-            inputs["destinations"] = state ? state.destinations : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["trigger"] = state ? state.trigger : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["actions"] = state ? state.actions : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["destinations"] = state ? state.destinations : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["trigger"] = state ? state.trigger : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutomationStitchArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
@@ -103,18 +108,17 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
             if ((!args || args.trigger === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'trigger'");
             }
-            inputs["actions"] = args ? args.actions : undefined;
-            inputs["destinations"] = args ? args.destinations : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["trigger"] = args ? args.trigger : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["actions"] = args ? args.actions : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["destinations"] = args ? args.destinations : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["trigger"] = args ? args.trigger : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutomationStitch.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutomationStitch.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -123,9 +127,13 @@ export class SystemAutomationStitch extends pulumi.CustomResource {
  */
 export interface SystemAutomationStitchState {
     /**
-     * Action names. The structure of `action` block is documented below.
+     * Configure stitch actions. The structure of `actions` block is documented below.
      */
     actions?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchAction>[]>;
+    /**
+     * Description.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
      */
@@ -157,9 +165,13 @@ export interface SystemAutomationStitchState {
  */
 export interface SystemAutomationStitchArgs {
     /**
-     * Action names. The structure of `action` block is documented below.
+     * Configure stitch actions. The structure of `actions` block is documented below.
      */
     actions?: pulumi.Input<pulumi.Input<inputs.SystemAutomationStitchAction>[]>;
+    /**
+     * Description.
+     */
+    description?: pulumi.Input<string>;
     /**
      * Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
      */

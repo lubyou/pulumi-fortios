@@ -102,18 +102,18 @@ export class WebProxyWisp extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebProxyWispArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyWispArgs | WebProxyWispState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyWispState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["maxConnections"] = state ? state.maxConnections : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["outgoingIp"] = state ? state.outgoingIp : undefined;
-            inputs["serverIp"] = state ? state.serverIp : undefined;
-            inputs["serverPort"] = state ? state.serverPort : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["outgoingIp"] = state ? state.outgoingIp : undefined;
+            resourceInputs["serverIp"] = state ? state.serverIp : undefined;
+            resourceInputs["serverPort"] = state ? state.serverPort : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebProxyWispArgs | undefined;
             if ((!args || args.serverIp === undefined) && !opts.urn) {
@@ -122,19 +122,17 @@ export class WebProxyWisp extends pulumi.CustomResource {
             if ((!args || args.serverPort === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serverPort'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["maxConnections"] = args ? args.maxConnections : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["outgoingIp"] = args ? args.outgoingIp : undefined;
-            inputs["serverIp"] = args ? args.serverIp : undefined;
-            inputs["serverPort"] = args ? args.serverPort : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["outgoingIp"] = args ? args.outgoingIp : undefined;
+            resourceInputs["serverIp"] = args ? args.serverIp : undefined;
+            resourceInputs["serverPort"] = args ? args.serverPort : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyWisp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyWisp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

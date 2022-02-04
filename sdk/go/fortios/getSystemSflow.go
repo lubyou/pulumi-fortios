@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system sflow
 func LookupSystemSflow(ctx *pulumi.Context, args *LookupSystemSflowArgs, opts ...pulumi.InvokeOption) (*LookupSystemSflowResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSflowResult
 	err := ctx.Invoke("fortios:index/getSystemSflow:GetSystemSflow", args, &rv, opts...)
 	if err != nil {
@@ -31,7 +35,83 @@ type LookupSystemSflowResult struct {
 	CollectorPort int `pulumi:"collectorPort"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for sFlow agent.
 	SourceIp  string  `pulumi:"sourceIp"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemSflowOutput(ctx *pulumi.Context, args LookupSystemSflowOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSflowResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemSflowResult, error) {
+			args := v.(LookupSystemSflowArgs)
+			r, err := LookupSystemSflow(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemSflowResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSflow.
+type LookupSystemSflowOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemSflowOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSflowArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSflow.
+type LookupSystemSflowResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemSflowResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSflowResult)(nil)).Elem()
+}
+
+func (o LookupSystemSflowResultOutput) ToLookupSystemSflowResultOutput() LookupSystemSflowResultOutput {
+	return o
+}
+
+func (o LookupSystemSflowResultOutput) ToLookupSystemSflowResultOutputWithContext(ctx context.Context) LookupSystemSflowResultOutput {
+	return o
+}
+
+// IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
+func (o LookupSystemSflowResultOutput) CollectorIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) string { return v.CollectorIp }).(pulumi.StringOutput)
+}
+
+// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+func (o LookupSystemSflowResultOutput) CollectorPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) int { return v.CollectorPort }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemSflowResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o LookupSystemSflowResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o LookupSystemSflowResultOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Source IP address for sFlow agent.
+func (o LookupSystemSflowResultOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSflowResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemSflowResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemSflowResultOutput{})
 }

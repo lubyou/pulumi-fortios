@@ -91,29 +91,27 @@ export class UserQuarantine extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserQuarantineArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserQuarantineArgs | UserQuarantineState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserQuarantineState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["firewallGroups"] = state ? state.firewallGroups : undefined;
-            inputs["quarantine"] = state ? state.quarantine : undefined;
-            inputs["targets"] = state ? state.targets : undefined;
-            inputs["trafficPolicy"] = state ? state.trafficPolicy : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["firewallGroups"] = state ? state.firewallGroups : undefined;
+            resourceInputs["quarantine"] = state ? state.quarantine : undefined;
+            resourceInputs["targets"] = state ? state.targets : undefined;
+            resourceInputs["trafficPolicy"] = state ? state.trafficPolicy : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserQuarantineArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["firewallGroups"] = args ? args.firewallGroups : undefined;
-            inputs["quarantine"] = args ? args.quarantine : undefined;
-            inputs["targets"] = args ? args.targets : undefined;
-            inputs["trafficPolicy"] = args ? args.trafficPolicy : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["firewallGroups"] = args ? args.firewallGroups : undefined;
+            resourceInputs["quarantine"] = args ? args.quarantine : undefined;
+            resourceInputs["targets"] = args ? args.targets : undefined;
+            resourceInputs["trafficPolicy"] = args ? args.trafficPolicy : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserQuarantine.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserQuarantine.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemAutomationTriggerResult',
     'AwaitableGetSystemAutomationTriggerResult',
     'get_system_automation_trigger',
+    'get_system_automation_trigger_output',
 ]
 
 @pulumi.output_type
@@ -20,10 +21,19 @@ class GetSystemAutomationTriggerResult:
     """
     A collection of values returned by GetSystemAutomationTrigger.
     """
-    def __init__(__self__, event_type=None, faz_event_name=None, faz_event_severity=None, faz_event_tags=None, fields=None, id=None, ioc_level=None, license_type=None, logid=None, name=None, report_type=None, trigger_day=None, trigger_frequency=None, trigger_hour=None, trigger_minute=None, trigger_type=None, trigger_weekday=None, vdomparam=None):
+    def __init__(__self__, description=None, event_type=None, fabric_event_name=None, fabric_event_severity=None, faz_event_name=None, faz_event_severity=None, faz_event_tags=None, fields=None, id=None, ioc_level=None, license_type=None, logid=None, name=None, report_type=None, serial=None, trigger_day=None, trigger_frequency=None, trigger_hour=None, trigger_minute=None, trigger_type=None, trigger_weekday=None, vdomparam=None):
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if event_type and not isinstance(event_type, str):
             raise TypeError("Expected argument 'event_type' to be a str")
         pulumi.set(__self__, "event_type", event_type)
+        if fabric_event_name and not isinstance(fabric_event_name, str):
+            raise TypeError("Expected argument 'fabric_event_name' to be a str")
+        pulumi.set(__self__, "fabric_event_name", fabric_event_name)
+        if fabric_event_severity and not isinstance(fabric_event_severity, str):
+            raise TypeError("Expected argument 'fabric_event_severity' to be a str")
+        pulumi.set(__self__, "fabric_event_severity", fabric_event_severity)
         if faz_event_name and not isinstance(faz_event_name, str):
             raise TypeError("Expected argument 'faz_event_name' to be a str")
         pulumi.set(__self__, "faz_event_name", faz_event_name)
@@ -54,6 +64,9 @@ class GetSystemAutomationTriggerResult:
         if report_type and not isinstance(report_type, str):
             raise TypeError("Expected argument 'report_type' to be a str")
         pulumi.set(__self__, "report_type", report_type)
+        if serial and not isinstance(serial, str):
+            raise TypeError("Expected argument 'serial' to be a str")
+        pulumi.set(__self__, "serial", serial)
         if trigger_day and not isinstance(trigger_day, int):
             raise TypeError("Expected argument 'trigger_day' to be a int")
         pulumi.set(__self__, "trigger_day", trigger_day)
@@ -77,12 +90,36 @@ class GetSystemAutomationTriggerResult:
         pulumi.set(__self__, "vdomparam", vdomparam)
 
     @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
     @pulumi.getter(name="eventType")
     def event_type(self) -> str:
         """
         Event type.
         """
         return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter(name="fabricEventName")
+    def fabric_event_name(self) -> str:
+        """
+        Fabric connector event handler name.
+        """
+        return pulumi.get(self, "fabric_event_name")
+
+    @property
+    @pulumi.getter(name="fabricEventSeverity")
+    def fabric_event_severity(self) -> str:
+        """
+        Fabric connector event severity.
+        """
+        return pulumi.get(self, "fabric_event_severity")
 
     @property
     @pulumi.getter(name="fazEventName")
@@ -165,6 +202,14 @@ class GetSystemAutomationTriggerResult:
         return pulumi.get(self, "report_type")
 
     @property
+    @pulumi.getter
+    def serial(self) -> str:
+        """
+        Fabric connector serial number.
+        """
+        return pulumi.get(self, "serial")
+
+    @property
     @pulumi.getter(name="triggerDay")
     def trigger_day(self) -> int:
         """
@@ -224,7 +269,10 @@ class AwaitableGetSystemAutomationTriggerResult(GetSystemAutomationTriggerResult
         if False:
             yield self
         return GetSystemAutomationTriggerResult(
+            description=self.description,
             event_type=self.event_type,
+            fabric_event_name=self.fabric_event_name,
+            fabric_event_severity=self.fabric_event_severity,
             faz_event_name=self.faz_event_name,
             faz_event_severity=self.faz_event_severity,
             faz_event_tags=self.faz_event_tags,
@@ -235,6 +283,7 @@ class AwaitableGetSystemAutomationTriggerResult(GetSystemAutomationTriggerResult
             logid=self.logid,
             name=self.name,
             report_type=self.report_type,
+            serial=self.serial,
             trigger_day=self.trigger_day,
             trigger_frequency=self.trigger_frequency,
             trigger_hour=self.trigger_hour,
@@ -261,10 +310,15 @@ def get_system_automation_trigger(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutomationTrigger:GetSystemAutomationTrigger', __args__, opts=opts, typ=GetSystemAutomationTriggerResult).value
 
     return AwaitableGetSystemAutomationTriggerResult(
+        description=__ret__.description,
         event_type=__ret__.event_type,
+        fabric_event_name=__ret__.fabric_event_name,
+        fabric_event_severity=__ret__.fabric_event_severity,
         faz_event_name=__ret__.faz_event_name,
         faz_event_severity=__ret__.faz_event_severity,
         faz_event_tags=__ret__.faz_event_tags,
@@ -275,6 +329,7 @@ def get_system_automation_trigger(name: Optional[str] = None,
         logid=__ret__.logid,
         name=__ret__.name,
         report_type=__ret__.report_type,
+        serial=__ret__.serial,
         trigger_day=__ret__.trigger_day,
         trigger_frequency=__ret__.trigger_frequency,
         trigger_hour=__ret__.trigger_hour,
@@ -282,3 +337,17 @@ def get_system_automation_trigger(name: Optional[str] = None,
         trigger_type=__ret__.trigger_type,
         trigger_weekday=__ret__.trigger_weekday,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_automation_trigger)
+def get_system_automation_trigger_output(name: Optional[pulumi.Input[str]] = None,
+                                         vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemAutomationTriggerResult]:
+    """
+    Use this data source to get information on an fortios system automationtrigger
+
+
+    :param str name: Specify the name of the desired system automationtrigger.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

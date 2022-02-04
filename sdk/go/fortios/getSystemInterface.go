@@ -4,6 +4,9 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,13 +18,14 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		sample1, err := fortios.GetSystemInterface(ctx, &fortios.LookupSystemInterfaceArgs{
+// 		sample1, err := fortios.GetSystemInterface(ctx, &GetSystemInterfaceArgs{
 // 			Name: "port1",
 // 		}, nil)
 // 		if err != nil {
@@ -33,6 +37,7 @@ import (
 // }
 // ```
 func LookupSystemInterface(ctx *pulumi.Context, args *LookupSystemInterfaceArgs, opts ...pulumi.InvokeOption) (*LookupSystemInterfaceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemInterfaceResult
 	err := ctx.Invoke("fortios:index/getSystemInterface:GetSystemInterface", args, &rv, opts...)
 	if err != nil {
@@ -65,6 +70,10 @@ type LookupSystemInterfaceResult struct {
 	ApDiscover string `pulumi:"apDiscover"`
 	// Enable/disable ARP forwarding.
 	Arpforward string `pulumi:"arpforward"`
+	// HTTPS server certificate.
+	AuthCert string `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr string `pulumi:"authPortalAddr"`
 	// PPP authentication type to use.
 	AuthType string `pulumi:"authType"`
 	// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface.
@@ -115,6 +124,8 @@ type LookupSystemInterfaceResult struct {
 	DeviceUserIdentification string `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex int `pulumi:"devindex"`
+	// Enable/disable addition of classless static routes retrieved from DHCP server.
+	DhcpClasslessRouteAddition string `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option.
@@ -125,12 +136,18 @@ type LookupSystemInterfaceResult struct {
 	DhcpRelayInterfaceSelectMethod string `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	// DHCP relay IP address.
 	DhcpRelayIp string `pulumi:"dhcpRelayIp"`
+	// DHCP relay link selection.
+	DhcpRelayLinkSelection string `pulumi:"dhcpRelayLinkSelection"`
+	// Enable/disable sending of DHCP requests to all servers.
+	DhcpRelayRequestAllServer string `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay.
 	DhcpRelayService string `pulumi:"dhcpRelayService"`
 	// DHCP relay type (regular or IPsec).
 	DhcpRelayType string `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime int `pulumi:"dhcpRenewTime"`
+	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+	DhcpSnoopingServerLists []GetSystemInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 	DiscRetryTimeout int `pulumi:"discRetryTimeout"`
 	// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -139,6 +156,8 @@ type LookupSystemInterfaceResult struct {
 	Distance int `pulumi:"distance"`
 	// Enable/disable use DNS acquired by DHCP or PPPoE.
 	DnsServerOverride string `pulumi:"dnsServerOverride"`
+	// DNS transport protocols.
+	DnsServerProtocol string `pulumi:"dnsServerProtocol"`
 	// Enable/disable drop fragment packets.
 	DropFragment string `pulumi:"dropFragment"`
 	// Enable/disable drop overlapped fragment packets.
@@ -181,6 +200,8 @@ type LookupSystemInterfaceResult struct {
 	FortilinkStacking string `pulumi:"fortilinkStacking"`
 	// Transparent mode forward domain.
 	ForwardDomain int `pulumi:"forwardDomain"`
+	// Configure forward error correction (FEC).
+	ForwardErrorCorrection string `pulumi:"forwardErrorCorrection"`
 	// Enable/disable detect gateway alive for first.
 	Gwdetect string `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -249,6 +270,8 @@ type LookupSystemInterfaceResult struct {
 	MeasuredDownstreamBandwidth int `pulumi:"measuredDownstreamBandwidth"`
 	// Measured upstream bandwidth (kbps).
 	MeasuredUpstreamBandwidth int `pulumi:"measuredUpstreamBandwidth"`
+	// Select SFP media interface type
+	Mediatype string `pulumi:"mediatype"`
 	// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
 	Members []GetSystemInterfaceMember `pulumi:"members"`
 	// Minimum number of aggregated ports that must be up.
@@ -303,6 +326,8 @@ type LookupSystemInterfaceResult struct {
 	PriorityOverride string `pulumi:"priorityOverride"`
 	// Enable/disable proxy captive portal on this interface.
 	ProxyCaptivePortal string `pulumi:"proxyCaptivePortal"`
+	// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+	ReachableTime int `pulumi:"reachableTime"`
 	// Redundant interface.
 	RedundantInterface string `pulumi:"redundantInterface"`
 	// Remote IP address of tunnel.
@@ -321,7 +346,8 @@ type LookupSystemInterfaceResult struct {
 	SampleRate int `pulumi:"sampleRate"`
 	// Enable monitoring or blocking connections to Botnet servers through this interface.
 	ScanBotnetConnections string `pulumi:"scanBotnetConnections"`
-	SecondaryIp           string `pulumi:"secondaryIp"`
+	// Enable/disable adding a secondary IP to this interface.
+	SecondaryIp string `pulumi:"secondaryIp"`
 	// Second IP address of interface. The structure of `secondaryip` block is documented below.
 	Secondaryips []GetSystemInterfaceSecondaryip `pulumi:"secondaryips"`
 	// Name of security-exempt-list.
@@ -352,6 +378,10 @@ type LookupSystemInterfaceResult struct {
 	SrcCheck string `pulumi:"srcCheck"`
 	// Enable/disable VRRP.
 	Status string `pulumi:"status"`
+	// Enable/disable STP.
+	Stp string `pulumi:"stp"`
+	// Control STP behaviour on HA secondary.
+	StpHaSecondary string `pulumi:"stpHaSecondary"`
 	// Enable/disable STP forwarding.
 	Stpforward string `pulumi:"stpforward"`
 	// Configure STP forwarding mode.
@@ -376,6 +406,8 @@ type LookupSystemInterfaceResult struct {
 	SwitchControllerDhcpSnoopingOption82 string `pulumi:"switchControllerDhcpSnoopingOption82"`
 	// Switch controller DHCP snooping verify MAC.
 	SwitchControllerDhcpSnoopingVerifyMac string `pulumi:"switchControllerDhcpSnoopingVerifyMac"`
+	// Integrated FortiLink settings for managed FortiSwitch.
+	SwitchControllerDynamic string `pulumi:"switchControllerDynamic"`
 	// Interface's purpose when assigning traffic (read only).
 	SwitchControllerFeature string `pulumi:"switchControllerFeature"`
 	// Switch controller IGMP snooping.
@@ -398,10 +430,16 @@ type LookupSystemInterfaceResult struct {
 	SwitchControllerSourceIp string `pulumi:"switchControllerSourceIp"`
 	// Switch controller traffic policy for the VLAN.
 	SwitchControllerTrafficPolicy string `pulumi:"switchControllerTrafficPolicy"`
+	// Define a system ID for the aggregate interface.
+	SystemId string `pulumi:"systemId"`
+	// Method in which system ID is generated.
+	SystemIdType string `pulumi:"systemIdType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings []GetSystemInterfaceTagging `pulumi:"taggings"`
 	// TCP maximum segment size. 0 means do not change segment size.
 	TcpMss int `pulumi:"tcpMss"`
+	// Enable/disable VLAN trunk.
+	Trunk string `pulumi:"trunk"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
 	TrustIp1 string `pulumi:"trustIp1"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
@@ -441,4 +479,1107 @@ type LookupSystemInterfaceResult struct {
 	Weight int `pulumi:"weight"`
 	// WINS server IP.
 	WinsIp string `pulumi:"winsIp"`
+}
+
+func LookupSystemInterfaceOutput(ctx *pulumi.Context, args LookupSystemInterfaceOutputArgs, opts ...pulumi.InvokeOption) LookupSystemInterfaceResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemInterfaceResult, error) {
+			args := v.(LookupSystemInterfaceArgs)
+			r, err := LookupSystemInterface(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemInterfaceResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemInterface.
+type LookupSystemInterfaceOutputArgs struct {
+	// Specify the name of the desired system interface.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemInterfaceOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemInterfaceArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemInterface.
+type LookupSystemInterfaceResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemInterfaceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemInterfaceResult)(nil)).Elem()
+}
+
+func (o LookupSystemInterfaceResultOutput) ToLookupSystemInterfaceResultOutput() LookupSystemInterfaceResultOutput {
+	return o
+}
+
+func (o LookupSystemInterfaceResultOutput) ToLookupSystemInterfaceResultOutputWithContext(ctx context.Context) LookupSystemInterfaceResultOutput {
+	return o
+}
+
+// PPPoE server name.
+func (o LookupSystemInterfaceResultOutput) AcName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.AcName }).(pulumi.StringOutput)
+}
+
+// Aggregate interface.
+func (o LookupSystemInterfaceResultOutput) Aggregate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Aggregate }).(pulumi.StringOutput)
+}
+
+// Frame distribution algorithm.
+func (o LookupSystemInterfaceResultOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// Alias will be displayed with the interface name to make it easier to distinguish.
+func (o LookupSystemInterfaceResultOutput) Alias() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Alias }).(pulumi.StringOutput)
+}
+
+// Management access settings for the secondary IP address.
+func (o LookupSystemInterfaceResultOutput) Allowaccess() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Allowaccess }).(pulumi.StringOutput)
+}
+
+// Enable/disable automatic registration of unknown FortiAP devices.
+func (o LookupSystemInterfaceResultOutput) ApDiscover() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ApDiscover }).(pulumi.StringOutput)
+}
+
+// Enable/disable ARP forwarding.
+func (o LookupSystemInterfaceResultOutput) Arpforward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Arpforward }).(pulumi.StringOutput)
+}
+
+// HTTPS server certificate.
+func (o LookupSystemInterfaceResultOutput) AuthCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.AuthCert }).(pulumi.StringOutput)
+}
+
+// Address of captive portal.
+func (o LookupSystemInterfaceResultOutput) AuthPortalAddr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.AuthPortalAddr }).(pulumi.StringOutput)
+}
+
+// PPP authentication type to use.
+func (o LookupSystemInterfaceResultOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface.
+func (o LookupSystemInterfaceResultOutput) AutoAuthExtensionDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.AutoAuthExtensionDevice }).(pulumi.StringOutput)
+}
+
+// Bandwidth measure time
+func (o LookupSystemInterfaceResultOutput) BandwidthMeasureTime() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.BandwidthMeasureTime }).(pulumi.IntOutput)
+}
+
+// Bidirectional Forwarding Detection (BFD) settings.
+func (o LookupSystemInterfaceResultOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Bfd }).(pulumi.StringOutput)
+}
+
+// BFD desired minimal transmit interval.
+func (o LookupSystemInterfaceResultOutput) BfdDesiredMinTx() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.BfdDesiredMinTx }).(pulumi.IntOutput)
+}
+
+// BFD detection multiplier.
+func (o LookupSystemInterfaceResultOutput) BfdDetectMult() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.BfdDetectMult }).(pulumi.IntOutput)
+}
+
+// BFD required minimal receive interval.
+func (o LookupSystemInterfaceResultOutput) BfdRequiredMinRx() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.BfdRequiredMinRx }).(pulumi.IntOutput)
+}
+
+// Enable/disable broadcasting FortiClient discovery messages.
+func (o LookupSystemInterfaceResultOutput) BroadcastForticlientDiscovery() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.BroadcastForticlientDiscovery }).(pulumi.StringOutput)
+}
+
+// Enable/disable broadcast forwarding.
+func (o LookupSystemInterfaceResultOutput) BroadcastForward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.BroadcastForward }).(pulumi.StringOutput)
+}
+
+// Enable/disable captive portal.
+func (o LookupSystemInterfaceResultOutput) CaptivePortal() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.CaptivePortal }).(pulumi.IntOutput)
+}
+
+// CLI connection status.
+func (o LookupSystemInterfaceResultOutput) CliConnStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.CliConnStatus }).(pulumi.IntOutput)
+}
+
+// DHCP client options. The structure of `clientOptions` block is documented below.
+func (o LookupSystemInterfaceResultOutput) ClientOptions() GetSystemInterfaceClientOptionArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceClientOption { return v.ClientOptions }).(GetSystemInterfaceClientOptionArrayOutput)
+}
+
+// Color of icon on the GUI.
+func (o LookupSystemInterfaceResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// Configure interface for single purpose.
+func (o LookupSystemInterfaceResultOutput) DedicatedTo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DedicatedTo }).(pulumi.StringOutput)
+}
+
+// Enable to get the gateway IP from the DHCP or PPPoE server.
+func (o LookupSystemInterfaceResultOutput) Defaultgw() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Defaultgw }).(pulumi.StringOutput)
+}
+
+// Description.
+func (o LookupSystemInterfaceResultOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// MTU of detected peer (0 - 4294967295).
+func (o LookupSystemInterfaceResultOutput) DetectedPeerMtu() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.DetectedPeerMtu }).(pulumi.IntOutput)
+}
+
+// Protocols used to detect the server.
+func (o LookupSystemInterfaceResultOutput) Detectprotocol() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Detectprotocol }).(pulumi.StringOutput)
+}
+
+// Gateway's ping server for this IP.
+func (o LookupSystemInterfaceResultOutput) Detectserver() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Detectserver }).(pulumi.StringOutput)
+}
+
+// Device access list.
+func (o LookupSystemInterfaceResultOutput) DeviceAccessList() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DeviceAccessList }).(pulumi.StringOutput)
+}
+
+// Enable/disable passively gathering of device identity information about the devices on the network connected to this interface.
+func (o LookupSystemInterfaceResultOutput) DeviceIdentification() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DeviceIdentification }).(pulumi.StringOutput)
+}
+
+// Enable/disable active gathering of device identity information about the devices on the network connected to this interface.
+func (o LookupSystemInterfaceResultOutput) DeviceIdentificationActiveScan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DeviceIdentificationActiveScan }).(pulumi.StringOutput)
+}
+
+// Enable/disable inclusion of devices detected on this interface in network vulnerability scans.
+func (o LookupSystemInterfaceResultOutput) DeviceNetscan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DeviceNetscan }).(pulumi.StringOutput)
+}
+
+// Enable/disable passive gathering of user identity information about users on this interface.
+func (o LookupSystemInterfaceResultOutput) DeviceUserIdentification() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DeviceUserIdentification }).(pulumi.StringOutput)
+}
+
+// Device Index.
+func (o LookupSystemInterfaceResultOutput) Devindex() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Devindex }).(pulumi.IntOutput)
+}
+
+// Enable/disable addition of classless static routes retrieved from DHCP server.
+func (o LookupSystemInterfaceResultOutput) DhcpClasslessRouteAddition() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpClasslessRouteAddition }).(pulumi.StringOutput)
+}
+
+// DHCP client identifier.
+func (o LookupSystemInterfaceResultOutput) DhcpClientIdentifier() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpClientIdentifier }).(pulumi.StringOutput)
+}
+
+// Enable/disable DHCP relay agent option.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayAgentOption() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayAgentOption }).(pulumi.StringOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayInterface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayInterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayInterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// DHCP relay IP address.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayIp }).(pulumi.StringOutput)
+}
+
+// DHCP relay link selection.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayLinkSelection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayLinkSelection }).(pulumi.StringOutput)
+}
+
+// Enable/disable sending of DHCP requests to all servers.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayRequestAllServer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayRequestAllServer }).(pulumi.StringOutput)
+}
+
+// Enable/disable allowing this interface to act as a DHCP relay.
+func (o LookupSystemInterfaceResultOutput) DhcpRelayService() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayService }).(pulumi.StringOutput)
+}
+
+// DHCP relay type (regular or IPsec).
+func (o LookupSystemInterfaceResultOutput) DhcpRelayType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DhcpRelayType }).(pulumi.StringOutput)
+}
+
+// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
+func (o LookupSystemInterfaceResultOutput) DhcpRenewTime() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.DhcpRenewTime }).(pulumi.IntOutput)
+}
+
+// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+func (o LookupSystemInterfaceResultOutput) DhcpSnoopingServerLists() GetSystemInterfaceDhcpSnoopingServerListArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceDhcpSnoopingServerList {
+		return v.DhcpSnoopingServerLists
+	}).(GetSystemInterfaceDhcpSnoopingServerListArrayOutput)
+}
+
+// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
+func (o LookupSystemInterfaceResultOutput) DiscRetryTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.DiscRetryTimeout }).(pulumi.IntOutput)
+}
+
+// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
+func (o LookupSystemInterfaceResultOutput) DisconnectThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.DisconnectThreshold }).(pulumi.IntOutput)
+}
+
+// Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
+func (o LookupSystemInterfaceResultOutput) Distance() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Distance }).(pulumi.IntOutput)
+}
+
+// Enable/disable use DNS acquired by DHCP or PPPoE.
+func (o LookupSystemInterfaceResultOutput) DnsServerOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DnsServerOverride }).(pulumi.StringOutput)
+}
+
+// DNS transport protocols.
+func (o LookupSystemInterfaceResultOutput) DnsServerProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DnsServerProtocol }).(pulumi.StringOutput)
+}
+
+// Enable/disable drop fragment packets.
+func (o LookupSystemInterfaceResultOutput) DropFragment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DropFragment }).(pulumi.StringOutput)
+}
+
+// Enable/disable drop overlapped fragment packets.
+func (o LookupSystemInterfaceResultOutput) DropOverlappedFragment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.DropOverlappedFragment }).(pulumi.StringOutput)
+}
+
+// Outgoing traffic shaping profile.
+func (o LookupSystemInterfaceResultOutput) EgressShapingProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.EgressShapingProfile }).(pulumi.StringOutput)
+}
+
+// Enable/disable endpoint compliance enforcement.
+func (o LookupSystemInterfaceResultOutput) EndpointCompliance() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.EndpointCompliance }).(pulumi.StringOutput)
+}
+
+// Estimated maximum downstream bandwidth (kbps). Used to estimate link utilization.
+func (o LookupSystemInterfaceResultOutput) EstimatedDownstreamBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.EstimatedDownstreamBandwidth }).(pulumi.IntOutput)
+}
+
+// Estimated maximum upstream bandwidth (kbps). Used to estimate link utilization.
+func (o LookupSystemInterfaceResultOutput) EstimatedUpstreamBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.EstimatedUpstreamBandwidth }).(pulumi.IntOutput)
+}
+
+// Enable/disable the explicit FTP proxy on this interface.
+func (o LookupSystemInterfaceResultOutput) ExplicitFtpProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ExplicitFtpProxy }).(pulumi.StringOutput)
+}
+
+// Enable/disable the explicit web proxy on this interface.
+func (o LookupSystemInterfaceResultOutput) ExplicitWebProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ExplicitWebProxy }).(pulumi.StringOutput)
+}
+
+// Enable/disable identifying the interface as an external interface (which usually means it's connected to the Internet).
+func (o LookupSystemInterfaceResultOutput) External() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.External }).(pulumi.StringOutput)
+}
+
+// Action on extender when interface fail .
+func (o LookupSystemInterfaceResultOutput) FailActionOnExtender() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FailActionOnExtender }).(pulumi.StringOutput)
+}
+
+// Names of the FortiGate interfaces from which the link failure alert is sent for this interface. The structure of `failAlertInterfaces` block is documented below.
+func (o LookupSystemInterfaceResultOutput) FailAlertInterfaces() GetSystemInterfaceFailAlertInterfaceArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceFailAlertInterface {
+		return v.FailAlertInterfaces
+	}).(GetSystemInterfaceFailAlertInterfaceArrayOutput)
+}
+
+// Select link-failed-signal or link-down method to alert about a failed link.
+func (o LookupSystemInterfaceResultOutput) FailAlertMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FailAlertMethod }).(pulumi.StringOutput)
+}
+
+// Enable/disable fail detection features for this interface.
+func (o LookupSystemInterfaceResultOutput) FailDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FailDetect }).(pulumi.StringOutput)
+}
+
+// Options for detecting that this interface has failed.
+func (o LookupSystemInterfaceResultOutput) FailDetectOption() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FailDetectOption }).(pulumi.StringOutput)
+}
+
+// Enable/disable FortiHeartBeat (FortiTelemetry on GUI).
+func (o LookupSystemInterfaceResultOutput) Fortiheartbeat() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Fortiheartbeat }).(pulumi.StringOutput)
+}
+
+// Enable FortiLink to dedicate this interface to manage other Fortinet devices.
+func (o LookupSystemInterfaceResultOutput) Fortilink() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Fortilink }).(pulumi.StringOutput)
+}
+
+// fortilink split interface backup link.
+func (o LookupSystemInterfaceResultOutput) FortilinkBackupLink() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.FortilinkBackupLink }).(pulumi.IntOutput)
+}
+
+// Protocol for FortiGate neighbor discovery.
+func (o LookupSystemInterfaceResultOutput) FortilinkNeighborDetect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FortilinkNeighborDetect }).(pulumi.StringOutput)
+}
+
+// Enable/disable FortiLink split interface to connect member link to different FortiSwitch in stack for uplink redundancy.
+func (o LookupSystemInterfaceResultOutput) FortilinkSplitInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FortilinkSplitInterface }).(pulumi.StringOutput)
+}
+
+// Enable/disable FortiLink switch-stacking on this interface.
+func (o LookupSystemInterfaceResultOutput) FortilinkStacking() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.FortilinkStacking }).(pulumi.StringOutput)
+}
+
+// Transparent mode forward domain.
+func (o LookupSystemInterfaceResultOutput) ForwardDomain() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.ForwardDomain }).(pulumi.IntOutput)
+}
+
+// Configure forward error correction (FEC).
+func (o LookupSystemInterfaceResultOutput) ForwardErrorCorrection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ForwardErrorCorrection }).(pulumi.StringOutput)
+}
+
+// Enable/disable detect gateway alive for first.
+func (o LookupSystemInterfaceResultOutput) Gwdetect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Gwdetect }).(pulumi.StringOutput)
+}
+
+// HA election priority for the PING server.
+func (o LookupSystemInterfaceResultOutput) HaPriority() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.HaPriority }).(pulumi.IntOutput)
+}
+
+// Enable/disable ICMP accept redirect.
+func (o LookupSystemInterfaceResultOutput) IcmpAcceptRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.IcmpAcceptRedirect }).(pulumi.StringOutput)
+}
+
+// Enable/disable ICMP send redirect.
+func (o LookupSystemInterfaceResultOutput) IcmpSendRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.IcmpSendRedirect }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemInterfaceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable authentication for this interface.
+func (o LookupSystemInterfaceResultOutput) IdentAccept() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.IdentAccept }).(pulumi.StringOutput)
+}
+
+// PPPoE auto disconnect after idle timeout seconds, 0 means no timeout.
+func (o LookupSystemInterfaceResultOutput) IdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.IdleTimeout }).(pulumi.IntOutput)
+}
+
+// Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
+func (o LookupSystemInterfaceResultOutput) Inbandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Inbandwidth }).(pulumi.IntOutput)
+}
+
+// Incoming traffic shaping profile.
+func (o LookupSystemInterfaceResultOutput) IngressShapingProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.IngressShapingProfile }).(pulumi.StringOutput)
+}
+
+// Ingress Spillover threshold (0 - 16776000 kbps).
+func (o LookupSystemInterfaceResultOutput) IngressSpilloverThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.IngressSpilloverThreshold }).(pulumi.IntOutput)
+}
+
+// Interface name.
+func (o LookupSystemInterfaceResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Implicitly created.
+func (o LookupSystemInterfaceResultOutput) Internal() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Internal }).(pulumi.IntOutput)
+}
+
+// Secondary IP address of the interface.
+func (o LookupSystemInterfaceResultOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// Enable/disable automatic IP address assignment of this interface by FortiIPAM.
+func (o LookupSystemInterfaceResultOutput) IpManagedByFortiipam() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.IpManagedByFortiipam }).(pulumi.StringOutput)
+}
+
+// Enable/disable IP/MAC binding.
+func (o LookupSystemInterfaceResultOutput) Ipmac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Ipmac }).(pulumi.StringOutput)
+}
+
+// Enable/disable the use of this interface as a one-armed sniffer.
+func (o LookupSystemInterfaceResultOutput) IpsSnifferMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.IpsSnifferMode }).(pulumi.StringOutput)
+}
+
+// Unnumbered IP used for PPPoE interfaces for which no unique local address is provided.
+func (o LookupSystemInterfaceResultOutput) Ipunnumbered() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Ipunnumbered }).(pulumi.StringOutput)
+}
+
+// IPv6 of interface. The structure of `ipv6` block is documented below.
+func (o LookupSystemInterfaceResultOutput) Ipv6() GetSystemInterfaceIpv6Output {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) GetSystemInterfaceIpv6 { return v.Ipv6 }).(GetSystemInterfaceIpv6Output)
+}
+
+// Enable/disable l2 forwarding.
+func (o LookupSystemInterfaceResultOutput) L2forward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.L2forward }).(pulumi.StringOutput)
+}
+
+// LACP HA slave.
+func (o LookupSystemInterfaceResultOutput) LacpHaSlave() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.LacpHaSlave }).(pulumi.StringOutput)
+}
+
+// LACP mode.
+func (o LookupSystemInterfaceResultOutput) LacpMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.LacpMode }).(pulumi.StringOutput)
+}
+
+// How often the interface sends LACP messages.
+func (o LookupSystemInterfaceResultOutput) LacpSpeed() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.LacpSpeed }).(pulumi.StringOutput)
+}
+
+// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
+func (o LookupSystemInterfaceResultOutput) LcpEchoInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.LcpEchoInterval }).(pulumi.IntOutput)
+}
+
+// Maximum missed LCP echo messages before disconnect.
+func (o LookupSystemInterfaceResultOutput) LcpMaxEchoFails() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.LcpMaxEchoFails }).(pulumi.IntOutput)
+}
+
+// Number of milliseconds to wait before considering a link is up.
+func (o LookupSystemInterfaceResultOutput) LinkUpDelay() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.LinkUpDelay }).(pulumi.IntOutput)
+}
+
+// LLDP-MED network policy profile.
+func (o LookupSystemInterfaceResultOutput) LldpNetworkPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.LldpNetworkPolicy }).(pulumi.StringOutput)
+}
+
+// Enable/disable Link Layer Discovery Protocol (LLDP) reception.
+func (o LookupSystemInterfaceResultOutput) LldpReception() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.LldpReception }).(pulumi.StringOutput)
+}
+
+// Enable/disable Link Layer Discovery Protocol (LLDP) transmission.
+func (o LookupSystemInterfaceResultOutput) LldpTransmission() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.LldpTransmission }).(pulumi.StringOutput)
+}
+
+// Change the interface's MAC address.
+func (o LookupSystemInterfaceResultOutput) Macaddr() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Macaddr }).(pulumi.StringOutput)
+}
+
+// Available when FortiLink is enabled, used for managed devices through FortiLink interface. The structure of `managedDevice` block is documented below.
+func (o LookupSystemInterfaceResultOutput) ManagedDevices() GetSystemInterfaceManagedDeviceArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceManagedDevice { return v.ManagedDevices }).(GetSystemInterfaceManagedDeviceArrayOutput)
+}
+
+// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
+func (o LookupSystemInterfaceResultOutput) ManagedSubnetworkSize() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ManagedSubnetworkSize }).(pulumi.StringOutput)
+}
+
+// High Availability in-band management IP address of this interface.
+func (o LookupSystemInterfaceResultOutput) ManagementIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ManagementIp }).(pulumi.StringOutput)
+}
+
+// Measured downstream bandwidth (kbps).
+func (o LookupSystemInterfaceResultOutput) MeasuredDownstreamBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.MeasuredDownstreamBandwidth }).(pulumi.IntOutput)
+}
+
+// Measured upstream bandwidth (kbps).
+func (o LookupSystemInterfaceResultOutput) MeasuredUpstreamBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.MeasuredUpstreamBandwidth }).(pulumi.IntOutput)
+}
+
+// Select SFP media interface type
+func (o LookupSystemInterfaceResultOutput) Mediatype() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Mediatype }).(pulumi.StringOutput)
+}
+
+// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
+func (o LookupSystemInterfaceResultOutput) Members() GetSystemInterfaceMemberArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceMember { return v.Members }).(GetSystemInterfaceMemberArrayOutput)
+}
+
+// Minimum number of aggregated ports that must be up.
+func (o LookupSystemInterfaceResultOutput) MinLinks() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.MinLinks }).(pulumi.IntOutput)
+}
+
+// Action to take when less than the configured minimum number of links are active.
+func (o LookupSystemInterfaceResultOutput) MinLinksDown() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.MinLinksDown }).(pulumi.StringOutput)
+}
+
+// Addressing mode (static, DHCP, PPPoE).
+func (o LookupSystemInterfaceResultOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// Enable monitoring bandwidth on this interface.
+func (o LookupSystemInterfaceResultOutput) MonitorBandwidth() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.MonitorBandwidth }).(pulumi.StringOutput)
+}
+
+// MTU value for this interface.
+func (o LookupSystemInterfaceResultOutput) Mtu() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Mtu }).(pulumi.IntOutput)
+}
+
+// Enable to set a custom MTU for this interface.
+func (o LookupSystemInterfaceResultOutput) MtuOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.MtuOverride }).(pulumi.StringOutput)
+}
+
+// Tag name.
+func (o LookupSystemInterfaceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable NDISC forwarding.
+func (o LookupSystemInterfaceResultOutput) Ndiscforward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Ndiscforward }).(pulumi.StringOutput)
+}
+
+// Enable/disable NETBIOS forwarding.
+func (o LookupSystemInterfaceResultOutput) NetbiosForward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.NetbiosForward }).(pulumi.StringOutput)
+}
+
+// Enable/disable NetFlow on this interface and set the data that NetFlow collects (rx, tx, or both).
+func (o LookupSystemInterfaceResultOutput) NetflowSampler() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.NetflowSampler }).(pulumi.StringOutput)
+}
+
+// Bandwidth limit for outgoing traffic (0 - 16776000 kbps).
+func (o LookupSystemInterfaceResultOutput) Outbandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Outbandwidth }).(pulumi.IntOutput)
+}
+
+// PPPoE Active Discovery Terminate (PADT) used to terminate sessions after an idle time.
+func (o LookupSystemInterfaceResultOutput) PadtRetryTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.PadtRetryTimeout }).(pulumi.IntOutput)
+}
+
+// PPPoE account's password.
+func (o LookupSystemInterfaceResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// PING server status.
+func (o LookupSystemInterfaceResultOutput) PingServStatus() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.PingServStatus }).(pulumi.IntOutput)
+}
+
+// sFlow polling interval (1 - 255 sec).
+func (o LookupSystemInterfaceResultOutput) PollingInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.PollingInterval }).(pulumi.IntOutput)
+}
+
+// Enable/disable PPPoE unnumbered negotiation.
+func (o LookupSystemInterfaceResultOutput) PppoeUnnumberedNegotiate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PppoeUnnumberedNegotiate }).(pulumi.StringOutput)
+}
+
+// PPTP authentication type.
+func (o LookupSystemInterfaceResultOutput) PptpAuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PptpAuthType }).(pulumi.StringOutput)
+}
+
+// Enable/disable PPTP client.
+func (o LookupSystemInterfaceResultOutput) PptpClient() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PptpClient }).(pulumi.StringOutput)
+}
+
+// PPTP password.
+func (o LookupSystemInterfaceResultOutput) PptpPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PptpPassword }).(pulumi.StringOutput)
+}
+
+// PPTP server IP address.
+func (o LookupSystemInterfaceResultOutput) PptpServerIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PptpServerIp }).(pulumi.StringOutput)
+}
+
+// Idle timer in minutes (0 for disabled).
+func (o LookupSystemInterfaceResultOutput) PptpTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.PptpTimeout }).(pulumi.IntOutput)
+}
+
+// PPTP user name.
+func (o LookupSystemInterfaceResultOutput) PptpUser() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PptpUser }).(pulumi.StringOutput)
+}
+
+// Enable/disable preservation of session route when dirty.
+func (o LookupSystemInterfaceResultOutput) PreserveSessionRoute() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PreserveSessionRoute }).(pulumi.StringOutput)
+}
+
+// Priority of the virtual router (1 - 255).
+func (o LookupSystemInterfaceResultOutput) Priority() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Priority }).(pulumi.IntOutput)
+}
+
+// Enable/disable fail back to higher priority port once recovered.
+func (o LookupSystemInterfaceResultOutput) PriorityOverride() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.PriorityOverride }).(pulumi.StringOutput)
+}
+
+// Enable/disable proxy captive portal on this interface.
+func (o LookupSystemInterfaceResultOutput) ProxyCaptivePortal() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ProxyCaptivePortal }).(pulumi.StringOutput)
+}
+
+// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+func (o LookupSystemInterfaceResultOutput) ReachableTime() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.ReachableTime }).(pulumi.IntOutput)
+}
+
+// Redundant interface.
+func (o LookupSystemInterfaceResultOutput) RedundantInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.RedundantInterface }).(pulumi.StringOutput)
+}
+
+// Remote IP address of tunnel.
+func (o LookupSystemInterfaceResultOutput) RemoteIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.RemoteIp }).(pulumi.StringOutput)
+}
+
+// Replacement message override group.
+func (o LookupSystemInterfaceResultOutput) ReplacemsgOverrideGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ReplacemsgOverrideGroup }).(pulumi.StringOutput)
+}
+
+// RX ring size.
+func (o LookupSystemInterfaceResultOutput) RingRx() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.RingRx }).(pulumi.IntOutput)
+}
+
+// TX ring size.
+func (o LookupSystemInterfaceResultOutput) RingTx() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.RingTx }).(pulumi.IntOutput)
+}
+
+// Interface role.
+func (o LookupSystemInterfaceResultOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Data that NetFlow collects (rx, tx, or both).
+func (o LookupSystemInterfaceResultOutput) SampleDirection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SampleDirection }).(pulumi.StringOutput)
+}
+
+// sFlow sample rate (10 - 99999).
+func (o LookupSystemInterfaceResultOutput) SampleRate() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SampleRate }).(pulumi.IntOutput)
+}
+
+// Enable monitoring or blocking connections to Botnet servers through this interface.
+func (o LookupSystemInterfaceResultOutput) ScanBotnetConnections() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ScanBotnetConnections }).(pulumi.StringOutput)
+}
+
+// Enable/disable adding a secondary IP to this interface.
+func (o LookupSystemInterfaceResultOutput) SecondaryIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecondaryIp }).(pulumi.StringOutput)
+}
+
+// Second IP address of interface. The structure of `secondaryip` block is documented below.
+func (o LookupSystemInterfaceResultOutput) Secondaryips() GetSystemInterfaceSecondaryipArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceSecondaryip { return v.Secondaryips }).(GetSystemInterfaceSecondaryipArrayOutput)
+}
+
+// Name of security-exempt-list.
+func (o LookupSystemInterfaceResultOutput) SecurityExemptList() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecurityExemptList }).(pulumi.StringOutput)
+}
+
+// URL of external authentication logout server.
+func (o LookupSystemInterfaceResultOutput) SecurityExternalLogout() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecurityExternalLogout }).(pulumi.StringOutput)
+}
+
+// URL of external authentication web server.
+func (o LookupSystemInterfaceResultOutput) SecurityExternalWeb() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecurityExternalWeb }).(pulumi.StringOutput)
+}
+
+// User groups that can authenticate with the captive portal. The structure of `securityGroups` block is documented below.
+func (o LookupSystemInterfaceResultOutput) SecurityGroups() GetSystemInterfaceSecurityGroupArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceSecurityGroup { return v.SecurityGroups }).(GetSystemInterfaceSecurityGroupArrayOutput)
+}
+
+// Enable/disable MAC authentication bypass.
+func (o LookupSystemInterfaceResultOutput) SecurityMacAuthBypass() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecurityMacAuthBypass }).(pulumi.StringOutput)
+}
+
+// Turn on captive portal authentication for this interface.
+func (o LookupSystemInterfaceResultOutput) SecurityMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecurityMode }).(pulumi.StringOutput)
+}
+
+// URL redirection after disclaimer/authentication.
+func (o LookupSystemInterfaceResultOutput) SecurityRedirectUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SecurityRedirectUrl }).(pulumi.StringOutput)
+}
+
+// PPPoE service name.
+func (o LookupSystemInterfaceResultOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// Enable/disable sFlow on this interface.
+func (o LookupSystemInterfaceResultOutput) SflowSampler() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SflowSampler }).(pulumi.StringOutput)
+}
+
+// Permanent SNMP Index of the interface.
+func (o LookupSystemInterfaceResultOutput) SnmpIndex() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SnmpIndex }).(pulumi.IntOutput)
+}
+
+// Interface speed. The default setting and the options available depend on the interface hardware.
+func (o LookupSystemInterfaceResultOutput) Speed() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Speed }).(pulumi.StringOutput)
+}
+
+// Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
+func (o LookupSystemInterfaceResultOutput) SpilloverThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SpilloverThreshold }).(pulumi.IntOutput)
+}
+
+// Enable/disable source IP check.
+func (o LookupSystemInterfaceResultOutput) SrcCheck() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SrcCheck }).(pulumi.StringOutput)
+}
+
+// Enable/disable VRRP.
+func (o LookupSystemInterfaceResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Enable/disable STP.
+func (o LookupSystemInterfaceResultOutput) Stp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Stp }).(pulumi.StringOutput)
+}
+
+// Control STP behaviour on HA secondary.
+func (o LookupSystemInterfaceResultOutput) StpHaSecondary() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.StpHaSecondary }).(pulumi.StringOutput)
+}
+
+// Enable/disable STP forwarding.
+func (o LookupSystemInterfaceResultOutput) Stpforward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Stpforward }).(pulumi.StringOutput)
+}
+
+// Configure STP forwarding mode.
+func (o LookupSystemInterfaceResultOutput) StpforwardMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.StpforwardMode }).(pulumi.StringOutput)
+}
+
+// Enable to always send packets from this interface to a destination MAC address.
+func (o LookupSystemInterfaceResultOutput) Subst() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Subst }).(pulumi.StringOutput)
+}
+
+// Destination MAC address that all packets are sent to from this interface.
+func (o LookupSystemInterfaceResultOutput) SubstituteDstMac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SubstituteDstMac }).(pulumi.StringOutput)
+}
+
+// Initial create for switch-controller VLANs.
+func (o LookupSystemInterfaceResultOutput) SwcFirstCreate() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SwcFirstCreate }).(pulumi.IntOutput)
+}
+
+// Creation status for switch-controller VLANs.
+func (o LookupSystemInterfaceResultOutput) SwcVlan() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SwcVlan }).(pulumi.IntOutput)
+}
+
+// Contained in switch.
+func (o LookupSystemInterfaceResultOutput) Switch() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Switch }).(pulumi.StringOutput)
+}
+
+// Block FortiSwitch port-to-port traffic.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerAccessVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerAccessVlan }).(pulumi.StringOutput)
+}
+
+// Enable/disable FortiSwitch ARP inspection.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerArpInspection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerArpInspection }).(pulumi.StringOutput)
+}
+
+// Switch controller DHCP snooping.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerDhcpSnooping() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerDhcpSnooping }).(pulumi.StringOutput)
+}
+
+// Switch controller DHCP snooping option82.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerDhcpSnoopingOption82() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerDhcpSnoopingOption82 }).(pulumi.StringOutput)
+}
+
+// Switch controller DHCP snooping verify MAC.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerDhcpSnoopingVerifyMac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerDhcpSnoopingVerifyMac }).(pulumi.StringOutput)
+}
+
+// Integrated FortiLink settings for managed FortiSwitch.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerDynamic() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerDynamic }).(pulumi.StringOutput)
+}
+
+// Interface's purpose when assigning traffic (read only).
+func (o LookupSystemInterfaceResultOutput) SwitchControllerFeature() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerFeature }).(pulumi.StringOutput)
+}
+
+// Switch controller IGMP snooping.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerIgmpSnooping() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerIgmpSnooping }).(pulumi.StringOutput)
+}
+
+// Switch controller IGMP snooping fast-leave.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerIgmpSnoopingFastLeave() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerIgmpSnoopingFastLeave }).(pulumi.StringOutput)
+}
+
+// Switch controller IGMP snooping proxy.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerIgmpSnoopingProxy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerIgmpSnoopingProxy }).(pulumi.StringOutput)
+}
+
+// Enable/disable managed FortiSwitch IoT scanning.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerIotScanning() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerIotScanning }).(pulumi.StringOutput)
+}
+
+// Limit the number of dynamic MAC addresses on this VLAN (1 - 128, 0 = no limit, default).
+func (o LookupSystemInterfaceResultOutput) SwitchControllerLearningLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SwitchControllerLearningLimit }).(pulumi.IntOutput)
+}
+
+// VLAN to use for FortiLink management purposes.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerMgmtVlan() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.SwitchControllerMgmtVlan }).(pulumi.IntOutput)
+}
+
+// Integrated NAC settings for managed FortiSwitch.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerNac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerNac }).(pulumi.StringOutput)
+}
+
+// Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerRspanMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerRspanMode }).(pulumi.StringOutput)
+}
+
+// Source IP address used in FortiLink over L3 connections.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerSourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerSourceIp }).(pulumi.StringOutput)
+}
+
+// Switch controller traffic policy for the VLAN.
+func (o LookupSystemInterfaceResultOutput) SwitchControllerTrafficPolicy() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SwitchControllerTrafficPolicy }).(pulumi.StringOutput)
+}
+
+// Define a system ID for the aggregate interface.
+func (o LookupSystemInterfaceResultOutput) SystemId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SystemId }).(pulumi.StringOutput)
+}
+
+// Method in which system ID is generated.
+func (o LookupSystemInterfaceResultOutput) SystemIdType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.SystemIdType }).(pulumi.StringOutput)
+}
+
+// Config object tagging. The structure of `tagging` block is documented below.
+func (o LookupSystemInterfaceResultOutput) Taggings() GetSystemInterfaceTaggingArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceTagging { return v.Taggings }).(GetSystemInterfaceTaggingArrayOutput)
+}
+
+// TCP maximum segment size. 0 means do not change segment size.
+func (o LookupSystemInterfaceResultOutput) TcpMss() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.TcpMss }).(pulumi.IntOutput)
+}
+
+// Enable/disable VLAN trunk.
+func (o LookupSystemInterfaceResultOutput) Trunk() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Trunk }).(pulumi.StringOutput)
+}
+
+// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
+func (o LookupSystemInterfaceResultOutput) TrustIp1() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.TrustIp1 }).(pulumi.StringOutput)
+}
+
+// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
+func (o LookupSystemInterfaceResultOutput) TrustIp2() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.TrustIp2 }).(pulumi.StringOutput)
+}
+
+// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
+func (o LookupSystemInterfaceResultOutput) TrustIp3() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.TrustIp3 }).(pulumi.StringOutput)
+}
+
+// Trusted IPv6 host for dedicated management traffic (::/0 for all hosts).
+func (o LookupSystemInterfaceResultOutput) TrustIp61() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.TrustIp61 }).(pulumi.StringOutput)
+}
+
+// Trusted IPv6 host for dedicated management traffic (::/0 for all hosts).
+func (o LookupSystemInterfaceResultOutput) TrustIp62() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.TrustIp62 }).(pulumi.StringOutput)
+}
+
+// Trusted IPv6 host for dedicated management traffic (::/0 for all hosts).
+func (o LookupSystemInterfaceResultOutput) TrustIp63() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.TrustIp63 }).(pulumi.StringOutput)
+}
+
+// DHCP client option type.
+func (o LookupSystemInterfaceResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Username of the PPPoE account, provided by your ISP.
+func (o LookupSystemInterfaceResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// Interface is in this virtual domain (VDOM).
+func (o LookupSystemInterfaceResultOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemInterfaceResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Switch control interface VLAN ID.
+func (o LookupSystemInterfaceResultOutput) Vindex() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Vindex }).(pulumi.IntOutput)
+}
+
+// Ethernet protocol of VLAN.
+func (o LookupSystemInterfaceResultOutput) VlanProtocol() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.VlanProtocol }).(pulumi.StringOutput)
+}
+
+// Enable/disable traffic forwarding between VLANs on this interface.
+func (o LookupSystemInterfaceResultOutput) Vlanforward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Vlanforward }).(pulumi.StringOutput)
+}
+
+// VLAN ID (1 - 4094).
+func (o LookupSystemInterfaceResultOutput) Vlanid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Vlanid }).(pulumi.IntOutput)
+}
+
+// Virtual Routing Forwarding ID.
+func (o LookupSystemInterfaceResultOutput) Vrf() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Vrf }).(pulumi.IntOutput)
+}
+
+// Enable/disable use of virtual MAC for VRRP.
+func (o LookupSystemInterfaceResultOutput) VrrpVirtualMac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.VrrpVirtualMac }).(pulumi.StringOutput)
+}
+
+// VRRP configuration. The structure of `vrrp` block is documented below.
+func (o LookupSystemInterfaceResultOutput) Vrrps() GetSystemInterfaceVrrpArrayOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) []GetSystemInterfaceVrrp { return v.Vrrps }).(GetSystemInterfaceVrrpArrayOutput)
+}
+
+// Enable/disable WCCP on this interface. Used for encapsulated WCCP communication between WCCP clients and servers.
+func (o LookupSystemInterfaceResultOutput) Wccp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.Wccp }).(pulumi.StringOutput)
+}
+
+// Default weight for static routes (if route has no weight configured).
+func (o LookupSystemInterfaceResultOutput) Weight() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) int { return v.Weight }).(pulumi.IntOutput)
+}
+
+// WINS server IP.
+func (o LookupSystemInterfaceResultOutput) WinsIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemInterfaceResult) string { return v.WinsIp }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemInterfaceResultOutput{})
 }

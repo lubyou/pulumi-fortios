@@ -99,21 +99,21 @@ export class EndpointControlForticlientEms extends pulumi.CustomResource {
      */
     constructor(name: string, args: EndpointControlForticlientEmsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointControlForticlientEmsArgs | EndpointControlForticlientEmsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointControlForticlientEmsState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["adminPassword"] = state ? state.adminPassword : undefined;
-            inputs["adminType"] = state ? state.adminType : undefined;
-            inputs["adminUsername"] = state ? state.adminUsername : undefined;
-            inputs["httpsPort"] = state ? state.httpsPort : undefined;
-            inputs["listenPort"] = state ? state.listenPort : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["restApiAuth"] = state ? state.restApiAuth : undefined;
-            inputs["serialNumber"] = state ? state.serialNumber : undefined;
-            inputs["uploadPort"] = state ? state.uploadPort : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["adminPassword"] = state ? state.adminPassword : undefined;
+            resourceInputs["adminType"] = state ? state.adminType : undefined;
+            resourceInputs["adminUsername"] = state ? state.adminUsername : undefined;
+            resourceInputs["httpsPort"] = state ? state.httpsPort : undefined;
+            resourceInputs["listenPort"] = state ? state.listenPort : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["restApiAuth"] = state ? state.restApiAuth : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["uploadPort"] = state ? state.uploadPort : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlForticlientEmsArgs | undefined;
             if ((!args || args.address === undefined) && !opts.urn) {
@@ -125,22 +125,20 @@ export class EndpointControlForticlientEms extends pulumi.CustomResource {
             if ((!args || args.serialNumber === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serialNumber'");
             }
-            inputs["address"] = args ? args.address : undefined;
-            inputs["adminPassword"] = args ? args.adminPassword : undefined;
-            inputs["adminType"] = args ? args.adminType : undefined;
-            inputs["adminUsername"] = args ? args.adminUsername : undefined;
-            inputs["httpsPort"] = args ? args.httpsPort : undefined;
-            inputs["listenPort"] = args ? args.listenPort : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["restApiAuth"] = args ? args.restApiAuth : undefined;
-            inputs["serialNumber"] = args ? args.serialNumber : undefined;
-            inputs["uploadPort"] = args ? args.uploadPort : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["adminPassword"] = args ? args.adminPassword : undefined;
+            resourceInputs["adminType"] = args ? args.adminType : undefined;
+            resourceInputs["adminUsername"] = args ? args.adminUsername : undefined;
+            resourceInputs["httpsPort"] = args ? args.httpsPort : undefined;
+            resourceInputs["listenPort"] = args ? args.listenPort : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["restApiAuth"] = args ? args.restApiAuth : undefined;
+            resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
+            resourceInputs["uploadPort"] = args ? args.uploadPort : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EndpointControlForticlientEms.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EndpointControlForticlientEms.__pulumiType, name, resourceInputs, opts);
     }
 }
 

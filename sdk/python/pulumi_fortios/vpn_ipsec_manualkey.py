@@ -22,6 +22,7 @@ class VpnIpsecManualkeyArgs:
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localspi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remotespi: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -35,6 +36,7 @@ class VpnIpsecManualkeyArgs:
         :param pulumi.Input[str] local_gw: Local gateway.
         :param pulumi.Input[str] localspi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable NPU offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remotespi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -52,6 +54,8 @@ class VpnIpsecManualkeyArgs:
             pulumi.set(__self__, "localspi", localspi)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if npu_offload is not None:
+            pulumi.set(__self__, "npu_offload", npu_offload)
         if remotespi is not None:
             pulumi.set(__self__, "remotespi", remotespi)
         if vdomparam is not None:
@@ -166,6 +170,18 @@ class VpnIpsecManualkeyArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NPU offloading. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
+
+    @npu_offload.setter
+    def npu_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_offload", value)
+
+    @property
     @pulumi.getter
     def remotespi(self) -> Optional[pulumi.Input[str]]:
         """
@@ -201,6 +217,7 @@ class _VpnIpsecManualkeyState:
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localspi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
                  remotespi: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -214,6 +231,7 @@ class _VpnIpsecManualkeyState:
         :param pulumi.Input[str] local_gw: Local gateway.
         :param pulumi.Input[str] localspi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable NPU offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: Peer gateway.
         :param pulumi.Input[str] remotespi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -234,6 +252,8 @@ class _VpnIpsecManualkeyState:
             pulumi.set(__self__, "localspi", localspi)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if npu_offload is not None:
+            pulumi.set(__self__, "npu_offload", npu_offload)
         if remote_gw is not None:
             pulumi.set(__self__, "remote_gw", remote_gw)
         if remotespi is not None:
@@ -338,6 +358,18 @@ class _VpnIpsecManualkeyState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NPU offloading. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
+
+    @npu_offload.setter
+    def npu_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_offload", value)
+
+    @property
     @pulumi.getter(name="remoteGw")
     def remote_gw(self) -> Optional[pulumi.Input[str]]:
         """
@@ -387,6 +419,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localspi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
                  remotespi: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -432,6 +465,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
         :param pulumi.Input[str] local_gw: Local gateway.
         :param pulumi.Input[str] localspi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable NPU offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: Peer gateway.
         :param pulumi.Input[str] remotespi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -496,6 +530,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localspi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
                  remotespi: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -506,6 +541,8 @@ class VpnIpsecManualkey(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -525,6 +562,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
             __props__.__dict__["local_gw"] = local_gw
             __props__.__dict__["localspi"] = localspi
             __props__.__dict__["name"] = name
+            __props__.__dict__["npu_offload"] = npu_offload
             if remote_gw is None and not opts.urn:
                 raise TypeError("Missing required property 'remote_gw'")
             __props__.__dict__["remote_gw"] = remote_gw
@@ -548,6 +586,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
             local_gw: Optional[pulumi.Input[str]] = None,
             localspi: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            npu_offload: Optional[pulumi.Input[str]] = None,
             remote_gw: Optional[pulumi.Input[str]] = None,
             remotespi: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'VpnIpsecManualkey':
@@ -566,6 +605,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
         :param pulumi.Input[str] local_gw: Local gateway.
         :param pulumi.Input[str] localspi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable NPU offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: Peer gateway.
         :param pulumi.Input[str] remotespi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -582,6 +622,7 @@ class VpnIpsecManualkey(pulumi.CustomResource):
         __props__.__dict__["local_gw"] = local_gw
         __props__.__dict__["localspi"] = localspi
         __props__.__dict__["name"] = name
+        __props__.__dict__["npu_offload"] = npu_offload
         __props__.__dict__["remote_gw"] = remote_gw
         __props__.__dict__["remotespi"] = remotespi
         __props__.__dict__["vdomparam"] = vdomparam
@@ -650,6 +691,14 @@ class VpnIpsecManualkey(pulumi.CustomResource):
         IPsec tunnel name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NPU offloading. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
 
     @property
     @pulumi.getter(name="remoteGw")

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -62,6 +62,7 @@ func NewWirelessControllerHotspot20AnqpRoamingConsortium(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20AnqpRoamingConsortiumArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20AnqpRoamingConsortium
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20AnqpRoamingConsortium:WirelessControllerHotspot20AnqpRoamingConsortium", name, args, &resource, opts...)
 	if err != nil {
@@ -144,7 +145,7 @@ type WirelessControllerHotspot20AnqpRoamingConsortiumInput interface {
 }
 
 func (*WirelessControllerHotspot20AnqpRoamingConsortium) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20AnqpRoamingConsortium)(nil)).Elem()
 }
 
 func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerHotspot20AnqpRoamingConsortiumOutput() WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
@@ -153,35 +154,6 @@ func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerH
 
 func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerHotspot20AnqpRoamingConsortiumOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumOutput)
-}
-
-func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput() WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return i.ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerHotspot20AnqpRoamingConsortium) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput)
-}
-
-type WirelessControllerHotspot20AnqpRoamingConsortiumPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput() WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput
-	ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput
-}
-
-type wirelessControllerHotspot20AnqpRoamingConsortiumPtrType WirelessControllerHotspot20AnqpRoamingConsortiumArgs
-
-func (*wirelessControllerHotspot20AnqpRoamingConsortiumPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
-}
-
-func (i *wirelessControllerHotspot20AnqpRoamingConsortiumPtrType) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput() WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return i.ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerHotspot20AnqpRoamingConsortiumPtrType) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput)
 }
 
 // WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput is an input type that accepts WirelessControllerHotspot20AnqpRoamingConsortiumArray and WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput values.
@@ -198,7 +170,7 @@ type WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput interface {
 type WirelessControllerHotspot20AnqpRoamingConsortiumArray []WirelessControllerHotspot20AnqpRoamingConsortiumInput
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20AnqpRoamingConsortium)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20AnqpRoamingConsortiumArray) ToWirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput() WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput {
@@ -223,7 +195,7 @@ type WirelessControllerHotspot20AnqpRoamingConsortiumMapInput interface {
 type WirelessControllerHotspot20AnqpRoamingConsortiumMap map[string]WirelessControllerHotspot20AnqpRoamingConsortiumInput
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20AnqpRoamingConsortium)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20AnqpRoamingConsortiumMap) ToWirelessControllerHotspot20AnqpRoamingConsortiumMapOutput() WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput {
@@ -234,12 +206,10 @@ func (i WirelessControllerHotspot20AnqpRoamingConsortiumMap) ToWirelessControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput)
 }
 
-type WirelessControllerHotspot20AnqpRoamingConsortiumOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerHotspot20AnqpRoamingConsortiumOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20AnqpRoamingConsortium)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumOutput() WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
@@ -250,36 +220,10 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessContro
 	return o
 }
 
-func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput() WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return o.ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerHotspot20AnqpRoamingConsortiumOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return o.ApplyT(func(v WirelessControllerHotspot20AnqpRoamingConsortium) *WirelessControllerHotspot20AnqpRoamingConsortium {
-		return &v
-	}).(WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput)
-}
-
-type WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
-}
-
-func (o WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput() WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return o
-}
-
-func (o WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput {
-	return o
-}
-
 type WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20AnqpRoamingConsortium)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput() WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput {
@@ -291,15 +235,15 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) ToWirelessC
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerHotspot20AnqpRoamingConsortium {
-		return vs[0].([]WirelessControllerHotspot20AnqpRoamingConsortium)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20AnqpRoamingConsortium {
+		return vs[0].([]*WirelessControllerHotspot20AnqpRoamingConsortium)[vs[1].(int)]
 	}).(WirelessControllerHotspot20AnqpRoamingConsortiumOutput)
 }
 
 type WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerHotspot20AnqpRoamingConsortium)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20AnqpRoamingConsortium)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) ToWirelessControllerHotspot20AnqpRoamingConsortiumMapOutput() WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput {
@@ -311,14 +255,16 @@ func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) ToWirelessCon
 }
 
 func (o WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20AnqpRoamingConsortiumOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerHotspot20AnqpRoamingConsortium {
-		return vs[0].(map[string]WirelessControllerHotspot20AnqpRoamingConsortium)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20AnqpRoamingConsortium {
+		return vs[0].(map[string]*WirelessControllerHotspot20AnqpRoamingConsortium)[vs[1].(string)]
 	}).(WirelessControllerHotspot20AnqpRoamingConsortiumOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20AnqpRoamingConsortiumInput)(nil)).Elem(), &WirelessControllerHotspot20AnqpRoamingConsortium{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20AnqpRoamingConsortiumArrayInput)(nil)).Elem(), WirelessControllerHotspot20AnqpRoamingConsortiumArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20AnqpRoamingConsortiumMapInput)(nil)).Elem(), WirelessControllerHotspot20AnqpRoamingConsortiumMap{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpRoamingConsortiumOutput{})
-	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpRoamingConsortiumPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpRoamingConsortiumArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpRoamingConsortiumMapOutput{})
 }

@@ -16,6 +16,7 @@ __all__ = ['VpnOcvpnArgs', 'VpnOcvpn']
 class VpnOcvpnArgs:
     def __init__(__self__, *,
                  auto_discovery: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_shortcut_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
@@ -27,12 +28,14 @@ class VpnOcvpnArgs:
                  poll_interval: Optional[pulumi.Input[int]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zone: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['VpnOcvpnWanInterfaceArgs']]]] = None):
         """
         The set of arguments for constructing a VpnOcvpn resource.
         :param pulumi.Input[str] auto_discovery: Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auto_discovery_shortcut_mode: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
@@ -44,12 +47,15 @@ class VpnOcvpnArgs:
         :param pulumi.Input[int] poll_interval: Overlay Controller VPN polling interval.
         :param pulumi.Input[str] role: Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
         :param pulumi.Input[str] sdwan: Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sdwan_zone: Set SD-WAN zone.
         :param pulumi.Input[str] status: Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['VpnOcvpnWanInterfaceArgs']]] wan_interfaces: FortiGate WAN interfaces to use with OCVPN. The structure of `wan_interface` block is documented below.
         """
         if auto_discovery is not None:
             pulumi.set(__self__, "auto_discovery", auto_discovery)
+        if auto_discovery_shortcut_mode is not None:
+            pulumi.set(__self__, "auto_discovery_shortcut_mode", auto_discovery_shortcut_mode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if eap is not None:
@@ -72,6 +78,8 @@ class VpnOcvpnArgs:
             pulumi.set(__self__, "role", role)
         if sdwan is not None:
             pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zone is not None:
+            pulumi.set(__self__, "sdwan_zone", sdwan_zone)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -90,6 +98,18 @@ class VpnOcvpnArgs:
     @auto_discovery.setter
     def auto_discovery(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auto_discovery", value)
+
+    @property
+    @pulumi.getter(name="autoDiscoveryShortcutMode")
+    def auto_discovery_shortcut_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+        """
+        return pulumi.get(self, "auto_discovery_shortcut_mode")
+
+    @auto_discovery_shortcut_mode.setter
+    def auto_discovery_shortcut_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_discovery_shortcut_mode", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -222,6 +242,18 @@ class VpnOcvpnArgs:
     @sdwan.setter
     def sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdwan", value)
+
+    @property
+    @pulumi.getter(name="sdwanZone")
+    def sdwan_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set SD-WAN zone.
+        """
+        return pulumi.get(self, "sdwan_zone")
+
+    @sdwan_zone.setter
+    def sdwan_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sdwan_zone", value)
 
     @property
     @pulumi.getter
@@ -264,6 +296,7 @@ class VpnOcvpnArgs:
 class _VpnOcvpnState:
     def __init__(__self__, *,
                  auto_discovery: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_shortcut_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
@@ -275,12 +308,14 @@ class _VpnOcvpnState:
                  poll_interval: Optional[pulumi.Input[int]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zone: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['VpnOcvpnWanInterfaceArgs']]]] = None):
         """
         Input properties used for looking up and filtering VpnOcvpn resources.
         :param pulumi.Input[str] auto_discovery: Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auto_discovery_shortcut_mode: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
@@ -292,12 +327,15 @@ class _VpnOcvpnState:
         :param pulumi.Input[int] poll_interval: Overlay Controller VPN polling interval.
         :param pulumi.Input[str] role: Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
         :param pulumi.Input[str] sdwan: Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sdwan_zone: Set SD-WAN zone.
         :param pulumi.Input[str] status: Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['VpnOcvpnWanInterfaceArgs']]] wan_interfaces: FortiGate WAN interfaces to use with OCVPN. The structure of `wan_interface` block is documented below.
         """
         if auto_discovery is not None:
             pulumi.set(__self__, "auto_discovery", auto_discovery)
+        if auto_discovery_shortcut_mode is not None:
+            pulumi.set(__self__, "auto_discovery_shortcut_mode", auto_discovery_shortcut_mode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if eap is not None:
@@ -320,6 +358,8 @@ class _VpnOcvpnState:
             pulumi.set(__self__, "role", role)
         if sdwan is not None:
             pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zone is not None:
+            pulumi.set(__self__, "sdwan_zone", sdwan_zone)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -338,6 +378,18 @@ class _VpnOcvpnState:
     @auto_discovery.setter
     def auto_discovery(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auto_discovery", value)
+
+    @property
+    @pulumi.getter(name="autoDiscoveryShortcutMode")
+    def auto_discovery_shortcut_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+        """
+        return pulumi.get(self, "auto_discovery_shortcut_mode")
+
+    @auto_discovery_shortcut_mode.setter
+    def auto_discovery_shortcut_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_discovery_shortcut_mode", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -470,6 +522,18 @@ class _VpnOcvpnState:
     @sdwan.setter
     def sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdwan", value)
+
+    @property
+    @pulumi.getter(name="sdwanZone")
+    def sdwan_zone(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set SD-WAN zone.
+        """
+        return pulumi.get(self, "sdwan_zone")
+
+    @sdwan_zone.setter
+    def sdwan_zone(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sdwan_zone", value)
 
     @property
     @pulumi.getter
@@ -514,6 +578,7 @@ class VpnOcvpn(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_discovery: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_shortcut_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
@@ -525,12 +590,13 @@ class VpnOcvpn(pulumi.CustomResource):
                  poll_interval: Optional[pulumi.Input[int]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zone: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnOcvpnWanInterfaceArgs']]]]] = None,
                  __props__=None):
         """
-        Configure Overlay Controller VPN settings.
+        Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -545,6 +611,7 @@ class VpnOcvpn(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_discovery: Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auto_discovery_shortcut_mode: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
@@ -556,6 +623,7 @@ class VpnOcvpn(pulumi.CustomResource):
         :param pulumi.Input[int] poll_interval: Overlay Controller VPN polling interval.
         :param pulumi.Input[str] role: Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
         :param pulumi.Input[str] sdwan: Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sdwan_zone: Set SD-WAN zone.
         :param pulumi.Input[str] status: Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnOcvpnWanInterfaceArgs']]]] wan_interfaces: FortiGate WAN interfaces to use with OCVPN. The structure of `wan_interface` block is documented below.
@@ -567,7 +635,7 @@ class VpnOcvpn(pulumi.CustomResource):
                  args: Optional[VpnOcvpnArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure Overlay Controller VPN settings.
+        Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -595,6 +663,7 @@ class VpnOcvpn(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_discovery: Optional[pulumi.Input[str]] = None,
+                 auto_discovery_shortcut_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  eap: Optional[pulumi.Input[str]] = None,
                  eap_users: Optional[pulumi.Input[str]] = None,
@@ -606,6 +675,7 @@ class VpnOcvpn(pulumi.CustomResource):
                  poll_interval: Optional[pulumi.Input[int]] = None,
                  role: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zone: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wan_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnOcvpnWanInterfaceArgs']]]]] = None,
@@ -616,12 +686,15 @@ class VpnOcvpn(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VpnOcvpnArgs.__new__(VpnOcvpnArgs)
 
             __props__.__dict__["auto_discovery"] = auto_discovery
+            __props__.__dict__["auto_discovery_shortcut_mode"] = auto_discovery_shortcut_mode
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["eap"] = eap
             __props__.__dict__["eap_users"] = eap_users
@@ -633,6 +706,7 @@ class VpnOcvpn(pulumi.CustomResource):
             __props__.__dict__["poll_interval"] = poll_interval
             __props__.__dict__["role"] = role
             __props__.__dict__["sdwan"] = sdwan
+            __props__.__dict__["sdwan_zone"] = sdwan_zone
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wan_interfaces"] = wan_interfaces
@@ -647,6 +721,7 @@ class VpnOcvpn(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             auto_discovery: Optional[pulumi.Input[str]] = None,
+            auto_discovery_shortcut_mode: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             eap: Optional[pulumi.Input[str]] = None,
             eap_users: Optional[pulumi.Input[str]] = None,
@@ -658,6 +733,7 @@ class VpnOcvpn(pulumi.CustomResource):
             poll_interval: Optional[pulumi.Input[int]] = None,
             role: Optional[pulumi.Input[str]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
+            sdwan_zone: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wan_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnOcvpnWanInterfaceArgs']]]]] = None) -> 'VpnOcvpn':
@@ -669,6 +745,7 @@ class VpnOcvpn(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] auto_discovery: Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auto_discovery_shortcut_mode: Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] eap: Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] eap_users: EAP authentication user group.
@@ -680,6 +757,7 @@ class VpnOcvpn(pulumi.CustomResource):
         :param pulumi.Input[int] poll_interval: Overlay Controller VPN polling interval.
         :param pulumi.Input[str] role: Set device role. Valid values: `spoke`, `primary-hub`, `secondary-hub`.
         :param pulumi.Input[str] sdwan: Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sdwan_zone: Set SD-WAN zone.
         :param pulumi.Input[str] status: Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnOcvpnWanInterfaceArgs']]]] wan_interfaces: FortiGate WAN interfaces to use with OCVPN. The structure of `wan_interface` block is documented below.
@@ -689,6 +767,7 @@ class VpnOcvpn(pulumi.CustomResource):
         __props__ = _VpnOcvpnState.__new__(_VpnOcvpnState)
 
         __props__.__dict__["auto_discovery"] = auto_discovery
+        __props__.__dict__["auto_discovery_shortcut_mode"] = auto_discovery_shortcut_mode
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["eap"] = eap
         __props__.__dict__["eap_users"] = eap_users
@@ -700,6 +779,7 @@ class VpnOcvpn(pulumi.CustomResource):
         __props__.__dict__["poll_interval"] = poll_interval
         __props__.__dict__["role"] = role
         __props__.__dict__["sdwan"] = sdwan
+        __props__.__dict__["sdwan_zone"] = sdwan_zone
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wan_interfaces"] = wan_interfaces
@@ -712,6 +792,14 @@ class VpnOcvpn(pulumi.CustomResource):
         Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "auto_discovery")
+
+    @property
+    @pulumi.getter(name="autoDiscoveryShortcutMode")
+    def auto_discovery_shortcut_mode(self) -> pulumi.Output[str]:
+        """
+        Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+        """
+        return pulumi.get(self, "auto_discovery_shortcut_mode")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -800,6 +888,14 @@ class VpnOcvpn(pulumi.CustomResource):
         Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "sdwan")
+
+    @property
+    @pulumi.getter(name="sdwanZone")
+    def sdwan_zone(self) -> pulumi.Output[str]:
+        """
+        Set SD-WAN zone.
+        """
+        return pulumi.get(self, "sdwan_zone")
 
     @property
     @pulumi.getter

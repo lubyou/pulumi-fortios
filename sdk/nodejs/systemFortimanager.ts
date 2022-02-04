@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiManager.
+ * Configure FortiManager. Applies to FortiOS Version `<= 7.0.1`.
  *
  * By design considerations, the feature is using the fortios.SystemCentralManagement resource as documented below.
  *
@@ -75,33 +75,31 @@ export class SystemFortimanager extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFortimanagerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFortimanagerArgs | SystemFortimanagerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFortimanagerState | undefined;
-            inputs["centralManagement"] = state ? state.centralManagement : undefined;
-            inputs["centralMgmtAutoBackup"] = state ? state.centralMgmtAutoBackup : undefined;
-            inputs["centralMgmtScheduleConfigRestore"] = state ? state.centralMgmtScheduleConfigRestore : undefined;
-            inputs["centralMgmtScheduleScriptRestore"] = state ? state.centralMgmtScheduleScriptRestore : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ipsec"] = state ? state.ipsec : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["centralManagement"] = state ? state.centralManagement : undefined;
+            resourceInputs["centralMgmtAutoBackup"] = state ? state.centralMgmtAutoBackup : undefined;
+            resourceInputs["centralMgmtScheduleConfigRestore"] = state ? state.centralMgmtScheduleConfigRestore : undefined;
+            resourceInputs["centralMgmtScheduleScriptRestore"] = state ? state.centralMgmtScheduleScriptRestore : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ipsec"] = state ? state.ipsec : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFortimanagerArgs | undefined;
-            inputs["centralManagement"] = args ? args.centralManagement : undefined;
-            inputs["centralMgmtAutoBackup"] = args ? args.centralMgmtAutoBackup : undefined;
-            inputs["centralMgmtScheduleConfigRestore"] = args ? args.centralMgmtScheduleConfigRestore : undefined;
-            inputs["centralMgmtScheduleScriptRestore"] = args ? args.centralMgmtScheduleScriptRestore : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ipsec"] = args ? args.ipsec : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["centralManagement"] = args ? args.centralManagement : undefined;
+            resourceInputs["centralMgmtAutoBackup"] = args ? args.centralMgmtAutoBackup : undefined;
+            resourceInputs["centralMgmtScheduleConfigRestore"] = args ? args.centralMgmtScheduleConfigRestore : undefined;
+            resourceInputs["centralMgmtScheduleScriptRestore"] = args ? args.centralMgmtScheduleScriptRestore : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ipsec"] = args ? args.ipsec : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFortimanager.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFortimanager.__pulumiType, name, resourceInputs, opts);
     }
 }
 

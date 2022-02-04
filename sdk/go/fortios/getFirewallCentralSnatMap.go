@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall centralsnatmap
 func LookupFirewallCentralSnatMap(ctx *pulumi.Context, args *LookupFirewallCentralSnatMapArgs, opts ...pulumi.InvokeOption) (*LookupFirewallCentralSnatMapResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallCentralSnatMapResult
 	err := ctx.Invoke("fortios:index/getFirewallCentralSnatMap:GetFirewallCentralSnatMap", args, &rv, opts...)
 	if err != nil {
@@ -39,6 +43,10 @@ type LookupFirewallCentralSnatMapResult struct {
 	Id string `pulumi:"id"`
 	// Enable/disable source NAT.
 	Nat string `pulumi:"nat"`
+	// Enable/disable NAT46.
+	Nat46 string `pulumi:"nat46"`
+	// Enable/disable NAT64.
+	Nat64 string `pulumi:"nat64"`
 	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
 	NatIppool6s []GetFirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
@@ -64,4 +72,148 @@ type LookupFirewallCentralSnatMapResult struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid      string  `pulumi:"uuid"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallCentralSnatMapOutput(ctx *pulumi.Context, args LookupFirewallCentralSnatMapOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallCentralSnatMapResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallCentralSnatMapResult, error) {
+			args := v.(LookupFirewallCentralSnatMapArgs)
+			r, err := LookupFirewallCentralSnatMap(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallCentralSnatMapResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallCentralSnatMap.
+type LookupFirewallCentralSnatMapOutputArgs struct {
+	// Specify the policyid of the desired firewall centralsnatmap.
+	Policyid pulumi.IntInput `pulumi:"policyid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallCentralSnatMapOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallCentralSnatMapArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallCentralSnatMap.
+type LookupFirewallCentralSnatMapResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallCentralSnatMapResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallCentralSnatMapResult)(nil)).Elem()
+}
+
+func (o LookupFirewallCentralSnatMapResultOutput) ToLookupFirewallCentralSnatMapResultOutput() LookupFirewallCentralSnatMapResultOutput {
+	return o
+}
+
+func (o LookupFirewallCentralSnatMapResultOutput) ToLookupFirewallCentralSnatMapResultOutputWithContext(ctx context.Context) LookupFirewallCentralSnatMapResultOutput {
+	return o
+}
+
+// Comment.
+func (o LookupFirewallCentralSnatMapResultOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Comments }).(pulumi.StringOutput)
+}
+
+// IPv6 Destination address. The structure of `dstAddr6` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) DstAddr6s() GetFirewallCentralSnatMapDstAddr6ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapDstAddr6 { return v.DstAddr6s }).(GetFirewallCentralSnatMapDstAddr6ArrayOutput)
+}
+
+// Destination address name from available addresses. The structure of `dstAddr` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) DstAddrs() GetFirewallCentralSnatMapDstAddrArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapDstAddr { return v.DstAddrs }).(GetFirewallCentralSnatMapDstAddrArrayOutput)
+}
+
+// Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) Dstintfs() GetFirewallCentralSnatMapDstintfArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapDstintf { return v.Dstintfs }).(GetFirewallCentralSnatMapDstintfArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallCentralSnatMapResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable source NAT.
+func (o LookupFirewallCentralSnatMapResultOutput) Nat() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Nat }).(pulumi.StringOutput)
+}
+
+// Enable/disable NAT46.
+func (o LookupFirewallCentralSnatMapResultOutput) Nat46() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Nat46 }).(pulumi.StringOutput)
+}
+
+// Enable/disable NAT64.
+func (o LookupFirewallCentralSnatMapResultOutput) Nat64() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Nat64 }).(pulumi.StringOutput)
+}
+
+// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) NatIppool6s() GetFirewallCentralSnatMapNatIppool6ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapNatIppool6 { return v.NatIppool6s }).(GetFirewallCentralSnatMapNatIppool6ArrayOutput)
+}
+
+// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) NatIppools() GetFirewallCentralSnatMapNatIppoolArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapNatIppool { return v.NatIppools }).(GetFirewallCentralSnatMapNatIppoolArrayOutput)
+}
+
+// Translated port or port range (0 to 65535).
+func (o LookupFirewallCentralSnatMapResultOutput) NatPort() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.NatPort }).(pulumi.StringOutput)
+}
+
+// IPv6 Original address. The structure of `origAddr6` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) OrigAddr6s() GetFirewallCentralSnatMapOrigAddr6ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapOrigAddr6 { return v.OrigAddr6s }).(GetFirewallCentralSnatMapOrigAddr6ArrayOutput)
+}
+
+// Original address. The structure of `origAddr` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) OrigAddrs() GetFirewallCentralSnatMapOrigAddrArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapOrigAddr { return v.OrigAddrs }).(GetFirewallCentralSnatMapOrigAddrArrayOutput)
+}
+
+// Original TCP port (0 to 65535).
+func (o LookupFirewallCentralSnatMapResultOutput) OrigPort() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.OrigPort }).(pulumi.StringOutput)
+}
+
+// Policy ID.
+func (o LookupFirewallCentralSnatMapResultOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) int { return v.Policyid }).(pulumi.IntOutput)
+}
+
+// Integer value for the protocol type (0 - 255).
+func (o LookupFirewallCentralSnatMapResultOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) int { return v.Protocol }).(pulumi.IntOutput)
+}
+
+// Source interface name from available interfaces. The structure of `srcintf` block is documented below.
+func (o LookupFirewallCentralSnatMapResultOutput) Srcintfs() GetFirewallCentralSnatMapSrcintfArrayOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) []GetFirewallCentralSnatMapSrcintf { return v.Srcintfs }).(GetFirewallCentralSnatMapSrcintfArrayOutput)
+}
+
+// Enable/disable the active status of this policy.
+func (o LookupFirewallCentralSnatMapResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// IPv4/IPv6 source NAT.
+func (o LookupFirewallCentralSnatMapResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallCentralSnatMapResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallCentralSnatMapResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallCentralSnatMapResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallCentralSnatMapResultOutput{})
 }

@@ -94,6 +94,10 @@ export class FirewallAddress6 extends pulumi.CustomResource {
      */
     public readonly endMac!: pulumi.Output<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Fully qualified domain name.
      */
     public readonly fqdn!: pulumi.Output<string>;
@@ -113,6 +117,10 @@ export class FirewallAddress6 extends pulumi.CustomResource {
      * IP address list. The structure of `list` block is documented below.
      */
     public readonly lists!: pulumi.Output<outputs.FirewallAddress6List[] | undefined>;
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    public readonly macaddrs!: pulumi.Output<outputs.FirewallAddress6Macaddr[] | undefined>;
     /**
      * Name.
      */
@@ -171,65 +179,67 @@ export class FirewallAddress6 extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallAddress6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallAddress6Args | FirewallAddress6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAddress6State | undefined;
-            inputs["cacheTtl"] = state ? state.cacheTtl : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["country"] = state ? state.country : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["endIp"] = state ? state.endIp : undefined;
-            inputs["endMac"] = state ? state.endMac : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["host"] = state ? state.host : undefined;
-            inputs["hostType"] = state ? state.hostType : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["lists"] = state ? state.lists : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["objId"] = state ? state.objId : undefined;
-            inputs["sdn"] = state ? state.sdn : undefined;
-            inputs["startIp"] = state ? state.startIp : undefined;
-            inputs["startMac"] = state ? state.startMac : undefined;
-            inputs["subnetSegments"] = state ? state.subnetSegments : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["template"] = state ? state.template : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["cacheTtl"] = state ? state.cacheTtl : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["country"] = state ? state.country : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["endMac"] = state ? state.endMac : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
+            resourceInputs["hostType"] = state ? state.hostType : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["lists"] = state ? state.lists : undefined;
+            resourceInputs["macaddrs"] = state ? state.macaddrs : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["objId"] = state ? state.objId : undefined;
+            resourceInputs["sdn"] = state ? state.sdn : undefined;
+            resourceInputs["startIp"] = state ? state.startIp : undefined;
+            resourceInputs["startMac"] = state ? state.startMac : undefined;
+            resourceInputs["subnetSegments"] = state ? state.subnetSegments : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["template"] = state ? state.template : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallAddress6Args | undefined;
-            inputs["cacheTtl"] = args ? args.cacheTtl : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["country"] = args ? args.country : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["endIp"] = args ? args.endIp : undefined;
-            inputs["endMac"] = args ? args.endMac : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["host"] = args ? args.host : undefined;
-            inputs["hostType"] = args ? args.hostType : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["lists"] = args ? args.lists : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["objId"] = args ? args.objId : undefined;
-            inputs["sdn"] = args ? args.sdn : undefined;
-            inputs["startIp"] = args ? args.startIp : undefined;
-            inputs["startMac"] = args ? args.startMac : undefined;
-            inputs["subnetSegments"] = args ? args.subnetSegments : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["template"] = args ? args.template : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["cacheTtl"] = args ? args.cacheTtl : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["country"] = args ? args.country : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["endMac"] = args ? args.endMac : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["host"] = args ? args.host : undefined;
+            resourceInputs["hostType"] = args ? args.hostType : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["lists"] = args ? args.lists : undefined;
+            resourceInputs["macaddrs"] = args ? args.macaddrs : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["objId"] = args ? args.objId : undefined;
+            resourceInputs["sdn"] = args ? args.sdn : undefined;
+            resourceInputs["startIp"] = args ? args.startIp : undefined;
+            resourceInputs["startMac"] = args ? args.startMac : undefined;
+            resourceInputs["subnetSegments"] = args ? args.subnetSegments : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["template"] = args ? args.template : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallAddress6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallAddress6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -266,6 +276,10 @@ export interface FirewallAddress6State {
      */
     endMac?: pulumi.Input<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
+    /**
      * Fully qualified domain name.
      */
     fqdn?: pulumi.Input<string>;
@@ -285,6 +299,10 @@ export interface FirewallAddress6State {
      * IP address list. The structure of `list` block is documented below.
      */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6List>[]>;
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Macaddr>[]>;
     /**
      * Name.
      */
@@ -368,6 +386,10 @@ export interface FirewallAddress6Args {
      */
     endMac?: pulumi.Input<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
+    /**
      * Fully qualified domain name.
      */
     fqdn?: pulumi.Input<string>;
@@ -387,6 +409,10 @@ export interface FirewallAddress6Args {
      * IP address list. The structure of `list` block is documented below.
      */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6List>[]>;
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddress6Macaddr>[]>;
     /**
      * Name.
      */

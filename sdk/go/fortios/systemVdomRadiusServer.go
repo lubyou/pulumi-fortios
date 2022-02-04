@@ -45,6 +45,7 @@ func NewSystemVdomRadiusServer(ctx *pulumi.Context,
 	if args.RadiusServerVdom == nil {
 		return nil, errors.New("invalid value for required argument 'RadiusServerVdom'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomRadiusServer
 	err := ctx.RegisterResource("fortios:index/systemVdomRadiusServer:SystemVdomRadiusServer", name, args, &resource, opts...)
 	if err != nil {
@@ -127,7 +128,7 @@ type SystemVdomRadiusServerInput interface {
 }
 
 func (*SystemVdomRadiusServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomRadiusServer)(nil))
+	return reflect.TypeOf((**SystemVdomRadiusServer)(nil)).Elem()
 }
 
 func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerOutput() SystemVdomRadiusServerOutput {
@@ -136,35 +137,6 @@ func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerOutput() SystemVdomRadi
 
 func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerOutputWithContext(ctx context.Context) SystemVdomRadiusServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerOutput)
-}
-
-func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerPtrOutput() SystemVdomRadiusServerPtrOutput {
-	return i.ToSystemVdomRadiusServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomRadiusServer) ToSystemVdomRadiusServerPtrOutputWithContext(ctx context.Context) SystemVdomRadiusServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerPtrOutput)
-}
-
-type SystemVdomRadiusServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomRadiusServerPtrOutput() SystemVdomRadiusServerPtrOutput
-	ToSystemVdomRadiusServerPtrOutputWithContext(ctx context.Context) SystemVdomRadiusServerPtrOutput
-}
-
-type systemVdomRadiusServerPtrType SystemVdomRadiusServerArgs
-
-func (*systemVdomRadiusServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomRadiusServer)(nil))
-}
-
-func (i *systemVdomRadiusServerPtrType) ToSystemVdomRadiusServerPtrOutput() SystemVdomRadiusServerPtrOutput {
-	return i.ToSystemVdomRadiusServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomRadiusServerPtrType) ToSystemVdomRadiusServerPtrOutputWithContext(ctx context.Context) SystemVdomRadiusServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerPtrOutput)
 }
 
 // SystemVdomRadiusServerArrayInput is an input type that accepts SystemVdomRadiusServerArray and SystemVdomRadiusServerArrayOutput values.
@@ -181,7 +153,7 @@ type SystemVdomRadiusServerArrayInput interface {
 type SystemVdomRadiusServerArray []SystemVdomRadiusServerInput
 
 func (SystemVdomRadiusServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomRadiusServer)(nil))
+	return reflect.TypeOf((*[]*SystemVdomRadiusServer)(nil)).Elem()
 }
 
 func (i SystemVdomRadiusServerArray) ToSystemVdomRadiusServerArrayOutput() SystemVdomRadiusServerArrayOutput {
@@ -206,7 +178,7 @@ type SystemVdomRadiusServerMapInput interface {
 type SystemVdomRadiusServerMap map[string]SystemVdomRadiusServerInput
 
 func (SystemVdomRadiusServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomRadiusServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomRadiusServer)(nil)).Elem()
 }
 
 func (i SystemVdomRadiusServerMap) ToSystemVdomRadiusServerMapOutput() SystemVdomRadiusServerMapOutput {
@@ -217,12 +189,10 @@ func (i SystemVdomRadiusServerMap) ToSystemVdomRadiusServerMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomRadiusServerMapOutput)
 }
 
-type SystemVdomRadiusServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomRadiusServerOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomRadiusServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomRadiusServer)(nil))
+	return reflect.TypeOf((**SystemVdomRadiusServer)(nil)).Elem()
 }
 
 func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerOutput() SystemVdomRadiusServerOutput {
@@ -233,36 +203,10 @@ func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerOutputWithContext(
 	return o
 }
 
-func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerPtrOutput() SystemVdomRadiusServerPtrOutput {
-	return o.ToSystemVdomRadiusServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomRadiusServerOutput) ToSystemVdomRadiusServerPtrOutputWithContext(ctx context.Context) SystemVdomRadiusServerPtrOutput {
-	return o.ApplyT(func(v SystemVdomRadiusServer) *SystemVdomRadiusServer {
-		return &v
-	}).(SystemVdomRadiusServerPtrOutput)
-}
-
-type SystemVdomRadiusServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomRadiusServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomRadiusServer)(nil))
-}
-
-func (o SystemVdomRadiusServerPtrOutput) ToSystemVdomRadiusServerPtrOutput() SystemVdomRadiusServerPtrOutput {
-	return o
-}
-
-func (o SystemVdomRadiusServerPtrOutput) ToSystemVdomRadiusServerPtrOutputWithContext(ctx context.Context) SystemVdomRadiusServerPtrOutput {
-	return o
-}
-
 type SystemVdomRadiusServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomRadiusServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomRadiusServer)(nil))
+	return reflect.TypeOf((*[]*SystemVdomRadiusServer)(nil)).Elem()
 }
 
 func (o SystemVdomRadiusServerArrayOutput) ToSystemVdomRadiusServerArrayOutput() SystemVdomRadiusServerArrayOutput {
@@ -274,15 +218,15 @@ func (o SystemVdomRadiusServerArrayOutput) ToSystemVdomRadiusServerArrayOutputWi
 }
 
 func (o SystemVdomRadiusServerArrayOutput) Index(i pulumi.IntInput) SystemVdomRadiusServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomRadiusServer {
-		return vs[0].([]SystemVdomRadiusServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomRadiusServer {
+		return vs[0].([]*SystemVdomRadiusServer)[vs[1].(int)]
 	}).(SystemVdomRadiusServerOutput)
 }
 
 type SystemVdomRadiusServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomRadiusServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomRadiusServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomRadiusServer)(nil)).Elem()
 }
 
 func (o SystemVdomRadiusServerMapOutput) ToSystemVdomRadiusServerMapOutput() SystemVdomRadiusServerMapOutput {
@@ -294,14 +238,16 @@ func (o SystemVdomRadiusServerMapOutput) ToSystemVdomRadiusServerMapOutputWithCo
 }
 
 func (o SystemVdomRadiusServerMapOutput) MapIndex(k pulumi.StringInput) SystemVdomRadiusServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomRadiusServer {
-		return vs[0].(map[string]SystemVdomRadiusServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomRadiusServer {
+		return vs[0].(map[string]*SystemVdomRadiusServer)[vs[1].(string)]
 	}).(SystemVdomRadiusServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomRadiusServerInput)(nil)).Elem(), &SystemVdomRadiusServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomRadiusServerArrayInput)(nil)).Elem(), SystemVdomRadiusServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomRadiusServerMapInput)(nil)).Elem(), SystemVdomRadiusServerMap{})
 	pulumi.RegisterOutputType(SystemVdomRadiusServerOutput{})
-	pulumi.RegisterOutputType(SystemVdomRadiusServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomRadiusServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomRadiusServerMapOutput{})
 }

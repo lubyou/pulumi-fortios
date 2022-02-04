@@ -47,6 +47,7 @@ func NewSystemReplacemsgEc(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgEc
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgEc:SystemReplacemsgEc", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgEcInput interface {
 }
 
 func (*SystemReplacemsgEc) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgEc)(nil))
+	return reflect.TypeOf((**SystemReplacemsgEc)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgEc) ToSystemReplacemsgEcOutput() SystemReplacemsgEcOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgEc) ToSystemReplacemsgEcOutput() SystemReplacemsgEcOutp
 
 func (i *SystemReplacemsgEc) ToSystemReplacemsgEcOutputWithContext(ctx context.Context) SystemReplacemsgEcOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcOutput)
-}
-
-func (i *SystemReplacemsgEc) ToSystemReplacemsgEcPtrOutput() SystemReplacemsgEcPtrOutput {
-	return i.ToSystemReplacemsgEcPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgEc) ToSystemReplacemsgEcPtrOutputWithContext(ctx context.Context) SystemReplacemsgEcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcPtrOutput)
-}
-
-type SystemReplacemsgEcPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgEcPtrOutput() SystemReplacemsgEcPtrOutput
-	ToSystemReplacemsgEcPtrOutputWithContext(ctx context.Context) SystemReplacemsgEcPtrOutput
-}
-
-type systemReplacemsgEcPtrType SystemReplacemsgEcArgs
-
-func (*systemReplacemsgEcPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgEc)(nil))
-}
-
-func (i *systemReplacemsgEcPtrType) ToSystemReplacemsgEcPtrOutput() SystemReplacemsgEcPtrOutput {
-	return i.ToSystemReplacemsgEcPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgEcPtrType) ToSystemReplacemsgEcPtrOutputWithContext(ctx context.Context) SystemReplacemsgEcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcPtrOutput)
 }
 
 // SystemReplacemsgEcArrayInput is an input type that accepts SystemReplacemsgEcArray and SystemReplacemsgEcArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgEcArrayInput interface {
 type SystemReplacemsgEcArray []SystemReplacemsgEcInput
 
 func (SystemReplacemsgEcArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgEc)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgEc)(nil)).Elem()
 }
 
 func (i SystemReplacemsgEcArray) ToSystemReplacemsgEcArrayOutput() SystemReplacemsgEcArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgEcMapInput interface {
 type SystemReplacemsgEcMap map[string]SystemReplacemsgEcInput
 
 func (SystemReplacemsgEcMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgEc)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgEc)(nil)).Elem()
 }
 
 func (i SystemReplacemsgEcMap) ToSystemReplacemsgEcMapOutput() SystemReplacemsgEcMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgEcMap) ToSystemReplacemsgEcMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgEcMapOutput)
 }
 
-type SystemReplacemsgEcOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgEcOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgEcOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgEc)(nil))
+	return reflect.TypeOf((**SystemReplacemsgEc)(nil)).Elem()
 }
 
 func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcOutput() SystemReplacemsgEcOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcPtrOutput() SystemReplacemsgEcPtrOutput {
-	return o.ToSystemReplacemsgEcPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgEcOutput) ToSystemReplacemsgEcPtrOutputWithContext(ctx context.Context) SystemReplacemsgEcPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgEc) *SystemReplacemsgEc {
-		return &v
-	}).(SystemReplacemsgEcPtrOutput)
-}
-
-type SystemReplacemsgEcPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgEcPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgEc)(nil))
-}
-
-func (o SystemReplacemsgEcPtrOutput) ToSystemReplacemsgEcPtrOutput() SystemReplacemsgEcPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgEcPtrOutput) ToSystemReplacemsgEcPtrOutputWithContext(ctx context.Context) SystemReplacemsgEcPtrOutput {
-	return o
-}
-
 type SystemReplacemsgEcArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgEcArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgEc)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgEc)(nil)).Elem()
 }
 
 func (o SystemReplacemsgEcArrayOutput) ToSystemReplacemsgEcArrayOutput() SystemReplacemsgEcArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgEcArrayOutput) ToSystemReplacemsgEcArrayOutputWithContex
 }
 
 func (o SystemReplacemsgEcArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgEcOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgEc {
-		return vs[0].([]SystemReplacemsgEc)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgEc {
+		return vs[0].([]*SystemReplacemsgEc)[vs[1].(int)]
 	}).(SystemReplacemsgEcOutput)
 }
 
 type SystemReplacemsgEcMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgEcMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgEc)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgEc)(nil)).Elem()
 }
 
 func (o SystemReplacemsgEcMapOutput) ToSystemReplacemsgEcMapOutput() SystemReplacemsgEcMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgEcMapOutput) ToSystemReplacemsgEcMapOutputWithContext(ct
 }
 
 func (o SystemReplacemsgEcMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgEcOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgEc {
-		return vs[0].(map[string]SystemReplacemsgEc)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgEc {
+		return vs[0].(map[string]*SystemReplacemsgEc)[vs[1].(string)]
 	}).(SystemReplacemsgEcOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgEcInput)(nil)).Elem(), &SystemReplacemsgEc{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgEcArrayInput)(nil)).Elem(), SystemReplacemsgEcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgEcMapInput)(nil)).Elem(), SystemReplacemsgEcMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgEcOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgEcPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgEcArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgEcMapOutput{})
 }

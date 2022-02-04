@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -166,6 +166,7 @@ func NewRouterIsis(ctx *pulumi.Context,
 		args = &RouterIsisArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterIsis
 	err := ctx.RegisterResource("fortios:index/routerIsis:RouterIsis", name, args, &resource, opts...)
 	if err != nil {
@@ -560,7 +561,7 @@ type RouterIsisInput interface {
 }
 
 func (*RouterIsis) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterIsis)(nil))
+	return reflect.TypeOf((**RouterIsis)(nil)).Elem()
 }
 
 func (i *RouterIsis) ToRouterIsisOutput() RouterIsisOutput {
@@ -569,35 +570,6 @@ func (i *RouterIsis) ToRouterIsisOutput() RouterIsisOutput {
 
 func (i *RouterIsis) ToRouterIsisOutputWithContext(ctx context.Context) RouterIsisOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisOutput)
-}
-
-func (i *RouterIsis) ToRouterIsisPtrOutput() RouterIsisPtrOutput {
-	return i.ToRouterIsisPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterIsis) ToRouterIsisPtrOutputWithContext(ctx context.Context) RouterIsisPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisPtrOutput)
-}
-
-type RouterIsisPtrInput interface {
-	pulumi.Input
-
-	ToRouterIsisPtrOutput() RouterIsisPtrOutput
-	ToRouterIsisPtrOutputWithContext(ctx context.Context) RouterIsisPtrOutput
-}
-
-type routerIsisPtrType RouterIsisArgs
-
-func (*routerIsisPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterIsis)(nil))
-}
-
-func (i *routerIsisPtrType) ToRouterIsisPtrOutput() RouterIsisPtrOutput {
-	return i.ToRouterIsisPtrOutputWithContext(context.Background())
-}
-
-func (i *routerIsisPtrType) ToRouterIsisPtrOutputWithContext(ctx context.Context) RouterIsisPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisPtrOutput)
 }
 
 // RouterIsisArrayInput is an input type that accepts RouterIsisArray and RouterIsisArrayOutput values.
@@ -614,7 +586,7 @@ type RouterIsisArrayInput interface {
 type RouterIsisArray []RouterIsisInput
 
 func (RouterIsisArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterIsis)(nil))
+	return reflect.TypeOf((*[]*RouterIsis)(nil)).Elem()
 }
 
 func (i RouterIsisArray) ToRouterIsisArrayOutput() RouterIsisArrayOutput {
@@ -639,7 +611,7 @@ type RouterIsisMapInput interface {
 type RouterIsisMap map[string]RouterIsisInput
 
 func (RouterIsisMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterIsis)(nil))
+	return reflect.TypeOf((*map[string]*RouterIsis)(nil)).Elem()
 }
 
 func (i RouterIsisMap) ToRouterIsisMapOutput() RouterIsisMapOutput {
@@ -650,12 +622,10 @@ func (i RouterIsisMap) ToRouterIsisMapOutputWithContext(ctx context.Context) Rou
 	return pulumi.ToOutputWithContext(ctx, i).(RouterIsisMapOutput)
 }
 
-type RouterIsisOutput struct {
-	*pulumi.OutputState
-}
+type RouterIsisOutput struct{ *pulumi.OutputState }
 
 func (RouterIsisOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterIsis)(nil))
+	return reflect.TypeOf((**RouterIsis)(nil)).Elem()
 }
 
 func (o RouterIsisOutput) ToRouterIsisOutput() RouterIsisOutput {
@@ -666,36 +636,10 @@ func (o RouterIsisOutput) ToRouterIsisOutputWithContext(ctx context.Context) Rou
 	return o
 }
 
-func (o RouterIsisOutput) ToRouterIsisPtrOutput() RouterIsisPtrOutput {
-	return o.ToRouterIsisPtrOutputWithContext(context.Background())
-}
-
-func (o RouterIsisOutput) ToRouterIsisPtrOutputWithContext(ctx context.Context) RouterIsisPtrOutput {
-	return o.ApplyT(func(v RouterIsis) *RouterIsis {
-		return &v
-	}).(RouterIsisPtrOutput)
-}
-
-type RouterIsisPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterIsisPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterIsis)(nil))
-}
-
-func (o RouterIsisPtrOutput) ToRouterIsisPtrOutput() RouterIsisPtrOutput {
-	return o
-}
-
-func (o RouterIsisPtrOutput) ToRouterIsisPtrOutputWithContext(ctx context.Context) RouterIsisPtrOutput {
-	return o
-}
-
 type RouterIsisArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterIsisArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterIsis)(nil))
+	return reflect.TypeOf((*[]*RouterIsis)(nil)).Elem()
 }
 
 func (o RouterIsisArrayOutput) ToRouterIsisArrayOutput() RouterIsisArrayOutput {
@@ -707,15 +651,15 @@ func (o RouterIsisArrayOutput) ToRouterIsisArrayOutputWithContext(ctx context.Co
 }
 
 func (o RouterIsisArrayOutput) Index(i pulumi.IntInput) RouterIsisOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterIsis {
-		return vs[0].([]RouterIsis)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterIsis {
+		return vs[0].([]*RouterIsis)[vs[1].(int)]
 	}).(RouterIsisOutput)
 }
 
 type RouterIsisMapOutput struct{ *pulumi.OutputState }
 
 func (RouterIsisMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterIsis)(nil))
+	return reflect.TypeOf((*map[string]*RouterIsis)(nil)).Elem()
 }
 
 func (o RouterIsisMapOutput) ToRouterIsisMapOutput() RouterIsisMapOutput {
@@ -727,14 +671,16 @@ func (o RouterIsisMapOutput) ToRouterIsisMapOutputWithContext(ctx context.Contex
 }
 
 func (o RouterIsisMapOutput) MapIndex(k pulumi.StringInput) RouterIsisOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterIsis {
-		return vs[0].(map[string]RouterIsis)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterIsis {
+		return vs[0].(map[string]*RouterIsis)[vs[1].(string)]
 	}).(RouterIsisOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterIsisInput)(nil)).Elem(), &RouterIsis{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterIsisArrayInput)(nil)).Elem(), RouterIsisArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterIsisMapInput)(nil)).Elem(), RouterIsisMap{})
 	pulumi.RegisterOutputType(RouterIsisOutput{})
-	pulumi.RegisterOutputType(RouterIsisPtrOutput{})
 	pulumi.RegisterOutputType(RouterIsisArrayOutput{})
 	pulumi.RegisterOutputType(RouterIsisMapOutput{})
 }

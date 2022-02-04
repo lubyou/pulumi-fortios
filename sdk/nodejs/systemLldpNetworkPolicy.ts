@@ -111,39 +111,37 @@ export class SystemLldpNetworkPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemLldpNetworkPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemLldpNetworkPolicyArgs | SystemLldpNetworkPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemLldpNetworkPolicyState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["guest"] = state ? state.guest : undefined;
-            inputs["guestVoiceSignaling"] = state ? state.guestVoiceSignaling : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["softphone"] = state ? state.softphone : undefined;
-            inputs["streamingVideo"] = state ? state.streamingVideo : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["videoConferencing"] = state ? state.videoConferencing : undefined;
-            inputs["videoSignaling"] = state ? state.videoSignaling : undefined;
-            inputs["voice"] = state ? state.voice : undefined;
-            inputs["voiceSignaling"] = state ? state.voiceSignaling : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["guest"] = state ? state.guest : undefined;
+            resourceInputs["guestVoiceSignaling"] = state ? state.guestVoiceSignaling : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["softphone"] = state ? state.softphone : undefined;
+            resourceInputs["streamingVideo"] = state ? state.streamingVideo : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["videoConferencing"] = state ? state.videoConferencing : undefined;
+            resourceInputs["videoSignaling"] = state ? state.videoSignaling : undefined;
+            resourceInputs["voice"] = state ? state.voice : undefined;
+            resourceInputs["voiceSignaling"] = state ? state.voiceSignaling : undefined;
         } else {
             const args = argsOrState as SystemLldpNetworkPolicyArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["guest"] = args ? args.guest : undefined;
-            inputs["guestVoiceSignaling"] = args ? args.guestVoiceSignaling : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["softphone"] = args ? args.softphone : undefined;
-            inputs["streamingVideo"] = args ? args.streamingVideo : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["videoConferencing"] = args ? args.videoConferencing : undefined;
-            inputs["videoSignaling"] = args ? args.videoSignaling : undefined;
-            inputs["voice"] = args ? args.voice : undefined;
-            inputs["voiceSignaling"] = args ? args.voiceSignaling : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["guest"] = args ? args.guest : undefined;
+            resourceInputs["guestVoiceSignaling"] = args ? args.guestVoiceSignaling : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["softphone"] = args ? args.softphone : undefined;
+            resourceInputs["streamingVideo"] = args ? args.streamingVideo : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["videoConferencing"] = args ? args.videoConferencing : undefined;
+            resourceInputs["videoSignaling"] = args ? args.videoSignaling : undefined;
+            resourceInputs["voice"] = args ? args.voice : undefined;
+            resourceInputs["voiceSignaling"] = args ? args.voiceSignaling : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemLldpNetworkPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemLldpNetworkPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

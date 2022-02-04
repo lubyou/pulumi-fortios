@@ -31,6 +31,8 @@ type CertificateCa struct {
 	AutoUpdateDaysWarning pulumi.IntOutput `pulumi:"autoUpdateDaysWarning"`
 	// CA certificate as a PEM file.
 	Ca pulumi.StringOutput `pulumi:"ca"`
+	// CA identifier of the SCEP server.
+	CaIdentifier pulumi.StringOutput `pulumi:"caIdentifier"`
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
 	// Name.
@@ -61,6 +63,7 @@ func NewCertificateCa(ctx *pulumi.Context,
 	if args.Ca == nil {
 		return nil, errors.New("invalid value for required argument 'Ca'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CertificateCa
 	err := ctx.RegisterResource("fortios:index/certificateCa:CertificateCa", name, args, &resource, opts...)
 	if err != nil {
@@ -89,6 +92,8 @@ type certificateCaState struct {
 	AutoUpdateDaysWarning *int `pulumi:"autoUpdateDaysWarning"`
 	// CA certificate as a PEM file.
 	Ca *string `pulumi:"ca"`
+	// CA identifier of the SCEP server.
+	CaIdentifier *string `pulumi:"caIdentifier"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -116,6 +121,8 @@ type CertificateCaState struct {
 	AutoUpdateDaysWarning pulumi.IntPtrInput
 	// CA certificate as a PEM file.
 	Ca pulumi.StringPtrInput
+	// CA identifier of the SCEP server.
+	CaIdentifier pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -147,6 +154,8 @@ type certificateCaArgs struct {
 	AutoUpdateDaysWarning *int `pulumi:"autoUpdateDaysWarning"`
 	// CA certificate as a PEM file.
 	Ca string `pulumi:"ca"`
+	// CA identifier of the SCEP server.
+	CaIdentifier *string `pulumi:"caIdentifier"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -175,6 +184,8 @@ type CertificateCaArgs struct {
 	AutoUpdateDaysWarning pulumi.IntPtrInput
 	// CA certificate as a PEM file.
 	Ca pulumi.StringInput
+	// CA identifier of the SCEP server.
+	CaIdentifier pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -207,7 +218,7 @@ type CertificateCaInput interface {
 }
 
 func (*CertificateCa) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateCa)(nil))
+	return reflect.TypeOf((**CertificateCa)(nil)).Elem()
 }
 
 func (i *CertificateCa) ToCertificateCaOutput() CertificateCaOutput {
@@ -216,35 +227,6 @@ func (i *CertificateCa) ToCertificateCaOutput() CertificateCaOutput {
 
 func (i *CertificateCa) ToCertificateCaOutputWithContext(ctx context.Context) CertificateCaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaOutput)
-}
-
-func (i *CertificateCa) ToCertificateCaPtrOutput() CertificateCaPtrOutput {
-	return i.ToCertificateCaPtrOutputWithContext(context.Background())
-}
-
-func (i *CertificateCa) ToCertificateCaPtrOutputWithContext(ctx context.Context) CertificateCaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaPtrOutput)
-}
-
-type CertificateCaPtrInput interface {
-	pulumi.Input
-
-	ToCertificateCaPtrOutput() CertificateCaPtrOutput
-	ToCertificateCaPtrOutputWithContext(ctx context.Context) CertificateCaPtrOutput
-}
-
-type certificateCaPtrType CertificateCaArgs
-
-func (*certificateCaPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CertificateCa)(nil))
-}
-
-func (i *certificateCaPtrType) ToCertificateCaPtrOutput() CertificateCaPtrOutput {
-	return i.ToCertificateCaPtrOutputWithContext(context.Background())
-}
-
-func (i *certificateCaPtrType) ToCertificateCaPtrOutputWithContext(ctx context.Context) CertificateCaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaPtrOutput)
 }
 
 // CertificateCaArrayInput is an input type that accepts CertificateCaArray and CertificateCaArrayOutput values.
@@ -261,7 +243,7 @@ type CertificateCaArrayInput interface {
 type CertificateCaArray []CertificateCaInput
 
 func (CertificateCaArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CertificateCa)(nil))
+	return reflect.TypeOf((*[]*CertificateCa)(nil)).Elem()
 }
 
 func (i CertificateCaArray) ToCertificateCaArrayOutput() CertificateCaArrayOutput {
@@ -286,7 +268,7 @@ type CertificateCaMapInput interface {
 type CertificateCaMap map[string]CertificateCaInput
 
 func (CertificateCaMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CertificateCa)(nil))
+	return reflect.TypeOf((*map[string]*CertificateCa)(nil)).Elem()
 }
 
 func (i CertificateCaMap) ToCertificateCaMapOutput() CertificateCaMapOutput {
@@ -297,12 +279,10 @@ func (i CertificateCaMap) ToCertificateCaMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCaMapOutput)
 }
 
-type CertificateCaOutput struct {
-	*pulumi.OutputState
-}
+type CertificateCaOutput struct{ *pulumi.OutputState }
 
 func (CertificateCaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateCa)(nil))
+	return reflect.TypeOf((**CertificateCa)(nil)).Elem()
 }
 
 func (o CertificateCaOutput) ToCertificateCaOutput() CertificateCaOutput {
@@ -313,36 +293,10 @@ func (o CertificateCaOutput) ToCertificateCaOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o CertificateCaOutput) ToCertificateCaPtrOutput() CertificateCaPtrOutput {
-	return o.ToCertificateCaPtrOutputWithContext(context.Background())
-}
-
-func (o CertificateCaOutput) ToCertificateCaPtrOutputWithContext(ctx context.Context) CertificateCaPtrOutput {
-	return o.ApplyT(func(v CertificateCa) *CertificateCa {
-		return &v
-	}).(CertificateCaPtrOutput)
-}
-
-type CertificateCaPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CertificateCaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CertificateCa)(nil))
-}
-
-func (o CertificateCaPtrOutput) ToCertificateCaPtrOutput() CertificateCaPtrOutput {
-	return o
-}
-
-func (o CertificateCaPtrOutput) ToCertificateCaPtrOutputWithContext(ctx context.Context) CertificateCaPtrOutput {
-	return o
-}
-
 type CertificateCaArrayOutput struct{ *pulumi.OutputState }
 
 func (CertificateCaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CertificateCa)(nil))
+	return reflect.TypeOf((*[]*CertificateCa)(nil)).Elem()
 }
 
 func (o CertificateCaArrayOutput) ToCertificateCaArrayOutput() CertificateCaArrayOutput {
@@ -354,15 +308,15 @@ func (o CertificateCaArrayOutput) ToCertificateCaArrayOutputWithContext(ctx cont
 }
 
 func (o CertificateCaArrayOutput) Index(i pulumi.IntInput) CertificateCaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificateCa {
-		return vs[0].([]CertificateCa)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateCa {
+		return vs[0].([]*CertificateCa)[vs[1].(int)]
 	}).(CertificateCaOutput)
 }
 
 type CertificateCaMapOutput struct{ *pulumi.OutputState }
 
 func (CertificateCaMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CertificateCa)(nil))
+	return reflect.TypeOf((*map[string]*CertificateCa)(nil)).Elem()
 }
 
 func (o CertificateCaMapOutput) ToCertificateCaMapOutput() CertificateCaMapOutput {
@@ -374,14 +328,16 @@ func (o CertificateCaMapOutput) ToCertificateCaMapOutputWithContext(ctx context.
 }
 
 func (o CertificateCaMapOutput) MapIndex(k pulumi.StringInput) CertificateCaOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CertificateCa {
-		return vs[0].(map[string]CertificateCa)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CertificateCa {
+		return vs[0].(map[string]*CertificateCa)[vs[1].(string)]
 	}).(CertificateCaOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateCaInput)(nil)).Elem(), &CertificateCa{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateCaArrayInput)(nil)).Elem(), CertificateCaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateCaMapInput)(nil)).Elem(), CertificateCaMap{})
 	pulumi.RegisterOutputType(CertificateCaOutput{})
-	pulumi.RegisterOutputType(CertificateCaPtrOutput{})
 	pulumi.RegisterOutputType(CertificateCaArrayOutput{})
 	pulumi.RegisterOutputType(CertificateCaMapOutput{})
 }

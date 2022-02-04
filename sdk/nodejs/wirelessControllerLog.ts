@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure wireless controller event log filters.
+ * Configure wireless controller event log filters. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -107,43 +107,41 @@ export class WirelessControllerLog extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerLogArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerLogArgs | WirelessControllerLogState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerLogState | undefined;
-            inputs["addrgrpLog"] = state ? state.addrgrpLog : undefined;
-            inputs["bleLog"] = state ? state.bleLog : undefined;
-            inputs["clbLog"] = state ? state.clbLog : undefined;
-            inputs["dhcpStarvLog"] = state ? state.dhcpStarvLog : undefined;
-            inputs["ledSchedLog"] = state ? state.ledSchedLog : undefined;
-            inputs["radioEventLog"] = state ? state.radioEventLog : undefined;
-            inputs["rogueEventLog"] = state ? state.rogueEventLog : undefined;
-            inputs["staEventLog"] = state ? state.staEventLog : undefined;
-            inputs["staLocateLog"] = state ? state.staLocateLog : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["widsLog"] = state ? state.widsLog : undefined;
-            inputs["wtpEventLog"] = state ? state.wtpEventLog : undefined;
+            resourceInputs["addrgrpLog"] = state ? state.addrgrpLog : undefined;
+            resourceInputs["bleLog"] = state ? state.bleLog : undefined;
+            resourceInputs["clbLog"] = state ? state.clbLog : undefined;
+            resourceInputs["dhcpStarvLog"] = state ? state.dhcpStarvLog : undefined;
+            resourceInputs["ledSchedLog"] = state ? state.ledSchedLog : undefined;
+            resourceInputs["radioEventLog"] = state ? state.radioEventLog : undefined;
+            resourceInputs["rogueEventLog"] = state ? state.rogueEventLog : undefined;
+            resourceInputs["staEventLog"] = state ? state.staEventLog : undefined;
+            resourceInputs["staLocateLog"] = state ? state.staLocateLog : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["widsLog"] = state ? state.widsLog : undefined;
+            resourceInputs["wtpEventLog"] = state ? state.wtpEventLog : undefined;
         } else {
             const args = argsOrState as WirelessControllerLogArgs | undefined;
-            inputs["addrgrpLog"] = args ? args.addrgrpLog : undefined;
-            inputs["bleLog"] = args ? args.bleLog : undefined;
-            inputs["clbLog"] = args ? args.clbLog : undefined;
-            inputs["dhcpStarvLog"] = args ? args.dhcpStarvLog : undefined;
-            inputs["ledSchedLog"] = args ? args.ledSchedLog : undefined;
-            inputs["radioEventLog"] = args ? args.radioEventLog : undefined;
-            inputs["rogueEventLog"] = args ? args.rogueEventLog : undefined;
-            inputs["staEventLog"] = args ? args.staEventLog : undefined;
-            inputs["staLocateLog"] = args ? args.staLocateLog : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["widsLog"] = args ? args.widsLog : undefined;
-            inputs["wtpEventLog"] = args ? args.wtpEventLog : undefined;
+            resourceInputs["addrgrpLog"] = args ? args.addrgrpLog : undefined;
+            resourceInputs["bleLog"] = args ? args.bleLog : undefined;
+            resourceInputs["clbLog"] = args ? args.clbLog : undefined;
+            resourceInputs["dhcpStarvLog"] = args ? args.dhcpStarvLog : undefined;
+            resourceInputs["ledSchedLog"] = args ? args.ledSchedLog : undefined;
+            resourceInputs["radioEventLog"] = args ? args.radioEventLog : undefined;
+            resourceInputs["rogueEventLog"] = args ? args.rogueEventLog : undefined;
+            resourceInputs["staEventLog"] = args ? args.staEventLog : undefined;
+            resourceInputs["staLocateLog"] = args ? args.staLocateLog : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["widsLog"] = args ? args.widsLog : undefined;
+            resourceInputs["wtpEventLog"] = args ? args.wtpEventLog : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerLog.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerLog.__pulumiType, name, resourceInputs, opts);
     }
 }
 

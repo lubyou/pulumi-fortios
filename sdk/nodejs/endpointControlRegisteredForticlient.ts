@@ -87,33 +87,31 @@ export class EndpointControlRegisteredForticlient extends pulumi.CustomResource 
      */
     constructor(name: string, args?: EndpointControlRegisteredForticlientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointControlRegisteredForticlientArgs | EndpointControlRegisteredForticlientState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointControlRegisteredForticlientState | undefined;
-            inputs["flag"] = state ? state.flag : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["regFortigate"] = state ? state.regFortigate : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uid"] = state ? state.uid : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["flag"] = state ? state.flag : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["regFortigate"] = state ? state.regFortigate : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uid"] = state ? state.uid : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlRegisteredForticlientArgs | undefined;
-            inputs["flag"] = args ? args.flag : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["regFortigate"] = args ? args.regFortigate : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uid"] = args ? args.uid : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["flag"] = args ? args.flag : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["regFortigate"] = args ? args.regFortigate : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uid"] = args ? args.uid : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EndpointControlRegisteredForticlient.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EndpointControlRegisteredForticlient.__pulumiType, name, resourceInputs, opts);
     }
 }
 

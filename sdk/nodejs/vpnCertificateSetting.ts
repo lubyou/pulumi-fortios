@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -128,9 +129,17 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
      */
     public readonly cmpSaveExtraCerts!: pulumi.Output<string>;
     /**
+     * When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+     */
+    public readonly cnAllowMulti!: pulumi.Output<string>;
+    /**
      * When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
      */
     public readonly cnMatch!: pulumi.Output<string>;
+    /**
+     * CRL verification options. The structure of `crlVerification` block is documented below.
+     */
+    public readonly crlVerification!: pulumi.Output<outputs.VpnCertificateSettingCrlVerification | undefined>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -172,6 +181,10 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
      */
     public readonly subjectMatch!: pulumi.Output<string>;
     /**
+     * When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+     */
+    public readonly subjectSet!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -185,36 +198,39 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnCertificateSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnCertificateSettingArgs | VpnCertificateSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnCertificateSettingState | undefined;
-            inputs["certnameDsa1024"] = state ? state.certnameDsa1024 : undefined;
-            inputs["certnameDsa2048"] = state ? state.certnameDsa2048 : undefined;
-            inputs["certnameEcdsa256"] = state ? state.certnameEcdsa256 : undefined;
-            inputs["certnameEcdsa384"] = state ? state.certnameEcdsa384 : undefined;
-            inputs["certnameEcdsa521"] = state ? state.certnameEcdsa521 : undefined;
-            inputs["certnameEd25519"] = state ? state.certnameEd25519 : undefined;
-            inputs["certnameEd448"] = state ? state.certnameEd448 : undefined;
-            inputs["certnameRsa1024"] = state ? state.certnameRsa1024 : undefined;
-            inputs["certnameRsa2048"] = state ? state.certnameRsa2048 : undefined;
-            inputs["certnameRsa4096"] = state ? state.certnameRsa4096 : undefined;
-            inputs["checkCaCert"] = state ? state.checkCaCert : undefined;
-            inputs["checkCaChain"] = state ? state.checkCaChain : undefined;
-            inputs["cmpKeyUsageChecking"] = state ? state.cmpKeyUsageChecking : undefined;
-            inputs["cmpSaveExtraCerts"] = state ? state.cmpSaveExtraCerts : undefined;
-            inputs["cnMatch"] = state ? state.cnMatch : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ocspDefaultServer"] = state ? state.ocspDefaultServer : undefined;
-            inputs["ocspOption"] = state ? state.ocspOption : undefined;
-            inputs["ocspStatus"] = state ? state.ocspStatus : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["sslOcspSourceIp"] = state ? state.sslOcspSourceIp : undefined;
-            inputs["strictCrlCheck"] = state ? state.strictCrlCheck : undefined;
-            inputs["strictOcspCheck"] = state ? state.strictOcspCheck : undefined;
-            inputs["subjectMatch"] = state ? state.subjectMatch : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["certnameDsa1024"] = state ? state.certnameDsa1024 : undefined;
+            resourceInputs["certnameDsa2048"] = state ? state.certnameDsa2048 : undefined;
+            resourceInputs["certnameEcdsa256"] = state ? state.certnameEcdsa256 : undefined;
+            resourceInputs["certnameEcdsa384"] = state ? state.certnameEcdsa384 : undefined;
+            resourceInputs["certnameEcdsa521"] = state ? state.certnameEcdsa521 : undefined;
+            resourceInputs["certnameEd25519"] = state ? state.certnameEd25519 : undefined;
+            resourceInputs["certnameEd448"] = state ? state.certnameEd448 : undefined;
+            resourceInputs["certnameRsa1024"] = state ? state.certnameRsa1024 : undefined;
+            resourceInputs["certnameRsa2048"] = state ? state.certnameRsa2048 : undefined;
+            resourceInputs["certnameRsa4096"] = state ? state.certnameRsa4096 : undefined;
+            resourceInputs["checkCaCert"] = state ? state.checkCaCert : undefined;
+            resourceInputs["checkCaChain"] = state ? state.checkCaChain : undefined;
+            resourceInputs["cmpKeyUsageChecking"] = state ? state.cmpKeyUsageChecking : undefined;
+            resourceInputs["cmpSaveExtraCerts"] = state ? state.cmpSaveExtraCerts : undefined;
+            resourceInputs["cnAllowMulti"] = state ? state.cnAllowMulti : undefined;
+            resourceInputs["cnMatch"] = state ? state.cnMatch : undefined;
+            resourceInputs["crlVerification"] = state ? state.crlVerification : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ocspDefaultServer"] = state ? state.ocspDefaultServer : undefined;
+            resourceInputs["ocspOption"] = state ? state.ocspOption : undefined;
+            resourceInputs["ocspStatus"] = state ? state.ocspStatus : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["sslOcspSourceIp"] = state ? state.sslOcspSourceIp : undefined;
+            resourceInputs["strictCrlCheck"] = state ? state.strictCrlCheck : undefined;
+            resourceInputs["strictOcspCheck"] = state ? state.strictOcspCheck : undefined;
+            resourceInputs["subjectMatch"] = state ? state.subjectMatch : undefined;
+            resourceInputs["subjectSet"] = state ? state.subjectSet : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnCertificateSettingArgs | undefined;
             if ((!args || args.certnameDsa1024 === undefined) && !opts.urn) {
@@ -235,37 +251,38 @@ export class VpnCertificateSetting extends pulumi.CustomResource {
             if ((!args || args.certnameRsa2048 === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'certnameRsa2048'");
             }
-            inputs["certnameDsa1024"] = args ? args.certnameDsa1024 : undefined;
-            inputs["certnameDsa2048"] = args ? args.certnameDsa2048 : undefined;
-            inputs["certnameEcdsa256"] = args ? args.certnameEcdsa256 : undefined;
-            inputs["certnameEcdsa384"] = args ? args.certnameEcdsa384 : undefined;
-            inputs["certnameEcdsa521"] = args ? args.certnameEcdsa521 : undefined;
-            inputs["certnameEd25519"] = args ? args.certnameEd25519 : undefined;
-            inputs["certnameEd448"] = args ? args.certnameEd448 : undefined;
-            inputs["certnameRsa1024"] = args ? args.certnameRsa1024 : undefined;
-            inputs["certnameRsa2048"] = args ? args.certnameRsa2048 : undefined;
-            inputs["certnameRsa4096"] = args ? args.certnameRsa4096 : undefined;
-            inputs["checkCaCert"] = args ? args.checkCaCert : undefined;
-            inputs["checkCaChain"] = args ? args.checkCaChain : undefined;
-            inputs["cmpKeyUsageChecking"] = args ? args.cmpKeyUsageChecking : undefined;
-            inputs["cmpSaveExtraCerts"] = args ? args.cmpSaveExtraCerts : undefined;
-            inputs["cnMatch"] = args ? args.cnMatch : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ocspDefaultServer"] = args ? args.ocspDefaultServer : undefined;
-            inputs["ocspOption"] = args ? args.ocspOption : undefined;
-            inputs["ocspStatus"] = args ? args.ocspStatus : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["sslOcspSourceIp"] = args ? args.sslOcspSourceIp : undefined;
-            inputs["strictCrlCheck"] = args ? args.strictCrlCheck : undefined;
-            inputs["strictOcspCheck"] = args ? args.strictOcspCheck : undefined;
-            inputs["subjectMatch"] = args ? args.subjectMatch : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["certnameDsa1024"] = args ? args.certnameDsa1024 : undefined;
+            resourceInputs["certnameDsa2048"] = args ? args.certnameDsa2048 : undefined;
+            resourceInputs["certnameEcdsa256"] = args ? args.certnameEcdsa256 : undefined;
+            resourceInputs["certnameEcdsa384"] = args ? args.certnameEcdsa384 : undefined;
+            resourceInputs["certnameEcdsa521"] = args ? args.certnameEcdsa521 : undefined;
+            resourceInputs["certnameEd25519"] = args ? args.certnameEd25519 : undefined;
+            resourceInputs["certnameEd448"] = args ? args.certnameEd448 : undefined;
+            resourceInputs["certnameRsa1024"] = args ? args.certnameRsa1024 : undefined;
+            resourceInputs["certnameRsa2048"] = args ? args.certnameRsa2048 : undefined;
+            resourceInputs["certnameRsa4096"] = args ? args.certnameRsa4096 : undefined;
+            resourceInputs["checkCaCert"] = args ? args.checkCaCert : undefined;
+            resourceInputs["checkCaChain"] = args ? args.checkCaChain : undefined;
+            resourceInputs["cmpKeyUsageChecking"] = args ? args.cmpKeyUsageChecking : undefined;
+            resourceInputs["cmpSaveExtraCerts"] = args ? args.cmpSaveExtraCerts : undefined;
+            resourceInputs["cnAllowMulti"] = args ? args.cnAllowMulti : undefined;
+            resourceInputs["cnMatch"] = args ? args.cnMatch : undefined;
+            resourceInputs["crlVerification"] = args ? args.crlVerification : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ocspDefaultServer"] = args ? args.ocspDefaultServer : undefined;
+            resourceInputs["ocspOption"] = args ? args.ocspOption : undefined;
+            resourceInputs["ocspStatus"] = args ? args.ocspStatus : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["sslOcspSourceIp"] = args ? args.sslOcspSourceIp : undefined;
+            resourceInputs["strictCrlCheck"] = args ? args.strictCrlCheck : undefined;
+            resourceInputs["strictOcspCheck"] = args ? args.strictOcspCheck : undefined;
+            resourceInputs["subjectMatch"] = args ? args.subjectMatch : undefined;
+            resourceInputs["subjectSet"] = args ? args.subjectSet : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnCertificateSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnCertificateSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -330,9 +347,17 @@ export interface VpnCertificateSettingState {
      */
     cmpSaveExtraCerts?: pulumi.Input<string>;
     /**
+     * When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+     */
+    cnAllowMulti?: pulumi.Input<string>;
+    /**
      * When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
      */
     cnMatch?: pulumi.Input<string>;
+    /**
+     * CRL verification options. The structure of `crlVerification` block is documented below.
+     */
+    crlVerification?: pulumi.Input<inputs.VpnCertificateSettingCrlVerification>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -373,6 +398,10 @@ export interface VpnCertificateSettingState {
      * When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
      */
     subjectMatch?: pulumi.Input<string>;
+    /**
+     * When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+     */
+    subjectSet?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -440,9 +469,17 @@ export interface VpnCertificateSettingArgs {
      */
     cmpSaveExtraCerts?: pulumi.Input<string>;
     /**
+     * When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+     */
+    cnAllowMulti?: pulumi.Input<string>;
+    /**
      * When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
      */
     cnMatch?: pulumi.Input<string>;
+    /**
+     * CRL verification options. The structure of `crlVerification` block is documented below.
+     */
+    crlVerification?: pulumi.Input<inputs.VpnCertificateSettingCrlVerification>;
     /**
      * Specify outgoing interface to reach server.
      */
@@ -483,6 +520,10 @@ export interface VpnCertificateSettingArgs {
      * When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
      */
     subjectMatch?: pulumi.Input<string>;
+    /**
+     * When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+     */
+    subjectSet?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

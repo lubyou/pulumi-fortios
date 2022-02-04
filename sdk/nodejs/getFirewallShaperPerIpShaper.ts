@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -13,9 +12,7 @@ export function getFirewallShaperPerIpShaper(args: GetFirewallShaperPerIpShaperA
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallShaperPerIpShaper:GetFirewallShaperPerIpShaper", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -85,4 +82,22 @@ export interface GetFirewallShaperPerIpShaperResult {
      */
     readonly name: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallShaperPerIpShaperOutput(args: GetFirewallShaperPerIpShaperOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallShaperPerIpShaperResult> {
+    return pulumi.output(args).apply(a => getFirewallShaperPerIpShaper(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallShaperPerIpShaper.
+ */
+export interface GetFirewallShaperPerIpShaperOutputArgs {
+    /**
+     * Specify the name of the desired firewallshaper peripshaper.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

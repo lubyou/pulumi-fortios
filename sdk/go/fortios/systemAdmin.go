@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -37,8 +38,8 @@ import (
 // 			RadiusVdomOverride:      pulumi.String("disable"),
 // 			RemoteAuth:              pulumi.String("disable"),
 // 			TwoFactor:               pulumi.String("disable"),
-// 			Vdoms: fortios.SystemAdminVdomArray{
-// 				&fortios.SystemAdminVdomArgs{
+// 			Vdoms: SystemAdminVdomArray{
+// 				&SystemAdminVdomArgs{
 // 					Name: pulumi.String("root"),
 // 				},
 // 			},
@@ -195,6 +196,7 @@ func NewSystemAdmin(ctx *pulumi.Context,
 		args = &SystemAdminArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAdmin
 	err := ctx.RegisterResource("fortios:index/systemAdmin:SystemAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -733,7 +735,7 @@ type SystemAdminInput interface {
 }
 
 func (*SystemAdmin) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAdmin)(nil))
+	return reflect.TypeOf((**SystemAdmin)(nil)).Elem()
 }
 
 func (i *SystemAdmin) ToSystemAdminOutput() SystemAdminOutput {
@@ -742,35 +744,6 @@ func (i *SystemAdmin) ToSystemAdminOutput() SystemAdminOutput {
 
 func (i *SystemAdmin) ToSystemAdminOutputWithContext(ctx context.Context) SystemAdminOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminOutput)
-}
-
-func (i *SystemAdmin) ToSystemAdminPtrOutput() SystemAdminPtrOutput {
-	return i.ToSystemAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAdmin) ToSystemAdminPtrOutputWithContext(ctx context.Context) SystemAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminPtrOutput)
-}
-
-type SystemAdminPtrInput interface {
-	pulumi.Input
-
-	ToSystemAdminPtrOutput() SystemAdminPtrOutput
-	ToSystemAdminPtrOutputWithContext(ctx context.Context) SystemAdminPtrOutput
-}
-
-type systemAdminPtrType SystemAdminArgs
-
-func (*systemAdminPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAdmin)(nil))
-}
-
-func (i *systemAdminPtrType) ToSystemAdminPtrOutput() SystemAdminPtrOutput {
-	return i.ToSystemAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAdminPtrType) ToSystemAdminPtrOutputWithContext(ctx context.Context) SystemAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminPtrOutput)
 }
 
 // SystemAdminArrayInput is an input type that accepts SystemAdminArray and SystemAdminArrayOutput values.
@@ -787,7 +760,7 @@ type SystemAdminArrayInput interface {
 type SystemAdminArray []SystemAdminInput
 
 func (SystemAdminArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemAdmin)(nil)).Elem()
 }
 
 func (i SystemAdminArray) ToSystemAdminArrayOutput() SystemAdminArrayOutput {
@@ -812,7 +785,7 @@ type SystemAdminMapInput interface {
 type SystemAdminMap map[string]SystemAdminInput
 
 func (SystemAdminMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemAdmin)(nil)).Elem()
 }
 
 func (i SystemAdminMap) ToSystemAdminMapOutput() SystemAdminMapOutput {
@@ -823,12 +796,10 @@ func (i SystemAdminMap) ToSystemAdminMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminMapOutput)
 }
 
-type SystemAdminOutput struct {
-	*pulumi.OutputState
-}
+type SystemAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAdmin)(nil))
+	return reflect.TypeOf((**SystemAdmin)(nil)).Elem()
 }
 
 func (o SystemAdminOutput) ToSystemAdminOutput() SystemAdminOutput {
@@ -839,36 +810,10 @@ func (o SystemAdminOutput) ToSystemAdminOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemAdminOutput) ToSystemAdminPtrOutput() SystemAdminPtrOutput {
-	return o.ToSystemAdminPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAdminOutput) ToSystemAdminPtrOutputWithContext(ctx context.Context) SystemAdminPtrOutput {
-	return o.ApplyT(func(v SystemAdmin) *SystemAdmin {
-		return &v
-	}).(SystemAdminPtrOutput)
-}
-
-type SystemAdminPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAdminPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAdmin)(nil))
-}
-
-func (o SystemAdminPtrOutput) ToSystemAdminPtrOutput() SystemAdminPtrOutput {
-	return o
-}
-
-func (o SystemAdminPtrOutput) ToSystemAdminPtrOutputWithContext(ctx context.Context) SystemAdminPtrOutput {
-	return o
-}
-
 type SystemAdminArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemAdmin)(nil)).Elem()
 }
 
 func (o SystemAdminArrayOutput) ToSystemAdminArrayOutput() SystemAdminArrayOutput {
@@ -880,15 +825,15 @@ func (o SystemAdminArrayOutput) ToSystemAdminArrayOutputWithContext(ctx context.
 }
 
 func (o SystemAdminArrayOutput) Index(i pulumi.IntInput) SystemAdminOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAdmin {
-		return vs[0].([]SystemAdmin)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAdmin {
+		return vs[0].([]*SystemAdmin)[vs[1].(int)]
 	}).(SystemAdminOutput)
 }
 
 type SystemAdminMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemAdmin)(nil)).Elem()
 }
 
 func (o SystemAdminMapOutput) ToSystemAdminMapOutput() SystemAdminMapOutput {
@@ -900,14 +845,16 @@ func (o SystemAdminMapOutput) ToSystemAdminMapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemAdminMapOutput) MapIndex(k pulumi.StringInput) SystemAdminOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAdmin {
-		return vs[0].(map[string]SystemAdmin)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAdmin {
+		return vs[0].(map[string]*SystemAdmin)[vs[1].(string)]
 	}).(SystemAdminOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminInput)(nil)).Elem(), &SystemAdmin{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminArrayInput)(nil)).Elem(), SystemAdminArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminMapInput)(nil)).Elem(), SystemAdminMap{})
 	pulumi.RegisterOutputType(SystemAdminOutput{})
-	pulumi.RegisterOutputType(SystemAdminPtrOutput{})
 	pulumi.RegisterOutputType(SystemAdminArrayOutput{})
 	pulumi.RegisterOutputType(SystemAdminMapOutput{})
 }

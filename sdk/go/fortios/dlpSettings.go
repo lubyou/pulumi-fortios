@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -71,6 +71,7 @@ func NewDlpSettings(ctx *pulumi.Context,
 		args = &DlpSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DlpSettings
 	err := ctx.RegisterResource("fortios:index/dlpSettings:DlpSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -169,7 +170,7 @@ type DlpSettingsInput interface {
 }
 
 func (*DlpSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpSettings)(nil))
+	return reflect.TypeOf((**DlpSettings)(nil)).Elem()
 }
 
 func (i *DlpSettings) ToDlpSettingsOutput() DlpSettingsOutput {
@@ -178,35 +179,6 @@ func (i *DlpSettings) ToDlpSettingsOutput() DlpSettingsOutput {
 
 func (i *DlpSettings) ToDlpSettingsOutputWithContext(ctx context.Context) DlpSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsOutput)
-}
-
-func (i *DlpSettings) ToDlpSettingsPtrOutput() DlpSettingsPtrOutput {
-	return i.ToDlpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *DlpSettings) ToDlpSettingsPtrOutputWithContext(ctx context.Context) DlpSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsPtrOutput)
-}
-
-type DlpSettingsPtrInput interface {
-	pulumi.Input
-
-	ToDlpSettingsPtrOutput() DlpSettingsPtrOutput
-	ToDlpSettingsPtrOutputWithContext(ctx context.Context) DlpSettingsPtrOutput
-}
-
-type dlpSettingsPtrType DlpSettingsArgs
-
-func (*dlpSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpSettings)(nil))
-}
-
-func (i *dlpSettingsPtrType) ToDlpSettingsPtrOutput() DlpSettingsPtrOutput {
-	return i.ToDlpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *dlpSettingsPtrType) ToDlpSettingsPtrOutputWithContext(ctx context.Context) DlpSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsPtrOutput)
 }
 
 // DlpSettingsArrayInput is an input type that accepts DlpSettingsArray and DlpSettingsArrayOutput values.
@@ -223,7 +195,7 @@ type DlpSettingsArrayInput interface {
 type DlpSettingsArray []DlpSettingsInput
 
 func (DlpSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DlpSettings)(nil))
+	return reflect.TypeOf((*[]*DlpSettings)(nil)).Elem()
 }
 
 func (i DlpSettingsArray) ToDlpSettingsArrayOutput() DlpSettingsArrayOutput {
@@ -248,7 +220,7 @@ type DlpSettingsMapInput interface {
 type DlpSettingsMap map[string]DlpSettingsInput
 
 func (DlpSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DlpSettings)(nil))
+	return reflect.TypeOf((*map[string]*DlpSettings)(nil)).Elem()
 }
 
 func (i DlpSettingsMap) ToDlpSettingsMapOutput() DlpSettingsMapOutput {
@@ -259,12 +231,10 @@ func (i DlpSettingsMap) ToDlpSettingsMapOutputWithContext(ctx context.Context) D
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSettingsMapOutput)
 }
 
-type DlpSettingsOutput struct {
-	*pulumi.OutputState
-}
+type DlpSettingsOutput struct{ *pulumi.OutputState }
 
 func (DlpSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpSettings)(nil))
+	return reflect.TypeOf((**DlpSettings)(nil)).Elem()
 }
 
 func (o DlpSettingsOutput) ToDlpSettingsOutput() DlpSettingsOutput {
@@ -275,36 +245,10 @@ func (o DlpSettingsOutput) ToDlpSettingsOutputWithContext(ctx context.Context) D
 	return o
 }
 
-func (o DlpSettingsOutput) ToDlpSettingsPtrOutput() DlpSettingsPtrOutput {
-	return o.ToDlpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o DlpSettingsOutput) ToDlpSettingsPtrOutputWithContext(ctx context.Context) DlpSettingsPtrOutput {
-	return o.ApplyT(func(v DlpSettings) *DlpSettings {
-		return &v
-	}).(DlpSettingsPtrOutput)
-}
-
-type DlpSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DlpSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpSettings)(nil))
-}
-
-func (o DlpSettingsPtrOutput) ToDlpSettingsPtrOutput() DlpSettingsPtrOutput {
-	return o
-}
-
-func (o DlpSettingsPtrOutput) ToDlpSettingsPtrOutputWithContext(ctx context.Context) DlpSettingsPtrOutput {
-	return o
-}
-
 type DlpSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (DlpSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DlpSettings)(nil))
+	return reflect.TypeOf((*[]*DlpSettings)(nil)).Elem()
 }
 
 func (o DlpSettingsArrayOutput) ToDlpSettingsArrayOutput() DlpSettingsArrayOutput {
@@ -316,15 +260,15 @@ func (o DlpSettingsArrayOutput) ToDlpSettingsArrayOutputWithContext(ctx context.
 }
 
 func (o DlpSettingsArrayOutput) Index(i pulumi.IntInput) DlpSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DlpSettings {
-		return vs[0].([]DlpSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpSettings {
+		return vs[0].([]*DlpSettings)[vs[1].(int)]
 	}).(DlpSettingsOutput)
 }
 
 type DlpSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (DlpSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DlpSettings)(nil))
+	return reflect.TypeOf((*map[string]*DlpSettings)(nil)).Elem()
 }
 
 func (o DlpSettingsMapOutput) ToDlpSettingsMapOutput() DlpSettingsMapOutput {
@@ -336,14 +280,16 @@ func (o DlpSettingsMapOutput) ToDlpSettingsMapOutputWithContext(ctx context.Cont
 }
 
 func (o DlpSettingsMapOutput) MapIndex(k pulumi.StringInput) DlpSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DlpSettings {
-		return vs[0].(map[string]DlpSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DlpSettings {
+		return vs[0].(map[string]*DlpSettings)[vs[1].(string)]
 	}).(DlpSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSettingsInput)(nil)).Elem(), &DlpSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSettingsArrayInput)(nil)).Elem(), DlpSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSettingsMapInput)(nil)).Elem(), DlpSettingsMap{})
 	pulumi.RegisterOutputType(DlpSettingsOutput{})
-	pulumi.RegisterOutputType(DlpSettingsPtrOutput{})
 	pulumi.RegisterOutputType(DlpSettingsArrayOutput{})
 	pulumi.RegisterOutputType(DlpSettingsMapOutput{})
 }

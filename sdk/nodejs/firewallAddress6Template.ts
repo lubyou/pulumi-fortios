@@ -77,6 +77,10 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * IPv6 address prefix.
      */
     public readonly ip6!: pulumi.Output<string>;
@@ -106,16 +110,17 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallAddress6TemplateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallAddress6TemplateArgs | FirewallAddress6TemplateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAddress6TemplateState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["subnetSegmentCount"] = state ? state.subnetSegmentCount : undefined;
-            inputs["subnetSegments"] = state ? state.subnetSegments : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["subnetSegmentCount"] = state ? state.subnetSegmentCount : undefined;
+            resourceInputs["subnetSegments"] = state ? state.subnetSegments : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallAddress6TemplateArgs | undefined;
             if ((!args || args.ip6 === undefined) && !opts.urn) {
@@ -124,17 +129,16 @@ export class FirewallAddress6Template extends pulumi.CustomResource {
             if ((!args || args.subnetSegmentCount === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnetSegmentCount'");
             }
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["subnetSegmentCount"] = args ? args.subnetSegmentCount : undefined;
-            inputs["subnetSegments"] = args ? args.subnetSegments : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["subnetSegmentCount"] = args ? args.subnetSegmentCount : undefined;
+            resourceInputs["subnetSegments"] = args ? args.subnetSegments : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallAddress6Template.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallAddress6Template.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -146,6 +150,10 @@ export interface FirewallAddress6TemplateState {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * IPv6 address prefix.
      */
@@ -176,6 +184,10 @@ export interface FirewallAddress6TemplateArgs {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * IPv6 address prefix.
      */

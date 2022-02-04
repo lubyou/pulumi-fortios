@@ -154,53 +154,51 @@ export class WanoptWebcache extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WanoptWebcacheArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptWebcacheArgs | WanoptWebcacheState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptWebcacheState | undefined;
-            inputs["alwaysRevalidate"] = state ? state.alwaysRevalidate : undefined;
-            inputs["cacheByDefault"] = state ? state.cacheByDefault : undefined;
-            inputs["cacheCookie"] = state ? state.cacheCookie : undefined;
-            inputs["cacheExpired"] = state ? state.cacheExpired : undefined;
-            inputs["defaultTtl"] = state ? state.defaultTtl : undefined;
-            inputs["external"] = state ? state.external : undefined;
-            inputs["freshFactor"] = state ? state.freshFactor : undefined;
-            inputs["hostValidate"] = state ? state.hostValidate : undefined;
-            inputs["ignoreConditional"] = state ? state.ignoreConditional : undefined;
-            inputs["ignoreIeReload"] = state ? state.ignoreIeReload : undefined;
-            inputs["ignoreIms"] = state ? state.ignoreIms : undefined;
-            inputs["ignorePnc"] = state ? state.ignorePnc : undefined;
-            inputs["maxObjectSize"] = state ? state.maxObjectSize : undefined;
-            inputs["maxTtl"] = state ? state.maxTtl : undefined;
-            inputs["minTtl"] = state ? state.minTtl : undefined;
-            inputs["negRespTime"] = state ? state.negRespTime : undefined;
-            inputs["revalPnc"] = state ? state.revalPnc : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["alwaysRevalidate"] = state ? state.alwaysRevalidate : undefined;
+            resourceInputs["cacheByDefault"] = state ? state.cacheByDefault : undefined;
+            resourceInputs["cacheCookie"] = state ? state.cacheCookie : undefined;
+            resourceInputs["cacheExpired"] = state ? state.cacheExpired : undefined;
+            resourceInputs["defaultTtl"] = state ? state.defaultTtl : undefined;
+            resourceInputs["external"] = state ? state.external : undefined;
+            resourceInputs["freshFactor"] = state ? state.freshFactor : undefined;
+            resourceInputs["hostValidate"] = state ? state.hostValidate : undefined;
+            resourceInputs["ignoreConditional"] = state ? state.ignoreConditional : undefined;
+            resourceInputs["ignoreIeReload"] = state ? state.ignoreIeReload : undefined;
+            resourceInputs["ignoreIms"] = state ? state.ignoreIms : undefined;
+            resourceInputs["ignorePnc"] = state ? state.ignorePnc : undefined;
+            resourceInputs["maxObjectSize"] = state ? state.maxObjectSize : undefined;
+            resourceInputs["maxTtl"] = state ? state.maxTtl : undefined;
+            resourceInputs["minTtl"] = state ? state.minTtl : undefined;
+            resourceInputs["negRespTime"] = state ? state.negRespTime : undefined;
+            resourceInputs["revalPnc"] = state ? state.revalPnc : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptWebcacheArgs | undefined;
-            inputs["alwaysRevalidate"] = args ? args.alwaysRevalidate : undefined;
-            inputs["cacheByDefault"] = args ? args.cacheByDefault : undefined;
-            inputs["cacheCookie"] = args ? args.cacheCookie : undefined;
-            inputs["cacheExpired"] = args ? args.cacheExpired : undefined;
-            inputs["defaultTtl"] = args ? args.defaultTtl : undefined;
-            inputs["external"] = args ? args.external : undefined;
-            inputs["freshFactor"] = args ? args.freshFactor : undefined;
-            inputs["hostValidate"] = args ? args.hostValidate : undefined;
-            inputs["ignoreConditional"] = args ? args.ignoreConditional : undefined;
-            inputs["ignoreIeReload"] = args ? args.ignoreIeReload : undefined;
-            inputs["ignoreIms"] = args ? args.ignoreIms : undefined;
-            inputs["ignorePnc"] = args ? args.ignorePnc : undefined;
-            inputs["maxObjectSize"] = args ? args.maxObjectSize : undefined;
-            inputs["maxTtl"] = args ? args.maxTtl : undefined;
-            inputs["minTtl"] = args ? args.minTtl : undefined;
-            inputs["negRespTime"] = args ? args.negRespTime : undefined;
-            inputs["revalPnc"] = args ? args.revalPnc : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["alwaysRevalidate"] = args ? args.alwaysRevalidate : undefined;
+            resourceInputs["cacheByDefault"] = args ? args.cacheByDefault : undefined;
+            resourceInputs["cacheCookie"] = args ? args.cacheCookie : undefined;
+            resourceInputs["cacheExpired"] = args ? args.cacheExpired : undefined;
+            resourceInputs["defaultTtl"] = args ? args.defaultTtl : undefined;
+            resourceInputs["external"] = args ? args.external : undefined;
+            resourceInputs["freshFactor"] = args ? args.freshFactor : undefined;
+            resourceInputs["hostValidate"] = args ? args.hostValidate : undefined;
+            resourceInputs["ignoreConditional"] = args ? args.ignoreConditional : undefined;
+            resourceInputs["ignoreIeReload"] = args ? args.ignoreIeReload : undefined;
+            resourceInputs["ignoreIms"] = args ? args.ignoreIms : undefined;
+            resourceInputs["ignorePnc"] = args ? args.ignorePnc : undefined;
+            resourceInputs["maxObjectSize"] = args ? args.maxObjectSize : undefined;
+            resourceInputs["maxTtl"] = args ? args.maxTtl : undefined;
+            resourceInputs["minTtl"] = args ? args.minTtl : undefined;
+            resourceInputs["negRespTime"] = args ? args.negRespTime : undefined;
+            resourceInputs["revalPnc"] = args ? args.revalPnc : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptWebcache.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptWebcache.__pulumiType, name, resourceInputs, opts);
     }
 }
 

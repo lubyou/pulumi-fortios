@@ -85,27 +85,25 @@ export class RouterPrefixList6 extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterPrefixList6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterPrefixList6Args | RouterPrefixList6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterPrefixList6State | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["rules"] = state ? state.rules : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterPrefixList6Args | undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["rules"] = args ? args.rules : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterPrefixList6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterPrefixList6.__pulumiType, name, resourceInputs, opts);
     }
 }
 

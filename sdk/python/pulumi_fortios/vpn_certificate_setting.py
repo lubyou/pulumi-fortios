@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['VpnCertificateSettingArgs', 'VpnCertificateSetting']
 
@@ -27,7 +29,9 @@ class VpnCertificateSettingArgs:
                  check_ca_chain: Optional[pulumi.Input[str]] = None,
                  cmp_key_usage_checking: Optional[pulumi.Input[str]] = None,
                  cmp_save_extra_certs: Optional[pulumi.Input[str]] = None,
+                 cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
+                 crl_verification: Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
@@ -38,6 +42,7 @@ class VpnCertificateSettingArgs:
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
                  strict_ocsp_check: Optional[pulumi.Input[str]] = None,
                  subject_match: Optional[pulumi.Input[str]] = None,
+                 subject_set: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpnCertificateSetting resource.
@@ -55,7 +60,9 @@ class VpnCertificateSettingArgs:
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input['VpnCertificateSettingCrlVerificationArgs'] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -66,6 +73,7 @@ class VpnCertificateSettingArgs:
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "certname_dsa1024", certname_dsa1024)
@@ -90,8 +98,12 @@ class VpnCertificateSettingArgs:
             pulumi.set(__self__, "cmp_key_usage_checking", cmp_key_usage_checking)
         if cmp_save_extra_certs is not None:
             pulumi.set(__self__, "cmp_save_extra_certs", cmp_save_extra_certs)
+        if cn_allow_multi is not None:
+            pulumi.set(__self__, "cn_allow_multi", cn_allow_multi)
         if cn_match is not None:
             pulumi.set(__self__, "cn_match", cn_match)
+        if crl_verification is not None:
+            pulumi.set(__self__, "crl_verification", crl_verification)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -112,6 +124,8 @@ class VpnCertificateSettingArgs:
             pulumi.set(__self__, "strict_ocsp_check", strict_ocsp_check)
         if subject_match is not None:
             pulumi.set(__self__, "subject_match", subject_match)
+        if subject_set is not None:
+            pulumi.set(__self__, "subject_set", subject_set)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -284,6 +298,18 @@ class VpnCertificateSettingArgs:
         pulumi.set(self, "cmp_save_extra_certs", value)
 
     @property
+    @pulumi.getter(name="cnAllowMulti")
+    def cn_allow_multi(self) -> Optional[pulumi.Input[str]]:
+        """
+        When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "cn_allow_multi")
+
+    @cn_allow_multi.setter
+    def cn_allow_multi(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cn_allow_multi", value)
+
+    @property
     @pulumi.getter(name="cnMatch")
     def cn_match(self) -> Optional[pulumi.Input[str]]:
         """
@@ -294,6 +320,18 @@ class VpnCertificateSettingArgs:
     @cn_match.setter
     def cn_match(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cn_match", value)
+
+    @property
+    @pulumi.getter(name="crlVerification")
+    def crl_verification(self) -> Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']]:
+        """
+        CRL verification options. The structure of `crl_verification` block is documented below.
+        """
+        return pulumi.get(self, "crl_verification")
+
+    @crl_verification.setter
+    def crl_verification(self, value: Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']]):
+        pulumi.set(self, "crl_verification", value)
 
     @property
     @pulumi.getter
@@ -416,6 +454,18 @@ class VpnCertificateSettingArgs:
         pulumi.set(self, "subject_match", value)
 
     @property
+    @pulumi.getter(name="subjectSet")
+    def subject_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+        """
+        return pulumi.get(self, "subject_set")
+
+    @subject_set.setter
+    def subject_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_set", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -445,7 +495,9 @@ class _VpnCertificateSettingState:
                  check_ca_chain: Optional[pulumi.Input[str]] = None,
                  cmp_key_usage_checking: Optional[pulumi.Input[str]] = None,
                  cmp_save_extra_certs: Optional[pulumi.Input[str]] = None,
+                 cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
+                 crl_verification: Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
@@ -456,6 +508,7 @@ class _VpnCertificateSettingState:
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
                  strict_ocsp_check: Optional[pulumi.Input[str]] = None,
                  subject_match: Optional[pulumi.Input[str]] = None,
+                 subject_set: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpnCertificateSetting resources.
@@ -473,7 +526,9 @@ class _VpnCertificateSettingState:
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input['VpnCertificateSettingCrlVerificationArgs'] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -484,6 +539,7 @@ class _VpnCertificateSettingState:
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if certname_dsa1024 is not None:
@@ -514,8 +570,12 @@ class _VpnCertificateSettingState:
             pulumi.set(__self__, "cmp_key_usage_checking", cmp_key_usage_checking)
         if cmp_save_extra_certs is not None:
             pulumi.set(__self__, "cmp_save_extra_certs", cmp_save_extra_certs)
+        if cn_allow_multi is not None:
+            pulumi.set(__self__, "cn_allow_multi", cn_allow_multi)
         if cn_match is not None:
             pulumi.set(__self__, "cn_match", cn_match)
+        if crl_verification is not None:
+            pulumi.set(__self__, "crl_verification", crl_verification)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
         if interface_select_method is not None:
@@ -536,6 +596,8 @@ class _VpnCertificateSettingState:
             pulumi.set(__self__, "strict_ocsp_check", strict_ocsp_check)
         if subject_match is not None:
             pulumi.set(__self__, "subject_match", subject_match)
+        if subject_set is not None:
+            pulumi.set(__self__, "subject_set", subject_set)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -708,6 +770,18 @@ class _VpnCertificateSettingState:
         pulumi.set(self, "cmp_save_extra_certs", value)
 
     @property
+    @pulumi.getter(name="cnAllowMulti")
+    def cn_allow_multi(self) -> Optional[pulumi.Input[str]]:
+        """
+        When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "cn_allow_multi")
+
+    @cn_allow_multi.setter
+    def cn_allow_multi(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cn_allow_multi", value)
+
+    @property
     @pulumi.getter(name="cnMatch")
     def cn_match(self) -> Optional[pulumi.Input[str]]:
         """
@@ -718,6 +792,18 @@ class _VpnCertificateSettingState:
     @cn_match.setter
     def cn_match(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cn_match", value)
+
+    @property
+    @pulumi.getter(name="crlVerification")
+    def crl_verification(self) -> Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']]:
+        """
+        CRL verification options. The structure of `crl_verification` block is documented below.
+        """
+        return pulumi.get(self, "crl_verification")
+
+    @crl_verification.setter
+    def crl_verification(self, value: Optional[pulumi.Input['VpnCertificateSettingCrlVerificationArgs']]):
+        pulumi.set(self, "crl_verification", value)
 
     @property
     @pulumi.getter
@@ -840,6 +926,18 @@ class _VpnCertificateSettingState:
         pulumi.set(self, "subject_match", value)
 
     @property
+    @pulumi.getter(name="subjectSet")
+    def subject_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+        """
+        return pulumi.get(self, "subject_set")
+
+    @subject_set.setter
+    def subject_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "subject_set", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -871,7 +969,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
                  check_ca_chain: Optional[pulumi.Input[str]] = None,
                  cmp_key_usage_checking: Optional[pulumi.Input[str]] = None,
                  cmp_save_extra_certs: Optional[pulumi.Input[str]] = None,
+                 cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
+                 crl_verification: Optional[pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
@@ -882,6 +982,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
                  strict_ocsp_check: Optional[pulumi.Input[str]] = None,
                  subject_match: Optional[pulumi.Input[str]] = None,
+                 subject_set: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -938,7 +1039,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -949,6 +1052,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -1024,7 +1128,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
                  check_ca_chain: Optional[pulumi.Input[str]] = None,
                  cmp_key_usage_checking: Optional[pulumi.Input[str]] = None,
                  cmp_save_extra_certs: Optional[pulumi.Input[str]] = None,
+                 cn_allow_multi: Optional[pulumi.Input[str]] = None,
                  cn_match: Optional[pulumi.Input[str]] = None,
+                 crl_verification: Optional[pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ocsp_default_server: Optional[pulumi.Input[str]] = None,
@@ -1035,6 +1141,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
                  strict_crl_check: Optional[pulumi.Input[str]] = None,
                  strict_ocsp_check: Optional[pulumi.Input[str]] = None,
                  subject_match: Optional[pulumi.Input[str]] = None,
+                 subject_set: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -1043,6 +1150,8 @@ class VpnCertificateSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1074,7 +1183,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
             __props__.__dict__["check_ca_chain"] = check_ca_chain
             __props__.__dict__["cmp_key_usage_checking"] = cmp_key_usage_checking
             __props__.__dict__["cmp_save_extra_certs"] = cmp_save_extra_certs
+            __props__.__dict__["cn_allow_multi"] = cn_allow_multi
             __props__.__dict__["cn_match"] = cn_match
+            __props__.__dict__["crl_verification"] = crl_verification
             __props__.__dict__["interface"] = interface
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["ocsp_default_server"] = ocsp_default_server
@@ -1085,6 +1196,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
             __props__.__dict__["strict_crl_check"] = strict_crl_check
             __props__.__dict__["strict_ocsp_check"] = strict_ocsp_check
             __props__.__dict__["subject_match"] = subject_match
+            __props__.__dict__["subject_set"] = subject_set
             __props__.__dict__["vdomparam"] = vdomparam
         super(VpnCertificateSetting, __self__).__init__(
             'fortios:index/vpnCertificateSetting:VpnCertificateSetting',
@@ -1110,7 +1222,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
             check_ca_chain: Optional[pulumi.Input[str]] = None,
             cmp_key_usage_checking: Optional[pulumi.Input[str]] = None,
             cmp_save_extra_certs: Optional[pulumi.Input[str]] = None,
+            cn_allow_multi: Optional[pulumi.Input[str]] = None,
             cn_match: Optional[pulumi.Input[str]] = None,
+            crl_verification: Optional[pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             interface_select_method: Optional[pulumi.Input[str]] = None,
             ocsp_default_server: Optional[pulumi.Input[str]] = None,
@@ -1121,6 +1235,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
             strict_crl_check: Optional[pulumi.Input[str]] = None,
             strict_ocsp_check: Optional[pulumi.Input[str]] = None,
             subject_match: Optional[pulumi.Input[str]] = None,
+            subject_set: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'VpnCertificateSetting':
         """
         Get an existing VpnCertificateSetting resource's state with the given name, id, and optional extra
@@ -1143,7 +1258,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
         :param pulumi.Input[str] check_ca_chain: Enable/disable verification of the entire certificate chain and pass authentication only if the chain is complete and all of the CAs in the chain are trusted (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_key_usage_checking: Enable/disable server certificate key usage checking in CMP mode (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cmp_save_extra_certs: Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cn_allow_multi: When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] cn_match: When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[pulumi.InputType['VpnCertificateSettingCrlVerificationArgs']] crl_verification: CRL verification options. The structure of `crl_verification` block is documented below.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ocsp_default_server: Default OCSP server.
@@ -1154,6 +1271,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
         :param pulumi.Input[str] strict_crl_check: Enable/disable strict mode CRL checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] strict_ocsp_check: Enable/disable strict mode OCSP checking. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] subject_match: When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
+        :param pulumi.Input[str] subject_set: When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1174,7 +1292,9 @@ class VpnCertificateSetting(pulumi.CustomResource):
         __props__.__dict__["check_ca_chain"] = check_ca_chain
         __props__.__dict__["cmp_key_usage_checking"] = cmp_key_usage_checking
         __props__.__dict__["cmp_save_extra_certs"] = cmp_save_extra_certs
+        __props__.__dict__["cn_allow_multi"] = cn_allow_multi
         __props__.__dict__["cn_match"] = cn_match
+        __props__.__dict__["crl_verification"] = crl_verification
         __props__.__dict__["interface"] = interface
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["ocsp_default_server"] = ocsp_default_server
@@ -1185,6 +1305,7 @@ class VpnCertificateSetting(pulumi.CustomResource):
         __props__.__dict__["strict_crl_check"] = strict_crl_check
         __props__.__dict__["strict_ocsp_check"] = strict_ocsp_check
         __props__.__dict__["subject_match"] = subject_match
+        __props__.__dict__["subject_set"] = subject_set
         __props__.__dict__["vdomparam"] = vdomparam
         return VpnCertificateSetting(resource_name, opts=opts, __props__=__props__)
 
@@ -1301,12 +1422,28 @@ class VpnCertificateSetting(pulumi.CustomResource):
         return pulumi.get(self, "cmp_save_extra_certs")
 
     @property
+    @pulumi.getter(name="cnAllowMulti")
+    def cn_allow_multi(self) -> pulumi.Output[str]:
+        """
+        When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "cn_allow_multi")
+
+    @property
     @pulumi.getter(name="cnMatch")
     def cn_match(self) -> pulumi.Output[str]:
         """
         When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "cn_match")
+
+    @property
+    @pulumi.getter(name="crlVerification")
+    def crl_verification(self) -> pulumi.Output[Optional['outputs.VpnCertificateSettingCrlVerification']]:
+        """
+        CRL verification options. The structure of `crl_verification` block is documented below.
+        """
+        return pulumi.get(self, "crl_verification")
 
     @property
     @pulumi.getter
@@ -1387,6 +1524,14 @@ class VpnCertificateSetting(pulumi.CustomResource):
         When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
         """
         return pulumi.get(self, "subject_match")
+
+    @property
+    @pulumi.getter(name="subjectSet")
+    def subject_set(self) -> pulumi.Output[str]:
+        """
+        When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+        """
+        return pulumi.get(self, "subject_set")
 
     @property
     @pulumi.getter

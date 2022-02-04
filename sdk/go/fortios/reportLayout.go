@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -108,6 +108,7 @@ func NewReportLayout(ctx *pulumi.Context,
 	if args.StyleTheme == nil {
 		return nil, errors.New("invalid value for required argument 'StyleTheme'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReportLayout
 	err := ctx.RegisterResource("fortios:index/reportLayout:ReportLayout", name, args, &resource, opts...)
 	if err != nil {
@@ -310,7 +311,7 @@ type ReportLayoutInput interface {
 }
 
 func (*ReportLayout) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportLayout)(nil))
+	return reflect.TypeOf((**ReportLayout)(nil)).Elem()
 }
 
 func (i *ReportLayout) ToReportLayoutOutput() ReportLayoutOutput {
@@ -319,35 +320,6 @@ func (i *ReportLayout) ToReportLayoutOutput() ReportLayoutOutput {
 
 func (i *ReportLayout) ToReportLayoutOutputWithContext(ctx context.Context) ReportLayoutOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutOutput)
-}
-
-func (i *ReportLayout) ToReportLayoutPtrOutput() ReportLayoutPtrOutput {
-	return i.ToReportLayoutPtrOutputWithContext(context.Background())
-}
-
-func (i *ReportLayout) ToReportLayoutPtrOutputWithContext(ctx context.Context) ReportLayoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutPtrOutput)
-}
-
-type ReportLayoutPtrInput interface {
-	pulumi.Input
-
-	ToReportLayoutPtrOutput() ReportLayoutPtrOutput
-	ToReportLayoutPtrOutputWithContext(ctx context.Context) ReportLayoutPtrOutput
-}
-
-type reportLayoutPtrType ReportLayoutArgs
-
-func (*reportLayoutPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportLayout)(nil))
-}
-
-func (i *reportLayoutPtrType) ToReportLayoutPtrOutput() ReportLayoutPtrOutput {
-	return i.ToReportLayoutPtrOutputWithContext(context.Background())
-}
-
-func (i *reportLayoutPtrType) ToReportLayoutPtrOutputWithContext(ctx context.Context) ReportLayoutPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutPtrOutput)
 }
 
 // ReportLayoutArrayInput is an input type that accepts ReportLayoutArray and ReportLayoutArrayOutput values.
@@ -364,7 +336,7 @@ type ReportLayoutArrayInput interface {
 type ReportLayoutArray []ReportLayoutInput
 
 func (ReportLayoutArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ReportLayout)(nil))
+	return reflect.TypeOf((*[]*ReportLayout)(nil)).Elem()
 }
 
 func (i ReportLayoutArray) ToReportLayoutArrayOutput() ReportLayoutArrayOutput {
@@ -389,7 +361,7 @@ type ReportLayoutMapInput interface {
 type ReportLayoutMap map[string]ReportLayoutInput
 
 func (ReportLayoutMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ReportLayout)(nil))
+	return reflect.TypeOf((*map[string]*ReportLayout)(nil)).Elem()
 }
 
 func (i ReportLayoutMap) ToReportLayoutMapOutput() ReportLayoutMapOutput {
@@ -400,12 +372,10 @@ func (i ReportLayoutMap) ToReportLayoutMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(ReportLayoutMapOutput)
 }
 
-type ReportLayoutOutput struct {
-	*pulumi.OutputState
-}
+type ReportLayoutOutput struct{ *pulumi.OutputState }
 
 func (ReportLayoutOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportLayout)(nil))
+	return reflect.TypeOf((**ReportLayout)(nil)).Elem()
 }
 
 func (o ReportLayoutOutput) ToReportLayoutOutput() ReportLayoutOutput {
@@ -416,36 +386,10 @@ func (o ReportLayoutOutput) ToReportLayoutOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o ReportLayoutOutput) ToReportLayoutPtrOutput() ReportLayoutPtrOutput {
-	return o.ToReportLayoutPtrOutputWithContext(context.Background())
-}
-
-func (o ReportLayoutOutput) ToReportLayoutPtrOutputWithContext(ctx context.Context) ReportLayoutPtrOutput {
-	return o.ApplyT(func(v ReportLayout) *ReportLayout {
-		return &v
-	}).(ReportLayoutPtrOutput)
-}
-
-type ReportLayoutPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ReportLayoutPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportLayout)(nil))
-}
-
-func (o ReportLayoutPtrOutput) ToReportLayoutPtrOutput() ReportLayoutPtrOutput {
-	return o
-}
-
-func (o ReportLayoutPtrOutput) ToReportLayoutPtrOutputWithContext(ctx context.Context) ReportLayoutPtrOutput {
-	return o
-}
-
 type ReportLayoutArrayOutput struct{ *pulumi.OutputState }
 
 func (ReportLayoutArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ReportLayout)(nil))
+	return reflect.TypeOf((*[]*ReportLayout)(nil)).Elem()
 }
 
 func (o ReportLayoutArrayOutput) ToReportLayoutArrayOutput() ReportLayoutArrayOutput {
@@ -457,15 +401,15 @@ func (o ReportLayoutArrayOutput) ToReportLayoutArrayOutputWithContext(ctx contex
 }
 
 func (o ReportLayoutArrayOutput) Index(i pulumi.IntInput) ReportLayoutOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportLayout {
-		return vs[0].([]ReportLayout)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportLayout {
+		return vs[0].([]*ReportLayout)[vs[1].(int)]
 	}).(ReportLayoutOutput)
 }
 
 type ReportLayoutMapOutput struct{ *pulumi.OutputState }
 
 func (ReportLayoutMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ReportLayout)(nil))
+	return reflect.TypeOf((*map[string]*ReportLayout)(nil)).Elem()
 }
 
 func (o ReportLayoutMapOutput) ToReportLayoutMapOutput() ReportLayoutMapOutput {
@@ -477,14 +421,16 @@ func (o ReportLayoutMapOutput) ToReportLayoutMapOutputWithContext(ctx context.Co
 }
 
 func (o ReportLayoutMapOutput) MapIndex(k pulumi.StringInput) ReportLayoutOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ReportLayout {
-		return vs[0].(map[string]ReportLayout)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ReportLayout {
+		return vs[0].(map[string]*ReportLayout)[vs[1].(string)]
 	}).(ReportLayoutOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportLayoutInput)(nil)).Elem(), &ReportLayout{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportLayoutArrayInput)(nil)).Elem(), ReportLayoutArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportLayoutMapInput)(nil)).Elem(), ReportLayoutMap{})
 	pulumi.RegisterOutputType(ReportLayoutOutput{})
-	pulumi.RegisterOutputType(ReportLayoutPtrOutput{})
 	pulumi.RegisterOutputType(ReportLayoutArrayOutput{})
 	pulumi.RegisterOutputType(ReportLayoutMapOutput{})
 }

@@ -127,45 +127,43 @@ export class DlpSensor extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DlpSensorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DlpSensorArgs | DlpSensorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DlpSensorState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dlpLog"] = state ? state.dlpLog : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["extendedLog"] = state ? state.extendedLog : undefined;
-            inputs["featureSet"] = state ? state.featureSet : undefined;
-            inputs["filters"] = state ? state.filters : undefined;
-            inputs["flowBased"] = state ? state.flowBased : undefined;
-            inputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
-            inputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["summaryProto"] = state ? state.summaryProto : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dlpLog"] = state ? state.dlpLog : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
+            resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["filters"] = state ? state.filters : undefined;
+            resourceInputs["flowBased"] = state ? state.flowBased : undefined;
+            resourceInputs["fullArchiveProto"] = state ? state.fullArchiveProto : undefined;
+            resourceInputs["nacQuarLog"] = state ? state.nacQuarLog : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["summaryProto"] = state ? state.summaryProto : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as DlpSensorArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dlpLog"] = args ? args.dlpLog : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["extendedLog"] = args ? args.extendedLog : undefined;
-            inputs["featureSet"] = args ? args.featureSet : undefined;
-            inputs["filters"] = args ? args.filters : undefined;
-            inputs["flowBased"] = args ? args.flowBased : undefined;
-            inputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
-            inputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["summaryProto"] = args ? args.summaryProto : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dlpLog"] = args ? args.dlpLog : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
+            resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["filters"] = args ? args.filters : undefined;
+            resourceInputs["flowBased"] = args ? args.flowBased : undefined;
+            resourceInputs["fullArchiveProto"] = args ? args.fullArchiveProto : undefined;
+            resourceInputs["nacQuarLog"] = args ? args.nacQuarLog : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["summaryProto"] = args ? args.summaryProto : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DlpSensor.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DlpSensor.__pulumiType, name, resourceInputs, opts);
     }
 }
 

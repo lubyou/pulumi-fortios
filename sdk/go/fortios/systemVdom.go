@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewSystemVdom(ctx *pulumi.Context,
 		args = &SystemVdomArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdom
 	err := ctx.RegisterResource("fortios:index/systemVdom:SystemVdom", name, args, &resource, opts...)
 	if err != nil {
@@ -167,7 +168,7 @@ type SystemVdomInput interface {
 }
 
 func (*SystemVdom) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdom)(nil))
+	return reflect.TypeOf((**SystemVdom)(nil)).Elem()
 }
 
 func (i *SystemVdom) ToSystemVdomOutput() SystemVdomOutput {
@@ -176,35 +177,6 @@ func (i *SystemVdom) ToSystemVdomOutput() SystemVdomOutput {
 
 func (i *SystemVdom) ToSystemVdomOutputWithContext(ctx context.Context) SystemVdomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomOutput)
-}
-
-func (i *SystemVdom) ToSystemVdomPtrOutput() SystemVdomPtrOutput {
-	return i.ToSystemVdomPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdom) ToSystemVdomPtrOutputWithContext(ctx context.Context) SystemVdomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPtrOutput)
-}
-
-type SystemVdomPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomPtrOutput() SystemVdomPtrOutput
-	ToSystemVdomPtrOutputWithContext(ctx context.Context) SystemVdomPtrOutput
-}
-
-type systemVdomPtrType SystemVdomArgs
-
-func (*systemVdomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdom)(nil))
-}
-
-func (i *systemVdomPtrType) ToSystemVdomPtrOutput() SystemVdomPtrOutput {
-	return i.ToSystemVdomPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomPtrType) ToSystemVdomPtrOutputWithContext(ctx context.Context) SystemVdomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPtrOutput)
 }
 
 // SystemVdomArrayInput is an input type that accepts SystemVdomArray and SystemVdomArrayOutput values.
@@ -221,7 +193,7 @@ type SystemVdomArrayInput interface {
 type SystemVdomArray []SystemVdomInput
 
 func (SystemVdomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdom)(nil))
+	return reflect.TypeOf((*[]*SystemVdom)(nil)).Elem()
 }
 
 func (i SystemVdomArray) ToSystemVdomArrayOutput() SystemVdomArrayOutput {
@@ -246,7 +218,7 @@ type SystemVdomMapInput interface {
 type SystemVdomMap map[string]SystemVdomInput
 
 func (SystemVdomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdom)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdom)(nil)).Elem()
 }
 
 func (i SystemVdomMap) ToSystemVdomMapOutput() SystemVdomMapOutput {
@@ -257,12 +229,10 @@ func (i SystemVdomMap) ToSystemVdomMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomMapOutput)
 }
 
-type SystemVdomOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdom)(nil))
+	return reflect.TypeOf((**SystemVdom)(nil)).Elem()
 }
 
 func (o SystemVdomOutput) ToSystemVdomOutput() SystemVdomOutput {
@@ -273,36 +243,10 @@ func (o SystemVdomOutput) ToSystemVdomOutputWithContext(ctx context.Context) Sys
 	return o
 }
 
-func (o SystemVdomOutput) ToSystemVdomPtrOutput() SystemVdomPtrOutput {
-	return o.ToSystemVdomPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomOutput) ToSystemVdomPtrOutputWithContext(ctx context.Context) SystemVdomPtrOutput {
-	return o.ApplyT(func(v SystemVdom) *SystemVdom {
-		return &v
-	}).(SystemVdomPtrOutput)
-}
-
-type SystemVdomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdom)(nil))
-}
-
-func (o SystemVdomPtrOutput) ToSystemVdomPtrOutput() SystemVdomPtrOutput {
-	return o
-}
-
-func (o SystemVdomPtrOutput) ToSystemVdomPtrOutputWithContext(ctx context.Context) SystemVdomPtrOutput {
-	return o
-}
-
 type SystemVdomArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdom)(nil))
+	return reflect.TypeOf((*[]*SystemVdom)(nil)).Elem()
 }
 
 func (o SystemVdomArrayOutput) ToSystemVdomArrayOutput() SystemVdomArrayOutput {
@@ -314,15 +258,15 @@ func (o SystemVdomArrayOutput) ToSystemVdomArrayOutputWithContext(ctx context.Co
 }
 
 func (o SystemVdomArrayOutput) Index(i pulumi.IntInput) SystemVdomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdom {
-		return vs[0].([]SystemVdom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdom {
+		return vs[0].([]*SystemVdom)[vs[1].(int)]
 	}).(SystemVdomOutput)
 }
 
 type SystemVdomMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdom)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdom)(nil)).Elem()
 }
 
 func (o SystemVdomMapOutput) ToSystemVdomMapOutput() SystemVdomMapOutput {
@@ -334,14 +278,16 @@ func (o SystemVdomMapOutput) ToSystemVdomMapOutputWithContext(ctx context.Contex
 }
 
 func (o SystemVdomMapOutput) MapIndex(k pulumi.StringInput) SystemVdomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdom {
-		return vs[0].(map[string]SystemVdom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdom {
+		return vs[0].(map[string]*SystemVdom)[vs[1].(string)]
 	}).(SystemVdomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomInput)(nil)).Elem(), &SystemVdom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomArrayInput)(nil)).Elem(), SystemVdomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomMapInput)(nil)).Elem(), SystemVdomMap{})
 	pulumi.RegisterOutputType(SystemVdomOutput{})
-	pulumi.RegisterOutputType(SystemVdomPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomMapOutput{})
 }

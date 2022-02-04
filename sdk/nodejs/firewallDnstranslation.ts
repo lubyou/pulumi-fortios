@@ -89,27 +89,25 @@ export class FirewallDnstranslation extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallDnstranslationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallDnstranslationArgs | FirewallDnstranslationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallDnstranslationState | undefined;
-            inputs["dst"] = state ? state.dst : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["netmask"] = state ? state.netmask : undefined;
-            inputs["src"] = state ? state.src : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["netmask"] = state ? state.netmask : undefined;
+            resourceInputs["src"] = state ? state.src : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallDnstranslationArgs | undefined;
-            inputs["dst"] = args ? args.dst : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["netmask"] = args ? args.netmask : undefined;
-            inputs["src"] = args ? args.src : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["netmask"] = args ? args.netmask : undefined;
+            resourceInputs["src"] = args ? args.src : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallDnstranslation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallDnstranslation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemDdnsResult',
     'AwaitableGetSystemDdnsResult',
     'get_system_ddns',
+    'get_system_ddns_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,10 @@ class GetSystemDdnsResult:
     """
     A collection of values returned by GetSystemDdns.
     """
-    def __init__(__self__, bound_ip=None, clear_text=None, ddns_auth=None, ddns_domain=None, ddns_key=None, ddns_keyname=None, ddns_password=None, ddns_server=None, ddns_server_ip=None, ddns_sn=None, ddns_ttl=None, ddns_username=None, ddns_zone=None, ddnsid=None, id=None, monitor_interfaces=None, ssl_certificate=None, update_interval=None, use_public_ip=None, vdomparam=None):
+    def __init__(__self__, addr_type=None, bound_ip=None, clear_text=None, ddns_auth=None, ddns_domain=None, ddns_key=None, ddns_keyname=None, ddns_password=None, ddns_server=None, ddns_server_addrs=None, ddns_server_ip=None, ddns_sn=None, ddns_ttl=None, ddns_username=None, ddns_zone=None, ddnsid=None, id=None, monitor_interfaces=None, server_type=None, ssl_certificate=None, update_interval=None, use_public_ip=None, vdomparam=None):
+        if addr_type and not isinstance(addr_type, str):
+            raise TypeError("Expected argument 'addr_type' to be a str")
+        pulumi.set(__self__, "addr_type", addr_type)
         if bound_ip and not isinstance(bound_ip, str):
             raise TypeError("Expected argument 'bound_ip' to be a str")
         pulumi.set(__self__, "bound_ip", bound_ip)
@@ -45,6 +49,9 @@ class GetSystemDdnsResult:
         if ddns_server and not isinstance(ddns_server, str):
             raise TypeError("Expected argument 'ddns_server' to be a str")
         pulumi.set(__self__, "ddns_server", ddns_server)
+        if ddns_server_addrs and not isinstance(ddns_server_addrs, list):
+            raise TypeError("Expected argument 'ddns_server_addrs' to be a list")
+        pulumi.set(__self__, "ddns_server_addrs", ddns_server_addrs)
         if ddns_server_ip and not isinstance(ddns_server_ip, str):
             raise TypeError("Expected argument 'ddns_server_ip' to be a str")
         pulumi.set(__self__, "ddns_server_ip", ddns_server_ip)
@@ -69,6 +76,9 @@ class GetSystemDdnsResult:
         if monitor_interfaces and not isinstance(monitor_interfaces, list):
             raise TypeError("Expected argument 'monitor_interfaces' to be a list")
         pulumi.set(__self__, "monitor_interfaces", monitor_interfaces)
+        if server_type and not isinstance(server_type, str):
+            raise TypeError("Expected argument 'server_type' to be a str")
+        pulumi.set(__self__, "server_type", server_type)
         if ssl_certificate and not isinstance(ssl_certificate, str):
             raise TypeError("Expected argument 'ssl_certificate' to be a str")
         pulumi.set(__self__, "ssl_certificate", ssl_certificate)
@@ -81,6 +91,14 @@ class GetSystemDdnsResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> str:
+        """
+        Address type of interface address in DDNS update.
+        """
+        return pulumi.get(self, "addr_type")
 
     @property
     @pulumi.getter(name="boundIp")
@@ -147,6 +165,14 @@ class GetSystemDdnsResult:
         return pulumi.get(self, "ddns_server")
 
     @property
+    @pulumi.getter(name="ddnsServerAddrs")
+    def ddns_server_addrs(self) -> Sequence['outputs.GetSystemDdnsDdnsServerAddrResult']:
+        """
+        Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
+        """
+        return pulumi.get(self, "ddns_server_addrs")
+
+    @property
     @pulumi.getter(name="ddnsServerIp")
     def ddns_server_ip(self) -> str:
         """
@@ -211,6 +237,14 @@ class GetSystemDdnsResult:
         return pulumi.get(self, "monitor_interfaces")
 
     @property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> str:
+        """
+        Address type of the DDNS server.
+        """
+        return pulumi.get(self, "server_type")
+
+    @property
     @pulumi.getter(name="sslCertificate")
     def ssl_certificate(self) -> str:
         """
@@ -246,6 +280,7 @@ class AwaitableGetSystemDdnsResult(GetSystemDdnsResult):
         if False:
             yield self
         return GetSystemDdnsResult(
+            addr_type=self.addr_type,
             bound_ip=self.bound_ip,
             clear_text=self.clear_text,
             ddns_auth=self.ddns_auth,
@@ -254,6 +289,7 @@ class AwaitableGetSystemDdnsResult(GetSystemDdnsResult):
             ddns_keyname=self.ddns_keyname,
             ddns_password=self.ddns_password,
             ddns_server=self.ddns_server,
+            ddns_server_addrs=self.ddns_server_addrs,
             ddns_server_ip=self.ddns_server_ip,
             ddns_sn=self.ddns_sn,
             ddns_ttl=self.ddns_ttl,
@@ -262,6 +298,7 @@ class AwaitableGetSystemDdnsResult(GetSystemDdnsResult):
             ddnsid=self.ddnsid,
             id=self.id,
             monitor_interfaces=self.monitor_interfaces,
+            server_type=self.server_type,
             ssl_certificate=self.ssl_certificate,
             update_interval=self.update_interval,
             use_public_ip=self.use_public_ip,
@@ -285,9 +322,12 @@ def get_system_ddns(ddnsid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDdns:GetSystemDdns', __args__, opts=opts, typ=GetSystemDdnsResult).value
 
     return AwaitableGetSystemDdnsResult(
+        addr_type=__ret__.addr_type,
         bound_ip=__ret__.bound_ip,
         clear_text=__ret__.clear_text,
         ddns_auth=__ret__.ddns_auth,
@@ -296,6 +336,7 @@ def get_system_ddns(ddnsid: Optional[int] = None,
         ddns_keyname=__ret__.ddns_keyname,
         ddns_password=__ret__.ddns_password,
         ddns_server=__ret__.ddns_server,
+        ddns_server_addrs=__ret__.ddns_server_addrs,
         ddns_server_ip=__ret__.ddns_server_ip,
         ddns_sn=__ret__.ddns_sn,
         ddns_ttl=__ret__.ddns_ttl,
@@ -304,7 +345,22 @@ def get_system_ddns(ddnsid: Optional[int] = None,
         ddnsid=__ret__.ddnsid,
         id=__ret__.id,
         monitor_interfaces=__ret__.monitor_interfaces,
+        server_type=__ret__.server_type,
         ssl_certificate=__ret__.ssl_certificate,
         update_interval=__ret__.update_interval,
         use_public_ip=__ret__.use_public_ip,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_ddns)
+def get_system_ddns_output(ddnsid: Optional[pulumi.Input[int]] = None,
+                           vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemDdnsResult]:
+    """
+    Use this data source to get information on an fortios system ddns
+
+
+    :param int ddnsid: Specify the ddnsid of the desired system ddns.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

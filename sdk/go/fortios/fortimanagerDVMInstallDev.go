@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -59,6 +59,7 @@ func NewFortimanagerDVMInstallDev(ctx *pulumi.Context,
 	if args.TargetDevname == nil {
 		return nil, errors.New("invalid value for required argument 'TargetDevname'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerDVMInstallDev
 	err := ctx.RegisterResource("fortios:index/fortimanagerDVMInstallDev:FortimanagerDVMInstallDev", name, args, &resource, opts...)
 	if err != nil {
@@ -141,7 +142,7 @@ type FortimanagerDVMInstallDevInput interface {
 }
 
 func (*FortimanagerDVMInstallDev) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerDVMInstallDev)(nil))
+	return reflect.TypeOf((**FortimanagerDVMInstallDev)(nil)).Elem()
 }
 
 func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevOutput() FortimanagerDVMInstallDevOutput {
@@ -150,35 +151,6 @@ func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevOutput() Fortiman
 
 func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevOutput)
-}
-
-func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevPtrOutput() FortimanagerDVMInstallDevPtrOutput {
-	return i.ToFortimanagerDVMInstallDevPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerDVMInstallDev) ToFortimanagerDVMInstallDevPtrOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevPtrOutput)
-}
-
-type FortimanagerDVMInstallDevPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerDVMInstallDevPtrOutput() FortimanagerDVMInstallDevPtrOutput
-	ToFortimanagerDVMInstallDevPtrOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevPtrOutput
-}
-
-type fortimanagerDVMInstallDevPtrType FortimanagerDVMInstallDevArgs
-
-func (*fortimanagerDVMInstallDevPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerDVMInstallDev)(nil))
-}
-
-func (i *fortimanagerDVMInstallDevPtrType) ToFortimanagerDVMInstallDevPtrOutput() FortimanagerDVMInstallDevPtrOutput {
-	return i.ToFortimanagerDVMInstallDevPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerDVMInstallDevPtrType) ToFortimanagerDVMInstallDevPtrOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevPtrOutput)
 }
 
 // FortimanagerDVMInstallDevArrayInput is an input type that accepts FortimanagerDVMInstallDevArray and FortimanagerDVMInstallDevArrayOutput values.
@@ -195,7 +167,7 @@ type FortimanagerDVMInstallDevArrayInput interface {
 type FortimanagerDVMInstallDevArray []FortimanagerDVMInstallDevInput
 
 func (FortimanagerDVMInstallDevArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerDVMInstallDev)(nil))
+	return reflect.TypeOf((*[]*FortimanagerDVMInstallDev)(nil)).Elem()
 }
 
 func (i FortimanagerDVMInstallDevArray) ToFortimanagerDVMInstallDevArrayOutput() FortimanagerDVMInstallDevArrayOutput {
@@ -220,7 +192,7 @@ type FortimanagerDVMInstallDevMapInput interface {
 type FortimanagerDVMInstallDevMap map[string]FortimanagerDVMInstallDevInput
 
 func (FortimanagerDVMInstallDevMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerDVMInstallDev)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerDVMInstallDev)(nil)).Elem()
 }
 
 func (i FortimanagerDVMInstallDevMap) ToFortimanagerDVMInstallDevMapOutput() FortimanagerDVMInstallDevMapOutput {
@@ -231,12 +203,10 @@ func (i FortimanagerDVMInstallDevMap) ToFortimanagerDVMInstallDevMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMInstallDevMapOutput)
 }
 
-type FortimanagerDVMInstallDevOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerDVMInstallDevOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMInstallDevOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerDVMInstallDev)(nil))
+	return reflect.TypeOf((**FortimanagerDVMInstallDev)(nil)).Elem()
 }
 
 func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevOutput() FortimanagerDVMInstallDevOutput {
@@ -247,36 +217,10 @@ func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevOutputWithCo
 	return o
 }
 
-func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevPtrOutput() FortimanagerDVMInstallDevPtrOutput {
-	return o.ToFortimanagerDVMInstallDevPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerDVMInstallDevOutput) ToFortimanagerDVMInstallDevPtrOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevPtrOutput {
-	return o.ApplyT(func(v FortimanagerDVMInstallDev) *FortimanagerDVMInstallDev {
-		return &v
-	}).(FortimanagerDVMInstallDevPtrOutput)
-}
-
-type FortimanagerDVMInstallDevPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerDVMInstallDevPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerDVMInstallDev)(nil))
-}
-
-func (o FortimanagerDVMInstallDevPtrOutput) ToFortimanagerDVMInstallDevPtrOutput() FortimanagerDVMInstallDevPtrOutput {
-	return o
-}
-
-func (o FortimanagerDVMInstallDevPtrOutput) ToFortimanagerDVMInstallDevPtrOutputWithContext(ctx context.Context) FortimanagerDVMInstallDevPtrOutput {
-	return o
-}
-
 type FortimanagerDVMInstallDevArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMInstallDevArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerDVMInstallDev)(nil))
+	return reflect.TypeOf((*[]*FortimanagerDVMInstallDev)(nil)).Elem()
 }
 
 func (o FortimanagerDVMInstallDevArrayOutput) ToFortimanagerDVMInstallDevArrayOutput() FortimanagerDVMInstallDevArrayOutput {
@@ -288,15 +232,15 @@ func (o FortimanagerDVMInstallDevArrayOutput) ToFortimanagerDVMInstallDevArrayOu
 }
 
 func (o FortimanagerDVMInstallDevArrayOutput) Index(i pulumi.IntInput) FortimanagerDVMInstallDevOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerDVMInstallDev {
-		return vs[0].([]FortimanagerDVMInstallDev)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerDVMInstallDev {
+		return vs[0].([]*FortimanagerDVMInstallDev)[vs[1].(int)]
 	}).(FortimanagerDVMInstallDevOutput)
 }
 
 type FortimanagerDVMInstallDevMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMInstallDevMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerDVMInstallDev)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerDVMInstallDev)(nil)).Elem()
 }
 
 func (o FortimanagerDVMInstallDevMapOutput) ToFortimanagerDVMInstallDevMapOutput() FortimanagerDVMInstallDevMapOutput {
@@ -308,14 +252,16 @@ func (o FortimanagerDVMInstallDevMapOutput) ToFortimanagerDVMInstallDevMapOutput
 }
 
 func (o FortimanagerDVMInstallDevMapOutput) MapIndex(k pulumi.StringInput) FortimanagerDVMInstallDevOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerDVMInstallDev {
-		return vs[0].(map[string]FortimanagerDVMInstallDev)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerDVMInstallDev {
+		return vs[0].(map[string]*FortimanagerDVMInstallDev)[vs[1].(string)]
 	}).(FortimanagerDVMInstallDevOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerDVMInstallDevInput)(nil)).Elem(), &FortimanagerDVMInstallDev{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerDVMInstallDevArrayInput)(nil)).Elem(), FortimanagerDVMInstallDevArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerDVMInstallDevMapInput)(nil)).Elem(), FortimanagerDVMInstallDevMap{})
 	pulumi.RegisterOutputType(FortimanagerDVMInstallDevOutput{})
-	pulumi.RegisterOutputType(FortimanagerDVMInstallDevPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerDVMInstallDevArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerDVMInstallDevMapOutput{})
 }

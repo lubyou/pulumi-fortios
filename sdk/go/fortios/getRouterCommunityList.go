@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios router communitylist
 func LookupRouterCommunityList(ctx *pulumi.Context, args *LookupRouterCommunityListArgs, opts ...pulumi.InvokeOption) (*LookupRouterCommunityListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterCommunityListResult
 	err := ctx.Invoke("fortios:index/getRouterCommunityList:GetRouterCommunityList", args, &rv, opts...)
 	if err != nil {
@@ -36,4 +40,68 @@ type LookupRouterCommunityListResult struct {
 	// Community list type (standard or expanded).
 	Type      string  `pulumi:"type"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupRouterCommunityListOutput(ctx *pulumi.Context, args LookupRouterCommunityListOutputArgs, opts ...pulumi.InvokeOption) LookupRouterCommunityListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterCommunityListResult, error) {
+			args := v.(LookupRouterCommunityListArgs)
+			r, err := LookupRouterCommunityList(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterCommunityListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterCommunityList.
+type LookupRouterCommunityListOutputArgs struct {
+	// Specify the name of the desired router communitylist.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterCommunityListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterCommunityListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterCommunityList.
+type LookupRouterCommunityListResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterCommunityListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterCommunityListResult)(nil)).Elem()
+}
+
+func (o LookupRouterCommunityListResultOutput) ToLookupRouterCommunityListResultOutput() LookupRouterCommunityListResultOutput {
+	return o
+}
+
+func (o LookupRouterCommunityListResultOutput) ToLookupRouterCommunityListResultOutputWithContext(ctx context.Context) LookupRouterCommunityListResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterCommunityListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterCommunityListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Community list name.
+func (o LookupRouterCommunityListResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterCommunityListResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Community list rule. The structure of `rule` block is documented below.
+func (o LookupRouterCommunityListResultOutput) Rules() GetRouterCommunityListRuleArrayOutput {
+	return o.ApplyT(func(v LookupRouterCommunityListResult) []GetRouterCommunityListRule { return v.Rules }).(GetRouterCommunityListRuleArrayOutput)
+}
+
+// Community list type (standard or expanded).
+func (o LookupRouterCommunityListResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterCommunityListResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterCommunityListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterCommunityListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterCommunityListResultOutput{})
 }

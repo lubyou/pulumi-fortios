@@ -66,21 +66,19 @@ export class FirewallObjectServiceCategory extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallObjectServiceCategoryArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectServiceCategoryArgs | FirewallObjectServiceCategoryState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectServiceCategoryState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as FirewallObjectServiceCategoryArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectServiceCategory.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectServiceCategory.__pulumiType, name, resourceInputs, opts);
     }
 }
 

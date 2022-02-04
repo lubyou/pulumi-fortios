@@ -108,17 +108,17 @@ export class JSONGenericAPI extends pulumi.CustomResource {
      */
     constructor(name: string, args: JSONGenericAPIArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: JSONGenericAPIArgs | JSONGenericAPIState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as JSONGenericAPIState | undefined;
-            inputs["forceRecreate"] = state ? state.forceRecreate : undefined;
-            inputs["json"] = state ? state.json : undefined;
-            inputs["method"] = state ? state.method : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["response"] = state ? state.response : undefined;
-            inputs["specialparams"] = state ? state.specialparams : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["forceRecreate"] = state ? state.forceRecreate : undefined;
+            resourceInputs["json"] = state ? state.json : undefined;
+            resourceInputs["method"] = state ? state.method : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["response"] = state ? state.response : undefined;
+            resourceInputs["specialparams"] = state ? state.specialparams : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as JSONGenericAPIArgs | undefined;
             if ((!args || args.method === undefined) && !opts.urn) {
@@ -127,18 +127,16 @@ export class JSONGenericAPI extends pulumi.CustomResource {
             if ((!args || args.path === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'path'");
             }
-            inputs["forceRecreate"] = args ? args.forceRecreate : undefined;
-            inputs["json"] = args ? args.json : undefined;
-            inputs["method"] = args ? args.method : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["specialparams"] = args ? args.specialparams : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["response"] = undefined /*out*/;
+            resourceInputs["forceRecreate"] = args ? args.forceRecreate : undefined;
+            resourceInputs["json"] = args ? args.json : undefined;
+            resourceInputs["method"] = args ? args.method : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["specialparams"] = args ? args.specialparams : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["response"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(JSONGenericAPI.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(JSONGenericAPI.__pulumiType, name, resourceInputs, opts);
     }
 }
 

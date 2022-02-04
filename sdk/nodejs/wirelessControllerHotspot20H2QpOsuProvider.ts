@@ -92,35 +92,33 @@ export class WirelessControllerHotspot20H2QpOsuProvider extends pulumi.CustomRes
      */
     constructor(name: string, args?: WirelessControllerHotspot20H2QpOsuProviderArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20H2QpOsuProviderArgs | WirelessControllerHotspot20H2QpOsuProviderState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20H2QpOsuProviderState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["friendlyNames"] = state ? state.friendlyNames : undefined;
-            inputs["icon"] = state ? state.icon : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["osuMethod"] = state ? state.osuMethod : undefined;
-            inputs["osuNai"] = state ? state.osuNai : undefined;
-            inputs["serverUri"] = state ? state.serverUri : undefined;
-            inputs["serviceDescriptions"] = state ? state.serviceDescriptions : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["friendlyNames"] = state ? state.friendlyNames : undefined;
+            resourceInputs["icon"] = state ? state.icon : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["osuMethod"] = state ? state.osuMethod : undefined;
+            resourceInputs["osuNai"] = state ? state.osuNai : undefined;
+            resourceInputs["serverUri"] = state ? state.serverUri : undefined;
+            resourceInputs["serviceDescriptions"] = state ? state.serviceDescriptions : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20H2QpOsuProviderArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["friendlyNames"] = args ? args.friendlyNames : undefined;
-            inputs["icon"] = args ? args.icon : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["osuMethod"] = args ? args.osuMethod : undefined;
-            inputs["osuNai"] = args ? args.osuNai : undefined;
-            inputs["serverUri"] = args ? args.serverUri : undefined;
-            inputs["serviceDescriptions"] = args ? args.serviceDescriptions : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["friendlyNames"] = args ? args.friendlyNames : undefined;
+            resourceInputs["icon"] = args ? args.icon : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["osuMethod"] = args ? args.osuMethod : undefined;
+            resourceInputs["osuNai"] = args ? args.osuNai : undefined;
+            resourceInputs["serverUri"] = args ? args.serverUri : undefined;
+            resourceInputs["serviceDescriptions"] = args ? args.serviceDescriptions : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20H2QpOsuProvider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20H2QpOsuProvider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,8 @@ type FirewallAddress6 struct {
 	EndIp pulumi.StringOutput `pulumi:"endIp"`
 	// Last MAC address in the range.
 	EndMac pulumi.StringOutput `pulumi:"endMac"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
 	// Host Address.
@@ -79,6 +81,8 @@ type FirewallAddress6 struct {
 	Ip6 pulumi.StringOutput `pulumi:"ip6"`
 	// IP address list. The structure of `list` block is documented below.
 	Lists FirewallAddress6ListArrayOutput `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs FirewallAddress6MacaddrArrayOutput `pulumi:"macaddrs"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Object ID for NSX.
@@ -112,6 +116,7 @@ func NewFirewallAddress6(ctx *pulumi.Context,
 		args = &FirewallAddress6Args{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallAddress6
 	err := ctx.RegisterResource("fortios:index/firewallAddress6:FirewallAddress6", name, args, &resource, opts...)
 	if err != nil {
@@ -148,6 +153,8 @@ type firewallAddress6State struct {
 	EndIp *string `pulumi:"endIp"`
 	// Last MAC address in the range.
 	EndMac *string `pulumi:"endMac"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
 	// Host Address.
@@ -158,6 +165,8 @@ type firewallAddress6State struct {
 	Ip6 *string `pulumi:"ip6"`
 	// IP address list. The structure of `list` block is documented below.
 	Lists []FirewallAddress6List `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs []FirewallAddress6Macaddr `pulumi:"macaddrs"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Object ID for NSX.
@@ -199,6 +208,8 @@ type FirewallAddress6State struct {
 	EndIp pulumi.StringPtrInput
 	// Last MAC address in the range.
 	EndMac pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
 	// Host Address.
@@ -209,6 +220,8 @@ type FirewallAddress6State struct {
 	Ip6 pulumi.StringPtrInput
 	// IP address list. The structure of `list` block is documented below.
 	Lists FirewallAddress6ListArrayInput
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs FirewallAddress6MacaddrArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Object ID for NSX.
@@ -254,6 +267,8 @@ type firewallAddress6Args struct {
 	EndIp *string `pulumi:"endIp"`
 	// Last MAC address in the range.
 	EndMac *string `pulumi:"endMac"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
 	// Host Address.
@@ -264,6 +279,8 @@ type firewallAddress6Args struct {
 	Ip6 *string `pulumi:"ip6"`
 	// IP address list. The structure of `list` block is documented below.
 	Lists []FirewallAddress6List `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs []FirewallAddress6Macaddr `pulumi:"macaddrs"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Object ID for NSX.
@@ -306,6 +323,8 @@ type FirewallAddress6Args struct {
 	EndIp pulumi.StringPtrInput
 	// Last MAC address in the range.
 	EndMac pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
 	// Host Address.
@@ -316,6 +335,8 @@ type FirewallAddress6Args struct {
 	Ip6 pulumi.StringPtrInput
 	// IP address list. The structure of `list` block is documented below.
 	Lists FirewallAddress6ListArrayInput
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs FirewallAddress6MacaddrArrayInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Object ID for NSX.
@@ -354,7 +375,7 @@ type FirewallAddress6Input interface {
 }
 
 func (*FirewallAddress6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddress6)(nil))
+	return reflect.TypeOf((**FirewallAddress6)(nil)).Elem()
 }
 
 func (i *FirewallAddress6) ToFirewallAddress6Output() FirewallAddress6Output {
@@ -363,35 +384,6 @@ func (i *FirewallAddress6) ToFirewallAddress6Output() FirewallAddress6Output {
 
 func (i *FirewallAddress6) ToFirewallAddress6OutputWithContext(ctx context.Context) FirewallAddress6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6Output)
-}
-
-func (i *FirewallAddress6) ToFirewallAddress6PtrOutput() FirewallAddress6PtrOutput {
-	return i.ToFirewallAddress6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallAddress6) ToFirewallAddress6PtrOutputWithContext(ctx context.Context) FirewallAddress6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6PtrOutput)
-}
-
-type FirewallAddress6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallAddress6PtrOutput() FirewallAddress6PtrOutput
-	ToFirewallAddress6PtrOutputWithContext(ctx context.Context) FirewallAddress6PtrOutput
-}
-
-type firewallAddress6PtrType FirewallAddress6Args
-
-func (*firewallAddress6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddress6)(nil))
-}
-
-func (i *firewallAddress6PtrType) ToFirewallAddress6PtrOutput() FirewallAddress6PtrOutput {
-	return i.ToFirewallAddress6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallAddress6PtrType) ToFirewallAddress6PtrOutputWithContext(ctx context.Context) FirewallAddress6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6PtrOutput)
 }
 
 // FirewallAddress6ArrayInput is an input type that accepts FirewallAddress6Array and FirewallAddress6ArrayOutput values.
@@ -408,7 +400,7 @@ type FirewallAddress6ArrayInput interface {
 type FirewallAddress6Array []FirewallAddress6Input
 
 func (FirewallAddress6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallAddress6)(nil))
+	return reflect.TypeOf((*[]*FirewallAddress6)(nil)).Elem()
 }
 
 func (i FirewallAddress6Array) ToFirewallAddress6ArrayOutput() FirewallAddress6ArrayOutput {
@@ -433,7 +425,7 @@ type FirewallAddress6MapInput interface {
 type FirewallAddress6Map map[string]FirewallAddress6Input
 
 func (FirewallAddress6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallAddress6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddress6)(nil)).Elem()
 }
 
 func (i FirewallAddress6Map) ToFirewallAddress6MapOutput() FirewallAddress6MapOutput {
@@ -444,12 +436,10 @@ func (i FirewallAddress6Map) ToFirewallAddress6MapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6MapOutput)
 }
 
-type FirewallAddress6Output struct {
-	*pulumi.OutputState
-}
+type FirewallAddress6Output struct{ *pulumi.OutputState }
 
 func (FirewallAddress6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddress6)(nil))
+	return reflect.TypeOf((**FirewallAddress6)(nil)).Elem()
 }
 
 func (o FirewallAddress6Output) ToFirewallAddress6Output() FirewallAddress6Output {
@@ -460,36 +450,10 @@ func (o FirewallAddress6Output) ToFirewallAddress6OutputWithContext(ctx context.
 	return o
 }
 
-func (o FirewallAddress6Output) ToFirewallAddress6PtrOutput() FirewallAddress6PtrOutput {
-	return o.ToFirewallAddress6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallAddress6Output) ToFirewallAddress6PtrOutputWithContext(ctx context.Context) FirewallAddress6PtrOutput {
-	return o.ApplyT(func(v FirewallAddress6) *FirewallAddress6 {
-		return &v
-	}).(FirewallAddress6PtrOutput)
-}
-
-type FirewallAddress6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallAddress6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddress6)(nil))
-}
-
-func (o FirewallAddress6PtrOutput) ToFirewallAddress6PtrOutput() FirewallAddress6PtrOutput {
-	return o
-}
-
-func (o FirewallAddress6PtrOutput) ToFirewallAddress6PtrOutputWithContext(ctx context.Context) FirewallAddress6PtrOutput {
-	return o
-}
-
 type FirewallAddress6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddress6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallAddress6)(nil))
+	return reflect.TypeOf((*[]*FirewallAddress6)(nil)).Elem()
 }
 
 func (o FirewallAddress6ArrayOutput) ToFirewallAddress6ArrayOutput() FirewallAddress6ArrayOutput {
@@ -501,15 +465,15 @@ func (o FirewallAddress6ArrayOutput) ToFirewallAddress6ArrayOutputWithContext(ct
 }
 
 func (o FirewallAddress6ArrayOutput) Index(i pulumi.IntInput) FirewallAddress6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddress6 {
-		return vs[0].([]FirewallAddress6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAddress6 {
+		return vs[0].([]*FirewallAddress6)[vs[1].(int)]
 	}).(FirewallAddress6Output)
 }
 
 type FirewallAddress6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddress6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallAddress6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddress6)(nil)).Elem()
 }
 
 func (o FirewallAddress6MapOutput) ToFirewallAddress6MapOutput() FirewallAddress6MapOutput {
@@ -521,14 +485,16 @@ func (o FirewallAddress6MapOutput) ToFirewallAddress6MapOutputWithContext(ctx co
 }
 
 func (o FirewallAddress6MapOutput) MapIndex(k pulumi.StringInput) FirewallAddress6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallAddress6 {
-		return vs[0].(map[string]FirewallAddress6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallAddress6 {
+		return vs[0].(map[string]*FirewallAddress6)[vs[1].(string)]
 	}).(FirewallAddress6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddress6Input)(nil)).Elem(), &FirewallAddress6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddress6ArrayInput)(nil)).Elem(), FirewallAddress6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddress6MapInput)(nil)).Elem(), FirewallAddress6Map{})
 	pulumi.RegisterOutputType(FirewallAddress6Output{})
-	pulumi.RegisterOutputType(FirewallAddress6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallAddress6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddress6MapOutput{})
 }

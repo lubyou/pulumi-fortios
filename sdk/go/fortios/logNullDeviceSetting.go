@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,7 @@ func NewLogNullDeviceSetting(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogNullDeviceSetting
 	err := ctx.RegisterResource("fortios:index/logNullDeviceSetting:LogNullDeviceSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -130,7 +131,7 @@ type LogNullDeviceSettingInput interface {
 }
 
 func (*LogNullDeviceSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogNullDeviceSetting)(nil))
+	return reflect.TypeOf((**LogNullDeviceSetting)(nil)).Elem()
 }
 
 func (i *LogNullDeviceSetting) ToLogNullDeviceSettingOutput() LogNullDeviceSettingOutput {
@@ -139,35 +140,6 @@ func (i *LogNullDeviceSetting) ToLogNullDeviceSettingOutput() LogNullDeviceSetti
 
 func (i *LogNullDeviceSetting) ToLogNullDeviceSettingOutputWithContext(ctx context.Context) LogNullDeviceSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingOutput)
-}
-
-func (i *LogNullDeviceSetting) ToLogNullDeviceSettingPtrOutput() LogNullDeviceSettingPtrOutput {
-	return i.ToLogNullDeviceSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogNullDeviceSetting) ToLogNullDeviceSettingPtrOutputWithContext(ctx context.Context) LogNullDeviceSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingPtrOutput)
-}
-
-type LogNullDeviceSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogNullDeviceSettingPtrOutput() LogNullDeviceSettingPtrOutput
-	ToLogNullDeviceSettingPtrOutputWithContext(ctx context.Context) LogNullDeviceSettingPtrOutput
-}
-
-type logNullDeviceSettingPtrType LogNullDeviceSettingArgs
-
-func (*logNullDeviceSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogNullDeviceSetting)(nil))
-}
-
-func (i *logNullDeviceSettingPtrType) ToLogNullDeviceSettingPtrOutput() LogNullDeviceSettingPtrOutput {
-	return i.ToLogNullDeviceSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logNullDeviceSettingPtrType) ToLogNullDeviceSettingPtrOutputWithContext(ctx context.Context) LogNullDeviceSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingPtrOutput)
 }
 
 // LogNullDeviceSettingArrayInput is an input type that accepts LogNullDeviceSettingArray and LogNullDeviceSettingArrayOutput values.
@@ -184,7 +156,7 @@ type LogNullDeviceSettingArrayInput interface {
 type LogNullDeviceSettingArray []LogNullDeviceSettingInput
 
 func (LogNullDeviceSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogNullDeviceSetting)(nil))
+	return reflect.TypeOf((*[]*LogNullDeviceSetting)(nil)).Elem()
 }
 
 func (i LogNullDeviceSettingArray) ToLogNullDeviceSettingArrayOutput() LogNullDeviceSettingArrayOutput {
@@ -209,7 +181,7 @@ type LogNullDeviceSettingMapInput interface {
 type LogNullDeviceSettingMap map[string]LogNullDeviceSettingInput
 
 func (LogNullDeviceSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogNullDeviceSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogNullDeviceSetting)(nil)).Elem()
 }
 
 func (i LogNullDeviceSettingMap) ToLogNullDeviceSettingMapOutput() LogNullDeviceSettingMapOutput {
@@ -220,12 +192,10 @@ func (i LogNullDeviceSettingMap) ToLogNullDeviceSettingMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceSettingMapOutput)
 }
 
-type LogNullDeviceSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogNullDeviceSettingOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogNullDeviceSetting)(nil))
+	return reflect.TypeOf((**LogNullDeviceSetting)(nil)).Elem()
 }
 
 func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingOutput() LogNullDeviceSettingOutput {
@@ -236,36 +206,10 @@ func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingOutputWithContext(ctx 
 	return o
 }
 
-func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingPtrOutput() LogNullDeviceSettingPtrOutput {
-	return o.ToLogNullDeviceSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogNullDeviceSettingOutput) ToLogNullDeviceSettingPtrOutputWithContext(ctx context.Context) LogNullDeviceSettingPtrOutput {
-	return o.ApplyT(func(v LogNullDeviceSetting) *LogNullDeviceSetting {
-		return &v
-	}).(LogNullDeviceSettingPtrOutput)
-}
-
-type LogNullDeviceSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogNullDeviceSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogNullDeviceSetting)(nil))
-}
-
-func (o LogNullDeviceSettingPtrOutput) ToLogNullDeviceSettingPtrOutput() LogNullDeviceSettingPtrOutput {
-	return o
-}
-
-func (o LogNullDeviceSettingPtrOutput) ToLogNullDeviceSettingPtrOutputWithContext(ctx context.Context) LogNullDeviceSettingPtrOutput {
-	return o
-}
-
 type LogNullDeviceSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogNullDeviceSetting)(nil))
+	return reflect.TypeOf((*[]*LogNullDeviceSetting)(nil)).Elem()
 }
 
 func (o LogNullDeviceSettingArrayOutput) ToLogNullDeviceSettingArrayOutput() LogNullDeviceSettingArrayOutput {
@@ -277,15 +221,15 @@ func (o LogNullDeviceSettingArrayOutput) ToLogNullDeviceSettingArrayOutputWithCo
 }
 
 func (o LogNullDeviceSettingArrayOutput) Index(i pulumi.IntInput) LogNullDeviceSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogNullDeviceSetting {
-		return vs[0].([]LogNullDeviceSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogNullDeviceSetting {
+		return vs[0].([]*LogNullDeviceSetting)[vs[1].(int)]
 	}).(LogNullDeviceSettingOutput)
 }
 
 type LogNullDeviceSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogNullDeviceSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogNullDeviceSetting)(nil)).Elem()
 }
 
 func (o LogNullDeviceSettingMapOutput) ToLogNullDeviceSettingMapOutput() LogNullDeviceSettingMapOutput {
@@ -297,14 +241,16 @@ func (o LogNullDeviceSettingMapOutput) ToLogNullDeviceSettingMapOutputWithContex
 }
 
 func (o LogNullDeviceSettingMapOutput) MapIndex(k pulumi.StringInput) LogNullDeviceSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogNullDeviceSetting {
-		return vs[0].(map[string]LogNullDeviceSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogNullDeviceSetting {
+		return vs[0].(map[string]*LogNullDeviceSetting)[vs[1].(string)]
 	}).(LogNullDeviceSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogNullDeviceSettingInput)(nil)).Elem(), &LogNullDeviceSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogNullDeviceSettingArrayInput)(nil)).Elem(), LogNullDeviceSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogNullDeviceSettingMapInput)(nil)).Elem(), LogNullDeviceSettingMap{})
 	pulumi.RegisterOutputType(LogNullDeviceSettingOutput{})
-	pulumi.RegisterOutputType(LogNullDeviceSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogNullDeviceSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogNullDeviceSettingMapOutput{})
 }

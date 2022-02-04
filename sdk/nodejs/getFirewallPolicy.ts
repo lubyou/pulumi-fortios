@@ -13,9 +13,7 @@ export function getFirewallPolicy(args: GetFirewallPolicyArgs, opts?: pulumi.Inv
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallPolicy:GetFirewallPolicy", {
         "policyid": args.policyid,
         "vdomparam": args.vdomparam,
@@ -169,6 +167,10 @@ export interface GetFirewallPolicyResult {
      */
     readonly dstintfs: outputs.GetFirewallPolicyDstintf[];
     /**
+     * Enable/disable dynamic RADIUS defined traffic shaping.
+     */
+    readonly dynamicShaping: string;
+    /**
      * Enable/disable email collection.
      */
     readonly emailCollect: string;
@@ -176,6 +178,10 @@ export interface GetFirewallPolicyResult {
      * Name of an existing email filter profile.
      */
     readonly emailfilterProfile: string;
+    /**
+     * Enable/disable Forward Error Correction on traffic matching this policy on a FEC device.
+     */
+    readonly fec: string;
     /**
      * Name of an existing file-filter profile.
      */
@@ -337,6 +343,14 @@ export interface GetFirewallPolicyResult {
      */
     readonly nat: string;
     /**
+     * Enable/disable NAT46.
+     */
+    readonly nat46: string;
+    /**
+     * Enable/disable NAT64.
+     */
+    readonly nat64: string;
+    /**
      * Policy-based IPsec VPN: apply destination NAT to inbound traffic.
      */
     readonly natinbound: string;
@@ -348,6 +362,10 @@ export interface GetFirewallPolicyResult {
      * Policy-based IPsec VPN: apply source NAT to outbound traffic.
      */
     readonly natoutbound: string;
+    /**
+     * Enable/disable UTM Network Processor acceleration.
+     */
+    readonly npAcceleration: string;
     /**
      * Enable/disable NTLM authentication.
      */
@@ -364,6 +382,10 @@ export interface GetFirewallPolicyResult {
      * Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN.
      */
     readonly outbound: string;
+    /**
+     * Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled.
+     */
+    readonly passiveWanHealthMeasurement: string;
     /**
      * Per-IP traffic shaper.
      */
@@ -445,6 +467,10 @@ export interface GetFirewallPolicyResult {
      */
     readonly scheduleTimeout: string;
     /**
+     * Name of an existing SCTP filter profile.
+     */
+    readonly sctpFilterProfile: string;
+    /**
      * Enable to send a reply when a session is denied or blocked by a firewall policy.
      */
     readonly sendDenyPacket: string;
@@ -460,6 +486,14 @@ export interface GetFirewallPolicyResult {
      * TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
      */
     readonly sessionTtl: number;
+    /**
+     * Enable/disable security group tags (SGT) check.
+     */
+    readonly sgtCheck: string;
+    /**
+     * Security group tags. The structure of `sgt` block is documented below.
+     */
+    readonly sgts: outputs.GetFirewallPolicySgt[];
     /**
      * Name of an existing Spam filter profile.
      */
@@ -562,6 +596,10 @@ export interface GetFirewallPolicyResult {
     readonly uuid: string;
     readonly vdomparam?: string;
     /**
+     * Name of an existing VideoFilter profile.
+     */
+    readonly videofilterProfile: string;
+    /**
      * VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
      */
     readonly vlanCosFwd: number;
@@ -633,4 +671,34 @@ export interface GetFirewallPolicyResult {
      * Enable/disable WiFi Single Sign On (WSSO).
      */
     readonly wsso: string;
+    /**
+     * Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
+     */
+    readonly ztnaEmsTags: outputs.GetFirewallPolicyZtnaEmsTag[];
+    /**
+     * Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
+     */
+    readonly ztnaGeoTags: outputs.GetFirewallPolicyZtnaGeoTag[];
+    /**
+     * Enable/disable zero trust access.
+     */
+    readonly ztnaStatus: string;
+}
+
+export function getFirewallPolicyOutput(args: GetFirewallPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallPolicyResult> {
+    return pulumi.output(args).apply(a => getFirewallPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallPolicy.
+ */
+export interface GetFirewallPolicyOutputArgs {
+    /**
+     * Specify the policyid of the desired firewall policy.
+     */
+    policyid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

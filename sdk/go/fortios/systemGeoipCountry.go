@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define geoip country name-ID table.
+// Define geoip country name-ID table. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -39,6 +39,7 @@ func NewSystemGeoipCountry(ctx *pulumi.Context,
 		args = &SystemGeoipCountryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemGeoipCountry
 	err := ctx.RegisterResource("fortios:index/systemGeoipCountry:SystemGeoipCountry", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type SystemGeoipCountryInput interface {
 }
 
 func (*SystemGeoipCountry) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemGeoipCountry)(nil))
+	return reflect.TypeOf((**SystemGeoipCountry)(nil)).Elem()
 }
 
 func (i *SystemGeoipCountry) ToSystemGeoipCountryOutput() SystemGeoipCountryOutput {
@@ -122,35 +123,6 @@ func (i *SystemGeoipCountry) ToSystemGeoipCountryOutput() SystemGeoipCountryOutp
 
 func (i *SystemGeoipCountry) ToSystemGeoipCountryOutputWithContext(ctx context.Context) SystemGeoipCountryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryOutput)
-}
-
-func (i *SystemGeoipCountry) ToSystemGeoipCountryPtrOutput() SystemGeoipCountryPtrOutput {
-	return i.ToSystemGeoipCountryPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemGeoipCountry) ToSystemGeoipCountryPtrOutputWithContext(ctx context.Context) SystemGeoipCountryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryPtrOutput)
-}
-
-type SystemGeoipCountryPtrInput interface {
-	pulumi.Input
-
-	ToSystemGeoipCountryPtrOutput() SystemGeoipCountryPtrOutput
-	ToSystemGeoipCountryPtrOutputWithContext(ctx context.Context) SystemGeoipCountryPtrOutput
-}
-
-type systemGeoipCountryPtrType SystemGeoipCountryArgs
-
-func (*systemGeoipCountryPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemGeoipCountry)(nil))
-}
-
-func (i *systemGeoipCountryPtrType) ToSystemGeoipCountryPtrOutput() SystemGeoipCountryPtrOutput {
-	return i.ToSystemGeoipCountryPtrOutputWithContext(context.Background())
-}
-
-func (i *systemGeoipCountryPtrType) ToSystemGeoipCountryPtrOutputWithContext(ctx context.Context) SystemGeoipCountryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryPtrOutput)
 }
 
 // SystemGeoipCountryArrayInput is an input type that accepts SystemGeoipCountryArray and SystemGeoipCountryArrayOutput values.
@@ -167,7 +139,7 @@ type SystemGeoipCountryArrayInput interface {
 type SystemGeoipCountryArray []SystemGeoipCountryInput
 
 func (SystemGeoipCountryArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemGeoipCountry)(nil))
+	return reflect.TypeOf((*[]*SystemGeoipCountry)(nil)).Elem()
 }
 
 func (i SystemGeoipCountryArray) ToSystemGeoipCountryArrayOutput() SystemGeoipCountryArrayOutput {
@@ -192,7 +164,7 @@ type SystemGeoipCountryMapInput interface {
 type SystemGeoipCountryMap map[string]SystemGeoipCountryInput
 
 func (SystemGeoipCountryMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemGeoipCountry)(nil))
+	return reflect.TypeOf((*map[string]*SystemGeoipCountry)(nil)).Elem()
 }
 
 func (i SystemGeoipCountryMap) ToSystemGeoipCountryMapOutput() SystemGeoipCountryMapOutput {
@@ -203,12 +175,10 @@ func (i SystemGeoipCountryMap) ToSystemGeoipCountryMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeoipCountryMapOutput)
 }
 
-type SystemGeoipCountryOutput struct {
-	*pulumi.OutputState
-}
+type SystemGeoipCountryOutput struct{ *pulumi.OutputState }
 
 func (SystemGeoipCountryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemGeoipCountry)(nil))
+	return reflect.TypeOf((**SystemGeoipCountry)(nil)).Elem()
 }
 
 func (o SystemGeoipCountryOutput) ToSystemGeoipCountryOutput() SystemGeoipCountryOutput {
@@ -219,36 +189,10 @@ func (o SystemGeoipCountryOutput) ToSystemGeoipCountryOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemGeoipCountryOutput) ToSystemGeoipCountryPtrOutput() SystemGeoipCountryPtrOutput {
-	return o.ToSystemGeoipCountryPtrOutputWithContext(context.Background())
-}
-
-func (o SystemGeoipCountryOutput) ToSystemGeoipCountryPtrOutputWithContext(ctx context.Context) SystemGeoipCountryPtrOutput {
-	return o.ApplyT(func(v SystemGeoipCountry) *SystemGeoipCountry {
-		return &v
-	}).(SystemGeoipCountryPtrOutput)
-}
-
-type SystemGeoipCountryPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemGeoipCountryPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemGeoipCountry)(nil))
-}
-
-func (o SystemGeoipCountryPtrOutput) ToSystemGeoipCountryPtrOutput() SystemGeoipCountryPtrOutput {
-	return o
-}
-
-func (o SystemGeoipCountryPtrOutput) ToSystemGeoipCountryPtrOutputWithContext(ctx context.Context) SystemGeoipCountryPtrOutput {
-	return o
-}
-
 type SystemGeoipCountryArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemGeoipCountryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemGeoipCountry)(nil))
+	return reflect.TypeOf((*[]*SystemGeoipCountry)(nil)).Elem()
 }
 
 func (o SystemGeoipCountryArrayOutput) ToSystemGeoipCountryArrayOutput() SystemGeoipCountryArrayOutput {
@@ -260,15 +204,15 @@ func (o SystemGeoipCountryArrayOutput) ToSystemGeoipCountryArrayOutputWithContex
 }
 
 func (o SystemGeoipCountryArrayOutput) Index(i pulumi.IntInput) SystemGeoipCountryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemGeoipCountry {
-		return vs[0].([]SystemGeoipCountry)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGeoipCountry {
+		return vs[0].([]*SystemGeoipCountry)[vs[1].(int)]
 	}).(SystemGeoipCountryOutput)
 }
 
 type SystemGeoipCountryMapOutput struct{ *pulumi.OutputState }
 
 func (SystemGeoipCountryMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemGeoipCountry)(nil))
+	return reflect.TypeOf((*map[string]*SystemGeoipCountry)(nil)).Elem()
 }
 
 func (o SystemGeoipCountryMapOutput) ToSystemGeoipCountryMapOutput() SystemGeoipCountryMapOutput {
@@ -280,14 +224,16 @@ func (o SystemGeoipCountryMapOutput) ToSystemGeoipCountryMapOutputWithContext(ct
 }
 
 func (o SystemGeoipCountryMapOutput) MapIndex(k pulumi.StringInput) SystemGeoipCountryOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemGeoipCountry {
-		return vs[0].(map[string]SystemGeoipCountry)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemGeoipCountry {
+		return vs[0].(map[string]*SystemGeoipCountry)[vs[1].(string)]
 	}).(SystemGeoipCountryOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGeoipCountryInput)(nil)).Elem(), &SystemGeoipCountry{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGeoipCountryArrayInput)(nil)).Elem(), SystemGeoipCountryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGeoipCountryMapInput)(nil)).Elem(), SystemGeoipCountryMap{})
 	pulumi.RegisterOutputType(SystemGeoipCountryOutput{})
-	pulumi.RegisterOutputType(SystemGeoipCountryPtrOutput{})
 	pulumi.RegisterOutputType(SystemGeoipCountryArrayOutput{})
 	pulumi.RegisterOutputType(SystemGeoipCountryMapOutput{})
 }

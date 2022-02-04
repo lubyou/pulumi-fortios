@@ -365,7 +365,7 @@ class DpdkGlobal(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure global DPDK options.
+        Configure global DPDK options. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -397,7 +397,7 @@ class DpdkGlobal(pulumi.CustomResource):
                  args: Optional[DpdkGlobalArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure global DPDK options.
+        Configure global DPDK options. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -441,6 +441,8 @@ class DpdkGlobal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

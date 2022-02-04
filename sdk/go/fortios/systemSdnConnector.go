@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,21 +75,27 @@ type SystemSdnConnector struct {
 	Domain pulumi.StringOutput `pulumi:"domain"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+	ExternalAccountLists SystemSdnConnectorExternalAccountListArrayOutput `pulumi:"externalAccountLists"`
 	// Configure GCP external IP. The structure of `externalIp` block is documented below.
 	ExternalIps SystemSdnConnectorExternalIpArrayOutput `pulumi:"externalIps"`
+	// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+	ForwardingRules SystemSdnConnectorForwardingRuleArrayOutput `pulumi:"forwardingRules"`
 	// GCP project name.
 	GcpProject pulumi.StringOutput `pulumi:"gcpProject"`
+	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+	GcpProjectLists SystemSdnConnectorGcpProjectListArrayOutput `pulumi:"gcpProjectLists"`
 	// Group name of computers.
 	GroupName pulumi.StringOutput `pulumi:"groupName"`
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 	HaStatus pulumi.StringOutput `pulumi:"haStatus"`
-	// IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	// IBM cloud region name.
 	IbmRegion pulumi.StringOutput `pulumi:"ibmRegion"`
 	// Private key password.
 	KeyPasswd pulumi.StringPtrOutput `pulumi:"keyPasswd"`
 	// Azure Stack login endpoint.
 	LoginEndpoint pulumi.StringOutput `pulumi:"loginEndpoint"`
-	// Route name.
+	// GCP zone name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Configure Azure network interface. The structure of `nic` block is documented below.
 	Nics SystemSdnConnectorNicArrayOutput `pulumi:"nics"`
@@ -121,6 +127,8 @@ type SystemSdnConnector struct {
 	SecretToken pulumi.StringOutput `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server pulumi.StringOutput `pulumi:"server"`
+	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+	ServerLists SystemSdnConnectorServerListArrayOutput `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
 	ServerPort pulumi.IntOutput `pulumi:"serverPort"`
 	// GCP service account email.
@@ -149,6 +157,8 @@ type SystemSdnConnector struct {
 	VcenterUsername pulumi.StringOutput `pulumi:"vcenterUsername"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+	VerifyCertificate pulumi.StringOutput `pulumi:"verifyCertificate"`
 	// AWS VPC ID.
 	VpcId pulumi.StringOutput `pulumi:"vpcId"`
 }
@@ -166,6 +176,7 @@ func NewSystemSdnConnector(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSdnConnector
 	err := ctx.RegisterResource("fortios:index/systemSdnConnector:SystemSdnConnector", name, args, &resource, opts...)
 	if err != nil {
@@ -206,21 +217,27 @@ type systemSdnConnectorState struct {
 	Domain *string `pulumi:"domain"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+	ExternalAccountLists []SystemSdnConnectorExternalAccountList `pulumi:"externalAccountLists"`
 	// Configure GCP external IP. The structure of `externalIp` block is documented below.
 	ExternalIps []SystemSdnConnectorExternalIp `pulumi:"externalIps"`
+	// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+	ForwardingRules []SystemSdnConnectorForwardingRule `pulumi:"forwardingRules"`
 	// GCP project name.
 	GcpProject *string `pulumi:"gcpProject"`
+	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+	GcpProjectLists []SystemSdnConnectorGcpProjectList `pulumi:"gcpProjectLists"`
 	// Group name of computers.
 	GroupName *string `pulumi:"groupName"`
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 	HaStatus *string `pulumi:"haStatus"`
-	// IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	// IBM cloud region name.
 	IbmRegion *string `pulumi:"ibmRegion"`
 	// Private key password.
 	KeyPasswd *string `pulumi:"keyPasswd"`
 	// Azure Stack login endpoint.
 	LoginEndpoint *string `pulumi:"loginEndpoint"`
-	// Route name.
+	// GCP zone name.
 	Name *string `pulumi:"name"`
 	// Configure Azure network interface. The structure of `nic` block is documented below.
 	Nics []SystemSdnConnectorNic `pulumi:"nics"`
@@ -252,6 +269,8 @@ type systemSdnConnectorState struct {
 	SecretToken *string `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server *string `pulumi:"server"`
+	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+	ServerLists []SystemSdnConnectorServerList `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
 	ServerPort *int `pulumi:"serverPort"`
 	// GCP service account email.
@@ -280,6 +299,8 @@ type systemSdnConnectorState struct {
 	VcenterUsername *string `pulumi:"vcenterUsername"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+	VerifyCertificate *string `pulumi:"verifyCertificate"`
 	// AWS VPC ID.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -303,21 +324,27 @@ type SystemSdnConnectorState struct {
 	Domain pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+	ExternalAccountLists SystemSdnConnectorExternalAccountListArrayInput
 	// Configure GCP external IP. The structure of `externalIp` block is documented below.
 	ExternalIps SystemSdnConnectorExternalIpArrayInput
+	// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+	ForwardingRules SystemSdnConnectorForwardingRuleArrayInput
 	// GCP project name.
 	GcpProject pulumi.StringPtrInput
+	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+	GcpProjectLists SystemSdnConnectorGcpProjectListArrayInput
 	// Group name of computers.
 	GroupName pulumi.StringPtrInput
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 	HaStatus pulumi.StringPtrInput
-	// IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	// IBM cloud region name.
 	IbmRegion pulumi.StringPtrInput
 	// Private key password.
 	KeyPasswd pulumi.StringPtrInput
 	// Azure Stack login endpoint.
 	LoginEndpoint pulumi.StringPtrInput
-	// Route name.
+	// GCP zone name.
 	Name pulumi.StringPtrInput
 	// Configure Azure network interface. The structure of `nic` block is documented below.
 	Nics SystemSdnConnectorNicArrayInput
@@ -349,6 +376,8 @@ type SystemSdnConnectorState struct {
 	SecretToken pulumi.StringPtrInput
 	// Server address of the remote SDN connector.
 	Server pulumi.StringPtrInput
+	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+	ServerLists SystemSdnConnectorServerListArrayInput
 	// Port number of the remote SDN connector.
 	ServerPort pulumi.IntPtrInput
 	// GCP service account email.
@@ -377,6 +406,8 @@ type SystemSdnConnectorState struct {
 	VcenterUsername pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+	VerifyCertificate pulumi.StringPtrInput
 	// AWS VPC ID.
 	VpcId pulumi.StringPtrInput
 }
@@ -404,21 +435,27 @@ type systemSdnConnectorArgs struct {
 	Domain *string `pulumi:"domain"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+	ExternalAccountLists []SystemSdnConnectorExternalAccountList `pulumi:"externalAccountLists"`
 	// Configure GCP external IP. The structure of `externalIp` block is documented below.
 	ExternalIps []SystemSdnConnectorExternalIp `pulumi:"externalIps"`
+	// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+	ForwardingRules []SystemSdnConnectorForwardingRule `pulumi:"forwardingRules"`
 	// GCP project name.
 	GcpProject *string `pulumi:"gcpProject"`
+	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+	GcpProjectLists []SystemSdnConnectorGcpProjectList `pulumi:"gcpProjectLists"`
 	// Group name of computers.
 	GroupName *string `pulumi:"groupName"`
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 	HaStatus *string `pulumi:"haStatus"`
-	// IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	// IBM cloud region name.
 	IbmRegion *string `pulumi:"ibmRegion"`
 	// Private key password.
 	KeyPasswd *string `pulumi:"keyPasswd"`
 	// Azure Stack login endpoint.
 	LoginEndpoint *string `pulumi:"loginEndpoint"`
-	// Route name.
+	// GCP zone name.
 	Name *string `pulumi:"name"`
 	// Configure Azure network interface. The structure of `nic` block is documented below.
 	Nics []SystemSdnConnectorNic `pulumi:"nics"`
@@ -450,6 +487,8 @@ type systemSdnConnectorArgs struct {
 	SecretToken *string `pulumi:"secretToken"`
 	// Server address of the remote SDN connector.
 	Server *string `pulumi:"server"`
+	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+	ServerLists []SystemSdnConnectorServerList `pulumi:"serverLists"`
 	// Port number of the remote SDN connector.
 	ServerPort *int `pulumi:"serverPort"`
 	// GCP service account email.
@@ -478,6 +517,8 @@ type systemSdnConnectorArgs struct {
 	VcenterUsername *string `pulumi:"vcenterUsername"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+	VerifyCertificate *string `pulumi:"verifyCertificate"`
 	// AWS VPC ID.
 	VpcId *string `pulumi:"vpcId"`
 }
@@ -502,21 +543,27 @@ type SystemSdnConnectorArgs struct {
 	Domain pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+	ExternalAccountLists SystemSdnConnectorExternalAccountListArrayInput
 	// Configure GCP external IP. The structure of `externalIp` block is documented below.
 	ExternalIps SystemSdnConnectorExternalIpArrayInput
+	// Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+	ForwardingRules SystemSdnConnectorForwardingRuleArrayInput
 	// GCP project name.
 	GcpProject pulumi.StringPtrInput
+	// Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+	GcpProjectLists SystemSdnConnectorGcpProjectListArrayInput
 	// Group name of computers.
 	GroupName pulumi.StringPtrInput
 	// Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 	HaStatus pulumi.StringPtrInput
-	// IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+	// IBM cloud region name.
 	IbmRegion pulumi.StringPtrInput
 	// Private key password.
 	KeyPasswd pulumi.StringPtrInput
 	// Azure Stack login endpoint.
 	LoginEndpoint pulumi.StringPtrInput
-	// Route name.
+	// GCP zone name.
 	Name pulumi.StringPtrInput
 	// Configure Azure network interface. The structure of `nic` block is documented below.
 	Nics SystemSdnConnectorNicArrayInput
@@ -548,6 +595,8 @@ type SystemSdnConnectorArgs struct {
 	SecretToken pulumi.StringPtrInput
 	// Server address of the remote SDN connector.
 	Server pulumi.StringPtrInput
+	// Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+	ServerLists SystemSdnConnectorServerListArrayInput
 	// Port number of the remote SDN connector.
 	ServerPort pulumi.IntPtrInput
 	// GCP service account email.
@@ -576,6 +625,8 @@ type SystemSdnConnectorArgs struct {
 	VcenterUsername pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+	VerifyCertificate pulumi.StringPtrInput
 	// AWS VPC ID.
 	VpcId pulumi.StringPtrInput
 }
@@ -592,7 +643,7 @@ type SystemSdnConnectorInput interface {
 }
 
 func (*SystemSdnConnector) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSdnConnector)(nil))
+	return reflect.TypeOf((**SystemSdnConnector)(nil)).Elem()
 }
 
 func (i *SystemSdnConnector) ToSystemSdnConnectorOutput() SystemSdnConnectorOutput {
@@ -601,35 +652,6 @@ func (i *SystemSdnConnector) ToSystemSdnConnectorOutput() SystemSdnConnectorOutp
 
 func (i *SystemSdnConnector) ToSystemSdnConnectorOutputWithContext(ctx context.Context) SystemSdnConnectorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorOutput)
-}
-
-func (i *SystemSdnConnector) ToSystemSdnConnectorPtrOutput() SystemSdnConnectorPtrOutput {
-	return i.ToSystemSdnConnectorPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSdnConnector) ToSystemSdnConnectorPtrOutputWithContext(ctx context.Context) SystemSdnConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorPtrOutput)
-}
-
-type SystemSdnConnectorPtrInput interface {
-	pulumi.Input
-
-	ToSystemSdnConnectorPtrOutput() SystemSdnConnectorPtrOutput
-	ToSystemSdnConnectorPtrOutputWithContext(ctx context.Context) SystemSdnConnectorPtrOutput
-}
-
-type systemSdnConnectorPtrType SystemSdnConnectorArgs
-
-func (*systemSdnConnectorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSdnConnector)(nil))
-}
-
-func (i *systemSdnConnectorPtrType) ToSystemSdnConnectorPtrOutput() SystemSdnConnectorPtrOutput {
-	return i.ToSystemSdnConnectorPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSdnConnectorPtrType) ToSystemSdnConnectorPtrOutputWithContext(ctx context.Context) SystemSdnConnectorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorPtrOutput)
 }
 
 // SystemSdnConnectorArrayInput is an input type that accepts SystemSdnConnectorArray and SystemSdnConnectorArrayOutput values.
@@ -646,7 +668,7 @@ type SystemSdnConnectorArrayInput interface {
 type SystemSdnConnectorArray []SystemSdnConnectorInput
 
 func (SystemSdnConnectorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSdnConnector)(nil))
+	return reflect.TypeOf((*[]*SystemSdnConnector)(nil)).Elem()
 }
 
 func (i SystemSdnConnectorArray) ToSystemSdnConnectorArrayOutput() SystemSdnConnectorArrayOutput {
@@ -671,7 +693,7 @@ type SystemSdnConnectorMapInput interface {
 type SystemSdnConnectorMap map[string]SystemSdnConnectorInput
 
 func (SystemSdnConnectorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSdnConnector)(nil))
+	return reflect.TypeOf((*map[string]*SystemSdnConnector)(nil)).Elem()
 }
 
 func (i SystemSdnConnectorMap) ToSystemSdnConnectorMapOutput() SystemSdnConnectorMapOutput {
@@ -682,12 +704,10 @@ func (i SystemSdnConnectorMap) ToSystemSdnConnectorMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdnConnectorMapOutput)
 }
 
-type SystemSdnConnectorOutput struct {
-	*pulumi.OutputState
-}
+type SystemSdnConnectorOutput struct{ *pulumi.OutputState }
 
 func (SystemSdnConnectorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSdnConnector)(nil))
+	return reflect.TypeOf((**SystemSdnConnector)(nil)).Elem()
 }
 
 func (o SystemSdnConnectorOutput) ToSystemSdnConnectorOutput() SystemSdnConnectorOutput {
@@ -698,36 +718,10 @@ func (o SystemSdnConnectorOutput) ToSystemSdnConnectorOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemSdnConnectorOutput) ToSystemSdnConnectorPtrOutput() SystemSdnConnectorPtrOutput {
-	return o.ToSystemSdnConnectorPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSdnConnectorOutput) ToSystemSdnConnectorPtrOutputWithContext(ctx context.Context) SystemSdnConnectorPtrOutput {
-	return o.ApplyT(func(v SystemSdnConnector) *SystemSdnConnector {
-		return &v
-	}).(SystemSdnConnectorPtrOutput)
-}
-
-type SystemSdnConnectorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSdnConnectorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSdnConnector)(nil))
-}
-
-func (o SystemSdnConnectorPtrOutput) ToSystemSdnConnectorPtrOutput() SystemSdnConnectorPtrOutput {
-	return o
-}
-
-func (o SystemSdnConnectorPtrOutput) ToSystemSdnConnectorPtrOutputWithContext(ctx context.Context) SystemSdnConnectorPtrOutput {
-	return o
-}
-
 type SystemSdnConnectorArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSdnConnectorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSdnConnector)(nil))
+	return reflect.TypeOf((*[]*SystemSdnConnector)(nil)).Elem()
 }
 
 func (o SystemSdnConnectorArrayOutput) ToSystemSdnConnectorArrayOutput() SystemSdnConnectorArrayOutput {
@@ -739,15 +733,15 @@ func (o SystemSdnConnectorArrayOutput) ToSystemSdnConnectorArrayOutputWithContex
 }
 
 func (o SystemSdnConnectorArrayOutput) Index(i pulumi.IntInput) SystemSdnConnectorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSdnConnector {
-		return vs[0].([]SystemSdnConnector)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSdnConnector {
+		return vs[0].([]*SystemSdnConnector)[vs[1].(int)]
 	}).(SystemSdnConnectorOutput)
 }
 
 type SystemSdnConnectorMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSdnConnectorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSdnConnector)(nil))
+	return reflect.TypeOf((*map[string]*SystemSdnConnector)(nil)).Elem()
 }
 
 func (o SystemSdnConnectorMapOutput) ToSystemSdnConnectorMapOutput() SystemSdnConnectorMapOutput {
@@ -759,14 +753,16 @@ func (o SystemSdnConnectorMapOutput) ToSystemSdnConnectorMapOutputWithContext(ct
 }
 
 func (o SystemSdnConnectorMapOutput) MapIndex(k pulumi.StringInput) SystemSdnConnectorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSdnConnector {
-		return vs[0].(map[string]SystemSdnConnector)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSdnConnector {
+		return vs[0].(map[string]*SystemSdnConnector)[vs[1].(string)]
 	}).(SystemSdnConnectorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSdnConnectorInput)(nil)).Elem(), &SystemSdnConnector{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSdnConnectorArrayInput)(nil)).Elem(), SystemSdnConnectorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSdnConnectorMapInput)(nil)).Elem(), SystemSdnConnectorMap{})
 	pulumi.RegisterOutputType(SystemSdnConnectorOutput{})
-	pulumi.RegisterOutputType(SystemSdnConnectorPtrOutput{})
 	pulumi.RegisterOutputType(SystemSdnConnectorArrayOutput{})
 	pulumi.RegisterOutputType(SystemSdnConnectorMapOutput{})
 }

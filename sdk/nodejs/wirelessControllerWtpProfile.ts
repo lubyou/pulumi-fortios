@@ -71,6 +71,10 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly consoleLogin!: pulumi.Output<string>;
+    /**
      * Enable/disable CAPWAP control message data channel offload.
      */
     public readonly controlMessageOffload!: pulumi.Output<string>;
@@ -95,6 +99,10 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
      */
     public readonly energyEfficientEthernet!: pulumi.Output<string>;
     /**
+     * ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+     */
+    public readonly eslSesDongle!: pulumi.Output<outputs.WirelessControllerWtpProfileEslSesDongle | undefined>;
+    /**
      * Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
      */
     public readonly extInfoEnable!: pulumi.Output<string>;
@@ -114,6 +122,10 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
      * Threshold value for AP handoff.
      */
     public readonly handoffStaThresh!: pulumi.Output<number>;
+    /**
+     * Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+     */
+    public readonly indoorOutdoorDeployment!: pulumi.Output<string>;
     /**
      * Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
      */
@@ -191,6 +203,10 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
      */
     public readonly splitTunnelingAcls!: pulumi.Output<outputs.WirelessControllerWtpProfileSplitTunnelingAcl[] | undefined>;
     /**
+     * System log server configuration profile name.
+     */
+    public readonly syslogProfile!: pulumi.Output<string>;
+    /**
      * Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
      */
     public readonly tunMtuDownlink!: pulumi.Output<number>;
@@ -202,6 +218,22 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+     */
+    public readonly wanPortAuth!: pulumi.Output<string>;
+    /**
+     * WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+     */
+    public readonly wanPortAuthMethods!: pulumi.Output<string>;
+    /**
+     * Set WAN port 802.1x supplicant password.
+     */
+    public readonly wanPortAuthPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Set WAN port 802.1x supplicant user name.
+     */
+    public readonly wanPortAuthUsrname!: pulumi.Output<string>;
     /**
      * Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
      */
@@ -216,97 +248,111 @@ export class WirelessControllerWtpProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerWtpProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerWtpProfileArgs | WirelessControllerWtpProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerWtpProfileState | undefined;
-            inputs["allowaccess"] = state ? state.allowaccess : undefined;
-            inputs["apCountry"] = state ? state.apCountry : undefined;
-            inputs["apHandoff"] = state ? state.apHandoff : undefined;
-            inputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
-            inputs["bleProfile"] = state ? state.bleProfile : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
-            inputs["denyMacLists"] = state ? state.denyMacLists : undefined;
-            inputs["dtlsInKernel"] = state ? state.dtlsInKernel : undefined;
-            inputs["dtlsPolicy"] = state ? state.dtlsPolicy : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["energyEfficientEthernet"] = state ? state.energyEfficientEthernet : undefined;
-            inputs["extInfoEnable"] = state ? state.extInfoEnable : undefined;
-            inputs["frequencyHandoff"] = state ? state.frequencyHandoff : undefined;
-            inputs["handoffRoaming"] = state ? state.handoffRoaming : undefined;
-            inputs["handoffRssi"] = state ? state.handoffRssi : undefined;
-            inputs["handoffStaThresh"] = state ? state.handoffStaThresh : undefined;
-            inputs["ipFragmentPreventing"] = state ? state.ipFragmentPreventing : undefined;
-            inputs["lan"] = state ? state.lan : undefined;
-            inputs["lbs"] = state ? state.lbs : undefined;
-            inputs["ledSchedules"] = state ? state.ledSchedules : undefined;
-            inputs["ledState"] = state ? state.ledState : undefined;
-            inputs["lldp"] = state ? state.lldp : undefined;
-            inputs["loginPasswd"] = state ? state.loginPasswd : undefined;
-            inputs["loginPasswdChange"] = state ? state.loginPasswdChange : undefined;
-            inputs["maxClients"] = state ? state.maxClients : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["platform"] = state ? state.platform : undefined;
-            inputs["poeMode"] = state ? state.poeMode : undefined;
-            inputs["radio1"] = state ? state.radio1 : undefined;
-            inputs["radio2"] = state ? state.radio2 : undefined;
-            inputs["radio3"] = state ? state.radio3 : undefined;
-            inputs["radio4"] = state ? state.radio4 : undefined;
-            inputs["splitTunnelingAclLocalApSubnet"] = state ? state.splitTunnelingAclLocalApSubnet : undefined;
-            inputs["splitTunnelingAclPath"] = state ? state.splitTunnelingAclPath : undefined;
-            inputs["splitTunnelingAcls"] = state ? state.splitTunnelingAcls : undefined;
-            inputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
-            inputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wanPortMode"] = state ? state.wanPortMode : undefined;
+            resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
+            resourceInputs["apCountry"] = state ? state.apCountry : undefined;
+            resourceInputs["apHandoff"] = state ? state.apHandoff : undefined;
+            resourceInputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
+            resourceInputs["bleProfile"] = state ? state.bleProfile : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["consoleLogin"] = state ? state.consoleLogin : undefined;
+            resourceInputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
+            resourceInputs["denyMacLists"] = state ? state.denyMacLists : undefined;
+            resourceInputs["dtlsInKernel"] = state ? state.dtlsInKernel : undefined;
+            resourceInputs["dtlsPolicy"] = state ? state.dtlsPolicy : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["energyEfficientEthernet"] = state ? state.energyEfficientEthernet : undefined;
+            resourceInputs["eslSesDongle"] = state ? state.eslSesDongle : undefined;
+            resourceInputs["extInfoEnable"] = state ? state.extInfoEnable : undefined;
+            resourceInputs["frequencyHandoff"] = state ? state.frequencyHandoff : undefined;
+            resourceInputs["handoffRoaming"] = state ? state.handoffRoaming : undefined;
+            resourceInputs["handoffRssi"] = state ? state.handoffRssi : undefined;
+            resourceInputs["handoffStaThresh"] = state ? state.handoffStaThresh : undefined;
+            resourceInputs["indoorOutdoorDeployment"] = state ? state.indoorOutdoorDeployment : undefined;
+            resourceInputs["ipFragmentPreventing"] = state ? state.ipFragmentPreventing : undefined;
+            resourceInputs["lan"] = state ? state.lan : undefined;
+            resourceInputs["lbs"] = state ? state.lbs : undefined;
+            resourceInputs["ledSchedules"] = state ? state.ledSchedules : undefined;
+            resourceInputs["ledState"] = state ? state.ledState : undefined;
+            resourceInputs["lldp"] = state ? state.lldp : undefined;
+            resourceInputs["loginPasswd"] = state ? state.loginPasswd : undefined;
+            resourceInputs["loginPasswdChange"] = state ? state.loginPasswdChange : undefined;
+            resourceInputs["maxClients"] = state ? state.maxClients : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["platform"] = state ? state.platform : undefined;
+            resourceInputs["poeMode"] = state ? state.poeMode : undefined;
+            resourceInputs["radio1"] = state ? state.radio1 : undefined;
+            resourceInputs["radio2"] = state ? state.radio2 : undefined;
+            resourceInputs["radio3"] = state ? state.radio3 : undefined;
+            resourceInputs["radio4"] = state ? state.radio4 : undefined;
+            resourceInputs["splitTunnelingAclLocalApSubnet"] = state ? state.splitTunnelingAclLocalApSubnet : undefined;
+            resourceInputs["splitTunnelingAclPath"] = state ? state.splitTunnelingAclPath : undefined;
+            resourceInputs["splitTunnelingAcls"] = state ? state.splitTunnelingAcls : undefined;
+            resourceInputs["syslogProfile"] = state ? state.syslogProfile : undefined;
+            resourceInputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
+            resourceInputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wanPortAuth"] = state ? state.wanPortAuth : undefined;
+            resourceInputs["wanPortAuthMethods"] = state ? state.wanPortAuthMethods : undefined;
+            resourceInputs["wanPortAuthPassword"] = state ? state.wanPortAuthPassword : undefined;
+            resourceInputs["wanPortAuthUsrname"] = state ? state.wanPortAuthUsrname : undefined;
+            resourceInputs["wanPortMode"] = state ? state.wanPortMode : undefined;
         } else {
             const args = argsOrState as WirelessControllerWtpProfileArgs | undefined;
-            inputs["allowaccess"] = args ? args.allowaccess : undefined;
-            inputs["apCountry"] = args ? args.apCountry : undefined;
-            inputs["apHandoff"] = args ? args.apHandoff : undefined;
-            inputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
-            inputs["bleProfile"] = args ? args.bleProfile : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
-            inputs["denyMacLists"] = args ? args.denyMacLists : undefined;
-            inputs["dtlsInKernel"] = args ? args.dtlsInKernel : undefined;
-            inputs["dtlsPolicy"] = args ? args.dtlsPolicy : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["energyEfficientEthernet"] = args ? args.energyEfficientEthernet : undefined;
-            inputs["extInfoEnable"] = args ? args.extInfoEnable : undefined;
-            inputs["frequencyHandoff"] = args ? args.frequencyHandoff : undefined;
-            inputs["handoffRoaming"] = args ? args.handoffRoaming : undefined;
-            inputs["handoffRssi"] = args ? args.handoffRssi : undefined;
-            inputs["handoffStaThresh"] = args ? args.handoffStaThresh : undefined;
-            inputs["ipFragmentPreventing"] = args ? args.ipFragmentPreventing : undefined;
-            inputs["lan"] = args ? args.lan : undefined;
-            inputs["lbs"] = args ? args.lbs : undefined;
-            inputs["ledSchedules"] = args ? args.ledSchedules : undefined;
-            inputs["ledState"] = args ? args.ledState : undefined;
-            inputs["lldp"] = args ? args.lldp : undefined;
-            inputs["loginPasswd"] = args ? args.loginPasswd : undefined;
-            inputs["loginPasswdChange"] = args ? args.loginPasswdChange : undefined;
-            inputs["maxClients"] = args ? args.maxClients : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["platform"] = args ? args.platform : undefined;
-            inputs["poeMode"] = args ? args.poeMode : undefined;
-            inputs["radio1"] = args ? args.radio1 : undefined;
-            inputs["radio2"] = args ? args.radio2 : undefined;
-            inputs["radio3"] = args ? args.radio3 : undefined;
-            inputs["radio4"] = args ? args.radio4 : undefined;
-            inputs["splitTunnelingAclLocalApSubnet"] = args ? args.splitTunnelingAclLocalApSubnet : undefined;
-            inputs["splitTunnelingAclPath"] = args ? args.splitTunnelingAclPath : undefined;
-            inputs["splitTunnelingAcls"] = args ? args.splitTunnelingAcls : undefined;
-            inputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
-            inputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wanPortMode"] = args ? args.wanPortMode : undefined;
+            resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
+            resourceInputs["apCountry"] = args ? args.apCountry : undefined;
+            resourceInputs["apHandoff"] = args ? args.apHandoff : undefined;
+            resourceInputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
+            resourceInputs["bleProfile"] = args ? args.bleProfile : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["consoleLogin"] = args ? args.consoleLogin : undefined;
+            resourceInputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
+            resourceInputs["denyMacLists"] = args ? args.denyMacLists : undefined;
+            resourceInputs["dtlsInKernel"] = args ? args.dtlsInKernel : undefined;
+            resourceInputs["dtlsPolicy"] = args ? args.dtlsPolicy : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["energyEfficientEthernet"] = args ? args.energyEfficientEthernet : undefined;
+            resourceInputs["eslSesDongle"] = args ? args.eslSesDongle : undefined;
+            resourceInputs["extInfoEnable"] = args ? args.extInfoEnable : undefined;
+            resourceInputs["frequencyHandoff"] = args ? args.frequencyHandoff : undefined;
+            resourceInputs["handoffRoaming"] = args ? args.handoffRoaming : undefined;
+            resourceInputs["handoffRssi"] = args ? args.handoffRssi : undefined;
+            resourceInputs["handoffStaThresh"] = args ? args.handoffStaThresh : undefined;
+            resourceInputs["indoorOutdoorDeployment"] = args ? args.indoorOutdoorDeployment : undefined;
+            resourceInputs["ipFragmentPreventing"] = args ? args.ipFragmentPreventing : undefined;
+            resourceInputs["lan"] = args ? args.lan : undefined;
+            resourceInputs["lbs"] = args ? args.lbs : undefined;
+            resourceInputs["ledSchedules"] = args ? args.ledSchedules : undefined;
+            resourceInputs["ledState"] = args ? args.ledState : undefined;
+            resourceInputs["lldp"] = args ? args.lldp : undefined;
+            resourceInputs["loginPasswd"] = args ? args.loginPasswd : undefined;
+            resourceInputs["loginPasswdChange"] = args ? args.loginPasswdChange : undefined;
+            resourceInputs["maxClients"] = args ? args.maxClients : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["platform"] = args ? args.platform : undefined;
+            resourceInputs["poeMode"] = args ? args.poeMode : undefined;
+            resourceInputs["radio1"] = args ? args.radio1 : undefined;
+            resourceInputs["radio2"] = args ? args.radio2 : undefined;
+            resourceInputs["radio3"] = args ? args.radio3 : undefined;
+            resourceInputs["radio4"] = args ? args.radio4 : undefined;
+            resourceInputs["splitTunnelingAclLocalApSubnet"] = args ? args.splitTunnelingAclLocalApSubnet : undefined;
+            resourceInputs["splitTunnelingAclPath"] = args ? args.splitTunnelingAclPath : undefined;
+            resourceInputs["splitTunnelingAcls"] = args ? args.splitTunnelingAcls : undefined;
+            resourceInputs["syslogProfile"] = args ? args.syslogProfile : undefined;
+            resourceInputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
+            resourceInputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wanPortAuth"] = args ? args.wanPortAuth : undefined;
+            resourceInputs["wanPortAuthMethods"] = args ? args.wanPortAuthMethods : undefined;
+            resourceInputs["wanPortAuthPassword"] = args ? args.wanPortAuthPassword : undefined;
+            resourceInputs["wanPortAuthUsrname"] = args ? args.wanPortAuthUsrname : undefined;
+            resourceInputs["wanPortMode"] = args ? args.wanPortMode : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerWtpProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerWtpProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -339,6 +385,10 @@ export interface WirelessControllerWtpProfileState {
      */
     comment?: pulumi.Input<string>;
     /**
+     * Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+     */
+    consoleLogin?: pulumi.Input<string>;
+    /**
      * Enable/disable CAPWAP control message data channel offload.
      */
     controlMessageOffload?: pulumi.Input<string>;
@@ -363,6 +413,10 @@ export interface WirelessControllerWtpProfileState {
      */
     energyEfficientEthernet?: pulumi.Input<string>;
     /**
+     * ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+     */
+    eslSesDongle?: pulumi.Input<inputs.WirelessControllerWtpProfileEslSesDongle>;
+    /**
      * Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
      */
     extInfoEnable?: pulumi.Input<string>;
@@ -382,6 +436,10 @@ export interface WirelessControllerWtpProfileState {
      * Threshold value for AP handoff.
      */
     handoffStaThresh?: pulumi.Input<number>;
+    /**
+     * Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+     */
+    indoorOutdoorDeployment?: pulumi.Input<string>;
     /**
      * Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
      */
@@ -459,6 +517,10 @@ export interface WirelessControllerWtpProfileState {
      */
     splitTunnelingAcls?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWtpProfileSplitTunnelingAcl>[]>;
     /**
+     * System log server configuration profile name.
+     */
+    syslogProfile?: pulumi.Input<string>;
+    /**
      * Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
      */
     tunMtuDownlink?: pulumi.Input<number>;
@@ -470,6 +532,22 @@ export interface WirelessControllerWtpProfileState {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+     */
+    wanPortAuth?: pulumi.Input<string>;
+    /**
+     * WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+     */
+    wanPortAuthMethods?: pulumi.Input<string>;
+    /**
+     * Set WAN port 802.1x supplicant password.
+     */
+    wanPortAuthPassword?: pulumi.Input<string>;
+    /**
+     * Set WAN port 802.1x supplicant user name.
+     */
+    wanPortAuthUsrname?: pulumi.Input<string>;
     /**
      * Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
      */
@@ -505,6 +583,10 @@ export interface WirelessControllerWtpProfileArgs {
      */
     comment?: pulumi.Input<string>;
     /**
+     * Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+     */
+    consoleLogin?: pulumi.Input<string>;
+    /**
      * Enable/disable CAPWAP control message data channel offload.
      */
     controlMessageOffload?: pulumi.Input<string>;
@@ -529,6 +611,10 @@ export interface WirelessControllerWtpProfileArgs {
      */
     energyEfficientEthernet?: pulumi.Input<string>;
     /**
+     * ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+     */
+    eslSesDongle?: pulumi.Input<inputs.WirelessControllerWtpProfileEslSesDongle>;
+    /**
      * Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
      */
     extInfoEnable?: pulumi.Input<string>;
@@ -548,6 +634,10 @@ export interface WirelessControllerWtpProfileArgs {
      * Threshold value for AP handoff.
      */
     handoffStaThresh?: pulumi.Input<number>;
+    /**
+     * Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+     */
+    indoorOutdoorDeployment?: pulumi.Input<string>;
     /**
      * Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
      */
@@ -625,6 +715,10 @@ export interface WirelessControllerWtpProfileArgs {
      */
     splitTunnelingAcls?: pulumi.Input<pulumi.Input<inputs.WirelessControllerWtpProfileSplitTunnelingAcl>[]>;
     /**
+     * System log server configuration profile name.
+     */
+    syslogProfile?: pulumi.Input<string>;
+    /**
      * Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
      */
     tunMtuDownlink?: pulumi.Input<number>;
@@ -636,6 +730,22 @@ export interface WirelessControllerWtpProfileArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+     */
+    wanPortAuth?: pulumi.Input<string>;
+    /**
+     * WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+     */
+    wanPortAuthMethods?: pulumi.Input<string>;
+    /**
+     * Set WAN port 802.1x supplicant password.
+     */
+    wanPortAuthPassword?: pulumi.Input<string>;
+    /**
+     * Set WAN port 802.1x supplicant user name.
+     */
+    wanPortAuthUsrname?: pulumi.Input<string>;
     /**
      * Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
      */

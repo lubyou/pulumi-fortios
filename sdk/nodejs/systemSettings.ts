@@ -70,6 +70,10 @@ export class SystemSettings extends pulumi.CustomResource {
      */
     public readonly allowSubnetOverlap!: pulumi.Output<string>;
     /**
+     * Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+     */
+    public readonly applicationBandwidthTracking!: pulumi.Output<string>;
+    /**
      * Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
      */
     public readonly asymroute!: pulumi.Output<string>;
@@ -370,6 +374,10 @@ export class SystemSettings extends pulumi.CustomResource {
      */
     public readonly guiTrafficShaping!: pulumi.Output<string>;
     /**
+     * Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiVideofilter!: pulumi.Output<string>;
+    /**
      * Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiVoipProfile!: pulumi.Output<string>;
@@ -402,6 +410,14 @@ export class SystemSettings extends pulumi.CustomResource {
      */
     public readonly guiWirelessController!: pulumi.Output<string>;
     /**
+     * Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiZtna!: pulumi.Output<string>;
+    /**
+     * Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+     */
+    public readonly h323DirectModel!: pulumi.Output<string>;
+    /**
      * Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
      */
     public readonly httpExternalDest!: pulumi.Output<string>;
@@ -413,6 +429,10 @@ export class SystemSettings extends pulumi.CustomResource {
      * UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
      */
     public readonly ikeNattPort!: pulumi.Output<number>;
+    /**
+     * Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+     */
+    public readonly ikePolicyRoute!: pulumi.Output<string>;
     /**
      * UDP port for IKE/IPsec traffic (default 500).
      */
@@ -453,6 +473,10 @@ export class SystemSettings extends pulumi.CustomResource {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
      */
     public readonly lldpTransmission!: pulumi.Output<string>;
+    /**
+     * Local location ID in the form of an IPv4 address.
+     */
+    public readonly locationId!: pulumi.Output<string>;
     /**
      * Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
      */
@@ -579,271 +603,281 @@ export class SystemSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSettingsArgs | SystemSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSettingsState | undefined;
-            inputs["allowLinkdownPath"] = state ? state.allowLinkdownPath : undefined;
-            inputs["allowSubnetOverlap"] = state ? state.allowSubnetOverlap : undefined;
-            inputs["asymroute"] = state ? state.asymroute : undefined;
-            inputs["asymroute6"] = state ? state.asymroute6 : undefined;
-            inputs["asymroute6Icmp"] = state ? state.asymroute6Icmp : undefined;
-            inputs["asymrouteIcmp"] = state ? state.asymrouteIcmp : undefined;
-            inputs["auxiliarySession"] = state ? state.auxiliarySession : undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["bfdDesiredMinTx"] = state ? state.bfdDesiredMinTx : undefined;
-            inputs["bfdDetectMult"] = state ? state.bfdDetectMult : undefined;
-            inputs["bfdDontEnforceSrcPort"] = state ? state.bfdDontEnforceSrcPort : undefined;
-            inputs["bfdRequiredMinRx"] = state ? state.bfdRequiredMinRx : undefined;
-            inputs["blockLandAttack"] = state ? state.blockLandAttack : undefined;
-            inputs["centralNat"] = state ? state.centralNat : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["complianceCheck"] = state ? state.complianceCheck : undefined;
-            inputs["consolidatedFirewallMode"] = state ? state.consolidatedFirewallMode : undefined;
-            inputs["defaultVoipAlgMode"] = state ? state.defaultVoipAlgMode : undefined;
-            inputs["denyTcpWithIcmp"] = state ? state.denyTcpWithIcmp : undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["dhcp6ServerIp"] = state ? state.dhcp6ServerIp : undefined;
-            inputs["dhcpProxy"] = state ? state.dhcpProxy : undefined;
-            inputs["dhcpProxyInterface"] = state ? state.dhcpProxyInterface : undefined;
-            inputs["dhcpProxyInterfaceSelectMethod"] = state ? state.dhcpProxyInterfaceSelectMethod : undefined;
-            inputs["dhcpServerIp"] = state ? state.dhcpServerIp : undefined;
-            inputs["discoveredDeviceTimeout"] = state ? state.discoveredDeviceTimeout : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ecmpMaxPaths"] = state ? state.ecmpMaxPaths : undefined;
-            inputs["emailPortalCheckDns"] = state ? state.emailPortalCheckDns : undefined;
-            inputs["firewallSessionDirty"] = state ? state.firewallSessionDirty : undefined;
-            inputs["fwSessionHairpin"] = state ? state.fwSessionHairpin : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["gateway6"] = state ? state.gateway6 : undefined;
-            inputs["guiAdvancedPolicy"] = state ? state.guiAdvancedPolicy : undefined;
-            inputs["guiAllowUnnamedPolicy"] = state ? state.guiAllowUnnamedPolicy : undefined;
-            inputs["guiAntivirus"] = state ? state.guiAntivirus : undefined;
-            inputs["guiApProfile"] = state ? state.guiApProfile : undefined;
-            inputs["guiApplicationControl"] = state ? state.guiApplicationControl : undefined;
-            inputs["guiDefaultPolicyColumns"] = state ? state.guiDefaultPolicyColumns : undefined;
-            inputs["guiDhcpAdvanced"] = state ? state.guiDhcpAdvanced : undefined;
-            inputs["guiDlp"] = state ? state.guiDlp : undefined;
-            inputs["guiDnsDatabase"] = state ? state.guiDnsDatabase : undefined;
-            inputs["guiDnsfilter"] = state ? state.guiDnsfilter : undefined;
-            inputs["guiDomainIpReputation"] = state ? state.guiDomainIpReputation : undefined;
-            inputs["guiDosPolicy"] = state ? state.guiDosPolicy : undefined;
-            inputs["guiDynamicProfileDisplay"] = state ? state.guiDynamicProfileDisplay : undefined;
-            inputs["guiDynamicRouting"] = state ? state.guiDynamicRouting : undefined;
-            inputs["guiEmailCollection"] = state ? state.guiEmailCollection : undefined;
-            inputs["guiEndpointControl"] = state ? state.guiEndpointControl : undefined;
-            inputs["guiEndpointControlAdvanced"] = state ? state.guiEndpointControlAdvanced : undefined;
-            inputs["guiExplicitProxy"] = state ? state.guiExplicitProxy : undefined;
-            inputs["guiFileFilter"] = state ? state.guiFileFilter : undefined;
-            inputs["guiFortiapSplitTunneling"] = state ? state.guiFortiapSplitTunneling : undefined;
-            inputs["guiFortiextenderController"] = state ? state.guiFortiextenderController : undefined;
-            inputs["guiIcap"] = state ? state.guiIcap : undefined;
-            inputs["guiImplicitPolicy"] = state ? state.guiImplicitPolicy : undefined;
-            inputs["guiIps"] = state ? state.guiIps : undefined;
-            inputs["guiLoadBalance"] = state ? state.guiLoadBalance : undefined;
-            inputs["guiLocalInPolicy"] = state ? state.guiLocalInPolicy : undefined;
-            inputs["guiLocalReports"] = state ? state.guiLocalReports : undefined;
-            inputs["guiMulticastPolicy"] = state ? state.guiMulticastPolicy : undefined;
-            inputs["guiMultipleInterfacePolicy"] = state ? state.guiMultipleInterfacePolicy : undefined;
-            inputs["guiMultipleUtmProfiles"] = state ? state.guiMultipleUtmProfiles : undefined;
-            inputs["guiNat4664"] = state ? state.guiNat4664 : undefined;
-            inputs["guiObjectColors"] = state ? state.guiObjectColors : undefined;
-            inputs["guiPerPolicyDisclaimer"] = state ? state.guiPerPolicyDisclaimer : undefined;
-            inputs["guiPolicyBasedIpsec"] = state ? state.guiPolicyBasedIpsec : undefined;
-            inputs["guiPolicyDisclaimer"] = state ? state.guiPolicyDisclaimer : undefined;
-            inputs["guiPolicyLearning"] = state ? state.guiPolicyLearning : undefined;
-            inputs["guiReplacementMessageGroups"] = state ? state.guiReplacementMessageGroups : undefined;
-            inputs["guiSecurityProfileGroup"] = state ? state.guiSecurityProfileGroup : undefined;
-            inputs["guiSpamfilter"] = state ? state.guiSpamfilter : undefined;
-            inputs["guiSslvpnPersonalBookmarks"] = state ? state.guiSslvpnPersonalBookmarks : undefined;
-            inputs["guiSslvpnRealms"] = state ? state.guiSslvpnRealms : undefined;
-            inputs["guiSwitchController"] = state ? state.guiSwitchController : undefined;
-            inputs["guiThreatWeight"] = state ? state.guiThreatWeight : undefined;
-            inputs["guiTrafficShaping"] = state ? state.guiTrafficShaping : undefined;
-            inputs["guiVoipProfile"] = state ? state.guiVoipProfile : undefined;
-            inputs["guiVpn"] = state ? state.guiVpn : undefined;
-            inputs["guiWafProfile"] = state ? state.guiWafProfile : undefined;
-            inputs["guiWanLoadBalancing"] = state ? state.guiWanLoadBalancing : undefined;
-            inputs["guiWanoptCache"] = state ? state.guiWanoptCache : undefined;
-            inputs["guiWebfilter"] = state ? state.guiWebfilter : undefined;
-            inputs["guiWebfilterAdvanced"] = state ? state.guiWebfilterAdvanced : undefined;
-            inputs["guiWirelessController"] = state ? state.guiWirelessController : undefined;
-            inputs["httpExternalDest"] = state ? state.httpExternalDest : undefined;
-            inputs["ikeDnFormat"] = state ? state.ikeDnFormat : undefined;
-            inputs["ikeNattPort"] = state ? state.ikeNattPort : undefined;
-            inputs["ikePort"] = state ? state.ikePort : undefined;
-            inputs["ikeQuickCrashDetect"] = state ? state.ikeQuickCrashDetect : undefined;
-            inputs["ikeSessionResume"] = state ? state.ikeSessionResume : undefined;
-            inputs["implicitAllowDns"] = state ? state.implicitAllowDns : undefined;
-            inputs["inspectionMode"] = state ? state.inspectionMode : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["linkDownAccess"] = state ? state.linkDownAccess : undefined;
-            inputs["lldpReception"] = state ? state.lldpReception : undefined;
-            inputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
-            inputs["macTtl"] = state ? state.macTtl : undefined;
-            inputs["manageip"] = state ? state.manageip : undefined;
-            inputs["manageip6"] = state ? state.manageip6 : undefined;
-            inputs["multicastForward"] = state ? state.multicastForward : undefined;
-            inputs["multicastSkipPolicy"] = state ? state.multicastSkipPolicy : undefined;
-            inputs["multicastTtlNotchange"] = state ? state.multicastTtlNotchange : undefined;
-            inputs["ngfwMode"] = state ? state.ngfwMode : undefined;
-            inputs["opmode"] = state ? state.opmode : undefined;
-            inputs["prpTrailerAction"] = state ? state.prpTrailerAction : undefined;
-            inputs["sccpPort"] = state ? state.sccpPort : undefined;
-            inputs["sctpSessionWithoutInit"] = state ? state.sctpSessionWithoutInit : undefined;
-            inputs["sesDeniedTraffic"] = state ? state.sesDeniedTraffic : undefined;
-            inputs["sipExpectation"] = state ? state.sipExpectation : undefined;
-            inputs["sipHelper"] = state ? state.sipHelper : undefined;
-            inputs["sipNatTrace"] = state ? state.sipNatTrace : undefined;
-            inputs["sipSslPort"] = state ? state.sipSslPort : undefined;
-            inputs["sipTcpPort"] = state ? state.sipTcpPort : undefined;
-            inputs["sipUdpPort"] = state ? state.sipUdpPort : undefined;
-            inputs["snatHairpinTraffic"] = state ? state.snatHairpinTraffic : undefined;
-            inputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["strictSrcCheck"] = state ? state.strictSrcCheck : undefined;
-            inputs["tcpSessionWithoutSyn"] = state ? state.tcpSessionWithoutSyn : undefined;
-            inputs["utf8SpamTagging"] = state ? state.utf8SpamTagging : undefined;
-            inputs["v4EcmpMode"] = state ? state.v4EcmpMode : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vpnStatsLog"] = state ? state.vpnStatsLog : undefined;
-            inputs["vpnStatsPeriod"] = state ? state.vpnStatsPeriod : undefined;
-            inputs["wccpCacheEngine"] = state ? state.wccpCacheEngine : undefined;
+            resourceInputs["allowLinkdownPath"] = state ? state.allowLinkdownPath : undefined;
+            resourceInputs["allowSubnetOverlap"] = state ? state.allowSubnetOverlap : undefined;
+            resourceInputs["applicationBandwidthTracking"] = state ? state.applicationBandwidthTracking : undefined;
+            resourceInputs["asymroute"] = state ? state.asymroute : undefined;
+            resourceInputs["asymroute6"] = state ? state.asymroute6 : undefined;
+            resourceInputs["asymroute6Icmp"] = state ? state.asymroute6Icmp : undefined;
+            resourceInputs["asymrouteIcmp"] = state ? state.asymrouteIcmp : undefined;
+            resourceInputs["auxiliarySession"] = state ? state.auxiliarySession : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["bfdDesiredMinTx"] = state ? state.bfdDesiredMinTx : undefined;
+            resourceInputs["bfdDetectMult"] = state ? state.bfdDetectMult : undefined;
+            resourceInputs["bfdDontEnforceSrcPort"] = state ? state.bfdDontEnforceSrcPort : undefined;
+            resourceInputs["bfdRequiredMinRx"] = state ? state.bfdRequiredMinRx : undefined;
+            resourceInputs["blockLandAttack"] = state ? state.blockLandAttack : undefined;
+            resourceInputs["centralNat"] = state ? state.centralNat : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["complianceCheck"] = state ? state.complianceCheck : undefined;
+            resourceInputs["consolidatedFirewallMode"] = state ? state.consolidatedFirewallMode : undefined;
+            resourceInputs["defaultVoipAlgMode"] = state ? state.defaultVoipAlgMode : undefined;
+            resourceInputs["denyTcpWithIcmp"] = state ? state.denyTcpWithIcmp : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["dhcp6ServerIp"] = state ? state.dhcp6ServerIp : undefined;
+            resourceInputs["dhcpProxy"] = state ? state.dhcpProxy : undefined;
+            resourceInputs["dhcpProxyInterface"] = state ? state.dhcpProxyInterface : undefined;
+            resourceInputs["dhcpProxyInterfaceSelectMethod"] = state ? state.dhcpProxyInterfaceSelectMethod : undefined;
+            resourceInputs["dhcpServerIp"] = state ? state.dhcpServerIp : undefined;
+            resourceInputs["discoveredDeviceTimeout"] = state ? state.discoveredDeviceTimeout : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ecmpMaxPaths"] = state ? state.ecmpMaxPaths : undefined;
+            resourceInputs["emailPortalCheckDns"] = state ? state.emailPortalCheckDns : undefined;
+            resourceInputs["firewallSessionDirty"] = state ? state.firewallSessionDirty : undefined;
+            resourceInputs["fwSessionHairpin"] = state ? state.fwSessionHairpin : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["gateway6"] = state ? state.gateway6 : undefined;
+            resourceInputs["guiAdvancedPolicy"] = state ? state.guiAdvancedPolicy : undefined;
+            resourceInputs["guiAllowUnnamedPolicy"] = state ? state.guiAllowUnnamedPolicy : undefined;
+            resourceInputs["guiAntivirus"] = state ? state.guiAntivirus : undefined;
+            resourceInputs["guiApProfile"] = state ? state.guiApProfile : undefined;
+            resourceInputs["guiApplicationControl"] = state ? state.guiApplicationControl : undefined;
+            resourceInputs["guiDefaultPolicyColumns"] = state ? state.guiDefaultPolicyColumns : undefined;
+            resourceInputs["guiDhcpAdvanced"] = state ? state.guiDhcpAdvanced : undefined;
+            resourceInputs["guiDlp"] = state ? state.guiDlp : undefined;
+            resourceInputs["guiDnsDatabase"] = state ? state.guiDnsDatabase : undefined;
+            resourceInputs["guiDnsfilter"] = state ? state.guiDnsfilter : undefined;
+            resourceInputs["guiDomainIpReputation"] = state ? state.guiDomainIpReputation : undefined;
+            resourceInputs["guiDosPolicy"] = state ? state.guiDosPolicy : undefined;
+            resourceInputs["guiDynamicProfileDisplay"] = state ? state.guiDynamicProfileDisplay : undefined;
+            resourceInputs["guiDynamicRouting"] = state ? state.guiDynamicRouting : undefined;
+            resourceInputs["guiEmailCollection"] = state ? state.guiEmailCollection : undefined;
+            resourceInputs["guiEndpointControl"] = state ? state.guiEndpointControl : undefined;
+            resourceInputs["guiEndpointControlAdvanced"] = state ? state.guiEndpointControlAdvanced : undefined;
+            resourceInputs["guiExplicitProxy"] = state ? state.guiExplicitProxy : undefined;
+            resourceInputs["guiFileFilter"] = state ? state.guiFileFilter : undefined;
+            resourceInputs["guiFortiapSplitTunneling"] = state ? state.guiFortiapSplitTunneling : undefined;
+            resourceInputs["guiFortiextenderController"] = state ? state.guiFortiextenderController : undefined;
+            resourceInputs["guiIcap"] = state ? state.guiIcap : undefined;
+            resourceInputs["guiImplicitPolicy"] = state ? state.guiImplicitPolicy : undefined;
+            resourceInputs["guiIps"] = state ? state.guiIps : undefined;
+            resourceInputs["guiLoadBalance"] = state ? state.guiLoadBalance : undefined;
+            resourceInputs["guiLocalInPolicy"] = state ? state.guiLocalInPolicy : undefined;
+            resourceInputs["guiLocalReports"] = state ? state.guiLocalReports : undefined;
+            resourceInputs["guiMulticastPolicy"] = state ? state.guiMulticastPolicy : undefined;
+            resourceInputs["guiMultipleInterfacePolicy"] = state ? state.guiMultipleInterfacePolicy : undefined;
+            resourceInputs["guiMultipleUtmProfiles"] = state ? state.guiMultipleUtmProfiles : undefined;
+            resourceInputs["guiNat4664"] = state ? state.guiNat4664 : undefined;
+            resourceInputs["guiObjectColors"] = state ? state.guiObjectColors : undefined;
+            resourceInputs["guiPerPolicyDisclaimer"] = state ? state.guiPerPolicyDisclaimer : undefined;
+            resourceInputs["guiPolicyBasedIpsec"] = state ? state.guiPolicyBasedIpsec : undefined;
+            resourceInputs["guiPolicyDisclaimer"] = state ? state.guiPolicyDisclaimer : undefined;
+            resourceInputs["guiPolicyLearning"] = state ? state.guiPolicyLearning : undefined;
+            resourceInputs["guiReplacementMessageGroups"] = state ? state.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiSecurityProfileGroup"] = state ? state.guiSecurityProfileGroup : undefined;
+            resourceInputs["guiSpamfilter"] = state ? state.guiSpamfilter : undefined;
+            resourceInputs["guiSslvpnPersonalBookmarks"] = state ? state.guiSslvpnPersonalBookmarks : undefined;
+            resourceInputs["guiSslvpnRealms"] = state ? state.guiSslvpnRealms : undefined;
+            resourceInputs["guiSwitchController"] = state ? state.guiSwitchController : undefined;
+            resourceInputs["guiThreatWeight"] = state ? state.guiThreatWeight : undefined;
+            resourceInputs["guiTrafficShaping"] = state ? state.guiTrafficShaping : undefined;
+            resourceInputs["guiVideofilter"] = state ? state.guiVideofilter : undefined;
+            resourceInputs["guiVoipProfile"] = state ? state.guiVoipProfile : undefined;
+            resourceInputs["guiVpn"] = state ? state.guiVpn : undefined;
+            resourceInputs["guiWafProfile"] = state ? state.guiWafProfile : undefined;
+            resourceInputs["guiWanLoadBalancing"] = state ? state.guiWanLoadBalancing : undefined;
+            resourceInputs["guiWanoptCache"] = state ? state.guiWanoptCache : undefined;
+            resourceInputs["guiWebfilter"] = state ? state.guiWebfilter : undefined;
+            resourceInputs["guiWebfilterAdvanced"] = state ? state.guiWebfilterAdvanced : undefined;
+            resourceInputs["guiWirelessController"] = state ? state.guiWirelessController : undefined;
+            resourceInputs["guiZtna"] = state ? state.guiZtna : undefined;
+            resourceInputs["h323DirectModel"] = state ? state.h323DirectModel : undefined;
+            resourceInputs["httpExternalDest"] = state ? state.httpExternalDest : undefined;
+            resourceInputs["ikeDnFormat"] = state ? state.ikeDnFormat : undefined;
+            resourceInputs["ikeNattPort"] = state ? state.ikeNattPort : undefined;
+            resourceInputs["ikePolicyRoute"] = state ? state.ikePolicyRoute : undefined;
+            resourceInputs["ikePort"] = state ? state.ikePort : undefined;
+            resourceInputs["ikeQuickCrashDetect"] = state ? state.ikeQuickCrashDetect : undefined;
+            resourceInputs["ikeSessionResume"] = state ? state.ikeSessionResume : undefined;
+            resourceInputs["implicitAllowDns"] = state ? state.implicitAllowDns : undefined;
+            resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["linkDownAccess"] = state ? state.linkDownAccess : undefined;
+            resourceInputs["lldpReception"] = state ? state.lldpReception : undefined;
+            resourceInputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
+            resourceInputs["locationId"] = state ? state.locationId : undefined;
+            resourceInputs["macTtl"] = state ? state.macTtl : undefined;
+            resourceInputs["manageip"] = state ? state.manageip : undefined;
+            resourceInputs["manageip6"] = state ? state.manageip6 : undefined;
+            resourceInputs["multicastForward"] = state ? state.multicastForward : undefined;
+            resourceInputs["multicastSkipPolicy"] = state ? state.multicastSkipPolicy : undefined;
+            resourceInputs["multicastTtlNotchange"] = state ? state.multicastTtlNotchange : undefined;
+            resourceInputs["ngfwMode"] = state ? state.ngfwMode : undefined;
+            resourceInputs["opmode"] = state ? state.opmode : undefined;
+            resourceInputs["prpTrailerAction"] = state ? state.prpTrailerAction : undefined;
+            resourceInputs["sccpPort"] = state ? state.sccpPort : undefined;
+            resourceInputs["sctpSessionWithoutInit"] = state ? state.sctpSessionWithoutInit : undefined;
+            resourceInputs["sesDeniedTraffic"] = state ? state.sesDeniedTraffic : undefined;
+            resourceInputs["sipExpectation"] = state ? state.sipExpectation : undefined;
+            resourceInputs["sipHelper"] = state ? state.sipHelper : undefined;
+            resourceInputs["sipNatTrace"] = state ? state.sipNatTrace : undefined;
+            resourceInputs["sipSslPort"] = state ? state.sipSslPort : undefined;
+            resourceInputs["sipTcpPort"] = state ? state.sipTcpPort : undefined;
+            resourceInputs["sipUdpPort"] = state ? state.sipUdpPort : undefined;
+            resourceInputs["snatHairpinTraffic"] = state ? state.snatHairpinTraffic : undefined;
+            resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["strictSrcCheck"] = state ? state.strictSrcCheck : undefined;
+            resourceInputs["tcpSessionWithoutSyn"] = state ? state.tcpSessionWithoutSyn : undefined;
+            resourceInputs["utf8SpamTagging"] = state ? state.utf8SpamTagging : undefined;
+            resourceInputs["v4EcmpMode"] = state ? state.v4EcmpMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vpnStatsLog"] = state ? state.vpnStatsLog : undefined;
+            resourceInputs["vpnStatsPeriod"] = state ? state.vpnStatsPeriod : undefined;
+            resourceInputs["wccpCacheEngine"] = state ? state.wccpCacheEngine : undefined;
         } else {
             const args = argsOrState as SystemSettingsArgs | undefined;
-            inputs["allowLinkdownPath"] = args ? args.allowLinkdownPath : undefined;
-            inputs["allowSubnetOverlap"] = args ? args.allowSubnetOverlap : undefined;
-            inputs["asymroute"] = args ? args.asymroute : undefined;
-            inputs["asymroute6"] = args ? args.asymroute6 : undefined;
-            inputs["asymroute6Icmp"] = args ? args.asymroute6Icmp : undefined;
-            inputs["asymrouteIcmp"] = args ? args.asymrouteIcmp : undefined;
-            inputs["auxiliarySession"] = args ? args.auxiliarySession : undefined;
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["bfdDesiredMinTx"] = args ? args.bfdDesiredMinTx : undefined;
-            inputs["bfdDetectMult"] = args ? args.bfdDetectMult : undefined;
-            inputs["bfdDontEnforceSrcPort"] = args ? args.bfdDontEnforceSrcPort : undefined;
-            inputs["bfdRequiredMinRx"] = args ? args.bfdRequiredMinRx : undefined;
-            inputs["blockLandAttack"] = args ? args.blockLandAttack : undefined;
-            inputs["centralNat"] = args ? args.centralNat : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["complianceCheck"] = args ? args.complianceCheck : undefined;
-            inputs["consolidatedFirewallMode"] = args ? args.consolidatedFirewallMode : undefined;
-            inputs["defaultVoipAlgMode"] = args ? args.defaultVoipAlgMode : undefined;
-            inputs["denyTcpWithIcmp"] = args ? args.denyTcpWithIcmp : undefined;
-            inputs["device"] = args ? args.device : undefined;
-            inputs["dhcp6ServerIp"] = args ? args.dhcp6ServerIp : undefined;
-            inputs["dhcpProxy"] = args ? args.dhcpProxy : undefined;
-            inputs["dhcpProxyInterface"] = args ? args.dhcpProxyInterface : undefined;
-            inputs["dhcpProxyInterfaceSelectMethod"] = args ? args.dhcpProxyInterfaceSelectMethod : undefined;
-            inputs["dhcpServerIp"] = args ? args.dhcpServerIp : undefined;
-            inputs["discoveredDeviceTimeout"] = args ? args.discoveredDeviceTimeout : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ecmpMaxPaths"] = args ? args.ecmpMaxPaths : undefined;
-            inputs["emailPortalCheckDns"] = args ? args.emailPortalCheckDns : undefined;
-            inputs["firewallSessionDirty"] = args ? args.firewallSessionDirty : undefined;
-            inputs["fwSessionHairpin"] = args ? args.fwSessionHairpin : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["gateway6"] = args ? args.gateway6 : undefined;
-            inputs["guiAdvancedPolicy"] = args ? args.guiAdvancedPolicy : undefined;
-            inputs["guiAllowUnnamedPolicy"] = args ? args.guiAllowUnnamedPolicy : undefined;
-            inputs["guiAntivirus"] = args ? args.guiAntivirus : undefined;
-            inputs["guiApProfile"] = args ? args.guiApProfile : undefined;
-            inputs["guiApplicationControl"] = args ? args.guiApplicationControl : undefined;
-            inputs["guiDefaultPolicyColumns"] = args ? args.guiDefaultPolicyColumns : undefined;
-            inputs["guiDhcpAdvanced"] = args ? args.guiDhcpAdvanced : undefined;
-            inputs["guiDlp"] = args ? args.guiDlp : undefined;
-            inputs["guiDnsDatabase"] = args ? args.guiDnsDatabase : undefined;
-            inputs["guiDnsfilter"] = args ? args.guiDnsfilter : undefined;
-            inputs["guiDomainIpReputation"] = args ? args.guiDomainIpReputation : undefined;
-            inputs["guiDosPolicy"] = args ? args.guiDosPolicy : undefined;
-            inputs["guiDynamicProfileDisplay"] = args ? args.guiDynamicProfileDisplay : undefined;
-            inputs["guiDynamicRouting"] = args ? args.guiDynamicRouting : undefined;
-            inputs["guiEmailCollection"] = args ? args.guiEmailCollection : undefined;
-            inputs["guiEndpointControl"] = args ? args.guiEndpointControl : undefined;
-            inputs["guiEndpointControlAdvanced"] = args ? args.guiEndpointControlAdvanced : undefined;
-            inputs["guiExplicitProxy"] = args ? args.guiExplicitProxy : undefined;
-            inputs["guiFileFilter"] = args ? args.guiFileFilter : undefined;
-            inputs["guiFortiapSplitTunneling"] = args ? args.guiFortiapSplitTunneling : undefined;
-            inputs["guiFortiextenderController"] = args ? args.guiFortiextenderController : undefined;
-            inputs["guiIcap"] = args ? args.guiIcap : undefined;
-            inputs["guiImplicitPolicy"] = args ? args.guiImplicitPolicy : undefined;
-            inputs["guiIps"] = args ? args.guiIps : undefined;
-            inputs["guiLoadBalance"] = args ? args.guiLoadBalance : undefined;
-            inputs["guiLocalInPolicy"] = args ? args.guiLocalInPolicy : undefined;
-            inputs["guiLocalReports"] = args ? args.guiLocalReports : undefined;
-            inputs["guiMulticastPolicy"] = args ? args.guiMulticastPolicy : undefined;
-            inputs["guiMultipleInterfacePolicy"] = args ? args.guiMultipleInterfacePolicy : undefined;
-            inputs["guiMultipleUtmProfiles"] = args ? args.guiMultipleUtmProfiles : undefined;
-            inputs["guiNat4664"] = args ? args.guiNat4664 : undefined;
-            inputs["guiObjectColors"] = args ? args.guiObjectColors : undefined;
-            inputs["guiPerPolicyDisclaimer"] = args ? args.guiPerPolicyDisclaimer : undefined;
-            inputs["guiPolicyBasedIpsec"] = args ? args.guiPolicyBasedIpsec : undefined;
-            inputs["guiPolicyDisclaimer"] = args ? args.guiPolicyDisclaimer : undefined;
-            inputs["guiPolicyLearning"] = args ? args.guiPolicyLearning : undefined;
-            inputs["guiReplacementMessageGroups"] = args ? args.guiReplacementMessageGroups : undefined;
-            inputs["guiSecurityProfileGroup"] = args ? args.guiSecurityProfileGroup : undefined;
-            inputs["guiSpamfilter"] = args ? args.guiSpamfilter : undefined;
-            inputs["guiSslvpnPersonalBookmarks"] = args ? args.guiSslvpnPersonalBookmarks : undefined;
-            inputs["guiSslvpnRealms"] = args ? args.guiSslvpnRealms : undefined;
-            inputs["guiSwitchController"] = args ? args.guiSwitchController : undefined;
-            inputs["guiThreatWeight"] = args ? args.guiThreatWeight : undefined;
-            inputs["guiTrafficShaping"] = args ? args.guiTrafficShaping : undefined;
-            inputs["guiVoipProfile"] = args ? args.guiVoipProfile : undefined;
-            inputs["guiVpn"] = args ? args.guiVpn : undefined;
-            inputs["guiWafProfile"] = args ? args.guiWafProfile : undefined;
-            inputs["guiWanLoadBalancing"] = args ? args.guiWanLoadBalancing : undefined;
-            inputs["guiWanoptCache"] = args ? args.guiWanoptCache : undefined;
-            inputs["guiWebfilter"] = args ? args.guiWebfilter : undefined;
-            inputs["guiWebfilterAdvanced"] = args ? args.guiWebfilterAdvanced : undefined;
-            inputs["guiWirelessController"] = args ? args.guiWirelessController : undefined;
-            inputs["httpExternalDest"] = args ? args.httpExternalDest : undefined;
-            inputs["ikeDnFormat"] = args ? args.ikeDnFormat : undefined;
-            inputs["ikeNattPort"] = args ? args.ikeNattPort : undefined;
-            inputs["ikePort"] = args ? args.ikePort : undefined;
-            inputs["ikeQuickCrashDetect"] = args ? args.ikeQuickCrashDetect : undefined;
-            inputs["ikeSessionResume"] = args ? args.ikeSessionResume : undefined;
-            inputs["implicitAllowDns"] = args ? args.implicitAllowDns : undefined;
-            inputs["inspectionMode"] = args ? args.inspectionMode : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["linkDownAccess"] = args ? args.linkDownAccess : undefined;
-            inputs["lldpReception"] = args ? args.lldpReception : undefined;
-            inputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
-            inputs["macTtl"] = args ? args.macTtl : undefined;
-            inputs["manageip"] = args ? args.manageip : undefined;
-            inputs["manageip6"] = args ? args.manageip6 : undefined;
-            inputs["multicastForward"] = args ? args.multicastForward : undefined;
-            inputs["multicastSkipPolicy"] = args ? args.multicastSkipPolicy : undefined;
-            inputs["multicastTtlNotchange"] = args ? args.multicastTtlNotchange : undefined;
-            inputs["ngfwMode"] = args ? args.ngfwMode : undefined;
-            inputs["opmode"] = args ? args.opmode : undefined;
-            inputs["prpTrailerAction"] = args ? args.prpTrailerAction : undefined;
-            inputs["sccpPort"] = args ? args.sccpPort : undefined;
-            inputs["sctpSessionWithoutInit"] = args ? args.sctpSessionWithoutInit : undefined;
-            inputs["sesDeniedTraffic"] = args ? args.sesDeniedTraffic : undefined;
-            inputs["sipExpectation"] = args ? args.sipExpectation : undefined;
-            inputs["sipHelper"] = args ? args.sipHelper : undefined;
-            inputs["sipNatTrace"] = args ? args.sipNatTrace : undefined;
-            inputs["sipSslPort"] = args ? args.sipSslPort : undefined;
-            inputs["sipTcpPort"] = args ? args.sipTcpPort : undefined;
-            inputs["sipUdpPort"] = args ? args.sipUdpPort : undefined;
-            inputs["snatHairpinTraffic"] = args ? args.snatHairpinTraffic : undefined;
-            inputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["strictSrcCheck"] = args ? args.strictSrcCheck : undefined;
-            inputs["tcpSessionWithoutSyn"] = args ? args.tcpSessionWithoutSyn : undefined;
-            inputs["utf8SpamTagging"] = args ? args.utf8SpamTagging : undefined;
-            inputs["v4EcmpMode"] = args ? args.v4EcmpMode : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vpnStatsLog"] = args ? args.vpnStatsLog : undefined;
-            inputs["vpnStatsPeriod"] = args ? args.vpnStatsPeriod : undefined;
-            inputs["wccpCacheEngine"] = args ? args.wccpCacheEngine : undefined;
+            resourceInputs["allowLinkdownPath"] = args ? args.allowLinkdownPath : undefined;
+            resourceInputs["allowSubnetOverlap"] = args ? args.allowSubnetOverlap : undefined;
+            resourceInputs["applicationBandwidthTracking"] = args ? args.applicationBandwidthTracking : undefined;
+            resourceInputs["asymroute"] = args ? args.asymroute : undefined;
+            resourceInputs["asymroute6"] = args ? args.asymroute6 : undefined;
+            resourceInputs["asymroute6Icmp"] = args ? args.asymroute6Icmp : undefined;
+            resourceInputs["asymrouteIcmp"] = args ? args.asymrouteIcmp : undefined;
+            resourceInputs["auxiliarySession"] = args ? args.auxiliarySession : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["bfdDesiredMinTx"] = args ? args.bfdDesiredMinTx : undefined;
+            resourceInputs["bfdDetectMult"] = args ? args.bfdDetectMult : undefined;
+            resourceInputs["bfdDontEnforceSrcPort"] = args ? args.bfdDontEnforceSrcPort : undefined;
+            resourceInputs["bfdRequiredMinRx"] = args ? args.bfdRequiredMinRx : undefined;
+            resourceInputs["blockLandAttack"] = args ? args.blockLandAttack : undefined;
+            resourceInputs["centralNat"] = args ? args.centralNat : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["complianceCheck"] = args ? args.complianceCheck : undefined;
+            resourceInputs["consolidatedFirewallMode"] = args ? args.consolidatedFirewallMode : undefined;
+            resourceInputs["defaultVoipAlgMode"] = args ? args.defaultVoipAlgMode : undefined;
+            resourceInputs["denyTcpWithIcmp"] = args ? args.denyTcpWithIcmp : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["dhcp6ServerIp"] = args ? args.dhcp6ServerIp : undefined;
+            resourceInputs["dhcpProxy"] = args ? args.dhcpProxy : undefined;
+            resourceInputs["dhcpProxyInterface"] = args ? args.dhcpProxyInterface : undefined;
+            resourceInputs["dhcpProxyInterfaceSelectMethod"] = args ? args.dhcpProxyInterfaceSelectMethod : undefined;
+            resourceInputs["dhcpServerIp"] = args ? args.dhcpServerIp : undefined;
+            resourceInputs["discoveredDeviceTimeout"] = args ? args.discoveredDeviceTimeout : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ecmpMaxPaths"] = args ? args.ecmpMaxPaths : undefined;
+            resourceInputs["emailPortalCheckDns"] = args ? args.emailPortalCheckDns : undefined;
+            resourceInputs["firewallSessionDirty"] = args ? args.firewallSessionDirty : undefined;
+            resourceInputs["fwSessionHairpin"] = args ? args.fwSessionHairpin : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["gateway6"] = args ? args.gateway6 : undefined;
+            resourceInputs["guiAdvancedPolicy"] = args ? args.guiAdvancedPolicy : undefined;
+            resourceInputs["guiAllowUnnamedPolicy"] = args ? args.guiAllowUnnamedPolicy : undefined;
+            resourceInputs["guiAntivirus"] = args ? args.guiAntivirus : undefined;
+            resourceInputs["guiApProfile"] = args ? args.guiApProfile : undefined;
+            resourceInputs["guiApplicationControl"] = args ? args.guiApplicationControl : undefined;
+            resourceInputs["guiDefaultPolicyColumns"] = args ? args.guiDefaultPolicyColumns : undefined;
+            resourceInputs["guiDhcpAdvanced"] = args ? args.guiDhcpAdvanced : undefined;
+            resourceInputs["guiDlp"] = args ? args.guiDlp : undefined;
+            resourceInputs["guiDnsDatabase"] = args ? args.guiDnsDatabase : undefined;
+            resourceInputs["guiDnsfilter"] = args ? args.guiDnsfilter : undefined;
+            resourceInputs["guiDomainIpReputation"] = args ? args.guiDomainIpReputation : undefined;
+            resourceInputs["guiDosPolicy"] = args ? args.guiDosPolicy : undefined;
+            resourceInputs["guiDynamicProfileDisplay"] = args ? args.guiDynamicProfileDisplay : undefined;
+            resourceInputs["guiDynamicRouting"] = args ? args.guiDynamicRouting : undefined;
+            resourceInputs["guiEmailCollection"] = args ? args.guiEmailCollection : undefined;
+            resourceInputs["guiEndpointControl"] = args ? args.guiEndpointControl : undefined;
+            resourceInputs["guiEndpointControlAdvanced"] = args ? args.guiEndpointControlAdvanced : undefined;
+            resourceInputs["guiExplicitProxy"] = args ? args.guiExplicitProxy : undefined;
+            resourceInputs["guiFileFilter"] = args ? args.guiFileFilter : undefined;
+            resourceInputs["guiFortiapSplitTunneling"] = args ? args.guiFortiapSplitTunneling : undefined;
+            resourceInputs["guiFortiextenderController"] = args ? args.guiFortiextenderController : undefined;
+            resourceInputs["guiIcap"] = args ? args.guiIcap : undefined;
+            resourceInputs["guiImplicitPolicy"] = args ? args.guiImplicitPolicy : undefined;
+            resourceInputs["guiIps"] = args ? args.guiIps : undefined;
+            resourceInputs["guiLoadBalance"] = args ? args.guiLoadBalance : undefined;
+            resourceInputs["guiLocalInPolicy"] = args ? args.guiLocalInPolicy : undefined;
+            resourceInputs["guiLocalReports"] = args ? args.guiLocalReports : undefined;
+            resourceInputs["guiMulticastPolicy"] = args ? args.guiMulticastPolicy : undefined;
+            resourceInputs["guiMultipleInterfacePolicy"] = args ? args.guiMultipleInterfacePolicy : undefined;
+            resourceInputs["guiMultipleUtmProfiles"] = args ? args.guiMultipleUtmProfiles : undefined;
+            resourceInputs["guiNat4664"] = args ? args.guiNat4664 : undefined;
+            resourceInputs["guiObjectColors"] = args ? args.guiObjectColors : undefined;
+            resourceInputs["guiPerPolicyDisclaimer"] = args ? args.guiPerPolicyDisclaimer : undefined;
+            resourceInputs["guiPolicyBasedIpsec"] = args ? args.guiPolicyBasedIpsec : undefined;
+            resourceInputs["guiPolicyDisclaimer"] = args ? args.guiPolicyDisclaimer : undefined;
+            resourceInputs["guiPolicyLearning"] = args ? args.guiPolicyLearning : undefined;
+            resourceInputs["guiReplacementMessageGroups"] = args ? args.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiSecurityProfileGroup"] = args ? args.guiSecurityProfileGroup : undefined;
+            resourceInputs["guiSpamfilter"] = args ? args.guiSpamfilter : undefined;
+            resourceInputs["guiSslvpnPersonalBookmarks"] = args ? args.guiSslvpnPersonalBookmarks : undefined;
+            resourceInputs["guiSslvpnRealms"] = args ? args.guiSslvpnRealms : undefined;
+            resourceInputs["guiSwitchController"] = args ? args.guiSwitchController : undefined;
+            resourceInputs["guiThreatWeight"] = args ? args.guiThreatWeight : undefined;
+            resourceInputs["guiTrafficShaping"] = args ? args.guiTrafficShaping : undefined;
+            resourceInputs["guiVideofilter"] = args ? args.guiVideofilter : undefined;
+            resourceInputs["guiVoipProfile"] = args ? args.guiVoipProfile : undefined;
+            resourceInputs["guiVpn"] = args ? args.guiVpn : undefined;
+            resourceInputs["guiWafProfile"] = args ? args.guiWafProfile : undefined;
+            resourceInputs["guiWanLoadBalancing"] = args ? args.guiWanLoadBalancing : undefined;
+            resourceInputs["guiWanoptCache"] = args ? args.guiWanoptCache : undefined;
+            resourceInputs["guiWebfilter"] = args ? args.guiWebfilter : undefined;
+            resourceInputs["guiWebfilterAdvanced"] = args ? args.guiWebfilterAdvanced : undefined;
+            resourceInputs["guiWirelessController"] = args ? args.guiWirelessController : undefined;
+            resourceInputs["guiZtna"] = args ? args.guiZtna : undefined;
+            resourceInputs["h323DirectModel"] = args ? args.h323DirectModel : undefined;
+            resourceInputs["httpExternalDest"] = args ? args.httpExternalDest : undefined;
+            resourceInputs["ikeDnFormat"] = args ? args.ikeDnFormat : undefined;
+            resourceInputs["ikeNattPort"] = args ? args.ikeNattPort : undefined;
+            resourceInputs["ikePolicyRoute"] = args ? args.ikePolicyRoute : undefined;
+            resourceInputs["ikePort"] = args ? args.ikePort : undefined;
+            resourceInputs["ikeQuickCrashDetect"] = args ? args.ikeQuickCrashDetect : undefined;
+            resourceInputs["ikeSessionResume"] = args ? args.ikeSessionResume : undefined;
+            resourceInputs["implicitAllowDns"] = args ? args.implicitAllowDns : undefined;
+            resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["linkDownAccess"] = args ? args.linkDownAccess : undefined;
+            resourceInputs["lldpReception"] = args ? args.lldpReception : undefined;
+            resourceInputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
+            resourceInputs["locationId"] = args ? args.locationId : undefined;
+            resourceInputs["macTtl"] = args ? args.macTtl : undefined;
+            resourceInputs["manageip"] = args ? args.manageip : undefined;
+            resourceInputs["manageip6"] = args ? args.manageip6 : undefined;
+            resourceInputs["multicastForward"] = args ? args.multicastForward : undefined;
+            resourceInputs["multicastSkipPolicy"] = args ? args.multicastSkipPolicy : undefined;
+            resourceInputs["multicastTtlNotchange"] = args ? args.multicastTtlNotchange : undefined;
+            resourceInputs["ngfwMode"] = args ? args.ngfwMode : undefined;
+            resourceInputs["opmode"] = args ? args.opmode : undefined;
+            resourceInputs["prpTrailerAction"] = args ? args.prpTrailerAction : undefined;
+            resourceInputs["sccpPort"] = args ? args.sccpPort : undefined;
+            resourceInputs["sctpSessionWithoutInit"] = args ? args.sctpSessionWithoutInit : undefined;
+            resourceInputs["sesDeniedTraffic"] = args ? args.sesDeniedTraffic : undefined;
+            resourceInputs["sipExpectation"] = args ? args.sipExpectation : undefined;
+            resourceInputs["sipHelper"] = args ? args.sipHelper : undefined;
+            resourceInputs["sipNatTrace"] = args ? args.sipNatTrace : undefined;
+            resourceInputs["sipSslPort"] = args ? args.sipSslPort : undefined;
+            resourceInputs["sipTcpPort"] = args ? args.sipTcpPort : undefined;
+            resourceInputs["sipUdpPort"] = args ? args.sipUdpPort : undefined;
+            resourceInputs["snatHairpinTraffic"] = args ? args.snatHairpinTraffic : undefined;
+            resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["strictSrcCheck"] = args ? args.strictSrcCheck : undefined;
+            resourceInputs["tcpSessionWithoutSyn"] = args ? args.tcpSessionWithoutSyn : undefined;
+            resourceInputs["utf8SpamTagging"] = args ? args.utf8SpamTagging : undefined;
+            resourceInputs["v4EcmpMode"] = args ? args.v4EcmpMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vpnStatsLog"] = args ? args.vpnStatsLog : undefined;
+            resourceInputs["vpnStatsPeriod"] = args ? args.vpnStatsPeriod : undefined;
+            resourceInputs["wccpCacheEngine"] = args ? args.wccpCacheEngine : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -859,6 +893,10 @@ export interface SystemSettingsState {
      * Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
      */
     allowSubnetOverlap?: pulumi.Input<string>;
+    /**
+     * Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+     */
+    applicationBandwidthTracking?: pulumi.Input<string>;
     /**
      * Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
      */
@@ -1160,6 +1198,10 @@ export interface SystemSettingsState {
      */
     guiTrafficShaping?: pulumi.Input<string>;
     /**
+     * Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiVideofilter?: pulumi.Input<string>;
+    /**
      * Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
      */
     guiVoipProfile?: pulumi.Input<string>;
@@ -1192,6 +1234,14 @@ export interface SystemSettingsState {
      */
     guiWirelessController?: pulumi.Input<string>;
     /**
+     * Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiZtna?: pulumi.Input<string>;
+    /**
+     * Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+     */
+    h323DirectModel?: pulumi.Input<string>;
+    /**
      * Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
      */
     httpExternalDest?: pulumi.Input<string>;
@@ -1203,6 +1253,10 @@ export interface SystemSettingsState {
      * UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
      */
     ikeNattPort?: pulumi.Input<number>;
+    /**
+     * Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+     */
+    ikePolicyRoute?: pulumi.Input<string>;
     /**
      * UDP port for IKE/IPsec traffic (default 500).
      */
@@ -1243,6 +1297,10 @@ export interface SystemSettingsState {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
      */
     lldpTransmission?: pulumi.Input<string>;
+    /**
+     * Local location ID in the form of an IPv4 address.
+     */
+    locationId?: pulumi.Input<string>;
     /**
      * Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
      */
@@ -1374,6 +1432,10 @@ export interface SystemSettingsArgs {
      */
     allowSubnetOverlap?: pulumi.Input<string>;
     /**
+     * Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+     */
+    applicationBandwidthTracking?: pulumi.Input<string>;
+    /**
      * Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
      */
     asymroute?: pulumi.Input<string>;
@@ -1674,6 +1736,10 @@ export interface SystemSettingsArgs {
      */
     guiTrafficShaping?: pulumi.Input<string>;
     /**
+     * Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiVideofilter?: pulumi.Input<string>;
+    /**
      * Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
      */
     guiVoipProfile?: pulumi.Input<string>;
@@ -1706,6 +1772,14 @@ export interface SystemSettingsArgs {
      */
     guiWirelessController?: pulumi.Input<string>;
     /**
+     * Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiZtna?: pulumi.Input<string>;
+    /**
+     * Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+     */
+    h323DirectModel?: pulumi.Input<string>;
+    /**
      * Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
      */
     httpExternalDest?: pulumi.Input<string>;
@@ -1717,6 +1791,10 @@ export interface SystemSettingsArgs {
      * UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
      */
     ikeNattPort?: pulumi.Input<number>;
+    /**
+     * Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+     */
+    ikePolicyRoute?: pulumi.Input<string>;
     /**
      * UDP port for IKE/IPsec traffic (default 500).
      */
@@ -1757,6 +1835,10 @@ export interface SystemSettingsArgs {
      * Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
      */
     lldpTransmission?: pulumi.Input<string>;
+    /**
+     * Local location ID in the form of an IPv4 address.
+     */
+    locationId?: pulumi.Input<string>;
     /**
      * Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
      */

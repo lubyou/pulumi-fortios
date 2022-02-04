@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Define known domain controller servers. Applies to FortiOS Version `>= 6.4.0`.
+ * Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
  *
  * ## Import
  *
@@ -91,35 +91,33 @@ export class CredentialStoreDomainController extends pulumi.CustomResource {
      */
     constructor(name: string, args?: CredentialStoreDomainControllerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CredentialStoreDomainControllerArgs | CredentialStoreDomainControllerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CredentialStoreDomainControllerState | undefined;
-            inputs["domainName"] = state ? state.domainName : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["serverName"] = state ? state.serverName : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["domainName"] = state ? state.domainName : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["serverName"] = state ? state.serverName : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as CredentialStoreDomainControllerArgs | undefined;
-            inputs["domainName"] = args ? args.domainName : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["serverName"] = args ? args.serverName : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["domainName"] = args ? args.domainName : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["serverName"] = args ? args.serverName : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CredentialStoreDomainController.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CredentialStoreDomainController.__pulumiType, name, resourceInputs, opts);
     }
 }
 

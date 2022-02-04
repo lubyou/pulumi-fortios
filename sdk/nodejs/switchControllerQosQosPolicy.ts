@@ -79,32 +79,30 @@ export class SwitchControllerQosQosPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: SwitchControllerQosQosPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerQosQosPolicyArgs | SwitchControllerQosQosPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerQosQosPolicyState | undefined;
-            inputs["defaultCos"] = state ? state.defaultCos : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["queuePolicy"] = state ? state.queuePolicy : undefined;
-            inputs["trustDot1pMap"] = state ? state.trustDot1pMap : undefined;
-            inputs["trustIpDscpMap"] = state ? state.trustIpDscpMap : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["defaultCos"] = state ? state.defaultCos : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["queuePolicy"] = state ? state.queuePolicy : undefined;
+            resourceInputs["trustDot1pMap"] = state ? state.trustDot1pMap : undefined;
+            resourceInputs["trustIpDscpMap"] = state ? state.trustIpDscpMap : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerQosQosPolicyArgs | undefined;
             if ((!args || args.defaultCos === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'defaultCos'");
             }
-            inputs["defaultCos"] = args ? args.defaultCos : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["queuePolicy"] = args ? args.queuePolicy : undefined;
-            inputs["trustDot1pMap"] = args ? args.trustDot1pMap : undefined;
-            inputs["trustIpDscpMap"] = args ? args.trustIpDscpMap : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["defaultCos"] = args ? args.defaultCos : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["queuePolicy"] = args ? args.queuePolicy : undefined;
+            resourceInputs["trustDot1pMap"] = args ? args.trustDot1pMap : undefined;
+            resourceInputs["trustIpDscpMap"] = args ? args.trustIpDscpMap : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerQosQosPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerQosQosPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

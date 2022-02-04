@@ -75,6 +75,8 @@ type RouterbgpNeighbor struct {
 	CapabilityOrf6 pulumi.StringOutput `pulumi:"capabilityOrf6"`
 	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
 	CapabilityRouteRefresh pulumi.StringOutput `pulumi:"capabilityRouteRefresh"`
+	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+	ConditionalAdvertise6s RouterbgpNeighborConditionalAdvertise6ArrayOutput `pulumi:"conditionalAdvertise6s"`
 	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
 	ConditionalAdvertises RouterbgpNeighborConditionalAdvertiseArrayOutput `pulumi:"conditionalAdvertises"`
 	// Interval (sec) for connect timer.
@@ -225,6 +227,7 @@ func NewRouterbgpNeighbor(ctx *pulumi.Context,
 	if args.Ip == nil {
 		return nil, errors.New("invalid value for required argument 'Ip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterbgpNeighbor
 	err := ctx.RegisterResource("fortios:index/routerbgpNeighbor:RouterbgpNeighbor", name, args, &resource, opts...)
 	if err != nil {
@@ -295,6 +298,8 @@ type routerbgpNeighborState struct {
 	CapabilityOrf6 *string `pulumi:"capabilityOrf6"`
 	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
 	CapabilityRouteRefresh *string `pulumi:"capabilityRouteRefresh"`
+	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+	ConditionalAdvertise6s []RouterbgpNeighborConditionalAdvertise6 `pulumi:"conditionalAdvertise6s"`
 	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
 	ConditionalAdvertises []RouterbgpNeighborConditionalAdvertise `pulumi:"conditionalAdvertises"`
 	// Interval (sec) for connect timer.
@@ -484,6 +489,8 @@ type RouterbgpNeighborState struct {
 	CapabilityOrf6 pulumi.StringPtrInput
 	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
 	CapabilityRouteRefresh pulumi.StringPtrInput
+	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+	ConditionalAdvertise6s RouterbgpNeighborConditionalAdvertise6ArrayInput
 	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
 	ConditionalAdvertises RouterbgpNeighborConditionalAdvertiseArrayInput
 	// Interval (sec) for connect timer.
@@ -677,6 +684,8 @@ type routerbgpNeighborArgs struct {
 	CapabilityOrf6 *string `pulumi:"capabilityOrf6"`
 	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
 	CapabilityRouteRefresh *string `pulumi:"capabilityRouteRefresh"`
+	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+	ConditionalAdvertise6s []RouterbgpNeighborConditionalAdvertise6 `pulumi:"conditionalAdvertise6s"`
 	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
 	ConditionalAdvertises []RouterbgpNeighborConditionalAdvertise `pulumi:"conditionalAdvertises"`
 	// Interval (sec) for connect timer.
@@ -867,6 +876,8 @@ type RouterbgpNeighborArgs struct {
 	CapabilityOrf6 pulumi.StringPtrInput
 	// Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
 	CapabilityRouteRefresh pulumi.StringPtrInput
+	// IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+	ConditionalAdvertise6s RouterbgpNeighborConditionalAdvertise6ArrayInput
 	// Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
 	ConditionalAdvertises RouterbgpNeighborConditionalAdvertiseArrayInput
 	// Interval (sec) for connect timer.
@@ -1019,7 +1030,7 @@ type RouterbgpNeighborInput interface {
 }
 
 func (*RouterbgpNeighbor) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterbgpNeighbor)(nil))
+	return reflect.TypeOf((**RouterbgpNeighbor)(nil)).Elem()
 }
 
 func (i *RouterbgpNeighbor) ToRouterbgpNeighborOutput() RouterbgpNeighborOutput {
@@ -1028,35 +1039,6 @@ func (i *RouterbgpNeighbor) ToRouterbgpNeighborOutput() RouterbgpNeighborOutput 
 
 func (i *RouterbgpNeighbor) ToRouterbgpNeighborOutputWithContext(ctx context.Context) RouterbgpNeighborOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborOutput)
-}
-
-func (i *RouterbgpNeighbor) ToRouterbgpNeighborPtrOutput() RouterbgpNeighborPtrOutput {
-	return i.ToRouterbgpNeighborPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterbgpNeighbor) ToRouterbgpNeighborPtrOutputWithContext(ctx context.Context) RouterbgpNeighborPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborPtrOutput)
-}
-
-type RouterbgpNeighborPtrInput interface {
-	pulumi.Input
-
-	ToRouterbgpNeighborPtrOutput() RouterbgpNeighborPtrOutput
-	ToRouterbgpNeighborPtrOutputWithContext(ctx context.Context) RouterbgpNeighborPtrOutput
-}
-
-type routerbgpNeighborPtrType RouterbgpNeighborArgs
-
-func (*routerbgpNeighborPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterbgpNeighbor)(nil))
-}
-
-func (i *routerbgpNeighborPtrType) ToRouterbgpNeighborPtrOutput() RouterbgpNeighborPtrOutput {
-	return i.ToRouterbgpNeighborPtrOutputWithContext(context.Background())
-}
-
-func (i *routerbgpNeighborPtrType) ToRouterbgpNeighborPtrOutputWithContext(ctx context.Context) RouterbgpNeighborPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborPtrOutput)
 }
 
 // RouterbgpNeighborArrayInput is an input type that accepts RouterbgpNeighborArray and RouterbgpNeighborArrayOutput values.
@@ -1073,7 +1055,7 @@ type RouterbgpNeighborArrayInput interface {
 type RouterbgpNeighborArray []RouterbgpNeighborInput
 
 func (RouterbgpNeighborArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterbgpNeighbor)(nil))
+	return reflect.TypeOf((*[]*RouterbgpNeighbor)(nil)).Elem()
 }
 
 func (i RouterbgpNeighborArray) ToRouterbgpNeighborArrayOutput() RouterbgpNeighborArrayOutput {
@@ -1098,7 +1080,7 @@ type RouterbgpNeighborMapInput interface {
 type RouterbgpNeighborMap map[string]RouterbgpNeighborInput
 
 func (RouterbgpNeighborMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterbgpNeighbor)(nil))
+	return reflect.TypeOf((*map[string]*RouterbgpNeighbor)(nil)).Elem()
 }
 
 func (i RouterbgpNeighborMap) ToRouterbgpNeighborMapOutput() RouterbgpNeighborMapOutput {
@@ -1109,12 +1091,10 @@ func (i RouterbgpNeighborMap) ToRouterbgpNeighborMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNeighborMapOutput)
 }
 
-type RouterbgpNeighborOutput struct {
-	*pulumi.OutputState
-}
+type RouterbgpNeighborOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNeighborOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterbgpNeighbor)(nil))
+	return reflect.TypeOf((**RouterbgpNeighbor)(nil)).Elem()
 }
 
 func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutput() RouterbgpNeighborOutput {
@@ -1125,36 +1105,10 @@ func (o RouterbgpNeighborOutput) ToRouterbgpNeighborOutputWithContext(ctx contex
 	return o
 }
 
-func (o RouterbgpNeighborOutput) ToRouterbgpNeighborPtrOutput() RouterbgpNeighborPtrOutput {
-	return o.ToRouterbgpNeighborPtrOutputWithContext(context.Background())
-}
-
-func (o RouterbgpNeighborOutput) ToRouterbgpNeighborPtrOutputWithContext(ctx context.Context) RouterbgpNeighborPtrOutput {
-	return o.ApplyT(func(v RouterbgpNeighbor) *RouterbgpNeighbor {
-		return &v
-	}).(RouterbgpNeighborPtrOutput)
-}
-
-type RouterbgpNeighborPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterbgpNeighborPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterbgpNeighbor)(nil))
-}
-
-func (o RouterbgpNeighborPtrOutput) ToRouterbgpNeighborPtrOutput() RouterbgpNeighborPtrOutput {
-	return o
-}
-
-func (o RouterbgpNeighborPtrOutput) ToRouterbgpNeighborPtrOutputWithContext(ctx context.Context) RouterbgpNeighborPtrOutput {
-	return o
-}
-
 type RouterbgpNeighborArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNeighborArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterbgpNeighbor)(nil))
+	return reflect.TypeOf((*[]*RouterbgpNeighbor)(nil)).Elem()
 }
 
 func (o RouterbgpNeighborArrayOutput) ToRouterbgpNeighborArrayOutput() RouterbgpNeighborArrayOutput {
@@ -1166,15 +1120,15 @@ func (o RouterbgpNeighborArrayOutput) ToRouterbgpNeighborArrayOutputWithContext(
 }
 
 func (o RouterbgpNeighborArrayOutput) Index(i pulumi.IntInput) RouterbgpNeighborOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterbgpNeighbor {
-		return vs[0].([]RouterbgpNeighbor)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterbgpNeighbor {
+		return vs[0].([]*RouterbgpNeighbor)[vs[1].(int)]
 	}).(RouterbgpNeighborOutput)
 }
 
 type RouterbgpNeighborMapOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNeighborMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterbgpNeighbor)(nil))
+	return reflect.TypeOf((*map[string]*RouterbgpNeighbor)(nil)).Elem()
 }
 
 func (o RouterbgpNeighborMapOutput) ToRouterbgpNeighborMapOutput() RouterbgpNeighborMapOutput {
@@ -1186,14 +1140,16 @@ func (o RouterbgpNeighborMapOutput) ToRouterbgpNeighborMapOutputWithContext(ctx 
 }
 
 func (o RouterbgpNeighborMapOutput) MapIndex(k pulumi.StringInput) RouterbgpNeighborOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterbgpNeighbor {
-		return vs[0].(map[string]RouterbgpNeighbor)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterbgpNeighbor {
+		return vs[0].(map[string]*RouterbgpNeighbor)[vs[1].(string)]
 	}).(RouterbgpNeighborOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterbgpNeighborInput)(nil)).Elem(), &RouterbgpNeighbor{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterbgpNeighborArrayInput)(nil)).Elem(), RouterbgpNeighborArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterbgpNeighborMapInput)(nil)).Elem(), RouterbgpNeighborMap{})
 	pulumi.RegisterOutputType(RouterbgpNeighborOutput{})
-	pulumi.RegisterOutputType(RouterbgpNeighborPtrOutput{})
 	pulumi.RegisterOutputType(RouterbgpNeighborArrayOutput{})
 	pulumi.RegisterOutputType(RouterbgpNeighborMapOutput{})
 }

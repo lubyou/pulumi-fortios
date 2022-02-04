@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system sittunnel
 func LookupSystemSitTunnel(ctx *pulumi.Context, args *LookupSystemSitTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemSitTunnelResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSitTunnelResult
 	err := ctx.Invoke("fortios:index/getSystemSitTunnel:GetSystemSitTunnel", args, &rv, opts...)
 	if err != nil {
@@ -27,6 +31,8 @@ type LookupSystemSitTunnelArgs struct {
 
 // A collection of values returned by GetSystemSitTunnel.
 type LookupSystemSitTunnelResult struct {
+	// Enable/disable tunnel ASIC offloading.
+	AutoAsicOffload string `pulumi:"autoAsicOffload"`
 	// Destination IP address of the tunnel.
 	Destination string `pulumi:"destination"`
 	// The provider-assigned unique ID for this managed resource.
@@ -38,6 +44,92 @@ type LookupSystemSitTunnelResult struct {
 	// Tunnel name.
 	Name string `pulumi:"name"`
 	// Source IP address of the tunnel.
-	Source    string  `pulumi:"source"`
+	Source string `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway.
+	UseSdwan  string  `pulumi:"useSdwan"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemSitTunnelOutput(ctx *pulumi.Context, args LookupSystemSitTunnelOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSitTunnelResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemSitTunnelResult, error) {
+			args := v.(LookupSystemSitTunnelArgs)
+			r, err := LookupSystemSitTunnel(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemSitTunnelResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSitTunnel.
+type LookupSystemSitTunnelOutputArgs struct {
+	// Specify the name of the desired system sittunnel.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemSitTunnelOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSitTunnelArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSitTunnel.
+type LookupSystemSitTunnelResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemSitTunnelResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSitTunnelResult)(nil)).Elem()
+}
+
+func (o LookupSystemSitTunnelResultOutput) ToLookupSystemSitTunnelResultOutput() LookupSystemSitTunnelResultOutput {
+	return o
+}
+
+func (o LookupSystemSitTunnelResultOutput) ToLookupSystemSitTunnelResultOutputWithContext(ctx context.Context) LookupSystemSitTunnelResultOutput {
+	return o
+}
+
+// Enable/disable tunnel ASIC offloading.
+func (o LookupSystemSitTunnelResultOutput) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+// Destination IP address of the tunnel.
+func (o LookupSystemSitTunnelResultOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemSitTunnelResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Interface name.
+func (o LookupSystemSitTunnelResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// IPv6 address of the tunnel.
+func (o LookupSystemSitTunnelResultOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+// Tunnel name.
+func (o LookupSystemSitTunnelResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Source IP address of the tunnel.
+func (o LookupSystemSitTunnelResultOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of SD-WAN to reach remote gateway.
+func (o LookupSystemSitTunnelResultOutput) UseSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) string { return v.UseSdwan }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSitTunnelResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemSitTunnelResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemSitTunnelResultOutput{})
 }

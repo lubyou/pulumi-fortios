@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallServiceCustomResult',
     'AwaitableGetFirewallServiceCustomResult',
     'get_firewall_service_custom',
+    'get_firewall_service_custom_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetFirewallServiceCustomResult:
     """
     A collection of values returned by GetFirewallServiceCustom.
     """
-    def __init__(__self__, app_categories=None, app_service_type=None, applications=None, category=None, check_reset_range=None, color=None, comment=None, fqdn=None, helper=None, icmpcode=None, icmptype=None, id=None, iprange=None, name=None, protocol=None, protocol_number=None, proxy=None, sctp_portrange=None, session_ttl=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_portrange=None, tcp_timewait_timer=None, udp_idle_timer=None, udp_portrange=None, vdomparam=None, visibility=None):
+    def __init__(__self__, app_categories=None, app_service_type=None, applications=None, category=None, check_reset_range=None, color=None, comment=None, fabric_object=None, fqdn=None, helper=None, icmpcode=None, icmptype=None, id=None, iprange=None, name=None, protocol=None, protocol_number=None, proxy=None, sctp_portrange=None, session_ttl=None, tcp_halfclose_timer=None, tcp_halfopen_timer=None, tcp_portrange=None, tcp_rst_timer=None, tcp_timewait_timer=None, udp_idle_timer=None, udp_portrange=None, vdomparam=None, visibility=None):
         if app_categories and not isinstance(app_categories, list):
             raise TypeError("Expected argument 'app_categories' to be a list")
         pulumi.set(__self__, "app_categories", app_categories)
@@ -42,6 +43,9 @@ class GetFirewallServiceCustomResult:
         if comment and not isinstance(comment, str):
             raise TypeError("Expected argument 'comment' to be a str")
         pulumi.set(__self__, "comment", comment)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn and not isinstance(fqdn, str):
             raise TypeError("Expected argument 'fqdn' to be a str")
         pulumi.set(__self__, "fqdn", fqdn)
@@ -87,6 +91,9 @@ class GetFirewallServiceCustomResult:
         if tcp_portrange and not isinstance(tcp_portrange, str):
             raise TypeError("Expected argument 'tcp_portrange' to be a str")
         pulumi.set(__self__, "tcp_portrange", tcp_portrange)
+        if tcp_rst_timer and not isinstance(tcp_rst_timer, int):
+            raise TypeError("Expected argument 'tcp_rst_timer' to be a int")
+        pulumi.set(__self__, "tcp_rst_timer", tcp_rst_timer)
         if tcp_timewait_timer and not isinstance(tcp_timewait_timer, int):
             raise TypeError("Expected argument 'tcp_timewait_timer' to be a int")
         pulumi.set(__self__, "tcp_timewait_timer", tcp_timewait_timer)
@@ -158,6 +165,14 @@ class GetFirewallServiceCustomResult:
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -280,6 +295,14 @@ class GetFirewallServiceCustomResult:
         return pulumi.get(self, "tcp_portrange")
 
     @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> int:
+        """
+        Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
+
+    @property
     @pulumi.getter(name="tcpTimewaitTimer")
     def tcp_timewait_timer(self) -> int:
         """
@@ -330,6 +353,7 @@ class AwaitableGetFirewallServiceCustomResult(GetFirewallServiceCustomResult):
             check_reset_range=self.check_reset_range,
             color=self.color,
             comment=self.comment,
+            fabric_object=self.fabric_object,
             fqdn=self.fqdn,
             helper=self.helper,
             icmpcode=self.icmpcode,
@@ -345,6 +369,7 @@ class AwaitableGetFirewallServiceCustomResult(GetFirewallServiceCustomResult):
             tcp_halfclose_timer=self.tcp_halfclose_timer,
             tcp_halfopen_timer=self.tcp_halfopen_timer,
             tcp_portrange=self.tcp_portrange,
+            tcp_rst_timer=self.tcp_rst_timer,
             tcp_timewait_timer=self.tcp_timewait_timer,
             udp_idle_timer=self.udp_idle_timer,
             udp_portrange=self.udp_portrange,
@@ -369,6 +394,8 @@ def get_firewall_service_custom(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallServiceCustom:GetFirewallServiceCustom', __args__, opts=opts, typ=GetFirewallServiceCustomResult).value
 
     return AwaitableGetFirewallServiceCustomResult(
@@ -379,6 +406,7 @@ def get_firewall_service_custom(name: Optional[str] = None,
         check_reset_range=__ret__.check_reset_range,
         color=__ret__.color,
         comment=__ret__.comment,
+        fabric_object=__ret__.fabric_object,
         fqdn=__ret__.fqdn,
         helper=__ret__.helper,
         icmpcode=__ret__.icmpcode,
@@ -394,8 +422,23 @@ def get_firewall_service_custom(name: Optional[str] = None,
         tcp_halfclose_timer=__ret__.tcp_halfclose_timer,
         tcp_halfopen_timer=__ret__.tcp_halfopen_timer,
         tcp_portrange=__ret__.tcp_portrange,
+        tcp_rst_timer=__ret__.tcp_rst_timer,
         tcp_timewait_timer=__ret__.tcp_timewait_timer,
         udp_idle_timer=__ret__.udp_idle_timer,
         udp_portrange=__ret__.udp_portrange,
         vdomparam=__ret__.vdomparam,
         visibility=__ret__.visibility)
+
+
+@_utilities.lift_output_func(get_firewall_service_custom)
+def get_firewall_service_custom_output(name: Optional[pulumi.Input[str]] = None,
+                                       vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallServiceCustomResult]:
+    """
+    Use this data source to get information on an fortios firewallservice custom
+
+
+    :param str name: Specify the name of the desired firewallservice custom.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

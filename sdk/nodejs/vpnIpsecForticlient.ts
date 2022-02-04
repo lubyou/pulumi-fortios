@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * // fortios_vpnipsec_phase1interface.trname2:
  * const trname4 = new fortios.VpnIpsecPhase1Interface("trname4", {
@@ -229,15 +229,15 @@ export class VpnIpsecForticlient extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnIpsecForticlientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnIpsecForticlientArgs | VpnIpsecForticlientState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnIpsecForticlientState | undefined;
-            inputs["phase2name"] = state ? state.phase2name : undefined;
-            inputs["realm"] = state ? state.realm : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["usergroupname"] = state ? state.usergroupname : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["phase2name"] = state ? state.phase2name : undefined;
+            resourceInputs["realm"] = state ? state.realm : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["usergroupname"] = state ? state.usergroupname : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnIpsecForticlientArgs | undefined;
             if ((!args || args.phase2name === undefined) && !opts.urn) {
@@ -246,16 +246,14 @@ export class VpnIpsecForticlient extends pulumi.CustomResource {
             if ((!args || args.usergroupname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'usergroupname'");
             }
-            inputs["phase2name"] = args ? args.phase2name : undefined;
-            inputs["realm"] = args ? args.realm : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["usergroupname"] = args ? args.usergroupname : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["phase2name"] = args ? args.phase2name : undefined;
+            resourceInputs["realm"] = args ? args.realm : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["usergroupname"] = args ? args.usergroupname : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnIpsecForticlient.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnIpsecForticlient.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -84,6 +84,10 @@ export class AntivirusQuarantine extends pulumi.CustomResource {
      */
     public readonly dropInfected!: pulumi.Output<string>;
     /**
+     * Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+     */
+    public readonly dropMachineLearning!: pulumi.Output<string>;
+    /**
      * Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
      */
     public readonly lowspace!: pulumi.Output<string>;
@@ -108,6 +112,10 @@ export class AntivirusQuarantine extends pulumi.CustomResource {
      */
     public readonly storeInfected!: pulumi.Output<string>;
     /**
+     * Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+     */
+    public readonly storeMachineLearning!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -121,41 +129,43 @@ export class AntivirusQuarantine extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AntivirusQuarantineArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AntivirusQuarantineArgs | AntivirusQuarantineState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AntivirusQuarantineState | undefined;
-            inputs["agelimit"] = state ? state.agelimit : undefined;
-            inputs["destination"] = state ? state.destination : undefined;
-            inputs["dropBlocked"] = state ? state.dropBlocked : undefined;
-            inputs["dropHeuristic"] = state ? state.dropHeuristic : undefined;
-            inputs["dropInfected"] = state ? state.dropInfected : undefined;
-            inputs["lowspace"] = state ? state.lowspace : undefined;
-            inputs["maxfilesize"] = state ? state.maxfilesize : undefined;
-            inputs["quarantineQuota"] = state ? state.quarantineQuota : undefined;
-            inputs["storeBlocked"] = state ? state.storeBlocked : undefined;
-            inputs["storeHeuristic"] = state ? state.storeHeuristic : undefined;
-            inputs["storeInfected"] = state ? state.storeInfected : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["agelimit"] = state ? state.agelimit : undefined;
+            resourceInputs["destination"] = state ? state.destination : undefined;
+            resourceInputs["dropBlocked"] = state ? state.dropBlocked : undefined;
+            resourceInputs["dropHeuristic"] = state ? state.dropHeuristic : undefined;
+            resourceInputs["dropInfected"] = state ? state.dropInfected : undefined;
+            resourceInputs["dropMachineLearning"] = state ? state.dropMachineLearning : undefined;
+            resourceInputs["lowspace"] = state ? state.lowspace : undefined;
+            resourceInputs["maxfilesize"] = state ? state.maxfilesize : undefined;
+            resourceInputs["quarantineQuota"] = state ? state.quarantineQuota : undefined;
+            resourceInputs["storeBlocked"] = state ? state.storeBlocked : undefined;
+            resourceInputs["storeHeuristic"] = state ? state.storeHeuristic : undefined;
+            resourceInputs["storeInfected"] = state ? state.storeInfected : undefined;
+            resourceInputs["storeMachineLearning"] = state ? state.storeMachineLearning : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AntivirusQuarantineArgs | undefined;
-            inputs["agelimit"] = args ? args.agelimit : undefined;
-            inputs["destination"] = args ? args.destination : undefined;
-            inputs["dropBlocked"] = args ? args.dropBlocked : undefined;
-            inputs["dropHeuristic"] = args ? args.dropHeuristic : undefined;
-            inputs["dropInfected"] = args ? args.dropInfected : undefined;
-            inputs["lowspace"] = args ? args.lowspace : undefined;
-            inputs["maxfilesize"] = args ? args.maxfilesize : undefined;
-            inputs["quarantineQuota"] = args ? args.quarantineQuota : undefined;
-            inputs["storeBlocked"] = args ? args.storeBlocked : undefined;
-            inputs["storeHeuristic"] = args ? args.storeHeuristic : undefined;
-            inputs["storeInfected"] = args ? args.storeInfected : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["agelimit"] = args ? args.agelimit : undefined;
+            resourceInputs["destination"] = args ? args.destination : undefined;
+            resourceInputs["dropBlocked"] = args ? args.dropBlocked : undefined;
+            resourceInputs["dropHeuristic"] = args ? args.dropHeuristic : undefined;
+            resourceInputs["dropInfected"] = args ? args.dropInfected : undefined;
+            resourceInputs["dropMachineLearning"] = args ? args.dropMachineLearning : undefined;
+            resourceInputs["lowspace"] = args ? args.lowspace : undefined;
+            resourceInputs["maxfilesize"] = args ? args.maxfilesize : undefined;
+            resourceInputs["quarantineQuota"] = args ? args.quarantineQuota : undefined;
+            resourceInputs["storeBlocked"] = args ? args.storeBlocked : undefined;
+            resourceInputs["storeHeuristic"] = args ? args.storeHeuristic : undefined;
+            resourceInputs["storeInfected"] = args ? args.storeInfected : undefined;
+            resourceInputs["storeMachineLearning"] = args ? args.storeMachineLearning : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AntivirusQuarantine.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AntivirusQuarantine.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -184,6 +194,10 @@ export interface AntivirusQuarantineState {
      */
     dropInfected?: pulumi.Input<string>;
     /**
+     * Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+     */
+    dropMachineLearning?: pulumi.Input<string>;
+    /**
      * Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
      */
     lowspace?: pulumi.Input<string>;
@@ -207,6 +221,10 @@ export interface AntivirusQuarantineState {
      * Quarantine infected files found in sessions using the selected protocols.
      */
     storeInfected?: pulumi.Input<string>;
+    /**
+     * Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+     */
+    storeMachineLearning?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -238,6 +256,10 @@ export interface AntivirusQuarantineArgs {
      */
     dropInfected?: pulumi.Input<string>;
     /**
+     * Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+     */
+    dropMachineLearning?: pulumi.Input<string>;
+    /**
      * Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
      */
     lowspace?: pulumi.Input<string>;
@@ -261,6 +283,10 @@ export interface AntivirusQuarantineArgs {
      * Quarantine infected files found in sessions using the selected protocols.
      */
     storeInfected?: pulumi.Input<string>;
+    /**
+     * Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+     */
+    storeMachineLearning?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

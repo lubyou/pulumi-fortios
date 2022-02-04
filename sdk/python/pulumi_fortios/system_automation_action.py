@@ -38,11 +38,13 @@ class SystemAutomationActionArgs:
                  azure_function: Optional[pulumi.Input[str]] = None,
                  azure_function_authorization: Optional[pulumi.Input[str]] = None,
                  delay: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_body: Optional[pulumi.Input[str]] = None,
                  email_from: Optional[pulumi.Input[str]] = None,
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]]] = None,
+                 execute_security_fabric: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
@@ -50,19 +52,22 @@ class SystemAutomationActionArgs:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHeaderArgs']]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  minimum_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  replacement_message: Optional[pulumi.Input[str]] = None,
+                 replacemsg_group: Optional[pulumi.Input[str]] = None,
                  required: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  sdn_connectors: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionSdnConnectorArgs']]]] = None,
                  security_tag: Optional[pulumi.Input[str]] = None,
                  tls_certificate: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_host_cert: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemAutomationAction resource.
         :param pulumi.Input[str] accprofile: Access profile for CLI script action to access FortiGate features.
@@ -88,11 +93,13 @@ class SystemAutomationActionArgs:
         :param pulumi.Input[str] azure_function: Azure function name.
         :param pulumi.Input[str] azure_function_authorization: Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
         :param pulumi.Input[int] delay: Delay before execution (in seconds).
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_body: Email body.
         :param pulumi.Input[str] email_from: Email sender name.
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]] email_tos: Email addresses. The structure of `email_to` block is documented below.
+        :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
@@ -100,12 +107,14 @@ class SystemAutomationActionArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHeaderArgs']]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[str] message: Message content.
+        :param pulumi.Input[str] message_type: Message type. Valid values: `text`, `json`.
         :param pulumi.Input[str] method: Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
         :param pulumi.Input[int] minimum_interval: Limit execution to no more than once in this interval (in seconds).
         :param pulumi.Input[str] name: SDN connector name.
         :param pulumi.Input[int] port: Protocol port.
         :param pulumi.Input[str] protocol: Request protocol. Valid values: `http`, `https`.
         :param pulumi.Input[str] replacement_message: Enable/disable replacement message. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] replacemsg_group: Replacement message group.
         :param pulumi.Input[str] required: Required in action chain. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] script: CLI script.
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionSdnConnectorArgs']]] sdn_connectors: NSX SDN connector names. The structure of `sdn_connector` block is documented below.
@@ -113,6 +122,7 @@ class SystemAutomationActionArgs:
         :param pulumi.Input[str] tls_certificate: Custom TLS certificate for API request.
         :param pulumi.Input[str] uri: Request API URI.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_host_cert: Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
         """
         if accprofile is not None:
             pulumi.set(__self__, "accprofile", accprofile)
@@ -160,6 +170,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "azure_function_authorization", azure_function_authorization)
         if delay is not None:
             pulumi.set(__self__, "delay", delay)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if email_body is not None:
@@ -170,6 +182,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "email_subject", email_subject)
         if email_tos is not None:
             pulumi.set(__self__, "email_tos", email_tos)
+        if execute_security_fabric is not None:
+            pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
         if gcp_function is not None:
             pulumi.set(__self__, "gcp_function", gcp_function)
         if gcp_function_domain is not None:
@@ -184,6 +198,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "http_body", http_body)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if minimum_interval is not None:
@@ -196,6 +212,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "protocol", protocol)
         if replacement_message is not None:
             pulumi.set(__self__, "replacement_message", replacement_message)
+        if replacemsg_group is not None:
+            pulumi.set(__self__, "replacemsg_group", replacemsg_group)
         if required is not None:
             pulumi.set(__self__, "required", required)
         if script is not None:
@@ -210,6 +228,8 @@ class SystemAutomationActionArgs:
             pulumi.set(__self__, "uri", uri)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if verify_host_cert is not None:
+            pulumi.set(__self__, "verify_host_cert", verify_host_cert)
 
     @property
     @pulumi.getter
@@ -488,6 +508,18 @@ class SystemAutomationActionArgs:
         pulumi.set(self, "delay", value)
 
     @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -546,6 +578,18 @@ class SystemAutomationActionArgs:
     @email_tos.setter
     def email_tos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]]]):
         pulumi.set(self, "email_tos", value)
+
+    @property
+    @pulumi.getter(name="executeSecurityFabric")
+    def execute_security_fabric(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "execute_security_fabric")
+
+    @execute_security_fabric.setter
+    def execute_security_fabric(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "execute_security_fabric", value)
 
     @property
     @pulumi.getter(name="gcpFunction")
@@ -632,6 +676,18 @@ class SystemAutomationActionArgs:
         pulumi.set(self, "message", value)
 
     @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message type. Valid values: `text`, `json`.
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+    @property
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
@@ -702,6 +758,18 @@ class SystemAutomationActionArgs:
     @replacement_message.setter
     def replacement_message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "replacement_message", value)
+
+    @property
+    @pulumi.getter(name="replacemsgGroup")
+    def replacemsg_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replacement message group.
+        """
+        return pulumi.get(self, "replacemsg_group")
+
+    @replacemsg_group.setter
+    def replacemsg_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replacemsg_group", value)
 
     @property
     @pulumi.getter
@@ -786,6 +854,18 @@ class SystemAutomationActionArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="verifyHostCert")
+    def verify_host_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "verify_host_cert")
+
+    @verify_host_cert.setter
+    def verify_host_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify_host_cert", value)
 
 
 @pulumi.input_type
@@ -814,11 +894,13 @@ class _SystemAutomationActionState:
                  azure_function: Optional[pulumi.Input[str]] = None,
                  azure_function_authorization: Optional[pulumi.Input[str]] = None,
                  delay: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_body: Optional[pulumi.Input[str]] = None,
                  email_from: Optional[pulumi.Input[str]] = None,
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]]] = None,
+                 execute_security_fabric: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
@@ -826,19 +908,22 @@ class _SystemAutomationActionState:
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHeaderArgs']]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  minimum_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  replacement_message: Optional[pulumi.Input[str]] = None,
+                 replacemsg_group: Optional[pulumi.Input[str]] = None,
                  required: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  sdn_connectors: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionSdnConnectorArgs']]]] = None,
                  security_tag: Optional[pulumi.Input[str]] = None,
                  tls_certificate: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_host_cert: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemAutomationAction resources.
         :param pulumi.Input[str] accprofile: Access profile for CLI script action to access FortiGate features.
@@ -864,11 +949,13 @@ class _SystemAutomationActionState:
         :param pulumi.Input[str] azure_function: Azure function name.
         :param pulumi.Input[str] azure_function_authorization: Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
         :param pulumi.Input[int] delay: Delay before execution (in seconds).
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_body: Email body.
         :param pulumi.Input[str] email_from: Email sender name.
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]] email_tos: Email addresses. The structure of `email_to` block is documented below.
+        :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
@@ -876,12 +963,14 @@ class _SystemAutomationActionState:
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionHeaderArgs']]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[str] message: Message content.
+        :param pulumi.Input[str] message_type: Message type. Valid values: `text`, `json`.
         :param pulumi.Input[str] method: Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
         :param pulumi.Input[int] minimum_interval: Limit execution to no more than once in this interval (in seconds).
         :param pulumi.Input[str] name: SDN connector name.
         :param pulumi.Input[int] port: Protocol port.
         :param pulumi.Input[str] protocol: Request protocol. Valid values: `http`, `https`.
         :param pulumi.Input[str] replacement_message: Enable/disable replacement message. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] replacemsg_group: Replacement message group.
         :param pulumi.Input[str] required: Required in action chain. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] script: CLI script.
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionSdnConnectorArgs']]] sdn_connectors: NSX SDN connector names. The structure of `sdn_connector` block is documented below.
@@ -889,6 +978,7 @@ class _SystemAutomationActionState:
         :param pulumi.Input[str] tls_certificate: Custom TLS certificate for API request.
         :param pulumi.Input[str] uri: Request API URI.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_host_cert: Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
         """
         if accprofile is not None:
             pulumi.set(__self__, "accprofile", accprofile)
@@ -936,6 +1026,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "azure_function_authorization", azure_function_authorization)
         if delay is not None:
             pulumi.set(__self__, "delay", delay)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if email_body is not None:
@@ -946,6 +1038,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "email_subject", email_subject)
         if email_tos is not None:
             pulumi.set(__self__, "email_tos", email_tos)
+        if execute_security_fabric is not None:
+            pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
         if gcp_function is not None:
             pulumi.set(__self__, "gcp_function", gcp_function)
         if gcp_function_domain is not None:
@@ -960,6 +1054,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "http_body", http_body)
         if message is not None:
             pulumi.set(__self__, "message", message)
+        if message_type is not None:
+            pulumi.set(__self__, "message_type", message_type)
         if method is not None:
             pulumi.set(__self__, "method", method)
         if minimum_interval is not None:
@@ -972,6 +1068,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "protocol", protocol)
         if replacement_message is not None:
             pulumi.set(__self__, "replacement_message", replacement_message)
+        if replacemsg_group is not None:
+            pulumi.set(__self__, "replacemsg_group", replacemsg_group)
         if required is not None:
             pulumi.set(__self__, "required", required)
         if script is not None:
@@ -986,6 +1084,8 @@ class _SystemAutomationActionState:
             pulumi.set(__self__, "uri", uri)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if verify_host_cert is not None:
+            pulumi.set(__self__, "verify_host_cert", verify_host_cert)
 
     @property
     @pulumi.getter
@@ -1264,6 +1364,18 @@ class _SystemAutomationActionState:
         pulumi.set(self, "delay", value)
 
     @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1322,6 +1434,18 @@ class _SystemAutomationActionState:
     @email_tos.setter
     def email_tos(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationActionEmailToArgs']]]]):
         pulumi.set(self, "email_tos", value)
+
+    @property
+    @pulumi.getter(name="executeSecurityFabric")
+    def execute_security_fabric(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "execute_security_fabric")
+
+    @execute_security_fabric.setter
+    def execute_security_fabric(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "execute_security_fabric", value)
 
     @property
     @pulumi.getter(name="gcpFunction")
@@ -1408,6 +1532,18 @@ class _SystemAutomationActionState:
         pulumi.set(self, "message", value)
 
     @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message type. Valid values: `text`, `json`.
+        """
+        return pulumi.get(self, "message_type")
+
+    @message_type.setter
+    def message_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "message_type", value)
+
+    @property
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1478,6 +1614,18 @@ class _SystemAutomationActionState:
     @replacement_message.setter
     def replacement_message(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "replacement_message", value)
+
+    @property
+    @pulumi.getter(name="replacemsgGroup")
+    def replacemsg_group(self) -> Optional[pulumi.Input[str]]:
+        """
+        Replacement message group.
+        """
+        return pulumi.get(self, "replacemsg_group")
+
+    @replacemsg_group.setter
+    def replacemsg_group(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "replacemsg_group", value)
 
     @property
     @pulumi.getter
@@ -1562,6 +1710,18 @@ class _SystemAutomationActionState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="verifyHostCert")
+    def verify_host_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "verify_host_cert")
+
+    @verify_host_cert.setter
+    def verify_host_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify_host_cert", value)
 
 
 class SystemAutomationAction(pulumi.CustomResource):
@@ -1592,11 +1752,13 @@ class SystemAutomationAction(pulumi.CustomResource):
                  azure_function: Optional[pulumi.Input[str]] = None,
                  azure_function_authorization: Optional[pulumi.Input[str]] = None,
                  delay: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_body: Optional[pulumi.Input[str]] = None,
                  email_from: Optional[pulumi.Input[str]] = None,
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]]] = None,
+                 execute_security_fabric: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
@@ -1604,12 +1766,14 @@ class SystemAutomationAction(pulumi.CustomResource):
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  minimum_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  replacement_message: Optional[pulumi.Input[str]] = None,
+                 replacemsg_group: Optional[pulumi.Input[str]] = None,
                  required: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  sdn_connectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionSdnConnectorArgs']]]]] = None,
@@ -1617,6 +1781,7 @@ class SystemAutomationAction(pulumi.CustomResource):
                  tls_certificate: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_host_cert: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Action for automation stitches.
@@ -1673,11 +1838,13 @@ class SystemAutomationAction(pulumi.CustomResource):
         :param pulumi.Input[str] azure_function: Azure function name.
         :param pulumi.Input[str] azure_function_authorization: Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
         :param pulumi.Input[int] delay: Delay before execution (in seconds).
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_body: Email body.
         :param pulumi.Input[str] email_from: Email sender name.
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]] email_tos: Email addresses. The structure of `email_to` block is documented below.
+        :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
@@ -1685,12 +1852,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[str] message: Message content.
+        :param pulumi.Input[str] message_type: Message type. Valid values: `text`, `json`.
         :param pulumi.Input[str] method: Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
         :param pulumi.Input[int] minimum_interval: Limit execution to no more than once in this interval (in seconds).
         :param pulumi.Input[str] name: SDN connector name.
         :param pulumi.Input[int] port: Protocol port.
         :param pulumi.Input[str] protocol: Request protocol. Valid values: `http`, `https`.
         :param pulumi.Input[str] replacement_message: Enable/disable replacement message. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] replacemsg_group: Replacement message group.
         :param pulumi.Input[str] required: Required in action chain. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] script: CLI script.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionSdnConnectorArgs']]]] sdn_connectors: NSX SDN connector names. The structure of `sdn_connector` block is documented below.
@@ -1698,6 +1867,7 @@ class SystemAutomationAction(pulumi.CustomResource):
         :param pulumi.Input[str] tls_certificate: Custom TLS certificate for API request.
         :param pulumi.Input[str] uri: Request API URI.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_host_cert: Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
         """
         ...
     @overload
@@ -1773,11 +1943,13 @@ class SystemAutomationAction(pulumi.CustomResource):
                  azure_function: Optional[pulumi.Input[str]] = None,
                  azure_function_authorization: Optional[pulumi.Input[str]] = None,
                  delay: Optional[pulumi.Input[int]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_body: Optional[pulumi.Input[str]] = None,
                  email_from: Optional[pulumi.Input[str]] = None,
                  email_subject: Optional[pulumi.Input[str]] = None,
                  email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]]] = None,
+                 execute_security_fabric: Optional[pulumi.Input[str]] = None,
                  gcp_function: Optional[pulumi.Input[str]] = None,
                  gcp_function_domain: Optional[pulumi.Input[str]] = None,
                  gcp_function_region: Optional[pulumi.Input[str]] = None,
@@ -1785,12 +1957,14 @@ class SystemAutomationAction(pulumi.CustomResource):
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]]] = None,
                  http_body: Optional[pulumi.Input[str]] = None,
                  message: Optional[pulumi.Input[str]] = None,
+                 message_type: Optional[pulumi.Input[str]] = None,
                  method: Optional[pulumi.Input[str]] = None,
                  minimum_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  replacement_message: Optional[pulumi.Input[str]] = None,
+                 replacemsg_group: Optional[pulumi.Input[str]] = None,
                  required: Optional[pulumi.Input[str]] = None,
                  script: Optional[pulumi.Input[str]] = None,
                  sdn_connectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionSdnConnectorArgs']]]]] = None,
@@ -1798,6 +1972,7 @@ class SystemAutomationAction(pulumi.CustomResource):
                  tls_certificate: Optional[pulumi.Input[str]] = None,
                  uri: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_host_cert: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -1805,6 +1980,8 @@ class SystemAutomationAction(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1833,11 +2010,13 @@ class SystemAutomationAction(pulumi.CustomResource):
             __props__.__dict__["azure_function"] = azure_function
             __props__.__dict__["azure_function_authorization"] = azure_function_authorization
             __props__.__dict__["delay"] = delay
+            __props__.__dict__["description"] = description
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["email_body"] = email_body
             __props__.__dict__["email_from"] = email_from
             __props__.__dict__["email_subject"] = email_subject
             __props__.__dict__["email_tos"] = email_tos
+            __props__.__dict__["execute_security_fabric"] = execute_security_fabric
             __props__.__dict__["gcp_function"] = gcp_function
             __props__.__dict__["gcp_function_domain"] = gcp_function_domain
             __props__.__dict__["gcp_function_region"] = gcp_function_region
@@ -1845,12 +2024,14 @@ class SystemAutomationAction(pulumi.CustomResource):
             __props__.__dict__["headers"] = headers
             __props__.__dict__["http_body"] = http_body
             __props__.__dict__["message"] = message
+            __props__.__dict__["message_type"] = message_type
             __props__.__dict__["method"] = method
             __props__.__dict__["minimum_interval"] = minimum_interval
             __props__.__dict__["name"] = name
             __props__.__dict__["port"] = port
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["replacement_message"] = replacement_message
+            __props__.__dict__["replacemsg_group"] = replacemsg_group
             __props__.__dict__["required"] = required
             __props__.__dict__["script"] = script
             __props__.__dict__["sdn_connectors"] = sdn_connectors
@@ -1858,6 +2039,7 @@ class SystemAutomationAction(pulumi.CustomResource):
             __props__.__dict__["tls_certificate"] = tls_certificate
             __props__.__dict__["uri"] = uri
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["verify_host_cert"] = verify_host_cert
         super(SystemAutomationAction, __self__).__init__(
             'fortios:index/systemAutomationAction:SystemAutomationAction',
             resource_name,
@@ -1891,11 +2073,13 @@ class SystemAutomationAction(pulumi.CustomResource):
             azure_function: Optional[pulumi.Input[str]] = None,
             azure_function_authorization: Optional[pulumi.Input[str]] = None,
             delay: Optional[pulumi.Input[int]] = None,
+            description: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             email_body: Optional[pulumi.Input[str]] = None,
             email_from: Optional[pulumi.Input[str]] = None,
             email_subject: Optional[pulumi.Input[str]] = None,
             email_tos: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]]] = None,
+            execute_security_fabric: Optional[pulumi.Input[str]] = None,
             gcp_function: Optional[pulumi.Input[str]] = None,
             gcp_function_domain: Optional[pulumi.Input[str]] = None,
             gcp_function_region: Optional[pulumi.Input[str]] = None,
@@ -1903,19 +2087,22 @@ class SystemAutomationAction(pulumi.CustomResource):
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]]] = None,
             http_body: Optional[pulumi.Input[str]] = None,
             message: Optional[pulumi.Input[str]] = None,
+            message_type: Optional[pulumi.Input[str]] = None,
             method: Optional[pulumi.Input[str]] = None,
             minimum_interval: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             replacement_message: Optional[pulumi.Input[str]] = None,
+            replacemsg_group: Optional[pulumi.Input[str]] = None,
             required: Optional[pulumi.Input[str]] = None,
             script: Optional[pulumi.Input[str]] = None,
             sdn_connectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionSdnConnectorArgs']]]]] = None,
             security_tag: Optional[pulumi.Input[str]] = None,
             tls_certificate: Optional[pulumi.Input[str]] = None,
             uri: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemAutomationAction':
+            vdomparam: Optional[pulumi.Input[str]] = None,
+            verify_host_cert: Optional[pulumi.Input[str]] = None) -> 'SystemAutomationAction':
         """
         Get an existing SystemAutomationAction resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1946,11 +2133,13 @@ class SystemAutomationAction(pulumi.CustomResource):
         :param pulumi.Input[str] azure_function: Azure function name.
         :param pulumi.Input[str] azure_function_authorization: Azure function authorization level. Valid values: `anonymous`, `function`, `admin`.
         :param pulumi.Input[int] delay: Delay before execution (in seconds).
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_body: Email body.
         :param pulumi.Input[str] email_from: Email sender name.
         :param pulumi.Input[str] email_subject: Email subject.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionEmailToArgs']]]] email_tos: Email addresses. The structure of `email_to` block is documented below.
+        :param pulumi.Input[str] execute_security_fabric: Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gcp_function: Google Cloud function name.
         :param pulumi.Input[str] gcp_function_domain: Google Cloud function domain.
         :param pulumi.Input[str] gcp_function_region: Google Cloud function region.
@@ -1958,12 +2147,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionHeaderArgs']]]] headers: Request headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] http_body: Request body (if necessary). Should be serialized json string.
         :param pulumi.Input[str] message: Message content.
+        :param pulumi.Input[str] message_type: Message type. Valid values: `text`, `json`.
         :param pulumi.Input[str] method: Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
         :param pulumi.Input[int] minimum_interval: Limit execution to no more than once in this interval (in seconds).
         :param pulumi.Input[str] name: SDN connector name.
         :param pulumi.Input[int] port: Protocol port.
         :param pulumi.Input[str] protocol: Request protocol. Valid values: `http`, `https`.
         :param pulumi.Input[str] replacement_message: Enable/disable replacement message. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] replacemsg_group: Replacement message group.
         :param pulumi.Input[str] required: Required in action chain. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] script: CLI script.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationActionSdnConnectorArgs']]]] sdn_connectors: NSX SDN connector names. The structure of `sdn_connector` block is documented below.
@@ -1971,6 +2162,7 @@ class SystemAutomationAction(pulumi.CustomResource):
         :param pulumi.Input[str] tls_certificate: Custom TLS certificate for API request.
         :param pulumi.Input[str] uri: Request API URI.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_host_cert: Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1999,11 +2191,13 @@ class SystemAutomationAction(pulumi.CustomResource):
         __props__.__dict__["azure_function"] = azure_function
         __props__.__dict__["azure_function_authorization"] = azure_function_authorization
         __props__.__dict__["delay"] = delay
+        __props__.__dict__["description"] = description
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["email_body"] = email_body
         __props__.__dict__["email_from"] = email_from
         __props__.__dict__["email_subject"] = email_subject
         __props__.__dict__["email_tos"] = email_tos
+        __props__.__dict__["execute_security_fabric"] = execute_security_fabric
         __props__.__dict__["gcp_function"] = gcp_function
         __props__.__dict__["gcp_function_domain"] = gcp_function_domain
         __props__.__dict__["gcp_function_region"] = gcp_function_region
@@ -2011,12 +2205,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         __props__.__dict__["headers"] = headers
         __props__.__dict__["http_body"] = http_body
         __props__.__dict__["message"] = message
+        __props__.__dict__["message_type"] = message_type
         __props__.__dict__["method"] = method
         __props__.__dict__["minimum_interval"] = minimum_interval
         __props__.__dict__["name"] = name
         __props__.__dict__["port"] = port
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["replacement_message"] = replacement_message
+        __props__.__dict__["replacemsg_group"] = replacemsg_group
         __props__.__dict__["required"] = required
         __props__.__dict__["script"] = script
         __props__.__dict__["sdn_connectors"] = sdn_connectors
@@ -2024,6 +2220,7 @@ class SystemAutomationAction(pulumi.CustomResource):
         __props__.__dict__["tls_certificate"] = tls_certificate
         __props__.__dict__["uri"] = uri
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["verify_host_cert"] = verify_host_cert
         return SystemAutomationAction(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -2211,6 +2408,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         return pulumi.get(self, "delay")
 
     @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         """
@@ -2249,6 +2454,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         Email addresses. The structure of `email_to` block is documented below.
         """
         return pulumi.get(self, "email_tos")
+
+    @property
+    @pulumi.getter(name="executeSecurityFabric")
+    def execute_security_fabric(self) -> pulumi.Output[str]:
+        """
+        Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "execute_security_fabric")
 
     @property
     @pulumi.getter(name="gcpFunction")
@@ -2307,6 +2520,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         return pulumi.get(self, "message")
 
     @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> pulumi.Output[str]:
+        """
+        Message type. Valid values: `text`, `json`.
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
     @pulumi.getter
     def method(self) -> pulumi.Output[str]:
         """
@@ -2353,6 +2574,14 @@ class SystemAutomationAction(pulumi.CustomResource):
         Enable/disable replacement message. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "replacement_message")
+
+    @property
+    @pulumi.getter(name="replacemsgGroup")
+    def replacemsg_group(self) -> pulumi.Output[str]:
+        """
+        Replacement message group.
+        """
+        return pulumi.get(self, "replacemsg_group")
 
     @property
     @pulumi.getter
@@ -2409,4 +2638,12 @@ class SystemAutomationAction(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="verifyHostCert")
+    def verify_host_cert(self) -> pulumi.Output[str]:
+        """
+        Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "verify_host_cert")
 

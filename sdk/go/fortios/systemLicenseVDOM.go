@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -52,6 +52,7 @@ func NewSystemLicenseVDOM(ctx *pulumi.Context,
 	if args.License == nil {
 		return nil, errors.New("invalid value for required argument 'License'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemLicenseVDOM
 	err := ctx.RegisterResource("fortios:index/systemLicenseVDOM:SystemLicenseVDOM", name, args, &resource, opts...)
 	if err != nil {
@@ -110,7 +111,7 @@ type SystemLicenseVDOMInput interface {
 }
 
 func (*SystemLicenseVDOM) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLicenseVDOM)(nil))
+	return reflect.TypeOf((**SystemLicenseVDOM)(nil)).Elem()
 }
 
 func (i *SystemLicenseVDOM) ToSystemLicenseVDOMOutput() SystemLicenseVDOMOutput {
@@ -119,35 +120,6 @@ func (i *SystemLicenseVDOM) ToSystemLicenseVDOMOutput() SystemLicenseVDOMOutput 
 
 func (i *SystemLicenseVDOM) ToSystemLicenseVDOMOutputWithContext(ctx context.Context) SystemLicenseVDOMOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMOutput)
-}
-
-func (i *SystemLicenseVDOM) ToSystemLicenseVDOMPtrOutput() SystemLicenseVDOMPtrOutput {
-	return i.ToSystemLicenseVDOMPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemLicenseVDOM) ToSystemLicenseVDOMPtrOutputWithContext(ctx context.Context) SystemLicenseVDOMPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMPtrOutput)
-}
-
-type SystemLicenseVDOMPtrInput interface {
-	pulumi.Input
-
-	ToSystemLicenseVDOMPtrOutput() SystemLicenseVDOMPtrOutput
-	ToSystemLicenseVDOMPtrOutputWithContext(ctx context.Context) SystemLicenseVDOMPtrOutput
-}
-
-type systemLicenseVDOMPtrType SystemLicenseVDOMArgs
-
-func (*systemLicenseVDOMPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLicenseVDOM)(nil))
-}
-
-func (i *systemLicenseVDOMPtrType) ToSystemLicenseVDOMPtrOutput() SystemLicenseVDOMPtrOutput {
-	return i.ToSystemLicenseVDOMPtrOutputWithContext(context.Background())
-}
-
-func (i *systemLicenseVDOMPtrType) ToSystemLicenseVDOMPtrOutputWithContext(ctx context.Context) SystemLicenseVDOMPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMPtrOutput)
 }
 
 // SystemLicenseVDOMArrayInput is an input type that accepts SystemLicenseVDOMArray and SystemLicenseVDOMArrayOutput values.
@@ -164,7 +136,7 @@ type SystemLicenseVDOMArrayInput interface {
 type SystemLicenseVDOMArray []SystemLicenseVDOMInput
 
 func (SystemLicenseVDOMArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemLicenseVDOM)(nil))
+	return reflect.TypeOf((*[]*SystemLicenseVDOM)(nil)).Elem()
 }
 
 func (i SystemLicenseVDOMArray) ToSystemLicenseVDOMArrayOutput() SystemLicenseVDOMArrayOutput {
@@ -189,7 +161,7 @@ type SystemLicenseVDOMMapInput interface {
 type SystemLicenseVDOMMap map[string]SystemLicenseVDOMInput
 
 func (SystemLicenseVDOMMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemLicenseVDOM)(nil))
+	return reflect.TypeOf((*map[string]*SystemLicenseVDOM)(nil)).Elem()
 }
 
 func (i SystemLicenseVDOMMap) ToSystemLicenseVDOMMapOutput() SystemLicenseVDOMMapOutput {
@@ -200,12 +172,10 @@ func (i SystemLicenseVDOMMap) ToSystemLicenseVDOMMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVDOMMapOutput)
 }
 
-type SystemLicenseVDOMOutput struct {
-	*pulumi.OutputState
-}
+type SystemLicenseVDOMOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVDOMOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLicenseVDOM)(nil))
+	return reflect.TypeOf((**SystemLicenseVDOM)(nil)).Elem()
 }
 
 func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMOutput() SystemLicenseVDOMOutput {
@@ -216,36 +186,10 @@ func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMPtrOutput() SystemLicenseVDOMPtrOutput {
-	return o.ToSystemLicenseVDOMPtrOutputWithContext(context.Background())
-}
-
-func (o SystemLicenseVDOMOutput) ToSystemLicenseVDOMPtrOutputWithContext(ctx context.Context) SystemLicenseVDOMPtrOutput {
-	return o.ApplyT(func(v SystemLicenseVDOM) *SystemLicenseVDOM {
-		return &v
-	}).(SystemLicenseVDOMPtrOutput)
-}
-
-type SystemLicenseVDOMPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemLicenseVDOMPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLicenseVDOM)(nil))
-}
-
-func (o SystemLicenseVDOMPtrOutput) ToSystemLicenseVDOMPtrOutput() SystemLicenseVDOMPtrOutput {
-	return o
-}
-
-func (o SystemLicenseVDOMPtrOutput) ToSystemLicenseVDOMPtrOutputWithContext(ctx context.Context) SystemLicenseVDOMPtrOutput {
-	return o
-}
-
 type SystemLicenseVDOMArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVDOMArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemLicenseVDOM)(nil))
+	return reflect.TypeOf((*[]*SystemLicenseVDOM)(nil)).Elem()
 }
 
 func (o SystemLicenseVDOMArrayOutput) ToSystemLicenseVDOMArrayOutput() SystemLicenseVDOMArrayOutput {
@@ -257,15 +201,15 @@ func (o SystemLicenseVDOMArrayOutput) ToSystemLicenseVDOMArrayOutputWithContext(
 }
 
 func (o SystemLicenseVDOMArrayOutput) Index(i pulumi.IntInput) SystemLicenseVDOMOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemLicenseVDOM {
-		return vs[0].([]SystemLicenseVDOM)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLicenseVDOM {
+		return vs[0].([]*SystemLicenseVDOM)[vs[1].(int)]
 	}).(SystemLicenseVDOMOutput)
 }
 
 type SystemLicenseVDOMMapOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVDOMMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemLicenseVDOM)(nil))
+	return reflect.TypeOf((*map[string]*SystemLicenseVDOM)(nil)).Elem()
 }
 
 func (o SystemLicenseVDOMMapOutput) ToSystemLicenseVDOMMapOutput() SystemLicenseVDOMMapOutput {
@@ -277,14 +221,16 @@ func (o SystemLicenseVDOMMapOutput) ToSystemLicenseVDOMMapOutputWithContext(ctx 
 }
 
 func (o SystemLicenseVDOMMapOutput) MapIndex(k pulumi.StringInput) SystemLicenseVDOMOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemLicenseVDOM {
-		return vs[0].(map[string]SystemLicenseVDOM)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemLicenseVDOM {
+		return vs[0].(map[string]*SystemLicenseVDOM)[vs[1].(string)]
 	}).(SystemLicenseVDOMOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseVDOMInput)(nil)).Elem(), &SystemLicenseVDOM{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseVDOMArrayInput)(nil)).Elem(), SystemLicenseVDOMArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseVDOMMapInput)(nil)).Elem(), SystemLicenseVDOMMap{})
 	pulumi.RegisterOutputType(SystemLicenseVDOMOutput{})
-	pulumi.RegisterOutputType(SystemLicenseVDOMPtrOutput{})
 	pulumi.RegisterOutputType(SystemLicenseVDOMArrayOutput{})
 	pulumi.RegisterOutputType(SystemLicenseVDOMMapOutput{})
 }

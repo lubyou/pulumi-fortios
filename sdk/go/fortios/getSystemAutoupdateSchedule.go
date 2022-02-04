@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios systemautoupdate schedule
 func LookupSystemAutoupdateSchedule(ctx *pulumi.Context, args *LookupSystemAutoupdateScheduleArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdateScheduleResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdateScheduleResult
 	err := ctx.Invoke("fortios:index/getSystemAutoupdateSchedule:GetSystemAutoupdateSchedule", args, &rv, opts...)
 	if err != nil {
@@ -36,4 +40,71 @@ type LookupSystemAutoupdateScheduleResult struct {
 	// Update time.
 	Time      string  `pulumi:"time"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemAutoupdateScheduleOutput(ctx *pulumi.Context, args LookupSystemAutoupdateScheduleOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutoupdateScheduleResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemAutoupdateScheduleResult, error) {
+			args := v.(LookupSystemAutoupdateScheduleArgs)
+			r, err := LookupSystemAutoupdateSchedule(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemAutoupdateScheduleResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutoupdateSchedule.
+type LookupSystemAutoupdateScheduleOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemAutoupdateScheduleOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoupdateScheduleArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutoupdateSchedule.
+type LookupSystemAutoupdateScheduleResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemAutoupdateScheduleResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoupdateScheduleResult)(nil)).Elem()
+}
+
+func (o LookupSystemAutoupdateScheduleResultOutput) ToLookupSystemAutoupdateScheduleResultOutput() LookupSystemAutoupdateScheduleResultOutput {
+	return o
+}
+
+func (o LookupSystemAutoupdateScheduleResultOutput) ToLookupSystemAutoupdateScheduleResultOutputWithContext(ctx context.Context) LookupSystemAutoupdateScheduleResultOutput {
+	return o
+}
+
+// Update day.
+func (o LookupSystemAutoupdateScheduleResultOutput) Day() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateScheduleResult) string { return v.Day }).(pulumi.StringOutput)
+}
+
+// Update frequency.
+func (o LookupSystemAutoupdateScheduleResultOutput) Frequency() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateScheduleResult) string { return v.Frequency }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemAutoupdateScheduleResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateScheduleResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable scheduled updates.
+func (o LookupSystemAutoupdateScheduleResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateScheduleResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Update time.
+func (o LookupSystemAutoupdateScheduleResultOutput) Time() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateScheduleResult) string { return v.Time }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAutoupdateScheduleResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateScheduleResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemAutoupdateScheduleResultOutput{})
 }

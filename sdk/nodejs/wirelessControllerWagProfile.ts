@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure wireless access gateway (WAG) profiles used for tunnels on AP.
+ * Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -95,37 +95,35 @@ export class WirelessControllerWagProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerWagProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerWagProfileArgs | WirelessControllerWagProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerWagProfileState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dhcpIpAddr"] = state ? state.dhcpIpAddr : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pingInterval"] = state ? state.pingInterval : undefined;
-            inputs["pingNumber"] = state ? state.pingNumber : undefined;
-            inputs["returnPacketTimeout"] = state ? state.returnPacketTimeout : undefined;
-            inputs["tunnelType"] = state ? state.tunnelType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wagIp"] = state ? state.wagIp : undefined;
-            inputs["wagPort"] = state ? state.wagPort : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dhcpIpAddr"] = state ? state.dhcpIpAddr : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pingInterval"] = state ? state.pingInterval : undefined;
+            resourceInputs["pingNumber"] = state ? state.pingNumber : undefined;
+            resourceInputs["returnPacketTimeout"] = state ? state.returnPacketTimeout : undefined;
+            resourceInputs["tunnelType"] = state ? state.tunnelType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wagIp"] = state ? state.wagIp : undefined;
+            resourceInputs["wagPort"] = state ? state.wagPort : undefined;
         } else {
             const args = argsOrState as WirelessControllerWagProfileArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dhcpIpAddr"] = args ? args.dhcpIpAddr : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pingInterval"] = args ? args.pingInterval : undefined;
-            inputs["pingNumber"] = args ? args.pingNumber : undefined;
-            inputs["returnPacketTimeout"] = args ? args.returnPacketTimeout : undefined;
-            inputs["tunnelType"] = args ? args.tunnelType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wagIp"] = args ? args.wagIp : undefined;
-            inputs["wagPort"] = args ? args.wagPort : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dhcpIpAddr"] = args ? args.dhcpIpAddr : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pingInterval"] = args ? args.pingInterval : undefined;
+            resourceInputs["pingNumber"] = args ? args.pingNumber : undefined;
+            resourceInputs["returnPacketTimeout"] = args ? args.returnPacketTimeout : undefined;
+            resourceInputs["tunnelType"] = args ? args.tunnelType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wagIp"] = args ? args.wagIp : undefined;
+            resourceInputs["wagPort"] = args ? args.wagPort : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerWagProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerWagProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

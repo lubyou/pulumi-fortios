@@ -47,6 +47,7 @@ func NewFirewallInternetServiceName(ctx *pulumi.Context,
 		args = &FirewallInternetServiceNameArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceName
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceName:FirewallInternetServiceName", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type FirewallInternetServiceNameInput interface {
 }
 
 func (*FirewallInternetServiceName) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceName)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceName)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceName) ToFirewallInternetServiceNameOutput() FirewallInternetServiceNameOutput {
@@ -162,35 +163,6 @@ func (i *FirewallInternetServiceName) ToFirewallInternetServiceNameOutput() Fire
 
 func (i *FirewallInternetServiceName) ToFirewallInternetServiceNameOutputWithContext(ctx context.Context) FirewallInternetServiceNameOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNameOutput)
-}
-
-func (i *FirewallInternetServiceName) ToFirewallInternetServiceNamePtrOutput() FirewallInternetServiceNamePtrOutput {
-	return i.ToFirewallInternetServiceNamePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceName) ToFirewallInternetServiceNamePtrOutputWithContext(ctx context.Context) FirewallInternetServiceNamePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNamePtrOutput)
-}
-
-type FirewallInternetServiceNamePtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceNamePtrOutput() FirewallInternetServiceNamePtrOutput
-	ToFirewallInternetServiceNamePtrOutputWithContext(ctx context.Context) FirewallInternetServiceNamePtrOutput
-}
-
-type firewallInternetServiceNamePtrType FirewallInternetServiceNameArgs
-
-func (*firewallInternetServiceNamePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceName)(nil))
-}
-
-func (i *firewallInternetServiceNamePtrType) ToFirewallInternetServiceNamePtrOutput() FirewallInternetServiceNamePtrOutput {
-	return i.ToFirewallInternetServiceNamePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceNamePtrType) ToFirewallInternetServiceNamePtrOutputWithContext(ctx context.Context) FirewallInternetServiceNamePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNamePtrOutput)
 }
 
 // FirewallInternetServiceNameArrayInput is an input type that accepts FirewallInternetServiceNameArray and FirewallInternetServiceNameArrayOutput values.
@@ -207,7 +179,7 @@ type FirewallInternetServiceNameArrayInput interface {
 type FirewallInternetServiceNameArray []FirewallInternetServiceNameInput
 
 func (FirewallInternetServiceNameArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceName)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceName)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceNameArray) ToFirewallInternetServiceNameArrayOutput() FirewallInternetServiceNameArrayOutput {
@@ -232,7 +204,7 @@ type FirewallInternetServiceNameMapInput interface {
 type FirewallInternetServiceNameMap map[string]FirewallInternetServiceNameInput
 
 func (FirewallInternetServiceNameMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceName)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceName)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceNameMap) ToFirewallInternetServiceNameMapOutput() FirewallInternetServiceNameMapOutput {
@@ -243,12 +215,10 @@ func (i FirewallInternetServiceNameMap) ToFirewallInternetServiceNameMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceNameMapOutput)
 }
 
-type FirewallInternetServiceNameOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceNameOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceNameOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceName)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceName)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNameOutput() FirewallInternetServiceNameOutput {
@@ -259,36 +229,10 @@ func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNameOutputWi
 	return o
 }
 
-func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNamePtrOutput() FirewallInternetServiceNamePtrOutput {
-	return o.ToFirewallInternetServiceNamePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceNameOutput) ToFirewallInternetServiceNamePtrOutputWithContext(ctx context.Context) FirewallInternetServiceNamePtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceName) *FirewallInternetServiceName {
-		return &v
-	}).(FirewallInternetServiceNamePtrOutput)
-}
-
-type FirewallInternetServiceNamePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceNamePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceName)(nil))
-}
-
-func (o FirewallInternetServiceNamePtrOutput) ToFirewallInternetServiceNamePtrOutput() FirewallInternetServiceNamePtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceNamePtrOutput) ToFirewallInternetServiceNamePtrOutputWithContext(ctx context.Context) FirewallInternetServiceNamePtrOutput {
-	return o
-}
-
 type FirewallInternetServiceNameArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceNameArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceName)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceName)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceNameArrayOutput) ToFirewallInternetServiceNameArrayOutput() FirewallInternetServiceNameArrayOutput {
@@ -300,15 +244,15 @@ func (o FirewallInternetServiceNameArrayOutput) ToFirewallInternetServiceNameArr
 }
 
 func (o FirewallInternetServiceNameArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceNameOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceName {
-		return vs[0].([]FirewallInternetServiceName)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceName {
+		return vs[0].([]*FirewallInternetServiceName)[vs[1].(int)]
 	}).(FirewallInternetServiceNameOutput)
 }
 
 type FirewallInternetServiceNameMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceNameMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceName)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceName)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceNameMapOutput) ToFirewallInternetServiceNameMapOutput() FirewallInternetServiceNameMapOutput {
@@ -320,14 +264,16 @@ func (o FirewallInternetServiceNameMapOutput) ToFirewallInternetServiceNameMapOu
 }
 
 func (o FirewallInternetServiceNameMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceNameOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceName {
-		return vs[0].(map[string]FirewallInternetServiceName)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceName {
+		return vs[0].(map[string]*FirewallInternetServiceName)[vs[1].(string)]
 	}).(FirewallInternetServiceNameOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceNameInput)(nil)).Elem(), &FirewallInternetServiceName{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceNameArrayInput)(nil)).Elem(), FirewallInternetServiceNameArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceNameMapInput)(nil)).Elem(), FirewallInternetServiceNameMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceNameOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceNamePtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceNameArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceNameMapOutput{})
 }

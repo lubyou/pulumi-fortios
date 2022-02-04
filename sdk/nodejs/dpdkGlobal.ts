@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure global DPDK options.
+ * Configure global DPDK options. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -96,37 +96,35 @@ export class DpdkGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DpdkGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DpdkGlobalArgs | DpdkGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DpdkGlobalState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["elasticbuffer"] = state ? state.elasticbuffer : undefined;
-            inputs["hugepagePercentage"] = state ? state.hugepagePercentage : undefined;
-            inputs["interfaces"] = state ? state.interfaces : undefined;
-            inputs["mbufpoolPercentage"] = state ? state.mbufpoolPercentage : undefined;
-            inputs["multiqueue"] = state ? state.multiqueue : undefined;
-            inputs["perSessionAccounting"] = state ? state.perSessionAccounting : undefined;
-            inputs["sleepOnIdle"] = state ? state.sleepOnIdle : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["elasticbuffer"] = state ? state.elasticbuffer : undefined;
+            resourceInputs["hugepagePercentage"] = state ? state.hugepagePercentage : undefined;
+            resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["mbufpoolPercentage"] = state ? state.mbufpoolPercentage : undefined;
+            resourceInputs["multiqueue"] = state ? state.multiqueue : undefined;
+            resourceInputs["perSessionAccounting"] = state ? state.perSessionAccounting : undefined;
+            resourceInputs["sleepOnIdle"] = state ? state.sleepOnIdle : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as DpdkGlobalArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["elasticbuffer"] = args ? args.elasticbuffer : undefined;
-            inputs["hugepagePercentage"] = args ? args.hugepagePercentage : undefined;
-            inputs["interfaces"] = args ? args.interfaces : undefined;
-            inputs["mbufpoolPercentage"] = args ? args.mbufpoolPercentage : undefined;
-            inputs["multiqueue"] = args ? args.multiqueue : undefined;
-            inputs["perSessionAccounting"] = args ? args.perSessionAccounting : undefined;
-            inputs["sleepOnIdle"] = args ? args.sleepOnIdle : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["elasticbuffer"] = args ? args.elasticbuffer : undefined;
+            resourceInputs["hugepagePercentage"] = args ? args.hugepagePercentage : undefined;
+            resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["mbufpoolPercentage"] = args ? args.mbufpoolPercentage : undefined;
+            resourceInputs["multiqueue"] = args ? args.multiqueue : undefined;
+            resourceInputs["perSessionAccounting"] = args ? args.perSessionAccounting : undefined;
+            resourceInputs["sleepOnIdle"] = args ? args.sleepOnIdle : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DpdkGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DpdkGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 

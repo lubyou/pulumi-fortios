@@ -12,6 +12,7 @@ __all__ = [
     'GetIPMaskCIDRResult',
     'AwaitableGetIPMaskCIDRResult',
     'get_ip_mask_cidr',
+    'get_ip_mask_cidr_output',
 ]
 
 @pulumi.output_type
@@ -136,6 +137,8 @@ def get_ip_mask_cidr(ipmask: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getIPMaskCIDR:GetIPMaskCIDR', __args__, opts=opts, typ=GetIPMaskCIDRResult).value
 
     return AwaitableGetIPMaskCIDRResult(
@@ -144,3 +147,46 @@ def get_ip_mask_cidr(ipmask: Optional[str] = None,
         id=__ret__.id,
         ipmask=__ret__.ipmask,
         ipmasklists=__ret__.ipmasklists)
+
+
+@_utilities.lift_output_func(get_ip_mask_cidr)
+def get_ip_mask_cidr_output(ipmask: Optional[pulumi.Input[Optional[str]]] = None,
+                            ipmasklists: Optional[pulumi.Input[Optional[Sequence[str]]]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetIPMaskCIDRResult]:
+    """
+    Convert IP/Mask to CIDR
+
+    ## Example Usage
+    ### Example1
+
+    ```python
+    import pulumi
+    import pulumi_fortios as fortios
+
+    trname_get_system_interface = fortios.get_system_interface(name="port3")
+    trname_get_ip_mask_cidr = fortios.get_ip_mask_cidr(ipmask=trname_get_system_interface.ip)
+    pulumi.export("output1", trname_get_ip_mask_cidr.cidr)
+    ```
+    ### Example2
+
+    ```python
+    import pulumi
+    import pulumi_fortios as fortios
+
+    trname_get_system_interface = fortios.get_system_interface(name="port3")
+    trname_get_ip_mask_cidr = fortios.get_ip_mask_cidr(ipmask=trname_get_system_interface.ip,
+        ipmasklists=[
+            "21.1.1.1 255.255.255.0",
+            "22.1.1.1 255.255.255.240",
+            "23.1.1.1 255.255.255.224",
+        ])
+    pulumi.export("outputConv1", trname_get_ip_mask_cidr.cidr)
+    pulumi.export("outputConv2", trname_get_ip_mask_cidr.cidrlists)
+    pulumi.export("outputOrignal", trname_get_system_interface.ip)
+    ```
+
+
+    :param str ipmask: Specify IP/MASK.
+    :param Sequence[str] ipmasklists: Specify IP/MASK list.
+    """
+    ...

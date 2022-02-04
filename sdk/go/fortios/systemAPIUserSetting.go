@@ -21,6 +21,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -29,12 +30,12 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewSystemAPIUserSetting(ctx, "test2", &fortios.SystemAPIUserSettingArgs{
 // 			Accprofile: pulumi.String("restAPIprofile"),
-// 			Trusthosts: fortios.SystemAPIUserSettingTrusthostArray{
-// 				&fortios.SystemAPIUserSettingTrusthostArgs{
+// 			Trusthosts: SystemAPIUserSettingTrusthostArray{
+// 				&SystemAPIUserSettingTrusthostArgs{
 // 					Ipv4Trusthost: pulumi.String("61.149.0.0 255.255.0.0"),
 // 					Type:          pulumi.String("ipv4-trusthost"),
 // 				},
-// 				&fortios.SystemAPIUserSettingTrusthostArgs{
+// 				&SystemAPIUserSettingTrusthostArgs{
 // 					Ipv4Trusthost: pulumi.String("22.22.0.0 255.255.0.0"),
 // 					Type:          pulumi.String("ipv4-trusthost"),
 // 				},
@@ -82,6 +83,7 @@ func NewSystemAPIUserSetting(ctx *pulumi.Context,
 	if args.Vdoms == nil {
 		return nil, errors.New("invalid value for required argument 'Vdoms'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAPIUserSetting
 	err := ctx.RegisterResource("fortios:index/systemAPIUserSetting:SystemAPIUserSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -176,7 +178,7 @@ type SystemAPIUserSettingInput interface {
 }
 
 func (*SystemAPIUserSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAPIUserSetting)(nil))
+	return reflect.TypeOf((**SystemAPIUserSetting)(nil)).Elem()
 }
 
 func (i *SystemAPIUserSetting) ToSystemAPIUserSettingOutput() SystemAPIUserSettingOutput {
@@ -185,35 +187,6 @@ func (i *SystemAPIUserSetting) ToSystemAPIUserSettingOutput() SystemAPIUserSetti
 
 func (i *SystemAPIUserSetting) ToSystemAPIUserSettingOutputWithContext(ctx context.Context) SystemAPIUserSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingOutput)
-}
-
-func (i *SystemAPIUserSetting) ToSystemAPIUserSettingPtrOutput() SystemAPIUserSettingPtrOutput {
-	return i.ToSystemAPIUserSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAPIUserSetting) ToSystemAPIUserSettingPtrOutputWithContext(ctx context.Context) SystemAPIUserSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingPtrOutput)
-}
-
-type SystemAPIUserSettingPtrInput interface {
-	pulumi.Input
-
-	ToSystemAPIUserSettingPtrOutput() SystemAPIUserSettingPtrOutput
-	ToSystemAPIUserSettingPtrOutputWithContext(ctx context.Context) SystemAPIUserSettingPtrOutput
-}
-
-type systemAPIUserSettingPtrType SystemAPIUserSettingArgs
-
-func (*systemAPIUserSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAPIUserSetting)(nil))
-}
-
-func (i *systemAPIUserSettingPtrType) ToSystemAPIUserSettingPtrOutput() SystemAPIUserSettingPtrOutput {
-	return i.ToSystemAPIUserSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAPIUserSettingPtrType) ToSystemAPIUserSettingPtrOutputWithContext(ctx context.Context) SystemAPIUserSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingPtrOutput)
 }
 
 // SystemAPIUserSettingArrayInput is an input type that accepts SystemAPIUserSettingArray and SystemAPIUserSettingArrayOutput values.
@@ -230,7 +203,7 @@ type SystemAPIUserSettingArrayInput interface {
 type SystemAPIUserSettingArray []SystemAPIUserSettingInput
 
 func (SystemAPIUserSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAPIUserSetting)(nil))
+	return reflect.TypeOf((*[]*SystemAPIUserSetting)(nil)).Elem()
 }
 
 func (i SystemAPIUserSettingArray) ToSystemAPIUserSettingArrayOutput() SystemAPIUserSettingArrayOutput {
@@ -255,7 +228,7 @@ type SystemAPIUserSettingMapInput interface {
 type SystemAPIUserSettingMap map[string]SystemAPIUserSettingInput
 
 func (SystemAPIUserSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAPIUserSetting)(nil))
+	return reflect.TypeOf((*map[string]*SystemAPIUserSetting)(nil)).Elem()
 }
 
 func (i SystemAPIUserSettingMap) ToSystemAPIUserSettingMapOutput() SystemAPIUserSettingMapOutput {
@@ -266,12 +239,10 @@ func (i SystemAPIUserSettingMap) ToSystemAPIUserSettingMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAPIUserSettingMapOutput)
 }
 
-type SystemAPIUserSettingOutput struct {
-	*pulumi.OutputState
-}
+type SystemAPIUserSettingOutput struct{ *pulumi.OutputState }
 
 func (SystemAPIUserSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAPIUserSetting)(nil))
+	return reflect.TypeOf((**SystemAPIUserSetting)(nil)).Elem()
 }
 
 func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingOutput() SystemAPIUserSettingOutput {
@@ -282,36 +253,10 @@ func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingPtrOutput() SystemAPIUserSettingPtrOutput {
-	return o.ToSystemAPIUserSettingPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAPIUserSettingOutput) ToSystemAPIUserSettingPtrOutputWithContext(ctx context.Context) SystemAPIUserSettingPtrOutput {
-	return o.ApplyT(func(v SystemAPIUserSetting) *SystemAPIUserSetting {
-		return &v
-	}).(SystemAPIUserSettingPtrOutput)
-}
-
-type SystemAPIUserSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAPIUserSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAPIUserSetting)(nil))
-}
-
-func (o SystemAPIUserSettingPtrOutput) ToSystemAPIUserSettingPtrOutput() SystemAPIUserSettingPtrOutput {
-	return o
-}
-
-func (o SystemAPIUserSettingPtrOutput) ToSystemAPIUserSettingPtrOutputWithContext(ctx context.Context) SystemAPIUserSettingPtrOutput {
-	return o
-}
-
 type SystemAPIUserSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAPIUserSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAPIUserSetting)(nil))
+	return reflect.TypeOf((*[]*SystemAPIUserSetting)(nil)).Elem()
 }
 
 func (o SystemAPIUserSettingArrayOutput) ToSystemAPIUserSettingArrayOutput() SystemAPIUserSettingArrayOutput {
@@ -323,15 +268,15 @@ func (o SystemAPIUserSettingArrayOutput) ToSystemAPIUserSettingArrayOutputWithCo
 }
 
 func (o SystemAPIUserSettingArrayOutput) Index(i pulumi.IntInput) SystemAPIUserSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAPIUserSetting {
-		return vs[0].([]SystemAPIUserSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAPIUserSetting {
+		return vs[0].([]*SystemAPIUserSetting)[vs[1].(int)]
 	}).(SystemAPIUserSettingOutput)
 }
 
 type SystemAPIUserSettingMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAPIUserSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAPIUserSetting)(nil))
+	return reflect.TypeOf((*map[string]*SystemAPIUserSetting)(nil)).Elem()
 }
 
 func (o SystemAPIUserSettingMapOutput) ToSystemAPIUserSettingMapOutput() SystemAPIUserSettingMapOutput {
@@ -343,14 +288,16 @@ func (o SystemAPIUserSettingMapOutput) ToSystemAPIUserSettingMapOutputWithContex
 }
 
 func (o SystemAPIUserSettingMapOutput) MapIndex(k pulumi.StringInput) SystemAPIUserSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAPIUserSetting {
-		return vs[0].(map[string]SystemAPIUserSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAPIUserSetting {
+		return vs[0].(map[string]*SystemAPIUserSetting)[vs[1].(string)]
 	}).(SystemAPIUserSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAPIUserSettingInput)(nil)).Elem(), &SystemAPIUserSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAPIUserSettingArrayInput)(nil)).Elem(), SystemAPIUserSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAPIUserSettingMapInput)(nil)).Elem(), SystemAPIUserSettingMap{})
 	pulumi.RegisterOutputType(SystemAPIUserSettingOutput{})
-	pulumi.RegisterOutputType(SystemAPIUserSettingPtrOutput{})
 	pulumi.RegisterOutputType(SystemAPIUserSettingArrayOutput{})
 	pulumi.RegisterOutputType(SystemAPIUserSettingMapOutput{})
 }

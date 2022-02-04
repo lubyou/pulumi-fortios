@@ -63,6 +63,7 @@ func NewCertificateCrl(ctx *pulumi.Context,
 		args = &CertificateCrlArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CertificateCrl
 	err := ctx.RegisterResource("fortios:index/certificateCrl:CertificateCrl", name, args, &resource, opts...)
 	if err != nil {
@@ -233,7 +234,7 @@ type CertificateCrlInput interface {
 }
 
 func (*CertificateCrl) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateCrl)(nil))
+	return reflect.TypeOf((**CertificateCrl)(nil)).Elem()
 }
 
 func (i *CertificateCrl) ToCertificateCrlOutput() CertificateCrlOutput {
@@ -242,35 +243,6 @@ func (i *CertificateCrl) ToCertificateCrlOutput() CertificateCrlOutput {
 
 func (i *CertificateCrl) ToCertificateCrlOutputWithContext(ctx context.Context) CertificateCrlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlOutput)
-}
-
-func (i *CertificateCrl) ToCertificateCrlPtrOutput() CertificateCrlPtrOutput {
-	return i.ToCertificateCrlPtrOutputWithContext(context.Background())
-}
-
-func (i *CertificateCrl) ToCertificateCrlPtrOutputWithContext(ctx context.Context) CertificateCrlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlPtrOutput)
-}
-
-type CertificateCrlPtrInput interface {
-	pulumi.Input
-
-	ToCertificateCrlPtrOutput() CertificateCrlPtrOutput
-	ToCertificateCrlPtrOutputWithContext(ctx context.Context) CertificateCrlPtrOutput
-}
-
-type certificateCrlPtrType CertificateCrlArgs
-
-func (*certificateCrlPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CertificateCrl)(nil))
-}
-
-func (i *certificateCrlPtrType) ToCertificateCrlPtrOutput() CertificateCrlPtrOutput {
-	return i.ToCertificateCrlPtrOutputWithContext(context.Background())
-}
-
-func (i *certificateCrlPtrType) ToCertificateCrlPtrOutputWithContext(ctx context.Context) CertificateCrlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlPtrOutput)
 }
 
 // CertificateCrlArrayInput is an input type that accepts CertificateCrlArray and CertificateCrlArrayOutput values.
@@ -287,7 +259,7 @@ type CertificateCrlArrayInput interface {
 type CertificateCrlArray []CertificateCrlInput
 
 func (CertificateCrlArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CertificateCrl)(nil))
+	return reflect.TypeOf((*[]*CertificateCrl)(nil)).Elem()
 }
 
 func (i CertificateCrlArray) ToCertificateCrlArrayOutput() CertificateCrlArrayOutput {
@@ -312,7 +284,7 @@ type CertificateCrlMapInput interface {
 type CertificateCrlMap map[string]CertificateCrlInput
 
 func (CertificateCrlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CertificateCrl)(nil))
+	return reflect.TypeOf((*map[string]*CertificateCrl)(nil)).Elem()
 }
 
 func (i CertificateCrlMap) ToCertificateCrlMapOutput() CertificateCrlMapOutput {
@@ -323,12 +295,10 @@ func (i CertificateCrlMap) ToCertificateCrlMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateCrlMapOutput)
 }
 
-type CertificateCrlOutput struct {
-	*pulumi.OutputState
-}
+type CertificateCrlOutput struct{ *pulumi.OutputState }
 
 func (CertificateCrlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateCrl)(nil))
+	return reflect.TypeOf((**CertificateCrl)(nil)).Elem()
 }
 
 func (o CertificateCrlOutput) ToCertificateCrlOutput() CertificateCrlOutput {
@@ -339,36 +309,10 @@ func (o CertificateCrlOutput) ToCertificateCrlOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o CertificateCrlOutput) ToCertificateCrlPtrOutput() CertificateCrlPtrOutput {
-	return o.ToCertificateCrlPtrOutputWithContext(context.Background())
-}
-
-func (o CertificateCrlOutput) ToCertificateCrlPtrOutputWithContext(ctx context.Context) CertificateCrlPtrOutput {
-	return o.ApplyT(func(v CertificateCrl) *CertificateCrl {
-		return &v
-	}).(CertificateCrlPtrOutput)
-}
-
-type CertificateCrlPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CertificateCrlPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CertificateCrl)(nil))
-}
-
-func (o CertificateCrlPtrOutput) ToCertificateCrlPtrOutput() CertificateCrlPtrOutput {
-	return o
-}
-
-func (o CertificateCrlPtrOutput) ToCertificateCrlPtrOutputWithContext(ctx context.Context) CertificateCrlPtrOutput {
-	return o
-}
-
 type CertificateCrlArrayOutput struct{ *pulumi.OutputState }
 
 func (CertificateCrlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CertificateCrl)(nil))
+	return reflect.TypeOf((*[]*CertificateCrl)(nil)).Elem()
 }
 
 func (o CertificateCrlArrayOutput) ToCertificateCrlArrayOutput() CertificateCrlArrayOutput {
@@ -380,15 +324,15 @@ func (o CertificateCrlArrayOutput) ToCertificateCrlArrayOutputWithContext(ctx co
 }
 
 func (o CertificateCrlArrayOutput) Index(i pulumi.IntInput) CertificateCrlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificateCrl {
-		return vs[0].([]CertificateCrl)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateCrl {
+		return vs[0].([]*CertificateCrl)[vs[1].(int)]
 	}).(CertificateCrlOutput)
 }
 
 type CertificateCrlMapOutput struct{ *pulumi.OutputState }
 
 func (CertificateCrlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CertificateCrl)(nil))
+	return reflect.TypeOf((*map[string]*CertificateCrl)(nil)).Elem()
 }
 
 func (o CertificateCrlMapOutput) ToCertificateCrlMapOutput() CertificateCrlMapOutput {
@@ -400,14 +344,16 @@ func (o CertificateCrlMapOutput) ToCertificateCrlMapOutputWithContext(ctx contex
 }
 
 func (o CertificateCrlMapOutput) MapIndex(k pulumi.StringInput) CertificateCrlOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CertificateCrl {
-		return vs[0].(map[string]CertificateCrl)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CertificateCrl {
+		return vs[0].(map[string]*CertificateCrl)[vs[1].(string)]
 	}).(CertificateCrlOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateCrlInput)(nil)).Elem(), &CertificateCrl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateCrlArrayInput)(nil)).Elem(), CertificateCrlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateCrlMapInput)(nil)).Elem(), CertificateCrlMap{})
 	pulumi.RegisterOutputType(CertificateCrlOutput{})
-	pulumi.RegisterOutputType(CertificateCrlPtrOutput{})
 	pulumi.RegisterOutputType(CertificateCrlArrayOutput{})
 	pulumi.RegisterOutputType(CertificateCrlMapOutput{})
 }

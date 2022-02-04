@@ -188,60 +188,58 @@ export class NetworkingInterfacePort extends pulumi.CustomResource {
      */
     constructor(name: string, args: NetworkingInterfacePortArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkingInterfacePortArgs | NetworkingInterfacePortState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkingInterfacePortState | undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["allowaccess"] = state ? state.allowaccess : undefined;
-            inputs["defaultgw"] = state ? state.defaultgw : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["deviceIdentification"] = state ? state.deviceIdentification : undefined;
-            inputs["distance"] = state ? state.distance : undefined;
-            inputs["dnsServerOverride"] = state ? state.dnsServerOverride : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["mtu"] = state ? state.mtu : undefined;
-            inputs["mtuOverride"] = state ? state.mtuOverride : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["speed"] = state ? state.speed : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tcpMss"] = state ? state.tcpMss : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vlanid"] = state ? state.vlanid : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
+            resourceInputs["defaultgw"] = state ? state.defaultgw : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["deviceIdentification"] = state ? state.deviceIdentification : undefined;
+            resourceInputs["distance"] = state ? state.distance : undefined;
+            resourceInputs["dnsServerOverride"] = state ? state.dnsServerOverride : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["mtu"] = state ? state.mtu : undefined;
+            resourceInputs["mtuOverride"] = state ? state.mtuOverride : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["speed"] = state ? state.speed : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tcpMss"] = state ? state.tcpMss : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vlanid"] = state ? state.vlanid : undefined;
         } else {
             const args = argsOrState as NetworkingInterfacePortArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["allowaccess"] = args ? args.allowaccess : undefined;
-            inputs["defaultgw"] = args ? args.defaultgw : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["deviceIdentification"] = args ? args.deviceIdentification : undefined;
-            inputs["distance"] = args ? args.distance : undefined;
-            inputs["dnsServerOverride"] = args ? args.dnsServerOverride : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["mtu"] = args ? args.mtu : undefined;
-            inputs["mtuOverride"] = args ? args.mtuOverride : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["speed"] = args ? args.speed : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tcpMss"] = args ? args.tcpMss : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vlanid"] = args ? args.vlanid : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
+            resourceInputs["defaultgw"] = args ? args.defaultgw : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["deviceIdentification"] = args ? args.deviceIdentification : undefined;
+            resourceInputs["distance"] = args ? args.distance : undefined;
+            resourceInputs["dnsServerOverride"] = args ? args.dnsServerOverride : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["mtu"] = args ? args.mtu : undefined;
+            resourceInputs["mtuOverride"] = args ? args.mtuOverride : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["speed"] = args ? args.speed : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tcpMss"] = args ? args.tcpMss : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vlanid"] = args ? args.vlanid : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(NetworkingInterfacePort.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(NetworkingInterfacePort.__pulumiType, name, resourceInputs, opts);
     }
 }
 

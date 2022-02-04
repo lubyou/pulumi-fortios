@@ -12,6 +12,7 @@ __all__ = [
     'GetFirewallInternetServiceResult',
     'AwaitableGetFirewallInternetServiceResult',
     'get_firewall_internet_service',
+    'get_firewall_internet_service_output',
 ]
 
 @pulumi.output_type
@@ -212,6 +213,8 @@ def get_firewall_internet_service(fosid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallInternetService:GetFirewallInternetService', __args__, opts=opts, typ=GetFirewallInternetServiceResult).value
 
     return AwaitableGetFirewallInternetServiceResult(
@@ -229,3 +232,17 @@ def get_firewall_internet_service(fosid: Optional[int] = None,
         singularity=__ret__.singularity,
         sld_id=__ret__.sld_id,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_internet_service)
+def get_firewall_internet_service_output(fosid: Optional[pulumi.Input[int]] = None,
+                                         vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallInternetServiceResult]:
+    """
+    Use this data source to get information on an fortios firewall internetservice
+
+
+    :param int fosid: Specify the fosid of the desired firewall internetservice.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

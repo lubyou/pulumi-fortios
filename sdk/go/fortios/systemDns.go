@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -57,6 +57,10 @@ import (
 type SystemDns struct {
 	pulumi.CustomResourceState
 
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary pulumi.StringOutput `pulumi:"altPrimary"`
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary pulumi.StringOutput `pulumi:"altSecondary"`
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses pulumi.StringOutput `pulumi:"cacheNotfoundResponses"`
 	// Maximum number of records in the DNS cache.
@@ -77,14 +81,20 @@ type SystemDns struct {
 	Ip6Primary pulumi.StringOutput `pulumi:"ip6Primary"`
 	// Secondary DNS server IPv6 address.
 	Ip6Secondary pulumi.StringOutput `pulumi:"ip6Secondary"`
+	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
+	Log pulumi.StringOutput `pulumi:"log"`
 	// Primary DNS server IP address.
 	Primary pulumi.StringOutput `pulumi:"primary"`
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// Number of times to retry (0 - 5).
 	Retry pulumi.IntOutput `pulumi:"retry"`
 	// Secondary DNS server IP address.
 	Secondary pulumi.StringOutput `pulumi:"secondary"`
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames SystemDnsServerHostnameArrayOutput `pulumi:"serverHostnames"`
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod pulumi.StringOutput `pulumi:"serverSelectMethod"`
 	// IP address used by the DNS server as its source IP.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Name of local certificate for SSL connections.
@@ -105,6 +115,7 @@ func NewSystemDns(ctx *pulumi.Context,
 	if args.Primary == nil {
 		return nil, errors.New("invalid value for required argument 'Primary'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDns
 	err := ctx.RegisterResource("fortios:index/systemDns:SystemDns", name, args, &resource, opts...)
 	if err != nil {
@@ -127,6 +138,10 @@ func GetSystemDns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDns resources.
 type systemDnsState struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary *string `pulumi:"altPrimary"`
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses *string `pulumi:"cacheNotfoundResponses"`
 	// Maximum number of records in the DNS cache.
@@ -147,14 +162,20 @@ type systemDnsState struct {
 	Ip6Primary *string `pulumi:"ip6Primary"`
 	// Secondary DNS server IPv6 address.
 	Ip6Secondary *string `pulumi:"ip6Secondary"`
+	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
+	Log *string `pulumi:"log"`
 	// Primary DNS server IP address.
 	Primary *string `pulumi:"primary"`
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol *string `pulumi:"protocol"`
 	// Number of times to retry (0 - 5).
 	Retry *int `pulumi:"retry"`
 	// Secondary DNS server IP address.
 	Secondary *string `pulumi:"secondary"`
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames []SystemDnsServerHostname `pulumi:"serverHostnames"`
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod *string `pulumi:"serverSelectMethod"`
 	// IP address used by the DNS server as its source IP.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Name of local certificate for SSL connections.
@@ -166,6 +187,10 @@ type systemDnsState struct {
 }
 
 type SystemDnsState struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary pulumi.StringPtrInput
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary pulumi.StringPtrInput
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses pulumi.StringPtrInput
 	// Maximum number of records in the DNS cache.
@@ -186,14 +211,20 @@ type SystemDnsState struct {
 	Ip6Primary pulumi.StringPtrInput
 	// Secondary DNS server IPv6 address.
 	Ip6Secondary pulumi.StringPtrInput
+	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
+	Log pulumi.StringPtrInput
 	// Primary DNS server IP address.
 	Primary pulumi.StringPtrInput
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol pulumi.StringPtrInput
 	// Number of times to retry (0 - 5).
 	Retry pulumi.IntPtrInput
 	// Secondary DNS server IP address.
 	Secondary pulumi.StringPtrInput
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames SystemDnsServerHostnameArrayInput
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod pulumi.StringPtrInput
 	// IP address used by the DNS server as its source IP.
 	SourceIp pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
@@ -209,6 +240,10 @@ func (SystemDnsState) ElementType() reflect.Type {
 }
 
 type systemDnsArgs struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary *string `pulumi:"altPrimary"`
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses *string `pulumi:"cacheNotfoundResponses"`
 	// Maximum number of records in the DNS cache.
@@ -229,14 +264,20 @@ type systemDnsArgs struct {
 	Ip6Primary *string `pulumi:"ip6Primary"`
 	// Secondary DNS server IPv6 address.
 	Ip6Secondary *string `pulumi:"ip6Secondary"`
+	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
+	Log *string `pulumi:"log"`
 	// Primary DNS server IP address.
 	Primary string `pulumi:"primary"`
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol *string `pulumi:"protocol"`
 	// Number of times to retry (0 - 5).
 	Retry *int `pulumi:"retry"`
 	// Secondary DNS server IP address.
 	Secondary *string `pulumi:"secondary"`
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames []SystemDnsServerHostname `pulumi:"serverHostnames"`
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod *string `pulumi:"serverSelectMethod"`
 	// IP address used by the DNS server as its source IP.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Name of local certificate for SSL connections.
@@ -249,6 +290,10 @@ type systemDnsArgs struct {
 
 // The set of arguments for constructing a SystemDns resource.
 type SystemDnsArgs struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary pulumi.StringPtrInput
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary pulumi.StringPtrInput
 	// Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
 	CacheNotfoundResponses pulumi.StringPtrInput
 	// Maximum number of records in the DNS cache.
@@ -269,14 +314,20 @@ type SystemDnsArgs struct {
 	Ip6Primary pulumi.StringPtrInput
 	// Secondary DNS server IPv6 address.
 	Ip6Secondary pulumi.StringPtrInput
+	// Local DNS log setting. Valid values: `disable`, `error`, `all`.
+	Log pulumi.StringPtrInput
 	// Primary DNS server IP address.
 	Primary pulumi.StringInput
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol pulumi.StringPtrInput
 	// Number of times to retry (0 - 5).
 	Retry pulumi.IntPtrInput
 	// Secondary DNS server IP address.
 	Secondary pulumi.StringPtrInput
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames SystemDnsServerHostnameArrayInput
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod pulumi.StringPtrInput
 	// IP address used by the DNS server as its source IP.
 	SourceIp pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
@@ -299,7 +350,7 @@ type SystemDnsInput interface {
 }
 
 func (*SystemDns) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDns)(nil))
+	return reflect.TypeOf((**SystemDns)(nil)).Elem()
 }
 
 func (i *SystemDns) ToSystemDnsOutput() SystemDnsOutput {
@@ -308,35 +359,6 @@ func (i *SystemDns) ToSystemDnsOutput() SystemDnsOutput {
 
 func (i *SystemDns) ToSystemDnsOutputWithContext(ctx context.Context) SystemDnsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsOutput)
-}
-
-func (i *SystemDns) ToSystemDnsPtrOutput() SystemDnsPtrOutput {
-	return i.ToSystemDnsPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDns) ToSystemDnsPtrOutputWithContext(ctx context.Context) SystemDnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsPtrOutput)
-}
-
-type SystemDnsPtrInput interface {
-	pulumi.Input
-
-	ToSystemDnsPtrOutput() SystemDnsPtrOutput
-	ToSystemDnsPtrOutputWithContext(ctx context.Context) SystemDnsPtrOutput
-}
-
-type systemDnsPtrType SystemDnsArgs
-
-func (*systemDnsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDns)(nil))
-}
-
-func (i *systemDnsPtrType) ToSystemDnsPtrOutput() SystemDnsPtrOutput {
-	return i.ToSystemDnsPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDnsPtrType) ToSystemDnsPtrOutputWithContext(ctx context.Context) SystemDnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsPtrOutput)
 }
 
 // SystemDnsArrayInput is an input type that accepts SystemDnsArray and SystemDnsArrayOutput values.
@@ -353,7 +375,7 @@ type SystemDnsArrayInput interface {
 type SystemDnsArray []SystemDnsInput
 
 func (SystemDnsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDns)(nil))
+	return reflect.TypeOf((*[]*SystemDns)(nil)).Elem()
 }
 
 func (i SystemDnsArray) ToSystemDnsArrayOutput() SystemDnsArrayOutput {
@@ -378,7 +400,7 @@ type SystemDnsMapInput interface {
 type SystemDnsMap map[string]SystemDnsInput
 
 func (SystemDnsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDns)(nil))
+	return reflect.TypeOf((*map[string]*SystemDns)(nil)).Elem()
 }
 
 func (i SystemDnsMap) ToSystemDnsMapOutput() SystemDnsMapOutput {
@@ -389,12 +411,10 @@ func (i SystemDnsMap) ToSystemDnsMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsMapOutput)
 }
 
-type SystemDnsOutput struct {
-	*pulumi.OutputState
-}
+type SystemDnsOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDns)(nil))
+	return reflect.TypeOf((**SystemDns)(nil)).Elem()
 }
 
 func (o SystemDnsOutput) ToSystemDnsOutput() SystemDnsOutput {
@@ -405,36 +425,10 @@ func (o SystemDnsOutput) ToSystemDnsOutputWithContext(ctx context.Context) Syste
 	return o
 }
 
-func (o SystemDnsOutput) ToSystemDnsPtrOutput() SystemDnsPtrOutput {
-	return o.ToSystemDnsPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDnsOutput) ToSystemDnsPtrOutputWithContext(ctx context.Context) SystemDnsPtrOutput {
-	return o.ApplyT(func(v SystemDns) *SystemDns {
-		return &v
-	}).(SystemDnsPtrOutput)
-}
-
-type SystemDnsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDnsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDns)(nil))
-}
-
-func (o SystemDnsPtrOutput) ToSystemDnsPtrOutput() SystemDnsPtrOutput {
-	return o
-}
-
-func (o SystemDnsPtrOutput) ToSystemDnsPtrOutputWithContext(ctx context.Context) SystemDnsPtrOutput {
-	return o
-}
-
 type SystemDnsArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDns)(nil))
+	return reflect.TypeOf((*[]*SystemDns)(nil)).Elem()
 }
 
 func (o SystemDnsArrayOutput) ToSystemDnsArrayOutput() SystemDnsArrayOutput {
@@ -446,15 +440,15 @@ func (o SystemDnsArrayOutput) ToSystemDnsArrayOutputWithContext(ctx context.Cont
 }
 
 func (o SystemDnsArrayOutput) Index(i pulumi.IntInput) SystemDnsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDns {
-		return vs[0].([]SystemDns)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDns {
+		return vs[0].([]*SystemDns)[vs[1].(int)]
 	}).(SystemDnsOutput)
 }
 
 type SystemDnsMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDns)(nil))
+	return reflect.TypeOf((*map[string]*SystemDns)(nil)).Elem()
 }
 
 func (o SystemDnsMapOutput) ToSystemDnsMapOutput() SystemDnsMapOutput {
@@ -466,14 +460,16 @@ func (o SystemDnsMapOutput) ToSystemDnsMapOutputWithContext(ctx context.Context)
 }
 
 func (o SystemDnsMapOutput) MapIndex(k pulumi.StringInput) SystemDnsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDns {
-		return vs[0].(map[string]SystemDns)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDns {
+		return vs[0].(map[string]*SystemDns)[vs[1].(string)]
 	}).(SystemDnsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsInput)(nil)).Elem(), &SystemDns{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsArrayInput)(nil)).Elem(), SystemDnsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsMapInput)(nil)).Elem(), SystemDnsMap{})
 	pulumi.RegisterOutputType(SystemDnsOutput{})
-	pulumi.RegisterOutputType(SystemDnsPtrOutput{})
 	pulumi.RegisterOutputType(SystemDnsArrayOutput{})
 	pulumi.RegisterOutputType(SystemDnsMapOutput{})
 }

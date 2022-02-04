@@ -4,6 +4,9 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -31,6 +35,7 @@ import (
 // }
 // ```
 func GetRouterbgpNeighborList(ctx *pulumi.Context, args *GetRouterbgpNeighborListArgs, opts ...pulumi.InvokeOption) (*GetRouterbgpNeighborListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterbgpNeighborListResult
 	err := ctx.Invoke("fortios:index/getRouterbgpNeighborList:GetRouterbgpNeighborList", args, &rv, opts...)
 	if err != nil {
@@ -54,4 +59,61 @@ type GetRouterbgpNeighborListResult struct {
 	// A list of the `RouterbgpNeighbor`.
 	Iplists   []string `pulumi:"iplists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetRouterbgpNeighborListOutput(ctx *pulumi.Context, args GetRouterbgpNeighborListOutputArgs, opts ...pulumi.InvokeOption) GetRouterbgpNeighborListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterbgpNeighborListResult, error) {
+			args := v.(GetRouterbgpNeighborListArgs)
+			r, err := GetRouterbgpNeighborList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterbgpNeighborListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterbgpNeighborList.
+type GetRouterbgpNeighborListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterbgpNeighborListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterbgpNeighborListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterbgpNeighborList.
+type GetRouterbgpNeighborListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterbgpNeighborListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterbgpNeighborListResult)(nil)).Elem()
+}
+
+func (o GetRouterbgpNeighborListResultOutput) ToGetRouterbgpNeighborListResultOutput() GetRouterbgpNeighborListResultOutput {
+	return o
+}
+
+func (o GetRouterbgpNeighborListResultOutput) ToGetRouterbgpNeighborListResultOutputWithContext(ctx context.Context) GetRouterbgpNeighborListResultOutput {
+	return o
+}
+
+func (o GetRouterbgpNeighborListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterbgpNeighborListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterbgpNeighborListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterbgpNeighborListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterbgpNeighbor`.
+func (o GetRouterbgpNeighborListResultOutput) Iplists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouterbgpNeighborListResult) []string { return v.Iplists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRouterbgpNeighborListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterbgpNeighborListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterbgpNeighborListResultOutput{})
 }

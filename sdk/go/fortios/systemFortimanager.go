@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiManager.
+// Configure FortiManager. Applies to FortiOS Version `<= 7.0.1`.
 //
 // By design considerations, the feature is using the SystemCentralManagement resource as documented below.
 //
@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -65,6 +65,7 @@ func NewSystemFortimanager(ctx *pulumi.Context,
 		args = &SystemFortimanagerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFortimanager
 	err := ctx.RegisterResource("fortios:index/systemFortimanager:SystemFortimanager", name, args, &resource, opts...)
 	if err != nil {
@@ -147,7 +148,7 @@ type SystemFortimanagerInput interface {
 }
 
 func (*SystemFortimanager) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFortimanager)(nil))
+	return reflect.TypeOf((**SystemFortimanager)(nil)).Elem()
 }
 
 func (i *SystemFortimanager) ToSystemFortimanagerOutput() SystemFortimanagerOutput {
@@ -156,35 +157,6 @@ func (i *SystemFortimanager) ToSystemFortimanagerOutput() SystemFortimanagerOutp
 
 func (i *SystemFortimanager) ToSystemFortimanagerOutputWithContext(ctx context.Context) SystemFortimanagerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortimanagerOutput)
-}
-
-func (i *SystemFortimanager) ToSystemFortimanagerPtrOutput() SystemFortimanagerPtrOutput {
-	return i.ToSystemFortimanagerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFortimanager) ToSystemFortimanagerPtrOutputWithContext(ctx context.Context) SystemFortimanagerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFortimanagerPtrOutput)
-}
-
-type SystemFortimanagerPtrInput interface {
-	pulumi.Input
-
-	ToSystemFortimanagerPtrOutput() SystemFortimanagerPtrOutput
-	ToSystemFortimanagerPtrOutputWithContext(ctx context.Context) SystemFortimanagerPtrOutput
-}
-
-type systemFortimanagerPtrType SystemFortimanagerArgs
-
-func (*systemFortimanagerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFortimanager)(nil))
-}
-
-func (i *systemFortimanagerPtrType) ToSystemFortimanagerPtrOutput() SystemFortimanagerPtrOutput {
-	return i.ToSystemFortimanagerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFortimanagerPtrType) ToSystemFortimanagerPtrOutputWithContext(ctx context.Context) SystemFortimanagerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFortimanagerPtrOutput)
 }
 
 // SystemFortimanagerArrayInput is an input type that accepts SystemFortimanagerArray and SystemFortimanagerArrayOutput values.
@@ -201,7 +173,7 @@ type SystemFortimanagerArrayInput interface {
 type SystemFortimanagerArray []SystemFortimanagerInput
 
 func (SystemFortimanagerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFortimanager)(nil))
+	return reflect.TypeOf((*[]*SystemFortimanager)(nil)).Elem()
 }
 
 func (i SystemFortimanagerArray) ToSystemFortimanagerArrayOutput() SystemFortimanagerArrayOutput {
@@ -226,7 +198,7 @@ type SystemFortimanagerMapInput interface {
 type SystemFortimanagerMap map[string]SystemFortimanagerInput
 
 func (SystemFortimanagerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFortimanager)(nil))
+	return reflect.TypeOf((*map[string]*SystemFortimanager)(nil)).Elem()
 }
 
 func (i SystemFortimanagerMap) ToSystemFortimanagerMapOutput() SystemFortimanagerMapOutput {
@@ -237,12 +209,10 @@ func (i SystemFortimanagerMap) ToSystemFortimanagerMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortimanagerMapOutput)
 }
 
-type SystemFortimanagerOutput struct {
-	*pulumi.OutputState
-}
+type SystemFortimanagerOutput struct{ *pulumi.OutputState }
 
 func (SystemFortimanagerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFortimanager)(nil))
+	return reflect.TypeOf((**SystemFortimanager)(nil)).Elem()
 }
 
 func (o SystemFortimanagerOutput) ToSystemFortimanagerOutput() SystemFortimanagerOutput {
@@ -253,36 +223,10 @@ func (o SystemFortimanagerOutput) ToSystemFortimanagerOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemFortimanagerOutput) ToSystemFortimanagerPtrOutput() SystemFortimanagerPtrOutput {
-	return o.ToSystemFortimanagerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFortimanagerOutput) ToSystemFortimanagerPtrOutputWithContext(ctx context.Context) SystemFortimanagerPtrOutput {
-	return o.ApplyT(func(v SystemFortimanager) *SystemFortimanager {
-		return &v
-	}).(SystemFortimanagerPtrOutput)
-}
-
-type SystemFortimanagerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFortimanagerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFortimanager)(nil))
-}
-
-func (o SystemFortimanagerPtrOutput) ToSystemFortimanagerPtrOutput() SystemFortimanagerPtrOutput {
-	return o
-}
-
-func (o SystemFortimanagerPtrOutput) ToSystemFortimanagerPtrOutputWithContext(ctx context.Context) SystemFortimanagerPtrOutput {
-	return o
-}
-
 type SystemFortimanagerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFortimanagerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFortimanager)(nil))
+	return reflect.TypeOf((*[]*SystemFortimanager)(nil)).Elem()
 }
 
 func (o SystemFortimanagerArrayOutput) ToSystemFortimanagerArrayOutput() SystemFortimanagerArrayOutput {
@@ -294,15 +238,15 @@ func (o SystemFortimanagerArrayOutput) ToSystemFortimanagerArrayOutputWithContex
 }
 
 func (o SystemFortimanagerArrayOutput) Index(i pulumi.IntInput) SystemFortimanagerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFortimanager {
-		return vs[0].([]SystemFortimanager)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortimanager {
+		return vs[0].([]*SystemFortimanager)[vs[1].(int)]
 	}).(SystemFortimanagerOutput)
 }
 
 type SystemFortimanagerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFortimanagerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFortimanager)(nil))
+	return reflect.TypeOf((*map[string]*SystemFortimanager)(nil)).Elem()
 }
 
 func (o SystemFortimanagerMapOutput) ToSystemFortimanagerMapOutput() SystemFortimanagerMapOutput {
@@ -314,14 +258,16 @@ func (o SystemFortimanagerMapOutput) ToSystemFortimanagerMapOutputWithContext(ct
 }
 
 func (o SystemFortimanagerMapOutput) MapIndex(k pulumi.StringInput) SystemFortimanagerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFortimanager {
-		return vs[0].(map[string]SystemFortimanager)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFortimanager {
+		return vs[0].(map[string]*SystemFortimanager)[vs[1].(string)]
 	}).(SystemFortimanagerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortimanagerInput)(nil)).Elem(), &SystemFortimanager{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortimanagerArrayInput)(nil)).Elem(), SystemFortimanagerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortimanagerMapInput)(nil)).Elem(), SystemFortimanagerMap{})
 	pulumi.RegisterOutputType(SystemFortimanagerOutput{})
-	pulumi.RegisterOutputType(SystemFortimanagerPtrOutput{})
 	pulumi.RegisterOutputType(SystemFortimanagerArrayOutput{})
 	pulumi.RegisterOutputType(SystemFortimanagerMapOutput{})
 }

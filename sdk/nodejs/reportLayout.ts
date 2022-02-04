@@ -153,58 +153,56 @@ export class ReportLayout extends pulumi.CustomResource {
      */
     constructor(name: string, args: ReportLayoutArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ReportLayoutArgs | ReportLayoutState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportLayoutState | undefined;
-            inputs["bodyItems"] = state ? state.bodyItems : undefined;
-            inputs["cutoffOption"] = state ? state.cutoffOption : undefined;
-            inputs["cutoffTime"] = state ? state.cutoffTime : undefined;
-            inputs["day"] = state ? state.day : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["emailRecipients"] = state ? state.emailRecipients : undefined;
-            inputs["emailSend"] = state ? state.emailSend : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["maxPdfReport"] = state ? state.maxPdfReport : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["page"] = state ? state.page : undefined;
-            inputs["scheduleType"] = state ? state.scheduleType : undefined;
-            inputs["styleTheme"] = state ? state.styleTheme : undefined;
-            inputs["subtitle"] = state ? state.subtitle : undefined;
-            inputs["time"] = state ? state.time : undefined;
-            inputs["title"] = state ? state.title : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bodyItems"] = state ? state.bodyItems : undefined;
+            resourceInputs["cutoffOption"] = state ? state.cutoffOption : undefined;
+            resourceInputs["cutoffTime"] = state ? state.cutoffTime : undefined;
+            resourceInputs["day"] = state ? state.day : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emailRecipients"] = state ? state.emailRecipients : undefined;
+            resourceInputs["emailSend"] = state ? state.emailSend : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["maxPdfReport"] = state ? state.maxPdfReport : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["page"] = state ? state.page : undefined;
+            resourceInputs["scheduleType"] = state ? state.scheduleType : undefined;
+            resourceInputs["styleTheme"] = state ? state.styleTheme : undefined;
+            resourceInputs["subtitle"] = state ? state.subtitle : undefined;
+            resourceInputs["time"] = state ? state.time : undefined;
+            resourceInputs["title"] = state ? state.title : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as ReportLayoutArgs | undefined;
             if ((!args || args.styleTheme === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'styleTheme'");
             }
-            inputs["bodyItems"] = args ? args.bodyItems : undefined;
-            inputs["cutoffOption"] = args ? args.cutoffOption : undefined;
-            inputs["cutoffTime"] = args ? args.cutoffTime : undefined;
-            inputs["day"] = args ? args.day : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["emailRecipients"] = args ? args.emailRecipients : undefined;
-            inputs["emailSend"] = args ? args.emailSend : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["maxPdfReport"] = args ? args.maxPdfReport : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["page"] = args ? args.page : undefined;
-            inputs["scheduleType"] = args ? args.scheduleType : undefined;
-            inputs["styleTheme"] = args ? args.styleTheme : undefined;
-            inputs["subtitle"] = args ? args.subtitle : undefined;
-            inputs["time"] = args ? args.time : undefined;
-            inputs["title"] = args ? args.title : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bodyItems"] = args ? args.bodyItems : undefined;
+            resourceInputs["cutoffOption"] = args ? args.cutoffOption : undefined;
+            resourceInputs["cutoffTime"] = args ? args.cutoffTime : undefined;
+            resourceInputs["day"] = args ? args.day : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emailRecipients"] = args ? args.emailRecipients : undefined;
+            resourceInputs["emailSend"] = args ? args.emailSend : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["maxPdfReport"] = args ? args.maxPdfReport : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["page"] = args ? args.page : undefined;
+            resourceInputs["scheduleType"] = args ? args.scheduleType : undefined;
+            resourceInputs["styleTheme"] = args ? args.styleTheme : undefined;
+            resourceInputs["subtitle"] = args ? args.subtitle : undefined;
+            resourceInputs["time"] = args ? args.time : undefined;
+            resourceInputs["title"] = args ? args.title : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ReportLayout.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ReportLayout.__pulumiType, name, resourceInputs, opts);
     }
 }
 

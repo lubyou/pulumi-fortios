@@ -120,22 +120,22 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallMulticastAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallMulticastAddressArgs | FirewallMulticastAddressState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallMulticastAddressState | undefined;
-            inputs["associatedInterface"] = state ? state.associatedInterface : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["endIp"] = state ? state.endIp : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["startIp"] = state ? state.startIp : undefined;
-            inputs["subnet"] = state ? state.subnet : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["associatedInterface"] = state ? state.associatedInterface : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["startIp"] = state ? state.startIp : undefined;
+            resourceInputs["subnet"] = state ? state.subnet : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallMulticastAddressArgs | undefined;
             if ((!args || args.endIp === undefined) && !opts.urn) {
@@ -144,23 +144,21 @@ export class FirewallMulticastAddress extends pulumi.CustomResource {
             if ((!args || args.startIp === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startIp'");
             }
-            inputs["associatedInterface"] = args ? args.associatedInterface : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["endIp"] = args ? args.endIp : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["startIp"] = args ? args.startIp : undefined;
-            inputs["subnet"] = args ? args.subnet : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["associatedInterface"] = args ? args.associatedInterface : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["startIp"] = args ? args.startIp : undefined;
+            resourceInputs["subnet"] = args ? args.subnet : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallMulticastAddress.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallMulticastAddress.__pulumiType, name, resourceInputs, opts);
     }
 }
 

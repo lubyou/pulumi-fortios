@@ -112,13 +112,37 @@ export class AntivirusProfile extends pulumi.CustomResource {
      */
     public readonly contentDisarm!: pulumi.Output<outputs.AntivirusProfileContentDisarm | undefined>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+     */
+    public readonly emsThreatFeed!: pulumi.Output<string>;
+    /**
      * Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
      */
     public readonly extendedLog!: pulumi.Output<string>;
     /**
+     * Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+     */
+    public readonly externalBlocklistEnableAll!: pulumi.Output<string>;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    public readonly externalBlocklists!: pulumi.Output<outputs.AntivirusProfileExternalBlocklist[] | undefined>;
+    /**
      * Flow/proxy feature set. Valid values: `flow`, `proxy`.
      */
     public readonly featureSet!: pulumi.Output<string>;
+    /**
+     * Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+     */
+    public readonly fortiaiErrorAction!: pulumi.Output<string>;
+    /**
+     * Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+     */
+    public readonly fortiaiTimeoutAction!: pulumi.Output<string>;
     /**
      * Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
      */
@@ -152,7 +176,7 @@ export class AntivirusProfile extends pulumi.CustomResource {
      */
     public readonly nacQuar!: pulumi.Output<outputs.AntivirusProfileNacQuar | undefined>;
     /**
-     * Profile name.
+     * External blocklist.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -163,6 +187,10 @@ export class AntivirusProfile extends pulumi.CustomResource {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     public readonly outbreakPrevention!: pulumi.Output<outputs.AntivirusProfileOutbreakPrevention | undefined>;
+    /**
+     * Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+     */
+    public readonly outbreakPreventionArchiveScan!: pulumi.Output<string>;
     /**
      * Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
      */
@@ -201,79 +229,91 @@ export class AntivirusProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AntivirusProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AntivirusProfileArgs | AntivirusProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AntivirusProfileState | undefined;
-            inputs["analyticsAcceptFiletype"] = state ? state.analyticsAcceptFiletype : undefined;
-            inputs["analyticsBlFiletype"] = state ? state.analyticsBlFiletype : undefined;
-            inputs["analyticsDb"] = state ? state.analyticsDb : undefined;
-            inputs["analyticsIgnoreFiletype"] = state ? state.analyticsIgnoreFiletype : undefined;
-            inputs["analyticsMaxUpload"] = state ? state.analyticsMaxUpload : undefined;
-            inputs["analyticsWlFiletype"] = state ? state.analyticsWlFiletype : undefined;
-            inputs["avBlockLog"] = state ? state.avBlockLog : undefined;
-            inputs["avVirusLog"] = state ? state.avVirusLog : undefined;
-            inputs["cifs"] = state ? state.cifs : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["contentDisarm"] = state ? state.contentDisarm : undefined;
-            inputs["extendedLog"] = state ? state.extendedLog : undefined;
-            inputs["featureSet"] = state ? state.featureSet : undefined;
-            inputs["ftgdAnalytics"] = state ? state.ftgdAnalytics : undefined;
-            inputs["ftp"] = state ? state.ftp : undefined;
-            inputs["http"] = state ? state.http : undefined;
-            inputs["imap"] = state ? state.imap : undefined;
-            inputs["inspectionMode"] = state ? state.inspectionMode : undefined;
-            inputs["mapi"] = state ? state.mapi : undefined;
-            inputs["mobileMalwareDb"] = state ? state.mobileMalwareDb : undefined;
-            inputs["nacQuar"] = state ? state.nacQuar : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nntp"] = state ? state.nntp : undefined;
-            inputs["outbreakPrevention"] = state ? state.outbreakPrevention : undefined;
-            inputs["pop3"] = state ? state.pop3 : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["scanMode"] = state ? state.scanMode : undefined;
-            inputs["smb"] = state ? state.smb : undefined;
-            inputs["smtp"] = state ? state.smtp : undefined;
-            inputs["ssh"] = state ? state.ssh : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["analyticsAcceptFiletype"] = state ? state.analyticsAcceptFiletype : undefined;
+            resourceInputs["analyticsBlFiletype"] = state ? state.analyticsBlFiletype : undefined;
+            resourceInputs["analyticsDb"] = state ? state.analyticsDb : undefined;
+            resourceInputs["analyticsIgnoreFiletype"] = state ? state.analyticsIgnoreFiletype : undefined;
+            resourceInputs["analyticsMaxUpload"] = state ? state.analyticsMaxUpload : undefined;
+            resourceInputs["analyticsWlFiletype"] = state ? state.analyticsWlFiletype : undefined;
+            resourceInputs["avBlockLog"] = state ? state.avBlockLog : undefined;
+            resourceInputs["avVirusLog"] = state ? state.avVirusLog : undefined;
+            resourceInputs["cifs"] = state ? state.cifs : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["contentDisarm"] = state ? state.contentDisarm : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emsThreatFeed"] = state ? state.emsThreatFeed : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
+            resourceInputs["externalBlocklistEnableAll"] = state ? state.externalBlocklistEnableAll : undefined;
+            resourceInputs["externalBlocklists"] = state ? state.externalBlocklists : undefined;
+            resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["fortiaiErrorAction"] = state ? state.fortiaiErrorAction : undefined;
+            resourceInputs["fortiaiTimeoutAction"] = state ? state.fortiaiTimeoutAction : undefined;
+            resourceInputs["ftgdAnalytics"] = state ? state.ftgdAnalytics : undefined;
+            resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["http"] = state ? state.http : undefined;
+            resourceInputs["imap"] = state ? state.imap : undefined;
+            resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
+            resourceInputs["mapi"] = state ? state.mapi : undefined;
+            resourceInputs["mobileMalwareDb"] = state ? state.mobileMalwareDb : undefined;
+            resourceInputs["nacQuar"] = state ? state.nacQuar : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nntp"] = state ? state.nntp : undefined;
+            resourceInputs["outbreakPrevention"] = state ? state.outbreakPrevention : undefined;
+            resourceInputs["outbreakPreventionArchiveScan"] = state ? state.outbreakPreventionArchiveScan : undefined;
+            resourceInputs["pop3"] = state ? state.pop3 : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["scanMode"] = state ? state.scanMode : undefined;
+            resourceInputs["smb"] = state ? state.smb : undefined;
+            resourceInputs["smtp"] = state ? state.smtp : undefined;
+            resourceInputs["ssh"] = state ? state.ssh : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AntivirusProfileArgs | undefined;
-            inputs["analyticsAcceptFiletype"] = args ? args.analyticsAcceptFiletype : undefined;
-            inputs["analyticsBlFiletype"] = args ? args.analyticsBlFiletype : undefined;
-            inputs["analyticsDb"] = args ? args.analyticsDb : undefined;
-            inputs["analyticsIgnoreFiletype"] = args ? args.analyticsIgnoreFiletype : undefined;
-            inputs["analyticsMaxUpload"] = args ? args.analyticsMaxUpload : undefined;
-            inputs["analyticsWlFiletype"] = args ? args.analyticsWlFiletype : undefined;
-            inputs["avBlockLog"] = args ? args.avBlockLog : undefined;
-            inputs["avVirusLog"] = args ? args.avVirusLog : undefined;
-            inputs["cifs"] = args ? args.cifs : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["contentDisarm"] = args ? args.contentDisarm : undefined;
-            inputs["extendedLog"] = args ? args.extendedLog : undefined;
-            inputs["featureSet"] = args ? args.featureSet : undefined;
-            inputs["ftgdAnalytics"] = args ? args.ftgdAnalytics : undefined;
-            inputs["ftp"] = args ? args.ftp : undefined;
-            inputs["http"] = args ? args.http : undefined;
-            inputs["imap"] = args ? args.imap : undefined;
-            inputs["inspectionMode"] = args ? args.inspectionMode : undefined;
-            inputs["mapi"] = args ? args.mapi : undefined;
-            inputs["mobileMalwareDb"] = args ? args.mobileMalwareDb : undefined;
-            inputs["nacQuar"] = args ? args.nacQuar : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nntp"] = args ? args.nntp : undefined;
-            inputs["outbreakPrevention"] = args ? args.outbreakPrevention : undefined;
-            inputs["pop3"] = args ? args.pop3 : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["scanMode"] = args ? args.scanMode : undefined;
-            inputs["smb"] = args ? args.smb : undefined;
-            inputs["smtp"] = args ? args.smtp : undefined;
-            inputs["ssh"] = args ? args.ssh : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["analyticsAcceptFiletype"] = args ? args.analyticsAcceptFiletype : undefined;
+            resourceInputs["analyticsBlFiletype"] = args ? args.analyticsBlFiletype : undefined;
+            resourceInputs["analyticsDb"] = args ? args.analyticsDb : undefined;
+            resourceInputs["analyticsIgnoreFiletype"] = args ? args.analyticsIgnoreFiletype : undefined;
+            resourceInputs["analyticsMaxUpload"] = args ? args.analyticsMaxUpload : undefined;
+            resourceInputs["analyticsWlFiletype"] = args ? args.analyticsWlFiletype : undefined;
+            resourceInputs["avBlockLog"] = args ? args.avBlockLog : undefined;
+            resourceInputs["avVirusLog"] = args ? args.avVirusLog : undefined;
+            resourceInputs["cifs"] = args ? args.cifs : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["contentDisarm"] = args ? args.contentDisarm : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emsThreatFeed"] = args ? args.emsThreatFeed : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
+            resourceInputs["externalBlocklistEnableAll"] = args ? args.externalBlocklistEnableAll : undefined;
+            resourceInputs["externalBlocklists"] = args ? args.externalBlocklists : undefined;
+            resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["fortiaiErrorAction"] = args ? args.fortiaiErrorAction : undefined;
+            resourceInputs["fortiaiTimeoutAction"] = args ? args.fortiaiTimeoutAction : undefined;
+            resourceInputs["ftgdAnalytics"] = args ? args.ftgdAnalytics : undefined;
+            resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["http"] = args ? args.http : undefined;
+            resourceInputs["imap"] = args ? args.imap : undefined;
+            resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
+            resourceInputs["mapi"] = args ? args.mapi : undefined;
+            resourceInputs["mobileMalwareDb"] = args ? args.mobileMalwareDb : undefined;
+            resourceInputs["nacQuar"] = args ? args.nacQuar : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nntp"] = args ? args.nntp : undefined;
+            resourceInputs["outbreakPrevention"] = args ? args.outbreakPrevention : undefined;
+            resourceInputs["outbreakPreventionArchiveScan"] = args ? args.outbreakPreventionArchiveScan : undefined;
+            resourceInputs["pop3"] = args ? args.pop3 : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["scanMode"] = args ? args.scanMode : undefined;
+            resourceInputs["smb"] = args ? args.smb : undefined;
+            resourceInputs["smtp"] = args ? args.smtp : undefined;
+            resourceInputs["ssh"] = args ? args.ssh : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AntivirusProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AntivirusProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -326,13 +366,37 @@ export interface AntivirusProfileState {
      */
     contentDisarm?: pulumi.Input<inputs.AntivirusProfileContentDisarm>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+     */
+    emsThreatFeed?: pulumi.Input<string>;
+    /**
      * Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
      */
     extendedLog?: pulumi.Input<string>;
     /**
+     * Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+     */
+    externalBlocklistEnableAll?: pulumi.Input<string>;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklists?: pulumi.Input<pulumi.Input<inputs.AntivirusProfileExternalBlocklist>[]>;
+    /**
      * Flow/proxy feature set. Valid values: `flow`, `proxy`.
      */
     featureSet?: pulumi.Input<string>;
+    /**
+     * Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+     */
+    fortiaiErrorAction?: pulumi.Input<string>;
+    /**
+     * Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+     */
+    fortiaiTimeoutAction?: pulumi.Input<string>;
     /**
      * Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
      */
@@ -366,7 +430,7 @@ export interface AntivirusProfileState {
      */
     nacQuar?: pulumi.Input<inputs.AntivirusProfileNacQuar>;
     /**
-     * Profile name.
+     * External blocklist.
      */
     name?: pulumi.Input<string>;
     /**
@@ -377,6 +441,10 @@ export interface AntivirusProfileState {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention?: pulumi.Input<inputs.AntivirusProfileOutbreakPrevention>;
+    /**
+     * Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+     */
+    outbreakPreventionArchiveScan?: pulumi.Input<string>;
     /**
      * Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
      */
@@ -456,13 +524,37 @@ export interface AntivirusProfileArgs {
      */
     contentDisarm?: pulumi.Input<inputs.AntivirusProfileContentDisarm>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+     */
+    emsThreatFeed?: pulumi.Input<string>;
+    /**
      * Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
      */
     extendedLog?: pulumi.Input<string>;
     /**
+     * Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+     */
+    externalBlocklistEnableAll?: pulumi.Input<string>;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklists?: pulumi.Input<pulumi.Input<inputs.AntivirusProfileExternalBlocklist>[]>;
+    /**
      * Flow/proxy feature set. Valid values: `flow`, `proxy`.
      */
     featureSet?: pulumi.Input<string>;
+    /**
+     * Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+     */
+    fortiaiErrorAction?: pulumi.Input<string>;
+    /**
+     * Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+     */
+    fortiaiTimeoutAction?: pulumi.Input<string>;
     /**
      * Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
      */
@@ -496,7 +588,7 @@ export interface AntivirusProfileArgs {
      */
     nacQuar?: pulumi.Input<inputs.AntivirusProfileNacQuar>;
     /**
-     * Profile name.
+     * External blocklist.
      */
     name?: pulumi.Input<string>;
     /**
@@ -507,6 +599,10 @@ export interface AntivirusProfileArgs {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention?: pulumi.Input<inputs.AntivirusProfileOutbreakPrevention>;
+    /**
+     * Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+     */
+    outbreakPreventionArchiveScan?: pulumi.Input<string>;
     /**
      * Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
      */

@@ -75,26 +75,24 @@ export class SystemSettingNTP extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemSettingNTPArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSettingNTPArgs | SystemSettingNTPState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSettingNTPState | undefined;
-            inputs["ntpservers"] = state ? state.ntpservers : undefined;
-            inputs["ntpsync"] = state ? state.ntpsync : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["ntpservers"] = state ? state.ntpservers : undefined;
+            resourceInputs["ntpsync"] = state ? state.ntpsync : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as SystemSettingNTPArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["ntpservers"] = args ? args.ntpservers : undefined;
-            inputs["ntpsync"] = args ? args.ntpsync : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["ntpservers"] = args ? args.ntpservers : undefined;
+            resourceInputs["ntpsync"] = args ? args.ntpsync : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSettingNTP.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSettingNTP.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -21,6 +21,7 @@ class FirewallSshHostKeyArgs:
                  public_key: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 usage: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallSshHostKey resource.
@@ -32,6 +33,7 @@ class FirewallSshHostKeyArgs:
         :param pulumi.Input[str] public_key: SSH public key.
         :param pulumi.Input[str] status: Set the trust status of the public key. Valid values: `trusted`, `revoked`.
         :param pulumi.Input[str] type: Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
+        :param pulumi.Input[str] usage: Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if hostname is not None:
@@ -50,6 +52,8 @@ class FirewallSshHostKeyArgs:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if usage is not None:
+            pulumi.set(__self__, "usage", usage)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -148,6 +152,18 @@ class FirewallSshHostKeyArgs:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def usage(self) -> Optional[pulumi.Input[str]]:
+        """
+        Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+        """
+        return pulumi.get(self, "usage")
+
+    @usage.setter
+    def usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "usage", value)
 
     @property
     @pulumi.getter
@@ -173,6 +189,7 @@ class _FirewallSshHostKeyState:
                  public_key: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 usage: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallSshHostKey resources.
@@ -184,6 +201,7 @@ class _FirewallSshHostKeyState:
         :param pulumi.Input[str] public_key: SSH public key.
         :param pulumi.Input[str] status: Set the trust status of the public key. Valid values: `trusted`, `revoked`.
         :param pulumi.Input[str] type: Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
+        :param pulumi.Input[str] usage: Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if hostname is not None:
@@ -202,6 +220,8 @@ class _FirewallSshHostKeyState:
             pulumi.set(__self__, "status", status)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if usage is not None:
+            pulumi.set(__self__, "usage", usage)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -300,6 +320,18 @@ class _FirewallSshHostKeyState:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def usage(self) -> Optional[pulumi.Input[str]]:
+        """
+        Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+        """
+        return pulumi.get(self, "usage")
+
+    @usage.setter
+    def usage(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "usage", value)
 
     @property
     @pulumi.getter
@@ -327,6 +359,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
                  public_key: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 usage: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -366,6 +399,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
         :param pulumi.Input[str] public_key: SSH public key.
         :param pulumi.Input[str] status: Set the trust status of the public key. Valid values: `trusted`, `revoked`.
         :param pulumi.Input[str] type: Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
+        :param pulumi.Input[str] usage: Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -424,6 +458,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
                  public_key: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 usage: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -432,6 +467,8 @@ class FirewallSshHostKey(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -445,6 +482,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
             __props__.__dict__["public_key"] = public_key
             __props__.__dict__["status"] = status
             __props__.__dict__["type"] = type
+            __props__.__dict__["usage"] = usage
             __props__.__dict__["vdomparam"] = vdomparam
         super(FirewallSshHostKey, __self__).__init__(
             'fortios:index/firewallSshHostKey:FirewallSshHostKey',
@@ -464,6 +502,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
             public_key: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
+            usage: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallSshHostKey':
         """
         Get an existing FirewallSshHostKey resource's state with the given name, id, and optional extra
@@ -480,6 +519,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
         :param pulumi.Input[str] public_key: SSH public key.
         :param pulumi.Input[str] status: Set the trust status of the public key. Valid values: `trusted`, `revoked`.
         :param pulumi.Input[str] type: Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
+        :param pulumi.Input[str] usage: Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -494,6 +534,7 @@ class FirewallSshHostKey(pulumi.CustomResource):
         __props__.__dict__["public_key"] = public_key
         __props__.__dict__["status"] = status
         __props__.__dict__["type"] = type
+        __props__.__dict__["usage"] = usage
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallSshHostKey(resource_name, opts=opts, __props__=__props__)
 
@@ -560,6 +601,14 @@ class FirewallSshHostKey(pulumi.CustomResource):
         Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def usage(self) -> pulumi.Output[str]:
+        """
+        Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+        """
+        return pulumi.get(self, "usage")
 
     @property
     @pulumi.getter

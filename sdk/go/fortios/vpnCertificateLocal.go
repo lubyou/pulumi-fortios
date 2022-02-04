@@ -25,6 +25,16 @@ import (
 type VpnCertificateLocal struct {
 	pulumi.CustomResourceState
 
+	// The URL for the ACME CA server (Let's Encrypt is the default provider).
+	AcmeCaUrl pulumi.StringOutput `pulumi:"acmeCaUrl"`
+	// A valid domain that resolves to this Fortigate.
+	AcmeDomain pulumi.StringOutput `pulumi:"acmeDomain"`
+	// Contact email address that is required by some CAs like LetsEncrypt.
+	AcmeEmail pulumi.StringOutput `pulumi:"acmeEmail"`
+	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
+	AcmeRenewWindow pulumi.IntOutput `pulumi:"acmeRenewWindow"`
+	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
+	AcmeRsaKeySize pulumi.IntOutput `pulumi:"acmeRsaKeySize"`
 	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
 	AutoRegenerateDays pulumi.IntOutput `pulumi:"autoRegenerateDays"`
 	// Number of days to wait before an expiry warning message is generated (0 = disabled).
@@ -45,7 +55,7 @@ type VpnCertificateLocal struct {
 	Comments pulumi.StringOutput `pulumi:"comments"`
 	// Certificate Signing Request.
 	Csr pulumi.StringOutput `pulumi:"csr"`
-	// Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+	// Certificate enrollment protocol.
 	EnrollProtocol pulumi.StringOutput `pulumi:"enrollProtocol"`
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid pulumi.StringOutput `pulumi:"ikeLocalid"`
@@ -87,6 +97,7 @@ func NewVpnCertificateLocal(ctx *pulumi.Context,
 	if args.PrivateKey == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateKey'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnCertificateLocal
 	err := ctx.RegisterResource("fortios:index/vpnCertificateLocal:VpnCertificateLocal", name, args, &resource, opts...)
 	if err != nil {
@@ -109,6 +120,16 @@ func GetVpnCertificateLocal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnCertificateLocal resources.
 type vpnCertificateLocalState struct {
+	// The URL for the ACME CA server (Let's Encrypt is the default provider).
+	AcmeCaUrl *string `pulumi:"acmeCaUrl"`
+	// A valid domain that resolves to this Fortigate.
+	AcmeDomain *string `pulumi:"acmeDomain"`
+	// Contact email address that is required by some CAs like LetsEncrypt.
+	AcmeEmail *string `pulumi:"acmeEmail"`
+	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
+	AcmeRenewWindow *int `pulumi:"acmeRenewWindow"`
+	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
+	AcmeRsaKeySize *int `pulumi:"acmeRsaKeySize"`
 	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
 	AutoRegenerateDays *int `pulumi:"autoRegenerateDays"`
 	// Number of days to wait before an expiry warning message is generated (0 = disabled).
@@ -129,7 +150,7 @@ type vpnCertificateLocalState struct {
 	Comments *string `pulumi:"comments"`
 	// Certificate Signing Request.
 	Csr *string `pulumi:"csr"`
-	// Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+	// Certificate enrollment protocol.
 	EnrollProtocol *string `pulumi:"enrollProtocol"`
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid *string `pulumi:"ikeLocalid"`
@@ -162,6 +183,16 @@ type vpnCertificateLocalState struct {
 }
 
 type VpnCertificateLocalState struct {
+	// The URL for the ACME CA server (Let's Encrypt is the default provider).
+	AcmeCaUrl pulumi.StringPtrInput
+	// A valid domain that resolves to this Fortigate.
+	AcmeDomain pulumi.StringPtrInput
+	// Contact email address that is required by some CAs like LetsEncrypt.
+	AcmeEmail pulumi.StringPtrInput
+	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
+	AcmeRenewWindow pulumi.IntPtrInput
+	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
+	AcmeRsaKeySize pulumi.IntPtrInput
 	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
 	AutoRegenerateDays pulumi.IntPtrInput
 	// Number of days to wait before an expiry warning message is generated (0 = disabled).
@@ -182,7 +213,7 @@ type VpnCertificateLocalState struct {
 	Comments pulumi.StringPtrInput
 	// Certificate Signing Request.
 	Csr pulumi.StringPtrInput
-	// Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+	// Certificate enrollment protocol.
 	EnrollProtocol pulumi.StringPtrInput
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid pulumi.StringPtrInput
@@ -219,6 +250,16 @@ func (VpnCertificateLocalState) ElementType() reflect.Type {
 }
 
 type vpnCertificateLocalArgs struct {
+	// The URL for the ACME CA server (Let's Encrypt is the default provider).
+	AcmeCaUrl *string `pulumi:"acmeCaUrl"`
+	// A valid domain that resolves to this Fortigate.
+	AcmeDomain *string `pulumi:"acmeDomain"`
+	// Contact email address that is required by some CAs like LetsEncrypt.
+	AcmeEmail *string `pulumi:"acmeEmail"`
+	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
+	AcmeRenewWindow *int `pulumi:"acmeRenewWindow"`
+	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
+	AcmeRsaKeySize *int `pulumi:"acmeRsaKeySize"`
 	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
 	AutoRegenerateDays *int `pulumi:"autoRegenerateDays"`
 	// Number of days to wait before an expiry warning message is generated (0 = disabled).
@@ -239,7 +280,7 @@ type vpnCertificateLocalArgs struct {
 	Comments *string `pulumi:"comments"`
 	// Certificate Signing Request.
 	Csr *string `pulumi:"csr"`
-	// Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+	// Certificate enrollment protocol.
 	EnrollProtocol *string `pulumi:"enrollProtocol"`
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid *string `pulumi:"ikeLocalid"`
@@ -273,6 +314,16 @@ type vpnCertificateLocalArgs struct {
 
 // The set of arguments for constructing a VpnCertificateLocal resource.
 type VpnCertificateLocalArgs struct {
+	// The URL for the ACME CA server (Let's Encrypt is the default provider).
+	AcmeCaUrl pulumi.StringPtrInput
+	// A valid domain that resolves to this Fortigate.
+	AcmeDomain pulumi.StringPtrInput
+	// Contact email address that is required by some CAs like LetsEncrypt.
+	AcmeEmail pulumi.StringPtrInput
+	// Beginning of the renewal window (in days before certificate expiration, 30 by default).
+	AcmeRenewWindow pulumi.IntPtrInput
+	// Length of the RSA private key of the generated cert (Minimum 2048 bits).
+	AcmeRsaKeySize pulumi.IntPtrInput
 	// Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
 	AutoRegenerateDays pulumi.IntPtrInput
 	// Number of days to wait before an expiry warning message is generated (0 = disabled).
@@ -293,7 +344,7 @@ type VpnCertificateLocalArgs struct {
 	Comments pulumi.StringPtrInput
 	// Certificate Signing Request.
 	Csr pulumi.StringPtrInput
-	// Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+	// Certificate enrollment protocol.
 	EnrollProtocol pulumi.StringPtrInput
 	// Local ID the FortiGate uses for authentication as a VPN client.
 	IkeLocalid pulumi.StringPtrInput
@@ -337,7 +388,7 @@ type VpnCertificateLocalInput interface {
 }
 
 func (*VpnCertificateLocal) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateLocal)(nil))
+	return reflect.TypeOf((**VpnCertificateLocal)(nil)).Elem()
 }
 
 func (i *VpnCertificateLocal) ToVpnCertificateLocalOutput() VpnCertificateLocalOutput {
@@ -346,35 +397,6 @@ func (i *VpnCertificateLocal) ToVpnCertificateLocalOutput() VpnCertificateLocalO
 
 func (i *VpnCertificateLocal) ToVpnCertificateLocalOutputWithContext(ctx context.Context) VpnCertificateLocalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalOutput)
-}
-
-func (i *VpnCertificateLocal) ToVpnCertificateLocalPtrOutput() VpnCertificateLocalPtrOutput {
-	return i.ToVpnCertificateLocalPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnCertificateLocal) ToVpnCertificateLocalPtrOutputWithContext(ctx context.Context) VpnCertificateLocalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalPtrOutput)
-}
-
-type VpnCertificateLocalPtrInput interface {
-	pulumi.Input
-
-	ToVpnCertificateLocalPtrOutput() VpnCertificateLocalPtrOutput
-	ToVpnCertificateLocalPtrOutputWithContext(ctx context.Context) VpnCertificateLocalPtrOutput
-}
-
-type vpnCertificateLocalPtrType VpnCertificateLocalArgs
-
-func (*vpnCertificateLocalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateLocal)(nil))
-}
-
-func (i *vpnCertificateLocalPtrType) ToVpnCertificateLocalPtrOutput() VpnCertificateLocalPtrOutput {
-	return i.ToVpnCertificateLocalPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnCertificateLocalPtrType) ToVpnCertificateLocalPtrOutputWithContext(ctx context.Context) VpnCertificateLocalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalPtrOutput)
 }
 
 // VpnCertificateLocalArrayInput is an input type that accepts VpnCertificateLocalArray and VpnCertificateLocalArrayOutput values.
@@ -391,7 +413,7 @@ type VpnCertificateLocalArrayInput interface {
 type VpnCertificateLocalArray []VpnCertificateLocalInput
 
 func (VpnCertificateLocalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnCertificateLocal)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateLocal)(nil)).Elem()
 }
 
 func (i VpnCertificateLocalArray) ToVpnCertificateLocalArrayOutput() VpnCertificateLocalArrayOutput {
@@ -416,7 +438,7 @@ type VpnCertificateLocalMapInput interface {
 type VpnCertificateLocalMap map[string]VpnCertificateLocalInput
 
 func (VpnCertificateLocalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnCertificateLocal)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateLocal)(nil)).Elem()
 }
 
 func (i VpnCertificateLocalMap) ToVpnCertificateLocalMapOutput() VpnCertificateLocalMapOutput {
@@ -427,12 +449,10 @@ func (i VpnCertificateLocalMap) ToVpnCertificateLocalMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateLocalMapOutput)
 }
 
-type VpnCertificateLocalOutput struct {
-	*pulumi.OutputState
-}
+type VpnCertificateLocalOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateLocalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateLocal)(nil))
+	return reflect.TypeOf((**VpnCertificateLocal)(nil)).Elem()
 }
 
 func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutput() VpnCertificateLocalOutput {
@@ -443,36 +463,10 @@ func (o VpnCertificateLocalOutput) ToVpnCertificateLocalOutputWithContext(ctx co
 	return o
 }
 
-func (o VpnCertificateLocalOutput) ToVpnCertificateLocalPtrOutput() VpnCertificateLocalPtrOutput {
-	return o.ToVpnCertificateLocalPtrOutputWithContext(context.Background())
-}
-
-func (o VpnCertificateLocalOutput) ToVpnCertificateLocalPtrOutputWithContext(ctx context.Context) VpnCertificateLocalPtrOutput {
-	return o.ApplyT(func(v VpnCertificateLocal) *VpnCertificateLocal {
-		return &v
-	}).(VpnCertificateLocalPtrOutput)
-}
-
-type VpnCertificateLocalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnCertificateLocalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateLocal)(nil))
-}
-
-func (o VpnCertificateLocalPtrOutput) ToVpnCertificateLocalPtrOutput() VpnCertificateLocalPtrOutput {
-	return o
-}
-
-func (o VpnCertificateLocalPtrOutput) ToVpnCertificateLocalPtrOutputWithContext(ctx context.Context) VpnCertificateLocalPtrOutput {
-	return o
-}
-
 type VpnCertificateLocalArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateLocalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnCertificateLocal)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateLocal)(nil)).Elem()
 }
 
 func (o VpnCertificateLocalArrayOutput) ToVpnCertificateLocalArrayOutput() VpnCertificateLocalArrayOutput {
@@ -484,15 +478,15 @@ func (o VpnCertificateLocalArrayOutput) ToVpnCertificateLocalArrayOutputWithCont
 }
 
 func (o VpnCertificateLocalArrayOutput) Index(i pulumi.IntInput) VpnCertificateLocalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnCertificateLocal {
-		return vs[0].([]VpnCertificateLocal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateLocal {
+		return vs[0].([]*VpnCertificateLocal)[vs[1].(int)]
 	}).(VpnCertificateLocalOutput)
 }
 
 type VpnCertificateLocalMapOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateLocalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnCertificateLocal)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateLocal)(nil)).Elem()
 }
 
 func (o VpnCertificateLocalMapOutput) ToVpnCertificateLocalMapOutput() VpnCertificateLocalMapOutput {
@@ -504,14 +498,16 @@ func (o VpnCertificateLocalMapOutput) ToVpnCertificateLocalMapOutputWithContext(
 }
 
 func (o VpnCertificateLocalMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateLocalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnCertificateLocal {
-		return vs[0].(map[string]VpnCertificateLocal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnCertificateLocal {
+		return vs[0].(map[string]*VpnCertificateLocal)[vs[1].(string)]
 	}).(VpnCertificateLocalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateLocalInput)(nil)).Elem(), &VpnCertificateLocal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateLocalArrayInput)(nil)).Elem(), VpnCertificateLocalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateLocalMapInput)(nil)).Elem(), VpnCertificateLocalMap{})
 	pulumi.RegisterOutputType(VpnCertificateLocalOutput{})
-	pulumi.RegisterOutputType(VpnCertificateLocalPtrOutput{})
 	pulumi.RegisterOutputType(VpnCertificateLocalArrayOutput{})
 	pulumi.RegisterOutputType(VpnCertificateLocalMapOutput{})
 }

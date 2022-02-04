@@ -13,9 +13,7 @@ export function getSystemAutomationAction(args: GetSystemAutomationActionArgs, o
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemAutomationAction:GetSystemAutomationAction", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -133,6 +131,10 @@ export interface GetSystemAutomationActionResult {
      */
     readonly delay: number;
     /**
+     * Description.
+     */
+    readonly description: string;
+    /**
      * Email body.
      */
     readonly emailBody: string;
@@ -148,6 +150,10 @@ export interface GetSystemAutomationActionResult {
      * Email addresses. The structure of `emailTo` block is documented below.
      */
     readonly emailTos: outputs.GetSystemAutomationActionEmailTo[];
+    /**
+     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric.
+     */
+    readonly executeSecurityFabric: string;
     /**
      * Google Cloud function name.
      */
@@ -181,6 +187,10 @@ export interface GetSystemAutomationActionResult {
      */
     readonly message: string;
     /**
+     * Message type.
+     */
+    readonly messageType: string;
+    /**
      * Request method (POST, PUT, GET, PATCH or DELETE).
      */
     readonly method: string;
@@ -204,6 +214,10 @@ export interface GetSystemAutomationActionResult {
      * Enable/disable replacement message.
      */
     readonly replacementMessage: string;
+    /**
+     * Replacement message group.
+     */
+    readonly replacemsgGroup: string;
     /**
      * Required in action chain.
      */
@@ -229,4 +243,26 @@ export interface GetSystemAutomationActionResult {
      */
     readonly uri: string;
     readonly vdomparam?: string;
+    /**
+     * Enable/disable verification of the remote host certificate.
+     */
+    readonly verifyHostCert: string;
+}
+
+export function getSystemAutomationActionOutput(args: GetSystemAutomationActionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAutomationActionResult> {
+    return pulumi.output(args).apply(a => getSystemAutomationAction(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemAutomationAction.
+ */
+export interface GetSystemAutomationActionOutputArgs {
+    /**
+     * Specify the name of the desired system automationaction.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

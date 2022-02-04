@@ -13,9 +13,7 @@ export function getFirewallAddrgrp(args: GetFirewallAddrgrpArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallAddrgrp:GetFirewallAddrgrp", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -45,6 +43,10 @@ export interface GetFirewallAddrgrpResult {
      */
     readonly allowRouting: string;
     /**
+     * Tag category.
+     */
+    readonly category: string;
+    /**
      * Color of icon on the GUI.
      */
     readonly color: number;
@@ -60,6 +62,10 @@ export interface GetFirewallAddrgrpResult {
      * Address exclusion member. The structure of `excludeMember` block is documented below.
      */
     readonly excludeMembers: outputs.GetFirewallAddrgrpExcludeMember[];
+    /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
@@ -89,4 +95,22 @@ export interface GetFirewallAddrgrpResult {
      * Enable/disable address visibility in the GUI.
      */
     readonly visibility: string;
+}
+
+export function getFirewallAddrgrpOutput(args: GetFirewallAddrgrpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddrgrpResult> {
+    return pulumi.output(args).apply(a => getFirewallAddrgrp(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallAddrgrp.
+ */
+export interface GetFirewallAddrgrpOutputArgs {
+    /**
+     * Specify the name of the desired firewall addrgrp.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

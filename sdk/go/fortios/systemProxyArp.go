@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewSystemProxyArp(ctx *pulumi.Context,
 	if args.Ip == nil {
 		return nil, errors.New("invalid value for required argument 'Ip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemProxyArp
 	err := ctx.RegisterResource("fortios:index/systemProxyArp:SystemProxyArp", name, args, &resource, opts...)
 	if err != nil {
@@ -169,7 +170,7 @@ type SystemProxyArpInput interface {
 }
 
 func (*SystemProxyArp) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemProxyArp)(nil))
+	return reflect.TypeOf((**SystemProxyArp)(nil)).Elem()
 }
 
 func (i *SystemProxyArp) ToSystemProxyArpOutput() SystemProxyArpOutput {
@@ -178,35 +179,6 @@ func (i *SystemProxyArp) ToSystemProxyArpOutput() SystemProxyArpOutput {
 
 func (i *SystemProxyArp) ToSystemProxyArpOutputWithContext(ctx context.Context) SystemProxyArpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpOutput)
-}
-
-func (i *SystemProxyArp) ToSystemProxyArpPtrOutput() SystemProxyArpPtrOutput {
-	return i.ToSystemProxyArpPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemProxyArp) ToSystemProxyArpPtrOutputWithContext(ctx context.Context) SystemProxyArpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpPtrOutput)
-}
-
-type SystemProxyArpPtrInput interface {
-	pulumi.Input
-
-	ToSystemProxyArpPtrOutput() SystemProxyArpPtrOutput
-	ToSystemProxyArpPtrOutputWithContext(ctx context.Context) SystemProxyArpPtrOutput
-}
-
-type systemProxyArpPtrType SystemProxyArpArgs
-
-func (*systemProxyArpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemProxyArp)(nil))
-}
-
-func (i *systemProxyArpPtrType) ToSystemProxyArpPtrOutput() SystemProxyArpPtrOutput {
-	return i.ToSystemProxyArpPtrOutputWithContext(context.Background())
-}
-
-func (i *systemProxyArpPtrType) ToSystemProxyArpPtrOutputWithContext(ctx context.Context) SystemProxyArpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpPtrOutput)
 }
 
 // SystemProxyArpArrayInput is an input type that accepts SystemProxyArpArray and SystemProxyArpArrayOutput values.
@@ -223,7 +195,7 @@ type SystemProxyArpArrayInput interface {
 type SystemProxyArpArray []SystemProxyArpInput
 
 func (SystemProxyArpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemProxyArp)(nil))
+	return reflect.TypeOf((*[]*SystemProxyArp)(nil)).Elem()
 }
 
 func (i SystemProxyArpArray) ToSystemProxyArpArrayOutput() SystemProxyArpArrayOutput {
@@ -248,7 +220,7 @@ type SystemProxyArpMapInput interface {
 type SystemProxyArpMap map[string]SystemProxyArpInput
 
 func (SystemProxyArpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemProxyArp)(nil))
+	return reflect.TypeOf((*map[string]*SystemProxyArp)(nil)).Elem()
 }
 
 func (i SystemProxyArpMap) ToSystemProxyArpMapOutput() SystemProxyArpMapOutput {
@@ -259,12 +231,10 @@ func (i SystemProxyArpMap) ToSystemProxyArpMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProxyArpMapOutput)
 }
 
-type SystemProxyArpOutput struct {
-	*pulumi.OutputState
-}
+type SystemProxyArpOutput struct{ *pulumi.OutputState }
 
 func (SystemProxyArpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemProxyArp)(nil))
+	return reflect.TypeOf((**SystemProxyArp)(nil)).Elem()
 }
 
 func (o SystemProxyArpOutput) ToSystemProxyArpOutput() SystemProxyArpOutput {
@@ -275,36 +245,10 @@ func (o SystemProxyArpOutput) ToSystemProxyArpOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemProxyArpOutput) ToSystemProxyArpPtrOutput() SystemProxyArpPtrOutput {
-	return o.ToSystemProxyArpPtrOutputWithContext(context.Background())
-}
-
-func (o SystemProxyArpOutput) ToSystemProxyArpPtrOutputWithContext(ctx context.Context) SystemProxyArpPtrOutput {
-	return o.ApplyT(func(v SystemProxyArp) *SystemProxyArp {
-		return &v
-	}).(SystemProxyArpPtrOutput)
-}
-
-type SystemProxyArpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemProxyArpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemProxyArp)(nil))
-}
-
-func (o SystemProxyArpPtrOutput) ToSystemProxyArpPtrOutput() SystemProxyArpPtrOutput {
-	return o
-}
-
-func (o SystemProxyArpPtrOutput) ToSystemProxyArpPtrOutputWithContext(ctx context.Context) SystemProxyArpPtrOutput {
-	return o
-}
-
 type SystemProxyArpArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemProxyArpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemProxyArp)(nil))
+	return reflect.TypeOf((*[]*SystemProxyArp)(nil)).Elem()
 }
 
 func (o SystemProxyArpArrayOutput) ToSystemProxyArpArrayOutput() SystemProxyArpArrayOutput {
@@ -316,15 +260,15 @@ func (o SystemProxyArpArrayOutput) ToSystemProxyArpArrayOutputWithContext(ctx co
 }
 
 func (o SystemProxyArpArrayOutput) Index(i pulumi.IntInput) SystemProxyArpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemProxyArp {
-		return vs[0].([]SystemProxyArp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemProxyArp {
+		return vs[0].([]*SystemProxyArp)[vs[1].(int)]
 	}).(SystemProxyArpOutput)
 }
 
 type SystemProxyArpMapOutput struct{ *pulumi.OutputState }
 
 func (SystemProxyArpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemProxyArp)(nil))
+	return reflect.TypeOf((*map[string]*SystemProxyArp)(nil)).Elem()
 }
 
 func (o SystemProxyArpMapOutput) ToSystemProxyArpMapOutput() SystemProxyArpMapOutput {
@@ -336,14 +280,16 @@ func (o SystemProxyArpMapOutput) ToSystemProxyArpMapOutputWithContext(ctx contex
 }
 
 func (o SystemProxyArpMapOutput) MapIndex(k pulumi.StringInput) SystemProxyArpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemProxyArp {
-		return vs[0].(map[string]SystemProxyArp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemProxyArp {
+		return vs[0].(map[string]*SystemProxyArp)[vs[1].(string)]
 	}).(SystemProxyArpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemProxyArpInput)(nil)).Elem(), &SystemProxyArp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemProxyArpArrayInput)(nil)).Elem(), SystemProxyArpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemProxyArpMapInput)(nil)).Elem(), SystemProxyArpMap{})
 	pulumi.RegisterOutputType(SystemProxyArpOutput{})
-	pulumi.RegisterOutputType(SystemProxyArpPtrOutput{})
 	pulumi.RegisterOutputType(SystemProxyArpArrayOutput{})
 	pulumi.RegisterOutputType(SystemProxyArpMapOutput{})
 }

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure GENEVE devices.
+// Configure GENEVE devices. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Example Usage
 //
@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -65,6 +65,8 @@ type SystemGeneve struct {
 	RemoteIp pulumi.StringOutput `pulumi:"remoteIp"`
 	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
 	RemoteIp6 pulumi.StringOutput `pulumi:"remoteIp6"`
+	// GENEVE type. Valid values: `ethernet`, `ppp`.
+	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// GENEVE network ID.
@@ -90,6 +92,7 @@ func NewSystemGeneve(ctx *pulumi.Context,
 	if args.Vni == nil {
 		return nil, errors.New("invalid value for required argument 'Vni'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemGeneve
 	err := ctx.RegisterResource("fortios:index/systemGeneve:SystemGeneve", name, args, &resource, opts...)
 	if err != nil {
@@ -124,6 +127,8 @@ type systemGeneveState struct {
 	RemoteIp *string `pulumi:"remoteIp"`
 	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
 	RemoteIp6 *string `pulumi:"remoteIp6"`
+	// GENEVE type. Valid values: `ethernet`, `ppp`.
+	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// GENEVE network ID.
@@ -143,6 +148,8 @@ type SystemGeneveState struct {
 	RemoteIp pulumi.StringPtrInput
 	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
 	RemoteIp6 pulumi.StringPtrInput
+	// GENEVE type. Valid values: `ethernet`, `ppp`.
+	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// GENEVE network ID.
@@ -166,6 +173,8 @@ type systemGeneveArgs struct {
 	RemoteIp string `pulumi:"remoteIp"`
 	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
 	RemoteIp6 *string `pulumi:"remoteIp6"`
+	// GENEVE type. Valid values: `ethernet`, `ppp`.
+	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// GENEVE network ID.
@@ -186,6 +195,8 @@ type SystemGeneveArgs struct {
 	RemoteIp pulumi.StringInput
 	// IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
 	RemoteIp6 pulumi.StringPtrInput
+	// GENEVE type. Valid values: `ethernet`, `ppp`.
+	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// GENEVE network ID.
@@ -204,7 +215,7 @@ type SystemGeneveInput interface {
 }
 
 func (*SystemGeneve) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemGeneve)(nil))
+	return reflect.TypeOf((**SystemGeneve)(nil)).Elem()
 }
 
 func (i *SystemGeneve) ToSystemGeneveOutput() SystemGeneveOutput {
@@ -213,35 +224,6 @@ func (i *SystemGeneve) ToSystemGeneveOutput() SystemGeneveOutput {
 
 func (i *SystemGeneve) ToSystemGeneveOutputWithContext(ctx context.Context) SystemGeneveOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeneveOutput)
-}
-
-func (i *SystemGeneve) ToSystemGenevePtrOutput() SystemGenevePtrOutput {
-	return i.ToSystemGenevePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemGeneve) ToSystemGenevePtrOutputWithContext(ctx context.Context) SystemGenevePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemGenevePtrOutput)
-}
-
-type SystemGenevePtrInput interface {
-	pulumi.Input
-
-	ToSystemGenevePtrOutput() SystemGenevePtrOutput
-	ToSystemGenevePtrOutputWithContext(ctx context.Context) SystemGenevePtrOutput
-}
-
-type systemGenevePtrType SystemGeneveArgs
-
-func (*systemGenevePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemGeneve)(nil))
-}
-
-func (i *systemGenevePtrType) ToSystemGenevePtrOutput() SystemGenevePtrOutput {
-	return i.ToSystemGenevePtrOutputWithContext(context.Background())
-}
-
-func (i *systemGenevePtrType) ToSystemGenevePtrOutputWithContext(ctx context.Context) SystemGenevePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemGenevePtrOutput)
 }
 
 // SystemGeneveArrayInput is an input type that accepts SystemGeneveArray and SystemGeneveArrayOutput values.
@@ -258,7 +240,7 @@ type SystemGeneveArrayInput interface {
 type SystemGeneveArray []SystemGeneveInput
 
 func (SystemGeneveArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemGeneve)(nil))
+	return reflect.TypeOf((*[]*SystemGeneve)(nil)).Elem()
 }
 
 func (i SystemGeneveArray) ToSystemGeneveArrayOutput() SystemGeneveArrayOutput {
@@ -283,7 +265,7 @@ type SystemGeneveMapInput interface {
 type SystemGeneveMap map[string]SystemGeneveInput
 
 func (SystemGeneveMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemGeneve)(nil))
+	return reflect.TypeOf((*map[string]*SystemGeneve)(nil)).Elem()
 }
 
 func (i SystemGeneveMap) ToSystemGeneveMapOutput() SystemGeneveMapOutput {
@@ -294,12 +276,10 @@ func (i SystemGeneveMap) ToSystemGeneveMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGeneveMapOutput)
 }
 
-type SystemGeneveOutput struct {
-	*pulumi.OutputState
-}
+type SystemGeneveOutput struct{ *pulumi.OutputState }
 
 func (SystemGeneveOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemGeneve)(nil))
+	return reflect.TypeOf((**SystemGeneve)(nil)).Elem()
 }
 
 func (o SystemGeneveOutput) ToSystemGeneveOutput() SystemGeneveOutput {
@@ -310,36 +290,10 @@ func (o SystemGeneveOutput) ToSystemGeneveOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o SystemGeneveOutput) ToSystemGenevePtrOutput() SystemGenevePtrOutput {
-	return o.ToSystemGenevePtrOutputWithContext(context.Background())
-}
-
-func (o SystemGeneveOutput) ToSystemGenevePtrOutputWithContext(ctx context.Context) SystemGenevePtrOutput {
-	return o.ApplyT(func(v SystemGeneve) *SystemGeneve {
-		return &v
-	}).(SystemGenevePtrOutput)
-}
-
-type SystemGenevePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemGenevePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemGeneve)(nil))
-}
-
-func (o SystemGenevePtrOutput) ToSystemGenevePtrOutput() SystemGenevePtrOutput {
-	return o
-}
-
-func (o SystemGenevePtrOutput) ToSystemGenevePtrOutputWithContext(ctx context.Context) SystemGenevePtrOutput {
-	return o
-}
-
 type SystemGeneveArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemGeneveArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemGeneve)(nil))
+	return reflect.TypeOf((*[]*SystemGeneve)(nil)).Elem()
 }
 
 func (o SystemGeneveArrayOutput) ToSystemGeneveArrayOutput() SystemGeneveArrayOutput {
@@ -351,15 +305,15 @@ func (o SystemGeneveArrayOutput) ToSystemGeneveArrayOutputWithContext(ctx contex
 }
 
 func (o SystemGeneveArrayOutput) Index(i pulumi.IntInput) SystemGeneveOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemGeneve {
-		return vs[0].([]SystemGeneve)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGeneve {
+		return vs[0].([]*SystemGeneve)[vs[1].(int)]
 	}).(SystemGeneveOutput)
 }
 
 type SystemGeneveMapOutput struct{ *pulumi.OutputState }
 
 func (SystemGeneveMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemGeneve)(nil))
+	return reflect.TypeOf((*map[string]*SystemGeneve)(nil)).Elem()
 }
 
 func (o SystemGeneveMapOutput) ToSystemGeneveMapOutput() SystemGeneveMapOutput {
@@ -371,14 +325,16 @@ func (o SystemGeneveMapOutput) ToSystemGeneveMapOutputWithContext(ctx context.Co
 }
 
 func (o SystemGeneveMapOutput) MapIndex(k pulumi.StringInput) SystemGeneveOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemGeneve {
-		return vs[0].(map[string]SystemGeneve)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemGeneve {
+		return vs[0].(map[string]*SystemGeneve)[vs[1].(string)]
 	}).(SystemGeneveOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGeneveInput)(nil)).Elem(), &SystemGeneve{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGeneveArrayInput)(nil)).Elem(), SystemGeneveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGeneveMapInput)(nil)).Elem(), SystemGeneveMap{})
 	pulumi.RegisterOutputType(SystemGeneveOutput{})
-	pulumi.RegisterOutputType(SystemGenevePtrOutput{})
 	pulumi.RegisterOutputType(SystemGeneveArrayOutput{})
 	pulumi.RegisterOutputType(SystemGeneveMapOutput{})
 }

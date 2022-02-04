@@ -87,27 +87,25 @@ export class UserDeviceAccessList extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserDeviceAccessListArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserDeviceAccessListArgs | UserDeviceAccessListState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserDeviceAccessListState | undefined;
-            inputs["defaultAction"] = state ? state.defaultAction : undefined;
-            inputs["deviceLists"] = state ? state.deviceLists : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["defaultAction"] = state ? state.defaultAction : undefined;
+            resourceInputs["deviceLists"] = state ? state.deviceLists : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserDeviceAccessListArgs | undefined;
-            inputs["defaultAction"] = args ? args.defaultAction : undefined;
-            inputs["deviceLists"] = args ? args.deviceLists : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["defaultAction"] = args ? args.defaultAction : undefined;
+            resourceInputs["deviceLists"] = args ? args.deviceLists : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserDeviceAccessList.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserDeviceAccessList.__pulumiType, name, resourceInputs, opts);
     }
 }
 

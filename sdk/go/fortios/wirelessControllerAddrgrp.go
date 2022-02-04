@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure the MAC address group.
+// Configure the MAC address group. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -43,6 +43,7 @@ func NewWirelessControllerAddrgrp(ctx *pulumi.Context,
 		args = &WirelessControllerAddrgrpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerAddrgrp
 	err := ctx.RegisterResource("fortios:index/wirelessControllerAddrgrp:WirelessControllerAddrgrp", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type WirelessControllerAddrgrpInput interface {
 }
 
 func (*WirelessControllerAddrgrp) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerAddrgrp)(nil))
+	return reflect.TypeOf((**WirelessControllerAddrgrp)(nil)).Elem()
 }
 
 func (i *WirelessControllerAddrgrp) ToWirelessControllerAddrgrpOutput() WirelessControllerAddrgrpOutput {
@@ -142,35 +143,6 @@ func (i *WirelessControllerAddrgrp) ToWirelessControllerAddrgrpOutput() Wireless
 
 func (i *WirelessControllerAddrgrp) ToWirelessControllerAddrgrpOutputWithContext(ctx context.Context) WirelessControllerAddrgrpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddrgrpOutput)
-}
-
-func (i *WirelessControllerAddrgrp) ToWirelessControllerAddrgrpPtrOutput() WirelessControllerAddrgrpPtrOutput {
-	return i.ToWirelessControllerAddrgrpPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerAddrgrp) ToWirelessControllerAddrgrpPtrOutputWithContext(ctx context.Context) WirelessControllerAddrgrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddrgrpPtrOutput)
-}
-
-type WirelessControllerAddrgrpPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerAddrgrpPtrOutput() WirelessControllerAddrgrpPtrOutput
-	ToWirelessControllerAddrgrpPtrOutputWithContext(ctx context.Context) WirelessControllerAddrgrpPtrOutput
-}
-
-type wirelessControllerAddrgrpPtrType WirelessControllerAddrgrpArgs
-
-func (*wirelessControllerAddrgrpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerAddrgrp)(nil))
-}
-
-func (i *wirelessControllerAddrgrpPtrType) ToWirelessControllerAddrgrpPtrOutput() WirelessControllerAddrgrpPtrOutput {
-	return i.ToWirelessControllerAddrgrpPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerAddrgrpPtrType) ToWirelessControllerAddrgrpPtrOutputWithContext(ctx context.Context) WirelessControllerAddrgrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddrgrpPtrOutput)
 }
 
 // WirelessControllerAddrgrpArrayInput is an input type that accepts WirelessControllerAddrgrpArray and WirelessControllerAddrgrpArrayOutput values.
@@ -187,7 +159,7 @@ type WirelessControllerAddrgrpArrayInput interface {
 type WirelessControllerAddrgrpArray []WirelessControllerAddrgrpInput
 
 func (WirelessControllerAddrgrpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerAddrgrp)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerAddrgrp)(nil)).Elem()
 }
 
 func (i WirelessControllerAddrgrpArray) ToWirelessControllerAddrgrpArrayOutput() WirelessControllerAddrgrpArrayOutput {
@@ -212,7 +184,7 @@ type WirelessControllerAddrgrpMapInput interface {
 type WirelessControllerAddrgrpMap map[string]WirelessControllerAddrgrpInput
 
 func (WirelessControllerAddrgrpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerAddrgrp)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerAddrgrp)(nil)).Elem()
 }
 
 func (i WirelessControllerAddrgrpMap) ToWirelessControllerAddrgrpMapOutput() WirelessControllerAddrgrpMapOutput {
@@ -223,12 +195,10 @@ func (i WirelessControllerAddrgrpMap) ToWirelessControllerAddrgrpMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAddrgrpMapOutput)
 }
 
-type WirelessControllerAddrgrpOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerAddrgrpOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAddrgrpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerAddrgrp)(nil))
+	return reflect.TypeOf((**WirelessControllerAddrgrp)(nil)).Elem()
 }
 
 func (o WirelessControllerAddrgrpOutput) ToWirelessControllerAddrgrpOutput() WirelessControllerAddrgrpOutput {
@@ -239,36 +209,10 @@ func (o WirelessControllerAddrgrpOutput) ToWirelessControllerAddrgrpOutputWithCo
 	return o
 }
 
-func (o WirelessControllerAddrgrpOutput) ToWirelessControllerAddrgrpPtrOutput() WirelessControllerAddrgrpPtrOutput {
-	return o.ToWirelessControllerAddrgrpPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerAddrgrpOutput) ToWirelessControllerAddrgrpPtrOutputWithContext(ctx context.Context) WirelessControllerAddrgrpPtrOutput {
-	return o.ApplyT(func(v WirelessControllerAddrgrp) *WirelessControllerAddrgrp {
-		return &v
-	}).(WirelessControllerAddrgrpPtrOutput)
-}
-
-type WirelessControllerAddrgrpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerAddrgrpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerAddrgrp)(nil))
-}
-
-func (o WirelessControllerAddrgrpPtrOutput) ToWirelessControllerAddrgrpPtrOutput() WirelessControllerAddrgrpPtrOutput {
-	return o
-}
-
-func (o WirelessControllerAddrgrpPtrOutput) ToWirelessControllerAddrgrpPtrOutputWithContext(ctx context.Context) WirelessControllerAddrgrpPtrOutput {
-	return o
-}
-
 type WirelessControllerAddrgrpArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAddrgrpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerAddrgrp)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerAddrgrp)(nil)).Elem()
 }
 
 func (o WirelessControllerAddrgrpArrayOutput) ToWirelessControllerAddrgrpArrayOutput() WirelessControllerAddrgrpArrayOutput {
@@ -280,15 +224,15 @@ func (o WirelessControllerAddrgrpArrayOutput) ToWirelessControllerAddrgrpArrayOu
 }
 
 func (o WirelessControllerAddrgrpArrayOutput) Index(i pulumi.IntInput) WirelessControllerAddrgrpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerAddrgrp {
-		return vs[0].([]WirelessControllerAddrgrp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerAddrgrp {
+		return vs[0].([]*WirelessControllerAddrgrp)[vs[1].(int)]
 	}).(WirelessControllerAddrgrpOutput)
 }
 
 type WirelessControllerAddrgrpMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAddrgrpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerAddrgrp)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerAddrgrp)(nil)).Elem()
 }
 
 func (o WirelessControllerAddrgrpMapOutput) ToWirelessControllerAddrgrpMapOutput() WirelessControllerAddrgrpMapOutput {
@@ -300,14 +244,16 @@ func (o WirelessControllerAddrgrpMapOutput) ToWirelessControllerAddrgrpMapOutput
 }
 
 func (o WirelessControllerAddrgrpMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerAddrgrpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerAddrgrp {
-		return vs[0].(map[string]WirelessControllerAddrgrp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerAddrgrp {
+		return vs[0].(map[string]*WirelessControllerAddrgrp)[vs[1].(string)]
 	}).(WirelessControllerAddrgrpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerAddrgrpInput)(nil)).Elem(), &WirelessControllerAddrgrp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerAddrgrpArrayInput)(nil)).Elem(), WirelessControllerAddrgrpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerAddrgrpMapInput)(nil)).Elem(), WirelessControllerAddrgrpMap{})
 	pulumi.RegisterOutputType(WirelessControllerAddrgrpOutput{})
-	pulumi.RegisterOutputType(WirelessControllerAddrgrpPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerAddrgrpArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerAddrgrpMapOutput{})
 }

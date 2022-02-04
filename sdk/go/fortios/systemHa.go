@@ -22,7 +22,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -51,6 +51,7 @@ type SystemHa struct {
 	CpuThreshold                  pulumi.StringOutput                `pulumi:"cpuThreshold"`
 	DynamicSortSubtable           pulumi.StringPtrOutput             `pulumi:"dynamicSortSubtable"`
 	Encryption                    pulumi.StringOutput                `pulumi:"encryption"`
+	FailoverHoldTime              pulumi.IntOutput                   `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold             pulumi.StringOutput                `pulumi:"ftpProxyThreshold"`
 	GratuitousArps                pulumi.StringOutput                `pulumi:"gratuitousArps"`
 	GroupId                       pulumi.IntOutput                   `pulumi:"groupId"`
@@ -61,6 +62,7 @@ type SystemHa struct {
 	HaMgmtStatus                  pulumi.StringOutput                `pulumi:"haMgmtStatus"`
 	HaUptimeDiffMargin            pulumi.IntOutput                   `pulumi:"haUptimeDiffMargin"`
 	HbInterval                    pulumi.IntOutput                   `pulumi:"hbInterval"`
+	HbIntervalInMilliseconds      pulumi.StringOutput                `pulumi:"hbIntervalInMilliseconds"`
 	HbLostThreshold               pulumi.IntOutput                   `pulumi:"hbLostThreshold"`
 	Hbdev                         pulumi.StringOutput                `pulumi:"hbdev"`
 	HcEthType                     pulumi.StringOutput                `pulumi:"hcEthType"`
@@ -73,7 +75,12 @@ type SystemHa struct {
 	LinkFailedSignal              pulumi.StringOutput                `pulumi:"linkFailedSignal"`
 	LoadBalanceAll                pulumi.StringOutput                `pulumi:"loadBalanceAll"`
 	LogicalSn                     pulumi.StringOutput                `pulumi:"logicalSn"`
+	MemoryBasedFailover           pulumi.StringOutput                `pulumi:"memoryBasedFailover"`
 	MemoryCompatibleMode          pulumi.StringOutput                `pulumi:"memoryCompatibleMode"`
+	MemoryFailoverFlipTimeout     pulumi.IntOutput                   `pulumi:"memoryFailoverFlipTimeout"`
+	MemoryFailoverMonitorPeriod   pulumi.IntOutput                   `pulumi:"memoryFailoverMonitorPeriod"`
+	MemoryFailoverSampleRate      pulumi.IntOutput                   `pulumi:"memoryFailoverSampleRate"`
+	MemoryFailoverThreshold       pulumi.IntOutput                   `pulumi:"memoryFailoverThreshold"`
 	MemoryThreshold               pulumi.StringOutput                `pulumi:"memoryThreshold"`
 	Mode                          pulumi.StringOutput                `pulumi:"mode"`
 	Monitor                       pulumi.StringOutput                `pulumi:"monitor"`
@@ -106,9 +113,13 @@ type SystemHa struct {
 	StandaloneMgmtVdom            pulumi.StringOutput                `pulumi:"standaloneMgmtVdom"`
 	SyncConfig                    pulumi.StringOutput                `pulumi:"syncConfig"`
 	SyncPacketBalance             pulumi.StringOutput                `pulumi:"syncPacketBalance"`
+	UnicastGateway                pulumi.StringOutput                `pulumi:"unicastGateway"`
 	UnicastHb                     pulumi.StringOutput                `pulumi:"unicastHb"`
 	UnicastHbNetmask              pulumi.StringOutput                `pulumi:"unicastHbNetmask"`
 	UnicastHbPeerip               pulumi.StringOutput                `pulumi:"unicastHbPeerip"`
+	UnicastPeers                  SystemHaUnicastPeerArrayOutput     `pulumi:"unicastPeers"`
+	UnicastStatus                 pulumi.StringOutput                `pulumi:"unicastStatus"`
+	UninterruptiblePrimaryWait    pulumi.IntOutput                   `pulumi:"uninterruptiblePrimaryWait"`
 	UninterruptibleUpgrade        pulumi.StringOutput                `pulumi:"uninterruptibleUpgrade"`
 	Vcluster2                     pulumi.StringOutput                `pulumi:"vcluster2"`
 	VclusterId                    pulumi.IntOutput                   `pulumi:"vclusterId"`
@@ -124,6 +135,7 @@ func NewSystemHa(ctx *pulumi.Context,
 		args = &SystemHaArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemHa
 	err := ctx.RegisterResource("fortios:index/systemHa:SystemHa", name, args, &resource, opts...)
 	if err != nil {
@@ -152,6 +164,7 @@ type systemHaState struct {
 	CpuThreshold                  *string                    `pulumi:"cpuThreshold"`
 	DynamicSortSubtable           *string                    `pulumi:"dynamicSortSubtable"`
 	Encryption                    *string                    `pulumi:"encryption"`
+	FailoverHoldTime              *int                       `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold             *string                    `pulumi:"ftpProxyThreshold"`
 	GratuitousArps                *string                    `pulumi:"gratuitousArps"`
 	GroupId                       *int                       `pulumi:"groupId"`
@@ -162,6 +175,7 @@ type systemHaState struct {
 	HaMgmtStatus                  *string                    `pulumi:"haMgmtStatus"`
 	HaUptimeDiffMargin            *int                       `pulumi:"haUptimeDiffMargin"`
 	HbInterval                    *int                       `pulumi:"hbInterval"`
+	HbIntervalInMilliseconds      *string                    `pulumi:"hbIntervalInMilliseconds"`
 	HbLostThreshold               *int                       `pulumi:"hbLostThreshold"`
 	Hbdev                         *string                    `pulumi:"hbdev"`
 	HcEthType                     *string                    `pulumi:"hcEthType"`
@@ -174,7 +188,12 @@ type systemHaState struct {
 	LinkFailedSignal              *string                    `pulumi:"linkFailedSignal"`
 	LoadBalanceAll                *string                    `pulumi:"loadBalanceAll"`
 	LogicalSn                     *string                    `pulumi:"logicalSn"`
+	MemoryBasedFailover           *string                    `pulumi:"memoryBasedFailover"`
 	MemoryCompatibleMode          *string                    `pulumi:"memoryCompatibleMode"`
+	MemoryFailoverFlipTimeout     *int                       `pulumi:"memoryFailoverFlipTimeout"`
+	MemoryFailoverMonitorPeriod   *int                       `pulumi:"memoryFailoverMonitorPeriod"`
+	MemoryFailoverSampleRate      *int                       `pulumi:"memoryFailoverSampleRate"`
+	MemoryFailoverThreshold       *int                       `pulumi:"memoryFailoverThreshold"`
 	MemoryThreshold               *string                    `pulumi:"memoryThreshold"`
 	Mode                          *string                    `pulumi:"mode"`
 	Monitor                       *string                    `pulumi:"monitor"`
@@ -207,9 +226,13 @@ type systemHaState struct {
 	StandaloneMgmtVdom            *string                    `pulumi:"standaloneMgmtVdom"`
 	SyncConfig                    *string                    `pulumi:"syncConfig"`
 	SyncPacketBalance             *string                    `pulumi:"syncPacketBalance"`
+	UnicastGateway                *string                    `pulumi:"unicastGateway"`
 	UnicastHb                     *string                    `pulumi:"unicastHb"`
 	UnicastHbNetmask              *string                    `pulumi:"unicastHbNetmask"`
 	UnicastHbPeerip               *string                    `pulumi:"unicastHbPeerip"`
+	UnicastPeers                  []SystemHaUnicastPeer      `pulumi:"unicastPeers"`
+	UnicastStatus                 *string                    `pulumi:"unicastStatus"`
+	UninterruptiblePrimaryWait    *int                       `pulumi:"uninterruptiblePrimaryWait"`
 	UninterruptibleUpgrade        *string                    `pulumi:"uninterruptibleUpgrade"`
 	Vcluster2                     *string                    `pulumi:"vcluster2"`
 	VclusterId                    *int                       `pulumi:"vclusterId"`
@@ -225,6 +248,7 @@ type SystemHaState struct {
 	CpuThreshold                  pulumi.StringPtrInput
 	DynamicSortSubtable           pulumi.StringPtrInput
 	Encryption                    pulumi.StringPtrInput
+	FailoverHoldTime              pulumi.IntPtrInput
 	FtpProxyThreshold             pulumi.StringPtrInput
 	GratuitousArps                pulumi.StringPtrInput
 	GroupId                       pulumi.IntPtrInput
@@ -235,6 +259,7 @@ type SystemHaState struct {
 	HaMgmtStatus                  pulumi.StringPtrInput
 	HaUptimeDiffMargin            pulumi.IntPtrInput
 	HbInterval                    pulumi.IntPtrInput
+	HbIntervalInMilliseconds      pulumi.StringPtrInput
 	HbLostThreshold               pulumi.IntPtrInput
 	Hbdev                         pulumi.StringPtrInput
 	HcEthType                     pulumi.StringPtrInput
@@ -247,7 +272,12 @@ type SystemHaState struct {
 	LinkFailedSignal              pulumi.StringPtrInput
 	LoadBalanceAll                pulumi.StringPtrInput
 	LogicalSn                     pulumi.StringPtrInput
+	MemoryBasedFailover           pulumi.StringPtrInput
 	MemoryCompatibleMode          pulumi.StringPtrInput
+	MemoryFailoverFlipTimeout     pulumi.IntPtrInput
+	MemoryFailoverMonitorPeriod   pulumi.IntPtrInput
+	MemoryFailoverSampleRate      pulumi.IntPtrInput
+	MemoryFailoverThreshold       pulumi.IntPtrInput
 	MemoryThreshold               pulumi.StringPtrInput
 	Mode                          pulumi.StringPtrInput
 	Monitor                       pulumi.StringPtrInput
@@ -280,9 +310,13 @@ type SystemHaState struct {
 	StandaloneMgmtVdom            pulumi.StringPtrInput
 	SyncConfig                    pulumi.StringPtrInput
 	SyncPacketBalance             pulumi.StringPtrInput
+	UnicastGateway                pulumi.StringPtrInput
 	UnicastHb                     pulumi.StringPtrInput
 	UnicastHbNetmask              pulumi.StringPtrInput
 	UnicastHbPeerip               pulumi.StringPtrInput
+	UnicastPeers                  SystemHaUnicastPeerArrayInput
+	UnicastStatus                 pulumi.StringPtrInput
+	UninterruptiblePrimaryWait    pulumi.IntPtrInput
 	UninterruptibleUpgrade        pulumi.StringPtrInput
 	Vcluster2                     pulumi.StringPtrInput
 	VclusterId                    pulumi.IntPtrInput
@@ -302,6 +336,7 @@ type systemHaArgs struct {
 	CpuThreshold                  *string                    `pulumi:"cpuThreshold"`
 	DynamicSortSubtable           *string                    `pulumi:"dynamicSortSubtable"`
 	Encryption                    *string                    `pulumi:"encryption"`
+	FailoverHoldTime              *int                       `pulumi:"failoverHoldTime"`
 	FtpProxyThreshold             *string                    `pulumi:"ftpProxyThreshold"`
 	GratuitousArps                *string                    `pulumi:"gratuitousArps"`
 	GroupId                       *int                       `pulumi:"groupId"`
@@ -312,6 +347,7 @@ type systemHaArgs struct {
 	HaMgmtStatus                  *string                    `pulumi:"haMgmtStatus"`
 	HaUptimeDiffMargin            *int                       `pulumi:"haUptimeDiffMargin"`
 	HbInterval                    *int                       `pulumi:"hbInterval"`
+	HbIntervalInMilliseconds      *string                    `pulumi:"hbIntervalInMilliseconds"`
 	HbLostThreshold               *int                       `pulumi:"hbLostThreshold"`
 	Hbdev                         *string                    `pulumi:"hbdev"`
 	HcEthType                     *string                    `pulumi:"hcEthType"`
@@ -324,7 +360,12 @@ type systemHaArgs struct {
 	LinkFailedSignal              *string                    `pulumi:"linkFailedSignal"`
 	LoadBalanceAll                *string                    `pulumi:"loadBalanceAll"`
 	LogicalSn                     *string                    `pulumi:"logicalSn"`
+	MemoryBasedFailover           *string                    `pulumi:"memoryBasedFailover"`
 	MemoryCompatibleMode          *string                    `pulumi:"memoryCompatibleMode"`
+	MemoryFailoverFlipTimeout     *int                       `pulumi:"memoryFailoverFlipTimeout"`
+	MemoryFailoverMonitorPeriod   *int                       `pulumi:"memoryFailoverMonitorPeriod"`
+	MemoryFailoverSampleRate      *int                       `pulumi:"memoryFailoverSampleRate"`
+	MemoryFailoverThreshold       *int                       `pulumi:"memoryFailoverThreshold"`
 	MemoryThreshold               *string                    `pulumi:"memoryThreshold"`
 	Mode                          *string                    `pulumi:"mode"`
 	Monitor                       *string                    `pulumi:"monitor"`
@@ -357,9 +398,13 @@ type systemHaArgs struct {
 	StandaloneMgmtVdom            *string                    `pulumi:"standaloneMgmtVdom"`
 	SyncConfig                    *string                    `pulumi:"syncConfig"`
 	SyncPacketBalance             *string                    `pulumi:"syncPacketBalance"`
+	UnicastGateway                *string                    `pulumi:"unicastGateway"`
 	UnicastHb                     *string                    `pulumi:"unicastHb"`
 	UnicastHbNetmask              *string                    `pulumi:"unicastHbNetmask"`
 	UnicastHbPeerip               *string                    `pulumi:"unicastHbPeerip"`
+	UnicastPeers                  []SystemHaUnicastPeer      `pulumi:"unicastPeers"`
+	UnicastStatus                 *string                    `pulumi:"unicastStatus"`
+	UninterruptiblePrimaryWait    *int                       `pulumi:"uninterruptiblePrimaryWait"`
 	UninterruptibleUpgrade        *string                    `pulumi:"uninterruptibleUpgrade"`
 	Vcluster2                     *string                    `pulumi:"vcluster2"`
 	VclusterId                    *int                       `pulumi:"vclusterId"`
@@ -376,6 +421,7 @@ type SystemHaArgs struct {
 	CpuThreshold                  pulumi.StringPtrInput
 	DynamicSortSubtable           pulumi.StringPtrInput
 	Encryption                    pulumi.StringPtrInput
+	FailoverHoldTime              pulumi.IntPtrInput
 	FtpProxyThreshold             pulumi.StringPtrInput
 	GratuitousArps                pulumi.StringPtrInput
 	GroupId                       pulumi.IntPtrInput
@@ -386,6 +432,7 @@ type SystemHaArgs struct {
 	HaMgmtStatus                  pulumi.StringPtrInput
 	HaUptimeDiffMargin            pulumi.IntPtrInput
 	HbInterval                    pulumi.IntPtrInput
+	HbIntervalInMilliseconds      pulumi.StringPtrInput
 	HbLostThreshold               pulumi.IntPtrInput
 	Hbdev                         pulumi.StringPtrInput
 	HcEthType                     pulumi.StringPtrInput
@@ -398,7 +445,12 @@ type SystemHaArgs struct {
 	LinkFailedSignal              pulumi.StringPtrInput
 	LoadBalanceAll                pulumi.StringPtrInput
 	LogicalSn                     pulumi.StringPtrInput
+	MemoryBasedFailover           pulumi.StringPtrInput
 	MemoryCompatibleMode          pulumi.StringPtrInput
+	MemoryFailoverFlipTimeout     pulumi.IntPtrInput
+	MemoryFailoverMonitorPeriod   pulumi.IntPtrInput
+	MemoryFailoverSampleRate      pulumi.IntPtrInput
+	MemoryFailoverThreshold       pulumi.IntPtrInput
 	MemoryThreshold               pulumi.StringPtrInput
 	Mode                          pulumi.StringPtrInput
 	Monitor                       pulumi.StringPtrInput
@@ -431,9 +483,13 @@ type SystemHaArgs struct {
 	StandaloneMgmtVdom            pulumi.StringPtrInput
 	SyncConfig                    pulumi.StringPtrInput
 	SyncPacketBalance             pulumi.StringPtrInput
+	UnicastGateway                pulumi.StringPtrInput
 	UnicastHb                     pulumi.StringPtrInput
 	UnicastHbNetmask              pulumi.StringPtrInput
 	UnicastHbPeerip               pulumi.StringPtrInput
+	UnicastPeers                  SystemHaUnicastPeerArrayInput
+	UnicastStatus                 pulumi.StringPtrInput
+	UninterruptiblePrimaryWait    pulumi.IntPtrInput
 	UninterruptibleUpgrade        pulumi.StringPtrInput
 	Vcluster2                     pulumi.StringPtrInput
 	VclusterId                    pulumi.IntPtrInput
@@ -454,7 +510,7 @@ type SystemHaInput interface {
 }
 
 func (*SystemHa) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemHa)(nil))
+	return reflect.TypeOf((**SystemHa)(nil)).Elem()
 }
 
 func (i *SystemHa) ToSystemHaOutput() SystemHaOutput {
@@ -463,35 +519,6 @@ func (i *SystemHa) ToSystemHaOutput() SystemHaOutput {
 
 func (i *SystemHa) ToSystemHaOutputWithContext(ctx context.Context) SystemHaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaOutput)
-}
-
-func (i *SystemHa) ToSystemHaPtrOutput() SystemHaPtrOutput {
-	return i.ToSystemHaPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemHa) ToSystemHaPtrOutputWithContext(ctx context.Context) SystemHaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemHaPtrOutput)
-}
-
-type SystemHaPtrInput interface {
-	pulumi.Input
-
-	ToSystemHaPtrOutput() SystemHaPtrOutput
-	ToSystemHaPtrOutputWithContext(ctx context.Context) SystemHaPtrOutput
-}
-
-type systemHaPtrType SystemHaArgs
-
-func (*systemHaPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemHa)(nil))
-}
-
-func (i *systemHaPtrType) ToSystemHaPtrOutput() SystemHaPtrOutput {
-	return i.ToSystemHaPtrOutputWithContext(context.Background())
-}
-
-func (i *systemHaPtrType) ToSystemHaPtrOutputWithContext(ctx context.Context) SystemHaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemHaPtrOutput)
 }
 
 // SystemHaArrayInput is an input type that accepts SystemHaArray and SystemHaArrayOutput values.
@@ -508,7 +535,7 @@ type SystemHaArrayInput interface {
 type SystemHaArray []SystemHaInput
 
 func (SystemHaArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemHa)(nil))
+	return reflect.TypeOf((*[]*SystemHa)(nil)).Elem()
 }
 
 func (i SystemHaArray) ToSystemHaArrayOutput() SystemHaArrayOutput {
@@ -533,7 +560,7 @@ type SystemHaMapInput interface {
 type SystemHaMap map[string]SystemHaInput
 
 func (SystemHaMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemHa)(nil))
+	return reflect.TypeOf((*map[string]*SystemHa)(nil)).Elem()
 }
 
 func (i SystemHaMap) ToSystemHaMapOutput() SystemHaMapOutput {
@@ -544,12 +571,10 @@ func (i SystemHaMap) ToSystemHaMapOutputWithContext(ctx context.Context) SystemH
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMapOutput)
 }
 
-type SystemHaOutput struct {
-	*pulumi.OutputState
-}
+type SystemHaOutput struct{ *pulumi.OutputState }
 
 func (SystemHaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemHa)(nil))
+	return reflect.TypeOf((**SystemHa)(nil)).Elem()
 }
 
 func (o SystemHaOutput) ToSystemHaOutput() SystemHaOutput {
@@ -560,36 +585,10 @@ func (o SystemHaOutput) ToSystemHaOutputWithContext(ctx context.Context) SystemH
 	return o
 }
 
-func (o SystemHaOutput) ToSystemHaPtrOutput() SystemHaPtrOutput {
-	return o.ToSystemHaPtrOutputWithContext(context.Background())
-}
-
-func (o SystemHaOutput) ToSystemHaPtrOutputWithContext(ctx context.Context) SystemHaPtrOutput {
-	return o.ApplyT(func(v SystemHa) *SystemHa {
-		return &v
-	}).(SystemHaPtrOutput)
-}
-
-type SystemHaPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemHaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemHa)(nil))
-}
-
-func (o SystemHaPtrOutput) ToSystemHaPtrOutput() SystemHaPtrOutput {
-	return o
-}
-
-func (o SystemHaPtrOutput) ToSystemHaPtrOutputWithContext(ctx context.Context) SystemHaPtrOutput {
-	return o
-}
-
 type SystemHaArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemHaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemHa)(nil))
+	return reflect.TypeOf((*[]*SystemHa)(nil)).Elem()
 }
 
 func (o SystemHaArrayOutput) ToSystemHaArrayOutput() SystemHaArrayOutput {
@@ -601,15 +600,15 @@ func (o SystemHaArrayOutput) ToSystemHaArrayOutputWithContext(ctx context.Contex
 }
 
 func (o SystemHaArrayOutput) Index(i pulumi.IntInput) SystemHaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemHa {
-		return vs[0].([]SystemHa)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemHa {
+		return vs[0].([]*SystemHa)[vs[1].(int)]
 	}).(SystemHaOutput)
 }
 
 type SystemHaMapOutput struct{ *pulumi.OutputState }
 
 func (SystemHaMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemHa)(nil))
+	return reflect.TypeOf((*map[string]*SystemHa)(nil)).Elem()
 }
 
 func (o SystemHaMapOutput) ToSystemHaMapOutput() SystemHaMapOutput {
@@ -621,14 +620,16 @@ func (o SystemHaMapOutput) ToSystemHaMapOutputWithContext(ctx context.Context) S
 }
 
 func (o SystemHaMapOutput) MapIndex(k pulumi.StringInput) SystemHaOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemHa {
-		return vs[0].(map[string]SystemHa)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemHa {
+		return vs[0].(map[string]*SystemHa)[vs[1].(string)]
 	}).(SystemHaOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemHaInput)(nil)).Elem(), &SystemHa{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemHaArrayInput)(nil)).Elem(), SystemHaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemHaMapInput)(nil)).Elem(), SystemHaMap{})
 	pulumi.RegisterOutputType(SystemHaOutput{})
-	pulumi.RegisterOutputType(SystemHaPtrOutput{})
 	pulumi.RegisterOutputType(SystemHaArrayOutput{})
 	pulumi.RegisterOutputType(SystemHaMapOutput{})
 }

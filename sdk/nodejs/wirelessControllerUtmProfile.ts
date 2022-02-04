@@ -91,35 +91,33 @@ export class WirelessControllerUtmProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerUtmProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerUtmProfileArgs | WirelessControllerUtmProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerUtmProfileState | undefined;
-            inputs["antivirusProfile"] = state ? state.antivirusProfile : undefined;
-            inputs["applicationList"] = state ? state.applicationList : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["ipsSensor"] = state ? state.ipsSensor : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
-            inputs["utmLog"] = state ? state.utmLog : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
+            resourceInputs["antivirusProfile"] = state ? state.antivirusProfile : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
+            resourceInputs["utmLog"] = state ? state.utmLog : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
             const args = argsOrState as WirelessControllerUtmProfileArgs | undefined;
-            inputs["antivirusProfile"] = args ? args.antivirusProfile : undefined;
-            inputs["applicationList"] = args ? args.applicationList : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["ipsSensor"] = args ? args.ipsSensor : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
-            inputs["utmLog"] = args ? args.utmLog : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
+            resourceInputs["antivirusProfile"] = args ? args.antivirusProfile : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
+            resourceInputs["utmLog"] = args ? args.utmLog : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerUtmProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerUtmProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

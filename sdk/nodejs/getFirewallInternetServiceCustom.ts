@@ -13,9 +13,7 @@ export function getFirewallInternetServiceCustom(args: GetFirewallInternetServic
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallInternetServiceCustom:GetFirewallInternetServiceCustom", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -61,4 +59,22 @@ export interface GetFirewallInternetServiceCustomResult {
      */
     readonly reputation: number;
     readonly vdomparam?: string;
+}
+
+export function getFirewallInternetServiceCustomOutput(args: GetFirewallInternetServiceCustomOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallInternetServiceCustomResult> {
+    return pulumi.output(args).apply(a => getFirewallInternetServiceCustom(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallInternetServiceCustom.
+ */
+export interface GetFirewallInternetServiceCustomOutputArgs {
+    /**
+     * Specify the name of the desired firewall internetservicecustom.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

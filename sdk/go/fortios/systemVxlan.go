@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -29,8 +30,8 @@ import (
 // 			Dstport:   pulumi.Int(4789),
 // 			Interface: pulumi.String("port3"),
 // 			IpVersion: pulumi.String("ipv4-unicast"),
-// 			RemoteIps: fortios.SystemVxlanRemoteIpArray{
-// 				&fortios.SystemVxlanRemoteIpArgs{
+// 			RemoteIps: SystemVxlanRemoteIpArray{
+// 				&SystemVxlanRemoteIpArgs{
 // 					Ip: pulumi.String("1.1.1.1"),
 // 				},
 // 			},
@@ -94,6 +95,7 @@ func NewSystemVxlan(ctx *pulumi.Context,
 	if args.Vni == nil {
 		return nil, errors.New("invalid value for required argument 'Vni'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVxlan
 	err := ctx.RegisterResource("fortios:index/systemVxlan:SystemVxlan", name, args, &resource, opts...)
 	if err != nil {
@@ -224,7 +226,7 @@ type SystemVxlanInput interface {
 }
 
 func (*SystemVxlan) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVxlan)(nil))
+	return reflect.TypeOf((**SystemVxlan)(nil)).Elem()
 }
 
 func (i *SystemVxlan) ToSystemVxlanOutput() SystemVxlanOutput {
@@ -233,35 +235,6 @@ func (i *SystemVxlan) ToSystemVxlanOutput() SystemVxlanOutput {
 
 func (i *SystemVxlan) ToSystemVxlanOutputWithContext(ctx context.Context) SystemVxlanOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanOutput)
-}
-
-func (i *SystemVxlan) ToSystemVxlanPtrOutput() SystemVxlanPtrOutput {
-	return i.ToSystemVxlanPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVxlan) ToSystemVxlanPtrOutputWithContext(ctx context.Context) SystemVxlanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanPtrOutput)
-}
-
-type SystemVxlanPtrInput interface {
-	pulumi.Input
-
-	ToSystemVxlanPtrOutput() SystemVxlanPtrOutput
-	ToSystemVxlanPtrOutputWithContext(ctx context.Context) SystemVxlanPtrOutput
-}
-
-type systemVxlanPtrType SystemVxlanArgs
-
-func (*systemVxlanPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVxlan)(nil))
-}
-
-func (i *systemVxlanPtrType) ToSystemVxlanPtrOutput() SystemVxlanPtrOutput {
-	return i.ToSystemVxlanPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVxlanPtrType) ToSystemVxlanPtrOutputWithContext(ctx context.Context) SystemVxlanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanPtrOutput)
 }
 
 // SystemVxlanArrayInput is an input type that accepts SystemVxlanArray and SystemVxlanArrayOutput values.
@@ -278,7 +251,7 @@ type SystemVxlanArrayInput interface {
 type SystemVxlanArray []SystemVxlanInput
 
 func (SystemVxlanArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVxlan)(nil))
+	return reflect.TypeOf((*[]*SystemVxlan)(nil)).Elem()
 }
 
 func (i SystemVxlanArray) ToSystemVxlanArrayOutput() SystemVxlanArrayOutput {
@@ -303,7 +276,7 @@ type SystemVxlanMapInput interface {
 type SystemVxlanMap map[string]SystemVxlanInput
 
 func (SystemVxlanMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVxlan)(nil))
+	return reflect.TypeOf((*map[string]*SystemVxlan)(nil)).Elem()
 }
 
 func (i SystemVxlanMap) ToSystemVxlanMapOutput() SystemVxlanMapOutput {
@@ -314,12 +287,10 @@ func (i SystemVxlanMap) ToSystemVxlanMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVxlanMapOutput)
 }
 
-type SystemVxlanOutput struct {
-	*pulumi.OutputState
-}
+type SystemVxlanOutput struct{ *pulumi.OutputState }
 
 func (SystemVxlanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVxlan)(nil))
+	return reflect.TypeOf((**SystemVxlan)(nil)).Elem()
 }
 
 func (o SystemVxlanOutput) ToSystemVxlanOutput() SystemVxlanOutput {
@@ -330,36 +301,10 @@ func (o SystemVxlanOutput) ToSystemVxlanOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemVxlanOutput) ToSystemVxlanPtrOutput() SystemVxlanPtrOutput {
-	return o.ToSystemVxlanPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVxlanOutput) ToSystemVxlanPtrOutputWithContext(ctx context.Context) SystemVxlanPtrOutput {
-	return o.ApplyT(func(v SystemVxlan) *SystemVxlan {
-		return &v
-	}).(SystemVxlanPtrOutput)
-}
-
-type SystemVxlanPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVxlanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVxlan)(nil))
-}
-
-func (o SystemVxlanPtrOutput) ToSystemVxlanPtrOutput() SystemVxlanPtrOutput {
-	return o
-}
-
-func (o SystemVxlanPtrOutput) ToSystemVxlanPtrOutputWithContext(ctx context.Context) SystemVxlanPtrOutput {
-	return o
-}
-
 type SystemVxlanArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVxlanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVxlan)(nil))
+	return reflect.TypeOf((*[]*SystemVxlan)(nil)).Elem()
 }
 
 func (o SystemVxlanArrayOutput) ToSystemVxlanArrayOutput() SystemVxlanArrayOutput {
@@ -371,15 +316,15 @@ func (o SystemVxlanArrayOutput) ToSystemVxlanArrayOutputWithContext(ctx context.
 }
 
 func (o SystemVxlanArrayOutput) Index(i pulumi.IntInput) SystemVxlanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVxlan {
-		return vs[0].([]SystemVxlan)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVxlan {
+		return vs[0].([]*SystemVxlan)[vs[1].(int)]
 	}).(SystemVxlanOutput)
 }
 
 type SystemVxlanMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVxlanMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVxlan)(nil))
+	return reflect.TypeOf((*map[string]*SystemVxlan)(nil)).Elem()
 }
 
 func (o SystemVxlanMapOutput) ToSystemVxlanMapOutput() SystemVxlanMapOutput {
@@ -391,14 +336,16 @@ func (o SystemVxlanMapOutput) ToSystemVxlanMapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemVxlanMapOutput) MapIndex(k pulumi.StringInput) SystemVxlanOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVxlan {
-		return vs[0].(map[string]SystemVxlan)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVxlan {
+		return vs[0].(map[string]*SystemVxlan)[vs[1].(string)]
 	}).(SystemVxlanOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanInput)(nil)).Elem(), &SystemVxlan{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanArrayInput)(nil)).Elem(), SystemVxlanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVxlanMapInput)(nil)).Elem(), SystemVxlanMap{})
 	pulumi.RegisterOutputType(SystemVxlanOutput{})
-	pulumi.RegisterOutputType(SystemVxlanPtrOutput{})
 	pulumi.RegisterOutputType(SystemVxlanArrayOutput{})
 	pulumi.RegisterOutputType(SystemVxlanMapOutput{})
 }

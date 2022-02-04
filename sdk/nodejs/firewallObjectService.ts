@@ -142,23 +142,23 @@ export class FirewallObjectService extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallObjectServiceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectServiceArgs | FirewallObjectServiceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectServiceState | undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["icmpcode"] = state ? state.icmpcode : undefined;
-            inputs["icmptype"] = state ? state.icmptype : undefined;
-            inputs["iprange"] = state ? state.iprange : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["protocolNumber"] = state ? state.protocolNumber : undefined;
-            inputs["sctpPortrange"] = state ? state.sctpPortrange : undefined;
-            inputs["sessionTtl"] = state ? state.sessionTtl : undefined;
-            inputs["tcpPortrange"] = state ? state.tcpPortrange : undefined;
-            inputs["udpPortrange"] = state ? state.udpPortrange : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["icmpcode"] = state ? state.icmpcode : undefined;
+            resourceInputs["icmptype"] = state ? state.icmptype : undefined;
+            resourceInputs["iprange"] = state ? state.iprange : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["protocolNumber"] = state ? state.protocolNumber : undefined;
+            resourceInputs["sctpPortrange"] = state ? state.sctpPortrange : undefined;
+            resourceInputs["sessionTtl"] = state ? state.sessionTtl : undefined;
+            resourceInputs["tcpPortrange"] = state ? state.tcpPortrange : undefined;
+            resourceInputs["udpPortrange"] = state ? state.udpPortrange : undefined;
         } else {
             const args = argsOrState as FirewallObjectServiceArgs | undefined;
             if ((!args || args.category === undefined) && !opts.urn) {
@@ -167,24 +167,22 @@ export class FirewallObjectService extends pulumi.CustomResource {
             if ((!args || args.protocol === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'protocol'");
             }
-            inputs["category"] = args ? args.category : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["icmpcode"] = args ? args.icmpcode : undefined;
-            inputs["icmptype"] = args ? args.icmptype : undefined;
-            inputs["iprange"] = args ? args.iprange : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["protocolNumber"] = args ? args.protocolNumber : undefined;
-            inputs["sctpPortrange"] = args ? args.sctpPortrange : undefined;
-            inputs["sessionTtl"] = args ? args.sessionTtl : undefined;
-            inputs["tcpPortrange"] = args ? args.tcpPortrange : undefined;
-            inputs["udpPortrange"] = args ? args.udpPortrange : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["icmpcode"] = args ? args.icmpcode : undefined;
+            resourceInputs["icmptype"] = args ? args.icmptype : undefined;
+            resourceInputs["iprange"] = args ? args.iprange : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["protocolNumber"] = args ? args.protocolNumber : undefined;
+            resourceInputs["sctpPortrange"] = args ? args.sctpPortrange : undefined;
+            resourceInputs["sessionTtl"] = args ? args.sessionTtl : undefined;
+            resourceInputs["tcpPortrange"] = args ? args.tcpPortrange : undefined;
+            resourceInputs["udpPortrange"] = args ? args.udpPortrange : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectService.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectService.__pulumiType, name, resourceInputs, opts);
     }
 }
 

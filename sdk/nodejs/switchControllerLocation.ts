@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch location services.
+ * Configure FortiSwitch location services. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -76,27 +76,25 @@ export class SwitchControllerLocation extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerLocationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerLocationArgs | SwitchControllerLocationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerLocationState | undefined;
-            inputs["addressCivic"] = state ? state.addressCivic : undefined;
-            inputs["coordinates"] = state ? state.coordinates : undefined;
-            inputs["elinNumber"] = state ? state.elinNumber : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addressCivic"] = state ? state.addressCivic : undefined;
+            resourceInputs["coordinates"] = state ? state.coordinates : undefined;
+            resourceInputs["elinNumber"] = state ? state.elinNumber : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerLocationArgs | undefined;
-            inputs["addressCivic"] = args ? args.addressCivic : undefined;
-            inputs["coordinates"] = args ? args.coordinates : undefined;
-            inputs["elinNumber"] = args ? args.elinNumber : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addressCivic"] = args ? args.addressCivic : undefined;
+            resourceInputs["coordinates"] = args ? args.coordinates : undefined;
+            resourceInputs["elinNumber"] = args ? args.elinNumber : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerLocation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerLocation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

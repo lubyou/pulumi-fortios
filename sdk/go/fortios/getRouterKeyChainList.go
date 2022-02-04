@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `RouterKeyChain`.
 func GetRouterKeyChainList(ctx *pulumi.Context, args *GetRouterKeyChainListArgs, opts ...pulumi.InvokeOption) (*GetRouterKeyChainListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterKeyChainListResult
 	err := ctx.Invoke("fortios:index/getRouterKeyChainList:GetRouterKeyChainList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetRouterKeyChainListResult struct {
 	// A list of the `RouterKeyChain`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetRouterKeyChainListOutput(ctx *pulumi.Context, args GetRouterKeyChainListOutputArgs, opts ...pulumi.InvokeOption) GetRouterKeyChainListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterKeyChainListResult, error) {
+			args := v.(GetRouterKeyChainListArgs)
+			r, err := GetRouterKeyChainList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterKeyChainListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterKeyChainList.
+type GetRouterKeyChainListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterKeyChainListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterKeyChainListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterKeyChainList.
+type GetRouterKeyChainListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterKeyChainListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterKeyChainListResult)(nil)).Elem()
+}
+
+func (o GetRouterKeyChainListResultOutput) ToGetRouterKeyChainListResultOutput() GetRouterKeyChainListResultOutput {
+	return o
+}
+
+func (o GetRouterKeyChainListResultOutput) ToGetRouterKeyChainListResultOutputWithContext(ctx context.Context) GetRouterKeyChainListResultOutput {
+	return o
+}
+
+func (o GetRouterKeyChainListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterKeyChainListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterKeyChainListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterKeyChainListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterKeyChain`.
+func (o GetRouterKeyChainListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouterKeyChainListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRouterKeyChainListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterKeyChainListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterKeyChainListResultOutput{})
 }

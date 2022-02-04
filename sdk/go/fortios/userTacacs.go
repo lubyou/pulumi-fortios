@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -87,6 +87,7 @@ func NewUserTacacs(ctx *pulumi.Context,
 		args = &UserTacacsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserTacacs
 	err := ctx.RegisterResource("fortios:index/userTacacs:UserTacacs", name, args, &resource, opts...)
 	if err != nil {
@@ -249,7 +250,7 @@ type UserTacacsInput interface {
 }
 
 func (*UserTacacs) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserTacacs)(nil))
+	return reflect.TypeOf((**UserTacacs)(nil)).Elem()
 }
 
 func (i *UserTacacs) ToUserTacacsOutput() UserTacacsOutput {
@@ -258,35 +259,6 @@ func (i *UserTacacs) ToUserTacacsOutput() UserTacacsOutput {
 
 func (i *UserTacacs) ToUserTacacsOutputWithContext(ctx context.Context) UserTacacsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsOutput)
-}
-
-func (i *UserTacacs) ToUserTacacsPtrOutput() UserTacacsPtrOutput {
-	return i.ToUserTacacsPtrOutputWithContext(context.Background())
-}
-
-func (i *UserTacacs) ToUserTacacsPtrOutputWithContext(ctx context.Context) UserTacacsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsPtrOutput)
-}
-
-type UserTacacsPtrInput interface {
-	pulumi.Input
-
-	ToUserTacacsPtrOutput() UserTacacsPtrOutput
-	ToUserTacacsPtrOutputWithContext(ctx context.Context) UserTacacsPtrOutput
-}
-
-type userTacacsPtrType UserTacacsArgs
-
-func (*userTacacsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserTacacs)(nil))
-}
-
-func (i *userTacacsPtrType) ToUserTacacsPtrOutput() UserTacacsPtrOutput {
-	return i.ToUserTacacsPtrOutputWithContext(context.Background())
-}
-
-func (i *userTacacsPtrType) ToUserTacacsPtrOutputWithContext(ctx context.Context) UserTacacsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsPtrOutput)
 }
 
 // UserTacacsArrayInput is an input type that accepts UserTacacsArray and UserTacacsArrayOutput values.
@@ -303,7 +275,7 @@ type UserTacacsArrayInput interface {
 type UserTacacsArray []UserTacacsInput
 
 func (UserTacacsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserTacacs)(nil))
+	return reflect.TypeOf((*[]*UserTacacs)(nil)).Elem()
 }
 
 func (i UserTacacsArray) ToUserTacacsArrayOutput() UserTacacsArrayOutput {
@@ -328,7 +300,7 @@ type UserTacacsMapInput interface {
 type UserTacacsMap map[string]UserTacacsInput
 
 func (UserTacacsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserTacacs)(nil))
+	return reflect.TypeOf((*map[string]*UserTacacs)(nil)).Elem()
 }
 
 func (i UserTacacsMap) ToUserTacacsMapOutput() UserTacacsMapOutput {
@@ -339,12 +311,10 @@ func (i UserTacacsMap) ToUserTacacsMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserTacacsMapOutput)
 }
 
-type UserTacacsOutput struct {
-	*pulumi.OutputState
-}
+type UserTacacsOutput struct{ *pulumi.OutputState }
 
 func (UserTacacsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserTacacs)(nil))
+	return reflect.TypeOf((**UserTacacs)(nil)).Elem()
 }
 
 func (o UserTacacsOutput) ToUserTacacsOutput() UserTacacsOutput {
@@ -355,36 +325,10 @@ func (o UserTacacsOutput) ToUserTacacsOutputWithContext(ctx context.Context) Use
 	return o
 }
 
-func (o UserTacacsOutput) ToUserTacacsPtrOutput() UserTacacsPtrOutput {
-	return o.ToUserTacacsPtrOutputWithContext(context.Background())
-}
-
-func (o UserTacacsOutput) ToUserTacacsPtrOutputWithContext(ctx context.Context) UserTacacsPtrOutput {
-	return o.ApplyT(func(v UserTacacs) *UserTacacs {
-		return &v
-	}).(UserTacacsPtrOutput)
-}
-
-type UserTacacsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserTacacsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserTacacs)(nil))
-}
-
-func (o UserTacacsPtrOutput) ToUserTacacsPtrOutput() UserTacacsPtrOutput {
-	return o
-}
-
-func (o UserTacacsPtrOutput) ToUserTacacsPtrOutputWithContext(ctx context.Context) UserTacacsPtrOutput {
-	return o
-}
-
 type UserTacacsArrayOutput struct{ *pulumi.OutputState }
 
 func (UserTacacsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserTacacs)(nil))
+	return reflect.TypeOf((*[]*UserTacacs)(nil)).Elem()
 }
 
 func (o UserTacacsArrayOutput) ToUserTacacsArrayOutput() UserTacacsArrayOutput {
@@ -396,15 +340,15 @@ func (o UserTacacsArrayOutput) ToUserTacacsArrayOutputWithContext(ctx context.Co
 }
 
 func (o UserTacacsArrayOutput) Index(i pulumi.IntInput) UserTacacsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserTacacs {
-		return vs[0].([]UserTacacs)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserTacacs {
+		return vs[0].([]*UserTacacs)[vs[1].(int)]
 	}).(UserTacacsOutput)
 }
 
 type UserTacacsMapOutput struct{ *pulumi.OutputState }
 
 func (UserTacacsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserTacacs)(nil))
+	return reflect.TypeOf((*map[string]*UserTacacs)(nil)).Elem()
 }
 
 func (o UserTacacsMapOutput) ToUserTacacsMapOutput() UserTacacsMapOutput {
@@ -416,14 +360,16 @@ func (o UserTacacsMapOutput) ToUserTacacsMapOutputWithContext(ctx context.Contex
 }
 
 func (o UserTacacsMapOutput) MapIndex(k pulumi.StringInput) UserTacacsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserTacacs {
-		return vs[0].(map[string]UserTacacs)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserTacacs {
+		return vs[0].(map[string]*UserTacacs)[vs[1].(string)]
 	}).(UserTacacsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTacacsInput)(nil)).Elem(), &UserTacacs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTacacsArrayInput)(nil)).Elem(), UserTacacsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserTacacsMapInput)(nil)).Elem(), UserTacacsMap{})
 	pulumi.RegisterOutputType(UserTacacsOutput{})
-	pulumi.RegisterOutputType(UserTacacsPtrOutput{})
 	pulumi.RegisterOutputType(UserTacacsArrayOutput{})
 	pulumi.RegisterOutputType(UserTacacsMapOutput{})
 }

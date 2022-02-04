@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// IP blacklist vendor.
+// IP blacklist vendor. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -39,6 +39,7 @@ func NewFirewallInternetServiceIpblVendor(ctx *pulumi.Context,
 		args = &FirewallInternetServiceIpblVendorArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceIpblVendor
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceIpblVendor:FirewallInternetServiceIpblVendor", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallInternetServiceIpblVendorInput interface {
 }
 
 func (*FirewallInternetServiceIpblVendor) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceIpblVendor)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceIpblVendor)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceIpblVendor) ToFirewallInternetServiceIpblVendorOutput() FirewallInternetServiceIpblVendorOutput {
@@ -122,35 +123,6 @@ func (i *FirewallInternetServiceIpblVendor) ToFirewallInternetServiceIpblVendorO
 
 func (i *FirewallInternetServiceIpblVendor) ToFirewallInternetServiceIpblVendorOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblVendorOutput)
-}
-
-func (i *FirewallInternetServiceIpblVendor) ToFirewallInternetServiceIpblVendorPtrOutput() FirewallInternetServiceIpblVendorPtrOutput {
-	return i.ToFirewallInternetServiceIpblVendorPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceIpblVendor) ToFirewallInternetServiceIpblVendorPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblVendorPtrOutput)
-}
-
-type FirewallInternetServiceIpblVendorPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceIpblVendorPtrOutput() FirewallInternetServiceIpblVendorPtrOutput
-	ToFirewallInternetServiceIpblVendorPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorPtrOutput
-}
-
-type firewallInternetServiceIpblVendorPtrType FirewallInternetServiceIpblVendorArgs
-
-func (*firewallInternetServiceIpblVendorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceIpblVendor)(nil))
-}
-
-func (i *firewallInternetServiceIpblVendorPtrType) ToFirewallInternetServiceIpblVendorPtrOutput() FirewallInternetServiceIpblVendorPtrOutput {
-	return i.ToFirewallInternetServiceIpblVendorPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceIpblVendorPtrType) ToFirewallInternetServiceIpblVendorPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblVendorPtrOutput)
 }
 
 // FirewallInternetServiceIpblVendorArrayInput is an input type that accepts FirewallInternetServiceIpblVendorArray and FirewallInternetServiceIpblVendorArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallInternetServiceIpblVendorArrayInput interface {
 type FirewallInternetServiceIpblVendorArray []FirewallInternetServiceIpblVendorInput
 
 func (FirewallInternetServiceIpblVendorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceIpblVendor)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceIpblVendor)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceIpblVendorArray) ToFirewallInternetServiceIpblVendorArrayOutput() FirewallInternetServiceIpblVendorArrayOutput {
@@ -192,7 +164,7 @@ type FirewallInternetServiceIpblVendorMapInput interface {
 type FirewallInternetServiceIpblVendorMap map[string]FirewallInternetServiceIpblVendorInput
 
 func (FirewallInternetServiceIpblVendorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceIpblVendor)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceIpblVendor)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceIpblVendorMap) ToFirewallInternetServiceIpblVendorMapOutput() FirewallInternetServiceIpblVendorMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallInternetServiceIpblVendorMap) ToFirewallInternetServiceIpblVendo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblVendorMapOutput)
 }
 
-type FirewallInternetServiceIpblVendorOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceIpblVendorOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblVendorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceIpblVendor)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceIpblVendor)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceIpblVendorOutput) ToFirewallInternetServiceIpblVendorOutput() FirewallInternetServiceIpblVendorOutput {
@@ -219,36 +189,10 @@ func (o FirewallInternetServiceIpblVendorOutput) ToFirewallInternetServiceIpblVe
 	return o
 }
 
-func (o FirewallInternetServiceIpblVendorOutput) ToFirewallInternetServiceIpblVendorPtrOutput() FirewallInternetServiceIpblVendorPtrOutput {
-	return o.ToFirewallInternetServiceIpblVendorPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceIpblVendorOutput) ToFirewallInternetServiceIpblVendorPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceIpblVendor) *FirewallInternetServiceIpblVendor {
-		return &v
-	}).(FirewallInternetServiceIpblVendorPtrOutput)
-}
-
-type FirewallInternetServiceIpblVendorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceIpblVendorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceIpblVendor)(nil))
-}
-
-func (o FirewallInternetServiceIpblVendorPtrOutput) ToFirewallInternetServiceIpblVendorPtrOutput() FirewallInternetServiceIpblVendorPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceIpblVendorPtrOutput) ToFirewallInternetServiceIpblVendorPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblVendorPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceIpblVendorArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblVendorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceIpblVendor)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceIpblVendor)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceIpblVendorArrayOutput) ToFirewallInternetServiceIpblVendorArrayOutput() FirewallInternetServiceIpblVendorArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallInternetServiceIpblVendorArrayOutput) ToFirewallInternetServiceI
 }
 
 func (o FirewallInternetServiceIpblVendorArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceIpblVendorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceIpblVendor {
-		return vs[0].([]FirewallInternetServiceIpblVendor)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceIpblVendor {
+		return vs[0].([]*FirewallInternetServiceIpblVendor)[vs[1].(int)]
 	}).(FirewallInternetServiceIpblVendorOutput)
 }
 
 type FirewallInternetServiceIpblVendorMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblVendorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceIpblVendor)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceIpblVendor)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceIpblVendorMapOutput) ToFirewallInternetServiceIpblVendorMapOutput() FirewallInternetServiceIpblVendorMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallInternetServiceIpblVendorMapOutput) ToFirewallInternetServiceIpb
 }
 
 func (o FirewallInternetServiceIpblVendorMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceIpblVendorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceIpblVendor {
-		return vs[0].(map[string]FirewallInternetServiceIpblVendor)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceIpblVendor {
+		return vs[0].(map[string]*FirewallInternetServiceIpblVendor)[vs[1].(string)]
 	}).(FirewallInternetServiceIpblVendorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceIpblVendorInput)(nil)).Elem(), &FirewallInternetServiceIpblVendor{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceIpblVendorArrayInput)(nil)).Elem(), FirewallInternetServiceIpblVendorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceIpblVendorMapInput)(nil)).Elem(), FirewallInternetServiceIpblVendorMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceIpblVendorOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceIpblVendorPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceIpblVendorArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceIpblVendorMapOutput{})
 }

@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemDscpBasedPriorityResult',
     'AwaitableGetSystemDscpBasedPriorityResult',
     'get_system_dscp_based_priority',
+    'get_system_dscp_based_priority_output',
 ]
 
 @pulumi.output_type
@@ -104,6 +105,8 @@ def get_system_dscp_based_priority(fosid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDscpBasedPriority:GetSystemDscpBasedPriority', __args__, opts=opts, typ=GetSystemDscpBasedPriorityResult).value
 
     return AwaitableGetSystemDscpBasedPriorityResult(
@@ -112,3 +115,17 @@ def get_system_dscp_based_priority(fosid: Optional[int] = None,
         id=__ret__.id,
         priority=__ret__.priority,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_dscp_based_priority)
+def get_system_dscp_based_priority_output(fosid: Optional[pulumi.Input[int]] = None,
+                                          vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemDscpBasedPriorityResult]:
+    """
+    Use this data source to get information on an fortios system dscpbasedpriority
+
+
+    :param int fosid: Specify the fosid of the desired system dscpbasedpriority.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

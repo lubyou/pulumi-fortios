@@ -67,6 +67,14 @@ export class SystemDns extends pulumi.CustomResource {
     }
 
     /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    public readonly altPrimary!: pulumi.Output<string>;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    public readonly altSecondary!: pulumi.Output<string>;
+    /**
      * Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
      */
     public readonly cacheNotfoundResponses!: pulumi.Output<string>;
@@ -107,9 +115,17 @@ export class SystemDns extends pulumi.CustomResource {
      */
     public readonly ip6Secondary!: pulumi.Output<string>;
     /**
+     * Local DNS log setting. Valid values: `disable`, `error`, `all`.
+     */
+    public readonly log!: pulumi.Output<string>;
+    /**
      * Primary DNS server IP address.
      */
     public readonly primary!: pulumi.Output<string>;
+    /**
+     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    public readonly protocol!: pulumi.Output<string>;
     /**
      * Number of times to retry (0 - 5).
      */
@@ -122,6 +138,10 @@ export class SystemDns extends pulumi.CustomResource {
      * DNS server host name list. The structure of `serverHostname` block is documented below.
      */
     public readonly serverHostnames!: pulumi.Output<outputs.SystemDnsServerHostname[] | undefined>;
+    /**
+     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+     */
+    public readonly serverSelectMethod!: pulumi.Output<string>;
     /**
      * IP address used by the DNS server as its source IP.
      */
@@ -148,56 +168,64 @@ export class SystemDns extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemDnsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDnsArgs | SystemDnsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDnsState | undefined;
-            inputs["cacheNotfoundResponses"] = state ? state.cacheNotfoundResponses : undefined;
-            inputs["dnsCacheLimit"] = state ? state.dnsCacheLimit : undefined;
-            inputs["dnsCacheTtl"] = state ? state.dnsCacheTtl : undefined;
-            inputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
-            inputs["domains"] = state ? state.domains : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ip6Primary"] = state ? state.ip6Primary : undefined;
-            inputs["ip6Secondary"] = state ? state.ip6Secondary : undefined;
-            inputs["primary"] = state ? state.primary : undefined;
-            inputs["retry"] = state ? state.retry : undefined;
-            inputs["secondary"] = state ? state.secondary : undefined;
-            inputs["serverHostnames"] = state ? state.serverHostnames : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslCertificate"] = state ? state.sslCertificate : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["altPrimary"] = state ? state.altPrimary : undefined;
+            resourceInputs["altSecondary"] = state ? state.altSecondary : undefined;
+            resourceInputs["cacheNotfoundResponses"] = state ? state.cacheNotfoundResponses : undefined;
+            resourceInputs["dnsCacheLimit"] = state ? state.dnsCacheLimit : undefined;
+            resourceInputs["dnsCacheTtl"] = state ? state.dnsCacheTtl : undefined;
+            resourceInputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
+            resourceInputs["domains"] = state ? state.domains : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ip6Primary"] = state ? state.ip6Primary : undefined;
+            resourceInputs["ip6Secondary"] = state ? state.ip6Secondary : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
+            resourceInputs["primary"] = state ? state.primary : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["retry"] = state ? state.retry : undefined;
+            resourceInputs["secondary"] = state ? state.secondary : undefined;
+            resourceInputs["serverHostnames"] = state ? state.serverHostnames : undefined;
+            resourceInputs["serverSelectMethod"] = state ? state.serverSelectMethod : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemDnsArgs | undefined;
             if ((!args || args.primary === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'primary'");
             }
-            inputs["cacheNotfoundResponses"] = args ? args.cacheNotfoundResponses : undefined;
-            inputs["dnsCacheLimit"] = args ? args.dnsCacheLimit : undefined;
-            inputs["dnsCacheTtl"] = args ? args.dnsCacheTtl : undefined;
-            inputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
-            inputs["domains"] = args ? args.domains : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ip6Primary"] = args ? args.ip6Primary : undefined;
-            inputs["ip6Secondary"] = args ? args.ip6Secondary : undefined;
-            inputs["primary"] = args ? args.primary : undefined;
-            inputs["retry"] = args ? args.retry : undefined;
-            inputs["secondary"] = args ? args.secondary : undefined;
-            inputs["serverHostnames"] = args ? args.serverHostnames : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslCertificate"] = args ? args.sslCertificate : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["altPrimary"] = args ? args.altPrimary : undefined;
+            resourceInputs["altSecondary"] = args ? args.altSecondary : undefined;
+            resourceInputs["cacheNotfoundResponses"] = args ? args.cacheNotfoundResponses : undefined;
+            resourceInputs["dnsCacheLimit"] = args ? args.dnsCacheLimit : undefined;
+            resourceInputs["dnsCacheTtl"] = args ? args.dnsCacheTtl : undefined;
+            resourceInputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
+            resourceInputs["domains"] = args ? args.domains : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ip6Primary"] = args ? args.ip6Primary : undefined;
+            resourceInputs["ip6Secondary"] = args ? args.ip6Secondary : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
+            resourceInputs["primary"] = args ? args.primary : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["retry"] = args ? args.retry : undefined;
+            resourceInputs["secondary"] = args ? args.secondary : undefined;
+            resourceInputs["serverHostnames"] = args ? args.serverHostnames : undefined;
+            resourceInputs["serverSelectMethod"] = args ? args.serverSelectMethod : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDns.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDns.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -205,6 +233,14 @@ export class SystemDns extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDns resources.
  */
 export interface SystemDnsState {
+    /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    altPrimary?: pulumi.Input<string>;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    altSecondary?: pulumi.Input<string>;
     /**
      * Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
      */
@@ -246,9 +282,17 @@ export interface SystemDnsState {
      */
     ip6Secondary?: pulumi.Input<string>;
     /**
+     * Local DNS log setting. Valid values: `disable`, `error`, `all`.
+     */
+    log?: pulumi.Input<string>;
+    /**
      * Primary DNS server IP address.
      */
     primary?: pulumi.Input<string>;
+    /**
+     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    protocol?: pulumi.Input<string>;
     /**
      * Number of times to retry (0 - 5).
      */
@@ -261,6 +305,10 @@ export interface SystemDnsState {
      * DNS server host name list. The structure of `serverHostname` block is documented below.
      */
     serverHostnames?: pulumi.Input<pulumi.Input<inputs.SystemDnsServerHostname>[]>;
+    /**
+     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+     */
+    serverSelectMethod?: pulumi.Input<string>;
     /**
      * IP address used by the DNS server as its source IP.
      */
@@ -284,6 +332,14 @@ export interface SystemDnsState {
  */
 export interface SystemDnsArgs {
     /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    altPrimary?: pulumi.Input<string>;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    altSecondary?: pulumi.Input<string>;
+    /**
      * Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
      */
     cacheNotfoundResponses?: pulumi.Input<string>;
@@ -324,9 +380,17 @@ export interface SystemDnsArgs {
      */
     ip6Secondary?: pulumi.Input<string>;
     /**
+     * Local DNS log setting. Valid values: `disable`, `error`, `all`.
+     */
+    log?: pulumi.Input<string>;
+    /**
      * Primary DNS server IP address.
      */
     primary: pulumi.Input<string>;
+    /**
+     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    protocol?: pulumi.Input<string>;
     /**
      * Number of times to retry (0 - 5).
      */
@@ -339,6 +403,10 @@ export interface SystemDnsArgs {
      * DNS server host name list. The structure of `serverHostname` block is documented below.
      */
     serverHostnames?: pulumi.Input<pulumi.Input<inputs.SystemDnsServerHostname>[]>;
+    /**
+     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+     */
+    serverSelectMethod?: pulumi.Input<string>;
     /**
      * IP address used by the DNS server as its source IP.
      */

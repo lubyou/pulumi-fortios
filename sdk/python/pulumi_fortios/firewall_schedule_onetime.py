@@ -17,6 +17,7 @@ class FirewallScheduleOnetimeArgs:
                  start: pulumi.Input[str],
                  color: Optional[pulumi.Input[int]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -25,6 +26,7 @@ class FirewallScheduleOnetimeArgs:
         :param pulumi.Input[str] start: Schedule start date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[int] expiration_days: Write an event log message this many days before the schedule expires.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Onetime schedule name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -34,6 +36,8 @@ class FirewallScheduleOnetimeArgs:
             pulumi.set(__self__, "color", color)
         if expiration_days is not None:
             pulumi.set(__self__, "expiration_days", expiration_days)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -88,6 +92,18 @@ class FirewallScheduleOnetimeArgs:
         pulumi.set(self, "expiration_days", value)
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -118,6 +134,7 @@ class _FirewallScheduleOnetimeState:
                  color: Optional[pulumi.Input[int]] = None,
                  end: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -126,6 +143,7 @@ class _FirewallScheduleOnetimeState:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] end: Schedule end date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[int] expiration_days: Write an event log message this many days before the schedule expires.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Onetime schedule name.
         :param pulumi.Input[str] start: Schedule start date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -136,6 +154,8 @@ class _FirewallScheduleOnetimeState:
             pulumi.set(__self__, "end", end)
         if expiration_days is not None:
             pulumi.set(__self__, "expiration_days", expiration_days)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if start is not None:
@@ -178,6 +198,18 @@ class _FirewallScheduleOnetimeState:
     @expiration_days.setter
     def expiration_days(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "expiration_days", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -224,6 +256,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  end: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -259,6 +292,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] end: Schedule end date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[int] expiration_days: Write an event log message this many days before the schedule expires.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Onetime schedule name.
         :param pulumi.Input[str] start: Schedule start date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -313,6 +347,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  end: Optional[pulumi.Input[str]] = None,
                  expiration_days: Optional[pulumi.Input[int]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  start: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -323,6 +358,8 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -333,6 +370,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
                 raise TypeError("Missing required property 'end'")
             __props__.__dict__["end"] = end
             __props__.__dict__["expiration_days"] = expiration_days
+            __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["name"] = name
             if start is None and not opts.urn:
                 raise TypeError("Missing required property 'start'")
@@ -351,6 +389,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             end: Optional[pulumi.Input[str]] = None,
             expiration_days: Optional[pulumi.Input[int]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             start: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallScheduleOnetime':
@@ -364,6 +403,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] end: Schedule end date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[int] expiration_days: Write an event log message this many days before the schedule expires.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Onetime schedule name.
         :param pulumi.Input[str] start: Schedule start date and time, format hh:mm yyyy/mm/dd.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -375,6 +415,7 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["end"] = end
         __props__.__dict__["expiration_days"] = expiration_days
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["name"] = name
         __props__.__dict__["start"] = start
         __props__.__dict__["vdomparam"] = vdomparam
@@ -403,6 +444,14 @@ class FirewallScheduleOnetime(pulumi.CustomResource):
         Write an event log message this many days before the schedule expires.
         """
         return pulumi.get(self, "expiration_days")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter

@@ -43,6 +43,7 @@ func NewWirelessControllerWtpGroup(ctx *pulumi.Context,
 		args = &WirelessControllerWtpGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtpGroup
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtpGroup:WirelessControllerWtpGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type WirelessControllerWtpGroupInput interface {
 }
 
 func (*WirelessControllerWtpGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWtpGroup)(nil))
+	return reflect.TypeOf((**WirelessControllerWtpGroup)(nil)).Elem()
 }
 
 func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupOutput() WirelessControllerWtpGroupOutput {
@@ -142,35 +143,6 @@ func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupOutput() Wirele
 
 func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupOutputWithContext(ctx context.Context) WirelessControllerWtpGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupOutput)
-}
-
-func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupPtrOutput() WirelessControllerWtpGroupPtrOutput {
-	return i.ToWirelessControllerWtpGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerWtpGroup) ToWirelessControllerWtpGroupPtrOutputWithContext(ctx context.Context) WirelessControllerWtpGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupPtrOutput)
-}
-
-type WirelessControllerWtpGroupPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerWtpGroupPtrOutput() WirelessControllerWtpGroupPtrOutput
-	ToWirelessControllerWtpGroupPtrOutputWithContext(ctx context.Context) WirelessControllerWtpGroupPtrOutput
-}
-
-type wirelessControllerWtpGroupPtrType WirelessControllerWtpGroupArgs
-
-func (*wirelessControllerWtpGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWtpGroup)(nil))
-}
-
-func (i *wirelessControllerWtpGroupPtrType) ToWirelessControllerWtpGroupPtrOutput() WirelessControllerWtpGroupPtrOutput {
-	return i.ToWirelessControllerWtpGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerWtpGroupPtrType) ToWirelessControllerWtpGroupPtrOutputWithContext(ctx context.Context) WirelessControllerWtpGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupPtrOutput)
 }
 
 // WirelessControllerWtpGroupArrayInput is an input type that accepts WirelessControllerWtpGroupArray and WirelessControllerWtpGroupArrayOutput values.
@@ -187,7 +159,7 @@ type WirelessControllerWtpGroupArrayInput interface {
 type WirelessControllerWtpGroupArray []WirelessControllerWtpGroupInput
 
 func (WirelessControllerWtpGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerWtpGroup)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWtpGroup)(nil)).Elem()
 }
 
 func (i WirelessControllerWtpGroupArray) ToWirelessControllerWtpGroupArrayOutput() WirelessControllerWtpGroupArrayOutput {
@@ -212,7 +184,7 @@ type WirelessControllerWtpGroupMapInput interface {
 type WirelessControllerWtpGroupMap map[string]WirelessControllerWtpGroupInput
 
 func (WirelessControllerWtpGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerWtpGroup)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWtpGroup)(nil)).Elem()
 }
 
 func (i WirelessControllerWtpGroupMap) ToWirelessControllerWtpGroupMapOutput() WirelessControllerWtpGroupMapOutput {
@@ -223,12 +195,10 @@ func (i WirelessControllerWtpGroupMap) ToWirelessControllerWtpGroupMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpGroupMapOutput)
 }
 
-type WirelessControllerWtpGroupOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerWtpGroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWtpGroup)(nil))
+	return reflect.TypeOf((**WirelessControllerWtpGroup)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutput() WirelessControllerWtpGroupOutput {
@@ -239,36 +209,10 @@ func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupOutputWith
 	return o
 }
 
-func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupPtrOutput() WirelessControllerWtpGroupPtrOutput {
-	return o.ToWirelessControllerWtpGroupPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerWtpGroupOutput) ToWirelessControllerWtpGroupPtrOutputWithContext(ctx context.Context) WirelessControllerWtpGroupPtrOutput {
-	return o.ApplyT(func(v WirelessControllerWtpGroup) *WirelessControllerWtpGroup {
-		return &v
-	}).(WirelessControllerWtpGroupPtrOutput)
-}
-
-type WirelessControllerWtpGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerWtpGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWtpGroup)(nil))
-}
-
-func (o WirelessControllerWtpGroupPtrOutput) ToWirelessControllerWtpGroupPtrOutput() WirelessControllerWtpGroupPtrOutput {
-	return o
-}
-
-func (o WirelessControllerWtpGroupPtrOutput) ToWirelessControllerWtpGroupPtrOutputWithContext(ctx context.Context) WirelessControllerWtpGroupPtrOutput {
-	return o
-}
-
 type WirelessControllerWtpGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerWtpGroup)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWtpGroup)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpGroupArrayOutput) ToWirelessControllerWtpGroupArrayOutput() WirelessControllerWtpGroupArrayOutput {
@@ -280,15 +224,15 @@ func (o WirelessControllerWtpGroupArrayOutput) ToWirelessControllerWtpGroupArray
 }
 
 func (o WirelessControllerWtpGroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWtpGroup {
-		return vs[0].([]WirelessControllerWtpGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWtpGroup {
+		return vs[0].([]*WirelessControllerWtpGroup)[vs[1].(int)]
 	}).(WirelessControllerWtpGroupOutput)
 }
 
 type WirelessControllerWtpGroupMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerWtpGroup)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWtpGroup)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpGroupMapOutput) ToWirelessControllerWtpGroupMapOutput() WirelessControllerWtpGroupMapOutput {
@@ -300,14 +244,16 @@ func (o WirelessControllerWtpGroupMapOutput) ToWirelessControllerWtpGroupMapOutp
 }
 
 func (o WirelessControllerWtpGroupMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWtpGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerWtpGroup {
-		return vs[0].(map[string]WirelessControllerWtpGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerWtpGroup {
+		return vs[0].(map[string]*WirelessControllerWtpGroup)[vs[1].(string)]
 	}).(WirelessControllerWtpGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpGroupInput)(nil)).Elem(), &WirelessControllerWtpGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpGroupArrayInput)(nil)).Elem(), WirelessControllerWtpGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpGroupMapInput)(nil)).Elem(), WirelessControllerWtpGroupMap{})
 	pulumi.RegisterOutputType(WirelessControllerWtpGroupOutput{})
-	pulumi.RegisterOutputType(WirelessControllerWtpGroupPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpGroupArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpGroupMapOutput{})
 }

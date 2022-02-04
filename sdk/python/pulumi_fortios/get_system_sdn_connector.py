@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemSdnConnectorResult',
     'AwaitableGetSystemSdnConnectorResult',
     'get_system_sdn_connector',
+    'get_system_sdn_connector_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetSystemSdnConnectorResult:
     """
     A collection of values returned by GetSystemSdnConnector.
     """
-    def __init__(__self__, access_key=None, api_key=None, azure_region=None, client_id=None, client_secret=None, compartment_id=None, compute_generation=None, domain=None, external_ips=None, gcp_project=None, group_name=None, ha_status=None, ibm_region=None, id=None, key_passwd=None, login_endpoint=None, name=None, nics=None, oci_cert=None, oci_fingerprint=None, oci_region=None, oci_region_type=None, password=None, private_key=None, region=None, resource_group=None, resource_url=None, route_tables=None, routes=None, secret_key=None, secret_token=None, server=None, server_port=None, service_account=None, status=None, subscription_id=None, tenant_id=None, type=None, update_interval=None, use_metadata_iam=None, user_id=None, username=None, vcenter_password=None, vcenter_server=None, vcenter_username=None, vdomparam=None, vpc_id=None):
+    def __init__(__self__, access_key=None, api_key=None, azure_region=None, client_id=None, client_secret=None, compartment_id=None, compute_generation=None, domain=None, external_account_lists=None, external_ips=None, forwarding_rules=None, gcp_project=None, gcp_project_lists=None, group_name=None, ha_status=None, ibm_region=None, id=None, key_passwd=None, login_endpoint=None, name=None, nics=None, oci_cert=None, oci_fingerprint=None, oci_region=None, oci_region_type=None, password=None, private_key=None, region=None, resource_group=None, resource_url=None, route_tables=None, routes=None, secret_key=None, secret_token=None, server=None, server_lists=None, server_port=None, service_account=None, status=None, subscription_id=None, tenant_id=None, type=None, update_interval=None, use_metadata_iam=None, user_id=None, username=None, vcenter_password=None, vcenter_server=None, vcenter_username=None, vdomparam=None, verify_certificate=None, vpc_id=None):
         if access_key and not isinstance(access_key, str):
             raise TypeError("Expected argument 'access_key' to be a str")
         pulumi.set(__self__, "access_key", access_key)
@@ -45,12 +46,21 @@ class GetSystemSdnConnectorResult:
         if domain and not isinstance(domain, str):
             raise TypeError("Expected argument 'domain' to be a str")
         pulumi.set(__self__, "domain", domain)
+        if external_account_lists and not isinstance(external_account_lists, list):
+            raise TypeError("Expected argument 'external_account_lists' to be a list")
+        pulumi.set(__self__, "external_account_lists", external_account_lists)
         if external_ips and not isinstance(external_ips, list):
             raise TypeError("Expected argument 'external_ips' to be a list")
         pulumi.set(__self__, "external_ips", external_ips)
+        if forwarding_rules and not isinstance(forwarding_rules, list):
+            raise TypeError("Expected argument 'forwarding_rules' to be a list")
+        pulumi.set(__self__, "forwarding_rules", forwarding_rules)
         if gcp_project and not isinstance(gcp_project, str):
             raise TypeError("Expected argument 'gcp_project' to be a str")
         pulumi.set(__self__, "gcp_project", gcp_project)
+        if gcp_project_lists and not isinstance(gcp_project_lists, list):
+            raise TypeError("Expected argument 'gcp_project_lists' to be a list")
+        pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
         if group_name and not isinstance(group_name, str):
             raise TypeError("Expected argument 'group_name' to be a str")
         pulumi.set(__self__, "group_name", group_name)
@@ -117,6 +127,9 @@ class GetSystemSdnConnectorResult:
         if server and not isinstance(server, str):
             raise TypeError("Expected argument 'server' to be a str")
         pulumi.set(__self__, "server", server)
+        if server_lists and not isinstance(server_lists, list):
+            raise TypeError("Expected argument 'server_lists' to be a list")
+        pulumi.set(__self__, "server_lists", server_lists)
         if server_port and not isinstance(server_port, int):
             raise TypeError("Expected argument 'server_port' to be a int")
         pulumi.set(__self__, "server_port", server_port)
@@ -159,6 +172,9 @@ class GetSystemSdnConnectorResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+        if verify_certificate and not isinstance(verify_certificate, str):
+            raise TypeError("Expected argument 'verify_certificate' to be a str")
+        pulumi.set(__self__, "verify_certificate", verify_certificate)
         if vpc_id and not isinstance(vpc_id, str):
             raise TypeError("Expected argument 'vpc_id' to be a str")
         pulumi.set(__self__, "vpc_id", vpc_id)
@@ -228,6 +244,14 @@ class GetSystemSdnConnectorResult:
         return pulumi.get(self, "domain")
 
     @property
+    @pulumi.getter(name="externalAccountLists")
+    def external_account_lists(self) -> Sequence['outputs.GetSystemSdnConnectorExternalAccountListResult']:
+        """
+        Configure AWS external account list. The structure of `external_account_list` block is documented below.
+        """
+        return pulumi.get(self, "external_account_lists")
+
+    @property
     @pulumi.getter(name="externalIps")
     def external_ips(self) -> Sequence['outputs.GetSystemSdnConnectorExternalIpResult']:
         """
@@ -236,12 +260,28 @@ class GetSystemSdnConnectorResult:
         return pulumi.get(self, "external_ips")
 
     @property
+    @pulumi.getter(name="forwardingRules")
+    def forwarding_rules(self) -> Sequence['outputs.GetSystemSdnConnectorForwardingRuleResult']:
+        """
+        Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
+        """
+        return pulumi.get(self, "forwarding_rules")
+
+    @property
     @pulumi.getter(name="gcpProject")
     def gcp_project(self) -> str:
         """
         GCP project name.
         """
         return pulumi.get(self, "gcp_project")
+
+    @property
+    @pulumi.getter(name="gcpProjectLists")
+    def gcp_project_lists(self) -> Sequence['outputs.GetSystemSdnConnectorGcpProjectListResult']:
+        """
+        Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        """
+        return pulumi.get(self, "gcp_project_lists")
 
     @property
     @pulumi.getter(name="groupName")
@@ -295,7 +335,7 @@ class GetSystemSdnConnectorResult:
     @pulumi.getter
     def name(self) -> str:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -420,6 +460,14 @@ class GetSystemSdnConnectorResult:
         return pulumi.get(self, "server")
 
     @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> Sequence['outputs.GetSystemSdnConnectorServerListResult']:
+        """
+        Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @property
     @pulumi.getter(name="serverPort")
     def server_port(self) -> int:
         """
@@ -529,6 +577,14 @@ class GetSystemSdnConnectorResult:
         return pulumi.get(self, "vdomparam")
 
     @property
+    @pulumi.getter(name="verifyCertificate")
+    def verify_certificate(self) -> str:
+        """
+        Enable/disable server certificate verification.
+        """
+        return pulumi.get(self, "verify_certificate")
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> str:
         """
@@ -551,8 +607,11 @@ class AwaitableGetSystemSdnConnectorResult(GetSystemSdnConnectorResult):
             compartment_id=self.compartment_id,
             compute_generation=self.compute_generation,
             domain=self.domain,
+            external_account_lists=self.external_account_lists,
             external_ips=self.external_ips,
+            forwarding_rules=self.forwarding_rules,
             gcp_project=self.gcp_project,
+            gcp_project_lists=self.gcp_project_lists,
             group_name=self.group_name,
             ha_status=self.ha_status,
             ibm_region=self.ibm_region,
@@ -575,6 +634,7 @@ class AwaitableGetSystemSdnConnectorResult(GetSystemSdnConnectorResult):
             secret_key=self.secret_key,
             secret_token=self.secret_token,
             server=self.server,
+            server_lists=self.server_lists,
             server_port=self.server_port,
             service_account=self.service_account,
             status=self.status,
@@ -589,6 +649,7 @@ class AwaitableGetSystemSdnConnectorResult(GetSystemSdnConnectorResult):
             vcenter_server=self.vcenter_server,
             vcenter_username=self.vcenter_username,
             vdomparam=self.vdomparam,
+            verify_certificate=self.verify_certificate,
             vpc_id=self.vpc_id)
 
 
@@ -609,6 +670,8 @@ def get_system_sdn_connector(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSdnConnector:GetSystemSdnConnector', __args__, opts=opts, typ=GetSystemSdnConnectorResult).value
 
     return AwaitableGetSystemSdnConnectorResult(
@@ -620,8 +683,11 @@ def get_system_sdn_connector(name: Optional[str] = None,
         compartment_id=__ret__.compartment_id,
         compute_generation=__ret__.compute_generation,
         domain=__ret__.domain,
+        external_account_lists=__ret__.external_account_lists,
         external_ips=__ret__.external_ips,
+        forwarding_rules=__ret__.forwarding_rules,
         gcp_project=__ret__.gcp_project,
+        gcp_project_lists=__ret__.gcp_project_lists,
         group_name=__ret__.group_name,
         ha_status=__ret__.ha_status,
         ibm_region=__ret__.ibm_region,
@@ -644,6 +710,7 @@ def get_system_sdn_connector(name: Optional[str] = None,
         secret_key=__ret__.secret_key,
         secret_token=__ret__.secret_token,
         server=__ret__.server,
+        server_lists=__ret__.server_lists,
         server_port=__ret__.server_port,
         service_account=__ret__.service_account,
         status=__ret__.status,
@@ -658,4 +725,19 @@ def get_system_sdn_connector(name: Optional[str] = None,
         vcenter_server=__ret__.vcenter_server,
         vcenter_username=__ret__.vcenter_username,
         vdomparam=__ret__.vdomparam,
+        verify_certificate=__ret__.verify_certificate,
         vpc_id=__ret__.vpc_id)
+
+
+@_utilities.lift_output_func(get_system_sdn_connector)
+def get_system_sdn_connector_output(name: Optional[pulumi.Input[str]] = None,
+                                    vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                    opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemSdnConnectorResult]:
+    """
+    Use this data source to get information on an fortios system sdnconnector
+
+
+    :param str name: Specify the name of the desired system sdnconnector.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

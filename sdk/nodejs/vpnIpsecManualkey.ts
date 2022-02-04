@@ -97,6 +97,10 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Enable/disable NPU offloading. Valid values: `enable`, `disable`.
+     */
+    public readonly npuOffload!: pulumi.Output<string>;
+    /**
      * Peer gateway.
      */
     public readonly remoteGw!: pulumi.Output<string>;
@@ -118,21 +122,22 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnIpsecManualkeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnIpsecManualkeyArgs | VpnIpsecManualkeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnIpsecManualkeyState | undefined;
-            inputs["authentication"] = state ? state.authentication : undefined;
-            inputs["authkey"] = state ? state.authkey : undefined;
-            inputs["enckey"] = state ? state.enckey : undefined;
-            inputs["encryption"] = state ? state.encryption : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["localGw"] = state ? state.localGw : undefined;
-            inputs["localspi"] = state ? state.localspi : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["remoteGw"] = state ? state.remoteGw : undefined;
-            inputs["remotespi"] = state ? state.remotespi : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["authkey"] = state ? state.authkey : undefined;
+            resourceInputs["enckey"] = state ? state.enckey : undefined;
+            resourceInputs["encryption"] = state ? state.encryption : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["localGw"] = state ? state.localGw : undefined;
+            resourceInputs["localspi"] = state ? state.localspi : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["npuOffload"] = state ? state.npuOffload : undefined;
+            resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["remotespi"] = state ? state.remotespi : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnIpsecManualkeyArgs | undefined;
             if ((!args || args.authentication === undefined) && !opts.urn) {
@@ -147,22 +152,21 @@ export class VpnIpsecManualkey extends pulumi.CustomResource {
             if ((!args || args.remoteGw === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'remoteGw'");
             }
-            inputs["authentication"] = args ? args.authentication : undefined;
-            inputs["authkey"] = args ? args.authkey : undefined;
-            inputs["enckey"] = args ? args.enckey : undefined;
-            inputs["encryption"] = args ? args.encryption : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["localGw"] = args ? args.localGw : undefined;
-            inputs["localspi"] = args ? args.localspi : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["remoteGw"] = args ? args.remoteGw : undefined;
-            inputs["remotespi"] = args ? args.remotespi : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["authkey"] = args ? args.authkey : undefined;
+            resourceInputs["enckey"] = args ? args.enckey : undefined;
+            resourceInputs["encryption"] = args ? args.encryption : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["localGw"] = args ? args.localGw : undefined;
+            resourceInputs["localspi"] = args ? args.localspi : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["npuOffload"] = args ? args.npuOffload : undefined;
+            resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["remotespi"] = args ? args.remotespi : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnIpsecManualkey.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnIpsecManualkey.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -202,6 +206,10 @@ export interface VpnIpsecManualkeyState {
      * IPsec tunnel name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NPU offloading. Valid values: `enable`, `disable`.
+     */
+    npuOffload?: pulumi.Input<string>;
     /**
      * Peer gateway.
      */
@@ -252,6 +260,10 @@ export interface VpnIpsecManualkeyArgs {
      * IPsec tunnel name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NPU offloading. Valid values: `enable`, `disable`.
+     */
+    npuOffload?: pulumi.Input<string>;
     /**
      * Peer gateway.
      */

@@ -61,6 +61,10 @@ export class LogFortiguardOverrideSetting extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+     */
+    public readonly accessConfig!: pulumi.Output<string>;
+    /**
      * FortiCloud maximum log rate in MBps (0 = unlimited).
      */
     public readonly maxLogRate!: pulumi.Output<number>;
@@ -106,35 +110,35 @@ export class LogFortiguardOverrideSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogFortiguardOverrideSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortiguardOverrideSettingArgs | LogFortiguardOverrideSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortiguardOverrideSettingState | undefined;
-            inputs["maxLogRate"] = state ? state.maxLogRate : undefined;
-            inputs["override"] = state ? state.override : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uploadDay"] = state ? state.uploadDay : undefined;
-            inputs["uploadInterval"] = state ? state.uploadInterval : undefined;
-            inputs["uploadOption"] = state ? state.uploadOption : undefined;
-            inputs["uploadTime"] = state ? state.uploadTime : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["accessConfig"] = state ? state.accessConfig : undefined;
+            resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
+            resourceInputs["override"] = state ? state.override : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uploadDay"] = state ? state.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = state ? state.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = state ? state.uploadOption : undefined;
+            resourceInputs["uploadTime"] = state ? state.uploadTime : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogFortiguardOverrideSettingArgs | undefined;
-            inputs["maxLogRate"] = args ? args.maxLogRate : undefined;
-            inputs["override"] = args ? args.override : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uploadDay"] = args ? args.uploadDay : undefined;
-            inputs["uploadInterval"] = args ? args.uploadInterval : undefined;
-            inputs["uploadOption"] = args ? args.uploadOption : undefined;
-            inputs["uploadTime"] = args ? args.uploadTime : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["accessConfig"] = args ? args.accessConfig : undefined;
+            resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
+            resourceInputs["override"] = args ? args.override : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uploadDay"] = args ? args.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = args ? args.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = args ? args.uploadOption : undefined;
+            resourceInputs["uploadTime"] = args ? args.uploadTime : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortiguardOverrideSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortiguardOverrideSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -142,6 +146,10 @@ export class LogFortiguardOverrideSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogFortiguardOverrideSetting resources.
  */
 export interface LogFortiguardOverrideSettingState {
+    /**
+     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+     */
+    accessConfig?: pulumi.Input<string>;
     /**
      * FortiCloud maximum log rate in MBps (0 = unlimited).
      */
@@ -184,6 +192,10 @@ export interface LogFortiguardOverrideSettingState {
  * The set of arguments for constructing a LogFortiguardOverrideSetting resource.
  */
 export interface LogFortiguardOverrideSettingArgs {
+    /**
+     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+     */
+    accessConfig?: pulumi.Input<string>;
     /**
      * FortiCloud maximum log rate in MBps (0 = unlimited).
      */

@@ -80,29 +80,27 @@ export class FirewallInternetServiceCustom extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallInternetServiceCustomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallInternetServiceCustomArgs | FirewallInternetServiceCustomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceCustomState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["entries"] = state ? state.entries : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["reputation"] = state ? state.reputation : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["reputation"] = state ? state.reputation : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceCustomArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["entries"] = args ? args.entries : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["reputation"] = args ? args.reputation : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["reputation"] = args ? args.reputation : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallInternetServiceCustom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallInternetServiceCustom.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -29,8 +30,8 @@ import (
 // 			DnsService: pulumi.String("default"),
 // 			Fosid:      pulumi.Int(1),
 // 			Interface:  pulumi.String("port2"),
-// 			IpRanges: fortios.SystemDhcpServerIpRangeArray{
-// 				&fortios.SystemDhcpServerIpRangeArgs{
+// 			IpRanges: SystemDhcpServerIpRangeArray{
+// 				&SystemDhcpServerIpRangeArgs{
 // 					EndIp:   pulumi.String("1.1.1.22"),
 // 					Id:      pulumi.Int(1),
 // 					StartIp: pulumi.String("1.1.1.1"),
@@ -183,6 +184,7 @@ func NewSystemDhcpServer(ctx *pulumi.Context,
 	if args.Netmask == nil {
 		return nil, errors.New("invalid value for required argument 'Netmask'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDhcpServer
 	err := ctx.RegisterResource("fortios:index/systemDhcpServer:SystemDhcpServer", name, args, &resource, opts...)
 	if err != nil {
@@ -649,7 +651,7 @@ type SystemDhcpServerInput interface {
 }
 
 func (*SystemDhcpServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDhcpServer)(nil))
+	return reflect.TypeOf((**SystemDhcpServer)(nil)).Elem()
 }
 
 func (i *SystemDhcpServer) ToSystemDhcpServerOutput() SystemDhcpServerOutput {
@@ -658,35 +660,6 @@ func (i *SystemDhcpServer) ToSystemDhcpServerOutput() SystemDhcpServerOutput {
 
 func (i *SystemDhcpServer) ToSystemDhcpServerOutputWithContext(ctx context.Context) SystemDhcpServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerOutput)
-}
-
-func (i *SystemDhcpServer) ToSystemDhcpServerPtrOutput() SystemDhcpServerPtrOutput {
-	return i.ToSystemDhcpServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDhcpServer) ToSystemDhcpServerPtrOutputWithContext(ctx context.Context) SystemDhcpServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerPtrOutput)
-}
-
-type SystemDhcpServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemDhcpServerPtrOutput() SystemDhcpServerPtrOutput
-	ToSystemDhcpServerPtrOutputWithContext(ctx context.Context) SystemDhcpServerPtrOutput
-}
-
-type systemDhcpServerPtrType SystemDhcpServerArgs
-
-func (*systemDhcpServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDhcpServer)(nil))
-}
-
-func (i *systemDhcpServerPtrType) ToSystemDhcpServerPtrOutput() SystemDhcpServerPtrOutput {
-	return i.ToSystemDhcpServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDhcpServerPtrType) ToSystemDhcpServerPtrOutputWithContext(ctx context.Context) SystemDhcpServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerPtrOutput)
 }
 
 // SystemDhcpServerArrayInput is an input type that accepts SystemDhcpServerArray and SystemDhcpServerArrayOutput values.
@@ -703,7 +676,7 @@ type SystemDhcpServerArrayInput interface {
 type SystemDhcpServerArray []SystemDhcpServerInput
 
 func (SystemDhcpServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDhcpServer)(nil))
+	return reflect.TypeOf((*[]*SystemDhcpServer)(nil)).Elem()
 }
 
 func (i SystemDhcpServerArray) ToSystemDhcpServerArrayOutput() SystemDhcpServerArrayOutput {
@@ -728,7 +701,7 @@ type SystemDhcpServerMapInput interface {
 type SystemDhcpServerMap map[string]SystemDhcpServerInput
 
 func (SystemDhcpServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDhcpServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemDhcpServer)(nil)).Elem()
 }
 
 func (i SystemDhcpServerMap) ToSystemDhcpServerMapOutput() SystemDhcpServerMapOutput {
@@ -739,12 +712,10 @@ func (i SystemDhcpServerMap) ToSystemDhcpServerMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcpServerMapOutput)
 }
 
-type SystemDhcpServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemDhcpServerOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcpServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDhcpServer)(nil))
+	return reflect.TypeOf((**SystemDhcpServer)(nil)).Elem()
 }
 
 func (o SystemDhcpServerOutput) ToSystemDhcpServerOutput() SystemDhcpServerOutput {
@@ -755,36 +726,10 @@ func (o SystemDhcpServerOutput) ToSystemDhcpServerOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemDhcpServerOutput) ToSystemDhcpServerPtrOutput() SystemDhcpServerPtrOutput {
-	return o.ToSystemDhcpServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDhcpServerOutput) ToSystemDhcpServerPtrOutputWithContext(ctx context.Context) SystemDhcpServerPtrOutput {
-	return o.ApplyT(func(v SystemDhcpServer) *SystemDhcpServer {
-		return &v
-	}).(SystemDhcpServerPtrOutput)
-}
-
-type SystemDhcpServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDhcpServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDhcpServer)(nil))
-}
-
-func (o SystemDhcpServerPtrOutput) ToSystemDhcpServerPtrOutput() SystemDhcpServerPtrOutput {
-	return o
-}
-
-func (o SystemDhcpServerPtrOutput) ToSystemDhcpServerPtrOutputWithContext(ctx context.Context) SystemDhcpServerPtrOutput {
-	return o
-}
-
 type SystemDhcpServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcpServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDhcpServer)(nil))
+	return reflect.TypeOf((*[]*SystemDhcpServer)(nil)).Elem()
 }
 
 func (o SystemDhcpServerArrayOutput) ToSystemDhcpServerArrayOutput() SystemDhcpServerArrayOutput {
@@ -796,15 +741,15 @@ func (o SystemDhcpServerArrayOutput) ToSystemDhcpServerArrayOutputWithContext(ct
 }
 
 func (o SystemDhcpServerArrayOutput) Index(i pulumi.IntInput) SystemDhcpServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDhcpServer {
-		return vs[0].([]SystemDhcpServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDhcpServer {
+		return vs[0].([]*SystemDhcpServer)[vs[1].(int)]
 	}).(SystemDhcpServerOutput)
 }
 
 type SystemDhcpServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcpServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDhcpServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemDhcpServer)(nil)).Elem()
 }
 
 func (o SystemDhcpServerMapOutput) ToSystemDhcpServerMapOutput() SystemDhcpServerMapOutput {
@@ -816,14 +761,16 @@ func (o SystemDhcpServerMapOutput) ToSystemDhcpServerMapOutputWithContext(ctx co
 }
 
 func (o SystemDhcpServerMapOutput) MapIndex(k pulumi.StringInput) SystemDhcpServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDhcpServer {
-		return vs[0].(map[string]SystemDhcpServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDhcpServer {
+		return vs[0].(map[string]*SystemDhcpServer)[vs[1].(string)]
 	}).(SystemDhcpServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDhcpServerInput)(nil)).Elem(), &SystemDhcpServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDhcpServerArrayInput)(nil)).Elem(), SystemDhcpServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDhcpServerMapInput)(nil)).Elem(), SystemDhcpServerMap{})
 	pulumi.RegisterOutputType(SystemDhcpServerOutput{})
-	pulumi.RegisterOutputType(SystemDhcpServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemDhcpServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemDhcpServerMapOutput{})
 }

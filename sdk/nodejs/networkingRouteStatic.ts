@@ -117,20 +117,20 @@ export class NetworkingRouteStatic extends pulumi.CustomResource {
      */
     constructor(name: string, args: NetworkingRouteStaticArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NetworkingRouteStaticArgs | NetworkingRouteStaticState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NetworkingRouteStaticState | undefined;
-            inputs["blackhole"] = state ? state.blackhole : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["distance"] = state ? state.distance : undefined;
-            inputs["dst"] = state ? state.dst : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["internetService"] = state ? state.internetService : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["weight"] = state ? state.weight : undefined;
+            resourceInputs["blackhole"] = state ? state.blackhole : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["distance"] = state ? state.distance : undefined;
+            resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["weight"] = state ? state.weight : undefined;
         } else {
             const args = argsOrState as NetworkingRouteStaticArgs | undefined;
             if ((!args || args.device === undefined) && !opts.urn) {
@@ -139,21 +139,19 @@ export class NetworkingRouteStatic extends pulumi.CustomResource {
             if ((!args || args.gateway === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'gateway'");
             }
-            inputs["blackhole"] = args ? args.blackhole : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["device"] = args ? args.device : undefined;
-            inputs["distance"] = args ? args.distance : undefined;
-            inputs["dst"] = args ? args.dst : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["internetService"] = args ? args.internetService : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["weight"] = args ? args.weight : undefined;
+            resourceInputs["blackhole"] = args ? args.blackhole : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["distance"] = args ? args.distance : undefined;
+            resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["weight"] = args ? args.weight : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(NetworkingRouteStatic.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(NetworkingRouteStatic.__pulumiType, name, resourceInputs, opts);
     }
 }
 

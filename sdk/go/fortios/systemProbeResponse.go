@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -77,6 +77,7 @@ func NewSystemProbeResponse(ctx *pulumi.Context,
 		args = &SystemProbeResponseArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemProbeResponse
 	err := ctx.RegisterResource("fortios:index/systemProbeResponse:SystemProbeResponse", name, args, &resource, opts...)
 	if err != nil {
@@ -191,7 +192,7 @@ type SystemProbeResponseInput interface {
 }
 
 func (*SystemProbeResponse) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemProbeResponse)(nil))
+	return reflect.TypeOf((**SystemProbeResponse)(nil)).Elem()
 }
 
 func (i *SystemProbeResponse) ToSystemProbeResponseOutput() SystemProbeResponseOutput {
@@ -200,35 +201,6 @@ func (i *SystemProbeResponse) ToSystemProbeResponseOutput() SystemProbeResponseO
 
 func (i *SystemProbeResponse) ToSystemProbeResponseOutputWithContext(ctx context.Context) SystemProbeResponseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponseOutput)
-}
-
-func (i *SystemProbeResponse) ToSystemProbeResponsePtrOutput() SystemProbeResponsePtrOutput {
-	return i.ToSystemProbeResponsePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemProbeResponse) ToSystemProbeResponsePtrOutputWithContext(ctx context.Context) SystemProbeResponsePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponsePtrOutput)
-}
-
-type SystemProbeResponsePtrInput interface {
-	pulumi.Input
-
-	ToSystemProbeResponsePtrOutput() SystemProbeResponsePtrOutput
-	ToSystemProbeResponsePtrOutputWithContext(ctx context.Context) SystemProbeResponsePtrOutput
-}
-
-type systemProbeResponsePtrType SystemProbeResponseArgs
-
-func (*systemProbeResponsePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemProbeResponse)(nil))
-}
-
-func (i *systemProbeResponsePtrType) ToSystemProbeResponsePtrOutput() SystemProbeResponsePtrOutput {
-	return i.ToSystemProbeResponsePtrOutputWithContext(context.Background())
-}
-
-func (i *systemProbeResponsePtrType) ToSystemProbeResponsePtrOutputWithContext(ctx context.Context) SystemProbeResponsePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponsePtrOutput)
 }
 
 // SystemProbeResponseArrayInput is an input type that accepts SystemProbeResponseArray and SystemProbeResponseArrayOutput values.
@@ -245,7 +217,7 @@ type SystemProbeResponseArrayInput interface {
 type SystemProbeResponseArray []SystemProbeResponseInput
 
 func (SystemProbeResponseArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemProbeResponse)(nil))
+	return reflect.TypeOf((*[]*SystemProbeResponse)(nil)).Elem()
 }
 
 func (i SystemProbeResponseArray) ToSystemProbeResponseArrayOutput() SystemProbeResponseArrayOutput {
@@ -270,7 +242,7 @@ type SystemProbeResponseMapInput interface {
 type SystemProbeResponseMap map[string]SystemProbeResponseInput
 
 func (SystemProbeResponseMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemProbeResponse)(nil))
+	return reflect.TypeOf((*map[string]*SystemProbeResponse)(nil)).Elem()
 }
 
 func (i SystemProbeResponseMap) ToSystemProbeResponseMapOutput() SystemProbeResponseMapOutput {
@@ -281,12 +253,10 @@ func (i SystemProbeResponseMap) ToSystemProbeResponseMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemProbeResponseMapOutput)
 }
 
-type SystemProbeResponseOutput struct {
-	*pulumi.OutputState
-}
+type SystemProbeResponseOutput struct{ *pulumi.OutputState }
 
 func (SystemProbeResponseOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemProbeResponse)(nil))
+	return reflect.TypeOf((**SystemProbeResponse)(nil)).Elem()
 }
 
 func (o SystemProbeResponseOutput) ToSystemProbeResponseOutput() SystemProbeResponseOutput {
@@ -297,36 +267,10 @@ func (o SystemProbeResponseOutput) ToSystemProbeResponseOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemProbeResponseOutput) ToSystemProbeResponsePtrOutput() SystemProbeResponsePtrOutput {
-	return o.ToSystemProbeResponsePtrOutputWithContext(context.Background())
-}
-
-func (o SystemProbeResponseOutput) ToSystemProbeResponsePtrOutputWithContext(ctx context.Context) SystemProbeResponsePtrOutput {
-	return o.ApplyT(func(v SystemProbeResponse) *SystemProbeResponse {
-		return &v
-	}).(SystemProbeResponsePtrOutput)
-}
-
-type SystemProbeResponsePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemProbeResponsePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemProbeResponse)(nil))
-}
-
-func (o SystemProbeResponsePtrOutput) ToSystemProbeResponsePtrOutput() SystemProbeResponsePtrOutput {
-	return o
-}
-
-func (o SystemProbeResponsePtrOutput) ToSystemProbeResponsePtrOutputWithContext(ctx context.Context) SystemProbeResponsePtrOutput {
-	return o
-}
-
 type SystemProbeResponseArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemProbeResponseArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemProbeResponse)(nil))
+	return reflect.TypeOf((*[]*SystemProbeResponse)(nil)).Elem()
 }
 
 func (o SystemProbeResponseArrayOutput) ToSystemProbeResponseArrayOutput() SystemProbeResponseArrayOutput {
@@ -338,15 +282,15 @@ func (o SystemProbeResponseArrayOutput) ToSystemProbeResponseArrayOutputWithCont
 }
 
 func (o SystemProbeResponseArrayOutput) Index(i pulumi.IntInput) SystemProbeResponseOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemProbeResponse {
-		return vs[0].([]SystemProbeResponse)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemProbeResponse {
+		return vs[0].([]*SystemProbeResponse)[vs[1].(int)]
 	}).(SystemProbeResponseOutput)
 }
 
 type SystemProbeResponseMapOutput struct{ *pulumi.OutputState }
 
 func (SystemProbeResponseMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemProbeResponse)(nil))
+	return reflect.TypeOf((*map[string]*SystemProbeResponse)(nil)).Elem()
 }
 
 func (o SystemProbeResponseMapOutput) ToSystemProbeResponseMapOutput() SystemProbeResponseMapOutput {
@@ -358,14 +302,16 @@ func (o SystemProbeResponseMapOutput) ToSystemProbeResponseMapOutputWithContext(
 }
 
 func (o SystemProbeResponseMapOutput) MapIndex(k pulumi.StringInput) SystemProbeResponseOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemProbeResponse {
-		return vs[0].(map[string]SystemProbeResponse)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemProbeResponse {
+		return vs[0].(map[string]*SystemProbeResponse)[vs[1].(string)]
 	}).(SystemProbeResponseOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemProbeResponseInput)(nil)).Elem(), &SystemProbeResponse{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemProbeResponseArrayInput)(nil)).Elem(), SystemProbeResponseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemProbeResponseMapInput)(nil)).Elem(), SystemProbeResponseMap{})
 	pulumi.RegisterOutputType(SystemProbeResponseOutput{})
-	pulumi.RegisterOutputType(SystemProbeResponsePtrOutput{})
 	pulumi.RegisterOutputType(SystemProbeResponseArrayOutput{})
 	pulumi.RegisterOutputType(SystemProbeResponseMapOutput{})
 }

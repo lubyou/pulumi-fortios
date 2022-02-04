@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewSystemSmsServer(ctx *pulumi.Context,
 	if args.MailServer == nil {
 		return nil, errors.New("invalid value for required argument 'MailServer'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSmsServer
 	err := ctx.RegisterResource("fortios:index/systemSmsServer:SystemSmsServer", name, args, &resource, opts...)
 	if err != nil {
@@ -140,7 +141,7 @@ type SystemSmsServerInput interface {
 }
 
 func (*SystemSmsServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSmsServer)(nil))
+	return reflect.TypeOf((**SystemSmsServer)(nil)).Elem()
 }
 
 func (i *SystemSmsServer) ToSystemSmsServerOutput() SystemSmsServerOutput {
@@ -149,35 +150,6 @@ func (i *SystemSmsServer) ToSystemSmsServerOutput() SystemSmsServerOutput {
 
 func (i *SystemSmsServer) ToSystemSmsServerOutputWithContext(ctx context.Context) SystemSmsServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerOutput)
-}
-
-func (i *SystemSmsServer) ToSystemSmsServerPtrOutput() SystemSmsServerPtrOutput {
-	return i.ToSystemSmsServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSmsServer) ToSystemSmsServerPtrOutputWithContext(ctx context.Context) SystemSmsServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerPtrOutput)
-}
-
-type SystemSmsServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemSmsServerPtrOutput() SystemSmsServerPtrOutput
-	ToSystemSmsServerPtrOutputWithContext(ctx context.Context) SystemSmsServerPtrOutput
-}
-
-type systemSmsServerPtrType SystemSmsServerArgs
-
-func (*systemSmsServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSmsServer)(nil))
-}
-
-func (i *systemSmsServerPtrType) ToSystemSmsServerPtrOutput() SystemSmsServerPtrOutput {
-	return i.ToSystemSmsServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSmsServerPtrType) ToSystemSmsServerPtrOutputWithContext(ctx context.Context) SystemSmsServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerPtrOutput)
 }
 
 // SystemSmsServerArrayInput is an input type that accepts SystemSmsServerArray and SystemSmsServerArrayOutput values.
@@ -194,7 +166,7 @@ type SystemSmsServerArrayInput interface {
 type SystemSmsServerArray []SystemSmsServerInput
 
 func (SystemSmsServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSmsServer)(nil))
+	return reflect.TypeOf((*[]*SystemSmsServer)(nil)).Elem()
 }
 
 func (i SystemSmsServerArray) ToSystemSmsServerArrayOutput() SystemSmsServerArrayOutput {
@@ -219,7 +191,7 @@ type SystemSmsServerMapInput interface {
 type SystemSmsServerMap map[string]SystemSmsServerInput
 
 func (SystemSmsServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSmsServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemSmsServer)(nil)).Elem()
 }
 
 func (i SystemSmsServerMap) ToSystemSmsServerMapOutput() SystemSmsServerMapOutput {
@@ -230,12 +202,10 @@ func (i SystemSmsServerMap) ToSystemSmsServerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSmsServerMapOutput)
 }
 
-type SystemSmsServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemSmsServerOutput struct{ *pulumi.OutputState }
 
 func (SystemSmsServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSmsServer)(nil))
+	return reflect.TypeOf((**SystemSmsServer)(nil)).Elem()
 }
 
 func (o SystemSmsServerOutput) ToSystemSmsServerOutput() SystemSmsServerOutput {
@@ -246,36 +216,10 @@ func (o SystemSmsServerOutput) ToSystemSmsServerOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemSmsServerOutput) ToSystemSmsServerPtrOutput() SystemSmsServerPtrOutput {
-	return o.ToSystemSmsServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSmsServerOutput) ToSystemSmsServerPtrOutputWithContext(ctx context.Context) SystemSmsServerPtrOutput {
-	return o.ApplyT(func(v SystemSmsServer) *SystemSmsServer {
-		return &v
-	}).(SystemSmsServerPtrOutput)
-}
-
-type SystemSmsServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSmsServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSmsServer)(nil))
-}
-
-func (o SystemSmsServerPtrOutput) ToSystemSmsServerPtrOutput() SystemSmsServerPtrOutput {
-	return o
-}
-
-func (o SystemSmsServerPtrOutput) ToSystemSmsServerPtrOutputWithContext(ctx context.Context) SystemSmsServerPtrOutput {
-	return o
-}
-
 type SystemSmsServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSmsServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSmsServer)(nil))
+	return reflect.TypeOf((*[]*SystemSmsServer)(nil)).Elem()
 }
 
 func (o SystemSmsServerArrayOutput) ToSystemSmsServerArrayOutput() SystemSmsServerArrayOutput {
@@ -287,15 +231,15 @@ func (o SystemSmsServerArrayOutput) ToSystemSmsServerArrayOutputWithContext(ctx 
 }
 
 func (o SystemSmsServerArrayOutput) Index(i pulumi.IntInput) SystemSmsServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSmsServer {
-		return vs[0].([]SystemSmsServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSmsServer {
+		return vs[0].([]*SystemSmsServer)[vs[1].(int)]
 	}).(SystemSmsServerOutput)
 }
 
 type SystemSmsServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSmsServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSmsServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemSmsServer)(nil)).Elem()
 }
 
 func (o SystemSmsServerMapOutput) ToSystemSmsServerMapOutput() SystemSmsServerMapOutput {
@@ -307,14 +251,16 @@ func (o SystemSmsServerMapOutput) ToSystemSmsServerMapOutputWithContext(ctx cont
 }
 
 func (o SystemSmsServerMapOutput) MapIndex(k pulumi.StringInput) SystemSmsServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSmsServer {
-		return vs[0].(map[string]SystemSmsServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSmsServer {
+		return vs[0].(map[string]*SystemSmsServer)[vs[1].(string)]
 	}).(SystemSmsServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSmsServerInput)(nil)).Elem(), &SystemSmsServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSmsServerArrayInput)(nil)).Elem(), SystemSmsServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSmsServerMapInput)(nil)).Elem(), SystemSmsServerMap{})
 	pulumi.RegisterOutputType(SystemSmsServerOutput{})
-	pulumi.RegisterOutputType(SystemSmsServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemSmsServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemSmsServerMapOutput{})
 }

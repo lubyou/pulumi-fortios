@@ -98,19 +98,19 @@ export class FortimanagerFirewallObjectIppool extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerFirewallObjectIppoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerFirewallObjectIppoolArgs | FortimanagerFirewallObjectIppoolState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerFirewallObjectIppoolState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["arpIntf"] = state ? state.arpIntf : undefined;
-            inputs["arpReply"] = state ? state.arpReply : undefined;
-            inputs["associatedIntf"] = state ? state.associatedIntf : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["endip"] = state ? state.endip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["startip"] = state ? state.startip : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["arpIntf"] = state ? state.arpIntf : undefined;
+            resourceInputs["arpReply"] = state ? state.arpReply : undefined;
+            resourceInputs["associatedIntf"] = state ? state.associatedIntf : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["endip"] = state ? state.endip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["startip"] = state ? state.startip : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as FortimanagerFirewallObjectIppoolArgs | undefined;
             if ((!args || args.endip === undefined) && !opts.urn) {
@@ -119,20 +119,18 @@ export class FortimanagerFirewallObjectIppool extends pulumi.CustomResource {
             if ((!args || args.startip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startip'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["arpIntf"] = args ? args.arpIntf : undefined;
-            inputs["arpReply"] = args ? args.arpReply : undefined;
-            inputs["associatedIntf"] = args ? args.associatedIntf : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["endip"] = args ? args.endip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["startip"] = args ? args.startip : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["arpIntf"] = args ? args.arpIntf : undefined;
+            resourceInputs["arpReply"] = args ? args.arpReply : undefined;
+            resourceInputs["associatedIntf"] = args ? args.associatedIntf : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["endip"] = args ? args.endip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["startip"] = args ? args.startip : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerFirewallObjectIppool.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerFirewallObjectIppool.__pulumiType, name, resourceInputs, opts);
     }
 }
 

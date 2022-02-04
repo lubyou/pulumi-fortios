@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -50,7 +50,7 @@ import (
 // 				pulumi.String("SSO_Guest_Users"),
 // 			},
 // 			InternetService:    pulumi.String("disable"),
-// 			InternetServiceIds: []interface{}{},
+// 			InternetServiceIds: pulumi.IntArray{},
 // 			Ippool:             pulumi.String("enable"),
 // 			IpsSensor:          pulumi.String("protect_client"),
 // 			Logtraffic:         pulumi.String("all"),
@@ -73,6 +73,137 @@ import (
 // 				pulumi.String("port2"),
 // 			},
 // 			SslSshProfile:    pulumi.String("certificate-inspection"),
+// 			UtmStatus:        pulumi.String("enable"),
+// 			WebfilterProfile: pulumi.String("monitor-all"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### 2
+// ```go
+// package main
+//
+// import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fortios.NewFirewallSecurityPolicy1(ctx, "test2", &fortios.FirewallSecurityPolicy1Args{
+// 			Action:          pulumi.String("accept"),
+// 			ApplicationList: pulumi.String("block-high-risk"),
+// 			AvProfile:       pulumi.String("wifi-default"),
+// 			CapturePacket:   pulumi.String("enable"),
+// 			Comments:        pulumi.String("security policy"),
+// 			Devices: pulumi.StringArray{
+// 				pulumi.String("android-phone"),
+// 				pulumi.String("android-tablet"),
+// 			},
+// 			DnsfilterProfile: pulumi.String("default"),
+// 			Dstaddrs: pulumi.StringArray{
+// 				pulumi.String("swscan.apple.com"),
+// 				pulumi.String("update.microsoft.com"),
+// 			},
+// 			Dstintfs: pulumi.StringArray{
+// 				pulumi.String("port1"),
+// 			},
+// 			Groups: pulumi.StringArray{
+// 				pulumi.String("Guest-group"),
+// 				pulumi.String("SSO_Guest_Users"),
+// 			},
+// 			InternetService: pulumi.String("enable"),
+// 			InternetServiceIds: pulumi.IntArray{
+// 				pulumi.Int(917520),
+// 				pulumi.Int(6881402),
+// 				pulumi.Int(393219),
+// 			},
+// 			Ippool:          pulumi.String("enable"),
+// 			IpsSensor:       pulumi.String("protect_client"),
+// 			Logtraffic:      pulumi.String("all"),
+// 			LogtrafficStart: pulumi.String("enable"),
+// 			Nat:             pulumi.String("enable"),
+// 			Poolnames: pulumi.StringArray{
+// 				pulumi.String("rewq"),
+// 				pulumi.String("rbb"),
+// 			},
+// 			Schedule: pulumi.String("always"),
+// 			Services: pulumi.StringArray{},
+// 			Srcaddrs: pulumi.StringArray{
+// 				pulumi.String("swscan.apple.com"),
+// 				pulumi.String("google-play"),
+// 			},
+// 			Srcintfs: pulumi.StringArray{
+// 				pulumi.String("port2"),
+// 			},
+// 			SslSshProfile:    pulumi.String("certificate-inspection"),
+// 			UtmStatus:        pulumi.String("enable"),
+// 			WebfilterProfile: pulumi.String("monitor-all"),
+// 		})
+// 		if err != nil {
+// 			return err
+// 		}
+// 		return nil
+// 	})
+// }
+// ```
+// ### 3
+// ```go
+// package main
+//
+// import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+// )
+//
+// func main() {
+// 	pulumi.Run(func(ctx *pulumi.Context) error {
+// 		_, err := fortios.NewFirewallSecurityPolicy1(ctx, "test1", &fortios.FirewallSecurityPolicy1Args{
+// 			Action:           pulumi.String("accept"),
+// 			ApplicationList:  pulumi.String("block-high-risk"),
+// 			AvProfile:        pulumi.String("wifi-default"),
+// 			CapturePacket:    pulumi.String("enable"),
+// 			Comments:         pulumi.String("security policy"),
+// 			Devices:          pulumi.StringArray{},
+// 			DnsfilterProfile: pulumi.String("default"),
+// 			Dstaddrs:         pulumi.StringArray{},
+// 			Dstintfs: pulumi.StringArray{
+// 				pulumi.String("port4"),
+// 			},
+// 			Groups: pulumi.StringArray{
+// 				pulumi.String("Guest-group"),
+// 				pulumi.String("SSO_Guest_Users"),
+// 			},
+// 			InternetService: pulumi.String("enable"),
+// 			InternetServiceIds: pulumi.IntArray{
+// 				pulumi.Int(5242880),
+// 			},
+// 			InternetServiceSrc: pulumi.String("enable"),
+// 			InternetServiceSrcIds: pulumi.IntArray{
+// 				pulumi.Int(65643),
+// 			},
+// 			Ippool:                 pulumi.String("disable"),
+// 			IpsSensor:              pulumi.String("protect_client"),
+// 			Logtraffic:             pulumi.String("all"),
+// 			LogtrafficStart:        pulumi.String("enable"),
+// 			Nat:                    pulumi.String("enable"),
+// 			Poolnames:              pulumi.StringArray{},
+// 			ProfileProtocolOptions: pulumi.String("default"),
+// 			Schedule:               pulumi.String("always"),
+// 			Services:               pulumi.StringArray{},
+// 			Srcaddrs:               pulumi.StringArray{},
+// 			Srcintfs: pulumi.StringArray{
+// 				pulumi.String("port3"),
+// 			},
+// 			SslSshProfile: pulumi.String("certificate-inspection"),
+// 			Status:        pulumi.String("enable"),
+// 			Users: pulumi.StringArray{
+// 				pulumi.String("guest"),
+// 			},
 // 			UtmStatus:        pulumi.String("enable"),
 // 			WebfilterProfile: pulumi.String("monitor-all"),
 // 		})
@@ -178,6 +309,7 @@ func NewFirewallSecurityPolicy1(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSecurityPolicy1
 	err := ctx.RegisterResource("fortios:index/firewallSecurityPolicy1:FirewallSecurityPolicy1", name, args, &resource, opts...)
 	if err != nil {
@@ -476,7 +608,7 @@ type FirewallSecurityPolicy1Input interface {
 }
 
 func (*FirewallSecurityPolicy1) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSecurityPolicy1)(nil))
+	return reflect.TypeOf((**FirewallSecurityPolicy1)(nil)).Elem()
 }
 
 func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1Output() FirewallSecurityPolicy1Output {
@@ -485,35 +617,6 @@ func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1Output() FirewallSecu
 
 func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1OutputWithContext(ctx context.Context) FirewallSecurityPolicy1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1Output)
-}
-
-func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1PtrOutput() FirewallSecurityPolicy1PtrOutput {
-	return i.ToFirewallSecurityPolicy1PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSecurityPolicy1) ToFirewallSecurityPolicy1PtrOutputWithContext(ctx context.Context) FirewallSecurityPolicy1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1PtrOutput)
-}
-
-type FirewallSecurityPolicy1PtrInput interface {
-	pulumi.Input
-
-	ToFirewallSecurityPolicy1PtrOutput() FirewallSecurityPolicy1PtrOutput
-	ToFirewallSecurityPolicy1PtrOutputWithContext(ctx context.Context) FirewallSecurityPolicy1PtrOutput
-}
-
-type firewallSecurityPolicy1PtrType FirewallSecurityPolicy1Args
-
-func (*firewallSecurityPolicy1PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicy1)(nil))
-}
-
-func (i *firewallSecurityPolicy1PtrType) ToFirewallSecurityPolicy1PtrOutput() FirewallSecurityPolicy1PtrOutput {
-	return i.ToFirewallSecurityPolicy1PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSecurityPolicy1PtrType) ToFirewallSecurityPolicy1PtrOutputWithContext(ctx context.Context) FirewallSecurityPolicy1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1PtrOutput)
 }
 
 // FirewallSecurityPolicy1ArrayInput is an input type that accepts FirewallSecurityPolicy1Array and FirewallSecurityPolicy1ArrayOutput values.
@@ -530,7 +633,7 @@ type FirewallSecurityPolicy1ArrayInput interface {
 type FirewallSecurityPolicy1Array []FirewallSecurityPolicy1Input
 
 func (FirewallSecurityPolicy1Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSecurityPolicy1)(nil))
+	return reflect.TypeOf((*[]*FirewallSecurityPolicy1)(nil)).Elem()
 }
 
 func (i FirewallSecurityPolicy1Array) ToFirewallSecurityPolicy1ArrayOutput() FirewallSecurityPolicy1ArrayOutput {
@@ -555,7 +658,7 @@ type FirewallSecurityPolicy1MapInput interface {
 type FirewallSecurityPolicy1Map map[string]FirewallSecurityPolicy1Input
 
 func (FirewallSecurityPolicy1Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSecurityPolicy1)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSecurityPolicy1)(nil)).Elem()
 }
 
 func (i FirewallSecurityPolicy1Map) ToFirewallSecurityPolicy1MapOutput() FirewallSecurityPolicy1MapOutput {
@@ -566,12 +669,10 @@ func (i FirewallSecurityPolicy1Map) ToFirewallSecurityPolicy1MapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicy1MapOutput)
 }
 
-type FirewallSecurityPolicy1Output struct {
-	*pulumi.OutputState
-}
+type FirewallSecurityPolicy1Output struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicy1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSecurityPolicy1)(nil))
+	return reflect.TypeOf((**FirewallSecurityPolicy1)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1Output() FirewallSecurityPolicy1Output {
@@ -582,36 +683,10 @@ func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1OutputWithContex
 	return o
 }
 
-func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1PtrOutput() FirewallSecurityPolicy1PtrOutput {
-	return o.ToFirewallSecurityPolicy1PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSecurityPolicy1Output) ToFirewallSecurityPolicy1PtrOutputWithContext(ctx context.Context) FirewallSecurityPolicy1PtrOutput {
-	return o.ApplyT(func(v FirewallSecurityPolicy1) *FirewallSecurityPolicy1 {
-		return &v
-	}).(FirewallSecurityPolicy1PtrOutput)
-}
-
-type FirewallSecurityPolicy1PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSecurityPolicy1PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicy1)(nil))
-}
-
-func (o FirewallSecurityPolicy1PtrOutput) ToFirewallSecurityPolicy1PtrOutput() FirewallSecurityPolicy1PtrOutput {
-	return o
-}
-
-func (o FirewallSecurityPolicy1PtrOutput) ToFirewallSecurityPolicy1PtrOutputWithContext(ctx context.Context) FirewallSecurityPolicy1PtrOutput {
-	return o
-}
-
 type FirewallSecurityPolicy1ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicy1ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSecurityPolicy1)(nil))
+	return reflect.TypeOf((*[]*FirewallSecurityPolicy1)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicy1ArrayOutput) ToFirewallSecurityPolicy1ArrayOutput() FirewallSecurityPolicy1ArrayOutput {
@@ -623,15 +698,15 @@ func (o FirewallSecurityPolicy1ArrayOutput) ToFirewallSecurityPolicy1ArrayOutput
 }
 
 func (o FirewallSecurityPolicy1ArrayOutput) Index(i pulumi.IntInput) FirewallSecurityPolicy1Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSecurityPolicy1 {
-		return vs[0].([]FirewallSecurityPolicy1)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecurityPolicy1 {
+		return vs[0].([]*FirewallSecurityPolicy1)[vs[1].(int)]
 	}).(FirewallSecurityPolicy1Output)
 }
 
 type FirewallSecurityPolicy1MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicy1MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSecurityPolicy1)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSecurityPolicy1)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicy1MapOutput) ToFirewallSecurityPolicy1MapOutput() FirewallSecurityPolicy1MapOutput {
@@ -643,14 +718,16 @@ func (o FirewallSecurityPolicy1MapOutput) ToFirewallSecurityPolicy1MapOutputWith
 }
 
 func (o FirewallSecurityPolicy1MapOutput) MapIndex(k pulumi.StringInput) FirewallSecurityPolicy1Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSecurityPolicy1 {
-		return vs[0].(map[string]FirewallSecurityPolicy1)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSecurityPolicy1 {
+		return vs[0].(map[string]*FirewallSecurityPolicy1)[vs[1].(string)]
 	}).(FirewallSecurityPolicy1Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicy1Input)(nil)).Elem(), &FirewallSecurityPolicy1{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicy1ArrayInput)(nil)).Elem(), FirewallSecurityPolicy1Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicy1MapInput)(nil)).Elem(), FirewallSecurityPolicy1Map{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicy1Output{})
-	pulumi.RegisterOutputType(FirewallSecurityPolicy1PtrOutput{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicy1ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicy1MapOutput{})
 }

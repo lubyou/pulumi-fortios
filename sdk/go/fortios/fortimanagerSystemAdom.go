@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -74,6 +74,7 @@ func NewFortimanagerSystemAdom(ctx *pulumi.Context,
 		args = &FortimanagerSystemAdomArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemAdom
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemAdom:FortimanagerSystemAdom", name, args, &resource, opts...)
 	if err != nil {
@@ -204,7 +205,7 @@ type FortimanagerSystemAdomInput interface {
 }
 
 func (*FortimanagerSystemAdom) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemAdom)(nil))
+	return reflect.TypeOf((**FortimanagerSystemAdom)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomOutput() FortimanagerSystemAdomOutput {
@@ -213,35 +214,6 @@ func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomOutput() FortimanagerSy
 
 func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomOutputWithContext(ctx context.Context) FortimanagerSystemAdomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomOutput)
-}
-
-func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomPtrOutput() FortimanagerSystemAdomPtrOutput {
-	return i.ToFortimanagerSystemAdomPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemAdom) ToFortimanagerSystemAdomPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomPtrOutput)
-}
-
-type FortimanagerSystemAdomPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemAdomPtrOutput() FortimanagerSystemAdomPtrOutput
-	ToFortimanagerSystemAdomPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdomPtrOutput
-}
-
-type fortimanagerSystemAdomPtrType FortimanagerSystemAdomArgs
-
-func (*fortimanagerSystemAdomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemAdom)(nil))
-}
-
-func (i *fortimanagerSystemAdomPtrType) ToFortimanagerSystemAdomPtrOutput() FortimanagerSystemAdomPtrOutput {
-	return i.ToFortimanagerSystemAdomPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemAdomPtrType) ToFortimanagerSystemAdomPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomPtrOutput)
 }
 
 // FortimanagerSystemAdomArrayInput is an input type that accepts FortimanagerSystemAdomArray and FortimanagerSystemAdomArrayOutput values.
@@ -258,7 +230,7 @@ type FortimanagerSystemAdomArrayInput interface {
 type FortimanagerSystemAdomArray []FortimanagerSystemAdomInput
 
 func (FortimanagerSystemAdomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemAdom)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemAdom)(nil)).Elem()
 }
 
 func (i FortimanagerSystemAdomArray) ToFortimanagerSystemAdomArrayOutput() FortimanagerSystemAdomArrayOutput {
@@ -283,7 +255,7 @@ type FortimanagerSystemAdomMapInput interface {
 type FortimanagerSystemAdomMap map[string]FortimanagerSystemAdomInput
 
 func (FortimanagerSystemAdomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemAdom)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemAdom)(nil)).Elem()
 }
 
 func (i FortimanagerSystemAdomMap) ToFortimanagerSystemAdomMapOutput() FortimanagerSystemAdomMapOutput {
@@ -294,12 +266,10 @@ func (i FortimanagerSystemAdomMap) ToFortimanagerSystemAdomMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdomMapOutput)
 }
 
-type FortimanagerSystemAdomOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemAdomOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemAdom)(nil))
+	return reflect.TypeOf((**FortimanagerSystemAdom)(nil)).Elem()
 }
 
 func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomOutput() FortimanagerSystemAdomOutput {
@@ -310,36 +280,10 @@ func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomOutputWithContext(
 	return o
 }
 
-func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomPtrOutput() FortimanagerSystemAdomPtrOutput {
-	return o.ToFortimanagerSystemAdomPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemAdomOutput) ToFortimanagerSystemAdomPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdomPtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemAdom) *FortimanagerSystemAdom {
-		return &v
-	}).(FortimanagerSystemAdomPtrOutput)
-}
-
-type FortimanagerSystemAdomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemAdomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemAdom)(nil))
-}
-
-func (o FortimanagerSystemAdomPtrOutput) ToFortimanagerSystemAdomPtrOutput() FortimanagerSystemAdomPtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemAdomPtrOutput) ToFortimanagerSystemAdomPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdomPtrOutput {
-	return o
-}
-
 type FortimanagerSystemAdomArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemAdom)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemAdom)(nil)).Elem()
 }
 
 func (o FortimanagerSystemAdomArrayOutput) ToFortimanagerSystemAdomArrayOutput() FortimanagerSystemAdomArrayOutput {
@@ -351,15 +295,15 @@ func (o FortimanagerSystemAdomArrayOutput) ToFortimanagerSystemAdomArrayOutputWi
 }
 
 func (o FortimanagerSystemAdomArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemAdomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemAdom {
-		return vs[0].([]FortimanagerSystemAdom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemAdom {
+		return vs[0].([]*FortimanagerSystemAdom)[vs[1].(int)]
 	}).(FortimanagerSystemAdomOutput)
 }
 
 type FortimanagerSystemAdomMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemAdom)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemAdom)(nil)).Elem()
 }
 
 func (o FortimanagerSystemAdomMapOutput) ToFortimanagerSystemAdomMapOutput() FortimanagerSystemAdomMapOutput {
@@ -371,14 +315,16 @@ func (o FortimanagerSystemAdomMapOutput) ToFortimanagerSystemAdomMapOutputWithCo
 }
 
 func (o FortimanagerSystemAdomMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemAdomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemAdom {
-		return vs[0].(map[string]FortimanagerSystemAdom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemAdom {
+		return vs[0].(map[string]*FortimanagerSystemAdom)[vs[1].(string)]
 	}).(FortimanagerSystemAdomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemAdomInput)(nil)).Elem(), &FortimanagerSystemAdom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemAdomArrayInput)(nil)).Elem(), FortimanagerSystemAdomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemAdomMapInput)(nil)).Elem(), FortimanagerSystemAdomMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemAdomOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemAdomPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemAdomArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemAdomMapOutput{})
 }

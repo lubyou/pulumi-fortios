@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemDdns`.
 func GetSystemDdnsList(ctx *pulumi.Context, args *GetSystemDdnsListArgs, opts ...pulumi.InvokeOption) (*GetSystemDdnsListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemDdnsListResult
 	err := ctx.Invoke("fortios:index/getSystemDdnsList:GetSystemDdnsList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemDdnsListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemDdnsListOutput(ctx *pulumi.Context, args GetSystemDdnsListOutputArgs, opts ...pulumi.InvokeOption) GetSystemDdnsListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemDdnsListResult, error) {
+			args := v.(GetSystemDdnsListArgs)
+			r, err := GetSystemDdnsList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemDdnsListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemDdnsList.
+type GetSystemDdnsListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemDdnsListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemDdnsListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemDdnsList.
+type GetSystemDdnsListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemDdnsListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemDdnsListResult)(nil)).Elem()
+}
+
+func (o GetSystemDdnsListResultOutput) ToGetSystemDdnsListResultOutput() GetSystemDdnsListResultOutput {
+	return o
+}
+
+func (o GetSystemDdnsListResultOutput) ToGetSystemDdnsListResultOutputWithContext(ctx context.Context) GetSystemDdnsListResultOutput {
+	return o
+}
+
+// A list of the `SystemDdns`.
+func (o GetSystemDdnsListResultOutput) Ddnsidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemDdnsListResult) []int { return v.Ddnsidlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetSystemDdnsListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemDdnsListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemDdnsListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemDdnsListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemDdnsListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemDdnsListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemDdnsListResultOutput{})
 }

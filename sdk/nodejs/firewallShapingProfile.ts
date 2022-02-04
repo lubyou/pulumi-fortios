@@ -103,17 +103,17 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallShapingProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallShapingProfileArgs | FirewallShapingProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallShapingProfileState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["defaultClassId"] = state ? state.defaultClassId : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["profileName"] = state ? state.profileName : undefined;
-            inputs["shapingEntries"] = state ? state.shapingEntries : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["defaultClassId"] = state ? state.defaultClassId : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["profileName"] = state ? state.profileName : undefined;
+            resourceInputs["shapingEntries"] = state ? state.shapingEntries : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallShapingProfileArgs | undefined;
             if ((!args || args.defaultClassId === undefined) && !opts.urn) {
@@ -122,18 +122,16 @@ export class FirewallShapingProfile extends pulumi.CustomResource {
             if ((!args || args.profileName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'profileName'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["defaultClassId"] = args ? args.defaultClassId : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["profileName"] = args ? args.profileName : undefined;
-            inputs["shapingEntries"] = args ? args.shapingEntries : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["defaultClassId"] = args ? args.defaultClassId : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["profileName"] = args ? args.profileName : undefined;
+            resourceInputs["shapingEntries"] = args ? args.shapingEntries : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallShapingProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallShapingProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

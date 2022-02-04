@@ -33,6 +33,8 @@ type SwitchControllerManagedSwitch struct {
 	DelayedRestartTrigger pulumi.IntOutput `pulumi:"delayedRestartTrigger"`
 	// Description.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+	DhcpServerAccessList pulumi.StringOutput `pulumi:"dhcpServerAccessList"`
 	// Directly connected FortiSwitch.
 	DirectlyConnected pulumi.IntOutput `pulumi:"directlyConnected"`
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -43,6 +45,8 @@ type SwitchControllerManagedSwitch struct {
 	DynamicallyDiscovered pulumi.IntOutput `pulumi:"dynamicallyDiscovered"`
 	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
 	FirmwareProvision pulumi.StringOutput `pulumi:"firmwareProvision"`
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest pulumi.StringOutput `pulumi:"firmwareProvisionLatest"`
 	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvisionVersion pulumi.StringOutput `pulumi:"firmwareProvisionVersion"`
 	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
@@ -66,7 +70,8 @@ type SwitchControllerManagedSwitch struct {
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware pulumi.StringOutput `pulumi:"mclagIgmpSnoopingAware"`
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors        SwitchControllerManagedSwitchMirrorArrayOutput       `pulumi:"mirrors"`
+	Mirrors SwitchControllerManagedSwitchMirrorArrayOutput `pulumi:"mirrors"`
+	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
 	N8021xSettings SwitchControllerManagedSwitchN8021xSettingsPtrOutput `pulumi:"n8021xSettings"`
 	// Interface name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -132,7 +137,7 @@ type SwitchControllerManagedSwitch struct {
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
-	// FortiSwitch version.
+	// IGMP snooping querier version.
 	Version pulumi.IntOutput `pulumi:"version"`
 }
 
@@ -149,6 +154,7 @@ func NewSwitchControllerManagedSwitch(ctx *pulumi.Context,
 	if args.SwitchId == nil {
 		return nil, errors.New("invalid value for required argument 'SwitchId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerManagedSwitch
 	err := ctx.RegisterResource("fortios:index/switchControllerManagedSwitch:SwitchControllerManagedSwitch", name, args, &resource, opts...)
 	if err != nil {
@@ -179,6 +185,8 @@ type switchControllerManagedSwitchState struct {
 	DelayedRestartTrigger *int `pulumi:"delayedRestartTrigger"`
 	// Description.
 	Description *string `pulumi:"description"`
+	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
 	// Directly connected FortiSwitch.
 	DirectlyConnected *int `pulumi:"directlyConnected"`
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -189,6 +197,8 @@ type switchControllerManagedSwitchState struct {
 	DynamicallyDiscovered *int `pulumi:"dynamicallyDiscovered"`
 	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
 	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvisionVersion *string `pulumi:"firmwareProvisionVersion"`
 	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
@@ -212,7 +222,8 @@ type switchControllerManagedSwitchState struct {
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware *string `pulumi:"mclagIgmpSnoopingAware"`
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors        []SwitchControllerManagedSwitchMirror        `pulumi:"mirrors"`
+	Mirrors []SwitchControllerManagedSwitchMirror `pulumi:"mirrors"`
+	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
 	N8021xSettings *SwitchControllerManagedSwitchN8021xSettings `pulumi:"n8021xSettings"`
 	// Interface name.
 	Name *string `pulumi:"name"`
@@ -278,7 +289,7 @@ type switchControllerManagedSwitchState struct {
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
-	// FortiSwitch version.
+	// IGMP snooping querier version.
 	Version *int `pulumi:"version"`
 }
 
@@ -291,6 +302,8 @@ type SwitchControllerManagedSwitchState struct {
 	DelayedRestartTrigger pulumi.IntPtrInput
 	// Description.
 	Description pulumi.StringPtrInput
+	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+	DhcpServerAccessList pulumi.StringPtrInput
 	// Directly connected FortiSwitch.
 	DirectlyConnected pulumi.IntPtrInput
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -301,6 +314,8 @@ type SwitchControllerManagedSwitchState struct {
 	DynamicallyDiscovered pulumi.IntPtrInput
 	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
 	FirmwareProvision pulumi.StringPtrInput
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest pulumi.StringPtrInput
 	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvisionVersion pulumi.StringPtrInput
 	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
@@ -324,7 +339,8 @@ type SwitchControllerManagedSwitchState struct {
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware pulumi.StringPtrInput
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors        SwitchControllerManagedSwitchMirrorArrayInput
+	Mirrors SwitchControllerManagedSwitchMirrorArrayInput
+	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
 	N8021xSettings SwitchControllerManagedSwitchN8021xSettingsPtrInput
 	// Interface name.
 	Name pulumi.StringPtrInput
@@ -390,7 +406,7 @@ type SwitchControllerManagedSwitchState struct {
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
-	// FortiSwitch version.
+	// IGMP snooping querier version.
 	Version pulumi.IntPtrInput
 }
 
@@ -407,6 +423,8 @@ type switchControllerManagedSwitchArgs struct {
 	DelayedRestartTrigger *int `pulumi:"delayedRestartTrigger"`
 	// Description.
 	Description *string `pulumi:"description"`
+	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
 	// Directly connected FortiSwitch.
 	DirectlyConnected *int `pulumi:"directlyConnected"`
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -417,6 +435,8 @@ type switchControllerManagedSwitchArgs struct {
 	DynamicallyDiscovered *int `pulumi:"dynamicallyDiscovered"`
 	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
 	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvisionVersion *string `pulumi:"firmwareProvisionVersion"`
 	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
@@ -440,7 +460,8 @@ type switchControllerManagedSwitchArgs struct {
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware *string `pulumi:"mclagIgmpSnoopingAware"`
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors        []SwitchControllerManagedSwitchMirror        `pulumi:"mirrors"`
+	Mirrors []SwitchControllerManagedSwitchMirror `pulumi:"mirrors"`
+	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
 	N8021xSettings *SwitchControllerManagedSwitchN8021xSettings `pulumi:"n8021xSettings"`
 	// Interface name.
 	Name *string `pulumi:"name"`
@@ -506,7 +527,7 @@ type switchControllerManagedSwitchArgs struct {
 	Type *string `pulumi:"type"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
-	// FortiSwitch version.
+	// IGMP snooping querier version.
 	Version *int `pulumi:"version"`
 }
 
@@ -520,6 +541,8 @@ type SwitchControllerManagedSwitchArgs struct {
 	DelayedRestartTrigger pulumi.IntPtrInput
 	// Description.
 	Description pulumi.StringPtrInput
+	// DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+	DhcpServerAccessList pulumi.StringPtrInput
 	// Directly connected FortiSwitch.
 	DirectlyConnected pulumi.IntPtrInput
 	// List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
@@ -530,6 +553,8 @@ type SwitchControllerManagedSwitchArgs struct {
 	DynamicallyDiscovered pulumi.IntPtrInput
 	// Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
 	FirmwareProvision pulumi.StringPtrInput
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest pulumi.StringPtrInput
 	// Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvisionVersion pulumi.StringPtrInput
 	// Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
@@ -553,7 +578,8 @@ type SwitchControllerManagedSwitchArgs struct {
 	// Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
 	MclagIgmpSnoopingAware pulumi.StringPtrInput
 	// Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
-	Mirrors        SwitchControllerManagedSwitchMirrorArrayInput
+	Mirrors SwitchControllerManagedSwitchMirrorArrayInput
+	// Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
 	N8021xSettings SwitchControllerManagedSwitchN8021xSettingsPtrInput
 	// Interface name.
 	Name pulumi.StringPtrInput
@@ -619,7 +645,7 @@ type SwitchControllerManagedSwitchArgs struct {
 	Type pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
-	// FortiSwitch version.
+	// IGMP snooping querier version.
 	Version pulumi.IntPtrInput
 }
 
@@ -635,7 +661,7 @@ type SwitchControllerManagedSwitchInput interface {
 }
 
 func (*SwitchControllerManagedSwitch) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerManagedSwitch)(nil))
+	return reflect.TypeOf((**SwitchControllerManagedSwitch)(nil)).Elem()
 }
 
 func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchOutput() SwitchControllerManagedSwitchOutput {
@@ -644,35 +670,6 @@ func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchOutput() 
 
 func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchOutput)
-}
-
-func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchPtrOutput() SwitchControllerManagedSwitchPtrOutput {
-	return i.ToSwitchControllerManagedSwitchPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerManagedSwitch) ToSwitchControllerManagedSwitchPtrOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchPtrOutput)
-}
-
-type SwitchControllerManagedSwitchPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerManagedSwitchPtrOutput() SwitchControllerManagedSwitchPtrOutput
-	ToSwitchControllerManagedSwitchPtrOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchPtrOutput
-}
-
-type switchControllerManagedSwitchPtrType SwitchControllerManagedSwitchArgs
-
-func (*switchControllerManagedSwitchPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerManagedSwitch)(nil))
-}
-
-func (i *switchControllerManagedSwitchPtrType) ToSwitchControllerManagedSwitchPtrOutput() SwitchControllerManagedSwitchPtrOutput {
-	return i.ToSwitchControllerManagedSwitchPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerManagedSwitchPtrType) ToSwitchControllerManagedSwitchPtrOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchPtrOutput)
 }
 
 // SwitchControllerManagedSwitchArrayInput is an input type that accepts SwitchControllerManagedSwitchArray and SwitchControllerManagedSwitchArrayOutput values.
@@ -689,7 +686,7 @@ type SwitchControllerManagedSwitchArrayInput interface {
 type SwitchControllerManagedSwitchArray []SwitchControllerManagedSwitchInput
 
 func (SwitchControllerManagedSwitchArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerManagedSwitch)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerManagedSwitch)(nil)).Elem()
 }
 
 func (i SwitchControllerManagedSwitchArray) ToSwitchControllerManagedSwitchArrayOutput() SwitchControllerManagedSwitchArrayOutput {
@@ -714,7 +711,7 @@ type SwitchControllerManagedSwitchMapInput interface {
 type SwitchControllerManagedSwitchMap map[string]SwitchControllerManagedSwitchInput
 
 func (SwitchControllerManagedSwitchMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerManagedSwitch)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerManagedSwitch)(nil)).Elem()
 }
 
 func (i SwitchControllerManagedSwitchMap) ToSwitchControllerManagedSwitchMapOutput() SwitchControllerManagedSwitchMapOutput {
@@ -725,12 +722,10 @@ func (i SwitchControllerManagedSwitchMap) ToSwitchControllerManagedSwitchMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerManagedSwitchMapOutput)
 }
 
-type SwitchControllerManagedSwitchOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerManagedSwitchOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerManagedSwitchOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerManagedSwitch)(nil))
+	return reflect.TypeOf((**SwitchControllerManagedSwitch)(nil)).Elem()
 }
 
 func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutput() SwitchControllerManagedSwitchOutput {
@@ -741,36 +736,10 @@ func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchOutp
 	return o
 }
 
-func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchPtrOutput() SwitchControllerManagedSwitchPtrOutput {
-	return o.ToSwitchControllerManagedSwitchPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerManagedSwitchOutput) ToSwitchControllerManagedSwitchPtrOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchPtrOutput {
-	return o.ApplyT(func(v SwitchControllerManagedSwitch) *SwitchControllerManagedSwitch {
-		return &v
-	}).(SwitchControllerManagedSwitchPtrOutput)
-}
-
-type SwitchControllerManagedSwitchPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerManagedSwitchPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerManagedSwitch)(nil))
-}
-
-func (o SwitchControllerManagedSwitchPtrOutput) ToSwitchControllerManagedSwitchPtrOutput() SwitchControllerManagedSwitchPtrOutput {
-	return o
-}
-
-func (o SwitchControllerManagedSwitchPtrOutput) ToSwitchControllerManagedSwitchPtrOutputWithContext(ctx context.Context) SwitchControllerManagedSwitchPtrOutput {
-	return o
-}
-
 type SwitchControllerManagedSwitchArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerManagedSwitchArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerManagedSwitch)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerManagedSwitch)(nil)).Elem()
 }
 
 func (o SwitchControllerManagedSwitchArrayOutput) ToSwitchControllerManagedSwitchArrayOutput() SwitchControllerManagedSwitchArrayOutput {
@@ -782,15 +751,15 @@ func (o SwitchControllerManagedSwitchArrayOutput) ToSwitchControllerManagedSwitc
 }
 
 func (o SwitchControllerManagedSwitchArrayOutput) Index(i pulumi.IntInput) SwitchControllerManagedSwitchOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerManagedSwitch {
-		return vs[0].([]SwitchControllerManagedSwitch)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerManagedSwitch {
+		return vs[0].([]*SwitchControllerManagedSwitch)[vs[1].(int)]
 	}).(SwitchControllerManagedSwitchOutput)
 }
 
 type SwitchControllerManagedSwitchMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerManagedSwitchMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerManagedSwitch)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerManagedSwitch)(nil)).Elem()
 }
 
 func (o SwitchControllerManagedSwitchMapOutput) ToSwitchControllerManagedSwitchMapOutput() SwitchControllerManagedSwitchMapOutput {
@@ -802,14 +771,16 @@ func (o SwitchControllerManagedSwitchMapOutput) ToSwitchControllerManagedSwitchM
 }
 
 func (o SwitchControllerManagedSwitchMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerManagedSwitchOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerManagedSwitch {
-		return vs[0].(map[string]SwitchControllerManagedSwitch)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerManagedSwitch {
+		return vs[0].(map[string]*SwitchControllerManagedSwitch)[vs[1].(string)]
 	}).(SwitchControllerManagedSwitchOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerManagedSwitchInput)(nil)).Elem(), &SwitchControllerManagedSwitch{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerManagedSwitchArrayInput)(nil)).Elem(), SwitchControllerManagedSwitchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerManagedSwitchMapInput)(nil)).Elem(), SwitchControllerManagedSwitchMap{})
 	pulumi.RegisterOutputType(SwitchControllerManagedSwitchOutput{})
-	pulumi.RegisterOutputType(SwitchControllerManagedSwitchPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerManagedSwitchArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerManagedSwitchMapOutput{})
 }

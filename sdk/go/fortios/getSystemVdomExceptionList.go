@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemVdomException`.
 func GetSystemVdomExceptionList(ctx *pulumi.Context, args *GetSystemVdomExceptionListArgs, opts ...pulumi.InvokeOption) (*GetSystemVdomExceptionListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemVdomExceptionListResult
 	err := ctx.Invoke("fortios:index/getSystemVdomExceptionList:GetSystemVdomExceptionList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemVdomExceptionListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemVdomExceptionListOutput(ctx *pulumi.Context, args GetSystemVdomExceptionListOutputArgs, opts ...pulumi.InvokeOption) GetSystemVdomExceptionListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemVdomExceptionListResult, error) {
+			args := v.(GetSystemVdomExceptionListArgs)
+			r, err := GetSystemVdomExceptionList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemVdomExceptionListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemVdomExceptionList.
+type GetSystemVdomExceptionListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemVdomExceptionListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemVdomExceptionListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemVdomExceptionList.
+type GetSystemVdomExceptionListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemVdomExceptionListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemVdomExceptionListResult)(nil)).Elem()
+}
+
+func (o GetSystemVdomExceptionListResultOutput) ToGetSystemVdomExceptionListResultOutput() GetSystemVdomExceptionListResultOutput {
+	return o
+}
+
+func (o GetSystemVdomExceptionListResultOutput) ToGetSystemVdomExceptionListResultOutputWithContext(ctx context.Context) GetSystemVdomExceptionListResultOutput {
+	return o
+}
+
+func (o GetSystemVdomExceptionListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemVdomExceptionListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `SystemVdomException`.
+func (o GetSystemVdomExceptionListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemVdomExceptionListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemVdomExceptionListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemVdomExceptionListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemVdomExceptionListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemVdomExceptionListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemVdomExceptionListResultOutput{})
 }

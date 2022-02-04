@@ -123,26 +123,24 @@ export class FortimanagerJSONRPCRequest extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerJSONRPCRequestArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerJSONRPCRequestArgs | FortimanagerJSONRPCRequestState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerJSONRPCRequestState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["jsonContent"] = state ? state.jsonContent : undefined;
-            inputs["response"] = state ? state.response : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["jsonContent"] = state ? state.jsonContent : undefined;
+            resourceInputs["response"] = state ? state.response : undefined;
         } else {
             const args = argsOrState as FortimanagerJSONRPCRequestArgs | undefined;
             if ((!args || args.jsonContent === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'jsonContent'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["jsonContent"] = args ? args.jsonContent : undefined;
-            inputs["response"] = undefined /*out*/;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["jsonContent"] = args ? args.jsonContent : undefined;
+            resourceInputs["response"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerJSONRPCRequest.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerJSONRPCRequest.__pulumiType, name, resourceInputs, opts);
     }
 }
 

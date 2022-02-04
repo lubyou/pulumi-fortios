@@ -113,37 +113,35 @@ export class WirelessControllerHotspot20H2QpWanMetric extends pulumi.CustomResou
      */
     constructor(name: string, args?: WirelessControllerHotspot20H2QpWanMetricArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20H2QpWanMetricArgs | WirelessControllerHotspot20H2QpWanMetricState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20H2QpWanMetricState | undefined;
-            inputs["downlinkLoad"] = state ? state.downlinkLoad : undefined;
-            inputs["downlinkSpeed"] = state ? state.downlinkSpeed : undefined;
-            inputs["linkAtCapacity"] = state ? state.linkAtCapacity : undefined;
-            inputs["linkStatus"] = state ? state.linkStatus : undefined;
-            inputs["loadMeasurementDuration"] = state ? state.loadMeasurementDuration : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["symmetricWanLink"] = state ? state.symmetricWanLink : undefined;
-            inputs["uplinkLoad"] = state ? state.uplinkLoad : undefined;
-            inputs["uplinkSpeed"] = state ? state.uplinkSpeed : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["downlinkLoad"] = state ? state.downlinkLoad : undefined;
+            resourceInputs["downlinkSpeed"] = state ? state.downlinkSpeed : undefined;
+            resourceInputs["linkAtCapacity"] = state ? state.linkAtCapacity : undefined;
+            resourceInputs["linkStatus"] = state ? state.linkStatus : undefined;
+            resourceInputs["loadMeasurementDuration"] = state ? state.loadMeasurementDuration : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["symmetricWanLink"] = state ? state.symmetricWanLink : undefined;
+            resourceInputs["uplinkLoad"] = state ? state.uplinkLoad : undefined;
+            resourceInputs["uplinkSpeed"] = state ? state.uplinkSpeed : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20H2QpWanMetricArgs | undefined;
-            inputs["downlinkLoad"] = args ? args.downlinkLoad : undefined;
-            inputs["downlinkSpeed"] = args ? args.downlinkSpeed : undefined;
-            inputs["linkAtCapacity"] = args ? args.linkAtCapacity : undefined;
-            inputs["linkStatus"] = args ? args.linkStatus : undefined;
-            inputs["loadMeasurementDuration"] = args ? args.loadMeasurementDuration : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["symmetricWanLink"] = args ? args.symmetricWanLink : undefined;
-            inputs["uplinkLoad"] = args ? args.uplinkLoad : undefined;
-            inputs["uplinkSpeed"] = args ? args.uplinkSpeed : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["downlinkLoad"] = args ? args.downlinkLoad : undefined;
+            resourceInputs["downlinkSpeed"] = args ? args.downlinkSpeed : undefined;
+            resourceInputs["linkAtCapacity"] = args ? args.linkAtCapacity : undefined;
+            resourceInputs["linkStatus"] = args ? args.linkStatus : undefined;
+            resourceInputs["loadMeasurementDuration"] = args ? args.loadMeasurementDuration : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["symmetricWanLink"] = args ? args.symmetricWanLink : undefined;
+            resourceInputs["uplinkLoad"] = args ? args.uplinkLoad : undefined;
+            resourceInputs["uplinkSpeed"] = args ? args.uplinkSpeed : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20H2QpWanMetric.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20H2QpWanMetric.__pulumiType, name, resourceInputs, opts);
     }
 }
 

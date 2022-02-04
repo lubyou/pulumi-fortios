@@ -102,44 +102,42 @@ export class SystemApiUser extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemApiUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemApiUserArgs | SystemApiUserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemApiUserState | undefined;
-            inputs["accprofile"] = state ? state.accprofile : undefined;
-            inputs["apiKey"] = state ? state.apiKey : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["corsAllowOrigin"] = state ? state.corsAllowOrigin : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["peerAuth"] = state ? state.peerAuth : undefined;
-            inputs["peerGroup"] = state ? state.peerGroup : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["trusthosts"] = state ? state.trusthosts : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vdoms"] = state ? state.vdoms : undefined;
+            resourceInputs["accprofile"] = state ? state.accprofile : undefined;
+            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["corsAllowOrigin"] = state ? state.corsAllowOrigin : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["peerAuth"] = state ? state.peerAuth : undefined;
+            resourceInputs["peerGroup"] = state ? state.peerGroup : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["trusthosts"] = state ? state.trusthosts : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemApiUserArgs | undefined;
             if ((!args || args.accprofile === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'accprofile'");
             }
-            inputs["accprofile"] = args ? args.accprofile : undefined;
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["corsAllowOrigin"] = args ? args.corsAllowOrigin : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["peerAuth"] = args ? args.peerAuth : undefined;
-            inputs["peerGroup"] = args ? args.peerGroup : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["trusthosts"] = args ? args.trusthosts : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vdoms"] = args ? args.vdoms : undefined;
+            resourceInputs["accprofile"] = args ? args.accprofile : undefined;
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["corsAllowOrigin"] = args ? args.corsAllowOrigin : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["peerAuth"] = args ? args.peerAuth : undefined;
+            resourceInputs["peerGroup"] = args ? args.peerGroup : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["trusthosts"] = args ? args.trusthosts : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemApiUser.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemApiUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 

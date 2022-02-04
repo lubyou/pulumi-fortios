@@ -15,6 +15,7 @@ __all__ = ['LogSettingArgs', 'LogSetting']
 @pulumi.input_type
 class LogSettingArgs:
     def __init__(__self__, *,
+                 anonymization_hash: Optional[pulumi.Input[str]] = None,
                  brief_traffic_format: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input['LogSettingCustomLogFieldArgs']]]] = None,
                  daemon_log: Optional[pulumi.Input[str]] = None,
@@ -34,11 +35,14 @@ class LogSettingArgs:
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
+                 rest_api_get: Optional[pulumi.Input[str]] = None,
+                 rest_api_set: Optional[pulumi.Input[str]] = None,
                  syslog_override: Optional[pulumi.Input[str]] = None,
                  user_anonymize: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogSetting resource.
+        :param pulumi.Input[str] anonymization_hash: User name anonymization hash salt.
         :param pulumi.Input[str] brief_traffic_format: Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['LogSettingCustomLogFieldArgs']]] custom_log_fields: Custom fields to append to all log messages. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
@@ -58,10 +62,14 @@ class LogSettingArgs:
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_get: Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_set: Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] syslog_override: Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_anonymize: Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if anonymization_hash is not None:
+            pulumi.set(__self__, "anonymization_hash", anonymization_hash)
         if brief_traffic_format is not None:
             pulumi.set(__self__, "brief_traffic_format", brief_traffic_format)
         if custom_log_fields is not None:
@@ -100,12 +108,28 @@ class LogSettingArgs:
             pulumi.set(__self__, "resolve_ip", resolve_ip)
         if resolve_port is not None:
             pulumi.set(__self__, "resolve_port", resolve_port)
+        if rest_api_get is not None:
+            pulumi.set(__self__, "rest_api_get", rest_api_get)
+        if rest_api_set is not None:
+            pulumi.set(__self__, "rest_api_set", rest_api_set)
         if syslog_override is not None:
             pulumi.set(__self__, "syslog_override", syslog_override)
         if user_anonymize is not None:
             pulumi.set(__self__, "user_anonymize", user_anonymize)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="anonymizationHash")
+    def anonymization_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        User name anonymization hash salt.
+        """
+        return pulumi.get(self, "anonymization_hash")
+
+    @anonymization_hash.setter
+    def anonymization_hash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "anonymization_hash", value)
 
     @property
     @pulumi.getter(name="briefTrafficFormat")
@@ -334,6 +358,30 @@ class LogSettingArgs:
     @resolve_port.setter
     def resolve_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "resolve_port", value)
+
+    @property
+    @pulumi.getter(name="restApiGet")
+    def rest_api_get(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api_get")
+
+    @rest_api_get.setter
+    def rest_api_get(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rest_api_get", value)
+
+    @property
+    @pulumi.getter(name="restApiSet")
+    def rest_api_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api_set")
+
+    @rest_api_set.setter
+    def rest_api_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rest_api_set", value)
 
     @property
     @pulumi.getter(name="syslogOverride")
@@ -375,6 +423,7 @@ class LogSettingArgs:
 @pulumi.input_type
 class _LogSettingState:
     def __init__(__self__, *,
+                 anonymization_hash: Optional[pulumi.Input[str]] = None,
                  brief_traffic_format: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input['LogSettingCustomLogFieldArgs']]]] = None,
                  daemon_log: Optional[pulumi.Input[str]] = None,
@@ -394,11 +443,14 @@ class _LogSettingState:
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
+                 rest_api_get: Optional[pulumi.Input[str]] = None,
+                 rest_api_set: Optional[pulumi.Input[str]] = None,
                  syslog_override: Optional[pulumi.Input[str]] = None,
                  user_anonymize: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogSetting resources.
+        :param pulumi.Input[str] anonymization_hash: User name anonymization hash salt.
         :param pulumi.Input[str] brief_traffic_format: Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['LogSettingCustomLogFieldArgs']]] custom_log_fields: Custom fields to append to all log messages. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
@@ -418,10 +470,14 @@ class _LogSettingState:
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_get: Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_set: Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] syslog_override: Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_anonymize: Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if anonymization_hash is not None:
+            pulumi.set(__self__, "anonymization_hash", anonymization_hash)
         if brief_traffic_format is not None:
             pulumi.set(__self__, "brief_traffic_format", brief_traffic_format)
         if custom_log_fields is not None:
@@ -460,12 +516,28 @@ class _LogSettingState:
             pulumi.set(__self__, "resolve_ip", resolve_ip)
         if resolve_port is not None:
             pulumi.set(__self__, "resolve_port", resolve_port)
+        if rest_api_get is not None:
+            pulumi.set(__self__, "rest_api_get", rest_api_get)
+        if rest_api_set is not None:
+            pulumi.set(__self__, "rest_api_set", rest_api_set)
         if syslog_override is not None:
             pulumi.set(__self__, "syslog_override", syslog_override)
         if user_anonymize is not None:
             pulumi.set(__self__, "user_anonymize", user_anonymize)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="anonymizationHash")
+    def anonymization_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        User name anonymization hash salt.
+        """
+        return pulumi.get(self, "anonymization_hash")
+
+    @anonymization_hash.setter
+    def anonymization_hash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "anonymization_hash", value)
 
     @property
     @pulumi.getter(name="briefTrafficFormat")
@@ -694,6 +766,30 @@ class _LogSettingState:
     @resolve_port.setter
     def resolve_port(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "resolve_port", value)
+
+    @property
+    @pulumi.getter(name="restApiGet")
+    def rest_api_get(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api_get")
+
+    @rest_api_get.setter
+    def rest_api_get(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rest_api_get", value)
+
+    @property
+    @pulumi.getter(name="restApiSet")
+    def rest_api_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api_set")
+
+    @rest_api_set.setter
+    def rest_api_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rest_api_set", value)
 
     @property
     @pulumi.getter(name="syslogOverride")
@@ -737,6 +833,7 @@ class LogSetting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 anonymization_hash: Optional[pulumi.Input[str]] = None,
                  brief_traffic_format: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogSettingCustomLogFieldArgs']]]]] = None,
                  daemon_log: Optional[pulumi.Input[str]] = None,
@@ -756,6 +853,8 @@ class LogSetting(pulumi.CustomResource):
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
+                 rest_api_get: Optional[pulumi.Input[str]] = None,
+                 rest_api_set: Optional[pulumi.Input[str]] = None,
                  syslog_override: Optional[pulumi.Input[str]] = None,
                  user_anonymize: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -803,6 +902,7 @@ class LogSetting(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] anonymization_hash: User name anonymization hash salt.
         :param pulumi.Input[str] brief_traffic_format: Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogSettingCustomLogFieldArgs']]]] custom_log_fields: Custom fields to append to all log messages. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
@@ -822,6 +922,8 @@ class LogSetting(pulumi.CustomResource):
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_get: Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_set: Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] syslog_override: Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_anonymize: Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -888,6 +990,7 @@ class LogSetting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 anonymization_hash: Optional[pulumi.Input[str]] = None,
                  brief_traffic_format: Optional[pulumi.Input[str]] = None,
                  custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogSettingCustomLogFieldArgs']]]]] = None,
                  daemon_log: Optional[pulumi.Input[str]] = None,
@@ -907,6 +1010,8 @@ class LogSetting(pulumi.CustomResource):
                  neighbor_event: Optional[pulumi.Input[str]] = None,
                  resolve_ip: Optional[pulumi.Input[str]] = None,
                  resolve_port: Optional[pulumi.Input[str]] = None,
+                 rest_api_get: Optional[pulumi.Input[str]] = None,
+                 rest_api_set: Optional[pulumi.Input[str]] = None,
                  syslog_override: Optional[pulumi.Input[str]] = None,
                  user_anonymize: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -917,11 +1022,14 @@ class LogSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LogSettingArgs.__new__(LogSettingArgs)
 
+            __props__.__dict__["anonymization_hash"] = anonymization_hash
             __props__.__dict__["brief_traffic_format"] = brief_traffic_format
             __props__.__dict__["custom_log_fields"] = custom_log_fields
             __props__.__dict__["daemon_log"] = daemon_log
@@ -941,6 +1049,8 @@ class LogSetting(pulumi.CustomResource):
             __props__.__dict__["neighbor_event"] = neighbor_event
             __props__.__dict__["resolve_ip"] = resolve_ip
             __props__.__dict__["resolve_port"] = resolve_port
+            __props__.__dict__["rest_api_get"] = rest_api_get
+            __props__.__dict__["rest_api_set"] = rest_api_set
             __props__.__dict__["syslog_override"] = syslog_override
             __props__.__dict__["user_anonymize"] = user_anonymize
             __props__.__dict__["vdomparam"] = vdomparam
@@ -954,6 +1064,7 @@ class LogSetting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            anonymization_hash: Optional[pulumi.Input[str]] = None,
             brief_traffic_format: Optional[pulumi.Input[str]] = None,
             custom_log_fields: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogSettingCustomLogFieldArgs']]]]] = None,
             daemon_log: Optional[pulumi.Input[str]] = None,
@@ -973,6 +1084,8 @@ class LogSetting(pulumi.CustomResource):
             neighbor_event: Optional[pulumi.Input[str]] = None,
             resolve_ip: Optional[pulumi.Input[str]] = None,
             resolve_port: Optional[pulumi.Input[str]] = None,
+            rest_api_get: Optional[pulumi.Input[str]] = None,
+            rest_api_set: Optional[pulumi.Input[str]] = None,
             syslog_override: Optional[pulumi.Input[str]] = None,
             user_anonymize: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'LogSetting':
@@ -983,6 +1096,7 @@ class LogSetting(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] anonymization_hash: User name anonymization hash salt.
         :param pulumi.Input[str] brief_traffic_format: Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogSettingCustomLogFieldArgs']]]] custom_log_fields: Custom fields to append to all log messages. The structure of `custom_log_fields` block is documented below.
         :param pulumi.Input[str] daemon_log: Enable/disable daemon logging. Valid values: `enable`, `disable`.
@@ -1002,6 +1116,8 @@ class LogSetting(pulumi.CustomResource):
         :param pulumi.Input[str] neighbor_event: Enable/disable neighbor event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_ip: Enable/disable adding resolved domain names to traffic logs if possible. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] resolve_port: Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_get: Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api_set: Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] syslog_override: Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] user_anonymize: Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -1010,6 +1126,7 @@ class LogSetting(pulumi.CustomResource):
 
         __props__ = _LogSettingState.__new__(_LogSettingState)
 
+        __props__.__dict__["anonymization_hash"] = anonymization_hash
         __props__.__dict__["brief_traffic_format"] = brief_traffic_format
         __props__.__dict__["custom_log_fields"] = custom_log_fields
         __props__.__dict__["daemon_log"] = daemon_log
@@ -1029,10 +1146,20 @@ class LogSetting(pulumi.CustomResource):
         __props__.__dict__["neighbor_event"] = neighbor_event
         __props__.__dict__["resolve_ip"] = resolve_ip
         __props__.__dict__["resolve_port"] = resolve_port
+        __props__.__dict__["rest_api_get"] = rest_api_get
+        __props__.__dict__["rest_api_set"] = rest_api_set
         __props__.__dict__["syslog_override"] = syslog_override
         __props__.__dict__["user_anonymize"] = user_anonymize
         __props__.__dict__["vdomparam"] = vdomparam
         return LogSetting(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="anonymizationHash")
+    def anonymization_hash(self) -> pulumi.Output[str]:
+        """
+        User name anonymization hash salt.
+        """
+        return pulumi.get(self, "anonymization_hash")
 
     @property
     @pulumi.getter(name="briefTrafficFormat")
@@ -1185,6 +1312,22 @@ class LogSetting(pulumi.CustomResource):
         Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "resolve_port")
+
+    @property
+    @pulumi.getter(name="restApiGet")
+    def rest_api_get(self) -> pulumi.Output[str]:
+        """
+        Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api_get")
+
+    @property
+    @pulumi.getter(name="restApiSet")
+    def rest_api_set(self) -> pulumi.Output[str]:
+        """
+        Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api_set")
 
     @property
     @pulumi.getter(name="syslogOverride")

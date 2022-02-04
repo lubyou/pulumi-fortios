@@ -41,6 +41,7 @@ func NewSystemIpsUrlfilterDns(ctx *pulumi.Context,
 		args = &SystemIpsUrlfilterDnsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemIpsUrlfilterDns
 	err := ctx.RegisterResource("fortios:index/systemIpsUrlfilterDns:SystemIpsUrlfilterDns", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SystemIpsUrlfilterDnsInput interface {
 }
 
 func (*SystemIpsUrlfilterDns) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpsUrlfilterDns)(nil))
+	return reflect.TypeOf((**SystemIpsUrlfilterDns)(nil)).Elem()
 }
 
 func (i *SystemIpsUrlfilterDns) ToSystemIpsUrlfilterDnsOutput() SystemIpsUrlfilterDnsOutput {
@@ -132,35 +133,6 @@ func (i *SystemIpsUrlfilterDns) ToSystemIpsUrlfilterDnsOutput() SystemIpsUrlfilt
 
 func (i *SystemIpsUrlfilterDns) ToSystemIpsUrlfilterDnsOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDnsOutput)
-}
-
-func (i *SystemIpsUrlfilterDns) ToSystemIpsUrlfilterDnsPtrOutput() SystemIpsUrlfilterDnsPtrOutput {
-	return i.ToSystemIpsUrlfilterDnsPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemIpsUrlfilterDns) ToSystemIpsUrlfilterDnsPtrOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDnsPtrOutput)
-}
-
-type SystemIpsUrlfilterDnsPtrInput interface {
-	pulumi.Input
-
-	ToSystemIpsUrlfilterDnsPtrOutput() SystemIpsUrlfilterDnsPtrOutput
-	ToSystemIpsUrlfilterDnsPtrOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsPtrOutput
-}
-
-type systemIpsUrlfilterDnsPtrType SystemIpsUrlfilterDnsArgs
-
-func (*systemIpsUrlfilterDnsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpsUrlfilterDns)(nil))
-}
-
-func (i *systemIpsUrlfilterDnsPtrType) ToSystemIpsUrlfilterDnsPtrOutput() SystemIpsUrlfilterDnsPtrOutput {
-	return i.ToSystemIpsUrlfilterDnsPtrOutputWithContext(context.Background())
-}
-
-func (i *systemIpsUrlfilterDnsPtrType) ToSystemIpsUrlfilterDnsPtrOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDnsPtrOutput)
 }
 
 // SystemIpsUrlfilterDnsArrayInput is an input type that accepts SystemIpsUrlfilterDnsArray and SystemIpsUrlfilterDnsArrayOutput values.
@@ -177,7 +149,7 @@ type SystemIpsUrlfilterDnsArrayInput interface {
 type SystemIpsUrlfilterDnsArray []SystemIpsUrlfilterDnsInput
 
 func (SystemIpsUrlfilterDnsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemIpsUrlfilterDns)(nil))
+	return reflect.TypeOf((*[]*SystemIpsUrlfilterDns)(nil)).Elem()
 }
 
 func (i SystemIpsUrlfilterDnsArray) ToSystemIpsUrlfilterDnsArrayOutput() SystemIpsUrlfilterDnsArrayOutput {
@@ -202,7 +174,7 @@ type SystemIpsUrlfilterDnsMapInput interface {
 type SystemIpsUrlfilterDnsMap map[string]SystemIpsUrlfilterDnsInput
 
 func (SystemIpsUrlfilterDnsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemIpsUrlfilterDns)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpsUrlfilterDns)(nil)).Elem()
 }
 
 func (i SystemIpsUrlfilterDnsMap) ToSystemIpsUrlfilterDnsMapOutput() SystemIpsUrlfilterDnsMapOutput {
@@ -213,12 +185,10 @@ func (i SystemIpsUrlfilterDnsMap) ToSystemIpsUrlfilterDnsMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsUrlfilterDnsMapOutput)
 }
 
-type SystemIpsUrlfilterDnsOutput struct {
-	*pulumi.OutputState
-}
+type SystemIpsUrlfilterDnsOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsUrlfilterDnsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpsUrlfilterDns)(nil))
+	return reflect.TypeOf((**SystemIpsUrlfilterDns)(nil)).Elem()
 }
 
 func (o SystemIpsUrlfilterDnsOutput) ToSystemIpsUrlfilterDnsOutput() SystemIpsUrlfilterDnsOutput {
@@ -229,36 +199,10 @@ func (o SystemIpsUrlfilterDnsOutput) ToSystemIpsUrlfilterDnsOutputWithContext(ct
 	return o
 }
 
-func (o SystemIpsUrlfilterDnsOutput) ToSystemIpsUrlfilterDnsPtrOutput() SystemIpsUrlfilterDnsPtrOutput {
-	return o.ToSystemIpsUrlfilterDnsPtrOutputWithContext(context.Background())
-}
-
-func (o SystemIpsUrlfilterDnsOutput) ToSystemIpsUrlfilterDnsPtrOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsPtrOutput {
-	return o.ApplyT(func(v SystemIpsUrlfilterDns) *SystemIpsUrlfilterDns {
-		return &v
-	}).(SystemIpsUrlfilterDnsPtrOutput)
-}
-
-type SystemIpsUrlfilterDnsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemIpsUrlfilterDnsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpsUrlfilterDns)(nil))
-}
-
-func (o SystemIpsUrlfilterDnsPtrOutput) ToSystemIpsUrlfilterDnsPtrOutput() SystemIpsUrlfilterDnsPtrOutput {
-	return o
-}
-
-func (o SystemIpsUrlfilterDnsPtrOutput) ToSystemIpsUrlfilterDnsPtrOutputWithContext(ctx context.Context) SystemIpsUrlfilterDnsPtrOutput {
-	return o
-}
-
 type SystemIpsUrlfilterDnsArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsUrlfilterDnsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemIpsUrlfilterDns)(nil))
+	return reflect.TypeOf((*[]*SystemIpsUrlfilterDns)(nil)).Elem()
 }
 
 func (o SystemIpsUrlfilterDnsArrayOutput) ToSystemIpsUrlfilterDnsArrayOutput() SystemIpsUrlfilterDnsArrayOutput {
@@ -270,15 +214,15 @@ func (o SystemIpsUrlfilterDnsArrayOutput) ToSystemIpsUrlfilterDnsArrayOutputWith
 }
 
 func (o SystemIpsUrlfilterDnsArrayOutput) Index(i pulumi.IntInput) SystemIpsUrlfilterDnsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemIpsUrlfilterDns {
-		return vs[0].([]SystemIpsUrlfilterDns)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpsUrlfilterDns {
+		return vs[0].([]*SystemIpsUrlfilterDns)[vs[1].(int)]
 	}).(SystemIpsUrlfilterDnsOutput)
 }
 
 type SystemIpsUrlfilterDnsMapOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsUrlfilterDnsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemIpsUrlfilterDns)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpsUrlfilterDns)(nil)).Elem()
 }
 
 func (o SystemIpsUrlfilterDnsMapOutput) ToSystemIpsUrlfilterDnsMapOutput() SystemIpsUrlfilterDnsMapOutput {
@@ -290,14 +234,16 @@ func (o SystemIpsUrlfilterDnsMapOutput) ToSystemIpsUrlfilterDnsMapOutputWithCont
 }
 
 func (o SystemIpsUrlfilterDnsMapOutput) MapIndex(k pulumi.StringInput) SystemIpsUrlfilterDnsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemIpsUrlfilterDns {
-		return vs[0].(map[string]SystemIpsUrlfilterDns)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemIpsUrlfilterDns {
+		return vs[0].(map[string]*SystemIpsUrlfilterDns)[vs[1].(string)]
 	}).(SystemIpsUrlfilterDnsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsUrlfilterDnsInput)(nil)).Elem(), &SystemIpsUrlfilterDns{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsUrlfilterDnsArrayInput)(nil)).Elem(), SystemIpsUrlfilterDnsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsUrlfilterDnsMapInput)(nil)).Elem(), SystemIpsUrlfilterDnsMap{})
 	pulumi.RegisterOutputType(SystemIpsUrlfilterDnsOutput{})
-	pulumi.RegisterOutputType(SystemIpsUrlfilterDnsPtrOutput{})
 	pulumi.RegisterOutputType(SystemIpsUrlfilterDnsArrayOutput{})
 	pulumi.RegisterOutputType(SystemIpsUrlfilterDnsMapOutput{})
 }

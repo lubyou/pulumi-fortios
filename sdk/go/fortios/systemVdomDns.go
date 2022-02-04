@@ -24,6 +24,10 @@ import (
 type SystemVdomDns struct {
 	pulumi.CustomResourceState
 
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary pulumi.StringOutput `pulumi:"altPrimary"`
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary pulumi.StringOutput `pulumi:"altSecondary"`
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls pulumi.StringOutput `pulumi:"dnsOverTls"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -38,10 +42,14 @@ type SystemVdomDns struct {
 	Ip6Secondary pulumi.StringOutput `pulumi:"ip6Secondary"`
 	// Primary DNS server IP address for the VDOM.
 	Primary pulumi.StringOutput `pulumi:"primary"`
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// Secondary DNS server IP address for the VDOM.
 	Secondary pulumi.StringOutput `pulumi:"secondary"`
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames SystemVdomDnsServerHostnameArrayOutput `pulumi:"serverHostnames"`
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod pulumi.StringOutput `pulumi:"serverSelectMethod"`
 	// Source IP for communications with the DNS server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Name of local certificate for SSL connections.
@@ -59,6 +67,7 @@ func NewSystemVdomDns(ctx *pulumi.Context,
 		args = &SystemVdomDnsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomDns
 	err := ctx.RegisterResource("fortios:index/systemVdomDns:SystemVdomDns", name, args, &resource, opts...)
 	if err != nil {
@@ -81,6 +90,10 @@ func GetSystemVdomDns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVdomDns resources.
 type systemVdomDnsState struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary *string `pulumi:"altPrimary"`
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls *string `pulumi:"dnsOverTls"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -95,10 +108,14 @@ type systemVdomDnsState struct {
 	Ip6Secondary *string `pulumi:"ip6Secondary"`
 	// Primary DNS server IP address for the VDOM.
 	Primary *string `pulumi:"primary"`
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol *string `pulumi:"protocol"`
 	// Secondary DNS server IP address for the VDOM.
 	Secondary *string `pulumi:"secondary"`
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames []SystemVdomDnsServerHostname `pulumi:"serverHostnames"`
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod *string `pulumi:"serverSelectMethod"`
 	// Source IP for communications with the DNS server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Name of local certificate for SSL connections.
@@ -110,6 +127,10 @@ type systemVdomDnsState struct {
 }
 
 type SystemVdomDnsState struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary pulumi.StringPtrInput
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary pulumi.StringPtrInput
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -124,10 +145,14 @@ type SystemVdomDnsState struct {
 	Ip6Secondary pulumi.StringPtrInput
 	// Primary DNS server IP address for the VDOM.
 	Primary pulumi.StringPtrInput
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol pulumi.StringPtrInput
 	// Secondary DNS server IP address for the VDOM.
 	Secondary pulumi.StringPtrInput
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames SystemVdomDnsServerHostnameArrayInput
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod pulumi.StringPtrInput
 	// Source IP for communications with the DNS server.
 	SourceIp pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
@@ -143,6 +168,10 @@ func (SystemVdomDnsState) ElementType() reflect.Type {
 }
 
 type systemVdomDnsArgs struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary *string `pulumi:"altPrimary"`
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary *string `pulumi:"altSecondary"`
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls *string `pulumi:"dnsOverTls"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -157,10 +186,14 @@ type systemVdomDnsArgs struct {
 	Ip6Secondary *string `pulumi:"ip6Secondary"`
 	// Primary DNS server IP address for the VDOM.
 	Primary *string `pulumi:"primary"`
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol *string `pulumi:"protocol"`
 	// Secondary DNS server IP address for the VDOM.
 	Secondary *string `pulumi:"secondary"`
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames []SystemVdomDnsServerHostname `pulumi:"serverHostnames"`
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod *string `pulumi:"serverSelectMethod"`
 	// Source IP for communications with the DNS server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Name of local certificate for SSL connections.
@@ -173,6 +206,10 @@ type systemVdomDnsArgs struct {
 
 // The set of arguments for constructing a SystemVdomDns resource.
 type SystemVdomDnsArgs struct {
+	// Alternate primary DNS server. (This is not used as a failover DNS server.)
+	AltPrimary pulumi.StringPtrInput
+	// Alternate secondary DNS server. (This is not used as a failover DNS server.)
+	AltSecondary pulumi.StringPtrInput
 	// Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
 	DnsOverTls pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -187,10 +224,14 @@ type SystemVdomDnsArgs struct {
 	Ip6Secondary pulumi.StringPtrInput
 	// Primary DNS server IP address for the VDOM.
 	Primary pulumi.StringPtrInput
+	// DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+	Protocol pulumi.StringPtrInput
 	// Secondary DNS server IP address for the VDOM.
 	Secondary pulumi.StringPtrInput
 	// DNS server host name list. The structure of `serverHostname` block is documented below.
 	ServerHostnames SystemVdomDnsServerHostnameArrayInput
+	// Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+	ServerSelectMethod pulumi.StringPtrInput
 	// Source IP for communications with the DNS server.
 	SourceIp pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
@@ -213,7 +254,7 @@ type SystemVdomDnsInput interface {
 }
 
 func (*SystemVdomDns) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomDns)(nil))
+	return reflect.TypeOf((**SystemVdomDns)(nil)).Elem()
 }
 
 func (i *SystemVdomDns) ToSystemVdomDnsOutput() SystemVdomDnsOutput {
@@ -222,35 +263,6 @@ func (i *SystemVdomDns) ToSystemVdomDnsOutput() SystemVdomDnsOutput {
 
 func (i *SystemVdomDns) ToSystemVdomDnsOutputWithContext(ctx context.Context) SystemVdomDnsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomDnsOutput)
-}
-
-func (i *SystemVdomDns) ToSystemVdomDnsPtrOutput() SystemVdomDnsPtrOutput {
-	return i.ToSystemVdomDnsPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomDns) ToSystemVdomDnsPtrOutputWithContext(ctx context.Context) SystemVdomDnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomDnsPtrOutput)
-}
-
-type SystemVdomDnsPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomDnsPtrOutput() SystemVdomDnsPtrOutput
-	ToSystemVdomDnsPtrOutputWithContext(ctx context.Context) SystemVdomDnsPtrOutput
-}
-
-type systemVdomDnsPtrType SystemVdomDnsArgs
-
-func (*systemVdomDnsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomDns)(nil))
-}
-
-func (i *systemVdomDnsPtrType) ToSystemVdomDnsPtrOutput() SystemVdomDnsPtrOutput {
-	return i.ToSystemVdomDnsPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomDnsPtrType) ToSystemVdomDnsPtrOutputWithContext(ctx context.Context) SystemVdomDnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomDnsPtrOutput)
 }
 
 // SystemVdomDnsArrayInput is an input type that accepts SystemVdomDnsArray and SystemVdomDnsArrayOutput values.
@@ -267,7 +279,7 @@ type SystemVdomDnsArrayInput interface {
 type SystemVdomDnsArray []SystemVdomDnsInput
 
 func (SystemVdomDnsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomDns)(nil))
+	return reflect.TypeOf((*[]*SystemVdomDns)(nil)).Elem()
 }
 
 func (i SystemVdomDnsArray) ToSystemVdomDnsArrayOutput() SystemVdomDnsArrayOutput {
@@ -292,7 +304,7 @@ type SystemVdomDnsMapInput interface {
 type SystemVdomDnsMap map[string]SystemVdomDnsInput
 
 func (SystemVdomDnsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomDns)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomDns)(nil)).Elem()
 }
 
 func (i SystemVdomDnsMap) ToSystemVdomDnsMapOutput() SystemVdomDnsMapOutput {
@@ -303,12 +315,10 @@ func (i SystemVdomDnsMap) ToSystemVdomDnsMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomDnsMapOutput)
 }
 
-type SystemVdomDnsOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomDnsOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomDnsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomDns)(nil))
+	return reflect.TypeOf((**SystemVdomDns)(nil)).Elem()
 }
 
 func (o SystemVdomDnsOutput) ToSystemVdomDnsOutput() SystemVdomDnsOutput {
@@ -319,36 +329,10 @@ func (o SystemVdomDnsOutput) ToSystemVdomDnsOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemVdomDnsOutput) ToSystemVdomDnsPtrOutput() SystemVdomDnsPtrOutput {
-	return o.ToSystemVdomDnsPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomDnsOutput) ToSystemVdomDnsPtrOutputWithContext(ctx context.Context) SystemVdomDnsPtrOutput {
-	return o.ApplyT(func(v SystemVdomDns) *SystemVdomDns {
-		return &v
-	}).(SystemVdomDnsPtrOutput)
-}
-
-type SystemVdomDnsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomDnsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomDns)(nil))
-}
-
-func (o SystemVdomDnsPtrOutput) ToSystemVdomDnsPtrOutput() SystemVdomDnsPtrOutput {
-	return o
-}
-
-func (o SystemVdomDnsPtrOutput) ToSystemVdomDnsPtrOutputWithContext(ctx context.Context) SystemVdomDnsPtrOutput {
-	return o
-}
-
 type SystemVdomDnsArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomDnsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomDns)(nil))
+	return reflect.TypeOf((*[]*SystemVdomDns)(nil)).Elem()
 }
 
 func (o SystemVdomDnsArrayOutput) ToSystemVdomDnsArrayOutput() SystemVdomDnsArrayOutput {
@@ -360,15 +344,15 @@ func (o SystemVdomDnsArrayOutput) ToSystemVdomDnsArrayOutputWithContext(ctx cont
 }
 
 func (o SystemVdomDnsArrayOutput) Index(i pulumi.IntInput) SystemVdomDnsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomDns {
-		return vs[0].([]SystemVdomDns)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomDns {
+		return vs[0].([]*SystemVdomDns)[vs[1].(int)]
 	}).(SystemVdomDnsOutput)
 }
 
 type SystemVdomDnsMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomDnsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomDns)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomDns)(nil)).Elem()
 }
 
 func (o SystemVdomDnsMapOutput) ToSystemVdomDnsMapOutput() SystemVdomDnsMapOutput {
@@ -380,14 +364,16 @@ func (o SystemVdomDnsMapOutput) ToSystemVdomDnsMapOutputWithContext(ctx context.
 }
 
 func (o SystemVdomDnsMapOutput) MapIndex(k pulumi.StringInput) SystemVdomDnsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomDns {
-		return vs[0].(map[string]SystemVdomDns)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomDns {
+		return vs[0].(map[string]*SystemVdomDns)[vs[1].(string)]
 	}).(SystemVdomDnsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomDnsInput)(nil)).Elem(), &SystemVdomDns{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomDnsArrayInput)(nil)).Elem(), SystemVdomDnsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomDnsMapInput)(nil)).Elem(), SystemVdomDnsMap{})
 	pulumi.RegisterOutputType(SystemVdomDnsOutput{})
-	pulumi.RegisterOutputType(SystemVdomDnsPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomDnsArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomDnsMapOutput{})
 }

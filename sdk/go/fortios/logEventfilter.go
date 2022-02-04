@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -71,6 +71,8 @@ type LogEventfilter struct {
 	Fortiextender pulumi.StringOutput `pulumi:"fortiextender"`
 	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
 	Ha pulumi.StringOutput `pulumi:"ha"`
+	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
+	RestApi pulumi.StringOutput `pulumi:"restApi"`
 	// Enable/disable router event logging. Valid values: `enable`, `disable`.
 	Router pulumi.StringOutput `pulumi:"router"`
 	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
@@ -100,6 +102,7 @@ func NewLogEventfilter(ctx *pulumi.Context,
 		args = &LogEventfilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogEventfilter
 	err := ctx.RegisterResource("fortios:index/logEventfilter:LogEventfilter", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +139,8 @@ type logEventfilterState struct {
 	Fortiextender *string `pulumi:"fortiextender"`
 	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
 	Ha *string `pulumi:"ha"`
+	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
+	RestApi *string `pulumi:"restApi"`
 	// Enable/disable router event logging. Valid values: `enable`, `disable`.
 	Router *string `pulumi:"router"`
 	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
@@ -173,6 +178,8 @@ type LogEventfilterState struct {
 	Fortiextender pulumi.StringPtrInput
 	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
 	Ha pulumi.StringPtrInput
+	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
+	RestApi pulumi.StringPtrInput
 	// Enable/disable router event logging. Valid values: `enable`, `disable`.
 	Router pulumi.StringPtrInput
 	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
@@ -214,6 +221,8 @@ type logEventfilterArgs struct {
 	Fortiextender *string `pulumi:"fortiextender"`
 	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
 	Ha *string `pulumi:"ha"`
+	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
+	RestApi *string `pulumi:"restApi"`
 	// Enable/disable router event logging. Valid values: `enable`, `disable`.
 	Router *string `pulumi:"router"`
 	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
@@ -252,6 +261,8 @@ type LogEventfilterArgs struct {
 	Fortiextender pulumi.StringPtrInput
 	// Enable/disable ha event logging. Valid values: `enable`, `disable`.
 	Ha pulumi.StringPtrInput
+	// Enable/disable REST API logging. Valid values: `enable`, `disable`.
+	RestApi pulumi.StringPtrInput
 	// Enable/disable router event logging. Valid values: `enable`, `disable`.
 	Router pulumi.StringPtrInput
 	// Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
@@ -286,7 +297,7 @@ type LogEventfilterInput interface {
 }
 
 func (*LogEventfilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogEventfilter)(nil))
+	return reflect.TypeOf((**LogEventfilter)(nil)).Elem()
 }
 
 func (i *LogEventfilter) ToLogEventfilterOutput() LogEventfilterOutput {
@@ -295,35 +306,6 @@ func (i *LogEventfilter) ToLogEventfilterOutput() LogEventfilterOutput {
 
 func (i *LogEventfilter) ToLogEventfilterOutputWithContext(ctx context.Context) LogEventfilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterOutput)
-}
-
-func (i *LogEventfilter) ToLogEventfilterPtrOutput() LogEventfilterPtrOutput {
-	return i.ToLogEventfilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogEventfilter) ToLogEventfilterPtrOutputWithContext(ctx context.Context) LogEventfilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterPtrOutput)
-}
-
-type LogEventfilterPtrInput interface {
-	pulumi.Input
-
-	ToLogEventfilterPtrOutput() LogEventfilterPtrOutput
-	ToLogEventfilterPtrOutputWithContext(ctx context.Context) LogEventfilterPtrOutput
-}
-
-type logEventfilterPtrType LogEventfilterArgs
-
-func (*logEventfilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogEventfilter)(nil))
-}
-
-func (i *logEventfilterPtrType) ToLogEventfilterPtrOutput() LogEventfilterPtrOutput {
-	return i.ToLogEventfilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logEventfilterPtrType) ToLogEventfilterPtrOutputWithContext(ctx context.Context) LogEventfilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterPtrOutput)
 }
 
 // LogEventfilterArrayInput is an input type that accepts LogEventfilterArray and LogEventfilterArrayOutput values.
@@ -340,7 +322,7 @@ type LogEventfilterArrayInput interface {
 type LogEventfilterArray []LogEventfilterInput
 
 func (LogEventfilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogEventfilter)(nil))
+	return reflect.TypeOf((*[]*LogEventfilter)(nil)).Elem()
 }
 
 func (i LogEventfilterArray) ToLogEventfilterArrayOutput() LogEventfilterArrayOutput {
@@ -365,7 +347,7 @@ type LogEventfilterMapInput interface {
 type LogEventfilterMap map[string]LogEventfilterInput
 
 func (LogEventfilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogEventfilter)(nil))
+	return reflect.TypeOf((*map[string]*LogEventfilter)(nil)).Elem()
 }
 
 func (i LogEventfilterMap) ToLogEventfilterMapOutput() LogEventfilterMapOutput {
@@ -376,12 +358,10 @@ func (i LogEventfilterMap) ToLogEventfilterMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogEventfilterMapOutput)
 }
 
-type LogEventfilterOutput struct {
-	*pulumi.OutputState
-}
+type LogEventfilterOutput struct{ *pulumi.OutputState }
 
 func (LogEventfilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogEventfilter)(nil))
+	return reflect.TypeOf((**LogEventfilter)(nil)).Elem()
 }
 
 func (o LogEventfilterOutput) ToLogEventfilterOutput() LogEventfilterOutput {
@@ -392,36 +372,10 @@ func (o LogEventfilterOutput) ToLogEventfilterOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o LogEventfilterOutput) ToLogEventfilterPtrOutput() LogEventfilterPtrOutput {
-	return o.ToLogEventfilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogEventfilterOutput) ToLogEventfilterPtrOutputWithContext(ctx context.Context) LogEventfilterPtrOutput {
-	return o.ApplyT(func(v LogEventfilter) *LogEventfilter {
-		return &v
-	}).(LogEventfilterPtrOutput)
-}
-
-type LogEventfilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogEventfilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogEventfilter)(nil))
-}
-
-func (o LogEventfilterPtrOutput) ToLogEventfilterPtrOutput() LogEventfilterPtrOutput {
-	return o
-}
-
-func (o LogEventfilterPtrOutput) ToLogEventfilterPtrOutputWithContext(ctx context.Context) LogEventfilterPtrOutput {
-	return o
-}
-
 type LogEventfilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogEventfilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogEventfilter)(nil))
+	return reflect.TypeOf((*[]*LogEventfilter)(nil)).Elem()
 }
 
 func (o LogEventfilterArrayOutput) ToLogEventfilterArrayOutput() LogEventfilterArrayOutput {
@@ -433,15 +387,15 @@ func (o LogEventfilterArrayOutput) ToLogEventfilterArrayOutputWithContext(ctx co
 }
 
 func (o LogEventfilterArrayOutput) Index(i pulumi.IntInput) LogEventfilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogEventfilter {
-		return vs[0].([]LogEventfilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogEventfilter {
+		return vs[0].([]*LogEventfilter)[vs[1].(int)]
 	}).(LogEventfilterOutput)
 }
 
 type LogEventfilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogEventfilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogEventfilter)(nil))
+	return reflect.TypeOf((*map[string]*LogEventfilter)(nil)).Elem()
 }
 
 func (o LogEventfilterMapOutput) ToLogEventfilterMapOutput() LogEventfilterMapOutput {
@@ -453,14 +407,16 @@ func (o LogEventfilterMapOutput) ToLogEventfilterMapOutputWithContext(ctx contex
 }
 
 func (o LogEventfilterMapOutput) MapIndex(k pulumi.StringInput) LogEventfilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogEventfilter {
-		return vs[0].(map[string]LogEventfilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogEventfilter {
+		return vs[0].(map[string]*LogEventfilter)[vs[1].(string)]
 	}).(LogEventfilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogEventfilterInput)(nil)).Elem(), &LogEventfilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogEventfilterArrayInput)(nil)).Elem(), LogEventfilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogEventfilterMapInput)(nil)).Elem(), LogEventfilterMap{})
 	pulumi.RegisterOutputType(LogEventfilterOutput{})
-	pulumi.RegisterOutputType(LogEventfilterPtrOutput{})
 	pulumi.RegisterOutputType(LogEventfilterArrayOutput{})
 	pulumi.RegisterOutputType(LogEventfilterMapOutput{})
 }

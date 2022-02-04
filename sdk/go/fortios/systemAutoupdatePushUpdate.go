@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure push updates.
+// Configure push updates. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,7 @@ func NewSystemAutoupdatePushUpdate(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutoupdatePushUpdate
 	err := ctx.RegisterResource("fortios:index/systemAutoupdatePushUpdate:SystemAutoupdatePushUpdate", name, args, &resource, opts...)
 	if err != nil {
@@ -172,7 +173,7 @@ type SystemAutoupdatePushUpdateInput interface {
 }
 
 func (*SystemAutoupdatePushUpdate) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoupdatePushUpdate)(nil))
+	return reflect.TypeOf((**SystemAutoupdatePushUpdate)(nil)).Elem()
 }
 
 func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdateOutput() SystemAutoupdatePushUpdateOutput {
@@ -181,35 +182,6 @@ func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdateOutput() System
 
 func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdateOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdateOutput)
-}
-
-func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdatePtrOutput() SystemAutoupdatePushUpdatePtrOutput {
-	return i.ToSystemAutoupdatePushUpdatePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutoupdatePushUpdate) ToSystemAutoupdatePushUpdatePtrOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdatePtrOutput)
-}
-
-type SystemAutoupdatePushUpdatePtrInput interface {
-	pulumi.Input
-
-	ToSystemAutoupdatePushUpdatePtrOutput() SystemAutoupdatePushUpdatePtrOutput
-	ToSystemAutoupdatePushUpdatePtrOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdatePtrOutput
-}
-
-type systemAutoupdatePushUpdatePtrType SystemAutoupdatePushUpdateArgs
-
-func (*systemAutoupdatePushUpdatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoupdatePushUpdate)(nil))
-}
-
-func (i *systemAutoupdatePushUpdatePtrType) ToSystemAutoupdatePushUpdatePtrOutput() SystemAutoupdatePushUpdatePtrOutput {
-	return i.ToSystemAutoupdatePushUpdatePtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutoupdatePushUpdatePtrType) ToSystemAutoupdatePushUpdatePtrOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdatePtrOutput)
 }
 
 // SystemAutoupdatePushUpdateArrayInput is an input type that accepts SystemAutoupdatePushUpdateArray and SystemAutoupdatePushUpdateArrayOutput values.
@@ -226,7 +198,7 @@ type SystemAutoupdatePushUpdateArrayInput interface {
 type SystemAutoupdatePushUpdateArray []SystemAutoupdatePushUpdateInput
 
 func (SystemAutoupdatePushUpdateArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutoupdatePushUpdate)(nil))
+	return reflect.TypeOf((*[]*SystemAutoupdatePushUpdate)(nil)).Elem()
 }
 
 func (i SystemAutoupdatePushUpdateArray) ToSystemAutoupdatePushUpdateArrayOutput() SystemAutoupdatePushUpdateArrayOutput {
@@ -251,7 +223,7 @@ type SystemAutoupdatePushUpdateMapInput interface {
 type SystemAutoupdatePushUpdateMap map[string]SystemAutoupdatePushUpdateInput
 
 func (SystemAutoupdatePushUpdateMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutoupdatePushUpdate)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoupdatePushUpdate)(nil)).Elem()
 }
 
 func (i SystemAutoupdatePushUpdateMap) ToSystemAutoupdatePushUpdateMapOutput() SystemAutoupdatePushUpdateMapOutput {
@@ -262,12 +234,10 @@ func (i SystemAutoupdatePushUpdateMap) ToSystemAutoupdatePushUpdateMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdatePushUpdateMapOutput)
 }
 
-type SystemAutoupdatePushUpdateOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutoupdatePushUpdateOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdatePushUpdateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoupdatePushUpdate)(nil))
+	return reflect.TypeOf((**SystemAutoupdatePushUpdate)(nil)).Elem()
 }
 
 func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdateOutput() SystemAutoupdatePushUpdateOutput {
@@ -278,36 +248,10 @@ func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdateOutputWith
 	return o
 }
 
-func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdatePtrOutput() SystemAutoupdatePushUpdatePtrOutput {
-	return o.ToSystemAutoupdatePushUpdatePtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutoupdatePushUpdateOutput) ToSystemAutoupdatePushUpdatePtrOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdatePtrOutput {
-	return o.ApplyT(func(v SystemAutoupdatePushUpdate) *SystemAutoupdatePushUpdate {
-		return &v
-	}).(SystemAutoupdatePushUpdatePtrOutput)
-}
-
-type SystemAutoupdatePushUpdatePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutoupdatePushUpdatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoupdatePushUpdate)(nil))
-}
-
-func (o SystemAutoupdatePushUpdatePtrOutput) ToSystemAutoupdatePushUpdatePtrOutput() SystemAutoupdatePushUpdatePtrOutput {
-	return o
-}
-
-func (o SystemAutoupdatePushUpdatePtrOutput) ToSystemAutoupdatePushUpdatePtrOutputWithContext(ctx context.Context) SystemAutoupdatePushUpdatePtrOutput {
-	return o
-}
-
 type SystemAutoupdatePushUpdateArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdatePushUpdateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutoupdatePushUpdate)(nil))
+	return reflect.TypeOf((*[]*SystemAutoupdatePushUpdate)(nil)).Elem()
 }
 
 func (o SystemAutoupdatePushUpdateArrayOutput) ToSystemAutoupdatePushUpdateArrayOutput() SystemAutoupdatePushUpdateArrayOutput {
@@ -319,15 +263,15 @@ func (o SystemAutoupdatePushUpdateArrayOutput) ToSystemAutoupdatePushUpdateArray
 }
 
 func (o SystemAutoupdatePushUpdateArrayOutput) Index(i pulumi.IntInput) SystemAutoupdatePushUpdateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutoupdatePushUpdate {
-		return vs[0].([]SystemAutoupdatePushUpdate)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoupdatePushUpdate {
+		return vs[0].([]*SystemAutoupdatePushUpdate)[vs[1].(int)]
 	}).(SystemAutoupdatePushUpdateOutput)
 }
 
 type SystemAutoupdatePushUpdateMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdatePushUpdateMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutoupdatePushUpdate)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoupdatePushUpdate)(nil)).Elem()
 }
 
 func (o SystemAutoupdatePushUpdateMapOutput) ToSystemAutoupdatePushUpdateMapOutput() SystemAutoupdatePushUpdateMapOutput {
@@ -339,14 +283,16 @@ func (o SystemAutoupdatePushUpdateMapOutput) ToSystemAutoupdatePushUpdateMapOutp
 }
 
 func (o SystemAutoupdatePushUpdateMapOutput) MapIndex(k pulumi.StringInput) SystemAutoupdatePushUpdateOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutoupdatePushUpdate {
-		return vs[0].(map[string]SystemAutoupdatePushUpdate)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutoupdatePushUpdate {
+		return vs[0].(map[string]*SystemAutoupdatePushUpdate)[vs[1].(string)]
 	}).(SystemAutoupdatePushUpdateOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdatePushUpdateInput)(nil)).Elem(), &SystemAutoupdatePushUpdate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdatePushUpdateArrayInput)(nil)).Elem(), SystemAutoupdatePushUpdateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdatePushUpdateMapInput)(nil)).Elem(), SystemAutoupdatePushUpdateMap{})
 	pulumi.RegisterOutputType(SystemAutoupdatePushUpdateOutput{})
-	pulumi.RegisterOutputType(SystemAutoupdatePushUpdatePtrOutput{})
 	pulumi.RegisterOutputType(SystemAutoupdatePushUpdateArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutoupdatePushUpdateMapOutput{})
 }

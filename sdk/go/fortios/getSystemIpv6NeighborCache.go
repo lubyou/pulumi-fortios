@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system ipv6neighborcache
 func LookupSystemIpv6NeighborCache(ctx *pulumi.Context, args *LookupSystemIpv6NeighborCacheArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpv6NeighborCacheResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemIpv6NeighborCacheResult
 	err := ctx.Invoke("fortios:index/getSystemIpv6NeighborCache:GetSystemIpv6NeighborCache", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,73 @@ type LookupSystemIpv6NeighborCacheResult struct {
 	// MAC address (format: xx:xx:xx:xx:xx:xx).
 	Mac       string  `pulumi:"mac"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemIpv6NeighborCacheOutput(ctx *pulumi.Context, args LookupSystemIpv6NeighborCacheOutputArgs, opts ...pulumi.InvokeOption) LookupSystemIpv6NeighborCacheResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemIpv6NeighborCacheResult, error) {
+			args := v.(LookupSystemIpv6NeighborCacheArgs)
+			r, err := LookupSystemIpv6NeighborCache(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemIpv6NeighborCacheResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemIpv6NeighborCache.
+type LookupSystemIpv6NeighborCacheOutputArgs struct {
+	// Specify the fosid of the desired system ipv6neighborcache.
+	Fosid pulumi.IntInput `pulumi:"fosid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemIpv6NeighborCacheOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemIpv6NeighborCacheArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemIpv6NeighborCache.
+type LookupSystemIpv6NeighborCacheResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemIpv6NeighborCacheResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemIpv6NeighborCacheResult)(nil)).Elem()
+}
+
+func (o LookupSystemIpv6NeighborCacheResultOutput) ToLookupSystemIpv6NeighborCacheResultOutput() LookupSystemIpv6NeighborCacheResultOutput {
+	return o
+}
+
+func (o LookupSystemIpv6NeighborCacheResultOutput) ToLookupSystemIpv6NeighborCacheResultOutputWithContext(ctx context.Context) LookupSystemIpv6NeighborCacheResultOutput {
+	return o
+}
+
+// Unique integer ID of the entry.
+func (o LookupSystemIpv6NeighborCacheResultOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) int { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemIpv6NeighborCacheResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Select the associated interface name from available options.
+func (o LookupSystemIpv6NeighborCacheResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// IPv6 address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
+func (o LookupSystemIpv6NeighborCacheResultOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+// MAC address (format: xx:xx:xx:xx:xx:xx).
+func (o LookupSystemIpv6NeighborCacheResultOutput) Mac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) string { return v.Mac }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemIpv6NeighborCacheResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemIpv6NeighborCacheResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemIpv6NeighborCacheResultOutput{})
 }

@@ -95,6 +95,10 @@ export class LogEventfilter extends pulumi.CustomResource {
      */
     public readonly ha!: pulumi.Output<string>;
     /**
+     * Enable/disable REST API logging. Valid values: `enable`, `disable`.
+     */
+    public readonly restApi!: pulumi.Output<string>;
+    /**
      * Enable/disable router event logging. Valid values: `enable`, `disable`.
      */
     public readonly router!: pulumi.Output<string>;
@@ -144,51 +148,51 @@ export class LogEventfilter extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogEventfilterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogEventfilterArgs | LogEventfilterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogEventfilterState | undefined;
-            inputs["cifs"] = state ? state.cifs : undefined;
-            inputs["complianceCheck"] = state ? state.complianceCheck : undefined;
-            inputs["connector"] = state ? state.connector : undefined;
-            inputs["endpoint"] = state ? state.endpoint : undefined;
-            inputs["event"] = state ? state.event : undefined;
-            inputs["fortiextender"] = state ? state.fortiextender : undefined;
-            inputs["ha"] = state ? state.ha : undefined;
-            inputs["router"] = state ? state.router : undefined;
-            inputs["sdwan"] = state ? state.sdwan : undefined;
-            inputs["securityRating"] = state ? state.securityRating : undefined;
-            inputs["switchController"] = state ? state.switchController : undefined;
-            inputs["system"] = state ? state.system : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vpn"] = state ? state.vpn : undefined;
-            inputs["wanOpt"] = state ? state.wanOpt : undefined;
-            inputs["wirelessActivity"] = state ? state.wirelessActivity : undefined;
+            resourceInputs["cifs"] = state ? state.cifs : undefined;
+            resourceInputs["complianceCheck"] = state ? state.complianceCheck : undefined;
+            resourceInputs["connector"] = state ? state.connector : undefined;
+            resourceInputs["endpoint"] = state ? state.endpoint : undefined;
+            resourceInputs["event"] = state ? state.event : undefined;
+            resourceInputs["fortiextender"] = state ? state.fortiextender : undefined;
+            resourceInputs["ha"] = state ? state.ha : undefined;
+            resourceInputs["restApi"] = state ? state.restApi : undefined;
+            resourceInputs["router"] = state ? state.router : undefined;
+            resourceInputs["sdwan"] = state ? state.sdwan : undefined;
+            resourceInputs["securityRating"] = state ? state.securityRating : undefined;
+            resourceInputs["switchController"] = state ? state.switchController : undefined;
+            resourceInputs["system"] = state ? state.system : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vpn"] = state ? state.vpn : undefined;
+            resourceInputs["wanOpt"] = state ? state.wanOpt : undefined;
+            resourceInputs["wirelessActivity"] = state ? state.wirelessActivity : undefined;
         } else {
             const args = argsOrState as LogEventfilterArgs | undefined;
-            inputs["cifs"] = args ? args.cifs : undefined;
-            inputs["complianceCheck"] = args ? args.complianceCheck : undefined;
-            inputs["connector"] = args ? args.connector : undefined;
-            inputs["endpoint"] = args ? args.endpoint : undefined;
-            inputs["event"] = args ? args.event : undefined;
-            inputs["fortiextender"] = args ? args.fortiextender : undefined;
-            inputs["ha"] = args ? args.ha : undefined;
-            inputs["router"] = args ? args.router : undefined;
-            inputs["sdwan"] = args ? args.sdwan : undefined;
-            inputs["securityRating"] = args ? args.securityRating : undefined;
-            inputs["switchController"] = args ? args.switchController : undefined;
-            inputs["system"] = args ? args.system : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vpn"] = args ? args.vpn : undefined;
-            inputs["wanOpt"] = args ? args.wanOpt : undefined;
-            inputs["wirelessActivity"] = args ? args.wirelessActivity : undefined;
+            resourceInputs["cifs"] = args ? args.cifs : undefined;
+            resourceInputs["complianceCheck"] = args ? args.complianceCheck : undefined;
+            resourceInputs["connector"] = args ? args.connector : undefined;
+            resourceInputs["endpoint"] = args ? args.endpoint : undefined;
+            resourceInputs["event"] = args ? args.event : undefined;
+            resourceInputs["fortiextender"] = args ? args.fortiextender : undefined;
+            resourceInputs["ha"] = args ? args.ha : undefined;
+            resourceInputs["restApi"] = args ? args.restApi : undefined;
+            resourceInputs["router"] = args ? args.router : undefined;
+            resourceInputs["sdwan"] = args ? args.sdwan : undefined;
+            resourceInputs["securityRating"] = args ? args.securityRating : undefined;
+            resourceInputs["switchController"] = args ? args.switchController : undefined;
+            resourceInputs["system"] = args ? args.system : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vpn"] = args ? args.vpn : undefined;
+            resourceInputs["wanOpt"] = args ? args.wanOpt : undefined;
+            resourceInputs["wirelessActivity"] = args ? args.wirelessActivity : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogEventfilter.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogEventfilter.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -224,6 +228,10 @@ export interface LogEventfilterState {
      * Enable/disable ha event logging. Valid values: `enable`, `disable`.
      */
     ha?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API logging. Valid values: `enable`, `disable`.
+     */
+    restApi?: pulumi.Input<string>;
     /**
      * Enable/disable router event logging. Valid values: `enable`, `disable`.
      */
@@ -298,6 +306,10 @@ export interface LogEventfilterArgs {
      * Enable/disable ha event logging. Valid values: `enable`, `disable`.
      */
     ha?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API logging. Valid values: `enable`, `disable`.
+     */
+    restApi?: pulumi.Input<string>;
     /**
      * Enable/disable router event logging. Valid values: `enable`, `disable`.
      */

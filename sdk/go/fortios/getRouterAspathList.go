@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios router aspathlist
 func LookupRouterAspathList(ctx *pulumi.Context, args *LookupRouterAspathListArgs, opts ...pulumi.InvokeOption) (*LookupRouterAspathListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterAspathListResult
 	err := ctx.Invoke("fortios:index/getRouterAspathList:GetRouterAspathList", args, &rv, opts...)
 	if err != nil {
@@ -34,4 +38,63 @@ type LookupRouterAspathListResult struct {
 	// AS path list rule. The structure of `rule` block is documented below.
 	Rules     []GetRouterAspathListRule `pulumi:"rules"`
 	Vdomparam *string                   `pulumi:"vdomparam"`
+}
+
+func LookupRouterAspathListOutput(ctx *pulumi.Context, args LookupRouterAspathListOutputArgs, opts ...pulumi.InvokeOption) LookupRouterAspathListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterAspathListResult, error) {
+			args := v.(LookupRouterAspathListArgs)
+			r, err := LookupRouterAspathList(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterAspathListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterAspathList.
+type LookupRouterAspathListOutputArgs struct {
+	// Specify the name of the desired router aspathlist.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterAspathListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterAspathListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterAspathList.
+type LookupRouterAspathListResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterAspathListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterAspathListResult)(nil)).Elem()
+}
+
+func (o LookupRouterAspathListResultOutput) ToLookupRouterAspathListResultOutput() LookupRouterAspathListResultOutput {
+	return o
+}
+
+func (o LookupRouterAspathListResultOutput) ToLookupRouterAspathListResultOutputWithContext(ctx context.Context) LookupRouterAspathListResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterAspathListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterAspathListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// AS path list name.
+func (o LookupRouterAspathListResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterAspathListResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// AS path list rule. The structure of `rule` block is documented below.
+func (o LookupRouterAspathListResultOutput) Rules() GetRouterAspathListRuleArrayOutput {
+	return o.ApplyT(func(v LookupRouterAspathListResult) []GetRouterAspathListRule { return v.Rules }).(GetRouterAspathListRuleArrayOutput)
+}
+
+func (o LookupRouterAspathListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterAspathListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterAspathListResultOutput{})
 }

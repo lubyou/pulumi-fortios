@@ -73,7 +73,9 @@ class RouterBgpArgs:
                  router_id: Optional[pulumi.Input[str]] = None,
                  scan_time: Optional[pulumi.Input[int]] = None,
                  synchronization: Optional[pulumi.Input[str]] = None,
+                 tag_resolve_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 vrf_leak6s: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]]] = None,
                  vrf_leaks: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeakArgs']]]] = None):
         """
         The set of arguments for constructing a RouterBgp resource.
@@ -127,7 +129,7 @@ class RouterBgpArgs:
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNeighborRangeArgs']]] neighbor_ranges: BGP neighbor range table. The structure of `neighbor_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNeighborArgs']]] neighbors: BGP neighbor table. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNetwork6Args']]] network6s: BGP IPv6 network table. The structure of `network6` block is documented below.
-        :param pulumi.Input[str] network_import_check: Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNetworkArgs']]] networks: BGP network table. The structure of `network` block is documented below.
         :param pulumi.Input[str] recursive_next_hop: Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpRedistribute6Args']]] redistribute6s: BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -135,7 +137,9 @@ class RouterBgpArgs:
         :param pulumi.Input[str] router_id: Router ID.
         :param pulumi.Input[int] scan_time: Background scanner interval (sec), 0 to disable it.
         :param pulumi.Input[str] synchronization: Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tag_resolve_mode: Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]] vrf_leak6s: BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeakArgs']]] vrf_leaks: BGP VRF leaking table. The structure of `vrf_leak` block is documented below.
         """
         pulumi.set(__self__, "as_", as_)
@@ -253,8 +257,12 @@ class RouterBgpArgs:
             pulumi.set(__self__, "scan_time", scan_time)
         if synchronization is not None:
             pulumi.set(__self__, "synchronization", synchronization)
+        if tag_resolve_mode is not None:
+            pulumi.set(__self__, "tag_resolve_mode", tag_resolve_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if vrf_leak6s is not None:
+            pulumi.set(__self__, "vrf_leak6s", vrf_leak6s)
         if vrf_leaks is not None:
             pulumi.set(__self__, "vrf_leaks", vrf_leaks)
 
@@ -862,7 +870,7 @@ class RouterBgpArgs:
     @pulumi.getter(name="networkImportCheck")
     def network_import_check(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         """
         return pulumi.get(self, "network_import_check")
 
@@ -955,6 +963,18 @@ class RouterBgpArgs:
         pulumi.set(self, "synchronization", value)
 
     @property
+    @pulumi.getter(name="tagResolveMode")
+    def tag_resolve_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+        """
+        return pulumi.get(self, "tag_resolve_mode")
+
+    @tag_resolve_mode.setter
+    def tag_resolve_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_resolve_mode", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -965,6 +985,18 @@ class RouterBgpArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="vrfLeak6s")
+    def vrf_leak6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]]]:
+        """
+        BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
+        """
+        return pulumi.get(self, "vrf_leak6s")
+
+    @vrf_leak6s.setter
+    def vrf_leak6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]]]):
+        pulumi.set(self, "vrf_leak6s", value)
 
     @property
     @pulumi.getter(name="vrfLeaks")
@@ -1040,7 +1072,9 @@ class _RouterBgpState:
                  router_id: Optional[pulumi.Input[str]] = None,
                  scan_time: Optional[pulumi.Input[int]] = None,
                  synchronization: Optional[pulumi.Input[str]] = None,
+                 tag_resolve_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 vrf_leak6s: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]]] = None,
                  vrf_leaks: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeakArgs']]]] = None):
         """
         Input properties used for looking up and filtering RouterBgp resources.
@@ -1094,7 +1128,7 @@ class _RouterBgpState:
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNeighborRangeArgs']]] neighbor_ranges: BGP neighbor range table. The structure of `neighbor_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNeighborArgs']]] neighbors: BGP neighbor table. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNetwork6Args']]] network6s: BGP IPv6 network table. The structure of `network6` block is documented below.
-        :param pulumi.Input[str] network_import_check: Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpNetworkArgs']]] networks: BGP network table. The structure of `network` block is documented below.
         :param pulumi.Input[str] recursive_next_hop: Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpRedistribute6Args']]] redistribute6s: BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -1102,7 +1136,9 @@ class _RouterBgpState:
         :param pulumi.Input[str] router_id: Router ID.
         :param pulumi.Input[int] scan_time: Background scanner interval (sec), 0 to disable it.
         :param pulumi.Input[str] synchronization: Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tag_resolve_mode: Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]] vrf_leak6s: BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeakArgs']]] vrf_leaks: BGP VRF leaking table. The structure of `vrf_leak` block is documented below.
         """
         if additional_path is not None:
@@ -1221,8 +1257,12 @@ class _RouterBgpState:
             pulumi.set(__self__, "scan_time", scan_time)
         if synchronization is not None:
             pulumi.set(__self__, "synchronization", synchronization)
+        if tag_resolve_mode is not None:
+            pulumi.set(__self__, "tag_resolve_mode", tag_resolve_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if vrf_leak6s is not None:
+            pulumi.set(__self__, "vrf_leak6s", vrf_leak6s)
         if vrf_leaks is not None:
             pulumi.set(__self__, "vrf_leaks", vrf_leaks)
 
@@ -1830,7 +1870,7 @@ class _RouterBgpState:
     @pulumi.getter(name="networkImportCheck")
     def network_import_check(self) -> Optional[pulumi.Input[str]]:
         """
-        Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         """
         return pulumi.get(self, "network_import_check")
 
@@ -1923,6 +1963,18 @@ class _RouterBgpState:
         pulumi.set(self, "synchronization", value)
 
     @property
+    @pulumi.getter(name="tagResolveMode")
+    def tag_resolve_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+        """
+        return pulumi.get(self, "tag_resolve_mode")
+
+    @tag_resolve_mode.setter
+    def tag_resolve_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_resolve_mode", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1933,6 +1985,18 @@ class _RouterBgpState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="vrfLeak6s")
+    def vrf_leak6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]]]:
+        """
+        BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
+        """
+        return pulumi.get(self, "vrf_leak6s")
+
+    @vrf_leak6s.setter
+    def vrf_leak6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterBgpVrfLeak6Args']]]]):
+        pulumi.set(self, "vrf_leak6s", value)
 
     @property
     @pulumi.getter(name="vrfLeaks")
@@ -2010,7 +2074,9 @@ class RouterBgp(pulumi.CustomResource):
                  router_id: Optional[pulumi.Input[str]] = None,
                  scan_time: Optional[pulumi.Input[int]] = None,
                  synchronization: Optional[pulumi.Input[str]] = None,
+                 tag_resolve_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 vrf_leak6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeak6Args']]]]] = None,
                  vrf_leaks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeakArgs']]]]] = None,
                  __props__=None):
         """
@@ -2165,7 +2231,7 @@ class RouterBgp(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNeighborRangeArgs']]]] neighbor_ranges: BGP neighbor range table. The structure of `neighbor_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNeighborArgs']]]] neighbors: BGP neighbor table. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNetwork6Args']]]] network6s: BGP IPv6 network table. The structure of `network6` block is documented below.
-        :param pulumi.Input[str] network_import_check: Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNetworkArgs']]]] networks: BGP network table. The structure of `network` block is documented below.
         :param pulumi.Input[str] recursive_next_hop: Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpRedistribute6Args']]]] redistribute6s: BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -2173,7 +2239,9 @@ class RouterBgp(pulumi.CustomResource):
         :param pulumi.Input[str] router_id: Router ID.
         :param pulumi.Input[int] scan_time: Background scanner interval (sec), 0 to disable it.
         :param pulumi.Input[str] synchronization: Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tag_resolve_mode: Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeak6Args']]]] vrf_leak6s: BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeakArgs']]]] vrf_leaks: BGP VRF leaking table. The structure of `vrf_leak` block is documented below.
         """
         ...
@@ -2355,7 +2423,9 @@ class RouterBgp(pulumi.CustomResource):
                  router_id: Optional[pulumi.Input[str]] = None,
                  scan_time: Optional[pulumi.Input[int]] = None,
                  synchronization: Optional[pulumi.Input[str]] = None,
+                 tag_resolve_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 vrf_leak6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeak6Args']]]]] = None,
                  vrf_leaks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeakArgs']]]]] = None,
                  __props__=None):
         if opts is None:
@@ -2364,6 +2434,8 @@ class RouterBgp(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -2429,7 +2501,9 @@ class RouterBgp(pulumi.CustomResource):
             __props__.__dict__["router_id"] = router_id
             __props__.__dict__["scan_time"] = scan_time
             __props__.__dict__["synchronization"] = synchronization
+            __props__.__dict__["tag_resolve_mode"] = tag_resolve_mode
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["vrf_leak6s"] = vrf_leak6s
             __props__.__dict__["vrf_leaks"] = vrf_leaks
         super(RouterBgp, __self__).__init__(
             'fortios:index/routerBgp:RouterBgp',
@@ -2499,7 +2573,9 @@ class RouterBgp(pulumi.CustomResource):
             router_id: Optional[pulumi.Input[str]] = None,
             scan_time: Optional[pulumi.Input[int]] = None,
             synchronization: Optional[pulumi.Input[str]] = None,
+            tag_resolve_mode: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            vrf_leak6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeak6Args']]]]] = None,
             vrf_leaks: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeakArgs']]]]] = None) -> 'RouterBgp':
         """
         Get an existing RouterBgp resource's state with the given name, id, and optional extra
@@ -2558,7 +2634,7 @@ class RouterBgp(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNeighborRangeArgs']]]] neighbor_ranges: BGP neighbor range table. The structure of `neighbor_range` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNeighborArgs']]]] neighbors: BGP neighbor table. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNetwork6Args']]]] network6s: BGP IPv6 network table. The structure of `network6` block is documented below.
-        :param pulumi.Input[str] network_import_check: Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpNetworkArgs']]]] networks: BGP network table. The structure of `network` block is documented below.
         :param pulumi.Input[str] recursive_next_hop: Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpRedistribute6Args']]]] redistribute6s: BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -2566,7 +2642,9 @@ class RouterBgp(pulumi.CustomResource):
         :param pulumi.Input[str] router_id: Router ID.
         :param pulumi.Input[int] scan_time: Background scanner interval (sec), 0 to disable it.
         :param pulumi.Input[str] synchronization: Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tag_resolve_mode: Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeak6Args']]]] vrf_leak6s: BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterBgpVrfLeakArgs']]]] vrf_leaks: BGP VRF leaking table. The structure of `vrf_leak` block is documented below.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -2631,7 +2709,9 @@ class RouterBgp(pulumi.CustomResource):
         __props__.__dict__["router_id"] = router_id
         __props__.__dict__["scan_time"] = scan_time
         __props__.__dict__["synchronization"] = synchronization
+        __props__.__dict__["tag_resolve_mode"] = tag_resolve_mode
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["vrf_leak6s"] = vrf_leak6s
         __props__.__dict__["vrf_leaks"] = vrf_leaks
         return RouterBgp(resource_name, opts=opts, __props__=__props__)
 
@@ -3039,7 +3119,7 @@ class RouterBgp(pulumi.CustomResource):
     @pulumi.getter(name="networkImportCheck")
     def network_import_check(self) -> pulumi.Output[str]:
         """
-        Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         """
         return pulumi.get(self, "network_import_check")
 
@@ -3100,12 +3180,28 @@ class RouterBgp(pulumi.CustomResource):
         return pulumi.get(self, "synchronization")
 
     @property
+    @pulumi.getter(name="tagResolveMode")
+    def tag_resolve_mode(self) -> pulumi.Output[str]:
+        """
+        Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+        """
+        return pulumi.get(self, "tag_resolve_mode")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> pulumi.Output[Optional[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="vrfLeak6s")
+    def vrf_leak6s(self) -> pulumi.Output[Optional[Sequence['outputs.RouterBgpVrfLeak6']]]:
+        """
+        BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
+        """
+        return pulumi.get(self, "vrf_leak6s")
 
     @property
     @pulumi.getter(name="vrfLeaks")

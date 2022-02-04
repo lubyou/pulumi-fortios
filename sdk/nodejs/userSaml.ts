@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * SAML server entry configuration.
+ * SAML server entry configuration. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Example Usage
  *
@@ -65,13 +65,29 @@ export class UserSaml extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly adfsClaim!: pulumi.Output<string>;
+    /**
      * Certificate to sign SAML messages.
      */
     public readonly cert!: pulumi.Output<string>;
     /**
+     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+     */
+    public readonly clockTolerance!: pulumi.Output<number>;
+    /**
+     * Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+     */
+    public readonly digestMethod!: pulumi.Output<string>;
+    /**
      * SP entity ID.
      */
     public readonly entityId!: pulumi.Output<string>;
+    /**
+     * Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+     */
+    public readonly groupClaimType!: pulumi.Output<string>;
     /**
      * Group name in assertion statement.
      */
@@ -93,6 +109,10 @@ export class UserSaml extends pulumi.CustomResource {
      */
     public readonly idpSingleSignOnUrl!: pulumi.Output<string>;
     /**
+     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
+     */
+    public readonly limitRelaystate!: pulumi.Output<string>;
+    /**
      * SAML server entry name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -104,6 +124,10 @@ export class UserSaml extends pulumi.CustomResource {
      * SP single sign-on URL.
      */
     public readonly singleSignOnUrl!: pulumi.Output<string>;
+    /**
+     * User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+     */
+    public readonly userClaimType!: pulumi.Output<string>;
     /**
      * User name in assertion statement.
      */
@@ -122,22 +146,28 @@ export class UserSaml extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserSamlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserSamlArgs | UserSamlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserSamlState | undefined;
-            inputs["cert"] = state ? state.cert : undefined;
-            inputs["entityId"] = state ? state.entityId : undefined;
-            inputs["groupName"] = state ? state.groupName : undefined;
-            inputs["idpCert"] = state ? state.idpCert : undefined;
-            inputs["idpEntityId"] = state ? state.idpEntityId : undefined;
-            inputs["idpSingleLogoutUrl"] = state ? state.idpSingleLogoutUrl : undefined;
-            inputs["idpSingleSignOnUrl"] = state ? state.idpSingleSignOnUrl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["singleLogoutUrl"] = state ? state.singleLogoutUrl : undefined;
-            inputs["singleSignOnUrl"] = state ? state.singleSignOnUrl : undefined;
-            inputs["userName"] = state ? state.userName : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["adfsClaim"] = state ? state.adfsClaim : undefined;
+            resourceInputs["cert"] = state ? state.cert : undefined;
+            resourceInputs["clockTolerance"] = state ? state.clockTolerance : undefined;
+            resourceInputs["digestMethod"] = state ? state.digestMethod : undefined;
+            resourceInputs["entityId"] = state ? state.entityId : undefined;
+            resourceInputs["groupClaimType"] = state ? state.groupClaimType : undefined;
+            resourceInputs["groupName"] = state ? state.groupName : undefined;
+            resourceInputs["idpCert"] = state ? state.idpCert : undefined;
+            resourceInputs["idpEntityId"] = state ? state.idpEntityId : undefined;
+            resourceInputs["idpSingleLogoutUrl"] = state ? state.idpSingleLogoutUrl : undefined;
+            resourceInputs["idpSingleSignOnUrl"] = state ? state.idpSingleSignOnUrl : undefined;
+            resourceInputs["limitRelaystate"] = state ? state.limitRelaystate : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["singleLogoutUrl"] = state ? state.singleLogoutUrl : undefined;
+            resourceInputs["singleSignOnUrl"] = state ? state.singleSignOnUrl : undefined;
+            resourceInputs["userClaimType"] = state ? state.userClaimType : undefined;
+            resourceInputs["userName"] = state ? state.userName : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserSamlArgs | undefined;
             if ((!args || args.entityId === undefined) && !opts.urn) {
@@ -155,23 +185,27 @@ export class UserSaml extends pulumi.CustomResource {
             if ((!args || args.singleSignOnUrl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'singleSignOnUrl'");
             }
-            inputs["cert"] = args ? args.cert : undefined;
-            inputs["entityId"] = args ? args.entityId : undefined;
-            inputs["groupName"] = args ? args.groupName : undefined;
-            inputs["idpCert"] = args ? args.idpCert : undefined;
-            inputs["idpEntityId"] = args ? args.idpEntityId : undefined;
-            inputs["idpSingleLogoutUrl"] = args ? args.idpSingleLogoutUrl : undefined;
-            inputs["idpSingleSignOnUrl"] = args ? args.idpSingleSignOnUrl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["singleLogoutUrl"] = args ? args.singleLogoutUrl : undefined;
-            inputs["singleSignOnUrl"] = args ? args.singleSignOnUrl : undefined;
-            inputs["userName"] = args ? args.userName : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["adfsClaim"] = args ? args.adfsClaim : undefined;
+            resourceInputs["cert"] = args ? args.cert : undefined;
+            resourceInputs["clockTolerance"] = args ? args.clockTolerance : undefined;
+            resourceInputs["digestMethod"] = args ? args.digestMethod : undefined;
+            resourceInputs["entityId"] = args ? args.entityId : undefined;
+            resourceInputs["groupClaimType"] = args ? args.groupClaimType : undefined;
+            resourceInputs["groupName"] = args ? args.groupName : undefined;
+            resourceInputs["idpCert"] = args ? args.idpCert : undefined;
+            resourceInputs["idpEntityId"] = args ? args.idpEntityId : undefined;
+            resourceInputs["idpSingleLogoutUrl"] = args ? args.idpSingleLogoutUrl : undefined;
+            resourceInputs["idpSingleSignOnUrl"] = args ? args.idpSingleSignOnUrl : undefined;
+            resourceInputs["limitRelaystate"] = args ? args.limitRelaystate : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["singleLogoutUrl"] = args ? args.singleLogoutUrl : undefined;
+            resourceInputs["singleSignOnUrl"] = args ? args.singleSignOnUrl : undefined;
+            resourceInputs["userClaimType"] = args ? args.userClaimType : undefined;
+            resourceInputs["userName"] = args ? args.userName : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserSaml.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserSaml.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -180,13 +214,29 @@ export class UserSaml extends pulumi.CustomResource {
  */
 export interface UserSamlState {
     /**
+     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
+     */
+    adfsClaim?: pulumi.Input<string>;
+    /**
      * Certificate to sign SAML messages.
      */
     cert?: pulumi.Input<string>;
     /**
+     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+     */
+    clockTolerance?: pulumi.Input<number>;
+    /**
+     * Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+     */
+    digestMethod?: pulumi.Input<string>;
+    /**
      * SP entity ID.
      */
     entityId?: pulumi.Input<string>;
+    /**
+     * Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+     */
+    groupClaimType?: pulumi.Input<string>;
     /**
      * Group name in assertion statement.
      */
@@ -208,6 +258,10 @@ export interface UserSamlState {
      */
     idpSingleSignOnUrl?: pulumi.Input<string>;
     /**
+     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
+     */
+    limitRelaystate?: pulumi.Input<string>;
+    /**
      * SAML server entry name.
      */
     name?: pulumi.Input<string>;
@@ -219,6 +273,10 @@ export interface UserSamlState {
      * SP single sign-on URL.
      */
     singleSignOnUrl?: pulumi.Input<string>;
+    /**
+     * User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+     */
+    userClaimType?: pulumi.Input<string>;
     /**
      * User name in assertion statement.
      */
@@ -234,13 +292,29 @@ export interface UserSamlState {
  */
 export interface UserSamlArgs {
     /**
+     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
+     */
+    adfsClaim?: pulumi.Input<string>;
+    /**
      * Certificate to sign SAML messages.
      */
     cert?: pulumi.Input<string>;
     /**
+     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+     */
+    clockTolerance?: pulumi.Input<number>;
+    /**
+     * Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+     */
+    digestMethod?: pulumi.Input<string>;
+    /**
      * SP entity ID.
      */
     entityId: pulumi.Input<string>;
+    /**
+     * Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+     */
+    groupClaimType?: pulumi.Input<string>;
     /**
      * Group name in assertion statement.
      */
@@ -262,6 +336,10 @@ export interface UserSamlArgs {
      */
     idpSingleSignOnUrl: pulumi.Input<string>;
     /**
+     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
+     */
+    limitRelaystate?: pulumi.Input<string>;
+    /**
      * SAML server entry name.
      */
     name?: pulumi.Input<string>;
@@ -273,6 +351,10 @@ export interface UserSamlArgs {
      * SP single sign-on URL.
      */
     singleSignOnUrl: pulumi.Input<string>;
+    /**
+     * User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+     */
+    userClaimType?: pulumi.Input<string>;
     /**
      * User name in assertion statement.
      */

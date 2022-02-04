@@ -13,6 +13,7 @@ __all__ = [
     'GetRouterPrefixList6Result',
     'AwaitableGetRouterPrefixList6Result',
     'get_router_prefix_list6',
+    'get_router_prefix_list6_output',
 ]
 
 @pulumi.output_type
@@ -105,6 +106,8 @@ def get_router_prefix_list6(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterPrefixList6:GetRouterPrefixList6', __args__, opts=opts, typ=GetRouterPrefixList6Result).value
 
     return AwaitableGetRouterPrefixList6Result(
@@ -113,3 +116,17 @@ def get_router_prefix_list6(name: Optional[str] = None,
         name=__ret__.name,
         rules=__ret__.rules,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_router_prefix_list6)
+def get_router_prefix_list6_output(name: Optional[pulumi.Input[str]] = None,
+                                   vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterPrefixList6Result]:
+    """
+    Use this data source to get information on an fortios router prefixlist6
+
+
+    :param str name: Specify the name of the desired router prefixlist6.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

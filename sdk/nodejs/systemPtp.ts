@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -65,6 +66,10 @@ export class SystemPtp extends pulumi.CustomResource {
      */
     public readonly delayMechanism!: pulumi.Output<string>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
      * PTP slave will reply through this interface.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -76,6 +81,14 @@ export class SystemPtp extends pulumi.CustomResource {
      * The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
      */
     public readonly requestInterval!: pulumi.Output<number>;
+    /**
+     * FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `serverInterface` block is documented below.
+     */
+    public readonly serverInterfaces!: pulumi.Output<outputs.SystemPtpServerInterface[] | undefined>;
+    /**
+     * Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. Valid values: `enable`, `disable`.
+     */
+    public readonly serverMode!: pulumi.Output<string>;
     /**
      * Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. Valid values: `enable`, `disable`.
      */
@@ -94,32 +107,36 @@ export class SystemPtp extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemPtpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemPtpArgs | SystemPtpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemPtpState | undefined;
-            inputs["delayMechanism"] = state ? state.delayMechanism : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["requestInterval"] = state ? state.requestInterval : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["delayMechanism"] = state ? state.delayMechanism : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["requestInterval"] = state ? state.requestInterval : undefined;
+            resourceInputs["serverInterfaces"] = state ? state.serverInterfaces : undefined;
+            resourceInputs["serverMode"] = state ? state.serverMode : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemPtpArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'interface'");
             }
-            inputs["delayMechanism"] = args ? args.delayMechanism : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["requestInterval"] = args ? args.requestInterval : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["delayMechanism"] = args ? args.delayMechanism : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["requestInterval"] = args ? args.requestInterval : undefined;
+            resourceInputs["serverInterfaces"] = args ? args.serverInterfaces : undefined;
+            resourceInputs["serverMode"] = args ? args.serverMode : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemPtp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemPtp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -132,6 +149,10 @@ export interface SystemPtpState {
      */
     delayMechanism?: pulumi.Input<string>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * PTP slave will reply through this interface.
      */
     interface?: pulumi.Input<string>;
@@ -143,6 +164,14 @@ export interface SystemPtpState {
      * The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
      */
     requestInterval?: pulumi.Input<number>;
+    /**
+     * FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `serverInterface` block is documented below.
+     */
+    serverInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemPtpServerInterface>[]>;
+    /**
+     * Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. Valid values: `enable`, `disable`.
+     */
+    serverMode?: pulumi.Input<string>;
     /**
      * Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. Valid values: `enable`, `disable`.
      */
@@ -162,6 +191,10 @@ export interface SystemPtpArgs {
      */
     delayMechanism?: pulumi.Input<string>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * PTP slave will reply through this interface.
      */
     interface: pulumi.Input<string>;
@@ -173,6 +206,14 @@ export interface SystemPtpArgs {
      * The delay request value is the logarithmic mean interval in seconds between the delay request messages sent by the slave to the master.
      */
     requestInterval?: pulumi.Input<number>;
+    /**
+     * FortiGate interface(s) with PTP server mode enabled. Devices on your network can contact these interfaces for PTP services. The structure of `serverInterface` block is documented below.
+     */
+    serverInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemPtpServerInterface>[]>;
+    /**
+     * Enable/disable FortiGate PTP server mode. Your FortiGate becomes an PTP server for other devices on your network. Valid values: `enable`, `disable`.
+     */
+    serverMode?: pulumi.Input<string>;
     /**
      * Enable/disable setting the FortiGate system time by synchronizing with an PTP Server. Valid values: `enable`, `disable`.
      */

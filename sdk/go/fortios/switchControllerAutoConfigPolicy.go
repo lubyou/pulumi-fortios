@@ -47,6 +47,7 @@ func NewSwitchControllerAutoConfigPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerAutoConfigPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerAutoConfigPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerAutoConfigPolicy:SwitchControllerAutoConfigPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type SwitchControllerAutoConfigPolicyInput interface {
 }
 
 func (*SwitchControllerAutoConfigPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerAutoConfigPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerAutoConfigPolicy)(nil)).Elem()
 }
 
 func (i *SwitchControllerAutoConfigPolicy) ToSwitchControllerAutoConfigPolicyOutput() SwitchControllerAutoConfigPolicyOutput {
@@ -162,35 +163,6 @@ func (i *SwitchControllerAutoConfigPolicy) ToSwitchControllerAutoConfigPolicyOut
 
 func (i *SwitchControllerAutoConfigPolicy) ToSwitchControllerAutoConfigPolicyOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigPolicyOutput)
-}
-
-func (i *SwitchControllerAutoConfigPolicy) ToSwitchControllerAutoConfigPolicyPtrOutput() SwitchControllerAutoConfigPolicyPtrOutput {
-	return i.ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerAutoConfigPolicy) ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigPolicyPtrOutput)
-}
-
-type SwitchControllerAutoConfigPolicyPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerAutoConfigPolicyPtrOutput() SwitchControllerAutoConfigPolicyPtrOutput
-	ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyPtrOutput
-}
-
-type switchControllerAutoConfigPolicyPtrType SwitchControllerAutoConfigPolicyArgs
-
-func (*switchControllerAutoConfigPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerAutoConfigPolicy)(nil))
-}
-
-func (i *switchControllerAutoConfigPolicyPtrType) ToSwitchControllerAutoConfigPolicyPtrOutput() SwitchControllerAutoConfigPolicyPtrOutput {
-	return i.ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerAutoConfigPolicyPtrType) ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigPolicyPtrOutput)
 }
 
 // SwitchControllerAutoConfigPolicyArrayInput is an input type that accepts SwitchControllerAutoConfigPolicyArray and SwitchControllerAutoConfigPolicyArrayOutput values.
@@ -207,7 +179,7 @@ type SwitchControllerAutoConfigPolicyArrayInput interface {
 type SwitchControllerAutoConfigPolicyArray []SwitchControllerAutoConfigPolicyInput
 
 func (SwitchControllerAutoConfigPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerAutoConfigPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerAutoConfigPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerAutoConfigPolicyArray) ToSwitchControllerAutoConfigPolicyArrayOutput() SwitchControllerAutoConfigPolicyArrayOutput {
@@ -232,7 +204,7 @@ type SwitchControllerAutoConfigPolicyMapInput interface {
 type SwitchControllerAutoConfigPolicyMap map[string]SwitchControllerAutoConfigPolicyInput
 
 func (SwitchControllerAutoConfigPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerAutoConfigPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerAutoConfigPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerAutoConfigPolicyMap) ToSwitchControllerAutoConfigPolicyMapOutput() SwitchControllerAutoConfigPolicyMapOutput {
@@ -243,12 +215,10 @@ func (i SwitchControllerAutoConfigPolicyMap) ToSwitchControllerAutoConfigPolicyM
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerAutoConfigPolicyMapOutput)
 }
 
-type SwitchControllerAutoConfigPolicyOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerAutoConfigPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerAutoConfigPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerAutoConfigPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerAutoConfigPolicyOutput) ToSwitchControllerAutoConfigPolicyOutput() SwitchControllerAutoConfigPolicyOutput {
@@ -259,36 +229,10 @@ func (o SwitchControllerAutoConfigPolicyOutput) ToSwitchControllerAutoConfigPoli
 	return o
 }
 
-func (o SwitchControllerAutoConfigPolicyOutput) ToSwitchControllerAutoConfigPolicyPtrOutput() SwitchControllerAutoConfigPolicyPtrOutput {
-	return o.ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerAutoConfigPolicyOutput) ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyPtrOutput {
-	return o.ApplyT(func(v SwitchControllerAutoConfigPolicy) *SwitchControllerAutoConfigPolicy {
-		return &v
-	}).(SwitchControllerAutoConfigPolicyPtrOutput)
-}
-
-type SwitchControllerAutoConfigPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerAutoConfigPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerAutoConfigPolicy)(nil))
-}
-
-func (o SwitchControllerAutoConfigPolicyPtrOutput) ToSwitchControllerAutoConfigPolicyPtrOutput() SwitchControllerAutoConfigPolicyPtrOutput {
-	return o
-}
-
-func (o SwitchControllerAutoConfigPolicyPtrOutput) ToSwitchControllerAutoConfigPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerAutoConfigPolicyPtrOutput {
-	return o
-}
-
 type SwitchControllerAutoConfigPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerAutoConfigPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerAutoConfigPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerAutoConfigPolicyArrayOutput) ToSwitchControllerAutoConfigPolicyArrayOutput() SwitchControllerAutoConfigPolicyArrayOutput {
@@ -300,15 +244,15 @@ func (o SwitchControllerAutoConfigPolicyArrayOutput) ToSwitchControllerAutoConfi
 }
 
 func (o SwitchControllerAutoConfigPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerAutoConfigPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerAutoConfigPolicy {
-		return vs[0].([]SwitchControllerAutoConfigPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerAutoConfigPolicy {
+		return vs[0].([]*SwitchControllerAutoConfigPolicy)[vs[1].(int)]
 	}).(SwitchControllerAutoConfigPolicyOutput)
 }
 
 type SwitchControllerAutoConfigPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerAutoConfigPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerAutoConfigPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerAutoConfigPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerAutoConfigPolicyMapOutput) ToSwitchControllerAutoConfigPolicyMapOutput() SwitchControllerAutoConfigPolicyMapOutput {
@@ -320,14 +264,16 @@ func (o SwitchControllerAutoConfigPolicyMapOutput) ToSwitchControllerAutoConfigP
 }
 
 func (o SwitchControllerAutoConfigPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerAutoConfigPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerAutoConfigPolicy {
-		return vs[0].(map[string]SwitchControllerAutoConfigPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerAutoConfigPolicy {
+		return vs[0].(map[string]*SwitchControllerAutoConfigPolicy)[vs[1].(string)]
 	}).(SwitchControllerAutoConfigPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerAutoConfigPolicyInput)(nil)).Elem(), &SwitchControllerAutoConfigPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerAutoConfigPolicyArrayInput)(nil)).Elem(), SwitchControllerAutoConfigPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerAutoConfigPolicyMapInput)(nil)).Elem(), SwitchControllerAutoConfigPolicyMap{})
 	pulumi.RegisterOutputType(SwitchControllerAutoConfigPolicyOutput{})
-	pulumi.RegisterOutputType(SwitchControllerAutoConfigPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerAutoConfigPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerAutoConfigPolicyMapOutput{})
 }

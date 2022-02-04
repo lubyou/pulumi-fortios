@@ -92,16 +92,16 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: SwitchControllerQosQueuePolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerQosQueuePolicyArgs | SwitchControllerQosQueuePolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerQosQueuePolicyState | undefined;
-            inputs["cosQueues"] = state ? state.cosQueues : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["rateBy"] = state ? state.rateBy : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cosQueues"] = state ? state.cosQueues : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["rateBy"] = state ? state.rateBy : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerQosQueuePolicyArgs | undefined;
             if ((!args || args.rateBy === undefined) && !opts.urn) {
@@ -110,17 +110,15 @@ export class SwitchControllerQosQueuePolicy extends pulumi.CustomResource {
             if ((!args || args.schedule === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'schedule'");
             }
-            inputs["cosQueues"] = args ? args.cosQueues : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["rateBy"] = args ? args.rateBy : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cosQueues"] = args ? args.cosQueues : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["rateBy"] = args ? args.rateBy : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerQosQueuePolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerQosQueuePolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

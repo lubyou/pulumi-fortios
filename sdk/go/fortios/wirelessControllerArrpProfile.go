@@ -26,14 +26,22 @@ type WirelessControllerArrpProfile struct {
 
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	DarrpOptimize pulumi.IntOutput `pulumi:"darrpOptimize"`
+	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+	DarrpOptimizeSchedules WirelessControllerArrpProfileDarrpOptimizeScheduleArrayOutput `pulumi:"darrpOptimizeSchedules"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringOutput `pulumi:"includeDfsChannel"`
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
 	IncludeWeatherChannel pulumi.StringOutput `pulumi:"includeWeatherChannel"`
 	// Period in seconds to measure average transmit retries and receive errors (default = 300).
 	MonitorPeriod pulumi.IntOutput `pulumi:"monitorPeriod"`
-	// WiFi ARRP profile name.
+	// Schedule name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+	OverrideDarrpOptimize pulumi.StringOutput `pulumi:"overrideDarrpOptimize"`
 	// Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
 	SelectionPeriod pulumi.IntOutput `pulumi:"selectionPeriod"`
 	// Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
@@ -73,6 +81,7 @@ func NewWirelessControllerArrpProfile(ctx *pulumi.Context,
 		args = &WirelessControllerArrpProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerArrpProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerArrpProfile:WirelessControllerArrpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -97,14 +106,22 @@ func GetWirelessControllerArrpProfile(ctx *pulumi.Context,
 type wirelessControllerArrpProfileState struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	DarrpOptimize *int `pulumi:"darrpOptimize"`
+	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+	DarrpOptimizeSchedules []WirelessControllerArrpProfileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel *string `pulumi:"includeDfsChannel"`
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
 	IncludeWeatherChannel *string `pulumi:"includeWeatherChannel"`
 	// Period in seconds to measure average transmit retries and receive errors (default = 300).
 	MonitorPeriod *int `pulumi:"monitorPeriod"`
-	// WiFi ARRP profile name.
+	// Schedule name.
 	Name *string `pulumi:"name"`
+	// Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+	OverrideDarrpOptimize *string `pulumi:"overrideDarrpOptimize"`
 	// Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
 	SelectionPeriod *int `pulumi:"selectionPeriod"`
 	// Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
@@ -140,14 +157,22 @@ type wirelessControllerArrpProfileState struct {
 type WirelessControllerArrpProfileState struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	DarrpOptimize pulumi.IntPtrInput
+	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+	DarrpOptimizeSchedules WirelessControllerArrpProfileDarrpOptimizeScheduleArrayInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringPtrInput
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
 	IncludeWeatherChannel pulumi.StringPtrInput
 	// Period in seconds to measure average transmit retries and receive errors (default = 300).
 	MonitorPeriod pulumi.IntPtrInput
-	// WiFi ARRP profile name.
+	// Schedule name.
 	Name pulumi.StringPtrInput
+	// Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+	OverrideDarrpOptimize pulumi.StringPtrInput
 	// Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
 	SelectionPeriod pulumi.IntPtrInput
 	// Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
@@ -187,14 +212,22 @@ func (WirelessControllerArrpProfileState) ElementType() reflect.Type {
 type wirelessControllerArrpProfileArgs struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	DarrpOptimize *int `pulumi:"darrpOptimize"`
+	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+	DarrpOptimizeSchedules []WirelessControllerArrpProfileDarrpOptimizeSchedule `pulumi:"darrpOptimizeSchedules"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel *string `pulumi:"includeDfsChannel"`
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
 	IncludeWeatherChannel *string `pulumi:"includeWeatherChannel"`
 	// Period in seconds to measure average transmit retries and receive errors (default = 300).
 	MonitorPeriod *int `pulumi:"monitorPeriod"`
-	// WiFi ARRP profile name.
+	// Schedule name.
 	Name *string `pulumi:"name"`
+	// Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+	OverrideDarrpOptimize *string `pulumi:"overrideDarrpOptimize"`
 	// Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
 	SelectionPeriod *int `pulumi:"selectionPeriod"`
 	// Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
@@ -231,14 +264,22 @@ type wirelessControllerArrpProfileArgs struct {
 type WirelessControllerArrpProfileArgs struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+	DarrpOptimize pulumi.IntPtrInput
+	// Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+	DarrpOptimizeSchedules WirelessControllerArrpProfileDarrpOptimizeScheduleArrayInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
 	IncludeDfsChannel pulumi.StringPtrInput
 	// Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
 	IncludeWeatherChannel pulumi.StringPtrInput
 	// Period in seconds to measure average transmit retries and receive errors (default = 300).
 	MonitorPeriod pulumi.IntPtrInput
-	// WiFi ARRP profile name.
+	// Schedule name.
 	Name pulumi.StringPtrInput
+	// Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+	OverrideDarrpOptimize pulumi.StringPtrInput
 	// Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
 	SelectionPeriod pulumi.IntPtrInput
 	// Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
@@ -283,7 +324,7 @@ type WirelessControllerArrpProfileInput interface {
 }
 
 func (*WirelessControllerArrpProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerArrpProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerArrpProfile)(nil)).Elem()
 }
 
 func (i *WirelessControllerArrpProfile) ToWirelessControllerArrpProfileOutput() WirelessControllerArrpProfileOutput {
@@ -292,35 +333,6 @@ func (i *WirelessControllerArrpProfile) ToWirelessControllerArrpProfileOutput() 
 
 func (i *WirelessControllerArrpProfile) ToWirelessControllerArrpProfileOutputWithContext(ctx context.Context) WirelessControllerArrpProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileOutput)
-}
-
-func (i *WirelessControllerArrpProfile) ToWirelessControllerArrpProfilePtrOutput() WirelessControllerArrpProfilePtrOutput {
-	return i.ToWirelessControllerArrpProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerArrpProfile) ToWirelessControllerArrpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerArrpProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfilePtrOutput)
-}
-
-type WirelessControllerArrpProfilePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerArrpProfilePtrOutput() WirelessControllerArrpProfilePtrOutput
-	ToWirelessControllerArrpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerArrpProfilePtrOutput
-}
-
-type wirelessControllerArrpProfilePtrType WirelessControllerArrpProfileArgs
-
-func (*wirelessControllerArrpProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerArrpProfile)(nil))
-}
-
-func (i *wirelessControllerArrpProfilePtrType) ToWirelessControllerArrpProfilePtrOutput() WirelessControllerArrpProfilePtrOutput {
-	return i.ToWirelessControllerArrpProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerArrpProfilePtrType) ToWirelessControllerArrpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerArrpProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfilePtrOutput)
 }
 
 // WirelessControllerArrpProfileArrayInput is an input type that accepts WirelessControllerArrpProfileArray and WirelessControllerArrpProfileArrayOutput values.
@@ -337,7 +349,7 @@ type WirelessControllerArrpProfileArrayInput interface {
 type WirelessControllerArrpProfileArray []WirelessControllerArrpProfileInput
 
 func (WirelessControllerArrpProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerArrpProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerArrpProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerArrpProfileArray) ToWirelessControllerArrpProfileArrayOutput() WirelessControllerArrpProfileArrayOutput {
@@ -362,7 +374,7 @@ type WirelessControllerArrpProfileMapInput interface {
 type WirelessControllerArrpProfileMap map[string]WirelessControllerArrpProfileInput
 
 func (WirelessControllerArrpProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerArrpProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerArrpProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerArrpProfileMap) ToWirelessControllerArrpProfileMapOutput() WirelessControllerArrpProfileMapOutput {
@@ -373,12 +385,10 @@ func (i WirelessControllerArrpProfileMap) ToWirelessControllerArrpProfileMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerArrpProfileMapOutput)
 }
 
-type WirelessControllerArrpProfileOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerArrpProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerArrpProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerArrpProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerArrpProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerArrpProfileOutput) ToWirelessControllerArrpProfileOutput() WirelessControllerArrpProfileOutput {
@@ -389,36 +399,10 @@ func (o WirelessControllerArrpProfileOutput) ToWirelessControllerArrpProfileOutp
 	return o
 }
 
-func (o WirelessControllerArrpProfileOutput) ToWirelessControllerArrpProfilePtrOutput() WirelessControllerArrpProfilePtrOutput {
-	return o.ToWirelessControllerArrpProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerArrpProfileOutput) ToWirelessControllerArrpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerArrpProfilePtrOutput {
-	return o.ApplyT(func(v WirelessControllerArrpProfile) *WirelessControllerArrpProfile {
-		return &v
-	}).(WirelessControllerArrpProfilePtrOutput)
-}
-
-type WirelessControllerArrpProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerArrpProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerArrpProfile)(nil))
-}
-
-func (o WirelessControllerArrpProfilePtrOutput) ToWirelessControllerArrpProfilePtrOutput() WirelessControllerArrpProfilePtrOutput {
-	return o
-}
-
-func (o WirelessControllerArrpProfilePtrOutput) ToWirelessControllerArrpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerArrpProfilePtrOutput {
-	return o
-}
-
 type WirelessControllerArrpProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerArrpProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerArrpProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerArrpProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerArrpProfileArrayOutput) ToWirelessControllerArrpProfileArrayOutput() WirelessControllerArrpProfileArrayOutput {
@@ -430,15 +414,15 @@ func (o WirelessControllerArrpProfileArrayOutput) ToWirelessControllerArrpProfil
 }
 
 func (o WirelessControllerArrpProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerArrpProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerArrpProfile {
-		return vs[0].([]WirelessControllerArrpProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerArrpProfile {
+		return vs[0].([]*WirelessControllerArrpProfile)[vs[1].(int)]
 	}).(WirelessControllerArrpProfileOutput)
 }
 
 type WirelessControllerArrpProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerArrpProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerArrpProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerArrpProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerArrpProfileMapOutput) ToWirelessControllerArrpProfileMapOutput() WirelessControllerArrpProfileMapOutput {
@@ -450,14 +434,16 @@ func (o WirelessControllerArrpProfileMapOutput) ToWirelessControllerArrpProfileM
 }
 
 func (o WirelessControllerArrpProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerArrpProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerArrpProfile {
-		return vs[0].(map[string]WirelessControllerArrpProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerArrpProfile {
+		return vs[0].(map[string]*WirelessControllerArrpProfile)[vs[1].(string)]
 	}).(WirelessControllerArrpProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerArrpProfileInput)(nil)).Elem(), &WirelessControllerArrpProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerArrpProfileArrayInput)(nil)).Elem(), WirelessControllerArrpProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerArrpProfileMapInput)(nil)).Elem(), WirelessControllerArrpProfileMap{})
 	pulumi.RegisterOutputType(WirelessControllerArrpProfileOutput{})
-	pulumi.RegisterOutputType(WirelessControllerArrpProfilePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerArrpProfileArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerArrpProfileMapOutput{})
 }

@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -47,8 +48,8 @@ import (
 // 		_, err = fortios.NewFirewallServiceGroup(ctx, "trname", &fortios.FirewallServiceGroupArgs{
 // 			Color: pulumi.Int(0),
 // 			Proxy: pulumi.String("disable"),
-// 			Members: fortios.FirewallServiceGroupMemberArray{
-// 				&fortios.FirewallServiceGroupMemberArgs{
+// 			Members: FirewallServiceGroupMemberArray{
+// 				&FirewallServiceGroupMemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -79,6 +80,8 @@ type FirewallServiceGroup struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallServiceGroupMemberArrayOutput `pulumi:"members"`
 	// Address name.
@@ -96,6 +99,7 @@ func NewFirewallServiceGroup(ctx *pulumi.Context,
 		args = &FirewallServiceGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallServiceGroup
 	err := ctx.RegisterResource("fortios:index/firewallServiceGroup:FirewallServiceGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -124,6 +128,8 @@ type firewallServiceGroupState struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members []FirewallServiceGroupMember `pulumi:"members"`
 	// Address name.
@@ -141,6 +147,8 @@ type FirewallServiceGroupState struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallServiceGroupMemberArrayInput
 	// Address name.
@@ -162,6 +170,8 @@ type firewallServiceGroupArgs struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members []FirewallServiceGroupMember `pulumi:"members"`
 	// Address name.
@@ -180,6 +190,8 @@ type FirewallServiceGroupArgs struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Service objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallServiceGroupMemberArrayInput
 	// Address name.
@@ -202,7 +214,7 @@ type FirewallServiceGroupInput interface {
 }
 
 func (*FirewallServiceGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallServiceGroup)(nil))
+	return reflect.TypeOf((**FirewallServiceGroup)(nil)).Elem()
 }
 
 func (i *FirewallServiceGroup) ToFirewallServiceGroupOutput() FirewallServiceGroupOutput {
@@ -211,35 +223,6 @@ func (i *FirewallServiceGroup) ToFirewallServiceGroupOutput() FirewallServiceGro
 
 func (i *FirewallServiceGroup) ToFirewallServiceGroupOutputWithContext(ctx context.Context) FirewallServiceGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceGroupOutput)
-}
-
-func (i *FirewallServiceGroup) ToFirewallServiceGroupPtrOutput() FirewallServiceGroupPtrOutput {
-	return i.ToFirewallServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallServiceGroup) ToFirewallServiceGroupPtrOutputWithContext(ctx context.Context) FirewallServiceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceGroupPtrOutput)
-}
-
-type FirewallServiceGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallServiceGroupPtrOutput() FirewallServiceGroupPtrOutput
-	ToFirewallServiceGroupPtrOutputWithContext(ctx context.Context) FirewallServiceGroupPtrOutput
-}
-
-type firewallServiceGroupPtrType FirewallServiceGroupArgs
-
-func (*firewallServiceGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallServiceGroup)(nil))
-}
-
-func (i *firewallServiceGroupPtrType) ToFirewallServiceGroupPtrOutput() FirewallServiceGroupPtrOutput {
-	return i.ToFirewallServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallServiceGroupPtrType) ToFirewallServiceGroupPtrOutputWithContext(ctx context.Context) FirewallServiceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceGroupPtrOutput)
 }
 
 // FirewallServiceGroupArrayInput is an input type that accepts FirewallServiceGroupArray and FirewallServiceGroupArrayOutput values.
@@ -256,7 +239,7 @@ type FirewallServiceGroupArrayInput interface {
 type FirewallServiceGroupArray []FirewallServiceGroupInput
 
 func (FirewallServiceGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallServiceGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallServiceGroup)(nil)).Elem()
 }
 
 func (i FirewallServiceGroupArray) ToFirewallServiceGroupArrayOutput() FirewallServiceGroupArrayOutput {
@@ -281,7 +264,7 @@ type FirewallServiceGroupMapInput interface {
 type FirewallServiceGroupMap map[string]FirewallServiceGroupInput
 
 func (FirewallServiceGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallServiceGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallServiceGroup)(nil)).Elem()
 }
 
 func (i FirewallServiceGroupMap) ToFirewallServiceGroupMapOutput() FirewallServiceGroupMapOutput {
@@ -292,12 +275,10 @@ func (i FirewallServiceGroupMap) ToFirewallServiceGroupMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceGroupMapOutput)
 }
 
-type FirewallServiceGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallServiceGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallServiceGroup)(nil))
+	return reflect.TypeOf((**FirewallServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallServiceGroupOutput) ToFirewallServiceGroupOutput() FirewallServiceGroupOutput {
@@ -308,36 +289,10 @@ func (o FirewallServiceGroupOutput) ToFirewallServiceGroupOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallServiceGroupOutput) ToFirewallServiceGroupPtrOutput() FirewallServiceGroupPtrOutput {
-	return o.ToFirewallServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallServiceGroupOutput) ToFirewallServiceGroupPtrOutputWithContext(ctx context.Context) FirewallServiceGroupPtrOutput {
-	return o.ApplyT(func(v FirewallServiceGroup) *FirewallServiceGroup {
-		return &v
-	}).(FirewallServiceGroupPtrOutput)
-}
-
-type FirewallServiceGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallServiceGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallServiceGroup)(nil))
-}
-
-func (o FirewallServiceGroupPtrOutput) ToFirewallServiceGroupPtrOutput() FirewallServiceGroupPtrOutput {
-	return o
-}
-
-func (o FirewallServiceGroupPtrOutput) ToFirewallServiceGroupPtrOutputWithContext(ctx context.Context) FirewallServiceGroupPtrOutput {
-	return o
-}
-
 type FirewallServiceGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallServiceGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallServiceGroupArrayOutput) ToFirewallServiceGroupArrayOutput() FirewallServiceGroupArrayOutput {
@@ -349,15 +304,15 @@ func (o FirewallServiceGroupArrayOutput) ToFirewallServiceGroupArrayOutputWithCo
 }
 
 func (o FirewallServiceGroupArrayOutput) Index(i pulumi.IntInput) FirewallServiceGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallServiceGroup {
-		return vs[0].([]FirewallServiceGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallServiceGroup {
+		return vs[0].([]*FirewallServiceGroup)[vs[1].(int)]
 	}).(FirewallServiceGroupOutput)
 }
 
 type FirewallServiceGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallServiceGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallServiceGroupMapOutput) ToFirewallServiceGroupMapOutput() FirewallServiceGroupMapOutput {
@@ -369,14 +324,16 @@ func (o FirewallServiceGroupMapOutput) ToFirewallServiceGroupMapOutputWithContex
 }
 
 func (o FirewallServiceGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallServiceGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallServiceGroup {
-		return vs[0].(map[string]FirewallServiceGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallServiceGroup {
+		return vs[0].(map[string]*FirewallServiceGroup)[vs[1].(string)]
 	}).(FirewallServiceGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceGroupInput)(nil)).Elem(), &FirewallServiceGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceGroupArrayInput)(nil)).Elem(), FirewallServiceGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceGroupMapInput)(nil)).Elem(), FirewallServiceGroupMap{})
 	pulumi.RegisterOutputType(FirewallServiceGroupOutput{})
-	pulumi.RegisterOutputType(FirewallServiceGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallServiceGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallServiceGroupMapOutput{})
 }

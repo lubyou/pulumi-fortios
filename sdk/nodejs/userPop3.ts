@@ -93,32 +93,30 @@ export class UserPop3 extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserPop3Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserPop3Args | UserPop3State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserPop3State | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["secure"] = state ? state.secure : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["secure"] = state ? state.secure : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserPop3Args | undefined;
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["secure"] = args ? args.secure : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["secure"] = args ? args.secure : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserPop3.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserPop3.__pulumiType, name, resourceInputs, opts);
     }
 }
 

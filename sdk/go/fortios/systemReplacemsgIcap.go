@@ -47,6 +47,7 @@ func NewSystemReplacemsgIcap(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgIcap
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgIcap:SystemReplacemsgIcap", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgIcapInput interface {
 }
 
 func (*SystemReplacemsgIcap) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgIcap)(nil))
+	return reflect.TypeOf((**SystemReplacemsgIcap)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgIcap) ToSystemReplacemsgIcapOutput() SystemReplacemsgIcapOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgIcap) ToSystemReplacemsgIcapOutput() SystemReplacemsgIc
 
 func (i *SystemReplacemsgIcap) ToSystemReplacemsgIcapOutputWithContext(ctx context.Context) SystemReplacemsgIcapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgIcapOutput)
-}
-
-func (i *SystemReplacemsgIcap) ToSystemReplacemsgIcapPtrOutput() SystemReplacemsgIcapPtrOutput {
-	return i.ToSystemReplacemsgIcapPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgIcap) ToSystemReplacemsgIcapPtrOutputWithContext(ctx context.Context) SystemReplacemsgIcapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgIcapPtrOutput)
-}
-
-type SystemReplacemsgIcapPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgIcapPtrOutput() SystemReplacemsgIcapPtrOutput
-	ToSystemReplacemsgIcapPtrOutputWithContext(ctx context.Context) SystemReplacemsgIcapPtrOutput
-}
-
-type systemReplacemsgIcapPtrType SystemReplacemsgIcapArgs
-
-func (*systemReplacemsgIcapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgIcap)(nil))
-}
-
-func (i *systemReplacemsgIcapPtrType) ToSystemReplacemsgIcapPtrOutput() SystemReplacemsgIcapPtrOutput {
-	return i.ToSystemReplacemsgIcapPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgIcapPtrType) ToSystemReplacemsgIcapPtrOutputWithContext(ctx context.Context) SystemReplacemsgIcapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgIcapPtrOutput)
 }
 
 // SystemReplacemsgIcapArrayInput is an input type that accepts SystemReplacemsgIcapArray and SystemReplacemsgIcapArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgIcapArrayInput interface {
 type SystemReplacemsgIcapArray []SystemReplacemsgIcapInput
 
 func (SystemReplacemsgIcapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgIcap)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgIcap)(nil)).Elem()
 }
 
 func (i SystemReplacemsgIcapArray) ToSystemReplacemsgIcapArrayOutput() SystemReplacemsgIcapArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgIcapMapInput interface {
 type SystemReplacemsgIcapMap map[string]SystemReplacemsgIcapInput
 
 func (SystemReplacemsgIcapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgIcap)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgIcap)(nil)).Elem()
 }
 
 func (i SystemReplacemsgIcapMap) ToSystemReplacemsgIcapMapOutput() SystemReplacemsgIcapMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgIcapMap) ToSystemReplacemsgIcapMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgIcapMapOutput)
 }
 
-type SystemReplacemsgIcapOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgIcapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgIcapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgIcap)(nil))
+	return reflect.TypeOf((**SystemReplacemsgIcap)(nil)).Elem()
 }
 
 func (o SystemReplacemsgIcapOutput) ToSystemReplacemsgIcapOutput() SystemReplacemsgIcapOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgIcapOutput) ToSystemReplacemsgIcapOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemReplacemsgIcapOutput) ToSystemReplacemsgIcapPtrOutput() SystemReplacemsgIcapPtrOutput {
-	return o.ToSystemReplacemsgIcapPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgIcapOutput) ToSystemReplacemsgIcapPtrOutputWithContext(ctx context.Context) SystemReplacemsgIcapPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgIcap) *SystemReplacemsgIcap {
-		return &v
-	}).(SystemReplacemsgIcapPtrOutput)
-}
-
-type SystemReplacemsgIcapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgIcapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgIcap)(nil))
-}
-
-func (o SystemReplacemsgIcapPtrOutput) ToSystemReplacemsgIcapPtrOutput() SystemReplacemsgIcapPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgIcapPtrOutput) ToSystemReplacemsgIcapPtrOutputWithContext(ctx context.Context) SystemReplacemsgIcapPtrOutput {
-	return o
-}
-
 type SystemReplacemsgIcapArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgIcapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgIcap)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgIcap)(nil)).Elem()
 }
 
 func (o SystemReplacemsgIcapArrayOutput) ToSystemReplacemsgIcapArrayOutput() SystemReplacemsgIcapArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgIcapArrayOutput) ToSystemReplacemsgIcapArrayOutputWithCo
 }
 
 func (o SystemReplacemsgIcapArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgIcapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgIcap {
-		return vs[0].([]SystemReplacemsgIcap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgIcap {
+		return vs[0].([]*SystemReplacemsgIcap)[vs[1].(int)]
 	}).(SystemReplacemsgIcapOutput)
 }
 
 type SystemReplacemsgIcapMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgIcapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgIcap)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgIcap)(nil)).Elem()
 }
 
 func (o SystemReplacemsgIcapMapOutput) ToSystemReplacemsgIcapMapOutput() SystemReplacemsgIcapMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgIcapMapOutput) ToSystemReplacemsgIcapMapOutputWithContex
 }
 
 func (o SystemReplacemsgIcapMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgIcapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgIcap {
-		return vs[0].(map[string]SystemReplacemsgIcap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgIcap {
+		return vs[0].(map[string]*SystemReplacemsgIcap)[vs[1].(string)]
 	}).(SystemReplacemsgIcapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgIcapInput)(nil)).Elem(), &SystemReplacemsgIcap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgIcapArrayInput)(nil)).Elem(), SystemReplacemsgIcapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgIcapMapInput)(nil)).Elem(), SystemReplacemsgIcapMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgIcapOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgIcapPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgIcapArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgIcapMapOutput{})
 }

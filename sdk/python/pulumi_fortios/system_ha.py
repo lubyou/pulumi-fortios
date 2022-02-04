@@ -21,6 +21,7 @@ class SystemHaArgs:
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
@@ -31,6 +32,7 @@ class SystemHaArgs:
                  ha_mgmt_status: Optional[pulumi.Input[str]] = None,
                  ha_uptime_diff_margin: Optional[pulumi.Input[int]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
+                 hb_interval_in_milliseconds: Optional[pulumi.Input[str]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
                  hbdev: Optional[pulumi.Input[str]] = None,
                  hc_eth_type: Optional[pulumi.Input[str]] = None,
@@ -43,7 +45,12 @@ class SystemHaArgs:
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
                  load_balance_all: Optional[pulumi.Input[str]] = None,
                  logical_sn: Optional[pulumi.Input[str]] = None,
+                 memory_based_failover: Optional[pulumi.Input[str]] = None,
                  memory_compatible_mode: Optional[pulumi.Input[str]] = None,
+                 memory_failover_flip_timeout: Optional[pulumi.Input[int]] = None,
+                 memory_failover_monitor_period: Optional[pulumi.Input[int]] = None,
+                 memory_failover_sample_rate: Optional[pulumi.Input[int]] = None,
+                 memory_failover_threshold: Optional[pulumi.Input[int]] = None,
                  memory_threshold: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
@@ -76,9 +83,13 @@ class SystemHaArgs:
                  standalone_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  sync_config: Optional[pulumi.Input[str]] = None,
                  sync_packet_balance: Optional[pulumi.Input[str]] = None,
+                 unicast_gateway: Optional[pulumi.Input[str]] = None,
                  unicast_hb: Optional[pulumi.Input[str]] = None,
                  unicast_hb_netmask: Optional[pulumi.Input[str]] = None,
                  unicast_hb_peerip: Optional[pulumi.Input[str]] = None,
+                 unicast_peers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemHaUnicastPeerArgs']]]] = None,
+                 unicast_status: Optional[pulumi.Input[str]] = None,
+                 uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
@@ -100,6 +111,8 @@ class SystemHaArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if failover_hold_time is not None:
+            pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold is not None:
             pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
         if gratuitous_arps is not None:
@@ -120,6 +133,8 @@ class SystemHaArgs:
             pulumi.set(__self__, "ha_uptime_diff_margin", ha_uptime_diff_margin)
         if hb_interval is not None:
             pulumi.set(__self__, "hb_interval", hb_interval)
+        if hb_interval_in_milliseconds is not None:
+            pulumi.set(__self__, "hb_interval_in_milliseconds", hb_interval_in_milliseconds)
         if hb_lost_threshold is not None:
             pulumi.set(__self__, "hb_lost_threshold", hb_lost_threshold)
         if hbdev is not None:
@@ -144,8 +159,18 @@ class SystemHaArgs:
             pulumi.set(__self__, "load_balance_all", load_balance_all)
         if logical_sn is not None:
             pulumi.set(__self__, "logical_sn", logical_sn)
+        if memory_based_failover is not None:
+            pulumi.set(__self__, "memory_based_failover", memory_based_failover)
         if memory_compatible_mode is not None:
             pulumi.set(__self__, "memory_compatible_mode", memory_compatible_mode)
+        if memory_failover_flip_timeout is not None:
+            pulumi.set(__self__, "memory_failover_flip_timeout", memory_failover_flip_timeout)
+        if memory_failover_monitor_period is not None:
+            pulumi.set(__self__, "memory_failover_monitor_period", memory_failover_monitor_period)
+        if memory_failover_sample_rate is not None:
+            pulumi.set(__self__, "memory_failover_sample_rate", memory_failover_sample_rate)
+        if memory_failover_threshold is not None:
+            pulumi.set(__self__, "memory_failover_threshold", memory_failover_threshold)
         if memory_threshold is not None:
             pulumi.set(__self__, "memory_threshold", memory_threshold)
         if mode is not None:
@@ -210,12 +235,20 @@ class SystemHaArgs:
             pulumi.set(__self__, "sync_config", sync_config)
         if sync_packet_balance is not None:
             pulumi.set(__self__, "sync_packet_balance", sync_packet_balance)
+        if unicast_gateway is not None:
+            pulumi.set(__self__, "unicast_gateway", unicast_gateway)
         if unicast_hb is not None:
             pulumi.set(__self__, "unicast_hb", unicast_hb)
         if unicast_hb_netmask is not None:
             pulumi.set(__self__, "unicast_hb_netmask", unicast_hb_netmask)
         if unicast_hb_peerip is not None:
             pulumi.set(__self__, "unicast_hb_peerip", unicast_hb_peerip)
+        if unicast_peers is not None:
+            pulumi.set(__self__, "unicast_peers", unicast_peers)
+        if unicast_status is not None:
+            pulumi.set(__self__, "unicast_status", unicast_status)
+        if uninterruptible_primary_wait is not None:
+            pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade is not None:
             pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
         if vcluster2 is not None:
@@ -282,6 +315,15 @@ class SystemHaArgs:
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption", value)
+
+    @property
+    @pulumi.getter(name="failoverHoldTime")
+    def failover_hold_time(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "failover_hold_time")
+
+    @failover_hold_time.setter
+    def failover_hold_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "failover_hold_time", value)
 
     @property
     @pulumi.getter(name="ftpProxyThreshold")
@@ -372,6 +414,15 @@ class SystemHaArgs:
     @hb_interval.setter
     def hb_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "hb_interval", value)
+
+    @property
+    @pulumi.getter(name="hbIntervalInMilliseconds")
+    def hb_interval_in_milliseconds(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hb_interval_in_milliseconds")
+
+    @hb_interval_in_milliseconds.setter
+    def hb_interval_in_milliseconds(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hb_interval_in_milliseconds", value)
 
     @property
     @pulumi.getter(name="hbLostThreshold")
@@ -482,6 +533,15 @@ class SystemHaArgs:
         pulumi.set(self, "logical_sn", value)
 
     @property
+    @pulumi.getter(name="memoryBasedFailover")
+    def memory_based_failover(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "memory_based_failover")
+
+    @memory_based_failover.setter
+    def memory_based_failover(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "memory_based_failover", value)
+
+    @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "memory_compatible_mode")
@@ -489,6 +549,42 @@ class SystemHaArgs:
     @memory_compatible_mode.setter
     def memory_compatible_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "memory_compatible_mode", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverFlipTimeout")
+    def memory_failover_flip_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_flip_timeout")
+
+    @memory_failover_flip_timeout.setter
+    def memory_failover_flip_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_flip_timeout", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverMonitorPeriod")
+    def memory_failover_monitor_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_monitor_period")
+
+    @memory_failover_monitor_period.setter
+    def memory_failover_monitor_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_monitor_period", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverSampleRate")
+    def memory_failover_sample_rate(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_sample_rate")
+
+    @memory_failover_sample_rate.setter
+    def memory_failover_sample_rate(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_sample_rate", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverThreshold")
+    def memory_failover_threshold(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_threshold")
+
+    @memory_failover_threshold.setter
+    def memory_failover_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_threshold", value)
 
     @property
     @pulumi.getter(name="memoryThreshold")
@@ -779,6 +875,15 @@ class SystemHaArgs:
         pulumi.set(self, "sync_packet_balance", value)
 
     @property
+    @pulumi.getter(name="unicastGateway")
+    def unicast_gateway(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unicast_gateway")
+
+    @unicast_gateway.setter
+    def unicast_gateway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unicast_gateway", value)
+
+    @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "unicast_hb")
@@ -804,6 +909,33 @@ class SystemHaArgs:
     @unicast_hb_peerip.setter
     def unicast_hb_peerip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "unicast_hb_peerip", value)
+
+    @property
+    @pulumi.getter(name="unicastPeers")
+    def unicast_peers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemHaUnicastPeerArgs']]]]:
+        return pulumi.get(self, "unicast_peers")
+
+    @unicast_peers.setter
+    def unicast_peers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemHaUnicastPeerArgs']]]]):
+        pulumi.set(self, "unicast_peers", value)
+
+    @property
+    @pulumi.getter(name="unicastStatus")
+    def unicast_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unicast_status")
+
+    @unicast_status.setter
+    def unicast_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unicast_status", value)
+
+    @property
+    @pulumi.getter(name="uninterruptiblePrimaryWait")
+    def uninterruptible_primary_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "uninterruptible_primary_wait")
+
+    @uninterruptible_primary_wait.setter
+    def uninterruptible_primary_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "uninterruptible_primary_wait", value)
 
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")
@@ -869,6 +1001,7 @@ class _SystemHaState:
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
@@ -879,6 +1012,7 @@ class _SystemHaState:
                  ha_mgmt_status: Optional[pulumi.Input[str]] = None,
                  ha_uptime_diff_margin: Optional[pulumi.Input[int]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
+                 hb_interval_in_milliseconds: Optional[pulumi.Input[str]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
                  hbdev: Optional[pulumi.Input[str]] = None,
                  hc_eth_type: Optional[pulumi.Input[str]] = None,
@@ -891,7 +1025,12 @@ class _SystemHaState:
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
                  load_balance_all: Optional[pulumi.Input[str]] = None,
                  logical_sn: Optional[pulumi.Input[str]] = None,
+                 memory_based_failover: Optional[pulumi.Input[str]] = None,
                  memory_compatible_mode: Optional[pulumi.Input[str]] = None,
+                 memory_failover_flip_timeout: Optional[pulumi.Input[int]] = None,
+                 memory_failover_monitor_period: Optional[pulumi.Input[int]] = None,
+                 memory_failover_sample_rate: Optional[pulumi.Input[int]] = None,
+                 memory_failover_threshold: Optional[pulumi.Input[int]] = None,
                  memory_threshold: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
@@ -924,9 +1063,13 @@ class _SystemHaState:
                  standalone_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  sync_config: Optional[pulumi.Input[str]] = None,
                  sync_packet_balance: Optional[pulumi.Input[str]] = None,
+                 unicast_gateway: Optional[pulumi.Input[str]] = None,
                  unicast_hb: Optional[pulumi.Input[str]] = None,
                  unicast_hb_netmask: Optional[pulumi.Input[str]] = None,
                  unicast_hb_peerip: Optional[pulumi.Input[str]] = None,
+                 unicast_peers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemHaUnicastPeerArgs']]]] = None,
+                 unicast_status: Optional[pulumi.Input[str]] = None,
+                 uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
@@ -948,6 +1091,8 @@ class _SystemHaState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encryption is not None:
             pulumi.set(__self__, "encryption", encryption)
+        if failover_hold_time is not None:
+            pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold is not None:
             pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
         if gratuitous_arps is not None:
@@ -968,6 +1113,8 @@ class _SystemHaState:
             pulumi.set(__self__, "ha_uptime_diff_margin", ha_uptime_diff_margin)
         if hb_interval is not None:
             pulumi.set(__self__, "hb_interval", hb_interval)
+        if hb_interval_in_milliseconds is not None:
+            pulumi.set(__self__, "hb_interval_in_milliseconds", hb_interval_in_milliseconds)
         if hb_lost_threshold is not None:
             pulumi.set(__self__, "hb_lost_threshold", hb_lost_threshold)
         if hbdev is not None:
@@ -992,8 +1139,18 @@ class _SystemHaState:
             pulumi.set(__self__, "load_balance_all", load_balance_all)
         if logical_sn is not None:
             pulumi.set(__self__, "logical_sn", logical_sn)
+        if memory_based_failover is not None:
+            pulumi.set(__self__, "memory_based_failover", memory_based_failover)
         if memory_compatible_mode is not None:
             pulumi.set(__self__, "memory_compatible_mode", memory_compatible_mode)
+        if memory_failover_flip_timeout is not None:
+            pulumi.set(__self__, "memory_failover_flip_timeout", memory_failover_flip_timeout)
+        if memory_failover_monitor_period is not None:
+            pulumi.set(__self__, "memory_failover_monitor_period", memory_failover_monitor_period)
+        if memory_failover_sample_rate is not None:
+            pulumi.set(__self__, "memory_failover_sample_rate", memory_failover_sample_rate)
+        if memory_failover_threshold is not None:
+            pulumi.set(__self__, "memory_failover_threshold", memory_failover_threshold)
         if memory_threshold is not None:
             pulumi.set(__self__, "memory_threshold", memory_threshold)
         if mode is not None:
@@ -1058,12 +1215,20 @@ class _SystemHaState:
             pulumi.set(__self__, "sync_config", sync_config)
         if sync_packet_balance is not None:
             pulumi.set(__self__, "sync_packet_balance", sync_packet_balance)
+        if unicast_gateway is not None:
+            pulumi.set(__self__, "unicast_gateway", unicast_gateway)
         if unicast_hb is not None:
             pulumi.set(__self__, "unicast_hb", unicast_hb)
         if unicast_hb_netmask is not None:
             pulumi.set(__self__, "unicast_hb_netmask", unicast_hb_netmask)
         if unicast_hb_peerip is not None:
             pulumi.set(__self__, "unicast_hb_peerip", unicast_hb_peerip)
+        if unicast_peers is not None:
+            pulumi.set(__self__, "unicast_peers", unicast_peers)
+        if unicast_status is not None:
+            pulumi.set(__self__, "unicast_status", unicast_status)
+        if uninterruptible_primary_wait is not None:
+            pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade is not None:
             pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
         if vcluster2 is not None:
@@ -1130,6 +1295,15 @@ class _SystemHaState:
     @encryption.setter
     def encryption(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "encryption", value)
+
+    @property
+    @pulumi.getter(name="failoverHoldTime")
+    def failover_hold_time(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "failover_hold_time")
+
+    @failover_hold_time.setter
+    def failover_hold_time(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "failover_hold_time", value)
 
     @property
     @pulumi.getter(name="ftpProxyThreshold")
@@ -1220,6 +1394,15 @@ class _SystemHaState:
     @hb_interval.setter
     def hb_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "hb_interval", value)
+
+    @property
+    @pulumi.getter(name="hbIntervalInMilliseconds")
+    def hb_interval_in_milliseconds(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "hb_interval_in_milliseconds")
+
+    @hb_interval_in_milliseconds.setter
+    def hb_interval_in_milliseconds(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "hb_interval_in_milliseconds", value)
 
     @property
     @pulumi.getter(name="hbLostThreshold")
@@ -1330,6 +1513,15 @@ class _SystemHaState:
         pulumi.set(self, "logical_sn", value)
 
     @property
+    @pulumi.getter(name="memoryBasedFailover")
+    def memory_based_failover(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "memory_based_failover")
+
+    @memory_based_failover.setter
+    def memory_based_failover(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "memory_based_failover", value)
+
+    @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "memory_compatible_mode")
@@ -1337,6 +1529,42 @@ class _SystemHaState:
     @memory_compatible_mode.setter
     def memory_compatible_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "memory_compatible_mode", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverFlipTimeout")
+    def memory_failover_flip_timeout(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_flip_timeout")
+
+    @memory_failover_flip_timeout.setter
+    def memory_failover_flip_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_flip_timeout", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverMonitorPeriod")
+    def memory_failover_monitor_period(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_monitor_period")
+
+    @memory_failover_monitor_period.setter
+    def memory_failover_monitor_period(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_monitor_period", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverSampleRate")
+    def memory_failover_sample_rate(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_sample_rate")
+
+    @memory_failover_sample_rate.setter
+    def memory_failover_sample_rate(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_sample_rate", value)
+
+    @property
+    @pulumi.getter(name="memoryFailoverThreshold")
+    def memory_failover_threshold(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "memory_failover_threshold")
+
+    @memory_failover_threshold.setter
+    def memory_failover_threshold(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "memory_failover_threshold", value)
 
     @property
     @pulumi.getter(name="memoryThreshold")
@@ -1627,6 +1855,15 @@ class _SystemHaState:
         pulumi.set(self, "sync_packet_balance", value)
 
     @property
+    @pulumi.getter(name="unicastGateway")
+    def unicast_gateway(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unicast_gateway")
+
+    @unicast_gateway.setter
+    def unicast_gateway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unicast_gateway", value)
+
+    @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> Optional[pulumi.Input[str]]:
         return pulumi.get(self, "unicast_hb")
@@ -1652,6 +1889,33 @@ class _SystemHaState:
     @unicast_hb_peerip.setter
     def unicast_hb_peerip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "unicast_hb_peerip", value)
+
+    @property
+    @pulumi.getter(name="unicastPeers")
+    def unicast_peers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemHaUnicastPeerArgs']]]]:
+        return pulumi.get(self, "unicast_peers")
+
+    @unicast_peers.setter
+    def unicast_peers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemHaUnicastPeerArgs']]]]):
+        pulumi.set(self, "unicast_peers", value)
+
+    @property
+    @pulumi.getter(name="unicastStatus")
+    def unicast_status(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "unicast_status")
+
+    @unicast_status.setter
+    def unicast_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "unicast_status", value)
+
+    @property
+    @pulumi.getter(name="uninterruptiblePrimaryWait")
+    def uninterruptible_primary_wait(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "uninterruptible_primary_wait")
+
+    @uninterruptible_primary_wait.setter
+    def uninterruptible_primary_wait(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "uninterruptible_primary_wait", value)
 
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")
@@ -1719,6 +1983,7 @@ class SystemHa(pulumi.CustomResource):
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
@@ -1729,6 +1994,7 @@ class SystemHa(pulumi.CustomResource):
                  ha_mgmt_status: Optional[pulumi.Input[str]] = None,
                  ha_uptime_diff_margin: Optional[pulumi.Input[int]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
+                 hb_interval_in_milliseconds: Optional[pulumi.Input[str]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
                  hbdev: Optional[pulumi.Input[str]] = None,
                  hc_eth_type: Optional[pulumi.Input[str]] = None,
@@ -1741,7 +2007,12 @@ class SystemHa(pulumi.CustomResource):
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
                  load_balance_all: Optional[pulumi.Input[str]] = None,
                  logical_sn: Optional[pulumi.Input[str]] = None,
+                 memory_based_failover: Optional[pulumi.Input[str]] = None,
                  memory_compatible_mode: Optional[pulumi.Input[str]] = None,
+                 memory_failover_flip_timeout: Optional[pulumi.Input[int]] = None,
+                 memory_failover_monitor_period: Optional[pulumi.Input[int]] = None,
+                 memory_failover_sample_rate: Optional[pulumi.Input[int]] = None,
+                 memory_failover_threshold: Optional[pulumi.Input[int]] = None,
                  memory_threshold: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
@@ -1774,9 +2045,13 @@ class SystemHa(pulumi.CustomResource):
                  standalone_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  sync_config: Optional[pulumi.Input[str]] = None,
                  sync_packet_balance: Optional[pulumi.Input[str]] = None,
+                 unicast_gateway: Optional[pulumi.Input[str]] = None,
                  unicast_hb: Optional[pulumi.Input[str]] = None,
                  unicast_hb_netmask: Optional[pulumi.Input[str]] = None,
                  unicast_hb_peerip: Optional[pulumi.Input[str]] = None,
+                 unicast_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemHaUnicastPeerArgs']]]]] = None,
+                 unicast_status: Optional[pulumi.Input[str]] = None,
+                 uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
@@ -1870,6 +2145,7 @@ class SystemHa(pulumi.CustomResource):
                  cpu_threshold: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encryption: Optional[pulumi.Input[str]] = None,
+                 failover_hold_time: Optional[pulumi.Input[int]] = None,
                  ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
                  gratuitous_arps: Optional[pulumi.Input[str]] = None,
                  group_id: Optional[pulumi.Input[int]] = None,
@@ -1880,6 +2156,7 @@ class SystemHa(pulumi.CustomResource):
                  ha_mgmt_status: Optional[pulumi.Input[str]] = None,
                  ha_uptime_diff_margin: Optional[pulumi.Input[int]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
+                 hb_interval_in_milliseconds: Optional[pulumi.Input[str]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
                  hbdev: Optional[pulumi.Input[str]] = None,
                  hc_eth_type: Optional[pulumi.Input[str]] = None,
@@ -1892,7 +2169,12 @@ class SystemHa(pulumi.CustomResource):
                  link_failed_signal: Optional[pulumi.Input[str]] = None,
                  load_balance_all: Optional[pulumi.Input[str]] = None,
                  logical_sn: Optional[pulumi.Input[str]] = None,
+                 memory_based_failover: Optional[pulumi.Input[str]] = None,
                  memory_compatible_mode: Optional[pulumi.Input[str]] = None,
+                 memory_failover_flip_timeout: Optional[pulumi.Input[int]] = None,
+                 memory_failover_monitor_period: Optional[pulumi.Input[int]] = None,
+                 memory_failover_sample_rate: Optional[pulumi.Input[int]] = None,
+                 memory_failover_threshold: Optional[pulumi.Input[int]] = None,
                  memory_threshold: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  monitor: Optional[pulumi.Input[str]] = None,
@@ -1925,9 +2207,13 @@ class SystemHa(pulumi.CustomResource):
                  standalone_mgmt_vdom: Optional[pulumi.Input[str]] = None,
                  sync_config: Optional[pulumi.Input[str]] = None,
                  sync_packet_balance: Optional[pulumi.Input[str]] = None,
+                 unicast_gateway: Optional[pulumi.Input[str]] = None,
                  unicast_hb: Optional[pulumi.Input[str]] = None,
                  unicast_hb_netmask: Optional[pulumi.Input[str]] = None,
                  unicast_hb_peerip: Optional[pulumi.Input[str]] = None,
+                 unicast_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemHaUnicastPeerArgs']]]]] = None,
+                 unicast_status: Optional[pulumi.Input[str]] = None,
+                 uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
                  uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
                  vcluster2: Optional[pulumi.Input[str]] = None,
                  vcluster_id: Optional[pulumi.Input[int]] = None,
@@ -1941,6 +2227,8 @@ class SystemHa(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1952,6 +2240,7 @@ class SystemHa(pulumi.CustomResource):
             __props__.__dict__["cpu_threshold"] = cpu_threshold
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["encryption"] = encryption
+            __props__.__dict__["failover_hold_time"] = failover_hold_time
             __props__.__dict__["ftp_proxy_threshold"] = ftp_proxy_threshold
             __props__.__dict__["gratuitous_arps"] = gratuitous_arps
             __props__.__dict__["group_id"] = group_id
@@ -1962,6 +2251,7 @@ class SystemHa(pulumi.CustomResource):
             __props__.__dict__["ha_mgmt_status"] = ha_mgmt_status
             __props__.__dict__["ha_uptime_diff_margin"] = ha_uptime_diff_margin
             __props__.__dict__["hb_interval"] = hb_interval
+            __props__.__dict__["hb_interval_in_milliseconds"] = hb_interval_in_milliseconds
             __props__.__dict__["hb_lost_threshold"] = hb_lost_threshold
             __props__.__dict__["hbdev"] = hbdev
             __props__.__dict__["hc_eth_type"] = hc_eth_type
@@ -1974,7 +2264,12 @@ class SystemHa(pulumi.CustomResource):
             __props__.__dict__["link_failed_signal"] = link_failed_signal
             __props__.__dict__["load_balance_all"] = load_balance_all
             __props__.__dict__["logical_sn"] = logical_sn
+            __props__.__dict__["memory_based_failover"] = memory_based_failover
             __props__.__dict__["memory_compatible_mode"] = memory_compatible_mode
+            __props__.__dict__["memory_failover_flip_timeout"] = memory_failover_flip_timeout
+            __props__.__dict__["memory_failover_monitor_period"] = memory_failover_monitor_period
+            __props__.__dict__["memory_failover_sample_rate"] = memory_failover_sample_rate
+            __props__.__dict__["memory_failover_threshold"] = memory_failover_threshold
             __props__.__dict__["memory_threshold"] = memory_threshold
             __props__.__dict__["mode"] = mode
             __props__.__dict__["monitor"] = monitor
@@ -2007,9 +2302,13 @@ class SystemHa(pulumi.CustomResource):
             __props__.__dict__["standalone_mgmt_vdom"] = standalone_mgmt_vdom
             __props__.__dict__["sync_config"] = sync_config
             __props__.__dict__["sync_packet_balance"] = sync_packet_balance
+            __props__.__dict__["unicast_gateway"] = unicast_gateway
             __props__.__dict__["unicast_hb"] = unicast_hb
             __props__.__dict__["unicast_hb_netmask"] = unicast_hb_netmask
             __props__.__dict__["unicast_hb_peerip"] = unicast_hb_peerip
+            __props__.__dict__["unicast_peers"] = unicast_peers
+            __props__.__dict__["unicast_status"] = unicast_status
+            __props__.__dict__["uninterruptible_primary_wait"] = uninterruptible_primary_wait
             __props__.__dict__["uninterruptible_upgrade"] = uninterruptible_upgrade
             __props__.__dict__["vcluster2"] = vcluster2
             __props__.__dict__["vcluster_id"] = vcluster_id
@@ -2032,6 +2331,7 @@ class SystemHa(pulumi.CustomResource):
             cpu_threshold: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             encryption: Optional[pulumi.Input[str]] = None,
+            failover_hold_time: Optional[pulumi.Input[int]] = None,
             ftp_proxy_threshold: Optional[pulumi.Input[str]] = None,
             gratuitous_arps: Optional[pulumi.Input[str]] = None,
             group_id: Optional[pulumi.Input[int]] = None,
@@ -2042,6 +2342,7 @@ class SystemHa(pulumi.CustomResource):
             ha_mgmt_status: Optional[pulumi.Input[str]] = None,
             ha_uptime_diff_margin: Optional[pulumi.Input[int]] = None,
             hb_interval: Optional[pulumi.Input[int]] = None,
+            hb_interval_in_milliseconds: Optional[pulumi.Input[str]] = None,
             hb_lost_threshold: Optional[pulumi.Input[int]] = None,
             hbdev: Optional[pulumi.Input[str]] = None,
             hc_eth_type: Optional[pulumi.Input[str]] = None,
@@ -2054,7 +2355,12 @@ class SystemHa(pulumi.CustomResource):
             link_failed_signal: Optional[pulumi.Input[str]] = None,
             load_balance_all: Optional[pulumi.Input[str]] = None,
             logical_sn: Optional[pulumi.Input[str]] = None,
+            memory_based_failover: Optional[pulumi.Input[str]] = None,
             memory_compatible_mode: Optional[pulumi.Input[str]] = None,
+            memory_failover_flip_timeout: Optional[pulumi.Input[int]] = None,
+            memory_failover_monitor_period: Optional[pulumi.Input[int]] = None,
+            memory_failover_sample_rate: Optional[pulumi.Input[int]] = None,
+            memory_failover_threshold: Optional[pulumi.Input[int]] = None,
             memory_threshold: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             monitor: Optional[pulumi.Input[str]] = None,
@@ -2087,9 +2393,13 @@ class SystemHa(pulumi.CustomResource):
             standalone_mgmt_vdom: Optional[pulumi.Input[str]] = None,
             sync_config: Optional[pulumi.Input[str]] = None,
             sync_packet_balance: Optional[pulumi.Input[str]] = None,
+            unicast_gateway: Optional[pulumi.Input[str]] = None,
             unicast_hb: Optional[pulumi.Input[str]] = None,
             unicast_hb_netmask: Optional[pulumi.Input[str]] = None,
             unicast_hb_peerip: Optional[pulumi.Input[str]] = None,
+            unicast_peers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemHaUnicastPeerArgs']]]]] = None,
+            unicast_status: Optional[pulumi.Input[str]] = None,
+            uninterruptible_primary_wait: Optional[pulumi.Input[int]] = None,
             uninterruptible_upgrade: Optional[pulumi.Input[str]] = None,
             vcluster2: Optional[pulumi.Input[str]] = None,
             vcluster_id: Optional[pulumi.Input[int]] = None,
@@ -2114,6 +2424,7 @@ class SystemHa(pulumi.CustomResource):
         __props__.__dict__["cpu_threshold"] = cpu_threshold
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["encryption"] = encryption
+        __props__.__dict__["failover_hold_time"] = failover_hold_time
         __props__.__dict__["ftp_proxy_threshold"] = ftp_proxy_threshold
         __props__.__dict__["gratuitous_arps"] = gratuitous_arps
         __props__.__dict__["group_id"] = group_id
@@ -2124,6 +2435,7 @@ class SystemHa(pulumi.CustomResource):
         __props__.__dict__["ha_mgmt_status"] = ha_mgmt_status
         __props__.__dict__["ha_uptime_diff_margin"] = ha_uptime_diff_margin
         __props__.__dict__["hb_interval"] = hb_interval
+        __props__.__dict__["hb_interval_in_milliseconds"] = hb_interval_in_milliseconds
         __props__.__dict__["hb_lost_threshold"] = hb_lost_threshold
         __props__.__dict__["hbdev"] = hbdev
         __props__.__dict__["hc_eth_type"] = hc_eth_type
@@ -2136,7 +2448,12 @@ class SystemHa(pulumi.CustomResource):
         __props__.__dict__["link_failed_signal"] = link_failed_signal
         __props__.__dict__["load_balance_all"] = load_balance_all
         __props__.__dict__["logical_sn"] = logical_sn
+        __props__.__dict__["memory_based_failover"] = memory_based_failover
         __props__.__dict__["memory_compatible_mode"] = memory_compatible_mode
+        __props__.__dict__["memory_failover_flip_timeout"] = memory_failover_flip_timeout
+        __props__.__dict__["memory_failover_monitor_period"] = memory_failover_monitor_period
+        __props__.__dict__["memory_failover_sample_rate"] = memory_failover_sample_rate
+        __props__.__dict__["memory_failover_threshold"] = memory_failover_threshold
         __props__.__dict__["memory_threshold"] = memory_threshold
         __props__.__dict__["mode"] = mode
         __props__.__dict__["monitor"] = monitor
@@ -2169,9 +2486,13 @@ class SystemHa(pulumi.CustomResource):
         __props__.__dict__["standalone_mgmt_vdom"] = standalone_mgmt_vdom
         __props__.__dict__["sync_config"] = sync_config
         __props__.__dict__["sync_packet_balance"] = sync_packet_balance
+        __props__.__dict__["unicast_gateway"] = unicast_gateway
         __props__.__dict__["unicast_hb"] = unicast_hb
         __props__.__dict__["unicast_hb_netmask"] = unicast_hb_netmask
         __props__.__dict__["unicast_hb_peerip"] = unicast_hb_peerip
+        __props__.__dict__["unicast_peers"] = unicast_peers
+        __props__.__dict__["unicast_status"] = unicast_status
+        __props__.__dict__["uninterruptible_primary_wait"] = uninterruptible_primary_wait
         __props__.__dict__["uninterruptible_upgrade"] = uninterruptible_upgrade
         __props__.__dict__["vcluster2"] = vcluster2
         __props__.__dict__["vcluster_id"] = vcluster_id
@@ -2209,6 +2530,11 @@ class SystemHa(pulumi.CustomResource):
     @pulumi.getter
     def encryption(self) -> pulumi.Output[str]:
         return pulumi.get(self, "encryption")
+
+    @property
+    @pulumi.getter(name="failoverHoldTime")
+    def failover_hold_time(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "failover_hold_time")
 
     @property
     @pulumi.getter(name="ftpProxyThreshold")
@@ -2259,6 +2585,11 @@ class SystemHa(pulumi.CustomResource):
     @pulumi.getter(name="hbInterval")
     def hb_interval(self) -> pulumi.Output[int]:
         return pulumi.get(self, "hb_interval")
+
+    @property
+    @pulumi.getter(name="hbIntervalInMilliseconds")
+    def hb_interval_in_milliseconds(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "hb_interval_in_milliseconds")
 
     @property
     @pulumi.getter(name="hbLostThreshold")
@@ -2321,9 +2652,34 @@ class SystemHa(pulumi.CustomResource):
         return pulumi.get(self, "logical_sn")
 
     @property
+    @pulumi.getter(name="memoryBasedFailover")
+    def memory_based_failover(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "memory_based_failover")
+
+    @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> pulumi.Output[str]:
         return pulumi.get(self, "memory_compatible_mode")
+
+    @property
+    @pulumi.getter(name="memoryFailoverFlipTimeout")
+    def memory_failover_flip_timeout(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "memory_failover_flip_timeout")
+
+    @property
+    @pulumi.getter(name="memoryFailoverMonitorPeriod")
+    def memory_failover_monitor_period(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "memory_failover_monitor_period")
+
+    @property
+    @pulumi.getter(name="memoryFailoverSampleRate")
+    def memory_failover_sample_rate(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "memory_failover_sample_rate")
+
+    @property
+    @pulumi.getter(name="memoryFailoverThreshold")
+    def memory_failover_threshold(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "memory_failover_threshold")
 
     @property
     @pulumi.getter(name="memoryThreshold")
@@ -2486,6 +2842,11 @@ class SystemHa(pulumi.CustomResource):
         return pulumi.get(self, "sync_packet_balance")
 
     @property
+    @pulumi.getter(name="unicastGateway")
+    def unicast_gateway(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "unicast_gateway")
+
+    @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> pulumi.Output[str]:
         return pulumi.get(self, "unicast_hb")
@@ -2499,6 +2860,21 @@ class SystemHa(pulumi.CustomResource):
     @pulumi.getter(name="unicastHbPeerip")
     def unicast_hb_peerip(self) -> pulumi.Output[str]:
         return pulumi.get(self, "unicast_hb_peerip")
+
+    @property
+    @pulumi.getter(name="unicastPeers")
+    def unicast_peers(self) -> pulumi.Output[Optional[Sequence['outputs.SystemHaUnicastPeer']]]:
+        return pulumi.get(self, "unicast_peers")
+
+    @property
+    @pulumi.getter(name="unicastStatus")
+    def unicast_status(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "unicast_status")
+
+    @property
+    @pulumi.getter(name="uninterruptiblePrimaryWait")
+    def uninterruptible_primary_wait(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "uninterruptible_primary_wait")
 
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")

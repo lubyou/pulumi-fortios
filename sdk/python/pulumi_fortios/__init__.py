@@ -54,7 +54,12 @@ from .endpoint_control_settings import *
 from .extender_controller_dataplan import *
 from .extender_controller_extender import *
 from .extender_controller_extender1 import *
+from .extender_controller_extender_profile import *
 from .file_filter_profile import *
+from .firewall_access_proxy import *
+from .firewall_access_proxy6 import *
+from .firewall_access_proxy_ssh_client_cert import *
+from .firewall_access_proxy_virtual_host import *
 from .firewall_address import *
 from .firewall_address6 import *
 from .firewall_address6_template import *
@@ -474,6 +479,12 @@ from .log_syslogd_filter import *
 from .log_syslogd_override_filter import *
 from .log_syslogd_override_setting import *
 from .log_syslogd_setting import *
+from .log_tacacs_accounting2_filter import *
+from .log_tacacs_accounting2_setting import *
+from .log_tacacs_accounting3_filter import *
+from .log_tacacs_accounting3_setting import *
+from .log_tacacs_accounting_filter import *
+from .log_tacacs_accounting_setting import *
 from .log_threat_weight import *
 from .log_webtrends_filter import *
 from .log_webtrends_setting import *
@@ -520,6 +531,7 @@ from .routerospf6_ospf6_interface import *
 from .routerospf_neighbor import *
 from .routerospf_network import *
 from .routerospf_ospf_interface import *
+from .sctp_filter_profile import *
 from .spamfilter_bwl import *
 from .spamfilter_bword import *
 from .spamfilter_dnsbl import *
@@ -534,7 +546,9 @@ from .switch_controller_auto_config_custom import *
 from .switch_controller_auto_config_default import *
 from .switch_controller_auto_config_policy import *
 from .switch_controller_custom_command import *
+from .switch_controller_dynamic_port_policy import *
 from .switch_controller_flow_tracking import *
+from .switch_controller_fortilink_settings import *
 from .switch_controller_global import *
 from .switch_controller_igmp_snooping import *
 from .switch_controller_initial_config_template import *
@@ -578,7 +592,9 @@ from .switch_controller_traffic_sniffer import *
 from .switch_controller_virtual_port_pool import *
 from .switch_controller_vlan import *
 from .switch_controller_vlan_policy import *
+from .system3_g_modem_custom import *
 from .system_accprofile import *
+from .system_acme import *
 from .system_admin import *
 from .system_admin_administrator import *
 from .system_admin_profiles import *
@@ -608,6 +624,7 @@ from .system_dedicated_mgmt import *
 from .system_dhcp6_server import *
 from .system_dhcp_server import *
 from .system_dns import *
+from .system_dns64 import *
 from .system_dns_database import *
 from .system_dns_server import *
 from .system_dscp_based_priority import *
@@ -616,6 +633,7 @@ from .system_external_resource import *
 from .system_federated_upgrade import *
 from .system_fips_cc import *
 from .system_fm import *
+from .system_fortiai import *
 from .system_fortiguard import *
 from .system_fortimanager import *
 from .system_fortisandbox import *
@@ -628,7 +646,9 @@ from .system_global import *
 from .system_gre_tunnel import *
 from .system_ha import *
 from .system_ha_monitor import *
+from .system_ike import *
 from .system_interface import *
+from .system_ipam import *
 from .system_ipip_tunnel import *
 from .system_ips import *
 from .system_ips_urlfilter_dns import *
@@ -641,17 +661,21 @@ from .system_license_vdom import *
 from .system_license_vm import *
 from .system_link_monitor import *
 from .system_lldp_network_policy import *
+from .system_lte_modem import *
 from .system_mac_address_table import *
 from .system_management_tunnel import *
 from .system_mobile_tunnel import *
+from .system_modem import *
 from .system_nat64 import *
 from .system_nd_proxy import *
 from .system_netflow import *
 from .system_network_visibility import *
+from .system_npu import *
 from .system_ntp import *
 from .system_object_tagging import *
 from .system_password_policy import *
 from .system_password_policy_guest_admin import *
+from .system_physical_switch import *
 from .system_pppoe_interface import *
 from .system_probe_response import *
 from .system_proxy_arp import *
@@ -695,8 +719,10 @@ from .system_snmp_user import *
 from .system_speed_test_schedule import *
 from .system_speed_test_server import *
 from .system_sso_admin import *
+from .system_sso_forticloud_admin import *
 from .system_standalone_cluster import *
 from .system_storage import *
+from .system_stp import *
 from .system_switch_interface import *
 from .system_tos_based_priority import *
 from .system_vdom import *
@@ -716,6 +742,7 @@ from .system_vxlan import *
 from .system_wccp import *
 from .system_zone import *
 from .user_adgrp import *
+from .user_certificate import *
 from .user_device import *
 from .user_device_access_list import *
 from .user_device_category import *
@@ -740,6 +767,9 @@ from .user_saml import *
 from .user_security_exempt_list import *
 from .user_setting import *
 from .user_tacacs import *
+from .videofilter_profile import *
+from .videofilter_youtube_channel_filter import *
+from .videofilter_youtube_key import *
 from .voip_profile import *
 from .vpn_certificate_ca import *
 from .vpn_certificate_crl import *
@@ -748,6 +778,7 @@ from .vpn_certificate_ocsp_server import *
 from .vpn_certificate_remote import *
 from .vpn_certificate_setting import *
 from .vpn_ipsec_concentrator import *
+from .vpn_ipsec_fec import *
 from .vpn_ipsec_forticlient import *
 from .vpn_ipsec_manualkey import *
 from .vpn_ipsec_manualkey_interface import *
@@ -758,6 +789,7 @@ from .vpn_ipsec_phase2_interface import *
 from .vpn_l2_tp import *
 from .vpn_ocvpn import *
 from .vpn_pptp import *
+from .vpn_ssl_client import *
 from .vpn_ssl_settings import *
 from .vpn_ssl_web_host_check_software import *
 from .vpn_ssl_web_portal import *
@@ -813,9 +845,13 @@ from .wireless_controller_hotspot20_anqp_nai_realm import *
 from .wireless_controller_hotspot20_anqp_network_auth_type import *
 from .wireless_controller_hotspot20_anqp_roaming_consortium import *
 from .wireless_controller_hotspot20_anqp_venue_name import *
+from .wireless_controller_hotspot20_anqp_venue_url import *
+from .wireless_controller_hotspot20_h2_qp_advice_of_charge import *
 from .wireless_controller_hotspot20_h2_qp_conn_capability import *
 from .wireless_controller_hotspot20_h2_qp_operator_name import *
 from .wireless_controller_hotspot20_h2_qp_osu_provider import *
+from .wireless_controller_hotspot20_h2_qp_osu_provider_nai import *
+from .wireless_controller_hotspot20_h2_qp_terms_and_conditions import *
 from .wireless_controller_hotspot20_h2_qp_wan_metric import *
 from .wireless_controller_hotspot20_hs_profile import *
 from .wireless_controller_hotspot20_icon import *
@@ -823,10 +859,13 @@ from .wireless_controller_hotspot20_qos_map import *
 from .wireless_controller_inter_controller import *
 from .wireless_controller_log import *
 from .wireless_controller_mpsk_profile import *
+from .wireless_controller_nac_profile import *
 from .wireless_controller_qos_profile import *
 from .wireless_controller_region import *
 from .wireless_controller_setting import *
 from .wireless_controller_snmp import *
+from .wireless_controller_ssid_policy import *
+from .wireless_controller_syslog_profile import *
 from .wireless_controller_timers import *
 from .wireless_controller_utm_profile import *
 from .wireless_controller_vap import *
@@ -841,7 +880,8 @@ from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
-    import pulumi_fortios.config as config
+    import pulumi_fortios.config as __config
+    config = __config
 else:
     config = _utilities.lazy_import('pulumi_fortios.config')
 
@@ -1242,10 +1282,50 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/extenderControllerExtenderProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile": "ExtenderControllerExtenderProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/fileFilterProfile",
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/fileFilterProfile:FileFilterProfile": "FileFilterProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallAccessProxy",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallAccessProxy:FirewallAccessProxy": "FirewallAccessProxy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallAccessProxy6",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallAccessProxy6:FirewallAccessProxy6": "FirewallAccessProxy6"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallAccessProxySshClientCert",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert": "FirewallAccessProxySshClientCert"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/firewallAccessProxyVirtualHost",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost": "FirewallAccessProxyVirtualHost"
   }
  },
  {
@@ -2754,6 +2834,54 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/logTacacsAccounting2Filter",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter": "LogTacacsAccounting2Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/logTacacsAccounting2Setting",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/logTacacsAccounting2Setting:LogTacacsAccounting2Setting": "LogTacacsAccounting2Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/logTacacsAccounting3Filter",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/logTacacsAccounting3Filter:LogTacacsAccounting3Filter": "LogTacacsAccounting3Filter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/logTacacsAccounting3Setting",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting": "LogTacacsAccounting3Setting"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/logTacacsAccountingFilter",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/logTacacsAccountingFilter:LogTacacsAccountingFilter": "LogTacacsAccountingFilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/logTacacsAccountingSetting",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting": "LogTacacsAccountingSetting"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/logThreatWeight",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -3114,6 +3242,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/sctpFilterProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/sctpFilterProfile:SctpFilterProfile": "SctpFilterProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/spamfilterBwl",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -3226,10 +3362,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/switchControllerDynamicPortPolicy",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy": "SwitchControllerDynamicPortPolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/switchControllerFlowTracking",
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking": "SwitchControllerFlowTracking"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/switchControllerFortilinkSettings",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings": "SwitchControllerFortilinkSettings"
   }
  },
  {
@@ -3578,6 +3730,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/system3GModemCustom",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/system3GModemCustom:System3GModemCustom": "System3GModemCustom"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemAPIUserSetting",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -3590,6 +3750,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemAccprofile:SystemAccprofile": "SystemAccprofile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemAcme",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemAcme:SystemAcme": "SystemAcme"
   }
  },
  {
@@ -3818,6 +3986,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemDns64",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemDns64:SystemDns64": "SystemDns64"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemDnsDatabase",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -3878,6 +4054,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemFm:SystemFm": "SystemFm"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemFortiai",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemFortiai:SystemFortiai": "SystemFortiai"
   }
  },
  {
@@ -3978,10 +4162,26 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemIke",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemIke:SystemIke": "SystemIke"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemInterface",
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemInterface:SystemInterface": "SystemInterface"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemIpam",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemIpam:SystemIpam": "SystemIpam"
   }
  },
  {
@@ -4082,6 +4282,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemLteModem",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemLteModem:SystemLteModem": "SystemLteModem"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemMacAddressTable",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4102,6 +4310,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemMobileTunnel:SystemMobileTunnel": "SystemMobileTunnel"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemModem",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemModem:SystemModem": "SystemModem"
   }
  },
  {
@@ -4138,6 +4354,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemNpu",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemNpu:SystemNpu": "SystemNpu"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemNtp",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4166,6 +4390,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin": "SystemPasswordPolicyGuestAdmin"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemPhysicalSwitch",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch": "SystemPhysicalSwitch"
   }
  },
  {
@@ -4514,6 +4746,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/systemSsoForticloudAdmin",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin": "SystemSsoForticloudAdmin"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/systemStandaloneCluster",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4526,6 +4766,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/systemStorage:SystemStorage": "SystemStorage"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/systemStp",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/systemStp:SystemStp": "SystemStp"
   }
  },
  {
@@ -4678,6 +4926,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/userAdgrp:UserAdgrp": "UserAdgrp"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/userCertificate",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/userCertificate:UserCertificate": "UserCertificate"
   }
  },
  {
@@ -4890,6 +5146,30 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/videofilterProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/videofilterProfile:VideofilterProfile": "VideofilterProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/videofilterYoutubeChannelFilter",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter": "VideofilterYoutubeChannelFilter"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/videofilterYoutubeKey",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey": "VideofilterYoutubeKey"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/voipProfile",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -4950,6 +5230,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator": "VpnIpsecConcentrator"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/vpnIpsecFec",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/vpnIpsecFec:VpnIpsecFec": "VpnIpsecFec"
   }
  },
  {
@@ -5030,6 +5318,14 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/vpnPptp:VpnPptp": "VpnPptp"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/vpnSslClient",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/vpnSslClient:VpnSslClient": "VpnSslClient"
   }
  },
  {
@@ -5458,6 +5754,22 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/wirelessControllerHotspot20AnqpVenueUrl",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerHotspot20AnqpVenueUrl:WirelessControllerHotspot20AnqpVenueUrl": "WirelessControllerHotspot20AnqpVenueUrl"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/wirelessControllerHotspot20H2QpAdviceOfCharge",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge": "WirelessControllerHotspot20H2QpAdviceOfCharge"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/wirelessControllerHotspot20H2QpConnCapability",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -5478,6 +5790,22 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider": "WirelessControllerHotspot20H2QpOsuProvider"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/wirelessControllerHotspot20H2QpOsuProviderNai",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerHotspot20H2QpOsuProviderNai:WirelessControllerHotspot20H2QpOsuProviderNai": "WirelessControllerHotspot20H2QpOsuProviderNai"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/wirelessControllerHotspot20H2QpTermsAndConditions",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions": "WirelessControllerHotspot20H2QpTermsAndConditions"
   }
  },
  {
@@ -5538,6 +5866,14 @@ _utilities.register(
  },
  {
   "pkg": "fortios",
+  "mod": "index/wirelessControllerNacProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerNacProfile:WirelessControllerNacProfile": "WirelessControllerNacProfile"
+  }
+ },
+ {
+  "pkg": "fortios",
   "mod": "index/wirelessControllerQosProfile",
   "fqn": "pulumi_fortios",
   "classes": {
@@ -5566,6 +5902,22 @@ _utilities.register(
   "fqn": "pulumi_fortios",
   "classes": {
    "fortios:index/wirelessControllerSnmp:WirelessControllerSnmp": "WirelessControllerSnmp"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/wirelessControllerSsidPolicy",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy": "WirelessControllerSsidPolicy"
+  }
+ },
+ {
+  "pkg": "fortios",
+  "mod": "index/wirelessControllerSyslogProfile",
+  "fqn": "pulumi_fortios",
+  "classes": {
+   "fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile": "WirelessControllerSyslogProfile"
   }
  },
  {

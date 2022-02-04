@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure wireless access gateway (WAG) profiles used for tunnels on AP.
+// Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -53,6 +53,7 @@ func NewWirelessControllerWagProfile(ctx *pulumi.Context,
 		args = &WirelessControllerWagProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWagProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWagProfile:WirelessControllerWagProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ type WirelessControllerWagProfileInput interface {
 }
 
 func (*WirelessControllerWagProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWagProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerWagProfile)(nil)).Elem()
 }
 
 func (i *WirelessControllerWagProfile) ToWirelessControllerWagProfileOutput() WirelessControllerWagProfileOutput {
@@ -192,35 +193,6 @@ func (i *WirelessControllerWagProfile) ToWirelessControllerWagProfileOutput() Wi
 
 func (i *WirelessControllerWagProfile) ToWirelessControllerWagProfileOutputWithContext(ctx context.Context) WirelessControllerWagProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWagProfileOutput)
-}
-
-func (i *WirelessControllerWagProfile) ToWirelessControllerWagProfilePtrOutput() WirelessControllerWagProfilePtrOutput {
-	return i.ToWirelessControllerWagProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerWagProfile) ToWirelessControllerWagProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWagProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWagProfilePtrOutput)
-}
-
-type WirelessControllerWagProfilePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerWagProfilePtrOutput() WirelessControllerWagProfilePtrOutput
-	ToWirelessControllerWagProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWagProfilePtrOutput
-}
-
-type wirelessControllerWagProfilePtrType WirelessControllerWagProfileArgs
-
-func (*wirelessControllerWagProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWagProfile)(nil))
-}
-
-func (i *wirelessControllerWagProfilePtrType) ToWirelessControllerWagProfilePtrOutput() WirelessControllerWagProfilePtrOutput {
-	return i.ToWirelessControllerWagProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerWagProfilePtrType) ToWirelessControllerWagProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWagProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWagProfilePtrOutput)
 }
 
 // WirelessControllerWagProfileArrayInput is an input type that accepts WirelessControllerWagProfileArray and WirelessControllerWagProfileArrayOutput values.
@@ -237,7 +209,7 @@ type WirelessControllerWagProfileArrayInput interface {
 type WirelessControllerWagProfileArray []WirelessControllerWagProfileInput
 
 func (WirelessControllerWagProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerWagProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWagProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerWagProfileArray) ToWirelessControllerWagProfileArrayOutput() WirelessControllerWagProfileArrayOutput {
@@ -262,7 +234,7 @@ type WirelessControllerWagProfileMapInput interface {
 type WirelessControllerWagProfileMap map[string]WirelessControllerWagProfileInput
 
 func (WirelessControllerWagProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerWagProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWagProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerWagProfileMap) ToWirelessControllerWagProfileMapOutput() WirelessControllerWagProfileMapOutput {
@@ -273,12 +245,10 @@ func (i WirelessControllerWagProfileMap) ToWirelessControllerWagProfileMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWagProfileMapOutput)
 }
 
-type WirelessControllerWagProfileOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerWagProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWagProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWagProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerWagProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerWagProfileOutput) ToWirelessControllerWagProfileOutput() WirelessControllerWagProfileOutput {
@@ -289,36 +259,10 @@ func (o WirelessControllerWagProfileOutput) ToWirelessControllerWagProfileOutput
 	return o
 }
 
-func (o WirelessControllerWagProfileOutput) ToWirelessControllerWagProfilePtrOutput() WirelessControllerWagProfilePtrOutput {
-	return o.ToWirelessControllerWagProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerWagProfileOutput) ToWirelessControllerWagProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWagProfilePtrOutput {
-	return o.ApplyT(func(v WirelessControllerWagProfile) *WirelessControllerWagProfile {
-		return &v
-	}).(WirelessControllerWagProfilePtrOutput)
-}
-
-type WirelessControllerWagProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerWagProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWagProfile)(nil))
-}
-
-func (o WirelessControllerWagProfilePtrOutput) ToWirelessControllerWagProfilePtrOutput() WirelessControllerWagProfilePtrOutput {
-	return o
-}
-
-func (o WirelessControllerWagProfilePtrOutput) ToWirelessControllerWagProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWagProfilePtrOutput {
-	return o
-}
-
 type WirelessControllerWagProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWagProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerWagProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWagProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerWagProfileArrayOutput) ToWirelessControllerWagProfileArrayOutput() WirelessControllerWagProfileArrayOutput {
@@ -330,15 +274,15 @@ func (o WirelessControllerWagProfileArrayOutput) ToWirelessControllerWagProfileA
 }
 
 func (o WirelessControllerWagProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerWagProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWagProfile {
-		return vs[0].([]WirelessControllerWagProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWagProfile {
+		return vs[0].([]*WirelessControllerWagProfile)[vs[1].(int)]
 	}).(WirelessControllerWagProfileOutput)
 }
 
 type WirelessControllerWagProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWagProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerWagProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWagProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerWagProfileMapOutput) ToWirelessControllerWagProfileMapOutput() WirelessControllerWagProfileMapOutput {
@@ -350,14 +294,16 @@ func (o WirelessControllerWagProfileMapOutput) ToWirelessControllerWagProfileMap
 }
 
 func (o WirelessControllerWagProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWagProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerWagProfile {
-		return vs[0].(map[string]WirelessControllerWagProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerWagProfile {
+		return vs[0].(map[string]*WirelessControllerWagProfile)[vs[1].(string)]
 	}).(WirelessControllerWagProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWagProfileInput)(nil)).Elem(), &WirelessControllerWagProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWagProfileArrayInput)(nil)).Elem(), WirelessControllerWagProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWagProfileMapInput)(nil)).Elem(), WirelessControllerWagProfileMap{})
 	pulumi.RegisterOutputType(WirelessControllerWagProfileOutput{})
-	pulumi.RegisterOutputType(WirelessControllerWagProfilePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWagProfileArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWagProfileMapOutput{})
 }

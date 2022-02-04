@@ -13,9 +13,7 @@ export function getFirewallAddress(args: GetFirewallAddressArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallAddress:GetFirewallAddress", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -81,6 +79,10 @@ export interface GetFirewallAddressResult {
      */
     readonly epgName: string;
     /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
+    /**
      * Match criteria filter.
      */
     readonly filter: string;
@@ -104,6 +106,10 @@ export interface GetFirewallAddressResult {
      * IP address list. The structure of `list` block is documented below.
      */
     readonly lists: outputs.GetFirewallAddressList[];
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    readonly macaddrs: outputs.GetFirewallAddressMacaddr[];
     /**
      * Tag name.
      */
@@ -165,6 +171,14 @@ export interface GetFirewallAddressResult {
      */
     readonly subnetName: string;
     /**
+     * Tag detection level of dynamic address object.
+     */
+    readonly tagDetectionLevel: string;
+    /**
+     * Tag type of dynamic address object.
+     */
+    readonly tagType: string;
+    /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
     readonly taggings: outputs.GetFirewallAddressTagging[];
@@ -193,4 +207,22 @@ export interface GetFirewallAddressResult {
      * Fully Qualified Domain Name with wildcard characters.
      */
     readonly wildcardFqdn: string;
+}
+
+export function getFirewallAddressOutput(args: GetFirewallAddressOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddressResult> {
+    return pulumi.output(args).apply(a => getFirewallAddress(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallAddress.
+ */
+export interface GetFirewallAddressOutputArgs {
+    /**
+     * Specify the name of the desired firewall address.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

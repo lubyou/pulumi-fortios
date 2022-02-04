@@ -91,29 +91,27 @@ export class SystemVdom extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVdomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVdomArgs | SystemVdomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVdomState | undefined;
-            inputs["flag"] = state ? state.flag : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["shortName"] = state ? state.shortName : undefined;
-            inputs["temporary"] = state ? state.temporary : undefined;
-            inputs["vclusterId"] = state ? state.vclusterId : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["flag"] = state ? state.flag : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["shortName"] = state ? state.shortName : undefined;
+            resourceInputs["temporary"] = state ? state.temporary : undefined;
+            resourceInputs["vclusterId"] = state ? state.vclusterId : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemVdomArgs | undefined;
-            inputs["flag"] = args ? args.flag : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["shortName"] = args ? args.shortName : undefined;
-            inputs["temporary"] = args ? args.temporary : undefined;
-            inputs["vclusterId"] = args ? args.vclusterId : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["flag"] = args ? args.flag : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["shortName"] = args ? args.shortName : undefined;
+            resourceInputs["temporary"] = args ? args.temporary : undefined;
+            resourceInputs["vclusterId"] = args ? args.vclusterId : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVdom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVdom.__pulumiType, name, resourceInputs, opts);
     }
 }
 

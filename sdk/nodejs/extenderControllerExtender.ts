@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -89,9 +90,21 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      */
     public readonly admin!: pulumi.Output<string>;
     /**
+     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+     */
+    public readonly allowaccess!: pulumi.Output<string>;
+    /**
      * Initialization AT commands specific to the MODEM.
      */
     public readonly atDialScript!: pulumi.Output<string>;
+    /**
+     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+     */
+    public readonly authorized!: pulumi.Output<string>;
+    /**
+     * FortiExtender LAN extension bandwidth limit (Mbps).
+     */
+    public readonly bandwidthLimit!: pulumi.Output<number>;
     /**
      * Billing start day.
      */
@@ -113,9 +126,17 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      */
     public readonly connStatus!: pulumi.Output<number>;
     /**
+     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+     */
+    public readonly controllerReport!: pulumi.Output<outputs.ExtenderControllerExtenderControllerReport | undefined>;
+    /**
      * Description.
      */
     public readonly description!: pulumi.Output<string>;
+    /**
+     * device-id
+     */
+    public readonly deviceId!: pulumi.Output<number>;
     /**
      * Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
      */
@@ -125,9 +146,17 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      */
     public readonly dialStatus!: pulumi.Output<number>;
     /**
+     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+     */
+    public readonly enforceBandwidth!: pulumi.Output<string>;
+    /**
      * FortiExtender name.
      */
     public readonly extName!: pulumi.Output<string>;
+    /**
+     * Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+     */
+    public readonly extensionType!: pulumi.Output<string>;
     /**
      * FortiExtender serial number.
      */
@@ -145,9 +174,25 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      */
     public readonly initiatedUpdate!: pulumi.Output<string>;
     /**
+     * FortiExtender login password.
+     */
+    public readonly loginPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+     */
+    public readonly loginPasswordChange!: pulumi.Output<string>;
+    /**
      * FortiExtender mode. Valid values: `standalone`, `redundant`.
      */
     public readonly mode!: pulumi.Output<string>;
+    /**
+     * Configuration options for modem 1. The structure of `modem1` block is documented below.
+     */
+    public readonly modem1!: pulumi.Output<outputs.ExtenderControllerExtenderModem1 | undefined>;
+    /**
+     * Configuration options for modem 2. The structure of `modem2` block is documented below.
+     */
+    public readonly modem2!: pulumi.Output<outputs.ExtenderControllerExtenderModem2 | undefined>;
     /**
      * MODEM password.
      */
@@ -160,6 +205,22 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      * MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
      */
     public readonly multiMode!: pulumi.Output<string>;
+    /**
+     * FortiExtender entry name.
+     */
+    public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+     */
+    public readonly overrideAllowaccess!: pulumi.Output<string>;
+    /**
+     * Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+     */
+    public readonly overrideEnforceBandwidth!: pulumi.Output<string>;
+    /**
+     * Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+     */
+    public readonly overrideLoginPasswordChange!: pulumi.Output<string>;
     /**
      * PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
      */
@@ -180,6 +241,10 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      * Primary HA.
      */
     public readonly primaryHa!: pulumi.Output<string>;
+    /**
+     * FortiExtender profile configuration.
+     */
+    public readonly profile!: pulumi.Output<string>;
     /**
      * Monthly quota limit (MB).
      */
@@ -217,6 +282,10 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     /**
+     * FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+     */
+    public readonly wanExtension!: pulumi.Output<outputs.ExtenderControllerExtenderWanExtension | undefined>;
+    /**
      * WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
      */
     public readonly wimaxAuthProtocol!: pulumi.Output<string>;
@@ -238,48 +307,65 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
      */
     constructor(name: string, args: ExtenderControllerExtenderArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExtenderControllerExtenderArgs | ExtenderControllerExtenderState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExtenderControllerExtenderState | undefined;
-            inputs["aaaSharedSecret"] = state ? state.aaaSharedSecret : undefined;
-            inputs["accessPointName"] = state ? state.accessPointName : undefined;
-            inputs["admin"] = state ? state.admin : undefined;
-            inputs["atDialScript"] = state ? state.atDialScript : undefined;
-            inputs["billingStartDay"] = state ? state.billingStartDay : undefined;
-            inputs["cdmaAaaSpi"] = state ? state.cdmaAaaSpi : undefined;
-            inputs["cdmaHaSpi"] = state ? state.cdmaHaSpi : undefined;
-            inputs["cdmaNai"] = state ? state.cdmaNai : undefined;
-            inputs["connStatus"] = state ? state.connStatus : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["dialMode"] = state ? state.dialMode : undefined;
-            inputs["dialStatus"] = state ? state.dialStatus : undefined;
-            inputs["extName"] = state ? state.extName : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["haSharedSecret"] = state ? state.haSharedSecret : undefined;
-            inputs["ifname"] = state ? state.ifname : undefined;
-            inputs["initiatedUpdate"] = state ? state.initiatedUpdate : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["modemPasswd"] = state ? state.modemPasswd : undefined;
-            inputs["modemType"] = state ? state.modemType : undefined;
-            inputs["multiMode"] = state ? state.multiMode : undefined;
-            inputs["pppAuthProtocol"] = state ? state.pppAuthProtocol : undefined;
-            inputs["pppEchoRequest"] = state ? state.pppEchoRequest : undefined;
-            inputs["pppPassword"] = state ? state.pppPassword : undefined;
-            inputs["pppUsername"] = state ? state.pppUsername : undefined;
-            inputs["primaryHa"] = state ? state.primaryHa : undefined;
-            inputs["quotaLimitMb"] = state ? state.quotaLimitMb : undefined;
-            inputs["redial"] = state ? state.redial : undefined;
-            inputs["redundantIntf"] = state ? state.redundantIntf : undefined;
-            inputs["roaming"] = state ? state.roaming : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["secondaryHa"] = state ? state.secondaryHa : undefined;
-            inputs["simPin"] = state ? state.simPin : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wimaxAuthProtocol"] = state ? state.wimaxAuthProtocol : undefined;
-            inputs["wimaxCarrier"] = state ? state.wimaxCarrier : undefined;
-            inputs["wimaxRealm"] = state ? state.wimaxRealm : undefined;
+            resourceInputs["aaaSharedSecret"] = state ? state.aaaSharedSecret : undefined;
+            resourceInputs["accessPointName"] = state ? state.accessPointName : undefined;
+            resourceInputs["admin"] = state ? state.admin : undefined;
+            resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
+            resourceInputs["atDialScript"] = state ? state.atDialScript : undefined;
+            resourceInputs["authorized"] = state ? state.authorized : undefined;
+            resourceInputs["bandwidthLimit"] = state ? state.bandwidthLimit : undefined;
+            resourceInputs["billingStartDay"] = state ? state.billingStartDay : undefined;
+            resourceInputs["cdmaAaaSpi"] = state ? state.cdmaAaaSpi : undefined;
+            resourceInputs["cdmaHaSpi"] = state ? state.cdmaHaSpi : undefined;
+            resourceInputs["cdmaNai"] = state ? state.cdmaNai : undefined;
+            resourceInputs["connStatus"] = state ? state.connStatus : undefined;
+            resourceInputs["controllerReport"] = state ? state.controllerReport : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
+            resourceInputs["dialMode"] = state ? state.dialMode : undefined;
+            resourceInputs["dialStatus"] = state ? state.dialStatus : undefined;
+            resourceInputs["enforceBandwidth"] = state ? state.enforceBandwidth : undefined;
+            resourceInputs["extName"] = state ? state.extName : undefined;
+            resourceInputs["extensionType"] = state ? state.extensionType : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["haSharedSecret"] = state ? state.haSharedSecret : undefined;
+            resourceInputs["ifname"] = state ? state.ifname : undefined;
+            resourceInputs["initiatedUpdate"] = state ? state.initiatedUpdate : undefined;
+            resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
+            resourceInputs["loginPasswordChange"] = state ? state.loginPasswordChange : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["modem1"] = state ? state.modem1 : undefined;
+            resourceInputs["modem2"] = state ? state.modem2 : undefined;
+            resourceInputs["modemPasswd"] = state ? state.modemPasswd : undefined;
+            resourceInputs["modemType"] = state ? state.modemType : undefined;
+            resourceInputs["multiMode"] = state ? state.multiMode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overrideAllowaccess"] = state ? state.overrideAllowaccess : undefined;
+            resourceInputs["overrideEnforceBandwidth"] = state ? state.overrideEnforceBandwidth : undefined;
+            resourceInputs["overrideLoginPasswordChange"] = state ? state.overrideLoginPasswordChange : undefined;
+            resourceInputs["pppAuthProtocol"] = state ? state.pppAuthProtocol : undefined;
+            resourceInputs["pppEchoRequest"] = state ? state.pppEchoRequest : undefined;
+            resourceInputs["pppPassword"] = state ? state.pppPassword : undefined;
+            resourceInputs["pppUsername"] = state ? state.pppUsername : undefined;
+            resourceInputs["primaryHa"] = state ? state.primaryHa : undefined;
+            resourceInputs["profile"] = state ? state.profile : undefined;
+            resourceInputs["quotaLimitMb"] = state ? state.quotaLimitMb : undefined;
+            resourceInputs["redial"] = state ? state.redial : undefined;
+            resourceInputs["redundantIntf"] = state ? state.redundantIntf : undefined;
+            resourceInputs["roaming"] = state ? state.roaming : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["secondaryHa"] = state ? state.secondaryHa : undefined;
+            resourceInputs["simPin"] = state ? state.simPin : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wanExtension"] = state ? state.wanExtension : undefined;
+            resourceInputs["wimaxAuthProtocol"] = state ? state.wimaxAuthProtocol : undefined;
+            resourceInputs["wimaxCarrier"] = state ? state.wimaxCarrier : undefined;
+            resourceInputs["wimaxRealm"] = state ? state.wimaxRealm : undefined;
         } else {
             const args = argsOrState as ExtenderControllerExtenderArgs | undefined;
             if ((!args || args.admin === undefined) && !opts.urn) {
@@ -291,49 +377,64 @@ export class ExtenderControllerExtender extends pulumi.CustomResource {
             if ((!args || args.role === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'role'");
             }
-            inputs["aaaSharedSecret"] = args ? args.aaaSharedSecret : undefined;
-            inputs["accessPointName"] = args ? args.accessPointName : undefined;
-            inputs["admin"] = args ? args.admin : undefined;
-            inputs["atDialScript"] = args ? args.atDialScript : undefined;
-            inputs["billingStartDay"] = args ? args.billingStartDay : undefined;
-            inputs["cdmaAaaSpi"] = args ? args.cdmaAaaSpi : undefined;
-            inputs["cdmaHaSpi"] = args ? args.cdmaHaSpi : undefined;
-            inputs["cdmaNai"] = args ? args.cdmaNai : undefined;
-            inputs["connStatus"] = args ? args.connStatus : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["dialMode"] = args ? args.dialMode : undefined;
-            inputs["dialStatus"] = args ? args.dialStatus : undefined;
-            inputs["extName"] = args ? args.extName : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["haSharedSecret"] = args ? args.haSharedSecret : undefined;
-            inputs["ifname"] = args ? args.ifname : undefined;
-            inputs["initiatedUpdate"] = args ? args.initiatedUpdate : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["modemPasswd"] = args ? args.modemPasswd : undefined;
-            inputs["modemType"] = args ? args.modemType : undefined;
-            inputs["multiMode"] = args ? args.multiMode : undefined;
-            inputs["pppAuthProtocol"] = args ? args.pppAuthProtocol : undefined;
-            inputs["pppEchoRequest"] = args ? args.pppEchoRequest : undefined;
-            inputs["pppPassword"] = args ? args.pppPassword : undefined;
-            inputs["pppUsername"] = args ? args.pppUsername : undefined;
-            inputs["primaryHa"] = args ? args.primaryHa : undefined;
-            inputs["quotaLimitMb"] = args ? args.quotaLimitMb : undefined;
-            inputs["redial"] = args ? args.redial : undefined;
-            inputs["redundantIntf"] = args ? args.redundantIntf : undefined;
-            inputs["roaming"] = args ? args.roaming : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["secondaryHa"] = args ? args.secondaryHa : undefined;
-            inputs["simPin"] = args ? args.simPin : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wimaxAuthProtocol"] = args ? args.wimaxAuthProtocol : undefined;
-            inputs["wimaxCarrier"] = args ? args.wimaxCarrier : undefined;
-            inputs["wimaxRealm"] = args ? args.wimaxRealm : undefined;
+            resourceInputs["aaaSharedSecret"] = args ? args.aaaSharedSecret : undefined;
+            resourceInputs["accessPointName"] = args ? args.accessPointName : undefined;
+            resourceInputs["admin"] = args ? args.admin : undefined;
+            resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
+            resourceInputs["atDialScript"] = args ? args.atDialScript : undefined;
+            resourceInputs["authorized"] = args ? args.authorized : undefined;
+            resourceInputs["bandwidthLimit"] = args ? args.bandwidthLimit : undefined;
+            resourceInputs["billingStartDay"] = args ? args.billingStartDay : undefined;
+            resourceInputs["cdmaAaaSpi"] = args ? args.cdmaAaaSpi : undefined;
+            resourceInputs["cdmaHaSpi"] = args ? args.cdmaHaSpi : undefined;
+            resourceInputs["cdmaNai"] = args ? args.cdmaNai : undefined;
+            resourceInputs["connStatus"] = args ? args.connStatus : undefined;
+            resourceInputs["controllerReport"] = args ? args.controllerReport : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
+            resourceInputs["dialMode"] = args ? args.dialMode : undefined;
+            resourceInputs["dialStatus"] = args ? args.dialStatus : undefined;
+            resourceInputs["enforceBandwidth"] = args ? args.enforceBandwidth : undefined;
+            resourceInputs["extName"] = args ? args.extName : undefined;
+            resourceInputs["extensionType"] = args ? args.extensionType : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["haSharedSecret"] = args ? args.haSharedSecret : undefined;
+            resourceInputs["ifname"] = args ? args.ifname : undefined;
+            resourceInputs["initiatedUpdate"] = args ? args.initiatedUpdate : undefined;
+            resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
+            resourceInputs["loginPasswordChange"] = args ? args.loginPasswordChange : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["modem1"] = args ? args.modem1 : undefined;
+            resourceInputs["modem2"] = args ? args.modem2 : undefined;
+            resourceInputs["modemPasswd"] = args ? args.modemPasswd : undefined;
+            resourceInputs["modemType"] = args ? args.modemType : undefined;
+            resourceInputs["multiMode"] = args ? args.multiMode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overrideAllowaccess"] = args ? args.overrideAllowaccess : undefined;
+            resourceInputs["overrideEnforceBandwidth"] = args ? args.overrideEnforceBandwidth : undefined;
+            resourceInputs["overrideLoginPasswordChange"] = args ? args.overrideLoginPasswordChange : undefined;
+            resourceInputs["pppAuthProtocol"] = args ? args.pppAuthProtocol : undefined;
+            resourceInputs["pppEchoRequest"] = args ? args.pppEchoRequest : undefined;
+            resourceInputs["pppPassword"] = args ? args.pppPassword : undefined;
+            resourceInputs["pppUsername"] = args ? args.pppUsername : undefined;
+            resourceInputs["primaryHa"] = args ? args.primaryHa : undefined;
+            resourceInputs["profile"] = args ? args.profile : undefined;
+            resourceInputs["quotaLimitMb"] = args ? args.quotaLimitMb : undefined;
+            resourceInputs["redial"] = args ? args.redial : undefined;
+            resourceInputs["redundantIntf"] = args ? args.redundantIntf : undefined;
+            resourceInputs["roaming"] = args ? args.roaming : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["secondaryHa"] = args ? args.secondaryHa : undefined;
+            resourceInputs["simPin"] = args ? args.simPin : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wanExtension"] = args ? args.wanExtension : undefined;
+            resourceInputs["wimaxAuthProtocol"] = args ? args.wimaxAuthProtocol : undefined;
+            resourceInputs["wimaxCarrier"] = args ? args.wimaxCarrier : undefined;
+            resourceInputs["wimaxRealm"] = args ? args.wimaxRealm : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ExtenderControllerExtender.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ExtenderControllerExtender.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -354,9 +455,21 @@ export interface ExtenderControllerExtenderState {
      */
     admin?: pulumi.Input<string>;
     /**
+     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+     */
+    allowaccess?: pulumi.Input<string>;
+    /**
      * Initialization AT commands specific to the MODEM.
      */
     atDialScript?: pulumi.Input<string>;
+    /**
+     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+     */
+    authorized?: pulumi.Input<string>;
+    /**
+     * FortiExtender LAN extension bandwidth limit (Mbps).
+     */
+    bandwidthLimit?: pulumi.Input<number>;
     /**
      * Billing start day.
      */
@@ -378,9 +491,17 @@ export interface ExtenderControllerExtenderState {
      */
     connStatus?: pulumi.Input<number>;
     /**
+     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+     */
+    controllerReport?: pulumi.Input<inputs.ExtenderControllerExtenderControllerReport>;
+    /**
      * Description.
      */
     description?: pulumi.Input<string>;
+    /**
+     * device-id
+     */
+    deviceId?: pulumi.Input<number>;
     /**
      * Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
      */
@@ -390,9 +511,17 @@ export interface ExtenderControllerExtenderState {
      */
     dialStatus?: pulumi.Input<number>;
     /**
+     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+     */
+    enforceBandwidth?: pulumi.Input<string>;
+    /**
      * FortiExtender name.
      */
     extName?: pulumi.Input<string>;
+    /**
+     * Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+     */
+    extensionType?: pulumi.Input<string>;
     /**
      * FortiExtender serial number.
      */
@@ -410,9 +539,25 @@ export interface ExtenderControllerExtenderState {
      */
     initiatedUpdate?: pulumi.Input<string>;
     /**
+     * FortiExtender login password.
+     */
+    loginPassword?: pulumi.Input<string>;
+    /**
+     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+     */
+    loginPasswordChange?: pulumi.Input<string>;
+    /**
      * FortiExtender mode. Valid values: `standalone`, `redundant`.
      */
     mode?: pulumi.Input<string>;
+    /**
+     * Configuration options for modem 1. The structure of `modem1` block is documented below.
+     */
+    modem1?: pulumi.Input<inputs.ExtenderControllerExtenderModem1>;
+    /**
+     * Configuration options for modem 2. The structure of `modem2` block is documented below.
+     */
+    modem2?: pulumi.Input<inputs.ExtenderControllerExtenderModem2>;
     /**
      * MODEM password.
      */
@@ -425,6 +570,22 @@ export interface ExtenderControllerExtenderState {
      * MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
      */
     multiMode?: pulumi.Input<string>;
+    /**
+     * FortiExtender entry name.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+     */
+    overrideAllowaccess?: pulumi.Input<string>;
+    /**
+     * Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+     */
+    overrideEnforceBandwidth?: pulumi.Input<string>;
+    /**
+     * Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+     */
+    overrideLoginPasswordChange?: pulumi.Input<string>;
     /**
      * PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
      */
@@ -445,6 +606,10 @@ export interface ExtenderControllerExtenderState {
      * Primary HA.
      */
     primaryHa?: pulumi.Input<string>;
+    /**
+     * FortiExtender profile configuration.
+     */
+    profile?: pulumi.Input<string>;
     /**
      * Monthly quota limit (MB).
      */
@@ -482,6 +647,10 @@ export interface ExtenderControllerExtenderState {
      */
     vdomparam?: pulumi.Input<string>;
     /**
+     * FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+     */
+    wanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderWanExtension>;
+    /**
      * WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
      */
     wimaxAuthProtocol?: pulumi.Input<string>;
@@ -512,9 +681,21 @@ export interface ExtenderControllerExtenderArgs {
      */
     admin: pulumi.Input<string>;
     /**
+     * Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+     */
+    allowaccess?: pulumi.Input<string>;
+    /**
      * Initialization AT commands specific to the MODEM.
      */
     atDialScript?: pulumi.Input<string>;
+    /**
+     * FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+     */
+    authorized?: pulumi.Input<string>;
+    /**
+     * FortiExtender LAN extension bandwidth limit (Mbps).
+     */
+    bandwidthLimit?: pulumi.Input<number>;
     /**
      * Billing start day.
      */
@@ -536,9 +717,17 @@ export interface ExtenderControllerExtenderArgs {
      */
     connStatus?: pulumi.Input<number>;
     /**
+     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+     */
+    controllerReport?: pulumi.Input<inputs.ExtenderControllerExtenderControllerReport>;
+    /**
      * Description.
      */
     description?: pulumi.Input<string>;
+    /**
+     * device-id
+     */
+    deviceId?: pulumi.Input<number>;
     /**
      * Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
      */
@@ -548,9 +737,17 @@ export interface ExtenderControllerExtenderArgs {
      */
     dialStatus?: pulumi.Input<number>;
     /**
+     * Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+     */
+    enforceBandwidth?: pulumi.Input<string>;
+    /**
      * FortiExtender name.
      */
     extName?: pulumi.Input<string>;
+    /**
+     * Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+     */
+    extensionType?: pulumi.Input<string>;
     /**
      * FortiExtender serial number.
      */
@@ -568,9 +765,25 @@ export interface ExtenderControllerExtenderArgs {
      */
     initiatedUpdate?: pulumi.Input<string>;
     /**
+     * FortiExtender login password.
+     */
+    loginPassword?: pulumi.Input<string>;
+    /**
+     * Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+     */
+    loginPasswordChange?: pulumi.Input<string>;
+    /**
      * FortiExtender mode. Valid values: `standalone`, `redundant`.
      */
     mode?: pulumi.Input<string>;
+    /**
+     * Configuration options for modem 1. The structure of `modem1` block is documented below.
+     */
+    modem1?: pulumi.Input<inputs.ExtenderControllerExtenderModem1>;
+    /**
+     * Configuration options for modem 2. The structure of `modem2` block is documented below.
+     */
+    modem2?: pulumi.Input<inputs.ExtenderControllerExtenderModem2>;
     /**
      * MODEM password.
      */
@@ -583,6 +796,22 @@ export interface ExtenderControllerExtenderArgs {
      * MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
      */
     multiMode?: pulumi.Input<string>;
+    /**
+     * FortiExtender entry name.
+     */
+    name?: pulumi.Input<string>;
+    /**
+     * Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+     */
+    overrideAllowaccess?: pulumi.Input<string>;
+    /**
+     * Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+     */
+    overrideEnforceBandwidth?: pulumi.Input<string>;
+    /**
+     * Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+     */
+    overrideLoginPasswordChange?: pulumi.Input<string>;
     /**
      * PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
      */
@@ -603,6 +832,10 @@ export interface ExtenderControllerExtenderArgs {
      * Primary HA.
      */
     primaryHa?: pulumi.Input<string>;
+    /**
+     * FortiExtender profile configuration.
+     */
+    profile?: pulumi.Input<string>;
     /**
      * Monthly quota limit (MB).
      */
@@ -639,6 +872,10 @@ export interface ExtenderControllerExtenderArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+     */
+    wanExtension?: pulumi.Input<inputs.ExtenderControllerExtenderWanExtension>;
     /**
      * WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
      */

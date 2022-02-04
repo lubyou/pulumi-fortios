@@ -63,21 +63,19 @@ export class SwitchControllerPtpSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerPtpSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerPtpSettingsArgs | SwitchControllerPtpSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerPtpSettingsState | undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerPtpSettingsArgs | undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerPtpSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerPtpSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

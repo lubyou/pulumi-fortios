@@ -13,6 +13,7 @@ __all__ = [
     'GetRouterRipResult',
     'AwaitableGetRouterRipResult',
     'get_router_rip',
+    'get_router_rip_output',
 ]
 
 @pulumi.output_type
@@ -258,6 +259,8 @@ def get_router_rip(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterRip:GetRouterRip', __args__, opts=opts, typ=GetRouterRipResult).value
 
     return AwaitableGetRouterRipResult(
@@ -279,3 +282,15 @@ def get_router_rip(vdomparam: Optional[str] = None,
         update_timer=__ret__.update_timer,
         vdomparam=__ret__.vdomparam,
         version=__ret__.version)
+
+
+@_utilities.lift_output_func(get_router_rip)
+def get_router_rip_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterRipResult]:
+    """
+    Use this data source to get information on fortios router rip
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

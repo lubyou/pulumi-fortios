@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -88,6 +88,7 @@ func NewUserPeer(ctx *pulumi.Context,
 		args = &UserPeerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserPeer
 	err := ctx.RegisterResource("fortios:index/userPeer:UserPeer", name, args, &resource, opts...)
 	if err != nil {
@@ -250,7 +251,7 @@ type UserPeerInput interface {
 }
 
 func (*UserPeer) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPeer)(nil))
+	return reflect.TypeOf((**UserPeer)(nil)).Elem()
 }
 
 func (i *UserPeer) ToUserPeerOutput() UserPeerOutput {
@@ -259,35 +260,6 @@ func (i *UserPeer) ToUserPeerOutput() UserPeerOutput {
 
 func (i *UserPeer) ToUserPeerOutputWithContext(ctx context.Context) UserPeerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerOutput)
-}
-
-func (i *UserPeer) ToUserPeerPtrOutput() UserPeerPtrOutput {
-	return i.ToUserPeerPtrOutputWithContext(context.Background())
-}
-
-func (i *UserPeer) ToUserPeerPtrOutputWithContext(ctx context.Context) UserPeerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPeerPtrOutput)
-}
-
-type UserPeerPtrInput interface {
-	pulumi.Input
-
-	ToUserPeerPtrOutput() UserPeerPtrOutput
-	ToUserPeerPtrOutputWithContext(ctx context.Context) UserPeerPtrOutput
-}
-
-type userPeerPtrType UserPeerArgs
-
-func (*userPeerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPeer)(nil))
-}
-
-func (i *userPeerPtrType) ToUserPeerPtrOutput() UserPeerPtrOutput {
-	return i.ToUserPeerPtrOutputWithContext(context.Background())
-}
-
-func (i *userPeerPtrType) ToUserPeerPtrOutputWithContext(ctx context.Context) UserPeerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPeerPtrOutput)
 }
 
 // UserPeerArrayInput is an input type that accepts UserPeerArray and UserPeerArrayOutput values.
@@ -304,7 +276,7 @@ type UserPeerArrayInput interface {
 type UserPeerArray []UserPeerInput
 
 func (UserPeerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserPeer)(nil))
+	return reflect.TypeOf((*[]*UserPeer)(nil)).Elem()
 }
 
 func (i UserPeerArray) ToUserPeerArrayOutput() UserPeerArrayOutput {
@@ -329,7 +301,7 @@ type UserPeerMapInput interface {
 type UserPeerMap map[string]UserPeerInput
 
 func (UserPeerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserPeer)(nil))
+	return reflect.TypeOf((*map[string]*UserPeer)(nil)).Elem()
 }
 
 func (i UserPeerMap) ToUserPeerMapOutput() UserPeerMapOutput {
@@ -340,12 +312,10 @@ func (i UserPeerMap) ToUserPeerMapOutputWithContext(ctx context.Context) UserPee
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeerMapOutput)
 }
 
-type UserPeerOutput struct {
-	*pulumi.OutputState
-}
+type UserPeerOutput struct{ *pulumi.OutputState }
 
 func (UserPeerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPeer)(nil))
+	return reflect.TypeOf((**UserPeer)(nil)).Elem()
 }
 
 func (o UserPeerOutput) ToUserPeerOutput() UserPeerOutput {
@@ -356,36 +326,10 @@ func (o UserPeerOutput) ToUserPeerOutputWithContext(ctx context.Context) UserPee
 	return o
 }
 
-func (o UserPeerOutput) ToUserPeerPtrOutput() UserPeerPtrOutput {
-	return o.ToUserPeerPtrOutputWithContext(context.Background())
-}
-
-func (o UserPeerOutput) ToUserPeerPtrOutputWithContext(ctx context.Context) UserPeerPtrOutput {
-	return o.ApplyT(func(v UserPeer) *UserPeer {
-		return &v
-	}).(UserPeerPtrOutput)
-}
-
-type UserPeerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserPeerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPeer)(nil))
-}
-
-func (o UserPeerPtrOutput) ToUserPeerPtrOutput() UserPeerPtrOutput {
-	return o
-}
-
-func (o UserPeerPtrOutput) ToUserPeerPtrOutputWithContext(ctx context.Context) UserPeerPtrOutput {
-	return o
-}
-
 type UserPeerArrayOutput struct{ *pulumi.OutputState }
 
 func (UserPeerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserPeer)(nil))
+	return reflect.TypeOf((*[]*UserPeer)(nil)).Elem()
 }
 
 func (o UserPeerArrayOutput) ToUserPeerArrayOutput() UserPeerArrayOutput {
@@ -397,15 +341,15 @@ func (o UserPeerArrayOutput) ToUserPeerArrayOutputWithContext(ctx context.Contex
 }
 
 func (o UserPeerArrayOutput) Index(i pulumi.IntInput) UserPeerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPeer {
-		return vs[0].([]UserPeer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPeer {
+		return vs[0].([]*UserPeer)[vs[1].(int)]
 	}).(UserPeerOutput)
 }
 
 type UserPeerMapOutput struct{ *pulumi.OutputState }
 
 func (UserPeerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserPeer)(nil))
+	return reflect.TypeOf((*map[string]*UserPeer)(nil)).Elem()
 }
 
 func (o UserPeerMapOutput) ToUserPeerMapOutput() UserPeerMapOutput {
@@ -417,14 +361,16 @@ func (o UserPeerMapOutput) ToUserPeerMapOutputWithContext(ctx context.Context) U
 }
 
 func (o UserPeerMapOutput) MapIndex(k pulumi.StringInput) UserPeerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserPeer {
-		return vs[0].(map[string]UserPeer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserPeer {
+		return vs[0].(map[string]*UserPeer)[vs[1].(string)]
 	}).(UserPeerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeerInput)(nil)).Elem(), &UserPeer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeerArrayInput)(nil)).Elem(), UserPeerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeerMapInput)(nil)).Elem(), UserPeerMap{})
 	pulumi.RegisterOutputType(UserPeerOutput{})
-	pulumi.RegisterOutputType(UserPeerPtrOutput{})
 	pulumi.RegisterOutputType(UserPeerArrayOutput{})
 	pulumi.RegisterOutputType(UserPeerMapOutput{})
 }

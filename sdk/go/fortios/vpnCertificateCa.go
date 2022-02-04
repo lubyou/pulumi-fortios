@@ -31,6 +31,8 @@ type VpnCertificateCa struct {
 	AutoUpdateDaysWarning pulumi.IntOutput `pulumi:"autoUpdateDaysWarning"`
 	// CA certificate as a PEM file.
 	Ca pulumi.StringOutput `pulumi:"ca"`
+	// CA identifier of the SCEP server.
+	CaIdentifier pulumi.StringOutput `pulumi:"caIdentifier"`
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntOutput `pulumi:"lastUpdated"`
 	// Name.
@@ -61,6 +63,7 @@ func NewVpnCertificateCa(ctx *pulumi.Context,
 	if args.Ca == nil {
 		return nil, errors.New("invalid value for required argument 'Ca'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnCertificateCa
 	err := ctx.RegisterResource("fortios:index/vpnCertificateCa:VpnCertificateCa", name, args, &resource, opts...)
 	if err != nil {
@@ -89,6 +92,8 @@ type vpnCertificateCaState struct {
 	AutoUpdateDaysWarning *int `pulumi:"autoUpdateDaysWarning"`
 	// CA certificate as a PEM file.
 	Ca *string `pulumi:"ca"`
+	// CA identifier of the SCEP server.
+	CaIdentifier *string `pulumi:"caIdentifier"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -116,6 +121,8 @@ type VpnCertificateCaState struct {
 	AutoUpdateDaysWarning pulumi.IntPtrInput
 	// CA certificate as a PEM file.
 	Ca pulumi.StringPtrInput
+	// CA identifier of the SCEP server.
+	CaIdentifier pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -147,6 +154,8 @@ type vpnCertificateCaArgs struct {
 	AutoUpdateDaysWarning *int `pulumi:"autoUpdateDaysWarning"`
 	// CA certificate as a PEM file.
 	Ca string `pulumi:"ca"`
+	// CA identifier of the SCEP server.
+	CaIdentifier *string `pulumi:"caIdentifier"`
 	// Time at which CA was last updated.
 	LastUpdated *int `pulumi:"lastUpdated"`
 	// Name.
@@ -175,6 +184,8 @@ type VpnCertificateCaArgs struct {
 	AutoUpdateDaysWarning pulumi.IntPtrInput
 	// CA certificate as a PEM file.
 	Ca pulumi.StringInput
+	// CA identifier of the SCEP server.
+	CaIdentifier pulumi.StringPtrInput
 	// Time at which CA was last updated.
 	LastUpdated pulumi.IntPtrInput
 	// Name.
@@ -207,7 +218,7 @@ type VpnCertificateCaInput interface {
 }
 
 func (*VpnCertificateCa) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateCa)(nil))
+	return reflect.TypeOf((**VpnCertificateCa)(nil)).Elem()
 }
 
 func (i *VpnCertificateCa) ToVpnCertificateCaOutput() VpnCertificateCaOutput {
@@ -216,35 +227,6 @@ func (i *VpnCertificateCa) ToVpnCertificateCaOutput() VpnCertificateCaOutput {
 
 func (i *VpnCertificateCa) ToVpnCertificateCaOutputWithContext(ctx context.Context) VpnCertificateCaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaOutput)
-}
-
-func (i *VpnCertificateCa) ToVpnCertificateCaPtrOutput() VpnCertificateCaPtrOutput {
-	return i.ToVpnCertificateCaPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnCertificateCa) ToVpnCertificateCaPtrOutputWithContext(ctx context.Context) VpnCertificateCaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaPtrOutput)
-}
-
-type VpnCertificateCaPtrInput interface {
-	pulumi.Input
-
-	ToVpnCertificateCaPtrOutput() VpnCertificateCaPtrOutput
-	ToVpnCertificateCaPtrOutputWithContext(ctx context.Context) VpnCertificateCaPtrOutput
-}
-
-type vpnCertificateCaPtrType VpnCertificateCaArgs
-
-func (*vpnCertificateCaPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateCa)(nil))
-}
-
-func (i *vpnCertificateCaPtrType) ToVpnCertificateCaPtrOutput() VpnCertificateCaPtrOutput {
-	return i.ToVpnCertificateCaPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnCertificateCaPtrType) ToVpnCertificateCaPtrOutputWithContext(ctx context.Context) VpnCertificateCaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaPtrOutput)
 }
 
 // VpnCertificateCaArrayInput is an input type that accepts VpnCertificateCaArray and VpnCertificateCaArrayOutput values.
@@ -261,7 +243,7 @@ type VpnCertificateCaArrayInput interface {
 type VpnCertificateCaArray []VpnCertificateCaInput
 
 func (VpnCertificateCaArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnCertificateCa)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateCa)(nil)).Elem()
 }
 
 func (i VpnCertificateCaArray) ToVpnCertificateCaArrayOutput() VpnCertificateCaArrayOutput {
@@ -286,7 +268,7 @@ type VpnCertificateCaMapInput interface {
 type VpnCertificateCaMap map[string]VpnCertificateCaInput
 
 func (VpnCertificateCaMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnCertificateCa)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateCa)(nil)).Elem()
 }
 
 func (i VpnCertificateCaMap) ToVpnCertificateCaMapOutput() VpnCertificateCaMapOutput {
@@ -297,12 +279,10 @@ func (i VpnCertificateCaMap) ToVpnCertificateCaMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateCaMapOutput)
 }
 
-type VpnCertificateCaOutput struct {
-	*pulumi.OutputState
-}
+type VpnCertificateCaOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateCaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateCa)(nil))
+	return reflect.TypeOf((**VpnCertificateCa)(nil)).Elem()
 }
 
 func (o VpnCertificateCaOutput) ToVpnCertificateCaOutput() VpnCertificateCaOutput {
@@ -313,36 +293,10 @@ func (o VpnCertificateCaOutput) ToVpnCertificateCaOutputWithContext(ctx context.
 	return o
 }
 
-func (o VpnCertificateCaOutput) ToVpnCertificateCaPtrOutput() VpnCertificateCaPtrOutput {
-	return o.ToVpnCertificateCaPtrOutputWithContext(context.Background())
-}
-
-func (o VpnCertificateCaOutput) ToVpnCertificateCaPtrOutputWithContext(ctx context.Context) VpnCertificateCaPtrOutput {
-	return o.ApplyT(func(v VpnCertificateCa) *VpnCertificateCa {
-		return &v
-	}).(VpnCertificateCaPtrOutput)
-}
-
-type VpnCertificateCaPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnCertificateCaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateCa)(nil))
-}
-
-func (o VpnCertificateCaPtrOutput) ToVpnCertificateCaPtrOutput() VpnCertificateCaPtrOutput {
-	return o
-}
-
-func (o VpnCertificateCaPtrOutput) ToVpnCertificateCaPtrOutputWithContext(ctx context.Context) VpnCertificateCaPtrOutput {
-	return o
-}
-
 type VpnCertificateCaArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateCaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnCertificateCa)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateCa)(nil)).Elem()
 }
 
 func (o VpnCertificateCaArrayOutput) ToVpnCertificateCaArrayOutput() VpnCertificateCaArrayOutput {
@@ -354,15 +308,15 @@ func (o VpnCertificateCaArrayOutput) ToVpnCertificateCaArrayOutputWithContext(ct
 }
 
 func (o VpnCertificateCaArrayOutput) Index(i pulumi.IntInput) VpnCertificateCaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnCertificateCa {
-		return vs[0].([]VpnCertificateCa)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateCa {
+		return vs[0].([]*VpnCertificateCa)[vs[1].(int)]
 	}).(VpnCertificateCaOutput)
 }
 
 type VpnCertificateCaMapOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateCaMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnCertificateCa)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateCa)(nil)).Elem()
 }
 
 func (o VpnCertificateCaMapOutput) ToVpnCertificateCaMapOutput() VpnCertificateCaMapOutput {
@@ -374,14 +328,16 @@ func (o VpnCertificateCaMapOutput) ToVpnCertificateCaMapOutputWithContext(ctx co
 }
 
 func (o VpnCertificateCaMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateCaOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnCertificateCa {
-		return vs[0].(map[string]VpnCertificateCa)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnCertificateCa {
+		return vs[0].(map[string]*VpnCertificateCa)[vs[1].(string)]
 	}).(VpnCertificateCaOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateCaInput)(nil)).Elem(), &VpnCertificateCa{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateCaArrayInput)(nil)).Elem(), VpnCertificateCaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateCaMapInput)(nil)).Elem(), VpnCertificateCaMap{})
 	pulumi.RegisterOutputType(VpnCertificateCaOutput{})
-	pulumi.RegisterOutputType(VpnCertificateCaPtrOutput{})
 	pulumi.RegisterOutputType(VpnCertificateCaArrayOutput{})
 	pulumi.RegisterOutputType(VpnCertificateCaMapOutput{})
 }

@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,14 +28,14 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallAddress6Template(ctx, "trname", &fortios.FirewallAddress6TemplateArgs{
 // 			Ip6: pulumi.String("2001:db8:0:b::/64"),
-// 			SubnetSegments: fortios.FirewallAddress6TemplateSubnetSegmentArray{
-// 				&fortios.FirewallAddress6TemplateSubnetSegmentArgs{
+// 			SubnetSegments: FirewallAddress6TemplateSubnetSegmentArray{
+// 				&FirewallAddress6TemplateSubnetSegmentArgs{
 // 					Bits:      pulumi.Int(4),
 // 					Exclusive: pulumi.String("disable"),
 // 					Id:        pulumi.Int(1),
 // 					Name:      pulumi.String("country"),
 // 				},
-// 				&fortios.FirewallAddress6TemplateSubnetSegmentArgs{
+// 				&FirewallAddress6TemplateSubnetSegmentArgs{
 // 					Bits:      pulumi.Int(4),
 // 					Exclusive: pulumi.String("disable"),
 // 					Id:        pulumi.Int(2),
@@ -65,6 +66,8 @@ type FirewallAddress6Template struct {
 
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// IPv6 address prefix.
 	Ip6 pulumi.StringOutput `pulumi:"ip6"`
 	// Subnet segment value name.
@@ -90,6 +93,7 @@ func NewFirewallAddress6Template(ctx *pulumi.Context,
 	if args.SubnetSegmentCount == nil {
 		return nil, errors.New("invalid value for required argument 'SubnetSegmentCount'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallAddress6Template
 	err := ctx.RegisterResource("fortios:index/firewallAddress6Template:FirewallAddress6Template", name, args, &resource, opts...)
 	if err != nil {
@@ -114,6 +118,8 @@ func GetFirewallAddress6Template(ctx *pulumi.Context,
 type firewallAddress6TemplateState struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// IPv6 address prefix.
 	Ip6 *string `pulumi:"ip6"`
 	// Subnet segment value name.
@@ -129,6 +135,8 @@ type firewallAddress6TemplateState struct {
 type FirewallAddress6TemplateState struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// IPv6 address prefix.
 	Ip6 pulumi.StringPtrInput
 	// Subnet segment value name.
@@ -148,6 +156,8 @@ func (FirewallAddress6TemplateState) ElementType() reflect.Type {
 type firewallAddress6TemplateArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// IPv6 address prefix.
 	Ip6 string `pulumi:"ip6"`
 	// Subnet segment value name.
@@ -164,6 +174,8 @@ type firewallAddress6TemplateArgs struct {
 type FirewallAddress6TemplateArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// IPv6 address prefix.
 	Ip6 pulumi.StringInput
 	// Subnet segment value name.
@@ -188,7 +200,7 @@ type FirewallAddress6TemplateInput interface {
 }
 
 func (*FirewallAddress6Template) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddress6Template)(nil))
+	return reflect.TypeOf((**FirewallAddress6Template)(nil)).Elem()
 }
 
 func (i *FirewallAddress6Template) ToFirewallAddress6TemplateOutput() FirewallAddress6TemplateOutput {
@@ -197,35 +209,6 @@ func (i *FirewallAddress6Template) ToFirewallAddress6TemplateOutput() FirewallAd
 
 func (i *FirewallAddress6Template) ToFirewallAddress6TemplateOutputWithContext(ctx context.Context) FirewallAddress6TemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplateOutput)
-}
-
-func (i *FirewallAddress6Template) ToFirewallAddress6TemplatePtrOutput() FirewallAddress6TemplatePtrOutput {
-	return i.ToFirewallAddress6TemplatePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallAddress6Template) ToFirewallAddress6TemplatePtrOutputWithContext(ctx context.Context) FirewallAddress6TemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplatePtrOutput)
-}
-
-type FirewallAddress6TemplatePtrInput interface {
-	pulumi.Input
-
-	ToFirewallAddress6TemplatePtrOutput() FirewallAddress6TemplatePtrOutput
-	ToFirewallAddress6TemplatePtrOutputWithContext(ctx context.Context) FirewallAddress6TemplatePtrOutput
-}
-
-type firewallAddress6TemplatePtrType FirewallAddress6TemplateArgs
-
-func (*firewallAddress6TemplatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddress6Template)(nil))
-}
-
-func (i *firewallAddress6TemplatePtrType) ToFirewallAddress6TemplatePtrOutput() FirewallAddress6TemplatePtrOutput {
-	return i.ToFirewallAddress6TemplatePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallAddress6TemplatePtrType) ToFirewallAddress6TemplatePtrOutputWithContext(ctx context.Context) FirewallAddress6TemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplatePtrOutput)
 }
 
 // FirewallAddress6TemplateArrayInput is an input type that accepts FirewallAddress6TemplateArray and FirewallAddress6TemplateArrayOutput values.
@@ -242,7 +225,7 @@ type FirewallAddress6TemplateArrayInput interface {
 type FirewallAddress6TemplateArray []FirewallAddress6TemplateInput
 
 func (FirewallAddress6TemplateArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallAddress6Template)(nil))
+	return reflect.TypeOf((*[]*FirewallAddress6Template)(nil)).Elem()
 }
 
 func (i FirewallAddress6TemplateArray) ToFirewallAddress6TemplateArrayOutput() FirewallAddress6TemplateArrayOutput {
@@ -267,7 +250,7 @@ type FirewallAddress6TemplateMapInput interface {
 type FirewallAddress6TemplateMap map[string]FirewallAddress6TemplateInput
 
 func (FirewallAddress6TemplateMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallAddress6Template)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddress6Template)(nil)).Elem()
 }
 
 func (i FirewallAddress6TemplateMap) ToFirewallAddress6TemplateMapOutput() FirewallAddress6TemplateMapOutput {
@@ -278,12 +261,10 @@ func (i FirewallAddress6TemplateMap) ToFirewallAddress6TemplateMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddress6TemplateMapOutput)
 }
 
-type FirewallAddress6TemplateOutput struct {
-	*pulumi.OutputState
-}
+type FirewallAddress6TemplateOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddress6TemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddress6Template)(nil))
+	return reflect.TypeOf((**FirewallAddress6Template)(nil)).Elem()
 }
 
 func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplateOutput() FirewallAddress6TemplateOutput {
@@ -294,36 +275,10 @@ func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplateOutputWithCont
 	return o
 }
 
-func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplatePtrOutput() FirewallAddress6TemplatePtrOutput {
-	return o.ToFirewallAddress6TemplatePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallAddress6TemplateOutput) ToFirewallAddress6TemplatePtrOutputWithContext(ctx context.Context) FirewallAddress6TemplatePtrOutput {
-	return o.ApplyT(func(v FirewallAddress6Template) *FirewallAddress6Template {
-		return &v
-	}).(FirewallAddress6TemplatePtrOutput)
-}
-
-type FirewallAddress6TemplatePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallAddress6TemplatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddress6Template)(nil))
-}
-
-func (o FirewallAddress6TemplatePtrOutput) ToFirewallAddress6TemplatePtrOutput() FirewallAddress6TemplatePtrOutput {
-	return o
-}
-
-func (o FirewallAddress6TemplatePtrOutput) ToFirewallAddress6TemplatePtrOutputWithContext(ctx context.Context) FirewallAddress6TemplatePtrOutput {
-	return o
-}
-
 type FirewallAddress6TemplateArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddress6TemplateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallAddress6Template)(nil))
+	return reflect.TypeOf((*[]*FirewallAddress6Template)(nil)).Elem()
 }
 
 func (o FirewallAddress6TemplateArrayOutput) ToFirewallAddress6TemplateArrayOutput() FirewallAddress6TemplateArrayOutput {
@@ -335,15 +290,15 @@ func (o FirewallAddress6TemplateArrayOutput) ToFirewallAddress6TemplateArrayOutp
 }
 
 func (o FirewallAddress6TemplateArrayOutput) Index(i pulumi.IntInput) FirewallAddress6TemplateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddress6Template {
-		return vs[0].([]FirewallAddress6Template)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAddress6Template {
+		return vs[0].([]*FirewallAddress6Template)[vs[1].(int)]
 	}).(FirewallAddress6TemplateOutput)
 }
 
 type FirewallAddress6TemplateMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddress6TemplateMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallAddress6Template)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddress6Template)(nil)).Elem()
 }
 
 func (o FirewallAddress6TemplateMapOutput) ToFirewallAddress6TemplateMapOutput() FirewallAddress6TemplateMapOutput {
@@ -355,14 +310,16 @@ func (o FirewallAddress6TemplateMapOutput) ToFirewallAddress6TemplateMapOutputWi
 }
 
 func (o FirewallAddress6TemplateMapOutput) MapIndex(k pulumi.StringInput) FirewallAddress6TemplateOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallAddress6Template {
-		return vs[0].(map[string]FirewallAddress6Template)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallAddress6Template {
+		return vs[0].(map[string]*FirewallAddress6Template)[vs[1].(string)]
 	}).(FirewallAddress6TemplateOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddress6TemplateInput)(nil)).Elem(), &FirewallAddress6Template{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddress6TemplateArrayInput)(nil)).Elem(), FirewallAddress6TemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddress6TemplateMapInput)(nil)).Elem(), FirewallAddress6TemplateMap{})
 	pulumi.RegisterOutputType(FirewallAddress6TemplateOutput{})
-	pulumi.RegisterOutputType(FirewallAddress6TemplatePtrOutput{})
 	pulumi.RegisterOutputType(FirewallAddress6TemplateArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddress6TemplateMapOutput{})
 }

@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemNetflowResult',
     'AwaitableGetSystemNetflowResult',
     'get_system_netflow',
+    'get_system_netflow_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetSystemNetflowResult:
     """
     A collection of values returned by GetSystemNetflow.
     """
-    def __init__(__self__, active_flow_timeout=None, collector_ip=None, collector_port=None, id=None, inactive_flow_timeout=None, source_ip=None, template_tx_counter=None, template_tx_timeout=None, vdomparam=None):
+    def __init__(__self__, active_flow_timeout=None, collector_ip=None, collector_port=None, id=None, inactive_flow_timeout=None, interface=None, interface_select_method=None, source_ip=None, template_tx_counter=None, template_tx_timeout=None, vdomparam=None):
         if active_flow_timeout and not isinstance(active_flow_timeout, int):
             raise TypeError("Expected argument 'active_flow_timeout' to be a int")
         pulumi.set(__self__, "active_flow_timeout", active_flow_timeout)
@@ -35,6 +36,12 @@ class GetSystemNetflowResult:
         if inactive_flow_timeout and not isinstance(inactive_flow_timeout, int):
             raise TypeError("Expected argument 'inactive_flow_timeout' to be a int")
         pulumi.set(__self__, "inactive_flow_timeout", inactive_flow_timeout)
+        if interface and not isinstance(interface, str):
+            raise TypeError("Expected argument 'interface' to be a str")
+        pulumi.set(__self__, "interface", interface)
+        if interface_select_method and not isinstance(interface_select_method, str):
+            raise TypeError("Expected argument 'interface_select_method' to be a str")
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
@@ -89,6 +96,22 @@ class GetSystemNetflowResult:
         return pulumi.get(self, "inactive_flow_timeout")
 
     @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> str:
         """
@@ -129,6 +152,8 @@ class AwaitableGetSystemNetflowResult(GetSystemNetflowResult):
             collector_port=self.collector_port,
             id=self.id,
             inactive_flow_timeout=self.inactive_flow_timeout,
+            interface=self.interface,
+            interface_select_method=self.interface_select_method,
             source_ip=self.source_ip,
             template_tx_counter=self.template_tx_counter,
             template_tx_timeout=self.template_tx_timeout,
@@ -149,6 +174,8 @@ def get_system_netflow(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemNetflow:GetSystemNetflow', __args__, opts=opts, typ=GetSystemNetflowResult).value
 
     return AwaitableGetSystemNetflowResult(
@@ -157,7 +184,21 @@ def get_system_netflow(vdomparam: Optional[str] = None,
         collector_port=__ret__.collector_port,
         id=__ret__.id,
         inactive_flow_timeout=__ret__.inactive_flow_timeout,
+        interface=__ret__.interface,
+        interface_select_method=__ret__.interface_select_method,
         source_ip=__ret__.source_ip,
         template_tx_counter=__ret__.template_tx_counter,
         template_tx_timeout=__ret__.template_tx_timeout,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_netflow)
+def get_system_netflow_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemNetflowResult]:
+    """
+    Use this data source to get information on fortios system netflow
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -127,6 +127,8 @@ type LogMemoryFilter struct {
 	WanOpt pulumi.StringOutput `pulumi:"wanOpt"`
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringOutput `pulumi:"wirelessActivity"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogMemoryFilter registers a new resource with the given unique name, arguments, and options.
@@ -136,6 +138,7 @@ func NewLogMemoryFilter(ctx *pulumi.Context,
 		args = &LogMemoryFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogMemoryFilter
 	err := ctx.RegisterResource("fortios:index/logMemoryFilter:LogMemoryFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -228,6 +231,8 @@ type logMemoryFilterState struct {
 	WanOpt *string `pulumi:"wanOpt"`
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity *string `pulumi:"wirelessActivity"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogMemoryFilterState struct {
@@ -301,6 +306,8 @@ type LogMemoryFilterState struct {
 	WanOpt pulumi.StringPtrInput
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogMemoryFilterState) ElementType() reflect.Type {
@@ -378,6 +385,8 @@ type logMemoryFilterArgs struct {
 	WanOpt *string `pulumi:"wanOpt"`
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity *string `pulumi:"wirelessActivity"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogMemoryFilter resource.
@@ -452,6 +461,8 @@ type LogMemoryFilterArgs struct {
 	WanOpt pulumi.StringPtrInput
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogMemoryFilterArgs) ElementType() reflect.Type {
@@ -466,7 +477,7 @@ type LogMemoryFilterInput interface {
 }
 
 func (*LogMemoryFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogMemoryFilter)(nil))
+	return reflect.TypeOf((**LogMemoryFilter)(nil)).Elem()
 }
 
 func (i *LogMemoryFilter) ToLogMemoryFilterOutput() LogMemoryFilterOutput {
@@ -475,35 +486,6 @@ func (i *LogMemoryFilter) ToLogMemoryFilterOutput() LogMemoryFilterOutput {
 
 func (i *LogMemoryFilter) ToLogMemoryFilterOutputWithContext(ctx context.Context) LogMemoryFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterOutput)
-}
-
-func (i *LogMemoryFilter) ToLogMemoryFilterPtrOutput() LogMemoryFilterPtrOutput {
-	return i.ToLogMemoryFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogMemoryFilter) ToLogMemoryFilterPtrOutputWithContext(ctx context.Context) LogMemoryFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterPtrOutput)
-}
-
-type LogMemoryFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogMemoryFilterPtrOutput() LogMemoryFilterPtrOutput
-	ToLogMemoryFilterPtrOutputWithContext(ctx context.Context) LogMemoryFilterPtrOutput
-}
-
-type logMemoryFilterPtrType LogMemoryFilterArgs
-
-func (*logMemoryFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogMemoryFilter)(nil))
-}
-
-func (i *logMemoryFilterPtrType) ToLogMemoryFilterPtrOutput() LogMemoryFilterPtrOutput {
-	return i.ToLogMemoryFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logMemoryFilterPtrType) ToLogMemoryFilterPtrOutputWithContext(ctx context.Context) LogMemoryFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterPtrOutput)
 }
 
 // LogMemoryFilterArrayInput is an input type that accepts LogMemoryFilterArray and LogMemoryFilterArrayOutput values.
@@ -520,7 +502,7 @@ type LogMemoryFilterArrayInput interface {
 type LogMemoryFilterArray []LogMemoryFilterInput
 
 func (LogMemoryFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogMemoryFilter)(nil))
+	return reflect.TypeOf((*[]*LogMemoryFilter)(nil)).Elem()
 }
 
 func (i LogMemoryFilterArray) ToLogMemoryFilterArrayOutput() LogMemoryFilterArrayOutput {
@@ -545,7 +527,7 @@ type LogMemoryFilterMapInput interface {
 type LogMemoryFilterMap map[string]LogMemoryFilterInput
 
 func (LogMemoryFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogMemoryFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogMemoryFilter)(nil)).Elem()
 }
 
 func (i LogMemoryFilterMap) ToLogMemoryFilterMapOutput() LogMemoryFilterMapOutput {
@@ -556,12 +538,10 @@ func (i LogMemoryFilterMap) ToLogMemoryFilterMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryFilterMapOutput)
 }
 
-type LogMemoryFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogMemoryFilterOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogMemoryFilter)(nil))
+	return reflect.TypeOf((**LogMemoryFilter)(nil)).Elem()
 }
 
 func (o LogMemoryFilterOutput) ToLogMemoryFilterOutput() LogMemoryFilterOutput {
@@ -572,36 +552,10 @@ func (o LogMemoryFilterOutput) ToLogMemoryFilterOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LogMemoryFilterOutput) ToLogMemoryFilterPtrOutput() LogMemoryFilterPtrOutput {
-	return o.ToLogMemoryFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogMemoryFilterOutput) ToLogMemoryFilterPtrOutputWithContext(ctx context.Context) LogMemoryFilterPtrOutput {
-	return o.ApplyT(func(v LogMemoryFilter) *LogMemoryFilter {
-		return &v
-	}).(LogMemoryFilterPtrOutput)
-}
-
-type LogMemoryFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogMemoryFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogMemoryFilter)(nil))
-}
-
-func (o LogMemoryFilterPtrOutput) ToLogMemoryFilterPtrOutput() LogMemoryFilterPtrOutput {
-	return o
-}
-
-func (o LogMemoryFilterPtrOutput) ToLogMemoryFilterPtrOutputWithContext(ctx context.Context) LogMemoryFilterPtrOutput {
-	return o
-}
-
 type LogMemoryFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogMemoryFilter)(nil))
+	return reflect.TypeOf((*[]*LogMemoryFilter)(nil)).Elem()
 }
 
 func (o LogMemoryFilterArrayOutput) ToLogMemoryFilterArrayOutput() LogMemoryFilterArrayOutput {
@@ -613,15 +567,15 @@ func (o LogMemoryFilterArrayOutput) ToLogMemoryFilterArrayOutputWithContext(ctx 
 }
 
 func (o LogMemoryFilterArrayOutput) Index(i pulumi.IntInput) LogMemoryFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogMemoryFilter {
-		return vs[0].([]LogMemoryFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogMemoryFilter {
+		return vs[0].([]*LogMemoryFilter)[vs[1].(int)]
 	}).(LogMemoryFilterOutput)
 }
 
 type LogMemoryFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogMemoryFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogMemoryFilter)(nil)).Elem()
 }
 
 func (o LogMemoryFilterMapOutput) ToLogMemoryFilterMapOutput() LogMemoryFilterMapOutput {
@@ -633,14 +587,16 @@ func (o LogMemoryFilterMapOutput) ToLogMemoryFilterMapOutputWithContext(ctx cont
 }
 
 func (o LogMemoryFilterMapOutput) MapIndex(k pulumi.StringInput) LogMemoryFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogMemoryFilter {
-		return vs[0].(map[string]LogMemoryFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogMemoryFilter {
+		return vs[0].(map[string]*LogMemoryFilter)[vs[1].(string)]
 	}).(LogMemoryFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemoryFilterInput)(nil)).Elem(), &LogMemoryFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemoryFilterArrayInput)(nil)).Elem(), LogMemoryFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemoryFilterMapInput)(nil)).Elem(), LogMemoryFilterMap{})
 	pulumi.RegisterOutputType(LogMemoryFilterOutput{})
-	pulumi.RegisterOutputType(LogMemoryFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogMemoryFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogMemoryFilterMapOutput{})
 }

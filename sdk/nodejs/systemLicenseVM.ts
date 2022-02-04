@@ -60,22 +60,20 @@ export class SystemLicenseVM extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemLicenseVMArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemLicenseVMArgs | SystemLicenseVMState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemLicenseVMState | undefined;
-            inputs["fileContent"] = state ? state.fileContent : undefined;
+            resourceInputs["fileContent"] = state ? state.fileContent : undefined;
         } else {
             const args = argsOrState as SystemLicenseVMArgs | undefined;
             if ((!args || args.fileContent === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'fileContent'");
             }
-            inputs["fileContent"] = args ? args.fileContent : undefined;
+            resourceInputs["fileContent"] = args ? args.fileContent : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemLicenseVM.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemLicenseVM.__pulumiType, name, resourceInputs, opts);
     }
 }
 

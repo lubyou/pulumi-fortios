@@ -106,7 +106,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
     }
 
     /**
-     * Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+     * Allow user access to SSL-VPN applications.
      */
     public readonly allowUserAccess!: pulumi.Output<string>;
     /**
@@ -117,6 +117,10 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
      * Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
      */
     public readonly bookmarkGroups!: pulumi.Output<outputs.VpnSslWebPortalBookmarkGroup[] | undefined>;
+    /**
+     * Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+     */
+    public readonly clipboard!: pulumi.Output<string>;
     /**
      * Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
      */
@@ -278,9 +282,17 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
      */
     public readonly osCheckLists!: pulumi.Output<outputs.VpnSslWebPortalOsCheckList[] | undefined>;
     /**
+     * prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+     */
+    public readonly preferIpv6Dns!: pulumi.Output<string>;
+    /**
      * Client login redirect URL.
      */
     public readonly redirUrl!: pulumi.Output<string | undefined>;
+    /**
+     * Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+     */
+    public readonly rewriteIpUriUi!: pulumi.Output<string>;
     /**
      * Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
      */
@@ -383,151 +395,155 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnSslWebPortalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnSslWebPortalArgs | VpnSslWebPortalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnSslWebPortalState | undefined;
-            inputs["allowUserAccess"] = state ? state.allowUserAccess : undefined;
-            inputs["autoConnect"] = state ? state.autoConnect : undefined;
-            inputs["bookmarkGroups"] = state ? state.bookmarkGroups : undefined;
-            inputs["customLang"] = state ? state.customLang : undefined;
-            inputs["customizeForticlientDownloadUrl"] = state ? state.customizeForticlientDownloadUrl : undefined;
-            inputs["displayBookmark"] = state ? state.displayBookmark : undefined;
-            inputs["displayConnectionTools"] = state ? state.displayConnectionTools : undefined;
-            inputs["displayHistory"] = state ? state.displayHistory : undefined;
-            inputs["displayStatus"] = state ? state.displayStatus : undefined;
-            inputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
-            inputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
-            inputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["exclusiveRouting"] = state ? state.exclusiveRouting : undefined;
-            inputs["forticlientDownload"] = state ? state.forticlientDownload : undefined;
-            inputs["forticlientDownloadMethod"] = state ? state.forticlientDownloadMethod : undefined;
-            inputs["heading"] = state ? state.heading : undefined;
-            inputs["hideSsoCredential"] = state ? state.hideSsoCredential : undefined;
-            inputs["hostCheck"] = state ? state.hostCheck : undefined;
-            inputs["hostCheckInterval"] = state ? state.hostCheckInterval : undefined;
-            inputs["hostCheckPolicies"] = state ? state.hostCheckPolicies : undefined;
-            inputs["ipMode"] = state ? state.ipMode : undefined;
-            inputs["ipPools"] = state ? state.ipPools : undefined;
-            inputs["ipv6DnsServer1"] = state ? state.ipv6DnsServer1 : undefined;
-            inputs["ipv6DnsServer2"] = state ? state.ipv6DnsServer2 : undefined;
-            inputs["ipv6ExclusiveRouting"] = state ? state.ipv6ExclusiveRouting : undefined;
-            inputs["ipv6Pools"] = state ? state.ipv6Pools : undefined;
-            inputs["ipv6ServiceRestriction"] = state ? state.ipv6ServiceRestriction : undefined;
-            inputs["ipv6SplitTunneling"] = state ? state.ipv6SplitTunneling : undefined;
-            inputs["ipv6SplitTunnelingRoutingAddresses"] = state ? state.ipv6SplitTunnelingRoutingAddresses : undefined;
-            inputs["ipv6SplitTunnelingRoutingNegate"] = state ? state.ipv6SplitTunnelingRoutingNegate : undefined;
-            inputs["ipv6TunnelMode"] = state ? state.ipv6TunnelMode : undefined;
-            inputs["ipv6WinsServer1"] = state ? state.ipv6WinsServer1 : undefined;
-            inputs["ipv6WinsServer2"] = state ? state.ipv6WinsServer2 : undefined;
-            inputs["keepAlive"] = state ? state.keepAlive : undefined;
-            inputs["limitUserLogins"] = state ? state.limitUserLogins : undefined;
-            inputs["macAddrAction"] = state ? state.macAddrAction : undefined;
-            inputs["macAddrCheck"] = state ? state.macAddrCheck : undefined;
-            inputs["macAddrCheckRules"] = state ? state.macAddrCheckRules : undefined;
-            inputs["macosForticlientDownloadUrl"] = state ? state.macosForticlientDownloadUrl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["osCheck"] = state ? state.osCheck : undefined;
-            inputs["osCheckLists"] = state ? state.osCheckLists : undefined;
-            inputs["redirUrl"] = state ? state.redirUrl : undefined;
-            inputs["savePassword"] = state ? state.savePassword : undefined;
-            inputs["serviceRestriction"] = state ? state.serviceRestriction : undefined;
-            inputs["skipCheckForBrowser"] = state ? state.skipCheckForBrowser : undefined;
-            inputs["skipCheckForUnsupportedOs"] = state ? state.skipCheckForUnsupportedOs : undefined;
-            inputs["smbMaxVersion"] = state ? state.smbMaxVersion : undefined;
-            inputs["smbMinVersion"] = state ? state.smbMinVersion : undefined;
-            inputs["smbNtlmv1Auth"] = state ? state.smbNtlmv1Auth : undefined;
-            inputs["smbv1"] = state ? state.smbv1 : undefined;
-            inputs["splitDns"] = state ? state.splitDns : undefined;
-            inputs["splitTunneling"] = state ? state.splitTunneling : undefined;
-            inputs["splitTunnelingRoutingAddresses"] = state ? state.splitTunnelingRoutingAddresses : undefined;
-            inputs["splitTunnelingRoutingNegate"] = state ? state.splitTunnelingRoutingNegate : undefined;
-            inputs["theme"] = state ? state.theme : undefined;
-            inputs["transformBackwardSlashes"] = state ? state.transformBackwardSlashes : undefined;
-            inputs["tunnelMode"] = state ? state.tunnelMode : undefined;
-            inputs["useSdwan"] = state ? state.useSdwan : undefined;
-            inputs["userBookmark"] = state ? state.userBookmark : undefined;
-            inputs["userGroupBookmark"] = state ? state.userGroupBookmark : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webMode"] = state ? state.webMode : undefined;
-            inputs["windowsForticlientDownloadUrl"] = state ? state.windowsForticlientDownloadUrl : undefined;
-            inputs["winsServer1"] = state ? state.winsServer1 : undefined;
-            inputs["winsServer2"] = state ? state.winsServer2 : undefined;
+            resourceInputs["allowUserAccess"] = state ? state.allowUserAccess : undefined;
+            resourceInputs["autoConnect"] = state ? state.autoConnect : undefined;
+            resourceInputs["bookmarkGroups"] = state ? state.bookmarkGroups : undefined;
+            resourceInputs["clipboard"] = state ? state.clipboard : undefined;
+            resourceInputs["customLang"] = state ? state.customLang : undefined;
+            resourceInputs["customizeForticlientDownloadUrl"] = state ? state.customizeForticlientDownloadUrl : undefined;
+            resourceInputs["displayBookmark"] = state ? state.displayBookmark : undefined;
+            resourceInputs["displayConnectionTools"] = state ? state.displayConnectionTools : undefined;
+            resourceInputs["displayHistory"] = state ? state.displayHistory : undefined;
+            resourceInputs["displayStatus"] = state ? state.displayStatus : undefined;
+            resourceInputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
+            resourceInputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
+            resourceInputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["exclusiveRouting"] = state ? state.exclusiveRouting : undefined;
+            resourceInputs["forticlientDownload"] = state ? state.forticlientDownload : undefined;
+            resourceInputs["forticlientDownloadMethod"] = state ? state.forticlientDownloadMethod : undefined;
+            resourceInputs["heading"] = state ? state.heading : undefined;
+            resourceInputs["hideSsoCredential"] = state ? state.hideSsoCredential : undefined;
+            resourceInputs["hostCheck"] = state ? state.hostCheck : undefined;
+            resourceInputs["hostCheckInterval"] = state ? state.hostCheckInterval : undefined;
+            resourceInputs["hostCheckPolicies"] = state ? state.hostCheckPolicies : undefined;
+            resourceInputs["ipMode"] = state ? state.ipMode : undefined;
+            resourceInputs["ipPools"] = state ? state.ipPools : undefined;
+            resourceInputs["ipv6DnsServer1"] = state ? state.ipv6DnsServer1 : undefined;
+            resourceInputs["ipv6DnsServer2"] = state ? state.ipv6DnsServer2 : undefined;
+            resourceInputs["ipv6ExclusiveRouting"] = state ? state.ipv6ExclusiveRouting : undefined;
+            resourceInputs["ipv6Pools"] = state ? state.ipv6Pools : undefined;
+            resourceInputs["ipv6ServiceRestriction"] = state ? state.ipv6ServiceRestriction : undefined;
+            resourceInputs["ipv6SplitTunneling"] = state ? state.ipv6SplitTunneling : undefined;
+            resourceInputs["ipv6SplitTunnelingRoutingAddresses"] = state ? state.ipv6SplitTunnelingRoutingAddresses : undefined;
+            resourceInputs["ipv6SplitTunnelingRoutingNegate"] = state ? state.ipv6SplitTunnelingRoutingNegate : undefined;
+            resourceInputs["ipv6TunnelMode"] = state ? state.ipv6TunnelMode : undefined;
+            resourceInputs["ipv6WinsServer1"] = state ? state.ipv6WinsServer1 : undefined;
+            resourceInputs["ipv6WinsServer2"] = state ? state.ipv6WinsServer2 : undefined;
+            resourceInputs["keepAlive"] = state ? state.keepAlive : undefined;
+            resourceInputs["limitUserLogins"] = state ? state.limitUserLogins : undefined;
+            resourceInputs["macAddrAction"] = state ? state.macAddrAction : undefined;
+            resourceInputs["macAddrCheck"] = state ? state.macAddrCheck : undefined;
+            resourceInputs["macAddrCheckRules"] = state ? state.macAddrCheckRules : undefined;
+            resourceInputs["macosForticlientDownloadUrl"] = state ? state.macosForticlientDownloadUrl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["osCheck"] = state ? state.osCheck : undefined;
+            resourceInputs["osCheckLists"] = state ? state.osCheckLists : undefined;
+            resourceInputs["preferIpv6Dns"] = state ? state.preferIpv6Dns : undefined;
+            resourceInputs["redirUrl"] = state ? state.redirUrl : undefined;
+            resourceInputs["rewriteIpUriUi"] = state ? state.rewriteIpUriUi : undefined;
+            resourceInputs["savePassword"] = state ? state.savePassword : undefined;
+            resourceInputs["serviceRestriction"] = state ? state.serviceRestriction : undefined;
+            resourceInputs["skipCheckForBrowser"] = state ? state.skipCheckForBrowser : undefined;
+            resourceInputs["skipCheckForUnsupportedOs"] = state ? state.skipCheckForUnsupportedOs : undefined;
+            resourceInputs["smbMaxVersion"] = state ? state.smbMaxVersion : undefined;
+            resourceInputs["smbMinVersion"] = state ? state.smbMinVersion : undefined;
+            resourceInputs["smbNtlmv1Auth"] = state ? state.smbNtlmv1Auth : undefined;
+            resourceInputs["smbv1"] = state ? state.smbv1 : undefined;
+            resourceInputs["splitDns"] = state ? state.splitDns : undefined;
+            resourceInputs["splitTunneling"] = state ? state.splitTunneling : undefined;
+            resourceInputs["splitTunnelingRoutingAddresses"] = state ? state.splitTunnelingRoutingAddresses : undefined;
+            resourceInputs["splitTunnelingRoutingNegate"] = state ? state.splitTunnelingRoutingNegate : undefined;
+            resourceInputs["theme"] = state ? state.theme : undefined;
+            resourceInputs["transformBackwardSlashes"] = state ? state.transformBackwardSlashes : undefined;
+            resourceInputs["tunnelMode"] = state ? state.tunnelMode : undefined;
+            resourceInputs["useSdwan"] = state ? state.useSdwan : undefined;
+            resourceInputs["userBookmark"] = state ? state.userBookmark : undefined;
+            resourceInputs["userGroupBookmark"] = state ? state.userGroupBookmark : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webMode"] = state ? state.webMode : undefined;
+            resourceInputs["windowsForticlientDownloadUrl"] = state ? state.windowsForticlientDownloadUrl : undefined;
+            resourceInputs["winsServer1"] = state ? state.winsServer1 : undefined;
+            resourceInputs["winsServer2"] = state ? state.winsServer2 : undefined;
         } else {
             const args = argsOrState as VpnSslWebPortalArgs | undefined;
-            inputs["allowUserAccess"] = args ? args.allowUserAccess : undefined;
-            inputs["autoConnect"] = args ? args.autoConnect : undefined;
-            inputs["bookmarkGroups"] = args ? args.bookmarkGroups : undefined;
-            inputs["customLang"] = args ? args.customLang : undefined;
-            inputs["customizeForticlientDownloadUrl"] = args ? args.customizeForticlientDownloadUrl : undefined;
-            inputs["displayBookmark"] = args ? args.displayBookmark : undefined;
-            inputs["displayConnectionTools"] = args ? args.displayConnectionTools : undefined;
-            inputs["displayHistory"] = args ? args.displayHistory : undefined;
-            inputs["displayStatus"] = args ? args.displayStatus : undefined;
-            inputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
-            inputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
-            inputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["exclusiveRouting"] = args ? args.exclusiveRouting : undefined;
-            inputs["forticlientDownload"] = args ? args.forticlientDownload : undefined;
-            inputs["forticlientDownloadMethod"] = args ? args.forticlientDownloadMethod : undefined;
-            inputs["heading"] = args ? args.heading : undefined;
-            inputs["hideSsoCredential"] = args ? args.hideSsoCredential : undefined;
-            inputs["hostCheck"] = args ? args.hostCheck : undefined;
-            inputs["hostCheckInterval"] = args ? args.hostCheckInterval : undefined;
-            inputs["hostCheckPolicies"] = args ? args.hostCheckPolicies : undefined;
-            inputs["ipMode"] = args ? args.ipMode : undefined;
-            inputs["ipPools"] = args ? args.ipPools : undefined;
-            inputs["ipv6DnsServer1"] = args ? args.ipv6DnsServer1 : undefined;
-            inputs["ipv6DnsServer2"] = args ? args.ipv6DnsServer2 : undefined;
-            inputs["ipv6ExclusiveRouting"] = args ? args.ipv6ExclusiveRouting : undefined;
-            inputs["ipv6Pools"] = args ? args.ipv6Pools : undefined;
-            inputs["ipv6ServiceRestriction"] = args ? args.ipv6ServiceRestriction : undefined;
-            inputs["ipv6SplitTunneling"] = args ? args.ipv6SplitTunneling : undefined;
-            inputs["ipv6SplitTunnelingRoutingAddresses"] = args ? args.ipv6SplitTunnelingRoutingAddresses : undefined;
-            inputs["ipv6SplitTunnelingRoutingNegate"] = args ? args.ipv6SplitTunnelingRoutingNegate : undefined;
-            inputs["ipv6TunnelMode"] = args ? args.ipv6TunnelMode : undefined;
-            inputs["ipv6WinsServer1"] = args ? args.ipv6WinsServer1 : undefined;
-            inputs["ipv6WinsServer2"] = args ? args.ipv6WinsServer2 : undefined;
-            inputs["keepAlive"] = args ? args.keepAlive : undefined;
-            inputs["limitUserLogins"] = args ? args.limitUserLogins : undefined;
-            inputs["macAddrAction"] = args ? args.macAddrAction : undefined;
-            inputs["macAddrCheck"] = args ? args.macAddrCheck : undefined;
-            inputs["macAddrCheckRules"] = args ? args.macAddrCheckRules : undefined;
-            inputs["macosForticlientDownloadUrl"] = args ? args.macosForticlientDownloadUrl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["osCheck"] = args ? args.osCheck : undefined;
-            inputs["osCheckLists"] = args ? args.osCheckLists : undefined;
-            inputs["redirUrl"] = args ? args.redirUrl : undefined;
-            inputs["savePassword"] = args ? args.savePassword : undefined;
-            inputs["serviceRestriction"] = args ? args.serviceRestriction : undefined;
-            inputs["skipCheckForBrowser"] = args ? args.skipCheckForBrowser : undefined;
-            inputs["skipCheckForUnsupportedOs"] = args ? args.skipCheckForUnsupportedOs : undefined;
-            inputs["smbMaxVersion"] = args ? args.smbMaxVersion : undefined;
-            inputs["smbMinVersion"] = args ? args.smbMinVersion : undefined;
-            inputs["smbNtlmv1Auth"] = args ? args.smbNtlmv1Auth : undefined;
-            inputs["smbv1"] = args ? args.smbv1 : undefined;
-            inputs["splitDns"] = args ? args.splitDns : undefined;
-            inputs["splitTunneling"] = args ? args.splitTunneling : undefined;
-            inputs["splitTunnelingRoutingAddresses"] = args ? args.splitTunnelingRoutingAddresses : undefined;
-            inputs["splitTunnelingRoutingNegate"] = args ? args.splitTunnelingRoutingNegate : undefined;
-            inputs["theme"] = args ? args.theme : undefined;
-            inputs["transformBackwardSlashes"] = args ? args.transformBackwardSlashes : undefined;
-            inputs["tunnelMode"] = args ? args.tunnelMode : undefined;
-            inputs["useSdwan"] = args ? args.useSdwan : undefined;
-            inputs["userBookmark"] = args ? args.userBookmark : undefined;
-            inputs["userGroupBookmark"] = args ? args.userGroupBookmark : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webMode"] = args ? args.webMode : undefined;
-            inputs["windowsForticlientDownloadUrl"] = args ? args.windowsForticlientDownloadUrl : undefined;
-            inputs["winsServer1"] = args ? args.winsServer1 : undefined;
-            inputs["winsServer2"] = args ? args.winsServer2 : undefined;
+            resourceInputs["allowUserAccess"] = args ? args.allowUserAccess : undefined;
+            resourceInputs["autoConnect"] = args ? args.autoConnect : undefined;
+            resourceInputs["bookmarkGroups"] = args ? args.bookmarkGroups : undefined;
+            resourceInputs["clipboard"] = args ? args.clipboard : undefined;
+            resourceInputs["customLang"] = args ? args.customLang : undefined;
+            resourceInputs["customizeForticlientDownloadUrl"] = args ? args.customizeForticlientDownloadUrl : undefined;
+            resourceInputs["displayBookmark"] = args ? args.displayBookmark : undefined;
+            resourceInputs["displayConnectionTools"] = args ? args.displayConnectionTools : undefined;
+            resourceInputs["displayHistory"] = args ? args.displayHistory : undefined;
+            resourceInputs["displayStatus"] = args ? args.displayStatus : undefined;
+            resourceInputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
+            resourceInputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
+            resourceInputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["exclusiveRouting"] = args ? args.exclusiveRouting : undefined;
+            resourceInputs["forticlientDownload"] = args ? args.forticlientDownload : undefined;
+            resourceInputs["forticlientDownloadMethod"] = args ? args.forticlientDownloadMethod : undefined;
+            resourceInputs["heading"] = args ? args.heading : undefined;
+            resourceInputs["hideSsoCredential"] = args ? args.hideSsoCredential : undefined;
+            resourceInputs["hostCheck"] = args ? args.hostCheck : undefined;
+            resourceInputs["hostCheckInterval"] = args ? args.hostCheckInterval : undefined;
+            resourceInputs["hostCheckPolicies"] = args ? args.hostCheckPolicies : undefined;
+            resourceInputs["ipMode"] = args ? args.ipMode : undefined;
+            resourceInputs["ipPools"] = args ? args.ipPools : undefined;
+            resourceInputs["ipv6DnsServer1"] = args ? args.ipv6DnsServer1 : undefined;
+            resourceInputs["ipv6DnsServer2"] = args ? args.ipv6DnsServer2 : undefined;
+            resourceInputs["ipv6ExclusiveRouting"] = args ? args.ipv6ExclusiveRouting : undefined;
+            resourceInputs["ipv6Pools"] = args ? args.ipv6Pools : undefined;
+            resourceInputs["ipv6ServiceRestriction"] = args ? args.ipv6ServiceRestriction : undefined;
+            resourceInputs["ipv6SplitTunneling"] = args ? args.ipv6SplitTunneling : undefined;
+            resourceInputs["ipv6SplitTunnelingRoutingAddresses"] = args ? args.ipv6SplitTunnelingRoutingAddresses : undefined;
+            resourceInputs["ipv6SplitTunnelingRoutingNegate"] = args ? args.ipv6SplitTunnelingRoutingNegate : undefined;
+            resourceInputs["ipv6TunnelMode"] = args ? args.ipv6TunnelMode : undefined;
+            resourceInputs["ipv6WinsServer1"] = args ? args.ipv6WinsServer1 : undefined;
+            resourceInputs["ipv6WinsServer2"] = args ? args.ipv6WinsServer2 : undefined;
+            resourceInputs["keepAlive"] = args ? args.keepAlive : undefined;
+            resourceInputs["limitUserLogins"] = args ? args.limitUserLogins : undefined;
+            resourceInputs["macAddrAction"] = args ? args.macAddrAction : undefined;
+            resourceInputs["macAddrCheck"] = args ? args.macAddrCheck : undefined;
+            resourceInputs["macAddrCheckRules"] = args ? args.macAddrCheckRules : undefined;
+            resourceInputs["macosForticlientDownloadUrl"] = args ? args.macosForticlientDownloadUrl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["osCheck"] = args ? args.osCheck : undefined;
+            resourceInputs["osCheckLists"] = args ? args.osCheckLists : undefined;
+            resourceInputs["preferIpv6Dns"] = args ? args.preferIpv6Dns : undefined;
+            resourceInputs["redirUrl"] = args ? args.redirUrl : undefined;
+            resourceInputs["rewriteIpUriUi"] = args ? args.rewriteIpUriUi : undefined;
+            resourceInputs["savePassword"] = args ? args.savePassword : undefined;
+            resourceInputs["serviceRestriction"] = args ? args.serviceRestriction : undefined;
+            resourceInputs["skipCheckForBrowser"] = args ? args.skipCheckForBrowser : undefined;
+            resourceInputs["skipCheckForUnsupportedOs"] = args ? args.skipCheckForUnsupportedOs : undefined;
+            resourceInputs["smbMaxVersion"] = args ? args.smbMaxVersion : undefined;
+            resourceInputs["smbMinVersion"] = args ? args.smbMinVersion : undefined;
+            resourceInputs["smbNtlmv1Auth"] = args ? args.smbNtlmv1Auth : undefined;
+            resourceInputs["smbv1"] = args ? args.smbv1 : undefined;
+            resourceInputs["splitDns"] = args ? args.splitDns : undefined;
+            resourceInputs["splitTunneling"] = args ? args.splitTunneling : undefined;
+            resourceInputs["splitTunnelingRoutingAddresses"] = args ? args.splitTunnelingRoutingAddresses : undefined;
+            resourceInputs["splitTunnelingRoutingNegate"] = args ? args.splitTunnelingRoutingNegate : undefined;
+            resourceInputs["theme"] = args ? args.theme : undefined;
+            resourceInputs["transformBackwardSlashes"] = args ? args.transformBackwardSlashes : undefined;
+            resourceInputs["tunnelMode"] = args ? args.tunnelMode : undefined;
+            resourceInputs["useSdwan"] = args ? args.useSdwan : undefined;
+            resourceInputs["userBookmark"] = args ? args.userBookmark : undefined;
+            resourceInputs["userGroupBookmark"] = args ? args.userGroupBookmark : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webMode"] = args ? args.webMode : undefined;
+            resourceInputs["windowsForticlientDownloadUrl"] = args ? args.windowsForticlientDownloadUrl : undefined;
+            resourceInputs["winsServer1"] = args ? args.winsServer1 : undefined;
+            resourceInputs["winsServer2"] = args ? args.winsServer2 : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnSslWebPortal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnSslWebPortal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -536,7 +552,7 @@ export class VpnSslWebPortal extends pulumi.CustomResource {
  */
 export interface VpnSslWebPortalState {
     /**
-     * Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+     * Allow user access to SSL-VPN applications.
      */
     allowUserAccess?: pulumi.Input<string>;
     /**
@@ -547,6 +563,10 @@ export interface VpnSslWebPortalState {
      * Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
      */
     bookmarkGroups?: pulumi.Input<pulumi.Input<inputs.VpnSslWebPortalBookmarkGroup>[]>;
+    /**
+     * Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+     */
+    clipboard?: pulumi.Input<string>;
     /**
      * Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
      */
@@ -708,9 +728,17 @@ export interface VpnSslWebPortalState {
      */
     osCheckLists?: pulumi.Input<pulumi.Input<inputs.VpnSslWebPortalOsCheckList>[]>;
     /**
+     * prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+     */
+    preferIpv6Dns?: pulumi.Input<string>;
+    /**
      * Client login redirect URL.
      */
     redirUrl?: pulumi.Input<string>;
+    /**
+     * Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+     */
+    rewriteIpUriUi?: pulumi.Input<string>;
     /**
      * Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
      */
@@ -810,7 +838,7 @@ export interface VpnSslWebPortalState {
  */
 export interface VpnSslWebPortalArgs {
     /**
-     * Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+     * Allow user access to SSL-VPN applications.
      */
     allowUserAccess?: pulumi.Input<string>;
     /**
@@ -821,6 +849,10 @@ export interface VpnSslWebPortalArgs {
      * Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
      */
     bookmarkGroups?: pulumi.Input<pulumi.Input<inputs.VpnSslWebPortalBookmarkGroup>[]>;
+    /**
+     * Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+     */
+    clipboard?: pulumi.Input<string>;
     /**
      * Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
      */
@@ -982,9 +1014,17 @@ export interface VpnSslWebPortalArgs {
      */
     osCheckLists?: pulumi.Input<pulumi.Input<inputs.VpnSslWebPortalOsCheckList>[]>;
     /**
+     * prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+     */
+    preferIpv6Dns?: pulumi.Input<string>;
+    /**
      * Client login redirect URL.
      */
     redirUrl?: pulumi.Input<string>;
+    /**
+     * Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+     */
+    rewriteIpUriUi?: pulumi.Input<string>;
     /**
      * Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
      */

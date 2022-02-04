@@ -103,13 +103,25 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+     */
+    public readonly externalAccountLists!: pulumi.Output<outputs.SystemSdnConnectorExternalAccountList[] | undefined>;
+    /**
      * Configure GCP external IP. The structure of `externalIp` block is documented below.
      */
     public readonly externalIps!: pulumi.Output<outputs.SystemSdnConnectorExternalIp[] | undefined>;
     /**
+     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+     */
+    public readonly forwardingRules!: pulumi.Output<outputs.SystemSdnConnectorForwardingRule[] | undefined>;
+    /**
      * GCP project name.
      */
     public readonly gcpProject!: pulumi.Output<string>;
+    /**
+     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+     */
+    public readonly gcpProjectLists!: pulumi.Output<outputs.SystemSdnConnectorGcpProjectList[] | undefined>;
     /**
      * Group name of computers.
      */
@@ -119,7 +131,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      */
     public readonly haStatus!: pulumi.Output<string>;
     /**
-     * IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+     * IBM cloud region name.
      */
     public readonly ibmRegion!: pulumi.Output<string>;
     /**
@@ -131,7 +143,7 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      */
     public readonly loginEndpoint!: pulumi.Output<string>;
     /**
-     * Route name.
+     * GCP zone name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -195,6 +207,10 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      */
     public readonly server!: pulumi.Output<string>;
     /**
+     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+     */
+    public readonly serverLists!: pulumi.Output<outputs.SystemSdnConnectorServerList[] | undefined>;
+    /**
      * Port number of the remote SDN connector.
      */
     public readonly serverPort!: pulumi.Output<number>;
@@ -251,6 +267,10 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     /**
+     * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+     */
+    public readonly verifyCertificate!: pulumi.Output<string>;
+    /**
      * AWS VPC ID.
      */
     public readonly vpcId!: pulumi.Output<string>;
@@ -264,57 +284,62 @@ export class SystemSdnConnector extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemSdnConnectorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSdnConnectorArgs | SystemSdnConnectorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSdnConnectorState | undefined;
-            inputs["accessKey"] = state ? state.accessKey : undefined;
-            inputs["apiKey"] = state ? state.apiKey : undefined;
-            inputs["azureRegion"] = state ? state.azureRegion : undefined;
-            inputs["clientId"] = state ? state.clientId : undefined;
-            inputs["clientSecret"] = state ? state.clientSecret : undefined;
-            inputs["compartmentId"] = state ? state.compartmentId : undefined;
-            inputs["computeGeneration"] = state ? state.computeGeneration : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["externalIps"] = state ? state.externalIps : undefined;
-            inputs["gcpProject"] = state ? state.gcpProject : undefined;
-            inputs["groupName"] = state ? state.groupName : undefined;
-            inputs["haStatus"] = state ? state.haStatus : undefined;
-            inputs["ibmRegion"] = state ? state.ibmRegion : undefined;
-            inputs["keyPasswd"] = state ? state.keyPasswd : undefined;
-            inputs["loginEndpoint"] = state ? state.loginEndpoint : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nics"] = state ? state.nics : undefined;
-            inputs["ociCert"] = state ? state.ociCert : undefined;
-            inputs["ociFingerprint"] = state ? state.ociFingerprint : undefined;
-            inputs["ociRegion"] = state ? state.ociRegion : undefined;
-            inputs["ociRegionType"] = state ? state.ociRegionType : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["resourceGroup"] = state ? state.resourceGroup : undefined;
-            inputs["resourceUrl"] = state ? state.resourceUrl : undefined;
-            inputs["routeTables"] = state ? state.routeTables : undefined;
-            inputs["routes"] = state ? state.routes : undefined;
-            inputs["secretKey"] = state ? state.secretKey : undefined;
-            inputs["secretToken"] = state ? state.secretToken : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["serverPort"] = state ? state.serverPort : undefined;
-            inputs["serviceAccount"] = state ? state.serviceAccount : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["subscriptionId"] = state ? state.subscriptionId : undefined;
-            inputs["tenantId"] = state ? state.tenantId : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["updateInterval"] = state ? state.updateInterval : undefined;
-            inputs["useMetadataIam"] = state ? state.useMetadataIam : undefined;
-            inputs["userId"] = state ? state.userId : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vcenterPassword"] = state ? state.vcenterPassword : undefined;
-            inputs["vcenterServer"] = state ? state.vcenterServer : undefined;
-            inputs["vcenterUsername"] = state ? state.vcenterUsername : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vpcId"] = state ? state.vpcId : undefined;
+            resourceInputs["accessKey"] = state ? state.accessKey : undefined;
+            resourceInputs["apiKey"] = state ? state.apiKey : undefined;
+            resourceInputs["azureRegion"] = state ? state.azureRegion : undefined;
+            resourceInputs["clientId"] = state ? state.clientId : undefined;
+            resourceInputs["clientSecret"] = state ? state.clientSecret : undefined;
+            resourceInputs["compartmentId"] = state ? state.compartmentId : undefined;
+            resourceInputs["computeGeneration"] = state ? state.computeGeneration : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["externalAccountLists"] = state ? state.externalAccountLists : undefined;
+            resourceInputs["externalIps"] = state ? state.externalIps : undefined;
+            resourceInputs["forwardingRules"] = state ? state.forwardingRules : undefined;
+            resourceInputs["gcpProject"] = state ? state.gcpProject : undefined;
+            resourceInputs["gcpProjectLists"] = state ? state.gcpProjectLists : undefined;
+            resourceInputs["groupName"] = state ? state.groupName : undefined;
+            resourceInputs["haStatus"] = state ? state.haStatus : undefined;
+            resourceInputs["ibmRegion"] = state ? state.ibmRegion : undefined;
+            resourceInputs["keyPasswd"] = state ? state.keyPasswd : undefined;
+            resourceInputs["loginEndpoint"] = state ? state.loginEndpoint : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nics"] = state ? state.nics : undefined;
+            resourceInputs["ociCert"] = state ? state.ociCert : undefined;
+            resourceInputs["ociFingerprint"] = state ? state.ociFingerprint : undefined;
+            resourceInputs["ociRegion"] = state ? state.ociRegion : undefined;
+            resourceInputs["ociRegionType"] = state ? state.ociRegionType : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["resourceGroup"] = state ? state.resourceGroup : undefined;
+            resourceInputs["resourceUrl"] = state ? state.resourceUrl : undefined;
+            resourceInputs["routeTables"] = state ? state.routeTables : undefined;
+            resourceInputs["routes"] = state ? state.routes : undefined;
+            resourceInputs["secretKey"] = state ? state.secretKey : undefined;
+            resourceInputs["secretToken"] = state ? state.secretToken : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverLists"] = state ? state.serverLists : undefined;
+            resourceInputs["serverPort"] = state ? state.serverPort : undefined;
+            resourceInputs["serviceAccount"] = state ? state.serviceAccount : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["subscriptionId"] = state ? state.subscriptionId : undefined;
+            resourceInputs["tenantId"] = state ? state.tenantId : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["updateInterval"] = state ? state.updateInterval : undefined;
+            resourceInputs["useMetadataIam"] = state ? state.useMetadataIam : undefined;
+            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vcenterPassword"] = state ? state.vcenterPassword : undefined;
+            resourceInputs["vcenterServer"] = state ? state.vcenterServer : undefined;
+            resourceInputs["vcenterUsername"] = state ? state.vcenterUsername : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["verifyCertificate"] = state ? state.verifyCertificate : undefined;
+            resourceInputs["vpcId"] = state ? state.vpcId : undefined;
         } else {
             const args = argsOrState as SystemSdnConnectorArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
@@ -323,58 +348,61 @@ export class SystemSdnConnector extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["accessKey"] = args ? args.accessKey : undefined;
-            inputs["apiKey"] = args ? args.apiKey : undefined;
-            inputs["azureRegion"] = args ? args.azureRegion : undefined;
-            inputs["clientId"] = args ? args.clientId : undefined;
-            inputs["clientSecret"] = args ? args.clientSecret : undefined;
-            inputs["compartmentId"] = args ? args.compartmentId : undefined;
-            inputs["computeGeneration"] = args ? args.computeGeneration : undefined;
-            inputs["domain"] = args ? args.domain : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["externalIps"] = args ? args.externalIps : undefined;
-            inputs["gcpProject"] = args ? args.gcpProject : undefined;
-            inputs["groupName"] = args ? args.groupName : undefined;
-            inputs["haStatus"] = args ? args.haStatus : undefined;
-            inputs["ibmRegion"] = args ? args.ibmRegion : undefined;
-            inputs["keyPasswd"] = args ? args.keyPasswd : undefined;
-            inputs["loginEndpoint"] = args ? args.loginEndpoint : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nics"] = args ? args.nics : undefined;
-            inputs["ociCert"] = args ? args.ociCert : undefined;
-            inputs["ociFingerprint"] = args ? args.ociFingerprint : undefined;
-            inputs["ociRegion"] = args ? args.ociRegion : undefined;
-            inputs["ociRegionType"] = args ? args.ociRegionType : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["privateKey"] = args ? args.privateKey : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["resourceGroup"] = args ? args.resourceGroup : undefined;
-            inputs["resourceUrl"] = args ? args.resourceUrl : undefined;
-            inputs["routeTables"] = args ? args.routeTables : undefined;
-            inputs["routes"] = args ? args.routes : undefined;
-            inputs["secretKey"] = args ? args.secretKey : undefined;
-            inputs["secretToken"] = args ? args.secretToken : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["serverPort"] = args ? args.serverPort : undefined;
-            inputs["serviceAccount"] = args ? args.serviceAccount : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["subscriptionId"] = args ? args.subscriptionId : undefined;
-            inputs["tenantId"] = args ? args.tenantId : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["updateInterval"] = args ? args.updateInterval : undefined;
-            inputs["useMetadataIam"] = args ? args.useMetadataIam : undefined;
-            inputs["userId"] = args ? args.userId : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vcenterPassword"] = args ? args.vcenterPassword : undefined;
-            inputs["vcenterServer"] = args ? args.vcenterServer : undefined;
-            inputs["vcenterUsername"] = args ? args.vcenterUsername : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vpcId"] = args ? args.vpcId : undefined;
+            resourceInputs["accessKey"] = args ? args.accessKey : undefined;
+            resourceInputs["apiKey"] = args ? args.apiKey : undefined;
+            resourceInputs["azureRegion"] = args ? args.azureRegion : undefined;
+            resourceInputs["clientId"] = args ? args.clientId : undefined;
+            resourceInputs["clientSecret"] = args ? args.clientSecret : undefined;
+            resourceInputs["compartmentId"] = args ? args.compartmentId : undefined;
+            resourceInputs["computeGeneration"] = args ? args.computeGeneration : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["externalAccountLists"] = args ? args.externalAccountLists : undefined;
+            resourceInputs["externalIps"] = args ? args.externalIps : undefined;
+            resourceInputs["forwardingRules"] = args ? args.forwardingRules : undefined;
+            resourceInputs["gcpProject"] = args ? args.gcpProject : undefined;
+            resourceInputs["gcpProjectLists"] = args ? args.gcpProjectLists : undefined;
+            resourceInputs["groupName"] = args ? args.groupName : undefined;
+            resourceInputs["haStatus"] = args ? args.haStatus : undefined;
+            resourceInputs["ibmRegion"] = args ? args.ibmRegion : undefined;
+            resourceInputs["keyPasswd"] = args ? args.keyPasswd : undefined;
+            resourceInputs["loginEndpoint"] = args ? args.loginEndpoint : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nics"] = args ? args.nics : undefined;
+            resourceInputs["ociCert"] = args ? args.ociCert : undefined;
+            resourceInputs["ociFingerprint"] = args ? args.ociFingerprint : undefined;
+            resourceInputs["ociRegion"] = args ? args.ociRegion : undefined;
+            resourceInputs["ociRegionType"] = args ? args.ociRegionType : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["resourceGroup"] = args ? args.resourceGroup : undefined;
+            resourceInputs["resourceUrl"] = args ? args.resourceUrl : undefined;
+            resourceInputs["routeTables"] = args ? args.routeTables : undefined;
+            resourceInputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["secretKey"] = args ? args.secretKey : undefined;
+            resourceInputs["secretToken"] = args ? args.secretToken : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverLists"] = args ? args.serverLists : undefined;
+            resourceInputs["serverPort"] = args ? args.serverPort : undefined;
+            resourceInputs["serviceAccount"] = args ? args.serviceAccount : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["subscriptionId"] = args ? args.subscriptionId : undefined;
+            resourceInputs["tenantId"] = args ? args.tenantId : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["updateInterval"] = args ? args.updateInterval : undefined;
+            resourceInputs["useMetadataIam"] = args ? args.useMetadataIam : undefined;
+            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vcenterPassword"] = args ? args.vcenterPassword : undefined;
+            resourceInputs["vcenterServer"] = args ? args.vcenterServer : undefined;
+            resourceInputs["vcenterUsername"] = args ? args.vcenterUsername : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["verifyCertificate"] = args ? args.verifyCertificate : undefined;
+            resourceInputs["vpcId"] = args ? args.vpcId : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSdnConnector.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSdnConnector.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -419,13 +447,25 @@ export interface SystemSdnConnectorState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+     */
+    externalAccountLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalAccountList>[]>;
+    /**
      * Configure GCP external IP. The structure of `externalIp` block is documented below.
      */
     externalIps?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalIp>[]>;
     /**
+     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+     */
+    forwardingRules?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorForwardingRule>[]>;
+    /**
      * GCP project name.
      */
     gcpProject?: pulumi.Input<string>;
+    /**
+     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+     */
+    gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorGcpProjectList>[]>;
     /**
      * Group name of computers.
      */
@@ -435,7 +475,7 @@ export interface SystemSdnConnectorState {
      */
     haStatus?: pulumi.Input<string>;
     /**
-     * IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+     * IBM cloud region name.
      */
     ibmRegion?: pulumi.Input<string>;
     /**
@@ -447,7 +487,7 @@ export interface SystemSdnConnectorState {
      */
     loginEndpoint?: pulumi.Input<string>;
     /**
-     * Route name.
+     * GCP zone name.
      */
     name?: pulumi.Input<string>;
     /**
@@ -510,6 +550,10 @@ export interface SystemSdnConnectorState {
      * Server address of the remote SDN connector.
      */
     server?: pulumi.Input<string>;
+    /**
+     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+     */
+    serverLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorServerList>[]>;
     /**
      * Port number of the remote SDN connector.
      */
@@ -567,6 +611,10 @@ export interface SystemSdnConnectorState {
      */
     vdomparam?: pulumi.Input<string>;
     /**
+     * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+     */
+    verifyCertificate?: pulumi.Input<string>;
+    /**
      * AWS VPC ID.
      */
     vpcId?: pulumi.Input<string>;
@@ -613,13 +661,25 @@ export interface SystemSdnConnectorArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+     */
+    externalAccountLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalAccountList>[]>;
+    /**
      * Configure GCP external IP. The structure of `externalIp` block is documented below.
      */
     externalIps?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorExternalIp>[]>;
     /**
+     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+     */
+    forwardingRules?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorForwardingRule>[]>;
+    /**
      * GCP project name.
      */
     gcpProject?: pulumi.Input<string>;
+    /**
+     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+     */
+    gcpProjectLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorGcpProjectList>[]>;
     /**
      * Group name of computers.
      */
@@ -629,7 +689,7 @@ export interface SystemSdnConnectorArgs {
      */
     haStatus?: pulumi.Input<string>;
     /**
-     * IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+     * IBM cloud region name.
      */
     ibmRegion?: pulumi.Input<string>;
     /**
@@ -641,7 +701,7 @@ export interface SystemSdnConnectorArgs {
      */
     loginEndpoint?: pulumi.Input<string>;
     /**
-     * Route name.
+     * GCP zone name.
      */
     name?: pulumi.Input<string>;
     /**
@@ -705,6 +765,10 @@ export interface SystemSdnConnectorArgs {
      */
     server?: pulumi.Input<string>;
     /**
+     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+     */
+    serverLists?: pulumi.Input<pulumi.Input<inputs.SystemSdnConnectorServerList>[]>;
+    /**
      * Port number of the remote SDN connector.
      */
     serverPort?: pulumi.Input<number>;
@@ -760,6 +824,10 @@ export interface SystemSdnConnectorArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+     */
+    verifyCertificate?: pulumi.Input<string>;
     /**
      * AWS VPC ID.
      */

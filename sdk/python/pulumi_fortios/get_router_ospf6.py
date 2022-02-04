@@ -13,6 +13,7 @@ __all__ = [
     'GetRouterOspf6Result',
     'AwaitableGetRouterOspf6Result',
     'get_router_ospf6',
+    'get_router_ospf6_output',
 ]
 
 @pulumi.output_type
@@ -258,6 +259,8 @@ def get_router_ospf6(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterOspf6:GetRouterOspf6', __args__, opts=opts, typ=GetRouterOspf6Result).value
 
     return AwaitableGetRouterOspf6Result(
@@ -279,3 +282,15 @@ def get_router_ospf6(vdomparam: Optional[str] = None,
         spf_timers=__ret__.spf_timers,
         summary_addresses=__ret__.summary_addresses,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_router_ospf6)
+def get_router_ospf6_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterOspf6Result]:
+    """
+    Use this data source to get information on fortios router ospf6
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

@@ -40,7 +40,7 @@ class LogSyslogd4SettingArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-        :param pulumi.Input[str] format: Log format. Valid values: `default`, `csv`, `cef`.
+        :param pulumi.Input[str] format: Log format.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -155,7 +155,7 @@ class LogSyslogd4SettingArgs:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Log format. Valid values: `default`, `csv`, `cef`.
+        Log format.
         """
         return pulumi.get(self, "format")
 
@@ -336,7 +336,7 @@ class _LogSyslogd4SettingState:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-        :param pulumi.Input[str] format: Log format. Valid values: `default`, `csv`, `cef`.
+        :param pulumi.Input[str] format: Log format.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -451,7 +451,7 @@ class _LogSyslogd4SettingState:
     @pulumi.getter
     def format(self) -> Optional[pulumi.Input[str]]:
         """
-        Log format. Valid values: `default`, `csv`, `cef`.
+        Log format.
         """
         return pulumi.get(self, "format")
 
@@ -665,7 +665,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-        :param pulumi.Input[str] format: Log format. Valid values: `default`, `csv`, `cef`.
+        :param pulumi.Input[str] format: Log format.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -755,6 +755,8 @@ class LogSyslogd4Setting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -818,7 +820,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Enable/disable reliable syslogging with TLS encryption. Valid values: `high-medium`, `high`, `low`, `disable`.
         :param pulumi.Input[str] facility: Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
-        :param pulumi.Input[str] format: Log format. Valid values: `default`, `csv`, `cef`.
+        :param pulumi.Input[str] format: Log format.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[int] max_log_rate: Syslog maximum log rate in MBps (0 = unlimited).
@@ -900,7 +902,7 @@ class LogSyslogd4Setting(pulumi.CustomResource):
     @pulumi.getter
     def format(self) -> pulumi.Output[str]:
         """
-        Log format. Valid values: `default`, `csv`, `cef`.
+        Log format.
         """
         return pulumi.get(self, "format")
 

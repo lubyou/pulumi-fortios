@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname1 = new fortios.FirewallAddress6("trname1", {
  *     cacheTtl: 0,
@@ -85,6 +85,10 @@ export class FirewallAddrgrp6 extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */
     public readonly members!: pulumi.Output<outputs.FirewallAddrgrp6Member[]>;
@@ -118,38 +122,38 @@ export class FirewallAddrgrp6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallAddrgrp6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallAddrgrp6Args | FirewallAddrgrp6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAddrgrp6State | undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallAddrgrp6Args | undefined;
             if ((!args || args.members === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallAddrgrp6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallAddrgrp6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -169,6 +173,10 @@ export interface FirewallAddrgrp6State {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */
@@ -211,6 +219,10 @@ export interface FirewallAddrgrp6Args {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -96,6 +96,8 @@ type LogFortianalyzerOverrideSetting struct {
 	MonitorKeepalivePeriod pulumi.IntOutput `pulumi:"monitorKeepalivePeriod"`
 	// Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
 	Override pulumi.StringOutput `pulumi:"override"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringOutput `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringOutput `pulumi:"priority"`
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -131,6 +133,7 @@ func NewLogFortianalyzerOverrideSetting(ctx *pulumi.Context,
 		args = &LogFortianalyzerOverrideSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerOverrideSetting
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerOverrideSetting:LogFortianalyzerOverrideSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -187,6 +190,8 @@ type logFortianalyzerOverrideSettingState struct {
 	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
 	// Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
 	Override *string `pulumi:"override"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey *string `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority *string `pulumi:"priority"`
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -250,6 +255,8 @@ type LogFortianalyzerOverrideSettingState struct {
 	MonitorKeepalivePeriod pulumi.IntPtrInput
 	// Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
 	Override pulumi.StringPtrInput
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringPtrInput
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringPtrInput
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -317,6 +324,8 @@ type logFortianalyzerOverrideSettingArgs struct {
 	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
 	// Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
 	Override *string `pulumi:"override"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey *string `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority *string `pulumi:"priority"`
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -381,6 +390,8 @@ type LogFortianalyzerOverrideSettingArgs struct {
 	MonitorKeepalivePeriod pulumi.IntPtrInput
 	// Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
 	Override pulumi.StringPtrInput
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringPtrInput
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringPtrInput
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -421,7 +432,7 @@ type LogFortianalyzerOverrideSettingInput interface {
 }
 
 func (*LogFortianalyzerOverrideSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerOverrideSetting)(nil))
+	return reflect.TypeOf((**LogFortianalyzerOverrideSetting)(nil)).Elem()
 }
 
 func (i *LogFortianalyzerOverrideSetting) ToLogFortianalyzerOverrideSettingOutput() LogFortianalyzerOverrideSettingOutput {
@@ -430,35 +441,6 @@ func (i *LogFortianalyzerOverrideSetting) ToLogFortianalyzerOverrideSettingOutpu
 
 func (i *LogFortianalyzerOverrideSetting) ToLogFortianalyzerOverrideSettingOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingOutput)
-}
-
-func (i *LogFortianalyzerOverrideSetting) ToLogFortianalyzerOverrideSettingPtrOutput() LogFortianalyzerOverrideSettingPtrOutput {
-	return i.ToLogFortianalyzerOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortianalyzerOverrideSetting) ToLogFortianalyzerOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingPtrOutput)
-}
-
-type LogFortianalyzerOverrideSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogFortianalyzerOverrideSettingPtrOutput() LogFortianalyzerOverrideSettingPtrOutput
-	ToLogFortianalyzerOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingPtrOutput
-}
-
-type logFortianalyzerOverrideSettingPtrType LogFortianalyzerOverrideSettingArgs
-
-func (*logFortianalyzerOverrideSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerOverrideSetting)(nil))
-}
-
-func (i *logFortianalyzerOverrideSettingPtrType) ToLogFortianalyzerOverrideSettingPtrOutput() LogFortianalyzerOverrideSettingPtrOutput {
-	return i.ToLogFortianalyzerOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortianalyzerOverrideSettingPtrType) ToLogFortianalyzerOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingPtrOutput)
 }
 
 // LogFortianalyzerOverrideSettingArrayInput is an input type that accepts LogFortianalyzerOverrideSettingArray and LogFortianalyzerOverrideSettingArrayOutput values.
@@ -475,7 +457,7 @@ type LogFortianalyzerOverrideSettingArrayInput interface {
 type LogFortianalyzerOverrideSettingArray []LogFortianalyzerOverrideSettingInput
 
 func (LogFortianalyzerOverrideSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortianalyzerOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerOverrideSetting)(nil)).Elem()
 }
 
 func (i LogFortianalyzerOverrideSettingArray) ToLogFortianalyzerOverrideSettingArrayOutput() LogFortianalyzerOverrideSettingArrayOutput {
@@ -500,7 +482,7 @@ type LogFortianalyzerOverrideSettingMapInput interface {
 type LogFortianalyzerOverrideSettingMap map[string]LogFortianalyzerOverrideSettingInput
 
 func (LogFortianalyzerOverrideSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortianalyzerOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerOverrideSetting)(nil)).Elem()
 }
 
 func (i LogFortianalyzerOverrideSettingMap) ToLogFortianalyzerOverrideSettingMapOutput() LogFortianalyzerOverrideSettingMapOutput {
@@ -511,12 +493,10 @@ func (i LogFortianalyzerOverrideSettingMap) ToLogFortianalyzerOverrideSettingMap
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerOverrideSettingMapOutput)
 }
 
-type LogFortianalyzerOverrideSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogFortianalyzerOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerOverrideSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerOverrideSetting)(nil))
+	return reflect.TypeOf((**LogFortianalyzerOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerOverrideSettingOutput) ToLogFortianalyzerOverrideSettingOutput() LogFortianalyzerOverrideSettingOutput {
@@ -527,36 +507,10 @@ func (o LogFortianalyzerOverrideSettingOutput) ToLogFortianalyzerOverrideSetting
 	return o
 }
 
-func (o LogFortianalyzerOverrideSettingOutput) ToLogFortianalyzerOverrideSettingPtrOutput() LogFortianalyzerOverrideSettingPtrOutput {
-	return o.ToLogFortianalyzerOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortianalyzerOverrideSettingOutput) ToLogFortianalyzerOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingPtrOutput {
-	return o.ApplyT(func(v LogFortianalyzerOverrideSetting) *LogFortianalyzerOverrideSetting {
-		return &v
-	}).(LogFortianalyzerOverrideSettingPtrOutput)
-}
-
-type LogFortianalyzerOverrideSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortianalyzerOverrideSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerOverrideSetting)(nil))
-}
-
-func (o LogFortianalyzerOverrideSettingPtrOutput) ToLogFortianalyzerOverrideSettingPtrOutput() LogFortianalyzerOverrideSettingPtrOutput {
-	return o
-}
-
-func (o LogFortianalyzerOverrideSettingPtrOutput) ToLogFortianalyzerOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerOverrideSettingPtrOutput {
-	return o
-}
-
 type LogFortianalyzerOverrideSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerOverrideSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortianalyzerOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerOverrideSettingArrayOutput) ToLogFortianalyzerOverrideSettingArrayOutput() LogFortianalyzerOverrideSettingArrayOutput {
@@ -568,15 +522,15 @@ func (o LogFortianalyzerOverrideSettingArrayOutput) ToLogFortianalyzerOverrideSe
 }
 
 func (o LogFortianalyzerOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerOverrideSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortianalyzerOverrideSetting {
-		return vs[0].([]LogFortianalyzerOverrideSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerOverrideSetting {
+		return vs[0].([]*LogFortianalyzerOverrideSetting)[vs[1].(int)]
 	}).(LogFortianalyzerOverrideSettingOutput)
 }
 
 type LogFortianalyzerOverrideSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerOverrideSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortianalyzerOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerOverrideSettingMapOutput) ToLogFortianalyzerOverrideSettingMapOutput() LogFortianalyzerOverrideSettingMapOutput {
@@ -588,14 +542,16 @@ func (o LogFortianalyzerOverrideSettingMapOutput) ToLogFortianalyzerOverrideSett
 }
 
 func (o LogFortianalyzerOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerOverrideSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortianalyzerOverrideSetting {
-		return vs[0].(map[string]LogFortianalyzerOverrideSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortianalyzerOverrideSetting {
+		return vs[0].(map[string]*LogFortianalyzerOverrideSetting)[vs[1].(string)]
 	}).(LogFortianalyzerOverrideSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerOverrideSettingInput)(nil)).Elem(), &LogFortianalyzerOverrideSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerOverrideSettingArrayInput)(nil)).Elem(), LogFortianalyzerOverrideSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerOverrideSettingMapInput)(nil)).Elem(), LogFortianalyzerOverrideSettingMap{})
 	pulumi.RegisterOutputType(LogFortianalyzerOverrideSettingOutput{})
-	pulumi.RegisterOutputType(LogFortianalyzerOverrideSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerOverrideSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerOverrideSettingMapOutput{})
 }

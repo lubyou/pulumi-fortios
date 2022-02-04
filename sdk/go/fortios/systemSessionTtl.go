@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,7 @@ func NewSystemSessionTtl(ctx *pulumi.Context,
 		args = &SystemSessionTtlArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSessionTtl
 	err := ctx.RegisterResource("fortios:index/systemSessionTtl:SystemSessionTtl", name, args, &resource, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ type SystemSessionTtlInput interface {
 }
 
 func (*SystemSessionTtl) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSessionTtl)(nil))
+	return reflect.TypeOf((**SystemSessionTtl)(nil)).Elem()
 }
 
 func (i *SystemSessionTtl) ToSystemSessionTtlOutput() SystemSessionTtlOutput {
@@ -155,35 +156,6 @@ func (i *SystemSessionTtl) ToSystemSessionTtlOutput() SystemSessionTtlOutput {
 
 func (i *SystemSessionTtl) ToSystemSessionTtlOutputWithContext(ctx context.Context) SystemSessionTtlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlOutput)
-}
-
-func (i *SystemSessionTtl) ToSystemSessionTtlPtrOutput() SystemSessionTtlPtrOutput {
-	return i.ToSystemSessionTtlPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSessionTtl) ToSystemSessionTtlPtrOutputWithContext(ctx context.Context) SystemSessionTtlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlPtrOutput)
-}
-
-type SystemSessionTtlPtrInput interface {
-	pulumi.Input
-
-	ToSystemSessionTtlPtrOutput() SystemSessionTtlPtrOutput
-	ToSystemSessionTtlPtrOutputWithContext(ctx context.Context) SystemSessionTtlPtrOutput
-}
-
-type systemSessionTtlPtrType SystemSessionTtlArgs
-
-func (*systemSessionTtlPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSessionTtl)(nil))
-}
-
-func (i *systemSessionTtlPtrType) ToSystemSessionTtlPtrOutput() SystemSessionTtlPtrOutput {
-	return i.ToSystemSessionTtlPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSessionTtlPtrType) ToSystemSessionTtlPtrOutputWithContext(ctx context.Context) SystemSessionTtlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlPtrOutput)
 }
 
 // SystemSessionTtlArrayInput is an input type that accepts SystemSessionTtlArray and SystemSessionTtlArrayOutput values.
@@ -200,7 +172,7 @@ type SystemSessionTtlArrayInput interface {
 type SystemSessionTtlArray []SystemSessionTtlInput
 
 func (SystemSessionTtlArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSessionTtl)(nil))
+	return reflect.TypeOf((*[]*SystemSessionTtl)(nil)).Elem()
 }
 
 func (i SystemSessionTtlArray) ToSystemSessionTtlArrayOutput() SystemSessionTtlArrayOutput {
@@ -225,7 +197,7 @@ type SystemSessionTtlMapInput interface {
 type SystemSessionTtlMap map[string]SystemSessionTtlInput
 
 func (SystemSessionTtlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSessionTtl)(nil))
+	return reflect.TypeOf((*map[string]*SystemSessionTtl)(nil)).Elem()
 }
 
 func (i SystemSessionTtlMap) ToSystemSessionTtlMapOutput() SystemSessionTtlMapOutput {
@@ -236,12 +208,10 @@ func (i SystemSessionTtlMap) ToSystemSessionTtlMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionTtlMapOutput)
 }
 
-type SystemSessionTtlOutput struct {
-	*pulumi.OutputState
-}
+type SystemSessionTtlOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionTtlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSessionTtl)(nil))
+	return reflect.TypeOf((**SystemSessionTtl)(nil)).Elem()
 }
 
 func (o SystemSessionTtlOutput) ToSystemSessionTtlOutput() SystemSessionTtlOutput {
@@ -252,36 +222,10 @@ func (o SystemSessionTtlOutput) ToSystemSessionTtlOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemSessionTtlOutput) ToSystemSessionTtlPtrOutput() SystemSessionTtlPtrOutput {
-	return o.ToSystemSessionTtlPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSessionTtlOutput) ToSystemSessionTtlPtrOutputWithContext(ctx context.Context) SystemSessionTtlPtrOutput {
-	return o.ApplyT(func(v SystemSessionTtl) *SystemSessionTtl {
-		return &v
-	}).(SystemSessionTtlPtrOutput)
-}
-
-type SystemSessionTtlPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSessionTtlPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSessionTtl)(nil))
-}
-
-func (o SystemSessionTtlPtrOutput) ToSystemSessionTtlPtrOutput() SystemSessionTtlPtrOutput {
-	return o
-}
-
-func (o SystemSessionTtlPtrOutput) ToSystemSessionTtlPtrOutputWithContext(ctx context.Context) SystemSessionTtlPtrOutput {
-	return o
-}
-
 type SystemSessionTtlArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionTtlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSessionTtl)(nil))
+	return reflect.TypeOf((*[]*SystemSessionTtl)(nil)).Elem()
 }
 
 func (o SystemSessionTtlArrayOutput) ToSystemSessionTtlArrayOutput() SystemSessionTtlArrayOutput {
@@ -293,15 +237,15 @@ func (o SystemSessionTtlArrayOutput) ToSystemSessionTtlArrayOutputWithContext(ct
 }
 
 func (o SystemSessionTtlArrayOutput) Index(i pulumi.IntInput) SystemSessionTtlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSessionTtl {
-		return vs[0].([]SystemSessionTtl)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSessionTtl {
+		return vs[0].([]*SystemSessionTtl)[vs[1].(int)]
 	}).(SystemSessionTtlOutput)
 }
 
 type SystemSessionTtlMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionTtlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSessionTtl)(nil))
+	return reflect.TypeOf((*map[string]*SystemSessionTtl)(nil)).Elem()
 }
 
 func (o SystemSessionTtlMapOutput) ToSystemSessionTtlMapOutput() SystemSessionTtlMapOutput {
@@ -313,14 +257,16 @@ func (o SystemSessionTtlMapOutput) ToSystemSessionTtlMapOutputWithContext(ctx co
 }
 
 func (o SystemSessionTtlMapOutput) MapIndex(k pulumi.StringInput) SystemSessionTtlOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSessionTtl {
-		return vs[0].(map[string]SystemSessionTtl)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSessionTtl {
+		return vs[0].(map[string]*SystemSessionTtl)[vs[1].(string)]
 	}).(SystemSessionTtlOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSessionTtlInput)(nil)).Elem(), &SystemSessionTtl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSessionTtlArrayInput)(nil)).Elem(), SystemSessionTtlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSessionTtlMapInput)(nil)).Elem(), SystemSessionTtlMap{})
 	pulumi.RegisterOutputType(SystemSessionTtlOutput{})
-	pulumi.RegisterOutputType(SystemSessionTtlPtrOutput{})
 	pulumi.RegisterOutputType(SystemSessionTtlArrayOutput{})
 	pulumi.RegisterOutputType(SystemSessionTtlMapOutput{})
 }

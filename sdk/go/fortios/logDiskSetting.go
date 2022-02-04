@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -146,6 +146,7 @@ func NewLogDiskSetting(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogDiskSetting
 	err := ctx.RegisterResource("fortios:index/logDiskSetting:LogDiskSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -444,7 +445,7 @@ type LogDiskSettingInput interface {
 }
 
 func (*LogDiskSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogDiskSetting)(nil))
+	return reflect.TypeOf((**LogDiskSetting)(nil)).Elem()
 }
 
 func (i *LogDiskSetting) ToLogDiskSettingOutput() LogDiskSettingOutput {
@@ -453,35 +454,6 @@ func (i *LogDiskSetting) ToLogDiskSettingOutput() LogDiskSettingOutput {
 
 func (i *LogDiskSetting) ToLogDiskSettingOutputWithContext(ctx context.Context) LogDiskSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingOutput)
-}
-
-func (i *LogDiskSetting) ToLogDiskSettingPtrOutput() LogDiskSettingPtrOutput {
-	return i.ToLogDiskSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogDiskSetting) ToLogDiskSettingPtrOutputWithContext(ctx context.Context) LogDiskSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingPtrOutput)
-}
-
-type LogDiskSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogDiskSettingPtrOutput() LogDiskSettingPtrOutput
-	ToLogDiskSettingPtrOutputWithContext(ctx context.Context) LogDiskSettingPtrOutput
-}
-
-type logDiskSettingPtrType LogDiskSettingArgs
-
-func (*logDiskSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogDiskSetting)(nil))
-}
-
-func (i *logDiskSettingPtrType) ToLogDiskSettingPtrOutput() LogDiskSettingPtrOutput {
-	return i.ToLogDiskSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logDiskSettingPtrType) ToLogDiskSettingPtrOutputWithContext(ctx context.Context) LogDiskSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingPtrOutput)
 }
 
 // LogDiskSettingArrayInput is an input type that accepts LogDiskSettingArray and LogDiskSettingArrayOutput values.
@@ -498,7 +470,7 @@ type LogDiskSettingArrayInput interface {
 type LogDiskSettingArray []LogDiskSettingInput
 
 func (LogDiskSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogDiskSetting)(nil))
+	return reflect.TypeOf((*[]*LogDiskSetting)(nil)).Elem()
 }
 
 func (i LogDiskSettingArray) ToLogDiskSettingArrayOutput() LogDiskSettingArrayOutput {
@@ -523,7 +495,7 @@ type LogDiskSettingMapInput interface {
 type LogDiskSettingMap map[string]LogDiskSettingInput
 
 func (LogDiskSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogDiskSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogDiskSetting)(nil)).Elem()
 }
 
 func (i LogDiskSettingMap) ToLogDiskSettingMapOutput() LogDiskSettingMapOutput {
@@ -534,12 +506,10 @@ func (i LogDiskSettingMap) ToLogDiskSettingMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskSettingMapOutput)
 }
 
-type LogDiskSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogDiskSettingOutput struct{ *pulumi.OutputState }
 
 func (LogDiskSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogDiskSetting)(nil))
+	return reflect.TypeOf((**LogDiskSetting)(nil)).Elem()
 }
 
 func (o LogDiskSettingOutput) ToLogDiskSettingOutput() LogDiskSettingOutput {
@@ -550,36 +520,10 @@ func (o LogDiskSettingOutput) ToLogDiskSettingOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o LogDiskSettingOutput) ToLogDiskSettingPtrOutput() LogDiskSettingPtrOutput {
-	return o.ToLogDiskSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogDiskSettingOutput) ToLogDiskSettingPtrOutputWithContext(ctx context.Context) LogDiskSettingPtrOutput {
-	return o.ApplyT(func(v LogDiskSetting) *LogDiskSetting {
-		return &v
-	}).(LogDiskSettingPtrOutput)
-}
-
-type LogDiskSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogDiskSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogDiskSetting)(nil))
-}
-
-func (o LogDiskSettingPtrOutput) ToLogDiskSettingPtrOutput() LogDiskSettingPtrOutput {
-	return o
-}
-
-func (o LogDiskSettingPtrOutput) ToLogDiskSettingPtrOutputWithContext(ctx context.Context) LogDiskSettingPtrOutput {
-	return o
-}
-
 type LogDiskSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogDiskSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogDiskSetting)(nil))
+	return reflect.TypeOf((*[]*LogDiskSetting)(nil)).Elem()
 }
 
 func (o LogDiskSettingArrayOutput) ToLogDiskSettingArrayOutput() LogDiskSettingArrayOutput {
@@ -591,15 +535,15 @@ func (o LogDiskSettingArrayOutput) ToLogDiskSettingArrayOutputWithContext(ctx co
 }
 
 func (o LogDiskSettingArrayOutput) Index(i pulumi.IntInput) LogDiskSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogDiskSetting {
-		return vs[0].([]LogDiskSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogDiskSetting {
+		return vs[0].([]*LogDiskSetting)[vs[1].(int)]
 	}).(LogDiskSettingOutput)
 }
 
 type LogDiskSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogDiskSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogDiskSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogDiskSetting)(nil)).Elem()
 }
 
 func (o LogDiskSettingMapOutput) ToLogDiskSettingMapOutput() LogDiskSettingMapOutput {
@@ -611,14 +555,16 @@ func (o LogDiskSettingMapOutput) ToLogDiskSettingMapOutputWithContext(ctx contex
 }
 
 func (o LogDiskSettingMapOutput) MapIndex(k pulumi.StringInput) LogDiskSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogDiskSetting {
-		return vs[0].(map[string]LogDiskSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogDiskSetting {
+		return vs[0].(map[string]*LogDiskSetting)[vs[1].(string)]
 	}).(LogDiskSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogDiskSettingInput)(nil)).Elem(), &LogDiskSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogDiskSettingArrayInput)(nil)).Elem(), LogDiskSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogDiskSettingMapInput)(nil)).Elem(), LogDiskSettingMap{})
 	pulumi.RegisterOutputType(LogDiskSettingOutput{})
-	pulumi.RegisterOutputType(LogDiskSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogDiskSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogDiskSettingMapOutput{})
 }

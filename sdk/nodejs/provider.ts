@@ -70,28 +70,26 @@ export class Provider extends pulumi.ProviderResource {
      * @param opts A bag of options that control this resource's behavior.
      */
     constructor(name: string, args?: ProviderArgs, opts?: pulumi.ResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         {
-            inputs["cabundlefile"] = (args ? args.cabundlefile : undefined) ?? utilities.getEnv("FORTIOS_CA_CABUNDLE");
-            inputs["cacert"] = args ? args.cacert : undefined;
-            inputs["clientcert"] = args ? args.clientcert : undefined;
-            inputs["clientkey"] = args ? args.clientkey : undefined;
-            inputs["fmgCabundlefile"] = (args ? args.fmgCabundlefile : undefined) ?? utilities.getEnv("FORTIOS_FMG_CABUNDLE");
-            inputs["fmgHostname"] = (args ? args.fmgHostname : undefined) ?? utilities.getEnv("FORTIOS_FMG_HOSTNAME");
-            inputs["fmgInsecure"] = pulumi.output((args ? args.fmgInsecure : undefined) ?? <any>utilities.getEnvBoolean("FORTIOS_FMG_INSECURE")).apply(JSON.stringify);
-            inputs["fmgPasswd"] = (args ? args.fmgPasswd : undefined) ?? utilities.getEnv("FORTIOS_FMG_PASSWORD");
-            inputs["fmgUsername"] = (args ? args.fmgUsername : undefined) ?? utilities.getEnv("FORTIOS_FMG_USERNAME");
-            inputs["hostname"] = (args ? args.hostname : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_HOSTNAME");
-            inputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? <any>utilities.getEnvBoolean("FORTIOS_INSECURE")).apply(JSON.stringify);
-            inputs["peerauth"] = args ? args.peerauth : undefined;
-            inputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_TOKEN");
-            inputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["cabundlefile"] = (args ? args.cabundlefile : undefined) ?? utilities.getEnv("FORTIOS_CA_CABUNDLE");
+            resourceInputs["cacert"] = args ? args.cacert : undefined;
+            resourceInputs["clientcert"] = args ? args.clientcert : undefined;
+            resourceInputs["clientkey"] = args ? args.clientkey : undefined;
+            resourceInputs["fmgCabundlefile"] = (args ? args.fmgCabundlefile : undefined) ?? utilities.getEnv("FORTIOS_FMG_CABUNDLE");
+            resourceInputs["fmgHostname"] = (args ? args.fmgHostname : undefined) ?? utilities.getEnv("FORTIOS_FMG_HOSTNAME");
+            resourceInputs["fmgInsecure"] = pulumi.output((args ? args.fmgInsecure : undefined) ?? utilities.getEnvBoolean("FORTIOS_FMG_INSECURE")).apply(JSON.stringify);
+            resourceInputs["fmgPasswd"] = (args ? args.fmgPasswd : undefined) ?? utilities.getEnv("FORTIOS_FMG_PASSWORD");
+            resourceInputs["fmgUsername"] = (args ? args.fmgUsername : undefined) ?? utilities.getEnv("FORTIOS_FMG_USERNAME");
+            resourceInputs["hostname"] = (args ? args.hostname : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_HOSTNAME");
+            resourceInputs["insecure"] = pulumi.output((args ? args.insecure : undefined) ?? utilities.getEnvBoolean("FORTIOS_INSECURE")).apply(JSON.stringify);
+            resourceInputs["peerauth"] = args ? args.peerauth : undefined;
+            resourceInputs["token"] = (args ? args.token : undefined) ?? utilities.getEnv("FORTIOS_ACCESS_TOKEN");
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Provider.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }
 

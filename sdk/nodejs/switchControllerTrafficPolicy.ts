@@ -114,39 +114,37 @@ export class SwitchControllerTrafficPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerTrafficPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerTrafficPolicyArgs | SwitchControllerTrafficPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerTrafficPolicyState | undefined;
-            inputs["cos"] = state ? state.cos : undefined;
-            inputs["cosQueue"] = state ? state.cosQueue : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["guaranteedBandwidth"] = state ? state.guaranteedBandwidth : undefined;
-            inputs["guaranteedBurst"] = state ? state.guaranteedBurst : undefined;
-            inputs["maximumBurst"] = state ? state.maximumBurst : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policerStatus"] = state ? state.policerStatus : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cos"] = state ? state.cos : undefined;
+            resourceInputs["cosQueue"] = state ? state.cosQueue : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["guaranteedBandwidth"] = state ? state.guaranteedBandwidth : undefined;
+            resourceInputs["guaranteedBurst"] = state ? state.guaranteedBurst : undefined;
+            resourceInputs["maximumBurst"] = state ? state.maximumBurst : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policerStatus"] = state ? state.policerStatus : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerTrafficPolicyArgs | undefined;
-            inputs["cos"] = args ? args.cos : undefined;
-            inputs["cosQueue"] = args ? args.cosQueue : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["guaranteedBandwidth"] = args ? args.guaranteedBandwidth : undefined;
-            inputs["guaranteedBurst"] = args ? args.guaranteedBurst : undefined;
-            inputs["maximumBurst"] = args ? args.maximumBurst : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policerStatus"] = args ? args.policerStatus : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cos"] = args ? args.cos : undefined;
+            resourceInputs["cosQueue"] = args ? args.cosQueue : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["guaranteedBandwidth"] = args ? args.guaranteedBandwidth : undefined;
+            resourceInputs["guaranteedBurst"] = args ? args.guaranteedBurst : undefined;
+            resourceInputs["maximumBurst"] = args ? args.maximumBurst : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policerStatus"] = args ? args.policerStatus : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerTrafficPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerTrafficPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

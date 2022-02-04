@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemDscpBasedPriority`.
 func GetSystemDscpBasedPriorityList(ctx *pulumi.Context, args *GetSystemDscpBasedPriorityListArgs, opts ...pulumi.InvokeOption) (*GetSystemDscpBasedPriorityListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemDscpBasedPriorityListResult
 	err := ctx.Invoke("fortios:index/getSystemDscpBasedPriorityList:GetSystemDscpBasedPriorityList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemDscpBasedPriorityListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemDscpBasedPriorityListOutput(ctx *pulumi.Context, args GetSystemDscpBasedPriorityListOutputArgs, opts ...pulumi.InvokeOption) GetSystemDscpBasedPriorityListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemDscpBasedPriorityListResult, error) {
+			args := v.(GetSystemDscpBasedPriorityListArgs)
+			r, err := GetSystemDscpBasedPriorityList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemDscpBasedPriorityListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemDscpBasedPriorityList.
+type GetSystemDscpBasedPriorityListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemDscpBasedPriorityListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemDscpBasedPriorityListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemDscpBasedPriorityList.
+type GetSystemDscpBasedPriorityListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemDscpBasedPriorityListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemDscpBasedPriorityListResult)(nil)).Elem()
+}
+
+func (o GetSystemDscpBasedPriorityListResultOutput) ToGetSystemDscpBasedPriorityListResultOutput() GetSystemDscpBasedPriorityListResultOutput {
+	return o
+}
+
+func (o GetSystemDscpBasedPriorityListResultOutput) ToGetSystemDscpBasedPriorityListResultOutputWithContext(ctx context.Context) GetSystemDscpBasedPriorityListResultOutput {
+	return o
+}
+
+func (o GetSystemDscpBasedPriorityListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemDscpBasedPriorityListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `SystemDscpBasedPriority`.
+func (o GetSystemDscpBasedPriorityListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemDscpBasedPriorityListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemDscpBasedPriorityListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemDscpBasedPriorityListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemDscpBasedPriorityListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemDscpBasedPriorityListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemDscpBasedPriorityListResultOutput{})
 }

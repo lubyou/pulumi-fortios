@@ -98,31 +98,29 @@ export class SwitchControllerLldpSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerLldpSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerLldpSettingsArgs | SwitchControllerLldpSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerLldpSettingsState | undefined;
-            inputs["deviceDetection"] = state ? state.deviceDetection : undefined;
-            inputs["fastStartInterval"] = state ? state.fastStartInterval : undefined;
-            inputs["managementInterface"] = state ? state.managementInterface : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["txHold"] = state ? state.txHold : undefined;
-            inputs["txInterval"] = state ? state.txInterval : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["deviceDetection"] = state ? state.deviceDetection : undefined;
+            resourceInputs["fastStartInterval"] = state ? state.fastStartInterval : undefined;
+            resourceInputs["managementInterface"] = state ? state.managementInterface : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["txHold"] = state ? state.txHold : undefined;
+            resourceInputs["txInterval"] = state ? state.txInterval : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerLldpSettingsArgs | undefined;
-            inputs["deviceDetection"] = args ? args.deviceDetection : undefined;
-            inputs["fastStartInterval"] = args ? args.fastStartInterval : undefined;
-            inputs["managementInterface"] = args ? args.managementInterface : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["txHold"] = args ? args.txHold : undefined;
-            inputs["txInterval"] = args ? args.txInterval : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["deviceDetection"] = args ? args.deviceDetection : undefined;
+            resourceInputs["fastStartInterval"] = args ? args.fastStartInterval : undefined;
+            resourceInputs["managementInterface"] = args ? args.managementInterface : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["txHold"] = args ? args.txHold : undefined;
+            resourceInputs["txInterval"] = args ? args.txInterval : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerLldpSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerLldpSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

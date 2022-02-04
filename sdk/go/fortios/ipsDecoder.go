@@ -41,6 +41,7 @@ func NewIpsDecoder(ctx *pulumi.Context,
 		args = &IpsDecoderArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsDecoder
 	err := ctx.RegisterResource("fortios:index/ipsDecoder:IpsDecoder", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type IpsDecoderInput interface {
 }
 
 func (*IpsDecoder) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsDecoder)(nil))
+	return reflect.TypeOf((**IpsDecoder)(nil)).Elem()
 }
 
 func (i *IpsDecoder) ToIpsDecoderOutput() IpsDecoderOutput {
@@ -132,35 +133,6 @@ func (i *IpsDecoder) ToIpsDecoderOutput() IpsDecoderOutput {
 
 func (i *IpsDecoder) ToIpsDecoderOutputWithContext(ctx context.Context) IpsDecoderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderOutput)
-}
-
-func (i *IpsDecoder) ToIpsDecoderPtrOutput() IpsDecoderPtrOutput {
-	return i.ToIpsDecoderPtrOutputWithContext(context.Background())
-}
-
-func (i *IpsDecoder) ToIpsDecoderPtrOutputWithContext(ctx context.Context) IpsDecoderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderPtrOutput)
-}
-
-type IpsDecoderPtrInput interface {
-	pulumi.Input
-
-	ToIpsDecoderPtrOutput() IpsDecoderPtrOutput
-	ToIpsDecoderPtrOutputWithContext(ctx context.Context) IpsDecoderPtrOutput
-}
-
-type ipsDecoderPtrType IpsDecoderArgs
-
-func (*ipsDecoderPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsDecoder)(nil))
-}
-
-func (i *ipsDecoderPtrType) ToIpsDecoderPtrOutput() IpsDecoderPtrOutput {
-	return i.ToIpsDecoderPtrOutputWithContext(context.Background())
-}
-
-func (i *ipsDecoderPtrType) ToIpsDecoderPtrOutputWithContext(ctx context.Context) IpsDecoderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderPtrOutput)
 }
 
 // IpsDecoderArrayInput is an input type that accepts IpsDecoderArray and IpsDecoderArrayOutput values.
@@ -177,7 +149,7 @@ type IpsDecoderArrayInput interface {
 type IpsDecoderArray []IpsDecoderInput
 
 func (IpsDecoderArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsDecoder)(nil))
+	return reflect.TypeOf((*[]*IpsDecoder)(nil)).Elem()
 }
 
 func (i IpsDecoderArray) ToIpsDecoderArrayOutput() IpsDecoderArrayOutput {
@@ -202,7 +174,7 @@ type IpsDecoderMapInput interface {
 type IpsDecoderMap map[string]IpsDecoderInput
 
 func (IpsDecoderMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsDecoder)(nil))
+	return reflect.TypeOf((*map[string]*IpsDecoder)(nil)).Elem()
 }
 
 func (i IpsDecoderMap) ToIpsDecoderMapOutput() IpsDecoderMapOutput {
@@ -213,12 +185,10 @@ func (i IpsDecoderMap) ToIpsDecoderMapOutputWithContext(ctx context.Context) Ips
 	return pulumi.ToOutputWithContext(ctx, i).(IpsDecoderMapOutput)
 }
 
-type IpsDecoderOutput struct {
-	*pulumi.OutputState
-}
+type IpsDecoderOutput struct{ *pulumi.OutputState }
 
 func (IpsDecoderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsDecoder)(nil))
+	return reflect.TypeOf((**IpsDecoder)(nil)).Elem()
 }
 
 func (o IpsDecoderOutput) ToIpsDecoderOutput() IpsDecoderOutput {
@@ -229,36 +199,10 @@ func (o IpsDecoderOutput) ToIpsDecoderOutputWithContext(ctx context.Context) Ips
 	return o
 }
 
-func (o IpsDecoderOutput) ToIpsDecoderPtrOutput() IpsDecoderPtrOutput {
-	return o.ToIpsDecoderPtrOutputWithContext(context.Background())
-}
-
-func (o IpsDecoderOutput) ToIpsDecoderPtrOutputWithContext(ctx context.Context) IpsDecoderPtrOutput {
-	return o.ApplyT(func(v IpsDecoder) *IpsDecoder {
-		return &v
-	}).(IpsDecoderPtrOutput)
-}
-
-type IpsDecoderPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsDecoderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsDecoder)(nil))
-}
-
-func (o IpsDecoderPtrOutput) ToIpsDecoderPtrOutput() IpsDecoderPtrOutput {
-	return o
-}
-
-func (o IpsDecoderPtrOutput) ToIpsDecoderPtrOutputWithContext(ctx context.Context) IpsDecoderPtrOutput {
-	return o
-}
-
 type IpsDecoderArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsDecoderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsDecoder)(nil))
+	return reflect.TypeOf((*[]*IpsDecoder)(nil)).Elem()
 }
 
 func (o IpsDecoderArrayOutput) ToIpsDecoderArrayOutput() IpsDecoderArrayOutput {
@@ -270,15 +214,15 @@ func (o IpsDecoderArrayOutput) ToIpsDecoderArrayOutputWithContext(ctx context.Co
 }
 
 func (o IpsDecoderArrayOutput) Index(i pulumi.IntInput) IpsDecoderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsDecoder {
-		return vs[0].([]IpsDecoder)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsDecoder {
+		return vs[0].([]*IpsDecoder)[vs[1].(int)]
 	}).(IpsDecoderOutput)
 }
 
 type IpsDecoderMapOutput struct{ *pulumi.OutputState }
 
 func (IpsDecoderMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsDecoder)(nil))
+	return reflect.TypeOf((*map[string]*IpsDecoder)(nil)).Elem()
 }
 
 func (o IpsDecoderMapOutput) ToIpsDecoderMapOutput() IpsDecoderMapOutput {
@@ -290,14 +234,16 @@ func (o IpsDecoderMapOutput) ToIpsDecoderMapOutputWithContext(ctx context.Contex
 }
 
 func (o IpsDecoderMapOutput) MapIndex(k pulumi.StringInput) IpsDecoderOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsDecoder {
-		return vs[0].(map[string]IpsDecoder)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsDecoder {
+		return vs[0].(map[string]*IpsDecoder)[vs[1].(string)]
 	}).(IpsDecoderOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsDecoderInput)(nil)).Elem(), &IpsDecoder{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsDecoderArrayInput)(nil)).Elem(), IpsDecoderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsDecoderMapInput)(nil)).Elem(), IpsDecoderMap{})
 	pulumi.RegisterOutputType(IpsDecoderOutput{})
-	pulumi.RegisterOutputType(IpsDecoderPtrOutput{})
 	pulumi.RegisterOutputType(IpsDecoderArrayOutput{})
 	pulumi.RegisterOutputType(IpsDecoderMapOutput{})
 }

@@ -12,6 +12,7 @@ __all__ = [
     'GetFirewallScheduleOnetimeResult',
     'AwaitableGetFirewallScheduleOnetimeResult',
     'get_firewall_schedule_onetime',
+    'get_firewall_schedule_onetime_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetFirewallScheduleOnetimeResult:
     """
     A collection of values returned by GetFirewallScheduleOnetime.
     """
-    def __init__(__self__, color=None, end=None, expiration_days=None, id=None, name=None, start=None, vdomparam=None):
+    def __init__(__self__, color=None, end=None, expiration_days=None, fabric_object=None, id=None, name=None, start=None, vdomparam=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
@@ -29,6 +30,9 @@ class GetFirewallScheduleOnetimeResult:
         if expiration_days and not isinstance(expiration_days, int):
             raise TypeError("Expected argument 'expiration_days' to be a int")
         pulumi.set(__self__, "expiration_days", expiration_days)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -65,6 +69,14 @@ class GetFirewallScheduleOnetimeResult:
         Write an event log message this many days before the schedule expires.
         """
         return pulumi.get(self, "expiration_days")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -105,6 +117,7 @@ class AwaitableGetFirewallScheduleOnetimeResult(GetFirewallScheduleOnetimeResult
             color=self.color,
             end=self.end,
             expiration_days=self.expiration_days,
+            fabric_object=self.fabric_object,
             id=self.id,
             name=self.name,
             start=self.start,
@@ -128,13 +141,30 @@ def get_firewall_schedule_onetime(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallScheduleOnetime:GetFirewallScheduleOnetime', __args__, opts=opts, typ=GetFirewallScheduleOnetimeResult).value
 
     return AwaitableGetFirewallScheduleOnetimeResult(
         color=__ret__.color,
         end=__ret__.end,
         expiration_days=__ret__.expiration_days,
+        fabric_object=__ret__.fabric_object,
         id=__ret__.id,
         name=__ret__.name,
         start=__ret__.start,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_schedule_onetime)
+def get_firewall_schedule_onetime_output(name: Optional[pulumi.Input[str]] = None,
+                                         vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallScheduleOnetimeResult]:
+    """
+    Use this data source to get information on an fortios firewallschedule onetime
+
+
+    :param str name: Specify the name of the desired firewallschedule onetime.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

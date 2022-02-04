@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam IP trust.
+// Configure AntiSpam IP trust. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -45,6 +45,7 @@ func NewEmailfilterIptrust(ctx *pulumi.Context,
 		args = &EmailfilterIptrustArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EmailfilterIptrust
 	err := ctx.RegisterResource("fortios:index/emailfilterIptrust:EmailfilterIptrust", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type EmailfilterIptrustInput interface {
 }
 
 func (*EmailfilterIptrust) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterIptrust)(nil))
+	return reflect.TypeOf((**EmailfilterIptrust)(nil)).Elem()
 }
 
 func (i *EmailfilterIptrust) ToEmailfilterIptrustOutput() EmailfilterIptrustOutput {
@@ -152,35 +153,6 @@ func (i *EmailfilterIptrust) ToEmailfilterIptrustOutput() EmailfilterIptrustOutp
 
 func (i *EmailfilterIptrust) ToEmailfilterIptrustOutputWithContext(ctx context.Context) EmailfilterIptrustOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustOutput)
-}
-
-func (i *EmailfilterIptrust) ToEmailfilterIptrustPtrOutput() EmailfilterIptrustPtrOutput {
-	return i.ToEmailfilterIptrustPtrOutputWithContext(context.Background())
-}
-
-func (i *EmailfilterIptrust) ToEmailfilterIptrustPtrOutputWithContext(ctx context.Context) EmailfilterIptrustPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustPtrOutput)
-}
-
-type EmailfilterIptrustPtrInput interface {
-	pulumi.Input
-
-	ToEmailfilterIptrustPtrOutput() EmailfilterIptrustPtrOutput
-	ToEmailfilterIptrustPtrOutputWithContext(ctx context.Context) EmailfilterIptrustPtrOutput
-}
-
-type emailfilterIptrustPtrType EmailfilterIptrustArgs
-
-func (*emailfilterIptrustPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterIptrust)(nil))
-}
-
-func (i *emailfilterIptrustPtrType) ToEmailfilterIptrustPtrOutput() EmailfilterIptrustPtrOutput {
-	return i.ToEmailfilterIptrustPtrOutputWithContext(context.Background())
-}
-
-func (i *emailfilterIptrustPtrType) ToEmailfilterIptrustPtrOutputWithContext(ctx context.Context) EmailfilterIptrustPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustPtrOutput)
 }
 
 // EmailfilterIptrustArrayInput is an input type that accepts EmailfilterIptrustArray and EmailfilterIptrustArrayOutput values.
@@ -197,7 +169,7 @@ type EmailfilterIptrustArrayInput interface {
 type EmailfilterIptrustArray []EmailfilterIptrustInput
 
 func (EmailfilterIptrustArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EmailfilterIptrust)(nil))
+	return reflect.TypeOf((*[]*EmailfilterIptrust)(nil)).Elem()
 }
 
 func (i EmailfilterIptrustArray) ToEmailfilterIptrustArrayOutput() EmailfilterIptrustArrayOutput {
@@ -222,7 +194,7 @@ type EmailfilterIptrustMapInput interface {
 type EmailfilterIptrustMap map[string]EmailfilterIptrustInput
 
 func (EmailfilterIptrustMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EmailfilterIptrust)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterIptrust)(nil)).Elem()
 }
 
 func (i EmailfilterIptrustMap) ToEmailfilterIptrustMapOutput() EmailfilterIptrustMapOutput {
@@ -233,12 +205,10 @@ func (i EmailfilterIptrustMap) ToEmailfilterIptrustMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterIptrustMapOutput)
 }
 
-type EmailfilterIptrustOutput struct {
-	*pulumi.OutputState
-}
+type EmailfilterIptrustOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterIptrustOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterIptrust)(nil))
+	return reflect.TypeOf((**EmailfilterIptrust)(nil)).Elem()
 }
 
 func (o EmailfilterIptrustOutput) ToEmailfilterIptrustOutput() EmailfilterIptrustOutput {
@@ -249,36 +219,10 @@ func (o EmailfilterIptrustOutput) ToEmailfilterIptrustOutputWithContext(ctx cont
 	return o
 }
 
-func (o EmailfilterIptrustOutput) ToEmailfilterIptrustPtrOutput() EmailfilterIptrustPtrOutput {
-	return o.ToEmailfilterIptrustPtrOutputWithContext(context.Background())
-}
-
-func (o EmailfilterIptrustOutput) ToEmailfilterIptrustPtrOutputWithContext(ctx context.Context) EmailfilterIptrustPtrOutput {
-	return o.ApplyT(func(v EmailfilterIptrust) *EmailfilterIptrust {
-		return &v
-	}).(EmailfilterIptrustPtrOutput)
-}
-
-type EmailfilterIptrustPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EmailfilterIptrustPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterIptrust)(nil))
-}
-
-func (o EmailfilterIptrustPtrOutput) ToEmailfilterIptrustPtrOutput() EmailfilterIptrustPtrOutput {
-	return o
-}
-
-func (o EmailfilterIptrustPtrOutput) ToEmailfilterIptrustPtrOutputWithContext(ctx context.Context) EmailfilterIptrustPtrOutput {
-	return o
-}
-
 type EmailfilterIptrustArrayOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterIptrustArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EmailfilterIptrust)(nil))
+	return reflect.TypeOf((*[]*EmailfilterIptrust)(nil)).Elem()
 }
 
 func (o EmailfilterIptrustArrayOutput) ToEmailfilterIptrustArrayOutput() EmailfilterIptrustArrayOutput {
@@ -290,15 +234,15 @@ func (o EmailfilterIptrustArrayOutput) ToEmailfilterIptrustArrayOutputWithContex
 }
 
 func (o EmailfilterIptrustArrayOutput) Index(i pulumi.IntInput) EmailfilterIptrustOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EmailfilterIptrust {
-		return vs[0].([]EmailfilterIptrust)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterIptrust {
+		return vs[0].([]*EmailfilterIptrust)[vs[1].(int)]
 	}).(EmailfilterIptrustOutput)
 }
 
 type EmailfilterIptrustMapOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterIptrustMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EmailfilterIptrust)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterIptrust)(nil)).Elem()
 }
 
 func (o EmailfilterIptrustMapOutput) ToEmailfilterIptrustMapOutput() EmailfilterIptrustMapOutput {
@@ -310,14 +254,16 @@ func (o EmailfilterIptrustMapOutput) ToEmailfilterIptrustMapOutputWithContext(ct
 }
 
 func (o EmailfilterIptrustMapOutput) MapIndex(k pulumi.StringInput) EmailfilterIptrustOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EmailfilterIptrust {
-		return vs[0].(map[string]EmailfilterIptrust)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EmailfilterIptrust {
+		return vs[0].(map[string]*EmailfilterIptrust)[vs[1].(string)]
 	}).(EmailfilterIptrustOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterIptrustInput)(nil)).Elem(), &EmailfilterIptrust{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterIptrustArrayInput)(nil)).Elem(), EmailfilterIptrustArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterIptrustMapInput)(nil)).Elem(), EmailfilterIptrustMap{})
 	pulumi.RegisterOutputType(EmailfilterIptrustOutput{})
-	pulumi.RegisterOutputType(EmailfilterIptrustPtrOutput{})
 	pulumi.RegisterOutputType(EmailfilterIptrustArrayOutput{})
 	pulumi.RegisterOutputType(EmailfilterIptrustMapOutput{})
 }

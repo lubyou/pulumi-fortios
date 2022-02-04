@@ -67,23 +67,21 @@ export class SystemIps extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemIpsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemIpsArgs | SystemIpsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpsState | undefined;
-            inputs["overrideSignatureHoldById"] = state ? state.overrideSignatureHoldById : undefined;
-            inputs["signatureHoldTime"] = state ? state.signatureHoldTime : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["overrideSignatureHoldById"] = state ? state.overrideSignatureHoldById : undefined;
+            resourceInputs["signatureHoldTime"] = state ? state.signatureHoldTime : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpsArgs | undefined;
-            inputs["overrideSignatureHoldById"] = args ? args.overrideSignatureHoldById : undefined;
-            inputs["signatureHoldTime"] = args ? args.signatureHoldTime : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["overrideSignatureHoldById"] = args ? args.overrideSignatureHoldById : undefined;
+            resourceInputs["signatureHoldTime"] = args ? args.signatureHoldTime : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemIps.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemIps.__pulumiType, name, resourceInputs, opts);
     }
 }
 

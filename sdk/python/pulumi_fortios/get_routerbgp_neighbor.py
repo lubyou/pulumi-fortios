@@ -13,6 +13,7 @@ __all__ = [
     'GetRouterbgpNeighborResult',
     'AwaitableGetRouterbgpNeighborResult',
     'get_routerbgp_neighbor',
+    'get_routerbgp_neighbor_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetRouterbgpNeighborResult:
     """
     A collection of values returned by GetRouterbgpNeighbor.
     """
-    def __init__(__self__, activate=None, activate6=None, additional_path=None, additional_path6=None, adv_additional_path=None, adv_additional_path6=None, advertisement_interval=None, allowas_in=None, allowas_in6=None, allowas_in_enable=None, allowas_in_enable6=None, as_override=None, as_override6=None, attribute_unchanged=None, attribute_unchanged6=None, bfd=None, capability_default_originate=None, capability_default_originate6=None, capability_dynamic=None, capability_graceful_restart=None, capability_graceful_restart6=None, capability_orf=None, capability_orf6=None, capability_route_refresh=None, conditional_advertises=None, connect_timer=None, default_originate_routemap=None, default_originate_routemap6=None, description=None, distribute_list_in=None, distribute_list_in6=None, distribute_list_out=None, distribute_list_out6=None, dont_capability_negotiate=None, ebgp_enforce_multihop=None, ebgp_multihop_ttl=None, filter_list_in=None, filter_list_in6=None, filter_list_out=None, filter_list_out6=None, holdtime_timer=None, id=None, interface=None, ip=None, keep_alive_timer=None, link_down_failover=None, local_as=None, local_as_no_prepend=None, local_as_replace_as=None, maximum_prefix=None, maximum_prefix6=None, maximum_prefix_threshold=None, maximum_prefix_threshold6=None, maximum_prefix_warning_only=None, maximum_prefix_warning_only6=None, next_hop_self=None, next_hop_self6=None, next_hop_self_rr=None, next_hop_self_rr6=None, override_capability=None, passive=None, password=None, prefix_list_in=None, prefix_list_in6=None, prefix_list_out=None, prefix_list_out6=None, remote_as=None, remove_private_as=None, remove_private_as6=None, restart_time=None, retain_stale_time=None, route_map_in=None, route_map_in6=None, route_map_out=None, route_map_out6=None, route_map_out6_preferable=None, route_map_out_preferable=None, route_reflector_client=None, route_reflector_client6=None, route_server_client=None, route_server_client6=None, send_community=None, send_community6=None, shutdown=None, soft_reconfiguration=None, soft_reconfiguration6=None, stale_route=None, strict_capability_match=None, unsuppress_map=None, unsuppress_map6=None, update_source=None, vdomparam=None, weight=None):
+    def __init__(__self__, activate=None, activate6=None, additional_path=None, additional_path6=None, adv_additional_path=None, adv_additional_path6=None, advertisement_interval=None, allowas_in=None, allowas_in6=None, allowas_in_enable=None, allowas_in_enable6=None, as_override=None, as_override6=None, attribute_unchanged=None, attribute_unchanged6=None, bfd=None, capability_default_originate=None, capability_default_originate6=None, capability_dynamic=None, capability_graceful_restart=None, capability_graceful_restart6=None, capability_orf=None, capability_orf6=None, capability_route_refresh=None, conditional_advertise6s=None, conditional_advertises=None, connect_timer=None, default_originate_routemap=None, default_originate_routemap6=None, description=None, distribute_list_in=None, distribute_list_in6=None, distribute_list_out=None, distribute_list_out6=None, dont_capability_negotiate=None, ebgp_enforce_multihop=None, ebgp_multihop_ttl=None, filter_list_in=None, filter_list_in6=None, filter_list_out=None, filter_list_out6=None, holdtime_timer=None, id=None, interface=None, ip=None, keep_alive_timer=None, link_down_failover=None, local_as=None, local_as_no_prepend=None, local_as_replace_as=None, maximum_prefix=None, maximum_prefix6=None, maximum_prefix_threshold=None, maximum_prefix_threshold6=None, maximum_prefix_warning_only=None, maximum_prefix_warning_only6=None, next_hop_self=None, next_hop_self6=None, next_hop_self_rr=None, next_hop_self_rr6=None, override_capability=None, passive=None, password=None, prefix_list_in=None, prefix_list_in6=None, prefix_list_out=None, prefix_list_out6=None, remote_as=None, remove_private_as=None, remove_private_as6=None, restart_time=None, retain_stale_time=None, route_map_in=None, route_map_in6=None, route_map_out=None, route_map_out6=None, route_map_out6_preferable=None, route_map_out_preferable=None, route_reflector_client=None, route_reflector_client6=None, route_server_client=None, route_server_client6=None, send_community=None, send_community6=None, shutdown=None, soft_reconfiguration=None, soft_reconfiguration6=None, stale_route=None, strict_capability_match=None, unsuppress_map=None, unsuppress_map6=None, update_source=None, vdomparam=None, weight=None):
         if activate and not isinstance(activate, str):
             raise TypeError("Expected argument 'activate' to be a str")
         pulumi.set(__self__, "activate", activate)
@@ -93,6 +94,9 @@ class GetRouterbgpNeighborResult:
         if capability_route_refresh and not isinstance(capability_route_refresh, str):
             raise TypeError("Expected argument 'capability_route_refresh' to be a str")
         pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
+        if conditional_advertise6s and not isinstance(conditional_advertise6s, list):
+            raise TypeError("Expected argument 'conditional_advertise6s' to be a list")
+        pulumi.set(__self__, "conditional_advertise6s", conditional_advertise6s)
         if conditional_advertises and not isinstance(conditional_advertises, list):
             raise TypeError("Expected argument 'conditional_advertises' to be a list")
         pulumi.set(__self__, "conditional_advertises", conditional_advertises)
@@ -492,6 +496,14 @@ class GetRouterbgpNeighborResult:
         Enable/disable advertise route refresh capability to this neighbor.
         """
         return pulumi.get(self, "capability_route_refresh")
+
+    @property
+    @pulumi.getter(name="conditionalAdvertise6s")
+    def conditional_advertise6s(self) -> Sequence['outputs.GetRouterbgpNeighborConditionalAdvertise6Result']:
+        """
+        IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
+        """
+        return pulumi.get(self, "conditional_advertise6s")
 
     @property
     @pulumi.getter(name="conditionalAdvertises")
@@ -1073,6 +1085,7 @@ class AwaitableGetRouterbgpNeighborResult(GetRouterbgpNeighborResult):
             capability_orf=self.capability_orf,
             capability_orf6=self.capability_orf6,
             capability_route_refresh=self.capability_route_refresh,
+            conditional_advertise6s=self.conditional_advertise6s,
             conditional_advertises=self.conditional_advertises,
             connect_timer=self.connect_timer,
             default_originate_routemap=self.default_originate_routemap,
@@ -1171,6 +1184,8 @@ def get_routerbgp_neighbor(ip: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterbgpNeighbor:GetRouterbgpNeighbor', __args__, opts=opts, typ=GetRouterbgpNeighborResult).value
 
     return AwaitableGetRouterbgpNeighborResult(
@@ -1198,6 +1213,7 @@ def get_routerbgp_neighbor(ip: Optional[str] = None,
         capability_orf=__ret__.capability_orf,
         capability_orf6=__ret__.capability_orf6,
         capability_route_refresh=__ret__.capability_route_refresh,
+        conditional_advertise6s=__ret__.conditional_advertise6s,
         conditional_advertises=__ret__.conditional_advertises,
         connect_timer=__ret__.connect_timer,
         default_originate_routemap=__ret__.default_originate_routemap,
@@ -1267,3 +1283,27 @@ def get_routerbgp_neighbor(ip: Optional[str] = None,
         update_source=__ret__.update_source,
         vdomparam=__ret__.vdomparam,
         weight=__ret__.weight)
+
+
+@_utilities.lift_output_func(get_routerbgp_neighbor)
+def get_routerbgp_neighbor_output(ip: Optional[pulumi.Input[str]] = None,
+                                  vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterbgpNeighborResult]:
+    """
+    Use this data source to get information on an fortios routerbgp neighbor
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fortios as fortios
+
+    sample1 = fortios.get_routerbgp_neighbor(ip="21.1.1.12")
+    pulumi.export("output1", sample1)
+    ```
+
+
+    :param str ip: Specify the ip of the desired routerbgp neighbor.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

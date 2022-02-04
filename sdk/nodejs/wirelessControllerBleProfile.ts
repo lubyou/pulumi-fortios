@@ -111,45 +111,43 @@ export class WirelessControllerBleProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerBleProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerBleProfileArgs | WirelessControllerBleProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerBleProfileState | undefined;
-            inputs["advertising"] = state ? state.advertising : undefined;
-            inputs["beaconInterval"] = state ? state.beaconInterval : undefined;
-            inputs["bleScanning"] = state ? state.bleScanning : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["eddystoneInstance"] = state ? state.eddystoneInstance : undefined;
-            inputs["eddystoneNamespace"] = state ? state.eddystoneNamespace : undefined;
-            inputs["eddystoneUrl"] = state ? state.eddystoneUrl : undefined;
-            inputs["eddystoneUrlEncodeHex"] = state ? state.eddystoneUrlEncodeHex : undefined;
-            inputs["ibeaconUuid"] = state ? state.ibeaconUuid : undefined;
-            inputs["majorId"] = state ? state.majorId : undefined;
-            inputs["minorId"] = state ? state.minorId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["txpower"] = state ? state.txpower : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["advertising"] = state ? state.advertising : undefined;
+            resourceInputs["beaconInterval"] = state ? state.beaconInterval : undefined;
+            resourceInputs["bleScanning"] = state ? state.bleScanning : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["eddystoneInstance"] = state ? state.eddystoneInstance : undefined;
+            resourceInputs["eddystoneNamespace"] = state ? state.eddystoneNamespace : undefined;
+            resourceInputs["eddystoneUrl"] = state ? state.eddystoneUrl : undefined;
+            resourceInputs["eddystoneUrlEncodeHex"] = state ? state.eddystoneUrlEncodeHex : undefined;
+            resourceInputs["ibeaconUuid"] = state ? state.ibeaconUuid : undefined;
+            resourceInputs["majorId"] = state ? state.majorId : undefined;
+            resourceInputs["minorId"] = state ? state.minorId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["txpower"] = state ? state.txpower : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerBleProfileArgs | undefined;
-            inputs["advertising"] = args ? args.advertising : undefined;
-            inputs["beaconInterval"] = args ? args.beaconInterval : undefined;
-            inputs["bleScanning"] = args ? args.bleScanning : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["eddystoneInstance"] = args ? args.eddystoneInstance : undefined;
-            inputs["eddystoneNamespace"] = args ? args.eddystoneNamespace : undefined;
-            inputs["eddystoneUrl"] = args ? args.eddystoneUrl : undefined;
-            inputs["eddystoneUrlEncodeHex"] = args ? args.eddystoneUrlEncodeHex : undefined;
-            inputs["ibeaconUuid"] = args ? args.ibeaconUuid : undefined;
-            inputs["majorId"] = args ? args.majorId : undefined;
-            inputs["minorId"] = args ? args.minorId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["txpower"] = args ? args.txpower : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["advertising"] = args ? args.advertising : undefined;
+            resourceInputs["beaconInterval"] = args ? args.beaconInterval : undefined;
+            resourceInputs["bleScanning"] = args ? args.bleScanning : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["eddystoneInstance"] = args ? args.eddystoneInstance : undefined;
+            resourceInputs["eddystoneNamespace"] = args ? args.eddystoneNamespace : undefined;
+            resourceInputs["eddystoneUrl"] = args ? args.eddystoneUrl : undefined;
+            resourceInputs["eddystoneUrlEncodeHex"] = args ? args.eddystoneUrlEncodeHex : undefined;
+            resourceInputs["ibeaconUuid"] = args ? args.ibeaconUuid : undefined;
+            resourceInputs["majorId"] = args ? args.majorId : undefined;
+            resourceInputs["minorId"] = args ? args.minorId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["txpower"] = args ? args.txpower : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerBleProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerBleProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

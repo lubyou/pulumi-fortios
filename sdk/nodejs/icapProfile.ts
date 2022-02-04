@@ -69,9 +69,21 @@ export class IcapProfile extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+     */
+    public readonly chunkEncap!: pulumi.Output<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable ICAP extension features. Valid values: `scan-progress`.
+     */
+    public readonly extensionFeature!: pulumi.Output<string>;
+    /**
+     * Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+     */
+    public readonly icapBlockLog!: pulumi.Output<string>;
     /**
      * Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
      */
@@ -141,6 +153,10 @@ export class IcapProfile extends pulumi.CustomResource {
      */
     public readonly responseServer!: pulumi.Output<string>;
     /**
+     * Scan progress interval value.
+     */
+    public readonly scanProgressInterval!: pulumi.Output<number>;
+    /**
      * Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
      */
     public readonly streamingContentBypass!: pulumi.Output<string>;
@@ -158,57 +174,63 @@ export class IcapProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IcapProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IcapProfileArgs | IcapProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IcapProfileState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["icapHeaders"] = state ? state.icapHeaders : undefined;
-            inputs["methods"] = state ? state.methods : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["preview"] = state ? state.preview : undefined;
-            inputs["previewDataLength"] = state ? state.previewDataLength : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["request"] = state ? state.request : undefined;
-            inputs["requestFailure"] = state ? state.requestFailure : undefined;
-            inputs["requestPath"] = state ? state.requestPath : undefined;
-            inputs["requestServer"] = state ? state.requestServer : undefined;
-            inputs["respmodDefaultAction"] = state ? state.respmodDefaultAction : undefined;
-            inputs["respmodForwardRules"] = state ? state.respmodForwardRules : undefined;
-            inputs["response"] = state ? state.response : undefined;
-            inputs["responseFailure"] = state ? state.responseFailure : undefined;
-            inputs["responsePath"] = state ? state.responsePath : undefined;
-            inputs["responseReqHdr"] = state ? state.responseReqHdr : undefined;
-            inputs["responseServer"] = state ? state.responseServer : undefined;
-            inputs["streamingContentBypass"] = state ? state.streamingContentBypass : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["chunkEncap"] = state ? state.chunkEncap : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["extensionFeature"] = state ? state.extensionFeature : undefined;
+            resourceInputs["icapBlockLog"] = state ? state.icapBlockLog : undefined;
+            resourceInputs["icapHeaders"] = state ? state.icapHeaders : undefined;
+            resourceInputs["methods"] = state ? state.methods : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["preview"] = state ? state.preview : undefined;
+            resourceInputs["previewDataLength"] = state ? state.previewDataLength : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["request"] = state ? state.request : undefined;
+            resourceInputs["requestFailure"] = state ? state.requestFailure : undefined;
+            resourceInputs["requestPath"] = state ? state.requestPath : undefined;
+            resourceInputs["requestServer"] = state ? state.requestServer : undefined;
+            resourceInputs["respmodDefaultAction"] = state ? state.respmodDefaultAction : undefined;
+            resourceInputs["respmodForwardRules"] = state ? state.respmodForwardRules : undefined;
+            resourceInputs["response"] = state ? state.response : undefined;
+            resourceInputs["responseFailure"] = state ? state.responseFailure : undefined;
+            resourceInputs["responsePath"] = state ? state.responsePath : undefined;
+            resourceInputs["responseReqHdr"] = state ? state.responseReqHdr : undefined;
+            resourceInputs["responseServer"] = state ? state.responseServer : undefined;
+            resourceInputs["scanProgressInterval"] = state ? state.scanProgressInterval : undefined;
+            resourceInputs["streamingContentBypass"] = state ? state.streamingContentBypass : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IcapProfileArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["icapHeaders"] = args ? args.icapHeaders : undefined;
-            inputs["methods"] = args ? args.methods : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["preview"] = args ? args.preview : undefined;
-            inputs["previewDataLength"] = args ? args.previewDataLength : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["request"] = args ? args.request : undefined;
-            inputs["requestFailure"] = args ? args.requestFailure : undefined;
-            inputs["requestPath"] = args ? args.requestPath : undefined;
-            inputs["requestServer"] = args ? args.requestServer : undefined;
-            inputs["respmodDefaultAction"] = args ? args.respmodDefaultAction : undefined;
-            inputs["respmodForwardRules"] = args ? args.respmodForwardRules : undefined;
-            inputs["response"] = args ? args.response : undefined;
-            inputs["responseFailure"] = args ? args.responseFailure : undefined;
-            inputs["responsePath"] = args ? args.responsePath : undefined;
-            inputs["responseReqHdr"] = args ? args.responseReqHdr : undefined;
-            inputs["responseServer"] = args ? args.responseServer : undefined;
-            inputs["streamingContentBypass"] = args ? args.streamingContentBypass : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["chunkEncap"] = args ? args.chunkEncap : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["extensionFeature"] = args ? args.extensionFeature : undefined;
+            resourceInputs["icapBlockLog"] = args ? args.icapBlockLog : undefined;
+            resourceInputs["icapHeaders"] = args ? args.icapHeaders : undefined;
+            resourceInputs["methods"] = args ? args.methods : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["preview"] = args ? args.preview : undefined;
+            resourceInputs["previewDataLength"] = args ? args.previewDataLength : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["request"] = args ? args.request : undefined;
+            resourceInputs["requestFailure"] = args ? args.requestFailure : undefined;
+            resourceInputs["requestPath"] = args ? args.requestPath : undefined;
+            resourceInputs["requestServer"] = args ? args.requestServer : undefined;
+            resourceInputs["respmodDefaultAction"] = args ? args.respmodDefaultAction : undefined;
+            resourceInputs["respmodForwardRules"] = args ? args.respmodForwardRules : undefined;
+            resourceInputs["response"] = args ? args.response : undefined;
+            resourceInputs["responseFailure"] = args ? args.responseFailure : undefined;
+            resourceInputs["responsePath"] = args ? args.responsePath : undefined;
+            resourceInputs["responseReqHdr"] = args ? args.responseReqHdr : undefined;
+            resourceInputs["responseServer"] = args ? args.responseServer : undefined;
+            resourceInputs["scanProgressInterval"] = args ? args.scanProgressInterval : undefined;
+            resourceInputs["streamingContentBypass"] = args ? args.streamingContentBypass : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IcapProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IcapProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -217,9 +239,21 @@ export class IcapProfile extends pulumi.CustomResource {
  */
 export interface IcapProfileState {
     /**
+     * Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+     */
+    chunkEncap?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable ICAP extension features. Valid values: `scan-progress`.
+     */
+    extensionFeature?: pulumi.Input<string>;
+    /**
+     * Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+     */
+    icapBlockLog?: pulumi.Input<string>;
     /**
      * Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
      */
@@ -288,6 +322,10 @@ export interface IcapProfileState {
      * ICAP server to use for an HTTP response.
      */
     responseServer?: pulumi.Input<string>;
+    /**
+     * Scan progress interval value.
+     */
+    scanProgressInterval?: pulumi.Input<number>;
     /**
      * Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
      */
@@ -303,9 +341,21 @@ export interface IcapProfileState {
  */
 export interface IcapProfileArgs {
     /**
+     * Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+     */
+    chunkEncap?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable ICAP extension features. Valid values: `scan-progress`.
+     */
+    extensionFeature?: pulumi.Input<string>;
+    /**
+     * Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+     */
+    icapBlockLog?: pulumi.Input<string>;
     /**
      * Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
      */
@@ -374,6 +424,10 @@ export interface IcapProfileArgs {
      * ICAP server to use for an HTTP response.
      */
     responseServer?: pulumi.Input<string>;
+    /**
+     * Scan progress interval value.
+     */
+    scanProgressInterval?: pulumi.Input<number>;
     /**
      * Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
      */

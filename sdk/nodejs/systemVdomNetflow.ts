@@ -68,6 +68,14 @@ export class SystemVdomNetflow extends pulumi.CustomResource {
      */
     public readonly collectorPort!: pulumi.Output<number>;
     /**
+     * Specify outgoing interface to reach server.
+     */
+    public readonly interface!: pulumi.Output<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    public readonly interfaceSelectMethod!: pulumi.Output<string>;
+    /**
      * Source IP address for communication with the NetFlow agent.
      */
     public readonly sourceIp!: pulumi.Output<string>;
@@ -89,27 +97,29 @@ export class SystemVdomNetflow extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVdomNetflowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVdomNetflowArgs | SystemVdomNetflowState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVdomNetflowState | undefined;
-            inputs["collectorIp"] = state ? state.collectorIp : undefined;
-            inputs["collectorPort"] = state ? state.collectorPort : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["vdomNetflow"] = state ? state.vdomNetflow : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
+            resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["vdomNetflow"] = state ? state.vdomNetflow : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemVdomNetflowArgs | undefined;
-            inputs["collectorIp"] = args ? args.collectorIp : undefined;
-            inputs["collectorPort"] = args ? args.collectorPort : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["vdomNetflow"] = args ? args.vdomNetflow : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
+            resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["vdomNetflow"] = args ? args.vdomNetflow : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVdomNetflow.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVdomNetflow.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -125,6 +135,14 @@ export interface SystemVdomNetflowState {
      * NetFlow collector port number.
      */
     collectorPort?: pulumi.Input<number>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP address for communication with the NetFlow agent.
      */
@@ -151,6 +169,14 @@ export interface SystemVdomNetflowArgs {
      * NetFlow collector port number.
      */
     collectorPort?: pulumi.Input<number>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP address for communication with the NetFlow agent.
      */

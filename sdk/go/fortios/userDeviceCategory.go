@@ -41,6 +41,7 @@ func NewUserDeviceCategory(ctx *pulumi.Context,
 		args = &UserDeviceCategoryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserDeviceCategory
 	err := ctx.RegisterResource("fortios:index/userDeviceCategory:UserDeviceCategory", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type UserDeviceCategoryInput interface {
 }
 
 func (*UserDeviceCategory) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDeviceCategory)(nil))
+	return reflect.TypeOf((**UserDeviceCategory)(nil)).Elem()
 }
 
 func (i *UserDeviceCategory) ToUserDeviceCategoryOutput() UserDeviceCategoryOutput {
@@ -132,35 +133,6 @@ func (i *UserDeviceCategory) ToUserDeviceCategoryOutput() UserDeviceCategoryOutp
 
 func (i *UserDeviceCategory) ToUserDeviceCategoryOutputWithContext(ctx context.Context) UserDeviceCategoryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryOutput)
-}
-
-func (i *UserDeviceCategory) ToUserDeviceCategoryPtrOutput() UserDeviceCategoryPtrOutput {
-	return i.ToUserDeviceCategoryPtrOutputWithContext(context.Background())
-}
-
-func (i *UserDeviceCategory) ToUserDeviceCategoryPtrOutputWithContext(ctx context.Context) UserDeviceCategoryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryPtrOutput)
-}
-
-type UserDeviceCategoryPtrInput interface {
-	pulumi.Input
-
-	ToUserDeviceCategoryPtrOutput() UserDeviceCategoryPtrOutput
-	ToUserDeviceCategoryPtrOutputWithContext(ctx context.Context) UserDeviceCategoryPtrOutput
-}
-
-type userDeviceCategoryPtrType UserDeviceCategoryArgs
-
-func (*userDeviceCategoryPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDeviceCategory)(nil))
-}
-
-func (i *userDeviceCategoryPtrType) ToUserDeviceCategoryPtrOutput() UserDeviceCategoryPtrOutput {
-	return i.ToUserDeviceCategoryPtrOutputWithContext(context.Background())
-}
-
-func (i *userDeviceCategoryPtrType) ToUserDeviceCategoryPtrOutputWithContext(ctx context.Context) UserDeviceCategoryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryPtrOutput)
 }
 
 // UserDeviceCategoryArrayInput is an input type that accepts UserDeviceCategoryArray and UserDeviceCategoryArrayOutput values.
@@ -177,7 +149,7 @@ type UserDeviceCategoryArrayInput interface {
 type UserDeviceCategoryArray []UserDeviceCategoryInput
 
 func (UserDeviceCategoryArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserDeviceCategory)(nil))
+	return reflect.TypeOf((*[]*UserDeviceCategory)(nil)).Elem()
 }
 
 func (i UserDeviceCategoryArray) ToUserDeviceCategoryArrayOutput() UserDeviceCategoryArrayOutput {
@@ -202,7 +174,7 @@ type UserDeviceCategoryMapInput interface {
 type UserDeviceCategoryMap map[string]UserDeviceCategoryInput
 
 func (UserDeviceCategoryMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserDeviceCategory)(nil))
+	return reflect.TypeOf((*map[string]*UserDeviceCategory)(nil)).Elem()
 }
 
 func (i UserDeviceCategoryMap) ToUserDeviceCategoryMapOutput() UserDeviceCategoryMapOutput {
@@ -213,12 +185,10 @@ func (i UserDeviceCategoryMap) ToUserDeviceCategoryMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceCategoryMapOutput)
 }
 
-type UserDeviceCategoryOutput struct {
-	*pulumi.OutputState
-}
+type UserDeviceCategoryOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceCategoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDeviceCategory)(nil))
+	return reflect.TypeOf((**UserDeviceCategory)(nil)).Elem()
 }
 
 func (o UserDeviceCategoryOutput) ToUserDeviceCategoryOutput() UserDeviceCategoryOutput {
@@ -229,36 +199,10 @@ func (o UserDeviceCategoryOutput) ToUserDeviceCategoryOutputWithContext(ctx cont
 	return o
 }
 
-func (o UserDeviceCategoryOutput) ToUserDeviceCategoryPtrOutput() UserDeviceCategoryPtrOutput {
-	return o.ToUserDeviceCategoryPtrOutputWithContext(context.Background())
-}
-
-func (o UserDeviceCategoryOutput) ToUserDeviceCategoryPtrOutputWithContext(ctx context.Context) UserDeviceCategoryPtrOutput {
-	return o.ApplyT(func(v UserDeviceCategory) *UserDeviceCategory {
-		return &v
-	}).(UserDeviceCategoryPtrOutput)
-}
-
-type UserDeviceCategoryPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserDeviceCategoryPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDeviceCategory)(nil))
-}
-
-func (o UserDeviceCategoryPtrOutput) ToUserDeviceCategoryPtrOutput() UserDeviceCategoryPtrOutput {
-	return o
-}
-
-func (o UserDeviceCategoryPtrOutput) ToUserDeviceCategoryPtrOutputWithContext(ctx context.Context) UserDeviceCategoryPtrOutput {
-	return o
-}
-
 type UserDeviceCategoryArrayOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceCategoryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserDeviceCategory)(nil))
+	return reflect.TypeOf((*[]*UserDeviceCategory)(nil)).Elem()
 }
 
 func (o UserDeviceCategoryArrayOutput) ToUserDeviceCategoryArrayOutput() UserDeviceCategoryArrayOutput {
@@ -270,15 +214,15 @@ func (o UserDeviceCategoryArrayOutput) ToUserDeviceCategoryArrayOutputWithContex
 }
 
 func (o UserDeviceCategoryArrayOutput) Index(i pulumi.IntInput) UserDeviceCategoryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceCategory {
-		return vs[0].([]UserDeviceCategory)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDeviceCategory {
+		return vs[0].([]*UserDeviceCategory)[vs[1].(int)]
 	}).(UserDeviceCategoryOutput)
 }
 
 type UserDeviceCategoryMapOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceCategoryMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserDeviceCategory)(nil))
+	return reflect.TypeOf((*map[string]*UserDeviceCategory)(nil)).Elem()
 }
 
 func (o UserDeviceCategoryMapOutput) ToUserDeviceCategoryMapOutput() UserDeviceCategoryMapOutput {
@@ -290,14 +234,16 @@ func (o UserDeviceCategoryMapOutput) ToUserDeviceCategoryMapOutputWithContext(ct
 }
 
 func (o UserDeviceCategoryMapOutput) MapIndex(k pulumi.StringInput) UserDeviceCategoryOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserDeviceCategory {
-		return vs[0].(map[string]UserDeviceCategory)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserDeviceCategory {
+		return vs[0].(map[string]*UserDeviceCategory)[vs[1].(string)]
 	}).(UserDeviceCategoryOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceCategoryInput)(nil)).Elem(), &UserDeviceCategory{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceCategoryArrayInput)(nil)).Elem(), UserDeviceCategoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceCategoryMapInput)(nil)).Elem(), UserDeviceCategoryMap{})
 	pulumi.RegisterOutputType(UserDeviceCategoryOutput{})
-	pulumi.RegisterOutputType(UserDeviceCategoryPtrOutput{})
 	pulumi.RegisterOutputType(UserDeviceCategoryArrayOutput{})
 	pulumi.RegisterOutputType(UserDeviceCategoryMapOutput{})
 }

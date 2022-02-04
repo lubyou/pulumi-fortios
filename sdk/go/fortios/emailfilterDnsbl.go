@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam DNSBL/ORBL.
+// Configure AntiSpam DNSBL/ORBL. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -45,6 +45,7 @@ func NewEmailfilterDnsbl(ctx *pulumi.Context,
 		args = &EmailfilterDnsblArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EmailfilterDnsbl
 	err := ctx.RegisterResource("fortios:index/emailfilterDnsbl:EmailfilterDnsbl", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type EmailfilterDnsblInput interface {
 }
 
 func (*EmailfilterDnsbl) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterDnsbl)(nil))
+	return reflect.TypeOf((**EmailfilterDnsbl)(nil)).Elem()
 }
 
 func (i *EmailfilterDnsbl) ToEmailfilterDnsblOutput() EmailfilterDnsblOutput {
@@ -152,35 +153,6 @@ func (i *EmailfilterDnsbl) ToEmailfilterDnsblOutput() EmailfilterDnsblOutput {
 
 func (i *EmailfilterDnsbl) ToEmailfilterDnsblOutputWithContext(ctx context.Context) EmailfilterDnsblOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblOutput)
-}
-
-func (i *EmailfilterDnsbl) ToEmailfilterDnsblPtrOutput() EmailfilterDnsblPtrOutput {
-	return i.ToEmailfilterDnsblPtrOutputWithContext(context.Background())
-}
-
-func (i *EmailfilterDnsbl) ToEmailfilterDnsblPtrOutputWithContext(ctx context.Context) EmailfilterDnsblPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblPtrOutput)
-}
-
-type EmailfilterDnsblPtrInput interface {
-	pulumi.Input
-
-	ToEmailfilterDnsblPtrOutput() EmailfilterDnsblPtrOutput
-	ToEmailfilterDnsblPtrOutputWithContext(ctx context.Context) EmailfilterDnsblPtrOutput
-}
-
-type emailfilterDnsblPtrType EmailfilterDnsblArgs
-
-func (*emailfilterDnsblPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterDnsbl)(nil))
-}
-
-func (i *emailfilterDnsblPtrType) ToEmailfilterDnsblPtrOutput() EmailfilterDnsblPtrOutput {
-	return i.ToEmailfilterDnsblPtrOutputWithContext(context.Background())
-}
-
-func (i *emailfilterDnsblPtrType) ToEmailfilterDnsblPtrOutputWithContext(ctx context.Context) EmailfilterDnsblPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblPtrOutput)
 }
 
 // EmailfilterDnsblArrayInput is an input type that accepts EmailfilterDnsblArray and EmailfilterDnsblArrayOutput values.
@@ -197,7 +169,7 @@ type EmailfilterDnsblArrayInput interface {
 type EmailfilterDnsblArray []EmailfilterDnsblInput
 
 func (EmailfilterDnsblArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EmailfilterDnsbl)(nil))
+	return reflect.TypeOf((*[]*EmailfilterDnsbl)(nil)).Elem()
 }
 
 func (i EmailfilterDnsblArray) ToEmailfilterDnsblArrayOutput() EmailfilterDnsblArrayOutput {
@@ -222,7 +194,7 @@ type EmailfilterDnsblMapInput interface {
 type EmailfilterDnsblMap map[string]EmailfilterDnsblInput
 
 func (EmailfilterDnsblMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EmailfilterDnsbl)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterDnsbl)(nil)).Elem()
 }
 
 func (i EmailfilterDnsblMap) ToEmailfilterDnsblMapOutput() EmailfilterDnsblMapOutput {
@@ -233,12 +205,10 @@ func (i EmailfilterDnsblMap) ToEmailfilterDnsblMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterDnsblMapOutput)
 }
 
-type EmailfilterDnsblOutput struct {
-	*pulumi.OutputState
-}
+type EmailfilterDnsblOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterDnsblOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterDnsbl)(nil))
+	return reflect.TypeOf((**EmailfilterDnsbl)(nil)).Elem()
 }
 
 func (o EmailfilterDnsblOutput) ToEmailfilterDnsblOutput() EmailfilterDnsblOutput {
@@ -249,36 +219,10 @@ func (o EmailfilterDnsblOutput) ToEmailfilterDnsblOutputWithContext(ctx context.
 	return o
 }
 
-func (o EmailfilterDnsblOutput) ToEmailfilterDnsblPtrOutput() EmailfilterDnsblPtrOutput {
-	return o.ToEmailfilterDnsblPtrOutputWithContext(context.Background())
-}
-
-func (o EmailfilterDnsblOutput) ToEmailfilterDnsblPtrOutputWithContext(ctx context.Context) EmailfilterDnsblPtrOutput {
-	return o.ApplyT(func(v EmailfilterDnsbl) *EmailfilterDnsbl {
-		return &v
-	}).(EmailfilterDnsblPtrOutput)
-}
-
-type EmailfilterDnsblPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EmailfilterDnsblPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterDnsbl)(nil))
-}
-
-func (o EmailfilterDnsblPtrOutput) ToEmailfilterDnsblPtrOutput() EmailfilterDnsblPtrOutput {
-	return o
-}
-
-func (o EmailfilterDnsblPtrOutput) ToEmailfilterDnsblPtrOutputWithContext(ctx context.Context) EmailfilterDnsblPtrOutput {
-	return o
-}
-
 type EmailfilterDnsblArrayOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterDnsblArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EmailfilterDnsbl)(nil))
+	return reflect.TypeOf((*[]*EmailfilterDnsbl)(nil)).Elem()
 }
 
 func (o EmailfilterDnsblArrayOutput) ToEmailfilterDnsblArrayOutput() EmailfilterDnsblArrayOutput {
@@ -290,15 +234,15 @@ func (o EmailfilterDnsblArrayOutput) ToEmailfilterDnsblArrayOutputWithContext(ct
 }
 
 func (o EmailfilterDnsblArrayOutput) Index(i pulumi.IntInput) EmailfilterDnsblOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EmailfilterDnsbl {
-		return vs[0].([]EmailfilterDnsbl)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterDnsbl {
+		return vs[0].([]*EmailfilterDnsbl)[vs[1].(int)]
 	}).(EmailfilterDnsblOutput)
 }
 
 type EmailfilterDnsblMapOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterDnsblMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EmailfilterDnsbl)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterDnsbl)(nil)).Elem()
 }
 
 func (o EmailfilterDnsblMapOutput) ToEmailfilterDnsblMapOutput() EmailfilterDnsblMapOutput {
@@ -310,14 +254,16 @@ func (o EmailfilterDnsblMapOutput) ToEmailfilterDnsblMapOutputWithContext(ctx co
 }
 
 func (o EmailfilterDnsblMapOutput) MapIndex(k pulumi.StringInput) EmailfilterDnsblOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EmailfilterDnsbl {
-		return vs[0].(map[string]EmailfilterDnsbl)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EmailfilterDnsbl {
+		return vs[0].(map[string]*EmailfilterDnsbl)[vs[1].(string)]
 	}).(EmailfilterDnsblOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterDnsblInput)(nil)).Elem(), &EmailfilterDnsbl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterDnsblArrayInput)(nil)).Elem(), EmailfilterDnsblArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterDnsblMapInput)(nil)).Elem(), EmailfilterDnsblMap{})
 	pulumi.RegisterOutputType(EmailfilterDnsblOutput{})
-	pulumi.RegisterOutputType(EmailfilterDnsblPtrOutput{})
 	pulumi.RegisterOutputType(EmailfilterDnsblArrayOutput{})
 	pulumi.RegisterOutputType(EmailfilterDnsblMapOutput{})
 }

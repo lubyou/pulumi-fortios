@@ -56,6 +56,10 @@ export class RouterbgpNetwork6 extends pulumi.CustomResource {
      */
     public readonly fosid!: pulumi.Output<number>;
     /**
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+     */
+    public readonly networkImportCheck!: pulumi.Output<string>;
+    /**
      * Network IPv6 prefix.
      */
     public readonly prefix6!: pulumi.Output<string>;
@@ -77,27 +81,27 @@ export class RouterbgpNetwork6 extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterbgpNetwork6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterbgpNetwork6Args | RouterbgpNetwork6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterbgpNetwork6State | undefined;
-            inputs["backdoor"] = state ? state.backdoor : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["prefix6"] = state ? state.prefix6 : undefined;
-            inputs["routeMap"] = state ? state.routeMap : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["backdoor"] = state ? state.backdoor : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["networkImportCheck"] = state ? state.networkImportCheck : undefined;
+            resourceInputs["prefix6"] = state ? state.prefix6 : undefined;
+            resourceInputs["routeMap"] = state ? state.routeMap : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterbgpNetwork6Args | undefined;
-            inputs["backdoor"] = args ? args.backdoor : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["prefix6"] = args ? args.prefix6 : undefined;
-            inputs["routeMap"] = args ? args.routeMap : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["backdoor"] = args ? args.backdoor : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["networkImportCheck"] = args ? args.networkImportCheck : undefined;
+            resourceInputs["prefix6"] = args ? args.prefix6 : undefined;
+            resourceInputs["routeMap"] = args ? args.routeMap : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterbgpNetwork6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterbgpNetwork6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -113,6 +117,10 @@ export interface RouterbgpNetwork6State {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+     */
+    networkImportCheck?: pulumi.Input<string>;
     /**
      * Network IPv6 prefix.
      */
@@ -139,6 +147,10 @@ export interface RouterbgpNetwork6Args {
      * ID.
      */
     fosid?: pulumi.Input<number>;
+    /**
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+     */
+    networkImportCheck?: pulumi.Input<string>;
     /**
      * Network IPv6 prefix.
      */

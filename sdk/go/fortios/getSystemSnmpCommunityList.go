@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemSnmpCommunity`.
 func GetSystemSnmpCommunityList(ctx *pulumi.Context, args *GetSystemSnmpCommunityListArgs, opts ...pulumi.InvokeOption) (*GetSystemSnmpCommunityListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSnmpCommunityListResult
 	err := ctx.Invoke("fortios:index/getSystemSnmpCommunityList:GetSystemSnmpCommunityList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemSnmpCommunityListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemSnmpCommunityListOutput(ctx *pulumi.Context, args GetSystemSnmpCommunityListOutputArgs, opts ...pulumi.InvokeOption) GetSystemSnmpCommunityListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemSnmpCommunityListResult, error) {
+			args := v.(GetSystemSnmpCommunityListArgs)
+			r, err := GetSystemSnmpCommunityList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemSnmpCommunityListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSnmpCommunityList.
+type GetSystemSnmpCommunityListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemSnmpCommunityListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSnmpCommunityListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSnmpCommunityList.
+type GetSystemSnmpCommunityListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemSnmpCommunityListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSnmpCommunityListResult)(nil)).Elem()
+}
+
+func (o GetSystemSnmpCommunityListResultOutput) ToGetSystemSnmpCommunityListResultOutput() GetSystemSnmpCommunityListResultOutput {
+	return o
+}
+
+func (o GetSystemSnmpCommunityListResultOutput) ToGetSystemSnmpCommunityListResultOutputWithContext(ctx context.Context) GetSystemSnmpCommunityListResultOutput {
+	return o
+}
+
+func (o GetSystemSnmpCommunityListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSnmpCommunityListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `SystemSnmpCommunity`.
+func (o GetSystemSnmpCommunityListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemSnmpCommunityListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemSnmpCommunityListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemSnmpCommunityListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemSnmpCommunityListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSnmpCommunityListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemSnmpCommunityListResultOutput{})
 }

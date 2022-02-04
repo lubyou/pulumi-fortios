@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system centralmanagement
 func LookupSystemCentralManagement(ctx *pulumi.Context, args *LookupSystemCentralManagementArgs, opts ...pulumi.InvokeOption) (*LookupSystemCentralManagementResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemCentralManagementResult
 	err := ctx.Invoke("fortios:index/getSystemCentralManagement:GetSystemCentralManagement", args, &rv, opts...)
 	if err != nil {
@@ -70,4 +74,158 @@ type LookupSystemCentralManagementResult struct {
 	// Virtual domain (VDOM) name to use when communicating with FortiManager.
 	Vdom      string  `pulumi:"vdom"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemCentralManagementOutput(ctx *pulumi.Context, args LookupSystemCentralManagementOutputArgs, opts ...pulumi.InvokeOption) LookupSystemCentralManagementResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemCentralManagementResult, error) {
+			args := v.(LookupSystemCentralManagementArgs)
+			r, err := LookupSystemCentralManagement(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemCentralManagementResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemCentralManagement.
+type LookupSystemCentralManagementOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemCentralManagementOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemCentralManagementArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemCentralManagement.
+type LookupSystemCentralManagementResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemCentralManagementResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemCentralManagementResult)(nil)).Elem()
+}
+
+func (o LookupSystemCentralManagementResultOutput) ToLookupSystemCentralManagementResultOutput() LookupSystemCentralManagementResultOutput {
+	return o
+}
+
+func (o LookupSystemCentralManagementResultOutput) ToLookupSystemCentralManagementResultOutputWithContext(ctx context.Context) LookupSystemCentralManagementResultOutput {
+	return o
+}
+
+// Enable/disable allowing the central management server to remotely monitor this FortiGate
+func (o LookupSystemCentralManagementResultOutput) AllowMonitor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.AllowMonitor }).(pulumi.StringOutput)
+}
+
+// Enable/disable allowing the central management server to push configuration changes to this FortiGate.
+func (o LookupSystemCentralManagementResultOutput) AllowPushConfiguration() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.AllowPushConfiguration }).(pulumi.StringOutput)
+}
+
+// Enable/disable allowing the central management server to push firmware updates to this FortiGate.
+func (o LookupSystemCentralManagementResultOutput) AllowPushFirmware() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.AllowPushFirmware }).(pulumi.StringOutput)
+}
+
+// Enable/disable remotely upgrading the firmware on this FortiGate from the central management server.
+func (o LookupSystemCentralManagementResultOutput) AllowRemoteFirmwareUpgrade() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.AllowRemoteFirmwareUpgrade }).(pulumi.StringOutput)
+}
+
+// CA certificate to be used by FGFM protocol.
+func (o LookupSystemCentralManagementResultOutput) CaCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.CaCert }).(pulumi.StringOutput)
+}
+
+// Encryption strength for communications between the FortiGate and central management.
+func (o LookupSystemCentralManagementResultOutput) EncAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.EncAlgorithm }).(pulumi.StringOutput)
+}
+
+// IP address or FQDN of the FortiManager.
+func (o LookupSystemCentralManagementResultOutput) Fmg() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.Fmg }).(pulumi.StringOutput)
+}
+
+// IPv4 source address that this FortiGate uses when communicating with FortiManager.
+func (o LookupSystemCentralManagementResultOutput) FmgSourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.FmgSourceIp }).(pulumi.StringOutput)
+}
+
+// IPv6 source address that this FortiGate uses when communicating with FortiManager.
+func (o LookupSystemCentralManagementResultOutput) FmgSourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.FmgSourceIp6 }).(pulumi.StringOutput)
+}
+
+// Port used to communicate with FortiManager that is acting as a FortiGuard update server.
+func (o LookupSystemCentralManagementResultOutput) FmgUpdatePort() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.FmgUpdatePort }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemCentralManagementResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable inclusion of public FortiGuard servers in the override server list.
+func (o LookupSystemCentralManagementResultOutput) IncludeDefaultServers() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.IncludeDefaultServers }).(pulumi.StringOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o LookupSystemCentralManagementResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o LookupSystemCentralManagementResultOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// Certificate to be used by FGFM protocol.
+func (o LookupSystemCentralManagementResultOutput) LocalCert() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.LocalCert }).(pulumi.StringOutput)
+}
+
+// Central management mode.
+func (o LookupSystemCentralManagementResultOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// Enable/disable allowing the central management server to restore the configuration of this FortiGate.
+func (o LookupSystemCentralManagementResultOutput) ScheduleConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.ScheduleConfigRestore }).(pulumi.StringOutput)
+}
+
+// Enable/disable allowing the central management server to restore the scripts stored on this FortiGate.
+func (o LookupSystemCentralManagementResultOutput) ScheduleScriptRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.ScheduleScriptRestore }).(pulumi.StringOutput)
+}
+
+// Serial number.
+func (o LookupSystemCentralManagementResultOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers. The structure of `serverList` block is documented below.
+func (o LookupSystemCentralManagementResultOutput) ServerLists() GetSystemCentralManagementServerListArrayOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) []GetSystemCentralManagementServerList {
+		return v.ServerLists
+	}).(GetSystemCentralManagementServerListArrayOutput)
+}
+
+// Central management type.
+func (o LookupSystemCentralManagementResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Virtual domain (VDOM) name to use when communicating with FortiManager.
+func (o LookupSystemCentralManagementResultOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) string { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemCentralManagementResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemCentralManagementResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemCentralManagementResultOutput{})
 }

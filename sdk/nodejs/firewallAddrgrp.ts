@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname1 = new fortios.FirewallAddress("trname1", {
  *     allowRouting: "disable",
@@ -79,6 +79,10 @@ export class FirewallAddrgrp extends pulumi.CustomResource {
      */
     public readonly allowRouting!: pulumi.Output<string>;
     /**
+     * Tag category.
+     */
+    public readonly category!: pulumi.Output<string>;
+    /**
      * Color of icon on the GUI.
      */
     public readonly color!: pulumi.Output<number>;
@@ -98,6 +102,10 @@ export class FirewallAddrgrp extends pulumi.CustomResource {
      * Address exclusion member. The structure of `excludeMember` block is documented below.
      */
     public readonly excludeMembers!: pulumi.Output<outputs.FirewallAddrgrpExcludeMember[] | undefined>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */
@@ -136,46 +144,48 @@ export class FirewallAddrgrp extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallAddrgrpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallAddrgrpArgs | FirewallAddrgrpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAddrgrpState | undefined;
-            inputs["allowRouting"] = state ? state.allowRouting : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["exclude"] = state ? state.exclude : undefined;
-            inputs["excludeMembers"] = state ? state.excludeMembers : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["allowRouting"] = state ? state.allowRouting : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["exclude"] = state ? state.exclude : undefined;
+            resourceInputs["excludeMembers"] = state ? state.excludeMembers : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallAddrgrpArgs | undefined;
             if ((!args || args.members === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            inputs["allowRouting"] = args ? args.allowRouting : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["exclude"] = args ? args.exclude : undefined;
-            inputs["excludeMembers"] = args ? args.excludeMembers : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["allowRouting"] = args ? args.allowRouting : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["exclude"] = args ? args.exclude : undefined;
+            resourceInputs["excludeMembers"] = args ? args.excludeMembers : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallAddrgrp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallAddrgrp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -187,6 +197,10 @@ export interface FirewallAddrgrpState {
      * Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
      */
     allowRouting?: pulumi.Input<string>;
+    /**
+     * Tag category.
+     */
+    category?: pulumi.Input<string>;
     /**
      * Color of icon on the GUI.
      */
@@ -207,6 +221,10 @@ export interface FirewallAddrgrpState {
      * Address exclusion member. The structure of `excludeMember` block is documented below.
      */
     excludeMembers?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpExcludeMember>[]>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */
@@ -246,6 +264,10 @@ export interface FirewallAddrgrpArgs {
      */
     allowRouting?: pulumi.Input<string>;
     /**
+     * Tag category.
+     */
+    category?: pulumi.Input<string>;
+    /**
      * Color of icon on the GUI.
      */
     color?: pulumi.Input<number>;
@@ -265,6 +287,10 @@ export interface FirewallAddrgrpArgs {
      * Address exclusion member. The structure of `excludeMember` block is documented below.
      */
     excludeMembers?: pulumi.Input<pulumi.Input<inputs.FirewallAddrgrpExcludeMember>[]>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Address objects contained within the group. The structure of `member` block is documented below.
      */

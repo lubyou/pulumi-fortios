@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP v1/v2c communities globally.
+// Configure FortiSwitch SNMP v1/v2c communities globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -67,6 +67,7 @@ func NewSwitchControllerSnmpCommunity(ctx *pulumi.Context,
 		args = &SwitchControllerSnmpCommunityArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpCommunity
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpCommunity:SwitchControllerSnmpCommunity", name, args, &resource, opts...)
 	if err != nil {
@@ -253,7 +254,7 @@ type SwitchControllerSnmpCommunityInput interface {
 }
 
 func (*SwitchControllerSnmpCommunity) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpCommunity)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpCommunity)(nil)).Elem()
 }
 
 func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityOutput() SwitchControllerSnmpCommunityOutput {
@@ -262,35 +263,6 @@ func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityOutput() 
 
 func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityOutput)
-}
-
-func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityPtrOutput() SwitchControllerSnmpCommunityPtrOutput {
-	return i.ToSwitchControllerSnmpCommunityPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSnmpCommunity) ToSwitchControllerSnmpCommunityPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityPtrOutput)
-}
-
-type SwitchControllerSnmpCommunityPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSnmpCommunityPtrOutput() SwitchControllerSnmpCommunityPtrOutput
-	ToSwitchControllerSnmpCommunityPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityPtrOutput
-}
-
-type switchControllerSnmpCommunityPtrType SwitchControllerSnmpCommunityArgs
-
-func (*switchControllerSnmpCommunityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpCommunity)(nil))
-}
-
-func (i *switchControllerSnmpCommunityPtrType) ToSwitchControllerSnmpCommunityPtrOutput() SwitchControllerSnmpCommunityPtrOutput {
-	return i.ToSwitchControllerSnmpCommunityPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSnmpCommunityPtrType) ToSwitchControllerSnmpCommunityPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityPtrOutput)
 }
 
 // SwitchControllerSnmpCommunityArrayInput is an input type that accepts SwitchControllerSnmpCommunityArray and SwitchControllerSnmpCommunityArrayOutput values.
@@ -307,7 +279,7 @@ type SwitchControllerSnmpCommunityArrayInput interface {
 type SwitchControllerSnmpCommunityArray []SwitchControllerSnmpCommunityInput
 
 func (SwitchControllerSnmpCommunityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSnmpCommunity)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpCommunity)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpCommunityArray) ToSwitchControllerSnmpCommunityArrayOutput() SwitchControllerSnmpCommunityArrayOutput {
@@ -332,7 +304,7 @@ type SwitchControllerSnmpCommunityMapInput interface {
 type SwitchControllerSnmpCommunityMap map[string]SwitchControllerSnmpCommunityInput
 
 func (SwitchControllerSnmpCommunityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSnmpCommunity)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpCommunity)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpCommunityMap) ToSwitchControllerSnmpCommunityMapOutput() SwitchControllerSnmpCommunityMapOutput {
@@ -343,12 +315,10 @@ func (i SwitchControllerSnmpCommunityMap) ToSwitchControllerSnmpCommunityMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpCommunityMapOutput)
 }
 
-type SwitchControllerSnmpCommunityOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSnmpCommunityOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpCommunityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpCommunity)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpCommunity)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityOutput() SwitchControllerSnmpCommunityOutput {
@@ -359,36 +329,10 @@ func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityOutp
 	return o
 }
 
-func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityPtrOutput() SwitchControllerSnmpCommunityPtrOutput {
-	return o.ToSwitchControllerSnmpCommunityPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSnmpCommunityOutput) ToSwitchControllerSnmpCommunityPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSnmpCommunity) *SwitchControllerSnmpCommunity {
-		return &v
-	}).(SwitchControllerSnmpCommunityPtrOutput)
-}
-
-type SwitchControllerSnmpCommunityPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSnmpCommunityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpCommunity)(nil))
-}
-
-func (o SwitchControllerSnmpCommunityPtrOutput) ToSwitchControllerSnmpCommunityPtrOutput() SwitchControllerSnmpCommunityPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSnmpCommunityPtrOutput) ToSwitchControllerSnmpCommunityPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpCommunityPtrOutput {
-	return o
-}
-
 type SwitchControllerSnmpCommunityArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpCommunityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSnmpCommunity)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpCommunity)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpCommunityArrayOutput) ToSwitchControllerSnmpCommunityArrayOutput() SwitchControllerSnmpCommunityArrayOutput {
@@ -400,15 +344,15 @@ func (o SwitchControllerSnmpCommunityArrayOutput) ToSwitchControllerSnmpCommunit
 }
 
 func (o SwitchControllerSnmpCommunityArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpCommunityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSnmpCommunity {
-		return vs[0].([]SwitchControllerSnmpCommunity)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpCommunity {
+		return vs[0].([]*SwitchControllerSnmpCommunity)[vs[1].(int)]
 	}).(SwitchControllerSnmpCommunityOutput)
 }
 
 type SwitchControllerSnmpCommunityMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpCommunityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSnmpCommunity)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpCommunity)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpCommunityMapOutput) ToSwitchControllerSnmpCommunityMapOutput() SwitchControllerSnmpCommunityMapOutput {
@@ -420,14 +364,16 @@ func (o SwitchControllerSnmpCommunityMapOutput) ToSwitchControllerSnmpCommunityM
 }
 
 func (o SwitchControllerSnmpCommunityMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpCommunityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSnmpCommunity {
-		return vs[0].(map[string]SwitchControllerSnmpCommunity)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSnmpCommunity {
+		return vs[0].(map[string]*SwitchControllerSnmpCommunity)[vs[1].(string)]
 	}).(SwitchControllerSnmpCommunityOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpCommunityInput)(nil)).Elem(), &SwitchControllerSnmpCommunity{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpCommunityArrayInput)(nil)).Elem(), SwitchControllerSnmpCommunityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpCommunityMapInput)(nil)).Elem(), SwitchControllerSnmpCommunityMap{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpCommunityOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSnmpCommunityPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpCommunityArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpCommunityMapOutput{})
 }

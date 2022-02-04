@@ -38,7 +38,7 @@ type SystemStorage struct {
 	Size pulumi.IntOutput `pulumi:"size"`
 	// Enable/disable storage. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
-	// Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+	// Use hard disk for logging or WAN Optimization (default = log).
 	Usage pulumi.StringOutput `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
@@ -53,6 +53,7 @@ func NewSystemStorage(ctx *pulumi.Context,
 		args = &SystemStorageArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemStorage
 	err := ctx.RegisterResource("fortios:index/systemStorage:SystemStorage", name, args, &resource, opts...)
 	if err != nil {
@@ -89,7 +90,7 @@ type systemStorageState struct {
 	Size *int `pulumi:"size"`
 	// Enable/disable storage. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+	// Use hard disk for logging or WAN Optimization (default = log).
 	Usage *string `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -112,7 +113,7 @@ type SystemStorageState struct {
 	Size pulumi.IntPtrInput
 	// Enable/disable storage. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
-	// Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+	// Use hard disk for logging or WAN Optimization (default = log).
 	Usage pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -139,7 +140,7 @@ type systemStorageArgs struct {
 	Size *int `pulumi:"size"`
 	// Enable/disable storage. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
-	// Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+	// Use hard disk for logging or WAN Optimization (default = log).
 	Usage *string `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
@@ -163,7 +164,7 @@ type SystemStorageArgs struct {
 	Size pulumi.IntPtrInput
 	// Enable/disable storage. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
-	// Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+	// Use hard disk for logging or WAN Optimization (default = log).
 	Usage pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
@@ -183,7 +184,7 @@ type SystemStorageInput interface {
 }
 
 func (*SystemStorage) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemStorage)(nil))
+	return reflect.TypeOf((**SystemStorage)(nil)).Elem()
 }
 
 func (i *SystemStorage) ToSystemStorageOutput() SystemStorageOutput {
@@ -192,35 +193,6 @@ func (i *SystemStorage) ToSystemStorageOutput() SystemStorageOutput {
 
 func (i *SystemStorage) ToSystemStorageOutputWithContext(ctx context.Context) SystemStorageOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStorageOutput)
-}
-
-func (i *SystemStorage) ToSystemStoragePtrOutput() SystemStoragePtrOutput {
-	return i.ToSystemStoragePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemStorage) ToSystemStoragePtrOutputWithContext(ctx context.Context) SystemStoragePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemStoragePtrOutput)
-}
-
-type SystemStoragePtrInput interface {
-	pulumi.Input
-
-	ToSystemStoragePtrOutput() SystemStoragePtrOutput
-	ToSystemStoragePtrOutputWithContext(ctx context.Context) SystemStoragePtrOutput
-}
-
-type systemStoragePtrType SystemStorageArgs
-
-func (*systemStoragePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemStorage)(nil))
-}
-
-func (i *systemStoragePtrType) ToSystemStoragePtrOutput() SystemStoragePtrOutput {
-	return i.ToSystemStoragePtrOutputWithContext(context.Background())
-}
-
-func (i *systemStoragePtrType) ToSystemStoragePtrOutputWithContext(ctx context.Context) SystemStoragePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemStoragePtrOutput)
 }
 
 // SystemStorageArrayInput is an input type that accepts SystemStorageArray and SystemStorageArrayOutput values.
@@ -237,7 +209,7 @@ type SystemStorageArrayInput interface {
 type SystemStorageArray []SystemStorageInput
 
 func (SystemStorageArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemStorage)(nil))
+	return reflect.TypeOf((*[]*SystemStorage)(nil)).Elem()
 }
 
 func (i SystemStorageArray) ToSystemStorageArrayOutput() SystemStorageArrayOutput {
@@ -262,7 +234,7 @@ type SystemStorageMapInput interface {
 type SystemStorageMap map[string]SystemStorageInput
 
 func (SystemStorageMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemStorage)(nil))
+	return reflect.TypeOf((*map[string]*SystemStorage)(nil)).Elem()
 }
 
 func (i SystemStorageMap) ToSystemStorageMapOutput() SystemStorageMapOutput {
@@ -273,12 +245,10 @@ func (i SystemStorageMap) ToSystemStorageMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStorageMapOutput)
 }
 
-type SystemStorageOutput struct {
-	*pulumi.OutputState
-}
+type SystemStorageOutput struct{ *pulumi.OutputState }
 
 func (SystemStorageOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemStorage)(nil))
+	return reflect.TypeOf((**SystemStorage)(nil)).Elem()
 }
 
 func (o SystemStorageOutput) ToSystemStorageOutput() SystemStorageOutput {
@@ -289,36 +259,10 @@ func (o SystemStorageOutput) ToSystemStorageOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemStorageOutput) ToSystemStoragePtrOutput() SystemStoragePtrOutput {
-	return o.ToSystemStoragePtrOutputWithContext(context.Background())
-}
-
-func (o SystemStorageOutput) ToSystemStoragePtrOutputWithContext(ctx context.Context) SystemStoragePtrOutput {
-	return o.ApplyT(func(v SystemStorage) *SystemStorage {
-		return &v
-	}).(SystemStoragePtrOutput)
-}
-
-type SystemStoragePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemStoragePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemStorage)(nil))
-}
-
-func (o SystemStoragePtrOutput) ToSystemStoragePtrOutput() SystemStoragePtrOutput {
-	return o
-}
-
-func (o SystemStoragePtrOutput) ToSystemStoragePtrOutputWithContext(ctx context.Context) SystemStoragePtrOutput {
-	return o
-}
-
 type SystemStorageArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemStorageArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemStorage)(nil))
+	return reflect.TypeOf((*[]*SystemStorage)(nil)).Elem()
 }
 
 func (o SystemStorageArrayOutput) ToSystemStorageArrayOutput() SystemStorageArrayOutput {
@@ -330,15 +274,15 @@ func (o SystemStorageArrayOutput) ToSystemStorageArrayOutputWithContext(ctx cont
 }
 
 func (o SystemStorageArrayOutput) Index(i pulumi.IntInput) SystemStorageOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemStorage {
-		return vs[0].([]SystemStorage)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemStorage {
+		return vs[0].([]*SystemStorage)[vs[1].(int)]
 	}).(SystemStorageOutput)
 }
 
 type SystemStorageMapOutput struct{ *pulumi.OutputState }
 
 func (SystemStorageMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemStorage)(nil))
+	return reflect.TypeOf((*map[string]*SystemStorage)(nil)).Elem()
 }
 
 func (o SystemStorageMapOutput) ToSystemStorageMapOutput() SystemStorageMapOutput {
@@ -350,14 +294,16 @@ func (o SystemStorageMapOutput) ToSystemStorageMapOutputWithContext(ctx context.
 }
 
 func (o SystemStorageMapOutput) MapIndex(k pulumi.StringInput) SystemStorageOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemStorage {
-		return vs[0].(map[string]SystemStorage)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemStorage {
+		return vs[0].(map[string]*SystemStorage)[vs[1].(string)]
 	}).(SystemStorageOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemStorageInput)(nil)).Elem(), &SystemStorage{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemStorageArrayInput)(nil)).Elem(), SystemStorageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemStorageMapInput)(nil)).Elem(), SystemStorageMap{})
 	pulumi.RegisterOutputType(SystemStorageOutput{})
-	pulumi.RegisterOutputType(SystemStoragePtrOutput{})
 	pulumi.RegisterOutputType(SystemStorageArrayOutput{})
 	pulumi.RegisterOutputType(SystemStorageMapOutput{})
 }

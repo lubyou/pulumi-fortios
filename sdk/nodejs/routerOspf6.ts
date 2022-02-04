@@ -182,56 +182,54 @@ export class RouterOspf6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: RouterOspf6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterOspf6Args | RouterOspf6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterOspf6State | undefined;
-            inputs["abrType"] = state ? state.abrType : undefined;
-            inputs["areas"] = state ? state.areas : undefined;
-            inputs["autoCostRefBandwidth"] = state ? state.autoCostRefBandwidth : undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["defaultInformationMetric"] = state ? state.defaultInformationMetric : undefined;
-            inputs["defaultInformationMetricType"] = state ? state.defaultInformationMetricType : undefined;
-            inputs["defaultInformationOriginate"] = state ? state.defaultInformationOriginate : undefined;
-            inputs["defaultInformationRouteMap"] = state ? state.defaultInformationRouteMap : undefined;
-            inputs["defaultMetric"] = state ? state.defaultMetric : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["logNeighbourChanges"] = state ? state.logNeighbourChanges : undefined;
-            inputs["ospf6Interfaces"] = state ? state.ospf6Interfaces : undefined;
-            inputs["passiveInterfaces"] = state ? state.passiveInterfaces : undefined;
-            inputs["redistributes"] = state ? state.redistributes : undefined;
-            inputs["routerId"] = state ? state.routerId : undefined;
-            inputs["spfTimers"] = state ? state.spfTimers : undefined;
-            inputs["summaryAddresses"] = state ? state.summaryAddresses : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["abrType"] = state ? state.abrType : undefined;
+            resourceInputs["areas"] = state ? state.areas : undefined;
+            resourceInputs["autoCostRefBandwidth"] = state ? state.autoCostRefBandwidth : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["defaultInformationMetric"] = state ? state.defaultInformationMetric : undefined;
+            resourceInputs["defaultInformationMetricType"] = state ? state.defaultInformationMetricType : undefined;
+            resourceInputs["defaultInformationOriginate"] = state ? state.defaultInformationOriginate : undefined;
+            resourceInputs["defaultInformationRouteMap"] = state ? state.defaultInformationRouteMap : undefined;
+            resourceInputs["defaultMetric"] = state ? state.defaultMetric : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["logNeighbourChanges"] = state ? state.logNeighbourChanges : undefined;
+            resourceInputs["ospf6Interfaces"] = state ? state.ospf6Interfaces : undefined;
+            resourceInputs["passiveInterfaces"] = state ? state.passiveInterfaces : undefined;
+            resourceInputs["redistributes"] = state ? state.redistributes : undefined;
+            resourceInputs["routerId"] = state ? state.routerId : undefined;
+            resourceInputs["spfTimers"] = state ? state.spfTimers : undefined;
+            resourceInputs["summaryAddresses"] = state ? state.summaryAddresses : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterOspf6Args | undefined;
             if ((!args || args.routerId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'routerId'");
             }
-            inputs["abrType"] = args ? args.abrType : undefined;
-            inputs["areas"] = args ? args.areas : undefined;
-            inputs["autoCostRefBandwidth"] = args ? args.autoCostRefBandwidth : undefined;
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["defaultInformationMetric"] = args ? args.defaultInformationMetric : undefined;
-            inputs["defaultInformationMetricType"] = args ? args.defaultInformationMetricType : undefined;
-            inputs["defaultInformationOriginate"] = args ? args.defaultInformationOriginate : undefined;
-            inputs["defaultInformationRouteMap"] = args ? args.defaultInformationRouteMap : undefined;
-            inputs["defaultMetric"] = args ? args.defaultMetric : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["logNeighbourChanges"] = args ? args.logNeighbourChanges : undefined;
-            inputs["ospf6Interfaces"] = args ? args.ospf6Interfaces : undefined;
-            inputs["passiveInterfaces"] = args ? args.passiveInterfaces : undefined;
-            inputs["redistributes"] = args ? args.redistributes : undefined;
-            inputs["routerId"] = args ? args.routerId : undefined;
-            inputs["spfTimers"] = args ? args.spfTimers : undefined;
-            inputs["summaryAddresses"] = args ? args.summaryAddresses : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["abrType"] = args ? args.abrType : undefined;
+            resourceInputs["areas"] = args ? args.areas : undefined;
+            resourceInputs["autoCostRefBandwidth"] = args ? args.autoCostRefBandwidth : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["defaultInformationMetric"] = args ? args.defaultInformationMetric : undefined;
+            resourceInputs["defaultInformationMetricType"] = args ? args.defaultInformationMetricType : undefined;
+            resourceInputs["defaultInformationOriginate"] = args ? args.defaultInformationOriginate : undefined;
+            resourceInputs["defaultInformationRouteMap"] = args ? args.defaultInformationRouteMap : undefined;
+            resourceInputs["defaultMetric"] = args ? args.defaultMetric : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["logNeighbourChanges"] = args ? args.logNeighbourChanges : undefined;
+            resourceInputs["ospf6Interfaces"] = args ? args.ospf6Interfaces : undefined;
+            resourceInputs["passiveInterfaces"] = args ? args.passiveInterfaces : undefined;
+            resourceInputs["redistributes"] = args ? args.redistributes : undefined;
+            resourceInputs["routerId"] = args ? args.routerId : undefined;
+            resourceInputs["spfTimers"] = args ? args.spfTimers : undefined;
+            resourceInputs["summaryAddresses"] = args ? args.summaryAddresses : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterOspf6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterOspf6.__pulumiType, name, resourceInputs, opts);
     }
 }
 

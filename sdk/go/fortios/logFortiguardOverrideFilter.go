@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -94,6 +94,8 @@ type LogFortiguardOverrideFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogFortiguardOverrideFilter registers a new resource with the given unique name, arguments, and options.
@@ -103,6 +105,7 @@ func NewLogFortiguardOverrideFilter(ctx *pulumi.Context,
 		args = &LogFortiguardOverrideFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortiguardOverrideFilter
 	err := ctx.RegisterResource("fortios:index/logFortiguardOverrideFilter:LogFortiguardOverrideFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -161,6 +164,8 @@ type logFortiguardOverrideFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogFortiguardOverrideFilterState struct {
@@ -200,6 +205,8 @@ type LogFortiguardOverrideFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortiguardOverrideFilterState) ElementType() reflect.Type {
@@ -243,6 +250,8 @@ type logFortiguardOverrideFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogFortiguardOverrideFilter resource.
@@ -283,6 +292,8 @@ type LogFortiguardOverrideFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortiguardOverrideFilterArgs) ElementType() reflect.Type {
@@ -297,7 +308,7 @@ type LogFortiguardOverrideFilterInput interface {
 }
 
 func (*LogFortiguardOverrideFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardOverrideFilter)(nil))
+	return reflect.TypeOf((**LogFortiguardOverrideFilter)(nil)).Elem()
 }
 
 func (i *LogFortiguardOverrideFilter) ToLogFortiguardOverrideFilterOutput() LogFortiguardOverrideFilterOutput {
@@ -306,35 +317,6 @@ func (i *LogFortiguardOverrideFilter) ToLogFortiguardOverrideFilterOutput() LogF
 
 func (i *LogFortiguardOverrideFilter) ToLogFortiguardOverrideFilterOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterOutput)
-}
-
-func (i *LogFortiguardOverrideFilter) ToLogFortiguardOverrideFilterPtrOutput() LogFortiguardOverrideFilterPtrOutput {
-	return i.ToLogFortiguardOverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortiguardOverrideFilter) ToLogFortiguardOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterPtrOutput)
-}
-
-type LogFortiguardOverrideFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogFortiguardOverrideFilterPtrOutput() LogFortiguardOverrideFilterPtrOutput
-	ToLogFortiguardOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterPtrOutput
-}
-
-type logFortiguardOverrideFilterPtrType LogFortiguardOverrideFilterArgs
-
-func (*logFortiguardOverrideFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardOverrideFilter)(nil))
-}
-
-func (i *logFortiguardOverrideFilterPtrType) ToLogFortiguardOverrideFilterPtrOutput() LogFortiguardOverrideFilterPtrOutput {
-	return i.ToLogFortiguardOverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortiguardOverrideFilterPtrType) ToLogFortiguardOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterPtrOutput)
 }
 
 // LogFortiguardOverrideFilterArrayInput is an input type that accepts LogFortiguardOverrideFilterArray and LogFortiguardOverrideFilterArrayOutput values.
@@ -351,7 +333,7 @@ type LogFortiguardOverrideFilterArrayInput interface {
 type LogFortiguardOverrideFilterArray []LogFortiguardOverrideFilterInput
 
 func (LogFortiguardOverrideFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortiguardOverrideFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardOverrideFilter)(nil)).Elem()
 }
 
 func (i LogFortiguardOverrideFilterArray) ToLogFortiguardOverrideFilterArrayOutput() LogFortiguardOverrideFilterArrayOutput {
@@ -376,7 +358,7 @@ type LogFortiguardOverrideFilterMapInput interface {
 type LogFortiguardOverrideFilterMap map[string]LogFortiguardOverrideFilterInput
 
 func (LogFortiguardOverrideFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortiguardOverrideFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardOverrideFilter)(nil)).Elem()
 }
 
 func (i LogFortiguardOverrideFilterMap) ToLogFortiguardOverrideFilterMapOutput() LogFortiguardOverrideFilterMapOutput {
@@ -387,12 +369,10 @@ func (i LogFortiguardOverrideFilterMap) ToLogFortiguardOverrideFilterMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideFilterMapOutput)
 }
 
-type LogFortiguardOverrideFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogFortiguardOverrideFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardOverrideFilter)(nil))
+	return reflect.TypeOf((**LogFortiguardOverrideFilter)(nil)).Elem()
 }
 
 func (o LogFortiguardOverrideFilterOutput) ToLogFortiguardOverrideFilterOutput() LogFortiguardOverrideFilterOutput {
@@ -403,36 +383,10 @@ func (o LogFortiguardOverrideFilterOutput) ToLogFortiguardOverrideFilterOutputWi
 	return o
 }
 
-func (o LogFortiguardOverrideFilterOutput) ToLogFortiguardOverrideFilterPtrOutput() LogFortiguardOverrideFilterPtrOutput {
-	return o.ToLogFortiguardOverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortiguardOverrideFilterOutput) ToLogFortiguardOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterPtrOutput {
-	return o.ApplyT(func(v LogFortiguardOverrideFilter) *LogFortiguardOverrideFilter {
-		return &v
-	}).(LogFortiguardOverrideFilterPtrOutput)
-}
-
-type LogFortiguardOverrideFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortiguardOverrideFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardOverrideFilter)(nil))
-}
-
-func (o LogFortiguardOverrideFilterPtrOutput) ToLogFortiguardOverrideFilterPtrOutput() LogFortiguardOverrideFilterPtrOutput {
-	return o
-}
-
-func (o LogFortiguardOverrideFilterPtrOutput) ToLogFortiguardOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideFilterPtrOutput {
-	return o
-}
-
 type LogFortiguardOverrideFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortiguardOverrideFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardOverrideFilter)(nil)).Elem()
 }
 
 func (o LogFortiguardOverrideFilterArrayOutput) ToLogFortiguardOverrideFilterArrayOutput() LogFortiguardOverrideFilterArrayOutput {
@@ -444,15 +398,15 @@ func (o LogFortiguardOverrideFilterArrayOutput) ToLogFortiguardOverrideFilterArr
 }
 
 func (o LogFortiguardOverrideFilterArrayOutput) Index(i pulumi.IntInput) LogFortiguardOverrideFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortiguardOverrideFilter {
-		return vs[0].([]LogFortiguardOverrideFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardOverrideFilter {
+		return vs[0].([]*LogFortiguardOverrideFilter)[vs[1].(int)]
 	}).(LogFortiguardOverrideFilterOutput)
 }
 
 type LogFortiguardOverrideFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortiguardOverrideFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardOverrideFilter)(nil)).Elem()
 }
 
 func (o LogFortiguardOverrideFilterMapOutput) ToLogFortiguardOverrideFilterMapOutput() LogFortiguardOverrideFilterMapOutput {
@@ -464,14 +418,16 @@ func (o LogFortiguardOverrideFilterMapOutput) ToLogFortiguardOverrideFilterMapOu
 }
 
 func (o LogFortiguardOverrideFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardOverrideFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortiguardOverrideFilter {
-		return vs[0].(map[string]LogFortiguardOverrideFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortiguardOverrideFilter {
+		return vs[0].(map[string]*LogFortiguardOverrideFilter)[vs[1].(string)]
 	}).(LogFortiguardOverrideFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardOverrideFilterInput)(nil)).Elem(), &LogFortiguardOverrideFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardOverrideFilterArrayInput)(nil)).Elem(), LogFortiguardOverrideFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardOverrideFilterMapInput)(nil)).Elem(), LogFortiguardOverrideFilterMap{})
 	pulumi.RegisterOutputType(LogFortiguardOverrideFilterOutput{})
-	pulumi.RegisterOutputType(LogFortiguardOverrideFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogFortiguardOverrideFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogFortiguardOverrideFilterMapOutput{})
 }

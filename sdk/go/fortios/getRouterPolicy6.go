@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios router policy6
 func LookupRouterPolicy6(ctx *pulumi.Context, args *LookupRouterPolicy6Args, opts ...pulumi.InvokeOption) (*LookupRouterPolicy6Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterPolicy6Result
 	err := ctx.Invoke("fortios:index/getRouterPolicy6:GetRouterPolicy6", args, &rv, opts...)
 	if err != nil {
@@ -56,4 +60,118 @@ type LookupRouterPolicy6Result struct {
 	// Type of service evaluated bits.
 	TosMask   string  `pulumi:"tosMask"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupRouterPolicy6Output(ctx *pulumi.Context, args LookupRouterPolicy6OutputArgs, opts ...pulumi.InvokeOption) LookupRouterPolicy6ResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterPolicy6Result, error) {
+			args := v.(LookupRouterPolicy6Args)
+			r, err := LookupRouterPolicy6(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterPolicy6ResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterPolicy6.
+type LookupRouterPolicy6OutputArgs struct {
+	// Specify the seqNum of the desired router policy6.
+	SeqNum pulumi.IntInput `pulumi:"seqNum"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterPolicy6OutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterPolicy6Args)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterPolicy6.
+type LookupRouterPolicy6ResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterPolicy6ResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterPolicy6Result)(nil)).Elem()
+}
+
+func (o LookupRouterPolicy6ResultOutput) ToLookupRouterPolicy6ResultOutput() LookupRouterPolicy6ResultOutput {
+	return o
+}
+
+func (o LookupRouterPolicy6ResultOutput) ToLookupRouterPolicy6ResultOutputWithContext(ctx context.Context) LookupRouterPolicy6ResultOutput {
+	return o
+}
+
+// Optional comments.
+func (o LookupRouterPolicy6ResultOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Comments }).(pulumi.StringOutput)
+}
+
+// Destination IPv6 prefix.
+func (o LookupRouterPolicy6ResultOutput) Dst() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Dst }).(pulumi.StringOutput)
+}
+
+// End destination port number (1 - 65535).
+func (o LookupRouterPolicy6ResultOutput) EndPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.EndPort }).(pulumi.IntOutput)
+}
+
+// IPv6 address of the gateway.
+func (o LookupRouterPolicy6ResultOutput) Gateway() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Gateway }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterPolicy6ResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Incoming interface name.
+func (o LookupRouterPolicy6ResultOutput) InputDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.InputDevice }).(pulumi.StringOutput)
+}
+
+// Outgoing interface name.
+func (o LookupRouterPolicy6ResultOutput) OutputDevice() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.OutputDevice }).(pulumi.StringOutput)
+}
+
+// Protocol number (0 - 255).
+func (o LookupRouterPolicy6ResultOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.Protocol }).(pulumi.IntOutput)
+}
+
+// Sequence number.
+func (o LookupRouterPolicy6ResultOutput) SeqNum() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.SeqNum }).(pulumi.IntOutput)
+}
+
+// Source IPv6 prefix.
+func (o LookupRouterPolicy6ResultOutput) Src() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Src }).(pulumi.StringOutput)
+}
+
+// Start destination port number (1 - 65535).
+func (o LookupRouterPolicy6ResultOutput) StartPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) int { return v.StartPort }).(pulumi.IntOutput)
+}
+
+// Enable/disable this policy route.
+func (o LookupRouterPolicy6ResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Type of service bit pattern.
+func (o LookupRouterPolicy6ResultOutput) Tos() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.Tos }).(pulumi.StringOutput)
+}
+
+// Type of service evaluated bits.
+func (o LookupRouterPolicy6ResultOutput) TosMask() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) string { return v.TosMask }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterPolicy6ResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterPolicy6Result) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterPolicy6ResultOutput{})
 }

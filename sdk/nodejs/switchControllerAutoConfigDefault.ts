@@ -71,25 +71,23 @@ export class SwitchControllerAutoConfigDefault extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerAutoConfigDefaultArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerAutoConfigDefaultArgs | SwitchControllerAutoConfigDefaultState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerAutoConfigDefaultState | undefined;
-            inputs["fgtPolicy"] = state ? state.fgtPolicy : undefined;
-            inputs["iclPolicy"] = state ? state.iclPolicy : undefined;
-            inputs["islPolicy"] = state ? state.islPolicy : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fgtPolicy"] = state ? state.fgtPolicy : undefined;
+            resourceInputs["iclPolicy"] = state ? state.iclPolicy : undefined;
+            resourceInputs["islPolicy"] = state ? state.islPolicy : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerAutoConfigDefaultArgs | undefined;
-            inputs["fgtPolicy"] = args ? args.fgtPolicy : undefined;
-            inputs["iclPolicy"] = args ? args.iclPolicy : undefined;
-            inputs["islPolicy"] = args ? args.islPolicy : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fgtPolicy"] = args ? args.fgtPolicy : undefined;
+            resourceInputs["iclPolicy"] = args ? args.iclPolicy : undefined;
+            resourceInputs["islPolicy"] = args ? args.islPolicy : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerAutoConfigDefault.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerAutoConfigDefault.__pulumiType, name, resourceInputs, opts);
     }
 }
 

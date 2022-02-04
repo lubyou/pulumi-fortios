@@ -28,6 +28,7 @@ class SystemSdwanArgs:
                  neighbor_hold_down_time: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanNeighborArgs']]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanServiceArgs']]]] = None,
+                 speedtest_bypass_routing: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanZoneArgs']]]] = None):
@@ -46,6 +47,7 @@ class SystemSdwanArgs:
         :param pulumi.Input[int] neighbor_hold_down_time: Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdwanNeighborArgs']]] neighbors: Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdwanServiceArgs']]] services: Service and service group name. The structure of `service` block is documented below.
+        :param pulumi.Input[str] speedtest_bypass_routing: Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdwanZoneArgs']]] zones: Zone name.
@@ -76,6 +78,8 @@ class SystemSdwanArgs:
             pulumi.set(__self__, "neighbors", neighbors)
         if services is not None:
             pulumi.set(__self__, "services", services)
+        if speedtest_bypass_routing is not None:
+            pulumi.set(__self__, "speedtest_bypass_routing", speedtest_bypass_routing)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -238,6 +242,18 @@ class SystemSdwanArgs:
     @services.setter
     def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanServiceArgs']]]]):
         pulumi.set(self, "services", value)
+
+    @property
+    @pulumi.getter(name="speedtestBypassRouting")
+    def speedtest_bypass_routing(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "speedtest_bypass_routing")
+
+    @speedtest_bypass_routing.setter
+    def speedtest_bypass_routing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "speedtest_bypass_routing", value)
 
     @property
     @pulumi.getter
@@ -292,6 +308,7 @@ class _SystemSdwanState:
                  neighbor_hold_down_time: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanNeighborArgs']]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanServiceArgs']]]] = None,
+                 speedtest_bypass_routing: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanZoneArgs']]]] = None):
@@ -310,6 +327,7 @@ class _SystemSdwanState:
         :param pulumi.Input[int] neighbor_hold_down_time: Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdwanNeighborArgs']]] neighbors: Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdwanServiceArgs']]] services: Service and service group name. The structure of `service` block is documented below.
+        :param pulumi.Input[str] speedtest_bypass_routing: Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdwanZoneArgs']]] zones: Zone name.
@@ -340,6 +358,8 @@ class _SystemSdwanState:
             pulumi.set(__self__, "neighbors", neighbors)
         if services is not None:
             pulumi.set(__self__, "services", services)
+        if speedtest_bypass_routing is not None:
+            pulumi.set(__self__, "speedtest_bypass_routing", speedtest_bypass_routing)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if vdomparam is not None:
@@ -502,6 +522,18 @@ class _SystemSdwanState:
     @services.setter
     def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdwanServiceArgs']]]]):
         pulumi.set(self, "services", value)
+
+    @property
+    @pulumi.getter(name="speedtestBypassRouting")
+    def speedtest_bypass_routing(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "speedtest_bypass_routing")
+
+    @speedtest_bypass_routing.setter
+    def speedtest_bypass_routing(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "speedtest_bypass_routing", value)
 
     @property
     @pulumi.getter
@@ -558,6 +590,7 @@ class SystemSdwan(pulumi.CustomResource):
                  neighbor_hold_down_time: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanNeighborArgs']]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanServiceArgs']]]]] = None,
+                 speedtest_bypass_routing: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanZoneArgs']]]]] = None,
@@ -590,6 +623,7 @@ class SystemSdwan(pulumi.CustomResource):
         :param pulumi.Input[int] neighbor_hold_down_time: Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanNeighborArgs']]]] neighbors: Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanServiceArgs']]]] services: Service and service group name. The structure of `service` block is documented below.
+        :param pulumi.Input[str] speedtest_bypass_routing: Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanZoneArgs']]]] zones: Zone name.
@@ -641,6 +675,7 @@ class SystemSdwan(pulumi.CustomResource):
                  neighbor_hold_down_time: Optional[pulumi.Input[int]] = None,
                  neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanNeighborArgs']]]]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanServiceArgs']]]]] = None,
+                 speedtest_bypass_routing: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanZoneArgs']]]]] = None,
@@ -651,6 +686,8 @@ class SystemSdwan(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -669,6 +706,7 @@ class SystemSdwan(pulumi.CustomResource):
             __props__.__dict__["neighbor_hold_down_time"] = neighbor_hold_down_time
             __props__.__dict__["neighbors"] = neighbors
             __props__.__dict__["services"] = services
+            __props__.__dict__["speedtest_bypass_routing"] = speedtest_bypass_routing
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["zones"] = zones
@@ -695,6 +733,7 @@ class SystemSdwan(pulumi.CustomResource):
             neighbor_hold_down_time: Optional[pulumi.Input[int]] = None,
             neighbors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanNeighborArgs']]]]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanServiceArgs']]]]] = None,
+            speedtest_bypass_routing: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanZoneArgs']]]]] = None) -> 'SystemSdwan':
@@ -718,6 +757,7 @@ class SystemSdwan(pulumi.CustomResource):
         :param pulumi.Input[int] neighbor_hold_down_time: Waiting period in seconds when switching from the secondary neighbor to the primary neighbor when hold-down is disabled. (0 - 10000000, default = 0).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanNeighborArgs']]]] neighbors: Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status. The structure of `neighbor` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanServiceArgs']]]] services: Service and service group name. The structure of `service` block is documented below.
+        :param pulumi.Input[str] speedtest_bypass_routing: Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] status: Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdwanZoneArgs']]]] zones: Zone name.
@@ -739,6 +779,7 @@ class SystemSdwan(pulumi.CustomResource):
         __props__.__dict__["neighbor_hold_down_time"] = neighbor_hold_down_time
         __props__.__dict__["neighbors"] = neighbors
         __props__.__dict__["services"] = services
+        __props__.__dict__["speedtest_bypass_routing"] = speedtest_bypass_routing
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["zones"] = zones
@@ -847,6 +888,14 @@ class SystemSdwan(pulumi.CustomResource):
         Service and service group name. The structure of `service` block is documented below.
         """
         return pulumi.get(self, "services")
+
+    @property
+    @pulumi.getter(name="speedtestBypassRouting")
+    def speedtest_bypass_routing(self) -> pulumi.Output[str]:
+        """
+        Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "speedtest_bypass_routing")
 
     @property
     @pulumi.getter

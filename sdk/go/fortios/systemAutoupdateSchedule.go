@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewSystemAutoupdateSchedule(ctx *pulumi.Context,
 	if args.Time == nil {
 		return nil, errors.New("invalid value for required argument 'Time'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutoupdateSchedule
 	err := ctx.RegisterResource("fortios:index/systemAutoupdateSchedule:SystemAutoupdateSchedule", name, args, &resource, opts...)
 	if err != nil {
@@ -169,7 +170,7 @@ type SystemAutoupdateScheduleInput interface {
 }
 
 func (*SystemAutoupdateSchedule) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoupdateSchedule)(nil))
+	return reflect.TypeOf((**SystemAutoupdateSchedule)(nil)).Elem()
 }
 
 func (i *SystemAutoupdateSchedule) ToSystemAutoupdateScheduleOutput() SystemAutoupdateScheduleOutput {
@@ -178,35 +179,6 @@ func (i *SystemAutoupdateSchedule) ToSystemAutoupdateScheduleOutput() SystemAuto
 
 func (i *SystemAutoupdateSchedule) ToSystemAutoupdateScheduleOutputWithContext(ctx context.Context) SystemAutoupdateScheduleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateScheduleOutput)
-}
-
-func (i *SystemAutoupdateSchedule) ToSystemAutoupdateSchedulePtrOutput() SystemAutoupdateSchedulePtrOutput {
-	return i.ToSystemAutoupdateSchedulePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutoupdateSchedule) ToSystemAutoupdateSchedulePtrOutputWithContext(ctx context.Context) SystemAutoupdateSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateSchedulePtrOutput)
-}
-
-type SystemAutoupdateSchedulePtrInput interface {
-	pulumi.Input
-
-	ToSystemAutoupdateSchedulePtrOutput() SystemAutoupdateSchedulePtrOutput
-	ToSystemAutoupdateSchedulePtrOutputWithContext(ctx context.Context) SystemAutoupdateSchedulePtrOutput
-}
-
-type systemAutoupdateSchedulePtrType SystemAutoupdateScheduleArgs
-
-func (*systemAutoupdateSchedulePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoupdateSchedule)(nil))
-}
-
-func (i *systemAutoupdateSchedulePtrType) ToSystemAutoupdateSchedulePtrOutput() SystemAutoupdateSchedulePtrOutput {
-	return i.ToSystemAutoupdateSchedulePtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutoupdateSchedulePtrType) ToSystemAutoupdateSchedulePtrOutputWithContext(ctx context.Context) SystemAutoupdateSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateSchedulePtrOutput)
 }
 
 // SystemAutoupdateScheduleArrayInput is an input type that accepts SystemAutoupdateScheduleArray and SystemAutoupdateScheduleArrayOutput values.
@@ -223,7 +195,7 @@ type SystemAutoupdateScheduleArrayInput interface {
 type SystemAutoupdateScheduleArray []SystemAutoupdateScheduleInput
 
 func (SystemAutoupdateScheduleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutoupdateSchedule)(nil))
+	return reflect.TypeOf((*[]*SystemAutoupdateSchedule)(nil)).Elem()
 }
 
 func (i SystemAutoupdateScheduleArray) ToSystemAutoupdateScheduleArrayOutput() SystemAutoupdateScheduleArrayOutput {
@@ -248,7 +220,7 @@ type SystemAutoupdateScheduleMapInput interface {
 type SystemAutoupdateScheduleMap map[string]SystemAutoupdateScheduleInput
 
 func (SystemAutoupdateScheduleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutoupdateSchedule)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoupdateSchedule)(nil)).Elem()
 }
 
 func (i SystemAutoupdateScheduleMap) ToSystemAutoupdateScheduleMapOutput() SystemAutoupdateScheduleMapOutput {
@@ -259,12 +231,10 @@ func (i SystemAutoupdateScheduleMap) ToSystemAutoupdateScheduleMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateScheduleMapOutput)
 }
 
-type SystemAutoupdateScheduleOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutoupdateScheduleOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateScheduleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoupdateSchedule)(nil))
+	return reflect.TypeOf((**SystemAutoupdateSchedule)(nil)).Elem()
 }
 
 func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateScheduleOutput() SystemAutoupdateScheduleOutput {
@@ -275,36 +245,10 @@ func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateScheduleOutputWithCont
 	return o
 }
 
-func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateSchedulePtrOutput() SystemAutoupdateSchedulePtrOutput {
-	return o.ToSystemAutoupdateSchedulePtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutoupdateScheduleOutput) ToSystemAutoupdateSchedulePtrOutputWithContext(ctx context.Context) SystemAutoupdateSchedulePtrOutput {
-	return o.ApplyT(func(v SystemAutoupdateSchedule) *SystemAutoupdateSchedule {
-		return &v
-	}).(SystemAutoupdateSchedulePtrOutput)
-}
-
-type SystemAutoupdateSchedulePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutoupdateSchedulePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoupdateSchedule)(nil))
-}
-
-func (o SystemAutoupdateSchedulePtrOutput) ToSystemAutoupdateSchedulePtrOutput() SystemAutoupdateSchedulePtrOutput {
-	return o
-}
-
-func (o SystemAutoupdateSchedulePtrOutput) ToSystemAutoupdateSchedulePtrOutputWithContext(ctx context.Context) SystemAutoupdateSchedulePtrOutput {
-	return o
-}
-
 type SystemAutoupdateScheduleArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateScheduleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutoupdateSchedule)(nil))
+	return reflect.TypeOf((*[]*SystemAutoupdateSchedule)(nil)).Elem()
 }
 
 func (o SystemAutoupdateScheduleArrayOutput) ToSystemAutoupdateScheduleArrayOutput() SystemAutoupdateScheduleArrayOutput {
@@ -316,15 +260,15 @@ func (o SystemAutoupdateScheduleArrayOutput) ToSystemAutoupdateScheduleArrayOutp
 }
 
 func (o SystemAutoupdateScheduleArrayOutput) Index(i pulumi.IntInput) SystemAutoupdateScheduleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutoupdateSchedule {
-		return vs[0].([]SystemAutoupdateSchedule)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoupdateSchedule {
+		return vs[0].([]*SystemAutoupdateSchedule)[vs[1].(int)]
 	}).(SystemAutoupdateScheduleOutput)
 }
 
 type SystemAutoupdateScheduleMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateScheduleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutoupdateSchedule)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoupdateSchedule)(nil)).Elem()
 }
 
 func (o SystemAutoupdateScheduleMapOutput) ToSystemAutoupdateScheduleMapOutput() SystemAutoupdateScheduleMapOutput {
@@ -336,14 +280,16 @@ func (o SystemAutoupdateScheduleMapOutput) ToSystemAutoupdateScheduleMapOutputWi
 }
 
 func (o SystemAutoupdateScheduleMapOutput) MapIndex(k pulumi.StringInput) SystemAutoupdateScheduleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutoupdateSchedule {
-		return vs[0].(map[string]SystemAutoupdateSchedule)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutoupdateSchedule {
+		return vs[0].(map[string]*SystemAutoupdateSchedule)[vs[1].(string)]
 	}).(SystemAutoupdateScheduleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdateScheduleInput)(nil)).Elem(), &SystemAutoupdateSchedule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdateScheduleArrayInput)(nil)).Elem(), SystemAutoupdateScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdateScheduleMapInput)(nil)).Elem(), SystemAutoupdateScheduleMap{})
 	pulumi.RegisterOutputType(SystemAutoupdateScheduleOutput{})
-	pulumi.RegisterOutputType(SystemAutoupdateSchedulePtrOutput{})
 	pulumi.RegisterOutputType(SystemAutoupdateScheduleArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutoupdateScheduleMapOutput{})
 }

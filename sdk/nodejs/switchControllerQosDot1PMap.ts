@@ -121,41 +121,39 @@ export class SwitchControllerQosDot1PMap extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerQosDot1PMapArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerQosDot1PMapArgs | SwitchControllerQosDot1PMapState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerQosDot1PMapState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["egressPriTagging"] = state ? state.egressPriTagging : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["priority0"] = state ? state.priority0 : undefined;
-            inputs["priority1"] = state ? state.priority1 : undefined;
-            inputs["priority2"] = state ? state.priority2 : undefined;
-            inputs["priority3"] = state ? state.priority3 : undefined;
-            inputs["priority4"] = state ? state.priority4 : undefined;
-            inputs["priority5"] = state ? state.priority5 : undefined;
-            inputs["priority6"] = state ? state.priority6 : undefined;
-            inputs["priority7"] = state ? state.priority7 : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["egressPriTagging"] = state ? state.egressPriTagging : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["priority0"] = state ? state.priority0 : undefined;
+            resourceInputs["priority1"] = state ? state.priority1 : undefined;
+            resourceInputs["priority2"] = state ? state.priority2 : undefined;
+            resourceInputs["priority3"] = state ? state.priority3 : undefined;
+            resourceInputs["priority4"] = state ? state.priority4 : undefined;
+            resourceInputs["priority5"] = state ? state.priority5 : undefined;
+            resourceInputs["priority6"] = state ? state.priority6 : undefined;
+            resourceInputs["priority7"] = state ? state.priority7 : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerQosDot1PMapArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["egressPriTagging"] = args ? args.egressPriTagging : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["priority0"] = args ? args.priority0 : undefined;
-            inputs["priority1"] = args ? args.priority1 : undefined;
-            inputs["priority2"] = args ? args.priority2 : undefined;
-            inputs["priority3"] = args ? args.priority3 : undefined;
-            inputs["priority4"] = args ? args.priority4 : undefined;
-            inputs["priority5"] = args ? args.priority5 : undefined;
-            inputs["priority6"] = args ? args.priority6 : undefined;
-            inputs["priority7"] = args ? args.priority7 : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["egressPriTagging"] = args ? args.egressPriTagging : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["priority0"] = args ? args.priority0 : undefined;
+            resourceInputs["priority1"] = args ? args.priority1 : undefined;
+            resourceInputs["priority2"] = args ? args.priority2 : undefined;
+            resourceInputs["priority3"] = args ? args.priority3 : undefined;
+            resourceInputs["priority4"] = args ? args.priority4 : undefined;
+            resourceInputs["priority5"] = args ? args.priority5 : undefined;
+            resourceInputs["priority6"] = args ? args.priority6 : undefined;
+            resourceInputs["priority7"] = args ? args.priority7 : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerQosDot1PMap.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerQosDot1PMap.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `>= 6.4.0`.
+ * Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
  *
  * ## Import
  *
@@ -99,39 +99,37 @@ export class SwitchControllerNacDevice extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerNacDeviceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerNacDeviceArgs | SwitchControllerNacDeviceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerNacDeviceState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["lastKnownPort"] = state ? state.lastKnownPort : undefined;
-            inputs["lastKnownSwitch"] = state ? state.lastKnownSwitch : undefined;
-            inputs["lastSeen"] = state ? state.lastSeen : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["macPolicy"] = state ? state.macPolicy : undefined;
-            inputs["matchedNacPolicy"] = state ? state.matchedNacPolicy : undefined;
-            inputs["portPolicy"] = state ? state.portPolicy : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["lastKnownPort"] = state ? state.lastKnownPort : undefined;
+            resourceInputs["lastKnownSwitch"] = state ? state.lastKnownSwitch : undefined;
+            resourceInputs["lastSeen"] = state ? state.lastSeen : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["macPolicy"] = state ? state.macPolicy : undefined;
+            resourceInputs["matchedNacPolicy"] = state ? state.matchedNacPolicy : undefined;
+            resourceInputs["portPolicy"] = state ? state.portPolicy : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerNacDeviceArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["lastKnownPort"] = args ? args.lastKnownPort : undefined;
-            inputs["lastKnownSwitch"] = args ? args.lastKnownSwitch : undefined;
-            inputs["lastSeen"] = args ? args.lastSeen : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["macPolicy"] = args ? args.macPolicy : undefined;
-            inputs["matchedNacPolicy"] = args ? args.matchedNacPolicy : undefined;
-            inputs["portPolicy"] = args ? args.portPolicy : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["lastKnownPort"] = args ? args.lastKnownPort : undefined;
+            resourceInputs["lastKnownSwitch"] = args ? args.lastKnownSwitch : undefined;
+            resourceInputs["lastSeen"] = args ? args.lastSeen : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["macPolicy"] = args ? args.macPolicy : undefined;
+            resourceInputs["matchedNacPolicy"] = args ? args.matchedNacPolicy : undefined;
+            resourceInputs["portPolicy"] = args ? args.portPolicy : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerNacDevice.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerNacDevice.__pulumiType, name, resourceInputs, opts);
     }
 }
 

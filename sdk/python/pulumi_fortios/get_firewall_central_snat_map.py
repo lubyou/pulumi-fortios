@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallCentralSnatMapResult',
     'AwaitableGetFirewallCentralSnatMapResult',
     'get_firewall_central_snat_map',
+    'get_firewall_central_snat_map_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetFirewallCentralSnatMapResult:
     """
     A collection of values returned by GetFirewallCentralSnatMap.
     """
-    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dstintfs=None, id=None, nat=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
+    def __init__(__self__, comments=None, dst_addr6s=None, dst_addrs=None, dstintfs=None, id=None, nat=None, nat46=None, nat64=None, nat_ippool6s=None, nat_ippools=None, nat_port=None, orig_addr6s=None, orig_addrs=None, orig_port=None, policyid=None, protocol=None, srcintfs=None, status=None, type=None, uuid=None, vdomparam=None):
         if comments and not isinstance(comments, str):
             raise TypeError("Expected argument 'comments' to be a str")
         pulumi.set(__self__, "comments", comments)
@@ -39,6 +40,12 @@ class GetFirewallCentralSnatMapResult:
         if nat and not isinstance(nat, str):
             raise TypeError("Expected argument 'nat' to be a str")
         pulumi.set(__self__, "nat", nat)
+        if nat46 and not isinstance(nat46, str):
+            raise TypeError("Expected argument 'nat46' to be a str")
+        pulumi.set(__self__, "nat46", nat46)
+        if nat64 and not isinstance(nat64, str):
+            raise TypeError("Expected argument 'nat64' to be a str")
+        pulumi.set(__self__, "nat64", nat64)
         if nat_ippool6s and not isinstance(nat_ippool6s, list):
             raise TypeError("Expected argument 'nat_ippool6s' to be a list")
         pulumi.set(__self__, "nat_ippool6s", nat_ippool6s)
@@ -126,6 +133,22 @@ class GetFirewallCentralSnatMapResult:
         Enable/disable source NAT.
         """
         return pulumi.get(self, "nat")
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> str:
+        """
+        Enable/disable NAT46.
+        """
+        return pulumi.get(self, "nat46")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> str:
+        """
+        Enable/disable NAT64.
+        """
+        return pulumi.get(self, "nat64")
 
     @property
     @pulumi.getter(name="natIppool6s")
@@ -241,6 +264,8 @@ class AwaitableGetFirewallCentralSnatMapResult(GetFirewallCentralSnatMapResult):
             dstintfs=self.dstintfs,
             id=self.id,
             nat=self.nat,
+            nat46=self.nat46,
+            nat64=self.nat64,
             nat_ippool6s=self.nat_ippool6s,
             nat_ippools=self.nat_ippools,
             nat_port=self.nat_port,
@@ -273,6 +298,8 @@ def get_firewall_central_snat_map(policyid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallCentralSnatMap:GetFirewallCentralSnatMap', __args__, opts=opts, typ=GetFirewallCentralSnatMapResult).value
 
     return AwaitableGetFirewallCentralSnatMapResult(
@@ -282,6 +309,8 @@ def get_firewall_central_snat_map(policyid: Optional[int] = None,
         dstintfs=__ret__.dstintfs,
         id=__ret__.id,
         nat=__ret__.nat,
+        nat46=__ret__.nat46,
+        nat64=__ret__.nat64,
         nat_ippool6s=__ret__.nat_ippool6s,
         nat_ippools=__ret__.nat_ippools,
         nat_port=__ret__.nat_port,
@@ -295,3 +324,17 @@ def get_firewall_central_snat_map(policyid: Optional[int] = None,
         type=__ret__.type,
         uuid=__ret__.uuid,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_central_snat_map)
+def get_firewall_central_snat_map_output(policyid: Optional[pulumi.Input[int]] = None,
+                                         vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallCentralSnatMapResult]:
+    """
+    Use this data source to get information on an fortios firewall centralsnatmap
+
+
+    :param int policyid: Specify the policyid of the desired firewall centralsnatmap.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

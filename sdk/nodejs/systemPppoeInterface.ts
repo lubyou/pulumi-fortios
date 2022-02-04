@@ -144,54 +144,52 @@ export class SystemPppoeInterface extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemPppoeInterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemPppoeInterfaceArgs | SystemPppoeInterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemPppoeInterfaceState | undefined;
-            inputs["acName"] = state ? state.acName : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["dialOnDemand"] = state ? state.dialOnDemand : undefined;
-            inputs["discRetryTimeout"] = state ? state.discRetryTimeout : undefined;
-            inputs["idleTimeout"] = state ? state.idleTimeout : undefined;
-            inputs["ipunnumbered"] = state ? state.ipunnumbered : undefined;
-            inputs["ipv6"] = state ? state.ipv6 : undefined;
-            inputs["lcpEchoInterval"] = state ? state.lcpEchoInterval : undefined;
-            inputs["lcpMaxEchoFails"] = state ? state.lcpMaxEchoFails : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["padtRetryTimeout"] = state ? state.padtRetryTimeout : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["pppoeUnnumberedNegotiate"] = state ? state.pppoeUnnumberedNegotiate : undefined;
-            inputs["serviceName"] = state ? state.serviceName : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["acName"] = state ? state.acName : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["dialOnDemand"] = state ? state.dialOnDemand : undefined;
+            resourceInputs["discRetryTimeout"] = state ? state.discRetryTimeout : undefined;
+            resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
+            resourceInputs["ipunnumbered"] = state ? state.ipunnumbered : undefined;
+            resourceInputs["ipv6"] = state ? state.ipv6 : undefined;
+            resourceInputs["lcpEchoInterval"] = state ? state.lcpEchoInterval : undefined;
+            resourceInputs["lcpMaxEchoFails"] = state ? state.lcpMaxEchoFails : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["padtRetryTimeout"] = state ? state.padtRetryTimeout : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["pppoeUnnumberedNegotiate"] = state ? state.pppoeUnnumberedNegotiate : undefined;
+            resourceInputs["serviceName"] = state ? state.serviceName : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemPppoeInterfaceArgs | undefined;
             if ((!args || args.device === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'device'");
             }
-            inputs["acName"] = args ? args.acName : undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["device"] = args ? args.device : undefined;
-            inputs["dialOnDemand"] = args ? args.dialOnDemand : undefined;
-            inputs["discRetryTimeout"] = args ? args.discRetryTimeout : undefined;
-            inputs["idleTimeout"] = args ? args.idleTimeout : undefined;
-            inputs["ipunnumbered"] = args ? args.ipunnumbered : undefined;
-            inputs["ipv6"] = args ? args.ipv6 : undefined;
-            inputs["lcpEchoInterval"] = args ? args.lcpEchoInterval : undefined;
-            inputs["lcpMaxEchoFails"] = args ? args.lcpMaxEchoFails : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["padtRetryTimeout"] = args ? args.padtRetryTimeout : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["pppoeUnnumberedNegotiate"] = args ? args.pppoeUnnumberedNegotiate : undefined;
-            inputs["serviceName"] = args ? args.serviceName : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["acName"] = args ? args.acName : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["dialOnDemand"] = args ? args.dialOnDemand : undefined;
+            resourceInputs["discRetryTimeout"] = args ? args.discRetryTimeout : undefined;
+            resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
+            resourceInputs["ipunnumbered"] = args ? args.ipunnumbered : undefined;
+            resourceInputs["ipv6"] = args ? args.ipv6 : undefined;
+            resourceInputs["lcpEchoInterval"] = args ? args.lcpEchoInterval : undefined;
+            resourceInputs["lcpMaxEchoFails"] = args ? args.lcpMaxEchoFails : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["padtRetryTimeout"] = args ? args.padtRetryTimeout : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["pppoeUnnumberedNegotiate"] = args ? args.pppoeUnnumberedNegotiate : undefined;
+            resourceInputs["serviceName"] = args ? args.serviceName : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemPppoeInterface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemPppoeInterface.__pulumiType, name, resourceInputs, opts);
     }
 }
 

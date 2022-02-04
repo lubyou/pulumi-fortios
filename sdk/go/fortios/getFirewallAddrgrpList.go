@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallAddrgrp`.
 func GetFirewallAddrgrpList(ctx *pulumi.Context, args *GetFirewallAddrgrpListArgs, opts ...pulumi.InvokeOption) (*GetFirewallAddrgrpListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallAddrgrpListResult
 	err := ctx.Invoke("fortios:index/getFirewallAddrgrpList:GetFirewallAddrgrpList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallAddrgrpListResult struct {
 	// A list of the `FirewallAddrgrp`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallAddrgrpListOutput(ctx *pulumi.Context, args GetFirewallAddrgrpListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallAddrgrpListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallAddrgrpListResult, error) {
+			args := v.(GetFirewallAddrgrpListArgs)
+			r, err := GetFirewallAddrgrpList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallAddrgrpListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallAddrgrpList.
+type GetFirewallAddrgrpListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallAddrgrpListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallAddrgrpListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallAddrgrpList.
+type GetFirewallAddrgrpListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallAddrgrpListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallAddrgrpListResult)(nil)).Elem()
+}
+
+func (o GetFirewallAddrgrpListResultOutput) ToGetFirewallAddrgrpListResultOutput() GetFirewallAddrgrpListResultOutput {
+	return o
+}
+
+func (o GetFirewallAddrgrpListResultOutput) ToGetFirewallAddrgrpListResultOutputWithContext(ctx context.Context) GetFirewallAddrgrpListResultOutput {
+	return o
+}
+
+func (o GetFirewallAddrgrpListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallAddrgrpListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallAddrgrpListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallAddrgrpListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallAddrgrp`.
+func (o GetFirewallAddrgrpListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallAddrgrpListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallAddrgrpListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallAddrgrpListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallAddrgrpListResultOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -65,6 +65,8 @@ import (
 type LogSetting struct {
 	pulumi.CustomResourceState
 
+	// User name anonymization hash salt.
+	AnonymizationHash pulumi.StringOutput `pulumi:"anonymizationHash"`
 	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
 	BriefTrafficFormat pulumi.StringOutput `pulumi:"briefTrafficFormat"`
 	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
@@ -103,6 +105,10 @@ type LogSetting struct {
 	ResolveIp pulumi.StringOutput `pulumi:"resolveIp"`
 	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
 	ResolvePort pulumi.StringOutput `pulumi:"resolvePort"`
+	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+	RestApiGet pulumi.StringOutput `pulumi:"restApiGet"`
+	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+	RestApiSet pulumi.StringOutput `pulumi:"restApiSet"`
 	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
 	SyslogOverride pulumi.StringOutput `pulumi:"syslogOverride"`
 	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
@@ -118,6 +124,7 @@ func NewLogSetting(ctx *pulumi.Context,
 		args = &LogSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogSetting
 	err := ctx.RegisterResource("fortios:index/logSetting:LogSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -140,6 +147,8 @@ func GetLogSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogSetting resources.
 type logSettingState struct {
+	// User name anonymization hash salt.
+	AnonymizationHash *string `pulumi:"anonymizationHash"`
 	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
 	BriefTrafficFormat *string `pulumi:"briefTrafficFormat"`
 	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
@@ -178,6 +187,10 @@ type logSettingState struct {
 	ResolveIp *string `pulumi:"resolveIp"`
 	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
 	ResolvePort *string `pulumi:"resolvePort"`
+	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+	RestApiGet *string `pulumi:"restApiGet"`
+	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+	RestApiSet *string `pulumi:"restApiSet"`
 	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
 	SyslogOverride *string `pulumi:"syslogOverride"`
 	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
@@ -187,6 +200,8 @@ type logSettingState struct {
 }
 
 type LogSettingState struct {
+	// User name anonymization hash salt.
+	AnonymizationHash pulumi.StringPtrInput
 	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
 	BriefTrafficFormat pulumi.StringPtrInput
 	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
@@ -225,6 +240,10 @@ type LogSettingState struct {
 	ResolveIp pulumi.StringPtrInput
 	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
 	ResolvePort pulumi.StringPtrInput
+	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+	RestApiGet pulumi.StringPtrInput
+	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+	RestApiSet pulumi.StringPtrInput
 	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
 	SyslogOverride pulumi.StringPtrInput
 	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
@@ -238,6 +257,8 @@ func (LogSettingState) ElementType() reflect.Type {
 }
 
 type logSettingArgs struct {
+	// User name anonymization hash salt.
+	AnonymizationHash *string `pulumi:"anonymizationHash"`
 	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
 	BriefTrafficFormat *string `pulumi:"briefTrafficFormat"`
 	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
@@ -276,6 +297,10 @@ type logSettingArgs struct {
 	ResolveIp *string `pulumi:"resolveIp"`
 	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
 	ResolvePort *string `pulumi:"resolvePort"`
+	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+	RestApiGet *string `pulumi:"restApiGet"`
+	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+	RestApiSet *string `pulumi:"restApiSet"`
 	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
 	SyslogOverride *string `pulumi:"syslogOverride"`
 	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
@@ -286,6 +311,8 @@ type logSettingArgs struct {
 
 // The set of arguments for constructing a LogSetting resource.
 type LogSettingArgs struct {
+	// User name anonymization hash salt.
+	AnonymizationHash pulumi.StringPtrInput
 	// Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
 	BriefTrafficFormat pulumi.StringPtrInput
 	// Custom fields to append to all log messages. The structure of `customLogFields` block is documented below.
@@ -324,6 +351,10 @@ type LogSettingArgs struct {
 	ResolveIp pulumi.StringPtrInput
 	// Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
 	ResolvePort pulumi.StringPtrInput
+	// Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+	RestApiGet pulumi.StringPtrInput
+	// Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+	RestApiSet pulumi.StringPtrInput
 	// Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
 	SyslogOverride pulumi.StringPtrInput
 	// Enable/disable anonymizing user names in log messages. Valid values: `enable`, `disable`.
@@ -344,7 +375,7 @@ type LogSettingInput interface {
 }
 
 func (*LogSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSetting)(nil))
+	return reflect.TypeOf((**LogSetting)(nil)).Elem()
 }
 
 func (i *LogSetting) ToLogSettingOutput() LogSettingOutput {
@@ -353,35 +384,6 @@ func (i *LogSetting) ToLogSettingOutput() LogSettingOutput {
 
 func (i *LogSetting) ToLogSettingOutputWithContext(ctx context.Context) LogSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSettingOutput)
-}
-
-func (i *LogSetting) ToLogSettingPtrOutput() LogSettingPtrOutput {
-	return i.ToLogSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogSetting) ToLogSettingPtrOutputWithContext(ctx context.Context) LogSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSettingPtrOutput)
-}
-
-type LogSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogSettingPtrOutput() LogSettingPtrOutput
-	ToLogSettingPtrOutputWithContext(ctx context.Context) LogSettingPtrOutput
-}
-
-type logSettingPtrType LogSettingArgs
-
-func (*logSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSetting)(nil))
-}
-
-func (i *logSettingPtrType) ToLogSettingPtrOutput() LogSettingPtrOutput {
-	return i.ToLogSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logSettingPtrType) ToLogSettingPtrOutputWithContext(ctx context.Context) LogSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSettingPtrOutput)
 }
 
 // LogSettingArrayInput is an input type that accepts LogSettingArray and LogSettingArrayOutput values.
@@ -398,7 +400,7 @@ type LogSettingArrayInput interface {
 type LogSettingArray []LogSettingInput
 
 func (LogSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogSetting)(nil))
+	return reflect.TypeOf((*[]*LogSetting)(nil)).Elem()
 }
 
 func (i LogSettingArray) ToLogSettingArrayOutput() LogSettingArrayOutput {
@@ -423,7 +425,7 @@ type LogSettingMapInput interface {
 type LogSettingMap map[string]LogSettingInput
 
 func (LogSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogSetting)(nil)).Elem()
 }
 
 func (i LogSettingMap) ToLogSettingMapOutput() LogSettingMapOutput {
@@ -434,12 +436,10 @@ func (i LogSettingMap) ToLogSettingMapOutputWithContext(ctx context.Context) Log
 	return pulumi.ToOutputWithContext(ctx, i).(LogSettingMapOutput)
 }
 
-type LogSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogSettingOutput struct{ *pulumi.OutputState }
 
 func (LogSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSetting)(nil))
+	return reflect.TypeOf((**LogSetting)(nil)).Elem()
 }
 
 func (o LogSettingOutput) ToLogSettingOutput() LogSettingOutput {
@@ -450,36 +450,10 @@ func (o LogSettingOutput) ToLogSettingOutputWithContext(ctx context.Context) Log
 	return o
 }
 
-func (o LogSettingOutput) ToLogSettingPtrOutput() LogSettingPtrOutput {
-	return o.ToLogSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogSettingOutput) ToLogSettingPtrOutputWithContext(ctx context.Context) LogSettingPtrOutput {
-	return o.ApplyT(func(v LogSetting) *LogSetting {
-		return &v
-	}).(LogSettingPtrOutput)
-}
-
-type LogSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSetting)(nil))
-}
-
-func (o LogSettingPtrOutput) ToLogSettingPtrOutput() LogSettingPtrOutput {
-	return o
-}
-
-func (o LogSettingPtrOutput) ToLogSettingPtrOutputWithContext(ctx context.Context) LogSettingPtrOutput {
-	return o
-}
-
 type LogSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogSetting)(nil))
+	return reflect.TypeOf((*[]*LogSetting)(nil)).Elem()
 }
 
 func (o LogSettingArrayOutput) ToLogSettingArrayOutput() LogSettingArrayOutput {
@@ -491,15 +465,15 @@ func (o LogSettingArrayOutput) ToLogSettingArrayOutputWithContext(ctx context.Co
 }
 
 func (o LogSettingArrayOutput) Index(i pulumi.IntInput) LogSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogSetting {
-		return vs[0].([]LogSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSetting {
+		return vs[0].([]*LogSetting)[vs[1].(int)]
 	}).(LogSettingOutput)
 }
 
 type LogSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogSetting)(nil)).Elem()
 }
 
 func (o LogSettingMapOutput) ToLogSettingMapOutput() LogSettingMapOutput {
@@ -511,14 +485,16 @@ func (o LogSettingMapOutput) ToLogSettingMapOutputWithContext(ctx context.Contex
 }
 
 func (o LogSettingMapOutput) MapIndex(k pulumi.StringInput) LogSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogSetting {
-		return vs[0].(map[string]LogSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogSetting {
+		return vs[0].(map[string]*LogSetting)[vs[1].(string)]
 	}).(LogSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSettingInput)(nil)).Elem(), &LogSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSettingArrayInput)(nil)).Elem(), LogSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSettingMapInput)(nil)).Elem(), LogSettingMap{})
 	pulumi.RegisterOutputType(LogSettingOutput{})
-	pulumi.RegisterOutputType(LogSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogSettingMapOutput{})
 }

@@ -83,28 +83,26 @@ export class RouterAuthPath extends pulumi.CustomResource {
      */
     constructor(name: string, args: RouterAuthPathArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterAuthPathArgs | RouterAuthPathState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterAuthPathState | undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterAuthPathArgs | undefined;
             if ((!args || args.device === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'device'");
             }
-            inputs["device"] = args ? args.device : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterAuthPath.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterAuthPath.__pulumiType, name, resourceInputs, opts);
     }
 }
 

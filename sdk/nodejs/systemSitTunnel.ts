@@ -60,6 +60,10 @@ export class SystemSitTunnel extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    public readonly autoAsicOffload!: pulumi.Output<string>;
+    /**
      * Destination IP address of the tunnel.
      */
     public readonly destination!: pulumi.Output<string>;
@@ -80,6 +84,10 @@ export class SystemSitTunnel extends pulumi.CustomResource {
      */
     public readonly source!: pulumi.Output<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    public readonly useSdwan!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -93,32 +101,34 @@ export class SystemSitTunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemSitTunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSitTunnelArgs | SystemSitTunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSitTunnelState | undefined;
-            inputs["destination"] = state ? state.destination : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
+            resourceInputs["destination"] = state ? state.destination : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["useSdwan"] = state ? state.useSdwan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSitTunnelArgs | undefined;
             if ((!args || args.destination === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'destination'");
             }
-            inputs["destination"] = args ? args.destination : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
+            resourceInputs["destination"] = args ? args.destination : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["useSdwan"] = args ? args.useSdwan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSitTunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSitTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -126,6 +136,10 @@ export class SystemSitTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemSitTunnel resources.
  */
 export interface SystemSitTunnelState {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * Destination IP address of the tunnel.
      */
@@ -147,6 +161,10 @@ export interface SystemSitTunnelState {
      */
     source?: pulumi.Input<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -156,6 +174,10 @@ export interface SystemSitTunnelState {
  * The set of arguments for constructing a SystemSitTunnel resource.
  */
 export interface SystemSitTunnelArgs {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * Destination IP address of the tunnel.
      */
@@ -176,6 +198,10 @@ export interface SystemSitTunnelArgs {
      * Source IP address of the tunnel.
      */
     source?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

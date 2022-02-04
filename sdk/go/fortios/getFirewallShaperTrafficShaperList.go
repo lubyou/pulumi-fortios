@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallShaperTrafficShaper`.
 func GetFirewallShaperTrafficShaperList(ctx *pulumi.Context, args *GetFirewallShaperTrafficShaperListArgs, opts ...pulumi.InvokeOption) (*GetFirewallShaperTrafficShaperListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallShaperTrafficShaperListResult
 	err := ctx.Invoke("fortios:index/getFirewallShaperTrafficShaperList:GetFirewallShaperTrafficShaperList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallShaperTrafficShaperListResult struct {
 	// A list of the `FirewallShaperTrafficShaper`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallShaperTrafficShaperListOutput(ctx *pulumi.Context, args GetFirewallShaperTrafficShaperListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallShaperTrafficShaperListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallShaperTrafficShaperListResult, error) {
+			args := v.(GetFirewallShaperTrafficShaperListArgs)
+			r, err := GetFirewallShaperTrafficShaperList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallShaperTrafficShaperListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallShaperTrafficShaperList.
+type GetFirewallShaperTrafficShaperListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallShaperTrafficShaperListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallShaperTrafficShaperListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallShaperTrafficShaperList.
+type GetFirewallShaperTrafficShaperListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallShaperTrafficShaperListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallShaperTrafficShaperListResult)(nil)).Elem()
+}
+
+func (o GetFirewallShaperTrafficShaperListResultOutput) ToGetFirewallShaperTrafficShaperListResultOutput() GetFirewallShaperTrafficShaperListResultOutput {
+	return o
+}
+
+func (o GetFirewallShaperTrafficShaperListResultOutput) ToGetFirewallShaperTrafficShaperListResultOutputWithContext(ctx context.Context) GetFirewallShaperTrafficShaperListResultOutput {
+	return o
+}
+
+func (o GetFirewallShaperTrafficShaperListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallShaperTrafficShaperListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallShaperTrafficShaperListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallShaperTrafficShaperListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallShaperTrafficShaper`.
+func (o GetFirewallShaperTrafficShaperListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallShaperTrafficShaperListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallShaperTrafficShaperListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallShaperTrafficShaperListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallShaperTrafficShaperListResultOutput{})
 }

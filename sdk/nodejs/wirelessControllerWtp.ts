@@ -79,6 +79,10 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
      */
     public readonly firmwareProvision!: pulumi.Output<string>;
     /**
+     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+     */
+    public readonly firmwareProvisionLatest!: pulumi.Output<string>;
+    /**
      * Enable/disable WTP image download. Valid values: `enable`, `disable`.
      */
     public readonly imageDownload!: pulumi.Output<string>;
@@ -228,106 +232,106 @@ export class WirelessControllerWtp extends pulumi.CustomResource {
      */
     constructor(name: string, args: WirelessControllerWtpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerWtpArgs | WirelessControllerWtpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerWtpState | undefined;
-            inputs["admin"] = state ? state.admin : undefined;
-            inputs["allowaccess"] = state ? state.allowaccess : undefined;
-            inputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
-            inputs["bonjourProfile"] = state ? state.bonjourProfile : undefined;
-            inputs["coordinateLatitude"] = state ? state.coordinateLatitude : undefined;
-            inputs["coordinateLongitude"] = state ? state.coordinateLongitude : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["firmwareProvision"] = state ? state.firmwareProvision : undefined;
-            inputs["imageDownload"] = state ? state.imageDownload : undefined;
-            inputs["index"] = state ? state.index : undefined;
-            inputs["ipFragmentPreventing"] = state ? state.ipFragmentPreventing : undefined;
-            inputs["lan"] = state ? state.lan : undefined;
-            inputs["ledState"] = state ? state.ledState : undefined;
-            inputs["location"] = state ? state.location : undefined;
-            inputs["loginPasswd"] = state ? state.loginPasswd : undefined;
-            inputs["loginPasswdChange"] = state ? state.loginPasswdChange : undefined;
-            inputs["meshBridgeEnable"] = state ? state.meshBridgeEnable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["overrideAllowaccess"] = state ? state.overrideAllowaccess : undefined;
-            inputs["overrideIpFragment"] = state ? state.overrideIpFragment : undefined;
-            inputs["overrideLan"] = state ? state.overrideLan : undefined;
-            inputs["overrideLedState"] = state ? state.overrideLedState : undefined;
-            inputs["overrideLoginPasswdChange"] = state ? state.overrideLoginPasswdChange : undefined;
-            inputs["overrideSplitTunnel"] = state ? state.overrideSplitTunnel : undefined;
-            inputs["overrideWanPortMode"] = state ? state.overrideWanPortMode : undefined;
-            inputs["radio1"] = state ? state.radio1 : undefined;
-            inputs["radio2"] = state ? state.radio2 : undefined;
-            inputs["radio3"] = state ? state.radio3 : undefined;
-            inputs["radio4"] = state ? state.radio4 : undefined;
-            inputs["region"] = state ? state.region : undefined;
-            inputs["regionX"] = state ? state.regionX : undefined;
-            inputs["regionY"] = state ? state.regionY : undefined;
-            inputs["splitTunnelingAclLocalApSubnet"] = state ? state.splitTunnelingAclLocalApSubnet : undefined;
-            inputs["splitTunnelingAclPath"] = state ? state.splitTunnelingAclPath : undefined;
-            inputs["splitTunnelingAcls"] = state ? state.splitTunnelingAcls : undefined;
-            inputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
-            inputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wanPortMode"] = state ? state.wanPortMode : undefined;
-            inputs["wtpId"] = state ? state.wtpId : undefined;
-            inputs["wtpMode"] = state ? state.wtpMode : undefined;
-            inputs["wtpProfile"] = state ? state.wtpProfile : undefined;
+            resourceInputs["admin"] = state ? state.admin : undefined;
+            resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
+            resourceInputs["apcfgProfile"] = state ? state.apcfgProfile : undefined;
+            resourceInputs["bonjourProfile"] = state ? state.bonjourProfile : undefined;
+            resourceInputs["coordinateLatitude"] = state ? state.coordinateLatitude : undefined;
+            resourceInputs["coordinateLongitude"] = state ? state.coordinateLongitude : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["firmwareProvision"] = state ? state.firmwareProvision : undefined;
+            resourceInputs["firmwareProvisionLatest"] = state ? state.firmwareProvisionLatest : undefined;
+            resourceInputs["imageDownload"] = state ? state.imageDownload : undefined;
+            resourceInputs["index"] = state ? state.index : undefined;
+            resourceInputs["ipFragmentPreventing"] = state ? state.ipFragmentPreventing : undefined;
+            resourceInputs["lan"] = state ? state.lan : undefined;
+            resourceInputs["ledState"] = state ? state.ledState : undefined;
+            resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["loginPasswd"] = state ? state.loginPasswd : undefined;
+            resourceInputs["loginPasswdChange"] = state ? state.loginPasswdChange : undefined;
+            resourceInputs["meshBridgeEnable"] = state ? state.meshBridgeEnable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overrideAllowaccess"] = state ? state.overrideAllowaccess : undefined;
+            resourceInputs["overrideIpFragment"] = state ? state.overrideIpFragment : undefined;
+            resourceInputs["overrideLan"] = state ? state.overrideLan : undefined;
+            resourceInputs["overrideLedState"] = state ? state.overrideLedState : undefined;
+            resourceInputs["overrideLoginPasswdChange"] = state ? state.overrideLoginPasswdChange : undefined;
+            resourceInputs["overrideSplitTunnel"] = state ? state.overrideSplitTunnel : undefined;
+            resourceInputs["overrideWanPortMode"] = state ? state.overrideWanPortMode : undefined;
+            resourceInputs["radio1"] = state ? state.radio1 : undefined;
+            resourceInputs["radio2"] = state ? state.radio2 : undefined;
+            resourceInputs["radio3"] = state ? state.radio3 : undefined;
+            resourceInputs["radio4"] = state ? state.radio4 : undefined;
+            resourceInputs["region"] = state ? state.region : undefined;
+            resourceInputs["regionX"] = state ? state.regionX : undefined;
+            resourceInputs["regionY"] = state ? state.regionY : undefined;
+            resourceInputs["splitTunnelingAclLocalApSubnet"] = state ? state.splitTunnelingAclLocalApSubnet : undefined;
+            resourceInputs["splitTunnelingAclPath"] = state ? state.splitTunnelingAclPath : undefined;
+            resourceInputs["splitTunnelingAcls"] = state ? state.splitTunnelingAcls : undefined;
+            resourceInputs["tunMtuDownlink"] = state ? state.tunMtuDownlink : undefined;
+            resourceInputs["tunMtuUplink"] = state ? state.tunMtuUplink : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wanPortMode"] = state ? state.wanPortMode : undefined;
+            resourceInputs["wtpId"] = state ? state.wtpId : undefined;
+            resourceInputs["wtpMode"] = state ? state.wtpMode : undefined;
+            resourceInputs["wtpProfile"] = state ? state.wtpProfile : undefined;
         } else {
             const args = argsOrState as WirelessControllerWtpArgs | undefined;
             if ((!args || args.wtpProfile === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'wtpProfile'");
             }
-            inputs["admin"] = args ? args.admin : undefined;
-            inputs["allowaccess"] = args ? args.allowaccess : undefined;
-            inputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
-            inputs["bonjourProfile"] = args ? args.bonjourProfile : undefined;
-            inputs["coordinateLatitude"] = args ? args.coordinateLatitude : undefined;
-            inputs["coordinateLongitude"] = args ? args.coordinateLongitude : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["firmwareProvision"] = args ? args.firmwareProvision : undefined;
-            inputs["imageDownload"] = args ? args.imageDownload : undefined;
-            inputs["index"] = args ? args.index : undefined;
-            inputs["ipFragmentPreventing"] = args ? args.ipFragmentPreventing : undefined;
-            inputs["lan"] = args ? args.lan : undefined;
-            inputs["ledState"] = args ? args.ledState : undefined;
-            inputs["location"] = args ? args.location : undefined;
-            inputs["loginPasswd"] = args ? args.loginPasswd : undefined;
-            inputs["loginPasswdChange"] = args ? args.loginPasswdChange : undefined;
-            inputs["meshBridgeEnable"] = args ? args.meshBridgeEnable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["overrideAllowaccess"] = args ? args.overrideAllowaccess : undefined;
-            inputs["overrideIpFragment"] = args ? args.overrideIpFragment : undefined;
-            inputs["overrideLan"] = args ? args.overrideLan : undefined;
-            inputs["overrideLedState"] = args ? args.overrideLedState : undefined;
-            inputs["overrideLoginPasswdChange"] = args ? args.overrideLoginPasswdChange : undefined;
-            inputs["overrideSplitTunnel"] = args ? args.overrideSplitTunnel : undefined;
-            inputs["overrideWanPortMode"] = args ? args.overrideWanPortMode : undefined;
-            inputs["radio1"] = args ? args.radio1 : undefined;
-            inputs["radio2"] = args ? args.radio2 : undefined;
-            inputs["radio3"] = args ? args.radio3 : undefined;
-            inputs["radio4"] = args ? args.radio4 : undefined;
-            inputs["region"] = args ? args.region : undefined;
-            inputs["regionX"] = args ? args.regionX : undefined;
-            inputs["regionY"] = args ? args.regionY : undefined;
-            inputs["splitTunnelingAclLocalApSubnet"] = args ? args.splitTunnelingAclLocalApSubnet : undefined;
-            inputs["splitTunnelingAclPath"] = args ? args.splitTunnelingAclPath : undefined;
-            inputs["splitTunnelingAcls"] = args ? args.splitTunnelingAcls : undefined;
-            inputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
-            inputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wanPortMode"] = args ? args.wanPortMode : undefined;
-            inputs["wtpId"] = args ? args.wtpId : undefined;
-            inputs["wtpMode"] = args ? args.wtpMode : undefined;
-            inputs["wtpProfile"] = args ? args.wtpProfile : undefined;
+            resourceInputs["admin"] = args ? args.admin : undefined;
+            resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
+            resourceInputs["apcfgProfile"] = args ? args.apcfgProfile : undefined;
+            resourceInputs["bonjourProfile"] = args ? args.bonjourProfile : undefined;
+            resourceInputs["coordinateLatitude"] = args ? args.coordinateLatitude : undefined;
+            resourceInputs["coordinateLongitude"] = args ? args.coordinateLongitude : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["firmwareProvision"] = args ? args.firmwareProvision : undefined;
+            resourceInputs["firmwareProvisionLatest"] = args ? args.firmwareProvisionLatest : undefined;
+            resourceInputs["imageDownload"] = args ? args.imageDownload : undefined;
+            resourceInputs["index"] = args ? args.index : undefined;
+            resourceInputs["ipFragmentPreventing"] = args ? args.ipFragmentPreventing : undefined;
+            resourceInputs["lan"] = args ? args.lan : undefined;
+            resourceInputs["ledState"] = args ? args.ledState : undefined;
+            resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["loginPasswd"] = args ? args.loginPasswd : undefined;
+            resourceInputs["loginPasswdChange"] = args ? args.loginPasswdChange : undefined;
+            resourceInputs["meshBridgeEnable"] = args ? args.meshBridgeEnable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overrideAllowaccess"] = args ? args.overrideAllowaccess : undefined;
+            resourceInputs["overrideIpFragment"] = args ? args.overrideIpFragment : undefined;
+            resourceInputs["overrideLan"] = args ? args.overrideLan : undefined;
+            resourceInputs["overrideLedState"] = args ? args.overrideLedState : undefined;
+            resourceInputs["overrideLoginPasswdChange"] = args ? args.overrideLoginPasswdChange : undefined;
+            resourceInputs["overrideSplitTunnel"] = args ? args.overrideSplitTunnel : undefined;
+            resourceInputs["overrideWanPortMode"] = args ? args.overrideWanPortMode : undefined;
+            resourceInputs["radio1"] = args ? args.radio1 : undefined;
+            resourceInputs["radio2"] = args ? args.radio2 : undefined;
+            resourceInputs["radio3"] = args ? args.radio3 : undefined;
+            resourceInputs["radio4"] = args ? args.radio4 : undefined;
+            resourceInputs["region"] = args ? args.region : undefined;
+            resourceInputs["regionX"] = args ? args.regionX : undefined;
+            resourceInputs["regionY"] = args ? args.regionY : undefined;
+            resourceInputs["splitTunnelingAclLocalApSubnet"] = args ? args.splitTunnelingAclLocalApSubnet : undefined;
+            resourceInputs["splitTunnelingAclPath"] = args ? args.splitTunnelingAclPath : undefined;
+            resourceInputs["splitTunnelingAcls"] = args ? args.splitTunnelingAcls : undefined;
+            resourceInputs["tunMtuDownlink"] = args ? args.tunMtuDownlink : undefined;
+            resourceInputs["tunMtuUplink"] = args ? args.tunMtuUplink : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wanPortMode"] = args ? args.wanPortMode : undefined;
+            resourceInputs["wtpId"] = args ? args.wtpId : undefined;
+            resourceInputs["wtpMode"] = args ? args.wtpMode : undefined;
+            resourceInputs["wtpProfile"] = args ? args.wtpProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerWtp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerWtp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -367,6 +371,10 @@ export interface WirelessControllerWtpState {
      * Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
      */
     firmwareProvision?: pulumi.Input<string>;
+    /**
+     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+     */
+    firmwareProvisionLatest?: pulumi.Input<string>;
     /**
      * Enable/disable WTP image download. Valid values: `enable`, `disable`.
      */
@@ -545,6 +553,10 @@ export interface WirelessControllerWtpArgs {
      * Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
      */
     firmwareProvision?: pulumi.Input<string>;
+    /**
+     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+     */
+    firmwareProvisionLatest?: pulumi.Input<string>;
     /**
      * Enable/disable WTP image download. Valid values: `enable`, `disable`.
      */

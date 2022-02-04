@@ -71,6 +71,7 @@ func NewExtenderControllerDataplan(ctx *pulumi.Context,
 		args = &ExtenderControllerDataplanArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerDataplan
 	err := ctx.RegisterResource("fortios:index/extenderControllerDataplan:ExtenderControllerDataplan", name, args, &resource, opts...)
 	if err != nil {
@@ -273,7 +274,7 @@ type ExtenderControllerDataplanInput interface {
 }
 
 func (*ExtenderControllerDataplan) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExtenderControllerDataplan)(nil))
+	return reflect.TypeOf((**ExtenderControllerDataplan)(nil)).Elem()
 }
 
 func (i *ExtenderControllerDataplan) ToExtenderControllerDataplanOutput() ExtenderControllerDataplanOutput {
@@ -282,35 +283,6 @@ func (i *ExtenderControllerDataplan) ToExtenderControllerDataplanOutput() Extend
 
 func (i *ExtenderControllerDataplan) ToExtenderControllerDataplanOutputWithContext(ctx context.Context) ExtenderControllerDataplanOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerDataplanOutput)
-}
-
-func (i *ExtenderControllerDataplan) ToExtenderControllerDataplanPtrOutput() ExtenderControllerDataplanPtrOutput {
-	return i.ToExtenderControllerDataplanPtrOutputWithContext(context.Background())
-}
-
-func (i *ExtenderControllerDataplan) ToExtenderControllerDataplanPtrOutputWithContext(ctx context.Context) ExtenderControllerDataplanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerDataplanPtrOutput)
-}
-
-type ExtenderControllerDataplanPtrInput interface {
-	pulumi.Input
-
-	ToExtenderControllerDataplanPtrOutput() ExtenderControllerDataplanPtrOutput
-	ToExtenderControllerDataplanPtrOutputWithContext(ctx context.Context) ExtenderControllerDataplanPtrOutput
-}
-
-type extenderControllerDataplanPtrType ExtenderControllerDataplanArgs
-
-func (*extenderControllerDataplanPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExtenderControllerDataplan)(nil))
-}
-
-func (i *extenderControllerDataplanPtrType) ToExtenderControllerDataplanPtrOutput() ExtenderControllerDataplanPtrOutput {
-	return i.ToExtenderControllerDataplanPtrOutputWithContext(context.Background())
-}
-
-func (i *extenderControllerDataplanPtrType) ToExtenderControllerDataplanPtrOutputWithContext(ctx context.Context) ExtenderControllerDataplanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerDataplanPtrOutput)
 }
 
 // ExtenderControllerDataplanArrayInput is an input type that accepts ExtenderControllerDataplanArray and ExtenderControllerDataplanArrayOutput values.
@@ -327,7 +299,7 @@ type ExtenderControllerDataplanArrayInput interface {
 type ExtenderControllerDataplanArray []ExtenderControllerDataplanInput
 
 func (ExtenderControllerDataplanArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ExtenderControllerDataplan)(nil))
+	return reflect.TypeOf((*[]*ExtenderControllerDataplan)(nil)).Elem()
 }
 
 func (i ExtenderControllerDataplanArray) ToExtenderControllerDataplanArrayOutput() ExtenderControllerDataplanArrayOutput {
@@ -352,7 +324,7 @@ type ExtenderControllerDataplanMapInput interface {
 type ExtenderControllerDataplanMap map[string]ExtenderControllerDataplanInput
 
 func (ExtenderControllerDataplanMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ExtenderControllerDataplan)(nil))
+	return reflect.TypeOf((*map[string]*ExtenderControllerDataplan)(nil)).Elem()
 }
 
 func (i ExtenderControllerDataplanMap) ToExtenderControllerDataplanMapOutput() ExtenderControllerDataplanMapOutput {
@@ -363,12 +335,10 @@ func (i ExtenderControllerDataplanMap) ToExtenderControllerDataplanMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerDataplanMapOutput)
 }
 
-type ExtenderControllerDataplanOutput struct {
-	*pulumi.OutputState
-}
+type ExtenderControllerDataplanOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerDataplanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExtenderControllerDataplan)(nil))
+	return reflect.TypeOf((**ExtenderControllerDataplan)(nil)).Elem()
 }
 
 func (o ExtenderControllerDataplanOutput) ToExtenderControllerDataplanOutput() ExtenderControllerDataplanOutput {
@@ -379,36 +349,10 @@ func (o ExtenderControllerDataplanOutput) ToExtenderControllerDataplanOutputWith
 	return o
 }
 
-func (o ExtenderControllerDataplanOutput) ToExtenderControllerDataplanPtrOutput() ExtenderControllerDataplanPtrOutput {
-	return o.ToExtenderControllerDataplanPtrOutputWithContext(context.Background())
-}
-
-func (o ExtenderControllerDataplanOutput) ToExtenderControllerDataplanPtrOutputWithContext(ctx context.Context) ExtenderControllerDataplanPtrOutput {
-	return o.ApplyT(func(v ExtenderControllerDataplan) *ExtenderControllerDataplan {
-		return &v
-	}).(ExtenderControllerDataplanPtrOutput)
-}
-
-type ExtenderControllerDataplanPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ExtenderControllerDataplanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExtenderControllerDataplan)(nil))
-}
-
-func (o ExtenderControllerDataplanPtrOutput) ToExtenderControllerDataplanPtrOutput() ExtenderControllerDataplanPtrOutput {
-	return o
-}
-
-func (o ExtenderControllerDataplanPtrOutput) ToExtenderControllerDataplanPtrOutputWithContext(ctx context.Context) ExtenderControllerDataplanPtrOutput {
-	return o
-}
-
 type ExtenderControllerDataplanArrayOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerDataplanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ExtenderControllerDataplan)(nil))
+	return reflect.TypeOf((*[]*ExtenderControllerDataplan)(nil)).Elem()
 }
 
 func (o ExtenderControllerDataplanArrayOutput) ToExtenderControllerDataplanArrayOutput() ExtenderControllerDataplanArrayOutput {
@@ -420,15 +364,15 @@ func (o ExtenderControllerDataplanArrayOutput) ToExtenderControllerDataplanArray
 }
 
 func (o ExtenderControllerDataplanArrayOutput) Index(i pulumi.IntInput) ExtenderControllerDataplanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExtenderControllerDataplan {
-		return vs[0].([]ExtenderControllerDataplan)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtenderControllerDataplan {
+		return vs[0].([]*ExtenderControllerDataplan)[vs[1].(int)]
 	}).(ExtenderControllerDataplanOutput)
 }
 
 type ExtenderControllerDataplanMapOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerDataplanMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ExtenderControllerDataplan)(nil))
+	return reflect.TypeOf((*map[string]*ExtenderControllerDataplan)(nil)).Elem()
 }
 
 func (o ExtenderControllerDataplanMapOutput) ToExtenderControllerDataplanMapOutput() ExtenderControllerDataplanMapOutput {
@@ -440,14 +384,16 @@ func (o ExtenderControllerDataplanMapOutput) ToExtenderControllerDataplanMapOutp
 }
 
 func (o ExtenderControllerDataplanMapOutput) MapIndex(k pulumi.StringInput) ExtenderControllerDataplanOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ExtenderControllerDataplan {
-		return vs[0].(map[string]ExtenderControllerDataplan)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ExtenderControllerDataplan {
+		return vs[0].(map[string]*ExtenderControllerDataplan)[vs[1].(string)]
 	}).(ExtenderControllerDataplanOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerDataplanInput)(nil)).Elem(), &ExtenderControllerDataplan{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerDataplanArrayInput)(nil)).Elem(), ExtenderControllerDataplanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerDataplanMapInput)(nil)).Elem(), ExtenderControllerDataplanMap{})
 	pulumi.RegisterOutputType(ExtenderControllerDataplanOutput{})
-	pulumi.RegisterOutputType(ExtenderControllerDataplanPtrOutput{})
 	pulumi.RegisterOutputType(ExtenderControllerDataplanArrayOutput{})
 	pulumi.RegisterOutputType(ExtenderControllerDataplanMapOutput{})
 }

@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,22 +26,22 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallSslSshProfile(ctx, "t1", &fortios.FirewallSslSshProfileArgs{
-// 			Ftps: &fortios.FirewallSslSshProfileFtpsArgs{
+// 			Ftps: &FirewallSslSshProfileFtpsArgs{
 // 				Ports: pulumi.String("990"),
 // 			},
-// 			Https: &fortios.FirewallSslSshProfileHttpsArgs{
+// 			Https: &FirewallSslSshProfileHttpsArgs{
 // 				Ports: pulumi.String("443 127 422 392"),
 // 			},
-// 			Imaps: &fortios.FirewallSslSshProfileImapsArgs{
+// 			Imaps: &FirewallSslSshProfileImapsArgs{
 // 				Ports: pulumi.String("993 1123"),
 // 			},
-// 			Pop3s: &fortios.FirewallSslSshProfilePop3sArgs{
+// 			Pop3s: &FirewallSslSshProfilePop3sArgs{
 // 				Ports: pulumi.String("995"),
 // 			},
-// 			Smtps: &fortios.FirewallSslSshProfileSmtpsArgs{
+// 			Smtps: &FirewallSslSshProfileSmtpsArgs{
 // 				Ports: pulumi.String("465"),
 // 			},
-// 			Ssl: &fortios.FirewallSslSshProfileSslArgs{
+// 			Ssl: &FirewallSslSshProfileSslArgs{
 // 				InspectAll: pulumi.String("disable"),
 // 			},
 // 		})
@@ -48,10 +49,10 @@ import (
 // 			return err
 // 		}
 // 		_, err = fortios.NewFirewallSslSshProfile(ctx, "t2", &fortios.FirewallSslSshProfileArgs{
-// 			Https: &fortios.FirewallSslSshProfileHttpsArgs{
+// 			Https: &FirewallSslSshProfileHttpsArgs{
 // 				Ports: pulumi.String("443"),
 // 			},
-// 			Ssl: &fortios.FirewallSslSshProfileSslArgs{
+// 			Ssl: &FirewallSslSshProfileSslArgs{
 // 				InspectAll: pulumi.String("deep-inspection"),
 // 			},
 // 		})
@@ -85,6 +86,8 @@ type FirewallSslSshProfile struct {
 	Caname pulumi.StringOutput `pulumi:"caname"`
 	// Optional comments.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Configure DNS over TLS options. The structure of `dot` block is documented below.
+	Dot FirewallSslSshProfileDotPtrOutput `pulumi:"dot"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
@@ -113,12 +116,20 @@ type FirewallSslSshProfile struct {
 	Ssl FirewallSslSshProfileSslPtrOutput `pulumi:"ssl"`
 	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 	SslAnomaliesLog pulumi.StringOutput `pulumi:"sslAnomaliesLog"`
+	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+	SslAnomalyLog pulumi.StringOutput `pulumi:"sslAnomalyLog"`
+	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+	SslExemptionLog pulumi.StringOutput `pulumi:"sslExemptionLog"`
 	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 	SslExemptionsLog pulumi.StringOutput `pulumi:"sslExemptionsLog"`
 	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
 	SslExempts FirewallSslSshProfileSslExemptArrayOutput `pulumi:"sslExempts"`
+	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+	SslHandshakeLog pulumi.StringOutput `pulumi:"sslHandshakeLog"`
 	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 	SslNegotiationLog pulumi.StringOutput `pulumi:"sslNegotiationLog"`
+	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+	SslServerCertLog pulumi.StringOutput `pulumi:"sslServerCertLog"`
 	// SSL servers. The structure of `sslServer` block is documented below.
 	SslServers FirewallSslSshProfileSslServerArrayOutput `pulumi:"sslServers"`
 	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
@@ -140,6 +151,7 @@ func NewFirewallSslSshProfile(ctx *pulumi.Context,
 		args = &FirewallSslSshProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSslSshProfile
 	err := ctx.RegisterResource("fortios:index/firewallSslSshProfile:FirewallSslSshProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -172,6 +184,8 @@ type firewallSslSshProfileState struct {
 	Caname *string `pulumi:"caname"`
 	// Optional comments.
 	Comment *string `pulumi:"comment"`
+	// Configure DNS over TLS options. The structure of `dot` block is documented below.
+	Dot *FirewallSslSshProfileDot `pulumi:"dot"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
@@ -200,12 +214,20 @@ type firewallSslSshProfileState struct {
 	Ssl *FirewallSslSshProfileSsl `pulumi:"ssl"`
 	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 	SslAnomaliesLog *string `pulumi:"sslAnomaliesLog"`
+	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+	SslAnomalyLog *string `pulumi:"sslAnomalyLog"`
+	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+	SslExemptionLog *string `pulumi:"sslExemptionLog"`
 	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 	SslExemptionsLog *string `pulumi:"sslExemptionsLog"`
 	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
 	SslExempts []FirewallSslSshProfileSslExempt `pulumi:"sslExempts"`
+	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+	SslHandshakeLog *string `pulumi:"sslHandshakeLog"`
 	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 	SslNegotiationLog *string `pulumi:"sslNegotiationLog"`
+	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+	SslServerCertLog *string `pulumi:"sslServerCertLog"`
 	// SSL servers. The structure of `sslServer` block is documented below.
 	SslServers []FirewallSslSshProfileSslServer `pulumi:"sslServers"`
 	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
@@ -231,6 +253,8 @@ type FirewallSslSshProfileState struct {
 	Caname pulumi.StringPtrInput
 	// Optional comments.
 	Comment pulumi.StringPtrInput
+	// Configure DNS over TLS options. The structure of `dot` block is documented below.
+	Dot FirewallSslSshProfileDotPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure FTPS options. The structure of `ftps` block is documented below.
@@ -259,12 +283,20 @@ type FirewallSslSshProfileState struct {
 	Ssl FirewallSslSshProfileSslPtrInput
 	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 	SslAnomaliesLog pulumi.StringPtrInput
+	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+	SslAnomalyLog pulumi.StringPtrInput
+	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+	SslExemptionLog pulumi.StringPtrInput
 	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 	SslExemptionsLog pulumi.StringPtrInput
 	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
 	SslExempts FirewallSslSshProfileSslExemptArrayInput
+	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+	SslHandshakeLog pulumi.StringPtrInput
 	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 	SslNegotiationLog pulumi.StringPtrInput
+	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+	SslServerCertLog pulumi.StringPtrInput
 	// SSL servers. The structure of `sslServer` block is documented below.
 	SslServers FirewallSslSshProfileSslServerArrayInput
 	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
@@ -294,6 +326,8 @@ type firewallSslSshProfileArgs struct {
 	Caname *string `pulumi:"caname"`
 	// Optional comments.
 	Comment *string `pulumi:"comment"`
+	// Configure DNS over TLS options. The structure of `dot` block is documented below.
+	Dot *FirewallSslSshProfileDot `pulumi:"dot"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure FTPS options. The structure of `ftps` block is documented below.
@@ -322,12 +356,20 @@ type firewallSslSshProfileArgs struct {
 	Ssl *FirewallSslSshProfileSsl `pulumi:"ssl"`
 	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 	SslAnomaliesLog *string `pulumi:"sslAnomaliesLog"`
+	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+	SslAnomalyLog *string `pulumi:"sslAnomalyLog"`
+	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+	SslExemptionLog *string `pulumi:"sslExemptionLog"`
 	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 	SslExemptionsLog *string `pulumi:"sslExemptionsLog"`
 	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
 	SslExempts []FirewallSslSshProfileSslExempt `pulumi:"sslExempts"`
+	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+	SslHandshakeLog *string `pulumi:"sslHandshakeLog"`
 	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 	SslNegotiationLog *string `pulumi:"sslNegotiationLog"`
+	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+	SslServerCertLog *string `pulumi:"sslServerCertLog"`
 	// SSL servers. The structure of `sslServer` block is documented below.
 	SslServers []FirewallSslSshProfileSslServer `pulumi:"sslServers"`
 	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
@@ -354,6 +396,8 @@ type FirewallSslSshProfileArgs struct {
 	Caname pulumi.StringPtrInput
 	// Optional comments.
 	Comment pulumi.StringPtrInput
+	// Configure DNS over TLS options. The structure of `dot` block is documented below.
+	Dot FirewallSslSshProfileDotPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure FTPS options. The structure of `ftps` block is documented below.
@@ -382,12 +426,20 @@ type FirewallSslSshProfileArgs struct {
 	Ssl FirewallSslSshProfileSslPtrInput
 	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 	SslAnomaliesLog pulumi.StringPtrInput
+	// Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+	SslAnomalyLog pulumi.StringPtrInput
+	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+	SslExemptionLog pulumi.StringPtrInput
 	// Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 	SslExemptionsLog pulumi.StringPtrInput
 	// Servers to exempt from SSL inspection. The structure of `sslExempt` block is documented below.
 	SslExempts FirewallSslSshProfileSslExemptArrayInput
+	// Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+	SslHandshakeLog pulumi.StringPtrInput
 	// Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 	SslNegotiationLog pulumi.StringPtrInput
+	// Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+	SslServerCertLog pulumi.StringPtrInput
 	// SSL servers. The structure of `sslServer` block is documented below.
 	SslServers FirewallSslSshProfileSslServerArrayInput
 	// Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
@@ -414,7 +466,7 @@ type FirewallSslSshProfileInput interface {
 }
 
 func (*FirewallSslSshProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSslSshProfile)(nil))
+	return reflect.TypeOf((**FirewallSslSshProfile)(nil)).Elem()
 }
 
 func (i *FirewallSslSshProfile) ToFirewallSslSshProfileOutput() FirewallSslSshProfileOutput {
@@ -423,35 +475,6 @@ func (i *FirewallSslSshProfile) ToFirewallSslSshProfileOutput() FirewallSslSshPr
 
 func (i *FirewallSslSshProfile) ToFirewallSslSshProfileOutputWithContext(ctx context.Context) FirewallSslSshProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfileOutput)
-}
-
-func (i *FirewallSslSshProfile) ToFirewallSslSshProfilePtrOutput() FirewallSslSshProfilePtrOutput {
-	return i.ToFirewallSslSshProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSslSshProfile) ToFirewallSslSshProfilePtrOutputWithContext(ctx context.Context) FirewallSslSshProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfilePtrOutput)
-}
-
-type FirewallSslSshProfilePtrInput interface {
-	pulumi.Input
-
-	ToFirewallSslSshProfilePtrOutput() FirewallSslSshProfilePtrOutput
-	ToFirewallSslSshProfilePtrOutputWithContext(ctx context.Context) FirewallSslSshProfilePtrOutput
-}
-
-type firewallSslSshProfilePtrType FirewallSslSshProfileArgs
-
-func (*firewallSslSshProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSslSshProfile)(nil))
-}
-
-func (i *firewallSslSshProfilePtrType) ToFirewallSslSshProfilePtrOutput() FirewallSslSshProfilePtrOutput {
-	return i.ToFirewallSslSshProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSslSshProfilePtrType) ToFirewallSslSshProfilePtrOutputWithContext(ctx context.Context) FirewallSslSshProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfilePtrOutput)
 }
 
 // FirewallSslSshProfileArrayInput is an input type that accepts FirewallSslSshProfileArray and FirewallSslSshProfileArrayOutput values.
@@ -468,7 +491,7 @@ type FirewallSslSshProfileArrayInput interface {
 type FirewallSslSshProfileArray []FirewallSslSshProfileInput
 
 func (FirewallSslSshProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSslSshProfile)(nil))
+	return reflect.TypeOf((*[]*FirewallSslSshProfile)(nil)).Elem()
 }
 
 func (i FirewallSslSshProfileArray) ToFirewallSslSshProfileArrayOutput() FirewallSslSshProfileArrayOutput {
@@ -493,7 +516,7 @@ type FirewallSslSshProfileMapInput interface {
 type FirewallSslSshProfileMap map[string]FirewallSslSshProfileInput
 
 func (FirewallSslSshProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSslSshProfile)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSslSshProfile)(nil)).Elem()
 }
 
 func (i FirewallSslSshProfileMap) ToFirewallSslSshProfileMapOutput() FirewallSslSshProfileMapOutput {
@@ -504,12 +527,10 @@ func (i FirewallSslSshProfileMap) ToFirewallSslSshProfileMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSshProfileMapOutput)
 }
 
-type FirewallSslSshProfileOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSslSshProfileOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSshProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSslSshProfile)(nil))
+	return reflect.TypeOf((**FirewallSslSshProfile)(nil)).Elem()
 }
 
 func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfileOutput() FirewallSslSshProfileOutput {
@@ -520,36 +541,10 @@ func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfileOutputWithContext(ct
 	return o
 }
 
-func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfilePtrOutput() FirewallSslSshProfilePtrOutput {
-	return o.ToFirewallSslSshProfilePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSslSshProfileOutput) ToFirewallSslSshProfilePtrOutputWithContext(ctx context.Context) FirewallSslSshProfilePtrOutput {
-	return o.ApplyT(func(v FirewallSslSshProfile) *FirewallSslSshProfile {
-		return &v
-	}).(FirewallSslSshProfilePtrOutput)
-}
-
-type FirewallSslSshProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSslSshProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSslSshProfile)(nil))
-}
-
-func (o FirewallSslSshProfilePtrOutput) ToFirewallSslSshProfilePtrOutput() FirewallSslSshProfilePtrOutput {
-	return o
-}
-
-func (o FirewallSslSshProfilePtrOutput) ToFirewallSslSshProfilePtrOutputWithContext(ctx context.Context) FirewallSslSshProfilePtrOutput {
-	return o
-}
-
 type FirewallSslSshProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSshProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSslSshProfile)(nil))
+	return reflect.TypeOf((*[]*FirewallSslSshProfile)(nil)).Elem()
 }
 
 func (o FirewallSslSshProfileArrayOutput) ToFirewallSslSshProfileArrayOutput() FirewallSslSshProfileArrayOutput {
@@ -561,15 +556,15 @@ func (o FirewallSslSshProfileArrayOutput) ToFirewallSslSshProfileArrayOutputWith
 }
 
 func (o FirewallSslSshProfileArrayOutput) Index(i pulumi.IntInput) FirewallSslSshProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSslSshProfile {
-		return vs[0].([]FirewallSslSshProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSslSshProfile {
+		return vs[0].([]*FirewallSslSshProfile)[vs[1].(int)]
 	}).(FirewallSslSshProfileOutput)
 }
 
 type FirewallSslSshProfileMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSshProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSslSshProfile)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSslSshProfile)(nil)).Elem()
 }
 
 func (o FirewallSslSshProfileMapOutput) ToFirewallSslSshProfileMapOutput() FirewallSslSshProfileMapOutput {
@@ -581,14 +576,16 @@ func (o FirewallSslSshProfileMapOutput) ToFirewallSslSshProfileMapOutputWithCont
 }
 
 func (o FirewallSslSshProfileMapOutput) MapIndex(k pulumi.StringInput) FirewallSslSshProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSslSshProfile {
-		return vs[0].(map[string]FirewallSslSshProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSslSshProfile {
+		return vs[0].(map[string]*FirewallSslSshProfile)[vs[1].(string)]
 	}).(FirewallSslSshProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslSshProfileInput)(nil)).Elem(), &FirewallSslSshProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslSshProfileArrayInput)(nil)).Elem(), FirewallSslSshProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslSshProfileMapInput)(nil)).Elem(), FirewallSslSshProfileMap{})
 	pulumi.RegisterOutputType(FirewallSslSshProfileOutput{})
-	pulumi.RegisterOutputType(FirewallSslSshProfilePtrOutput{})
 	pulumi.RegisterOutputType(FirewallSslSshProfileArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSslSshProfileMapOutput{})
 }

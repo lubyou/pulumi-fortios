@@ -50,7 +50,8 @@ class LogDiskFilterArgs:
                  vip_ssl: Optional[pulumi.Input[str]] = None,
                  voip: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
-                 wireless_activity: Optional[pulumi.Input[str]] = None):
+                 wireless_activity: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogDiskFilter resource.
         :param pulumi.Input[str] admin: Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
@@ -89,6 +90,7 @@ class LogDiskFilterArgs:
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         if admin is not None:
             pulumi.set(__self__, "admin", admin)
@@ -162,6 +164,8 @@ class LogDiskFilterArgs:
             pulumi.set(__self__, "wan_opt", wan_opt)
         if wireless_activity is not None:
             pulumi.set(__self__, "wireless_activity", wireless_activity)
+        if ztna_traffic is not None:
+            pulumi.set(__self__, "ztna_traffic", ztna_traffic)
 
     @property
     @pulumi.getter
@@ -594,6 +598,18 @@ class LogDiskFilterArgs:
     @wireless_activity.setter
     def wireless_activity(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wireless_activity", value)
+
+    @property
+    @pulumi.getter(name="ztnaTraffic")
+    def ztna_traffic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_traffic")
+
+    @ztna_traffic.setter
+    def ztna_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_traffic", value)
 
 
 @pulumi.input_type
@@ -634,7 +650,8 @@ class _LogDiskFilterState:
                  vip_ssl: Optional[pulumi.Input[str]] = None,
                  voip: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
-                 wireless_activity: Optional[pulumi.Input[str]] = None):
+                 wireless_activity: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogDiskFilter resources.
         :param pulumi.Input[str] admin: Enable/disable admin login/logout logging. Valid values: `enable`, `disable`.
@@ -673,6 +690,7 @@ class _LogDiskFilterState:
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         if admin is not None:
             pulumi.set(__self__, "admin", admin)
@@ -746,6 +764,8 @@ class _LogDiskFilterState:
             pulumi.set(__self__, "wan_opt", wan_opt)
         if wireless_activity is not None:
             pulumi.set(__self__, "wireless_activity", wireless_activity)
+        if ztna_traffic is not None:
+            pulumi.set(__self__, "ztna_traffic", ztna_traffic)
 
     @property
     @pulumi.getter
@@ -1178,6 +1198,18 @@ class _LogDiskFilterState:
     @wireless_activity.setter
     def wireless_activity(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wireless_activity", value)
+
+    @property
+    @pulumi.getter(name="ztnaTraffic")
+    def ztna_traffic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_traffic")
+
+    @ztna_traffic.setter
+    def ztna_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_traffic", value)
 
 
 class LogDiskFilter(pulumi.CustomResource):
@@ -1221,6 +1253,7 @@ class LogDiskFilter(pulumi.CustomResource):
                  voip: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure filters for local disk logging. Use these filters to determine the log messages to record according to severity and type.
@@ -1294,6 +1327,7 @@ class LogDiskFilter(pulumi.CustomResource):
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         ...
     @overload
@@ -1386,6 +1420,7 @@ class LogDiskFilter(pulumi.CustomResource):
                  voip: Optional[pulumi.Input[str]] = None,
                  wan_opt: Optional[pulumi.Input[str]] = None,
                  wireless_activity: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -1393,6 +1428,8 @@ class LogDiskFilter(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1434,6 +1471,7 @@ class LogDiskFilter(pulumi.CustomResource):
             __props__.__dict__["voip"] = voip
             __props__.__dict__["wan_opt"] = wan_opt
             __props__.__dict__["wireless_activity"] = wireless_activity
+            __props__.__dict__["ztna_traffic"] = ztna_traffic
         super(LogDiskFilter, __self__).__init__(
             'fortios:index/logDiskFilter:LogDiskFilter',
             resource_name,
@@ -1479,7 +1517,8 @@ class LogDiskFilter(pulumi.CustomResource):
             vip_ssl: Optional[pulumi.Input[str]] = None,
             voip: Optional[pulumi.Input[str]] = None,
             wan_opt: Optional[pulumi.Input[str]] = None,
-            wireless_activity: Optional[pulumi.Input[str]] = None) -> 'LogDiskFilter':
+            wireless_activity: Optional[pulumi.Input[str]] = None,
+            ztna_traffic: Optional[pulumi.Input[str]] = None) -> 'LogDiskFilter':
         """
         Get an existing LogDiskFilter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -1523,6 +1562,7 @@ class LogDiskFilter(pulumi.CustomResource):
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wan_opt: Enable/disable WAN optimization event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] wireless_activity: Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -1564,6 +1604,7 @@ class LogDiskFilter(pulumi.CustomResource):
         __props__.__dict__["voip"] = voip
         __props__.__dict__["wan_opt"] = wan_opt
         __props__.__dict__["wireless_activity"] = wireless_activity
+        __props__.__dict__["ztna_traffic"] = ztna_traffic
         return LogDiskFilter(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1853,4 +1894,12 @@ class LogDiskFilter(pulumi.CustomResource):
         Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "wireless_activity")
+
+    @property
+    @pulumi.getter(name="ztnaTraffic")
+    def ztna_traffic(self) -> pulumi.Output[str]:
+        """
+        Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_traffic")
 

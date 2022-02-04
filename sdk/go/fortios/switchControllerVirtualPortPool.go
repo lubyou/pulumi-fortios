@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -62,6 +62,7 @@ func NewSwitchControllerVirtualPortPool(ctx *pulumi.Context,
 		args = &SwitchControllerVirtualPortPoolArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerVirtualPortPool
 	err := ctx.RegisterResource("fortios:index/switchControllerVirtualPortPool:SwitchControllerVirtualPortPool", name, args, &resource, opts...)
 	if err != nil {
@@ -136,7 +137,7 @@ type SwitchControllerVirtualPortPoolInput interface {
 }
 
 func (*SwitchControllerVirtualPortPool) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerVirtualPortPool)(nil))
+	return reflect.TypeOf((**SwitchControllerVirtualPortPool)(nil)).Elem()
 }
 
 func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolOutput() SwitchControllerVirtualPortPoolOutput {
@@ -145,35 +146,6 @@ func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolOutpu
 
 func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolOutput)
-}
-
-func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolPtrOutput() SwitchControllerVirtualPortPoolPtrOutput {
-	return i.ToSwitchControllerVirtualPortPoolPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerVirtualPortPool) ToSwitchControllerVirtualPortPoolPtrOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolPtrOutput)
-}
-
-type SwitchControllerVirtualPortPoolPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerVirtualPortPoolPtrOutput() SwitchControllerVirtualPortPoolPtrOutput
-	ToSwitchControllerVirtualPortPoolPtrOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolPtrOutput
-}
-
-type switchControllerVirtualPortPoolPtrType SwitchControllerVirtualPortPoolArgs
-
-func (*switchControllerVirtualPortPoolPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerVirtualPortPool)(nil))
-}
-
-func (i *switchControllerVirtualPortPoolPtrType) ToSwitchControllerVirtualPortPoolPtrOutput() SwitchControllerVirtualPortPoolPtrOutput {
-	return i.ToSwitchControllerVirtualPortPoolPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerVirtualPortPoolPtrType) ToSwitchControllerVirtualPortPoolPtrOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolPtrOutput)
 }
 
 // SwitchControllerVirtualPortPoolArrayInput is an input type that accepts SwitchControllerVirtualPortPoolArray and SwitchControllerVirtualPortPoolArrayOutput values.
@@ -190,7 +162,7 @@ type SwitchControllerVirtualPortPoolArrayInput interface {
 type SwitchControllerVirtualPortPoolArray []SwitchControllerVirtualPortPoolInput
 
 func (SwitchControllerVirtualPortPoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerVirtualPortPool)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerVirtualPortPool)(nil)).Elem()
 }
 
 func (i SwitchControllerVirtualPortPoolArray) ToSwitchControllerVirtualPortPoolArrayOutput() SwitchControllerVirtualPortPoolArrayOutput {
@@ -215,7 +187,7 @@ type SwitchControllerVirtualPortPoolMapInput interface {
 type SwitchControllerVirtualPortPoolMap map[string]SwitchControllerVirtualPortPoolInput
 
 func (SwitchControllerVirtualPortPoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerVirtualPortPool)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerVirtualPortPool)(nil)).Elem()
 }
 
 func (i SwitchControllerVirtualPortPoolMap) ToSwitchControllerVirtualPortPoolMapOutput() SwitchControllerVirtualPortPoolMapOutput {
@@ -226,12 +198,10 @@ func (i SwitchControllerVirtualPortPoolMap) ToSwitchControllerVirtualPortPoolMap
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVirtualPortPoolMapOutput)
 }
 
-type SwitchControllerVirtualPortPoolOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerVirtualPortPoolOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVirtualPortPoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerVirtualPortPool)(nil))
+	return reflect.TypeOf((**SwitchControllerVirtualPortPool)(nil)).Elem()
 }
 
 func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPoolOutput() SwitchControllerVirtualPortPoolOutput {
@@ -242,36 +212,10 @@ func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPool
 	return o
 }
 
-func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPoolPtrOutput() SwitchControllerVirtualPortPoolPtrOutput {
-	return o.ToSwitchControllerVirtualPortPoolPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerVirtualPortPoolOutput) ToSwitchControllerVirtualPortPoolPtrOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolPtrOutput {
-	return o.ApplyT(func(v SwitchControllerVirtualPortPool) *SwitchControllerVirtualPortPool {
-		return &v
-	}).(SwitchControllerVirtualPortPoolPtrOutput)
-}
-
-type SwitchControllerVirtualPortPoolPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerVirtualPortPoolPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerVirtualPortPool)(nil))
-}
-
-func (o SwitchControllerVirtualPortPoolPtrOutput) ToSwitchControllerVirtualPortPoolPtrOutput() SwitchControllerVirtualPortPoolPtrOutput {
-	return o
-}
-
-func (o SwitchControllerVirtualPortPoolPtrOutput) ToSwitchControllerVirtualPortPoolPtrOutputWithContext(ctx context.Context) SwitchControllerVirtualPortPoolPtrOutput {
-	return o
-}
-
 type SwitchControllerVirtualPortPoolArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVirtualPortPoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerVirtualPortPool)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerVirtualPortPool)(nil)).Elem()
 }
 
 func (o SwitchControllerVirtualPortPoolArrayOutput) ToSwitchControllerVirtualPortPoolArrayOutput() SwitchControllerVirtualPortPoolArrayOutput {
@@ -283,15 +227,15 @@ func (o SwitchControllerVirtualPortPoolArrayOutput) ToSwitchControllerVirtualPor
 }
 
 func (o SwitchControllerVirtualPortPoolArrayOutput) Index(i pulumi.IntInput) SwitchControllerVirtualPortPoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerVirtualPortPool {
-		return vs[0].([]SwitchControllerVirtualPortPool)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerVirtualPortPool {
+		return vs[0].([]*SwitchControllerVirtualPortPool)[vs[1].(int)]
 	}).(SwitchControllerVirtualPortPoolOutput)
 }
 
 type SwitchControllerVirtualPortPoolMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVirtualPortPoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerVirtualPortPool)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerVirtualPortPool)(nil)).Elem()
 }
 
 func (o SwitchControllerVirtualPortPoolMapOutput) ToSwitchControllerVirtualPortPoolMapOutput() SwitchControllerVirtualPortPoolMapOutput {
@@ -303,14 +247,16 @@ func (o SwitchControllerVirtualPortPoolMapOutput) ToSwitchControllerVirtualPortP
 }
 
 func (o SwitchControllerVirtualPortPoolMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerVirtualPortPoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerVirtualPortPool {
-		return vs[0].(map[string]SwitchControllerVirtualPortPool)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerVirtualPortPool {
+		return vs[0].(map[string]*SwitchControllerVirtualPortPool)[vs[1].(string)]
 	}).(SwitchControllerVirtualPortPoolOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVirtualPortPoolInput)(nil)).Elem(), &SwitchControllerVirtualPortPool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVirtualPortPoolArrayInput)(nil)).Elem(), SwitchControllerVirtualPortPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVirtualPortPoolMapInput)(nil)).Elem(), SwitchControllerVirtualPortPoolMap{})
 	pulumi.RegisterOutputType(SwitchControllerVirtualPortPoolOutput{})
-	pulumi.RegisterOutputType(SwitchControllerVirtualPortPoolPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerVirtualPortPoolArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerVirtualPortPoolMapOutput{})
 }

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -70,6 +70,7 @@ func NewFortimanagerSystemNetworkRoute(ctx *pulumi.Context,
 	if args.RouteId == nil {
 		return nil, errors.New("invalid value for required argument 'RouteId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemNetworkRoute
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemNetworkRoute:FortimanagerSystemNetworkRoute", name, args, &resource, opts...)
 	if err != nil {
@@ -152,7 +153,7 @@ type FortimanagerSystemNetworkRouteInput interface {
 }
 
 func (*FortimanagerSystemNetworkRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemNetworkRoute)(nil))
+	return reflect.TypeOf((**FortimanagerSystemNetworkRoute)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemNetworkRoute) ToFortimanagerSystemNetworkRouteOutput() FortimanagerSystemNetworkRouteOutput {
@@ -161,35 +162,6 @@ func (i *FortimanagerSystemNetworkRoute) ToFortimanagerSystemNetworkRouteOutput(
 
 func (i *FortimanagerSystemNetworkRoute) ToFortimanagerSystemNetworkRouteOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRouteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkRouteOutput)
-}
-
-func (i *FortimanagerSystemNetworkRoute) ToFortimanagerSystemNetworkRoutePtrOutput() FortimanagerSystemNetworkRoutePtrOutput {
-	return i.ToFortimanagerSystemNetworkRoutePtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemNetworkRoute) ToFortimanagerSystemNetworkRoutePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRoutePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkRoutePtrOutput)
-}
-
-type FortimanagerSystemNetworkRoutePtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemNetworkRoutePtrOutput() FortimanagerSystemNetworkRoutePtrOutput
-	ToFortimanagerSystemNetworkRoutePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRoutePtrOutput
-}
-
-type fortimanagerSystemNetworkRoutePtrType FortimanagerSystemNetworkRouteArgs
-
-func (*fortimanagerSystemNetworkRoutePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemNetworkRoute)(nil))
-}
-
-func (i *fortimanagerSystemNetworkRoutePtrType) ToFortimanagerSystemNetworkRoutePtrOutput() FortimanagerSystemNetworkRoutePtrOutput {
-	return i.ToFortimanagerSystemNetworkRoutePtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemNetworkRoutePtrType) ToFortimanagerSystemNetworkRoutePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRoutePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkRoutePtrOutput)
 }
 
 // FortimanagerSystemNetworkRouteArrayInput is an input type that accepts FortimanagerSystemNetworkRouteArray and FortimanagerSystemNetworkRouteArrayOutput values.
@@ -206,7 +178,7 @@ type FortimanagerSystemNetworkRouteArrayInput interface {
 type FortimanagerSystemNetworkRouteArray []FortimanagerSystemNetworkRouteInput
 
 func (FortimanagerSystemNetworkRouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemNetworkRoute)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemNetworkRoute)(nil)).Elem()
 }
 
 func (i FortimanagerSystemNetworkRouteArray) ToFortimanagerSystemNetworkRouteArrayOutput() FortimanagerSystemNetworkRouteArrayOutput {
@@ -231,7 +203,7 @@ type FortimanagerSystemNetworkRouteMapInput interface {
 type FortimanagerSystemNetworkRouteMap map[string]FortimanagerSystemNetworkRouteInput
 
 func (FortimanagerSystemNetworkRouteMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemNetworkRoute)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemNetworkRoute)(nil)).Elem()
 }
 
 func (i FortimanagerSystemNetworkRouteMap) ToFortimanagerSystemNetworkRouteMapOutput() FortimanagerSystemNetworkRouteMapOutput {
@@ -242,12 +214,10 @@ func (i FortimanagerSystemNetworkRouteMap) ToFortimanagerSystemNetworkRouteMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkRouteMapOutput)
 }
 
-type FortimanagerSystemNetworkRouteOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemNetworkRouteOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNetworkRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemNetworkRoute)(nil))
+	return reflect.TypeOf((**FortimanagerSystemNetworkRoute)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNetworkRouteOutput) ToFortimanagerSystemNetworkRouteOutput() FortimanagerSystemNetworkRouteOutput {
@@ -258,36 +228,10 @@ func (o FortimanagerSystemNetworkRouteOutput) ToFortimanagerSystemNetworkRouteOu
 	return o
 }
 
-func (o FortimanagerSystemNetworkRouteOutput) ToFortimanagerSystemNetworkRoutePtrOutput() FortimanagerSystemNetworkRoutePtrOutput {
-	return o.ToFortimanagerSystemNetworkRoutePtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemNetworkRouteOutput) ToFortimanagerSystemNetworkRoutePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRoutePtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemNetworkRoute) *FortimanagerSystemNetworkRoute {
-		return &v
-	}).(FortimanagerSystemNetworkRoutePtrOutput)
-}
-
-type FortimanagerSystemNetworkRoutePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemNetworkRoutePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemNetworkRoute)(nil))
-}
-
-func (o FortimanagerSystemNetworkRoutePtrOutput) ToFortimanagerSystemNetworkRoutePtrOutput() FortimanagerSystemNetworkRoutePtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemNetworkRoutePtrOutput) ToFortimanagerSystemNetworkRoutePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkRoutePtrOutput {
-	return o
-}
-
 type FortimanagerSystemNetworkRouteArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNetworkRouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemNetworkRoute)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemNetworkRoute)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNetworkRouteArrayOutput) ToFortimanagerSystemNetworkRouteArrayOutput() FortimanagerSystemNetworkRouteArrayOutput {
@@ -299,15 +243,15 @@ func (o FortimanagerSystemNetworkRouteArrayOutput) ToFortimanagerSystemNetworkRo
 }
 
 func (o FortimanagerSystemNetworkRouteArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemNetworkRouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemNetworkRoute {
-		return vs[0].([]FortimanagerSystemNetworkRoute)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemNetworkRoute {
+		return vs[0].([]*FortimanagerSystemNetworkRoute)[vs[1].(int)]
 	}).(FortimanagerSystemNetworkRouteOutput)
 }
 
 type FortimanagerSystemNetworkRouteMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNetworkRouteMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemNetworkRoute)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemNetworkRoute)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNetworkRouteMapOutput) ToFortimanagerSystemNetworkRouteMapOutput() FortimanagerSystemNetworkRouteMapOutput {
@@ -319,14 +263,16 @@ func (o FortimanagerSystemNetworkRouteMapOutput) ToFortimanagerSystemNetworkRout
 }
 
 func (o FortimanagerSystemNetworkRouteMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemNetworkRouteOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemNetworkRoute {
-		return vs[0].(map[string]FortimanagerSystemNetworkRoute)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemNetworkRoute {
+		return vs[0].(map[string]*FortimanagerSystemNetworkRoute)[vs[1].(string)]
 	}).(FortimanagerSystemNetworkRouteOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNetworkRouteInput)(nil)).Elem(), &FortimanagerSystemNetworkRoute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNetworkRouteArrayInput)(nil)).Elem(), FortimanagerSystemNetworkRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNetworkRouteMapInput)(nil)).Elem(), FortimanagerSystemNetworkRouteMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemNetworkRouteOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemNetworkRoutePtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemNetworkRouteArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemNetworkRouteMapOutput{})
 }

@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,7 +27,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewVoipProfile(ctx, "trname", &fortios.VoipProfileArgs{
 // 			Comment: pulumi.String("test"),
-// 			Sccp: &fortios.VoipProfileSccpArgs{
+// 			Sccp: &VoipProfileSccpArgs{
 // 				BlockMcast:     pulumi.String("disable"),
 // 				LogCallSummary: pulumi.String("disable"),
 // 				LogViolations:  pulumi.String("disable"),
@@ -34,7 +35,7 @@ import (
 // 				Status:         pulumi.String("enable"),
 // 				VerifyHeader:   pulumi.String("disable"),
 // 			},
-// 			Sip: &fortios.VoipProfileSipArgs{
+// 			Sip: &VoipProfileSipArgs{
 // 				AckRate:                     pulumi.Int(0),
 // 				ByeRate:                     pulumi.Int(0),
 // 				CallKeepalive:               pulumi.Int(0),
@@ -105,6 +106,10 @@ type VoipProfile struct {
 
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
+	// MSRP. The structure of `msrp` block is documented below.
+	Msrp VoipProfileMsrpPtrOutput `pulumi:"msrp"`
 	// Profile name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// SCCP. The structure of `sccp` block is documented below.
@@ -122,6 +127,7 @@ func NewVoipProfile(ctx *pulumi.Context,
 		args = &VoipProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VoipProfile
 	err := ctx.RegisterResource("fortios:index/voipProfile:VoipProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -146,6 +152,10 @@ func GetVoipProfile(ctx *pulumi.Context,
 type voipProfileState struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	FeatureSet *string `pulumi:"featureSet"`
+	// MSRP. The structure of `msrp` block is documented below.
+	Msrp *VoipProfileMsrp `pulumi:"msrp"`
 	// Profile name.
 	Name *string `pulumi:"name"`
 	// SCCP. The structure of `sccp` block is documented below.
@@ -159,6 +169,10 @@ type voipProfileState struct {
 type VoipProfileState struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	FeatureSet pulumi.StringPtrInput
+	// MSRP. The structure of `msrp` block is documented below.
+	Msrp VoipProfileMsrpPtrInput
 	// Profile name.
 	Name pulumi.StringPtrInput
 	// SCCP. The structure of `sccp` block is documented below.
@@ -176,6 +190,10 @@ func (VoipProfileState) ElementType() reflect.Type {
 type voipProfileArgs struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	FeatureSet *string `pulumi:"featureSet"`
+	// MSRP. The structure of `msrp` block is documented below.
+	Msrp *VoipProfileMsrp `pulumi:"msrp"`
 	// Profile name.
 	Name *string `pulumi:"name"`
 	// SCCP. The structure of `sccp` block is documented below.
@@ -190,6 +208,10 @@ type voipProfileArgs struct {
 type VoipProfileArgs struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+	FeatureSet pulumi.StringPtrInput
+	// MSRP. The structure of `msrp` block is documented below.
+	Msrp VoipProfileMsrpPtrInput
 	// Profile name.
 	Name pulumi.StringPtrInput
 	// SCCP. The structure of `sccp` block is documented below.
@@ -212,7 +234,7 @@ type VoipProfileInput interface {
 }
 
 func (*VoipProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*VoipProfile)(nil))
+	return reflect.TypeOf((**VoipProfile)(nil)).Elem()
 }
 
 func (i *VoipProfile) ToVoipProfileOutput() VoipProfileOutput {
@@ -221,35 +243,6 @@ func (i *VoipProfile) ToVoipProfileOutput() VoipProfileOutput {
 
 func (i *VoipProfile) ToVoipProfileOutputWithContext(ctx context.Context) VoipProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileOutput)
-}
-
-func (i *VoipProfile) ToVoipProfilePtrOutput() VoipProfilePtrOutput {
-	return i.ToVoipProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *VoipProfile) ToVoipProfilePtrOutputWithContext(ctx context.Context) VoipProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VoipProfilePtrOutput)
-}
-
-type VoipProfilePtrInput interface {
-	pulumi.Input
-
-	ToVoipProfilePtrOutput() VoipProfilePtrOutput
-	ToVoipProfilePtrOutputWithContext(ctx context.Context) VoipProfilePtrOutput
-}
-
-type voipProfilePtrType VoipProfileArgs
-
-func (*voipProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VoipProfile)(nil))
-}
-
-func (i *voipProfilePtrType) ToVoipProfilePtrOutput() VoipProfilePtrOutput {
-	return i.ToVoipProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *voipProfilePtrType) ToVoipProfilePtrOutputWithContext(ctx context.Context) VoipProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VoipProfilePtrOutput)
 }
 
 // VoipProfileArrayInput is an input type that accepts VoipProfileArray and VoipProfileArrayOutput values.
@@ -266,7 +259,7 @@ type VoipProfileArrayInput interface {
 type VoipProfileArray []VoipProfileInput
 
 func (VoipProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VoipProfile)(nil))
+	return reflect.TypeOf((*[]*VoipProfile)(nil)).Elem()
 }
 
 func (i VoipProfileArray) ToVoipProfileArrayOutput() VoipProfileArrayOutput {
@@ -291,7 +284,7 @@ type VoipProfileMapInput interface {
 type VoipProfileMap map[string]VoipProfileInput
 
 func (VoipProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VoipProfile)(nil))
+	return reflect.TypeOf((*map[string]*VoipProfile)(nil)).Elem()
 }
 
 func (i VoipProfileMap) ToVoipProfileMapOutput() VoipProfileMapOutput {
@@ -302,12 +295,10 @@ func (i VoipProfileMap) ToVoipProfileMapOutputWithContext(ctx context.Context) V
 	return pulumi.ToOutputWithContext(ctx, i).(VoipProfileMapOutput)
 }
 
-type VoipProfileOutput struct {
-	*pulumi.OutputState
-}
+type VoipProfileOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VoipProfile)(nil))
+	return reflect.TypeOf((**VoipProfile)(nil)).Elem()
 }
 
 func (o VoipProfileOutput) ToVoipProfileOutput() VoipProfileOutput {
@@ -318,36 +309,10 @@ func (o VoipProfileOutput) ToVoipProfileOutputWithContext(ctx context.Context) V
 	return o
 }
 
-func (o VoipProfileOutput) ToVoipProfilePtrOutput() VoipProfilePtrOutput {
-	return o.ToVoipProfilePtrOutputWithContext(context.Background())
-}
-
-func (o VoipProfileOutput) ToVoipProfilePtrOutputWithContext(ctx context.Context) VoipProfilePtrOutput {
-	return o.ApplyT(func(v VoipProfile) *VoipProfile {
-		return &v
-	}).(VoipProfilePtrOutput)
-}
-
-type VoipProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VoipProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VoipProfile)(nil))
-}
-
-func (o VoipProfilePtrOutput) ToVoipProfilePtrOutput() VoipProfilePtrOutput {
-	return o
-}
-
-func (o VoipProfilePtrOutput) ToVoipProfilePtrOutputWithContext(ctx context.Context) VoipProfilePtrOutput {
-	return o
-}
-
 type VoipProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VoipProfile)(nil))
+	return reflect.TypeOf((*[]*VoipProfile)(nil)).Elem()
 }
 
 func (o VoipProfileArrayOutput) ToVoipProfileArrayOutput() VoipProfileArrayOutput {
@@ -359,15 +324,15 @@ func (o VoipProfileArrayOutput) ToVoipProfileArrayOutputWithContext(ctx context.
 }
 
 func (o VoipProfileArrayOutput) Index(i pulumi.IntInput) VoipProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VoipProfile {
-		return vs[0].([]VoipProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VoipProfile {
+		return vs[0].([]*VoipProfile)[vs[1].(int)]
 	}).(VoipProfileOutput)
 }
 
 type VoipProfileMapOutput struct{ *pulumi.OutputState }
 
 func (VoipProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VoipProfile)(nil))
+	return reflect.TypeOf((*map[string]*VoipProfile)(nil)).Elem()
 }
 
 func (o VoipProfileMapOutput) ToVoipProfileMapOutput() VoipProfileMapOutput {
@@ -379,14 +344,16 @@ func (o VoipProfileMapOutput) ToVoipProfileMapOutputWithContext(ctx context.Cont
 }
 
 func (o VoipProfileMapOutput) MapIndex(k pulumi.StringInput) VoipProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VoipProfile {
-		return vs[0].(map[string]VoipProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VoipProfile {
+		return vs[0].(map[string]*VoipProfile)[vs[1].(string)]
 	}).(VoipProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileInput)(nil)).Elem(), &VoipProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileArrayInput)(nil)).Elem(), VoipProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VoipProfileMapInput)(nil)).Elem(), VoipProfileMap{})
 	pulumi.RegisterOutputType(VoipProfileOutput{})
-	pulumi.RegisterOutputType(VoipProfilePtrOutput{})
 	pulumi.RegisterOutputType(VoipProfileArrayOutput{})
 	pulumi.RegisterOutputType(VoipProfileMapOutput{})
 }

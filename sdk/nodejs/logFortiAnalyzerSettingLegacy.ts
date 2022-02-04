@@ -92,34 +92,32 @@ export class LogFortiAnalyzerSettingLegacy extends pulumi.CustomResource {
      */
     constructor(name: string, args: LogFortiAnalyzerSettingLegacyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortiAnalyzerSettingLegacyArgs | LogFortiAnalyzerSettingLegacyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortiAnalyzerSettingLegacyState | undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
-            inputs["reliable"] = state ? state.reliable : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uploadOption"] = state ? state.uploadOption : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
+            resourceInputs["reliable"] = state ? state.reliable : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uploadOption"] = state ? state.uploadOption : undefined;
         } else {
             const args = argsOrState as LogFortiAnalyzerSettingLegacyArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
-            inputs["reliable"] = args ? args.reliable : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uploadOption"] = args ? args.uploadOption : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
+            resourceInputs["reliable"] = args ? args.reliable : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uploadOption"] = args ? args.uploadOption : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortiAnalyzerSettingLegacy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortiAnalyzerSettingLegacy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

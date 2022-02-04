@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -77,6 +77,8 @@ type FirewallServiceCustom struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn pulumi.StringOutput `pulumi:"fqdn"`
 	// Helper name.
@@ -105,6 +107,8 @@ type FirewallServiceCustom struct {
 	TcpHalfopenTimer pulumi.IntOutput `pulumi:"tcpHalfopenTimer"`
 	// Multiple TCP port ranges.
 	TcpPortrange pulumi.StringOutput `pulumi:"tcpPortrange"`
+	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+	TcpRstTimer pulumi.IntOutput `pulumi:"tcpRstTimer"`
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer pulumi.IntOutput `pulumi:"tcpTimewaitTimer"`
 	// UDP half close timeout (0 - 86400 sec, 0 = default).
@@ -124,6 +128,7 @@ func NewFirewallServiceCustom(ctx *pulumi.Context,
 		args = &FirewallServiceCustomArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallServiceCustom
 	err := ctx.RegisterResource("fortios:index/firewallServiceCustom:FirewallServiceCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -162,6 +167,8 @@ type firewallServiceCustomState struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
 	// Helper name.
@@ -190,6 +197,8 @@ type firewallServiceCustomState struct {
 	TcpHalfopenTimer *int `pulumi:"tcpHalfopenTimer"`
 	// Multiple TCP port ranges.
 	TcpPortrange *string `pulumi:"tcpPortrange"`
+	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+	TcpRstTimer *int `pulumi:"tcpRstTimer"`
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
 	// UDP half close timeout (0 - 86400 sec, 0 = default).
@@ -219,6 +228,8 @@ type FirewallServiceCustomState struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
 	// Helper name.
@@ -247,6 +258,8 @@ type FirewallServiceCustomState struct {
 	TcpHalfopenTimer pulumi.IntPtrInput
 	// Multiple TCP port ranges.
 	TcpPortrange pulumi.StringPtrInput
+	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+	TcpRstTimer pulumi.IntPtrInput
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer pulumi.IntPtrInput
 	// UDP half close timeout (0 - 86400 sec, 0 = default).
@@ -280,6 +293,8 @@ type firewallServiceCustomArgs struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Fully qualified domain name.
 	Fqdn *string `pulumi:"fqdn"`
 	// Helper name.
@@ -308,6 +323,8 @@ type firewallServiceCustomArgs struct {
 	TcpHalfopenTimer *int `pulumi:"tcpHalfopenTimer"`
 	// Multiple TCP port ranges.
 	TcpPortrange *string `pulumi:"tcpPortrange"`
+	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+	TcpRstTimer *int `pulumi:"tcpRstTimer"`
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer *int `pulumi:"tcpTimewaitTimer"`
 	// UDP half close timeout (0 - 86400 sec, 0 = default).
@@ -338,6 +355,8 @@ type FirewallServiceCustomArgs struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Fully qualified domain name.
 	Fqdn pulumi.StringPtrInput
 	// Helper name.
@@ -366,6 +385,8 @@ type FirewallServiceCustomArgs struct {
 	TcpHalfopenTimer pulumi.IntPtrInput
 	// Multiple TCP port ranges.
 	TcpPortrange pulumi.StringPtrInput
+	// Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+	TcpRstTimer pulumi.IntPtrInput
 	// Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 	TcpTimewaitTimer pulumi.IntPtrInput
 	// UDP half close timeout (0 - 86400 sec, 0 = default).
@@ -390,7 +411,7 @@ type FirewallServiceCustomInput interface {
 }
 
 func (*FirewallServiceCustom) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallServiceCustom)(nil))
+	return reflect.TypeOf((**FirewallServiceCustom)(nil)).Elem()
 }
 
 func (i *FirewallServiceCustom) ToFirewallServiceCustomOutput() FirewallServiceCustomOutput {
@@ -399,35 +420,6 @@ func (i *FirewallServiceCustom) ToFirewallServiceCustomOutput() FirewallServiceC
 
 func (i *FirewallServiceCustom) ToFirewallServiceCustomOutputWithContext(ctx context.Context) FirewallServiceCustomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomOutput)
-}
-
-func (i *FirewallServiceCustom) ToFirewallServiceCustomPtrOutput() FirewallServiceCustomPtrOutput {
-	return i.ToFirewallServiceCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallServiceCustom) ToFirewallServiceCustomPtrOutputWithContext(ctx context.Context) FirewallServiceCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomPtrOutput)
-}
-
-type FirewallServiceCustomPtrInput interface {
-	pulumi.Input
-
-	ToFirewallServiceCustomPtrOutput() FirewallServiceCustomPtrOutput
-	ToFirewallServiceCustomPtrOutputWithContext(ctx context.Context) FirewallServiceCustomPtrOutput
-}
-
-type firewallServiceCustomPtrType FirewallServiceCustomArgs
-
-func (*firewallServiceCustomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallServiceCustom)(nil))
-}
-
-func (i *firewallServiceCustomPtrType) ToFirewallServiceCustomPtrOutput() FirewallServiceCustomPtrOutput {
-	return i.ToFirewallServiceCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallServiceCustomPtrType) ToFirewallServiceCustomPtrOutputWithContext(ctx context.Context) FirewallServiceCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomPtrOutput)
 }
 
 // FirewallServiceCustomArrayInput is an input type that accepts FirewallServiceCustomArray and FirewallServiceCustomArrayOutput values.
@@ -444,7 +436,7 @@ type FirewallServiceCustomArrayInput interface {
 type FirewallServiceCustomArray []FirewallServiceCustomInput
 
 func (FirewallServiceCustomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallServiceCustom)(nil))
+	return reflect.TypeOf((*[]*FirewallServiceCustom)(nil)).Elem()
 }
 
 func (i FirewallServiceCustomArray) ToFirewallServiceCustomArrayOutput() FirewallServiceCustomArrayOutput {
@@ -469,7 +461,7 @@ type FirewallServiceCustomMapInput interface {
 type FirewallServiceCustomMap map[string]FirewallServiceCustomInput
 
 func (FirewallServiceCustomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallServiceCustom)(nil))
+	return reflect.TypeOf((*map[string]*FirewallServiceCustom)(nil)).Elem()
 }
 
 func (i FirewallServiceCustomMap) ToFirewallServiceCustomMapOutput() FirewallServiceCustomMapOutput {
@@ -480,12 +472,10 @@ func (i FirewallServiceCustomMap) ToFirewallServiceCustomMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCustomMapOutput)
 }
 
-type FirewallServiceCustomOutput struct {
-	*pulumi.OutputState
-}
+type FirewallServiceCustomOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCustomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallServiceCustom)(nil))
+	return reflect.TypeOf((**FirewallServiceCustom)(nil)).Elem()
 }
 
 func (o FirewallServiceCustomOutput) ToFirewallServiceCustomOutput() FirewallServiceCustomOutput {
@@ -496,36 +486,10 @@ func (o FirewallServiceCustomOutput) ToFirewallServiceCustomOutputWithContext(ct
 	return o
 }
 
-func (o FirewallServiceCustomOutput) ToFirewallServiceCustomPtrOutput() FirewallServiceCustomPtrOutput {
-	return o.ToFirewallServiceCustomPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallServiceCustomOutput) ToFirewallServiceCustomPtrOutputWithContext(ctx context.Context) FirewallServiceCustomPtrOutput {
-	return o.ApplyT(func(v FirewallServiceCustom) *FirewallServiceCustom {
-		return &v
-	}).(FirewallServiceCustomPtrOutput)
-}
-
-type FirewallServiceCustomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallServiceCustomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallServiceCustom)(nil))
-}
-
-func (o FirewallServiceCustomPtrOutput) ToFirewallServiceCustomPtrOutput() FirewallServiceCustomPtrOutput {
-	return o
-}
-
-func (o FirewallServiceCustomPtrOutput) ToFirewallServiceCustomPtrOutputWithContext(ctx context.Context) FirewallServiceCustomPtrOutput {
-	return o
-}
-
 type FirewallServiceCustomArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCustomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallServiceCustom)(nil))
+	return reflect.TypeOf((*[]*FirewallServiceCustom)(nil)).Elem()
 }
 
 func (o FirewallServiceCustomArrayOutput) ToFirewallServiceCustomArrayOutput() FirewallServiceCustomArrayOutput {
@@ -537,15 +501,15 @@ func (o FirewallServiceCustomArrayOutput) ToFirewallServiceCustomArrayOutputWith
 }
 
 func (o FirewallServiceCustomArrayOutput) Index(i pulumi.IntInput) FirewallServiceCustomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallServiceCustom {
-		return vs[0].([]FirewallServiceCustom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallServiceCustom {
+		return vs[0].([]*FirewallServiceCustom)[vs[1].(int)]
 	}).(FirewallServiceCustomOutput)
 }
 
 type FirewallServiceCustomMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCustomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallServiceCustom)(nil))
+	return reflect.TypeOf((*map[string]*FirewallServiceCustom)(nil)).Elem()
 }
 
 func (o FirewallServiceCustomMapOutput) ToFirewallServiceCustomMapOutput() FirewallServiceCustomMapOutput {
@@ -557,14 +521,16 @@ func (o FirewallServiceCustomMapOutput) ToFirewallServiceCustomMapOutputWithCont
 }
 
 func (o FirewallServiceCustomMapOutput) MapIndex(k pulumi.StringInput) FirewallServiceCustomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallServiceCustom {
-		return vs[0].(map[string]FirewallServiceCustom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallServiceCustom {
+		return vs[0].(map[string]*FirewallServiceCustom)[vs[1].(string)]
 	}).(FirewallServiceCustomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceCustomInput)(nil)).Elem(), &FirewallServiceCustom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceCustomArrayInput)(nil)).Elem(), FirewallServiceCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceCustomMapInput)(nil)).Elem(), FirewallServiceCustomMap{})
 	pulumi.RegisterOutputType(FirewallServiceCustomOutput{})
-	pulumi.RegisterOutputType(FirewallServiceCustomPtrOutput{})
 	pulumi.RegisterOutputType(FirewallServiceCustomArrayOutput{})
 	pulumi.RegisterOutputType(FirewallServiceCustomMapOutput{})
 }

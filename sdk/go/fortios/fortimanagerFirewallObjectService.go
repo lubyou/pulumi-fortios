@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -104,6 +104,7 @@ func NewFortimanagerFirewallObjectService(ctx *pulumi.Context,
 		args = &FortimanagerFirewallObjectServiceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerFirewallObjectService
 	err := ctx.RegisterResource("fortios:index/fortimanagerFirewallObjectService:FortimanagerFirewallObjectService", name, args, &resource, opts...)
 	if err != nil {
@@ -262,7 +263,7 @@ type FortimanagerFirewallObjectServiceInput interface {
 }
 
 func (*FortimanagerFirewallObjectService) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerFirewallObjectService)(nil))
+	return reflect.TypeOf((**FortimanagerFirewallObjectService)(nil)).Elem()
 }
 
 func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServiceOutput() FortimanagerFirewallObjectServiceOutput {
@@ -271,35 +272,6 @@ func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServiceO
 
 func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServiceOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServiceOutput)
-}
-
-func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServicePtrOutput() FortimanagerFirewallObjectServicePtrOutput {
-	return i.ToFortimanagerFirewallObjectServicePtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerFirewallObjectService) ToFortimanagerFirewallObjectServicePtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServicePtrOutput)
-}
-
-type FortimanagerFirewallObjectServicePtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerFirewallObjectServicePtrOutput() FortimanagerFirewallObjectServicePtrOutput
-	ToFortimanagerFirewallObjectServicePtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServicePtrOutput
-}
-
-type fortimanagerFirewallObjectServicePtrType FortimanagerFirewallObjectServiceArgs
-
-func (*fortimanagerFirewallObjectServicePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerFirewallObjectService)(nil))
-}
-
-func (i *fortimanagerFirewallObjectServicePtrType) ToFortimanagerFirewallObjectServicePtrOutput() FortimanagerFirewallObjectServicePtrOutput {
-	return i.ToFortimanagerFirewallObjectServicePtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerFirewallObjectServicePtrType) ToFortimanagerFirewallObjectServicePtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServicePtrOutput)
 }
 
 // FortimanagerFirewallObjectServiceArrayInput is an input type that accepts FortimanagerFirewallObjectServiceArray and FortimanagerFirewallObjectServiceArrayOutput values.
@@ -316,7 +288,7 @@ type FortimanagerFirewallObjectServiceArrayInput interface {
 type FortimanagerFirewallObjectServiceArray []FortimanagerFirewallObjectServiceInput
 
 func (FortimanagerFirewallObjectServiceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerFirewallObjectService)(nil))
+	return reflect.TypeOf((*[]*FortimanagerFirewallObjectService)(nil)).Elem()
 }
 
 func (i FortimanagerFirewallObjectServiceArray) ToFortimanagerFirewallObjectServiceArrayOutput() FortimanagerFirewallObjectServiceArrayOutput {
@@ -341,7 +313,7 @@ type FortimanagerFirewallObjectServiceMapInput interface {
 type FortimanagerFirewallObjectServiceMap map[string]FortimanagerFirewallObjectServiceInput
 
 func (FortimanagerFirewallObjectServiceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerFirewallObjectService)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerFirewallObjectService)(nil)).Elem()
 }
 
 func (i FortimanagerFirewallObjectServiceMap) ToFortimanagerFirewallObjectServiceMapOutput() FortimanagerFirewallObjectServiceMapOutput {
@@ -352,12 +324,10 @@ func (i FortimanagerFirewallObjectServiceMap) ToFortimanagerFirewallObjectServic
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectServiceMapOutput)
 }
 
-type FortimanagerFirewallObjectServiceOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerFirewallObjectServiceOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerFirewallObjectService)(nil))
+	return reflect.TypeOf((**FortimanagerFirewallObjectService)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectServiceOutput() FortimanagerFirewallObjectServiceOutput {
@@ -368,36 +338,10 @@ func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectSer
 	return o
 }
 
-func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectServicePtrOutput() FortimanagerFirewallObjectServicePtrOutput {
-	return o.ToFortimanagerFirewallObjectServicePtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerFirewallObjectServiceOutput) ToFortimanagerFirewallObjectServicePtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServicePtrOutput {
-	return o.ApplyT(func(v FortimanagerFirewallObjectService) *FortimanagerFirewallObjectService {
-		return &v
-	}).(FortimanagerFirewallObjectServicePtrOutput)
-}
-
-type FortimanagerFirewallObjectServicePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerFirewallObjectServicePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerFirewallObjectService)(nil))
-}
-
-func (o FortimanagerFirewallObjectServicePtrOutput) ToFortimanagerFirewallObjectServicePtrOutput() FortimanagerFirewallObjectServicePtrOutput {
-	return o
-}
-
-func (o FortimanagerFirewallObjectServicePtrOutput) ToFortimanagerFirewallObjectServicePtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectServicePtrOutput {
-	return o
-}
-
 type FortimanagerFirewallObjectServiceArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectServiceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerFirewallObjectService)(nil))
+	return reflect.TypeOf((*[]*FortimanagerFirewallObjectService)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallObjectServiceArrayOutput) ToFortimanagerFirewallObjectServiceArrayOutput() FortimanagerFirewallObjectServiceArrayOutput {
@@ -409,15 +353,15 @@ func (o FortimanagerFirewallObjectServiceArrayOutput) ToFortimanagerFirewallObje
 }
 
 func (o FortimanagerFirewallObjectServiceArrayOutput) Index(i pulumi.IntInput) FortimanagerFirewallObjectServiceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerFirewallObjectService {
-		return vs[0].([]FortimanagerFirewallObjectService)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerFirewallObjectService {
+		return vs[0].([]*FortimanagerFirewallObjectService)[vs[1].(int)]
 	}).(FortimanagerFirewallObjectServiceOutput)
 }
 
 type FortimanagerFirewallObjectServiceMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectServiceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerFirewallObjectService)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerFirewallObjectService)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallObjectServiceMapOutput) ToFortimanagerFirewallObjectServiceMapOutput() FortimanagerFirewallObjectServiceMapOutput {
@@ -429,14 +373,16 @@ func (o FortimanagerFirewallObjectServiceMapOutput) ToFortimanagerFirewallObject
 }
 
 func (o FortimanagerFirewallObjectServiceMapOutput) MapIndex(k pulumi.StringInput) FortimanagerFirewallObjectServiceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerFirewallObjectService {
-		return vs[0].(map[string]FortimanagerFirewallObjectService)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerFirewallObjectService {
+		return vs[0].(map[string]*FortimanagerFirewallObjectService)[vs[1].(string)]
 	}).(FortimanagerFirewallObjectServiceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallObjectServiceInput)(nil)).Elem(), &FortimanagerFirewallObjectService{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallObjectServiceArrayInput)(nil)).Elem(), FortimanagerFirewallObjectServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallObjectServiceMapInput)(nil)).Elem(), FortimanagerFirewallObjectServiceMap{})
 	pulumi.RegisterOutputType(FortimanagerFirewallObjectServiceOutput{})
-	pulumi.RegisterOutputType(FortimanagerFirewallObjectServicePtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerFirewallObjectServiceArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerFirewallObjectServiceMapOutput{})
 }

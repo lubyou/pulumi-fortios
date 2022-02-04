@@ -13,9 +13,7 @@ export function getSystemSnmpCommunity(args: GetSystemSnmpCommunityArgs, opts?: 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemSnmpCommunity:GetSystemSnmpCommunity", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -109,4 +107,22 @@ export interface GetSystemSnmpCommunityResult {
      */
     readonly trapV2cStatus: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemSnmpCommunityOutput(args: GetSystemSnmpCommunityOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSnmpCommunityResult> {
+    return pulumi.output(args).apply(a => getSystemSnmpCommunity(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemSnmpCommunity.
+ */
+export interface GetSystemSnmpCommunityOutputArgs {
+    /**
+     * Specify the fosid of the desired systemsnmp community.
+     */
+    fosid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

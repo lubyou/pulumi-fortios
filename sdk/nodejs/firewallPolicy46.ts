@@ -6,13 +6,13 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure IPv4 to IPv6 policies.
+ * Configure IPv4 to IPv6 policies. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trnameFirewallVip46 = new fortios.FirewallVip46("trnameFirewallVip46", {
  *     arpReply: "enable",
@@ -200,35 +200,35 @@ export class FirewallPolicy46 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallPolicy46Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallPolicy46Args | FirewallPolicy46State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallPolicy46State | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dstintf"] = state ? state.dstintf : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fixedport"] = state ? state.fixedport : undefined;
-            inputs["ippool"] = state ? state.ippool : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["perIpShaper"] = state ? state.perIpShaper : undefined;
-            inputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
-            inputs["policyid"] = state ? state.policyid : undefined;
-            inputs["poolnames"] = state ? state.poolnames : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintf"] = state ? state.srcintf : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tcpMssReceiver"] = state ? state.tcpMssReceiver : undefined;
-            inputs["tcpMssSender"] = state ? state.tcpMssSender : undefined;
-            inputs["trafficShaper"] = state ? state.trafficShaper : undefined;
-            inputs["trafficShaperReverse"] = state ? state.trafficShaperReverse : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dstintf"] = state ? state.dstintf : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fixedport"] = state ? state.fixedport : undefined;
+            resourceInputs["ippool"] = state ? state.ippool : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["perIpShaper"] = state ? state.perIpShaper : undefined;
+            resourceInputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
+            resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["poolnames"] = state ? state.poolnames : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintf"] = state ? state.srcintf : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tcpMssReceiver"] = state ? state.tcpMssReceiver : undefined;
+            resourceInputs["tcpMssSender"] = state ? state.tcpMssSender : undefined;
+            resourceInputs["trafficShaper"] = state ? state.trafficShaper : undefined;
+            resourceInputs["trafficShaperReverse"] = state ? state.trafficShaperReverse : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallPolicy46Args | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -246,36 +246,34 @@ export class FirewallPolicy46 extends pulumi.CustomResource {
             if ((!args || args.srcintf === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcintf'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dstintf"] = args ? args.dstintf : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fixedport"] = args ? args.fixedport : undefined;
-            inputs["ippool"] = args ? args.ippool : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["perIpShaper"] = args ? args.perIpShaper : undefined;
-            inputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
-            inputs["policyid"] = args ? args.policyid : undefined;
-            inputs["poolnames"] = args ? args.poolnames : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintf"] = args ? args.srcintf : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tcpMssReceiver"] = args ? args.tcpMssReceiver : undefined;
-            inputs["tcpMssSender"] = args ? args.tcpMssSender : undefined;
-            inputs["trafficShaper"] = args ? args.trafficShaper : undefined;
-            inputs["trafficShaperReverse"] = args ? args.trafficShaperReverse : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dstintf"] = args ? args.dstintf : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fixedport"] = args ? args.fixedport : undefined;
+            resourceInputs["ippool"] = args ? args.ippool : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["perIpShaper"] = args ? args.perIpShaper : undefined;
+            resourceInputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
+            resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["poolnames"] = args ? args.poolnames : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintf"] = args ? args.srcintf : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tcpMssReceiver"] = args ? args.tcpMssReceiver : undefined;
+            resourceInputs["tcpMssSender"] = args ? args.tcpMssSender : undefined;
+            resourceInputs["trafficShaper"] = args ? args.trafficShaper : undefined;
+            resourceInputs["trafficShaperReverse"] = args ? args.trafficShaperReverse : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallPolicy46.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallPolicy46.__pulumiType, name, resourceInputs, opts);
     }
 }
 

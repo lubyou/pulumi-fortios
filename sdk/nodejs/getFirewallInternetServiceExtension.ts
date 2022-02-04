@@ -13,9 +13,7 @@ export function getFirewallInternetServiceExtension(args: GetFirewallInternetSer
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallInternetServiceExtension:GetFirewallInternetServiceExtension", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -61,4 +59,22 @@ export interface GetFirewallInternetServiceExtensionResult {
      */
     readonly id: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallInternetServiceExtensionOutput(args: GetFirewallInternetServiceExtensionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallInternetServiceExtensionResult> {
+    return pulumi.output(args).apply(a => getFirewallInternetServiceExtension(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallInternetServiceExtension.
+ */
+export interface GetFirewallInternetServiceExtensionOutputArgs {
+    /**
+     * Specify the fosid of the desired firewall internetserviceextension.
+     */
+    fosid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

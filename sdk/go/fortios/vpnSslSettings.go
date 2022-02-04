@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -65,6 +65,10 @@ type VpnSslSettings struct {
 	BannedCipher pulumi.StringOutput `pulumi:"bannedCipher"`
 	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
 	CheckReferer pulumi.StringOutput `pulumi:"checkReferer"`
+	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+	Ciphersuite pulumi.StringOutput `pulumi:"ciphersuite"`
+	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+	ClientSigalgs pulumi.StringOutput `pulumi:"clientSigalgs"`
 	// Default SSL VPN portal.
 	DefaultPortal pulumi.StringOutput `pulumi:"defaultPortal"`
 	// Compression level (0~9).
@@ -85,6 +89,8 @@ type VpnSslSettings struct {
 	DtlsMinProtoVer pulumi.StringOutput `pulumi:"dtlsMinProtoVer"`
 	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
 	DtlsTunnel pulumi.StringOutput `pulumi:"dtlsTunnel"`
+	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+	DualStackMode pulumi.StringOutput `pulumi:"dualStackMode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
@@ -131,6 +137,8 @@ type VpnSslSettings struct {
 	Reqclientcert pulumi.StringOutput `pulumi:"reqclientcert"`
 	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
 	RouteSourceInterface pulumi.StringOutput `pulumi:"routeSourceInterface"`
+	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+	SamlRedirectPort pulumi.IntOutput `pulumi:"samlRedirectPort"`
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert pulumi.StringOutput `pulumi:"servercert"`
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -151,6 +159,8 @@ type VpnSslSettings struct {
 	SslMaxProtoVer pulumi.StringOutput `pulumi:"sslMaxProtoVer"`
 	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
 	SslMinProtoVer pulumi.StringOutput `pulumi:"sslMinProtoVer"`
+	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+	Status pulumi.StringOutput `pulumi:"status"`
 	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
 	Tlsv10 pulumi.StringOutput `pulumi:"tlsv10"`
 	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
@@ -161,6 +171,8 @@ type VpnSslSettings struct {
 	Tlsv13 pulumi.StringOutput `pulumi:"tlsv13"`
 	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
 	TransformBackwardSlashes pulumi.StringOutput `pulumi:"transformBackwardSlashes"`
+	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+	TunnelAddrAssignedMethod pulumi.StringOutput `pulumi:"tunnelAddrAssignedMethod"`
 	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
 	TunnelConnectWithoutReauth pulumi.StringOutput `pulumi:"tunnelConnectWithoutReauth"`
 	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
@@ -192,6 +204,7 @@ func NewVpnSslSettings(ctx *pulumi.Context,
 		args = &VpnSslSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnSslSettings
 	err := ctx.RegisterResource("fortios:index/vpnSslSettings:VpnSslSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -228,6 +241,10 @@ type vpnSslSettingsState struct {
 	BannedCipher *string `pulumi:"bannedCipher"`
 	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
 	CheckReferer *string `pulumi:"checkReferer"`
+	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+	Ciphersuite *string `pulumi:"ciphersuite"`
+	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+	ClientSigalgs *string `pulumi:"clientSigalgs"`
 	// Default SSL VPN portal.
 	DefaultPortal *string `pulumi:"defaultPortal"`
 	// Compression level (0~9).
@@ -248,6 +265,8 @@ type vpnSslSettingsState struct {
 	DtlsMinProtoVer *string `pulumi:"dtlsMinProtoVer"`
 	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
 	DtlsTunnel *string `pulumi:"dtlsTunnel"`
+	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+	DualStackMode *string `pulumi:"dualStackMode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
@@ -294,6 +313,8 @@ type vpnSslSettingsState struct {
 	Reqclientcert *string `pulumi:"reqclientcert"`
 	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
 	RouteSourceInterface *string `pulumi:"routeSourceInterface"`
+	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+	SamlRedirectPort *int `pulumi:"samlRedirectPort"`
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert *string `pulumi:"servercert"`
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -314,6 +335,8 @@ type vpnSslSettingsState struct {
 	SslMaxProtoVer *string `pulumi:"sslMaxProtoVer"`
 	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
 	SslMinProtoVer *string `pulumi:"sslMinProtoVer"`
+	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+	Status *string `pulumi:"status"`
 	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
 	Tlsv10 *string `pulumi:"tlsv10"`
 	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
@@ -324,6 +347,8 @@ type vpnSslSettingsState struct {
 	Tlsv13 *string `pulumi:"tlsv13"`
 	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
 	TransformBackwardSlashes *string `pulumi:"transformBackwardSlashes"`
+	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+	TunnelAddrAssignedMethod *string `pulumi:"tunnelAddrAssignedMethod"`
 	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
 	TunnelConnectWithoutReauth *string `pulumi:"tunnelConnectWithoutReauth"`
 	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
@@ -363,6 +388,10 @@ type VpnSslSettingsState struct {
 	BannedCipher pulumi.StringPtrInput
 	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
 	CheckReferer pulumi.StringPtrInput
+	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+	Ciphersuite pulumi.StringPtrInput
+	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+	ClientSigalgs pulumi.StringPtrInput
 	// Default SSL VPN portal.
 	DefaultPortal pulumi.StringPtrInput
 	// Compression level (0~9).
@@ -383,6 +412,8 @@ type VpnSslSettingsState struct {
 	DtlsMinProtoVer pulumi.StringPtrInput
 	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
 	DtlsTunnel pulumi.StringPtrInput
+	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+	DualStackMode pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
@@ -429,6 +460,8 @@ type VpnSslSettingsState struct {
 	Reqclientcert pulumi.StringPtrInput
 	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
 	RouteSourceInterface pulumi.StringPtrInput
+	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+	SamlRedirectPort pulumi.IntPtrInput
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert pulumi.StringPtrInput
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -449,6 +482,8 @@ type VpnSslSettingsState struct {
 	SslMaxProtoVer pulumi.StringPtrInput
 	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
 	SslMinProtoVer pulumi.StringPtrInput
+	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+	Status pulumi.StringPtrInput
 	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
 	Tlsv10 pulumi.StringPtrInput
 	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
@@ -459,6 +494,8 @@ type VpnSslSettingsState struct {
 	Tlsv13 pulumi.StringPtrInput
 	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
 	TransformBackwardSlashes pulumi.StringPtrInput
+	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+	TunnelAddrAssignedMethod pulumi.StringPtrInput
 	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
 	TunnelConnectWithoutReauth pulumi.StringPtrInput
 	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
@@ -502,6 +539,10 @@ type vpnSslSettingsArgs struct {
 	BannedCipher *string `pulumi:"bannedCipher"`
 	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
 	CheckReferer *string `pulumi:"checkReferer"`
+	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+	Ciphersuite *string `pulumi:"ciphersuite"`
+	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+	ClientSigalgs *string `pulumi:"clientSigalgs"`
 	// Default SSL VPN portal.
 	DefaultPortal *string `pulumi:"defaultPortal"`
 	// Compression level (0~9).
@@ -522,6 +563,8 @@ type vpnSslSettingsArgs struct {
 	DtlsMinProtoVer *string `pulumi:"dtlsMinProtoVer"`
 	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
 	DtlsTunnel *string `pulumi:"dtlsTunnel"`
+	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+	DualStackMode *string `pulumi:"dualStackMode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
@@ -568,6 +611,8 @@ type vpnSslSettingsArgs struct {
 	Reqclientcert *string `pulumi:"reqclientcert"`
 	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
 	RouteSourceInterface *string `pulumi:"routeSourceInterface"`
+	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+	SamlRedirectPort *int `pulumi:"samlRedirectPort"`
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert *string `pulumi:"servercert"`
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -588,6 +633,8 @@ type vpnSslSettingsArgs struct {
 	SslMaxProtoVer *string `pulumi:"sslMaxProtoVer"`
 	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
 	SslMinProtoVer *string `pulumi:"sslMinProtoVer"`
+	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+	Status *string `pulumi:"status"`
 	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
 	Tlsv10 *string `pulumi:"tlsv10"`
 	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
@@ -598,6 +645,8 @@ type vpnSslSettingsArgs struct {
 	Tlsv13 *string `pulumi:"tlsv13"`
 	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
 	TransformBackwardSlashes *string `pulumi:"transformBackwardSlashes"`
+	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+	TunnelAddrAssignedMethod *string `pulumi:"tunnelAddrAssignedMethod"`
 	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
 	TunnelConnectWithoutReauth *string `pulumi:"tunnelConnectWithoutReauth"`
 	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
@@ -638,6 +687,10 @@ type VpnSslSettingsArgs struct {
 	BannedCipher pulumi.StringPtrInput
 	// Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
 	CheckReferer pulumi.StringPtrInput
+	// Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+	Ciphersuite pulumi.StringPtrInput
+	// Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+	ClientSigalgs pulumi.StringPtrInput
 	// Default SSL VPN portal.
 	DefaultPortal pulumi.StringPtrInput
 	// Compression level (0~9).
@@ -658,6 +711,8 @@ type VpnSslSettingsArgs struct {
 	DtlsMinProtoVer pulumi.StringPtrInput
 	// Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
 	DtlsTunnel pulumi.StringPtrInput
+	// Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+	DualStackMode pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
@@ -704,6 +759,8 @@ type VpnSslSettingsArgs struct {
 	Reqclientcert pulumi.StringPtrInput
 	// Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
 	RouteSourceInterface pulumi.StringPtrInput
+	// SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+	SamlRedirectPort pulumi.IntPtrInput
 	// Name of the server certificate to be used for SSL-VPNs.
 	Servercert pulumi.StringPtrInput
 	// Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
@@ -724,6 +781,8 @@ type VpnSslSettingsArgs struct {
 	SslMaxProtoVer pulumi.StringPtrInput
 	// SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
 	SslMinProtoVer pulumi.StringPtrInput
+	// Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+	Status pulumi.StringPtrInput
 	// Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
 	Tlsv10 pulumi.StringPtrInput
 	// Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
@@ -734,6 +793,8 @@ type VpnSslSettingsArgs struct {
 	Tlsv13 pulumi.StringPtrInput
 	// Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
 	TransformBackwardSlashes pulumi.StringPtrInput
+	// Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+	TunnelAddrAssignedMethod pulumi.StringPtrInput
 	// Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
 	TunnelConnectWithoutReauth pulumi.StringPtrInput
 	// Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnelIpPools` block is documented below.
@@ -770,7 +831,7 @@ type VpnSslSettingsInput interface {
 }
 
 func (*VpnSslSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslSettings)(nil))
+	return reflect.TypeOf((**VpnSslSettings)(nil)).Elem()
 }
 
 func (i *VpnSslSettings) ToVpnSslSettingsOutput() VpnSslSettingsOutput {
@@ -779,35 +840,6 @@ func (i *VpnSslSettings) ToVpnSslSettingsOutput() VpnSslSettingsOutput {
 
 func (i *VpnSslSettings) ToVpnSslSettingsOutputWithContext(ctx context.Context) VpnSslSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsOutput)
-}
-
-func (i *VpnSslSettings) ToVpnSslSettingsPtrOutput() VpnSslSettingsPtrOutput {
-	return i.ToVpnSslSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnSslSettings) ToVpnSslSettingsPtrOutputWithContext(ctx context.Context) VpnSslSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsPtrOutput)
-}
-
-type VpnSslSettingsPtrInput interface {
-	pulumi.Input
-
-	ToVpnSslSettingsPtrOutput() VpnSslSettingsPtrOutput
-	ToVpnSslSettingsPtrOutputWithContext(ctx context.Context) VpnSslSettingsPtrOutput
-}
-
-type vpnSslSettingsPtrType VpnSslSettingsArgs
-
-func (*vpnSslSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslSettings)(nil))
-}
-
-func (i *vpnSslSettingsPtrType) ToVpnSslSettingsPtrOutput() VpnSslSettingsPtrOutput {
-	return i.ToVpnSslSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnSslSettingsPtrType) ToVpnSslSettingsPtrOutputWithContext(ctx context.Context) VpnSslSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsPtrOutput)
 }
 
 // VpnSslSettingsArrayInput is an input type that accepts VpnSslSettingsArray and VpnSslSettingsArrayOutput values.
@@ -824,7 +856,7 @@ type VpnSslSettingsArrayInput interface {
 type VpnSslSettingsArray []VpnSslSettingsInput
 
 func (VpnSslSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnSslSettings)(nil))
+	return reflect.TypeOf((*[]*VpnSslSettings)(nil)).Elem()
 }
 
 func (i VpnSslSettingsArray) ToVpnSslSettingsArrayOutput() VpnSslSettingsArrayOutput {
@@ -849,7 +881,7 @@ type VpnSslSettingsMapInput interface {
 type VpnSslSettingsMap map[string]VpnSslSettingsInput
 
 func (VpnSslSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnSslSettings)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslSettings)(nil)).Elem()
 }
 
 func (i VpnSslSettingsMap) ToVpnSslSettingsMapOutput() VpnSslSettingsMapOutput {
@@ -860,12 +892,10 @@ func (i VpnSslSettingsMap) ToVpnSslSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslSettingsMapOutput)
 }
 
-type VpnSslSettingsOutput struct {
-	*pulumi.OutputState
-}
+type VpnSslSettingsOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslSettings)(nil))
+	return reflect.TypeOf((**VpnSslSettings)(nil)).Elem()
 }
 
 func (o VpnSslSettingsOutput) ToVpnSslSettingsOutput() VpnSslSettingsOutput {
@@ -876,36 +906,10 @@ func (o VpnSslSettingsOutput) ToVpnSslSettingsOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o VpnSslSettingsOutput) ToVpnSslSettingsPtrOutput() VpnSslSettingsPtrOutput {
-	return o.ToVpnSslSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o VpnSslSettingsOutput) ToVpnSslSettingsPtrOutputWithContext(ctx context.Context) VpnSslSettingsPtrOutput {
-	return o.ApplyT(func(v VpnSslSettings) *VpnSslSettings {
-		return &v
-	}).(VpnSslSettingsPtrOutput)
-}
-
-type VpnSslSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnSslSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslSettings)(nil))
-}
-
-func (o VpnSslSettingsPtrOutput) ToVpnSslSettingsPtrOutput() VpnSslSettingsPtrOutput {
-	return o
-}
-
-func (o VpnSslSettingsPtrOutput) ToVpnSslSettingsPtrOutputWithContext(ctx context.Context) VpnSslSettingsPtrOutput {
-	return o
-}
-
 type VpnSslSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnSslSettings)(nil))
+	return reflect.TypeOf((*[]*VpnSslSettings)(nil)).Elem()
 }
 
 func (o VpnSslSettingsArrayOutput) ToVpnSslSettingsArrayOutput() VpnSslSettingsArrayOutput {
@@ -917,15 +921,15 @@ func (o VpnSslSettingsArrayOutput) ToVpnSslSettingsArrayOutputWithContext(ctx co
 }
 
 func (o VpnSslSettingsArrayOutput) Index(i pulumi.IntInput) VpnSslSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslSettings {
-		return vs[0].([]VpnSslSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslSettings {
+		return vs[0].([]*VpnSslSettings)[vs[1].(int)]
 	}).(VpnSslSettingsOutput)
 }
 
 type VpnSslSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (VpnSslSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnSslSettings)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslSettings)(nil)).Elem()
 }
 
 func (o VpnSslSettingsMapOutput) ToVpnSslSettingsMapOutput() VpnSslSettingsMapOutput {
@@ -937,14 +941,16 @@ func (o VpnSslSettingsMapOutput) ToVpnSslSettingsMapOutputWithContext(ctx contex
 }
 
 func (o VpnSslSettingsMapOutput) MapIndex(k pulumi.StringInput) VpnSslSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnSslSettings {
-		return vs[0].(map[string]VpnSslSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnSslSettings {
+		return vs[0].(map[string]*VpnSslSettings)[vs[1].(string)]
 	}).(VpnSslSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsInput)(nil)).Elem(), &VpnSslSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsArrayInput)(nil)).Elem(), VpnSslSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslSettingsMapInput)(nil)).Elem(), VpnSslSettingsMap{})
 	pulumi.RegisterOutputType(VpnSslSettingsOutput{})
-	pulumi.RegisterOutputType(VpnSslSettingsPtrOutput{})
 	pulumi.RegisterOutputType(VpnSslSettingsArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslSettingsMapOutput{})
 }

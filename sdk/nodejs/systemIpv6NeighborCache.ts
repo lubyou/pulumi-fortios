@@ -89,15 +89,15 @@ export class SystemIpv6NeighborCache extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemIpv6NeighborCacheArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemIpv6NeighborCacheArgs | SystemIpv6NeighborCacheState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpv6NeighborCacheState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipv6"] = state ? state.ipv6 : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipv6"] = state ? state.ipv6 : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpv6NeighborCacheArgs | undefined;
             if ((!args || args.fosid === undefined) && !opts.urn) {
@@ -112,16 +112,14 @@ export class SystemIpv6NeighborCache extends pulumi.CustomResource {
             if ((!args || args.mac === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mac'");
             }
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipv6"] = args ? args.ipv6 : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipv6"] = args ? args.ipv6 : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemIpv6NeighborCache.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemIpv6NeighborCache.__pulumiType, name, resourceInputs, opts);
     }
 }
 

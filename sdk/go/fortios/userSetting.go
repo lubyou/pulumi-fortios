@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -87,8 +87,12 @@ type UserSetting struct {
 	AuthSrcMac pulumi.StringOutput `pulumi:"authSrcMac"`
 	// Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
 	AuthSslAllowRenegotiation pulumi.StringOutput `pulumi:"authSslAllowRenegotiation"`
+	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+	AuthSslMaxProtoVersion pulumi.StringOutput `pulumi:"authSslMaxProtoVersion"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	AuthSslMinProtoVersion pulumi.StringOutput `pulumi:"authSslMinProtoVersion"`
+	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+	AuthSslSigalgs pulumi.StringOutput `pulumi:"authSslSigalgs"`
 	// Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
 	AuthTimeout pulumi.IntOutput `pulumi:"authTimeout"`
 	// Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
@@ -112,6 +116,7 @@ func NewUserSetting(ctx *pulumi.Context,
 		args = &UserSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserSetting
 	err := ctx.RegisterResource("fortios:index/userSetting:UserSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -160,8 +165,12 @@ type userSettingState struct {
 	AuthSrcMac *string `pulumi:"authSrcMac"`
 	// Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
 	AuthSslAllowRenegotiation *string `pulumi:"authSslAllowRenegotiation"`
+	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+	AuthSslMaxProtoVersion *string `pulumi:"authSslMaxProtoVersion"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	AuthSslMinProtoVersion *string `pulumi:"authSslMinProtoVersion"`
+	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+	AuthSslSigalgs *string `pulumi:"authSslSigalgs"`
 	// Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
 	AuthTimeout *int `pulumi:"authTimeout"`
 	// Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
@@ -205,8 +214,12 @@ type UserSettingState struct {
 	AuthSrcMac pulumi.StringPtrInput
 	// Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
 	AuthSslAllowRenegotiation pulumi.StringPtrInput
+	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+	AuthSslMaxProtoVersion pulumi.StringPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	AuthSslMinProtoVersion pulumi.StringPtrInput
+	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+	AuthSslSigalgs pulumi.StringPtrInput
 	// Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
 	AuthTimeout pulumi.IntPtrInput
 	// Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
@@ -254,8 +267,12 @@ type userSettingArgs struct {
 	AuthSrcMac *string `pulumi:"authSrcMac"`
 	// Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
 	AuthSslAllowRenegotiation *string `pulumi:"authSslAllowRenegotiation"`
+	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+	AuthSslMaxProtoVersion *string `pulumi:"authSslMaxProtoVersion"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	AuthSslMinProtoVersion *string `pulumi:"authSslMinProtoVersion"`
+	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+	AuthSslSigalgs *string `pulumi:"authSslSigalgs"`
 	// Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
 	AuthTimeout *int `pulumi:"authTimeout"`
 	// Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
@@ -300,8 +317,12 @@ type UserSettingArgs struct {
 	AuthSrcMac pulumi.StringPtrInput
 	// Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
 	AuthSslAllowRenegotiation pulumi.StringPtrInput
+	// Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+	AuthSslMaxProtoVersion pulumi.StringPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	AuthSslMinProtoVersion pulumi.StringPtrInput
+	// Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+	AuthSslSigalgs pulumi.StringPtrInput
 	// Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
 	AuthTimeout pulumi.IntPtrInput
 	// Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
@@ -330,7 +351,7 @@ type UserSettingInput interface {
 }
 
 func (*UserSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserSetting)(nil))
+	return reflect.TypeOf((**UserSetting)(nil)).Elem()
 }
 
 func (i *UserSetting) ToUserSettingOutput() UserSettingOutput {
@@ -339,35 +360,6 @@ func (i *UserSetting) ToUserSettingOutput() UserSettingOutput {
 
 func (i *UserSetting) ToUserSettingOutputWithContext(ctx context.Context) UserSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingOutput)
-}
-
-func (i *UserSetting) ToUserSettingPtrOutput() UserSettingPtrOutput {
-	return i.ToUserSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *UserSetting) ToUserSettingPtrOutputWithContext(ctx context.Context) UserSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserSettingPtrOutput)
-}
-
-type UserSettingPtrInput interface {
-	pulumi.Input
-
-	ToUserSettingPtrOutput() UserSettingPtrOutput
-	ToUserSettingPtrOutputWithContext(ctx context.Context) UserSettingPtrOutput
-}
-
-type userSettingPtrType UserSettingArgs
-
-func (*userSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserSetting)(nil))
-}
-
-func (i *userSettingPtrType) ToUserSettingPtrOutput() UserSettingPtrOutput {
-	return i.ToUserSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *userSettingPtrType) ToUserSettingPtrOutputWithContext(ctx context.Context) UserSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserSettingPtrOutput)
 }
 
 // UserSettingArrayInput is an input type that accepts UserSettingArray and UserSettingArrayOutput values.
@@ -384,7 +376,7 @@ type UserSettingArrayInput interface {
 type UserSettingArray []UserSettingInput
 
 func (UserSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserSetting)(nil))
+	return reflect.TypeOf((*[]*UserSetting)(nil)).Elem()
 }
 
 func (i UserSettingArray) ToUserSettingArrayOutput() UserSettingArrayOutput {
@@ -409,7 +401,7 @@ type UserSettingMapInput interface {
 type UserSettingMap map[string]UserSettingInput
 
 func (UserSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserSetting)(nil))
+	return reflect.TypeOf((*map[string]*UserSetting)(nil)).Elem()
 }
 
 func (i UserSettingMap) ToUserSettingMapOutput() UserSettingMapOutput {
@@ -420,12 +412,10 @@ func (i UserSettingMap) ToUserSettingMapOutputWithContext(ctx context.Context) U
 	return pulumi.ToOutputWithContext(ctx, i).(UserSettingMapOutput)
 }
 
-type UserSettingOutput struct {
-	*pulumi.OutputState
-}
+type UserSettingOutput struct{ *pulumi.OutputState }
 
 func (UserSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserSetting)(nil))
+	return reflect.TypeOf((**UserSetting)(nil)).Elem()
 }
 
 func (o UserSettingOutput) ToUserSettingOutput() UserSettingOutput {
@@ -436,36 +426,10 @@ func (o UserSettingOutput) ToUserSettingOutputWithContext(ctx context.Context) U
 	return o
 }
 
-func (o UserSettingOutput) ToUserSettingPtrOutput() UserSettingPtrOutput {
-	return o.ToUserSettingPtrOutputWithContext(context.Background())
-}
-
-func (o UserSettingOutput) ToUserSettingPtrOutputWithContext(ctx context.Context) UserSettingPtrOutput {
-	return o.ApplyT(func(v UserSetting) *UserSetting {
-		return &v
-	}).(UserSettingPtrOutput)
-}
-
-type UserSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserSetting)(nil))
-}
-
-func (o UserSettingPtrOutput) ToUserSettingPtrOutput() UserSettingPtrOutput {
-	return o
-}
-
-func (o UserSettingPtrOutput) ToUserSettingPtrOutputWithContext(ctx context.Context) UserSettingPtrOutput {
-	return o
-}
-
 type UserSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (UserSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserSetting)(nil))
+	return reflect.TypeOf((*[]*UserSetting)(nil)).Elem()
 }
 
 func (o UserSettingArrayOutput) ToUserSettingArrayOutput() UserSettingArrayOutput {
@@ -477,15 +441,15 @@ func (o UserSettingArrayOutput) ToUserSettingArrayOutputWithContext(ctx context.
 }
 
 func (o UserSettingArrayOutput) Index(i pulumi.IntInput) UserSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSetting {
-		return vs[0].([]UserSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSetting {
+		return vs[0].([]*UserSetting)[vs[1].(int)]
 	}).(UserSettingOutput)
 }
 
 type UserSettingMapOutput struct{ *pulumi.OutputState }
 
 func (UserSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserSetting)(nil))
+	return reflect.TypeOf((*map[string]*UserSetting)(nil)).Elem()
 }
 
 func (o UserSettingMapOutput) ToUserSettingMapOutput() UserSettingMapOutput {
@@ -497,14 +461,16 @@ func (o UserSettingMapOutput) ToUserSettingMapOutputWithContext(ctx context.Cont
 }
 
 func (o UserSettingMapOutput) MapIndex(k pulumi.StringInput) UserSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserSetting {
-		return vs[0].(map[string]UserSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserSetting {
+		return vs[0].(map[string]*UserSetting)[vs[1].(string)]
 	}).(UserSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSettingInput)(nil)).Elem(), &UserSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSettingArrayInput)(nil)).Elem(), UserSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSettingMapInput)(nil)).Elem(), UserSettingMap{})
 	pulumi.RegisterOutputType(UserSettingOutput{})
-	pulumi.RegisterOutputType(UserSettingPtrOutput{})
 	pulumi.RegisterOutputType(UserSettingArrayOutput{})
 	pulumi.RegisterOutputType(UserSettingMapOutput{})
 }

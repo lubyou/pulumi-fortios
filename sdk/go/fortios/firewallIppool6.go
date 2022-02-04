@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -49,12 +49,16 @@ import (
 type FirewallIppool6 struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+	AddNat46Route pulumi.StringOutput `pulumi:"addNat46Route"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Endip pulumi.StringOutput `pulumi:"endip"`
 	// IPv6 IP pool name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable NAT46. Valid values: `disable`, `enable`.
+	Nat46 pulumi.StringOutput `pulumi:"nat46"`
 	// First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Startip pulumi.StringOutput `pulumi:"startip"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -74,6 +78,7 @@ func NewFirewallIppool6(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallIppool6
 	err := ctx.RegisterResource("fortios:index/firewallIppool6:FirewallIppool6", name, args, &resource, opts...)
 	if err != nil {
@@ -96,12 +101,16 @@ func GetFirewallIppool6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIppool6 resources.
 type firewallIppool6State struct {
+	// Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+	AddNat46Route *string `pulumi:"addNat46Route"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Endip *string `pulumi:"endip"`
 	// IPv6 IP pool name.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAT46. Valid values: `disable`, `enable`.
+	Nat46 *string `pulumi:"nat46"`
 	// First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Startip *string `pulumi:"startip"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -109,12 +118,16 @@ type firewallIppool6State struct {
 }
 
 type FirewallIppool6State struct {
+	// Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+	AddNat46Route pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Endip pulumi.StringPtrInput
 	// IPv6 IP pool name.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `disable`, `enable`.
+	Nat46 pulumi.StringPtrInput
 	// First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Startip pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -126,12 +139,16 @@ func (FirewallIppool6State) ElementType() reflect.Type {
 }
 
 type firewallIppool6Args struct {
+	// Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+	AddNat46Route *string `pulumi:"addNat46Route"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
 	// Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Endip string `pulumi:"endip"`
 	// IPv6 IP pool name.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAT46. Valid values: `disable`, `enable`.
+	Nat46 *string `pulumi:"nat46"`
 	// First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Startip string `pulumi:"startip"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -140,12 +157,16 @@ type firewallIppool6Args struct {
 
 // The set of arguments for constructing a FirewallIppool6 resource.
 type FirewallIppool6Args struct {
+	// Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+	AddNat46Route pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
 	// Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Endip pulumi.StringInput
 	// IPv6 IP pool name.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `disable`, `enable`.
+	Nat46 pulumi.StringPtrInput
 	// First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
 	Startip pulumi.StringInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -164,7 +185,7 @@ type FirewallIppool6Input interface {
 }
 
 func (*FirewallIppool6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIppool6)(nil))
+	return reflect.TypeOf((**FirewallIppool6)(nil)).Elem()
 }
 
 func (i *FirewallIppool6) ToFirewallIppool6Output() FirewallIppool6Output {
@@ -173,35 +194,6 @@ func (i *FirewallIppool6) ToFirewallIppool6Output() FirewallIppool6Output {
 
 func (i *FirewallIppool6) ToFirewallIppool6OutputWithContext(ctx context.Context) FirewallIppool6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6Output)
-}
-
-func (i *FirewallIppool6) ToFirewallIppool6PtrOutput() FirewallIppool6PtrOutput {
-	return i.ToFirewallIppool6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallIppool6) ToFirewallIppool6PtrOutputWithContext(ctx context.Context) FirewallIppool6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6PtrOutput)
-}
-
-type FirewallIppool6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallIppool6PtrOutput() FirewallIppool6PtrOutput
-	ToFirewallIppool6PtrOutputWithContext(ctx context.Context) FirewallIppool6PtrOutput
-}
-
-type firewallIppool6PtrType FirewallIppool6Args
-
-func (*firewallIppool6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIppool6)(nil))
-}
-
-func (i *firewallIppool6PtrType) ToFirewallIppool6PtrOutput() FirewallIppool6PtrOutput {
-	return i.ToFirewallIppool6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallIppool6PtrType) ToFirewallIppool6PtrOutputWithContext(ctx context.Context) FirewallIppool6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6PtrOutput)
 }
 
 // FirewallIppool6ArrayInput is an input type that accepts FirewallIppool6Array and FirewallIppool6ArrayOutput values.
@@ -218,7 +210,7 @@ type FirewallIppool6ArrayInput interface {
 type FirewallIppool6Array []FirewallIppool6Input
 
 func (FirewallIppool6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallIppool6)(nil))
+	return reflect.TypeOf((*[]*FirewallIppool6)(nil)).Elem()
 }
 
 func (i FirewallIppool6Array) ToFirewallIppool6ArrayOutput() FirewallIppool6ArrayOutput {
@@ -243,7 +235,7 @@ type FirewallIppool6MapInput interface {
 type FirewallIppool6Map map[string]FirewallIppool6Input
 
 func (FirewallIppool6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallIppool6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIppool6)(nil)).Elem()
 }
 
 func (i FirewallIppool6Map) ToFirewallIppool6MapOutput() FirewallIppool6MapOutput {
@@ -254,12 +246,10 @@ func (i FirewallIppool6Map) ToFirewallIppool6MapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppool6MapOutput)
 }
 
-type FirewallIppool6Output struct {
-	*pulumi.OutputState
-}
+type FirewallIppool6Output struct{ *pulumi.OutputState }
 
 func (FirewallIppool6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIppool6)(nil))
+	return reflect.TypeOf((**FirewallIppool6)(nil)).Elem()
 }
 
 func (o FirewallIppool6Output) ToFirewallIppool6Output() FirewallIppool6Output {
@@ -270,36 +260,10 @@ func (o FirewallIppool6Output) ToFirewallIppool6OutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FirewallIppool6Output) ToFirewallIppool6PtrOutput() FirewallIppool6PtrOutput {
-	return o.ToFirewallIppool6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallIppool6Output) ToFirewallIppool6PtrOutputWithContext(ctx context.Context) FirewallIppool6PtrOutput {
-	return o.ApplyT(func(v FirewallIppool6) *FirewallIppool6 {
-		return &v
-	}).(FirewallIppool6PtrOutput)
-}
-
-type FirewallIppool6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallIppool6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIppool6)(nil))
-}
-
-func (o FirewallIppool6PtrOutput) ToFirewallIppool6PtrOutput() FirewallIppool6PtrOutput {
-	return o
-}
-
-func (o FirewallIppool6PtrOutput) ToFirewallIppool6PtrOutputWithContext(ctx context.Context) FirewallIppool6PtrOutput {
-	return o
-}
-
 type FirewallIppool6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallIppool6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallIppool6)(nil))
+	return reflect.TypeOf((*[]*FirewallIppool6)(nil)).Elem()
 }
 
 func (o FirewallIppool6ArrayOutput) ToFirewallIppool6ArrayOutput() FirewallIppool6ArrayOutput {
@@ -311,15 +275,15 @@ func (o FirewallIppool6ArrayOutput) ToFirewallIppool6ArrayOutputWithContext(ctx 
 }
 
 func (o FirewallIppool6ArrayOutput) Index(i pulumi.IntInput) FirewallIppool6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIppool6 {
-		return vs[0].([]FirewallIppool6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIppool6 {
+		return vs[0].([]*FirewallIppool6)[vs[1].(int)]
 	}).(FirewallIppool6Output)
 }
 
 type FirewallIppool6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallIppool6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallIppool6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIppool6)(nil)).Elem()
 }
 
 func (o FirewallIppool6MapOutput) ToFirewallIppool6MapOutput() FirewallIppool6MapOutput {
@@ -331,14 +295,16 @@ func (o FirewallIppool6MapOutput) ToFirewallIppool6MapOutputWithContext(ctx cont
 }
 
 func (o FirewallIppool6MapOutput) MapIndex(k pulumi.StringInput) FirewallIppool6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallIppool6 {
-		return vs[0].(map[string]FirewallIppool6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallIppool6 {
+		return vs[0].(map[string]*FirewallIppool6)[vs[1].(string)]
 	}).(FirewallIppool6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIppool6Input)(nil)).Elem(), &FirewallIppool6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIppool6ArrayInput)(nil)).Elem(), FirewallIppool6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIppool6MapInput)(nil)).Elem(), FirewallIppool6Map{})
 	pulumi.RegisterOutputType(FirewallIppool6Output{})
-	pulumi.RegisterOutputType(FirewallIppool6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallIppool6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallIppool6MapOutput{})
 }

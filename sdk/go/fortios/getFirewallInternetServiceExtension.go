@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall internetserviceextension
 func LookupFirewallInternetServiceExtension(ctx *pulumi.Context, args *LookupFirewallInternetServiceExtensionArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceExtensionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceExtensionResult
 	err := ctx.Invoke("fortios:index/getFirewallInternetServiceExtension:GetFirewallInternetServiceExtension", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,77 @@ type LookupFirewallInternetServiceExtensionResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallInternetServiceExtensionOutput(ctx *pulumi.Context, args LookupFirewallInternetServiceExtensionOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallInternetServiceExtensionResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallInternetServiceExtensionResult, error) {
+			args := v.(LookupFirewallInternetServiceExtensionArgs)
+			r, err := LookupFirewallInternetServiceExtension(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallInternetServiceExtensionResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallInternetServiceExtension.
+type LookupFirewallInternetServiceExtensionOutputArgs struct {
+	// Specify the fosid of the desired firewall internetserviceextension.
+	Fosid pulumi.IntInput `pulumi:"fosid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallInternetServiceExtensionOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallInternetServiceExtensionArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallInternetServiceExtension.
+type LookupFirewallInternetServiceExtensionResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallInternetServiceExtensionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallInternetServiceExtensionResult)(nil)).Elem()
+}
+
+func (o LookupFirewallInternetServiceExtensionResultOutput) ToLookupFirewallInternetServiceExtensionResultOutput() LookupFirewallInternetServiceExtensionResultOutput {
+	return o
+}
+
+func (o LookupFirewallInternetServiceExtensionResultOutput) ToLookupFirewallInternetServiceExtensionResultOutputWithContext(ctx context.Context) LookupFirewallInternetServiceExtensionResultOutput {
+	return o
+}
+
+// Comment.
+func (o LookupFirewallInternetServiceExtensionResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Disable entries in the Internet Service database. The structure of `disableEntry` block is documented below.
+func (o LookupFirewallInternetServiceExtensionResultOutput) DisableEntries() GetFirewallInternetServiceExtensionDisableEntryArrayOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) []GetFirewallInternetServiceExtensionDisableEntry {
+		return v.DisableEntries
+	}).(GetFirewallInternetServiceExtensionDisableEntryArrayOutput)
+}
+
+// Entries added to the Internet Service extension database. The structure of `entry` block is documented below.
+func (o LookupFirewallInternetServiceExtensionResultOutput) Entries() GetFirewallInternetServiceExtensionEntryArrayOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) []GetFirewallInternetServiceExtensionEntry {
+		return v.Entries
+	}).(GetFirewallInternetServiceExtensionEntryArrayOutput)
+}
+
+// Internet Service ID in the Internet Service database.
+func (o LookupFirewallInternetServiceExtensionResultOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) int { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallInternetServiceExtensionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallInternetServiceExtensionResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceExtensionResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallInternetServiceExtensionResultOutput{})
 }

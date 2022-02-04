@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -61,6 +61,10 @@ type SystemNetflow struct {
 	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout pulumi.IntOutput `pulumi:"inactiveFlowTimeout"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Counter of flowset records before resending a template flowset record.
@@ -78,6 +82,7 @@ func NewSystemNetflow(ctx *pulumi.Context,
 		args = &SystemNetflowArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemNetflow
 	err := ctx.RegisterResource("fortios:index/systemNetflow:SystemNetflow", name, args, &resource, opts...)
 	if err != nil {
@@ -108,6 +113,10 @@ type systemNetflowState struct {
 	CollectorPort *int `pulumi:"collectorPort"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout *int `pulumi:"inactiveFlowTimeout"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Counter of flowset records before resending a template flowset record.
@@ -127,6 +136,10 @@ type SystemNetflowState struct {
 	CollectorPort pulumi.IntPtrInput
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout pulumi.IntPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp pulumi.StringPtrInput
 	// Counter of flowset records before resending a template flowset record.
@@ -150,6 +163,10 @@ type systemNetflowArgs struct {
 	CollectorPort *int `pulumi:"collectorPort"`
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout *int `pulumi:"inactiveFlowTimeout"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Counter of flowset records before resending a template flowset record.
@@ -170,6 +187,10 @@ type SystemNetflowArgs struct {
 	CollectorPort pulumi.IntPtrInput
 	// Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
 	InactiveFlowTimeout pulumi.IntPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Source IP address for communication with the NetFlow agent.
 	SourceIp pulumi.StringPtrInput
 	// Counter of flowset records before resending a template flowset record.
@@ -192,7 +213,7 @@ type SystemNetflowInput interface {
 }
 
 func (*SystemNetflow) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNetflow)(nil))
+	return reflect.TypeOf((**SystemNetflow)(nil)).Elem()
 }
 
 func (i *SystemNetflow) ToSystemNetflowOutput() SystemNetflowOutput {
@@ -201,35 +222,6 @@ func (i *SystemNetflow) ToSystemNetflowOutput() SystemNetflowOutput {
 
 func (i *SystemNetflow) ToSystemNetflowOutputWithContext(ctx context.Context) SystemNetflowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowOutput)
-}
-
-func (i *SystemNetflow) ToSystemNetflowPtrOutput() SystemNetflowPtrOutput {
-	return i.ToSystemNetflowPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemNetflow) ToSystemNetflowPtrOutputWithContext(ctx context.Context) SystemNetflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowPtrOutput)
-}
-
-type SystemNetflowPtrInput interface {
-	pulumi.Input
-
-	ToSystemNetflowPtrOutput() SystemNetflowPtrOutput
-	ToSystemNetflowPtrOutputWithContext(ctx context.Context) SystemNetflowPtrOutput
-}
-
-type systemNetflowPtrType SystemNetflowArgs
-
-func (*systemNetflowPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNetflow)(nil))
-}
-
-func (i *systemNetflowPtrType) ToSystemNetflowPtrOutput() SystemNetflowPtrOutput {
-	return i.ToSystemNetflowPtrOutputWithContext(context.Background())
-}
-
-func (i *systemNetflowPtrType) ToSystemNetflowPtrOutputWithContext(ctx context.Context) SystemNetflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowPtrOutput)
 }
 
 // SystemNetflowArrayInput is an input type that accepts SystemNetflowArray and SystemNetflowArrayOutput values.
@@ -246,7 +238,7 @@ type SystemNetflowArrayInput interface {
 type SystemNetflowArray []SystemNetflowInput
 
 func (SystemNetflowArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemNetflow)(nil))
+	return reflect.TypeOf((*[]*SystemNetflow)(nil)).Elem()
 }
 
 func (i SystemNetflowArray) ToSystemNetflowArrayOutput() SystemNetflowArrayOutput {
@@ -271,7 +263,7 @@ type SystemNetflowMapInput interface {
 type SystemNetflowMap map[string]SystemNetflowInput
 
 func (SystemNetflowMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemNetflow)(nil))
+	return reflect.TypeOf((*map[string]*SystemNetflow)(nil)).Elem()
 }
 
 func (i SystemNetflowMap) ToSystemNetflowMapOutput() SystemNetflowMapOutput {
@@ -282,12 +274,10 @@ func (i SystemNetflowMap) ToSystemNetflowMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetflowMapOutput)
 }
 
-type SystemNetflowOutput struct {
-	*pulumi.OutputState
-}
+type SystemNetflowOutput struct{ *pulumi.OutputState }
 
 func (SystemNetflowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNetflow)(nil))
+	return reflect.TypeOf((**SystemNetflow)(nil)).Elem()
 }
 
 func (o SystemNetflowOutput) ToSystemNetflowOutput() SystemNetflowOutput {
@@ -298,36 +288,10 @@ func (o SystemNetflowOutput) ToSystemNetflowOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemNetflowOutput) ToSystemNetflowPtrOutput() SystemNetflowPtrOutput {
-	return o.ToSystemNetflowPtrOutputWithContext(context.Background())
-}
-
-func (o SystemNetflowOutput) ToSystemNetflowPtrOutputWithContext(ctx context.Context) SystemNetflowPtrOutput {
-	return o.ApplyT(func(v SystemNetflow) *SystemNetflow {
-		return &v
-	}).(SystemNetflowPtrOutput)
-}
-
-type SystemNetflowPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemNetflowPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNetflow)(nil))
-}
-
-func (o SystemNetflowPtrOutput) ToSystemNetflowPtrOutput() SystemNetflowPtrOutput {
-	return o
-}
-
-func (o SystemNetflowPtrOutput) ToSystemNetflowPtrOutputWithContext(ctx context.Context) SystemNetflowPtrOutput {
-	return o
-}
-
 type SystemNetflowArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemNetflowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemNetflow)(nil))
+	return reflect.TypeOf((*[]*SystemNetflow)(nil)).Elem()
 }
 
 func (o SystemNetflowArrayOutput) ToSystemNetflowArrayOutput() SystemNetflowArrayOutput {
@@ -339,15 +303,15 @@ func (o SystemNetflowArrayOutput) ToSystemNetflowArrayOutputWithContext(ctx cont
 }
 
 func (o SystemNetflowArrayOutput) Index(i pulumi.IntInput) SystemNetflowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemNetflow {
-		return vs[0].([]SystemNetflow)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNetflow {
+		return vs[0].([]*SystemNetflow)[vs[1].(int)]
 	}).(SystemNetflowOutput)
 }
 
 type SystemNetflowMapOutput struct{ *pulumi.OutputState }
 
 func (SystemNetflowMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemNetflow)(nil))
+	return reflect.TypeOf((*map[string]*SystemNetflow)(nil)).Elem()
 }
 
 func (o SystemNetflowMapOutput) ToSystemNetflowMapOutput() SystemNetflowMapOutput {
@@ -359,14 +323,16 @@ func (o SystemNetflowMapOutput) ToSystemNetflowMapOutputWithContext(ctx context.
 }
 
 func (o SystemNetflowMapOutput) MapIndex(k pulumi.StringInput) SystemNetflowOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemNetflow {
-		return vs[0].(map[string]SystemNetflow)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemNetflow {
+		return vs[0].(map[string]*SystemNetflow)[vs[1].(string)]
 	}).(SystemNetflowOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNetflowInput)(nil)).Elem(), &SystemNetflow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNetflowArrayInput)(nil)).Elem(), SystemNetflowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNetflowMapInput)(nil)).Elem(), SystemNetflowMap{})
 	pulumi.RegisterOutputType(SystemNetflowOutput{})
-	pulumi.RegisterOutputType(SystemNetflowPtrOutput{})
 	pulumi.RegisterOutputType(SystemNetflowArrayOutput{})
 	pulumi.RegisterOutputType(SystemNetflowMapOutput{})
 }

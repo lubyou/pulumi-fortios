@@ -95,6 +95,10 @@ export class VpnSslWebRealm extends pulumi.CustomResource {
      * Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
      */
     public readonly virtualHostOnly!: pulumi.Output<string>;
+    /**
+     * Name of the server certificate to used for this realm.
+     */
+    public readonly virtualHostServerCert!: pulumi.Output<string>;
 
     /**
      * Create a VpnSslWebRealm resource with the given unique name, arguments, and options.
@@ -105,35 +109,35 @@ export class VpnSslWebRealm extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnSslWebRealmArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnSslWebRealmArgs | VpnSslWebRealmState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnSslWebRealmState | undefined;
-            inputs["loginPage"] = state ? state.loginPage : undefined;
-            inputs["maxConcurrentUser"] = state ? state.maxConcurrentUser : undefined;
-            inputs["nasIp"] = state ? state.nasIp : undefined;
-            inputs["radiusPort"] = state ? state.radiusPort : undefined;
-            inputs["radiusServer"] = state ? state.radiusServer : undefined;
-            inputs["urlPath"] = state ? state.urlPath : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["virtualHost"] = state ? state.virtualHost : undefined;
-            inputs["virtualHostOnly"] = state ? state.virtualHostOnly : undefined;
+            resourceInputs["loginPage"] = state ? state.loginPage : undefined;
+            resourceInputs["maxConcurrentUser"] = state ? state.maxConcurrentUser : undefined;
+            resourceInputs["nasIp"] = state ? state.nasIp : undefined;
+            resourceInputs["radiusPort"] = state ? state.radiusPort : undefined;
+            resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
+            resourceInputs["urlPath"] = state ? state.urlPath : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["virtualHost"] = state ? state.virtualHost : undefined;
+            resourceInputs["virtualHostOnly"] = state ? state.virtualHostOnly : undefined;
+            resourceInputs["virtualHostServerCert"] = state ? state.virtualHostServerCert : undefined;
         } else {
             const args = argsOrState as VpnSslWebRealmArgs | undefined;
-            inputs["loginPage"] = args ? args.loginPage : undefined;
-            inputs["maxConcurrentUser"] = args ? args.maxConcurrentUser : undefined;
-            inputs["nasIp"] = args ? args.nasIp : undefined;
-            inputs["radiusPort"] = args ? args.radiusPort : undefined;
-            inputs["radiusServer"] = args ? args.radiusServer : undefined;
-            inputs["urlPath"] = args ? args.urlPath : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["virtualHost"] = args ? args.virtualHost : undefined;
-            inputs["virtualHostOnly"] = args ? args.virtualHostOnly : undefined;
+            resourceInputs["loginPage"] = args ? args.loginPage : undefined;
+            resourceInputs["maxConcurrentUser"] = args ? args.maxConcurrentUser : undefined;
+            resourceInputs["nasIp"] = args ? args.nasIp : undefined;
+            resourceInputs["radiusPort"] = args ? args.radiusPort : undefined;
+            resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
+            resourceInputs["urlPath"] = args ? args.urlPath : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["virtualHost"] = args ? args.virtualHost : undefined;
+            resourceInputs["virtualHostOnly"] = args ? args.virtualHostOnly : undefined;
+            resourceInputs["virtualHostServerCert"] = args ? args.virtualHostServerCert : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnSslWebRealm.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnSslWebRealm.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -177,6 +181,10 @@ export interface VpnSslWebRealmState {
      * Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
      */
     virtualHostOnly?: pulumi.Input<string>;
+    /**
+     * Name of the server certificate to used for this realm.
+     */
+    virtualHostServerCert?: pulumi.Input<string>;
 }
 
 /**
@@ -219,4 +227,8 @@ export interface VpnSslWebRealmArgs {
      * Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
      */
     virtualHostOnly?: pulumi.Input<string>;
+    /**
+     * Name of the server certificate to used for this realm.
+     */
+    virtualHostServerCert?: pulumi.Input<string>;
 }

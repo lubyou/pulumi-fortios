@@ -70,26 +70,24 @@ export class FortimanagerSystemNTP extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerSystemNTPArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemNTPArgs | FortimanagerSystemNTPState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemNTPState | undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["syncInterval"] = state ? state.syncInterval : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["syncInterval"] = state ? state.syncInterval : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemNTPArgs | undefined;
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
-            inputs["server"] = args ? args.server : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["syncInterval"] = args ? args.syncInterval : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["syncInterval"] = args ? args.syncInterval : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemNTP.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemNTP.__pulumiType, name, resourceInputs, opts);
     }
 }
 

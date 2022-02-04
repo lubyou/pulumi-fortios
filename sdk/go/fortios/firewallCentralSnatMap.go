@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,28 +27,28 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallCentralSnatMap(ctx, "trname", &fortios.FirewallCentralSnatMapArgs{
-// 			DstAddrs: fortios.FirewallCentralSnatMapDstAddrArray{
-// 				&fortios.FirewallCentralSnatMapDstAddrArgs{
+// 			DstAddrs: FirewallCentralSnatMapDstAddrArray{
+// 				&FirewallCentralSnatMapDstAddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
-// 			Dstintfs: fortios.FirewallCentralSnatMapDstintfArray{
-// 				&fortios.FirewallCentralSnatMapDstintfArgs{
+// 			Dstintfs: FirewallCentralSnatMapDstintfArray{
+// 				&FirewallCentralSnatMapDstintfArgs{
 // 					Name: pulumi.String("port3"),
 // 				},
 // 			},
 // 			Nat:     pulumi.String("enable"),
 // 			NatPort: pulumi.String("0"),
-// 			OrigAddrs: fortios.FirewallCentralSnatMapOrigAddrArray{
-// 				&fortios.FirewallCentralSnatMapOrigAddrArgs{
+// 			OrigAddrs: FirewallCentralSnatMapOrigAddrArray{
+// 				&FirewallCentralSnatMapOrigAddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
 // 			OrigPort: pulumi.String("0"),
 // 			Policyid: pulumi.Int(1),
 // 			Protocol: pulumi.Int(33),
-// 			Srcintfs: fortios.FirewallCentralSnatMapSrcintfArray{
-// 				&fortios.FirewallCentralSnatMapSrcintfArgs{
+// 			Srcintfs: FirewallCentralSnatMapSrcintfArray{
+// 				&FirewallCentralSnatMapSrcintfArgs{
 // 					Name: pulumi.String("port1"),
 // 				},
 // 			},
@@ -85,6 +86,10 @@ type FirewallCentralSnatMap struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringOutput `pulumi:"nat"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringOutput `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringOutput `pulumi:"nat64"`
 	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
 	NatIppool6s FirewallCentralSnatMapNatIppool6ArrayOutput `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
@@ -141,6 +146,7 @@ func NewFirewallCentralSnatMap(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallCentralSnatMap
 	err := ctx.RegisterResource("fortios:index/firewallCentralSnatMap:FirewallCentralSnatMap", name, args, &resource, opts...)
 	if err != nil {
@@ -175,6 +181,10 @@ type firewallCentralSnatMapState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat *string `pulumi:"nat"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 *string `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 *string `pulumi:"nat64"`
 	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
 	NatIppool6s []FirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
@@ -216,6 +226,10 @@ type FirewallCentralSnatMapState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringPtrInput
 	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
 	NatIppool6s FirewallCentralSnatMapNatIppool6ArrayInput
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
@@ -261,6 +275,10 @@ type firewallCentralSnatMapArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat string `pulumi:"nat"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 *string `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 *string `pulumi:"nat64"`
 	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
 	NatIppool6s []FirewallCentralSnatMapNatIppool6 `pulumi:"natIppool6s"`
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
@@ -303,6 +321,10 @@ type FirewallCentralSnatMapArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `disable`, `enable`.
 	Nat pulumi.StringInput
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringPtrInput
 	// IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
 	NatIppool6s FirewallCentralSnatMapNatIppool6ArrayInput
 	// Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `natIppool` block is documented below.
@@ -343,7 +365,7 @@ type FirewallCentralSnatMapInput interface {
 }
 
 func (*FirewallCentralSnatMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCentralSnatMap)(nil))
+	return reflect.TypeOf((**FirewallCentralSnatMap)(nil)).Elem()
 }
 
 func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapOutput() FirewallCentralSnatMapOutput {
@@ -352,35 +374,6 @@ func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapOutput() FirewallCentra
 
 func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapOutputWithContext(ctx context.Context) FirewallCentralSnatMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapOutput)
-}
-
-func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapPtrOutput() FirewallCentralSnatMapPtrOutput {
-	return i.ToFirewallCentralSnatMapPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallCentralSnatMap) ToFirewallCentralSnatMapPtrOutputWithContext(ctx context.Context) FirewallCentralSnatMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapPtrOutput)
-}
-
-type FirewallCentralSnatMapPtrInput interface {
-	pulumi.Input
-
-	ToFirewallCentralSnatMapPtrOutput() FirewallCentralSnatMapPtrOutput
-	ToFirewallCentralSnatMapPtrOutputWithContext(ctx context.Context) FirewallCentralSnatMapPtrOutput
-}
-
-type firewallCentralSnatMapPtrType FirewallCentralSnatMapArgs
-
-func (*firewallCentralSnatMapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCentralSnatMap)(nil))
-}
-
-func (i *firewallCentralSnatMapPtrType) ToFirewallCentralSnatMapPtrOutput() FirewallCentralSnatMapPtrOutput {
-	return i.ToFirewallCentralSnatMapPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallCentralSnatMapPtrType) ToFirewallCentralSnatMapPtrOutputWithContext(ctx context.Context) FirewallCentralSnatMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapPtrOutput)
 }
 
 // FirewallCentralSnatMapArrayInput is an input type that accepts FirewallCentralSnatMapArray and FirewallCentralSnatMapArrayOutput values.
@@ -397,7 +390,7 @@ type FirewallCentralSnatMapArrayInput interface {
 type FirewallCentralSnatMapArray []FirewallCentralSnatMapInput
 
 func (FirewallCentralSnatMapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallCentralSnatMap)(nil))
+	return reflect.TypeOf((*[]*FirewallCentralSnatMap)(nil)).Elem()
 }
 
 func (i FirewallCentralSnatMapArray) ToFirewallCentralSnatMapArrayOutput() FirewallCentralSnatMapArrayOutput {
@@ -422,7 +415,7 @@ type FirewallCentralSnatMapMapInput interface {
 type FirewallCentralSnatMapMap map[string]FirewallCentralSnatMapInput
 
 func (FirewallCentralSnatMapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallCentralSnatMap)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCentralSnatMap)(nil)).Elem()
 }
 
 func (i FirewallCentralSnatMapMap) ToFirewallCentralSnatMapMapOutput() FirewallCentralSnatMapMapOutput {
@@ -433,12 +426,10 @@ func (i FirewallCentralSnatMapMap) ToFirewallCentralSnatMapMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralSnatMapMapOutput)
 }
 
-type FirewallCentralSnatMapOutput struct {
-	*pulumi.OutputState
-}
+type FirewallCentralSnatMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralSnatMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCentralSnatMap)(nil))
+	return reflect.TypeOf((**FirewallCentralSnatMap)(nil)).Elem()
 }
 
 func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapOutput() FirewallCentralSnatMapOutput {
@@ -449,36 +440,10 @@ func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapOutputWithContext(
 	return o
 }
 
-func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapPtrOutput() FirewallCentralSnatMapPtrOutput {
-	return o.ToFirewallCentralSnatMapPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallCentralSnatMapOutput) ToFirewallCentralSnatMapPtrOutputWithContext(ctx context.Context) FirewallCentralSnatMapPtrOutput {
-	return o.ApplyT(func(v FirewallCentralSnatMap) *FirewallCentralSnatMap {
-		return &v
-	}).(FirewallCentralSnatMapPtrOutput)
-}
-
-type FirewallCentralSnatMapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallCentralSnatMapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCentralSnatMap)(nil))
-}
-
-func (o FirewallCentralSnatMapPtrOutput) ToFirewallCentralSnatMapPtrOutput() FirewallCentralSnatMapPtrOutput {
-	return o
-}
-
-func (o FirewallCentralSnatMapPtrOutput) ToFirewallCentralSnatMapPtrOutputWithContext(ctx context.Context) FirewallCentralSnatMapPtrOutput {
-	return o
-}
-
 type FirewallCentralSnatMapArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralSnatMapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallCentralSnatMap)(nil))
+	return reflect.TypeOf((*[]*FirewallCentralSnatMap)(nil)).Elem()
 }
 
 func (o FirewallCentralSnatMapArrayOutput) ToFirewallCentralSnatMapArrayOutput() FirewallCentralSnatMapArrayOutput {
@@ -490,15 +455,15 @@ func (o FirewallCentralSnatMapArrayOutput) ToFirewallCentralSnatMapArrayOutputWi
 }
 
 func (o FirewallCentralSnatMapArrayOutput) Index(i pulumi.IntInput) FirewallCentralSnatMapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallCentralSnatMap {
-		return vs[0].([]FirewallCentralSnatMap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCentralSnatMap {
+		return vs[0].([]*FirewallCentralSnatMap)[vs[1].(int)]
 	}).(FirewallCentralSnatMapOutput)
 }
 
 type FirewallCentralSnatMapMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralSnatMapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallCentralSnatMap)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCentralSnatMap)(nil)).Elem()
 }
 
 func (o FirewallCentralSnatMapMapOutput) ToFirewallCentralSnatMapMapOutput() FirewallCentralSnatMapMapOutput {
@@ -510,14 +475,16 @@ func (o FirewallCentralSnatMapMapOutput) ToFirewallCentralSnatMapMapOutputWithCo
 }
 
 func (o FirewallCentralSnatMapMapOutput) MapIndex(k pulumi.StringInput) FirewallCentralSnatMapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallCentralSnatMap {
-		return vs[0].(map[string]FirewallCentralSnatMap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallCentralSnatMap {
+		return vs[0].(map[string]*FirewallCentralSnatMap)[vs[1].(string)]
 	}).(FirewallCentralSnatMapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCentralSnatMapInput)(nil)).Elem(), &FirewallCentralSnatMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCentralSnatMapArrayInput)(nil)).Elem(), FirewallCentralSnatMapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCentralSnatMapMapInput)(nil)).Elem(), FirewallCentralSnatMapMap{})
 	pulumi.RegisterOutputType(FirewallCentralSnatMapOutput{})
-	pulumi.RegisterOutputType(FirewallCentralSnatMapPtrOutput{})
 	pulumi.RegisterOutputType(FirewallCentralSnatMapArrayOutput{})
 	pulumi.RegisterOutputType(FirewallCentralSnatMapMapOutput{})
 }

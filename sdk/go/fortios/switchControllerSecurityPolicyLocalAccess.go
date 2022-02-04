@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch.
+// Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -41,6 +41,7 @@ func NewSwitchControllerSecurityPolicyLocalAccess(ctx *pulumi.Context,
 		args = &SwitchControllerSecurityPolicyLocalAccessArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSecurityPolicyLocalAccess
 	err := ctx.RegisterResource("fortios:index/switchControllerSecurityPolicyLocalAccess:SwitchControllerSecurityPolicyLocalAccess", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SwitchControllerSecurityPolicyLocalAccessInput interface {
 }
 
 func (*SwitchControllerSecurityPolicyLocalAccess) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSecurityPolicyLocalAccess)(nil))
+	return reflect.TypeOf((**SwitchControllerSecurityPolicyLocalAccess)(nil)).Elem()
 }
 
 func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPolicyLocalAccessOutput() SwitchControllerSecurityPolicyLocalAccessOutput {
@@ -132,35 +133,6 @@ func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPo
 
 func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPolicyLocalAccessOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessOutput)
-}
-
-func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPolicyLocalAccessPtrOutput() SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return i.ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSecurityPolicyLocalAccess) ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessPtrOutput)
-}
-
-type SwitchControllerSecurityPolicyLocalAccessPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSecurityPolicyLocalAccessPtrOutput() SwitchControllerSecurityPolicyLocalAccessPtrOutput
-	ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessPtrOutput
-}
-
-type switchControllerSecurityPolicyLocalAccessPtrType SwitchControllerSecurityPolicyLocalAccessArgs
-
-func (*switchControllerSecurityPolicyLocalAccessPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSecurityPolicyLocalAccess)(nil))
-}
-
-func (i *switchControllerSecurityPolicyLocalAccessPtrType) ToSwitchControllerSecurityPolicyLocalAccessPtrOutput() SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return i.ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSecurityPolicyLocalAccessPtrType) ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessPtrOutput)
 }
 
 // SwitchControllerSecurityPolicyLocalAccessArrayInput is an input type that accepts SwitchControllerSecurityPolicyLocalAccessArray and SwitchControllerSecurityPolicyLocalAccessArrayOutput values.
@@ -177,7 +149,7 @@ type SwitchControllerSecurityPolicyLocalAccessArrayInput interface {
 type SwitchControllerSecurityPolicyLocalAccessArray []SwitchControllerSecurityPolicyLocalAccessInput
 
 func (SwitchControllerSecurityPolicyLocalAccessArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSecurityPolicyLocalAccess)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSecurityPolicyLocalAccess)(nil)).Elem()
 }
 
 func (i SwitchControllerSecurityPolicyLocalAccessArray) ToSwitchControllerSecurityPolicyLocalAccessArrayOutput() SwitchControllerSecurityPolicyLocalAccessArrayOutput {
@@ -202,7 +174,7 @@ type SwitchControllerSecurityPolicyLocalAccessMapInput interface {
 type SwitchControllerSecurityPolicyLocalAccessMap map[string]SwitchControllerSecurityPolicyLocalAccessInput
 
 func (SwitchControllerSecurityPolicyLocalAccessMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSecurityPolicyLocalAccess)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSecurityPolicyLocalAccess)(nil)).Elem()
 }
 
 func (i SwitchControllerSecurityPolicyLocalAccessMap) ToSwitchControllerSecurityPolicyLocalAccessMapOutput() SwitchControllerSecurityPolicyLocalAccessMapOutput {
@@ -213,12 +185,10 @@ func (i SwitchControllerSecurityPolicyLocalAccessMap) ToSwitchControllerSecurity
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyLocalAccessMapOutput)
 }
 
-type SwitchControllerSecurityPolicyLocalAccessOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSecurityPolicyLocalAccessOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyLocalAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSecurityPolicyLocalAccess)(nil))
+	return reflect.TypeOf((**SwitchControllerSecurityPolicyLocalAccess)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecurityPolicyLocalAccessOutput() SwitchControllerSecurityPolicyLocalAccessOutput {
@@ -229,36 +199,10 @@ func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecur
 	return o
 }
 
-func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecurityPolicyLocalAccessPtrOutput() SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return o.ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSecurityPolicyLocalAccessOutput) ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSecurityPolicyLocalAccess) *SwitchControllerSecurityPolicyLocalAccess {
-		return &v
-	}).(SwitchControllerSecurityPolicyLocalAccessPtrOutput)
-}
-
-type SwitchControllerSecurityPolicyLocalAccessPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSecurityPolicyLocalAccessPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSecurityPolicyLocalAccess)(nil))
-}
-
-func (o SwitchControllerSecurityPolicyLocalAccessPtrOutput) ToSwitchControllerSecurityPolicyLocalAccessPtrOutput() SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSecurityPolicyLocalAccessPtrOutput) ToSwitchControllerSecurityPolicyLocalAccessPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyLocalAccessPtrOutput {
-	return o
-}
-
 type SwitchControllerSecurityPolicyLocalAccessArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyLocalAccessArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSecurityPolicyLocalAccess)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSecurityPolicyLocalAccess)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessArrayOutput) ToSwitchControllerSecurityPolicyLocalAccessArrayOutput() SwitchControllerSecurityPolicyLocalAccessArrayOutput {
@@ -270,15 +214,15 @@ func (o SwitchControllerSecurityPolicyLocalAccessArrayOutput) ToSwitchController
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessArrayOutput) Index(i pulumi.IntInput) SwitchControllerSecurityPolicyLocalAccessOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSecurityPolicyLocalAccess {
-		return vs[0].([]SwitchControllerSecurityPolicyLocalAccess)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicyLocalAccess {
+		return vs[0].([]*SwitchControllerSecurityPolicyLocalAccess)[vs[1].(int)]
 	}).(SwitchControllerSecurityPolicyLocalAccessOutput)
 }
 
 type SwitchControllerSecurityPolicyLocalAccessMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyLocalAccessMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSecurityPolicyLocalAccess)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSecurityPolicyLocalAccess)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) ToSwitchControllerSecurityPolicyLocalAccessMapOutput() SwitchControllerSecurityPolicyLocalAccessMapOutput {
@@ -290,14 +234,16 @@ func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) ToSwitchControllerSe
 }
 
 func (o SwitchControllerSecurityPolicyLocalAccessMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSecurityPolicyLocalAccessOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSecurityPolicyLocalAccess {
-		return vs[0].(map[string]SwitchControllerSecurityPolicyLocalAccess)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicyLocalAccess {
+		return vs[0].(map[string]*SwitchControllerSecurityPolicyLocalAccess)[vs[1].(string)]
 	}).(SwitchControllerSecurityPolicyLocalAccessOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicyLocalAccessInput)(nil)).Elem(), &SwitchControllerSecurityPolicyLocalAccess{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicyLocalAccessArrayInput)(nil)).Elem(), SwitchControllerSecurityPolicyLocalAccessArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicyLocalAccessMapInput)(nil)).Elem(), SwitchControllerSecurityPolicyLocalAccessMap{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyLocalAccessOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyLocalAccessPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyLocalAccessArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyLocalAccessMapOutput{})
 }

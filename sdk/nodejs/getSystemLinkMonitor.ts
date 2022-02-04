@@ -13,9 +13,7 @@ export function getSystemLinkMonitor(args: GetSystemLinkMonitorArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemLinkMonitor:GetSystemLinkMonitor", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -44,6 +42,18 @@ export interface GetSystemLinkMonitorResult {
      * Address mode (IPv4 or IPv6).
      */
     readonly addrMode: string;
+    /**
+     * Traffic class ID.
+     */
+    readonly classId: number;
+    /**
+     * Differentiated services code point (DSCP) in the IP header of the probe packet.
+     */
+    readonly diffservcode: string;
+    /**
+     * Threshold weight to trigger link failure alert.
+     */
+    readonly failWeight: number;
     /**
      * Number of retry attempts before the server is considered down (1 - 10, default = 5)
      */
@@ -113,13 +123,29 @@ export interface GetSystemLinkMonitorResult {
      */
     readonly recoverytime: number;
     /**
+     * Subnet to monitor. The structure of `route` block is documented below.
+     */
+    readonly routes: outputs.GetSystemLinkMonitorRoute[];
+    /**
      * Twamp controller security mode.
      */
     readonly securityMode: string;
     /**
+     * Mode of server configuration.
+     */
+    readonly serverConfig: string;
+    /**
+     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+     */
+    readonly serverLists: outputs.GetSystemLinkMonitorServerList[];
+    /**
      * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
      */
     readonly servers: outputs.GetSystemLinkMonitorServer[];
+    /**
+     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated.
+     */
+    readonly serviceDetection: string;
     /**
      * Source IP address used in packet to the server.
      */
@@ -141,8 +167,30 @@ export interface GetSystemLinkMonitorResult {
      */
     readonly updateCascadeInterface: string;
     /**
+     * Enable/disable updating the policy route.
+     */
+    readonly updatePolicyRoute: string;
+    /**
      * Enable/disable updating the static route.
      */
     readonly updateStaticRoute: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemLinkMonitorOutput(args: GetSystemLinkMonitorOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemLinkMonitorResult> {
+    return pulumi.output(args).apply(a => getSystemLinkMonitor(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemLinkMonitor.
+ */
+export interface GetSystemLinkMonitorOutputArgs {
+    /**
+     * Specify the name of the desired system linkmonitor.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

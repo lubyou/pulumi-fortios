@@ -69,13 +69,13 @@ export class FortimanagerSystemLicenseVM extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerSystemLicenseVMArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemLicenseVMArgs | FortimanagerSystemLicenseVMState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemLicenseVMState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["fileContent"] = state ? state.fileContent : undefined;
-            inputs["target"] = state ? state.target : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["fileContent"] = state ? state.fileContent : undefined;
+            resourceInputs["target"] = state ? state.target : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemLicenseVMArgs | undefined;
             if ((!args || args.fileContent === undefined) && !opts.urn) {
@@ -84,14 +84,12 @@ export class FortimanagerSystemLicenseVM extends pulumi.CustomResource {
             if ((!args || args.target === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'target'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["fileContent"] = args ? args.fileContent : undefined;
-            inputs["target"] = args ? args.target : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["fileContent"] = args ? args.fileContent : undefined;
+            resourceInputs["target"] = args ? args.target : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemLicenseVM.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemLicenseVM.__pulumiType, name, resourceInputs, opts);
     }
 }
 

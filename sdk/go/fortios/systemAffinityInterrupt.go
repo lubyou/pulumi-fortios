@@ -51,6 +51,7 @@ func NewSystemAffinityInterrupt(ctx *pulumi.Context,
 	if args.Interrupt == nil {
 		return nil, errors.New("invalid value for required argument 'Interrupt'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAffinityInterrupt
 	err := ctx.RegisterResource("fortios:index/systemAffinityInterrupt:SystemAffinityInterrupt", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type SystemAffinityInterruptInput interface {
 }
 
 func (*SystemAffinityInterrupt) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAffinityInterrupt)(nil))
+	return reflect.TypeOf((**SystemAffinityInterrupt)(nil)).Elem()
 }
 
 func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptOutput() SystemAffinityInterruptOutput {
@@ -142,35 +143,6 @@ func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptOutput() SystemAffini
 
 func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptOutputWithContext(ctx context.Context) SystemAffinityInterruptOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptOutput)
-}
-
-func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptPtrOutput() SystemAffinityInterruptPtrOutput {
-	return i.ToSystemAffinityInterruptPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAffinityInterrupt) ToSystemAffinityInterruptPtrOutputWithContext(ctx context.Context) SystemAffinityInterruptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptPtrOutput)
-}
-
-type SystemAffinityInterruptPtrInput interface {
-	pulumi.Input
-
-	ToSystemAffinityInterruptPtrOutput() SystemAffinityInterruptPtrOutput
-	ToSystemAffinityInterruptPtrOutputWithContext(ctx context.Context) SystemAffinityInterruptPtrOutput
-}
-
-type systemAffinityInterruptPtrType SystemAffinityInterruptArgs
-
-func (*systemAffinityInterruptPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAffinityInterrupt)(nil))
-}
-
-func (i *systemAffinityInterruptPtrType) ToSystemAffinityInterruptPtrOutput() SystemAffinityInterruptPtrOutput {
-	return i.ToSystemAffinityInterruptPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAffinityInterruptPtrType) ToSystemAffinityInterruptPtrOutputWithContext(ctx context.Context) SystemAffinityInterruptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptPtrOutput)
 }
 
 // SystemAffinityInterruptArrayInput is an input type that accepts SystemAffinityInterruptArray and SystemAffinityInterruptArrayOutput values.
@@ -187,7 +159,7 @@ type SystemAffinityInterruptArrayInput interface {
 type SystemAffinityInterruptArray []SystemAffinityInterruptInput
 
 func (SystemAffinityInterruptArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAffinityInterrupt)(nil))
+	return reflect.TypeOf((*[]*SystemAffinityInterrupt)(nil)).Elem()
 }
 
 func (i SystemAffinityInterruptArray) ToSystemAffinityInterruptArrayOutput() SystemAffinityInterruptArrayOutput {
@@ -212,7 +184,7 @@ type SystemAffinityInterruptMapInput interface {
 type SystemAffinityInterruptMap map[string]SystemAffinityInterruptInput
 
 func (SystemAffinityInterruptMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAffinityInterrupt)(nil))
+	return reflect.TypeOf((*map[string]*SystemAffinityInterrupt)(nil)).Elem()
 }
 
 func (i SystemAffinityInterruptMap) ToSystemAffinityInterruptMapOutput() SystemAffinityInterruptMapOutput {
@@ -223,12 +195,10 @@ func (i SystemAffinityInterruptMap) ToSystemAffinityInterruptMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityInterruptMapOutput)
 }
 
-type SystemAffinityInterruptOutput struct {
-	*pulumi.OutputState
-}
+type SystemAffinityInterruptOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityInterruptOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAffinityInterrupt)(nil))
+	return reflect.TypeOf((**SystemAffinityInterrupt)(nil)).Elem()
 }
 
 func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptOutput() SystemAffinityInterruptOutput {
@@ -239,36 +209,10 @@ func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptOutputWithContex
 	return o
 }
 
-func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptPtrOutput() SystemAffinityInterruptPtrOutput {
-	return o.ToSystemAffinityInterruptPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAffinityInterruptOutput) ToSystemAffinityInterruptPtrOutputWithContext(ctx context.Context) SystemAffinityInterruptPtrOutput {
-	return o.ApplyT(func(v SystemAffinityInterrupt) *SystemAffinityInterrupt {
-		return &v
-	}).(SystemAffinityInterruptPtrOutput)
-}
-
-type SystemAffinityInterruptPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAffinityInterruptPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAffinityInterrupt)(nil))
-}
-
-func (o SystemAffinityInterruptPtrOutput) ToSystemAffinityInterruptPtrOutput() SystemAffinityInterruptPtrOutput {
-	return o
-}
-
-func (o SystemAffinityInterruptPtrOutput) ToSystemAffinityInterruptPtrOutputWithContext(ctx context.Context) SystemAffinityInterruptPtrOutput {
-	return o
-}
-
 type SystemAffinityInterruptArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityInterruptArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAffinityInterrupt)(nil))
+	return reflect.TypeOf((*[]*SystemAffinityInterrupt)(nil)).Elem()
 }
 
 func (o SystemAffinityInterruptArrayOutput) ToSystemAffinityInterruptArrayOutput() SystemAffinityInterruptArrayOutput {
@@ -280,15 +224,15 @@ func (o SystemAffinityInterruptArrayOutput) ToSystemAffinityInterruptArrayOutput
 }
 
 func (o SystemAffinityInterruptArrayOutput) Index(i pulumi.IntInput) SystemAffinityInterruptOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAffinityInterrupt {
-		return vs[0].([]SystemAffinityInterrupt)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAffinityInterrupt {
+		return vs[0].([]*SystemAffinityInterrupt)[vs[1].(int)]
 	}).(SystemAffinityInterruptOutput)
 }
 
 type SystemAffinityInterruptMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityInterruptMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAffinityInterrupt)(nil))
+	return reflect.TypeOf((*map[string]*SystemAffinityInterrupt)(nil)).Elem()
 }
 
 func (o SystemAffinityInterruptMapOutput) ToSystemAffinityInterruptMapOutput() SystemAffinityInterruptMapOutput {
@@ -300,14 +244,16 @@ func (o SystemAffinityInterruptMapOutput) ToSystemAffinityInterruptMapOutputWith
 }
 
 func (o SystemAffinityInterruptMapOutput) MapIndex(k pulumi.StringInput) SystemAffinityInterruptOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAffinityInterrupt {
-		return vs[0].(map[string]SystemAffinityInterrupt)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAffinityInterrupt {
+		return vs[0].(map[string]*SystemAffinityInterrupt)[vs[1].(string)]
 	}).(SystemAffinityInterruptOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAffinityInterruptInput)(nil)).Elem(), &SystemAffinityInterrupt{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAffinityInterruptArrayInput)(nil)).Elem(), SystemAffinityInterruptArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAffinityInterruptMapInput)(nil)).Elem(), SystemAffinityInterruptMap{})
 	pulumi.RegisterOutputType(SystemAffinityInterruptOutput{})
-	pulumi.RegisterOutputType(SystemAffinityInterruptPtrOutput{})
 	pulumi.RegisterOutputType(SystemAffinityInterruptArrayOutput{})
 	pulumi.RegisterOutputType(SystemAffinityInterruptMapOutput{})
 }

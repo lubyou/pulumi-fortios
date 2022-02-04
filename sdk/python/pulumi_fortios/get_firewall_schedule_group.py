@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallScheduleGroupResult',
     'AwaitableGetFirewallScheduleGroupResult',
     'get_firewall_schedule_group',
+    'get_firewall_schedule_group_output',
 ]
 
 @pulumi.output_type
@@ -20,10 +21,13 @@ class GetFirewallScheduleGroupResult:
     """
     A collection of values returned by GetFirewallScheduleGroup.
     """
-    def __init__(__self__, color=None, id=None, members=None, name=None, vdomparam=None):
+    def __init__(__self__, color=None, fabric_object=None, id=None, members=None, name=None, vdomparam=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -44,6 +48,14 @@ class GetFirewallScheduleGroupResult:
         Color of icon on the GUI.
         """
         return pulumi.get(self, "color")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -82,6 +94,7 @@ class AwaitableGetFirewallScheduleGroupResult(GetFirewallScheduleGroupResult):
             yield self
         return GetFirewallScheduleGroupResult(
             color=self.color,
+            fabric_object=self.fabric_object,
             id=self.id,
             members=self.members,
             name=self.name,
@@ -105,11 +118,28 @@ def get_firewall_schedule_group(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallScheduleGroup:GetFirewallScheduleGroup', __args__, opts=opts, typ=GetFirewallScheduleGroupResult).value
 
     return AwaitableGetFirewallScheduleGroupResult(
         color=__ret__.color,
+        fabric_object=__ret__.fabric_object,
         id=__ret__.id,
         members=__ret__.members,
         name=__ret__.name,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_schedule_group)
+def get_firewall_schedule_group_output(name: Optional[pulumi.Input[str]] = None,
+                                       vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallScheduleGroupResult]:
+    """
+    Use this data source to get information on an fortios firewallschedule group
+
+
+    :param str name: Specify the name of the desired firewallschedule group.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

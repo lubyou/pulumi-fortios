@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,8 @@ type UserFsso struct {
 	LdapPollInterval pulumi.IntOutput `pulumi:"ldapPollInterval"`
 	// LDAP server to get group information.
 	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
+	// Interval in minutes to keep logons after FSSO server down.
+	LogonTimeout pulumi.IntOutput `pulumi:"logonTimeout"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Password of the first FSSO collector agent.
@@ -107,6 +109,8 @@ type UserFsso struct {
 	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
 	// Enable/disable use of SSL. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringOutput `pulumi:"ssl"`
+	// Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+	SslServerHostIpCheck pulumi.StringOutput `pulumi:"sslServerHostIpCheck"`
 	// Trusted server certificate or CA certificate.
 	SslTrustedCert pulumi.StringOutput `pulumi:"sslTrustedCert"`
 	// Server type.
@@ -127,6 +131,7 @@ func NewUserFsso(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserFsso
 	err := ctx.RegisterResource("fortios:index/userFsso:UserFsso", name, args, &resource, opts...)
 	if err != nil {
@@ -163,6 +168,8 @@ type userFssoState struct {
 	LdapPollInterval *int `pulumi:"ldapPollInterval"`
 	// LDAP server to get group information.
 	LdapServer *string `pulumi:"ldapServer"`
+	// Interval in minutes to keep logons after FSSO server down.
+	LogonTimeout *int `pulumi:"logonTimeout"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Password of the first FSSO collector agent.
@@ -201,6 +208,8 @@ type userFssoState struct {
 	SourceIp6 *string `pulumi:"sourceIp6"`
 	// Enable/disable use of SSL. Valid values: `enable`, `disable`.
 	Ssl *string `pulumi:"ssl"`
+	// Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+	SslServerHostIpCheck *string `pulumi:"sslServerHostIpCheck"`
 	// Trusted server certificate or CA certificate.
 	SslTrustedCert *string `pulumi:"sslTrustedCert"`
 	// Server type.
@@ -226,6 +235,8 @@ type UserFssoState struct {
 	LdapPollInterval pulumi.IntPtrInput
 	// LDAP server to get group information.
 	LdapServer pulumi.StringPtrInput
+	// Interval in minutes to keep logons after FSSO server down.
+	LogonTimeout pulumi.IntPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Password of the first FSSO collector agent.
@@ -264,6 +275,8 @@ type UserFssoState struct {
 	SourceIp6 pulumi.StringPtrInput
 	// Enable/disable use of SSL. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringPtrInput
+	// Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+	SslServerHostIpCheck pulumi.StringPtrInput
 	// Trusted server certificate or CA certificate.
 	SslTrustedCert pulumi.StringPtrInput
 	// Server type.
@@ -293,6 +306,8 @@ type userFssoArgs struct {
 	LdapPollInterval *int `pulumi:"ldapPollInterval"`
 	// LDAP server to get group information.
 	LdapServer *string `pulumi:"ldapServer"`
+	// Interval in minutes to keep logons after FSSO server down.
+	LogonTimeout *int `pulumi:"logonTimeout"`
 	// Name.
 	Name *string `pulumi:"name"`
 	// Password of the first FSSO collector agent.
@@ -331,6 +346,8 @@ type userFssoArgs struct {
 	SourceIp6 *string `pulumi:"sourceIp6"`
 	// Enable/disable use of SSL. Valid values: `enable`, `disable`.
 	Ssl *string `pulumi:"ssl"`
+	// Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+	SslServerHostIpCheck *string `pulumi:"sslServerHostIpCheck"`
 	// Trusted server certificate or CA certificate.
 	SslTrustedCert *string `pulumi:"sslTrustedCert"`
 	// Server type.
@@ -357,6 +374,8 @@ type UserFssoArgs struct {
 	LdapPollInterval pulumi.IntPtrInput
 	// LDAP server to get group information.
 	LdapServer pulumi.StringPtrInput
+	// Interval in minutes to keep logons after FSSO server down.
+	LogonTimeout pulumi.IntPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
 	// Password of the first FSSO collector agent.
@@ -395,6 +414,8 @@ type UserFssoArgs struct {
 	SourceIp6 pulumi.StringPtrInput
 	// Enable/disable use of SSL. Valid values: `enable`, `disable`.
 	Ssl pulumi.StringPtrInput
+	// Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+	SslServerHostIpCheck pulumi.StringPtrInput
 	// Trusted server certificate or CA certificate.
 	SslTrustedCert pulumi.StringPtrInput
 	// Server type.
@@ -417,7 +438,7 @@ type UserFssoInput interface {
 }
 
 func (*UserFsso) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFsso)(nil))
+	return reflect.TypeOf((**UserFsso)(nil)).Elem()
 }
 
 func (i *UserFsso) ToUserFssoOutput() UserFssoOutput {
@@ -426,35 +447,6 @@ func (i *UserFsso) ToUserFssoOutput() UserFssoOutput {
 
 func (i *UserFsso) ToUserFssoOutputWithContext(ctx context.Context) UserFssoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoOutput)
-}
-
-func (i *UserFsso) ToUserFssoPtrOutput() UserFssoPtrOutput {
-	return i.ToUserFssoPtrOutputWithContext(context.Background())
-}
-
-func (i *UserFsso) ToUserFssoPtrOutputWithContext(ctx context.Context) UserFssoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPtrOutput)
-}
-
-type UserFssoPtrInput interface {
-	pulumi.Input
-
-	ToUserFssoPtrOutput() UserFssoPtrOutput
-	ToUserFssoPtrOutputWithContext(ctx context.Context) UserFssoPtrOutput
-}
-
-type userFssoPtrType UserFssoArgs
-
-func (*userFssoPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFsso)(nil))
-}
-
-func (i *userFssoPtrType) ToUserFssoPtrOutput() UserFssoPtrOutput {
-	return i.ToUserFssoPtrOutputWithContext(context.Background())
-}
-
-func (i *userFssoPtrType) ToUserFssoPtrOutputWithContext(ctx context.Context) UserFssoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPtrOutput)
 }
 
 // UserFssoArrayInput is an input type that accepts UserFssoArray and UserFssoArrayOutput values.
@@ -471,7 +463,7 @@ type UserFssoArrayInput interface {
 type UserFssoArray []UserFssoInput
 
 func (UserFssoArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserFsso)(nil))
+	return reflect.TypeOf((*[]*UserFsso)(nil)).Elem()
 }
 
 func (i UserFssoArray) ToUserFssoArrayOutput() UserFssoArrayOutput {
@@ -496,7 +488,7 @@ type UserFssoMapInput interface {
 type UserFssoMap map[string]UserFssoInput
 
 func (UserFssoMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserFsso)(nil))
+	return reflect.TypeOf((*map[string]*UserFsso)(nil)).Elem()
 }
 
 func (i UserFssoMap) ToUserFssoMapOutput() UserFssoMapOutput {
@@ -507,12 +499,10 @@ func (i UserFssoMap) ToUserFssoMapOutputWithContext(ctx context.Context) UserFss
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoMapOutput)
 }
 
-type UserFssoOutput struct {
-	*pulumi.OutputState
-}
+type UserFssoOutput struct{ *pulumi.OutputState }
 
 func (UserFssoOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFsso)(nil))
+	return reflect.TypeOf((**UserFsso)(nil)).Elem()
 }
 
 func (o UserFssoOutput) ToUserFssoOutput() UserFssoOutput {
@@ -523,36 +513,10 @@ func (o UserFssoOutput) ToUserFssoOutputWithContext(ctx context.Context) UserFss
 	return o
 }
 
-func (o UserFssoOutput) ToUserFssoPtrOutput() UserFssoPtrOutput {
-	return o.ToUserFssoPtrOutputWithContext(context.Background())
-}
-
-func (o UserFssoOutput) ToUserFssoPtrOutputWithContext(ctx context.Context) UserFssoPtrOutput {
-	return o.ApplyT(func(v UserFsso) *UserFsso {
-		return &v
-	}).(UserFssoPtrOutput)
-}
-
-type UserFssoPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserFssoPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFsso)(nil))
-}
-
-func (o UserFssoPtrOutput) ToUserFssoPtrOutput() UserFssoPtrOutput {
-	return o
-}
-
-func (o UserFssoPtrOutput) ToUserFssoPtrOutputWithContext(ctx context.Context) UserFssoPtrOutput {
-	return o
-}
-
 type UserFssoArrayOutput struct{ *pulumi.OutputState }
 
 func (UserFssoArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserFsso)(nil))
+	return reflect.TypeOf((*[]*UserFsso)(nil)).Elem()
 }
 
 func (o UserFssoArrayOutput) ToUserFssoArrayOutput() UserFssoArrayOutput {
@@ -564,15 +528,15 @@ func (o UserFssoArrayOutput) ToUserFssoArrayOutputWithContext(ctx context.Contex
 }
 
 func (o UserFssoArrayOutput) Index(i pulumi.IntInput) UserFssoOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFsso {
-		return vs[0].([]UserFsso)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFsso {
+		return vs[0].([]*UserFsso)[vs[1].(int)]
 	}).(UserFssoOutput)
 }
 
 type UserFssoMapOutput struct{ *pulumi.OutputState }
 
 func (UserFssoMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserFsso)(nil))
+	return reflect.TypeOf((*map[string]*UserFsso)(nil)).Elem()
 }
 
 func (o UserFssoMapOutput) ToUserFssoMapOutput() UserFssoMapOutput {
@@ -584,14 +548,16 @@ func (o UserFssoMapOutput) ToUserFssoMapOutputWithContext(ctx context.Context) U
 }
 
 func (o UserFssoMapOutput) MapIndex(k pulumi.StringInput) UserFssoOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserFsso {
-		return vs[0].(map[string]UserFsso)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserFsso {
+		return vs[0].(map[string]*UserFsso)[vs[1].(string)]
 	}).(UserFssoOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoInput)(nil)).Elem(), &UserFsso{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoArrayInput)(nil)).Elem(), UserFssoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoMapInput)(nil)).Elem(), UserFssoMap{})
 	pulumi.RegisterOutputType(UserFssoOutput{})
-	pulumi.RegisterOutputType(UserFssoPtrOutput{})
 	pulumi.RegisterOutputType(UserFssoArrayOutput{})
 	pulumi.RegisterOutputType(UserFssoMapOutput{})
 }

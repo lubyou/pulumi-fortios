@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -29,13 +30,13 @@ import (
 // 			Action:   pulumi.String("accept"),
 // 			Fosid:    pulumi.Int(1),
 // 			Schedule: pulumi.String("always"),
-// 			Services: fortios.FirewallTtlPolicyServiceArray{
-// 				&fortios.FirewallTtlPolicyServiceArgs{
+// 			Services: FirewallTtlPolicyServiceArray{
+// 				&FirewallTtlPolicyServiceArgs{
 // 					Name: pulumi.String("ALL"),
 // 				},
 // 			},
-// 			Srcaddrs: fortios.FirewallTtlPolicySrcaddrArray{
-// 				&fortios.FirewallTtlPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallTtlPolicySrcaddrArray{
+// 				&FirewallTtlPolicySrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -110,6 +111,7 @@ func NewFirewallTtlPolicy(ctx *pulumi.Context,
 	if args.Ttl == nil {
 		return nil, errors.New("invalid value for required argument 'Ttl'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallTtlPolicy
 	err := ctx.RegisterResource("fortios:index/firewallTtlPolicy:FirewallTtlPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -240,7 +242,7 @@ type FirewallTtlPolicyInput interface {
 }
 
 func (*FirewallTtlPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallTtlPolicy)(nil))
+	return reflect.TypeOf((**FirewallTtlPolicy)(nil)).Elem()
 }
 
 func (i *FirewallTtlPolicy) ToFirewallTtlPolicyOutput() FirewallTtlPolicyOutput {
@@ -249,35 +251,6 @@ func (i *FirewallTtlPolicy) ToFirewallTtlPolicyOutput() FirewallTtlPolicyOutput 
 
 func (i *FirewallTtlPolicy) ToFirewallTtlPolicyOutputWithContext(ctx context.Context) FirewallTtlPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTtlPolicyOutput)
-}
-
-func (i *FirewallTtlPolicy) ToFirewallTtlPolicyPtrOutput() FirewallTtlPolicyPtrOutput {
-	return i.ToFirewallTtlPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallTtlPolicy) ToFirewallTtlPolicyPtrOutputWithContext(ctx context.Context) FirewallTtlPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallTtlPolicyPtrOutput)
-}
-
-type FirewallTtlPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallTtlPolicyPtrOutput() FirewallTtlPolicyPtrOutput
-	ToFirewallTtlPolicyPtrOutputWithContext(ctx context.Context) FirewallTtlPolicyPtrOutput
-}
-
-type firewallTtlPolicyPtrType FirewallTtlPolicyArgs
-
-func (*firewallTtlPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallTtlPolicy)(nil))
-}
-
-func (i *firewallTtlPolicyPtrType) ToFirewallTtlPolicyPtrOutput() FirewallTtlPolicyPtrOutput {
-	return i.ToFirewallTtlPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallTtlPolicyPtrType) ToFirewallTtlPolicyPtrOutputWithContext(ctx context.Context) FirewallTtlPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallTtlPolicyPtrOutput)
 }
 
 // FirewallTtlPolicyArrayInput is an input type that accepts FirewallTtlPolicyArray and FirewallTtlPolicyArrayOutput values.
@@ -294,7 +267,7 @@ type FirewallTtlPolicyArrayInput interface {
 type FirewallTtlPolicyArray []FirewallTtlPolicyInput
 
 func (FirewallTtlPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallTtlPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallTtlPolicy)(nil)).Elem()
 }
 
 func (i FirewallTtlPolicyArray) ToFirewallTtlPolicyArrayOutput() FirewallTtlPolicyArrayOutput {
@@ -319,7 +292,7 @@ type FirewallTtlPolicyMapInput interface {
 type FirewallTtlPolicyMap map[string]FirewallTtlPolicyInput
 
 func (FirewallTtlPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallTtlPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallTtlPolicy)(nil)).Elem()
 }
 
 func (i FirewallTtlPolicyMap) ToFirewallTtlPolicyMapOutput() FirewallTtlPolicyMapOutput {
@@ -330,12 +303,10 @@ func (i FirewallTtlPolicyMap) ToFirewallTtlPolicyMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTtlPolicyMapOutput)
 }
 
-type FirewallTtlPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallTtlPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallTtlPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallTtlPolicy)(nil))
+	return reflect.TypeOf((**FirewallTtlPolicy)(nil)).Elem()
 }
 
 func (o FirewallTtlPolicyOutput) ToFirewallTtlPolicyOutput() FirewallTtlPolicyOutput {
@@ -346,36 +317,10 @@ func (o FirewallTtlPolicyOutput) ToFirewallTtlPolicyOutputWithContext(ctx contex
 	return o
 }
 
-func (o FirewallTtlPolicyOutput) ToFirewallTtlPolicyPtrOutput() FirewallTtlPolicyPtrOutput {
-	return o.ToFirewallTtlPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallTtlPolicyOutput) ToFirewallTtlPolicyPtrOutputWithContext(ctx context.Context) FirewallTtlPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallTtlPolicy) *FirewallTtlPolicy {
-		return &v
-	}).(FirewallTtlPolicyPtrOutput)
-}
-
-type FirewallTtlPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallTtlPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallTtlPolicy)(nil))
-}
-
-func (o FirewallTtlPolicyPtrOutput) ToFirewallTtlPolicyPtrOutput() FirewallTtlPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallTtlPolicyPtrOutput) ToFirewallTtlPolicyPtrOutputWithContext(ctx context.Context) FirewallTtlPolicyPtrOutput {
-	return o
-}
-
 type FirewallTtlPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallTtlPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallTtlPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallTtlPolicy)(nil)).Elem()
 }
 
 func (o FirewallTtlPolicyArrayOutput) ToFirewallTtlPolicyArrayOutput() FirewallTtlPolicyArrayOutput {
@@ -387,15 +332,15 @@ func (o FirewallTtlPolicyArrayOutput) ToFirewallTtlPolicyArrayOutputWithContext(
 }
 
 func (o FirewallTtlPolicyArrayOutput) Index(i pulumi.IntInput) FirewallTtlPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallTtlPolicy {
-		return vs[0].([]FirewallTtlPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallTtlPolicy {
+		return vs[0].([]*FirewallTtlPolicy)[vs[1].(int)]
 	}).(FirewallTtlPolicyOutput)
 }
 
 type FirewallTtlPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallTtlPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallTtlPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallTtlPolicy)(nil)).Elem()
 }
 
 func (o FirewallTtlPolicyMapOutput) ToFirewallTtlPolicyMapOutput() FirewallTtlPolicyMapOutput {
@@ -407,14 +352,16 @@ func (o FirewallTtlPolicyMapOutput) ToFirewallTtlPolicyMapOutputWithContext(ctx 
 }
 
 func (o FirewallTtlPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallTtlPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallTtlPolicy {
-		return vs[0].(map[string]FirewallTtlPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallTtlPolicy {
+		return vs[0].(map[string]*FirewallTtlPolicy)[vs[1].(string)]
 	}).(FirewallTtlPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallTtlPolicyInput)(nil)).Elem(), &FirewallTtlPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallTtlPolicyArrayInput)(nil)).Elem(), FirewallTtlPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallTtlPolicyMapInput)(nil)).Elem(), FirewallTtlPolicyMap{})
 	pulumi.RegisterOutputType(FirewallTtlPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallTtlPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallTtlPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallTtlPolicyMapOutput{})
 }

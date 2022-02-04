@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system hamonitor
 func LookupSystemHaMonitor(ctx *pulumi.Context, args *LookupSystemHaMonitorArgs, opts ...pulumi.InvokeOption) (*LookupSystemHaMonitorResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemHaMonitorResult
 	err := ctx.Invoke("fortios:index/getSystemHaMonitor:GetSystemHaMonitor", args, &rv, opts...)
 	if err != nil {
@@ -34,4 +38,66 @@ type LookupSystemHaMonitorResult struct {
 	VlanHbInterval int `pulumi:"vlanHbInterval"`
 	// VLAN lost heartbeat threshold (1 - 60).
 	VlanHbLostThreshold int `pulumi:"vlanHbLostThreshold"`
+}
+
+func LookupSystemHaMonitorOutput(ctx *pulumi.Context, args LookupSystemHaMonitorOutputArgs, opts ...pulumi.InvokeOption) LookupSystemHaMonitorResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemHaMonitorResult, error) {
+			args := v.(LookupSystemHaMonitorArgs)
+			r, err := LookupSystemHaMonitor(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemHaMonitorResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemHaMonitor.
+type LookupSystemHaMonitorOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemHaMonitorOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemHaMonitorArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemHaMonitor.
+type LookupSystemHaMonitorResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemHaMonitorResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemHaMonitorResult)(nil)).Elem()
+}
+
+func (o LookupSystemHaMonitorResultOutput) ToLookupSystemHaMonitorResultOutput() LookupSystemHaMonitorResultOutput {
+	return o
+}
+
+func (o LookupSystemHaMonitorResultOutput) ToLookupSystemHaMonitorResultOutputWithContext(ctx context.Context) LookupSystemHaMonitorResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemHaMonitorResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemHaMonitorResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable monitor VLAN interfaces.
+func (o LookupSystemHaMonitorResultOutput) MonitorVlan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemHaMonitorResult) string { return v.MonitorVlan }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemHaMonitorResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemHaMonitorResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Configure heartbeat interval (seconds).
+func (o LookupSystemHaMonitorResultOutput) VlanHbInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemHaMonitorResult) int { return v.VlanHbInterval }).(pulumi.IntOutput)
+}
+
+// VLAN lost heartbeat threshold (1 - 60).
+func (o LookupSystemHaMonitorResultOutput) VlanHbLostThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemHaMonitorResult) int { return v.VlanHbLostThreshold }).(pulumi.IntOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemHaMonitorResultOutput{})
 }

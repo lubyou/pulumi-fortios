@@ -75,26 +75,24 @@ export class FirewallObjectServiceGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallObjectServiceGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectServiceGroupArgs | FirewallObjectServiceGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectServiceGroupState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as FirewallObjectServiceGroupArgs | undefined;
             if ((!args || args.members === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectServiceGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectServiceGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

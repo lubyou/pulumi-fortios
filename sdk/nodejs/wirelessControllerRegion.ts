@@ -79,29 +79,27 @@ export class WirelessControllerRegion extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerRegionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerRegionArgs | WirelessControllerRegionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerRegionState | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["grayscale"] = state ? state.grayscale : undefined;
-            inputs["imageType"] = state ? state.imageType : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["opacity"] = state ? state.opacity : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["grayscale"] = state ? state.grayscale : undefined;
+            resourceInputs["imageType"] = state ? state.imageType : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["opacity"] = state ? state.opacity : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerRegionArgs | undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["grayscale"] = args ? args.grayscale : undefined;
-            inputs["imageType"] = args ? args.imageType : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["opacity"] = args ? args.opacity : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["grayscale"] = args ? args.grayscale : undefined;
+            resourceInputs["imageType"] = args ? args.imageType : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["opacity"] = args ? args.opacity : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerRegion.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerRegion.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemTosBasedPriority`.
 func GetSystemTosBasedPriorityList(ctx *pulumi.Context, args *GetSystemTosBasedPriorityListArgs, opts ...pulumi.InvokeOption) (*GetSystemTosBasedPriorityListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemTosBasedPriorityListResult
 	err := ctx.Invoke("fortios:index/getSystemTosBasedPriorityList:GetSystemTosBasedPriorityList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemTosBasedPriorityListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemTosBasedPriorityListOutput(ctx *pulumi.Context, args GetSystemTosBasedPriorityListOutputArgs, opts ...pulumi.InvokeOption) GetSystemTosBasedPriorityListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemTosBasedPriorityListResult, error) {
+			args := v.(GetSystemTosBasedPriorityListArgs)
+			r, err := GetSystemTosBasedPriorityList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemTosBasedPriorityListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemTosBasedPriorityList.
+type GetSystemTosBasedPriorityListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemTosBasedPriorityListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemTosBasedPriorityListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemTosBasedPriorityList.
+type GetSystemTosBasedPriorityListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemTosBasedPriorityListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemTosBasedPriorityListResult)(nil)).Elem()
+}
+
+func (o GetSystemTosBasedPriorityListResultOutput) ToGetSystemTosBasedPriorityListResultOutput() GetSystemTosBasedPriorityListResultOutput {
+	return o
+}
+
+func (o GetSystemTosBasedPriorityListResultOutput) ToGetSystemTosBasedPriorityListResultOutputWithContext(ctx context.Context) GetSystemTosBasedPriorityListResultOutput {
+	return o
+}
+
+func (o GetSystemTosBasedPriorityListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemTosBasedPriorityListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `SystemTosBasedPriority`.
+func (o GetSystemTosBasedPriorityListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemTosBasedPriorityListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemTosBasedPriorityListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemTosBasedPriorityListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemTosBasedPriorityListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemTosBasedPriorityListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemTosBasedPriorityListResultOutput{})
 }

@@ -16,22 +16,38 @@ __all__ = ['SystemFederatedUpgradeArgs', 'SystemFederatedUpgrade']
 class SystemFederatedUpgradeArgs:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 failure_device: Optional[pulumi.Input[str]] = None,
+                 failure_reason: Optional[pulumi.Input[str]] = None,
+                 next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemFederatedUpgradeNodeListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 upgrade_id: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemFederatedUpgrade resource.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] failure_device: Serial number of the node to include.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input['SystemFederatedUpgradeNodeListArgs']]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
-        :param pulumi.Input[str] status: Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        :param pulumi.Input[str] status: Current status of the upgrade.
+        :param pulumi.Input[int] upgrade_id: Unique identifier for this upgrade.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if failure_device is not None:
+            pulumi.set(__self__, "failure_device", failure_device)
+        if failure_reason is not None:
+            pulumi.set(__self__, "failure_reason", failure_reason)
+        if next_path_index is not None:
+            pulumi.set(__self__, "next_path_index", next_path_index)
         if node_lists is not None:
             pulumi.set(__self__, "node_lists", node_lists)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if upgrade_id is not None:
+            pulumi.set(__self__, "upgrade_id", upgrade_id)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -46,6 +62,42 @@ class SystemFederatedUpgradeArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="failureDevice")
+    def failure_device(self) -> Optional[pulumi.Input[str]]:
+        """
+        Serial number of the node to include.
+        """
+        return pulumi.get(self, "failure_device")
+
+    @failure_device.setter
+    def failure_device(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "failure_device", value)
+
+    @property
+    @pulumi.getter(name="failureReason")
+    def failure_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        """
+        return pulumi.get(self, "failure_reason")
+
+    @failure_reason.setter
+    def failure_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "failure_reason", value)
+
+    @property
+    @pulumi.getter(name="nextPathIndex")
+    def next_path_index(self) -> Optional[pulumi.Input[int]]:
+        """
+        The index of the next image to upgrade to.
+        """
+        return pulumi.get(self, "next_path_index")
+
+    @next_path_index.setter
+    def next_path_index(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "next_path_index", value)
 
     @property
     @pulumi.getter(name="nodeLists")
@@ -63,13 +115,25 @@ class SystemFederatedUpgradeArgs:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        Current status of the upgrade.
         """
         return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="upgradeId")
+    def upgrade_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Unique identifier for this upgrade.
+        """
+        return pulumi.get(self, "upgrade_id")
+
+    @upgrade_id.setter
+    def upgrade_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "upgrade_id", value)
 
     @property
     @pulumi.getter
@@ -88,22 +152,38 @@ class SystemFederatedUpgradeArgs:
 class _SystemFederatedUpgradeState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 failure_device: Optional[pulumi.Input[str]] = None,
+                 failure_reason: Optional[pulumi.Input[str]] = None,
+                 next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemFederatedUpgradeNodeListArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 upgrade_id: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemFederatedUpgrade resources.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] failure_device: Serial number of the node to include.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input['SystemFederatedUpgradeNodeListArgs']]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
-        :param pulumi.Input[str] status: Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        :param pulumi.Input[str] status: Current status of the upgrade.
+        :param pulumi.Input[int] upgrade_id: Unique identifier for this upgrade.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if failure_device is not None:
+            pulumi.set(__self__, "failure_device", failure_device)
+        if failure_reason is not None:
+            pulumi.set(__self__, "failure_reason", failure_reason)
+        if next_path_index is not None:
+            pulumi.set(__self__, "next_path_index", next_path_index)
         if node_lists is not None:
             pulumi.set(__self__, "node_lists", node_lists)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if upgrade_id is not None:
+            pulumi.set(__self__, "upgrade_id", upgrade_id)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -118,6 +198,42 @@ class _SystemFederatedUpgradeState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="failureDevice")
+    def failure_device(self) -> Optional[pulumi.Input[str]]:
+        """
+        Serial number of the node to include.
+        """
+        return pulumi.get(self, "failure_device")
+
+    @failure_device.setter
+    def failure_device(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "failure_device", value)
+
+    @property
+    @pulumi.getter(name="failureReason")
+    def failure_reason(self) -> Optional[pulumi.Input[str]]:
+        """
+        Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        """
+        return pulumi.get(self, "failure_reason")
+
+    @failure_reason.setter
+    def failure_reason(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "failure_reason", value)
+
+    @property
+    @pulumi.getter(name="nextPathIndex")
+    def next_path_index(self) -> Optional[pulumi.Input[int]]:
+        """
+        The index of the next image to upgrade to.
+        """
+        return pulumi.get(self, "next_path_index")
+
+    @next_path_index.setter
+    def next_path_index(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "next_path_index", value)
 
     @property
     @pulumi.getter(name="nodeLists")
@@ -135,13 +251,25 @@ class _SystemFederatedUpgradeState:
     @pulumi.getter
     def status(self) -> Optional[pulumi.Input[str]]:
         """
-        Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        Current status of the upgrade.
         """
         return pulumi.get(self, "status")
 
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter(name="upgradeId")
+    def upgrade_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Unique identifier for this upgrade.
+        """
+        return pulumi.get(self, "upgrade_id")
+
+    @upgrade_id.setter
+    def upgrade_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "upgrade_id", value)
 
     @property
     @pulumi.getter
@@ -162,8 +290,12 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 failure_device: Optional[pulumi.Input[str]] = None,
+                 failure_reason: Optional[pulumi.Input[str]] = None,
+                 next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 upgrade_id: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -182,8 +314,12 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] failure_device: Serial number of the node to include.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
-        :param pulumi.Input[str] status: Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        :param pulumi.Input[str] status: Current status of the upgrade.
+        :param pulumi.Input[int] upgrade_id: Unique identifier for this upgrade.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -221,8 +357,12 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 failure_device: Optional[pulumi.Input[str]] = None,
+                 failure_reason: Optional[pulumi.Input[str]] = None,
+                 next_path_index: Optional[pulumi.Input[int]] = None,
                  node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
+                 upgrade_id: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -231,14 +371,20 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemFederatedUpgradeArgs.__new__(SystemFederatedUpgradeArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["failure_device"] = failure_device
+            __props__.__dict__["failure_reason"] = failure_reason
+            __props__.__dict__["next_path_index"] = next_path_index
             __props__.__dict__["node_lists"] = node_lists
             __props__.__dict__["status"] = status
+            __props__.__dict__["upgrade_id"] = upgrade_id
             __props__.__dict__["vdomparam"] = vdomparam
         super(SystemFederatedUpgrade, __self__).__init__(
             'fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade',
@@ -251,8 +397,12 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            failure_device: Optional[pulumi.Input[str]] = None,
+            failure_reason: Optional[pulumi.Input[str]] = None,
+            next_path_index: Optional[pulumi.Input[int]] = None,
             node_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
+            upgrade_id: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemFederatedUpgrade':
         """
         Get an existing SystemFederatedUpgrade resource's state with the given name, id, and optional extra
@@ -262,8 +412,12 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] failure_device: Serial number of the node to include.
+        :param pulumi.Input[str] failure_reason: Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        :param pulumi.Input[int] next_path_index: The index of the next image to upgrade to.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemFederatedUpgradeNodeListArgs']]]] node_lists: Nodes which will be included in the upgrade. The structure of `node_list` block is documented below.
-        :param pulumi.Input[str] status: Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        :param pulumi.Input[str] status: Current status of the upgrade.
+        :param pulumi.Input[int] upgrade_id: Unique identifier for this upgrade.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -271,8 +425,12 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
         __props__ = _SystemFederatedUpgradeState.__new__(_SystemFederatedUpgradeState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["failure_device"] = failure_device
+        __props__.__dict__["failure_reason"] = failure_reason
+        __props__.__dict__["next_path_index"] = next_path_index
         __props__.__dict__["node_lists"] = node_lists
         __props__.__dict__["status"] = status
+        __props__.__dict__["upgrade_id"] = upgrade_id
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemFederatedUpgrade(resource_name, opts=opts, __props__=__props__)
 
@@ -283,6 +441,30 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="failureDevice")
+    def failure_device(self) -> pulumi.Output[str]:
+        """
+        Serial number of the node to include.
+        """
+        return pulumi.get(self, "failure_device")
+
+    @property
+    @pulumi.getter(name="failureReason")
+    def failure_reason(self) -> pulumi.Output[str]:
+        """
+        Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+        """
+        return pulumi.get(self, "failure_reason")
+
+    @property
+    @pulumi.getter(name="nextPathIndex")
+    def next_path_index(self) -> pulumi.Output[int]:
+        """
+        The index of the next image to upgrade to.
+        """
+        return pulumi.get(self, "next_path_index")
 
     @property
     @pulumi.getter(name="nodeLists")
@@ -296,9 +478,17 @@ class SystemFederatedUpgrade(pulumi.CustomResource):
     @pulumi.getter
     def status(self) -> pulumi.Output[str]:
         """
-        Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+        Current status of the upgrade.
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="upgradeId")
+    def upgrade_id(self) -> pulumi.Output[int]:
+        """
+        Unique identifier for this upgrade.
+        """
+        return pulumi.get(self, "upgrade_id")
 
     @property
     @pulumi.getter

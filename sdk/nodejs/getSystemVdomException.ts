@@ -13,9 +13,7 @@ export function getSystemVdomException(args: GetSystemVdomExceptionArgs, opts?: 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemVdomException:GetSystemVdomException", {
         "fosid": args.fosid,
         "vdomparam": args.vdomparam,
@@ -65,4 +63,22 @@ export interface GetSystemVdomExceptionResult {
      * Names of the VDOMs. The structure of `vdom` block is documented below.
      */
     readonly vdoms: outputs.GetSystemVdomExceptionVdom[];
+}
+
+export function getSystemVdomExceptionOutput(args: GetSystemVdomExceptionOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemVdomExceptionResult> {
+    return pulumi.output(args).apply(a => getSystemVdomException(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemVdomException.
+ */
+export interface GetSystemVdomExceptionOutputArgs {
+    /**
+     * Specify the fosid of the desired system vdomexception.
+     */
+    fosid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

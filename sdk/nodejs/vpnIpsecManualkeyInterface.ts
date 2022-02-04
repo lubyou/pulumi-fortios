@@ -113,6 +113,10 @@ export class VpnIpsecManualkeyInterface extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+     */
+    public readonly npuOffload!: pulumi.Output<string>;
+    /**
      * IPv4 address of the remote gateway's external interface.
      */
     public readonly remoteGw!: pulumi.Output<string>;
@@ -138,25 +142,26 @@ export class VpnIpsecManualkeyInterface extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnIpsecManualkeyInterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnIpsecManualkeyInterfaceArgs | VpnIpsecManualkeyInterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnIpsecManualkeyInterfaceState | undefined;
-            inputs["addrType"] = state ? state.addrType : undefined;
-            inputs["authAlg"] = state ? state.authAlg : undefined;
-            inputs["authKey"] = state ? state.authKey : undefined;
-            inputs["encAlg"] = state ? state.encAlg : undefined;
-            inputs["encKey"] = state ? state.encKey : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipVersion"] = state ? state.ipVersion : undefined;
-            inputs["localGw"] = state ? state.localGw : undefined;
-            inputs["localGw6"] = state ? state.localGw6 : undefined;
-            inputs["localSpi"] = state ? state.localSpi : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["remoteGw"] = state ? state.remoteGw : undefined;
-            inputs["remoteGw6"] = state ? state.remoteGw6 : undefined;
-            inputs["remoteSpi"] = state ? state.remoteSpi : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addrType"] = state ? state.addrType : undefined;
+            resourceInputs["authAlg"] = state ? state.authAlg : undefined;
+            resourceInputs["authKey"] = state ? state.authKey : undefined;
+            resourceInputs["encAlg"] = state ? state.encAlg : undefined;
+            resourceInputs["encKey"] = state ? state.encKey : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["localGw"] = state ? state.localGw : undefined;
+            resourceInputs["localGw6"] = state ? state.localGw6 : undefined;
+            resourceInputs["localSpi"] = state ? state.localSpi : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["npuOffload"] = state ? state.npuOffload : undefined;
+            resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["remoteGw6"] = state ? state.remoteGw6 : undefined;
+            resourceInputs["remoteSpi"] = state ? state.remoteSpi : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnIpsecManualkeyInterfaceArgs | undefined;
             if ((!args || args.authAlg === undefined) && !opts.urn) {
@@ -174,26 +179,25 @@ export class VpnIpsecManualkeyInterface extends pulumi.CustomResource {
             if ((!args || args.remoteGw6 === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'remoteGw6'");
             }
-            inputs["addrType"] = args ? args.addrType : undefined;
-            inputs["authAlg"] = args ? args.authAlg : undefined;
-            inputs["authKey"] = args ? args.authKey : undefined;
-            inputs["encAlg"] = args ? args.encAlg : undefined;
-            inputs["encKey"] = args ? args.encKey : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipVersion"] = args ? args.ipVersion : undefined;
-            inputs["localGw"] = args ? args.localGw : undefined;
-            inputs["localGw6"] = args ? args.localGw6 : undefined;
-            inputs["localSpi"] = args ? args.localSpi : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["remoteGw"] = args ? args.remoteGw : undefined;
-            inputs["remoteGw6"] = args ? args.remoteGw6 : undefined;
-            inputs["remoteSpi"] = args ? args.remoteSpi : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addrType"] = args ? args.addrType : undefined;
+            resourceInputs["authAlg"] = args ? args.authAlg : undefined;
+            resourceInputs["authKey"] = args ? args.authKey : undefined;
+            resourceInputs["encAlg"] = args ? args.encAlg : undefined;
+            resourceInputs["encKey"] = args ? args.encKey : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["localGw"] = args ? args.localGw : undefined;
+            resourceInputs["localGw6"] = args ? args.localGw6 : undefined;
+            resourceInputs["localSpi"] = args ? args.localSpi : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["npuOffload"] = args ? args.npuOffload : undefined;
+            resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["remoteGw6"] = args ? args.remoteGw6 : undefined;
+            resourceInputs["remoteSpi"] = args ? args.remoteSpi : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnIpsecManualkeyInterface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnIpsecManualkeyInterface.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -245,6 +249,10 @@ export interface VpnIpsecManualkeyInterfaceState {
      * IPsec tunnel name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+     */
+    npuOffload?: pulumi.Input<string>;
     /**
      * IPv4 address of the remote gateway's external interface.
      */
@@ -311,6 +319,10 @@ export interface VpnIpsecManualkeyInterfaceArgs {
      * IPsec tunnel name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+     */
+    npuOffload?: pulumi.Input<string>;
     /**
      * IPv4 address of the remote gateway's external interface.
      */

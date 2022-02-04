@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,7 @@ func NewFirewallIpTranslation(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallIpTranslation
 	err := ctx.RegisterResource("fortios:index/firewallIpTranslation:FirewallIpTranslation", name, args, &resource, opts...)
 	if err != nil {
@@ -180,7 +181,7 @@ type FirewallIpTranslationInput interface {
 }
 
 func (*FirewallIpTranslation) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIpTranslation)(nil))
+	return reflect.TypeOf((**FirewallIpTranslation)(nil)).Elem()
 }
 
 func (i *FirewallIpTranslation) ToFirewallIpTranslationOutput() FirewallIpTranslationOutput {
@@ -189,35 +190,6 @@ func (i *FirewallIpTranslation) ToFirewallIpTranslationOutput() FirewallIpTransl
 
 func (i *FirewallIpTranslation) ToFirewallIpTranslationOutputWithContext(ctx context.Context) FirewallIpTranslationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationOutput)
-}
-
-func (i *FirewallIpTranslation) ToFirewallIpTranslationPtrOutput() FirewallIpTranslationPtrOutput {
-	return i.ToFirewallIpTranslationPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallIpTranslation) ToFirewallIpTranslationPtrOutputWithContext(ctx context.Context) FirewallIpTranslationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationPtrOutput)
-}
-
-type FirewallIpTranslationPtrInput interface {
-	pulumi.Input
-
-	ToFirewallIpTranslationPtrOutput() FirewallIpTranslationPtrOutput
-	ToFirewallIpTranslationPtrOutputWithContext(ctx context.Context) FirewallIpTranslationPtrOutput
-}
-
-type firewallIpTranslationPtrType FirewallIpTranslationArgs
-
-func (*firewallIpTranslationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIpTranslation)(nil))
-}
-
-func (i *firewallIpTranslationPtrType) ToFirewallIpTranslationPtrOutput() FirewallIpTranslationPtrOutput {
-	return i.ToFirewallIpTranslationPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallIpTranslationPtrType) ToFirewallIpTranslationPtrOutputWithContext(ctx context.Context) FirewallIpTranslationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationPtrOutput)
 }
 
 // FirewallIpTranslationArrayInput is an input type that accepts FirewallIpTranslationArray and FirewallIpTranslationArrayOutput values.
@@ -234,7 +206,7 @@ type FirewallIpTranslationArrayInput interface {
 type FirewallIpTranslationArray []FirewallIpTranslationInput
 
 func (FirewallIpTranslationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallIpTranslation)(nil))
+	return reflect.TypeOf((*[]*FirewallIpTranslation)(nil)).Elem()
 }
 
 func (i FirewallIpTranslationArray) ToFirewallIpTranslationArrayOutput() FirewallIpTranslationArrayOutput {
@@ -259,7 +231,7 @@ type FirewallIpTranslationMapInput interface {
 type FirewallIpTranslationMap map[string]FirewallIpTranslationInput
 
 func (FirewallIpTranslationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallIpTranslation)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIpTranslation)(nil)).Elem()
 }
 
 func (i FirewallIpTranslationMap) ToFirewallIpTranslationMapOutput() FirewallIpTranslationMapOutput {
@@ -270,12 +242,10 @@ func (i FirewallIpTranslationMap) ToFirewallIpTranslationMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpTranslationMapOutput)
 }
 
-type FirewallIpTranslationOutput struct {
-	*pulumi.OutputState
-}
+type FirewallIpTranslationOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpTranslationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIpTranslation)(nil))
+	return reflect.TypeOf((**FirewallIpTranslation)(nil)).Elem()
 }
 
 func (o FirewallIpTranslationOutput) ToFirewallIpTranslationOutput() FirewallIpTranslationOutput {
@@ -286,36 +256,10 @@ func (o FirewallIpTranslationOutput) ToFirewallIpTranslationOutputWithContext(ct
 	return o
 }
 
-func (o FirewallIpTranslationOutput) ToFirewallIpTranslationPtrOutput() FirewallIpTranslationPtrOutput {
-	return o.ToFirewallIpTranslationPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallIpTranslationOutput) ToFirewallIpTranslationPtrOutputWithContext(ctx context.Context) FirewallIpTranslationPtrOutput {
-	return o.ApplyT(func(v FirewallIpTranslation) *FirewallIpTranslation {
-		return &v
-	}).(FirewallIpTranslationPtrOutput)
-}
-
-type FirewallIpTranslationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallIpTranslationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIpTranslation)(nil))
-}
-
-func (o FirewallIpTranslationPtrOutput) ToFirewallIpTranslationPtrOutput() FirewallIpTranslationPtrOutput {
-	return o
-}
-
-func (o FirewallIpTranslationPtrOutput) ToFirewallIpTranslationPtrOutputWithContext(ctx context.Context) FirewallIpTranslationPtrOutput {
-	return o
-}
-
 type FirewallIpTranslationArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpTranslationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallIpTranslation)(nil))
+	return reflect.TypeOf((*[]*FirewallIpTranslation)(nil)).Elem()
 }
 
 func (o FirewallIpTranslationArrayOutput) ToFirewallIpTranslationArrayOutput() FirewallIpTranslationArrayOutput {
@@ -327,15 +271,15 @@ func (o FirewallIpTranslationArrayOutput) ToFirewallIpTranslationArrayOutputWith
 }
 
 func (o FirewallIpTranslationArrayOutput) Index(i pulumi.IntInput) FirewallIpTranslationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIpTranslation {
-		return vs[0].([]FirewallIpTranslation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpTranslation {
+		return vs[0].([]*FirewallIpTranslation)[vs[1].(int)]
 	}).(FirewallIpTranslationOutput)
 }
 
 type FirewallIpTranslationMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpTranslationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallIpTranslation)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIpTranslation)(nil)).Elem()
 }
 
 func (o FirewallIpTranslationMapOutput) ToFirewallIpTranslationMapOutput() FirewallIpTranslationMapOutput {
@@ -347,14 +291,16 @@ func (o FirewallIpTranslationMapOutput) ToFirewallIpTranslationMapOutputWithCont
 }
 
 func (o FirewallIpTranslationMapOutput) MapIndex(k pulumi.StringInput) FirewallIpTranslationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallIpTranslation {
-		return vs[0].(map[string]FirewallIpTranslation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallIpTranslation {
+		return vs[0].(map[string]*FirewallIpTranslation)[vs[1].(string)]
 	}).(FirewallIpTranslationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpTranslationInput)(nil)).Elem(), &FirewallIpTranslation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpTranslationArrayInput)(nil)).Elem(), FirewallIpTranslationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpTranslationMapInput)(nil)).Elem(), FirewallIpTranslationMap{})
 	pulumi.RegisterOutputType(FirewallIpTranslationOutput{})
-	pulumi.RegisterOutputType(FirewallIpTranslationPtrOutput{})
 	pulumi.RegisterOutputType(FirewallIpTranslationArrayOutput{})
 	pulumi.RegisterOutputType(FirewallIpTranslationMapOutput{})
 }

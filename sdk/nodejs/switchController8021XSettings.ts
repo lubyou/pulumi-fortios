@@ -88,27 +88,25 @@ export class SwitchController8021XSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchController8021XSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchController8021XSettingsArgs | SwitchController8021XSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchController8021XSettingsState | undefined;
-            inputs["linkDownAuth"] = state ? state.linkDownAuth : undefined;
-            inputs["maxReauthAttempt"] = state ? state.maxReauthAttempt : undefined;
-            inputs["reauthPeriod"] = state ? state.reauthPeriod : undefined;
-            inputs["txPeriod"] = state ? state.txPeriod : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["linkDownAuth"] = state ? state.linkDownAuth : undefined;
+            resourceInputs["maxReauthAttempt"] = state ? state.maxReauthAttempt : undefined;
+            resourceInputs["reauthPeriod"] = state ? state.reauthPeriod : undefined;
+            resourceInputs["txPeriod"] = state ? state.txPeriod : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchController8021XSettingsArgs | undefined;
-            inputs["linkDownAuth"] = args ? args.linkDownAuth : undefined;
-            inputs["maxReauthAttempt"] = args ? args.maxReauthAttempt : undefined;
-            inputs["reauthPeriod"] = args ? args.reauthPeriod : undefined;
-            inputs["txPeriod"] = args ? args.txPeriod : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["linkDownAuth"] = args ? args.linkDownAuth : undefined;
+            resourceInputs["maxReauthAttempt"] = args ? args.maxReauthAttempt : undefined;
+            resourceInputs["reauthPeriod"] = args ? args.reauthPeriod : undefined;
+            resourceInputs["txPeriod"] = args ? args.txPeriod : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchController8021XSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchController8021XSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

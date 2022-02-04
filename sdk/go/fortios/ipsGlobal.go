@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,6 +60,8 @@ type IpsGlobal struct {
 
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode pulumi.StringOutput `pulumi:"anomalyMode"`
+	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+	CpAccelMode pulumi.StringOutput `pulumi:"cpAccelMode"`
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database pulumi.StringOutput `pulumi:"database"`
 	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
@@ -74,8 +76,12 @@ type IpsGlobal struct {
 	FailOpen pulumi.StringOutput `pulumi:"failOpen"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringOutput `pulumi:"intelligentMode"`
+	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+	IpsReserveCpu pulumi.StringOutput `pulumi:"ipsReserveCpu"`
 	// NGFW policy-mode app detection threshold.
 	NgfwMaxScanRange pulumi.IntOutput `pulumi:"ngfwMaxScanRange"`
+	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+	NpAccelMode pulumi.StringOutput `pulumi:"npAccelMode"`
 	// Packet/pcap log queue depth per IPS engine.
 	PacketLogQueueDepth pulumi.IntOutput `pulumi:"packetLogQueueDepth"`
 	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
@@ -101,6 +107,7 @@ func NewIpsGlobal(ctx *pulumi.Context,
 		args = &IpsGlobalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsGlobal
 	err := ctx.RegisterResource("fortios:index/ipsGlobal:IpsGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -125,6 +132,8 @@ func GetIpsGlobal(ctx *pulumi.Context,
 type ipsGlobalState struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode *string `pulumi:"anomalyMode"`
+	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+	CpAccelMode *string `pulumi:"cpAccelMode"`
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database *string `pulumi:"database"`
 	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
@@ -139,8 +148,12 @@ type ipsGlobalState struct {
 	FailOpen *string `pulumi:"failOpen"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode *string `pulumi:"intelligentMode"`
+	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+	IpsReserveCpu *string `pulumi:"ipsReserveCpu"`
 	// NGFW policy-mode app detection threshold.
 	NgfwMaxScanRange *int `pulumi:"ngfwMaxScanRange"`
+	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+	NpAccelMode *string `pulumi:"npAccelMode"`
 	// Packet/pcap log queue depth per IPS engine.
 	PacketLogQueueDepth *int `pulumi:"packetLogQueueDepth"`
 	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
@@ -162,6 +175,8 @@ type ipsGlobalState struct {
 type IpsGlobalState struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode pulumi.StringPtrInput
+	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+	CpAccelMode pulumi.StringPtrInput
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database pulumi.StringPtrInput
 	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
@@ -176,8 +191,12 @@ type IpsGlobalState struct {
 	FailOpen pulumi.StringPtrInput
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringPtrInput
+	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+	IpsReserveCpu pulumi.StringPtrInput
 	// NGFW policy-mode app detection threshold.
 	NgfwMaxScanRange pulumi.IntPtrInput
+	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+	NpAccelMode pulumi.StringPtrInput
 	// Packet/pcap log queue depth per IPS engine.
 	PacketLogQueueDepth pulumi.IntPtrInput
 	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
@@ -203,6 +222,8 @@ func (IpsGlobalState) ElementType() reflect.Type {
 type ipsGlobalArgs struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode *string `pulumi:"anomalyMode"`
+	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+	CpAccelMode *string `pulumi:"cpAccelMode"`
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database *string `pulumi:"database"`
 	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
@@ -217,8 +238,12 @@ type ipsGlobalArgs struct {
 	FailOpen *string `pulumi:"failOpen"`
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode *string `pulumi:"intelligentMode"`
+	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+	IpsReserveCpu *string `pulumi:"ipsReserveCpu"`
 	// NGFW policy-mode app detection threshold.
 	NgfwMaxScanRange *int `pulumi:"ngfwMaxScanRange"`
+	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+	NpAccelMode *string `pulumi:"npAccelMode"`
 	// Packet/pcap log queue depth per IPS engine.
 	PacketLogQueueDepth *int `pulumi:"packetLogQueueDepth"`
 	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
@@ -241,6 +266,8 @@ type ipsGlobalArgs struct {
 type IpsGlobalArgs struct {
 	// Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
 	AnomalyMode pulumi.StringPtrInput
+	// IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+	CpAccelMode pulumi.StringPtrInput
 	// Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
 	Database pulumi.StringPtrInput
 	// Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
@@ -255,8 +282,12 @@ type IpsGlobalArgs struct {
 	FailOpen pulumi.StringPtrInput
 	// Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
 	IntelligentMode pulumi.StringPtrInput
+	// Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+	IpsReserveCpu pulumi.StringPtrInput
 	// NGFW policy-mode app detection threshold.
 	NgfwMaxScanRange pulumi.IntPtrInput
+	// Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+	NpAccelMode pulumi.StringPtrInput
 	// Packet/pcap log queue depth per IPS engine.
 	PacketLogQueueDepth pulumi.IntPtrInput
 	// Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
@@ -287,7 +318,7 @@ type IpsGlobalInput interface {
 }
 
 func (*IpsGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsGlobal)(nil))
+	return reflect.TypeOf((**IpsGlobal)(nil)).Elem()
 }
 
 func (i *IpsGlobal) ToIpsGlobalOutput() IpsGlobalOutput {
@@ -296,35 +327,6 @@ func (i *IpsGlobal) ToIpsGlobalOutput() IpsGlobalOutput {
 
 func (i *IpsGlobal) ToIpsGlobalOutputWithContext(ctx context.Context) IpsGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalOutput)
-}
-
-func (i *IpsGlobal) ToIpsGlobalPtrOutput() IpsGlobalPtrOutput {
-	return i.ToIpsGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *IpsGlobal) ToIpsGlobalPtrOutputWithContext(ctx context.Context) IpsGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalPtrOutput)
-}
-
-type IpsGlobalPtrInput interface {
-	pulumi.Input
-
-	ToIpsGlobalPtrOutput() IpsGlobalPtrOutput
-	ToIpsGlobalPtrOutputWithContext(ctx context.Context) IpsGlobalPtrOutput
-}
-
-type ipsGlobalPtrType IpsGlobalArgs
-
-func (*ipsGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsGlobal)(nil))
-}
-
-func (i *ipsGlobalPtrType) ToIpsGlobalPtrOutput() IpsGlobalPtrOutput {
-	return i.ToIpsGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *ipsGlobalPtrType) ToIpsGlobalPtrOutputWithContext(ctx context.Context) IpsGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalPtrOutput)
 }
 
 // IpsGlobalArrayInput is an input type that accepts IpsGlobalArray and IpsGlobalArrayOutput values.
@@ -341,7 +343,7 @@ type IpsGlobalArrayInput interface {
 type IpsGlobalArray []IpsGlobalInput
 
 func (IpsGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsGlobal)(nil))
+	return reflect.TypeOf((*[]*IpsGlobal)(nil)).Elem()
 }
 
 func (i IpsGlobalArray) ToIpsGlobalArrayOutput() IpsGlobalArrayOutput {
@@ -366,7 +368,7 @@ type IpsGlobalMapInput interface {
 type IpsGlobalMap map[string]IpsGlobalInput
 
 func (IpsGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsGlobal)(nil))
+	return reflect.TypeOf((*map[string]*IpsGlobal)(nil)).Elem()
 }
 
 func (i IpsGlobalMap) ToIpsGlobalMapOutput() IpsGlobalMapOutput {
@@ -377,12 +379,10 @@ func (i IpsGlobalMap) ToIpsGlobalMapOutputWithContext(ctx context.Context) IpsGl
 	return pulumi.ToOutputWithContext(ctx, i).(IpsGlobalMapOutput)
 }
 
-type IpsGlobalOutput struct {
-	*pulumi.OutputState
-}
+type IpsGlobalOutput struct{ *pulumi.OutputState }
 
 func (IpsGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsGlobal)(nil))
+	return reflect.TypeOf((**IpsGlobal)(nil)).Elem()
 }
 
 func (o IpsGlobalOutput) ToIpsGlobalOutput() IpsGlobalOutput {
@@ -393,36 +393,10 @@ func (o IpsGlobalOutput) ToIpsGlobalOutputWithContext(ctx context.Context) IpsGl
 	return o
 }
 
-func (o IpsGlobalOutput) ToIpsGlobalPtrOutput() IpsGlobalPtrOutput {
-	return o.ToIpsGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o IpsGlobalOutput) ToIpsGlobalPtrOutputWithContext(ctx context.Context) IpsGlobalPtrOutput {
-	return o.ApplyT(func(v IpsGlobal) *IpsGlobal {
-		return &v
-	}).(IpsGlobalPtrOutput)
-}
-
-type IpsGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsGlobal)(nil))
-}
-
-func (o IpsGlobalPtrOutput) ToIpsGlobalPtrOutput() IpsGlobalPtrOutput {
-	return o
-}
-
-func (o IpsGlobalPtrOutput) ToIpsGlobalPtrOutputWithContext(ctx context.Context) IpsGlobalPtrOutput {
-	return o
-}
-
 type IpsGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsGlobal)(nil))
+	return reflect.TypeOf((*[]*IpsGlobal)(nil)).Elem()
 }
 
 func (o IpsGlobalArrayOutput) ToIpsGlobalArrayOutput() IpsGlobalArrayOutput {
@@ -434,15 +408,15 @@ func (o IpsGlobalArrayOutput) ToIpsGlobalArrayOutputWithContext(ctx context.Cont
 }
 
 func (o IpsGlobalArrayOutput) Index(i pulumi.IntInput) IpsGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsGlobal {
-		return vs[0].([]IpsGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsGlobal {
+		return vs[0].([]*IpsGlobal)[vs[1].(int)]
 	}).(IpsGlobalOutput)
 }
 
 type IpsGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (IpsGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsGlobal)(nil))
+	return reflect.TypeOf((*map[string]*IpsGlobal)(nil)).Elem()
 }
 
 func (o IpsGlobalMapOutput) ToIpsGlobalMapOutput() IpsGlobalMapOutput {
@@ -454,14 +428,16 @@ func (o IpsGlobalMapOutput) ToIpsGlobalMapOutputWithContext(ctx context.Context)
 }
 
 func (o IpsGlobalMapOutput) MapIndex(k pulumi.StringInput) IpsGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsGlobal {
-		return vs[0].(map[string]IpsGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsGlobal {
+		return vs[0].(map[string]*IpsGlobal)[vs[1].(string)]
 	}).(IpsGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsGlobalInput)(nil)).Elem(), &IpsGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsGlobalArrayInput)(nil)).Elem(), IpsGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsGlobalMapInput)(nil)).Elem(), IpsGlobalMap{})
 	pulumi.RegisterOutputType(IpsGlobalOutput{})
-	pulumi.RegisterOutputType(IpsGlobalPtrOutput{})
 	pulumi.RegisterOutputType(IpsGlobalArrayOutput{})
 	pulumi.RegisterOutputType(IpsGlobalMapOutput{})
 }

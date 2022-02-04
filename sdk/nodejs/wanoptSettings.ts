@@ -84,28 +84,26 @@ export class WanoptSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args: WanoptSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptSettingsArgs | WanoptSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptSettingsState | undefined;
-            inputs["autoDetectAlgorithm"] = state ? state.autoDetectAlgorithm : undefined;
-            inputs["hostId"] = state ? state.hostId : undefined;
-            inputs["tunnelSslAlgorithm"] = state ? state.tunnelSslAlgorithm : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoDetectAlgorithm"] = state ? state.autoDetectAlgorithm : undefined;
+            resourceInputs["hostId"] = state ? state.hostId : undefined;
+            resourceInputs["tunnelSslAlgorithm"] = state ? state.tunnelSslAlgorithm : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptSettingsArgs | undefined;
             if ((!args || args.hostId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hostId'");
             }
-            inputs["autoDetectAlgorithm"] = args ? args.autoDetectAlgorithm : undefined;
-            inputs["hostId"] = args ? args.hostId : undefined;
-            inputs["tunnelSslAlgorithm"] = args ? args.tunnelSslAlgorithm : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoDetectAlgorithm"] = args ? args.autoDetectAlgorithm : undefined;
+            resourceInputs["hostId"] = args ? args.hostId : undefined;
+            resourceInputs["tunnelSslAlgorithm"] = args ? args.tunnelSslAlgorithm : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

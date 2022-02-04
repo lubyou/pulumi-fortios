@@ -561,7 +561,7 @@ class EndpointControlSettings(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure endpoint control settings.
+        Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
 
         ## Example Usage
 
@@ -620,7 +620,7 @@ class EndpointControlSettings(pulumi.CustomResource):
                  args: Optional[EndpointControlSettingsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure endpoint control settings.
+        Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
 
         ## Example Usage
 
@@ -691,6 +691,8 @@ class EndpointControlSettings(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

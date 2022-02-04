@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewallschedule recurring
 func LookupFirewallScheduleRecurring(ctx *pulumi.Context, args *LookupFirewallScheduleRecurringArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleRecurringResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallScheduleRecurringResult
 	err := ctx.Invoke("fortios:index/getFirewallScheduleRecurring:GetFirewallScheduleRecurring", args, &rv, opts...)
 	if err != nil {
@@ -33,6 +37,8 @@ type LookupFirewallScheduleRecurringResult struct {
 	Day string `pulumi:"day"`
 	// Time of day to end the schedule, format hh:mm.
 	End string `pulumi:"end"`
+	// Security Fabric global object setting.
+	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Recurring schedule name.
@@ -40,4 +46,83 @@ type LookupFirewallScheduleRecurringResult struct {
 	// Time of day to start the schedule, format hh:mm.
 	Start     string  `pulumi:"start"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallScheduleRecurringOutput(ctx *pulumi.Context, args LookupFirewallScheduleRecurringOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallScheduleRecurringResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallScheduleRecurringResult, error) {
+			args := v.(LookupFirewallScheduleRecurringArgs)
+			r, err := LookupFirewallScheduleRecurring(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallScheduleRecurringResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallScheduleRecurring.
+type LookupFirewallScheduleRecurringOutputArgs struct {
+	// Specify the name of the desired firewallschedule recurring.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallScheduleRecurringOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallScheduleRecurringArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallScheduleRecurring.
+type LookupFirewallScheduleRecurringResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallScheduleRecurringResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallScheduleRecurringResult)(nil)).Elem()
+}
+
+func (o LookupFirewallScheduleRecurringResultOutput) ToLookupFirewallScheduleRecurringResultOutput() LookupFirewallScheduleRecurringResultOutput {
+	return o
+}
+
+func (o LookupFirewallScheduleRecurringResultOutput) ToLookupFirewallScheduleRecurringResultOutputWithContext(ctx context.Context) LookupFirewallScheduleRecurringResultOutput {
+	return o
+}
+
+// Color of icon on the GUI.
+func (o LookupFirewallScheduleRecurringResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// One or more days of the week on which the schedule is valid. Separate the names of the days with a space.
+func (o LookupFirewallScheduleRecurringResultOutput) Day() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) string { return v.Day }).(pulumi.StringOutput)
+}
+
+// Time of day to end the schedule, format hh:mm.
+func (o LookupFirewallScheduleRecurringResultOutput) End() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) string { return v.End }).(pulumi.StringOutput)
+}
+
+// Security Fabric global object setting.
+func (o LookupFirewallScheduleRecurringResultOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) string { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallScheduleRecurringResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Recurring schedule name.
+func (o LookupFirewallScheduleRecurringResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Time of day to start the schedule, format hh:mm.
+func (o LookupFirewallScheduleRecurringResultOutput) Start() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) string { return v.Start }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallScheduleRecurringResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleRecurringResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallScheduleRecurringResultOutput{})
 }

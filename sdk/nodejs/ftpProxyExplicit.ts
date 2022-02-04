@@ -108,37 +108,35 @@ export class FtpProxyExplicit extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FtpProxyExplicitArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FtpProxyExplicitArgs | FtpProxyExplicitState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FtpProxyExplicitState | undefined;
-            inputs["incomingIp"] = state ? state.incomingIp : undefined;
-            inputs["incomingPort"] = state ? state.incomingPort : undefined;
-            inputs["outgoingIp"] = state ? state.outgoingIp : undefined;
-            inputs["secDefaultAction"] = state ? state.secDefaultAction : undefined;
-            inputs["ssl"] = state ? state.ssl : undefined;
-            inputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
-            inputs["sslCert"] = state ? state.sslCert : undefined;
-            inputs["sslDhBits"] = state ? state.sslDhBits : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["incomingIp"] = state ? state.incomingIp : undefined;
+            resourceInputs["incomingPort"] = state ? state.incomingPort : undefined;
+            resourceInputs["outgoingIp"] = state ? state.outgoingIp : undefined;
+            resourceInputs["secDefaultAction"] = state ? state.secDefaultAction : undefined;
+            resourceInputs["ssl"] = state ? state.ssl : undefined;
+            resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
+            resourceInputs["sslCert"] = state ? state.sslCert : undefined;
+            resourceInputs["sslDhBits"] = state ? state.sslDhBits : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FtpProxyExplicitArgs | undefined;
-            inputs["incomingIp"] = args ? args.incomingIp : undefined;
-            inputs["incomingPort"] = args ? args.incomingPort : undefined;
-            inputs["outgoingIp"] = args ? args.outgoingIp : undefined;
-            inputs["secDefaultAction"] = args ? args.secDefaultAction : undefined;
-            inputs["ssl"] = args ? args.ssl : undefined;
-            inputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
-            inputs["sslCert"] = args ? args.sslCert : undefined;
-            inputs["sslDhBits"] = args ? args.sslDhBits : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["incomingIp"] = args ? args.incomingIp : undefined;
+            resourceInputs["incomingPort"] = args ? args.incomingPort : undefined;
+            resourceInputs["outgoingIp"] = args ? args.outgoingIp : undefined;
+            resourceInputs["secDefaultAction"] = args ? args.secDefaultAction : undefined;
+            resourceInputs["ssl"] = args ? args.ssl : undefined;
+            resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
+            resourceInputs["sslCert"] = args ? args.sslCert : undefined;
+            resourceInputs["sslDhBits"] = args ? args.sslDhBits : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FtpProxyExplicit.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FtpProxyExplicit.__pulumiType, name, resourceInputs, opts);
     }
 }
 

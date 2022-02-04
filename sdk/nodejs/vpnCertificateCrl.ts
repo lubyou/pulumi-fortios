@@ -115,47 +115,45 @@ export class VpnCertificateCrl extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnCertificateCrlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnCertificateCrlArgs | VpnCertificateCrlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnCertificateCrlState | undefined;
-            inputs["crl"] = state ? state.crl : undefined;
-            inputs["httpUrl"] = state ? state.httpUrl : undefined;
-            inputs["lastUpdated"] = state ? state.lastUpdated : undefined;
-            inputs["ldapPassword"] = state ? state.ldapPassword : undefined;
-            inputs["ldapServer"] = state ? state.ldapServer : undefined;
-            inputs["ldapUsername"] = state ? state.ldapUsername : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["range"] = state ? state.range : undefined;
-            inputs["scepCert"] = state ? state.scepCert : undefined;
-            inputs["scepUrl"] = state ? state.scepUrl : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["updateInterval"] = state ? state.updateInterval : undefined;
-            inputs["updateVdom"] = state ? state.updateVdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["crl"] = state ? state.crl : undefined;
+            resourceInputs["httpUrl"] = state ? state.httpUrl : undefined;
+            resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
+            resourceInputs["ldapPassword"] = state ? state.ldapPassword : undefined;
+            resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
+            resourceInputs["ldapUsername"] = state ? state.ldapUsername : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["range"] = state ? state.range : undefined;
+            resourceInputs["scepCert"] = state ? state.scepCert : undefined;
+            resourceInputs["scepUrl"] = state ? state.scepUrl : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["updateInterval"] = state ? state.updateInterval : undefined;
+            resourceInputs["updateVdom"] = state ? state.updateVdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnCertificateCrlArgs | undefined;
-            inputs["crl"] = args ? args.crl : undefined;
-            inputs["httpUrl"] = args ? args.httpUrl : undefined;
-            inputs["lastUpdated"] = args ? args.lastUpdated : undefined;
-            inputs["ldapPassword"] = args ? args.ldapPassword : undefined;
-            inputs["ldapServer"] = args ? args.ldapServer : undefined;
-            inputs["ldapUsername"] = args ? args.ldapUsername : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["range"] = args ? args.range : undefined;
-            inputs["scepCert"] = args ? args.scepCert : undefined;
-            inputs["scepUrl"] = args ? args.scepUrl : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["updateInterval"] = args ? args.updateInterval : undefined;
-            inputs["updateVdom"] = args ? args.updateVdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["crl"] = args ? args.crl : undefined;
+            resourceInputs["httpUrl"] = args ? args.httpUrl : undefined;
+            resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
+            resourceInputs["ldapPassword"] = args ? args.ldapPassword : undefined;
+            resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
+            resourceInputs["ldapUsername"] = args ? args.ldapUsername : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["range"] = args ? args.range : undefined;
+            resourceInputs["scepCert"] = args ? args.scepCert : undefined;
+            resourceInputs["scepUrl"] = args ? args.scepUrl : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["updateInterval"] = args ? args.updateInterval : undefined;
+            resourceInputs["updateVdom"] = args ? args.updateVdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnCertificateCrl.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnCertificateCrl.__pulumiType, name, resourceInputs, opts);
     }
 }
 

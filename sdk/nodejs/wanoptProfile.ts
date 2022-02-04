@@ -158,37 +158,35 @@ export class WanoptProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WanoptProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptProfileArgs | WanoptProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptProfileState | undefined;
-            inputs["authGroup"] = state ? state.authGroup : undefined;
-            inputs["cifs"] = state ? state.cifs : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["ftp"] = state ? state.ftp : undefined;
-            inputs["http"] = state ? state.http : undefined;
-            inputs["mapi"] = state ? state.mapi : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["tcp"] = state ? state.tcp : undefined;
-            inputs["transparent"] = state ? state.transparent : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authGroup"] = state ? state.authGroup : undefined;
+            resourceInputs["cifs"] = state ? state.cifs : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["http"] = state ? state.http : undefined;
+            resourceInputs["mapi"] = state ? state.mapi : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["tcp"] = state ? state.tcp : undefined;
+            resourceInputs["transparent"] = state ? state.transparent : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptProfileArgs | undefined;
-            inputs["authGroup"] = args ? args.authGroup : undefined;
-            inputs["cifs"] = args ? args.cifs : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["ftp"] = args ? args.ftp : undefined;
-            inputs["http"] = args ? args.http : undefined;
-            inputs["mapi"] = args ? args.mapi : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["tcp"] = args ? args.tcp : undefined;
-            inputs["transparent"] = args ? args.transparent : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authGroup"] = args ? args.authGroup : undefined;
+            resourceInputs["cifs"] = args ? args.cifs : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["http"] = args ? args.http : undefined;
+            resourceInputs["mapi"] = args ? args.mapi : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["tcp"] = args ? args.tcp : undefined;
+            resourceInputs["transparent"] = args ? args.transparent : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

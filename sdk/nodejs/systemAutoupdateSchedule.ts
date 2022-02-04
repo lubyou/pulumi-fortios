@@ -89,15 +89,15 @@ export class SystemAutoupdateSchedule extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAutoupdateScheduleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutoupdateScheduleArgs | SystemAutoupdateScheduleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutoupdateScheduleState | undefined;
-            inputs["day"] = state ? state.day : undefined;
-            inputs["frequency"] = state ? state.frequency : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["time"] = state ? state.time : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["day"] = state ? state.day : undefined;
+            resourceInputs["frequency"] = state ? state.frequency : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["time"] = state ? state.time : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutoupdateScheduleArgs | undefined;
             if ((!args || args.frequency === undefined) && !opts.urn) {
@@ -109,16 +109,14 @@ export class SystemAutoupdateSchedule extends pulumi.CustomResource {
             if ((!args || args.time === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'time'");
             }
-            inputs["day"] = args ? args.day : undefined;
-            inputs["frequency"] = args ? args.frequency : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["time"] = args ? args.time : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["day"] = args ? args.day : undefined;
+            resourceInputs["frequency"] = args ? args.frequency : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["time"] = args ? args.time : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutoupdateSchedule.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutoupdateSchedule.__pulumiType, name, resourceInputs, opts);
     }
 }
 

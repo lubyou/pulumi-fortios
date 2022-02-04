@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,9 +13,7 @@ export function getSystemNetflow(args?: GetSystemNetflowArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemNetflow:GetSystemNetflow", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -57,6 +54,14 @@ export interface GetSystemNetflowResult {
      */
     readonly inactiveFlowTimeout: number;
     /**
+     * Specify outgoing interface to reach server.
+     */
+    readonly interface: string;
+    /**
+     * Specify how to select outgoing interface to reach server.
+     */
+    readonly interfaceSelectMethod: string;
+    /**
      * Source IP address for communication with the NetFlow agent.
      */
     readonly sourceIp: string;
@@ -69,4 +74,18 @@ export interface GetSystemNetflowResult {
      */
     readonly templateTxTimeout: number;
     readonly vdomparam?: string;
+}
+
+export function getSystemNetflowOutput(args?: GetSystemNetflowOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemNetflowResult> {
+    return pulumi.output(args).apply(a => getSystemNetflow(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemNetflow.
+ */
+export interface GetSystemNetflowOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

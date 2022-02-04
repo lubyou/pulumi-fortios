@@ -89,27 +89,25 @@ export class SystemAutoInstall extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAutoInstallArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutoInstallArgs | SystemAutoInstallState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutoInstallState | undefined;
-            inputs["autoInstallConfig"] = state ? state.autoInstallConfig : undefined;
-            inputs["autoInstallImage"] = state ? state.autoInstallImage : undefined;
-            inputs["defaultConfigFile"] = state ? state.defaultConfigFile : undefined;
-            inputs["defaultImageFile"] = state ? state.defaultImageFile : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoInstallConfig"] = state ? state.autoInstallConfig : undefined;
+            resourceInputs["autoInstallImage"] = state ? state.autoInstallImage : undefined;
+            resourceInputs["defaultConfigFile"] = state ? state.defaultConfigFile : undefined;
+            resourceInputs["defaultImageFile"] = state ? state.defaultImageFile : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutoInstallArgs | undefined;
-            inputs["autoInstallConfig"] = args ? args.autoInstallConfig : undefined;
-            inputs["autoInstallImage"] = args ? args.autoInstallImage : undefined;
-            inputs["defaultConfigFile"] = args ? args.defaultConfigFile : undefined;
-            inputs["defaultImageFile"] = args ? args.defaultImageFile : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoInstallConfig"] = args ? args.autoInstallConfig : undefined;
+            resourceInputs["autoInstallImage"] = args ? args.autoInstallImage : undefined;
+            resourceInputs["defaultConfigFile"] = args ? args.defaultConfigFile : undefined;
+            resourceInputs["defaultImageFile"] = args ? args.defaultImageFile : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutoInstall.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutoInstall.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -91,29 +91,27 @@ export class SystemAutoupdateTunneling extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAutoupdateTunnelingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutoupdateTunnelingArgs | SystemAutoupdateTunnelingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutoupdateTunnelingState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutoupdateTunnelingArgs | undefined;
-            inputs["address"] = args ? args.address : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutoupdateTunneling.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutoupdateTunneling.__pulumiType, name, resourceInputs, opts);
     }
 }
 

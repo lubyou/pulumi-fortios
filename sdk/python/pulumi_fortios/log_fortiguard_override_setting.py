@@ -13,6 +13,7 @@ __all__ = ['LogFortiguardOverrideSettingArgs', 'LogFortiguardOverrideSetting']
 @pulumi.input_type
 class LogFortiguardOverrideSettingArgs:
     def __init__(__self__, *,
+                 access_config: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
@@ -24,6 +25,7 @@ class LogFortiguardOverrideSettingArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogFortiguardOverrideSetting resource.
+        :param pulumi.Input[str] access_config: Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] override: Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
@@ -34,6 +36,8 @@ class LogFortiguardOverrideSettingArgs:
         :param pulumi.Input[str] upload_time: Time of day to roll logs (hh:mm).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if access_config is not None:
+            pulumi.set(__self__, "access_config", access_config)
         if max_log_rate is not None:
             pulumi.set(__self__, "max_log_rate", max_log_rate)
         if override is not None:
@@ -52,6 +56,18 @@ class LogFortiguardOverrideSettingArgs:
             pulumi.set(__self__, "upload_time", upload_time)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accessConfig")
+    def access_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "access_config")
+
+    @access_config.setter
+    def access_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_config", value)
 
     @property
     @pulumi.getter(name="maxLogRate")
@@ -165,6 +181,7 @@ class LogFortiguardOverrideSettingArgs:
 @pulumi.input_type
 class _LogFortiguardOverrideSettingState:
     def __init__(__self__, *,
+                 access_config: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
@@ -176,6 +193,7 @@ class _LogFortiguardOverrideSettingState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogFortiguardOverrideSetting resources.
+        :param pulumi.Input[str] access_config: Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] override: Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
@@ -186,6 +204,8 @@ class _LogFortiguardOverrideSettingState:
         :param pulumi.Input[str] upload_time: Time of day to roll logs (hh:mm).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if access_config is not None:
+            pulumi.set(__self__, "access_config", access_config)
         if max_log_rate is not None:
             pulumi.set(__self__, "max_log_rate", max_log_rate)
         if override is not None:
@@ -204,6 +224,18 @@ class _LogFortiguardOverrideSettingState:
             pulumi.set(__self__, "upload_time", upload_time)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="accessConfig")
+    def access_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "access_config")
+
+    @access_config.setter
+    def access_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "access_config", value)
 
     @property
     @pulumi.getter(name="maxLogRate")
@@ -319,6 +351,7 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_config: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
@@ -358,6 +391,7 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_config: Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] override: Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
@@ -416,6 +450,7 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_config: Optional[pulumi.Input[str]] = None,
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
@@ -432,11 +467,14 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = LogFortiguardOverrideSettingArgs.__new__(LogFortiguardOverrideSettingArgs)
 
+            __props__.__dict__["access_config"] = access_config
             __props__.__dict__["max_log_rate"] = max_log_rate
             __props__.__dict__["override"] = override
             __props__.__dict__["priority"] = priority
@@ -456,6 +494,7 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            access_config: Optional[pulumi.Input[str]] = None,
             max_log_rate: Optional[pulumi.Input[int]] = None,
             override: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[str]] = None,
@@ -472,6 +511,7 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] access_config: Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] max_log_rate: FortiCloud maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[str] override: Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
@@ -486,6 +526,7 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
 
         __props__ = _LogFortiguardOverrideSettingState.__new__(_LogFortiguardOverrideSettingState)
 
+        __props__.__dict__["access_config"] = access_config
         __props__.__dict__["max_log_rate"] = max_log_rate
         __props__.__dict__["override"] = override
         __props__.__dict__["priority"] = priority
@@ -496,6 +537,14 @@ class LogFortiguardOverrideSetting(pulumi.CustomResource):
         __props__.__dict__["upload_time"] = upload_time
         __props__.__dict__["vdomparam"] = vdomparam
         return LogFortiguardOverrideSetting(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessConfig")
+    def access_config(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "access_config")
 
     @property
     @pulumi.getter(name="maxLogRate")

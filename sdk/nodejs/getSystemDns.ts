@@ -14,9 +14,7 @@ export function getSystemDns(args?: GetSystemDnsArgs, opts?: pulumi.InvokeOption
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemDns:GetSystemDns", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -36,6 +34,14 @@ export interface GetSystemDnsArgs {
  * A collection of values returned by GetSystemDns.
  */
 export interface GetSystemDnsResult {
+    /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    readonly altPrimary: string;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    readonly altSecondary: string;
     /**
      * Enable/disable response from the DNS server when a record is not in cache.
      */
@@ -77,9 +83,17 @@ export interface GetSystemDnsResult {
      */
     readonly ip6Secondary: string;
     /**
+     * Local DNS log setting.
+     */
+    readonly log: string;
+    /**
      * Primary DNS server IP address.
      */
     readonly primary: string;
+    /**
+     * DNS protocols.
+     */
+    readonly protocol: string;
     /**
      * Number of times to retry (0 - 5).
      */
@@ -93,6 +107,10 @@ export interface GetSystemDnsResult {
      */
     readonly serverHostnames: outputs.GetSystemDnsServerHostname[];
     /**
+     * Specify how configured servers are prioritized.
+     */
+    readonly serverSelectMethod: string;
+    /**
      * IP address used by the DNS server as its source IP.
      */
     readonly sourceIp: string;
@@ -105,4 +123,18 @@ export interface GetSystemDnsResult {
      */
     readonly timeout: number;
     readonly vdomparam?: string;
+}
+
+export function getSystemDnsOutput(args?: GetSystemDnsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDnsResult> {
+    return pulumi.output(args).apply(a => getSystemDns(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemDns.
+ */
+export interface GetSystemDnsOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

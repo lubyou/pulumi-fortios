@@ -71,14 +71,14 @@ export class SystemMacAddressTable extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemMacAddressTableArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemMacAddressTableArgs | SystemMacAddressTableState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemMacAddressTableState | undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["replySubstitute"] = state ? state.replySubstitute : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["replySubstitute"] = state ? state.replySubstitute : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemMacAddressTableArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
@@ -87,15 +87,13 @@ export class SystemMacAddressTable extends pulumi.CustomResource {
             if ((!args || args.mac === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mac'");
             }
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["replySubstitute"] = args ? args.replySubstitute : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["replySubstitute"] = args ? args.replySubstitute : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemMacAddressTable.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemMacAddressTable.__pulumiType, name, resourceInputs, opts);
     }
 }
 

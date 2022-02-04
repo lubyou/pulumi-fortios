@@ -46,6 +46,26 @@ export class VpnCertificateLocal extends pulumi.CustomResource {
     }
 
     /**
+     * The URL for the ACME CA server (Let's Encrypt is the default provider).
+     */
+    public readonly acmeCaUrl!: pulumi.Output<string>;
+    /**
+     * A valid domain that resolves to this Fortigate.
+     */
+    public readonly acmeDomain!: pulumi.Output<string>;
+    /**
+     * Contact email address that is required by some CAs like LetsEncrypt.
+     */
+    public readonly acmeEmail!: pulumi.Output<string>;
+    /**
+     * Beginning of the renewal window (in days before certificate expiration, 30 by default).
+     */
+    public readonly acmeRenewWindow!: pulumi.Output<number>;
+    /**
+     * Length of the RSA private key of the generated cert (Minimum 2048 bits).
+     */
+    public readonly acmeRsaKeySize!: pulumi.Output<number>;
+    /**
      * Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
      */
     public readonly autoRegenerateDays!: pulumi.Output<number>;
@@ -86,7 +106,7 @@ export class VpnCertificateLocal extends pulumi.CustomResource {
      */
     public readonly csr!: pulumi.Output<string>;
     /**
-     * Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+     * Certificate enrollment protocol.
      */
     public readonly enrollProtocol!: pulumi.Output<string>;
     /**
@@ -155,70 +175,78 @@ export class VpnCertificateLocal extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnCertificateLocalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnCertificateLocalArgs | VpnCertificateLocalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnCertificateLocalState | undefined;
-            inputs["autoRegenerateDays"] = state ? state.autoRegenerateDays : undefined;
-            inputs["autoRegenerateDaysWarning"] = state ? state.autoRegenerateDaysWarning : undefined;
-            inputs["caIdentifier"] = state ? state.caIdentifier : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["cmpPath"] = state ? state.cmpPath : undefined;
-            inputs["cmpRegenerationMethod"] = state ? state.cmpRegenerationMethod : undefined;
-            inputs["cmpServer"] = state ? state.cmpServer : undefined;
-            inputs["cmpServerCert"] = state ? state.cmpServerCert : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["csr"] = state ? state.csr : undefined;
-            inputs["enrollProtocol"] = state ? state.enrollProtocol : undefined;
-            inputs["ikeLocalid"] = state ? state.ikeLocalid : undefined;
-            inputs["ikeLocalidType"] = state ? state.ikeLocalidType : undefined;
-            inputs["lastUpdated"] = state ? state.lastUpdated : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nameEncoding"] = state ? state.nameEncoding : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["privateKey"] = state ? state.privateKey : undefined;
-            inputs["range"] = state ? state.range : undefined;
-            inputs["scepPassword"] = state ? state.scepPassword : undefined;
-            inputs["scepUrl"] = state ? state.scepUrl : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["state"] = state ? state.state : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["acmeCaUrl"] = state ? state.acmeCaUrl : undefined;
+            resourceInputs["acmeDomain"] = state ? state.acmeDomain : undefined;
+            resourceInputs["acmeEmail"] = state ? state.acmeEmail : undefined;
+            resourceInputs["acmeRenewWindow"] = state ? state.acmeRenewWindow : undefined;
+            resourceInputs["acmeRsaKeySize"] = state ? state.acmeRsaKeySize : undefined;
+            resourceInputs["autoRegenerateDays"] = state ? state.autoRegenerateDays : undefined;
+            resourceInputs["autoRegenerateDaysWarning"] = state ? state.autoRegenerateDaysWarning : undefined;
+            resourceInputs["caIdentifier"] = state ? state.caIdentifier : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["cmpPath"] = state ? state.cmpPath : undefined;
+            resourceInputs["cmpRegenerationMethod"] = state ? state.cmpRegenerationMethod : undefined;
+            resourceInputs["cmpServer"] = state ? state.cmpServer : undefined;
+            resourceInputs["cmpServerCert"] = state ? state.cmpServerCert : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["csr"] = state ? state.csr : undefined;
+            resourceInputs["enrollProtocol"] = state ? state.enrollProtocol : undefined;
+            resourceInputs["ikeLocalid"] = state ? state.ikeLocalid : undefined;
+            resourceInputs["ikeLocalidType"] = state ? state.ikeLocalidType : undefined;
+            resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nameEncoding"] = state ? state.nameEncoding : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["privateKey"] = state ? state.privateKey : undefined;
+            resourceInputs["range"] = state ? state.range : undefined;
+            resourceInputs["scepPassword"] = state ? state.scepPassword : undefined;
+            resourceInputs["scepUrl"] = state ? state.scepUrl : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["state"] = state ? state.state : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnCertificateLocalArgs | undefined;
             if ((!args || args.privateKey === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'privateKey'");
             }
-            inputs["autoRegenerateDays"] = args ? args.autoRegenerateDays : undefined;
-            inputs["autoRegenerateDaysWarning"] = args ? args.autoRegenerateDaysWarning : undefined;
-            inputs["caIdentifier"] = args ? args.caIdentifier : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["cmpPath"] = args ? args.cmpPath : undefined;
-            inputs["cmpRegenerationMethod"] = args ? args.cmpRegenerationMethod : undefined;
-            inputs["cmpServer"] = args ? args.cmpServer : undefined;
-            inputs["cmpServerCert"] = args ? args.cmpServerCert : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["csr"] = args ? args.csr : undefined;
-            inputs["enrollProtocol"] = args ? args.enrollProtocol : undefined;
-            inputs["ikeLocalid"] = args ? args.ikeLocalid : undefined;
-            inputs["ikeLocalidType"] = args ? args.ikeLocalidType : undefined;
-            inputs["lastUpdated"] = args ? args.lastUpdated : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nameEncoding"] = args ? args.nameEncoding : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["privateKey"] = args ? args.privateKey : undefined;
-            inputs["range"] = args ? args.range : undefined;
-            inputs["scepPassword"] = args ? args.scepPassword : undefined;
-            inputs["scepUrl"] = args ? args.scepUrl : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["state"] = args ? args.state : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["acmeCaUrl"] = args ? args.acmeCaUrl : undefined;
+            resourceInputs["acmeDomain"] = args ? args.acmeDomain : undefined;
+            resourceInputs["acmeEmail"] = args ? args.acmeEmail : undefined;
+            resourceInputs["acmeRenewWindow"] = args ? args.acmeRenewWindow : undefined;
+            resourceInputs["acmeRsaKeySize"] = args ? args.acmeRsaKeySize : undefined;
+            resourceInputs["autoRegenerateDays"] = args ? args.autoRegenerateDays : undefined;
+            resourceInputs["autoRegenerateDaysWarning"] = args ? args.autoRegenerateDaysWarning : undefined;
+            resourceInputs["caIdentifier"] = args ? args.caIdentifier : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["cmpPath"] = args ? args.cmpPath : undefined;
+            resourceInputs["cmpRegenerationMethod"] = args ? args.cmpRegenerationMethod : undefined;
+            resourceInputs["cmpServer"] = args ? args.cmpServer : undefined;
+            resourceInputs["cmpServerCert"] = args ? args.cmpServerCert : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["csr"] = args ? args.csr : undefined;
+            resourceInputs["enrollProtocol"] = args ? args.enrollProtocol : undefined;
+            resourceInputs["ikeLocalid"] = args ? args.ikeLocalid : undefined;
+            resourceInputs["ikeLocalidType"] = args ? args.ikeLocalidType : undefined;
+            resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nameEncoding"] = args ? args.nameEncoding : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["privateKey"] = args ? args.privateKey : undefined;
+            resourceInputs["range"] = args ? args.range : undefined;
+            resourceInputs["scepPassword"] = args ? args.scepPassword : undefined;
+            resourceInputs["scepUrl"] = args ? args.scepUrl : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["state"] = args ? args.state : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnCertificateLocal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnCertificateLocal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -226,6 +254,26 @@ export class VpnCertificateLocal extends pulumi.CustomResource {
  * Input properties used for looking up and filtering VpnCertificateLocal resources.
  */
 export interface VpnCertificateLocalState {
+    /**
+     * The URL for the ACME CA server (Let's Encrypt is the default provider).
+     */
+    acmeCaUrl?: pulumi.Input<string>;
+    /**
+     * A valid domain that resolves to this Fortigate.
+     */
+    acmeDomain?: pulumi.Input<string>;
+    /**
+     * Contact email address that is required by some CAs like LetsEncrypt.
+     */
+    acmeEmail?: pulumi.Input<string>;
+    /**
+     * Beginning of the renewal window (in days before certificate expiration, 30 by default).
+     */
+    acmeRenewWindow?: pulumi.Input<number>;
+    /**
+     * Length of the RSA private key of the generated cert (Minimum 2048 bits).
+     */
+    acmeRsaKeySize?: pulumi.Input<number>;
     /**
      * Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
      */
@@ -267,7 +315,7 @@ export interface VpnCertificateLocalState {
      */
     csr?: pulumi.Input<string>;
     /**
-     * Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+     * Certificate enrollment protocol.
      */
     enrollProtocol?: pulumi.Input<string>;
     /**
@@ -333,6 +381,26 @@ export interface VpnCertificateLocalState {
  */
 export interface VpnCertificateLocalArgs {
     /**
+     * The URL for the ACME CA server (Let's Encrypt is the default provider).
+     */
+    acmeCaUrl?: pulumi.Input<string>;
+    /**
+     * A valid domain that resolves to this Fortigate.
+     */
+    acmeDomain?: pulumi.Input<string>;
+    /**
+     * Contact email address that is required by some CAs like LetsEncrypt.
+     */
+    acmeEmail?: pulumi.Input<string>;
+    /**
+     * Beginning of the renewal window (in days before certificate expiration, 30 by default).
+     */
+    acmeRenewWindow?: pulumi.Input<number>;
+    /**
+     * Length of the RSA private key of the generated cert (Minimum 2048 bits).
+     */
+    acmeRsaKeySize?: pulumi.Input<number>;
+    /**
      * Number of days to wait before expiry of an updated local certificate is requested (0 = disabled).
      */
     autoRegenerateDays?: pulumi.Input<number>;
@@ -373,7 +441,7 @@ export interface VpnCertificateLocalArgs {
      */
     csr?: pulumi.Input<string>;
     /**
-     * Certificate enrollment protocol. Valid values: `none`, `scep`, `cmpv2`.
+     * Certificate enrollment protocol.
      */
     enrollProtocol?: pulumi.Input<string>;
     /**

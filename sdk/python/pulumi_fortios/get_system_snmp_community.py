@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemSnmpCommunityResult',
     'AwaitableGetSystemSnmpCommunityResult',
     'get_system_snmp_community',
+    'get_system_snmp_community_output',
 ]
 
 @pulumi.output_type
@@ -261,6 +262,8 @@ def get_system_snmp_community(fosid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSnmpCommunity:GetSystemSnmpCommunity', __args__, opts=opts, typ=GetSystemSnmpCommunityResult).value
 
     return AwaitableGetSystemSnmpCommunityResult(
@@ -282,3 +285,17 @@ def get_system_snmp_community(fosid: Optional[int] = None,
         trap_v2c_rport=__ret__.trap_v2c_rport,
         trap_v2c_status=__ret__.trap_v2c_status,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_snmp_community)
+def get_system_snmp_community_output(fosid: Optional[pulumi.Input[int]] = None,
+                                     vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemSnmpCommunityResult]:
+    """
+    Use this data source to get information on an fortios systemsnmp community
+
+
+    :param int fosid: Specify the fosid of the desired systemsnmp community.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

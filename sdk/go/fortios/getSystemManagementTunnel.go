@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system managementtunnel
 func LookupSystemManagementTunnel(ctx *pulumi.Context, args *LookupSystemManagementTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemManagementTunnelResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemManagementTunnelResult
 	err := ctx.Invoke("fortios:index/getSystemManagementTunnel:GetSystemManagementTunnel", args, &rv, opts...)
 	if err != nil {
@@ -42,4 +46,86 @@ type LookupSystemManagementTunnelResult struct {
 	// Enable/disable FGFM tunnel.
 	Status    string  `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemManagementTunnelOutput(ctx *pulumi.Context, args LookupSystemManagementTunnelOutputArgs, opts ...pulumi.InvokeOption) LookupSystemManagementTunnelResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemManagementTunnelResult, error) {
+			args := v.(LookupSystemManagementTunnelArgs)
+			r, err := LookupSystemManagementTunnel(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemManagementTunnelResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemManagementTunnel.
+type LookupSystemManagementTunnelOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemManagementTunnelOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemManagementTunnelArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemManagementTunnel.
+type LookupSystemManagementTunnelResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemManagementTunnelResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemManagementTunnelResult)(nil)).Elem()
+}
+
+func (o LookupSystemManagementTunnelResultOutput) ToLookupSystemManagementTunnelResultOutput() LookupSystemManagementTunnelResultOutput {
+	return o
+}
+
+func (o LookupSystemManagementTunnelResultOutput) ToLookupSystemManagementTunnelResultOutputWithContext(ctx context.Context) LookupSystemManagementTunnelResultOutput {
+	return o
+}
+
+// Enable/disable collection of run time statistics.
+func (o LookupSystemManagementTunnelResultOutput) AllowCollectStatistics() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.AllowCollectStatistics }).(pulumi.StringOutput)
+}
+
+// Enable/disable allow config restore.
+func (o LookupSystemManagementTunnelResultOutput) AllowConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.AllowConfigRestore }).(pulumi.StringOutput)
+}
+
+// Enable/disable push configuration.
+func (o LookupSystemManagementTunnelResultOutput) AllowPushConfiguration() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.AllowPushConfiguration }).(pulumi.StringOutput)
+}
+
+// Enable/disable push firmware.
+func (o LookupSystemManagementTunnelResultOutput) AllowPushFirmware() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.AllowPushFirmware }).(pulumi.StringOutput)
+}
+
+// Enable/disable restriction of authorized manager only.
+func (o LookupSystemManagementTunnelResultOutput) AuthorizedManagerOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.AuthorizedManagerOnly }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemManagementTunnelResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Serial number.
+func (o LookupSystemManagementTunnelResultOutput) SerialNumber() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.SerialNumber }).(pulumi.StringOutput)
+}
+
+// Enable/disable FGFM tunnel.
+func (o LookupSystemManagementTunnelResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemManagementTunnelResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemManagementTunnelResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemManagementTunnelResultOutput{})
 }

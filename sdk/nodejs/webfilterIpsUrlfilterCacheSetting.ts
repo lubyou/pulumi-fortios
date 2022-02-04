@@ -79,23 +79,21 @@ export class WebfilterIpsUrlfilterCacheSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebfilterIpsUrlfilterCacheSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebfilterIpsUrlfilterCacheSettingArgs | WebfilterIpsUrlfilterCacheSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebfilterIpsUrlfilterCacheSettingState | undefined;
-            inputs["dnsRetryInterval"] = state ? state.dnsRetryInterval : undefined;
-            inputs["extendedTtl"] = state ? state.extendedTtl : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dnsRetryInterval"] = state ? state.dnsRetryInterval : undefined;
+            resourceInputs["extendedTtl"] = state ? state.extendedTtl : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebfilterIpsUrlfilterCacheSettingArgs | undefined;
-            inputs["dnsRetryInterval"] = args ? args.dnsRetryInterval : undefined;
-            inputs["extendedTtl"] = args ? args.extendedTtl : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dnsRetryInterval"] = args ? args.dnsRetryInterval : undefined;
+            resourceInputs["extendedTtl"] = args ? args.extendedTtl : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebfilterIpsUrlfilterCacheSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebfilterIpsUrlfilterCacheSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

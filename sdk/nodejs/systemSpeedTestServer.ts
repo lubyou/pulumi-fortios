@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure speed test server list.
+ * Configure speed test server list. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -76,27 +76,25 @@ export class SystemSpeedTestServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSpeedTestServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSpeedTestServerArgs | SystemSpeedTestServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSpeedTestServerState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["hosts"] = state ? state.hosts : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["timestamp"] = state ? state.timestamp : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["hosts"] = state ? state.hosts : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["timestamp"] = state ? state.timestamp : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSpeedTestServerArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["hosts"] = args ? args.hosts : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["timestamp"] = args ? args.timestamp : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["hosts"] = args ? args.hosts : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["timestamp"] = args ? args.timestamp : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSpeedTestServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSpeedTestServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

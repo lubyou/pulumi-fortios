@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -91,6 +91,8 @@ type LogWebtrendsFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogWebtrendsFilter registers a new resource with the given unique name, arguments, and options.
@@ -100,6 +102,7 @@ func NewLogWebtrendsFilter(ctx *pulumi.Context,
 		args = &LogWebtrendsFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogWebtrendsFilter
 	err := ctx.RegisterResource("fortios:index/logWebtrendsFilter:LogWebtrendsFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -156,6 +159,8 @@ type logWebtrendsFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogWebtrendsFilterState struct {
@@ -193,6 +198,8 @@ type LogWebtrendsFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogWebtrendsFilterState) ElementType() reflect.Type {
@@ -234,6 +241,8 @@ type logWebtrendsFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogWebtrendsFilter resource.
@@ -272,6 +281,8 @@ type LogWebtrendsFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogWebtrendsFilterArgs) ElementType() reflect.Type {
@@ -286,7 +297,7 @@ type LogWebtrendsFilterInput interface {
 }
 
 func (*LogWebtrendsFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogWebtrendsFilter)(nil))
+	return reflect.TypeOf((**LogWebtrendsFilter)(nil)).Elem()
 }
 
 func (i *LogWebtrendsFilter) ToLogWebtrendsFilterOutput() LogWebtrendsFilterOutput {
@@ -295,35 +306,6 @@ func (i *LogWebtrendsFilter) ToLogWebtrendsFilterOutput() LogWebtrendsFilterOutp
 
 func (i *LogWebtrendsFilter) ToLogWebtrendsFilterOutputWithContext(ctx context.Context) LogWebtrendsFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterOutput)
-}
-
-func (i *LogWebtrendsFilter) ToLogWebtrendsFilterPtrOutput() LogWebtrendsFilterPtrOutput {
-	return i.ToLogWebtrendsFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogWebtrendsFilter) ToLogWebtrendsFilterPtrOutputWithContext(ctx context.Context) LogWebtrendsFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterPtrOutput)
-}
-
-type LogWebtrendsFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogWebtrendsFilterPtrOutput() LogWebtrendsFilterPtrOutput
-	ToLogWebtrendsFilterPtrOutputWithContext(ctx context.Context) LogWebtrendsFilterPtrOutput
-}
-
-type logWebtrendsFilterPtrType LogWebtrendsFilterArgs
-
-func (*logWebtrendsFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogWebtrendsFilter)(nil))
-}
-
-func (i *logWebtrendsFilterPtrType) ToLogWebtrendsFilterPtrOutput() LogWebtrendsFilterPtrOutput {
-	return i.ToLogWebtrendsFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logWebtrendsFilterPtrType) ToLogWebtrendsFilterPtrOutputWithContext(ctx context.Context) LogWebtrendsFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterPtrOutput)
 }
 
 // LogWebtrendsFilterArrayInput is an input type that accepts LogWebtrendsFilterArray and LogWebtrendsFilterArrayOutput values.
@@ -340,7 +322,7 @@ type LogWebtrendsFilterArrayInput interface {
 type LogWebtrendsFilterArray []LogWebtrendsFilterInput
 
 func (LogWebtrendsFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogWebtrendsFilter)(nil))
+	return reflect.TypeOf((*[]*LogWebtrendsFilter)(nil)).Elem()
 }
 
 func (i LogWebtrendsFilterArray) ToLogWebtrendsFilterArrayOutput() LogWebtrendsFilterArrayOutput {
@@ -365,7 +347,7 @@ type LogWebtrendsFilterMapInput interface {
 type LogWebtrendsFilterMap map[string]LogWebtrendsFilterInput
 
 func (LogWebtrendsFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogWebtrendsFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogWebtrendsFilter)(nil)).Elem()
 }
 
 func (i LogWebtrendsFilterMap) ToLogWebtrendsFilterMapOutput() LogWebtrendsFilterMapOutput {
@@ -376,12 +358,10 @@ func (i LogWebtrendsFilterMap) ToLogWebtrendsFilterMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsFilterMapOutput)
 }
 
-type LogWebtrendsFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogWebtrendsFilterOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogWebtrendsFilter)(nil))
+	return reflect.TypeOf((**LogWebtrendsFilter)(nil)).Elem()
 }
 
 func (o LogWebtrendsFilterOutput) ToLogWebtrendsFilterOutput() LogWebtrendsFilterOutput {
@@ -392,36 +372,10 @@ func (o LogWebtrendsFilterOutput) ToLogWebtrendsFilterOutputWithContext(ctx cont
 	return o
 }
 
-func (o LogWebtrendsFilterOutput) ToLogWebtrendsFilterPtrOutput() LogWebtrendsFilterPtrOutput {
-	return o.ToLogWebtrendsFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogWebtrendsFilterOutput) ToLogWebtrendsFilterPtrOutputWithContext(ctx context.Context) LogWebtrendsFilterPtrOutput {
-	return o.ApplyT(func(v LogWebtrendsFilter) *LogWebtrendsFilter {
-		return &v
-	}).(LogWebtrendsFilterPtrOutput)
-}
-
-type LogWebtrendsFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogWebtrendsFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogWebtrendsFilter)(nil))
-}
-
-func (o LogWebtrendsFilterPtrOutput) ToLogWebtrendsFilterPtrOutput() LogWebtrendsFilterPtrOutput {
-	return o
-}
-
-func (o LogWebtrendsFilterPtrOutput) ToLogWebtrendsFilterPtrOutputWithContext(ctx context.Context) LogWebtrendsFilterPtrOutput {
-	return o
-}
-
 type LogWebtrendsFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogWebtrendsFilter)(nil))
+	return reflect.TypeOf((*[]*LogWebtrendsFilter)(nil)).Elem()
 }
 
 func (o LogWebtrendsFilterArrayOutput) ToLogWebtrendsFilterArrayOutput() LogWebtrendsFilterArrayOutput {
@@ -433,15 +387,15 @@ func (o LogWebtrendsFilterArrayOutput) ToLogWebtrendsFilterArrayOutputWithContex
 }
 
 func (o LogWebtrendsFilterArrayOutput) Index(i pulumi.IntInput) LogWebtrendsFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogWebtrendsFilter {
-		return vs[0].([]LogWebtrendsFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogWebtrendsFilter {
+		return vs[0].([]*LogWebtrendsFilter)[vs[1].(int)]
 	}).(LogWebtrendsFilterOutput)
 }
 
 type LogWebtrendsFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogWebtrendsFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogWebtrendsFilter)(nil)).Elem()
 }
 
 func (o LogWebtrendsFilterMapOutput) ToLogWebtrendsFilterMapOutput() LogWebtrendsFilterMapOutput {
@@ -453,14 +407,16 @@ func (o LogWebtrendsFilterMapOutput) ToLogWebtrendsFilterMapOutputWithContext(ct
 }
 
 func (o LogWebtrendsFilterMapOutput) MapIndex(k pulumi.StringInput) LogWebtrendsFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogWebtrendsFilter {
-		return vs[0].(map[string]LogWebtrendsFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogWebtrendsFilter {
+		return vs[0].(map[string]*LogWebtrendsFilter)[vs[1].(string)]
 	}).(LogWebtrendsFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogWebtrendsFilterInput)(nil)).Elem(), &LogWebtrendsFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogWebtrendsFilterArrayInput)(nil)).Elem(), LogWebtrendsFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogWebtrendsFilterMapInput)(nil)).Elem(), LogWebtrendsFilterMap{})
 	pulumi.RegisterOutputType(LogWebtrendsFilterOutput{})
-	pulumi.RegisterOutputType(LogWebtrendsFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogWebtrendsFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogWebtrendsFilterMapOutput{})
 }

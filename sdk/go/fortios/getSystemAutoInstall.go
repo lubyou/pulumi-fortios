@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system autoinstall
 func LookupSystemAutoInstall(ctx *pulumi.Context, args *LookupSystemAutoInstallArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoInstallResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoInstallResult
 	err := ctx.Invoke("fortios:index/getSystemAutoInstall:GetSystemAutoInstall", args, &rv, opts...)
 	if err != nil {
@@ -36,4 +40,71 @@ type LookupSystemAutoInstallResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemAutoInstallOutput(ctx *pulumi.Context, args LookupSystemAutoInstallOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutoInstallResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemAutoInstallResult, error) {
+			args := v.(LookupSystemAutoInstallArgs)
+			r, err := LookupSystemAutoInstall(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemAutoInstallResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutoInstall.
+type LookupSystemAutoInstallOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemAutoInstallOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoInstallArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutoInstall.
+type LookupSystemAutoInstallResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemAutoInstallResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoInstallResult)(nil)).Elem()
+}
+
+func (o LookupSystemAutoInstallResultOutput) ToLookupSystemAutoInstallResultOutput() LookupSystemAutoInstallResultOutput {
+	return o
+}
+
+func (o LookupSystemAutoInstallResultOutput) ToLookupSystemAutoInstallResultOutputWithContext(ctx context.Context) LookupSystemAutoInstallResultOutput {
+	return o
+}
+
+// Enable/disable auto install the config in USB disk.
+func (o LookupSystemAutoInstallResultOutput) AutoInstallConfig() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.AutoInstallConfig }).(pulumi.StringOutput)
+}
+
+// Enable/disable auto install the image in USB disk.
+func (o LookupSystemAutoInstallResultOutput) AutoInstallImage() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.AutoInstallImage }).(pulumi.StringOutput)
+}
+
+// Default config file name in USB disk.
+func (o LookupSystemAutoInstallResultOutput) DefaultConfigFile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.DefaultConfigFile }).(pulumi.StringOutput)
+}
+
+// Default image file name in USB disk.
+func (o LookupSystemAutoInstallResultOutput) DefaultImageFile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.DefaultImageFile }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemAutoInstallResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoInstallResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAutoInstallResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemAutoInstallResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemAutoInstallResultOutput{})
 }

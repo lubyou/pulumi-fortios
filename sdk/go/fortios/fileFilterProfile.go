@@ -53,6 +53,7 @@ func NewFileFilterProfile(ctx *pulumi.Context,
 		args = &FileFilterProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FileFilterProfile
 	err := ctx.RegisterResource("fortios:index/fileFilterProfile:FileFilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ type FileFilterProfileInput interface {
 }
 
 func (*FileFilterProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*FileFilterProfile)(nil))
+	return reflect.TypeOf((**FileFilterProfile)(nil)).Elem()
 }
 
 func (i *FileFilterProfile) ToFileFilterProfileOutput() FileFilterProfileOutput {
@@ -192,35 +193,6 @@ func (i *FileFilterProfile) ToFileFilterProfileOutput() FileFilterProfileOutput 
 
 func (i *FileFilterProfile) ToFileFilterProfileOutputWithContext(ctx context.Context) FileFilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfileOutput)
-}
-
-func (i *FileFilterProfile) ToFileFilterProfilePtrOutput() FileFilterProfilePtrOutput {
-	return i.ToFileFilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *FileFilterProfile) ToFileFilterProfilePtrOutputWithContext(ctx context.Context) FileFilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfilePtrOutput)
-}
-
-type FileFilterProfilePtrInput interface {
-	pulumi.Input
-
-	ToFileFilterProfilePtrOutput() FileFilterProfilePtrOutput
-	ToFileFilterProfilePtrOutputWithContext(ctx context.Context) FileFilterProfilePtrOutput
-}
-
-type fileFilterProfilePtrType FileFilterProfileArgs
-
-func (*fileFilterProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FileFilterProfile)(nil))
-}
-
-func (i *fileFilterProfilePtrType) ToFileFilterProfilePtrOutput() FileFilterProfilePtrOutput {
-	return i.ToFileFilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *fileFilterProfilePtrType) ToFileFilterProfilePtrOutputWithContext(ctx context.Context) FileFilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfilePtrOutput)
 }
 
 // FileFilterProfileArrayInput is an input type that accepts FileFilterProfileArray and FileFilterProfileArrayOutput values.
@@ -237,7 +209,7 @@ type FileFilterProfileArrayInput interface {
 type FileFilterProfileArray []FileFilterProfileInput
 
 func (FileFilterProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FileFilterProfile)(nil))
+	return reflect.TypeOf((*[]*FileFilterProfile)(nil)).Elem()
 }
 
 func (i FileFilterProfileArray) ToFileFilterProfileArrayOutput() FileFilterProfileArrayOutput {
@@ -262,7 +234,7 @@ type FileFilterProfileMapInput interface {
 type FileFilterProfileMap map[string]FileFilterProfileInput
 
 func (FileFilterProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FileFilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*FileFilterProfile)(nil)).Elem()
 }
 
 func (i FileFilterProfileMap) ToFileFilterProfileMapOutput() FileFilterProfileMapOutput {
@@ -273,12 +245,10 @@ func (i FileFilterProfileMap) ToFileFilterProfileMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FileFilterProfileMapOutput)
 }
 
-type FileFilterProfileOutput struct {
-	*pulumi.OutputState
-}
+type FileFilterProfileOutput struct{ *pulumi.OutputState }
 
 func (FileFilterProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FileFilterProfile)(nil))
+	return reflect.TypeOf((**FileFilterProfile)(nil)).Elem()
 }
 
 func (o FileFilterProfileOutput) ToFileFilterProfileOutput() FileFilterProfileOutput {
@@ -289,36 +259,10 @@ func (o FileFilterProfileOutput) ToFileFilterProfileOutputWithContext(ctx contex
 	return o
 }
 
-func (o FileFilterProfileOutput) ToFileFilterProfilePtrOutput() FileFilterProfilePtrOutput {
-	return o.ToFileFilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (o FileFilterProfileOutput) ToFileFilterProfilePtrOutputWithContext(ctx context.Context) FileFilterProfilePtrOutput {
-	return o.ApplyT(func(v FileFilterProfile) *FileFilterProfile {
-		return &v
-	}).(FileFilterProfilePtrOutput)
-}
-
-type FileFilterProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FileFilterProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FileFilterProfile)(nil))
-}
-
-func (o FileFilterProfilePtrOutput) ToFileFilterProfilePtrOutput() FileFilterProfilePtrOutput {
-	return o
-}
-
-func (o FileFilterProfilePtrOutput) ToFileFilterProfilePtrOutputWithContext(ctx context.Context) FileFilterProfilePtrOutput {
-	return o
-}
-
 type FileFilterProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (FileFilterProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FileFilterProfile)(nil))
+	return reflect.TypeOf((*[]*FileFilterProfile)(nil)).Elem()
 }
 
 func (o FileFilterProfileArrayOutput) ToFileFilterProfileArrayOutput() FileFilterProfileArrayOutput {
@@ -330,15 +274,15 @@ func (o FileFilterProfileArrayOutput) ToFileFilterProfileArrayOutputWithContext(
 }
 
 func (o FileFilterProfileArrayOutput) Index(i pulumi.IntInput) FileFilterProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FileFilterProfile {
-		return vs[0].([]FileFilterProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FileFilterProfile {
+		return vs[0].([]*FileFilterProfile)[vs[1].(int)]
 	}).(FileFilterProfileOutput)
 }
 
 type FileFilterProfileMapOutput struct{ *pulumi.OutputState }
 
 func (FileFilterProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FileFilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*FileFilterProfile)(nil)).Elem()
 }
 
 func (o FileFilterProfileMapOutput) ToFileFilterProfileMapOutput() FileFilterProfileMapOutput {
@@ -350,14 +294,16 @@ func (o FileFilterProfileMapOutput) ToFileFilterProfileMapOutputWithContext(ctx 
 }
 
 func (o FileFilterProfileMapOutput) MapIndex(k pulumi.StringInput) FileFilterProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FileFilterProfile {
-		return vs[0].(map[string]FileFilterProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FileFilterProfile {
+		return vs[0].(map[string]*FileFilterProfile)[vs[1].(string)]
 	}).(FileFilterProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FileFilterProfileInput)(nil)).Elem(), &FileFilterProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileFilterProfileArrayInput)(nil)).Elem(), FileFilterProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FileFilterProfileMapInput)(nil)).Elem(), FileFilterProfileMap{})
 	pulumi.RegisterOutputType(FileFilterProfileOutput{})
-	pulumi.RegisterOutputType(FileFilterProfilePtrOutput{})
 	pulumi.RegisterOutputType(FileFilterProfileArrayOutput{})
 	pulumi.RegisterOutputType(FileFilterProfileMapOutput{})
 }

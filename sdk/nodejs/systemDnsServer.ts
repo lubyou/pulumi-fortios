@@ -62,6 +62,10 @@ export class SystemDnsServer extends pulumi.CustomResource {
      */
     public readonly dnsfilterProfile!: pulumi.Output<string>;
     /**
+     * DNS over HTTPS. Valid values: `enable`, `disable`.
+     */
+    public readonly doh!: pulumi.Output<string>;
+    /**
      * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
      */
     public readonly mode!: pulumi.Output<string>;
@@ -83,25 +87,25 @@ export class SystemDnsServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemDnsServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDnsServerArgs | SystemDnsServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDnsServerState | undefined;
-            inputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
+            resourceInputs["doh"] = state ? state.doh : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemDnsServerArgs | undefined;
-            inputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
+            resourceInputs["doh"] = args ? args.doh : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDnsServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDnsServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -113,6 +117,10 @@ export interface SystemDnsServerState {
      * DNS filter profile.
      */
     dnsfilterProfile?: pulumi.Input<string>;
+    /**
+     * DNS over HTTPS. Valid values: `enable`, `disable`.
+     */
+    doh?: pulumi.Input<string>;
     /**
      * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
      */
@@ -135,6 +143,10 @@ export interface SystemDnsServerArgs {
      * DNS filter profile.
      */
     dnsfilterProfile?: pulumi.Input<string>;
+    /**
+     * DNS over HTTPS. Valid values: `enable`, `disable`.
+     */
+    doh?: pulumi.Input<string>;
     /**
      * DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
      */

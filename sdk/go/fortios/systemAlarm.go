@@ -43,6 +43,7 @@ func NewSystemAlarm(ctx *pulumi.Context,
 		args = &SystemAlarmArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAlarm
 	err := ctx.RegisterResource("fortios:index/systemAlarm:SystemAlarm", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type SystemAlarmInput interface {
 }
 
 func (*SystemAlarm) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAlarm)(nil))
+	return reflect.TypeOf((**SystemAlarm)(nil)).Elem()
 }
 
 func (i *SystemAlarm) ToSystemAlarmOutput() SystemAlarmOutput {
@@ -142,35 +143,6 @@ func (i *SystemAlarm) ToSystemAlarmOutput() SystemAlarmOutput {
 
 func (i *SystemAlarm) ToSystemAlarmOutputWithContext(ctx context.Context) SystemAlarmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmOutput)
-}
-
-func (i *SystemAlarm) ToSystemAlarmPtrOutput() SystemAlarmPtrOutput {
-	return i.ToSystemAlarmPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAlarm) ToSystemAlarmPtrOutputWithContext(ctx context.Context) SystemAlarmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmPtrOutput)
-}
-
-type SystemAlarmPtrInput interface {
-	pulumi.Input
-
-	ToSystemAlarmPtrOutput() SystemAlarmPtrOutput
-	ToSystemAlarmPtrOutputWithContext(ctx context.Context) SystemAlarmPtrOutput
-}
-
-type systemAlarmPtrType SystemAlarmArgs
-
-func (*systemAlarmPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAlarm)(nil))
-}
-
-func (i *systemAlarmPtrType) ToSystemAlarmPtrOutput() SystemAlarmPtrOutput {
-	return i.ToSystemAlarmPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAlarmPtrType) ToSystemAlarmPtrOutputWithContext(ctx context.Context) SystemAlarmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmPtrOutput)
 }
 
 // SystemAlarmArrayInput is an input type that accepts SystemAlarmArray and SystemAlarmArrayOutput values.
@@ -187,7 +159,7 @@ type SystemAlarmArrayInput interface {
 type SystemAlarmArray []SystemAlarmInput
 
 func (SystemAlarmArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAlarm)(nil))
+	return reflect.TypeOf((*[]*SystemAlarm)(nil)).Elem()
 }
 
 func (i SystemAlarmArray) ToSystemAlarmArrayOutput() SystemAlarmArrayOutput {
@@ -212,7 +184,7 @@ type SystemAlarmMapInput interface {
 type SystemAlarmMap map[string]SystemAlarmInput
 
 func (SystemAlarmMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAlarm)(nil))
+	return reflect.TypeOf((*map[string]*SystemAlarm)(nil)).Elem()
 }
 
 func (i SystemAlarmMap) ToSystemAlarmMapOutput() SystemAlarmMapOutput {
@@ -223,12 +195,10 @@ func (i SystemAlarmMap) ToSystemAlarmMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAlarmMapOutput)
 }
 
-type SystemAlarmOutput struct {
-	*pulumi.OutputState
-}
+type SystemAlarmOutput struct{ *pulumi.OutputState }
 
 func (SystemAlarmOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAlarm)(nil))
+	return reflect.TypeOf((**SystemAlarm)(nil)).Elem()
 }
 
 func (o SystemAlarmOutput) ToSystemAlarmOutput() SystemAlarmOutput {
@@ -239,36 +209,10 @@ func (o SystemAlarmOutput) ToSystemAlarmOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemAlarmOutput) ToSystemAlarmPtrOutput() SystemAlarmPtrOutput {
-	return o.ToSystemAlarmPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAlarmOutput) ToSystemAlarmPtrOutputWithContext(ctx context.Context) SystemAlarmPtrOutput {
-	return o.ApplyT(func(v SystemAlarm) *SystemAlarm {
-		return &v
-	}).(SystemAlarmPtrOutput)
-}
-
-type SystemAlarmPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAlarmPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAlarm)(nil))
-}
-
-func (o SystemAlarmPtrOutput) ToSystemAlarmPtrOutput() SystemAlarmPtrOutput {
-	return o
-}
-
-func (o SystemAlarmPtrOutput) ToSystemAlarmPtrOutputWithContext(ctx context.Context) SystemAlarmPtrOutput {
-	return o
-}
-
 type SystemAlarmArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAlarmArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAlarm)(nil))
+	return reflect.TypeOf((*[]*SystemAlarm)(nil)).Elem()
 }
 
 func (o SystemAlarmArrayOutput) ToSystemAlarmArrayOutput() SystemAlarmArrayOutput {
@@ -280,15 +224,15 @@ func (o SystemAlarmArrayOutput) ToSystemAlarmArrayOutputWithContext(ctx context.
 }
 
 func (o SystemAlarmArrayOutput) Index(i pulumi.IntInput) SystemAlarmOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAlarm {
-		return vs[0].([]SystemAlarm)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAlarm {
+		return vs[0].([]*SystemAlarm)[vs[1].(int)]
 	}).(SystemAlarmOutput)
 }
 
 type SystemAlarmMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAlarmMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAlarm)(nil))
+	return reflect.TypeOf((*map[string]*SystemAlarm)(nil)).Elem()
 }
 
 func (o SystemAlarmMapOutput) ToSystemAlarmMapOutput() SystemAlarmMapOutput {
@@ -300,14 +244,16 @@ func (o SystemAlarmMapOutput) ToSystemAlarmMapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemAlarmMapOutput) MapIndex(k pulumi.StringInput) SystemAlarmOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAlarm {
-		return vs[0].(map[string]SystemAlarm)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAlarm {
+		return vs[0].(map[string]*SystemAlarm)[vs[1].(string)]
 	}).(SystemAlarmOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAlarmInput)(nil)).Elem(), &SystemAlarm{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAlarmArrayInput)(nil)).Elem(), SystemAlarmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAlarmMapInput)(nil)).Elem(), SystemAlarmMap{})
 	pulumi.RegisterOutputType(SystemAlarmOutput{})
-	pulumi.RegisterOutputType(SystemAlarmPtrOutput{})
 	pulumi.RegisterOutputType(SystemAlarmArrayOutput{})
 	pulumi.RegisterOutputType(SystemAlarmMapOutput{})
 }

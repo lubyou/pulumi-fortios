@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallPolicyResult',
     'AwaitableGetFirewallPolicyResult',
     'get_firewall_policy',
+    'get_firewall_policy_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetFirewallPolicyResult:
     """
     A collection of values returned by GetFirewallPolicy.
     """
-    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, email_collect=None, emailfilter_profile=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, natinbound=None, natip=None, natoutbound=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_minimum=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None):
+    def __init__(__self__, action=None, anti_replay=None, app_categories=None, app_groups=None, application_list=None, applications=None, auth_cert=None, auth_path=None, auth_redirect_addr=None, auto_asic_offload=None, av_profile=None, block_notification=None, captive_portal_exempt=None, capture_packet=None, cifs_profile=None, comments=None, custom_log_fields=None, decrypted_traffic_mirror=None, delay_tcp_npu_session=None, devices=None, diffserv_forward=None, diffserv_reverse=None, diffservcode_forward=None, diffservcode_rev=None, disclaimer=None, dlp_sensor=None, dnsfilter_profile=None, dsri=None, dstaddr6s=None, dstaddr_negate=None, dstaddrs=None, dstintfs=None, dynamic_shaping=None, email_collect=None, emailfilter_profile=None, fec=None, file_filter_profile=None, firewall_session_dirty=None, fixedport=None, fsso=None, fsso_agent_for_ntlm=None, fsso_groups=None, geoip_anycast=None, geoip_match=None, global_label=None, groups=None, http_policy_redirect=None, icap_profile=None, id=None, identity_based_route=None, inbound=None, inspection_mode=None, internet_service=None, internet_service_custom_groups=None, internet_service_customs=None, internet_service_groups=None, internet_service_ids=None, internet_service_names=None, internet_service_negate=None, internet_service_src=None, internet_service_src_custom_groups=None, internet_service_src_customs=None, internet_service_src_groups=None, internet_service_src_ids=None, internet_service_src_names=None, internet_service_src_negate=None, ippool=None, ips_sensor=None, label=None, learning_mode=None, logtraffic=None, logtraffic_start=None, match_vip=None, match_vip_only=None, name=None, nat=None, nat46=None, nat64=None, natinbound=None, natip=None, natoutbound=None, np_acceleration=None, ntlm=None, ntlm_enabled_browsers=None, ntlm_guest=None, outbound=None, passive_wan_health_measurement=None, per_ip_shaper=None, permit_any_host=None, permit_stun_host=None, policyid=None, poolname6s=None, poolnames=None, profile_group=None, profile_protocol_options=None, profile_type=None, radius_mac_auth_bypass=None, redirect_url=None, replacemsg_override_group=None, reputation_direction=None, reputation_minimum=None, rsso=None, rtp_addrs=None, rtp_nat=None, scan_botnet_connections=None, schedule=None, schedule_timeout=None, sctp_filter_profile=None, send_deny_packet=None, service_negate=None, services=None, session_ttl=None, sgt_check=None, sgts=None, spamfilter_profile=None, src_vendor_macs=None, srcaddr6s=None, srcaddr_negate=None, srcaddrs=None, srcintfs=None, ssh_filter_profile=None, ssh_policy_redirect=None, ssl_mirror=None, ssl_mirror_intfs=None, ssl_ssh_profile=None, status=None, tcp_mss_receiver=None, tcp_mss_sender=None, tcp_session_without_syn=None, timeout_send_rst=None, tos=None, tos_mask=None, tos_negate=None, traffic_shaper=None, traffic_shaper_reverse=None, url_categories=None, users=None, utm_status=None, uuid=None, vdomparam=None, videofilter_profile=None, vlan_cos_fwd=None, vlan_cos_rev=None, vlan_filter=None, voip_profile=None, vpntunnel=None, waf_profile=None, wanopt=None, wanopt_detection=None, wanopt_passive_opt=None, wanopt_peer=None, wanopt_profile=None, wccp=None, webcache=None, webcache_https=None, webfilter_profile=None, webproxy_forward_server=None, webproxy_profile=None, wsso=None, ztna_ems_tags=None, ztna_geo_tags=None, ztna_status=None):
         if action and not isinstance(action, str):
             raise TypeError("Expected argument 'action' to be a str")
         pulumi.set(__self__, "action", action)
@@ -117,12 +118,18 @@ class GetFirewallPolicyResult:
         if dstintfs and not isinstance(dstintfs, list):
             raise TypeError("Expected argument 'dstintfs' to be a list")
         pulumi.set(__self__, "dstintfs", dstintfs)
+        if dynamic_shaping and not isinstance(dynamic_shaping, str):
+            raise TypeError("Expected argument 'dynamic_shaping' to be a str")
+        pulumi.set(__self__, "dynamic_shaping", dynamic_shaping)
         if email_collect and not isinstance(email_collect, str):
             raise TypeError("Expected argument 'email_collect' to be a str")
         pulumi.set(__self__, "email_collect", email_collect)
         if emailfilter_profile and not isinstance(emailfilter_profile, str):
             raise TypeError("Expected argument 'emailfilter_profile' to be a str")
         pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
+        if fec and not isinstance(fec, str):
+            raise TypeError("Expected argument 'fec' to be a str")
+        pulumi.set(__self__, "fec", fec)
         if file_filter_profile and not isinstance(file_filter_profile, str):
             raise TypeError("Expected argument 'file_filter_profile' to be a str")
         pulumi.set(__self__, "file_filter_profile", file_filter_profile)
@@ -243,6 +250,12 @@ class GetFirewallPolicyResult:
         if nat and not isinstance(nat, str):
             raise TypeError("Expected argument 'nat' to be a str")
         pulumi.set(__self__, "nat", nat)
+        if nat46 and not isinstance(nat46, str):
+            raise TypeError("Expected argument 'nat46' to be a str")
+        pulumi.set(__self__, "nat46", nat46)
+        if nat64 and not isinstance(nat64, str):
+            raise TypeError("Expected argument 'nat64' to be a str")
+        pulumi.set(__self__, "nat64", nat64)
         if natinbound and not isinstance(natinbound, str):
             raise TypeError("Expected argument 'natinbound' to be a str")
         pulumi.set(__self__, "natinbound", natinbound)
@@ -252,6 +265,9 @@ class GetFirewallPolicyResult:
         if natoutbound and not isinstance(natoutbound, str):
             raise TypeError("Expected argument 'natoutbound' to be a str")
         pulumi.set(__self__, "natoutbound", natoutbound)
+        if np_acceleration and not isinstance(np_acceleration, str):
+            raise TypeError("Expected argument 'np_acceleration' to be a str")
+        pulumi.set(__self__, "np_acceleration", np_acceleration)
         if ntlm and not isinstance(ntlm, str):
             raise TypeError("Expected argument 'ntlm' to be a str")
         pulumi.set(__self__, "ntlm", ntlm)
@@ -264,6 +280,9 @@ class GetFirewallPolicyResult:
         if outbound and not isinstance(outbound, str):
             raise TypeError("Expected argument 'outbound' to be a str")
         pulumi.set(__self__, "outbound", outbound)
+        if passive_wan_health_measurement and not isinstance(passive_wan_health_measurement, str):
+            raise TypeError("Expected argument 'passive_wan_health_measurement' to be a str")
+        pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
         if per_ip_shaper and not isinstance(per_ip_shaper, str):
             raise TypeError("Expected argument 'per_ip_shaper' to be a str")
         pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
@@ -324,6 +343,9 @@ class GetFirewallPolicyResult:
         if schedule_timeout and not isinstance(schedule_timeout, str):
             raise TypeError("Expected argument 'schedule_timeout' to be a str")
         pulumi.set(__self__, "schedule_timeout", schedule_timeout)
+        if sctp_filter_profile and not isinstance(sctp_filter_profile, str):
+            raise TypeError("Expected argument 'sctp_filter_profile' to be a str")
+        pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if send_deny_packet and not isinstance(send_deny_packet, str):
             raise TypeError("Expected argument 'send_deny_packet' to be a str")
         pulumi.set(__self__, "send_deny_packet", send_deny_packet)
@@ -336,6 +358,12 @@ class GetFirewallPolicyResult:
         if session_ttl and not isinstance(session_ttl, int):
             raise TypeError("Expected argument 'session_ttl' to be a int")
         pulumi.set(__self__, "session_ttl", session_ttl)
+        if sgt_check and not isinstance(sgt_check, str):
+            raise TypeError("Expected argument 'sgt_check' to be a str")
+        pulumi.set(__self__, "sgt_check", sgt_check)
+        if sgts and not isinstance(sgts, list):
+            raise TypeError("Expected argument 'sgts' to be a list")
+        pulumi.set(__self__, "sgts", sgts)
         if spamfilter_profile and not isinstance(spamfilter_profile, str):
             raise TypeError("Expected argument 'spamfilter_profile' to be a str")
         pulumi.set(__self__, "spamfilter_profile", spamfilter_profile)
@@ -414,6 +442,9 @@ class GetFirewallPolicyResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile and not isinstance(videofilter_profile, str):
+            raise TypeError("Expected argument 'videofilter_profile' to be a str")
+        pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if vlan_cos_fwd and not isinstance(vlan_cos_fwd, int):
             raise TypeError("Expected argument 'vlan_cos_fwd' to be a int")
         pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
@@ -468,6 +499,15 @@ class GetFirewallPolicyResult:
         if wsso and not isinstance(wsso, str):
             raise TypeError("Expected argument 'wsso' to be a str")
         pulumi.set(__self__, "wsso", wsso)
+        if ztna_ems_tags and not isinstance(ztna_ems_tags, list):
+            raise TypeError("Expected argument 'ztna_ems_tags' to be a list")
+        pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
+        if ztna_geo_tags and not isinstance(ztna_geo_tags, list):
+            raise TypeError("Expected argument 'ztna_geo_tags' to be a list")
+        pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_status and not isinstance(ztna_status, str):
+            raise TypeError("Expected argument 'ztna_status' to be a str")
+        pulumi.set(__self__, "ztna_status", ztna_status)
 
     @property
     @pulumi.getter
@@ -726,6 +766,14 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "dstintfs")
 
     @property
+    @pulumi.getter(name="dynamicShaping")
+    def dynamic_shaping(self) -> str:
+        """
+        Enable/disable dynamic RADIUS defined traffic shaping.
+        """
+        return pulumi.get(self, "dynamic_shaping")
+
+    @property
     @pulumi.getter(name="emailCollect")
     def email_collect(self) -> str:
         """
@@ -740,6 +788,14 @@ class GetFirewallPolicyResult:
         Name of an existing email filter profile.
         """
         return pulumi.get(self, "emailfilter_profile")
+
+    @property
+    @pulumi.getter
+    def fec(self) -> str:
+        """
+        Enable/disable Forward Error Correction on traffic matching this policy on a FEC device.
+        """
+        return pulumi.get(self, "fec")
 
     @property
     @pulumi.getter(name="fileFilterProfile")
@@ -1063,6 +1119,22 @@ class GetFirewallPolicyResult:
 
     @property
     @pulumi.getter
+    def nat46(self) -> str:
+        """
+        Enable/disable NAT46.
+        """
+        return pulumi.get(self, "nat46")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> str:
+        """
+        Enable/disable NAT64.
+        """
+        return pulumi.get(self, "nat64")
+
+    @property
+    @pulumi.getter
     def natinbound(self) -> str:
         """
         Policy-based IPsec VPN: apply destination NAT to inbound traffic.
@@ -1084,6 +1156,14 @@ class GetFirewallPolicyResult:
         Policy-based IPsec VPN: apply source NAT to outbound traffic.
         """
         return pulumi.get(self, "natoutbound")
+
+    @property
+    @pulumi.getter(name="npAcceleration")
+    def np_acceleration(self) -> str:
+        """
+        Enable/disable UTM Network Processor acceleration.
+        """
+        return pulumi.get(self, "np_acceleration")
 
     @property
     @pulumi.getter
@@ -1116,6 +1196,14 @@ class GetFirewallPolicyResult:
         Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN.
         """
         return pulumi.get(self, "outbound")
+
+    @property
+    @pulumi.getter(name="passiveWanHealthMeasurement")
+    def passive_wan_health_measurement(self) -> str:
+        """
+        Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled.
+        """
+        return pulumi.get(self, "passive_wan_health_measurement")
 
     @property
     @pulumi.getter(name="perIpShaper")
@@ -1278,6 +1366,14 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "schedule_timeout")
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> str:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @property
     @pulumi.getter(name="sendDenyPacket")
     def send_deny_packet(self) -> str:
         """
@@ -1308,6 +1404,22 @@ class GetFirewallPolicyResult:
         TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
         """
         return pulumi.get(self, "session_ttl")
+
+    @property
+    @pulumi.getter(name="sgtCheck")
+    def sgt_check(self) -> str:
+        """
+        Enable/disable security group tags (SGT) check.
+        """
+        return pulumi.get(self, "sgt_check")
+
+    @property
+    @pulumi.getter
+    def sgts(self) -> Sequence['outputs.GetFirewallPolicySgtResult']:
+        """
+        Security group tags. The structure of `sgt` block is documented below.
+        """
+        return pulumi.get(self, "sgts")
 
     @property
     @pulumi.getter(name="spamfilterProfile")
@@ -1515,6 +1627,14 @@ class GetFirewallPolicyResult:
         return pulumi.get(self, "vdomparam")
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> str:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> int:
         """
@@ -1658,6 +1778,30 @@ class GetFirewallPolicyResult:
         """
         return pulumi.get(self, "wsso")
 
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> Sequence['outputs.GetFirewallPolicyZtnaEmsTagResult']:
+        """
+        Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @property
+    @pulumi.getter(name="ztnaGeoTags")
+    def ztna_geo_tags(self) -> Sequence['outputs.GetFirewallPolicyZtnaGeoTagResult']:
+        """
+        Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_geo_tags")
+
+    @property
+    @pulumi.getter(name="ztnaStatus")
+    def ztna_status(self) -> str:
+        """
+        Enable/disable zero trust access.
+        """
+        return pulumi.get(self, "ztna_status")
+
 
 class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
     # pylint: disable=using-constant-test
@@ -1697,8 +1841,10 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             dstaddr_negate=self.dstaddr_negate,
             dstaddrs=self.dstaddrs,
             dstintfs=self.dstintfs,
+            dynamic_shaping=self.dynamic_shaping,
             email_collect=self.email_collect,
             emailfilter_profile=self.emailfilter_profile,
+            fec=self.fec,
             file_filter_profile=self.file_filter_profile,
             firewall_session_dirty=self.firewall_session_dirty,
             fixedport=self.fixedport,
@@ -1739,13 +1885,17 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             match_vip_only=self.match_vip_only,
             name=self.name,
             nat=self.nat,
+            nat46=self.nat46,
+            nat64=self.nat64,
             natinbound=self.natinbound,
             natip=self.natip,
             natoutbound=self.natoutbound,
+            np_acceleration=self.np_acceleration,
             ntlm=self.ntlm,
             ntlm_enabled_browsers=self.ntlm_enabled_browsers,
             ntlm_guest=self.ntlm_guest,
             outbound=self.outbound,
+            passive_wan_health_measurement=self.passive_wan_health_measurement,
             per_ip_shaper=self.per_ip_shaper,
             permit_any_host=self.permit_any_host,
             permit_stun_host=self.permit_stun_host,
@@ -1766,10 +1916,13 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             scan_botnet_connections=self.scan_botnet_connections,
             schedule=self.schedule,
             schedule_timeout=self.schedule_timeout,
+            sctp_filter_profile=self.sctp_filter_profile,
             send_deny_packet=self.send_deny_packet,
             service_negate=self.service_negate,
             services=self.services,
             session_ttl=self.session_ttl,
+            sgt_check=self.sgt_check,
+            sgts=self.sgts,
             spamfilter_profile=self.spamfilter_profile,
             src_vendor_macs=self.src_vendor_macs,
             srcaddr6s=self.srcaddr6s,
@@ -1796,6 +1949,7 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             utm_status=self.utm_status,
             uuid=self.uuid,
             vdomparam=self.vdomparam,
+            videofilter_profile=self.videofilter_profile,
             vlan_cos_fwd=self.vlan_cos_fwd,
             vlan_cos_rev=self.vlan_cos_rev,
             vlan_filter=self.vlan_filter,
@@ -1813,7 +1967,10 @@ class AwaitableGetFirewallPolicyResult(GetFirewallPolicyResult):
             webfilter_profile=self.webfilter_profile,
             webproxy_forward_server=self.webproxy_forward_server,
             webproxy_profile=self.webproxy_profile,
-            wsso=self.wsso)
+            wsso=self.wsso,
+            ztna_ems_tags=self.ztna_ems_tags,
+            ztna_geo_tags=self.ztna_geo_tags,
+            ztna_status=self.ztna_status)
 
 
 def get_firewall_policy(policyid: Optional[int] = None,
@@ -1833,6 +1990,8 @@ def get_firewall_policy(policyid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallPolicy:GetFirewallPolicy', __args__, opts=opts, typ=GetFirewallPolicyResult).value
 
     return AwaitableGetFirewallPolicyResult(
@@ -1868,8 +2027,10 @@ def get_firewall_policy(policyid: Optional[int] = None,
         dstaddr_negate=__ret__.dstaddr_negate,
         dstaddrs=__ret__.dstaddrs,
         dstintfs=__ret__.dstintfs,
+        dynamic_shaping=__ret__.dynamic_shaping,
         email_collect=__ret__.email_collect,
         emailfilter_profile=__ret__.emailfilter_profile,
+        fec=__ret__.fec,
         file_filter_profile=__ret__.file_filter_profile,
         firewall_session_dirty=__ret__.firewall_session_dirty,
         fixedport=__ret__.fixedport,
@@ -1910,13 +2071,17 @@ def get_firewall_policy(policyid: Optional[int] = None,
         match_vip_only=__ret__.match_vip_only,
         name=__ret__.name,
         nat=__ret__.nat,
+        nat46=__ret__.nat46,
+        nat64=__ret__.nat64,
         natinbound=__ret__.natinbound,
         natip=__ret__.natip,
         natoutbound=__ret__.natoutbound,
+        np_acceleration=__ret__.np_acceleration,
         ntlm=__ret__.ntlm,
         ntlm_enabled_browsers=__ret__.ntlm_enabled_browsers,
         ntlm_guest=__ret__.ntlm_guest,
         outbound=__ret__.outbound,
+        passive_wan_health_measurement=__ret__.passive_wan_health_measurement,
         per_ip_shaper=__ret__.per_ip_shaper,
         permit_any_host=__ret__.permit_any_host,
         permit_stun_host=__ret__.permit_stun_host,
@@ -1937,10 +2102,13 @@ def get_firewall_policy(policyid: Optional[int] = None,
         scan_botnet_connections=__ret__.scan_botnet_connections,
         schedule=__ret__.schedule,
         schedule_timeout=__ret__.schedule_timeout,
+        sctp_filter_profile=__ret__.sctp_filter_profile,
         send_deny_packet=__ret__.send_deny_packet,
         service_negate=__ret__.service_negate,
         services=__ret__.services,
         session_ttl=__ret__.session_ttl,
+        sgt_check=__ret__.sgt_check,
+        sgts=__ret__.sgts,
         spamfilter_profile=__ret__.spamfilter_profile,
         src_vendor_macs=__ret__.src_vendor_macs,
         srcaddr6s=__ret__.srcaddr6s,
@@ -1967,6 +2135,7 @@ def get_firewall_policy(policyid: Optional[int] = None,
         utm_status=__ret__.utm_status,
         uuid=__ret__.uuid,
         vdomparam=__ret__.vdomparam,
+        videofilter_profile=__ret__.videofilter_profile,
         vlan_cos_fwd=__ret__.vlan_cos_fwd,
         vlan_cos_rev=__ret__.vlan_cos_rev,
         vlan_filter=__ret__.vlan_filter,
@@ -1984,4 +2153,21 @@ def get_firewall_policy(policyid: Optional[int] = None,
         webfilter_profile=__ret__.webfilter_profile,
         webproxy_forward_server=__ret__.webproxy_forward_server,
         webproxy_profile=__ret__.webproxy_profile,
-        wsso=__ret__.wsso)
+        wsso=__ret__.wsso,
+        ztna_ems_tags=__ret__.ztna_ems_tags,
+        ztna_geo_tags=__ret__.ztna_geo_tags,
+        ztna_status=__ret__.ztna_status)
+
+
+@_utilities.lift_output_func(get_firewall_policy)
+def get_firewall_policy_output(policyid: Optional[pulumi.Input[int]] = None,
+                               vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallPolicyResult]:
+    """
+    Use this data source to get information on an fortios firewall policy
+
+
+    :param int policyid: Specify the policyid of the desired firewall policy.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

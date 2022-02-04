@@ -59,6 +59,7 @@ func NewApplicationCustom(ctx *pulumi.Context,
 	if args.Category == nil {
 		return nil, errors.New("invalid value for required argument 'Category'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApplicationCustom
 	err := ctx.RegisterResource("fortios:index/applicationCustom:ApplicationCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -197,7 +198,7 @@ type ApplicationCustomInput interface {
 }
 
 func (*ApplicationCustom) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationCustom)(nil))
+	return reflect.TypeOf((**ApplicationCustom)(nil)).Elem()
 }
 
 func (i *ApplicationCustom) ToApplicationCustomOutput() ApplicationCustomOutput {
@@ -206,35 +207,6 @@ func (i *ApplicationCustom) ToApplicationCustomOutput() ApplicationCustomOutput 
 
 func (i *ApplicationCustom) ToApplicationCustomOutputWithContext(ctx context.Context) ApplicationCustomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomOutput)
-}
-
-func (i *ApplicationCustom) ToApplicationCustomPtrOutput() ApplicationCustomPtrOutput {
-	return i.ToApplicationCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *ApplicationCustom) ToApplicationCustomPtrOutputWithContext(ctx context.Context) ApplicationCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomPtrOutput)
-}
-
-type ApplicationCustomPtrInput interface {
-	pulumi.Input
-
-	ToApplicationCustomPtrOutput() ApplicationCustomPtrOutput
-	ToApplicationCustomPtrOutputWithContext(ctx context.Context) ApplicationCustomPtrOutput
-}
-
-type applicationCustomPtrType ApplicationCustomArgs
-
-func (*applicationCustomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationCustom)(nil))
-}
-
-func (i *applicationCustomPtrType) ToApplicationCustomPtrOutput() ApplicationCustomPtrOutput {
-	return i.ToApplicationCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *applicationCustomPtrType) ToApplicationCustomPtrOutputWithContext(ctx context.Context) ApplicationCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomPtrOutput)
 }
 
 // ApplicationCustomArrayInput is an input type that accepts ApplicationCustomArray and ApplicationCustomArrayOutput values.
@@ -251,7 +223,7 @@ type ApplicationCustomArrayInput interface {
 type ApplicationCustomArray []ApplicationCustomInput
 
 func (ApplicationCustomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ApplicationCustom)(nil))
+	return reflect.TypeOf((*[]*ApplicationCustom)(nil)).Elem()
 }
 
 func (i ApplicationCustomArray) ToApplicationCustomArrayOutput() ApplicationCustomArrayOutput {
@@ -276,7 +248,7 @@ type ApplicationCustomMapInput interface {
 type ApplicationCustomMap map[string]ApplicationCustomInput
 
 func (ApplicationCustomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ApplicationCustom)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationCustom)(nil)).Elem()
 }
 
 func (i ApplicationCustomMap) ToApplicationCustomMapOutput() ApplicationCustomMapOutput {
@@ -287,12 +259,10 @@ func (i ApplicationCustomMap) ToApplicationCustomMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationCustomMapOutput)
 }
 
-type ApplicationCustomOutput struct {
-	*pulumi.OutputState
-}
+type ApplicationCustomOutput struct{ *pulumi.OutputState }
 
 func (ApplicationCustomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationCustom)(nil))
+	return reflect.TypeOf((**ApplicationCustom)(nil)).Elem()
 }
 
 func (o ApplicationCustomOutput) ToApplicationCustomOutput() ApplicationCustomOutput {
@@ -303,36 +273,10 @@ func (o ApplicationCustomOutput) ToApplicationCustomOutputWithContext(ctx contex
 	return o
 }
 
-func (o ApplicationCustomOutput) ToApplicationCustomPtrOutput() ApplicationCustomPtrOutput {
-	return o.ToApplicationCustomPtrOutputWithContext(context.Background())
-}
-
-func (o ApplicationCustomOutput) ToApplicationCustomPtrOutputWithContext(ctx context.Context) ApplicationCustomPtrOutput {
-	return o.ApplyT(func(v ApplicationCustom) *ApplicationCustom {
-		return &v
-	}).(ApplicationCustomPtrOutput)
-}
-
-type ApplicationCustomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ApplicationCustomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationCustom)(nil))
-}
-
-func (o ApplicationCustomPtrOutput) ToApplicationCustomPtrOutput() ApplicationCustomPtrOutput {
-	return o
-}
-
-func (o ApplicationCustomPtrOutput) ToApplicationCustomPtrOutputWithContext(ctx context.Context) ApplicationCustomPtrOutput {
-	return o
-}
-
 type ApplicationCustomArrayOutput struct{ *pulumi.OutputState }
 
 func (ApplicationCustomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ApplicationCustom)(nil))
+	return reflect.TypeOf((*[]*ApplicationCustom)(nil)).Elem()
 }
 
 func (o ApplicationCustomArrayOutput) ToApplicationCustomArrayOutput() ApplicationCustomArrayOutput {
@@ -344,15 +288,15 @@ func (o ApplicationCustomArrayOutput) ToApplicationCustomArrayOutputWithContext(
 }
 
 func (o ApplicationCustomArrayOutput) Index(i pulumi.IntInput) ApplicationCustomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationCustom {
-		return vs[0].([]ApplicationCustom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationCustom {
+		return vs[0].([]*ApplicationCustom)[vs[1].(int)]
 	}).(ApplicationCustomOutput)
 }
 
 type ApplicationCustomMapOutput struct{ *pulumi.OutputState }
 
 func (ApplicationCustomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ApplicationCustom)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationCustom)(nil)).Elem()
 }
 
 func (o ApplicationCustomMapOutput) ToApplicationCustomMapOutput() ApplicationCustomMapOutput {
@@ -364,14 +308,16 @@ func (o ApplicationCustomMapOutput) ToApplicationCustomMapOutputWithContext(ctx 
 }
 
 func (o ApplicationCustomMapOutput) MapIndex(k pulumi.StringInput) ApplicationCustomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApplicationCustom {
-		return vs[0].(map[string]ApplicationCustom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApplicationCustom {
+		return vs[0].(map[string]*ApplicationCustom)[vs[1].(string)]
 	}).(ApplicationCustomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationCustomInput)(nil)).Elem(), &ApplicationCustom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationCustomArrayInput)(nil)).Elem(), ApplicationCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationCustomMapInput)(nil)).Elem(), ApplicationCustomMap{})
 	pulumi.RegisterOutputType(ApplicationCustomOutput{})
-	pulumi.RegisterOutputType(ApplicationCustomPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationCustomArrayOutput{})
 	pulumi.RegisterOutputType(ApplicationCustomMapOutput{})
 }

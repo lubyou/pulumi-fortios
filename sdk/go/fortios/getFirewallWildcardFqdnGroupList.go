@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallWildcardFqdnGroup`.
 func GetFirewallWildcardFqdnGroupList(ctx *pulumi.Context, args *GetFirewallWildcardFqdnGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallWildcardFqdnGroupListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallWildcardFqdnGroupListResult
 	err := ctx.Invoke("fortios:index/getFirewallWildcardFqdnGroupList:GetFirewallWildcardFqdnGroupList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallWildcardFqdnGroupListResult struct {
 	// A list of the `FirewallWildcardFqdnGroup`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallWildcardFqdnGroupListOutput(ctx *pulumi.Context, args GetFirewallWildcardFqdnGroupListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallWildcardFqdnGroupListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallWildcardFqdnGroupListResult, error) {
+			args := v.(GetFirewallWildcardFqdnGroupListArgs)
+			r, err := GetFirewallWildcardFqdnGroupList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallWildcardFqdnGroupListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallWildcardFqdnGroupList.
+type GetFirewallWildcardFqdnGroupListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallWildcardFqdnGroupListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallWildcardFqdnGroupListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallWildcardFqdnGroupList.
+type GetFirewallWildcardFqdnGroupListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallWildcardFqdnGroupListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallWildcardFqdnGroupListResult)(nil)).Elem()
+}
+
+func (o GetFirewallWildcardFqdnGroupListResultOutput) ToGetFirewallWildcardFqdnGroupListResultOutput() GetFirewallWildcardFqdnGroupListResultOutput {
+	return o
+}
+
+func (o GetFirewallWildcardFqdnGroupListResultOutput) ToGetFirewallWildcardFqdnGroupListResultOutputWithContext(ctx context.Context) GetFirewallWildcardFqdnGroupListResultOutput {
+	return o
+}
+
+func (o GetFirewallWildcardFqdnGroupListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnGroupListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallWildcardFqdnGroupListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnGroupListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallWildcardFqdnGroup`.
+func (o GetFirewallWildcardFqdnGroupListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnGroupListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallWildcardFqdnGroupListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnGroupListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallWildcardFqdnGroupListResultOutput{})
 }

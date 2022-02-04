@@ -106,35 +106,33 @@ export class IcapServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IcapServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IcapServerArgs | IcapServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IcapServerState | undefined;
-            inputs["ip6Address"] = state ? state.ip6Address : undefined;
-            inputs["ipAddress"] = state ? state.ipAddress : undefined;
-            inputs["ipVersion"] = state ? state.ipVersion : undefined;
-            inputs["maxConnections"] = state ? state.maxConnections : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["secure"] = state ? state.secure : undefined;
-            inputs["sslCert"] = state ? state.sslCert : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ip6Address"] = state ? state.ip6Address : undefined;
+            resourceInputs["ipAddress"] = state ? state.ipAddress : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["maxConnections"] = state ? state.maxConnections : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["secure"] = state ? state.secure : undefined;
+            resourceInputs["sslCert"] = state ? state.sslCert : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IcapServerArgs | undefined;
-            inputs["ip6Address"] = args ? args.ip6Address : undefined;
-            inputs["ipAddress"] = args ? args.ipAddress : undefined;
-            inputs["ipVersion"] = args ? args.ipVersion : undefined;
-            inputs["maxConnections"] = args ? args.maxConnections : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["secure"] = args ? args.secure : undefined;
-            inputs["sslCert"] = args ? args.sslCert : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ip6Address"] = args ? args.ip6Address : undefined;
+            resourceInputs["ipAddress"] = args ? args.ipAddress : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["maxConnections"] = args ? args.maxConnections : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["secure"] = args ? args.secure : undefined;
+            resourceInputs["sslCert"] = args ? args.sslCert : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IcapServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IcapServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

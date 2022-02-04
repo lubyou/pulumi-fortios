@@ -25,6 +25,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -58,46 +59,46 @@ import (
 // 			KeepaliveTimer:                  pulumi.Int(60),
 // 			LogNeighbourChanges:             pulumi.String("enable"),
 // 			NetworkImportCheck:              pulumi.String("enable"),
-// 			Redistributes: fortios.RouterBgpRedistributeArray{
-// 				&fortios.RouterBgpRedistributeArgs{
+// 			Redistributes: RouterBgpRedistributeArray{
+// 				&RouterBgpRedistributeArgs{
 // 					Name:   pulumi.String("connected"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistributeArgs{
+// 				&RouterBgpRedistributeArgs{
 // 					Name:   pulumi.String("rip"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistributeArgs{
+// 				&RouterBgpRedistributeArgs{
 // 					Name:   pulumi.String("ospf"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistributeArgs{
+// 				&RouterBgpRedistributeArgs{
 // 					Name:   pulumi.String("static"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistributeArgs{
+// 				&RouterBgpRedistributeArgs{
 // 					Name:   pulumi.String("isis"),
 // 					Status: pulumi.String("disable"),
 // 				},
 // 			},
-// 			Redistribute6s: fortios.RouterBgpRedistribute6Array{
-// 				&fortios.RouterBgpRedistribute6Args{
+// 			Redistribute6s: RouterBgpRedistribute6Array{
+// 				&RouterBgpRedistribute6Args{
 // 					Name:   pulumi.String("connected"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistribute6Args{
+// 				&RouterBgpRedistribute6Args{
 // 					Name:   pulumi.String("rip"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistribute6Args{
+// 				&RouterBgpRedistribute6Args{
 // 					Name:   pulumi.String("ospf"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistribute6Args{
+// 				&RouterBgpRedistribute6Args{
 // 					Name:   pulumi.String("static"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterBgpRedistribute6Args{
+// 				&RouterBgpRedistribute6Args{
 // 					Name:   pulumi.String("isis"),
 // 					Status: pulumi.String("disable"),
 // 				},
@@ -222,13 +223,13 @@ type RouterBgp struct {
 	// BGP neighbor range table. The structure of `neighborRange` block is documented below.
 	NeighborRanges RouterBgpNeighborRangeArrayOutput `pulumi:"neighborRanges"`
 	// BGP neighbor table. The structure of `neighbor` block is documented below.
-	Neighbors RouterBgpNeighborArrayOutput `pulumi:"neighbors"`
+	Neighbors RouterBgpNeighborTypeArrayOutput `pulumi:"neighbors"`
 	// BGP IPv6 network table. The structure of `network6` block is documented below.
-	Network6s RouterBgpNetwork6ArrayOutput `pulumi:"network6s"`
-	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+	Network6s RouterBgpNetwork6TypeArrayOutput `pulumi:"network6s"`
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
 	NetworkImportCheck pulumi.StringOutput `pulumi:"networkImportCheck"`
 	// BGP network table. The structure of `network` block is documented below.
-	Networks RouterBgpNetworkArrayOutput `pulumi:"networks"`
+	Networks RouterBgpNetworkTypeArrayOutput `pulumi:"networks"`
 	// Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
 	RecursiveNextHop pulumi.StringOutput `pulumi:"recursiveNextHop"`
 	// BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -241,8 +242,12 @@ type RouterBgp struct {
 	ScanTime pulumi.IntOutput `pulumi:"scanTime"`
 	// Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
 	Synchronization pulumi.StringOutput `pulumi:"synchronization"`
+	// Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+	TagResolveMode pulumi.StringOutput `pulumi:"tagResolveMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+	VrfLeak6s RouterBgpVrfLeak6ArrayOutput `pulumi:"vrfLeak6s"`
 	// BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
 	VrfLeaks RouterBgpVrfLeakArrayOutput `pulumi:"vrfLeaks"`
 }
@@ -257,6 +262,7 @@ func NewRouterBgp(ctx *pulumi.Context,
 	if args.As == nil {
 		return nil, errors.New("invalid value for required argument 'As'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterBgp
 	err := ctx.RegisterResource("fortios:index/routerBgp:RouterBgp", name, args, &resource, opts...)
 	if err != nil {
@@ -376,13 +382,13 @@ type routerBgpState struct {
 	// BGP neighbor range table. The structure of `neighborRange` block is documented below.
 	NeighborRanges []RouterBgpNeighborRange `pulumi:"neighborRanges"`
 	// BGP neighbor table. The structure of `neighbor` block is documented below.
-	Neighbors []RouterBgpNeighbor `pulumi:"neighbors"`
+	Neighbors []RouterBgpNeighborType `pulumi:"neighbors"`
 	// BGP IPv6 network table. The structure of `network6` block is documented below.
-	Network6s []RouterBgpNetwork6 `pulumi:"network6s"`
-	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+	Network6s []RouterBgpNetwork6Type `pulumi:"network6s"`
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
 	NetworkImportCheck *string `pulumi:"networkImportCheck"`
 	// BGP network table. The structure of `network` block is documented below.
-	Networks []RouterBgpNetwork `pulumi:"networks"`
+	Networks []RouterBgpNetworkType `pulumi:"networks"`
 	// Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
 	RecursiveNextHop *string `pulumi:"recursiveNextHop"`
 	// BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -395,8 +401,12 @@ type routerBgpState struct {
 	ScanTime *int `pulumi:"scanTime"`
 	// Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
 	Synchronization *string `pulumi:"synchronization"`
+	// Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+	TagResolveMode *string `pulumi:"tagResolveMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+	VrfLeak6s []RouterBgpVrfLeak6 `pulumi:"vrfLeak6s"`
 	// BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
 	VrfLeaks []RouterBgpVrfLeak `pulumi:"vrfLeaks"`
 }
@@ -499,13 +509,13 @@ type RouterBgpState struct {
 	// BGP neighbor range table. The structure of `neighborRange` block is documented below.
 	NeighborRanges RouterBgpNeighborRangeArrayInput
 	// BGP neighbor table. The structure of `neighbor` block is documented below.
-	Neighbors RouterBgpNeighborArrayInput
+	Neighbors RouterBgpNeighborTypeArrayInput
 	// BGP IPv6 network table. The structure of `network6` block is documented below.
-	Network6s RouterBgpNetwork6ArrayInput
-	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+	Network6s RouterBgpNetwork6TypeArrayInput
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
 	NetworkImportCheck pulumi.StringPtrInput
 	// BGP network table. The structure of `network` block is documented below.
-	Networks RouterBgpNetworkArrayInput
+	Networks RouterBgpNetworkTypeArrayInput
 	// Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
 	RecursiveNextHop pulumi.StringPtrInput
 	// BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -518,8 +528,12 @@ type RouterBgpState struct {
 	ScanTime pulumi.IntPtrInput
 	// Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
 	Synchronization pulumi.StringPtrInput
+	// Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+	TagResolveMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+	VrfLeak6s RouterBgpVrfLeak6ArrayInput
 	// BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
 	VrfLeaks RouterBgpVrfLeakArrayInput
 }
@@ -626,13 +640,13 @@ type routerBgpArgs struct {
 	// BGP neighbor range table. The structure of `neighborRange` block is documented below.
 	NeighborRanges []RouterBgpNeighborRange `pulumi:"neighborRanges"`
 	// BGP neighbor table. The structure of `neighbor` block is documented below.
-	Neighbors []RouterBgpNeighbor `pulumi:"neighbors"`
+	Neighbors []RouterBgpNeighborType `pulumi:"neighbors"`
 	// BGP IPv6 network table. The structure of `network6` block is documented below.
-	Network6s []RouterBgpNetwork6 `pulumi:"network6s"`
-	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+	Network6s []RouterBgpNetwork6Type `pulumi:"network6s"`
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
 	NetworkImportCheck *string `pulumi:"networkImportCheck"`
 	// BGP network table. The structure of `network` block is documented below.
-	Networks []RouterBgpNetwork `pulumi:"networks"`
+	Networks []RouterBgpNetworkType `pulumi:"networks"`
 	// Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
 	RecursiveNextHop *string `pulumi:"recursiveNextHop"`
 	// BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -645,8 +659,12 @@ type routerBgpArgs struct {
 	ScanTime *int `pulumi:"scanTime"`
 	// Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
 	Synchronization *string `pulumi:"synchronization"`
+	// Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+	TagResolveMode *string `pulumi:"tagResolveMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+	VrfLeak6s []RouterBgpVrfLeak6 `pulumi:"vrfLeak6s"`
 	// BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
 	VrfLeaks []RouterBgpVrfLeak `pulumi:"vrfLeaks"`
 }
@@ -750,13 +768,13 @@ type RouterBgpArgs struct {
 	// BGP neighbor range table. The structure of `neighborRange` block is documented below.
 	NeighborRanges RouterBgpNeighborRangeArrayInput
 	// BGP neighbor table. The structure of `neighbor` block is documented below.
-	Neighbors RouterBgpNeighborArrayInput
+	Neighbors RouterBgpNeighborTypeArrayInput
 	// BGP IPv6 network table. The structure of `network6` block is documented below.
-	Network6s RouterBgpNetwork6ArrayInput
-	// Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+	Network6s RouterBgpNetwork6TypeArrayInput
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
 	NetworkImportCheck pulumi.StringPtrInput
 	// BGP network table. The structure of `network` block is documented below.
-	Networks RouterBgpNetworkArrayInput
+	Networks RouterBgpNetworkTypeArrayInput
 	// Enable/disable recursive resolution of next-hop using BGP route. Valid values: `enable`, `disable`.
 	RecursiveNextHop pulumi.StringPtrInput
 	// BGP IPv6 redistribute table. The structure of `redistribute6` block is documented below.
@@ -769,8 +787,12 @@ type RouterBgpArgs struct {
 	ScanTime pulumi.IntPtrInput
 	// Enable/disable only advertise routes from iBGP if routes present in an IGP. Valid values: `enable`, `disable`.
 	Synchronization pulumi.StringPtrInput
+	// Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+	TagResolveMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+	VrfLeak6s RouterBgpVrfLeak6ArrayInput
 	// BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
 	VrfLeaks RouterBgpVrfLeakArrayInput
 }
@@ -787,7 +809,7 @@ type RouterBgpInput interface {
 }
 
 func (*RouterBgp) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterBgp)(nil))
+	return reflect.TypeOf((**RouterBgp)(nil)).Elem()
 }
 
 func (i *RouterBgp) ToRouterBgpOutput() RouterBgpOutput {
@@ -796,35 +818,6 @@ func (i *RouterBgp) ToRouterBgpOutput() RouterBgpOutput {
 
 func (i *RouterBgp) ToRouterBgpOutputWithContext(ctx context.Context) RouterBgpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpOutput)
-}
-
-func (i *RouterBgp) ToRouterBgpPtrOutput() RouterBgpPtrOutput {
-	return i.ToRouterBgpPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterBgp) ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpPtrOutput)
-}
-
-type RouterBgpPtrInput interface {
-	pulumi.Input
-
-	ToRouterBgpPtrOutput() RouterBgpPtrOutput
-	ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput
-}
-
-type routerBgpPtrType RouterBgpArgs
-
-func (*routerBgpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterBgp)(nil))
-}
-
-func (i *routerBgpPtrType) ToRouterBgpPtrOutput() RouterBgpPtrOutput {
-	return i.ToRouterBgpPtrOutputWithContext(context.Background())
-}
-
-func (i *routerBgpPtrType) ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpPtrOutput)
 }
 
 // RouterBgpArrayInput is an input type that accepts RouterBgpArray and RouterBgpArrayOutput values.
@@ -841,7 +834,7 @@ type RouterBgpArrayInput interface {
 type RouterBgpArray []RouterBgpInput
 
 func (RouterBgpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterBgp)(nil))
+	return reflect.TypeOf((*[]*RouterBgp)(nil)).Elem()
 }
 
 func (i RouterBgpArray) ToRouterBgpArrayOutput() RouterBgpArrayOutput {
@@ -866,7 +859,7 @@ type RouterBgpMapInput interface {
 type RouterBgpMap map[string]RouterBgpInput
 
 func (RouterBgpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterBgp)(nil))
+	return reflect.TypeOf((*map[string]*RouterBgp)(nil)).Elem()
 }
 
 func (i RouterBgpMap) ToRouterBgpMapOutput() RouterBgpMapOutput {
@@ -877,12 +870,10 @@ func (i RouterBgpMap) ToRouterBgpMapOutputWithContext(ctx context.Context) Route
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBgpMapOutput)
 }
 
-type RouterBgpOutput struct {
-	*pulumi.OutputState
-}
+type RouterBgpOutput struct{ *pulumi.OutputState }
 
 func (RouterBgpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterBgp)(nil))
+	return reflect.TypeOf((**RouterBgp)(nil)).Elem()
 }
 
 func (o RouterBgpOutput) ToRouterBgpOutput() RouterBgpOutput {
@@ -893,36 +884,10 @@ func (o RouterBgpOutput) ToRouterBgpOutputWithContext(ctx context.Context) Route
 	return o
 }
 
-func (o RouterBgpOutput) ToRouterBgpPtrOutput() RouterBgpPtrOutput {
-	return o.ToRouterBgpPtrOutputWithContext(context.Background())
-}
-
-func (o RouterBgpOutput) ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput {
-	return o.ApplyT(func(v RouterBgp) *RouterBgp {
-		return &v
-	}).(RouterBgpPtrOutput)
-}
-
-type RouterBgpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterBgpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterBgp)(nil))
-}
-
-func (o RouterBgpPtrOutput) ToRouterBgpPtrOutput() RouterBgpPtrOutput {
-	return o
-}
-
-func (o RouterBgpPtrOutput) ToRouterBgpPtrOutputWithContext(ctx context.Context) RouterBgpPtrOutput {
-	return o
-}
-
 type RouterBgpArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterBgpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterBgp)(nil))
+	return reflect.TypeOf((*[]*RouterBgp)(nil)).Elem()
 }
 
 func (o RouterBgpArrayOutput) ToRouterBgpArrayOutput() RouterBgpArrayOutput {
@@ -934,15 +899,15 @@ func (o RouterBgpArrayOutput) ToRouterBgpArrayOutputWithContext(ctx context.Cont
 }
 
 func (o RouterBgpArrayOutput) Index(i pulumi.IntInput) RouterBgpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterBgp {
-		return vs[0].([]RouterBgp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterBgp {
+		return vs[0].([]*RouterBgp)[vs[1].(int)]
 	}).(RouterBgpOutput)
 }
 
 type RouterBgpMapOutput struct{ *pulumi.OutputState }
 
 func (RouterBgpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterBgp)(nil))
+	return reflect.TypeOf((*map[string]*RouterBgp)(nil)).Elem()
 }
 
 func (o RouterBgpMapOutput) ToRouterBgpMapOutput() RouterBgpMapOutput {
@@ -954,14 +919,16 @@ func (o RouterBgpMapOutput) ToRouterBgpMapOutputWithContext(ctx context.Context)
 }
 
 func (o RouterBgpMapOutput) MapIndex(k pulumi.StringInput) RouterBgpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterBgp {
-		return vs[0].(map[string]RouterBgp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterBgp {
+		return vs[0].(map[string]*RouterBgp)[vs[1].(string)]
 	}).(RouterBgpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterBgpInput)(nil)).Elem(), &RouterBgp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterBgpArrayInput)(nil)).Elem(), RouterBgpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterBgpMapInput)(nil)).Elem(), RouterBgpMap{})
 	pulumi.RegisterOutputType(RouterBgpOutput{})
-	pulumi.RegisterOutputType(RouterBgpPtrOutput{})
 	pulumi.RegisterOutputType(RouterBgpArrayOutput{})
 	pulumi.RegisterOutputType(RouterBgpMapOutput{})
 }

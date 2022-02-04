@@ -76,27 +76,25 @@ export class WirelessControllerMpskProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerMpskProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerMpskProfileArgs | WirelessControllerMpskProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerMpskProfileState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["mpskConcurrentClients"] = state ? state.mpskConcurrentClients : undefined;
-            inputs["mpskGroups"] = state ? state.mpskGroups : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["mpskConcurrentClients"] = state ? state.mpskConcurrentClients : undefined;
+            resourceInputs["mpskGroups"] = state ? state.mpskGroups : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerMpskProfileArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["mpskConcurrentClients"] = args ? args.mpskConcurrentClients : undefined;
-            inputs["mpskGroups"] = args ? args.mpskGroups : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["mpskConcurrentClients"] = args ? args.mpskConcurrentClients : undefined;
+            resourceInputs["mpskGroups"] = args ? args.mpskGroups : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerMpskProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerMpskProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

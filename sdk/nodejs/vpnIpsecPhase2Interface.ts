@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname3 = new fortios.VpnIpsecPhase1Interface("trname3", {
  *     acctVerify: "disable",
@@ -374,56 +374,56 @@ export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnIpsecPhase2InterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnIpsecPhase2InterfaceArgs | VpnIpsecPhase2InterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnIpsecPhase2InterfaceState | undefined;
-            inputs["addRoute"] = state ? state.addRoute : undefined;
-            inputs["autoDiscoveryForwarder"] = state ? state.autoDiscoveryForwarder : undefined;
-            inputs["autoDiscoverySender"] = state ? state.autoDiscoverySender : undefined;
-            inputs["autoNegotiate"] = state ? state.autoNegotiate : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dhcpIpsec"] = state ? state.dhcpIpsec : undefined;
-            inputs["dhgrp"] = state ? state.dhgrp : undefined;
-            inputs["diffserv"] = state ? state.diffserv : undefined;
-            inputs["diffservcode"] = state ? state.diffservcode : undefined;
-            inputs["dstAddrType"] = state ? state.dstAddrType : undefined;
-            inputs["dstEndIp"] = state ? state.dstEndIp : undefined;
-            inputs["dstEndIp6"] = state ? state.dstEndIp6 : undefined;
-            inputs["dstName"] = state ? state.dstName : undefined;
-            inputs["dstName6"] = state ? state.dstName6 : undefined;
-            inputs["dstPort"] = state ? state.dstPort : undefined;
-            inputs["dstStartIp"] = state ? state.dstStartIp : undefined;
-            inputs["dstStartIp6"] = state ? state.dstStartIp6 : undefined;
-            inputs["dstSubnet"] = state ? state.dstSubnet : undefined;
-            inputs["dstSubnet6"] = state ? state.dstSubnet6 : undefined;
-            inputs["encapsulation"] = state ? state.encapsulation : undefined;
-            inputs["initiatorTsNarrow"] = state ? state.initiatorTsNarrow : undefined;
-            inputs["ipv4Df"] = state ? state.ipv4Df : undefined;
-            inputs["keepalive"] = state ? state.keepalive : undefined;
-            inputs["keylifeType"] = state ? state.keylifeType : undefined;
-            inputs["keylifekbs"] = state ? state.keylifekbs : undefined;
-            inputs["keylifeseconds"] = state ? state.keylifeseconds : undefined;
-            inputs["l2tp"] = state ? state.l2tp : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pfs"] = state ? state.pfs : undefined;
-            inputs["phase1name"] = state ? state.phase1name : undefined;
-            inputs["proposal"] = state ? state.proposal : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["replay"] = state ? state.replay : undefined;
-            inputs["routeOverlap"] = state ? state.routeOverlap : undefined;
-            inputs["singleSource"] = state ? state.singleSource : undefined;
-            inputs["srcAddrType"] = state ? state.srcAddrType : undefined;
-            inputs["srcEndIp"] = state ? state.srcEndIp : undefined;
-            inputs["srcEndIp6"] = state ? state.srcEndIp6 : undefined;
-            inputs["srcName"] = state ? state.srcName : undefined;
-            inputs["srcName6"] = state ? state.srcName6 : undefined;
-            inputs["srcPort"] = state ? state.srcPort : undefined;
-            inputs["srcStartIp"] = state ? state.srcStartIp : undefined;
-            inputs["srcStartIp6"] = state ? state.srcStartIp6 : undefined;
-            inputs["srcSubnet"] = state ? state.srcSubnet : undefined;
-            inputs["srcSubnet6"] = state ? state.srcSubnet6 : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addRoute"] = state ? state.addRoute : undefined;
+            resourceInputs["autoDiscoveryForwarder"] = state ? state.autoDiscoveryForwarder : undefined;
+            resourceInputs["autoDiscoverySender"] = state ? state.autoDiscoverySender : undefined;
+            resourceInputs["autoNegotiate"] = state ? state.autoNegotiate : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dhcpIpsec"] = state ? state.dhcpIpsec : undefined;
+            resourceInputs["dhgrp"] = state ? state.dhgrp : undefined;
+            resourceInputs["diffserv"] = state ? state.diffserv : undefined;
+            resourceInputs["diffservcode"] = state ? state.diffservcode : undefined;
+            resourceInputs["dstAddrType"] = state ? state.dstAddrType : undefined;
+            resourceInputs["dstEndIp"] = state ? state.dstEndIp : undefined;
+            resourceInputs["dstEndIp6"] = state ? state.dstEndIp6 : undefined;
+            resourceInputs["dstName"] = state ? state.dstName : undefined;
+            resourceInputs["dstName6"] = state ? state.dstName6 : undefined;
+            resourceInputs["dstPort"] = state ? state.dstPort : undefined;
+            resourceInputs["dstStartIp"] = state ? state.dstStartIp : undefined;
+            resourceInputs["dstStartIp6"] = state ? state.dstStartIp6 : undefined;
+            resourceInputs["dstSubnet"] = state ? state.dstSubnet : undefined;
+            resourceInputs["dstSubnet6"] = state ? state.dstSubnet6 : undefined;
+            resourceInputs["encapsulation"] = state ? state.encapsulation : undefined;
+            resourceInputs["initiatorTsNarrow"] = state ? state.initiatorTsNarrow : undefined;
+            resourceInputs["ipv4Df"] = state ? state.ipv4Df : undefined;
+            resourceInputs["keepalive"] = state ? state.keepalive : undefined;
+            resourceInputs["keylifeType"] = state ? state.keylifeType : undefined;
+            resourceInputs["keylifekbs"] = state ? state.keylifekbs : undefined;
+            resourceInputs["keylifeseconds"] = state ? state.keylifeseconds : undefined;
+            resourceInputs["l2tp"] = state ? state.l2tp : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pfs"] = state ? state.pfs : undefined;
+            resourceInputs["phase1name"] = state ? state.phase1name : undefined;
+            resourceInputs["proposal"] = state ? state.proposal : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["replay"] = state ? state.replay : undefined;
+            resourceInputs["routeOverlap"] = state ? state.routeOverlap : undefined;
+            resourceInputs["singleSource"] = state ? state.singleSource : undefined;
+            resourceInputs["srcAddrType"] = state ? state.srcAddrType : undefined;
+            resourceInputs["srcEndIp"] = state ? state.srcEndIp : undefined;
+            resourceInputs["srcEndIp6"] = state ? state.srcEndIp6 : undefined;
+            resourceInputs["srcName"] = state ? state.srcName : undefined;
+            resourceInputs["srcName6"] = state ? state.srcName6 : undefined;
+            resourceInputs["srcPort"] = state ? state.srcPort : undefined;
+            resourceInputs["srcStartIp"] = state ? state.srcStartIp : undefined;
+            resourceInputs["srcStartIp6"] = state ? state.srcStartIp6 : undefined;
+            resourceInputs["srcSubnet"] = state ? state.srcSubnet : undefined;
+            resourceInputs["srcSubnet6"] = state ? state.srcSubnet6 : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnIpsecPhase2InterfaceArgs | undefined;
             if ((!args || args.phase1name === undefined) && !opts.urn) {
@@ -432,57 +432,55 @@ export class VpnIpsecPhase2Interface extends pulumi.CustomResource {
             if ((!args || args.proposal === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'proposal'");
             }
-            inputs["addRoute"] = args ? args.addRoute : undefined;
-            inputs["autoDiscoveryForwarder"] = args ? args.autoDiscoveryForwarder : undefined;
-            inputs["autoDiscoverySender"] = args ? args.autoDiscoverySender : undefined;
-            inputs["autoNegotiate"] = args ? args.autoNegotiate : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dhcpIpsec"] = args ? args.dhcpIpsec : undefined;
-            inputs["dhgrp"] = args ? args.dhgrp : undefined;
-            inputs["diffserv"] = args ? args.diffserv : undefined;
-            inputs["diffservcode"] = args ? args.diffservcode : undefined;
-            inputs["dstAddrType"] = args ? args.dstAddrType : undefined;
-            inputs["dstEndIp"] = args ? args.dstEndIp : undefined;
-            inputs["dstEndIp6"] = args ? args.dstEndIp6 : undefined;
-            inputs["dstName"] = args ? args.dstName : undefined;
-            inputs["dstName6"] = args ? args.dstName6 : undefined;
-            inputs["dstPort"] = args ? args.dstPort : undefined;
-            inputs["dstStartIp"] = args ? args.dstStartIp : undefined;
-            inputs["dstStartIp6"] = args ? args.dstStartIp6 : undefined;
-            inputs["dstSubnet"] = args ? args.dstSubnet : undefined;
-            inputs["dstSubnet6"] = args ? args.dstSubnet6 : undefined;
-            inputs["encapsulation"] = args ? args.encapsulation : undefined;
-            inputs["initiatorTsNarrow"] = args ? args.initiatorTsNarrow : undefined;
-            inputs["ipv4Df"] = args ? args.ipv4Df : undefined;
-            inputs["keepalive"] = args ? args.keepalive : undefined;
-            inputs["keylifeType"] = args ? args.keylifeType : undefined;
-            inputs["keylifekbs"] = args ? args.keylifekbs : undefined;
-            inputs["keylifeseconds"] = args ? args.keylifeseconds : undefined;
-            inputs["l2tp"] = args ? args.l2tp : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pfs"] = args ? args.pfs : undefined;
-            inputs["phase1name"] = args ? args.phase1name : undefined;
-            inputs["proposal"] = args ? args.proposal : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["replay"] = args ? args.replay : undefined;
-            inputs["routeOverlap"] = args ? args.routeOverlap : undefined;
-            inputs["singleSource"] = args ? args.singleSource : undefined;
-            inputs["srcAddrType"] = args ? args.srcAddrType : undefined;
-            inputs["srcEndIp"] = args ? args.srcEndIp : undefined;
-            inputs["srcEndIp6"] = args ? args.srcEndIp6 : undefined;
-            inputs["srcName"] = args ? args.srcName : undefined;
-            inputs["srcName6"] = args ? args.srcName6 : undefined;
-            inputs["srcPort"] = args ? args.srcPort : undefined;
-            inputs["srcStartIp"] = args ? args.srcStartIp : undefined;
-            inputs["srcStartIp6"] = args ? args.srcStartIp6 : undefined;
-            inputs["srcSubnet"] = args ? args.srcSubnet : undefined;
-            inputs["srcSubnet6"] = args ? args.srcSubnet6 : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addRoute"] = args ? args.addRoute : undefined;
+            resourceInputs["autoDiscoveryForwarder"] = args ? args.autoDiscoveryForwarder : undefined;
+            resourceInputs["autoDiscoverySender"] = args ? args.autoDiscoverySender : undefined;
+            resourceInputs["autoNegotiate"] = args ? args.autoNegotiate : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dhcpIpsec"] = args ? args.dhcpIpsec : undefined;
+            resourceInputs["dhgrp"] = args ? args.dhgrp : undefined;
+            resourceInputs["diffserv"] = args ? args.diffserv : undefined;
+            resourceInputs["diffservcode"] = args ? args.diffservcode : undefined;
+            resourceInputs["dstAddrType"] = args ? args.dstAddrType : undefined;
+            resourceInputs["dstEndIp"] = args ? args.dstEndIp : undefined;
+            resourceInputs["dstEndIp6"] = args ? args.dstEndIp6 : undefined;
+            resourceInputs["dstName"] = args ? args.dstName : undefined;
+            resourceInputs["dstName6"] = args ? args.dstName6 : undefined;
+            resourceInputs["dstPort"] = args ? args.dstPort : undefined;
+            resourceInputs["dstStartIp"] = args ? args.dstStartIp : undefined;
+            resourceInputs["dstStartIp6"] = args ? args.dstStartIp6 : undefined;
+            resourceInputs["dstSubnet"] = args ? args.dstSubnet : undefined;
+            resourceInputs["dstSubnet6"] = args ? args.dstSubnet6 : undefined;
+            resourceInputs["encapsulation"] = args ? args.encapsulation : undefined;
+            resourceInputs["initiatorTsNarrow"] = args ? args.initiatorTsNarrow : undefined;
+            resourceInputs["ipv4Df"] = args ? args.ipv4Df : undefined;
+            resourceInputs["keepalive"] = args ? args.keepalive : undefined;
+            resourceInputs["keylifeType"] = args ? args.keylifeType : undefined;
+            resourceInputs["keylifekbs"] = args ? args.keylifekbs : undefined;
+            resourceInputs["keylifeseconds"] = args ? args.keylifeseconds : undefined;
+            resourceInputs["l2tp"] = args ? args.l2tp : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pfs"] = args ? args.pfs : undefined;
+            resourceInputs["phase1name"] = args ? args.phase1name : undefined;
+            resourceInputs["proposal"] = args ? args.proposal : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["replay"] = args ? args.replay : undefined;
+            resourceInputs["routeOverlap"] = args ? args.routeOverlap : undefined;
+            resourceInputs["singleSource"] = args ? args.singleSource : undefined;
+            resourceInputs["srcAddrType"] = args ? args.srcAddrType : undefined;
+            resourceInputs["srcEndIp"] = args ? args.srcEndIp : undefined;
+            resourceInputs["srcEndIp6"] = args ? args.srcEndIp6 : undefined;
+            resourceInputs["srcName"] = args ? args.srcName : undefined;
+            resourceInputs["srcName6"] = args ? args.srcName6 : undefined;
+            resourceInputs["srcPort"] = args ? args.srcPort : undefined;
+            resourceInputs["srcStartIp"] = args ? args.srcStartIp : undefined;
+            resourceInputs["srcStartIp6"] = args ? args.srcStartIp6 : undefined;
+            resourceInputs["srcSubnet"] = args ? args.srcSubnet : undefined;
+            resourceInputs["srcSubnet6"] = args ? args.srcSubnet6 : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnIpsecPhase2Interface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnIpsecPhase2Interface.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -160,8 +161,8 @@ import (
 // 		}
 // 		_, err = fortios.NewSystemIpsecAggregate(ctx, "trname", &fortios.SystemIpsecAggregateArgs{
 // 			Algorithm: pulumi.String("round-robin"),
-// 			Members: fortios.SystemIpsecAggregateMemberArray{
-// 				&fortios.SystemIpsecAggregateMemberArgs{
+// 			Members: SystemIpsecAggregateMemberArray{
+// 				&SystemIpsecAggregateMemberArgs{
 // 					TunnelName: trname1VpnIpsecPhase1Interface.Name,
 // 				},
 // 			},
@@ -208,6 +209,7 @@ func NewSystemIpsecAggregate(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemIpsecAggregate
 	err := ctx.RegisterResource("fortios:index/systemIpsecAggregate:SystemIpsecAggregate", name, args, &resource, opts...)
 	if err != nil {
@@ -298,7 +300,7 @@ type SystemIpsecAggregateInput interface {
 }
 
 func (*SystemIpsecAggregate) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpsecAggregate)(nil))
+	return reflect.TypeOf((**SystemIpsecAggregate)(nil)).Elem()
 }
 
 func (i *SystemIpsecAggregate) ToSystemIpsecAggregateOutput() SystemIpsecAggregateOutput {
@@ -307,35 +309,6 @@ func (i *SystemIpsecAggregate) ToSystemIpsecAggregateOutput() SystemIpsecAggrega
 
 func (i *SystemIpsecAggregate) ToSystemIpsecAggregateOutputWithContext(ctx context.Context) SystemIpsecAggregateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsecAggregateOutput)
-}
-
-func (i *SystemIpsecAggregate) ToSystemIpsecAggregatePtrOutput() SystemIpsecAggregatePtrOutput {
-	return i.ToSystemIpsecAggregatePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemIpsecAggregate) ToSystemIpsecAggregatePtrOutputWithContext(ctx context.Context) SystemIpsecAggregatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsecAggregatePtrOutput)
-}
-
-type SystemIpsecAggregatePtrInput interface {
-	pulumi.Input
-
-	ToSystemIpsecAggregatePtrOutput() SystemIpsecAggregatePtrOutput
-	ToSystemIpsecAggregatePtrOutputWithContext(ctx context.Context) SystemIpsecAggregatePtrOutput
-}
-
-type systemIpsecAggregatePtrType SystemIpsecAggregateArgs
-
-func (*systemIpsecAggregatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpsecAggregate)(nil))
-}
-
-func (i *systemIpsecAggregatePtrType) ToSystemIpsecAggregatePtrOutput() SystemIpsecAggregatePtrOutput {
-	return i.ToSystemIpsecAggregatePtrOutputWithContext(context.Background())
-}
-
-func (i *systemIpsecAggregatePtrType) ToSystemIpsecAggregatePtrOutputWithContext(ctx context.Context) SystemIpsecAggregatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsecAggregatePtrOutput)
 }
 
 // SystemIpsecAggregateArrayInput is an input type that accepts SystemIpsecAggregateArray and SystemIpsecAggregateArrayOutput values.
@@ -352,7 +325,7 @@ type SystemIpsecAggregateArrayInput interface {
 type SystemIpsecAggregateArray []SystemIpsecAggregateInput
 
 func (SystemIpsecAggregateArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemIpsecAggregate)(nil))
+	return reflect.TypeOf((*[]*SystemIpsecAggregate)(nil)).Elem()
 }
 
 func (i SystemIpsecAggregateArray) ToSystemIpsecAggregateArrayOutput() SystemIpsecAggregateArrayOutput {
@@ -377,7 +350,7 @@ type SystemIpsecAggregateMapInput interface {
 type SystemIpsecAggregateMap map[string]SystemIpsecAggregateInput
 
 func (SystemIpsecAggregateMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemIpsecAggregate)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpsecAggregate)(nil)).Elem()
 }
 
 func (i SystemIpsecAggregateMap) ToSystemIpsecAggregateMapOutput() SystemIpsecAggregateMapOutput {
@@ -388,12 +361,10 @@ func (i SystemIpsecAggregateMap) ToSystemIpsecAggregateMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsecAggregateMapOutput)
 }
 
-type SystemIpsecAggregateOutput struct {
-	*pulumi.OutputState
-}
+type SystemIpsecAggregateOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsecAggregateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpsecAggregate)(nil))
+	return reflect.TypeOf((**SystemIpsecAggregate)(nil)).Elem()
 }
 
 func (o SystemIpsecAggregateOutput) ToSystemIpsecAggregateOutput() SystemIpsecAggregateOutput {
@@ -404,36 +375,10 @@ func (o SystemIpsecAggregateOutput) ToSystemIpsecAggregateOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemIpsecAggregateOutput) ToSystemIpsecAggregatePtrOutput() SystemIpsecAggregatePtrOutput {
-	return o.ToSystemIpsecAggregatePtrOutputWithContext(context.Background())
-}
-
-func (o SystemIpsecAggregateOutput) ToSystemIpsecAggregatePtrOutputWithContext(ctx context.Context) SystemIpsecAggregatePtrOutput {
-	return o.ApplyT(func(v SystemIpsecAggregate) *SystemIpsecAggregate {
-		return &v
-	}).(SystemIpsecAggregatePtrOutput)
-}
-
-type SystemIpsecAggregatePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemIpsecAggregatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpsecAggregate)(nil))
-}
-
-func (o SystemIpsecAggregatePtrOutput) ToSystemIpsecAggregatePtrOutput() SystemIpsecAggregatePtrOutput {
-	return o
-}
-
-func (o SystemIpsecAggregatePtrOutput) ToSystemIpsecAggregatePtrOutputWithContext(ctx context.Context) SystemIpsecAggregatePtrOutput {
-	return o
-}
-
 type SystemIpsecAggregateArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsecAggregateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemIpsecAggregate)(nil))
+	return reflect.TypeOf((*[]*SystemIpsecAggregate)(nil)).Elem()
 }
 
 func (o SystemIpsecAggregateArrayOutput) ToSystemIpsecAggregateArrayOutput() SystemIpsecAggregateArrayOutput {
@@ -445,15 +390,15 @@ func (o SystemIpsecAggregateArrayOutput) ToSystemIpsecAggregateArrayOutputWithCo
 }
 
 func (o SystemIpsecAggregateArrayOutput) Index(i pulumi.IntInput) SystemIpsecAggregateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemIpsecAggregate {
-		return vs[0].([]SystemIpsecAggregate)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpsecAggregate {
+		return vs[0].([]*SystemIpsecAggregate)[vs[1].(int)]
 	}).(SystemIpsecAggregateOutput)
 }
 
 type SystemIpsecAggregateMapOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsecAggregateMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemIpsecAggregate)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpsecAggregate)(nil)).Elem()
 }
 
 func (o SystemIpsecAggregateMapOutput) ToSystemIpsecAggregateMapOutput() SystemIpsecAggregateMapOutput {
@@ -465,14 +410,16 @@ func (o SystemIpsecAggregateMapOutput) ToSystemIpsecAggregateMapOutputWithContex
 }
 
 func (o SystemIpsecAggregateMapOutput) MapIndex(k pulumi.StringInput) SystemIpsecAggregateOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemIpsecAggregate {
-		return vs[0].(map[string]SystemIpsecAggregate)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemIpsecAggregate {
+		return vs[0].(map[string]*SystemIpsecAggregate)[vs[1].(string)]
 	}).(SystemIpsecAggregateOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsecAggregateInput)(nil)).Elem(), &SystemIpsecAggregate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsecAggregateArrayInput)(nil)).Elem(), SystemIpsecAggregateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsecAggregateMapInput)(nil)).Elem(), SystemIpsecAggregateMap{})
 	pulumi.RegisterOutputType(SystemIpsecAggregateOutput{})
-	pulumi.RegisterOutputType(SystemIpsecAggregatePtrOutput{})
 	pulumi.RegisterOutputType(SystemIpsecAggregateArrayOutput{})
 	pulumi.RegisterOutputType(SystemIpsecAggregateMapOutput{})
 }

@@ -28,6 +28,8 @@ type RouterospfNetwork struct {
 
 	// Attach the network to area.
 	Area pulumi.StringOutput `pulumi:"area"`
+	// Comment.
+	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Network entry ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
 	// Prefix.
@@ -43,6 +45,7 @@ func NewRouterospfNetwork(ctx *pulumi.Context,
 		args = &RouterospfNetworkArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterospfNetwork
 	err := ctx.RegisterResource("fortios:index/routerospfNetwork:RouterospfNetwork", name, args, &resource, opts...)
 	if err != nil {
@@ -67,6 +70,8 @@ func GetRouterospfNetwork(ctx *pulumi.Context,
 type routerospfNetworkState struct {
 	// Attach the network to area.
 	Area *string `pulumi:"area"`
+	// Comment.
+	Comments *string `pulumi:"comments"`
 	// Network entry ID.
 	Fosid *int `pulumi:"fosid"`
 	// Prefix.
@@ -78,6 +83,8 @@ type routerospfNetworkState struct {
 type RouterospfNetworkState struct {
 	// Attach the network to area.
 	Area pulumi.StringPtrInput
+	// Comment.
+	Comments pulumi.StringPtrInput
 	// Network entry ID.
 	Fosid pulumi.IntPtrInput
 	// Prefix.
@@ -93,6 +100,8 @@ func (RouterospfNetworkState) ElementType() reflect.Type {
 type routerospfNetworkArgs struct {
 	// Attach the network to area.
 	Area *string `pulumi:"area"`
+	// Comment.
+	Comments *string `pulumi:"comments"`
 	// Network entry ID.
 	Fosid *int `pulumi:"fosid"`
 	// Prefix.
@@ -105,6 +114,8 @@ type routerospfNetworkArgs struct {
 type RouterospfNetworkArgs struct {
 	// Attach the network to area.
 	Area pulumi.StringPtrInput
+	// Comment.
+	Comments pulumi.StringPtrInput
 	// Network entry ID.
 	Fosid pulumi.IntPtrInput
 	// Prefix.
@@ -125,7 +136,7 @@ type RouterospfNetworkInput interface {
 }
 
 func (*RouterospfNetwork) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterospfNetwork)(nil))
+	return reflect.TypeOf((**RouterospfNetwork)(nil)).Elem()
 }
 
 func (i *RouterospfNetwork) ToRouterospfNetworkOutput() RouterospfNetworkOutput {
@@ -134,35 +145,6 @@ func (i *RouterospfNetwork) ToRouterospfNetworkOutput() RouterospfNetworkOutput 
 
 func (i *RouterospfNetwork) ToRouterospfNetworkOutputWithContext(ctx context.Context) RouterospfNetworkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNetworkOutput)
-}
-
-func (i *RouterospfNetwork) ToRouterospfNetworkPtrOutput() RouterospfNetworkPtrOutput {
-	return i.ToRouterospfNetworkPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterospfNetwork) ToRouterospfNetworkPtrOutputWithContext(ctx context.Context) RouterospfNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNetworkPtrOutput)
-}
-
-type RouterospfNetworkPtrInput interface {
-	pulumi.Input
-
-	ToRouterospfNetworkPtrOutput() RouterospfNetworkPtrOutput
-	ToRouterospfNetworkPtrOutputWithContext(ctx context.Context) RouterospfNetworkPtrOutput
-}
-
-type routerospfNetworkPtrType RouterospfNetworkArgs
-
-func (*routerospfNetworkPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterospfNetwork)(nil))
-}
-
-func (i *routerospfNetworkPtrType) ToRouterospfNetworkPtrOutput() RouterospfNetworkPtrOutput {
-	return i.ToRouterospfNetworkPtrOutputWithContext(context.Background())
-}
-
-func (i *routerospfNetworkPtrType) ToRouterospfNetworkPtrOutputWithContext(ctx context.Context) RouterospfNetworkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNetworkPtrOutput)
 }
 
 // RouterospfNetworkArrayInput is an input type that accepts RouterospfNetworkArray and RouterospfNetworkArrayOutput values.
@@ -179,7 +161,7 @@ type RouterospfNetworkArrayInput interface {
 type RouterospfNetworkArray []RouterospfNetworkInput
 
 func (RouterospfNetworkArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterospfNetwork)(nil))
+	return reflect.TypeOf((*[]*RouterospfNetwork)(nil)).Elem()
 }
 
 func (i RouterospfNetworkArray) ToRouterospfNetworkArrayOutput() RouterospfNetworkArrayOutput {
@@ -204,7 +186,7 @@ type RouterospfNetworkMapInput interface {
 type RouterospfNetworkMap map[string]RouterospfNetworkInput
 
 func (RouterospfNetworkMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterospfNetwork)(nil))
+	return reflect.TypeOf((*map[string]*RouterospfNetwork)(nil)).Elem()
 }
 
 func (i RouterospfNetworkMap) ToRouterospfNetworkMapOutput() RouterospfNetworkMapOutput {
@@ -215,12 +197,10 @@ func (i RouterospfNetworkMap) ToRouterospfNetworkMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfNetworkMapOutput)
 }
 
-type RouterospfNetworkOutput struct {
-	*pulumi.OutputState
-}
+type RouterospfNetworkOutput struct{ *pulumi.OutputState }
 
 func (RouterospfNetworkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterospfNetwork)(nil))
+	return reflect.TypeOf((**RouterospfNetwork)(nil)).Elem()
 }
 
 func (o RouterospfNetworkOutput) ToRouterospfNetworkOutput() RouterospfNetworkOutput {
@@ -231,36 +211,10 @@ func (o RouterospfNetworkOutput) ToRouterospfNetworkOutputWithContext(ctx contex
 	return o
 }
 
-func (o RouterospfNetworkOutput) ToRouterospfNetworkPtrOutput() RouterospfNetworkPtrOutput {
-	return o.ToRouterospfNetworkPtrOutputWithContext(context.Background())
-}
-
-func (o RouterospfNetworkOutput) ToRouterospfNetworkPtrOutputWithContext(ctx context.Context) RouterospfNetworkPtrOutput {
-	return o.ApplyT(func(v RouterospfNetwork) *RouterospfNetwork {
-		return &v
-	}).(RouterospfNetworkPtrOutput)
-}
-
-type RouterospfNetworkPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterospfNetworkPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterospfNetwork)(nil))
-}
-
-func (o RouterospfNetworkPtrOutput) ToRouterospfNetworkPtrOutput() RouterospfNetworkPtrOutput {
-	return o
-}
-
-func (o RouterospfNetworkPtrOutput) ToRouterospfNetworkPtrOutputWithContext(ctx context.Context) RouterospfNetworkPtrOutput {
-	return o
-}
-
 type RouterospfNetworkArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterospfNetworkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterospfNetwork)(nil))
+	return reflect.TypeOf((*[]*RouterospfNetwork)(nil)).Elem()
 }
 
 func (o RouterospfNetworkArrayOutput) ToRouterospfNetworkArrayOutput() RouterospfNetworkArrayOutput {
@@ -272,15 +226,15 @@ func (o RouterospfNetworkArrayOutput) ToRouterospfNetworkArrayOutputWithContext(
 }
 
 func (o RouterospfNetworkArrayOutput) Index(i pulumi.IntInput) RouterospfNetworkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterospfNetwork {
-		return vs[0].([]RouterospfNetwork)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterospfNetwork {
+		return vs[0].([]*RouterospfNetwork)[vs[1].(int)]
 	}).(RouterospfNetworkOutput)
 }
 
 type RouterospfNetworkMapOutput struct{ *pulumi.OutputState }
 
 func (RouterospfNetworkMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterospfNetwork)(nil))
+	return reflect.TypeOf((*map[string]*RouterospfNetwork)(nil)).Elem()
 }
 
 func (o RouterospfNetworkMapOutput) ToRouterospfNetworkMapOutput() RouterospfNetworkMapOutput {
@@ -292,14 +246,16 @@ func (o RouterospfNetworkMapOutput) ToRouterospfNetworkMapOutputWithContext(ctx 
 }
 
 func (o RouterospfNetworkMapOutput) MapIndex(k pulumi.StringInput) RouterospfNetworkOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterospfNetwork {
-		return vs[0].(map[string]RouterospfNetwork)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterospfNetwork {
+		return vs[0].(map[string]*RouterospfNetwork)[vs[1].(string)]
 	}).(RouterospfNetworkOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterospfNetworkInput)(nil)).Elem(), &RouterospfNetwork{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterospfNetworkArrayInput)(nil)).Elem(), RouterospfNetworkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterospfNetworkMapInput)(nil)).Elem(), RouterospfNetworkMap{})
 	pulumi.RegisterOutputType(RouterospfNetworkOutput{})
-	pulumi.RegisterOutputType(RouterospfNetworkPtrOutput{})
 	pulumi.RegisterOutputType(RouterospfNetworkArrayOutput{})
 	pulumi.RegisterOutputType(RouterospfNetworkMapOutput{})
 }

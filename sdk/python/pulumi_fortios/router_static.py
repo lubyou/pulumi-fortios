@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RouterStaticArgs', 'RouterStatic']
 
@@ -21,12 +23,14 @@ class RouterStaticArgs:
                  dst: Optional[pulumi.Input[str]] = None,
                  dstaddr: Optional[pulumi.Input[str]] = None,
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -44,12 +48,14 @@ class RouterStaticArgs:
         :param pulumi.Input[str] dst: Destination IP and mask for this route.
         :param pulumi.Input[str] dstaddr: Name of firewall address or address group.
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: Gateway IP for this route.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -74,6 +80,8 @@ class RouterStaticArgs:
             pulumi.set(__self__, "dstaddr", dstaddr)
         if dynamic_gateway is not None:
             pulumi.set(__self__, "dynamic_gateway", dynamic_gateway)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if internet_service is not None:
@@ -86,6 +94,8 @@ class RouterStaticArgs:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
             pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zones is not None:
+            pulumi.set(__self__, "sdwan_zones", sdwan_zones)
         if seq_num is not None:
             pulumi.set(__self__, "seq_num", seq_num)
         if src is not None:
@@ -198,6 +208,18 @@ class RouterStaticArgs:
         pulumi.set(self, "dynamic_gateway", value)
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[str]]:
         """
@@ -268,6 +290,18 @@ class RouterStaticArgs:
     @sdwan.setter
     def sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdwan", value)
+
+    @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]]:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
+
+    @sdwan_zones.setter
+    def sdwan_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]]):
+        pulumi.set(self, "sdwan_zones", value)
 
     @property
     @pulumi.getter(name="seqNum")
@@ -365,12 +399,14 @@ class _RouterStaticState:
                  dst: Optional[pulumi.Input[str]] = None,
                  dstaddr: Optional[pulumi.Input[str]] = None,
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -388,12 +424,14 @@ class _RouterStaticState:
         :param pulumi.Input[str] dst: Destination IP and mask for this route.
         :param pulumi.Input[str] dstaddr: Name of firewall address or address group.
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: Gateway IP for this route.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -418,6 +456,8 @@ class _RouterStaticState:
             pulumi.set(__self__, "dstaddr", dstaddr)
         if dynamic_gateway is not None:
             pulumi.set(__self__, "dynamic_gateway", dynamic_gateway)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if internet_service is not None:
@@ -430,6 +470,8 @@ class _RouterStaticState:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
             pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zones is not None:
+            pulumi.set(__self__, "sdwan_zones", sdwan_zones)
         if seq_num is not None:
             pulumi.set(__self__, "seq_num", seq_num)
         if src is not None:
@@ -542,6 +584,18 @@ class _RouterStaticState:
         pulumi.set(self, "dynamic_gateway", value)
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[str]]:
         """
@@ -612,6 +666,18 @@ class _RouterStaticState:
     @sdwan.setter
     def sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdwan", value)
+
+    @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]]:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
+
+    @sdwan_zones.setter
+    def sdwan_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStaticSdwanZoneArgs']]]]):
+        pulumi.set(self, "sdwan_zones", value)
 
     @property
     @pulumi.getter(name="seqNum")
@@ -711,12 +777,14 @@ class RouterStatic(pulumi.CustomResource):
                  dst: Optional[pulumi.Input[str]] = None,
                  dstaddr: Optional[pulumi.Input[str]] = None,
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -773,12 +841,14 @@ class RouterStatic(pulumi.CustomResource):
         :param pulumi.Input[str] dst: Destination IP and mask for this route.
         :param pulumi.Input[str] dstaddr: Name of firewall address or address group.
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: Gateway IP for this route.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -854,12 +924,14 @@ class RouterStatic(pulumi.CustomResource):
                  dst: Optional[pulumi.Input[str]] = None,
                  dstaddr: Optional[pulumi.Input[str]] = None,
                  dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  internet_service: Optional[pulumi.Input[int]] = None,
                  internet_service_custom: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  src: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -874,6 +946,8 @@ class RouterStatic(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -887,12 +961,14 @@ class RouterStatic(pulumi.CustomResource):
             __props__.__dict__["dst"] = dst
             __props__.__dict__["dstaddr"] = dstaddr
             __props__.__dict__["dynamic_gateway"] = dynamic_gateway
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gateway"] = gateway
             __props__.__dict__["internet_service"] = internet_service
             __props__.__dict__["internet_service_custom"] = internet_service_custom
             __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
             __props__.__dict__["priority"] = priority
             __props__.__dict__["sdwan"] = sdwan
+            __props__.__dict__["sdwan_zones"] = sdwan_zones
             __props__.__dict__["seq_num"] = seq_num
             __props__.__dict__["src"] = src
             __props__.__dict__["status"] = status
@@ -918,12 +994,14 @@ class RouterStatic(pulumi.CustomResource):
             dst: Optional[pulumi.Input[str]] = None,
             dstaddr: Optional[pulumi.Input[str]] = None,
             dynamic_gateway: Optional[pulumi.Input[str]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
             internet_service: Optional[pulumi.Input[int]] = None,
             internet_service_custom: Optional[pulumi.Input[str]] = None,
             link_monitor_exempt: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
+            sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]]] = None,
             seq_num: Optional[pulumi.Input[int]] = None,
             src: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -946,12 +1024,14 @@ class RouterStatic(pulumi.CustomResource):
         :param pulumi.Input[str] dst: Destination IP and mask for this route.
         :param pulumi.Input[str] dstaddr: Name of firewall address or address group.
         :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: Gateway IP for this route.
         :param pulumi.Input[int] internet_service: Application ID in the Internet service database.
         :param pulumi.Input[str] internet_service_custom: Application name in the Internet service custom database.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawing this route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStaticSdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] src: Source prefix for this route.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
@@ -972,12 +1052,14 @@ class RouterStatic(pulumi.CustomResource):
         __props__.__dict__["dst"] = dst
         __props__.__dict__["dstaddr"] = dstaddr
         __props__.__dict__["dynamic_gateway"] = dynamic_gateway
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gateway"] = gateway
         __props__.__dict__["internet_service"] = internet_service
         __props__.__dict__["internet_service_custom"] = internet_service_custom
         __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
         __props__.__dict__["priority"] = priority
         __props__.__dict__["sdwan"] = sdwan
+        __props__.__dict__["sdwan_zones"] = sdwan_zones
         __props__.__dict__["seq_num"] = seq_num
         __props__.__dict__["src"] = src
         __props__.__dict__["status"] = status
@@ -1052,6 +1134,14 @@ class RouterStatic(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_gateway")
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
     @pulumi.getter
     def gateway(self) -> pulumi.Output[str]:
         """
@@ -1098,6 +1188,14 @@ class RouterStatic(pulumi.CustomResource):
         Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "sdwan")
+
+    @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> pulumi.Output[Optional[Sequence['outputs.RouterStaticSdwanZone']]]:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
 
     @property
     @pulumi.getter(name="seqNum")

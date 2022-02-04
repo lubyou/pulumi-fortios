@@ -297,7 +297,7 @@ class CifsDomainController(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Define known domain controller servers. Applies to FortiOS Version `<= 6.4.0`.
+        Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
 
         ## Import
 
@@ -327,7 +327,7 @@ class CifsDomainController(pulumi.CustomResource):
                  args: Optional[CifsDomainControllerArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Define known domain controller servers. Applies to FortiOS Version `<= 6.4.0`.
+        Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
 
         ## Import
 
@@ -369,6 +369,8 @@ class CifsDomainController(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

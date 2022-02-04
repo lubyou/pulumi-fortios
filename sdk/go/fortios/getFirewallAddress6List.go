@@ -4,12 +4,16 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallAddress6`.
-func GetFirewallAddress6List(ctx *pulumi.Context, args *GetFirewallAddress6ListArgs, opts ...pulumi.InvokeOption) (*GetFirewallAddress6ListResult, error) {
-	var rv GetFirewallAddress6ListResult
+func LookupFirewallAddress6List(ctx *pulumi.Context, args *LookupFirewallAddress6ListArgs, opts ...pulumi.InvokeOption) (*LookupFirewallAddress6ListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
+	var rv LookupFirewallAddress6ListResult
 	err := ctx.Invoke("fortios:index/getFirewallAddress6List:GetFirewallAddress6List", args, &rv, opts...)
 	if err != nil {
 		return nil, err
@@ -18,18 +22,75 @@ func GetFirewallAddress6List(ctx *pulumi.Context, args *GetFirewallAddress6ListA
 }
 
 // A collection of arguments for invoking GetFirewallAddress6List.
-type GetFirewallAddress6ListArgs struct {
+type LookupFirewallAddress6ListArgs struct {
 	Filter *string `pulumi:"filter"`
 	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // A collection of values returned by GetFirewallAddress6List.
-type GetFirewallAddress6ListResult struct {
+type LookupFirewallAddress6ListResult struct {
 	Filter *string `pulumi:"filter"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// A list of the `FirewallAddress6`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func LookupFirewallAddress6ListOutput(ctx *pulumi.Context, args LookupFirewallAddress6ListOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallAddress6ListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallAddress6ListResult, error) {
+			args := v.(LookupFirewallAddress6ListArgs)
+			r, err := LookupFirewallAddress6List(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallAddress6ListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallAddress6List.
+type LookupFirewallAddress6ListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallAddress6ListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddress6ListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallAddress6List.
+type LookupFirewallAddress6ListResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallAddress6ListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddress6ListResult)(nil)).Elem()
+}
+
+func (o LookupFirewallAddress6ListResultOutput) ToLookupFirewallAddress6ListResultOutput() LookupFirewallAddress6ListResultOutput {
+	return o
+}
+
+func (o LookupFirewallAddress6ListResultOutput) ToLookupFirewallAddress6ListResultOutputWithContext(ctx context.Context) LookupFirewallAddress6ListResultOutput {
+	return o
+}
+
+func (o LookupFirewallAddress6ListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6ListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallAddress6ListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6ListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallAddress6`.
+func (o LookupFirewallAddress6ListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6ListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o LookupFirewallAddress6ListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6ListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallAddress6ListResultOutput{})
 }

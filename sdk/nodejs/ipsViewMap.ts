@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * configure ips view-map
+ * configure ips view-map Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -79,29 +79,27 @@ export class IpsViewMap extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IpsViewMapArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IpsViewMapArgs | IpsViewMapState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpsViewMapState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["idPolicyId"] = state ? state.idPolicyId : undefined;
-            inputs["policyId"] = state ? state.policyId : undefined;
-            inputs["vdomId"] = state ? state.vdomId : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["which"] = state ? state.which : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["idPolicyId"] = state ? state.idPolicyId : undefined;
+            resourceInputs["policyId"] = state ? state.policyId : undefined;
+            resourceInputs["vdomId"] = state ? state.vdomId : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["which"] = state ? state.which : undefined;
         } else {
             const args = argsOrState as IpsViewMapArgs | undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["idPolicyId"] = args ? args.idPolicyId : undefined;
-            inputs["policyId"] = args ? args.policyId : undefined;
-            inputs["vdomId"] = args ? args.vdomId : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["which"] = args ? args.which : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["idPolicyId"] = args ? args.idPolicyId : undefined;
+            resourceInputs["policyId"] = args ? args.policyId : undefined;
+            resourceInputs["vdomId"] = args ? args.vdomId : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["which"] = args ? args.which : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IpsViewMap.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IpsViewMap.__pulumiType, name, resourceInputs, opts);
     }
 }
 

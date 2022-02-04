@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -74,6 +74,7 @@ func NewSshFilterProfile(ctx *pulumi.Context,
 		args = &SshFilterProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SshFilterProfile
 	err := ctx.RegisterResource("fortios:index/sshFilterProfile:SshFilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -188,7 +189,7 @@ type SshFilterProfileInput interface {
 }
 
 func (*SshFilterProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*SshFilterProfile)(nil))
+	return reflect.TypeOf((**SshFilterProfile)(nil)).Elem()
 }
 
 func (i *SshFilterProfile) ToSshFilterProfileOutput() SshFilterProfileOutput {
@@ -197,35 +198,6 @@ func (i *SshFilterProfile) ToSshFilterProfileOutput() SshFilterProfileOutput {
 
 func (i *SshFilterProfile) ToSshFilterProfileOutputWithContext(ctx context.Context) SshFilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfileOutput)
-}
-
-func (i *SshFilterProfile) ToSshFilterProfilePtrOutput() SshFilterProfilePtrOutput {
-	return i.ToSshFilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *SshFilterProfile) ToSshFilterProfilePtrOutputWithContext(ctx context.Context) SshFilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfilePtrOutput)
-}
-
-type SshFilterProfilePtrInput interface {
-	pulumi.Input
-
-	ToSshFilterProfilePtrOutput() SshFilterProfilePtrOutput
-	ToSshFilterProfilePtrOutputWithContext(ctx context.Context) SshFilterProfilePtrOutput
-}
-
-type sshFilterProfilePtrType SshFilterProfileArgs
-
-func (*sshFilterProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SshFilterProfile)(nil))
-}
-
-func (i *sshFilterProfilePtrType) ToSshFilterProfilePtrOutput() SshFilterProfilePtrOutput {
-	return i.ToSshFilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *sshFilterProfilePtrType) ToSshFilterProfilePtrOutputWithContext(ctx context.Context) SshFilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfilePtrOutput)
 }
 
 // SshFilterProfileArrayInput is an input type that accepts SshFilterProfileArray and SshFilterProfileArrayOutput values.
@@ -242,7 +214,7 @@ type SshFilterProfileArrayInput interface {
 type SshFilterProfileArray []SshFilterProfileInput
 
 func (SshFilterProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SshFilterProfile)(nil))
+	return reflect.TypeOf((*[]*SshFilterProfile)(nil)).Elem()
 }
 
 func (i SshFilterProfileArray) ToSshFilterProfileArrayOutput() SshFilterProfileArrayOutput {
@@ -267,7 +239,7 @@ type SshFilterProfileMapInput interface {
 type SshFilterProfileMap map[string]SshFilterProfileInput
 
 func (SshFilterProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SshFilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*SshFilterProfile)(nil)).Elem()
 }
 
 func (i SshFilterProfileMap) ToSshFilterProfileMapOutput() SshFilterProfileMapOutput {
@@ -278,12 +250,10 @@ func (i SshFilterProfileMap) ToSshFilterProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SshFilterProfileMapOutput)
 }
 
-type SshFilterProfileOutput struct {
-	*pulumi.OutputState
-}
+type SshFilterProfileOutput struct{ *pulumi.OutputState }
 
 func (SshFilterProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SshFilterProfile)(nil))
+	return reflect.TypeOf((**SshFilterProfile)(nil)).Elem()
 }
 
 func (o SshFilterProfileOutput) ToSshFilterProfileOutput() SshFilterProfileOutput {
@@ -294,36 +264,10 @@ func (o SshFilterProfileOutput) ToSshFilterProfileOutputWithContext(ctx context.
 	return o
 }
 
-func (o SshFilterProfileOutput) ToSshFilterProfilePtrOutput() SshFilterProfilePtrOutput {
-	return o.ToSshFilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (o SshFilterProfileOutput) ToSshFilterProfilePtrOutputWithContext(ctx context.Context) SshFilterProfilePtrOutput {
-	return o.ApplyT(func(v SshFilterProfile) *SshFilterProfile {
-		return &v
-	}).(SshFilterProfilePtrOutput)
-}
-
-type SshFilterProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SshFilterProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SshFilterProfile)(nil))
-}
-
-func (o SshFilterProfilePtrOutput) ToSshFilterProfilePtrOutput() SshFilterProfilePtrOutput {
-	return o
-}
-
-func (o SshFilterProfilePtrOutput) ToSshFilterProfilePtrOutputWithContext(ctx context.Context) SshFilterProfilePtrOutput {
-	return o
-}
-
 type SshFilterProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (SshFilterProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SshFilterProfile)(nil))
+	return reflect.TypeOf((*[]*SshFilterProfile)(nil)).Elem()
 }
 
 func (o SshFilterProfileArrayOutput) ToSshFilterProfileArrayOutput() SshFilterProfileArrayOutput {
@@ -335,15 +279,15 @@ func (o SshFilterProfileArrayOutput) ToSshFilterProfileArrayOutputWithContext(ct
 }
 
 func (o SshFilterProfileArrayOutput) Index(i pulumi.IntInput) SshFilterProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SshFilterProfile {
-		return vs[0].([]SshFilterProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SshFilterProfile {
+		return vs[0].([]*SshFilterProfile)[vs[1].(int)]
 	}).(SshFilterProfileOutput)
 }
 
 type SshFilterProfileMapOutput struct{ *pulumi.OutputState }
 
 func (SshFilterProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SshFilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*SshFilterProfile)(nil)).Elem()
 }
 
 func (o SshFilterProfileMapOutput) ToSshFilterProfileMapOutput() SshFilterProfileMapOutput {
@@ -355,14 +299,16 @@ func (o SshFilterProfileMapOutput) ToSshFilterProfileMapOutputWithContext(ctx co
 }
 
 func (o SshFilterProfileMapOutput) MapIndex(k pulumi.StringInput) SshFilterProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SshFilterProfile {
-		return vs[0].(map[string]SshFilterProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SshFilterProfile {
+		return vs[0].(map[string]*SshFilterProfile)[vs[1].(string)]
 	}).(SshFilterProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SshFilterProfileInput)(nil)).Elem(), &SshFilterProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SshFilterProfileArrayInput)(nil)).Elem(), SshFilterProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SshFilterProfileMapInput)(nil)).Elem(), SshFilterProfileMap{})
 	pulumi.RegisterOutputType(SshFilterProfileOutput{})
-	pulumi.RegisterOutputType(SshFilterProfilePtrOutput{})
 	pulumi.RegisterOutputType(SshFilterProfileArrayOutput{})
 	pulumi.RegisterOutputType(SshFilterProfileMapOutput{})
 }

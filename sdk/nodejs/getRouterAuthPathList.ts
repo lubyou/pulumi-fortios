@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,9 +13,7 @@ export function getRouterAuthPathList(args?: GetRouterAuthPathListArgs, opts?: p
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterAuthPathList:GetRouterAuthPathList", {
         "filter": args.filter,
         "vdomparam": args.vdomparam,
@@ -48,4 +45,19 @@ export interface GetRouterAuthPathListResult {
      */
     readonly namelists: string[];
     readonly vdomparam?: string;
+}
+
+export function getRouterAuthPathListOutput(args?: GetRouterAuthPathListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterAuthPathListResult> {
+    return pulumi.output(args).apply(a => getRouterAuthPathList(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterAuthPathList.
+ */
+export interface GetRouterAuthPathListOutputArgs {
+    filter?: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

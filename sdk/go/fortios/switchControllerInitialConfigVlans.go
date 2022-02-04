@@ -28,6 +28,8 @@ type SwitchControllerInitialConfigVlans struct {
 	DefaultVlan pulumi.StringOutput `pulumi:"defaultVlan"`
 	// VLAN for NAC onboarding devices.
 	Nac pulumi.StringOutput `pulumi:"nac"`
+	// VLAN for NAC segemnt primary interface.
+	NacSegment pulumi.StringOutput `pulumi:"nacSegment"`
 	// VLAN for quarantined traffic.
 	Quarantine pulumi.StringOutput `pulumi:"quarantine"`
 	// VLAN for RSPAN/ERSPAN mirrored traffic.
@@ -47,6 +49,7 @@ func NewSwitchControllerInitialConfigVlans(ctx *pulumi.Context,
 		args = &SwitchControllerInitialConfigVlansArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerInitialConfigVlans
 	err := ctx.RegisterResource("fortios:index/switchControllerInitialConfigVlans:SwitchControllerInitialConfigVlans", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +76,8 @@ type switchControllerInitialConfigVlansState struct {
 	DefaultVlan *string `pulumi:"defaultVlan"`
 	// VLAN for NAC onboarding devices.
 	Nac *string `pulumi:"nac"`
+	// VLAN for NAC segemnt primary interface.
+	NacSegment *string `pulumi:"nacSegment"`
 	// VLAN for quarantined traffic.
 	Quarantine *string `pulumi:"quarantine"`
 	// VLAN for RSPAN/ERSPAN mirrored traffic.
@@ -90,6 +95,8 @@ type SwitchControllerInitialConfigVlansState struct {
 	DefaultVlan pulumi.StringPtrInput
 	// VLAN for NAC onboarding devices.
 	Nac pulumi.StringPtrInput
+	// VLAN for NAC segemnt primary interface.
+	NacSegment pulumi.StringPtrInput
 	// VLAN for quarantined traffic.
 	Quarantine pulumi.StringPtrInput
 	// VLAN for RSPAN/ERSPAN mirrored traffic.
@@ -111,6 +118,8 @@ type switchControllerInitialConfigVlansArgs struct {
 	DefaultVlan *string `pulumi:"defaultVlan"`
 	// VLAN for NAC onboarding devices.
 	Nac *string `pulumi:"nac"`
+	// VLAN for NAC segemnt primary interface.
+	NacSegment *string `pulumi:"nacSegment"`
 	// VLAN for quarantined traffic.
 	Quarantine *string `pulumi:"quarantine"`
 	// VLAN for RSPAN/ERSPAN mirrored traffic.
@@ -129,6 +138,8 @@ type SwitchControllerInitialConfigVlansArgs struct {
 	DefaultVlan pulumi.StringPtrInput
 	// VLAN for NAC onboarding devices.
 	Nac pulumi.StringPtrInput
+	// VLAN for NAC segemnt primary interface.
+	NacSegment pulumi.StringPtrInput
 	// VLAN for quarantined traffic.
 	Quarantine pulumi.StringPtrInput
 	// VLAN for RSPAN/ERSPAN mirrored traffic.
@@ -153,7 +164,7 @@ type SwitchControllerInitialConfigVlansInput interface {
 }
 
 func (*SwitchControllerInitialConfigVlans) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerInitialConfigVlans)(nil))
+	return reflect.TypeOf((**SwitchControllerInitialConfigVlans)(nil)).Elem()
 }
 
 func (i *SwitchControllerInitialConfigVlans) ToSwitchControllerInitialConfigVlansOutput() SwitchControllerInitialConfigVlansOutput {
@@ -162,35 +173,6 @@ func (i *SwitchControllerInitialConfigVlans) ToSwitchControllerInitialConfigVlan
 
 func (i *SwitchControllerInitialConfigVlans) ToSwitchControllerInitialConfigVlansOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigVlansOutput)
-}
-
-func (i *SwitchControllerInitialConfigVlans) ToSwitchControllerInitialConfigVlansPtrOutput() SwitchControllerInitialConfigVlansPtrOutput {
-	return i.ToSwitchControllerInitialConfigVlansPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerInitialConfigVlans) ToSwitchControllerInitialConfigVlansPtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigVlansPtrOutput)
-}
-
-type SwitchControllerInitialConfigVlansPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerInitialConfigVlansPtrOutput() SwitchControllerInitialConfigVlansPtrOutput
-	ToSwitchControllerInitialConfigVlansPtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansPtrOutput
-}
-
-type switchControllerInitialConfigVlansPtrType SwitchControllerInitialConfigVlansArgs
-
-func (*switchControllerInitialConfigVlansPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerInitialConfigVlans)(nil))
-}
-
-func (i *switchControllerInitialConfigVlansPtrType) ToSwitchControllerInitialConfigVlansPtrOutput() SwitchControllerInitialConfigVlansPtrOutput {
-	return i.ToSwitchControllerInitialConfigVlansPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerInitialConfigVlansPtrType) ToSwitchControllerInitialConfigVlansPtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigVlansPtrOutput)
 }
 
 // SwitchControllerInitialConfigVlansArrayInput is an input type that accepts SwitchControllerInitialConfigVlansArray and SwitchControllerInitialConfigVlansArrayOutput values.
@@ -207,7 +189,7 @@ type SwitchControllerInitialConfigVlansArrayInput interface {
 type SwitchControllerInitialConfigVlansArray []SwitchControllerInitialConfigVlansInput
 
 func (SwitchControllerInitialConfigVlansArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerInitialConfigVlans)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerInitialConfigVlans)(nil)).Elem()
 }
 
 func (i SwitchControllerInitialConfigVlansArray) ToSwitchControllerInitialConfigVlansArrayOutput() SwitchControllerInitialConfigVlansArrayOutput {
@@ -232,7 +214,7 @@ type SwitchControllerInitialConfigVlansMapInput interface {
 type SwitchControllerInitialConfigVlansMap map[string]SwitchControllerInitialConfigVlansInput
 
 func (SwitchControllerInitialConfigVlansMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerInitialConfigVlans)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerInitialConfigVlans)(nil)).Elem()
 }
 
 func (i SwitchControllerInitialConfigVlansMap) ToSwitchControllerInitialConfigVlansMapOutput() SwitchControllerInitialConfigVlansMapOutput {
@@ -243,12 +225,10 @@ func (i SwitchControllerInitialConfigVlansMap) ToSwitchControllerInitialConfigVl
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigVlansMapOutput)
 }
 
-type SwitchControllerInitialConfigVlansOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerInitialConfigVlansOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigVlansOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerInitialConfigVlans)(nil))
+	return reflect.TypeOf((**SwitchControllerInitialConfigVlans)(nil)).Elem()
 }
 
 func (o SwitchControllerInitialConfigVlansOutput) ToSwitchControllerInitialConfigVlansOutput() SwitchControllerInitialConfigVlansOutput {
@@ -259,36 +239,10 @@ func (o SwitchControllerInitialConfigVlansOutput) ToSwitchControllerInitialConfi
 	return o
 }
 
-func (o SwitchControllerInitialConfigVlansOutput) ToSwitchControllerInitialConfigVlansPtrOutput() SwitchControllerInitialConfigVlansPtrOutput {
-	return o.ToSwitchControllerInitialConfigVlansPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerInitialConfigVlansOutput) ToSwitchControllerInitialConfigVlansPtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansPtrOutput {
-	return o.ApplyT(func(v SwitchControllerInitialConfigVlans) *SwitchControllerInitialConfigVlans {
-		return &v
-	}).(SwitchControllerInitialConfigVlansPtrOutput)
-}
-
-type SwitchControllerInitialConfigVlansPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerInitialConfigVlansPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerInitialConfigVlans)(nil))
-}
-
-func (o SwitchControllerInitialConfigVlansPtrOutput) ToSwitchControllerInitialConfigVlansPtrOutput() SwitchControllerInitialConfigVlansPtrOutput {
-	return o
-}
-
-func (o SwitchControllerInitialConfigVlansPtrOutput) ToSwitchControllerInitialConfigVlansPtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigVlansPtrOutput {
-	return o
-}
-
 type SwitchControllerInitialConfigVlansArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigVlansArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerInitialConfigVlans)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerInitialConfigVlans)(nil)).Elem()
 }
 
 func (o SwitchControllerInitialConfigVlansArrayOutput) ToSwitchControllerInitialConfigVlansArrayOutput() SwitchControllerInitialConfigVlansArrayOutput {
@@ -300,15 +254,15 @@ func (o SwitchControllerInitialConfigVlansArrayOutput) ToSwitchControllerInitial
 }
 
 func (o SwitchControllerInitialConfigVlansArrayOutput) Index(i pulumi.IntInput) SwitchControllerInitialConfigVlansOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerInitialConfigVlans {
-		return vs[0].([]SwitchControllerInitialConfigVlans)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerInitialConfigVlans {
+		return vs[0].([]*SwitchControllerInitialConfigVlans)[vs[1].(int)]
 	}).(SwitchControllerInitialConfigVlansOutput)
 }
 
 type SwitchControllerInitialConfigVlansMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigVlansMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerInitialConfigVlans)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerInitialConfigVlans)(nil)).Elem()
 }
 
 func (o SwitchControllerInitialConfigVlansMapOutput) ToSwitchControllerInitialConfigVlansMapOutput() SwitchControllerInitialConfigVlansMapOutput {
@@ -320,14 +274,16 @@ func (o SwitchControllerInitialConfigVlansMapOutput) ToSwitchControllerInitialCo
 }
 
 func (o SwitchControllerInitialConfigVlansMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerInitialConfigVlansOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerInitialConfigVlans {
-		return vs[0].(map[string]SwitchControllerInitialConfigVlans)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerInitialConfigVlans {
+		return vs[0].(map[string]*SwitchControllerInitialConfigVlans)[vs[1].(string)]
 	}).(SwitchControllerInitialConfigVlansOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerInitialConfigVlansInput)(nil)).Elem(), &SwitchControllerInitialConfigVlans{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerInitialConfigVlansArrayInput)(nil)).Elem(), SwitchControllerInitialConfigVlansArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerInitialConfigVlansMapInput)(nil)).Elem(), SwitchControllerInitialConfigVlansMap{})
 	pulumi.RegisterOutputType(SwitchControllerInitialConfigVlansOutput{})
-	pulumi.RegisterOutputType(SwitchControllerInitialConfigVlansPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerInitialConfigVlansArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerInitialConfigVlansMapOutput{})
 }

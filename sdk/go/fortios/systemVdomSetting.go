@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -55,6 +55,7 @@ func NewSystemVdomSetting(ctx *pulumi.Context,
 		args = &SystemVdomSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomSetting
 	err := ctx.RegisterResource("fortios:index/systemVdomSetting:SystemVdomSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -129,7 +130,7 @@ type SystemVdomSettingInput interface {
 }
 
 func (*SystemVdomSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomSetting)(nil))
+	return reflect.TypeOf((**SystemVdomSetting)(nil)).Elem()
 }
 
 func (i *SystemVdomSetting) ToSystemVdomSettingOutput() SystemVdomSettingOutput {
@@ -138,35 +139,6 @@ func (i *SystemVdomSetting) ToSystemVdomSettingOutput() SystemVdomSettingOutput 
 
 func (i *SystemVdomSetting) ToSystemVdomSettingOutputWithContext(ctx context.Context) SystemVdomSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingOutput)
-}
-
-func (i *SystemVdomSetting) ToSystemVdomSettingPtrOutput() SystemVdomSettingPtrOutput {
-	return i.ToSystemVdomSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomSetting) ToSystemVdomSettingPtrOutputWithContext(ctx context.Context) SystemVdomSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingPtrOutput)
-}
-
-type SystemVdomSettingPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomSettingPtrOutput() SystemVdomSettingPtrOutput
-	ToSystemVdomSettingPtrOutputWithContext(ctx context.Context) SystemVdomSettingPtrOutput
-}
-
-type systemVdomSettingPtrType SystemVdomSettingArgs
-
-func (*systemVdomSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomSetting)(nil))
-}
-
-func (i *systemVdomSettingPtrType) ToSystemVdomSettingPtrOutput() SystemVdomSettingPtrOutput {
-	return i.ToSystemVdomSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomSettingPtrType) ToSystemVdomSettingPtrOutputWithContext(ctx context.Context) SystemVdomSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingPtrOutput)
 }
 
 // SystemVdomSettingArrayInput is an input type that accepts SystemVdomSettingArray and SystemVdomSettingArrayOutput values.
@@ -183,7 +155,7 @@ type SystemVdomSettingArrayInput interface {
 type SystemVdomSettingArray []SystemVdomSettingInput
 
 func (SystemVdomSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomSetting)(nil))
+	return reflect.TypeOf((*[]*SystemVdomSetting)(nil)).Elem()
 }
 
 func (i SystemVdomSettingArray) ToSystemVdomSettingArrayOutput() SystemVdomSettingArrayOutput {
@@ -208,7 +180,7 @@ type SystemVdomSettingMapInput interface {
 type SystemVdomSettingMap map[string]SystemVdomSettingInput
 
 func (SystemVdomSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomSetting)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomSetting)(nil)).Elem()
 }
 
 func (i SystemVdomSettingMap) ToSystemVdomSettingMapOutput() SystemVdomSettingMapOutput {
@@ -219,12 +191,10 @@ func (i SystemVdomSettingMap) ToSystemVdomSettingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomSettingMapOutput)
 }
 
-type SystemVdomSettingOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomSettingOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomSetting)(nil))
+	return reflect.TypeOf((**SystemVdomSetting)(nil)).Elem()
 }
 
 func (o SystemVdomSettingOutput) ToSystemVdomSettingOutput() SystemVdomSettingOutput {
@@ -235,36 +205,10 @@ func (o SystemVdomSettingOutput) ToSystemVdomSettingOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemVdomSettingOutput) ToSystemVdomSettingPtrOutput() SystemVdomSettingPtrOutput {
-	return o.ToSystemVdomSettingPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomSettingOutput) ToSystemVdomSettingPtrOutputWithContext(ctx context.Context) SystemVdomSettingPtrOutput {
-	return o.ApplyT(func(v SystemVdomSetting) *SystemVdomSetting {
-		return &v
-	}).(SystemVdomSettingPtrOutput)
-}
-
-type SystemVdomSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomSetting)(nil))
-}
-
-func (o SystemVdomSettingPtrOutput) ToSystemVdomSettingPtrOutput() SystemVdomSettingPtrOutput {
-	return o
-}
-
-func (o SystemVdomSettingPtrOutput) ToSystemVdomSettingPtrOutputWithContext(ctx context.Context) SystemVdomSettingPtrOutput {
-	return o
-}
-
 type SystemVdomSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomSetting)(nil))
+	return reflect.TypeOf((*[]*SystemVdomSetting)(nil)).Elem()
 }
 
 func (o SystemVdomSettingArrayOutput) ToSystemVdomSettingArrayOutput() SystemVdomSettingArrayOutput {
@@ -276,15 +220,15 @@ func (o SystemVdomSettingArrayOutput) ToSystemVdomSettingArrayOutputWithContext(
 }
 
 func (o SystemVdomSettingArrayOutput) Index(i pulumi.IntInput) SystemVdomSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomSetting {
-		return vs[0].([]SystemVdomSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomSetting {
+		return vs[0].([]*SystemVdomSetting)[vs[1].(int)]
 	}).(SystemVdomSettingOutput)
 }
 
 type SystemVdomSettingMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomSetting)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomSetting)(nil)).Elem()
 }
 
 func (o SystemVdomSettingMapOutput) ToSystemVdomSettingMapOutput() SystemVdomSettingMapOutput {
@@ -296,14 +240,16 @@ func (o SystemVdomSettingMapOutput) ToSystemVdomSettingMapOutputWithContext(ctx 
 }
 
 func (o SystemVdomSettingMapOutput) MapIndex(k pulumi.StringInput) SystemVdomSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomSetting {
-		return vs[0].(map[string]SystemVdomSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomSetting {
+		return vs[0].(map[string]*SystemVdomSetting)[vs[1].(string)]
 	}).(SystemVdomSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomSettingInput)(nil)).Elem(), &SystemVdomSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomSettingArrayInput)(nil)).Elem(), SystemVdomSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomSettingMapInput)(nil)).Elem(), SystemVdomSettingMap{})
 	pulumi.RegisterOutputType(SystemVdomSettingOutput{})
-	pulumi.RegisterOutputType(SystemVdomSettingPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomSettingArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomSettingMapOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -129,6 +129,7 @@ func NewSystemCentralManagement(ctx *pulumi.Context,
 		args = &SystemCentralManagementArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemCentralManagement
 	err := ctx.RegisterResource("fortios:index/systemCentralManagement:SystemCentralManagement", name, args, &resource, opts...)
 	if err != nil {
@@ -363,7 +364,7 @@ type SystemCentralManagementInput interface {
 }
 
 func (*SystemCentralManagement) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemCentralManagement)(nil))
+	return reflect.TypeOf((**SystemCentralManagement)(nil)).Elem()
 }
 
 func (i *SystemCentralManagement) ToSystemCentralManagementOutput() SystemCentralManagementOutput {
@@ -372,35 +373,6 @@ func (i *SystemCentralManagement) ToSystemCentralManagementOutput() SystemCentra
 
 func (i *SystemCentralManagement) ToSystemCentralManagementOutputWithContext(ctx context.Context) SystemCentralManagementOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementOutput)
-}
-
-func (i *SystemCentralManagement) ToSystemCentralManagementPtrOutput() SystemCentralManagementPtrOutput {
-	return i.ToSystemCentralManagementPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemCentralManagement) ToSystemCentralManagementPtrOutputWithContext(ctx context.Context) SystemCentralManagementPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementPtrOutput)
-}
-
-type SystemCentralManagementPtrInput interface {
-	pulumi.Input
-
-	ToSystemCentralManagementPtrOutput() SystemCentralManagementPtrOutput
-	ToSystemCentralManagementPtrOutputWithContext(ctx context.Context) SystemCentralManagementPtrOutput
-}
-
-type systemCentralManagementPtrType SystemCentralManagementArgs
-
-func (*systemCentralManagementPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemCentralManagement)(nil))
-}
-
-func (i *systemCentralManagementPtrType) ToSystemCentralManagementPtrOutput() SystemCentralManagementPtrOutput {
-	return i.ToSystemCentralManagementPtrOutputWithContext(context.Background())
-}
-
-func (i *systemCentralManagementPtrType) ToSystemCentralManagementPtrOutputWithContext(ctx context.Context) SystemCentralManagementPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementPtrOutput)
 }
 
 // SystemCentralManagementArrayInput is an input type that accepts SystemCentralManagementArray and SystemCentralManagementArrayOutput values.
@@ -417,7 +389,7 @@ type SystemCentralManagementArrayInput interface {
 type SystemCentralManagementArray []SystemCentralManagementInput
 
 func (SystemCentralManagementArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemCentralManagement)(nil))
+	return reflect.TypeOf((*[]*SystemCentralManagement)(nil)).Elem()
 }
 
 func (i SystemCentralManagementArray) ToSystemCentralManagementArrayOutput() SystemCentralManagementArrayOutput {
@@ -442,7 +414,7 @@ type SystemCentralManagementMapInput interface {
 type SystemCentralManagementMap map[string]SystemCentralManagementInput
 
 func (SystemCentralManagementMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemCentralManagement)(nil))
+	return reflect.TypeOf((*map[string]*SystemCentralManagement)(nil)).Elem()
 }
 
 func (i SystemCentralManagementMap) ToSystemCentralManagementMapOutput() SystemCentralManagementMapOutput {
@@ -453,12 +425,10 @@ func (i SystemCentralManagementMap) ToSystemCentralManagementMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemCentralManagementMapOutput)
 }
 
-type SystemCentralManagementOutput struct {
-	*pulumi.OutputState
-}
+type SystemCentralManagementOutput struct{ *pulumi.OutputState }
 
 func (SystemCentralManagementOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemCentralManagement)(nil))
+	return reflect.TypeOf((**SystemCentralManagement)(nil)).Elem()
 }
 
 func (o SystemCentralManagementOutput) ToSystemCentralManagementOutput() SystemCentralManagementOutput {
@@ -469,36 +439,10 @@ func (o SystemCentralManagementOutput) ToSystemCentralManagementOutputWithContex
 	return o
 }
 
-func (o SystemCentralManagementOutput) ToSystemCentralManagementPtrOutput() SystemCentralManagementPtrOutput {
-	return o.ToSystemCentralManagementPtrOutputWithContext(context.Background())
-}
-
-func (o SystemCentralManagementOutput) ToSystemCentralManagementPtrOutputWithContext(ctx context.Context) SystemCentralManagementPtrOutput {
-	return o.ApplyT(func(v SystemCentralManagement) *SystemCentralManagement {
-		return &v
-	}).(SystemCentralManagementPtrOutput)
-}
-
-type SystemCentralManagementPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemCentralManagementPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemCentralManagement)(nil))
-}
-
-func (o SystemCentralManagementPtrOutput) ToSystemCentralManagementPtrOutput() SystemCentralManagementPtrOutput {
-	return o
-}
-
-func (o SystemCentralManagementPtrOutput) ToSystemCentralManagementPtrOutputWithContext(ctx context.Context) SystemCentralManagementPtrOutput {
-	return o
-}
-
 type SystemCentralManagementArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemCentralManagementArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemCentralManagement)(nil))
+	return reflect.TypeOf((*[]*SystemCentralManagement)(nil)).Elem()
 }
 
 func (o SystemCentralManagementArrayOutput) ToSystemCentralManagementArrayOutput() SystemCentralManagementArrayOutput {
@@ -510,15 +454,15 @@ func (o SystemCentralManagementArrayOutput) ToSystemCentralManagementArrayOutput
 }
 
 func (o SystemCentralManagementArrayOutput) Index(i pulumi.IntInput) SystemCentralManagementOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemCentralManagement {
-		return vs[0].([]SystemCentralManagement)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemCentralManagement {
+		return vs[0].([]*SystemCentralManagement)[vs[1].(int)]
 	}).(SystemCentralManagementOutput)
 }
 
 type SystemCentralManagementMapOutput struct{ *pulumi.OutputState }
 
 func (SystemCentralManagementMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemCentralManagement)(nil))
+	return reflect.TypeOf((*map[string]*SystemCentralManagement)(nil)).Elem()
 }
 
 func (o SystemCentralManagementMapOutput) ToSystemCentralManagementMapOutput() SystemCentralManagementMapOutput {
@@ -530,14 +474,16 @@ func (o SystemCentralManagementMapOutput) ToSystemCentralManagementMapOutputWith
 }
 
 func (o SystemCentralManagementMapOutput) MapIndex(k pulumi.StringInput) SystemCentralManagementOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemCentralManagement {
-		return vs[0].(map[string]SystemCentralManagement)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemCentralManagement {
+		return vs[0].(map[string]*SystemCentralManagement)[vs[1].(string)]
 	}).(SystemCentralManagementOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemCentralManagementInput)(nil)).Elem(), &SystemCentralManagement{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemCentralManagementArrayInput)(nil)).Elem(), SystemCentralManagementArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemCentralManagementMapInput)(nil)).Elem(), SystemCentralManagementMap{})
 	pulumi.RegisterOutputType(SystemCentralManagementOutput{})
-	pulumi.RegisterOutputType(SystemCentralManagementPtrOutput{})
 	pulumi.RegisterOutputType(SystemCentralManagementArrayOutput{})
 	pulumi.RegisterOutputType(SystemCentralManagementMapOutput{})
 }

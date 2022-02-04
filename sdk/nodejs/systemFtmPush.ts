@@ -59,6 +59,10 @@ export class SystemFtmPush extends pulumi.CustomResource {
     }
 
     /**
+     * IPv4 address or domain name of FortiToken Mobile push services server.
+     */
+    public readonly server!: pulumi.Output<string>;
+    /**
      * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
      */
     public readonly serverCert!: pulumi.Output<string>;
@@ -88,27 +92,27 @@ export class SystemFtmPush extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFtmPushArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFtmPushArgs | SystemFtmPushState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFtmPushState | undefined;
-            inputs["serverCert"] = state ? state.serverCert : undefined;
-            inputs["serverIp"] = state ? state.serverIp : undefined;
-            inputs["serverPort"] = state ? state.serverPort : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverCert"] = state ? state.serverCert : undefined;
+            resourceInputs["serverIp"] = state ? state.serverIp : undefined;
+            resourceInputs["serverPort"] = state ? state.serverPort : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFtmPushArgs | undefined;
-            inputs["serverCert"] = args ? args.serverCert : undefined;
-            inputs["serverIp"] = args ? args.serverIp : undefined;
-            inputs["serverPort"] = args ? args.serverPort : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverCert"] = args ? args.serverCert : undefined;
+            resourceInputs["serverIp"] = args ? args.serverIp : undefined;
+            resourceInputs["serverPort"] = args ? args.serverPort : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFtmPush.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFtmPush.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -116,6 +120,10 @@ export class SystemFtmPush extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemFtmPush resources.
  */
 export interface SystemFtmPushState {
+    /**
+     * IPv4 address or domain name of FortiToken Mobile push services server.
+     */
+    server?: pulumi.Input<string>;
     /**
      * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
      */
@@ -142,6 +150,10 @@ export interface SystemFtmPushState {
  * The set of arguments for constructing a SystemFtmPush resource.
  */
 export interface SystemFtmPushArgs {
+    /**
+     * IPv4 address or domain name of FortiToken Mobile push services server.
+     */
+    server?: pulumi.Input<string>;
     /**
      * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
      */

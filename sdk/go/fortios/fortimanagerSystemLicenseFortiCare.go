@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,6 +60,7 @@ func NewFortimanagerSystemLicenseFortiCare(ctx *pulumi.Context,
 	if args.Target == nil {
 		return nil, errors.New("invalid value for required argument 'Target'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemLicenseFortiCare
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemLicenseFortiCare:FortimanagerSystemLicenseFortiCare", name, args, &resource, opts...)
 	if err != nil {
@@ -134,7 +135,7 @@ type FortimanagerSystemLicenseFortiCareInput interface {
 }
 
 func (*FortimanagerSystemLicenseFortiCare) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((**FortimanagerSystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCareOutput() FortimanagerSystemLicenseFortiCareOutput {
@@ -143,35 +144,6 @@ func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCar
 
 func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCareOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCareOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCareOutput)
-}
-
-func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCarePtrOutput() FortimanagerSystemLicenseFortiCarePtrOutput {
-	return i.ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemLicenseFortiCare) ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCarePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCarePtrOutput)
-}
-
-type FortimanagerSystemLicenseFortiCarePtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemLicenseFortiCarePtrOutput() FortimanagerSystemLicenseFortiCarePtrOutput
-	ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCarePtrOutput
-}
-
-type fortimanagerSystemLicenseFortiCarePtrType FortimanagerSystemLicenseFortiCareArgs
-
-func (*fortimanagerSystemLicenseFortiCarePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemLicenseFortiCare)(nil))
-}
-
-func (i *fortimanagerSystemLicenseFortiCarePtrType) ToFortimanagerSystemLicenseFortiCarePtrOutput() FortimanagerSystemLicenseFortiCarePtrOutput {
-	return i.ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemLicenseFortiCarePtrType) ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCarePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCarePtrOutput)
 }
 
 // FortimanagerSystemLicenseFortiCareArrayInput is an input type that accepts FortimanagerSystemLicenseFortiCareArray and FortimanagerSystemLicenseFortiCareArrayOutput values.
@@ -188,7 +160,7 @@ type FortimanagerSystemLicenseFortiCareArrayInput interface {
 type FortimanagerSystemLicenseFortiCareArray []FortimanagerSystemLicenseFortiCareInput
 
 func (FortimanagerSystemLicenseFortiCareArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (i FortimanagerSystemLicenseFortiCareArray) ToFortimanagerSystemLicenseFortiCareArrayOutput() FortimanagerSystemLicenseFortiCareArrayOutput {
@@ -213,7 +185,7 @@ type FortimanagerSystemLicenseFortiCareMapInput interface {
 type FortimanagerSystemLicenseFortiCareMap map[string]FortimanagerSystemLicenseFortiCareInput
 
 func (FortimanagerSystemLicenseFortiCareMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (i FortimanagerSystemLicenseFortiCareMap) ToFortimanagerSystemLicenseFortiCareMapOutput() FortimanagerSystemLicenseFortiCareMapOutput {
@@ -224,12 +196,10 @@ func (i FortimanagerSystemLicenseFortiCareMap) ToFortimanagerSystemLicenseFortiC
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemLicenseFortiCareMapOutput)
 }
 
-type FortimanagerSystemLicenseFortiCareOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemLicenseFortiCareOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemLicenseFortiCareOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((**FortimanagerSystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFortiCareOutput() FortimanagerSystemLicenseFortiCareOutput {
@@ -240,36 +210,10 @@ func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFor
 	return o
 }
 
-func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFortiCarePtrOutput() FortimanagerSystemLicenseFortiCarePtrOutput {
-	return o.ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemLicenseFortiCareOutput) ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCarePtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemLicenseFortiCare) *FortimanagerSystemLicenseFortiCare {
-		return &v
-	}).(FortimanagerSystemLicenseFortiCarePtrOutput)
-}
-
-type FortimanagerSystemLicenseFortiCarePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemLicenseFortiCarePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemLicenseFortiCare)(nil))
-}
-
-func (o FortimanagerSystemLicenseFortiCarePtrOutput) ToFortimanagerSystemLicenseFortiCarePtrOutput() FortimanagerSystemLicenseFortiCarePtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemLicenseFortiCarePtrOutput) ToFortimanagerSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) FortimanagerSystemLicenseFortiCarePtrOutput {
-	return o
-}
-
 type FortimanagerSystemLicenseFortiCareArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemLicenseFortiCareArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (o FortimanagerSystemLicenseFortiCareArrayOutput) ToFortimanagerSystemLicenseFortiCareArrayOutput() FortimanagerSystemLicenseFortiCareArrayOutput {
@@ -281,15 +225,15 @@ func (o FortimanagerSystemLicenseFortiCareArrayOutput) ToFortimanagerSystemLicen
 }
 
 func (o FortimanagerSystemLicenseFortiCareArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemLicenseFortiCareOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemLicenseFortiCare {
-		return vs[0].([]FortimanagerSystemLicenseFortiCare)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemLicenseFortiCare {
+		return vs[0].([]*FortimanagerSystemLicenseFortiCare)[vs[1].(int)]
 	}).(FortimanagerSystemLicenseFortiCareOutput)
 }
 
 type FortimanagerSystemLicenseFortiCareMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemLicenseFortiCareMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (o FortimanagerSystemLicenseFortiCareMapOutput) ToFortimanagerSystemLicenseFortiCareMapOutput() FortimanagerSystemLicenseFortiCareMapOutput {
@@ -301,14 +245,16 @@ func (o FortimanagerSystemLicenseFortiCareMapOutput) ToFortimanagerSystemLicense
 }
 
 func (o FortimanagerSystemLicenseFortiCareMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemLicenseFortiCareOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemLicenseFortiCare {
-		return vs[0].(map[string]FortimanagerSystemLicenseFortiCare)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemLicenseFortiCare {
+		return vs[0].(map[string]*FortimanagerSystemLicenseFortiCare)[vs[1].(string)]
 	}).(FortimanagerSystemLicenseFortiCareOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemLicenseFortiCareInput)(nil)).Elem(), &FortimanagerSystemLicenseFortiCare{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemLicenseFortiCareArrayInput)(nil)).Elem(), FortimanagerSystemLicenseFortiCareArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemLicenseFortiCareMapInput)(nil)).Elem(), FortimanagerSystemLicenseFortiCareMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemLicenseFortiCareOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemLicenseFortiCarePtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemLicenseFortiCareArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemLicenseFortiCareMapOutput{})
 }

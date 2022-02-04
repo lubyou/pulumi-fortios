@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure speed test server list.
+// Configure speed test server list. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -43,6 +43,7 @@ func NewSystemSpeedTestServer(ctx *pulumi.Context,
 		args = &SystemSpeedTestServerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSpeedTestServer
 	err := ctx.RegisterResource("fortios:index/systemSpeedTestServer:SystemSpeedTestServer", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type SystemSpeedTestServerInput interface {
 }
 
 func (*SystemSpeedTestServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSpeedTestServer)(nil))
+	return reflect.TypeOf((**SystemSpeedTestServer)(nil)).Elem()
 }
 
 func (i *SystemSpeedTestServer) ToSystemSpeedTestServerOutput() SystemSpeedTestServerOutput {
@@ -142,35 +143,6 @@ func (i *SystemSpeedTestServer) ToSystemSpeedTestServerOutput() SystemSpeedTestS
 
 func (i *SystemSpeedTestServer) ToSystemSpeedTestServerOutputWithContext(ctx context.Context) SystemSpeedTestServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerOutput)
-}
-
-func (i *SystemSpeedTestServer) ToSystemSpeedTestServerPtrOutput() SystemSpeedTestServerPtrOutput {
-	return i.ToSystemSpeedTestServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSpeedTestServer) ToSystemSpeedTestServerPtrOutputWithContext(ctx context.Context) SystemSpeedTestServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerPtrOutput)
-}
-
-type SystemSpeedTestServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemSpeedTestServerPtrOutput() SystemSpeedTestServerPtrOutput
-	ToSystemSpeedTestServerPtrOutputWithContext(ctx context.Context) SystemSpeedTestServerPtrOutput
-}
-
-type systemSpeedTestServerPtrType SystemSpeedTestServerArgs
-
-func (*systemSpeedTestServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSpeedTestServer)(nil))
-}
-
-func (i *systemSpeedTestServerPtrType) ToSystemSpeedTestServerPtrOutput() SystemSpeedTestServerPtrOutput {
-	return i.ToSystemSpeedTestServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSpeedTestServerPtrType) ToSystemSpeedTestServerPtrOutputWithContext(ctx context.Context) SystemSpeedTestServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerPtrOutput)
 }
 
 // SystemSpeedTestServerArrayInput is an input type that accepts SystemSpeedTestServerArray and SystemSpeedTestServerArrayOutput values.
@@ -187,7 +159,7 @@ type SystemSpeedTestServerArrayInput interface {
 type SystemSpeedTestServerArray []SystemSpeedTestServerInput
 
 func (SystemSpeedTestServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSpeedTestServer)(nil))
+	return reflect.TypeOf((*[]*SystemSpeedTestServer)(nil)).Elem()
 }
 
 func (i SystemSpeedTestServerArray) ToSystemSpeedTestServerArrayOutput() SystemSpeedTestServerArrayOutput {
@@ -212,7 +184,7 @@ type SystemSpeedTestServerMapInput interface {
 type SystemSpeedTestServerMap map[string]SystemSpeedTestServerInput
 
 func (SystemSpeedTestServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSpeedTestServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemSpeedTestServer)(nil)).Elem()
 }
 
 func (i SystemSpeedTestServerMap) ToSystemSpeedTestServerMapOutput() SystemSpeedTestServerMapOutput {
@@ -223,12 +195,10 @@ func (i SystemSpeedTestServerMap) ToSystemSpeedTestServerMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestServerMapOutput)
 }
 
-type SystemSpeedTestServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemSpeedTestServerOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSpeedTestServer)(nil))
+	return reflect.TypeOf((**SystemSpeedTestServer)(nil)).Elem()
 }
 
 func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutput() SystemSpeedTestServerOutput {
@@ -239,36 +209,10 @@ func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerOutputWithContext(ct
 	return o
 }
 
-func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerPtrOutput() SystemSpeedTestServerPtrOutput {
-	return o.ToSystemSpeedTestServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSpeedTestServerOutput) ToSystemSpeedTestServerPtrOutputWithContext(ctx context.Context) SystemSpeedTestServerPtrOutput {
-	return o.ApplyT(func(v SystemSpeedTestServer) *SystemSpeedTestServer {
-		return &v
-	}).(SystemSpeedTestServerPtrOutput)
-}
-
-type SystemSpeedTestServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSpeedTestServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSpeedTestServer)(nil))
-}
-
-func (o SystemSpeedTestServerPtrOutput) ToSystemSpeedTestServerPtrOutput() SystemSpeedTestServerPtrOutput {
-	return o
-}
-
-func (o SystemSpeedTestServerPtrOutput) ToSystemSpeedTestServerPtrOutputWithContext(ctx context.Context) SystemSpeedTestServerPtrOutput {
-	return o
-}
-
 type SystemSpeedTestServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSpeedTestServer)(nil))
+	return reflect.TypeOf((*[]*SystemSpeedTestServer)(nil)).Elem()
 }
 
 func (o SystemSpeedTestServerArrayOutput) ToSystemSpeedTestServerArrayOutput() SystemSpeedTestServerArrayOutput {
@@ -280,15 +224,15 @@ func (o SystemSpeedTestServerArrayOutput) ToSystemSpeedTestServerArrayOutputWith
 }
 
 func (o SystemSpeedTestServerArrayOutput) Index(i pulumi.IntInput) SystemSpeedTestServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSpeedTestServer {
-		return vs[0].([]SystemSpeedTestServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSpeedTestServer {
+		return vs[0].([]*SystemSpeedTestServer)[vs[1].(int)]
 	}).(SystemSpeedTestServerOutput)
 }
 
 type SystemSpeedTestServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSpeedTestServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemSpeedTestServer)(nil)).Elem()
 }
 
 func (o SystemSpeedTestServerMapOutput) ToSystemSpeedTestServerMapOutput() SystemSpeedTestServerMapOutput {
@@ -300,14 +244,16 @@ func (o SystemSpeedTestServerMapOutput) ToSystemSpeedTestServerMapOutputWithCont
 }
 
 func (o SystemSpeedTestServerMapOutput) MapIndex(k pulumi.StringInput) SystemSpeedTestServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSpeedTestServer {
-		return vs[0].(map[string]SystemSpeedTestServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSpeedTestServer {
+		return vs[0].(map[string]*SystemSpeedTestServer)[vs[1].(string)]
 	}).(SystemSpeedTestServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSpeedTestServerInput)(nil)).Elem(), &SystemSpeedTestServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSpeedTestServerArrayInput)(nil)).Elem(), SystemSpeedTestServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSpeedTestServerMapInput)(nil)).Elem(), SystemSpeedTestServerMap{})
 	pulumi.RegisterOutputType(SystemSpeedTestServerOutput{})
-	pulumi.RegisterOutputType(SystemSpeedTestServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemSpeedTestServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemSpeedTestServerMapOutput{})
 }

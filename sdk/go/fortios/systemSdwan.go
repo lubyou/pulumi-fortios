@@ -50,6 +50,8 @@ type SystemSdwan struct {
 	Neighbors SystemSdwanNeighborArrayOutput `pulumi:"neighbors"`
 	// Service and service group name. The structure of `service` block is documented below.
 	Services SystemSdwanServiceArrayOutput `pulumi:"services"`
+	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	SpeedtestBypassRouting pulumi.StringOutput `pulumi:"speedtestBypassRouting"`
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -65,6 +67,7 @@ func NewSystemSdwan(ctx *pulumi.Context,
 		args = &SystemSdwanArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSdwan
 	err := ctx.RegisterResource("fortios:index/systemSdwan:SystemSdwan", name, args, &resource, opts...)
 	if err != nil {
@@ -113,6 +116,8 @@ type systemSdwanState struct {
 	Neighbors []SystemSdwanNeighbor `pulumi:"neighbors"`
 	// Service and service group name. The structure of `service` block is documented below.
 	Services []SystemSdwanService `pulumi:"services"`
+	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	SpeedtestBypassRouting *string `pulumi:"speedtestBypassRouting"`
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -148,6 +153,8 @@ type SystemSdwanState struct {
 	Neighbors SystemSdwanNeighborArrayInput
 	// Service and service group name. The structure of `service` block is documented below.
 	Services SystemSdwanServiceArrayInput
+	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	SpeedtestBypassRouting pulumi.StringPtrInput
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -187,6 +194,8 @@ type systemSdwanArgs struct {
 	Neighbors []SystemSdwanNeighbor `pulumi:"neighbors"`
 	// Service and service group name. The structure of `service` block is documented below.
 	Services []SystemSdwanService `pulumi:"services"`
+	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	SpeedtestBypassRouting *string `pulumi:"speedtestBypassRouting"`
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -223,6 +232,8 @@ type SystemSdwanArgs struct {
 	Neighbors SystemSdwanNeighborArrayInput
 	// Service and service group name. The structure of `service` block is documented below.
 	Services SystemSdwanServiceArrayInput
+	// Enable/disable bypass routing when speedtest on a SD-WAN member. Valid values: `disable`, `enable`.
+	SpeedtestBypassRouting pulumi.StringPtrInput
 	// Enable/disable SD-WAN service. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -243,7 +254,7 @@ type SystemSdwanInput interface {
 }
 
 func (*SystemSdwan) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSdwan)(nil))
+	return reflect.TypeOf((**SystemSdwan)(nil)).Elem()
 }
 
 func (i *SystemSdwan) ToSystemSdwanOutput() SystemSdwanOutput {
@@ -252,35 +263,6 @@ func (i *SystemSdwan) ToSystemSdwanOutput() SystemSdwanOutput {
 
 func (i *SystemSdwan) ToSystemSdwanOutputWithContext(ctx context.Context) SystemSdwanOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanOutput)
-}
-
-func (i *SystemSdwan) ToSystemSdwanPtrOutput() SystemSdwanPtrOutput {
-	return i.ToSystemSdwanPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSdwan) ToSystemSdwanPtrOutputWithContext(ctx context.Context) SystemSdwanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanPtrOutput)
-}
-
-type SystemSdwanPtrInput interface {
-	pulumi.Input
-
-	ToSystemSdwanPtrOutput() SystemSdwanPtrOutput
-	ToSystemSdwanPtrOutputWithContext(ctx context.Context) SystemSdwanPtrOutput
-}
-
-type systemSdwanPtrType SystemSdwanArgs
-
-func (*systemSdwanPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSdwan)(nil))
-}
-
-func (i *systemSdwanPtrType) ToSystemSdwanPtrOutput() SystemSdwanPtrOutput {
-	return i.ToSystemSdwanPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSdwanPtrType) ToSystemSdwanPtrOutputWithContext(ctx context.Context) SystemSdwanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanPtrOutput)
 }
 
 // SystemSdwanArrayInput is an input type that accepts SystemSdwanArray and SystemSdwanArrayOutput values.
@@ -297,7 +279,7 @@ type SystemSdwanArrayInput interface {
 type SystemSdwanArray []SystemSdwanInput
 
 func (SystemSdwanArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSdwan)(nil))
+	return reflect.TypeOf((*[]*SystemSdwan)(nil)).Elem()
 }
 
 func (i SystemSdwanArray) ToSystemSdwanArrayOutput() SystemSdwanArrayOutput {
@@ -322,7 +304,7 @@ type SystemSdwanMapInput interface {
 type SystemSdwanMap map[string]SystemSdwanInput
 
 func (SystemSdwanMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSdwan)(nil))
+	return reflect.TypeOf((*map[string]*SystemSdwan)(nil)).Elem()
 }
 
 func (i SystemSdwanMap) ToSystemSdwanMapOutput() SystemSdwanMapOutput {
@@ -333,12 +315,10 @@ func (i SystemSdwanMap) ToSystemSdwanMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSdwanMapOutput)
 }
 
-type SystemSdwanOutput struct {
-	*pulumi.OutputState
-}
+type SystemSdwanOutput struct{ *pulumi.OutputState }
 
 func (SystemSdwanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSdwan)(nil))
+	return reflect.TypeOf((**SystemSdwan)(nil)).Elem()
 }
 
 func (o SystemSdwanOutput) ToSystemSdwanOutput() SystemSdwanOutput {
@@ -349,36 +329,10 @@ func (o SystemSdwanOutput) ToSystemSdwanOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemSdwanOutput) ToSystemSdwanPtrOutput() SystemSdwanPtrOutput {
-	return o.ToSystemSdwanPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSdwanOutput) ToSystemSdwanPtrOutputWithContext(ctx context.Context) SystemSdwanPtrOutput {
-	return o.ApplyT(func(v SystemSdwan) *SystemSdwan {
-		return &v
-	}).(SystemSdwanPtrOutput)
-}
-
-type SystemSdwanPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSdwanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSdwan)(nil))
-}
-
-func (o SystemSdwanPtrOutput) ToSystemSdwanPtrOutput() SystemSdwanPtrOutput {
-	return o
-}
-
-func (o SystemSdwanPtrOutput) ToSystemSdwanPtrOutputWithContext(ctx context.Context) SystemSdwanPtrOutput {
-	return o
-}
-
 type SystemSdwanArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSdwanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSdwan)(nil))
+	return reflect.TypeOf((*[]*SystemSdwan)(nil)).Elem()
 }
 
 func (o SystemSdwanArrayOutput) ToSystemSdwanArrayOutput() SystemSdwanArrayOutput {
@@ -390,15 +344,15 @@ func (o SystemSdwanArrayOutput) ToSystemSdwanArrayOutputWithContext(ctx context.
 }
 
 func (o SystemSdwanArrayOutput) Index(i pulumi.IntInput) SystemSdwanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSdwan {
-		return vs[0].([]SystemSdwan)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSdwan {
+		return vs[0].([]*SystemSdwan)[vs[1].(int)]
 	}).(SystemSdwanOutput)
 }
 
 type SystemSdwanMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSdwanMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSdwan)(nil))
+	return reflect.TypeOf((*map[string]*SystemSdwan)(nil)).Elem()
 }
 
 func (o SystemSdwanMapOutput) ToSystemSdwanMapOutput() SystemSdwanMapOutput {
@@ -410,14 +364,16 @@ func (o SystemSdwanMapOutput) ToSystemSdwanMapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemSdwanMapOutput) MapIndex(k pulumi.StringInput) SystemSdwanOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSdwan {
-		return vs[0].(map[string]SystemSdwan)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSdwan {
+		return vs[0].(map[string]*SystemSdwan)[vs[1].(string)]
 	}).(SystemSdwanOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSdwanInput)(nil)).Elem(), &SystemSdwan{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSdwanArrayInput)(nil)).Elem(), SystemSdwanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSdwanMapInput)(nil)).Elem(), SystemSdwanMap{})
 	pulumi.RegisterOutputType(SystemSdwanOutput{})
-	pulumi.RegisterOutputType(SystemSdwanPtrOutput{})
 	pulumi.RegisterOutputType(SystemSdwanArrayOutput{})
 	pulumi.RegisterOutputType(SystemSdwanMapOutput{})
 }

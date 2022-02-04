@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source.
+// Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -37,6 +37,7 @@ func NewDlpSensitivity(ctx *pulumi.Context,
 		args = &DlpSensitivityArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DlpSensitivity
 	err := ctx.RegisterResource("fortios:index/dlpSensitivity:DlpSensitivity", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type DlpSensitivityInput interface {
 }
 
 func (*DlpSensitivity) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpSensitivity)(nil))
+	return reflect.TypeOf((**DlpSensitivity)(nil)).Elem()
 }
 
 func (i *DlpSensitivity) ToDlpSensitivityOutput() DlpSensitivityOutput {
@@ -112,35 +113,6 @@ func (i *DlpSensitivity) ToDlpSensitivityOutput() DlpSensitivityOutput {
 
 func (i *DlpSensitivity) ToDlpSensitivityOutputWithContext(ctx context.Context) DlpSensitivityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityOutput)
-}
-
-func (i *DlpSensitivity) ToDlpSensitivityPtrOutput() DlpSensitivityPtrOutput {
-	return i.ToDlpSensitivityPtrOutputWithContext(context.Background())
-}
-
-func (i *DlpSensitivity) ToDlpSensitivityPtrOutputWithContext(ctx context.Context) DlpSensitivityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityPtrOutput)
-}
-
-type DlpSensitivityPtrInput interface {
-	pulumi.Input
-
-	ToDlpSensitivityPtrOutput() DlpSensitivityPtrOutput
-	ToDlpSensitivityPtrOutputWithContext(ctx context.Context) DlpSensitivityPtrOutput
-}
-
-type dlpSensitivityPtrType DlpSensitivityArgs
-
-func (*dlpSensitivityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpSensitivity)(nil))
-}
-
-func (i *dlpSensitivityPtrType) ToDlpSensitivityPtrOutput() DlpSensitivityPtrOutput {
-	return i.ToDlpSensitivityPtrOutputWithContext(context.Background())
-}
-
-func (i *dlpSensitivityPtrType) ToDlpSensitivityPtrOutputWithContext(ctx context.Context) DlpSensitivityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityPtrOutput)
 }
 
 // DlpSensitivityArrayInput is an input type that accepts DlpSensitivityArray and DlpSensitivityArrayOutput values.
@@ -157,7 +129,7 @@ type DlpSensitivityArrayInput interface {
 type DlpSensitivityArray []DlpSensitivityInput
 
 func (DlpSensitivityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DlpSensitivity)(nil))
+	return reflect.TypeOf((*[]*DlpSensitivity)(nil)).Elem()
 }
 
 func (i DlpSensitivityArray) ToDlpSensitivityArrayOutput() DlpSensitivityArrayOutput {
@@ -182,7 +154,7 @@ type DlpSensitivityMapInput interface {
 type DlpSensitivityMap map[string]DlpSensitivityInput
 
 func (DlpSensitivityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DlpSensitivity)(nil))
+	return reflect.TypeOf((*map[string]*DlpSensitivity)(nil)).Elem()
 }
 
 func (i DlpSensitivityMap) ToDlpSensitivityMapOutput() DlpSensitivityMapOutput {
@@ -193,12 +165,10 @@ func (i DlpSensitivityMap) ToDlpSensitivityMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensitivityMapOutput)
 }
 
-type DlpSensitivityOutput struct {
-	*pulumi.OutputState
-}
+type DlpSensitivityOutput struct{ *pulumi.OutputState }
 
 func (DlpSensitivityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpSensitivity)(nil))
+	return reflect.TypeOf((**DlpSensitivity)(nil)).Elem()
 }
 
 func (o DlpSensitivityOutput) ToDlpSensitivityOutput() DlpSensitivityOutput {
@@ -209,36 +179,10 @@ func (o DlpSensitivityOutput) ToDlpSensitivityOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o DlpSensitivityOutput) ToDlpSensitivityPtrOutput() DlpSensitivityPtrOutput {
-	return o.ToDlpSensitivityPtrOutputWithContext(context.Background())
-}
-
-func (o DlpSensitivityOutput) ToDlpSensitivityPtrOutputWithContext(ctx context.Context) DlpSensitivityPtrOutput {
-	return o.ApplyT(func(v DlpSensitivity) *DlpSensitivity {
-		return &v
-	}).(DlpSensitivityPtrOutput)
-}
-
-type DlpSensitivityPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DlpSensitivityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpSensitivity)(nil))
-}
-
-func (o DlpSensitivityPtrOutput) ToDlpSensitivityPtrOutput() DlpSensitivityPtrOutput {
-	return o
-}
-
-func (o DlpSensitivityPtrOutput) ToDlpSensitivityPtrOutputWithContext(ctx context.Context) DlpSensitivityPtrOutput {
-	return o
-}
-
 type DlpSensitivityArrayOutput struct{ *pulumi.OutputState }
 
 func (DlpSensitivityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DlpSensitivity)(nil))
+	return reflect.TypeOf((*[]*DlpSensitivity)(nil)).Elem()
 }
 
 func (o DlpSensitivityArrayOutput) ToDlpSensitivityArrayOutput() DlpSensitivityArrayOutput {
@@ -250,15 +194,15 @@ func (o DlpSensitivityArrayOutput) ToDlpSensitivityArrayOutputWithContext(ctx co
 }
 
 func (o DlpSensitivityArrayOutput) Index(i pulumi.IntInput) DlpSensitivityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DlpSensitivity {
-		return vs[0].([]DlpSensitivity)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpSensitivity {
+		return vs[0].([]*DlpSensitivity)[vs[1].(int)]
 	}).(DlpSensitivityOutput)
 }
 
 type DlpSensitivityMapOutput struct{ *pulumi.OutputState }
 
 func (DlpSensitivityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DlpSensitivity)(nil))
+	return reflect.TypeOf((*map[string]*DlpSensitivity)(nil)).Elem()
 }
 
 func (o DlpSensitivityMapOutput) ToDlpSensitivityMapOutput() DlpSensitivityMapOutput {
@@ -270,14 +214,16 @@ func (o DlpSensitivityMapOutput) ToDlpSensitivityMapOutputWithContext(ctx contex
 }
 
 func (o DlpSensitivityMapOutput) MapIndex(k pulumi.StringInput) DlpSensitivityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DlpSensitivity {
-		return vs[0].(map[string]DlpSensitivity)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DlpSensitivity {
+		return vs[0].(map[string]*DlpSensitivity)[vs[1].(string)]
 	}).(DlpSensitivityOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSensitivityInput)(nil)).Elem(), &DlpSensitivity{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSensitivityArrayInput)(nil)).Elem(), DlpSensitivityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSensitivityMapInput)(nil)).Elem(), DlpSensitivityMap{})
 	pulumi.RegisterOutputType(DlpSensitivityOutput{})
-	pulumi.RegisterOutputType(DlpSensitivityPtrOutput{})
 	pulumi.RegisterOutputType(DlpSensitivityArrayOutput{})
 	pulumi.RegisterOutputType(DlpSensitivityMapOutput{})
 }

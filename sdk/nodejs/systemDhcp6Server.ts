@@ -63,6 +63,10 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
     }
 
     /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    public readonly delegatedPrefixIaid!: pulumi.Output<number>;
+    /**
      * DNS search list options. Valid values: `delegated`, `specify`.
      */
     public readonly dnsSearchList!: pulumi.Output<string>;
@@ -164,33 +168,34 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemDhcp6ServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDhcp6ServerArgs | SystemDhcp6ServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDhcp6ServerState | undefined;
-            inputs["dnsSearchList"] = state ? state.dnsSearchList : undefined;
-            inputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
-            inputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
-            inputs["dnsServer3"] = state ? state.dnsServer3 : undefined;
-            inputs["dnsServer4"] = state ? state.dnsServer4 : undefined;
-            inputs["dnsService"] = state ? state.dnsService : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipMode"] = state ? state.ipMode : undefined;
-            inputs["ipRanges"] = state ? state.ipRanges : undefined;
-            inputs["leaseTime"] = state ? state.leaseTime : undefined;
-            inputs["option1"] = state ? state.option1 : undefined;
-            inputs["option2"] = state ? state.option2 : undefined;
-            inputs["option3"] = state ? state.option3 : undefined;
-            inputs["prefixMode"] = state ? state.prefixMode : undefined;
-            inputs["prefixRanges"] = state ? state.prefixRanges : undefined;
-            inputs["rapidCommit"] = state ? state.rapidCommit : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["subnet"] = state ? state.subnet : undefined;
-            inputs["upstreamInterface"] = state ? state.upstreamInterface : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["delegatedPrefixIaid"] = state ? state.delegatedPrefixIaid : undefined;
+            resourceInputs["dnsSearchList"] = state ? state.dnsSearchList : undefined;
+            resourceInputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
+            resourceInputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
+            resourceInputs["dnsServer3"] = state ? state.dnsServer3 : undefined;
+            resourceInputs["dnsServer4"] = state ? state.dnsServer4 : undefined;
+            resourceInputs["dnsService"] = state ? state.dnsService : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipMode"] = state ? state.ipMode : undefined;
+            resourceInputs["ipRanges"] = state ? state.ipRanges : undefined;
+            resourceInputs["leaseTime"] = state ? state.leaseTime : undefined;
+            resourceInputs["option1"] = state ? state.option1 : undefined;
+            resourceInputs["option2"] = state ? state.option2 : undefined;
+            resourceInputs["option3"] = state ? state.option3 : undefined;
+            resourceInputs["prefixMode"] = state ? state.prefixMode : undefined;
+            resourceInputs["prefixRanges"] = state ? state.prefixRanges : undefined;
+            resourceInputs["rapidCommit"] = state ? state.rapidCommit : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["subnet"] = state ? state.subnet : undefined;
+            resourceInputs["upstreamInterface"] = state ? state.upstreamInterface : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemDhcp6ServerArgs | undefined;
             if ((!args || args.fosid === undefined) && !opts.urn) {
@@ -202,34 +207,33 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
             if ((!args || args.subnet === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'subnet'");
             }
-            inputs["dnsSearchList"] = args ? args.dnsSearchList : undefined;
-            inputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
-            inputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
-            inputs["dnsServer3"] = args ? args.dnsServer3 : undefined;
-            inputs["dnsServer4"] = args ? args.dnsServer4 : undefined;
-            inputs["dnsService"] = args ? args.dnsService : undefined;
-            inputs["domain"] = args ? args.domain : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipMode"] = args ? args.ipMode : undefined;
-            inputs["ipRanges"] = args ? args.ipRanges : undefined;
-            inputs["leaseTime"] = args ? args.leaseTime : undefined;
-            inputs["option1"] = args ? args.option1 : undefined;
-            inputs["option2"] = args ? args.option2 : undefined;
-            inputs["option3"] = args ? args.option3 : undefined;
-            inputs["prefixMode"] = args ? args.prefixMode : undefined;
-            inputs["prefixRanges"] = args ? args.prefixRanges : undefined;
-            inputs["rapidCommit"] = args ? args.rapidCommit : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["subnet"] = args ? args.subnet : undefined;
-            inputs["upstreamInterface"] = args ? args.upstreamInterface : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["delegatedPrefixIaid"] = args ? args.delegatedPrefixIaid : undefined;
+            resourceInputs["dnsSearchList"] = args ? args.dnsSearchList : undefined;
+            resourceInputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
+            resourceInputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
+            resourceInputs["dnsServer3"] = args ? args.dnsServer3 : undefined;
+            resourceInputs["dnsServer4"] = args ? args.dnsServer4 : undefined;
+            resourceInputs["dnsService"] = args ? args.dnsService : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipMode"] = args ? args.ipMode : undefined;
+            resourceInputs["ipRanges"] = args ? args.ipRanges : undefined;
+            resourceInputs["leaseTime"] = args ? args.leaseTime : undefined;
+            resourceInputs["option1"] = args ? args.option1 : undefined;
+            resourceInputs["option2"] = args ? args.option2 : undefined;
+            resourceInputs["option3"] = args ? args.option3 : undefined;
+            resourceInputs["prefixMode"] = args ? args.prefixMode : undefined;
+            resourceInputs["prefixRanges"] = args ? args.prefixRanges : undefined;
+            resourceInputs["rapidCommit"] = args ? args.rapidCommit : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["subnet"] = args ? args.subnet : undefined;
+            resourceInputs["upstreamInterface"] = args ? args.upstreamInterface : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDhcp6Server.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDhcp6Server.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -237,6 +241,10 @@ export class SystemDhcp6Server extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDhcp6Server resources.
  */
 export interface SystemDhcp6ServerState {
+    /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    delegatedPrefixIaid?: pulumi.Input<number>;
     /**
      * DNS search list options. Valid values: `delegated`, `specify`.
      */
@@ -335,6 +343,10 @@ export interface SystemDhcp6ServerState {
  * The set of arguments for constructing a SystemDhcp6Server resource.
  */
 export interface SystemDhcp6ServerArgs {
+    /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    delegatedPrefixIaid?: pulumi.Input<number>;
     /**
      * DNS search list options. Valid values: `delegated`, `specify`.
      */

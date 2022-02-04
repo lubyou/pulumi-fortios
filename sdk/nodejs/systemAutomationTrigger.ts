@@ -64,6 +64,10 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
     }
 
     /**
+     * Description.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -71,6 +75,14 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
      * Event type.
      */
     public readonly eventType!: pulumi.Output<string>;
+    /**
+     * Fabric connector event handler name.
+     */
+    public readonly fabricEventName!: pulumi.Output<string | undefined>;
+    /**
+     * Fabric connector event severity.
+     */
+    public readonly fabricEventSeverity!: pulumi.Output<string | undefined>;
     /**
      * FortiAnalyzer event handler name.
      */
@@ -104,9 +116,13 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+     * Security Rating report.
      */
     public readonly reportType!: pulumi.Output<string>;
+    /**
+     * Fabric connector serial number.
+     */
+    public readonly serial!: pulumi.Output<string | undefined>;
     /**
      * Day within a month to trigger.
      */
@@ -145,53 +161,59 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAutomationTriggerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutomationTriggerArgs | SystemAutomationTriggerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutomationTriggerState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["eventType"] = state ? state.eventType : undefined;
-            inputs["fazEventName"] = state ? state.fazEventName : undefined;
-            inputs["fazEventSeverity"] = state ? state.fazEventSeverity : undefined;
-            inputs["fazEventTags"] = state ? state.fazEventTags : undefined;
-            inputs["fields"] = state ? state.fields : undefined;
-            inputs["iocLevel"] = state ? state.iocLevel : undefined;
-            inputs["licenseType"] = state ? state.licenseType : undefined;
-            inputs["logid"] = state ? state.logid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["reportType"] = state ? state.reportType : undefined;
-            inputs["triggerDay"] = state ? state.triggerDay : undefined;
-            inputs["triggerFrequency"] = state ? state.triggerFrequency : undefined;
-            inputs["triggerHour"] = state ? state.triggerHour : undefined;
-            inputs["triggerMinute"] = state ? state.triggerMinute : undefined;
-            inputs["triggerType"] = state ? state.triggerType : undefined;
-            inputs["triggerWeekday"] = state ? state.triggerWeekday : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["eventType"] = state ? state.eventType : undefined;
+            resourceInputs["fabricEventName"] = state ? state.fabricEventName : undefined;
+            resourceInputs["fabricEventSeverity"] = state ? state.fabricEventSeverity : undefined;
+            resourceInputs["fazEventName"] = state ? state.fazEventName : undefined;
+            resourceInputs["fazEventSeverity"] = state ? state.fazEventSeverity : undefined;
+            resourceInputs["fazEventTags"] = state ? state.fazEventTags : undefined;
+            resourceInputs["fields"] = state ? state.fields : undefined;
+            resourceInputs["iocLevel"] = state ? state.iocLevel : undefined;
+            resourceInputs["licenseType"] = state ? state.licenseType : undefined;
+            resourceInputs["logid"] = state ? state.logid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["reportType"] = state ? state.reportType : undefined;
+            resourceInputs["serial"] = state ? state.serial : undefined;
+            resourceInputs["triggerDay"] = state ? state.triggerDay : undefined;
+            resourceInputs["triggerFrequency"] = state ? state.triggerFrequency : undefined;
+            resourceInputs["triggerHour"] = state ? state.triggerHour : undefined;
+            resourceInputs["triggerMinute"] = state ? state.triggerMinute : undefined;
+            resourceInputs["triggerType"] = state ? state.triggerType : undefined;
+            resourceInputs["triggerWeekday"] = state ? state.triggerWeekday : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutomationTriggerArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["eventType"] = args ? args.eventType : undefined;
-            inputs["fazEventName"] = args ? args.fazEventName : undefined;
-            inputs["fazEventSeverity"] = args ? args.fazEventSeverity : undefined;
-            inputs["fazEventTags"] = args ? args.fazEventTags : undefined;
-            inputs["fields"] = args ? args.fields : undefined;
-            inputs["iocLevel"] = args ? args.iocLevel : undefined;
-            inputs["licenseType"] = args ? args.licenseType : undefined;
-            inputs["logid"] = args ? args.logid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["reportType"] = args ? args.reportType : undefined;
-            inputs["triggerDay"] = args ? args.triggerDay : undefined;
-            inputs["triggerFrequency"] = args ? args.triggerFrequency : undefined;
-            inputs["triggerHour"] = args ? args.triggerHour : undefined;
-            inputs["triggerMinute"] = args ? args.triggerMinute : undefined;
-            inputs["triggerType"] = args ? args.triggerType : undefined;
-            inputs["triggerWeekday"] = args ? args.triggerWeekday : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["eventType"] = args ? args.eventType : undefined;
+            resourceInputs["fabricEventName"] = args ? args.fabricEventName : undefined;
+            resourceInputs["fabricEventSeverity"] = args ? args.fabricEventSeverity : undefined;
+            resourceInputs["fazEventName"] = args ? args.fazEventName : undefined;
+            resourceInputs["fazEventSeverity"] = args ? args.fazEventSeverity : undefined;
+            resourceInputs["fazEventTags"] = args ? args.fazEventTags : undefined;
+            resourceInputs["fields"] = args ? args.fields : undefined;
+            resourceInputs["iocLevel"] = args ? args.iocLevel : undefined;
+            resourceInputs["licenseType"] = args ? args.licenseType : undefined;
+            resourceInputs["logid"] = args ? args.logid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["reportType"] = args ? args.reportType : undefined;
+            resourceInputs["serial"] = args ? args.serial : undefined;
+            resourceInputs["triggerDay"] = args ? args.triggerDay : undefined;
+            resourceInputs["triggerFrequency"] = args ? args.triggerFrequency : undefined;
+            resourceInputs["triggerHour"] = args ? args.triggerHour : undefined;
+            resourceInputs["triggerMinute"] = args ? args.triggerMinute : undefined;
+            resourceInputs["triggerType"] = args ? args.triggerType : undefined;
+            resourceInputs["triggerWeekday"] = args ? args.triggerWeekday : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutomationTrigger.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutomationTrigger.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -200,6 +222,10 @@ export class SystemAutomationTrigger extends pulumi.CustomResource {
  */
 export interface SystemAutomationTriggerState {
     /**
+     * Description.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -207,6 +233,14 @@ export interface SystemAutomationTriggerState {
      * Event type.
      */
     eventType?: pulumi.Input<string>;
+    /**
+     * Fabric connector event handler name.
+     */
+    fabricEventName?: pulumi.Input<string>;
+    /**
+     * Fabric connector event severity.
+     */
+    fabricEventSeverity?: pulumi.Input<string>;
     /**
      * FortiAnalyzer event handler name.
      */
@@ -240,9 +274,13 @@ export interface SystemAutomationTriggerState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+     * Security Rating report.
      */
     reportType?: pulumi.Input<string>;
+    /**
+     * Fabric connector serial number.
+     */
+    serial?: pulumi.Input<string>;
     /**
      * Day within a month to trigger.
      */
@@ -278,6 +316,10 @@ export interface SystemAutomationTriggerState {
  */
 export interface SystemAutomationTriggerArgs {
     /**
+     * Description.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -285,6 +327,14 @@ export interface SystemAutomationTriggerArgs {
      * Event type.
      */
     eventType?: pulumi.Input<string>;
+    /**
+     * Fabric connector event handler name.
+     */
+    fabricEventName?: pulumi.Input<string>;
+    /**
+     * Fabric connector event severity.
+     */
+    fabricEventSeverity?: pulumi.Input<string>;
     /**
      * FortiAnalyzer event handler name.
      */
@@ -318,9 +368,13 @@ export interface SystemAutomationTriggerArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+     * Security Rating report.
      */
     reportType?: pulumi.Input<string>;
+    /**
+     * Fabric connector serial number.
+     */
+    serial?: pulumi.Input<string>;
     /**
      * Day within a month to trigger.
      */

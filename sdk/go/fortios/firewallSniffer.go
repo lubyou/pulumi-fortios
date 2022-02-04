@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -85,6 +85,10 @@ type FirewallSniffer struct {
 	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
 	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringOutput `pulumi:"emailfilterProfileStatus"`
+	// Name of an existing file-filter profile.
+	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
+	// Enable/disable file filter. Valid values: `enable`, `disable`.
+	FileFilterProfileStatus pulumi.StringOutput `pulumi:"fileFilterProfileStatus"`
 	// Sniffer ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
@@ -141,6 +145,7 @@ func NewFirewallSniffer(ctx *pulumi.Context,
 	if args.Interface == nil {
 		return nil, errors.New("invalid value for required argument 'Interface'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSniffer
 	err := ctx.RegisterResource("fortios:index/firewallSniffer:FirewallSniffer", name, args, &resource, opts...)
 	if err != nil {
@@ -185,6 +190,10 @@ type firewallSnifferState struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
+	// Name of an existing file-filter profile.
+	FileFilterProfile *string `pulumi:"fileFilterProfile"`
+	// Enable/disable file filter. Valid values: `enable`, `disable`.
+	FileFilterProfileStatus *string `pulumi:"fileFilterProfileStatus"`
 	// Sniffer ID.
 	Fosid *int `pulumi:"fosid"`
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
@@ -254,6 +263,10 @@ type FirewallSnifferState struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringPtrInput
+	// Name of an existing file-filter profile.
+	FileFilterProfile pulumi.StringPtrInput
+	// Enable/disable file filter. Valid values: `enable`, `disable`.
+	FileFilterProfileStatus pulumi.StringPtrInput
 	// Sniffer ID.
 	Fosid pulumi.IntPtrInput
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
@@ -327,6 +340,10 @@ type firewallSnifferArgs struct {
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
 	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus *string `pulumi:"emailfilterProfileStatus"`
+	// Name of an existing file-filter profile.
+	FileFilterProfile *string `pulumi:"fileFilterProfile"`
+	// Enable/disable file filter. Valid values: `enable`, `disable`.
+	FileFilterProfileStatus *string `pulumi:"fileFilterProfileStatus"`
 	// Sniffer ID.
 	Fosid *int `pulumi:"fosid"`
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
@@ -397,6 +414,10 @@ type FirewallSnifferArgs struct {
 	EmailfilterProfile pulumi.StringPtrInput
 	// Enable/disable emailfilter. Valid values: `enable`, `disable`.
 	EmailfilterProfileStatus pulumi.StringPtrInput
+	// Name of an existing file-filter profile.
+	FileFilterProfile pulumi.StringPtrInput
+	// Enable/disable file filter. Valid values: `enable`, `disable`.
+	FileFilterProfileStatus pulumi.StringPtrInput
 	// Sniffer ID.
 	Fosid pulumi.IntPtrInput
 	// Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
@@ -455,7 +476,7 @@ type FirewallSnifferInput interface {
 }
 
 func (*FirewallSniffer) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSniffer)(nil))
+	return reflect.TypeOf((**FirewallSniffer)(nil)).Elem()
 }
 
 func (i *FirewallSniffer) ToFirewallSnifferOutput() FirewallSnifferOutput {
@@ -464,35 +485,6 @@ func (i *FirewallSniffer) ToFirewallSnifferOutput() FirewallSnifferOutput {
 
 func (i *FirewallSniffer) ToFirewallSnifferOutputWithContext(ctx context.Context) FirewallSnifferOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferOutput)
-}
-
-func (i *FirewallSniffer) ToFirewallSnifferPtrOutput() FirewallSnifferPtrOutput {
-	return i.ToFirewallSnifferPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSniffer) ToFirewallSnifferPtrOutputWithContext(ctx context.Context) FirewallSnifferPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferPtrOutput)
-}
-
-type FirewallSnifferPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSnifferPtrOutput() FirewallSnifferPtrOutput
-	ToFirewallSnifferPtrOutputWithContext(ctx context.Context) FirewallSnifferPtrOutput
-}
-
-type firewallSnifferPtrType FirewallSnifferArgs
-
-func (*firewallSnifferPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSniffer)(nil))
-}
-
-func (i *firewallSnifferPtrType) ToFirewallSnifferPtrOutput() FirewallSnifferPtrOutput {
-	return i.ToFirewallSnifferPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSnifferPtrType) ToFirewallSnifferPtrOutputWithContext(ctx context.Context) FirewallSnifferPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferPtrOutput)
 }
 
 // FirewallSnifferArrayInput is an input type that accepts FirewallSnifferArray and FirewallSnifferArrayOutput values.
@@ -509,7 +501,7 @@ type FirewallSnifferArrayInput interface {
 type FirewallSnifferArray []FirewallSnifferInput
 
 func (FirewallSnifferArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSniffer)(nil))
+	return reflect.TypeOf((*[]*FirewallSniffer)(nil)).Elem()
 }
 
 func (i FirewallSnifferArray) ToFirewallSnifferArrayOutput() FirewallSnifferArrayOutput {
@@ -534,7 +526,7 @@ type FirewallSnifferMapInput interface {
 type FirewallSnifferMap map[string]FirewallSnifferInput
 
 func (FirewallSnifferMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSniffer)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSniffer)(nil)).Elem()
 }
 
 func (i FirewallSnifferMap) ToFirewallSnifferMapOutput() FirewallSnifferMapOutput {
@@ -545,12 +537,10 @@ func (i FirewallSnifferMap) ToFirewallSnifferMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSnifferMapOutput)
 }
 
-type FirewallSnifferOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSnifferOutput struct{ *pulumi.OutputState }
 
 func (FirewallSnifferOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSniffer)(nil))
+	return reflect.TypeOf((**FirewallSniffer)(nil)).Elem()
 }
 
 func (o FirewallSnifferOutput) ToFirewallSnifferOutput() FirewallSnifferOutput {
@@ -561,36 +551,10 @@ func (o FirewallSnifferOutput) ToFirewallSnifferOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FirewallSnifferOutput) ToFirewallSnifferPtrOutput() FirewallSnifferPtrOutput {
-	return o.ToFirewallSnifferPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSnifferOutput) ToFirewallSnifferPtrOutputWithContext(ctx context.Context) FirewallSnifferPtrOutput {
-	return o.ApplyT(func(v FirewallSniffer) *FirewallSniffer {
-		return &v
-	}).(FirewallSnifferPtrOutput)
-}
-
-type FirewallSnifferPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSnifferPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSniffer)(nil))
-}
-
-func (o FirewallSnifferPtrOutput) ToFirewallSnifferPtrOutput() FirewallSnifferPtrOutput {
-	return o
-}
-
-func (o FirewallSnifferPtrOutput) ToFirewallSnifferPtrOutputWithContext(ctx context.Context) FirewallSnifferPtrOutput {
-	return o
-}
-
 type FirewallSnifferArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSnifferArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSniffer)(nil))
+	return reflect.TypeOf((*[]*FirewallSniffer)(nil)).Elem()
 }
 
 func (o FirewallSnifferArrayOutput) ToFirewallSnifferArrayOutput() FirewallSnifferArrayOutput {
@@ -602,15 +566,15 @@ func (o FirewallSnifferArrayOutput) ToFirewallSnifferArrayOutputWithContext(ctx 
 }
 
 func (o FirewallSnifferArrayOutput) Index(i pulumi.IntInput) FirewallSnifferOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSniffer {
-		return vs[0].([]FirewallSniffer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSniffer {
+		return vs[0].([]*FirewallSniffer)[vs[1].(int)]
 	}).(FirewallSnifferOutput)
 }
 
 type FirewallSnifferMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSnifferMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSniffer)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSniffer)(nil)).Elem()
 }
 
 func (o FirewallSnifferMapOutput) ToFirewallSnifferMapOutput() FirewallSnifferMapOutput {
@@ -622,14 +586,16 @@ func (o FirewallSnifferMapOutput) ToFirewallSnifferMapOutputWithContext(ctx cont
 }
 
 func (o FirewallSnifferMapOutput) MapIndex(k pulumi.StringInput) FirewallSnifferOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSniffer {
-		return vs[0].(map[string]FirewallSniffer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSniffer {
+		return vs[0].(map[string]*FirewallSniffer)[vs[1].(string)]
 	}).(FirewallSnifferOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSnifferInput)(nil)).Elem(), &FirewallSniffer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSnifferArrayInput)(nil)).Elem(), FirewallSnifferArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSnifferMapInput)(nil)).Elem(), FirewallSnifferMap{})
 	pulumi.RegisterOutputType(FirewallSnifferOutput{})
-	pulumi.RegisterOutputType(FirewallSnifferPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSnifferArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSnifferMapOutput{})
 }

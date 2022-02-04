@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -110,6 +110,7 @@ func NewRouterSetting(ctx *pulumi.Context,
 		args = &RouterSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterSetting
 	err := ctx.RegisterResource("fortios:index/routerSetting:RouterSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -376,7 +377,7 @@ type RouterSettingInput interface {
 }
 
 func (*RouterSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterSetting)(nil))
+	return reflect.TypeOf((**RouterSetting)(nil)).Elem()
 }
 
 func (i *RouterSetting) ToRouterSettingOutput() RouterSettingOutput {
@@ -385,35 +386,6 @@ func (i *RouterSetting) ToRouterSettingOutput() RouterSettingOutput {
 
 func (i *RouterSetting) ToRouterSettingOutputWithContext(ctx context.Context) RouterSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingOutput)
-}
-
-func (i *RouterSetting) ToRouterSettingPtrOutput() RouterSettingPtrOutput {
-	return i.ToRouterSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterSetting) ToRouterSettingPtrOutputWithContext(ctx context.Context) RouterSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingPtrOutput)
-}
-
-type RouterSettingPtrInput interface {
-	pulumi.Input
-
-	ToRouterSettingPtrOutput() RouterSettingPtrOutput
-	ToRouterSettingPtrOutputWithContext(ctx context.Context) RouterSettingPtrOutput
-}
-
-type routerSettingPtrType RouterSettingArgs
-
-func (*routerSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterSetting)(nil))
-}
-
-func (i *routerSettingPtrType) ToRouterSettingPtrOutput() RouterSettingPtrOutput {
-	return i.ToRouterSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *routerSettingPtrType) ToRouterSettingPtrOutputWithContext(ctx context.Context) RouterSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingPtrOutput)
 }
 
 // RouterSettingArrayInput is an input type that accepts RouterSettingArray and RouterSettingArrayOutput values.
@@ -430,7 +402,7 @@ type RouterSettingArrayInput interface {
 type RouterSettingArray []RouterSettingInput
 
 func (RouterSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterSetting)(nil))
+	return reflect.TypeOf((*[]*RouterSetting)(nil)).Elem()
 }
 
 func (i RouterSettingArray) ToRouterSettingArrayOutput() RouterSettingArrayOutput {
@@ -455,7 +427,7 @@ type RouterSettingMapInput interface {
 type RouterSettingMap map[string]RouterSettingInput
 
 func (RouterSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterSetting)(nil))
+	return reflect.TypeOf((*map[string]*RouterSetting)(nil)).Elem()
 }
 
 func (i RouterSettingMap) ToRouterSettingMapOutput() RouterSettingMapOutput {
@@ -466,12 +438,10 @@ func (i RouterSettingMap) ToRouterSettingMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterSettingMapOutput)
 }
 
-type RouterSettingOutput struct {
-	*pulumi.OutputState
-}
+type RouterSettingOutput struct{ *pulumi.OutputState }
 
 func (RouterSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterSetting)(nil))
+	return reflect.TypeOf((**RouterSetting)(nil)).Elem()
 }
 
 func (o RouterSettingOutput) ToRouterSettingOutput() RouterSettingOutput {
@@ -482,36 +452,10 @@ func (o RouterSettingOutput) ToRouterSettingOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RouterSettingOutput) ToRouterSettingPtrOutput() RouterSettingPtrOutput {
-	return o.ToRouterSettingPtrOutputWithContext(context.Background())
-}
-
-func (o RouterSettingOutput) ToRouterSettingPtrOutputWithContext(ctx context.Context) RouterSettingPtrOutput {
-	return o.ApplyT(func(v RouterSetting) *RouterSetting {
-		return &v
-	}).(RouterSettingPtrOutput)
-}
-
-type RouterSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterSetting)(nil))
-}
-
-func (o RouterSettingPtrOutput) ToRouterSettingPtrOutput() RouterSettingPtrOutput {
-	return o
-}
-
-func (o RouterSettingPtrOutput) ToRouterSettingPtrOutputWithContext(ctx context.Context) RouterSettingPtrOutput {
-	return o
-}
-
 type RouterSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterSetting)(nil))
+	return reflect.TypeOf((*[]*RouterSetting)(nil)).Elem()
 }
 
 func (o RouterSettingArrayOutput) ToRouterSettingArrayOutput() RouterSettingArrayOutput {
@@ -523,15 +467,15 @@ func (o RouterSettingArrayOutput) ToRouterSettingArrayOutputWithContext(ctx cont
 }
 
 func (o RouterSettingArrayOutput) Index(i pulumi.IntInput) RouterSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterSetting {
-		return vs[0].([]RouterSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterSetting {
+		return vs[0].([]*RouterSetting)[vs[1].(int)]
 	}).(RouterSettingOutput)
 }
 
 type RouterSettingMapOutput struct{ *pulumi.OutputState }
 
 func (RouterSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterSetting)(nil))
+	return reflect.TypeOf((*map[string]*RouterSetting)(nil)).Elem()
 }
 
 func (o RouterSettingMapOutput) ToRouterSettingMapOutput() RouterSettingMapOutput {
@@ -543,14 +487,16 @@ func (o RouterSettingMapOutput) ToRouterSettingMapOutputWithContext(ctx context.
 }
 
 func (o RouterSettingMapOutput) MapIndex(k pulumi.StringInput) RouterSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterSetting {
-		return vs[0].(map[string]RouterSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterSetting {
+		return vs[0].(map[string]*RouterSetting)[vs[1].(string)]
 	}).(RouterSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterSettingInput)(nil)).Elem(), &RouterSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterSettingArrayInput)(nil)).Elem(), RouterSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterSettingMapInput)(nil)).Elem(), RouterSettingMap{})
 	pulumi.RegisterOutputType(RouterSettingOutput{})
-	pulumi.RegisterOutputType(RouterSettingPtrOutput{})
 	pulumi.RegisterOutputType(RouterSettingArrayOutput{})
 	pulumi.RegisterOutputType(RouterSettingMapOutput{})
 }

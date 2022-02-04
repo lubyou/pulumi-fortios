@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system proberesponse
 func LookupSystemProbeResponse(ctx *pulumi.Context, args *LookupSystemProbeResponseArgs, opts ...pulumi.InvokeOption) (*LookupSystemProbeResponseResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemProbeResponseResult
 	err := ctx.Invoke("fortios:index/getSystemProbeResponse:GetSystemProbeResponse", args, &rv, opts...)
 	if err != nil {
@@ -42,4 +46,86 @@ type LookupSystemProbeResponseResult struct {
 	// Mode for TWAMP packet TTL modification.
 	TtlMode   string  `pulumi:"ttlMode"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemProbeResponseOutput(ctx *pulumi.Context, args LookupSystemProbeResponseOutputArgs, opts ...pulumi.InvokeOption) LookupSystemProbeResponseResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemProbeResponseResult, error) {
+			args := v.(LookupSystemProbeResponseArgs)
+			r, err := LookupSystemProbeResponse(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemProbeResponseResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemProbeResponse.
+type LookupSystemProbeResponseOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemProbeResponseOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemProbeResponseArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemProbeResponse.
+type LookupSystemProbeResponseResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemProbeResponseResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemProbeResponseResult)(nil)).Elem()
+}
+
+func (o LookupSystemProbeResponseResultOutput) ToLookupSystemProbeResponseResultOutput() LookupSystemProbeResponseResultOutput {
+	return o
+}
+
+func (o LookupSystemProbeResponseResultOutput) ToLookupSystemProbeResponseResultOutputWithContext(ctx context.Context) LookupSystemProbeResponseResultOutput {
+	return o
+}
+
+// Value to respond to the monitoring server.
+func (o LookupSystemProbeResponseResultOutput) HttpProbeValue() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.HttpProbeValue }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemProbeResponseResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// SLA response mode.
+func (o LookupSystemProbeResponseResultOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// Twamp respondor password in authentication mode
+func (o LookupSystemProbeResponseResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Port number to response.
+func (o LookupSystemProbeResponseResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Twamp respondor security mode.
+func (o LookupSystemProbeResponseResultOutput) SecurityMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.SecurityMode }).(pulumi.StringOutput)
+}
+
+// An inactivity timer for a twamp test session.
+func (o LookupSystemProbeResponseResultOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+// Mode for TWAMP packet TTL modification.
+func (o LookupSystemProbeResponseResultOutput) TtlMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) string { return v.TtlMode }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemProbeResponseResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemProbeResponseResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemProbeResponseResultOutput{})
 }

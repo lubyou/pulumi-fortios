@@ -37,6 +37,7 @@ func NewApplicationRuleSettings(ctx *pulumi.Context,
 		args = &ApplicationRuleSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApplicationRuleSettings
 	err := ctx.RegisterResource("fortios:index/applicationRuleSettings:ApplicationRuleSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type ApplicationRuleSettingsInput interface {
 }
 
 func (*ApplicationRuleSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationRuleSettings)(nil))
+	return reflect.TypeOf((**ApplicationRuleSettings)(nil)).Elem()
 }
 
 func (i *ApplicationRuleSettings) ToApplicationRuleSettingsOutput() ApplicationRuleSettingsOutput {
@@ -112,35 +113,6 @@ func (i *ApplicationRuleSettings) ToApplicationRuleSettingsOutput() ApplicationR
 
 func (i *ApplicationRuleSettings) ToApplicationRuleSettingsOutputWithContext(ctx context.Context) ApplicationRuleSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsOutput)
-}
-
-func (i *ApplicationRuleSettings) ToApplicationRuleSettingsPtrOutput() ApplicationRuleSettingsPtrOutput {
-	return i.ToApplicationRuleSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *ApplicationRuleSettings) ToApplicationRuleSettingsPtrOutputWithContext(ctx context.Context) ApplicationRuleSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsPtrOutput)
-}
-
-type ApplicationRuleSettingsPtrInput interface {
-	pulumi.Input
-
-	ToApplicationRuleSettingsPtrOutput() ApplicationRuleSettingsPtrOutput
-	ToApplicationRuleSettingsPtrOutputWithContext(ctx context.Context) ApplicationRuleSettingsPtrOutput
-}
-
-type applicationRuleSettingsPtrType ApplicationRuleSettingsArgs
-
-func (*applicationRuleSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationRuleSettings)(nil))
-}
-
-func (i *applicationRuleSettingsPtrType) ToApplicationRuleSettingsPtrOutput() ApplicationRuleSettingsPtrOutput {
-	return i.ToApplicationRuleSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *applicationRuleSettingsPtrType) ToApplicationRuleSettingsPtrOutputWithContext(ctx context.Context) ApplicationRuleSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsPtrOutput)
 }
 
 // ApplicationRuleSettingsArrayInput is an input type that accepts ApplicationRuleSettingsArray and ApplicationRuleSettingsArrayOutput values.
@@ -157,7 +129,7 @@ type ApplicationRuleSettingsArrayInput interface {
 type ApplicationRuleSettingsArray []ApplicationRuleSettingsInput
 
 func (ApplicationRuleSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ApplicationRuleSettings)(nil))
+	return reflect.TypeOf((*[]*ApplicationRuleSettings)(nil)).Elem()
 }
 
 func (i ApplicationRuleSettingsArray) ToApplicationRuleSettingsArrayOutput() ApplicationRuleSettingsArrayOutput {
@@ -182,7 +154,7 @@ type ApplicationRuleSettingsMapInput interface {
 type ApplicationRuleSettingsMap map[string]ApplicationRuleSettingsInput
 
 func (ApplicationRuleSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ApplicationRuleSettings)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationRuleSettings)(nil)).Elem()
 }
 
 func (i ApplicationRuleSettingsMap) ToApplicationRuleSettingsMapOutput() ApplicationRuleSettingsMapOutput {
@@ -193,12 +165,10 @@ func (i ApplicationRuleSettingsMap) ToApplicationRuleSettingsMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationRuleSettingsMapOutput)
 }
 
-type ApplicationRuleSettingsOutput struct {
-	*pulumi.OutputState
-}
+type ApplicationRuleSettingsOutput struct{ *pulumi.OutputState }
 
 func (ApplicationRuleSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationRuleSettings)(nil))
+	return reflect.TypeOf((**ApplicationRuleSettings)(nil)).Elem()
 }
 
 func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsOutput() ApplicationRuleSettingsOutput {
@@ -209,36 +179,10 @@ func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsOutputWithContex
 	return o
 }
 
-func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsPtrOutput() ApplicationRuleSettingsPtrOutput {
-	return o.ToApplicationRuleSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o ApplicationRuleSettingsOutput) ToApplicationRuleSettingsPtrOutputWithContext(ctx context.Context) ApplicationRuleSettingsPtrOutput {
-	return o.ApplyT(func(v ApplicationRuleSettings) *ApplicationRuleSettings {
-		return &v
-	}).(ApplicationRuleSettingsPtrOutput)
-}
-
-type ApplicationRuleSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ApplicationRuleSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationRuleSettings)(nil))
-}
-
-func (o ApplicationRuleSettingsPtrOutput) ToApplicationRuleSettingsPtrOutput() ApplicationRuleSettingsPtrOutput {
-	return o
-}
-
-func (o ApplicationRuleSettingsPtrOutput) ToApplicationRuleSettingsPtrOutputWithContext(ctx context.Context) ApplicationRuleSettingsPtrOutput {
-	return o
-}
-
 type ApplicationRuleSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (ApplicationRuleSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ApplicationRuleSettings)(nil))
+	return reflect.TypeOf((*[]*ApplicationRuleSettings)(nil)).Elem()
 }
 
 func (o ApplicationRuleSettingsArrayOutput) ToApplicationRuleSettingsArrayOutput() ApplicationRuleSettingsArrayOutput {
@@ -250,15 +194,15 @@ func (o ApplicationRuleSettingsArrayOutput) ToApplicationRuleSettingsArrayOutput
 }
 
 func (o ApplicationRuleSettingsArrayOutput) Index(i pulumi.IntInput) ApplicationRuleSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationRuleSettings {
-		return vs[0].([]ApplicationRuleSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationRuleSettings {
+		return vs[0].([]*ApplicationRuleSettings)[vs[1].(int)]
 	}).(ApplicationRuleSettingsOutput)
 }
 
 type ApplicationRuleSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (ApplicationRuleSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ApplicationRuleSettings)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationRuleSettings)(nil)).Elem()
 }
 
 func (o ApplicationRuleSettingsMapOutput) ToApplicationRuleSettingsMapOutput() ApplicationRuleSettingsMapOutput {
@@ -270,14 +214,16 @@ func (o ApplicationRuleSettingsMapOutput) ToApplicationRuleSettingsMapOutputWith
 }
 
 func (o ApplicationRuleSettingsMapOutput) MapIndex(k pulumi.StringInput) ApplicationRuleSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApplicationRuleSettings {
-		return vs[0].(map[string]ApplicationRuleSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApplicationRuleSettings {
+		return vs[0].(map[string]*ApplicationRuleSettings)[vs[1].(string)]
 	}).(ApplicationRuleSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationRuleSettingsInput)(nil)).Elem(), &ApplicationRuleSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationRuleSettingsArrayInput)(nil)).Elem(), ApplicationRuleSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationRuleSettingsMapInput)(nil)).Elem(), ApplicationRuleSettingsMap{})
 	pulumi.RegisterOutputType(ApplicationRuleSettingsOutput{})
-	pulumi.RegisterOutputType(ApplicationRuleSettingsPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationRuleSettingsArrayOutput{})
 	pulumi.RegisterOutputType(ApplicationRuleSettingsMapOutput{})
 }

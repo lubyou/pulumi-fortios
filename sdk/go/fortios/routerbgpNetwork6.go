@@ -30,6 +30,8 @@ type RouterbgpNetwork6 struct {
 	Backdoor pulumi.StringOutput `pulumi:"backdoor"`
 	// ID.
 	Fosid pulumi.IntOutput `pulumi:"fosid"`
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	NetworkImportCheck pulumi.StringOutput `pulumi:"networkImportCheck"`
 	// Network IPv6 prefix.
 	Prefix6 pulumi.StringOutput `pulumi:"prefix6"`
 	// Route map to modify generated route.
@@ -45,6 +47,7 @@ func NewRouterbgpNetwork6(ctx *pulumi.Context,
 		args = &RouterbgpNetwork6Args{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterbgpNetwork6
 	err := ctx.RegisterResource("fortios:index/routerbgpNetwork6:RouterbgpNetwork6", name, args, &resource, opts...)
 	if err != nil {
@@ -71,6 +74,8 @@ type routerbgpNetwork6State struct {
 	Backdoor *string `pulumi:"backdoor"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	NetworkImportCheck *string `pulumi:"networkImportCheck"`
 	// Network IPv6 prefix.
 	Prefix6 *string `pulumi:"prefix6"`
 	// Route map to modify generated route.
@@ -84,6 +89,8 @@ type RouterbgpNetwork6State struct {
 	Backdoor pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	NetworkImportCheck pulumi.StringPtrInput
 	// Network IPv6 prefix.
 	Prefix6 pulumi.StringPtrInput
 	// Route map to modify generated route.
@@ -101,6 +108,8 @@ type routerbgpNetwork6Args struct {
 	Backdoor *string `pulumi:"backdoor"`
 	// ID.
 	Fosid *int `pulumi:"fosid"`
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	NetworkImportCheck *string `pulumi:"networkImportCheck"`
 	// Network IPv6 prefix.
 	Prefix6 *string `pulumi:"prefix6"`
 	// Route map to modify generated route.
@@ -115,6 +124,8 @@ type RouterbgpNetwork6Args struct {
 	Backdoor pulumi.StringPtrInput
 	// ID.
 	Fosid pulumi.IntPtrInput
+	// Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+	NetworkImportCheck pulumi.StringPtrInput
 	// Network IPv6 prefix.
 	Prefix6 pulumi.StringPtrInput
 	// Route map to modify generated route.
@@ -135,7 +146,7 @@ type RouterbgpNetwork6Input interface {
 }
 
 func (*RouterbgpNetwork6) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterbgpNetwork6)(nil))
+	return reflect.TypeOf((**RouterbgpNetwork6)(nil)).Elem()
 }
 
 func (i *RouterbgpNetwork6) ToRouterbgpNetwork6Output() RouterbgpNetwork6Output {
@@ -144,35 +155,6 @@ func (i *RouterbgpNetwork6) ToRouterbgpNetwork6Output() RouterbgpNetwork6Output 
 
 func (i *RouterbgpNetwork6) ToRouterbgpNetwork6OutputWithContext(ctx context.Context) RouterbgpNetwork6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetwork6Output)
-}
-
-func (i *RouterbgpNetwork6) ToRouterbgpNetwork6PtrOutput() RouterbgpNetwork6PtrOutput {
-	return i.ToRouterbgpNetwork6PtrOutputWithContext(context.Background())
-}
-
-func (i *RouterbgpNetwork6) ToRouterbgpNetwork6PtrOutputWithContext(ctx context.Context) RouterbgpNetwork6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetwork6PtrOutput)
-}
-
-type RouterbgpNetwork6PtrInput interface {
-	pulumi.Input
-
-	ToRouterbgpNetwork6PtrOutput() RouterbgpNetwork6PtrOutput
-	ToRouterbgpNetwork6PtrOutputWithContext(ctx context.Context) RouterbgpNetwork6PtrOutput
-}
-
-type routerbgpNetwork6PtrType RouterbgpNetwork6Args
-
-func (*routerbgpNetwork6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterbgpNetwork6)(nil))
-}
-
-func (i *routerbgpNetwork6PtrType) ToRouterbgpNetwork6PtrOutput() RouterbgpNetwork6PtrOutput {
-	return i.ToRouterbgpNetwork6PtrOutputWithContext(context.Background())
-}
-
-func (i *routerbgpNetwork6PtrType) ToRouterbgpNetwork6PtrOutputWithContext(ctx context.Context) RouterbgpNetwork6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetwork6PtrOutput)
 }
 
 // RouterbgpNetwork6ArrayInput is an input type that accepts RouterbgpNetwork6Array and RouterbgpNetwork6ArrayOutput values.
@@ -189,7 +171,7 @@ type RouterbgpNetwork6ArrayInput interface {
 type RouterbgpNetwork6Array []RouterbgpNetwork6Input
 
 func (RouterbgpNetwork6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterbgpNetwork6)(nil))
+	return reflect.TypeOf((*[]*RouterbgpNetwork6)(nil)).Elem()
 }
 
 func (i RouterbgpNetwork6Array) ToRouterbgpNetwork6ArrayOutput() RouterbgpNetwork6ArrayOutput {
@@ -214,7 +196,7 @@ type RouterbgpNetwork6MapInput interface {
 type RouterbgpNetwork6Map map[string]RouterbgpNetwork6Input
 
 func (RouterbgpNetwork6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterbgpNetwork6)(nil))
+	return reflect.TypeOf((*map[string]*RouterbgpNetwork6)(nil)).Elem()
 }
 
 func (i RouterbgpNetwork6Map) ToRouterbgpNetwork6MapOutput() RouterbgpNetwork6MapOutput {
@@ -225,12 +207,10 @@ func (i RouterbgpNetwork6Map) ToRouterbgpNetwork6MapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterbgpNetwork6MapOutput)
 }
 
-type RouterbgpNetwork6Output struct {
-	*pulumi.OutputState
-}
+type RouterbgpNetwork6Output struct{ *pulumi.OutputState }
 
 func (RouterbgpNetwork6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterbgpNetwork6)(nil))
+	return reflect.TypeOf((**RouterbgpNetwork6)(nil)).Elem()
 }
 
 func (o RouterbgpNetwork6Output) ToRouterbgpNetwork6Output() RouterbgpNetwork6Output {
@@ -241,36 +221,10 @@ func (o RouterbgpNetwork6Output) ToRouterbgpNetwork6OutputWithContext(ctx contex
 	return o
 }
 
-func (o RouterbgpNetwork6Output) ToRouterbgpNetwork6PtrOutput() RouterbgpNetwork6PtrOutput {
-	return o.ToRouterbgpNetwork6PtrOutputWithContext(context.Background())
-}
-
-func (o RouterbgpNetwork6Output) ToRouterbgpNetwork6PtrOutputWithContext(ctx context.Context) RouterbgpNetwork6PtrOutput {
-	return o.ApplyT(func(v RouterbgpNetwork6) *RouterbgpNetwork6 {
-		return &v
-	}).(RouterbgpNetwork6PtrOutput)
-}
-
-type RouterbgpNetwork6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterbgpNetwork6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterbgpNetwork6)(nil))
-}
-
-func (o RouterbgpNetwork6PtrOutput) ToRouterbgpNetwork6PtrOutput() RouterbgpNetwork6PtrOutput {
-	return o
-}
-
-func (o RouterbgpNetwork6PtrOutput) ToRouterbgpNetwork6PtrOutputWithContext(ctx context.Context) RouterbgpNetwork6PtrOutput {
-	return o
-}
-
 type RouterbgpNetwork6ArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNetwork6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterbgpNetwork6)(nil))
+	return reflect.TypeOf((*[]*RouterbgpNetwork6)(nil)).Elem()
 }
 
 func (o RouterbgpNetwork6ArrayOutput) ToRouterbgpNetwork6ArrayOutput() RouterbgpNetwork6ArrayOutput {
@@ -282,15 +236,15 @@ func (o RouterbgpNetwork6ArrayOutput) ToRouterbgpNetwork6ArrayOutputWithContext(
 }
 
 func (o RouterbgpNetwork6ArrayOutput) Index(i pulumi.IntInput) RouterbgpNetwork6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterbgpNetwork6 {
-		return vs[0].([]RouterbgpNetwork6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterbgpNetwork6 {
+		return vs[0].([]*RouterbgpNetwork6)[vs[1].(int)]
 	}).(RouterbgpNetwork6Output)
 }
 
 type RouterbgpNetwork6MapOutput struct{ *pulumi.OutputState }
 
 func (RouterbgpNetwork6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterbgpNetwork6)(nil))
+	return reflect.TypeOf((*map[string]*RouterbgpNetwork6)(nil)).Elem()
 }
 
 func (o RouterbgpNetwork6MapOutput) ToRouterbgpNetwork6MapOutput() RouterbgpNetwork6MapOutput {
@@ -302,14 +256,16 @@ func (o RouterbgpNetwork6MapOutput) ToRouterbgpNetwork6MapOutputWithContext(ctx 
 }
 
 func (o RouterbgpNetwork6MapOutput) MapIndex(k pulumi.StringInput) RouterbgpNetwork6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterbgpNetwork6 {
-		return vs[0].(map[string]RouterbgpNetwork6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterbgpNetwork6 {
+		return vs[0].(map[string]*RouterbgpNetwork6)[vs[1].(string)]
 	}).(RouterbgpNetwork6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterbgpNetwork6Input)(nil)).Elem(), &RouterbgpNetwork6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterbgpNetwork6ArrayInput)(nil)).Elem(), RouterbgpNetwork6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterbgpNetwork6MapInput)(nil)).Elem(), RouterbgpNetwork6Map{})
 	pulumi.RegisterOutputType(RouterbgpNetwork6Output{})
-	pulumi.RegisterOutputType(RouterbgpNetwork6PtrOutput{})
 	pulumi.RegisterOutputType(RouterbgpNetwork6ArrayOutput{})
 	pulumi.RegisterOutputType(RouterbgpNetwork6MapOutput{})
 }

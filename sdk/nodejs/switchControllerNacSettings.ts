@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `>= 6.4.0`.
+ * Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
  *
  * ## Import
  *
@@ -87,33 +87,31 @@ export class SwitchControllerNacSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerNacSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerNacSettingsArgs | SwitchControllerNacSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerNacSettingsState | undefined;
-            inputs["autoAuth"] = state ? state.autoAuth : undefined;
-            inputs["bounceNacPort"] = state ? state.bounceNacPort : undefined;
-            inputs["inactiveTimer"] = state ? state.inactiveTimer : undefined;
-            inputs["linkDownFlush"] = state ? state.linkDownFlush : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["onboardingVlan"] = state ? state.onboardingVlan : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoAuth"] = state ? state.autoAuth : undefined;
+            resourceInputs["bounceNacPort"] = state ? state.bounceNacPort : undefined;
+            resourceInputs["inactiveTimer"] = state ? state.inactiveTimer : undefined;
+            resourceInputs["linkDownFlush"] = state ? state.linkDownFlush : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["onboardingVlan"] = state ? state.onboardingVlan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerNacSettingsArgs | undefined;
-            inputs["autoAuth"] = args ? args.autoAuth : undefined;
-            inputs["bounceNacPort"] = args ? args.bounceNacPort : undefined;
-            inputs["inactiveTimer"] = args ? args.inactiveTimer : undefined;
-            inputs["linkDownFlush"] = args ? args.linkDownFlush : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["onboardingVlan"] = args ? args.onboardingVlan : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoAuth"] = args ? args.autoAuth : undefined;
+            resourceInputs["bounceNacPort"] = args ? args.bounceNacPort : undefined;
+            resourceInputs["inactiveTimer"] = args ? args.inactiveTimer : undefined;
+            resourceInputs["linkDownFlush"] = args ? args.linkDownFlush : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["onboardingVlan"] = args ? args.onboardingVlan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerNacSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerNacSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

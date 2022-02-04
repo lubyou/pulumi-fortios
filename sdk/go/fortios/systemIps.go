@@ -39,6 +39,7 @@ func NewSystemIps(ctx *pulumi.Context,
 		args = &SystemIpsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemIps
 	err := ctx.RegisterResource("fortios:index/systemIps:SystemIps", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type SystemIpsInput interface {
 }
 
 func (*SystemIps) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIps)(nil))
+	return reflect.TypeOf((**SystemIps)(nil)).Elem()
 }
 
 func (i *SystemIps) ToSystemIpsOutput() SystemIpsOutput {
@@ -122,35 +123,6 @@ func (i *SystemIps) ToSystemIpsOutput() SystemIpsOutput {
 
 func (i *SystemIps) ToSystemIpsOutputWithContext(ctx context.Context) SystemIpsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsOutput)
-}
-
-func (i *SystemIps) ToSystemIpsPtrOutput() SystemIpsPtrOutput {
-	return i.ToSystemIpsPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemIps) ToSystemIpsPtrOutputWithContext(ctx context.Context) SystemIpsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsPtrOutput)
-}
-
-type SystemIpsPtrInput interface {
-	pulumi.Input
-
-	ToSystemIpsPtrOutput() SystemIpsPtrOutput
-	ToSystemIpsPtrOutputWithContext(ctx context.Context) SystemIpsPtrOutput
-}
-
-type systemIpsPtrType SystemIpsArgs
-
-func (*systemIpsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIps)(nil))
-}
-
-func (i *systemIpsPtrType) ToSystemIpsPtrOutput() SystemIpsPtrOutput {
-	return i.ToSystemIpsPtrOutputWithContext(context.Background())
-}
-
-func (i *systemIpsPtrType) ToSystemIpsPtrOutputWithContext(ctx context.Context) SystemIpsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsPtrOutput)
 }
 
 // SystemIpsArrayInput is an input type that accepts SystemIpsArray and SystemIpsArrayOutput values.
@@ -167,7 +139,7 @@ type SystemIpsArrayInput interface {
 type SystemIpsArray []SystemIpsInput
 
 func (SystemIpsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemIps)(nil))
+	return reflect.TypeOf((*[]*SystemIps)(nil)).Elem()
 }
 
 func (i SystemIpsArray) ToSystemIpsArrayOutput() SystemIpsArrayOutput {
@@ -192,7 +164,7 @@ type SystemIpsMapInput interface {
 type SystemIpsMap map[string]SystemIpsInput
 
 func (SystemIpsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemIps)(nil))
+	return reflect.TypeOf((*map[string]*SystemIps)(nil)).Elem()
 }
 
 func (i SystemIpsMap) ToSystemIpsMapOutput() SystemIpsMapOutput {
@@ -203,12 +175,10 @@ func (i SystemIpsMap) ToSystemIpsMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpsMapOutput)
 }
 
-type SystemIpsOutput struct {
-	*pulumi.OutputState
-}
+type SystemIpsOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIps)(nil))
+	return reflect.TypeOf((**SystemIps)(nil)).Elem()
 }
 
 func (o SystemIpsOutput) ToSystemIpsOutput() SystemIpsOutput {
@@ -219,36 +189,10 @@ func (o SystemIpsOutput) ToSystemIpsOutputWithContext(ctx context.Context) Syste
 	return o
 }
 
-func (o SystemIpsOutput) ToSystemIpsPtrOutput() SystemIpsPtrOutput {
-	return o.ToSystemIpsPtrOutputWithContext(context.Background())
-}
-
-func (o SystemIpsOutput) ToSystemIpsPtrOutputWithContext(ctx context.Context) SystemIpsPtrOutput {
-	return o.ApplyT(func(v SystemIps) *SystemIps {
-		return &v
-	}).(SystemIpsPtrOutput)
-}
-
-type SystemIpsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemIpsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIps)(nil))
-}
-
-func (o SystemIpsPtrOutput) ToSystemIpsPtrOutput() SystemIpsPtrOutput {
-	return o
-}
-
-func (o SystemIpsPtrOutput) ToSystemIpsPtrOutputWithContext(ctx context.Context) SystemIpsPtrOutput {
-	return o
-}
-
 type SystemIpsArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemIps)(nil))
+	return reflect.TypeOf((*[]*SystemIps)(nil)).Elem()
 }
 
 func (o SystemIpsArrayOutput) ToSystemIpsArrayOutput() SystemIpsArrayOutput {
@@ -260,15 +204,15 @@ func (o SystemIpsArrayOutput) ToSystemIpsArrayOutputWithContext(ctx context.Cont
 }
 
 func (o SystemIpsArrayOutput) Index(i pulumi.IntInput) SystemIpsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemIps {
-		return vs[0].([]SystemIps)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIps {
+		return vs[0].([]*SystemIps)[vs[1].(int)]
 	}).(SystemIpsOutput)
 }
 
 type SystemIpsMapOutput struct{ *pulumi.OutputState }
 
 func (SystemIpsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemIps)(nil))
+	return reflect.TypeOf((*map[string]*SystemIps)(nil)).Elem()
 }
 
 func (o SystemIpsMapOutput) ToSystemIpsMapOutput() SystemIpsMapOutput {
@@ -280,14 +224,16 @@ func (o SystemIpsMapOutput) ToSystemIpsMapOutputWithContext(ctx context.Context)
 }
 
 func (o SystemIpsMapOutput) MapIndex(k pulumi.StringInput) SystemIpsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemIps {
-		return vs[0].(map[string]SystemIps)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemIps {
+		return vs[0].(map[string]*SystemIps)[vs[1].(string)]
 	}).(SystemIpsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsInput)(nil)).Elem(), &SystemIps{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsArrayInput)(nil)).Elem(), SystemIpsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpsMapInput)(nil)).Elem(), SystemIpsMap{})
 	pulumi.RegisterOutputType(SystemIpsOutput{})
-	pulumi.RegisterOutputType(SystemIpsPtrOutput{})
 	pulumi.RegisterOutputType(SystemIpsArrayOutput{})
 	pulumi.RegisterOutputType(SystemIpsMapOutput{})
 }

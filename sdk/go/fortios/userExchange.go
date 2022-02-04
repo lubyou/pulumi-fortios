@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure MS Exchange server entries.
+// Configure MS Exchange server entries. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -63,6 +63,7 @@ func NewUserExchange(ctx *pulumi.Context,
 		args = &UserExchangeArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserExchange
 	err := ctx.RegisterResource("fortios:index/userExchange:UserExchange", name, args, &resource, opts...)
 	if err != nil {
@@ -233,7 +234,7 @@ type UserExchangeInput interface {
 }
 
 func (*UserExchange) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserExchange)(nil))
+	return reflect.TypeOf((**UserExchange)(nil)).Elem()
 }
 
 func (i *UserExchange) ToUserExchangeOutput() UserExchangeOutput {
@@ -242,35 +243,6 @@ func (i *UserExchange) ToUserExchangeOutput() UserExchangeOutput {
 
 func (i *UserExchange) ToUserExchangeOutputWithContext(ctx context.Context) UserExchangeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeOutput)
-}
-
-func (i *UserExchange) ToUserExchangePtrOutput() UserExchangePtrOutput {
-	return i.ToUserExchangePtrOutputWithContext(context.Background())
-}
-
-func (i *UserExchange) ToUserExchangePtrOutputWithContext(ctx context.Context) UserExchangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserExchangePtrOutput)
-}
-
-type UserExchangePtrInput interface {
-	pulumi.Input
-
-	ToUserExchangePtrOutput() UserExchangePtrOutput
-	ToUserExchangePtrOutputWithContext(ctx context.Context) UserExchangePtrOutput
-}
-
-type userExchangePtrType UserExchangeArgs
-
-func (*userExchangePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserExchange)(nil))
-}
-
-func (i *userExchangePtrType) ToUserExchangePtrOutput() UserExchangePtrOutput {
-	return i.ToUserExchangePtrOutputWithContext(context.Background())
-}
-
-func (i *userExchangePtrType) ToUserExchangePtrOutputWithContext(ctx context.Context) UserExchangePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserExchangePtrOutput)
 }
 
 // UserExchangeArrayInput is an input type that accepts UserExchangeArray and UserExchangeArrayOutput values.
@@ -287,7 +259,7 @@ type UserExchangeArrayInput interface {
 type UserExchangeArray []UserExchangeInput
 
 func (UserExchangeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserExchange)(nil))
+	return reflect.TypeOf((*[]*UserExchange)(nil)).Elem()
 }
 
 func (i UserExchangeArray) ToUserExchangeArrayOutput() UserExchangeArrayOutput {
@@ -312,7 +284,7 @@ type UserExchangeMapInput interface {
 type UserExchangeMap map[string]UserExchangeInput
 
 func (UserExchangeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserExchange)(nil))
+	return reflect.TypeOf((*map[string]*UserExchange)(nil)).Elem()
 }
 
 func (i UserExchangeMap) ToUserExchangeMapOutput() UserExchangeMapOutput {
@@ -323,12 +295,10 @@ func (i UserExchangeMap) ToUserExchangeMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(UserExchangeMapOutput)
 }
 
-type UserExchangeOutput struct {
-	*pulumi.OutputState
-}
+type UserExchangeOutput struct{ *pulumi.OutputState }
 
 func (UserExchangeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserExchange)(nil))
+	return reflect.TypeOf((**UserExchange)(nil)).Elem()
 }
 
 func (o UserExchangeOutput) ToUserExchangeOutput() UserExchangeOutput {
@@ -339,36 +309,10 @@ func (o UserExchangeOutput) ToUserExchangeOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o UserExchangeOutput) ToUserExchangePtrOutput() UserExchangePtrOutput {
-	return o.ToUserExchangePtrOutputWithContext(context.Background())
-}
-
-func (o UserExchangeOutput) ToUserExchangePtrOutputWithContext(ctx context.Context) UserExchangePtrOutput {
-	return o.ApplyT(func(v UserExchange) *UserExchange {
-		return &v
-	}).(UserExchangePtrOutput)
-}
-
-type UserExchangePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserExchangePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserExchange)(nil))
-}
-
-func (o UserExchangePtrOutput) ToUserExchangePtrOutput() UserExchangePtrOutput {
-	return o
-}
-
-func (o UserExchangePtrOutput) ToUserExchangePtrOutputWithContext(ctx context.Context) UserExchangePtrOutput {
-	return o
-}
-
 type UserExchangeArrayOutput struct{ *pulumi.OutputState }
 
 func (UserExchangeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserExchange)(nil))
+	return reflect.TypeOf((*[]*UserExchange)(nil)).Elem()
 }
 
 func (o UserExchangeArrayOutput) ToUserExchangeArrayOutput() UserExchangeArrayOutput {
@@ -380,15 +324,15 @@ func (o UserExchangeArrayOutput) ToUserExchangeArrayOutputWithContext(ctx contex
 }
 
 func (o UserExchangeArrayOutput) Index(i pulumi.IntInput) UserExchangeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserExchange {
-		return vs[0].([]UserExchange)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserExchange {
+		return vs[0].([]*UserExchange)[vs[1].(int)]
 	}).(UserExchangeOutput)
 }
 
 type UserExchangeMapOutput struct{ *pulumi.OutputState }
 
 func (UserExchangeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserExchange)(nil))
+	return reflect.TypeOf((*map[string]*UserExchange)(nil)).Elem()
 }
 
 func (o UserExchangeMapOutput) ToUserExchangeMapOutput() UserExchangeMapOutput {
@@ -400,14 +344,16 @@ func (o UserExchangeMapOutput) ToUserExchangeMapOutputWithContext(ctx context.Co
 }
 
 func (o UserExchangeMapOutput) MapIndex(k pulumi.StringInput) UserExchangeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserExchange {
-		return vs[0].(map[string]UserExchange)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserExchange {
+		return vs[0].(map[string]*UserExchange)[vs[1].(string)]
 	}).(UserExchangeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserExchangeInput)(nil)).Elem(), &UserExchange{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserExchangeArrayInput)(nil)).Elem(), UserExchangeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserExchangeMapInput)(nil)).Elem(), UserExchangeMap{})
 	pulumi.RegisterOutputType(UserExchangeOutput{})
-	pulumi.RegisterOutputType(UserExchangePtrOutput{})
 	pulumi.RegisterOutputType(UserExchangeArrayOutput{})
 	pulumi.RegisterOutputType(UserExchangeMapOutput{})
 }

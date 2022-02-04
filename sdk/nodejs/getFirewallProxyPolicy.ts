@@ -13,9 +13,7 @@ export function getFirewallProxyPolicy(args: GetFirewallProxyPolicyArgs, opts?: 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallProxyPolicy:GetFirewallProxyPolicy", {
         "policyid": args.policyid,
         "vdomparam": args.vdomparam,
@@ -41,6 +39,14 @@ export interface GetFirewallProxyPolicyArgs {
  */
 export interface GetFirewallProxyPolicyResult {
     /**
+     * IPv4 access proxy. The structure of `accessProxy` block is documented below.
+     */
+    readonly accessProxies: outputs.GetFirewallProxyPolicyAccessProxy[];
+    /**
+     * IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+     */
+    readonly accessProxy6s: outputs.GetFirewallProxyPolicyAccessProxy6[];
+    /**
      * Accept or deny traffic matching the policy parameters.
      */
     readonly action: string;
@@ -53,6 +59,10 @@ export interface GetFirewallProxyPolicyResult {
      */
     readonly avProfile: string;
     /**
+     * Enable/disable block notification.
+     */
+    readonly blockNotification: string;
+    /**
      * Name of an existing CIFS profile.
      */
     readonly cifsProfile: string;
@@ -64,6 +74,10 @@ export interface GetFirewallProxyPolicyResult {
      * Decrypted traffic mirror.
      */
     readonly decryptedTrafficMirror: string;
+    /**
+     * When enabled, the ownership enforcement will be done at policy level.
+     */
+    readonly deviceOwnership: string;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user.
      */
@@ -205,6 +219,10 @@ export interface GetFirewallProxyPolicyResult {
      */
     readonly schedule: string;
     /**
+     * Name of an existing SCTP filter profile.
+     */
+    readonly sctpFilterProfile: string;
+    /**
      * When enabled, services match against any service EXCEPT the specified destination services.
      */
     readonly serviceNegate: string;
@@ -270,6 +288,14 @@ export interface GetFirewallProxyPolicyResult {
     readonly uuid: string;
     readonly vdomparam?: string;
     /**
+     * Name of an existing VideoFilter profile.
+     */
+    readonly videofilterProfile: string;
+    /**
+     * Name of an existing VoIP profile.
+     */
+    readonly voipProfile: string;
+    /**
      * Name of an existing Web application firewall profile.
      */
     readonly wafProfile: string;
@@ -293,4 +319,30 @@ export interface GetFirewallProxyPolicyResult {
      * Name of web proxy profile.
      */
     readonly webproxyProfile: string;
+    /**
+     * ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+     */
+    readonly ztnaEmsTags: outputs.GetFirewallProxyPolicyZtnaEmsTag[];
+    /**
+     * ZTNA tag matching logic.
+     */
+    readonly ztnaTagsMatchLogic: string;
+}
+
+export function getFirewallProxyPolicyOutput(args: GetFirewallProxyPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallProxyPolicyResult> {
+    return pulumi.output(args).apply(a => getFirewallProxyPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallProxyPolicy.
+ */
+export interface GetFirewallProxyPolicyOutputArgs {
+    /**
+     * Specify the policyid of the desired firewall proxypolicy.
+     */
+    policyid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

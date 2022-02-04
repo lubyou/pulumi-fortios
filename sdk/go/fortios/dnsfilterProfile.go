@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,30 +28,30 @@ import (
 // 		_, err := fortios.NewDnsfilterProfile(ctx, "trname", &fortios.DnsfilterProfileArgs{
 // 			BlockAction: pulumi.String("redirect"),
 // 			BlockBotnet: pulumi.String("disable"),
-// 			DomainFilter: &fortios.DnsfilterProfileDomainFilterArgs{
+// 			DomainFilter: &DnsfilterProfileDomainFilterArgs{
 // 				DomainFilterTable: pulumi.Int(0),
 // 			},
-// 			FtgdDns: &fortios.DnsfilterProfileFtgdDnsArgs{
-// 				Filters: fortios.DnsfilterProfileFtgdDnsFilterArray{
-// 					&fortios.DnsfilterProfileFtgdDnsFilterArgs{
+// 			FtgdDns: &DnsfilterProfileFtgdDnsArgs{
+// 				Filters: DnsfilterProfileFtgdDnsFilterArray{
+// 					&DnsfilterProfileFtgdDnsFilterArgs{
 // 						Action:   pulumi.String("block"),
 // 						Category: pulumi.Int(26),
 // 						Id:       pulumi.Int(1),
 // 						Log:      pulumi.String("enable"),
 // 					},
-// 					&fortios.DnsfilterProfileFtgdDnsFilterArgs{
+// 					&DnsfilterProfileFtgdDnsFilterArgs{
 // 						Action:   pulumi.String("block"),
 // 						Category: pulumi.Int(61),
 // 						Id:       pulumi.Int(2),
 // 						Log:      pulumi.String("enable"),
 // 					},
-// 					&fortios.DnsfilterProfileFtgdDnsFilterArgs{
+// 					&DnsfilterProfileFtgdDnsFilterArgs{
 // 						Action:   pulumi.String("block"),
 // 						Category: pulumi.Int(86),
 // 						Id:       pulumi.Int(3),
 // 						Log:      pulumi.String("enable"),
 // 					},
-// 					&fortios.DnsfilterProfileFtgdDnsFilterArgs{
+// 					&DnsfilterProfileFtgdDnsFilterArgs{
 // 						Action:   pulumi.String("block"),
 // 						Category: pulumi.Int(88),
 // 						Id:       pulumi.Int(4),
@@ -85,7 +86,7 @@ import (
 type DnsfilterProfile struct {
 	pulumi.CustomResourceState
 
-	// Action to take for blocked domains. Valid values: `block`, `redirect`.
+	// Action to take for blocked domains.
 	BlockAction pulumi.StringOutput `pulumi:"blockAction"`
 	// Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
 	BlockBotnet pulumi.StringOutput `pulumi:"blockBotnet"`
@@ -128,6 +129,7 @@ func NewDnsfilterProfile(ctx *pulumi.Context,
 		args = &DnsfilterProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DnsfilterProfile
 	err := ctx.RegisterResource("fortios:index/dnsfilterProfile:DnsfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -150,7 +152,7 @@ func GetDnsfilterProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering DnsfilterProfile resources.
 type dnsfilterProfileState struct {
-	// Action to take for blocked domains. Valid values: `block`, `redirect`.
+	// Action to take for blocked domains.
 	BlockAction *string `pulumi:"blockAction"`
 	// Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
 	BlockBotnet *string `pulumi:"blockBotnet"`
@@ -187,7 +189,7 @@ type dnsfilterProfileState struct {
 }
 
 type DnsfilterProfileState struct {
-	// Action to take for blocked domains. Valid values: `block`, `redirect`.
+	// Action to take for blocked domains.
 	BlockAction pulumi.StringPtrInput
 	// Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
 	BlockBotnet pulumi.StringPtrInput
@@ -228,7 +230,7 @@ func (DnsfilterProfileState) ElementType() reflect.Type {
 }
 
 type dnsfilterProfileArgs struct {
-	// Action to take for blocked domains. Valid values: `block`, `redirect`.
+	// Action to take for blocked domains.
 	BlockAction *string `pulumi:"blockAction"`
 	// Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
 	BlockBotnet *string `pulumi:"blockBotnet"`
@@ -266,7 +268,7 @@ type dnsfilterProfileArgs struct {
 
 // The set of arguments for constructing a DnsfilterProfile resource.
 type DnsfilterProfileArgs struct {
-	// Action to take for blocked domains. Valid values: `block`, `redirect`.
+	// Action to take for blocked domains.
 	BlockAction pulumi.StringPtrInput
 	// Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
 	BlockBotnet pulumi.StringPtrInput
@@ -314,7 +316,7 @@ type DnsfilterProfileInput interface {
 }
 
 func (*DnsfilterProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsfilterProfile)(nil))
+	return reflect.TypeOf((**DnsfilterProfile)(nil)).Elem()
 }
 
 func (i *DnsfilterProfile) ToDnsfilterProfileOutput() DnsfilterProfileOutput {
@@ -323,35 +325,6 @@ func (i *DnsfilterProfile) ToDnsfilterProfileOutput() DnsfilterProfileOutput {
 
 func (i *DnsfilterProfile) ToDnsfilterProfileOutputWithContext(ctx context.Context) DnsfilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileOutput)
-}
-
-func (i *DnsfilterProfile) ToDnsfilterProfilePtrOutput() DnsfilterProfilePtrOutput {
-	return i.ToDnsfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *DnsfilterProfile) ToDnsfilterProfilePtrOutputWithContext(ctx context.Context) DnsfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfilePtrOutput)
-}
-
-type DnsfilterProfilePtrInput interface {
-	pulumi.Input
-
-	ToDnsfilterProfilePtrOutput() DnsfilterProfilePtrOutput
-	ToDnsfilterProfilePtrOutputWithContext(ctx context.Context) DnsfilterProfilePtrOutput
-}
-
-type dnsfilterProfilePtrType DnsfilterProfileArgs
-
-func (*dnsfilterProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsfilterProfile)(nil))
-}
-
-func (i *dnsfilterProfilePtrType) ToDnsfilterProfilePtrOutput() DnsfilterProfilePtrOutput {
-	return i.ToDnsfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *dnsfilterProfilePtrType) ToDnsfilterProfilePtrOutputWithContext(ctx context.Context) DnsfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfilePtrOutput)
 }
 
 // DnsfilterProfileArrayInput is an input type that accepts DnsfilterProfileArray and DnsfilterProfileArrayOutput values.
@@ -368,7 +341,7 @@ type DnsfilterProfileArrayInput interface {
 type DnsfilterProfileArray []DnsfilterProfileInput
 
 func (DnsfilterProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DnsfilterProfile)(nil))
+	return reflect.TypeOf((*[]*DnsfilterProfile)(nil)).Elem()
 }
 
 func (i DnsfilterProfileArray) ToDnsfilterProfileArrayOutput() DnsfilterProfileArrayOutput {
@@ -393,7 +366,7 @@ type DnsfilterProfileMapInput interface {
 type DnsfilterProfileMap map[string]DnsfilterProfileInput
 
 func (DnsfilterProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DnsfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*DnsfilterProfile)(nil)).Elem()
 }
 
 func (i DnsfilterProfileMap) ToDnsfilterProfileMapOutput() DnsfilterProfileMapOutput {
@@ -404,12 +377,10 @@ func (i DnsfilterProfileMap) ToDnsfilterProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(DnsfilterProfileMapOutput)
 }
 
-type DnsfilterProfileOutput struct {
-	*pulumi.OutputState
-}
+type DnsfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (DnsfilterProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DnsfilterProfile)(nil))
+	return reflect.TypeOf((**DnsfilterProfile)(nil)).Elem()
 }
 
 func (o DnsfilterProfileOutput) ToDnsfilterProfileOutput() DnsfilterProfileOutput {
@@ -420,36 +391,10 @@ func (o DnsfilterProfileOutput) ToDnsfilterProfileOutputWithContext(ctx context.
 	return o
 }
 
-func (o DnsfilterProfileOutput) ToDnsfilterProfilePtrOutput() DnsfilterProfilePtrOutput {
-	return o.ToDnsfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (o DnsfilterProfileOutput) ToDnsfilterProfilePtrOutputWithContext(ctx context.Context) DnsfilterProfilePtrOutput {
-	return o.ApplyT(func(v DnsfilterProfile) *DnsfilterProfile {
-		return &v
-	}).(DnsfilterProfilePtrOutput)
-}
-
-type DnsfilterProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DnsfilterProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DnsfilterProfile)(nil))
-}
-
-func (o DnsfilterProfilePtrOutput) ToDnsfilterProfilePtrOutput() DnsfilterProfilePtrOutput {
-	return o
-}
-
-func (o DnsfilterProfilePtrOutput) ToDnsfilterProfilePtrOutputWithContext(ctx context.Context) DnsfilterProfilePtrOutput {
-	return o
-}
-
 type DnsfilterProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (DnsfilterProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DnsfilterProfile)(nil))
+	return reflect.TypeOf((*[]*DnsfilterProfile)(nil)).Elem()
 }
 
 func (o DnsfilterProfileArrayOutput) ToDnsfilterProfileArrayOutput() DnsfilterProfileArrayOutput {
@@ -461,15 +406,15 @@ func (o DnsfilterProfileArrayOutput) ToDnsfilterProfileArrayOutputWithContext(ct
 }
 
 func (o DnsfilterProfileArrayOutput) Index(i pulumi.IntInput) DnsfilterProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DnsfilterProfile {
-		return vs[0].([]DnsfilterProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DnsfilterProfile {
+		return vs[0].([]*DnsfilterProfile)[vs[1].(int)]
 	}).(DnsfilterProfileOutput)
 }
 
 type DnsfilterProfileMapOutput struct{ *pulumi.OutputState }
 
 func (DnsfilterProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DnsfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*DnsfilterProfile)(nil)).Elem()
 }
 
 func (o DnsfilterProfileMapOutput) ToDnsfilterProfileMapOutput() DnsfilterProfileMapOutput {
@@ -481,14 +426,16 @@ func (o DnsfilterProfileMapOutput) ToDnsfilterProfileMapOutputWithContext(ctx co
 }
 
 func (o DnsfilterProfileMapOutput) MapIndex(k pulumi.StringInput) DnsfilterProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DnsfilterProfile {
-		return vs[0].(map[string]DnsfilterProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DnsfilterProfile {
+		return vs[0].(map[string]*DnsfilterProfile)[vs[1].(string)]
 	}).(DnsfilterProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsfilterProfileInput)(nil)).Elem(), &DnsfilterProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsfilterProfileArrayInput)(nil)).Elem(), DnsfilterProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DnsfilterProfileMapInput)(nil)).Elem(), DnsfilterProfileMap{})
 	pulumi.RegisterOutputType(DnsfilterProfileOutput{})
-	pulumi.RegisterOutputType(DnsfilterProfilePtrOutput{})
 	pulumi.RegisterOutputType(DnsfilterProfileArrayOutput{})
 	pulumi.RegisterOutputType(DnsfilterProfileMapOutput{})
 }

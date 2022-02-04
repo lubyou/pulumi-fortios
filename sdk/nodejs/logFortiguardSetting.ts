@@ -63,6 +63,10 @@ export class LogFortiguardSetting extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+     */
+    public readonly accessConfig!: pulumi.Output<string>;
+    /**
      * FortiGate Cloud connection timeout in seconds.
      */
     public readonly connTimeout!: pulumi.Output<number>;
@@ -128,45 +132,45 @@ export class LogFortiguardSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogFortiguardSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortiguardSettingArgs | LogFortiguardSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortiguardSettingState | undefined;
-            inputs["connTimeout"] = state ? state.connTimeout : undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["maxLogRate"] = state ? state.maxLogRate : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uploadDay"] = state ? state.uploadDay : undefined;
-            inputs["uploadInterval"] = state ? state.uploadInterval : undefined;
-            inputs["uploadOption"] = state ? state.uploadOption : undefined;
-            inputs["uploadTime"] = state ? state.uploadTime : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["accessConfig"] = state ? state.accessConfig : undefined;
+            resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uploadDay"] = state ? state.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = state ? state.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = state ? state.uploadOption : undefined;
+            resourceInputs["uploadTime"] = state ? state.uploadTime : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogFortiguardSettingArgs | undefined;
-            inputs["connTimeout"] = args ? args.connTimeout : undefined;
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["maxLogRate"] = args ? args.maxLogRate : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uploadDay"] = args ? args.uploadDay : undefined;
-            inputs["uploadInterval"] = args ? args.uploadInterval : undefined;
-            inputs["uploadOption"] = args ? args.uploadOption : undefined;
-            inputs["uploadTime"] = args ? args.uploadTime : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["accessConfig"] = args ? args.accessConfig : undefined;
+            resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uploadDay"] = args ? args.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = args ? args.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = args ? args.uploadOption : undefined;
+            resourceInputs["uploadTime"] = args ? args.uploadTime : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortiguardSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortiguardSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -174,6 +178,10 @@ export class LogFortiguardSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogFortiguardSetting resources.
  */
 export interface LogFortiguardSettingState {
+    /**
+     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+     */
+    accessConfig?: pulumi.Input<string>;
     /**
      * FortiGate Cloud connection timeout in seconds.
      */
@@ -236,6 +244,10 @@ export interface LogFortiguardSettingState {
  * The set of arguments for constructing a LogFortiguardSetting resource.
  */
 export interface LogFortiguardSettingArgs {
+    /**
+     * Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+     */
+    accessConfig?: pulumi.Input<string>;
     /**
      * FortiGate Cloud connection timeout in seconds.
      */

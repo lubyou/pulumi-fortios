@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -67,6 +67,7 @@ func NewWanoptRemoteStorage(ctx *pulumi.Context,
 		args = &WanoptRemoteStorageArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptRemoteStorage
 	err := ctx.RegisterResource("fortios:index/wanoptRemoteStorage:WanoptRemoteStorage", name, args, &resource, opts...)
 	if err != nil {
@@ -157,7 +158,7 @@ type WanoptRemoteStorageInput interface {
 }
 
 func (*WanoptRemoteStorage) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptRemoteStorage)(nil))
+	return reflect.TypeOf((**WanoptRemoteStorage)(nil)).Elem()
 }
 
 func (i *WanoptRemoteStorage) ToWanoptRemoteStorageOutput() WanoptRemoteStorageOutput {
@@ -166,35 +167,6 @@ func (i *WanoptRemoteStorage) ToWanoptRemoteStorageOutput() WanoptRemoteStorageO
 
 func (i *WanoptRemoteStorage) ToWanoptRemoteStorageOutputWithContext(ctx context.Context) WanoptRemoteStorageOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStorageOutput)
-}
-
-func (i *WanoptRemoteStorage) ToWanoptRemoteStoragePtrOutput() WanoptRemoteStoragePtrOutput {
-	return i.ToWanoptRemoteStoragePtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptRemoteStorage) ToWanoptRemoteStoragePtrOutputWithContext(ctx context.Context) WanoptRemoteStoragePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStoragePtrOutput)
-}
-
-type WanoptRemoteStoragePtrInput interface {
-	pulumi.Input
-
-	ToWanoptRemoteStoragePtrOutput() WanoptRemoteStoragePtrOutput
-	ToWanoptRemoteStoragePtrOutputWithContext(ctx context.Context) WanoptRemoteStoragePtrOutput
-}
-
-type wanoptRemoteStoragePtrType WanoptRemoteStorageArgs
-
-func (*wanoptRemoteStoragePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptRemoteStorage)(nil))
-}
-
-func (i *wanoptRemoteStoragePtrType) ToWanoptRemoteStoragePtrOutput() WanoptRemoteStoragePtrOutput {
-	return i.ToWanoptRemoteStoragePtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptRemoteStoragePtrType) ToWanoptRemoteStoragePtrOutputWithContext(ctx context.Context) WanoptRemoteStoragePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStoragePtrOutput)
 }
 
 // WanoptRemoteStorageArrayInput is an input type that accepts WanoptRemoteStorageArray and WanoptRemoteStorageArrayOutput values.
@@ -211,7 +183,7 @@ type WanoptRemoteStorageArrayInput interface {
 type WanoptRemoteStorageArray []WanoptRemoteStorageInput
 
 func (WanoptRemoteStorageArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptRemoteStorage)(nil))
+	return reflect.TypeOf((*[]*WanoptRemoteStorage)(nil)).Elem()
 }
 
 func (i WanoptRemoteStorageArray) ToWanoptRemoteStorageArrayOutput() WanoptRemoteStorageArrayOutput {
@@ -236,7 +208,7 @@ type WanoptRemoteStorageMapInput interface {
 type WanoptRemoteStorageMap map[string]WanoptRemoteStorageInput
 
 func (WanoptRemoteStorageMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptRemoteStorage)(nil))
+	return reflect.TypeOf((*map[string]*WanoptRemoteStorage)(nil)).Elem()
 }
 
 func (i WanoptRemoteStorageMap) ToWanoptRemoteStorageMapOutput() WanoptRemoteStorageMapOutput {
@@ -247,12 +219,10 @@ func (i WanoptRemoteStorageMap) ToWanoptRemoteStorageMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptRemoteStorageMapOutput)
 }
 
-type WanoptRemoteStorageOutput struct {
-	*pulumi.OutputState
-}
+type WanoptRemoteStorageOutput struct{ *pulumi.OutputState }
 
 func (WanoptRemoteStorageOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptRemoteStorage)(nil))
+	return reflect.TypeOf((**WanoptRemoteStorage)(nil)).Elem()
 }
 
 func (o WanoptRemoteStorageOutput) ToWanoptRemoteStorageOutput() WanoptRemoteStorageOutput {
@@ -263,36 +233,10 @@ func (o WanoptRemoteStorageOutput) ToWanoptRemoteStorageOutputWithContext(ctx co
 	return o
 }
 
-func (o WanoptRemoteStorageOutput) ToWanoptRemoteStoragePtrOutput() WanoptRemoteStoragePtrOutput {
-	return o.ToWanoptRemoteStoragePtrOutputWithContext(context.Background())
-}
-
-func (o WanoptRemoteStorageOutput) ToWanoptRemoteStoragePtrOutputWithContext(ctx context.Context) WanoptRemoteStoragePtrOutput {
-	return o.ApplyT(func(v WanoptRemoteStorage) *WanoptRemoteStorage {
-		return &v
-	}).(WanoptRemoteStoragePtrOutput)
-}
-
-type WanoptRemoteStoragePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptRemoteStoragePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptRemoteStorage)(nil))
-}
-
-func (o WanoptRemoteStoragePtrOutput) ToWanoptRemoteStoragePtrOutput() WanoptRemoteStoragePtrOutput {
-	return o
-}
-
-func (o WanoptRemoteStoragePtrOutput) ToWanoptRemoteStoragePtrOutputWithContext(ctx context.Context) WanoptRemoteStoragePtrOutput {
-	return o
-}
-
 type WanoptRemoteStorageArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptRemoteStorageArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptRemoteStorage)(nil))
+	return reflect.TypeOf((*[]*WanoptRemoteStorage)(nil)).Elem()
 }
 
 func (o WanoptRemoteStorageArrayOutput) ToWanoptRemoteStorageArrayOutput() WanoptRemoteStorageArrayOutput {
@@ -304,15 +248,15 @@ func (o WanoptRemoteStorageArrayOutput) ToWanoptRemoteStorageArrayOutputWithCont
 }
 
 func (o WanoptRemoteStorageArrayOutput) Index(i pulumi.IntInput) WanoptRemoteStorageOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptRemoteStorage {
-		return vs[0].([]WanoptRemoteStorage)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptRemoteStorage {
+		return vs[0].([]*WanoptRemoteStorage)[vs[1].(int)]
 	}).(WanoptRemoteStorageOutput)
 }
 
 type WanoptRemoteStorageMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptRemoteStorageMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptRemoteStorage)(nil))
+	return reflect.TypeOf((*map[string]*WanoptRemoteStorage)(nil)).Elem()
 }
 
 func (o WanoptRemoteStorageMapOutput) ToWanoptRemoteStorageMapOutput() WanoptRemoteStorageMapOutput {
@@ -324,14 +268,16 @@ func (o WanoptRemoteStorageMapOutput) ToWanoptRemoteStorageMapOutputWithContext(
 }
 
 func (o WanoptRemoteStorageMapOutput) MapIndex(k pulumi.StringInput) WanoptRemoteStorageOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptRemoteStorage {
-		return vs[0].(map[string]WanoptRemoteStorage)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptRemoteStorage {
+		return vs[0].(map[string]*WanoptRemoteStorage)[vs[1].(string)]
 	}).(WanoptRemoteStorageOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptRemoteStorageInput)(nil)).Elem(), &WanoptRemoteStorage{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptRemoteStorageArrayInput)(nil)).Elem(), WanoptRemoteStorageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptRemoteStorageMapInput)(nil)).Elem(), WanoptRemoteStorageMap{})
 	pulumi.RegisterOutputType(WanoptRemoteStorageOutput{})
-	pulumi.RegisterOutputType(WanoptRemoteStoragePtrOutput{})
 	pulumi.RegisterOutputType(WanoptRemoteStorageArrayOutput{})
 	pulumi.RegisterOutputType(WanoptRemoteStorageMapOutput{})
 }

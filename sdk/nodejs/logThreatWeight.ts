@@ -232,43 +232,41 @@ export class LogThreatWeight extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogThreatWeightArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogThreatWeightArgs | LogThreatWeightState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogThreatWeightState | undefined;
-            inputs["applications"] = state ? state.applications : undefined;
-            inputs["blockedConnection"] = state ? state.blockedConnection : undefined;
-            inputs["botnetConnectionDetected"] = state ? state.botnetConnectionDetected : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["failedConnection"] = state ? state.failedConnection : undefined;
-            inputs["geolocations"] = state ? state.geolocations : undefined;
-            inputs["ips"] = state ? state.ips : undefined;
-            inputs["level"] = state ? state.level : undefined;
-            inputs["malware"] = state ? state.malware : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["urlBlockDetected"] = state ? state.urlBlockDetected : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webs"] = state ? state.webs : undefined;
+            resourceInputs["applications"] = state ? state.applications : undefined;
+            resourceInputs["blockedConnection"] = state ? state.blockedConnection : undefined;
+            resourceInputs["botnetConnectionDetected"] = state ? state.botnetConnectionDetected : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["failedConnection"] = state ? state.failedConnection : undefined;
+            resourceInputs["geolocations"] = state ? state.geolocations : undefined;
+            resourceInputs["ips"] = state ? state.ips : undefined;
+            resourceInputs["level"] = state ? state.level : undefined;
+            resourceInputs["malware"] = state ? state.malware : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["urlBlockDetected"] = state ? state.urlBlockDetected : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webs"] = state ? state.webs : undefined;
         } else {
             const args = argsOrState as LogThreatWeightArgs | undefined;
-            inputs["applications"] = args ? args.applications : undefined;
-            inputs["blockedConnection"] = args ? args.blockedConnection : undefined;
-            inputs["botnetConnectionDetected"] = args ? args.botnetConnectionDetected : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["failedConnection"] = args ? args.failedConnection : undefined;
-            inputs["geolocations"] = args ? args.geolocations : undefined;
-            inputs["ips"] = args ? args.ips : undefined;
-            inputs["level"] = args ? args.level : undefined;
-            inputs["malware"] = args ? args.malware : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["urlBlockDetected"] = args ? args.urlBlockDetected : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webs"] = args ? args.webs : undefined;
+            resourceInputs["applications"] = args ? args.applications : undefined;
+            resourceInputs["blockedConnection"] = args ? args.blockedConnection : undefined;
+            resourceInputs["botnetConnectionDetected"] = args ? args.botnetConnectionDetected : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["failedConnection"] = args ? args.failedConnection : undefined;
+            resourceInputs["geolocations"] = args ? args.geolocations : undefined;
+            resourceInputs["ips"] = args ? args.ips : undefined;
+            resourceInputs["level"] = args ? args.level : undefined;
+            resourceInputs["malware"] = args ? args.malware : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["urlBlockDetected"] = args ? args.urlBlockDetected : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webs"] = args ? args.webs : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogThreatWeight.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogThreatWeight.__pulumiType, name, resourceInputs, opts);
     }
 }
 

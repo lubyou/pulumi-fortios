@@ -27,6 +27,8 @@ class FirewallSnifferArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  ip_threatfeed_status: Optional[pulumi.Input[str]] = None,
@@ -62,6 +64,8 @@ class FirewallSnifferArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable emailfilter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] ip_threatfeed_status: Enable/disable IP threat feed. Valid values: `enable`, `disable`.
@@ -107,6 +111,10 @@ class FirewallSnifferArgs:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if emailfilter_profile_status is not None:
             pulumi.set(__self__, "emailfilter_profile_status", emailfilter_profile_status)
+        if file_filter_profile is not None:
+            pulumi.set(__self__, "file_filter_profile", file_filter_profile)
+        if file_filter_profile_status is not None:
+            pulumi.set(__self__, "file_filter_profile_status", file_filter_profile_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if host is not None:
@@ -293,6 +301,30 @@ class FirewallSnifferArgs:
     @emailfilter_profile_status.setter
     def emailfilter_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "emailfilter_profile_status", value)
+
+    @property
+    @pulumi.getter(name="fileFilterProfile")
+    def file_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing file-filter profile.
+        """
+        return pulumi.get(self, "file_filter_profile")
+
+    @file_filter_profile.setter
+    def file_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_filter_profile", value)
+
+    @property
+    @pulumi.getter(name="fileFilterProfileStatus")
+    def file_filter_profile_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable file filter. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "file_filter_profile_status")
+
+    @file_filter_profile_status.setter
+    def file_filter_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_filter_profile_status", value)
 
     @property
     @pulumi.getter
@@ -561,6 +593,8 @@ class _FirewallSnifferState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -596,6 +630,8 @@ class _FirewallSnifferState:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable emailfilter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
@@ -641,6 +677,10 @@ class _FirewallSnifferState:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
         if emailfilter_profile_status is not None:
             pulumi.set(__self__, "emailfilter_profile_status", emailfilter_profile_status)
+        if file_filter_profile is not None:
+            pulumi.set(__self__, "file_filter_profile", file_filter_profile)
+        if file_filter_profile_status is not None:
+            pulumi.set(__self__, "file_filter_profile_status", file_filter_profile_status)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if host is not None:
@@ -817,6 +857,30 @@ class _FirewallSnifferState:
     @emailfilter_profile_status.setter
     def emailfilter_profile_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "emailfilter_profile_status", value)
+
+    @property
+    @pulumi.getter(name="fileFilterProfile")
+    def file_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing file-filter profile.
+        """
+        return pulumi.get(self, "file_filter_profile")
+
+    @file_filter_profile.setter
+    def file_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_filter_profile", value)
+
+    @property
+    @pulumi.getter(name="fileFilterProfileStatus")
+    def file_filter_profile_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable file filter. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "file_filter_profile_status")
+
+    @file_filter_profile_status.setter
+    def file_filter_profile_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "file_filter_profile_status", value)
 
     @property
     @pulumi.getter
@@ -1099,6 +1163,8 @@ class FirewallSniffer(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1173,6 +1239,8 @@ class FirewallSniffer(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable emailfilter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
@@ -1266,6 +1334,8 @@ class FirewallSniffer(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile: Optional[pulumi.Input[str]] = None,
+                 file_filter_profile_status: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -1295,6 +1365,8 @@ class FirewallSniffer(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1311,6 +1383,8 @@ class FirewallSniffer(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
             __props__.__dict__["emailfilter_profile_status"] = emailfilter_profile_status
+            __props__.__dict__["file_filter_profile"] = file_filter_profile
+            __props__.__dict__["file_filter_profile_status"] = file_filter_profile_status
             __props__.__dict__["fosid"] = fosid
             __props__.__dict__["host"] = host
             if interface is None and not opts.urn:
@@ -1356,6 +1430,8 @@ class FirewallSniffer(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
             emailfilter_profile_status: Optional[pulumi.Input[str]] = None,
+            file_filter_profile: Optional[pulumi.Input[str]] = None,
+            file_filter_profile_status: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
             host: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -1396,6 +1472,8 @@ class FirewallSniffer(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
         :param pulumi.Input[str] emailfilter_profile_status: Enable/disable emailfilter. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
+        :param pulumi.Input[str] file_filter_profile_status: Enable/disable file filter. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: Sniffer ID.
         :param pulumi.Input[str] host: Hosts to filter for in sniffer traffic (Format examples: 1.1.1.1, 2.2.2.0/24, 3.3.3.3/255.255.255.0, 4.4.4.0-4.4.4.240).
         :param pulumi.Input[str] interface: Interface name that traffic sniffing will take place on.
@@ -1434,6 +1512,8 @@ class FirewallSniffer(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
         __props__.__dict__["emailfilter_profile_status"] = emailfilter_profile_status
+        __props__.__dict__["file_filter_profile"] = file_filter_profile
+        __props__.__dict__["file_filter_profile_status"] = file_filter_profile_status
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["host"] = host
         __props__.__dict__["interface"] = interface
@@ -1545,6 +1625,22 @@ class FirewallSniffer(pulumi.CustomResource):
         Enable/disable emailfilter. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emailfilter_profile_status")
+
+    @property
+    @pulumi.getter(name="fileFilterProfile")
+    def file_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing file-filter profile.
+        """
+        return pulumi.get(self, "file_filter_profile")
+
+    @property
+    @pulumi.getter(name="fileFilterProfileStatus")
+    def file_filter_profile_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable file filter. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "file_filter_profile_status")
 
     @property
     @pulumi.getter

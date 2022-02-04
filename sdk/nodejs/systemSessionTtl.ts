@@ -83,25 +83,23 @@ export class SystemSessionTtl extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSessionTtlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSessionTtlArgs | SystemSessionTtlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSessionTtlState | undefined;
-            inputs["default"] = state ? state.default : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ports"] = state ? state.ports : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["default"] = state ? state.default : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ports"] = state ? state.ports : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSessionTtlArgs | undefined;
-            inputs["default"] = args ? args.default : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ports"] = args ? args.ports : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["default"] = args ? args.default : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ports"] = args ? args.ports : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSessionTtl.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSessionTtl.__pulumiType, name, resourceInputs, opts);
     }
 }
 

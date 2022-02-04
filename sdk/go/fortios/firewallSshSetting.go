@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -84,6 +84,7 @@ func NewFirewallSshSetting(ctx *pulumi.Context,
 		args = &FirewallSshSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSshSetting
 	err := ctx.RegisterResource("fortios:index/firewallSshSetting:FirewallSshSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -214,7 +215,7 @@ type FirewallSshSettingInput interface {
 }
 
 func (*FirewallSshSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSshSetting)(nil))
+	return reflect.TypeOf((**FirewallSshSetting)(nil)).Elem()
 }
 
 func (i *FirewallSshSetting) ToFirewallSshSettingOutput() FirewallSshSettingOutput {
@@ -223,35 +224,6 @@ func (i *FirewallSshSetting) ToFirewallSshSettingOutput() FirewallSshSettingOutp
 
 func (i *FirewallSshSetting) ToFirewallSshSettingOutputWithContext(ctx context.Context) FirewallSshSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshSettingOutput)
-}
-
-func (i *FirewallSshSetting) ToFirewallSshSettingPtrOutput() FirewallSshSettingPtrOutput {
-	return i.ToFirewallSshSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSshSetting) ToFirewallSshSettingPtrOutputWithContext(ctx context.Context) FirewallSshSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshSettingPtrOutput)
-}
-
-type FirewallSshSettingPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSshSettingPtrOutput() FirewallSshSettingPtrOutput
-	ToFirewallSshSettingPtrOutputWithContext(ctx context.Context) FirewallSshSettingPtrOutput
-}
-
-type firewallSshSettingPtrType FirewallSshSettingArgs
-
-func (*firewallSshSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSshSetting)(nil))
-}
-
-func (i *firewallSshSettingPtrType) ToFirewallSshSettingPtrOutput() FirewallSshSettingPtrOutput {
-	return i.ToFirewallSshSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSshSettingPtrType) ToFirewallSshSettingPtrOutputWithContext(ctx context.Context) FirewallSshSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshSettingPtrOutput)
 }
 
 // FirewallSshSettingArrayInput is an input type that accepts FirewallSshSettingArray and FirewallSshSettingArrayOutput values.
@@ -268,7 +240,7 @@ type FirewallSshSettingArrayInput interface {
 type FirewallSshSettingArray []FirewallSshSettingInput
 
 func (FirewallSshSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSshSetting)(nil))
+	return reflect.TypeOf((*[]*FirewallSshSetting)(nil)).Elem()
 }
 
 func (i FirewallSshSettingArray) ToFirewallSshSettingArrayOutput() FirewallSshSettingArrayOutput {
@@ -293,7 +265,7 @@ type FirewallSshSettingMapInput interface {
 type FirewallSshSettingMap map[string]FirewallSshSettingInput
 
 func (FirewallSshSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSshSetting)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSshSetting)(nil)).Elem()
 }
 
 func (i FirewallSshSettingMap) ToFirewallSshSettingMapOutput() FirewallSshSettingMapOutput {
@@ -304,12 +276,10 @@ func (i FirewallSshSettingMap) ToFirewallSshSettingMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshSettingMapOutput)
 }
 
-type FirewallSshSettingOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSshSettingOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSshSetting)(nil))
+	return reflect.TypeOf((**FirewallSshSetting)(nil)).Elem()
 }
 
 func (o FirewallSshSettingOutput) ToFirewallSshSettingOutput() FirewallSshSettingOutput {
@@ -320,36 +290,10 @@ func (o FirewallSshSettingOutput) ToFirewallSshSettingOutputWithContext(ctx cont
 	return o
 }
 
-func (o FirewallSshSettingOutput) ToFirewallSshSettingPtrOutput() FirewallSshSettingPtrOutput {
-	return o.ToFirewallSshSettingPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSshSettingOutput) ToFirewallSshSettingPtrOutputWithContext(ctx context.Context) FirewallSshSettingPtrOutput {
-	return o.ApplyT(func(v FirewallSshSetting) *FirewallSshSetting {
-		return &v
-	}).(FirewallSshSettingPtrOutput)
-}
-
-type FirewallSshSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSshSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSshSetting)(nil))
-}
-
-func (o FirewallSshSettingPtrOutput) ToFirewallSshSettingPtrOutput() FirewallSshSettingPtrOutput {
-	return o
-}
-
-func (o FirewallSshSettingPtrOutput) ToFirewallSshSettingPtrOutputWithContext(ctx context.Context) FirewallSshSettingPtrOutput {
-	return o
-}
-
 type FirewallSshSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSshSetting)(nil))
+	return reflect.TypeOf((*[]*FirewallSshSetting)(nil)).Elem()
 }
 
 func (o FirewallSshSettingArrayOutput) ToFirewallSshSettingArrayOutput() FirewallSshSettingArrayOutput {
@@ -361,15 +305,15 @@ func (o FirewallSshSettingArrayOutput) ToFirewallSshSettingArrayOutputWithContex
 }
 
 func (o FirewallSshSettingArrayOutput) Index(i pulumi.IntInput) FirewallSshSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSshSetting {
-		return vs[0].([]FirewallSshSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSshSetting {
+		return vs[0].([]*FirewallSshSetting)[vs[1].(int)]
 	}).(FirewallSshSettingOutput)
 }
 
 type FirewallSshSettingMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSshSetting)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSshSetting)(nil)).Elem()
 }
 
 func (o FirewallSshSettingMapOutput) ToFirewallSshSettingMapOutput() FirewallSshSettingMapOutput {
@@ -381,14 +325,16 @@ func (o FirewallSshSettingMapOutput) ToFirewallSshSettingMapOutputWithContext(ct
 }
 
 func (o FirewallSshSettingMapOutput) MapIndex(k pulumi.StringInput) FirewallSshSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSshSetting {
-		return vs[0].(map[string]FirewallSshSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSshSetting {
+		return vs[0].(map[string]*FirewallSshSetting)[vs[1].(string)]
 	}).(FirewallSshSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshSettingInput)(nil)).Elem(), &FirewallSshSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshSettingArrayInput)(nil)).Elem(), FirewallSshSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshSettingMapInput)(nil)).Elem(), FirewallSshSettingMap{})
 	pulumi.RegisterOutputType(FirewallSshSettingOutput{})
-	pulumi.RegisterOutputType(FirewallSshSettingPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSshSettingArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSshSettingMapOutput{})
 }

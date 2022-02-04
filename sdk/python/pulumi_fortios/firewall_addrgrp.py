@@ -17,11 +17,13 @@ class FirewallAddrgrpArgs:
     def __init__(__self__, *,
                  members: pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpMemberArgs']]],
                  allow_routing: Optional[pulumi.Input[str]] = None,
+                 category: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpExcludeMemberArgs']]]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpTaggingArgs']]]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -32,11 +34,13 @@ class FirewallAddrgrpArgs:
         The set of arguments for constructing a FirewallAddrgrp resource.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpMemberArgs']]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] allow_routing: Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] category: Tag category.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpExcludeMemberArgs']]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] type: Address group type. Valid values: `default`, `folder`.
@@ -47,6 +51,8 @@ class FirewallAddrgrpArgs:
         pulumi.set(__self__, "members", members)
         if allow_routing is not None:
             pulumi.set(__self__, "allow_routing", allow_routing)
+        if category is not None:
+            pulumi.set(__self__, "category", category)
         if color is not None:
             pulumi.set(__self__, "color", color)
         if comment is not None:
@@ -57,6 +63,8 @@ class FirewallAddrgrpArgs:
             pulumi.set(__self__, "exclude", exclude)
         if exclude_members is not None:
             pulumi.set(__self__, "exclude_members", exclude_members)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if taggings is not None:
@@ -93,6 +101,18 @@ class FirewallAddrgrpArgs:
     @allow_routing.setter
     def allow_routing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_routing", value)
+
+    @property
+    @pulumi.getter
+    def category(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag category.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "category", value)
 
     @property
     @pulumi.getter
@@ -153,6 +173,18 @@ class FirewallAddrgrpArgs:
     @exclude_members.setter
     def exclude_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpExcludeMemberArgs']]]]):
         pulumi.set(self, "exclude_members", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -231,11 +263,13 @@ class FirewallAddrgrpArgs:
 class _FirewallAddrgrpState:
     def __init__(__self__, *,
                  allow_routing: Optional[pulumi.Input[str]] = None,
+                 category: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpExcludeMemberArgs']]]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpTaggingArgs']]]] = None,
@@ -246,11 +280,13 @@ class _FirewallAddrgrpState:
         """
         Input properties used for looking up and filtering FirewallAddrgrp resources.
         :param pulumi.Input[str] allow_routing: Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] category: Tag category.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpExcludeMemberArgs']]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpMemberArgs']]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -261,6 +297,8 @@ class _FirewallAddrgrpState:
         """
         if allow_routing is not None:
             pulumi.set(__self__, "allow_routing", allow_routing)
+        if category is not None:
+            pulumi.set(__self__, "category", category)
         if color is not None:
             pulumi.set(__self__, "color", color)
         if comment is not None:
@@ -271,6 +309,8 @@ class _FirewallAddrgrpState:
             pulumi.set(__self__, "exclude", exclude)
         if exclude_members is not None:
             pulumi.set(__self__, "exclude_members", exclude_members)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -297,6 +337,18 @@ class _FirewallAddrgrpState:
     @allow_routing.setter
     def allow_routing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_routing", value)
+
+    @property
+    @pulumi.getter
+    def category(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag category.
+        """
+        return pulumi.get(self, "category")
+
+    @category.setter
+    def category(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "category", value)
 
     @property
     @pulumi.getter
@@ -357,6 +409,18 @@ class _FirewallAddrgrpState:
     @exclude_members.setter
     def exclude_members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrpExcludeMemberArgs']]]]):
         pulumi.set(self, "exclude_members", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -449,11 +513,13 @@ class FirewallAddrgrp(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_routing: Optional[pulumi.Input[str]] = None,
+                 category: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpExcludeMemberArgs']]]]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpTaggingArgs']]]]] = None,
@@ -504,11 +570,13 @@ class FirewallAddrgrp(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allow_routing: Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] category: Tag category.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpExcludeMemberArgs']]]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpMemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -578,11 +646,13 @@ class FirewallAddrgrp(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_routing: Optional[pulumi.Input[str]] = None,
+                 category: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  exclude: Optional[pulumi.Input[str]] = None,
                  exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpExcludeMemberArgs']]]]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpTaggingArgs']]]]] = None,
@@ -597,17 +667,21 @@ class FirewallAddrgrp(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallAddrgrpArgs.__new__(FirewallAddrgrpArgs)
 
             __props__.__dict__["allow_routing"] = allow_routing
+            __props__.__dict__["category"] = category
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["exclude"] = exclude
             __props__.__dict__["exclude_members"] = exclude_members
+            __props__.__dict__["fabric_object"] = fabric_object
             if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__.__dict__["members"] = members
@@ -628,11 +702,13 @@ class FirewallAddrgrp(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_routing: Optional[pulumi.Input[str]] = None,
+            category: Optional[pulumi.Input[str]] = None,
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             exclude: Optional[pulumi.Input[str]] = None,
             exclude_members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpExcludeMemberArgs']]]]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpTaggingArgs']]]]] = None,
@@ -648,11 +724,13 @@ class FirewallAddrgrp(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allow_routing: Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] category: Tag category.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] exclude: Enable/disable address exclusion. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpExcludeMemberArgs']]]] exclude_members: Address exclusion member. The structure of `exclude_member` block is documented below.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpMemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrpTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -666,11 +744,13 @@ class FirewallAddrgrp(pulumi.CustomResource):
         __props__ = _FirewallAddrgrpState.__new__(_FirewallAddrgrpState)
 
         __props__.__dict__["allow_routing"] = allow_routing
+        __props__.__dict__["category"] = category
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["exclude"] = exclude
         __props__.__dict__["exclude_members"] = exclude_members
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["taggings"] = taggings
@@ -687,6 +767,14 @@ class FirewallAddrgrp(pulumi.CustomResource):
         Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "allow_routing")
+
+    @property
+    @pulumi.getter
+    def category(self) -> pulumi.Output[str]:
+        """
+        Tag category.
+        """
+        return pulumi.get(self, "category")
 
     @property
     @pulumi.getter
@@ -727,6 +815,14 @@ class FirewallAddrgrp(pulumi.CustomResource):
         Address exclusion member. The structure of `exclude_member` block is documented below.
         """
         return pulumi.get(self, "exclude_members")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter

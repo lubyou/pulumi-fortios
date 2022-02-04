@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure GENEVE devices.
+ * Configure GENEVE devices. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Example Usage
  *
@@ -86,6 +86,10 @@ export class SystemGeneve extends pulumi.CustomResource {
      */
     public readonly remoteIp6!: pulumi.Output<string>;
     /**
+     * GENEVE type. Valid values: `ethernet`, `ppp`.
+     */
+    public readonly type!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -103,18 +107,19 @@ export class SystemGeneve extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemGeneveArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemGeneveArgs | SystemGeneveState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemGeneveState | undefined;
-            inputs["dstport"] = state ? state.dstport : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipVersion"] = state ? state.ipVersion : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["remoteIp"] = state ? state.remoteIp : undefined;
-            inputs["remoteIp6"] = state ? state.remoteIp6 : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vni"] = state ? state.vni : undefined;
+            resourceInputs["dstport"] = state ? state.dstport : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["remoteIp"] = state ? state.remoteIp : undefined;
+            resourceInputs["remoteIp6"] = state ? state.remoteIp6 : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vni"] = state ? state.vni : undefined;
         } else {
             const args = argsOrState as SystemGeneveArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
@@ -129,19 +134,18 @@ export class SystemGeneve extends pulumi.CustomResource {
             if ((!args || args.vni === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vni'");
             }
-            inputs["dstport"] = args ? args.dstport : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipVersion"] = args ? args.ipVersion : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["remoteIp"] = args ? args.remoteIp : undefined;
-            inputs["remoteIp6"] = args ? args.remoteIp6 : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vni"] = args ? args.vni : undefined;
+            resourceInputs["dstport"] = args ? args.dstport : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["remoteIp"] = args ? args.remoteIp : undefined;
+            resourceInputs["remoteIp6"] = args ? args.remoteIp6 : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vni"] = args ? args.vni : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemGeneve.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemGeneve.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -173,6 +177,10 @@ export interface SystemGeneveState {
      * IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
      */
     remoteIp6?: pulumi.Input<string>;
+    /**
+     * GENEVE type. Valid values: `ethernet`, `ppp`.
+     */
+    type?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -211,6 +219,10 @@ export interface SystemGeneveArgs {
      * IPv6 IP address of the GENEVE interface on the device at the remote end of the GENEVE.
      */
     remoteIp6?: pulumi.Input<string>;
+    /**
+     * GENEVE type. Valid values: `ethernet`, `ppp`.
+     */
+    type?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

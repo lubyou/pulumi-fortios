@@ -34,7 +34,7 @@ type LogSyslogdOverrideSetting struct {
 	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility pulumi.StringOutput `pulumi:"facility"`
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format pulumi.StringOutput `pulumi:"format"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -71,6 +71,7 @@ func NewLogSyslogdOverrideSetting(ctx *pulumi.Context,
 		args = &LogSyslogdOverrideSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogSyslogdOverrideSetting
 	err := ctx.RegisterResource("fortios:index/logSyslogdOverrideSetting:LogSyslogdOverrideSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type logSyslogdOverrideSettingState struct {
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility *string `pulumi:"facility"`
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format *string `pulumi:"format"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -144,7 +145,7 @@ type LogSyslogdOverrideSettingState struct {
 	EncAlgorithm pulumi.StringPtrInput
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility pulumi.StringPtrInput
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -189,7 +190,7 @@ type logSyslogdOverrideSettingArgs struct {
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility *string `pulumi:"facility"`
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format *string `pulumi:"format"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -231,7 +232,7 @@ type LogSyslogdOverrideSettingArgs struct {
 	EncAlgorithm pulumi.StringPtrInput
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility pulumi.StringPtrInput
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -273,7 +274,7 @@ type LogSyslogdOverrideSettingInput interface {
 }
 
 func (*LogSyslogdOverrideSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogdOverrideSetting)(nil))
+	return reflect.TypeOf((**LogSyslogdOverrideSetting)(nil)).Elem()
 }
 
 func (i *LogSyslogdOverrideSetting) ToLogSyslogdOverrideSettingOutput() LogSyslogdOverrideSettingOutput {
@@ -282,35 +283,6 @@ func (i *LogSyslogdOverrideSetting) ToLogSyslogdOverrideSettingOutput() LogSyslo
 
 func (i *LogSyslogdOverrideSetting) ToLogSyslogdOverrideSettingOutputWithContext(ctx context.Context) LogSyslogdOverrideSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdOverrideSettingOutput)
-}
-
-func (i *LogSyslogdOverrideSetting) ToLogSyslogdOverrideSettingPtrOutput() LogSyslogdOverrideSettingPtrOutput {
-	return i.ToLogSyslogdOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogSyslogdOverrideSetting) ToLogSyslogdOverrideSettingPtrOutputWithContext(ctx context.Context) LogSyslogdOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdOverrideSettingPtrOutput)
-}
-
-type LogSyslogdOverrideSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogSyslogdOverrideSettingPtrOutput() LogSyslogdOverrideSettingPtrOutput
-	ToLogSyslogdOverrideSettingPtrOutputWithContext(ctx context.Context) LogSyslogdOverrideSettingPtrOutput
-}
-
-type logSyslogdOverrideSettingPtrType LogSyslogdOverrideSettingArgs
-
-func (*logSyslogdOverrideSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogdOverrideSetting)(nil))
-}
-
-func (i *logSyslogdOverrideSettingPtrType) ToLogSyslogdOverrideSettingPtrOutput() LogSyslogdOverrideSettingPtrOutput {
-	return i.ToLogSyslogdOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logSyslogdOverrideSettingPtrType) ToLogSyslogdOverrideSettingPtrOutputWithContext(ctx context.Context) LogSyslogdOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdOverrideSettingPtrOutput)
 }
 
 // LogSyslogdOverrideSettingArrayInput is an input type that accepts LogSyslogdOverrideSettingArray and LogSyslogdOverrideSettingArrayOutput values.
@@ -327,7 +299,7 @@ type LogSyslogdOverrideSettingArrayInput interface {
 type LogSyslogdOverrideSettingArray []LogSyslogdOverrideSettingInput
 
 func (LogSyslogdOverrideSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogSyslogdOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogSyslogdOverrideSetting)(nil)).Elem()
 }
 
 func (i LogSyslogdOverrideSettingArray) ToLogSyslogdOverrideSettingArrayOutput() LogSyslogdOverrideSettingArrayOutput {
@@ -352,7 +324,7 @@ type LogSyslogdOverrideSettingMapInput interface {
 type LogSyslogdOverrideSettingMap map[string]LogSyslogdOverrideSettingInput
 
 func (LogSyslogdOverrideSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogSyslogdOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogdOverrideSetting)(nil)).Elem()
 }
 
 func (i LogSyslogdOverrideSettingMap) ToLogSyslogdOverrideSettingMapOutput() LogSyslogdOverrideSettingMapOutput {
@@ -363,12 +335,10 @@ func (i LogSyslogdOverrideSettingMap) ToLogSyslogdOverrideSettingMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogdOverrideSettingMapOutput)
 }
 
-type LogSyslogdOverrideSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogSyslogdOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogdOverrideSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogdOverrideSetting)(nil))
+	return reflect.TypeOf((**LogSyslogdOverrideSetting)(nil)).Elem()
 }
 
 func (o LogSyslogdOverrideSettingOutput) ToLogSyslogdOverrideSettingOutput() LogSyslogdOverrideSettingOutput {
@@ -379,36 +349,10 @@ func (o LogSyslogdOverrideSettingOutput) ToLogSyslogdOverrideSettingOutputWithCo
 	return o
 }
 
-func (o LogSyslogdOverrideSettingOutput) ToLogSyslogdOverrideSettingPtrOutput() LogSyslogdOverrideSettingPtrOutput {
-	return o.ToLogSyslogdOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogSyslogdOverrideSettingOutput) ToLogSyslogdOverrideSettingPtrOutputWithContext(ctx context.Context) LogSyslogdOverrideSettingPtrOutput {
-	return o.ApplyT(func(v LogSyslogdOverrideSetting) *LogSyslogdOverrideSetting {
-		return &v
-	}).(LogSyslogdOverrideSettingPtrOutput)
-}
-
-type LogSyslogdOverrideSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogSyslogdOverrideSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogdOverrideSetting)(nil))
-}
-
-func (o LogSyslogdOverrideSettingPtrOutput) ToLogSyslogdOverrideSettingPtrOutput() LogSyslogdOverrideSettingPtrOutput {
-	return o
-}
-
-func (o LogSyslogdOverrideSettingPtrOutput) ToLogSyslogdOverrideSettingPtrOutputWithContext(ctx context.Context) LogSyslogdOverrideSettingPtrOutput {
-	return o
-}
-
 type LogSyslogdOverrideSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogdOverrideSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogSyslogdOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogSyslogdOverrideSetting)(nil)).Elem()
 }
 
 func (o LogSyslogdOverrideSettingArrayOutput) ToLogSyslogdOverrideSettingArrayOutput() LogSyslogdOverrideSettingArrayOutput {
@@ -420,15 +364,15 @@ func (o LogSyslogdOverrideSettingArrayOutput) ToLogSyslogdOverrideSettingArrayOu
 }
 
 func (o LogSyslogdOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogSyslogdOverrideSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogSyslogdOverrideSetting {
-		return vs[0].([]LogSyslogdOverrideSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogdOverrideSetting {
+		return vs[0].([]*LogSyslogdOverrideSetting)[vs[1].(int)]
 	}).(LogSyslogdOverrideSettingOutput)
 }
 
 type LogSyslogdOverrideSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogdOverrideSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogSyslogdOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogdOverrideSetting)(nil)).Elem()
 }
 
 func (o LogSyslogdOverrideSettingMapOutput) ToLogSyslogdOverrideSettingMapOutput() LogSyslogdOverrideSettingMapOutput {
@@ -440,14 +384,16 @@ func (o LogSyslogdOverrideSettingMapOutput) ToLogSyslogdOverrideSettingMapOutput
 }
 
 func (o LogSyslogdOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogSyslogdOverrideSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogSyslogdOverrideSetting {
-		return vs[0].(map[string]LogSyslogdOverrideSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogSyslogdOverrideSetting {
+		return vs[0].(map[string]*LogSyslogdOverrideSetting)[vs[1].(string)]
 	}).(LogSyslogdOverrideSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogdOverrideSettingInput)(nil)).Elem(), &LogSyslogdOverrideSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogdOverrideSettingArrayInput)(nil)).Elem(), LogSyslogdOverrideSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogdOverrideSettingMapInput)(nil)).Elem(), LogSyslogdOverrideSettingMap{})
 	pulumi.RegisterOutputType(LogSyslogdOverrideSettingOutput{})
-	pulumi.RegisterOutputType(LogSyslogdOverrideSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogSyslogdOverrideSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogSyslogdOverrideSettingMapOutput{})
 }

@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['AuthenticationSettingArgs', 'AuthenticationSetting']
 
@@ -22,7 +24,14 @@ class AuthenticationSettingArgs:
                  captive_portal_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_ssl_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_type: Optional[pulumi.Input[str]] = None,
+                 cert_auth: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_ip: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_port: Optional[pulumi.Input[int]] = None,
+                 dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
+                 user_cert_cas: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthenticationSetting resource.
@@ -35,7 +44,14 @@ class AuthenticationSettingArgs:
         :param pulumi.Input[int] captive_portal_port: Captive portal port number (1 - 65535, default = 7830).
         :param pulumi.Input[int] captive_portal_ssl_port: Captive portal SSL port number (1 - 65535, default = 7831).
         :param pulumi.Input[str] captive_portal_type: Captive portal type. Valid values: `fqdn`, `ip`.
+        :param pulumi.Input[str] cert_auth: Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_captive_portal: Certificate captive portal host name.
+        :param pulumi.Input[str] cert_captive_portal_ip: Certificate captive portal IP address.
+        :param pulumi.Input[int] cert_captive_portal_port: Certificate captive portal port number (1 - 65535, default = 7832).
+        :param pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
+        :param pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]] user_cert_cas: CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if active_auth_scheme is not None:
@@ -56,8 +72,22 @@ class AuthenticationSettingArgs:
             pulumi.set(__self__, "captive_portal_ssl_port", captive_portal_ssl_port)
         if captive_portal_type is not None:
             pulumi.set(__self__, "captive_portal_type", captive_portal_type)
+        if cert_auth is not None:
+            pulumi.set(__self__, "cert_auth", cert_auth)
+        if cert_captive_portal is not None:
+            pulumi.set(__self__, "cert_captive_portal", cert_captive_portal)
+        if cert_captive_portal_ip is not None:
+            pulumi.set(__self__, "cert_captive_portal_ip", cert_captive_portal_ip)
+        if cert_captive_portal_port is not None:
+            pulumi.set(__self__, "cert_captive_portal_port", cert_captive_portal_port)
+        if dev_ranges is not None:
+            pulumi.set(__self__, "dev_ranges", dev_ranges)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if sso_auth_scheme is not None:
             pulumi.set(__self__, "sso_auth_scheme", sso_auth_scheme)
+        if user_cert_cas is not None:
+            pulumi.set(__self__, "user_cert_cas", user_cert_cas)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -170,6 +200,78 @@ class AuthenticationSettingArgs:
         pulumi.set(self, "captive_portal_type", value)
 
     @property
+    @pulumi.getter(name="certAuth")
+    def cert_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cert_auth")
+
+    @cert_auth.setter
+    def cert_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_auth", value)
+
+    @property
+    @pulumi.getter(name="certCaptivePortal")
+    def cert_captive_portal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate captive portal host name.
+        """
+        return pulumi.get(self, "cert_captive_portal")
+
+    @cert_captive_portal.setter
+    def cert_captive_portal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_captive_portal", value)
+
+    @property
+    @pulumi.getter(name="certCaptivePortalIp")
+    def cert_captive_portal_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate captive portal IP address.
+        """
+        return pulumi.get(self, "cert_captive_portal_ip")
+
+    @cert_captive_portal_ip.setter
+    def cert_captive_portal_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_captive_portal_ip", value)
+
+    @property
+    @pulumi.getter(name="certCaptivePortalPort")
+    def cert_captive_portal_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Certificate captive portal port number (1 - 65535, default = 7832).
+        """
+        return pulumi.get(self, "cert_captive_portal_port")
+
+    @cert_captive_portal_port.setter
+    def cert_captive_portal_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cert_captive_portal_port", value)
+
+    @property
+    @pulumi.getter(name="devRanges")
+    def dev_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]]:
+        """
+        Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        """
+        return pulumi.get(self, "dev_ranges")
+
+    @dev_ranges.setter
+    def dev_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]]):
+        pulumi.set(self, "dev_ranges", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter(name="ssoAuthScheme")
     def sso_auth_scheme(self) -> Optional[pulumi.Input[str]]:
         """
@@ -180,6 +282,18 @@ class AuthenticationSettingArgs:
     @sso_auth_scheme.setter
     def sso_auth_scheme(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sso_auth_scheme", value)
+
+    @property
+    @pulumi.getter(name="userCertCas")
+    def user_cert_cas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]]]:
+        """
+        CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
+        """
+        return pulumi.get(self, "user_cert_cas")
+
+    @user_cert_cas.setter
+    def user_cert_cas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]]]):
+        pulumi.set(self, "user_cert_cas", value)
 
     @property
     @pulumi.getter
@@ -206,7 +320,14 @@ class _AuthenticationSettingState:
                  captive_portal_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_ssl_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_type: Optional[pulumi.Input[str]] = None,
+                 cert_auth: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_ip: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_port: Optional[pulumi.Input[int]] = None,
+                 dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
+                 user_cert_cas: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AuthenticationSetting resources.
@@ -219,7 +340,14 @@ class _AuthenticationSettingState:
         :param pulumi.Input[int] captive_portal_port: Captive portal port number (1 - 65535, default = 7830).
         :param pulumi.Input[int] captive_portal_ssl_port: Captive portal SSL port number (1 - 65535, default = 7831).
         :param pulumi.Input[str] captive_portal_type: Captive portal type. Valid values: `fqdn`, `ip`.
+        :param pulumi.Input[str] cert_auth: Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_captive_portal: Certificate captive portal host name.
+        :param pulumi.Input[str] cert_captive_portal_ip: Certificate captive portal IP address.
+        :param pulumi.Input[int] cert_captive_portal_port: Certificate captive portal port number (1 - 65535, default = 7832).
+        :param pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
+        :param pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]] user_cert_cas: CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if active_auth_scheme is not None:
@@ -240,8 +368,22 @@ class _AuthenticationSettingState:
             pulumi.set(__self__, "captive_portal_ssl_port", captive_portal_ssl_port)
         if captive_portal_type is not None:
             pulumi.set(__self__, "captive_portal_type", captive_portal_type)
+        if cert_auth is not None:
+            pulumi.set(__self__, "cert_auth", cert_auth)
+        if cert_captive_portal is not None:
+            pulumi.set(__self__, "cert_captive_portal", cert_captive_portal)
+        if cert_captive_portal_ip is not None:
+            pulumi.set(__self__, "cert_captive_portal_ip", cert_captive_portal_ip)
+        if cert_captive_portal_port is not None:
+            pulumi.set(__self__, "cert_captive_portal_port", cert_captive_portal_port)
+        if dev_ranges is not None:
+            pulumi.set(__self__, "dev_ranges", dev_ranges)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if sso_auth_scheme is not None:
             pulumi.set(__self__, "sso_auth_scheme", sso_auth_scheme)
+        if user_cert_cas is not None:
+            pulumi.set(__self__, "user_cert_cas", user_cert_cas)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -354,6 +496,78 @@ class _AuthenticationSettingState:
         pulumi.set(self, "captive_portal_type", value)
 
     @property
+    @pulumi.getter(name="certAuth")
+    def cert_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cert_auth")
+
+    @cert_auth.setter
+    def cert_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_auth", value)
+
+    @property
+    @pulumi.getter(name="certCaptivePortal")
+    def cert_captive_portal(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate captive portal host name.
+        """
+        return pulumi.get(self, "cert_captive_portal")
+
+    @cert_captive_portal.setter
+    def cert_captive_portal(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_captive_portal", value)
+
+    @property
+    @pulumi.getter(name="certCaptivePortalIp")
+    def cert_captive_portal_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Certificate captive portal IP address.
+        """
+        return pulumi.get(self, "cert_captive_portal_ip")
+
+    @cert_captive_portal_ip.setter
+    def cert_captive_portal_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cert_captive_portal_ip", value)
+
+    @property
+    @pulumi.getter(name="certCaptivePortalPort")
+    def cert_captive_portal_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Certificate captive portal port number (1 - 65535, default = 7832).
+        """
+        return pulumi.get(self, "cert_captive_portal_port")
+
+    @cert_captive_portal_port.setter
+    def cert_captive_portal_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "cert_captive_portal_port", value)
+
+    @property
+    @pulumi.getter(name="devRanges")
+    def dev_ranges(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]]:
+        """
+        Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        """
+        return pulumi.get(self, "dev_ranges")
+
+    @dev_ranges.setter
+    def dev_ranges(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingDevRangeArgs']]]]):
+        pulumi.set(self, "dev_ranges", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter(name="ssoAuthScheme")
     def sso_auth_scheme(self) -> Optional[pulumi.Input[str]]:
         """
@@ -364,6 +578,18 @@ class _AuthenticationSettingState:
     @sso_auth_scheme.setter
     def sso_auth_scheme(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sso_auth_scheme", value)
+
+    @property
+    @pulumi.getter(name="userCertCas")
+    def user_cert_cas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]]]:
+        """
+        CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
+        """
+        return pulumi.get(self, "user_cert_cas")
+
+    @user_cert_cas.setter
+    def user_cert_cas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSettingUserCertCaArgs']]]]):
+        pulumi.set(self, "user_cert_cas", value)
 
     @property
     @pulumi.getter
@@ -392,7 +618,14 @@ class AuthenticationSetting(pulumi.CustomResource):
                  captive_portal_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_ssl_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_type: Optional[pulumi.Input[str]] = None,
+                 cert_auth: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_ip: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_port: Optional[pulumi.Input[int]] = None,
+                 dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
+                 user_cert_cas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingUserCertCaArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -434,7 +667,14 @@ class AuthenticationSetting(pulumi.CustomResource):
         :param pulumi.Input[int] captive_portal_port: Captive portal port number (1 - 65535, default = 7830).
         :param pulumi.Input[int] captive_portal_ssl_port: Captive portal SSL port number (1 - 65535, default = 7831).
         :param pulumi.Input[str] captive_portal_type: Captive portal type. Valid values: `fqdn`, `ip`.
+        :param pulumi.Input[str] cert_auth: Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_captive_portal: Certificate captive portal host name.
+        :param pulumi.Input[str] cert_captive_portal_ip: Certificate captive portal IP address.
+        :param pulumi.Input[int] cert_captive_portal_port: Certificate captive portal port number (1 - 65535, default = 7832).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingUserCertCaArgs']]]] user_cert_cas: CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -495,7 +735,14 @@ class AuthenticationSetting(pulumi.CustomResource):
                  captive_portal_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_ssl_port: Optional[pulumi.Input[int]] = None,
                  captive_portal_type: Optional[pulumi.Input[str]] = None,
+                 cert_auth: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_ip: Optional[pulumi.Input[str]] = None,
+                 cert_captive_portal_port: Optional[pulumi.Input[int]] = None,
+                 dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  sso_auth_scheme: Optional[pulumi.Input[str]] = None,
+                 user_cert_cas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingUserCertCaArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -504,6 +751,8 @@ class AuthenticationSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -518,7 +767,14 @@ class AuthenticationSetting(pulumi.CustomResource):
             __props__.__dict__["captive_portal_port"] = captive_portal_port
             __props__.__dict__["captive_portal_ssl_port"] = captive_portal_ssl_port
             __props__.__dict__["captive_portal_type"] = captive_portal_type
+            __props__.__dict__["cert_auth"] = cert_auth
+            __props__.__dict__["cert_captive_portal"] = cert_captive_portal
+            __props__.__dict__["cert_captive_portal_ip"] = cert_captive_portal_ip
+            __props__.__dict__["cert_captive_portal_port"] = cert_captive_portal_port
+            __props__.__dict__["dev_ranges"] = dev_ranges
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["sso_auth_scheme"] = sso_auth_scheme
+            __props__.__dict__["user_cert_cas"] = user_cert_cas
             __props__.__dict__["vdomparam"] = vdomparam
         super(AuthenticationSetting, __self__).__init__(
             'fortios:index/authenticationSetting:AuthenticationSetting',
@@ -539,7 +795,14 @@ class AuthenticationSetting(pulumi.CustomResource):
             captive_portal_port: Optional[pulumi.Input[int]] = None,
             captive_portal_ssl_port: Optional[pulumi.Input[int]] = None,
             captive_portal_type: Optional[pulumi.Input[str]] = None,
+            cert_auth: Optional[pulumi.Input[str]] = None,
+            cert_captive_portal: Optional[pulumi.Input[str]] = None,
+            cert_captive_portal_ip: Optional[pulumi.Input[str]] = None,
+            cert_captive_portal_port: Optional[pulumi.Input[int]] = None,
+            dev_ranges: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             sso_auth_scheme: Optional[pulumi.Input[str]] = None,
+            user_cert_cas: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingUserCertCaArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'AuthenticationSetting':
         """
         Get an existing AuthenticationSetting resource's state with the given name, id, and optional extra
@@ -557,7 +820,14 @@ class AuthenticationSetting(pulumi.CustomResource):
         :param pulumi.Input[int] captive_portal_port: Captive portal port number (1 - 65535, default = 7830).
         :param pulumi.Input[int] captive_portal_ssl_port: Captive portal SSL port number (1 - 65535, default = 7831).
         :param pulumi.Input[str] captive_portal_type: Captive portal type. Valid values: `fqdn`, `ip`.
+        :param pulumi.Input[str] cert_auth: Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cert_captive_portal: Certificate captive portal host name.
+        :param pulumi.Input[str] cert_captive_portal_ip: Certificate captive portal IP address.
+        :param pulumi.Input[int] cert_captive_portal_port: Certificate captive portal port number (1 - 65535, default = 7832).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingDevRangeArgs']]]] dev_ranges: Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] sso_auth_scheme: Single-Sign-On authentication method (scheme name).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSettingUserCertCaArgs']]]] user_cert_cas: CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -573,7 +843,14 @@ class AuthenticationSetting(pulumi.CustomResource):
         __props__.__dict__["captive_portal_port"] = captive_portal_port
         __props__.__dict__["captive_portal_ssl_port"] = captive_portal_ssl_port
         __props__.__dict__["captive_portal_type"] = captive_portal_type
+        __props__.__dict__["cert_auth"] = cert_auth
+        __props__.__dict__["cert_captive_portal"] = cert_captive_portal
+        __props__.__dict__["cert_captive_portal_ip"] = cert_captive_portal_ip
+        __props__.__dict__["cert_captive_portal_port"] = cert_captive_portal_port
+        __props__.__dict__["dev_ranges"] = dev_ranges
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["sso_auth_scheme"] = sso_auth_scheme
+        __props__.__dict__["user_cert_cas"] = user_cert_cas
         __props__.__dict__["vdomparam"] = vdomparam
         return AuthenticationSetting(resource_name, opts=opts, __props__=__props__)
 
@@ -650,12 +927,68 @@ class AuthenticationSetting(pulumi.CustomResource):
         return pulumi.get(self, "captive_portal_type")
 
     @property
+    @pulumi.getter(name="certAuth")
+    def cert_auth(self) -> pulumi.Output[str]:
+        """
+        Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cert_auth")
+
+    @property
+    @pulumi.getter(name="certCaptivePortal")
+    def cert_captive_portal(self) -> pulumi.Output[str]:
+        """
+        Certificate captive portal host name.
+        """
+        return pulumi.get(self, "cert_captive_portal")
+
+    @property
+    @pulumi.getter(name="certCaptivePortalIp")
+    def cert_captive_portal_ip(self) -> pulumi.Output[str]:
+        """
+        Certificate captive portal IP address.
+        """
+        return pulumi.get(self, "cert_captive_portal_ip")
+
+    @property
+    @pulumi.getter(name="certCaptivePortalPort")
+    def cert_captive_portal_port(self) -> pulumi.Output[int]:
+        """
+        Certificate captive portal port number (1 - 65535, default = 7832).
+        """
+        return pulumi.get(self, "cert_captive_portal_port")
+
+    @property
+    @pulumi.getter(name="devRanges")
+    def dev_ranges(self) -> pulumi.Output[Optional[Sequence['outputs.AuthenticationSettingDevRange']]]:
+        """
+        Address range for the IP based device query. The structure of `dev_range` block is documented below.
+        """
+        return pulumi.get(self, "dev_ranges")
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
     @pulumi.getter(name="ssoAuthScheme")
     def sso_auth_scheme(self) -> pulumi.Output[str]:
         """
         Single-Sign-On authentication method (scheme name).
         """
         return pulumi.get(self, "sso_auth_scheme")
+
+    @property
+    @pulumi.getter(name="userCertCas")
+    def user_cert_cas(self) -> pulumi.Output[Optional[Sequence['outputs.AuthenticationSettingUserCertCa']]]:
+        """
+        CA certificate used for client certificate verification. The structure of `user_cert_ca` block is documented below.
+        """
+        return pulumi.get(self, "user_cert_cas")
 
     @property
     @pulumi.getter

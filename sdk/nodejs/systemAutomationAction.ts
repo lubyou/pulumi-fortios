@@ -157,6 +157,10 @@ export class SystemAutomationAction extends pulumi.CustomResource {
      */
     public readonly delay!: pulumi.Output<number>;
     /**
+     * Description.
+     */
+    public readonly description!: pulumi.Output<string | undefined>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -176,6 +180,10 @@ export class SystemAutomationAction extends pulumi.CustomResource {
      * Email addresses. The structure of `emailTo` block is documented below.
      */
     public readonly emailTos!: pulumi.Output<outputs.SystemAutomationActionEmailTo[] | undefined>;
+    /**
+     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+     */
+    public readonly executeSecurityFabric!: pulumi.Output<string>;
     /**
      * Google Cloud function name.
      */
@@ -205,6 +213,10 @@ export class SystemAutomationAction extends pulumi.CustomResource {
      */
     public readonly message!: pulumi.Output<string>;
     /**
+     * Message type. Valid values: `text`, `json`.
+     */
+    public readonly messageType!: pulumi.Output<string>;
+    /**
      * Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
      */
     public readonly method!: pulumi.Output<string>;
@@ -228,6 +240,10 @@ export class SystemAutomationAction extends pulumi.CustomResource {
      * Enable/disable replacement message. Valid values: `enable`, `disable`.
      */
     public readonly replacementMessage!: pulumi.Output<string>;
+    /**
+     * Replacement message group.
+     */
+    public readonly replacemsgGroup!: pulumi.Output<string>;
     /**
      * Required in action chain. Valid values: `enable`, `disable`.
      */
@@ -256,6 +272,10 @@ export class SystemAutomationAction extends pulumi.CustomResource {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+     */
+    public readonly verifyHostCert!: pulumi.Output<string>;
 
     /**
      * Create a SystemAutomationAction resource with the given unique name, arguments, and options.
@@ -266,113 +286,121 @@ export class SystemAutomationAction extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAutomationActionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutomationActionArgs | SystemAutomationActionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutomationActionState | undefined;
-            inputs["accprofile"] = state ? state.accprofile : undefined;
-            inputs["actionType"] = state ? state.actionType : undefined;
-            inputs["alicloudAccessKeyId"] = state ? state.alicloudAccessKeyId : undefined;
-            inputs["alicloudAccessKeySecret"] = state ? state.alicloudAccessKeySecret : undefined;
-            inputs["alicloudAccountId"] = state ? state.alicloudAccountId : undefined;
-            inputs["alicloudFunction"] = state ? state.alicloudFunction : undefined;
-            inputs["alicloudFunctionAuthorization"] = state ? state.alicloudFunctionAuthorization : undefined;
-            inputs["alicloudFunctionDomain"] = state ? state.alicloudFunctionDomain : undefined;
-            inputs["alicloudRegion"] = state ? state.alicloudRegion : undefined;
-            inputs["alicloudService"] = state ? state.alicloudService : undefined;
-            inputs["alicloudVersion"] = state ? state.alicloudVersion : undefined;
-            inputs["awsApiId"] = state ? state.awsApiId : undefined;
-            inputs["awsApiKey"] = state ? state.awsApiKey : undefined;
-            inputs["awsApiPath"] = state ? state.awsApiPath : undefined;
-            inputs["awsApiStage"] = state ? state.awsApiStage : undefined;
-            inputs["awsDomain"] = state ? state.awsDomain : undefined;
-            inputs["awsRegion"] = state ? state.awsRegion : undefined;
-            inputs["azureApiKey"] = state ? state.azureApiKey : undefined;
-            inputs["azureApp"] = state ? state.azureApp : undefined;
-            inputs["azureDomain"] = state ? state.azureDomain : undefined;
-            inputs["azureFunction"] = state ? state.azureFunction : undefined;
-            inputs["azureFunctionAuthorization"] = state ? state.azureFunctionAuthorization : undefined;
-            inputs["delay"] = state ? state.delay : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["emailBody"] = state ? state.emailBody : undefined;
-            inputs["emailFrom"] = state ? state.emailFrom : undefined;
-            inputs["emailSubject"] = state ? state.emailSubject : undefined;
-            inputs["emailTos"] = state ? state.emailTos : undefined;
-            inputs["gcpFunction"] = state ? state.gcpFunction : undefined;
-            inputs["gcpFunctionDomain"] = state ? state.gcpFunctionDomain : undefined;
-            inputs["gcpFunctionRegion"] = state ? state.gcpFunctionRegion : undefined;
-            inputs["gcpProject"] = state ? state.gcpProject : undefined;
-            inputs["headers"] = state ? state.headers : undefined;
-            inputs["httpBody"] = state ? state.httpBody : undefined;
-            inputs["message"] = state ? state.message : undefined;
-            inputs["method"] = state ? state.method : undefined;
-            inputs["minimumInterval"] = state ? state.minimumInterval : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["replacementMessage"] = state ? state.replacementMessage : undefined;
-            inputs["required"] = state ? state.required : undefined;
-            inputs["script"] = state ? state.script : undefined;
-            inputs["sdnConnectors"] = state ? state.sdnConnectors : undefined;
-            inputs["securityTag"] = state ? state.securityTag : undefined;
-            inputs["tlsCertificate"] = state ? state.tlsCertificate : undefined;
-            inputs["uri"] = state ? state.uri : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["accprofile"] = state ? state.accprofile : undefined;
+            resourceInputs["actionType"] = state ? state.actionType : undefined;
+            resourceInputs["alicloudAccessKeyId"] = state ? state.alicloudAccessKeyId : undefined;
+            resourceInputs["alicloudAccessKeySecret"] = state ? state.alicloudAccessKeySecret : undefined;
+            resourceInputs["alicloudAccountId"] = state ? state.alicloudAccountId : undefined;
+            resourceInputs["alicloudFunction"] = state ? state.alicloudFunction : undefined;
+            resourceInputs["alicloudFunctionAuthorization"] = state ? state.alicloudFunctionAuthorization : undefined;
+            resourceInputs["alicloudFunctionDomain"] = state ? state.alicloudFunctionDomain : undefined;
+            resourceInputs["alicloudRegion"] = state ? state.alicloudRegion : undefined;
+            resourceInputs["alicloudService"] = state ? state.alicloudService : undefined;
+            resourceInputs["alicloudVersion"] = state ? state.alicloudVersion : undefined;
+            resourceInputs["awsApiId"] = state ? state.awsApiId : undefined;
+            resourceInputs["awsApiKey"] = state ? state.awsApiKey : undefined;
+            resourceInputs["awsApiPath"] = state ? state.awsApiPath : undefined;
+            resourceInputs["awsApiStage"] = state ? state.awsApiStage : undefined;
+            resourceInputs["awsDomain"] = state ? state.awsDomain : undefined;
+            resourceInputs["awsRegion"] = state ? state.awsRegion : undefined;
+            resourceInputs["azureApiKey"] = state ? state.azureApiKey : undefined;
+            resourceInputs["azureApp"] = state ? state.azureApp : undefined;
+            resourceInputs["azureDomain"] = state ? state.azureDomain : undefined;
+            resourceInputs["azureFunction"] = state ? state.azureFunction : undefined;
+            resourceInputs["azureFunctionAuthorization"] = state ? state.azureFunctionAuthorization : undefined;
+            resourceInputs["delay"] = state ? state.delay : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emailBody"] = state ? state.emailBody : undefined;
+            resourceInputs["emailFrom"] = state ? state.emailFrom : undefined;
+            resourceInputs["emailSubject"] = state ? state.emailSubject : undefined;
+            resourceInputs["emailTos"] = state ? state.emailTos : undefined;
+            resourceInputs["executeSecurityFabric"] = state ? state.executeSecurityFabric : undefined;
+            resourceInputs["gcpFunction"] = state ? state.gcpFunction : undefined;
+            resourceInputs["gcpFunctionDomain"] = state ? state.gcpFunctionDomain : undefined;
+            resourceInputs["gcpFunctionRegion"] = state ? state.gcpFunctionRegion : undefined;
+            resourceInputs["gcpProject"] = state ? state.gcpProject : undefined;
+            resourceInputs["headers"] = state ? state.headers : undefined;
+            resourceInputs["httpBody"] = state ? state.httpBody : undefined;
+            resourceInputs["message"] = state ? state.message : undefined;
+            resourceInputs["messageType"] = state ? state.messageType : undefined;
+            resourceInputs["method"] = state ? state.method : undefined;
+            resourceInputs["minimumInterval"] = state ? state.minimumInterval : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["replacementMessage"] = state ? state.replacementMessage : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["required"] = state ? state.required : undefined;
+            resourceInputs["script"] = state ? state.script : undefined;
+            resourceInputs["sdnConnectors"] = state ? state.sdnConnectors : undefined;
+            resourceInputs["securityTag"] = state ? state.securityTag : undefined;
+            resourceInputs["tlsCertificate"] = state ? state.tlsCertificate : undefined;
+            resourceInputs["uri"] = state ? state.uri : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["verifyHostCert"] = state ? state.verifyHostCert : undefined;
         } else {
             const args = argsOrState as SystemAutomationActionArgs | undefined;
-            inputs["accprofile"] = args ? args.accprofile : undefined;
-            inputs["actionType"] = args ? args.actionType : undefined;
-            inputs["alicloudAccessKeyId"] = args ? args.alicloudAccessKeyId : undefined;
-            inputs["alicloudAccessKeySecret"] = args ? args.alicloudAccessKeySecret : undefined;
-            inputs["alicloudAccountId"] = args ? args.alicloudAccountId : undefined;
-            inputs["alicloudFunction"] = args ? args.alicloudFunction : undefined;
-            inputs["alicloudFunctionAuthorization"] = args ? args.alicloudFunctionAuthorization : undefined;
-            inputs["alicloudFunctionDomain"] = args ? args.alicloudFunctionDomain : undefined;
-            inputs["alicloudRegion"] = args ? args.alicloudRegion : undefined;
-            inputs["alicloudService"] = args ? args.alicloudService : undefined;
-            inputs["alicloudVersion"] = args ? args.alicloudVersion : undefined;
-            inputs["awsApiId"] = args ? args.awsApiId : undefined;
-            inputs["awsApiKey"] = args ? args.awsApiKey : undefined;
-            inputs["awsApiPath"] = args ? args.awsApiPath : undefined;
-            inputs["awsApiStage"] = args ? args.awsApiStage : undefined;
-            inputs["awsDomain"] = args ? args.awsDomain : undefined;
-            inputs["awsRegion"] = args ? args.awsRegion : undefined;
-            inputs["azureApiKey"] = args ? args.azureApiKey : undefined;
-            inputs["azureApp"] = args ? args.azureApp : undefined;
-            inputs["azureDomain"] = args ? args.azureDomain : undefined;
-            inputs["azureFunction"] = args ? args.azureFunction : undefined;
-            inputs["azureFunctionAuthorization"] = args ? args.azureFunctionAuthorization : undefined;
-            inputs["delay"] = args ? args.delay : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["emailBody"] = args ? args.emailBody : undefined;
-            inputs["emailFrom"] = args ? args.emailFrom : undefined;
-            inputs["emailSubject"] = args ? args.emailSubject : undefined;
-            inputs["emailTos"] = args ? args.emailTos : undefined;
-            inputs["gcpFunction"] = args ? args.gcpFunction : undefined;
-            inputs["gcpFunctionDomain"] = args ? args.gcpFunctionDomain : undefined;
-            inputs["gcpFunctionRegion"] = args ? args.gcpFunctionRegion : undefined;
-            inputs["gcpProject"] = args ? args.gcpProject : undefined;
-            inputs["headers"] = args ? args.headers : undefined;
-            inputs["httpBody"] = args ? args.httpBody : undefined;
-            inputs["message"] = args ? args.message : undefined;
-            inputs["method"] = args ? args.method : undefined;
-            inputs["minimumInterval"] = args ? args.minimumInterval : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["replacementMessage"] = args ? args.replacementMessage : undefined;
-            inputs["required"] = args ? args.required : undefined;
-            inputs["script"] = args ? args.script : undefined;
-            inputs["sdnConnectors"] = args ? args.sdnConnectors : undefined;
-            inputs["securityTag"] = args ? args.securityTag : undefined;
-            inputs["tlsCertificate"] = args ? args.tlsCertificate : undefined;
-            inputs["uri"] = args ? args.uri : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["accprofile"] = args ? args.accprofile : undefined;
+            resourceInputs["actionType"] = args ? args.actionType : undefined;
+            resourceInputs["alicloudAccessKeyId"] = args ? args.alicloudAccessKeyId : undefined;
+            resourceInputs["alicloudAccessKeySecret"] = args ? args.alicloudAccessKeySecret : undefined;
+            resourceInputs["alicloudAccountId"] = args ? args.alicloudAccountId : undefined;
+            resourceInputs["alicloudFunction"] = args ? args.alicloudFunction : undefined;
+            resourceInputs["alicloudFunctionAuthorization"] = args ? args.alicloudFunctionAuthorization : undefined;
+            resourceInputs["alicloudFunctionDomain"] = args ? args.alicloudFunctionDomain : undefined;
+            resourceInputs["alicloudRegion"] = args ? args.alicloudRegion : undefined;
+            resourceInputs["alicloudService"] = args ? args.alicloudService : undefined;
+            resourceInputs["alicloudVersion"] = args ? args.alicloudVersion : undefined;
+            resourceInputs["awsApiId"] = args ? args.awsApiId : undefined;
+            resourceInputs["awsApiKey"] = args ? args.awsApiKey : undefined;
+            resourceInputs["awsApiPath"] = args ? args.awsApiPath : undefined;
+            resourceInputs["awsApiStage"] = args ? args.awsApiStage : undefined;
+            resourceInputs["awsDomain"] = args ? args.awsDomain : undefined;
+            resourceInputs["awsRegion"] = args ? args.awsRegion : undefined;
+            resourceInputs["azureApiKey"] = args ? args.azureApiKey : undefined;
+            resourceInputs["azureApp"] = args ? args.azureApp : undefined;
+            resourceInputs["azureDomain"] = args ? args.azureDomain : undefined;
+            resourceInputs["azureFunction"] = args ? args.azureFunction : undefined;
+            resourceInputs["azureFunctionAuthorization"] = args ? args.azureFunctionAuthorization : undefined;
+            resourceInputs["delay"] = args ? args.delay : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emailBody"] = args ? args.emailBody : undefined;
+            resourceInputs["emailFrom"] = args ? args.emailFrom : undefined;
+            resourceInputs["emailSubject"] = args ? args.emailSubject : undefined;
+            resourceInputs["emailTos"] = args ? args.emailTos : undefined;
+            resourceInputs["executeSecurityFabric"] = args ? args.executeSecurityFabric : undefined;
+            resourceInputs["gcpFunction"] = args ? args.gcpFunction : undefined;
+            resourceInputs["gcpFunctionDomain"] = args ? args.gcpFunctionDomain : undefined;
+            resourceInputs["gcpFunctionRegion"] = args ? args.gcpFunctionRegion : undefined;
+            resourceInputs["gcpProject"] = args ? args.gcpProject : undefined;
+            resourceInputs["headers"] = args ? args.headers : undefined;
+            resourceInputs["httpBody"] = args ? args.httpBody : undefined;
+            resourceInputs["message"] = args ? args.message : undefined;
+            resourceInputs["messageType"] = args ? args.messageType : undefined;
+            resourceInputs["method"] = args ? args.method : undefined;
+            resourceInputs["minimumInterval"] = args ? args.minimumInterval : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["replacementMessage"] = args ? args.replacementMessage : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["required"] = args ? args.required : undefined;
+            resourceInputs["script"] = args ? args.script : undefined;
+            resourceInputs["sdnConnectors"] = args ? args.sdnConnectors : undefined;
+            resourceInputs["securityTag"] = args ? args.securityTag : undefined;
+            resourceInputs["tlsCertificate"] = args ? args.tlsCertificate : undefined;
+            resourceInputs["uri"] = args ? args.uri : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["verifyHostCert"] = args ? args.verifyHostCert : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutomationAction.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutomationAction.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -473,6 +501,10 @@ export interface SystemAutomationActionState {
      */
     delay?: pulumi.Input<number>;
     /**
+     * Description.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -492,6 +524,10 @@ export interface SystemAutomationActionState {
      * Email addresses. The structure of `emailTo` block is documented below.
      */
     emailTos?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionEmailTo>[]>;
+    /**
+     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+     */
+    executeSecurityFabric?: pulumi.Input<string>;
     /**
      * Google Cloud function name.
      */
@@ -521,6 +557,10 @@ export interface SystemAutomationActionState {
      */
     message?: pulumi.Input<string>;
     /**
+     * Message type. Valid values: `text`, `json`.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
      * Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
      */
     method?: pulumi.Input<string>;
@@ -544,6 +584,10 @@ export interface SystemAutomationActionState {
      * Enable/disable replacement message. Valid values: `enable`, `disable`.
      */
     replacementMessage?: pulumi.Input<string>;
+    /**
+     * Replacement message group.
+     */
+    replacemsgGroup?: pulumi.Input<string>;
     /**
      * Required in action chain. Valid values: `enable`, `disable`.
      */
@@ -572,6 +616,10 @@ export interface SystemAutomationActionState {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+     */
+    verifyHostCert?: pulumi.Input<string>;
 }
 
 /**
@@ -671,6 +719,10 @@ export interface SystemAutomationActionArgs {
      */
     delay?: pulumi.Input<number>;
     /**
+     * Description.
+     */
+    description?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -690,6 +742,10 @@ export interface SystemAutomationActionArgs {
      * Email addresses. The structure of `emailTo` block is documented below.
      */
     emailTos?: pulumi.Input<pulumi.Input<inputs.SystemAutomationActionEmailTo>[]>;
+    /**
+     * Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+     */
+    executeSecurityFabric?: pulumi.Input<string>;
     /**
      * Google Cloud function name.
      */
@@ -719,6 +775,10 @@ export interface SystemAutomationActionArgs {
      */
     message?: pulumi.Input<string>;
     /**
+     * Message type. Valid values: `text`, `json`.
+     */
+    messageType?: pulumi.Input<string>;
+    /**
      * Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
      */
     method?: pulumi.Input<string>;
@@ -742,6 +802,10 @@ export interface SystemAutomationActionArgs {
      * Enable/disable replacement message. Valid values: `enable`, `disable`.
      */
     replacementMessage?: pulumi.Input<string>;
+    /**
+     * Replacement message group.
+     */
+    replacemsgGroup?: pulumi.Input<string>;
     /**
      * Required in action chain. Valid values: `enable`, `disable`.
      */
@@ -770,4 +834,8 @@ export interface SystemAutomationActionArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+     */
+    verifyHostCert?: pulumi.Input<string>;
 }

@@ -14,9 +14,7 @@ export function getRouterOspf6(args?: GetRouterOspf6Args, opts?: pulumi.InvokeOp
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterOspf6:GetRouterOspf6", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -105,4 +103,18 @@ export interface GetRouterOspf6Result {
      */
     readonly summaryAddresses: outputs.GetRouterOspf6SummaryAddress[];
     readonly vdomparam?: string;
+}
+
+export function getRouterOspf6Output(args?: GetRouterOspf6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterOspf6Result> {
+    return pulumi.output(args).apply(a => getRouterOspf6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterOspf6.
+ */
+export interface GetRouterOspf6OutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

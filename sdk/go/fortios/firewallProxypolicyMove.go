@@ -38,6 +38,7 @@ func NewFirewallProxypolicyMove(ctx *pulumi.Context,
 	if args.PolicyidSrc == nil {
 		return nil, errors.New("invalid value for required argument 'PolicyidSrc'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallProxypolicyMove
 	err := ctx.RegisterResource("fortios:index/firewallProxypolicyMove:FirewallProxypolicyMove", name, args, &resource, opts...)
 	if err != nil {
@@ -112,7 +113,7 @@ type FirewallProxypolicyMoveInput interface {
 }
 
 func (*FirewallProxypolicyMove) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProxypolicyMove)(nil))
+	return reflect.TypeOf((**FirewallProxypolicyMove)(nil)).Elem()
 }
 
 func (i *FirewallProxypolicyMove) ToFirewallProxypolicyMoveOutput() FirewallProxypolicyMoveOutput {
@@ -121,35 +122,6 @@ func (i *FirewallProxypolicyMove) ToFirewallProxypolicyMoveOutput() FirewallProx
 
 func (i *FirewallProxypolicyMove) ToFirewallProxypolicyMoveOutputWithContext(ctx context.Context) FirewallProxypolicyMoveOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicyMoveOutput)
-}
-
-func (i *FirewallProxypolicyMove) ToFirewallProxypolicyMovePtrOutput() FirewallProxypolicyMovePtrOutput {
-	return i.ToFirewallProxypolicyMovePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallProxypolicyMove) ToFirewallProxypolicyMovePtrOutputWithContext(ctx context.Context) FirewallProxypolicyMovePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicyMovePtrOutput)
-}
-
-type FirewallProxypolicyMovePtrInput interface {
-	pulumi.Input
-
-	ToFirewallProxypolicyMovePtrOutput() FirewallProxypolicyMovePtrOutput
-	ToFirewallProxypolicyMovePtrOutputWithContext(ctx context.Context) FirewallProxypolicyMovePtrOutput
-}
-
-type firewallProxypolicyMovePtrType FirewallProxypolicyMoveArgs
-
-func (*firewallProxypolicyMovePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProxypolicyMove)(nil))
-}
-
-func (i *firewallProxypolicyMovePtrType) ToFirewallProxypolicyMovePtrOutput() FirewallProxypolicyMovePtrOutput {
-	return i.ToFirewallProxypolicyMovePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallProxypolicyMovePtrType) ToFirewallProxypolicyMovePtrOutputWithContext(ctx context.Context) FirewallProxypolicyMovePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicyMovePtrOutput)
 }
 
 // FirewallProxypolicyMoveArrayInput is an input type that accepts FirewallProxypolicyMoveArray and FirewallProxypolicyMoveArrayOutput values.
@@ -166,7 +138,7 @@ type FirewallProxypolicyMoveArrayInput interface {
 type FirewallProxypolicyMoveArray []FirewallProxypolicyMoveInput
 
 func (FirewallProxypolicyMoveArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallProxypolicyMove)(nil))
+	return reflect.TypeOf((*[]*FirewallProxypolicyMove)(nil)).Elem()
 }
 
 func (i FirewallProxypolicyMoveArray) ToFirewallProxypolicyMoveArrayOutput() FirewallProxypolicyMoveArrayOutput {
@@ -191,7 +163,7 @@ type FirewallProxypolicyMoveMapInput interface {
 type FirewallProxypolicyMoveMap map[string]FirewallProxypolicyMoveInput
 
 func (FirewallProxypolicyMoveMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallProxypolicyMove)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProxypolicyMove)(nil)).Elem()
 }
 
 func (i FirewallProxypolicyMoveMap) ToFirewallProxypolicyMoveMapOutput() FirewallProxypolicyMoveMapOutput {
@@ -202,12 +174,10 @@ func (i FirewallProxypolicyMoveMap) ToFirewallProxypolicyMoveMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxypolicyMoveMapOutput)
 }
 
-type FirewallProxypolicyMoveOutput struct {
-	*pulumi.OutputState
-}
+type FirewallProxypolicyMoveOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxypolicyMoveOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProxypolicyMove)(nil))
+	return reflect.TypeOf((**FirewallProxypolicyMove)(nil)).Elem()
 }
 
 func (o FirewallProxypolicyMoveOutput) ToFirewallProxypolicyMoveOutput() FirewallProxypolicyMoveOutput {
@@ -218,36 +188,10 @@ func (o FirewallProxypolicyMoveOutput) ToFirewallProxypolicyMoveOutputWithContex
 	return o
 }
 
-func (o FirewallProxypolicyMoveOutput) ToFirewallProxypolicyMovePtrOutput() FirewallProxypolicyMovePtrOutput {
-	return o.ToFirewallProxypolicyMovePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallProxypolicyMoveOutput) ToFirewallProxypolicyMovePtrOutputWithContext(ctx context.Context) FirewallProxypolicyMovePtrOutput {
-	return o.ApplyT(func(v FirewallProxypolicyMove) *FirewallProxypolicyMove {
-		return &v
-	}).(FirewallProxypolicyMovePtrOutput)
-}
-
-type FirewallProxypolicyMovePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallProxypolicyMovePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProxypolicyMove)(nil))
-}
-
-func (o FirewallProxypolicyMovePtrOutput) ToFirewallProxypolicyMovePtrOutput() FirewallProxypolicyMovePtrOutput {
-	return o
-}
-
-func (o FirewallProxypolicyMovePtrOutput) ToFirewallProxypolicyMovePtrOutputWithContext(ctx context.Context) FirewallProxypolicyMovePtrOutput {
-	return o
-}
-
 type FirewallProxypolicyMoveArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxypolicyMoveArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallProxypolicyMove)(nil))
+	return reflect.TypeOf((*[]*FirewallProxypolicyMove)(nil)).Elem()
 }
 
 func (o FirewallProxypolicyMoveArrayOutput) ToFirewallProxypolicyMoveArrayOutput() FirewallProxypolicyMoveArrayOutput {
@@ -259,15 +203,15 @@ func (o FirewallProxypolicyMoveArrayOutput) ToFirewallProxypolicyMoveArrayOutput
 }
 
 func (o FirewallProxypolicyMoveArrayOutput) Index(i pulumi.IntInput) FirewallProxypolicyMoveOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxypolicyMove {
-		return vs[0].([]FirewallProxypolicyMove)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProxypolicyMove {
+		return vs[0].([]*FirewallProxypolicyMove)[vs[1].(int)]
 	}).(FirewallProxypolicyMoveOutput)
 }
 
 type FirewallProxypolicyMoveMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxypolicyMoveMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallProxypolicyMove)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProxypolicyMove)(nil)).Elem()
 }
 
 func (o FirewallProxypolicyMoveMapOutput) ToFirewallProxypolicyMoveMapOutput() FirewallProxypolicyMoveMapOutput {
@@ -279,14 +223,16 @@ func (o FirewallProxypolicyMoveMapOutput) ToFirewallProxypolicyMoveMapOutputWith
 }
 
 func (o FirewallProxypolicyMoveMapOutput) MapIndex(k pulumi.StringInput) FirewallProxypolicyMoveOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallProxypolicyMove {
-		return vs[0].(map[string]FirewallProxypolicyMove)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallProxypolicyMove {
+		return vs[0].(map[string]*FirewallProxypolicyMove)[vs[1].(string)]
 	}).(FirewallProxypolicyMoveOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxypolicyMoveInput)(nil)).Elem(), &FirewallProxypolicyMove{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxypolicyMoveArrayInput)(nil)).Elem(), FirewallProxypolicyMoveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxypolicyMoveMapInput)(nil)).Elem(), FirewallProxypolicyMoveMap{})
 	pulumi.RegisterOutputType(FirewallProxypolicyMoveOutput{})
-	pulumi.RegisterOutputType(FirewallProxypolicyMovePtrOutput{})
 	pulumi.RegisterOutputType(FirewallProxypolicyMoveArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProxypolicyMoveMapOutput{})
 }

@@ -105,11 +105,11 @@ export class FirewallSslServer extends pulumi.CustomResource {
      */
     public readonly sslDhBits!: pulumi.Output<string>;
     /**
-     * Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+     * Highest SSL/TLS version to negotiate.
      */
     public readonly sslMaxVersion!: pulumi.Output<string>;
     /**
-     * Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+     * Lowest SSL/TLS version to negotiate.
      */
     public readonly sslMinVersion!: pulumi.Output<string>;
     /**
@@ -138,25 +138,25 @@ export class FirewallSslServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallSslServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSslServerArgs | FirewallSslServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSslServerState | undefined;
-            inputs["addHeaderXForwardedProto"] = state ? state.addHeaderXForwardedProto : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["mappedPort"] = state ? state.mappedPort : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
-            inputs["sslCert"] = state ? state.sslCert : undefined;
-            inputs["sslClientRenegotiation"] = state ? state.sslClientRenegotiation : undefined;
-            inputs["sslDhBits"] = state ? state.sslDhBits : undefined;
-            inputs["sslMaxVersion"] = state ? state.sslMaxVersion : undefined;
-            inputs["sslMinVersion"] = state ? state.sslMinVersion : undefined;
-            inputs["sslMode"] = state ? state.sslMode : undefined;
-            inputs["sslSendEmptyFrags"] = state ? state.sslSendEmptyFrags : undefined;
-            inputs["urlRewrite"] = state ? state.urlRewrite : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addHeaderXForwardedProto"] = state ? state.addHeaderXForwardedProto : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["mappedPort"] = state ? state.mappedPort : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
+            resourceInputs["sslCert"] = state ? state.sslCert : undefined;
+            resourceInputs["sslClientRenegotiation"] = state ? state.sslClientRenegotiation : undefined;
+            resourceInputs["sslDhBits"] = state ? state.sslDhBits : undefined;
+            resourceInputs["sslMaxVersion"] = state ? state.sslMaxVersion : undefined;
+            resourceInputs["sslMinVersion"] = state ? state.sslMinVersion : undefined;
+            resourceInputs["sslMode"] = state ? state.sslMode : undefined;
+            resourceInputs["sslSendEmptyFrags"] = state ? state.sslSendEmptyFrags : undefined;
+            resourceInputs["urlRewrite"] = state ? state.urlRewrite : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallSslServerArgs | undefined;
             if ((!args || args.ip === undefined) && !opts.urn) {
@@ -168,26 +168,24 @@ export class FirewallSslServer extends pulumi.CustomResource {
             if ((!args || args.sslCert === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sslCert'");
             }
-            inputs["addHeaderXForwardedProto"] = args ? args.addHeaderXForwardedProto : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["mappedPort"] = args ? args.mappedPort : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
-            inputs["sslCert"] = args ? args.sslCert : undefined;
-            inputs["sslClientRenegotiation"] = args ? args.sslClientRenegotiation : undefined;
-            inputs["sslDhBits"] = args ? args.sslDhBits : undefined;
-            inputs["sslMaxVersion"] = args ? args.sslMaxVersion : undefined;
-            inputs["sslMinVersion"] = args ? args.sslMinVersion : undefined;
-            inputs["sslMode"] = args ? args.sslMode : undefined;
-            inputs["sslSendEmptyFrags"] = args ? args.sslSendEmptyFrags : undefined;
-            inputs["urlRewrite"] = args ? args.urlRewrite : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addHeaderXForwardedProto"] = args ? args.addHeaderXForwardedProto : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["mappedPort"] = args ? args.mappedPort : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
+            resourceInputs["sslCert"] = args ? args.sslCert : undefined;
+            resourceInputs["sslClientRenegotiation"] = args ? args.sslClientRenegotiation : undefined;
+            resourceInputs["sslDhBits"] = args ? args.sslDhBits : undefined;
+            resourceInputs["sslMaxVersion"] = args ? args.sslMaxVersion : undefined;
+            resourceInputs["sslMinVersion"] = args ? args.sslMinVersion : undefined;
+            resourceInputs["sslMode"] = args ? args.sslMode : undefined;
+            resourceInputs["sslSendEmptyFrags"] = args ? args.sslSendEmptyFrags : undefined;
+            resourceInputs["urlRewrite"] = args ? args.urlRewrite : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSslServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSslServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -232,11 +230,11 @@ export interface FirewallSslServerState {
      */
     sslDhBits?: pulumi.Input<string>;
     /**
-     * Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+     * Highest SSL/TLS version to negotiate.
      */
     sslMaxVersion?: pulumi.Input<string>;
     /**
-     * Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+     * Lowest SSL/TLS version to negotiate.
      */
     sslMinVersion?: pulumi.Input<string>;
     /**
@@ -298,11 +296,11 @@ export interface FirewallSslServerArgs {
      */
     sslDhBits?: pulumi.Input<string>;
     /**
-     * Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+     * Highest SSL/TLS version to negotiate.
      */
     sslMaxVersion?: pulumi.Input<string>;
     /**
-     * Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+     * Lowest SSL/TLS version to negotiate.
      */
     sslMinVersion?: pulumi.Input<string>;
     /**

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewWafProfile(ctx *pulumi.Context,
 		args = &WafProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WafProfile
 	err := ctx.RegisterResource("fortios:index/wafProfile:WafProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -217,7 +218,7 @@ type WafProfileInput interface {
 }
 
 func (*WafProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafProfile)(nil))
+	return reflect.TypeOf((**WafProfile)(nil)).Elem()
 }
 
 func (i *WafProfile) ToWafProfileOutput() WafProfileOutput {
@@ -226,35 +227,6 @@ func (i *WafProfile) ToWafProfileOutput() WafProfileOutput {
 
 func (i *WafProfile) ToWafProfileOutputWithContext(ctx context.Context) WafProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileOutput)
-}
-
-func (i *WafProfile) ToWafProfilePtrOutput() WafProfilePtrOutput {
-	return i.ToWafProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WafProfile) ToWafProfilePtrOutputWithContext(ctx context.Context) WafProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafProfilePtrOutput)
-}
-
-type WafProfilePtrInput interface {
-	pulumi.Input
-
-	ToWafProfilePtrOutput() WafProfilePtrOutput
-	ToWafProfilePtrOutputWithContext(ctx context.Context) WafProfilePtrOutput
-}
-
-type wafProfilePtrType WafProfileArgs
-
-func (*wafProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafProfile)(nil))
-}
-
-func (i *wafProfilePtrType) ToWafProfilePtrOutput() WafProfilePtrOutput {
-	return i.ToWafProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wafProfilePtrType) ToWafProfilePtrOutputWithContext(ctx context.Context) WafProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafProfilePtrOutput)
 }
 
 // WafProfileArrayInput is an input type that accepts WafProfileArray and WafProfileArrayOutput values.
@@ -271,7 +243,7 @@ type WafProfileArrayInput interface {
 type WafProfileArray []WafProfileInput
 
 func (WafProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WafProfile)(nil))
+	return reflect.TypeOf((*[]*WafProfile)(nil)).Elem()
 }
 
 func (i WafProfileArray) ToWafProfileArrayOutput() WafProfileArrayOutput {
@@ -296,7 +268,7 @@ type WafProfileMapInput interface {
 type WafProfileMap map[string]WafProfileInput
 
 func (WafProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WafProfile)(nil))
+	return reflect.TypeOf((*map[string]*WafProfile)(nil)).Elem()
 }
 
 func (i WafProfileMap) ToWafProfileMapOutput() WafProfileMapOutput {
@@ -307,12 +279,10 @@ func (i WafProfileMap) ToWafProfileMapOutputWithContext(ctx context.Context) Waf
 	return pulumi.ToOutputWithContext(ctx, i).(WafProfileMapOutput)
 }
 
-type WafProfileOutput struct {
-	*pulumi.OutputState
-}
+type WafProfileOutput struct{ *pulumi.OutputState }
 
 func (WafProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafProfile)(nil))
+	return reflect.TypeOf((**WafProfile)(nil)).Elem()
 }
 
 func (o WafProfileOutput) ToWafProfileOutput() WafProfileOutput {
@@ -323,36 +293,10 @@ func (o WafProfileOutput) ToWafProfileOutputWithContext(ctx context.Context) Waf
 	return o
 }
 
-func (o WafProfileOutput) ToWafProfilePtrOutput() WafProfilePtrOutput {
-	return o.ToWafProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WafProfileOutput) ToWafProfilePtrOutputWithContext(ctx context.Context) WafProfilePtrOutput {
-	return o.ApplyT(func(v WafProfile) *WafProfile {
-		return &v
-	}).(WafProfilePtrOutput)
-}
-
-type WafProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WafProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafProfile)(nil))
-}
-
-func (o WafProfilePtrOutput) ToWafProfilePtrOutput() WafProfilePtrOutput {
-	return o
-}
-
-func (o WafProfilePtrOutput) ToWafProfilePtrOutputWithContext(ctx context.Context) WafProfilePtrOutput {
-	return o
-}
-
 type WafProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WafProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WafProfile)(nil))
+	return reflect.TypeOf((*[]*WafProfile)(nil)).Elem()
 }
 
 func (o WafProfileArrayOutput) ToWafProfileArrayOutput() WafProfileArrayOutput {
@@ -364,15 +308,15 @@ func (o WafProfileArrayOutput) ToWafProfileArrayOutputWithContext(ctx context.Co
 }
 
 func (o WafProfileArrayOutput) Index(i pulumi.IntInput) WafProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafProfile {
-		return vs[0].([]WafProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafProfile {
+		return vs[0].([]*WafProfile)[vs[1].(int)]
 	}).(WafProfileOutput)
 }
 
 type WafProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WafProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WafProfile)(nil))
+	return reflect.TypeOf((*map[string]*WafProfile)(nil)).Elem()
 }
 
 func (o WafProfileMapOutput) ToWafProfileMapOutput() WafProfileMapOutput {
@@ -384,14 +328,16 @@ func (o WafProfileMapOutput) ToWafProfileMapOutputWithContext(ctx context.Contex
 }
 
 func (o WafProfileMapOutput) MapIndex(k pulumi.StringInput) WafProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WafProfile {
-		return vs[0].(map[string]WafProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WafProfile {
+		return vs[0].(map[string]*WafProfile)[vs[1].(string)]
 	}).(WafProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WafProfileInput)(nil)).Elem(), &WafProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafProfileArrayInput)(nil)).Elem(), WafProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafProfileMapInput)(nil)).Elem(), WafProfileMap{})
 	pulumi.RegisterOutputType(WafProfileOutput{})
-	pulumi.RegisterOutputType(WafProfilePtrOutput{})
 	pulumi.RegisterOutputType(WafProfileArrayOutput{})
 	pulumi.RegisterOutputType(WafProfileMapOutput{})
 }

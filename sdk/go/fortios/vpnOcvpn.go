@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Overlay Controller VPN settings.
+// Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -26,6 +26,8 @@ type VpnOcvpn struct {
 
 	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
 	AutoDiscovery pulumi.StringOutput `pulumi:"autoDiscovery"`
+	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscoveryShortcutMode pulumi.StringOutput `pulumi:"autoDiscoveryShortcutMode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
@@ -48,6 +50,8 @@ type VpnOcvpn struct {
 	Role pulumi.StringOutput `pulumi:"role"`
 	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
+	// Set SD-WAN zone.
+	SdwanZone pulumi.StringOutput `pulumi:"sdwanZone"`
 	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -63,6 +67,7 @@ func NewVpnOcvpn(ctx *pulumi.Context,
 		args = &VpnOcvpnArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnOcvpn
 	err := ctx.RegisterResource("fortios:index/vpnOcvpn:VpnOcvpn", name, args, &resource, opts...)
 	if err != nil {
@@ -87,6 +92,8 @@ func GetVpnOcvpn(ctx *pulumi.Context,
 type vpnOcvpnState struct {
 	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
 	AutoDiscovery *string `pulumi:"autoDiscovery"`
+	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscoveryShortcutMode *string `pulumi:"autoDiscoveryShortcutMode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
@@ -109,6 +116,8 @@ type vpnOcvpnState struct {
 	Role *string `pulumi:"role"`
 	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
+	// Set SD-WAN zone.
+	SdwanZone *string `pulumi:"sdwanZone"`
 	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -120,6 +129,8 @@ type vpnOcvpnState struct {
 type VpnOcvpnState struct {
 	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
 	AutoDiscovery pulumi.StringPtrInput
+	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscoveryShortcutMode pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
@@ -142,6 +153,8 @@ type VpnOcvpnState struct {
 	Role pulumi.StringPtrInput
 	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
+	// Set SD-WAN zone.
+	SdwanZone pulumi.StringPtrInput
 	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -157,6 +170,8 @@ func (VpnOcvpnState) ElementType() reflect.Type {
 type vpnOcvpnArgs struct {
 	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
 	AutoDiscovery *string `pulumi:"autoDiscovery"`
+	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscoveryShortcutMode *string `pulumi:"autoDiscoveryShortcutMode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
@@ -179,6 +194,8 @@ type vpnOcvpnArgs struct {
 	Role *string `pulumi:"role"`
 	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
+	// Set SD-WAN zone.
+	SdwanZone *string `pulumi:"sdwanZone"`
 	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -191,6 +208,8 @@ type vpnOcvpnArgs struct {
 type VpnOcvpnArgs struct {
 	// Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
 	AutoDiscovery pulumi.StringPtrInput
+	// Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+	AutoDiscoveryShortcutMode pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable EAP client authentication. Valid values: `enable`, `disable`.
@@ -213,6 +232,8 @@ type VpnOcvpnArgs struct {
 	Role pulumi.StringPtrInput
 	// Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
+	// Set SD-WAN zone.
+	SdwanZone pulumi.StringPtrInput
 	// Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -233,7 +254,7 @@ type VpnOcvpnInput interface {
 }
 
 func (*VpnOcvpn) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnOcvpn)(nil))
+	return reflect.TypeOf((**VpnOcvpn)(nil)).Elem()
 }
 
 func (i *VpnOcvpn) ToVpnOcvpnOutput() VpnOcvpnOutput {
@@ -242,35 +263,6 @@ func (i *VpnOcvpn) ToVpnOcvpnOutput() VpnOcvpnOutput {
 
 func (i *VpnOcvpn) ToVpnOcvpnOutputWithContext(ctx context.Context) VpnOcvpnOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnOutput)
-}
-
-func (i *VpnOcvpn) ToVpnOcvpnPtrOutput() VpnOcvpnPtrOutput {
-	return i.ToVpnOcvpnPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnOcvpn) ToVpnOcvpnPtrOutputWithContext(ctx context.Context) VpnOcvpnPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnPtrOutput)
-}
-
-type VpnOcvpnPtrInput interface {
-	pulumi.Input
-
-	ToVpnOcvpnPtrOutput() VpnOcvpnPtrOutput
-	ToVpnOcvpnPtrOutputWithContext(ctx context.Context) VpnOcvpnPtrOutput
-}
-
-type vpnOcvpnPtrType VpnOcvpnArgs
-
-func (*vpnOcvpnPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnOcvpn)(nil))
-}
-
-func (i *vpnOcvpnPtrType) ToVpnOcvpnPtrOutput() VpnOcvpnPtrOutput {
-	return i.ToVpnOcvpnPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnOcvpnPtrType) ToVpnOcvpnPtrOutputWithContext(ctx context.Context) VpnOcvpnPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnPtrOutput)
 }
 
 // VpnOcvpnArrayInput is an input type that accepts VpnOcvpnArray and VpnOcvpnArrayOutput values.
@@ -287,7 +279,7 @@ type VpnOcvpnArrayInput interface {
 type VpnOcvpnArray []VpnOcvpnInput
 
 func (VpnOcvpnArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnOcvpn)(nil))
+	return reflect.TypeOf((*[]*VpnOcvpn)(nil)).Elem()
 }
 
 func (i VpnOcvpnArray) ToVpnOcvpnArrayOutput() VpnOcvpnArrayOutput {
@@ -312,7 +304,7 @@ type VpnOcvpnMapInput interface {
 type VpnOcvpnMap map[string]VpnOcvpnInput
 
 func (VpnOcvpnMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnOcvpn)(nil))
+	return reflect.TypeOf((*map[string]*VpnOcvpn)(nil)).Elem()
 }
 
 func (i VpnOcvpnMap) ToVpnOcvpnMapOutput() VpnOcvpnMapOutput {
@@ -323,12 +315,10 @@ func (i VpnOcvpnMap) ToVpnOcvpnMapOutputWithContext(ctx context.Context) VpnOcvp
 	return pulumi.ToOutputWithContext(ctx, i).(VpnOcvpnMapOutput)
 }
 
-type VpnOcvpnOutput struct {
-	*pulumi.OutputState
-}
+type VpnOcvpnOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnOcvpn)(nil))
+	return reflect.TypeOf((**VpnOcvpn)(nil)).Elem()
 }
 
 func (o VpnOcvpnOutput) ToVpnOcvpnOutput() VpnOcvpnOutput {
@@ -339,36 +329,10 @@ func (o VpnOcvpnOutput) ToVpnOcvpnOutputWithContext(ctx context.Context) VpnOcvp
 	return o
 }
 
-func (o VpnOcvpnOutput) ToVpnOcvpnPtrOutput() VpnOcvpnPtrOutput {
-	return o.ToVpnOcvpnPtrOutputWithContext(context.Background())
-}
-
-func (o VpnOcvpnOutput) ToVpnOcvpnPtrOutputWithContext(ctx context.Context) VpnOcvpnPtrOutput {
-	return o.ApplyT(func(v VpnOcvpn) *VpnOcvpn {
-		return &v
-	}).(VpnOcvpnPtrOutput)
-}
-
-type VpnOcvpnPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnOcvpnPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnOcvpn)(nil))
-}
-
-func (o VpnOcvpnPtrOutput) ToVpnOcvpnPtrOutput() VpnOcvpnPtrOutput {
-	return o
-}
-
-func (o VpnOcvpnPtrOutput) ToVpnOcvpnPtrOutputWithContext(ctx context.Context) VpnOcvpnPtrOutput {
-	return o
-}
-
 type VpnOcvpnArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnOcvpn)(nil))
+	return reflect.TypeOf((*[]*VpnOcvpn)(nil)).Elem()
 }
 
 func (o VpnOcvpnArrayOutput) ToVpnOcvpnArrayOutput() VpnOcvpnArrayOutput {
@@ -380,15 +344,15 @@ func (o VpnOcvpnArrayOutput) ToVpnOcvpnArrayOutputWithContext(ctx context.Contex
 }
 
 func (o VpnOcvpnArrayOutput) Index(i pulumi.IntInput) VpnOcvpnOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnOcvpn {
-		return vs[0].([]VpnOcvpn)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnOcvpn {
+		return vs[0].([]*VpnOcvpn)[vs[1].(int)]
 	}).(VpnOcvpnOutput)
 }
 
 type VpnOcvpnMapOutput struct{ *pulumi.OutputState }
 
 func (VpnOcvpnMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnOcvpn)(nil))
+	return reflect.TypeOf((*map[string]*VpnOcvpn)(nil)).Elem()
 }
 
 func (o VpnOcvpnMapOutput) ToVpnOcvpnMapOutput() VpnOcvpnMapOutput {
@@ -400,14 +364,16 @@ func (o VpnOcvpnMapOutput) ToVpnOcvpnMapOutputWithContext(ctx context.Context) V
 }
 
 func (o VpnOcvpnMapOutput) MapIndex(k pulumi.StringInput) VpnOcvpnOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnOcvpn {
-		return vs[0].(map[string]VpnOcvpn)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnOcvpn {
+		return vs[0].(map[string]*VpnOcvpn)[vs[1].(string)]
 	}).(VpnOcvpnOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnInput)(nil)).Elem(), &VpnOcvpn{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnArrayInput)(nil)).Elem(), VpnOcvpnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnOcvpnMapInput)(nil)).Elem(), VpnOcvpnMap{})
 	pulumi.RegisterOutputType(VpnOcvpnOutput{})
-	pulumi.RegisterOutputType(VpnOcvpnPtrOutput{})
 	pulumi.RegisterOutputType(VpnOcvpnArrayOutput{})
 	pulumi.RegisterOutputType(VpnOcvpnMapOutput{})
 }

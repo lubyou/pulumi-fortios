@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewSwitchControllerSwitchLog(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchLogArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchLog
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchLog:SwitchControllerSwitchLog", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SwitchControllerSwitchLogInput interface {
 }
 
 func (*SwitchControllerSwitchLog) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchLog)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchLog)(nil)).Elem()
 }
 
 func (i *SwitchControllerSwitchLog) ToSwitchControllerSwitchLogOutput() SwitchControllerSwitchLogOutput {
@@ -146,35 +147,6 @@ func (i *SwitchControllerSwitchLog) ToSwitchControllerSwitchLogOutput() SwitchCo
 
 func (i *SwitchControllerSwitchLog) ToSwitchControllerSwitchLogOutputWithContext(ctx context.Context) SwitchControllerSwitchLogOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchLogOutput)
-}
-
-func (i *SwitchControllerSwitchLog) ToSwitchControllerSwitchLogPtrOutput() SwitchControllerSwitchLogPtrOutput {
-	return i.ToSwitchControllerSwitchLogPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSwitchLog) ToSwitchControllerSwitchLogPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchLogPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchLogPtrOutput)
-}
-
-type SwitchControllerSwitchLogPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSwitchLogPtrOutput() SwitchControllerSwitchLogPtrOutput
-	ToSwitchControllerSwitchLogPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchLogPtrOutput
-}
-
-type switchControllerSwitchLogPtrType SwitchControllerSwitchLogArgs
-
-func (*switchControllerSwitchLogPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchLog)(nil))
-}
-
-func (i *switchControllerSwitchLogPtrType) ToSwitchControllerSwitchLogPtrOutput() SwitchControllerSwitchLogPtrOutput {
-	return i.ToSwitchControllerSwitchLogPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSwitchLogPtrType) ToSwitchControllerSwitchLogPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchLogPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchLogPtrOutput)
 }
 
 // SwitchControllerSwitchLogArrayInput is an input type that accepts SwitchControllerSwitchLogArray and SwitchControllerSwitchLogArrayOutput values.
@@ -191,7 +163,7 @@ type SwitchControllerSwitchLogArrayInput interface {
 type SwitchControllerSwitchLogArray []SwitchControllerSwitchLogInput
 
 func (SwitchControllerSwitchLogArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSwitchLog)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchLog)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchLogArray) ToSwitchControllerSwitchLogArrayOutput() SwitchControllerSwitchLogArrayOutput {
@@ -216,7 +188,7 @@ type SwitchControllerSwitchLogMapInput interface {
 type SwitchControllerSwitchLogMap map[string]SwitchControllerSwitchLogInput
 
 func (SwitchControllerSwitchLogMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSwitchLog)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchLog)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchLogMap) ToSwitchControllerSwitchLogMapOutput() SwitchControllerSwitchLogMapOutput {
@@ -227,12 +199,10 @@ func (i SwitchControllerSwitchLogMap) ToSwitchControllerSwitchLogMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchLogMapOutput)
 }
 
-type SwitchControllerSwitchLogOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSwitchLogOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchLogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchLog)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchLog)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchLogOutput) ToSwitchControllerSwitchLogOutput() SwitchControllerSwitchLogOutput {
@@ -243,36 +213,10 @@ func (o SwitchControllerSwitchLogOutput) ToSwitchControllerSwitchLogOutputWithCo
 	return o
 }
 
-func (o SwitchControllerSwitchLogOutput) ToSwitchControllerSwitchLogPtrOutput() SwitchControllerSwitchLogPtrOutput {
-	return o.ToSwitchControllerSwitchLogPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSwitchLogOutput) ToSwitchControllerSwitchLogPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchLogPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSwitchLog) *SwitchControllerSwitchLog {
-		return &v
-	}).(SwitchControllerSwitchLogPtrOutput)
-}
-
-type SwitchControllerSwitchLogPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSwitchLogPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchLog)(nil))
-}
-
-func (o SwitchControllerSwitchLogPtrOutput) ToSwitchControllerSwitchLogPtrOutput() SwitchControllerSwitchLogPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSwitchLogPtrOutput) ToSwitchControllerSwitchLogPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchLogPtrOutput {
-	return o
-}
-
 type SwitchControllerSwitchLogArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchLogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSwitchLog)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchLog)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchLogArrayOutput) ToSwitchControllerSwitchLogArrayOutput() SwitchControllerSwitchLogArrayOutput {
@@ -284,15 +228,15 @@ func (o SwitchControllerSwitchLogArrayOutput) ToSwitchControllerSwitchLogArrayOu
 }
 
 func (o SwitchControllerSwitchLogArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchLogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSwitchLog {
-		return vs[0].([]SwitchControllerSwitchLog)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchLog {
+		return vs[0].([]*SwitchControllerSwitchLog)[vs[1].(int)]
 	}).(SwitchControllerSwitchLogOutput)
 }
 
 type SwitchControllerSwitchLogMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchLogMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSwitchLog)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchLog)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchLogMapOutput) ToSwitchControllerSwitchLogMapOutput() SwitchControllerSwitchLogMapOutput {
@@ -304,14 +248,16 @@ func (o SwitchControllerSwitchLogMapOutput) ToSwitchControllerSwitchLogMapOutput
 }
 
 func (o SwitchControllerSwitchLogMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchLogOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSwitchLog {
-		return vs[0].(map[string]SwitchControllerSwitchLog)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSwitchLog {
+		return vs[0].(map[string]*SwitchControllerSwitchLog)[vs[1].(string)]
 	}).(SwitchControllerSwitchLogOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchLogInput)(nil)).Elem(), &SwitchControllerSwitchLog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchLogArrayInput)(nil)).Elem(), SwitchControllerSwitchLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchLogMapInput)(nil)).Elem(), SwitchControllerSwitchLogMap{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchLogOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSwitchLogPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchLogArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchLogMapOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -68,6 +68,7 @@ func NewSwitchController8021XSettings(ctx *pulumi.Context,
 		args = &SwitchController8021XSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchController8021XSettings
 	err := ctx.RegisterResource("fortios:index/switchController8021XSettings:SwitchController8021XSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -158,7 +159,7 @@ type SwitchController8021XSettingsInput interface {
 }
 
 func (*SwitchController8021XSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchController8021XSettings)(nil))
+	return reflect.TypeOf((**SwitchController8021XSettings)(nil)).Elem()
 }
 
 func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsOutput() SwitchController8021XSettingsOutput {
@@ -167,35 +168,6 @@ func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsOutput() 
 
 func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsOutputWithContext(ctx context.Context) SwitchController8021XSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsOutput)
-}
-
-func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsPtrOutput() SwitchController8021XSettingsPtrOutput {
-	return i.ToSwitchController8021XSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchController8021XSettings) ToSwitchController8021XSettingsPtrOutputWithContext(ctx context.Context) SwitchController8021XSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsPtrOutput)
-}
-
-type SwitchController8021XSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSwitchController8021XSettingsPtrOutput() SwitchController8021XSettingsPtrOutput
-	ToSwitchController8021XSettingsPtrOutputWithContext(ctx context.Context) SwitchController8021XSettingsPtrOutput
-}
-
-type switchController8021XSettingsPtrType SwitchController8021XSettingsArgs
-
-func (*switchController8021XSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchController8021XSettings)(nil))
-}
-
-func (i *switchController8021XSettingsPtrType) ToSwitchController8021XSettingsPtrOutput() SwitchController8021XSettingsPtrOutput {
-	return i.ToSwitchController8021XSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *switchController8021XSettingsPtrType) ToSwitchController8021XSettingsPtrOutputWithContext(ctx context.Context) SwitchController8021XSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsPtrOutput)
 }
 
 // SwitchController8021XSettingsArrayInput is an input type that accepts SwitchController8021XSettingsArray and SwitchController8021XSettingsArrayOutput values.
@@ -212,7 +184,7 @@ type SwitchController8021XSettingsArrayInput interface {
 type SwitchController8021XSettingsArray []SwitchController8021XSettingsInput
 
 func (SwitchController8021XSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchController8021XSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchController8021XSettings)(nil)).Elem()
 }
 
 func (i SwitchController8021XSettingsArray) ToSwitchController8021XSettingsArrayOutput() SwitchController8021XSettingsArrayOutput {
@@ -237,7 +209,7 @@ type SwitchController8021XSettingsMapInput interface {
 type SwitchController8021XSettingsMap map[string]SwitchController8021XSettingsInput
 
 func (SwitchController8021XSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchController8021XSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchController8021XSettings)(nil)).Elem()
 }
 
 func (i SwitchController8021XSettingsMap) ToSwitchController8021XSettingsMapOutput() SwitchController8021XSettingsMapOutput {
@@ -248,12 +220,10 @@ func (i SwitchController8021XSettingsMap) ToSwitchController8021XSettingsMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchController8021XSettingsMapOutput)
 }
 
-type SwitchController8021XSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SwitchController8021XSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchController8021XSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchController8021XSettings)(nil))
+	return reflect.TypeOf((**SwitchController8021XSettings)(nil)).Elem()
 }
 
 func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsOutput() SwitchController8021XSettingsOutput {
@@ -264,36 +234,10 @@ func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsOutp
 	return o
 }
 
-func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsPtrOutput() SwitchController8021XSettingsPtrOutput {
-	return o.ToSwitchController8021XSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchController8021XSettingsOutput) ToSwitchController8021XSettingsPtrOutputWithContext(ctx context.Context) SwitchController8021XSettingsPtrOutput {
-	return o.ApplyT(func(v SwitchController8021XSettings) *SwitchController8021XSettings {
-		return &v
-	}).(SwitchController8021XSettingsPtrOutput)
-}
-
-type SwitchController8021XSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchController8021XSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchController8021XSettings)(nil))
-}
-
-func (o SwitchController8021XSettingsPtrOutput) ToSwitchController8021XSettingsPtrOutput() SwitchController8021XSettingsPtrOutput {
-	return o
-}
-
-func (o SwitchController8021XSettingsPtrOutput) ToSwitchController8021XSettingsPtrOutputWithContext(ctx context.Context) SwitchController8021XSettingsPtrOutput {
-	return o
-}
-
 type SwitchController8021XSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchController8021XSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchController8021XSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchController8021XSettings)(nil)).Elem()
 }
 
 func (o SwitchController8021XSettingsArrayOutput) ToSwitchController8021XSettingsArrayOutput() SwitchController8021XSettingsArrayOutput {
@@ -305,15 +249,15 @@ func (o SwitchController8021XSettingsArrayOutput) ToSwitchController8021XSetting
 }
 
 func (o SwitchController8021XSettingsArrayOutput) Index(i pulumi.IntInput) SwitchController8021XSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchController8021XSettings {
-		return vs[0].([]SwitchController8021XSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchController8021XSettings {
+		return vs[0].([]*SwitchController8021XSettings)[vs[1].(int)]
 	}).(SwitchController8021XSettingsOutput)
 }
 
 type SwitchController8021XSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchController8021XSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchController8021XSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchController8021XSettings)(nil)).Elem()
 }
 
 func (o SwitchController8021XSettingsMapOutput) ToSwitchController8021XSettingsMapOutput() SwitchController8021XSettingsMapOutput {
@@ -325,14 +269,16 @@ func (o SwitchController8021XSettingsMapOutput) ToSwitchController8021XSettingsM
 }
 
 func (o SwitchController8021XSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchController8021XSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchController8021XSettings {
-		return vs[0].(map[string]SwitchController8021XSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchController8021XSettings {
+		return vs[0].(map[string]*SwitchController8021XSettings)[vs[1].(string)]
 	}).(SwitchController8021XSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchController8021XSettingsInput)(nil)).Elem(), &SwitchController8021XSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchController8021XSettingsArrayInput)(nil)).Elem(), SwitchController8021XSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchController8021XSettingsMapInput)(nil)).Elem(), SwitchController8021XSettingsMap{})
 	pulumi.RegisterOutputType(SwitchController8021XSettingsOutput{})
-	pulumi.RegisterOutputType(SwitchController8021XSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SwitchController8021XSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SwitchController8021XSettingsMapOutput{})
 }

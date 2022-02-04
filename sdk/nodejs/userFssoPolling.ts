@@ -116,25 +116,25 @@ export class UserFssoPolling extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserFssoPollingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserFssoPollingArgs | UserFssoPollingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserFssoPollingState | undefined;
-            inputs["adgrps"] = state ? state.adgrps : undefined;
-            inputs["defaultDomain"] = state ? state.defaultDomain : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["ldapServer"] = state ? state.ldapServer : undefined;
-            inputs["logonHistory"] = state ? state.logonHistory : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["pollingFrequency"] = state ? state.pollingFrequency : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["smbNtlmv1Auth"] = state ? state.smbNtlmv1Auth : undefined;
-            inputs["smbv1"] = state ? state.smbv1 : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["adgrps"] = state ? state.adgrps : undefined;
+            resourceInputs["defaultDomain"] = state ? state.defaultDomain : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
+            resourceInputs["logonHistory"] = state ? state.logonHistory : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["pollingFrequency"] = state ? state.pollingFrequency : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["smbNtlmv1Auth"] = state ? state.smbNtlmv1Auth : undefined;
+            resourceInputs["smbv1"] = state ? state.smbv1 : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserFssoPollingArgs | undefined;
             if ((!args || args.ldapServer === undefined) && !opts.urn) {
@@ -146,26 +146,24 @@ export class UserFssoPolling extends pulumi.CustomResource {
             if ((!args || args.user === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
-            inputs["adgrps"] = args ? args.adgrps : undefined;
-            inputs["defaultDomain"] = args ? args.defaultDomain : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["ldapServer"] = args ? args.ldapServer : undefined;
-            inputs["logonHistory"] = args ? args.logonHistory : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["pollingFrequency"] = args ? args.pollingFrequency : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["smbNtlmv1Auth"] = args ? args.smbNtlmv1Auth : undefined;
-            inputs["smbv1"] = args ? args.smbv1 : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["adgrps"] = args ? args.adgrps : undefined;
+            resourceInputs["defaultDomain"] = args ? args.defaultDomain : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
+            resourceInputs["logonHistory"] = args ? args.logonHistory : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["pollingFrequency"] = args ? args.pollingFrequency : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["smbNtlmv1Auth"] = args ? args.smbNtlmv1Auth : undefined;
+            resourceInputs["smbv1"] = args ? args.smbv1 : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserFssoPolling.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserFssoPolling.__pulumiType, name, resourceInputs, opts);
     }
 }
 

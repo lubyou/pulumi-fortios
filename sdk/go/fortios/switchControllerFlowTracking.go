@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch flow tracking and export via ipfix/netflow.
+// Configure FortiSwitch flow tracking and export via ipfix/netflow. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -69,6 +69,7 @@ func NewSwitchControllerFlowTracking(ctx *pulumi.Context,
 		args = &SwitchControllerFlowTrackingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerFlowTracking
 	err := ctx.RegisterResource("fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking", name, args, &resource, opts...)
 	if err != nil {
@@ -263,7 +264,7 @@ type SwitchControllerFlowTrackingInput interface {
 }
 
 func (*SwitchControllerFlowTracking) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerFlowTracking)(nil))
+	return reflect.TypeOf((**SwitchControllerFlowTracking)(nil)).Elem()
 }
 
 func (i *SwitchControllerFlowTracking) ToSwitchControllerFlowTrackingOutput() SwitchControllerFlowTrackingOutput {
@@ -272,35 +273,6 @@ func (i *SwitchControllerFlowTracking) ToSwitchControllerFlowTrackingOutput() Sw
 
 func (i *SwitchControllerFlowTracking) ToSwitchControllerFlowTrackingOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingOutput)
-}
-
-func (i *SwitchControllerFlowTracking) ToSwitchControllerFlowTrackingPtrOutput() SwitchControllerFlowTrackingPtrOutput {
-	return i.ToSwitchControllerFlowTrackingPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerFlowTracking) ToSwitchControllerFlowTrackingPtrOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingPtrOutput)
-}
-
-type SwitchControllerFlowTrackingPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerFlowTrackingPtrOutput() SwitchControllerFlowTrackingPtrOutput
-	ToSwitchControllerFlowTrackingPtrOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingPtrOutput
-}
-
-type switchControllerFlowTrackingPtrType SwitchControllerFlowTrackingArgs
-
-func (*switchControllerFlowTrackingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerFlowTracking)(nil))
-}
-
-func (i *switchControllerFlowTrackingPtrType) ToSwitchControllerFlowTrackingPtrOutput() SwitchControllerFlowTrackingPtrOutput {
-	return i.ToSwitchControllerFlowTrackingPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerFlowTrackingPtrType) ToSwitchControllerFlowTrackingPtrOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingPtrOutput)
 }
 
 // SwitchControllerFlowTrackingArrayInput is an input type that accepts SwitchControllerFlowTrackingArray and SwitchControllerFlowTrackingArrayOutput values.
@@ -317,7 +289,7 @@ type SwitchControllerFlowTrackingArrayInput interface {
 type SwitchControllerFlowTrackingArray []SwitchControllerFlowTrackingInput
 
 func (SwitchControllerFlowTrackingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerFlowTracking)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerFlowTracking)(nil)).Elem()
 }
 
 func (i SwitchControllerFlowTrackingArray) ToSwitchControllerFlowTrackingArrayOutput() SwitchControllerFlowTrackingArrayOutput {
@@ -342,7 +314,7 @@ type SwitchControllerFlowTrackingMapInput interface {
 type SwitchControllerFlowTrackingMap map[string]SwitchControllerFlowTrackingInput
 
 func (SwitchControllerFlowTrackingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerFlowTracking)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerFlowTracking)(nil)).Elem()
 }
 
 func (i SwitchControllerFlowTrackingMap) ToSwitchControllerFlowTrackingMapOutput() SwitchControllerFlowTrackingMapOutput {
@@ -353,12 +325,10 @@ func (i SwitchControllerFlowTrackingMap) ToSwitchControllerFlowTrackingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerFlowTrackingMapOutput)
 }
 
-type SwitchControllerFlowTrackingOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerFlowTrackingOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerFlowTrackingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerFlowTracking)(nil))
+	return reflect.TypeOf((**SwitchControllerFlowTracking)(nil)).Elem()
 }
 
 func (o SwitchControllerFlowTrackingOutput) ToSwitchControllerFlowTrackingOutput() SwitchControllerFlowTrackingOutput {
@@ -369,36 +339,10 @@ func (o SwitchControllerFlowTrackingOutput) ToSwitchControllerFlowTrackingOutput
 	return o
 }
 
-func (o SwitchControllerFlowTrackingOutput) ToSwitchControllerFlowTrackingPtrOutput() SwitchControllerFlowTrackingPtrOutput {
-	return o.ToSwitchControllerFlowTrackingPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerFlowTrackingOutput) ToSwitchControllerFlowTrackingPtrOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingPtrOutput {
-	return o.ApplyT(func(v SwitchControllerFlowTracking) *SwitchControllerFlowTracking {
-		return &v
-	}).(SwitchControllerFlowTrackingPtrOutput)
-}
-
-type SwitchControllerFlowTrackingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerFlowTrackingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerFlowTracking)(nil))
-}
-
-func (o SwitchControllerFlowTrackingPtrOutput) ToSwitchControllerFlowTrackingPtrOutput() SwitchControllerFlowTrackingPtrOutput {
-	return o
-}
-
-func (o SwitchControllerFlowTrackingPtrOutput) ToSwitchControllerFlowTrackingPtrOutputWithContext(ctx context.Context) SwitchControllerFlowTrackingPtrOutput {
-	return o
-}
-
 type SwitchControllerFlowTrackingArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerFlowTrackingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerFlowTracking)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerFlowTracking)(nil)).Elem()
 }
 
 func (o SwitchControllerFlowTrackingArrayOutput) ToSwitchControllerFlowTrackingArrayOutput() SwitchControllerFlowTrackingArrayOutput {
@@ -410,15 +354,15 @@ func (o SwitchControllerFlowTrackingArrayOutput) ToSwitchControllerFlowTrackingA
 }
 
 func (o SwitchControllerFlowTrackingArrayOutput) Index(i pulumi.IntInput) SwitchControllerFlowTrackingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerFlowTracking {
-		return vs[0].([]SwitchControllerFlowTracking)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerFlowTracking {
+		return vs[0].([]*SwitchControllerFlowTracking)[vs[1].(int)]
 	}).(SwitchControllerFlowTrackingOutput)
 }
 
 type SwitchControllerFlowTrackingMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerFlowTrackingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerFlowTracking)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerFlowTracking)(nil)).Elem()
 }
 
 func (o SwitchControllerFlowTrackingMapOutput) ToSwitchControllerFlowTrackingMapOutput() SwitchControllerFlowTrackingMapOutput {
@@ -430,14 +374,16 @@ func (o SwitchControllerFlowTrackingMapOutput) ToSwitchControllerFlowTrackingMap
 }
 
 func (o SwitchControllerFlowTrackingMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerFlowTrackingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerFlowTracking {
-		return vs[0].(map[string]SwitchControllerFlowTracking)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerFlowTracking {
+		return vs[0].(map[string]*SwitchControllerFlowTracking)[vs[1].(string)]
 	}).(SwitchControllerFlowTrackingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerFlowTrackingInput)(nil)).Elem(), &SwitchControllerFlowTracking{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerFlowTrackingArrayInput)(nil)).Elem(), SwitchControllerFlowTrackingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerFlowTrackingMapInput)(nil)).Elem(), SwitchControllerFlowTrackingMap{})
 	pulumi.RegisterOutputType(SwitchControllerFlowTrackingOutput{})
-	pulumi.RegisterOutputType(SwitchControllerFlowTrackingPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerFlowTrackingArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerFlowTrackingMapOutput{})
 }

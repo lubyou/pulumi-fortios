@@ -106,6 +106,10 @@ export class FirewallVip6 extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+     */
+    public readonly addNat64Route!: pulumi.Output<string>;
+    /**
      * Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
      */
     public readonly arpReply!: pulumi.Output<string>;
@@ -121,6 +125,10 @@ export class FirewallVip6 extends pulumi.CustomResource {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+     */
+    public readonly embeddedIpv4Address!: pulumi.Output<string>;
     /**
      * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
      */
@@ -178,6 +186,14 @@ export class FirewallVip6 extends pulumi.CustomResource {
      */
     public readonly httpsCookieSecure!: pulumi.Output<string>;
     /**
+     * Start-mapped-IPv4-address [-end mapped-IPv4-address].
+     */
+    public readonly ipv4Mappedip!: pulumi.Output<string>;
+    /**
+     * IPv4 port number range on the destination network to which the external port number range is mapped.
+     */
+    public readonly ipv4Mappedport!: pulumi.Output<string>;
+    /**
      * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
      */
     public readonly ldbMethod!: pulumi.Output<string>;
@@ -201,6 +217,14 @@ export class FirewallVip6 extends pulumi.CustomResource {
      * Health monitor name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable DNAT64. Valid values: `disable`, `enable`.
+     */
+    public readonly nat64!: pulumi.Output<string>;
+    /**
+     * Enable/disable DNAT66. Valid values: `disable`, `enable`.
+     */
+    public readonly nat66!: pulumi.Output<string>;
     /**
      * Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
      */
@@ -233,6 +257,10 @@ export class FirewallVip6 extends pulumi.CustomResource {
      * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
      */
     public readonly srcFilters!: pulumi.Output<outputs.FirewallVip6SrcFilter[] | undefined>;
+    /**
+     * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+     */
+    public readonly sslAcceptFfdheGroups!: pulumi.Output<string>;
     /**
      * Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
      */
@@ -366,7 +394,7 @@ export class FirewallVip6 extends pulumi.CustomResource {
      */
     public readonly sslServerSessionStateType!: pulumi.Output<string>;
     /**
-     * Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+     * Configure a static NAT or server load balance VIP.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -395,80 +423,87 @@ export class FirewallVip6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallVip6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallVip6Args | FirewallVip6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallVip6State | undefined;
-            inputs["arpReply"] = state ? state.arpReply : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["extip"] = state ? state.extip : undefined;
-            inputs["extport"] = state ? state.extport : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["httpCookieAge"] = state ? state.httpCookieAge : undefined;
-            inputs["httpCookieDomain"] = state ? state.httpCookieDomain : undefined;
-            inputs["httpCookieDomainFromHost"] = state ? state.httpCookieDomainFromHost : undefined;
-            inputs["httpCookieGeneration"] = state ? state.httpCookieGeneration : undefined;
-            inputs["httpCookiePath"] = state ? state.httpCookiePath : undefined;
-            inputs["httpCookieShare"] = state ? state.httpCookieShare : undefined;
-            inputs["httpIpHeader"] = state ? state.httpIpHeader : undefined;
-            inputs["httpIpHeaderName"] = state ? state.httpIpHeaderName : undefined;
-            inputs["httpMultiplex"] = state ? state.httpMultiplex : undefined;
-            inputs["httpRedirect"] = state ? state.httpRedirect : undefined;
-            inputs["httpsCookieSecure"] = state ? state.httpsCookieSecure : undefined;
-            inputs["ldbMethod"] = state ? state.ldbMethod : undefined;
-            inputs["mappedip"] = state ? state.mappedip : undefined;
-            inputs["mappedport"] = state ? state.mappedport : undefined;
-            inputs["maxEmbryonicConnections"] = state ? state.maxEmbryonicConnections : undefined;
-            inputs["monitors"] = state ? state.monitors : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["natSourceVip"] = state ? state.natSourceVip : undefined;
-            inputs["outlookWebAccess"] = state ? state.outlookWebAccess : undefined;
-            inputs["persistence"] = state ? state.persistence : undefined;
-            inputs["portforward"] = state ? state.portforward : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["realservers"] = state ? state.realservers : undefined;
-            inputs["serverType"] = state ? state.serverType : undefined;
-            inputs["srcFilters"] = state ? state.srcFilters : undefined;
-            inputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
-            inputs["sslCertificate"] = state ? state.sslCertificate : undefined;
-            inputs["sslCipherSuites"] = state ? state.sslCipherSuites : undefined;
-            inputs["sslClientFallback"] = state ? state.sslClientFallback : undefined;
-            inputs["sslClientRekeyCount"] = state ? state.sslClientRekeyCount : undefined;
-            inputs["sslClientRenegotiation"] = state ? state.sslClientRenegotiation : undefined;
-            inputs["sslClientSessionStateMax"] = state ? state.sslClientSessionStateMax : undefined;
-            inputs["sslClientSessionStateTimeout"] = state ? state.sslClientSessionStateTimeout : undefined;
-            inputs["sslClientSessionStateType"] = state ? state.sslClientSessionStateType : undefined;
-            inputs["sslDhBits"] = state ? state.sslDhBits : undefined;
-            inputs["sslHpkp"] = state ? state.sslHpkp : undefined;
-            inputs["sslHpkpAge"] = state ? state.sslHpkpAge : undefined;
-            inputs["sslHpkpBackup"] = state ? state.sslHpkpBackup : undefined;
-            inputs["sslHpkpIncludeSubdomains"] = state ? state.sslHpkpIncludeSubdomains : undefined;
-            inputs["sslHpkpPrimary"] = state ? state.sslHpkpPrimary : undefined;
-            inputs["sslHpkpReportUri"] = state ? state.sslHpkpReportUri : undefined;
-            inputs["sslHsts"] = state ? state.sslHsts : undefined;
-            inputs["sslHstsAge"] = state ? state.sslHstsAge : undefined;
-            inputs["sslHstsIncludeSubdomains"] = state ? state.sslHstsIncludeSubdomains : undefined;
-            inputs["sslHttpLocationConversion"] = state ? state.sslHttpLocationConversion : undefined;
-            inputs["sslHttpMatchHost"] = state ? state.sslHttpMatchHost : undefined;
-            inputs["sslMaxVersion"] = state ? state.sslMaxVersion : undefined;
-            inputs["sslMinVersion"] = state ? state.sslMinVersion : undefined;
-            inputs["sslMode"] = state ? state.sslMode : undefined;
-            inputs["sslPfs"] = state ? state.sslPfs : undefined;
-            inputs["sslSendEmptyFrags"] = state ? state.sslSendEmptyFrags : undefined;
-            inputs["sslServerAlgorithm"] = state ? state.sslServerAlgorithm : undefined;
-            inputs["sslServerCipherSuites"] = state ? state.sslServerCipherSuites : undefined;
-            inputs["sslServerMaxVersion"] = state ? state.sslServerMaxVersion : undefined;
-            inputs["sslServerMinVersion"] = state ? state.sslServerMinVersion : undefined;
-            inputs["sslServerSessionStateMax"] = state ? state.sslServerSessionStateMax : undefined;
-            inputs["sslServerSessionStateTimeout"] = state ? state.sslServerSessionStateTimeout : undefined;
-            inputs["sslServerSessionStateType"] = state ? state.sslServerSessionStateType : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["weblogicServer"] = state ? state.weblogicServer : undefined;
-            inputs["websphereServer"] = state ? state.websphereServer : undefined;
+            resourceInputs["addNat64Route"] = state ? state.addNat64Route : undefined;
+            resourceInputs["arpReply"] = state ? state.arpReply : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["embeddedIpv4Address"] = state ? state.embeddedIpv4Address : undefined;
+            resourceInputs["extip"] = state ? state.extip : undefined;
+            resourceInputs["extport"] = state ? state.extport : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["httpCookieAge"] = state ? state.httpCookieAge : undefined;
+            resourceInputs["httpCookieDomain"] = state ? state.httpCookieDomain : undefined;
+            resourceInputs["httpCookieDomainFromHost"] = state ? state.httpCookieDomainFromHost : undefined;
+            resourceInputs["httpCookieGeneration"] = state ? state.httpCookieGeneration : undefined;
+            resourceInputs["httpCookiePath"] = state ? state.httpCookiePath : undefined;
+            resourceInputs["httpCookieShare"] = state ? state.httpCookieShare : undefined;
+            resourceInputs["httpIpHeader"] = state ? state.httpIpHeader : undefined;
+            resourceInputs["httpIpHeaderName"] = state ? state.httpIpHeaderName : undefined;
+            resourceInputs["httpMultiplex"] = state ? state.httpMultiplex : undefined;
+            resourceInputs["httpRedirect"] = state ? state.httpRedirect : undefined;
+            resourceInputs["httpsCookieSecure"] = state ? state.httpsCookieSecure : undefined;
+            resourceInputs["ipv4Mappedip"] = state ? state.ipv4Mappedip : undefined;
+            resourceInputs["ipv4Mappedport"] = state ? state.ipv4Mappedport : undefined;
+            resourceInputs["ldbMethod"] = state ? state.ldbMethod : undefined;
+            resourceInputs["mappedip"] = state ? state.mappedip : undefined;
+            resourceInputs["mappedport"] = state ? state.mappedport : undefined;
+            resourceInputs["maxEmbryonicConnections"] = state ? state.maxEmbryonicConnections : undefined;
+            resourceInputs["monitors"] = state ? state.monitors : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nat64"] = state ? state.nat64 : undefined;
+            resourceInputs["nat66"] = state ? state.nat66 : undefined;
+            resourceInputs["natSourceVip"] = state ? state.natSourceVip : undefined;
+            resourceInputs["outlookWebAccess"] = state ? state.outlookWebAccess : undefined;
+            resourceInputs["persistence"] = state ? state.persistence : undefined;
+            resourceInputs["portforward"] = state ? state.portforward : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["realservers"] = state ? state.realservers : undefined;
+            resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["srcFilters"] = state ? state.srcFilters : undefined;
+            resourceInputs["sslAcceptFfdheGroups"] = state ? state.sslAcceptFfdheGroups : undefined;
+            resourceInputs["sslAlgorithm"] = state ? state.sslAlgorithm : undefined;
+            resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
+            resourceInputs["sslCipherSuites"] = state ? state.sslCipherSuites : undefined;
+            resourceInputs["sslClientFallback"] = state ? state.sslClientFallback : undefined;
+            resourceInputs["sslClientRekeyCount"] = state ? state.sslClientRekeyCount : undefined;
+            resourceInputs["sslClientRenegotiation"] = state ? state.sslClientRenegotiation : undefined;
+            resourceInputs["sslClientSessionStateMax"] = state ? state.sslClientSessionStateMax : undefined;
+            resourceInputs["sslClientSessionStateTimeout"] = state ? state.sslClientSessionStateTimeout : undefined;
+            resourceInputs["sslClientSessionStateType"] = state ? state.sslClientSessionStateType : undefined;
+            resourceInputs["sslDhBits"] = state ? state.sslDhBits : undefined;
+            resourceInputs["sslHpkp"] = state ? state.sslHpkp : undefined;
+            resourceInputs["sslHpkpAge"] = state ? state.sslHpkpAge : undefined;
+            resourceInputs["sslHpkpBackup"] = state ? state.sslHpkpBackup : undefined;
+            resourceInputs["sslHpkpIncludeSubdomains"] = state ? state.sslHpkpIncludeSubdomains : undefined;
+            resourceInputs["sslHpkpPrimary"] = state ? state.sslHpkpPrimary : undefined;
+            resourceInputs["sslHpkpReportUri"] = state ? state.sslHpkpReportUri : undefined;
+            resourceInputs["sslHsts"] = state ? state.sslHsts : undefined;
+            resourceInputs["sslHstsAge"] = state ? state.sslHstsAge : undefined;
+            resourceInputs["sslHstsIncludeSubdomains"] = state ? state.sslHstsIncludeSubdomains : undefined;
+            resourceInputs["sslHttpLocationConversion"] = state ? state.sslHttpLocationConversion : undefined;
+            resourceInputs["sslHttpMatchHost"] = state ? state.sslHttpMatchHost : undefined;
+            resourceInputs["sslMaxVersion"] = state ? state.sslMaxVersion : undefined;
+            resourceInputs["sslMinVersion"] = state ? state.sslMinVersion : undefined;
+            resourceInputs["sslMode"] = state ? state.sslMode : undefined;
+            resourceInputs["sslPfs"] = state ? state.sslPfs : undefined;
+            resourceInputs["sslSendEmptyFrags"] = state ? state.sslSendEmptyFrags : undefined;
+            resourceInputs["sslServerAlgorithm"] = state ? state.sslServerAlgorithm : undefined;
+            resourceInputs["sslServerCipherSuites"] = state ? state.sslServerCipherSuites : undefined;
+            resourceInputs["sslServerMaxVersion"] = state ? state.sslServerMaxVersion : undefined;
+            resourceInputs["sslServerMinVersion"] = state ? state.sslServerMinVersion : undefined;
+            resourceInputs["sslServerSessionStateMax"] = state ? state.sslServerSessionStateMax : undefined;
+            resourceInputs["sslServerSessionStateTimeout"] = state ? state.sslServerSessionStateTimeout : undefined;
+            resourceInputs["sslServerSessionStateType"] = state ? state.sslServerSessionStateType : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["weblogicServer"] = state ? state.weblogicServer : undefined;
+            resourceInputs["websphereServer"] = state ? state.websphereServer : undefined;
         } else {
             const args = argsOrState as FirewallVip6Args | undefined;
             if ((!args || args.extip === undefined) && !opts.urn) {
@@ -477,81 +512,86 @@ export class FirewallVip6 extends pulumi.CustomResource {
             if ((!args || args.mappedip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mappedip'");
             }
-            inputs["arpReply"] = args ? args.arpReply : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["extip"] = args ? args.extip : undefined;
-            inputs["extport"] = args ? args.extport : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["httpCookieAge"] = args ? args.httpCookieAge : undefined;
-            inputs["httpCookieDomain"] = args ? args.httpCookieDomain : undefined;
-            inputs["httpCookieDomainFromHost"] = args ? args.httpCookieDomainFromHost : undefined;
-            inputs["httpCookieGeneration"] = args ? args.httpCookieGeneration : undefined;
-            inputs["httpCookiePath"] = args ? args.httpCookiePath : undefined;
-            inputs["httpCookieShare"] = args ? args.httpCookieShare : undefined;
-            inputs["httpIpHeader"] = args ? args.httpIpHeader : undefined;
-            inputs["httpIpHeaderName"] = args ? args.httpIpHeaderName : undefined;
-            inputs["httpMultiplex"] = args ? args.httpMultiplex : undefined;
-            inputs["httpRedirect"] = args ? args.httpRedirect : undefined;
-            inputs["httpsCookieSecure"] = args ? args.httpsCookieSecure : undefined;
-            inputs["ldbMethod"] = args ? args.ldbMethod : undefined;
-            inputs["mappedip"] = args ? args.mappedip : undefined;
-            inputs["mappedport"] = args ? args.mappedport : undefined;
-            inputs["maxEmbryonicConnections"] = args ? args.maxEmbryonicConnections : undefined;
-            inputs["monitors"] = args ? args.monitors : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["natSourceVip"] = args ? args.natSourceVip : undefined;
-            inputs["outlookWebAccess"] = args ? args.outlookWebAccess : undefined;
-            inputs["persistence"] = args ? args.persistence : undefined;
-            inputs["portforward"] = args ? args.portforward : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["realservers"] = args ? args.realservers : undefined;
-            inputs["serverType"] = args ? args.serverType : undefined;
-            inputs["srcFilters"] = args ? args.srcFilters : undefined;
-            inputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
-            inputs["sslCertificate"] = args ? args.sslCertificate : undefined;
-            inputs["sslCipherSuites"] = args ? args.sslCipherSuites : undefined;
-            inputs["sslClientFallback"] = args ? args.sslClientFallback : undefined;
-            inputs["sslClientRekeyCount"] = args ? args.sslClientRekeyCount : undefined;
-            inputs["sslClientRenegotiation"] = args ? args.sslClientRenegotiation : undefined;
-            inputs["sslClientSessionStateMax"] = args ? args.sslClientSessionStateMax : undefined;
-            inputs["sslClientSessionStateTimeout"] = args ? args.sslClientSessionStateTimeout : undefined;
-            inputs["sslClientSessionStateType"] = args ? args.sslClientSessionStateType : undefined;
-            inputs["sslDhBits"] = args ? args.sslDhBits : undefined;
-            inputs["sslHpkp"] = args ? args.sslHpkp : undefined;
-            inputs["sslHpkpAge"] = args ? args.sslHpkpAge : undefined;
-            inputs["sslHpkpBackup"] = args ? args.sslHpkpBackup : undefined;
-            inputs["sslHpkpIncludeSubdomains"] = args ? args.sslHpkpIncludeSubdomains : undefined;
-            inputs["sslHpkpPrimary"] = args ? args.sslHpkpPrimary : undefined;
-            inputs["sslHpkpReportUri"] = args ? args.sslHpkpReportUri : undefined;
-            inputs["sslHsts"] = args ? args.sslHsts : undefined;
-            inputs["sslHstsAge"] = args ? args.sslHstsAge : undefined;
-            inputs["sslHstsIncludeSubdomains"] = args ? args.sslHstsIncludeSubdomains : undefined;
-            inputs["sslHttpLocationConversion"] = args ? args.sslHttpLocationConversion : undefined;
-            inputs["sslHttpMatchHost"] = args ? args.sslHttpMatchHost : undefined;
-            inputs["sslMaxVersion"] = args ? args.sslMaxVersion : undefined;
-            inputs["sslMinVersion"] = args ? args.sslMinVersion : undefined;
-            inputs["sslMode"] = args ? args.sslMode : undefined;
-            inputs["sslPfs"] = args ? args.sslPfs : undefined;
-            inputs["sslSendEmptyFrags"] = args ? args.sslSendEmptyFrags : undefined;
-            inputs["sslServerAlgorithm"] = args ? args.sslServerAlgorithm : undefined;
-            inputs["sslServerCipherSuites"] = args ? args.sslServerCipherSuites : undefined;
-            inputs["sslServerMaxVersion"] = args ? args.sslServerMaxVersion : undefined;
-            inputs["sslServerMinVersion"] = args ? args.sslServerMinVersion : undefined;
-            inputs["sslServerSessionStateMax"] = args ? args.sslServerSessionStateMax : undefined;
-            inputs["sslServerSessionStateTimeout"] = args ? args.sslServerSessionStateTimeout : undefined;
-            inputs["sslServerSessionStateType"] = args ? args.sslServerSessionStateType : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["weblogicServer"] = args ? args.weblogicServer : undefined;
-            inputs["websphereServer"] = args ? args.websphereServer : undefined;
+            resourceInputs["addNat64Route"] = args ? args.addNat64Route : undefined;
+            resourceInputs["arpReply"] = args ? args.arpReply : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["embeddedIpv4Address"] = args ? args.embeddedIpv4Address : undefined;
+            resourceInputs["extip"] = args ? args.extip : undefined;
+            resourceInputs["extport"] = args ? args.extport : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["httpCookieAge"] = args ? args.httpCookieAge : undefined;
+            resourceInputs["httpCookieDomain"] = args ? args.httpCookieDomain : undefined;
+            resourceInputs["httpCookieDomainFromHost"] = args ? args.httpCookieDomainFromHost : undefined;
+            resourceInputs["httpCookieGeneration"] = args ? args.httpCookieGeneration : undefined;
+            resourceInputs["httpCookiePath"] = args ? args.httpCookiePath : undefined;
+            resourceInputs["httpCookieShare"] = args ? args.httpCookieShare : undefined;
+            resourceInputs["httpIpHeader"] = args ? args.httpIpHeader : undefined;
+            resourceInputs["httpIpHeaderName"] = args ? args.httpIpHeaderName : undefined;
+            resourceInputs["httpMultiplex"] = args ? args.httpMultiplex : undefined;
+            resourceInputs["httpRedirect"] = args ? args.httpRedirect : undefined;
+            resourceInputs["httpsCookieSecure"] = args ? args.httpsCookieSecure : undefined;
+            resourceInputs["ipv4Mappedip"] = args ? args.ipv4Mappedip : undefined;
+            resourceInputs["ipv4Mappedport"] = args ? args.ipv4Mappedport : undefined;
+            resourceInputs["ldbMethod"] = args ? args.ldbMethod : undefined;
+            resourceInputs["mappedip"] = args ? args.mappedip : undefined;
+            resourceInputs["mappedport"] = args ? args.mappedport : undefined;
+            resourceInputs["maxEmbryonicConnections"] = args ? args.maxEmbryonicConnections : undefined;
+            resourceInputs["monitors"] = args ? args.monitors : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nat64"] = args ? args.nat64 : undefined;
+            resourceInputs["nat66"] = args ? args.nat66 : undefined;
+            resourceInputs["natSourceVip"] = args ? args.natSourceVip : undefined;
+            resourceInputs["outlookWebAccess"] = args ? args.outlookWebAccess : undefined;
+            resourceInputs["persistence"] = args ? args.persistence : undefined;
+            resourceInputs["portforward"] = args ? args.portforward : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["realservers"] = args ? args.realservers : undefined;
+            resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["srcFilters"] = args ? args.srcFilters : undefined;
+            resourceInputs["sslAcceptFfdheGroups"] = args ? args.sslAcceptFfdheGroups : undefined;
+            resourceInputs["sslAlgorithm"] = args ? args.sslAlgorithm : undefined;
+            resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
+            resourceInputs["sslCipherSuites"] = args ? args.sslCipherSuites : undefined;
+            resourceInputs["sslClientFallback"] = args ? args.sslClientFallback : undefined;
+            resourceInputs["sslClientRekeyCount"] = args ? args.sslClientRekeyCount : undefined;
+            resourceInputs["sslClientRenegotiation"] = args ? args.sslClientRenegotiation : undefined;
+            resourceInputs["sslClientSessionStateMax"] = args ? args.sslClientSessionStateMax : undefined;
+            resourceInputs["sslClientSessionStateTimeout"] = args ? args.sslClientSessionStateTimeout : undefined;
+            resourceInputs["sslClientSessionStateType"] = args ? args.sslClientSessionStateType : undefined;
+            resourceInputs["sslDhBits"] = args ? args.sslDhBits : undefined;
+            resourceInputs["sslHpkp"] = args ? args.sslHpkp : undefined;
+            resourceInputs["sslHpkpAge"] = args ? args.sslHpkpAge : undefined;
+            resourceInputs["sslHpkpBackup"] = args ? args.sslHpkpBackup : undefined;
+            resourceInputs["sslHpkpIncludeSubdomains"] = args ? args.sslHpkpIncludeSubdomains : undefined;
+            resourceInputs["sslHpkpPrimary"] = args ? args.sslHpkpPrimary : undefined;
+            resourceInputs["sslHpkpReportUri"] = args ? args.sslHpkpReportUri : undefined;
+            resourceInputs["sslHsts"] = args ? args.sslHsts : undefined;
+            resourceInputs["sslHstsAge"] = args ? args.sslHstsAge : undefined;
+            resourceInputs["sslHstsIncludeSubdomains"] = args ? args.sslHstsIncludeSubdomains : undefined;
+            resourceInputs["sslHttpLocationConversion"] = args ? args.sslHttpLocationConversion : undefined;
+            resourceInputs["sslHttpMatchHost"] = args ? args.sslHttpMatchHost : undefined;
+            resourceInputs["sslMaxVersion"] = args ? args.sslMaxVersion : undefined;
+            resourceInputs["sslMinVersion"] = args ? args.sslMinVersion : undefined;
+            resourceInputs["sslMode"] = args ? args.sslMode : undefined;
+            resourceInputs["sslPfs"] = args ? args.sslPfs : undefined;
+            resourceInputs["sslSendEmptyFrags"] = args ? args.sslSendEmptyFrags : undefined;
+            resourceInputs["sslServerAlgorithm"] = args ? args.sslServerAlgorithm : undefined;
+            resourceInputs["sslServerCipherSuites"] = args ? args.sslServerCipherSuites : undefined;
+            resourceInputs["sslServerMaxVersion"] = args ? args.sslServerMaxVersion : undefined;
+            resourceInputs["sslServerMinVersion"] = args ? args.sslServerMinVersion : undefined;
+            resourceInputs["sslServerSessionStateMax"] = args ? args.sslServerSessionStateMax : undefined;
+            resourceInputs["sslServerSessionStateTimeout"] = args ? args.sslServerSessionStateTimeout : undefined;
+            resourceInputs["sslServerSessionStateType"] = args ? args.sslServerSessionStateType : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["weblogicServer"] = args ? args.weblogicServer : undefined;
+            resourceInputs["websphereServer"] = args ? args.websphereServer : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallVip6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallVip6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -559,6 +599,10 @@ export class FirewallVip6 extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallVip6 resources.
  */
 export interface FirewallVip6State {
+    /**
+     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+     */
+    addNat64Route?: pulumi.Input<string>;
     /**
      * Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
      */
@@ -575,6 +619,10 @@ export interface FirewallVip6State {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+     */
+    embeddedIpv4Address?: pulumi.Input<string>;
     /**
      * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
      */
@@ -632,6 +680,14 @@ export interface FirewallVip6State {
      */
     httpsCookieSecure?: pulumi.Input<string>;
     /**
+     * Start-mapped-IPv4-address [-end mapped-IPv4-address].
+     */
+    ipv4Mappedip?: pulumi.Input<string>;
+    /**
+     * IPv4 port number range on the destination network to which the external port number range is mapped.
+     */
+    ipv4Mappedport?: pulumi.Input<string>;
+    /**
      * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
      */
     ldbMethod?: pulumi.Input<string>;
@@ -655,6 +711,14 @@ export interface FirewallVip6State {
      * Health monitor name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNAT64. Valid values: `disable`, `enable`.
+     */
+    nat64?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNAT66. Valid values: `disable`, `enable`.
+     */
+    nat66?: pulumi.Input<string>;
     /**
      * Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
      */
@@ -687,6 +751,10 @@ export interface FirewallVip6State {
      * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
      */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SrcFilter>[]>;
+    /**
+     * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+     */
+    sslAcceptFfdheGroups?: pulumi.Input<string>;
     /**
      * Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
      */
@@ -820,7 +888,7 @@ export interface FirewallVip6State {
      */
     sslServerSessionStateType?: pulumi.Input<string>;
     /**
-     * Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+     * Configure a static NAT or server load balance VIP.
      */
     type?: pulumi.Input<string>;
     /**
@@ -846,6 +914,10 @@ export interface FirewallVip6State {
  */
 export interface FirewallVip6Args {
     /**
+     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+     */
+    addNat64Route?: pulumi.Input<string>;
+    /**
      * Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
      */
     arpReply?: pulumi.Input<string>;
@@ -861,6 +933,10 @@ export interface FirewallVip6Args {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+     */
+    embeddedIpv4Address?: pulumi.Input<string>;
     /**
      * IP address or address range on the external interface that you want to map to an address or address range on the destination network.
      */
@@ -918,6 +994,14 @@ export interface FirewallVip6Args {
      */
     httpsCookieSecure?: pulumi.Input<string>;
     /**
+     * Start-mapped-IPv4-address [-end mapped-IPv4-address].
+     */
+    ipv4Mappedip?: pulumi.Input<string>;
+    /**
+     * IPv4 port number range on the destination network to which the external port number range is mapped.
+     */
+    ipv4Mappedport?: pulumi.Input<string>;
+    /**
      * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
      */
     ldbMethod?: pulumi.Input<string>;
@@ -941,6 +1025,14 @@ export interface FirewallVip6Args {
      * Health monitor name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNAT64. Valid values: `disable`, `enable`.
+     */
+    nat64?: pulumi.Input<string>;
+    /**
+     * Enable/disable DNAT66. Valid values: `disable`, `enable`.
+     */
+    nat66?: pulumi.Input<string>;
     /**
      * Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
      */
@@ -973,6 +1065,10 @@ export interface FirewallVip6Args {
      * Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
      */
     srcFilters?: pulumi.Input<pulumi.Input<inputs.FirewallVip6SrcFilter>[]>;
+    /**
+     * Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+     */
+    sslAcceptFfdheGroups?: pulumi.Input<string>;
     /**
      * Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
      */
@@ -1106,7 +1202,7 @@ export interface FirewallVip6Args {
      */
     sslServerSessionStateType?: pulumi.Input<string>;
     /**
-     * Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+     * Configure a static NAT or server load balance VIP.
      */
     type?: pulumi.Input<string>;
     /**

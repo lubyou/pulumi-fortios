@@ -75,27 +75,25 @@ export class WirelessControllerApStatus extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerApStatusArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerApStatusArgs | WirelessControllerApStatusState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerApStatusState | undefined;
-            inputs["bssid"] = state ? state.bssid : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["ssid"] = state ? state.ssid : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bssid"] = state ? state.bssid : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["ssid"] = state ? state.ssid : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerApStatusArgs | undefined;
-            inputs["bssid"] = args ? args.bssid : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["ssid"] = args ? args.ssid : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bssid"] = args ? args.bssid : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["ssid"] = args ? args.ssid : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerApStatus.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerApStatus.__pulumiType, name, resourceInputs, opts);
     }
 }
 

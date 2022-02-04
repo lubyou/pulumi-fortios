@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall addrgrp6
 func LookupFirewallAddrgrp6(ctx *pulumi.Context, args *LookupFirewallAddrgrp6Args, opts ...pulumi.InvokeOption) (*LookupFirewallAddrgrp6Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddrgrp6Result
 	err := ctx.Invoke("fortios:index/getFirewallAddrgrp6:GetFirewallAddrgrp6", args, &rv, opts...)
 	if err != nil {
@@ -31,6 +35,8 @@ type LookupFirewallAddrgrp6Result struct {
 	Color int `pulumi:"color"`
 	// Comment.
 	Comment string `pulumi:"comment"`
+	// Security Fabric global object setting.
+	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
@@ -44,4 +50,93 @@ type LookupFirewallAddrgrp6Result struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable address group6 visibility in the GUI.
 	Visibility string `pulumi:"visibility"`
+}
+
+func LookupFirewallAddrgrp6Output(ctx *pulumi.Context, args LookupFirewallAddrgrp6OutputArgs, opts ...pulumi.InvokeOption) LookupFirewallAddrgrp6ResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallAddrgrp6Result, error) {
+			args := v.(LookupFirewallAddrgrp6Args)
+			r, err := LookupFirewallAddrgrp6(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallAddrgrp6ResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallAddrgrp6.
+type LookupFirewallAddrgrp6OutputArgs struct {
+	// Specify the name of the desired firewall addrgrp6.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallAddrgrp6OutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddrgrp6Args)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallAddrgrp6.
+type LookupFirewallAddrgrp6ResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallAddrgrp6ResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddrgrp6Result)(nil)).Elem()
+}
+
+func (o LookupFirewallAddrgrp6ResultOutput) ToLookupFirewallAddrgrp6ResultOutput() LookupFirewallAddrgrp6ResultOutput {
+	return o
+}
+
+func (o LookupFirewallAddrgrp6ResultOutput) ToLookupFirewallAddrgrp6ResultOutputWithContext(ctx context.Context) LookupFirewallAddrgrp6ResultOutput {
+	return o
+}
+
+// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
+func (o LookupFirewallAddrgrp6ResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// Comment.
+func (o LookupFirewallAddrgrp6ResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Security Fabric global object setting.
+func (o LookupFirewallAddrgrp6ResultOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallAddrgrp6ResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Address objects contained within the group. The structure of `member` block is documented below.
+func (o LookupFirewallAddrgrp6ResultOutput) Members() GetFirewallAddrgrp6MemberArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) []GetFirewallAddrgrp6Member { return v.Members }).(GetFirewallAddrgrp6MemberArrayOutput)
+}
+
+// Tag name.
+func (o LookupFirewallAddrgrp6ResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Config object tagging. The structure of `tagging` block is documented below.
+func (o LookupFirewallAddrgrp6ResultOutput) Taggings() GetFirewallAddrgrp6TaggingArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) []GetFirewallAddrgrp6Tagging { return v.Taggings }).(GetFirewallAddrgrp6TaggingArrayOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallAddrgrp6ResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddrgrp6ResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable address group6 visibility in the GUI.
+func (o LookupFirewallAddrgrp6ResultOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddrgrp6Result) string { return v.Visibility }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallAddrgrp6ResultOutput{})
 }

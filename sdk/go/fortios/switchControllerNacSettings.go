@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `>= 6.4.0`.
+// Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
 //
 // ## Import
 //
@@ -49,6 +49,7 @@ func NewSwitchControllerNacSettings(ctx *pulumi.Context,
 		args = &SwitchControllerNacSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerNacSettings
 	err := ctx.RegisterResource("fortios:index/switchControllerNacSettings:SwitchControllerNacSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type SwitchControllerNacSettingsInput interface {
 }
 
 func (*SwitchControllerNacSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerNacSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerNacSettings)(nil)).Elem()
 }
 
 func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsOutput() SwitchControllerNacSettingsOutput {
@@ -172,35 +173,6 @@ func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsOutput() Swit
 
 func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsOutputWithContext(ctx context.Context) SwitchControllerNacSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsOutput)
-}
-
-func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsPtrOutput() SwitchControllerNacSettingsPtrOutput {
-	return i.ToSwitchControllerNacSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerNacSettings) ToSwitchControllerNacSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNacSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsPtrOutput)
-}
-
-type SwitchControllerNacSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerNacSettingsPtrOutput() SwitchControllerNacSettingsPtrOutput
-	ToSwitchControllerNacSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNacSettingsPtrOutput
-}
-
-type switchControllerNacSettingsPtrType SwitchControllerNacSettingsArgs
-
-func (*switchControllerNacSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerNacSettings)(nil))
-}
-
-func (i *switchControllerNacSettingsPtrType) ToSwitchControllerNacSettingsPtrOutput() SwitchControllerNacSettingsPtrOutput {
-	return i.ToSwitchControllerNacSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerNacSettingsPtrType) ToSwitchControllerNacSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNacSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsPtrOutput)
 }
 
 // SwitchControllerNacSettingsArrayInput is an input type that accepts SwitchControllerNacSettingsArray and SwitchControllerNacSettingsArrayOutput values.
@@ -217,7 +189,7 @@ type SwitchControllerNacSettingsArrayInput interface {
 type SwitchControllerNacSettingsArray []SwitchControllerNacSettingsInput
 
 func (SwitchControllerNacSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerNacSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerNacSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerNacSettingsArray) ToSwitchControllerNacSettingsArrayOutput() SwitchControllerNacSettingsArrayOutput {
@@ -242,7 +214,7 @@ type SwitchControllerNacSettingsMapInput interface {
 type SwitchControllerNacSettingsMap map[string]SwitchControllerNacSettingsInput
 
 func (SwitchControllerNacSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerNacSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerNacSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerNacSettingsMap) ToSwitchControllerNacSettingsMapOutput() SwitchControllerNacSettingsMapOutput {
@@ -253,12 +225,10 @@ func (i SwitchControllerNacSettingsMap) ToSwitchControllerNacSettingsMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacSettingsMapOutput)
 }
 
-type SwitchControllerNacSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerNacSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerNacSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerNacSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsOutput() SwitchControllerNacSettingsOutput {
@@ -269,36 +239,10 @@ func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsOutputWi
 	return o
 }
 
-func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsPtrOutput() SwitchControllerNacSettingsPtrOutput {
-	return o.ToSwitchControllerNacSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerNacSettingsOutput) ToSwitchControllerNacSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNacSettingsPtrOutput {
-	return o.ApplyT(func(v SwitchControllerNacSettings) *SwitchControllerNacSettings {
-		return &v
-	}).(SwitchControllerNacSettingsPtrOutput)
-}
-
-type SwitchControllerNacSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerNacSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerNacSettings)(nil))
-}
-
-func (o SwitchControllerNacSettingsPtrOutput) ToSwitchControllerNacSettingsPtrOutput() SwitchControllerNacSettingsPtrOutput {
-	return o
-}
-
-func (o SwitchControllerNacSettingsPtrOutput) ToSwitchControllerNacSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNacSettingsPtrOutput {
-	return o
-}
-
 type SwitchControllerNacSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerNacSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerNacSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerNacSettingsArrayOutput) ToSwitchControllerNacSettingsArrayOutput() SwitchControllerNacSettingsArrayOutput {
@@ -310,15 +254,15 @@ func (o SwitchControllerNacSettingsArrayOutput) ToSwitchControllerNacSettingsArr
 }
 
 func (o SwitchControllerNacSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerNacSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerNacSettings {
-		return vs[0].([]SwitchControllerNacSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerNacSettings {
+		return vs[0].([]*SwitchControllerNacSettings)[vs[1].(int)]
 	}).(SwitchControllerNacSettingsOutput)
 }
 
 type SwitchControllerNacSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerNacSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerNacSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerNacSettingsMapOutput) ToSwitchControllerNacSettingsMapOutput() SwitchControllerNacSettingsMapOutput {
@@ -330,14 +274,16 @@ func (o SwitchControllerNacSettingsMapOutput) ToSwitchControllerNacSettingsMapOu
 }
 
 func (o SwitchControllerNacSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerNacSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerNacSettings {
-		return vs[0].(map[string]SwitchControllerNacSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerNacSettings {
+		return vs[0].(map[string]*SwitchControllerNacSettings)[vs[1].(string)]
 	}).(SwitchControllerNacSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNacSettingsInput)(nil)).Elem(), &SwitchControllerNacSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNacSettingsArrayInput)(nil)).Elem(), SwitchControllerNacSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNacSettingsMapInput)(nil)).Elem(), SwitchControllerNacSettingsMap{})
 	pulumi.RegisterOutputType(SwitchControllerNacSettingsOutput{})
-	pulumi.RegisterOutputType(SwitchControllerNacSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerNacSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerNacSettingsMapOutput{})
 }

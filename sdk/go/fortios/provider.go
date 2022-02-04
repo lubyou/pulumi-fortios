@@ -46,33 +46,34 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if args.Cabundlefile == nil {
+	if isZero(args.Cabundlefile) {
 		args.Cabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_CA_CABUNDLE").(string))
 	}
-	if args.FmgCabundlefile == nil {
+	if isZero(args.FmgCabundlefile) {
 		args.FmgCabundlefile = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_CABUNDLE").(string))
 	}
-	if args.FmgHostname == nil {
+	if isZero(args.FmgHostname) {
 		args.FmgHostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_HOSTNAME").(string))
 	}
-	if args.FmgInsecure == nil {
+	if isZero(args.FmgInsecure) {
 		args.FmgInsecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_FMG_INSECURE").(bool))
 	}
-	if args.FmgPasswd == nil {
+	if isZero(args.FmgPasswd) {
 		args.FmgPasswd = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_PASSWORD").(string))
 	}
-	if args.FmgUsername == nil {
+	if isZero(args.FmgUsername) {
 		args.FmgUsername = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_FMG_USERNAME").(string))
 	}
-	if args.Hostname == nil {
+	if isZero(args.Hostname) {
 		args.Hostname = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_HOSTNAME").(string))
 	}
-	if args.Insecure == nil {
+	if isZero(args.Insecure) {
 		args.Insecure = pulumi.BoolPtr(getEnvOrDefault(false, parseEnvBool, "FORTIOS_INSECURE").(bool))
 	}
-	if args.Token == nil {
+	if isZero(args.Token) {
 		args.Token = pulumi.StringPtr(getEnvOrDefault("", nil, "FORTIOS_ACCESS_TOKEN").(string))
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:fortios", name, args, &resource, opts...)
 	if err != nil {
@@ -144,7 +145,7 @@ type ProviderInput interface {
 }
 
 func (*Provider) ElementType() reflect.Type {
-	return reflect.TypeOf((*Provider)(nil))
+	return reflect.TypeOf((**Provider)(nil)).Elem()
 }
 
 func (i *Provider) ToProviderOutput() ProviderOutput {
@@ -155,41 +156,10 @@ func (i *Provider) ToProviderOutputWithContext(ctx context.Context) ProviderOutp
 	return pulumi.ToOutputWithContext(ctx, i).(ProviderOutput)
 }
 
-func (i *Provider) ToProviderPtrOutput() ProviderPtrOutput {
-	return i.ToProviderPtrOutputWithContext(context.Background())
-}
-
-func (i *Provider) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
-}
-
-type ProviderPtrInput interface {
-	pulumi.Input
-
-	ToProviderPtrOutput() ProviderPtrOutput
-	ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput
-}
-
-type providerPtrType ProviderArgs
-
-func (*providerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Provider)(nil))
-}
-
-func (i *providerPtrType) ToProviderPtrOutput() ProviderPtrOutput {
-	return i.ToProviderPtrOutputWithContext(context.Background())
-}
-
-func (i *providerPtrType) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ProviderPtrOutput)
-}
-
-type ProviderOutput struct {
-	*pulumi.OutputState
-}
+type ProviderOutput struct{ *pulumi.OutputState }
 
 func (ProviderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Provider)(nil))
+	return reflect.TypeOf((**Provider)(nil)).Elem()
 }
 
 func (o ProviderOutput) ToProviderOutput() ProviderOutput {
@@ -200,33 +170,7 @@ func (o ProviderOutput) ToProviderOutputWithContext(ctx context.Context) Provide
 	return o
 }
 
-func (o ProviderOutput) ToProviderPtrOutput() ProviderPtrOutput {
-	return o.ToProviderPtrOutputWithContext(context.Background())
-}
-
-func (o ProviderOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
-	return o.ApplyT(func(v Provider) *Provider {
-		return &v
-	}).(ProviderPtrOutput)
-}
-
-type ProviderPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ProviderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Provider)(nil))
-}
-
-func (o ProviderPtrOutput) ToProviderPtrOutput() ProviderPtrOutput {
-	return o
-}
-
-func (o ProviderPtrOutput) ToProviderPtrOutputWithContext(ctx context.Context) ProviderPtrOutput {
-	return o
-}
-
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ProviderInput)(nil)).Elem(), &Provider{})
 	pulumi.RegisterOutputType(ProviderOutput{})
-	pulumi.RegisterOutputType(ProviderPtrOutput{})
 }

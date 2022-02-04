@@ -25,9 +25,7 @@ export function getRouterStatic(args: GetRouterStaticArgs, opts?: pulumi.InvokeO
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterStatic:GetRouterStatic", {
         "seqNum": args.seqNum,
         "vdomparam": args.vdomparam,
@@ -113,6 +111,10 @@ export interface GetRouterStaticResult {
      */
     readonly sdwan: string;
     /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    readonly sdwanZones: outputs.GetRouterStaticSdwanZone[];
+    /**
      * Sequence number.
      */
     readonly seqNum: number;
@@ -137,4 +139,22 @@ export interface GetRouterStaticResult {
      * Administrative weight (0 - 255).
      */
     readonly weight: number;
+}
+
+export function getRouterStaticOutput(args: GetRouterStaticOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterStaticResult> {
+    return pulumi.output(args).apply(a => getRouterStatic(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterStatic.
+ */
+export interface GetRouterStaticOutputArgs {
+    /**
+     * Specify the seqNum of the desired router static.
+     */
+    seqNum: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

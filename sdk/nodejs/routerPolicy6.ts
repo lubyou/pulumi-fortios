@@ -133,48 +133,46 @@ export class RouterPolicy6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: RouterPolicy6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterPolicy6Args | RouterPolicy6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterPolicy6State | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dst"] = state ? state.dst : undefined;
-            inputs["endPort"] = state ? state.endPort : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["inputDevice"] = state ? state.inputDevice : undefined;
-            inputs["outputDevice"] = state ? state.outputDevice : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["seqNum"] = state ? state.seqNum : undefined;
-            inputs["src"] = state ? state.src : undefined;
-            inputs["startPort"] = state ? state.startPort : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tos"] = state ? state.tos : undefined;
-            inputs["tosMask"] = state ? state.tosMask : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["inputDevice"] = state ? state.inputDevice : undefined;
+            resourceInputs["outputDevice"] = state ? state.outputDevice : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["seqNum"] = state ? state.seqNum : undefined;
+            resourceInputs["src"] = state ? state.src : undefined;
+            resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tos"] = state ? state.tos : undefined;
+            resourceInputs["tosMask"] = state ? state.tosMask : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterPolicy6Args | undefined;
             if ((!args || args.inputDevice === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'inputDevice'");
             }
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dst"] = args ? args.dst : undefined;
-            inputs["endPort"] = args ? args.endPort : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["inputDevice"] = args ? args.inputDevice : undefined;
-            inputs["outputDevice"] = args ? args.outputDevice : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["seqNum"] = args ? args.seqNum : undefined;
-            inputs["src"] = args ? args.src : undefined;
-            inputs["startPort"] = args ? args.startPort : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tos"] = args ? args.tos : undefined;
-            inputs["tosMask"] = args ? args.tosMask : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["inputDevice"] = args ? args.inputDevice : undefined;
+            resourceInputs["outputDevice"] = args ? args.outputDevice : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["seqNum"] = args ? args.seqNum : undefined;
+            resourceInputs["src"] = args ? args.src : undefined;
+            resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tos"] = args ? args.tos : undefined;
+            resourceInputs["tosMask"] = args ? args.tosMask : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterPolicy6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterPolicy6.__pulumiType, name, resourceInputs, opts);
     }
 }
 

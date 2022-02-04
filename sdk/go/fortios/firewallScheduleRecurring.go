@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -57,6 +57,8 @@ type FirewallScheduleRecurring struct {
 	Day pulumi.StringOutput `pulumi:"day"`
 	// Time of day to end the schedule, format hh:mm.
 	End pulumi.StringOutput `pulumi:"end"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Recurring schedule name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Time of day to start the schedule, format hh:mm.
@@ -78,6 +80,7 @@ func NewFirewallScheduleRecurring(ctx *pulumi.Context,
 	if args.Start == nil {
 		return nil, errors.New("invalid value for required argument 'Start'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallScheduleRecurring
 	err := ctx.RegisterResource("fortios:index/firewallScheduleRecurring:FirewallScheduleRecurring", name, args, &resource, opts...)
 	if err != nil {
@@ -106,6 +109,8 @@ type firewallScheduleRecurringState struct {
 	Day *string `pulumi:"day"`
 	// Time of day to end the schedule, format hh:mm.
 	End *string `pulumi:"end"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Recurring schedule name.
 	Name *string `pulumi:"name"`
 	// Time of day to start the schedule, format hh:mm.
@@ -121,6 +126,8 @@ type FirewallScheduleRecurringState struct {
 	Day pulumi.StringPtrInput
 	// Time of day to end the schedule, format hh:mm.
 	End pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Recurring schedule name.
 	Name pulumi.StringPtrInput
 	// Time of day to start the schedule, format hh:mm.
@@ -140,6 +147,8 @@ type firewallScheduleRecurringArgs struct {
 	Day *string `pulumi:"day"`
 	// Time of day to end the schedule, format hh:mm.
 	End string `pulumi:"end"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Recurring schedule name.
 	Name *string `pulumi:"name"`
 	// Time of day to start the schedule, format hh:mm.
@@ -156,6 +165,8 @@ type FirewallScheduleRecurringArgs struct {
 	Day pulumi.StringPtrInput
 	// Time of day to end the schedule, format hh:mm.
 	End pulumi.StringInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Recurring schedule name.
 	Name pulumi.StringPtrInput
 	// Time of day to start the schedule, format hh:mm.
@@ -176,7 +187,7 @@ type FirewallScheduleRecurringInput interface {
 }
 
 func (*FirewallScheduleRecurring) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallScheduleRecurring)(nil))
+	return reflect.TypeOf((**FirewallScheduleRecurring)(nil)).Elem()
 }
 
 func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringOutput() FirewallScheduleRecurringOutput {
@@ -185,35 +196,6 @@ func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringOutput() Firewall
 
 func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringOutputWithContext(ctx context.Context) FirewallScheduleRecurringOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringOutput)
-}
-
-func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringPtrOutput() FirewallScheduleRecurringPtrOutput {
-	return i.ToFirewallScheduleRecurringPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallScheduleRecurring) ToFirewallScheduleRecurringPtrOutputWithContext(ctx context.Context) FirewallScheduleRecurringPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringPtrOutput)
-}
-
-type FirewallScheduleRecurringPtrInput interface {
-	pulumi.Input
-
-	ToFirewallScheduleRecurringPtrOutput() FirewallScheduleRecurringPtrOutput
-	ToFirewallScheduleRecurringPtrOutputWithContext(ctx context.Context) FirewallScheduleRecurringPtrOutput
-}
-
-type firewallScheduleRecurringPtrType FirewallScheduleRecurringArgs
-
-func (*firewallScheduleRecurringPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallScheduleRecurring)(nil))
-}
-
-func (i *firewallScheduleRecurringPtrType) ToFirewallScheduleRecurringPtrOutput() FirewallScheduleRecurringPtrOutput {
-	return i.ToFirewallScheduleRecurringPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallScheduleRecurringPtrType) ToFirewallScheduleRecurringPtrOutputWithContext(ctx context.Context) FirewallScheduleRecurringPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringPtrOutput)
 }
 
 // FirewallScheduleRecurringArrayInput is an input type that accepts FirewallScheduleRecurringArray and FirewallScheduleRecurringArrayOutput values.
@@ -230,7 +212,7 @@ type FirewallScheduleRecurringArrayInput interface {
 type FirewallScheduleRecurringArray []FirewallScheduleRecurringInput
 
 func (FirewallScheduleRecurringArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallScheduleRecurring)(nil))
+	return reflect.TypeOf((*[]*FirewallScheduleRecurring)(nil)).Elem()
 }
 
 func (i FirewallScheduleRecurringArray) ToFirewallScheduleRecurringArrayOutput() FirewallScheduleRecurringArrayOutput {
@@ -255,7 +237,7 @@ type FirewallScheduleRecurringMapInput interface {
 type FirewallScheduleRecurringMap map[string]FirewallScheduleRecurringInput
 
 func (FirewallScheduleRecurringMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallScheduleRecurring)(nil))
+	return reflect.TypeOf((*map[string]*FirewallScheduleRecurring)(nil)).Elem()
 }
 
 func (i FirewallScheduleRecurringMap) ToFirewallScheduleRecurringMapOutput() FirewallScheduleRecurringMapOutput {
@@ -266,12 +248,10 @@ func (i FirewallScheduleRecurringMap) ToFirewallScheduleRecurringMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleRecurringMapOutput)
 }
 
-type FirewallScheduleRecurringOutput struct {
-	*pulumi.OutputState
-}
+type FirewallScheduleRecurringOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleRecurringOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallScheduleRecurring)(nil))
+	return reflect.TypeOf((**FirewallScheduleRecurring)(nil)).Elem()
 }
 
 func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringOutput() FirewallScheduleRecurringOutput {
@@ -282,36 +262,10 @@ func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringOutputWithCo
 	return o
 }
 
-func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringPtrOutput() FirewallScheduleRecurringPtrOutput {
-	return o.ToFirewallScheduleRecurringPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallScheduleRecurringOutput) ToFirewallScheduleRecurringPtrOutputWithContext(ctx context.Context) FirewallScheduleRecurringPtrOutput {
-	return o.ApplyT(func(v FirewallScheduleRecurring) *FirewallScheduleRecurring {
-		return &v
-	}).(FirewallScheduleRecurringPtrOutput)
-}
-
-type FirewallScheduleRecurringPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallScheduleRecurringPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallScheduleRecurring)(nil))
-}
-
-func (o FirewallScheduleRecurringPtrOutput) ToFirewallScheduleRecurringPtrOutput() FirewallScheduleRecurringPtrOutput {
-	return o
-}
-
-func (o FirewallScheduleRecurringPtrOutput) ToFirewallScheduleRecurringPtrOutputWithContext(ctx context.Context) FirewallScheduleRecurringPtrOutput {
-	return o
-}
-
 type FirewallScheduleRecurringArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleRecurringArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallScheduleRecurring)(nil))
+	return reflect.TypeOf((*[]*FirewallScheduleRecurring)(nil)).Elem()
 }
 
 func (o FirewallScheduleRecurringArrayOutput) ToFirewallScheduleRecurringArrayOutput() FirewallScheduleRecurringArrayOutput {
@@ -323,15 +277,15 @@ func (o FirewallScheduleRecurringArrayOutput) ToFirewallScheduleRecurringArrayOu
 }
 
 func (o FirewallScheduleRecurringArrayOutput) Index(i pulumi.IntInput) FirewallScheduleRecurringOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallScheduleRecurring {
-		return vs[0].([]FirewallScheduleRecurring)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallScheduleRecurring {
+		return vs[0].([]*FirewallScheduleRecurring)[vs[1].(int)]
 	}).(FirewallScheduleRecurringOutput)
 }
 
 type FirewallScheduleRecurringMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleRecurringMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallScheduleRecurring)(nil))
+	return reflect.TypeOf((*map[string]*FirewallScheduleRecurring)(nil)).Elem()
 }
 
 func (o FirewallScheduleRecurringMapOutput) ToFirewallScheduleRecurringMapOutput() FirewallScheduleRecurringMapOutput {
@@ -343,14 +297,16 @@ func (o FirewallScheduleRecurringMapOutput) ToFirewallScheduleRecurringMapOutput
 }
 
 func (o FirewallScheduleRecurringMapOutput) MapIndex(k pulumi.StringInput) FirewallScheduleRecurringOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallScheduleRecurring {
-		return vs[0].(map[string]FirewallScheduleRecurring)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallScheduleRecurring {
+		return vs[0].(map[string]*FirewallScheduleRecurring)[vs[1].(string)]
 	}).(FirewallScheduleRecurringOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleRecurringInput)(nil)).Elem(), &FirewallScheduleRecurring{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleRecurringArrayInput)(nil)).Elem(), FirewallScheduleRecurringArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleRecurringMapInput)(nil)).Elem(), FirewallScheduleRecurringMap{})
 	pulumi.RegisterOutputType(FirewallScheduleRecurringOutput{})
-	pulumi.RegisterOutputType(FirewallScheduleRecurringPtrOutput{})
 	pulumi.RegisterOutputType(FirewallScheduleRecurringArrayOutput{})
 	pulumi.RegisterOutputType(FirewallScheduleRecurringMapOutput{})
 }

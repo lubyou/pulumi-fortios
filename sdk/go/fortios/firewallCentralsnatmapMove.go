@@ -38,6 +38,7 @@ func NewFirewallCentralsnatmapMove(ctx *pulumi.Context,
 	if args.PolicyidSrc == nil {
 		return nil, errors.New("invalid value for required argument 'PolicyidSrc'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallCentralsnatmapMove
 	err := ctx.RegisterResource("fortios:index/firewallCentralsnatmapMove:FirewallCentralsnatmapMove", name, args, &resource, opts...)
 	if err != nil {
@@ -112,7 +113,7 @@ type FirewallCentralsnatmapMoveInput interface {
 }
 
 func (*FirewallCentralsnatmapMove) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCentralsnatmapMove)(nil))
+	return reflect.TypeOf((**FirewallCentralsnatmapMove)(nil)).Elem()
 }
 
 func (i *FirewallCentralsnatmapMove) ToFirewallCentralsnatmapMoveOutput() FirewallCentralsnatmapMoveOutput {
@@ -121,35 +122,6 @@ func (i *FirewallCentralsnatmapMove) ToFirewallCentralsnatmapMoveOutput() Firewa
 
 func (i *FirewallCentralsnatmapMove) ToFirewallCentralsnatmapMoveOutputWithContext(ctx context.Context) FirewallCentralsnatmapMoveOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapMoveOutput)
-}
-
-func (i *FirewallCentralsnatmapMove) ToFirewallCentralsnatmapMovePtrOutput() FirewallCentralsnatmapMovePtrOutput {
-	return i.ToFirewallCentralsnatmapMovePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallCentralsnatmapMove) ToFirewallCentralsnatmapMovePtrOutputWithContext(ctx context.Context) FirewallCentralsnatmapMovePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapMovePtrOutput)
-}
-
-type FirewallCentralsnatmapMovePtrInput interface {
-	pulumi.Input
-
-	ToFirewallCentralsnatmapMovePtrOutput() FirewallCentralsnatmapMovePtrOutput
-	ToFirewallCentralsnatmapMovePtrOutputWithContext(ctx context.Context) FirewallCentralsnatmapMovePtrOutput
-}
-
-type firewallCentralsnatmapMovePtrType FirewallCentralsnatmapMoveArgs
-
-func (*firewallCentralsnatmapMovePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCentralsnatmapMove)(nil))
-}
-
-func (i *firewallCentralsnatmapMovePtrType) ToFirewallCentralsnatmapMovePtrOutput() FirewallCentralsnatmapMovePtrOutput {
-	return i.ToFirewallCentralsnatmapMovePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallCentralsnatmapMovePtrType) ToFirewallCentralsnatmapMovePtrOutputWithContext(ctx context.Context) FirewallCentralsnatmapMovePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapMovePtrOutput)
 }
 
 // FirewallCentralsnatmapMoveArrayInput is an input type that accepts FirewallCentralsnatmapMoveArray and FirewallCentralsnatmapMoveArrayOutput values.
@@ -166,7 +138,7 @@ type FirewallCentralsnatmapMoveArrayInput interface {
 type FirewallCentralsnatmapMoveArray []FirewallCentralsnatmapMoveInput
 
 func (FirewallCentralsnatmapMoveArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallCentralsnatmapMove)(nil))
+	return reflect.TypeOf((*[]*FirewallCentralsnatmapMove)(nil)).Elem()
 }
 
 func (i FirewallCentralsnatmapMoveArray) ToFirewallCentralsnatmapMoveArrayOutput() FirewallCentralsnatmapMoveArrayOutput {
@@ -191,7 +163,7 @@ type FirewallCentralsnatmapMoveMapInput interface {
 type FirewallCentralsnatmapMoveMap map[string]FirewallCentralsnatmapMoveInput
 
 func (FirewallCentralsnatmapMoveMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallCentralsnatmapMove)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCentralsnatmapMove)(nil)).Elem()
 }
 
 func (i FirewallCentralsnatmapMoveMap) ToFirewallCentralsnatmapMoveMapOutput() FirewallCentralsnatmapMoveMapOutput {
@@ -202,12 +174,10 @@ func (i FirewallCentralsnatmapMoveMap) ToFirewallCentralsnatmapMoveMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCentralsnatmapMoveMapOutput)
 }
 
-type FirewallCentralsnatmapMoveOutput struct {
-	*pulumi.OutputState
-}
+type FirewallCentralsnatmapMoveOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralsnatmapMoveOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCentralsnatmapMove)(nil))
+	return reflect.TypeOf((**FirewallCentralsnatmapMove)(nil)).Elem()
 }
 
 func (o FirewallCentralsnatmapMoveOutput) ToFirewallCentralsnatmapMoveOutput() FirewallCentralsnatmapMoveOutput {
@@ -218,36 +188,10 @@ func (o FirewallCentralsnatmapMoveOutput) ToFirewallCentralsnatmapMoveOutputWith
 	return o
 }
 
-func (o FirewallCentralsnatmapMoveOutput) ToFirewallCentralsnatmapMovePtrOutput() FirewallCentralsnatmapMovePtrOutput {
-	return o.ToFirewallCentralsnatmapMovePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallCentralsnatmapMoveOutput) ToFirewallCentralsnatmapMovePtrOutputWithContext(ctx context.Context) FirewallCentralsnatmapMovePtrOutput {
-	return o.ApplyT(func(v FirewallCentralsnatmapMove) *FirewallCentralsnatmapMove {
-		return &v
-	}).(FirewallCentralsnatmapMovePtrOutput)
-}
-
-type FirewallCentralsnatmapMovePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallCentralsnatmapMovePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCentralsnatmapMove)(nil))
-}
-
-func (o FirewallCentralsnatmapMovePtrOutput) ToFirewallCentralsnatmapMovePtrOutput() FirewallCentralsnatmapMovePtrOutput {
-	return o
-}
-
-func (o FirewallCentralsnatmapMovePtrOutput) ToFirewallCentralsnatmapMovePtrOutputWithContext(ctx context.Context) FirewallCentralsnatmapMovePtrOutput {
-	return o
-}
-
 type FirewallCentralsnatmapMoveArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralsnatmapMoveArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallCentralsnatmapMove)(nil))
+	return reflect.TypeOf((*[]*FirewallCentralsnatmapMove)(nil)).Elem()
 }
 
 func (o FirewallCentralsnatmapMoveArrayOutput) ToFirewallCentralsnatmapMoveArrayOutput() FirewallCentralsnatmapMoveArrayOutput {
@@ -259,15 +203,15 @@ func (o FirewallCentralsnatmapMoveArrayOutput) ToFirewallCentralsnatmapMoveArray
 }
 
 func (o FirewallCentralsnatmapMoveArrayOutput) Index(i pulumi.IntInput) FirewallCentralsnatmapMoveOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallCentralsnatmapMove {
-		return vs[0].([]FirewallCentralsnatmapMove)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCentralsnatmapMove {
+		return vs[0].([]*FirewallCentralsnatmapMove)[vs[1].(int)]
 	}).(FirewallCentralsnatmapMoveOutput)
 }
 
 type FirewallCentralsnatmapMoveMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallCentralsnatmapMoveMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallCentralsnatmapMove)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCentralsnatmapMove)(nil)).Elem()
 }
 
 func (o FirewallCentralsnatmapMoveMapOutput) ToFirewallCentralsnatmapMoveMapOutput() FirewallCentralsnatmapMoveMapOutput {
@@ -279,14 +223,16 @@ func (o FirewallCentralsnatmapMoveMapOutput) ToFirewallCentralsnatmapMoveMapOutp
 }
 
 func (o FirewallCentralsnatmapMoveMapOutput) MapIndex(k pulumi.StringInput) FirewallCentralsnatmapMoveOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallCentralsnatmapMove {
-		return vs[0].(map[string]FirewallCentralsnatmapMove)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallCentralsnatmapMove {
+		return vs[0].(map[string]*FirewallCentralsnatmapMove)[vs[1].(string)]
 	}).(FirewallCentralsnatmapMoveOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCentralsnatmapMoveInput)(nil)).Elem(), &FirewallCentralsnatmapMove{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCentralsnatmapMoveArrayInput)(nil)).Elem(), FirewallCentralsnatmapMoveArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCentralsnatmapMoveMapInput)(nil)).Elem(), FirewallCentralsnatmapMoveMap{})
 	pulumi.RegisterOutputType(FirewallCentralsnatmapMoveOutput{})
-	pulumi.RegisterOutputType(FirewallCentralsnatmapMovePtrOutput{})
 	pulumi.RegisterOutputType(FirewallCentralsnatmapMoveArrayOutput{})
 	pulumi.RegisterOutputType(FirewallCentralsnatmapMoveMapOutput{})
 }

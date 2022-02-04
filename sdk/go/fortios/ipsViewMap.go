@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// configure ips view-map
+// configure ips view-map Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -45,6 +45,7 @@ func NewIpsViewMap(ctx *pulumi.Context,
 		args = &IpsViewMapArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsViewMap
 	err := ctx.RegisterResource("fortios:index/ipsViewMap:IpsViewMap", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type IpsViewMapInput interface {
 }
 
 func (*IpsViewMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsViewMap)(nil))
+	return reflect.TypeOf((**IpsViewMap)(nil)).Elem()
 }
 
 func (i *IpsViewMap) ToIpsViewMapOutput() IpsViewMapOutput {
@@ -152,35 +153,6 @@ func (i *IpsViewMap) ToIpsViewMapOutput() IpsViewMapOutput {
 
 func (i *IpsViewMap) ToIpsViewMapOutputWithContext(ctx context.Context) IpsViewMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapOutput)
-}
-
-func (i *IpsViewMap) ToIpsViewMapPtrOutput() IpsViewMapPtrOutput {
-	return i.ToIpsViewMapPtrOutputWithContext(context.Background())
-}
-
-func (i *IpsViewMap) ToIpsViewMapPtrOutputWithContext(ctx context.Context) IpsViewMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapPtrOutput)
-}
-
-type IpsViewMapPtrInput interface {
-	pulumi.Input
-
-	ToIpsViewMapPtrOutput() IpsViewMapPtrOutput
-	ToIpsViewMapPtrOutputWithContext(ctx context.Context) IpsViewMapPtrOutput
-}
-
-type ipsViewMapPtrType IpsViewMapArgs
-
-func (*ipsViewMapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsViewMap)(nil))
-}
-
-func (i *ipsViewMapPtrType) ToIpsViewMapPtrOutput() IpsViewMapPtrOutput {
-	return i.ToIpsViewMapPtrOutputWithContext(context.Background())
-}
-
-func (i *ipsViewMapPtrType) ToIpsViewMapPtrOutputWithContext(ctx context.Context) IpsViewMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapPtrOutput)
 }
 
 // IpsViewMapArrayInput is an input type that accepts IpsViewMapArray and IpsViewMapArrayOutput values.
@@ -197,7 +169,7 @@ type IpsViewMapArrayInput interface {
 type IpsViewMapArray []IpsViewMapInput
 
 func (IpsViewMapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsViewMap)(nil))
+	return reflect.TypeOf((*[]*IpsViewMap)(nil)).Elem()
 }
 
 func (i IpsViewMapArray) ToIpsViewMapArrayOutput() IpsViewMapArrayOutput {
@@ -222,7 +194,7 @@ type IpsViewMapMapInput interface {
 type IpsViewMapMap map[string]IpsViewMapInput
 
 func (IpsViewMapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsViewMap)(nil))
+	return reflect.TypeOf((*map[string]*IpsViewMap)(nil)).Elem()
 }
 
 func (i IpsViewMapMap) ToIpsViewMapMapOutput() IpsViewMapMapOutput {
@@ -233,12 +205,10 @@ func (i IpsViewMapMap) ToIpsViewMapMapOutputWithContext(ctx context.Context) Ips
 	return pulumi.ToOutputWithContext(ctx, i).(IpsViewMapMapOutput)
 }
 
-type IpsViewMapOutput struct {
-	*pulumi.OutputState
-}
+type IpsViewMapOutput struct{ *pulumi.OutputState }
 
 func (IpsViewMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsViewMap)(nil))
+	return reflect.TypeOf((**IpsViewMap)(nil)).Elem()
 }
 
 func (o IpsViewMapOutput) ToIpsViewMapOutput() IpsViewMapOutput {
@@ -249,36 +219,10 @@ func (o IpsViewMapOutput) ToIpsViewMapOutputWithContext(ctx context.Context) Ips
 	return o
 }
 
-func (o IpsViewMapOutput) ToIpsViewMapPtrOutput() IpsViewMapPtrOutput {
-	return o.ToIpsViewMapPtrOutputWithContext(context.Background())
-}
-
-func (o IpsViewMapOutput) ToIpsViewMapPtrOutputWithContext(ctx context.Context) IpsViewMapPtrOutput {
-	return o.ApplyT(func(v IpsViewMap) *IpsViewMap {
-		return &v
-	}).(IpsViewMapPtrOutput)
-}
-
-type IpsViewMapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsViewMapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsViewMap)(nil))
-}
-
-func (o IpsViewMapPtrOutput) ToIpsViewMapPtrOutput() IpsViewMapPtrOutput {
-	return o
-}
-
-func (o IpsViewMapPtrOutput) ToIpsViewMapPtrOutputWithContext(ctx context.Context) IpsViewMapPtrOutput {
-	return o
-}
-
 type IpsViewMapArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsViewMapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsViewMap)(nil))
+	return reflect.TypeOf((*[]*IpsViewMap)(nil)).Elem()
 }
 
 func (o IpsViewMapArrayOutput) ToIpsViewMapArrayOutput() IpsViewMapArrayOutput {
@@ -290,15 +234,15 @@ func (o IpsViewMapArrayOutput) ToIpsViewMapArrayOutputWithContext(ctx context.Co
 }
 
 func (o IpsViewMapArrayOutput) Index(i pulumi.IntInput) IpsViewMapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsViewMap {
-		return vs[0].([]IpsViewMap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsViewMap {
+		return vs[0].([]*IpsViewMap)[vs[1].(int)]
 	}).(IpsViewMapOutput)
 }
 
 type IpsViewMapMapOutput struct{ *pulumi.OutputState }
 
 func (IpsViewMapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsViewMap)(nil))
+	return reflect.TypeOf((*map[string]*IpsViewMap)(nil)).Elem()
 }
 
 func (o IpsViewMapMapOutput) ToIpsViewMapMapOutput() IpsViewMapMapOutput {
@@ -310,14 +254,16 @@ func (o IpsViewMapMapOutput) ToIpsViewMapMapOutputWithContext(ctx context.Contex
 }
 
 func (o IpsViewMapMapOutput) MapIndex(k pulumi.StringInput) IpsViewMapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsViewMap {
-		return vs[0].(map[string]IpsViewMap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsViewMap {
+		return vs[0].(map[string]*IpsViewMap)[vs[1].(string)]
 	}).(IpsViewMapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsViewMapInput)(nil)).Elem(), &IpsViewMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsViewMapArrayInput)(nil)).Elem(), IpsViewMapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsViewMapMapInput)(nil)).Elem(), IpsViewMapMap{})
 	pulumi.RegisterOutputType(IpsViewMapOutput{})
-	pulumi.RegisterOutputType(IpsViewMapPtrOutput{})
 	pulumi.RegisterOutputType(IpsViewMapArrayOutput{})
 	pulumi.RegisterOutputType(IpsViewMapMapOutput{})
 }

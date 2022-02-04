@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure anti-spam black/white list. Applies to FortiOS Version `<= 6.4.2`.
+ * Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.2`.
  *
  * ## Import
  *
@@ -80,29 +80,27 @@ export class EmailfilterBwl extends pulumi.CustomResource {
      */
     constructor(name: string, args?: EmailfilterBwlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EmailfilterBwlArgs | EmailfilterBwlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EmailfilterBwlState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["entries"] = state ? state.entries : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EmailfilterBwlArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["entries"] = args ? args.entries : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EmailfilterBwl.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EmailfilterBwl.__pulumiType, name, resourceInputs, opts);
     }
 }
 

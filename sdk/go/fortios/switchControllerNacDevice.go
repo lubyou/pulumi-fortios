@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `>= 6.4.0`.
+// Configure/list NAC devices learned on the managed FortiSwitch ports which matches NAC policy. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
 //
 // ## Import
 //
@@ -55,6 +55,7 @@ func NewSwitchControllerNacDevice(ctx *pulumi.Context,
 		args = &SwitchControllerNacDeviceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerNacDevice
 	err := ctx.RegisterResource("fortios:index/switchControllerNacDevice:SwitchControllerNacDevice", name, args, &resource, opts...)
 	if err != nil {
@@ -193,7 +194,7 @@ type SwitchControllerNacDeviceInput interface {
 }
 
 func (*SwitchControllerNacDevice) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerNacDevice)(nil))
+	return reflect.TypeOf((**SwitchControllerNacDevice)(nil)).Elem()
 }
 
 func (i *SwitchControllerNacDevice) ToSwitchControllerNacDeviceOutput() SwitchControllerNacDeviceOutput {
@@ -202,35 +203,6 @@ func (i *SwitchControllerNacDevice) ToSwitchControllerNacDeviceOutput() SwitchCo
 
 func (i *SwitchControllerNacDevice) ToSwitchControllerNacDeviceOutputWithContext(ctx context.Context) SwitchControllerNacDeviceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDeviceOutput)
-}
-
-func (i *SwitchControllerNacDevice) ToSwitchControllerNacDevicePtrOutput() SwitchControllerNacDevicePtrOutput {
-	return i.ToSwitchControllerNacDevicePtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerNacDevice) ToSwitchControllerNacDevicePtrOutputWithContext(ctx context.Context) SwitchControllerNacDevicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDevicePtrOutput)
-}
-
-type SwitchControllerNacDevicePtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerNacDevicePtrOutput() SwitchControllerNacDevicePtrOutput
-	ToSwitchControllerNacDevicePtrOutputWithContext(ctx context.Context) SwitchControllerNacDevicePtrOutput
-}
-
-type switchControllerNacDevicePtrType SwitchControllerNacDeviceArgs
-
-func (*switchControllerNacDevicePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerNacDevice)(nil))
-}
-
-func (i *switchControllerNacDevicePtrType) ToSwitchControllerNacDevicePtrOutput() SwitchControllerNacDevicePtrOutput {
-	return i.ToSwitchControllerNacDevicePtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerNacDevicePtrType) ToSwitchControllerNacDevicePtrOutputWithContext(ctx context.Context) SwitchControllerNacDevicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDevicePtrOutput)
 }
 
 // SwitchControllerNacDeviceArrayInput is an input type that accepts SwitchControllerNacDeviceArray and SwitchControllerNacDeviceArrayOutput values.
@@ -247,7 +219,7 @@ type SwitchControllerNacDeviceArrayInput interface {
 type SwitchControllerNacDeviceArray []SwitchControllerNacDeviceInput
 
 func (SwitchControllerNacDeviceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerNacDevice)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerNacDevice)(nil)).Elem()
 }
 
 func (i SwitchControllerNacDeviceArray) ToSwitchControllerNacDeviceArrayOutput() SwitchControllerNacDeviceArrayOutput {
@@ -272,7 +244,7 @@ type SwitchControllerNacDeviceMapInput interface {
 type SwitchControllerNacDeviceMap map[string]SwitchControllerNacDeviceInput
 
 func (SwitchControllerNacDeviceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerNacDevice)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerNacDevice)(nil)).Elem()
 }
 
 func (i SwitchControllerNacDeviceMap) ToSwitchControllerNacDeviceMapOutput() SwitchControllerNacDeviceMapOutput {
@@ -283,12 +255,10 @@ func (i SwitchControllerNacDeviceMap) ToSwitchControllerNacDeviceMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNacDeviceMapOutput)
 }
 
-type SwitchControllerNacDeviceOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerNacDeviceOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacDeviceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerNacDevice)(nil))
+	return reflect.TypeOf((**SwitchControllerNacDevice)(nil)).Elem()
 }
 
 func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDeviceOutput() SwitchControllerNacDeviceOutput {
@@ -299,36 +269,10 @@ func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDeviceOutputWithCo
 	return o
 }
 
-func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDevicePtrOutput() SwitchControllerNacDevicePtrOutput {
-	return o.ToSwitchControllerNacDevicePtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerNacDeviceOutput) ToSwitchControllerNacDevicePtrOutputWithContext(ctx context.Context) SwitchControllerNacDevicePtrOutput {
-	return o.ApplyT(func(v SwitchControllerNacDevice) *SwitchControllerNacDevice {
-		return &v
-	}).(SwitchControllerNacDevicePtrOutput)
-}
-
-type SwitchControllerNacDevicePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerNacDevicePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerNacDevice)(nil))
-}
-
-func (o SwitchControllerNacDevicePtrOutput) ToSwitchControllerNacDevicePtrOutput() SwitchControllerNacDevicePtrOutput {
-	return o
-}
-
-func (o SwitchControllerNacDevicePtrOutput) ToSwitchControllerNacDevicePtrOutputWithContext(ctx context.Context) SwitchControllerNacDevicePtrOutput {
-	return o
-}
-
 type SwitchControllerNacDeviceArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacDeviceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerNacDevice)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerNacDevice)(nil)).Elem()
 }
 
 func (o SwitchControllerNacDeviceArrayOutput) ToSwitchControllerNacDeviceArrayOutput() SwitchControllerNacDeviceArrayOutput {
@@ -340,15 +284,15 @@ func (o SwitchControllerNacDeviceArrayOutput) ToSwitchControllerNacDeviceArrayOu
 }
 
 func (o SwitchControllerNacDeviceArrayOutput) Index(i pulumi.IntInput) SwitchControllerNacDeviceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerNacDevice {
-		return vs[0].([]SwitchControllerNacDevice)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerNacDevice {
+		return vs[0].([]*SwitchControllerNacDevice)[vs[1].(int)]
 	}).(SwitchControllerNacDeviceOutput)
 }
 
 type SwitchControllerNacDeviceMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNacDeviceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerNacDevice)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerNacDevice)(nil)).Elem()
 }
 
 func (o SwitchControllerNacDeviceMapOutput) ToSwitchControllerNacDeviceMapOutput() SwitchControllerNacDeviceMapOutput {
@@ -360,14 +304,16 @@ func (o SwitchControllerNacDeviceMapOutput) ToSwitchControllerNacDeviceMapOutput
 }
 
 func (o SwitchControllerNacDeviceMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerNacDeviceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerNacDevice {
-		return vs[0].(map[string]SwitchControllerNacDevice)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerNacDevice {
+		return vs[0].(map[string]*SwitchControllerNacDevice)[vs[1].(string)]
 	}).(SwitchControllerNacDeviceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNacDeviceInput)(nil)).Elem(), &SwitchControllerNacDevice{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNacDeviceArrayInput)(nil)).Elem(), SwitchControllerNacDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNacDeviceMapInput)(nil)).Elem(), SwitchControllerNacDeviceMap{})
 	pulumi.RegisterOutputType(SwitchControllerNacDeviceOutput{})
-	pulumi.RegisterOutputType(SwitchControllerNacDevicePtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerNacDeviceArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerNacDeviceMapOutput{})
 }

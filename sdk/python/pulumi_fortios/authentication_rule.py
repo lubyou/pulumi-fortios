@@ -17,6 +17,7 @@ class AuthenticationRuleArgs:
     def __init__(__self__, *,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
@@ -35,6 +36,7 @@ class AuthenticationRuleArgs:
         The set of arguments for constructing a AuthenticationRule resource.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
@@ -54,6 +56,8 @@ class AuthenticationRuleArgs:
             pulumi.set(__self__, "active_auth_method", active_auth_method)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if dstaddr6s is not None:
+            pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddrs is not None:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
@@ -106,6 +110,18 @@ class AuthenticationRuleArgs:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter
+    def dstaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]]:
+        """
+        Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+        """
+        return pulumi.get(self, "dstaddr6s")
+
+    @dstaddr6s.setter
+    def dstaddr6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]]):
+        pulumi.set(self, "dstaddr6s", value)
 
     @property
     @pulumi.getter
@@ -281,6 +297,7 @@ class _AuthenticationRuleState:
     def __init__(__self__, *,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
@@ -299,6 +316,7 @@ class _AuthenticationRuleState:
         Input properties used for looking up and filtering AuthenticationRule resources.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddrArgs']]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
@@ -318,6 +336,8 @@ class _AuthenticationRuleState:
             pulumi.set(__self__, "active_auth_method", active_auth_method)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if dstaddr6s is not None:
+            pulumi.set(__self__, "dstaddr6s", dstaddr6s)
         if dstaddrs is not None:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
@@ -370,6 +390,18 @@ class _AuthenticationRuleState:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter
+    def dstaddr6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]]:
+        """
+        Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+        """
+        return pulumi.get(self, "dstaddr6s")
+
+    @dstaddr6s.setter
+    def dstaddr6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationRuleDstaddr6Args']]]]):
+        pulumi.set(self, "dstaddr6s", value)
 
     @property
     @pulumi.getter
@@ -547,6 +579,7 @@ class AuthenticationRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
@@ -593,6 +626,7 @@ class AuthenticationRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
@@ -658,6 +692,7 @@ class AuthenticationRule(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  active_auth_method: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ip_based: Optional[pulumi.Input[str]] = None,
@@ -679,6 +714,8 @@ class AuthenticationRule(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -686,6 +723,7 @@ class AuthenticationRule(pulumi.CustomResource):
 
             __props__.__dict__["active_auth_method"] = active_auth_method
             __props__.__dict__["comments"] = comments
+            __props__.__dict__["dstaddr6s"] = dstaddr6s
             __props__.__dict__["dstaddrs"] = dstaddrs
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ip_based"] = ip_based
@@ -712,6 +750,7 @@ class AuthenticationRule(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             active_auth_method: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
+            dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ip_based: Optional[pulumi.Input[str]] = None,
@@ -735,6 +774,7 @@ class AuthenticationRule(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] active_auth_method: Select an active authentication method.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddr6Args']]]] dstaddr6s: Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationRuleDstaddrArgs']]]] dstaddrs: Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ip_based: Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `enable`, `disable`.
@@ -756,6 +796,7 @@ class AuthenticationRule(pulumi.CustomResource):
 
         __props__.__dict__["active_auth_method"] = active_auth_method
         __props__.__dict__["comments"] = comments
+        __props__.__dict__["dstaddr6s"] = dstaddr6s
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ip_based"] = ip_based
@@ -787,6 +828,14 @@ class AuthenticationRule(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comments")
+
+    @property
+    @pulumi.getter
+    def dstaddr6s(self) -> pulumi.Output[Optional[Sequence['outputs.AuthenticationRuleDstaddr6']]]:
+        """
+        Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+        """
+        return pulumi.get(self, "dstaddr6s")
 
     @property
     @pulumi.getter

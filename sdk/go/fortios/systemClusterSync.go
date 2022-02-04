@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,12 +60,20 @@ type SystemClusterSync struct {
 	HbInterval pulumi.IntOutput `pulumi:"hbInterval"`
 	// Lost heartbeat threshold (1 - 10).
 	HbLostThreshold pulumi.IntOutput `pulumi:"hbLostThreshold"`
+	// IKE heartbeat interval (1 - 60 secs).
+	IkeHeartbeatInterval pulumi.IntOutput `pulumi:"ikeHeartbeatInterval"`
+	// Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+	IkeMonitor pulumi.StringOutput `pulumi:"ikeMonitor"`
+	// IKE HA monitor interval (10 - 300 secs).
+	IkeMonitorInterval pulumi.IntOutput `pulumi:"ikeMonitorInterval"`
 	// Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
 	IpsecTunnelSync pulumi.StringOutput `pulumi:"ipsecTunnelSync"`
 	// IP address of the interface on the peer unit that is used for the session synchronization link.
 	Peerip pulumi.StringOutput `pulumi:"peerip"`
 	// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
 	Peervd pulumi.StringOutput `pulumi:"peervd"`
+	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+	SecondaryAddIpsecRoutes pulumi.StringOutput `pulumi:"secondaryAddIpsecRoutes"`
 	// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
 	SessionSyncFilter SystemClusterSyncSessionSyncFilterPtrOutput `pulumi:"sessionSyncFilter"`
 	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
@@ -85,6 +93,7 @@ func NewSystemClusterSync(ctx *pulumi.Context,
 		args = &SystemClusterSyncArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemClusterSync
 	err := ctx.RegisterResource("fortios:index/systemClusterSync:SystemClusterSync", name, args, &resource, opts...)
 	if err != nil {
@@ -115,12 +124,20 @@ type systemClusterSyncState struct {
 	HbInterval *int `pulumi:"hbInterval"`
 	// Lost heartbeat threshold (1 - 10).
 	HbLostThreshold *int `pulumi:"hbLostThreshold"`
+	// IKE heartbeat interval (1 - 60 secs).
+	IkeHeartbeatInterval *int `pulumi:"ikeHeartbeatInterval"`
+	// Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+	IkeMonitor *string `pulumi:"ikeMonitor"`
+	// IKE HA monitor interval (10 - 300 secs).
+	IkeMonitorInterval *int `pulumi:"ikeMonitorInterval"`
 	// Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
 	IpsecTunnelSync *string `pulumi:"ipsecTunnelSync"`
 	// IP address of the interface on the peer unit that is used for the session synchronization link.
 	Peerip *string `pulumi:"peerip"`
 	// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
 	Peervd *string `pulumi:"peervd"`
+	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+	SecondaryAddIpsecRoutes *string `pulumi:"secondaryAddIpsecRoutes"`
 	// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
 	SessionSyncFilter *SystemClusterSyncSessionSyncFilter `pulumi:"sessionSyncFilter"`
 	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
@@ -142,12 +159,20 @@ type SystemClusterSyncState struct {
 	HbInterval pulumi.IntPtrInput
 	// Lost heartbeat threshold (1 - 10).
 	HbLostThreshold pulumi.IntPtrInput
+	// IKE heartbeat interval (1 - 60 secs).
+	IkeHeartbeatInterval pulumi.IntPtrInput
+	// Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+	IkeMonitor pulumi.StringPtrInput
+	// IKE HA monitor interval (10 - 300 secs).
+	IkeMonitorInterval pulumi.IntPtrInput
 	// Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
 	IpsecTunnelSync pulumi.StringPtrInput
 	// IP address of the interface on the peer unit that is used for the session synchronization link.
 	Peerip pulumi.StringPtrInput
 	// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
 	Peervd pulumi.StringPtrInput
+	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+	SecondaryAddIpsecRoutes pulumi.StringPtrInput
 	// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
 	SessionSyncFilter SystemClusterSyncSessionSyncFilterPtrInput
 	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
@@ -173,12 +198,20 @@ type systemClusterSyncArgs struct {
 	HbInterval *int `pulumi:"hbInterval"`
 	// Lost heartbeat threshold (1 - 10).
 	HbLostThreshold *int `pulumi:"hbLostThreshold"`
+	// IKE heartbeat interval (1 - 60 secs).
+	IkeHeartbeatInterval *int `pulumi:"ikeHeartbeatInterval"`
+	// Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+	IkeMonitor *string `pulumi:"ikeMonitor"`
+	// IKE HA monitor interval (10 - 300 secs).
+	IkeMonitorInterval *int `pulumi:"ikeMonitorInterval"`
 	// Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
 	IpsecTunnelSync *string `pulumi:"ipsecTunnelSync"`
 	// IP address of the interface on the peer unit that is used for the session synchronization link.
 	Peerip *string `pulumi:"peerip"`
 	// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
 	Peervd *string `pulumi:"peervd"`
+	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+	SecondaryAddIpsecRoutes *string `pulumi:"secondaryAddIpsecRoutes"`
 	// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
 	SessionSyncFilter *SystemClusterSyncSessionSyncFilter `pulumi:"sessionSyncFilter"`
 	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
@@ -201,12 +234,20 @@ type SystemClusterSyncArgs struct {
 	HbInterval pulumi.IntPtrInput
 	// Lost heartbeat threshold (1 - 10).
 	HbLostThreshold pulumi.IntPtrInput
+	// IKE heartbeat interval (1 - 60 secs).
+	IkeHeartbeatInterval pulumi.IntPtrInput
+	// Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+	IkeMonitor pulumi.StringPtrInput
+	// IKE HA monitor interval (10 - 300 secs).
+	IkeMonitorInterval pulumi.IntPtrInput
 	// Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
 	IpsecTunnelSync pulumi.StringPtrInput
 	// IP address of the interface on the peer unit that is used for the session synchronization link.
 	Peerip pulumi.StringPtrInput
 	// VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
 	Peervd pulumi.StringPtrInput
+	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+	SecondaryAddIpsecRoutes pulumi.StringPtrInput
 	// Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
 	SessionSyncFilter SystemClusterSyncSessionSyncFilterPtrInput
 	// Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
@@ -231,7 +272,7 @@ type SystemClusterSyncInput interface {
 }
 
 func (*SystemClusterSync) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemClusterSync)(nil))
+	return reflect.TypeOf((**SystemClusterSync)(nil)).Elem()
 }
 
 func (i *SystemClusterSync) ToSystemClusterSyncOutput() SystemClusterSyncOutput {
@@ -240,35 +281,6 @@ func (i *SystemClusterSync) ToSystemClusterSyncOutput() SystemClusterSyncOutput 
 
 func (i *SystemClusterSync) ToSystemClusterSyncOutputWithContext(ctx context.Context) SystemClusterSyncOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncOutput)
-}
-
-func (i *SystemClusterSync) ToSystemClusterSyncPtrOutput() SystemClusterSyncPtrOutput {
-	return i.ToSystemClusterSyncPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemClusterSync) ToSystemClusterSyncPtrOutputWithContext(ctx context.Context) SystemClusterSyncPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncPtrOutput)
-}
-
-type SystemClusterSyncPtrInput interface {
-	pulumi.Input
-
-	ToSystemClusterSyncPtrOutput() SystemClusterSyncPtrOutput
-	ToSystemClusterSyncPtrOutputWithContext(ctx context.Context) SystemClusterSyncPtrOutput
-}
-
-type systemClusterSyncPtrType SystemClusterSyncArgs
-
-func (*systemClusterSyncPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemClusterSync)(nil))
-}
-
-func (i *systemClusterSyncPtrType) ToSystemClusterSyncPtrOutput() SystemClusterSyncPtrOutput {
-	return i.ToSystemClusterSyncPtrOutputWithContext(context.Background())
-}
-
-func (i *systemClusterSyncPtrType) ToSystemClusterSyncPtrOutputWithContext(ctx context.Context) SystemClusterSyncPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncPtrOutput)
 }
 
 // SystemClusterSyncArrayInput is an input type that accepts SystemClusterSyncArray and SystemClusterSyncArrayOutput values.
@@ -285,7 +297,7 @@ type SystemClusterSyncArrayInput interface {
 type SystemClusterSyncArray []SystemClusterSyncInput
 
 func (SystemClusterSyncArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemClusterSync)(nil))
+	return reflect.TypeOf((*[]*SystemClusterSync)(nil)).Elem()
 }
 
 func (i SystemClusterSyncArray) ToSystemClusterSyncArrayOutput() SystemClusterSyncArrayOutput {
@@ -310,7 +322,7 @@ type SystemClusterSyncMapInput interface {
 type SystemClusterSyncMap map[string]SystemClusterSyncInput
 
 func (SystemClusterSyncMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemClusterSync)(nil))
+	return reflect.TypeOf((*map[string]*SystemClusterSync)(nil)).Elem()
 }
 
 func (i SystemClusterSyncMap) ToSystemClusterSyncMapOutput() SystemClusterSyncMapOutput {
@@ -321,12 +333,10 @@ func (i SystemClusterSyncMap) ToSystemClusterSyncMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemClusterSyncMapOutput)
 }
 
-type SystemClusterSyncOutput struct {
-	*pulumi.OutputState
-}
+type SystemClusterSyncOutput struct{ *pulumi.OutputState }
 
 func (SystemClusterSyncOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemClusterSync)(nil))
+	return reflect.TypeOf((**SystemClusterSync)(nil)).Elem()
 }
 
 func (o SystemClusterSyncOutput) ToSystemClusterSyncOutput() SystemClusterSyncOutput {
@@ -337,36 +347,10 @@ func (o SystemClusterSyncOutput) ToSystemClusterSyncOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemClusterSyncOutput) ToSystemClusterSyncPtrOutput() SystemClusterSyncPtrOutput {
-	return o.ToSystemClusterSyncPtrOutputWithContext(context.Background())
-}
-
-func (o SystemClusterSyncOutput) ToSystemClusterSyncPtrOutputWithContext(ctx context.Context) SystemClusterSyncPtrOutput {
-	return o.ApplyT(func(v SystemClusterSync) *SystemClusterSync {
-		return &v
-	}).(SystemClusterSyncPtrOutput)
-}
-
-type SystemClusterSyncPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemClusterSyncPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemClusterSync)(nil))
-}
-
-func (o SystemClusterSyncPtrOutput) ToSystemClusterSyncPtrOutput() SystemClusterSyncPtrOutput {
-	return o
-}
-
-func (o SystemClusterSyncPtrOutput) ToSystemClusterSyncPtrOutputWithContext(ctx context.Context) SystemClusterSyncPtrOutput {
-	return o
-}
-
 type SystemClusterSyncArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemClusterSyncArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemClusterSync)(nil))
+	return reflect.TypeOf((*[]*SystemClusterSync)(nil)).Elem()
 }
 
 func (o SystemClusterSyncArrayOutput) ToSystemClusterSyncArrayOutput() SystemClusterSyncArrayOutput {
@@ -378,15 +362,15 @@ func (o SystemClusterSyncArrayOutput) ToSystemClusterSyncArrayOutputWithContext(
 }
 
 func (o SystemClusterSyncArrayOutput) Index(i pulumi.IntInput) SystemClusterSyncOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemClusterSync {
-		return vs[0].([]SystemClusterSync)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemClusterSync {
+		return vs[0].([]*SystemClusterSync)[vs[1].(int)]
 	}).(SystemClusterSyncOutput)
 }
 
 type SystemClusterSyncMapOutput struct{ *pulumi.OutputState }
 
 func (SystemClusterSyncMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemClusterSync)(nil))
+	return reflect.TypeOf((*map[string]*SystemClusterSync)(nil)).Elem()
 }
 
 func (o SystemClusterSyncMapOutput) ToSystemClusterSyncMapOutput() SystemClusterSyncMapOutput {
@@ -398,14 +382,16 @@ func (o SystemClusterSyncMapOutput) ToSystemClusterSyncMapOutputWithContext(ctx 
 }
 
 func (o SystemClusterSyncMapOutput) MapIndex(k pulumi.StringInput) SystemClusterSyncOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemClusterSync {
-		return vs[0].(map[string]SystemClusterSync)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemClusterSync {
+		return vs[0].(map[string]*SystemClusterSync)[vs[1].(string)]
 	}).(SystemClusterSyncOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemClusterSyncInput)(nil)).Elem(), &SystemClusterSync{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemClusterSyncArrayInput)(nil)).Elem(), SystemClusterSyncArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemClusterSyncMapInput)(nil)).Elem(), SystemClusterSyncMap{})
 	pulumi.RegisterOutputType(SystemClusterSyncOutput{})
-	pulumi.RegisterOutputType(SystemClusterSyncPtrOutput{})
 	pulumi.RegisterOutputType(SystemClusterSyncArrayOutput{})
 	pulumi.RegisterOutputType(SystemClusterSyncMapOutput{})
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure endpoint control settings.
+// Configure endpoint control settings. Applies to FortiOS Version `<= 6.2.6`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -99,6 +99,7 @@ func NewEndpointControlSettings(ctx *pulumi.Context,
 		args = &EndpointControlSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlSettings
 	err := ctx.RegisterResource("fortios:index/endpointControlSettings:EndpointControlSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -277,7 +278,7 @@ type EndpointControlSettingsInput interface {
 }
 
 func (*EndpointControlSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlSettings)(nil))
+	return reflect.TypeOf((**EndpointControlSettings)(nil)).Elem()
 }
 
 func (i *EndpointControlSettings) ToEndpointControlSettingsOutput() EndpointControlSettingsOutput {
@@ -286,35 +287,6 @@ func (i *EndpointControlSettings) ToEndpointControlSettingsOutput() EndpointCont
 
 func (i *EndpointControlSettings) ToEndpointControlSettingsOutputWithContext(ctx context.Context) EndpointControlSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsOutput)
-}
-
-func (i *EndpointControlSettings) ToEndpointControlSettingsPtrOutput() EndpointControlSettingsPtrOutput {
-	return i.ToEndpointControlSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *EndpointControlSettings) ToEndpointControlSettingsPtrOutputWithContext(ctx context.Context) EndpointControlSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsPtrOutput)
-}
-
-type EndpointControlSettingsPtrInput interface {
-	pulumi.Input
-
-	ToEndpointControlSettingsPtrOutput() EndpointControlSettingsPtrOutput
-	ToEndpointControlSettingsPtrOutputWithContext(ctx context.Context) EndpointControlSettingsPtrOutput
-}
-
-type endpointControlSettingsPtrType EndpointControlSettingsArgs
-
-func (*endpointControlSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlSettings)(nil))
-}
-
-func (i *endpointControlSettingsPtrType) ToEndpointControlSettingsPtrOutput() EndpointControlSettingsPtrOutput {
-	return i.ToEndpointControlSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *endpointControlSettingsPtrType) ToEndpointControlSettingsPtrOutputWithContext(ctx context.Context) EndpointControlSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsPtrOutput)
 }
 
 // EndpointControlSettingsArrayInput is an input type that accepts EndpointControlSettingsArray and EndpointControlSettingsArrayOutput values.
@@ -331,7 +303,7 @@ type EndpointControlSettingsArrayInput interface {
 type EndpointControlSettingsArray []EndpointControlSettingsInput
 
 func (EndpointControlSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EndpointControlSettings)(nil))
+	return reflect.TypeOf((*[]*EndpointControlSettings)(nil)).Elem()
 }
 
 func (i EndpointControlSettingsArray) ToEndpointControlSettingsArrayOutput() EndpointControlSettingsArrayOutput {
@@ -356,7 +328,7 @@ type EndpointControlSettingsMapInput interface {
 type EndpointControlSettingsMap map[string]EndpointControlSettingsInput
 
 func (EndpointControlSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EndpointControlSettings)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlSettings)(nil)).Elem()
 }
 
 func (i EndpointControlSettingsMap) ToEndpointControlSettingsMapOutput() EndpointControlSettingsMapOutput {
@@ -367,12 +339,10 @@ func (i EndpointControlSettingsMap) ToEndpointControlSettingsMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlSettingsMapOutput)
 }
 
-type EndpointControlSettingsOutput struct {
-	*pulumi.OutputState
-}
+type EndpointControlSettingsOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlSettings)(nil))
+	return reflect.TypeOf((**EndpointControlSettings)(nil)).Elem()
 }
 
 func (o EndpointControlSettingsOutput) ToEndpointControlSettingsOutput() EndpointControlSettingsOutput {
@@ -383,36 +353,10 @@ func (o EndpointControlSettingsOutput) ToEndpointControlSettingsOutputWithContex
 	return o
 }
 
-func (o EndpointControlSettingsOutput) ToEndpointControlSettingsPtrOutput() EndpointControlSettingsPtrOutput {
-	return o.ToEndpointControlSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o EndpointControlSettingsOutput) ToEndpointControlSettingsPtrOutputWithContext(ctx context.Context) EndpointControlSettingsPtrOutput {
-	return o.ApplyT(func(v EndpointControlSettings) *EndpointControlSettings {
-		return &v
-	}).(EndpointControlSettingsPtrOutput)
-}
-
-type EndpointControlSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EndpointControlSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlSettings)(nil))
-}
-
-func (o EndpointControlSettingsPtrOutput) ToEndpointControlSettingsPtrOutput() EndpointControlSettingsPtrOutput {
-	return o
-}
-
-func (o EndpointControlSettingsPtrOutput) ToEndpointControlSettingsPtrOutputWithContext(ctx context.Context) EndpointControlSettingsPtrOutput {
-	return o
-}
-
 type EndpointControlSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointControlSettings)(nil))
+	return reflect.TypeOf((*[]*EndpointControlSettings)(nil)).Elem()
 }
 
 func (o EndpointControlSettingsArrayOutput) ToEndpointControlSettingsArrayOutput() EndpointControlSettingsArrayOutput {
@@ -424,15 +368,15 @@ func (o EndpointControlSettingsArrayOutput) ToEndpointControlSettingsArrayOutput
 }
 
 func (o EndpointControlSettingsArrayOutput) Index(i pulumi.IntInput) EndpointControlSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointControlSettings {
-		return vs[0].([]EndpointControlSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlSettings {
+		return vs[0].([]*EndpointControlSettings)[vs[1].(int)]
 	}).(EndpointControlSettingsOutput)
 }
 
 type EndpointControlSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EndpointControlSettings)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlSettings)(nil)).Elem()
 }
 
 func (o EndpointControlSettingsMapOutput) ToEndpointControlSettingsMapOutput() EndpointControlSettingsMapOutput {
@@ -444,14 +388,16 @@ func (o EndpointControlSettingsMapOutput) ToEndpointControlSettingsMapOutputWith
 }
 
 func (o EndpointControlSettingsMapOutput) MapIndex(k pulumi.StringInput) EndpointControlSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EndpointControlSettings {
-		return vs[0].(map[string]EndpointControlSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EndpointControlSettings {
+		return vs[0].(map[string]*EndpointControlSettings)[vs[1].(string)]
 	}).(EndpointControlSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlSettingsInput)(nil)).Elem(), &EndpointControlSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlSettingsArrayInput)(nil)).Elem(), EndpointControlSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlSettingsMapInput)(nil)).Elem(), EndpointControlSettingsMap{})
 	pulumi.RegisterOutputType(EndpointControlSettingsOutput{})
-	pulumi.RegisterOutputType(EndpointControlSettingsPtrOutput{})
 	pulumi.RegisterOutputType(EndpointControlSettingsArrayOutput{})
 	pulumi.RegisterOutputType(EndpointControlSettingsMapOutput{})
 }

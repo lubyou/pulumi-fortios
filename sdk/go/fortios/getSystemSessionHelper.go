@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system sessionhelper
 func LookupSystemSessionHelper(ctx *pulumi.Context, args *LookupSystemSessionHelperArgs, opts ...pulumi.InvokeOption) (*LookupSystemSessionHelperResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSessionHelperResult
 	err := ctx.Invoke("fortios:index/getSystemSessionHelper:GetSystemSessionHelper", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,73 @@ type LookupSystemSessionHelperResult struct {
 	// Protocol number.
 	Protocol  int     `pulumi:"protocol"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemSessionHelperOutput(ctx *pulumi.Context, args LookupSystemSessionHelperOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSessionHelperResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemSessionHelperResult, error) {
+			args := v.(LookupSystemSessionHelperArgs)
+			r, err := LookupSystemSessionHelper(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemSessionHelperResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSessionHelper.
+type LookupSystemSessionHelperOutputArgs struct {
+	// Specify the fosid of the desired system sessionhelper.
+	Fosid pulumi.IntInput `pulumi:"fosid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemSessionHelperOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSessionHelperArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSessionHelper.
+type LookupSystemSessionHelperResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemSessionHelperResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSessionHelperResult)(nil)).Elem()
+}
+
+func (o LookupSystemSessionHelperResultOutput) ToLookupSystemSessionHelperResultOutput() LookupSystemSessionHelperResultOutput {
+	return o
+}
+
+func (o LookupSystemSessionHelperResultOutput) ToLookupSystemSessionHelperResultOutputWithContext(ctx context.Context) LookupSystemSessionHelperResultOutput {
+	return o
+}
+
+// Session helper ID.
+func (o LookupSystemSessionHelperResultOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemSessionHelperResult) int { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemSessionHelperResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSessionHelperResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Helper name.
+func (o LookupSystemSessionHelperResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSessionHelperResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Protocol port.
+func (o LookupSystemSessionHelperResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemSessionHelperResult) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Protocol number.
+func (o LookupSystemSessionHelperResultOutput) Protocol() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemSessionHelperResult) int { return v.Protocol }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemSessionHelperResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemSessionHelperResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemSessionHelperResultOutput{})
 }

@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemLinkMonitorResult',
     'AwaitableGetSystemLinkMonitorResult',
     'get_system_link_monitor',
+    'get_system_link_monitor_output',
 ]
 
 @pulumi.output_type
@@ -20,10 +21,19 @@ class GetSystemLinkMonitorResult:
     """
     A collection of values returned by GetSystemLinkMonitor.
     """
-    def __init__(__self__, addr_mode=None, failtime=None, gateway_ip=None, gateway_ip6=None, ha_priority=None, http_agent=None, http_get=None, http_match=None, id=None, interval=None, name=None, packet_size=None, password=None, port=None, probe_count=None, probe_timeout=None, protocol=None, recoverytime=None, security_mode=None, servers=None, source_ip=None, source_ip6=None, srcintf=None, status=None, update_cascade_interface=None, update_static_route=None, vdomparam=None):
+    def __init__(__self__, addr_mode=None, class_id=None, diffservcode=None, fail_weight=None, failtime=None, gateway_ip=None, gateway_ip6=None, ha_priority=None, http_agent=None, http_get=None, http_match=None, id=None, interval=None, name=None, packet_size=None, password=None, port=None, probe_count=None, probe_timeout=None, protocol=None, recoverytime=None, routes=None, security_mode=None, server_config=None, server_lists=None, servers=None, service_detection=None, source_ip=None, source_ip6=None, srcintf=None, status=None, update_cascade_interface=None, update_policy_route=None, update_static_route=None, vdomparam=None):
         if addr_mode and not isinstance(addr_mode, str):
             raise TypeError("Expected argument 'addr_mode' to be a str")
         pulumi.set(__self__, "addr_mode", addr_mode)
+        if class_id and not isinstance(class_id, int):
+            raise TypeError("Expected argument 'class_id' to be a int")
+        pulumi.set(__self__, "class_id", class_id)
+        if diffservcode and not isinstance(diffservcode, str):
+            raise TypeError("Expected argument 'diffservcode' to be a str")
+        pulumi.set(__self__, "diffservcode", diffservcode)
+        if fail_weight and not isinstance(fail_weight, int):
+            raise TypeError("Expected argument 'fail_weight' to be a int")
+        pulumi.set(__self__, "fail_weight", fail_weight)
         if failtime and not isinstance(failtime, int):
             raise TypeError("Expected argument 'failtime' to be a int")
         pulumi.set(__self__, "failtime", failtime)
@@ -75,12 +85,24 @@ class GetSystemLinkMonitorResult:
         if recoverytime and not isinstance(recoverytime, int):
             raise TypeError("Expected argument 'recoverytime' to be a int")
         pulumi.set(__self__, "recoverytime", recoverytime)
+        if routes and not isinstance(routes, list):
+            raise TypeError("Expected argument 'routes' to be a list")
+        pulumi.set(__self__, "routes", routes)
         if security_mode and not isinstance(security_mode, str):
             raise TypeError("Expected argument 'security_mode' to be a str")
         pulumi.set(__self__, "security_mode", security_mode)
+        if server_config and not isinstance(server_config, str):
+            raise TypeError("Expected argument 'server_config' to be a str")
+        pulumi.set(__self__, "server_config", server_config)
+        if server_lists and not isinstance(server_lists, list):
+            raise TypeError("Expected argument 'server_lists' to be a list")
+        pulumi.set(__self__, "server_lists", server_lists)
         if servers and not isinstance(servers, list):
             raise TypeError("Expected argument 'servers' to be a list")
         pulumi.set(__self__, "servers", servers)
+        if service_detection and not isinstance(service_detection, str):
+            raise TypeError("Expected argument 'service_detection' to be a str")
+        pulumi.set(__self__, "service_detection", service_detection)
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
@@ -96,6 +118,9 @@ class GetSystemLinkMonitorResult:
         if update_cascade_interface and not isinstance(update_cascade_interface, str):
             raise TypeError("Expected argument 'update_cascade_interface' to be a str")
         pulumi.set(__self__, "update_cascade_interface", update_cascade_interface)
+        if update_policy_route and not isinstance(update_policy_route, str):
+            raise TypeError("Expected argument 'update_policy_route' to be a str")
+        pulumi.set(__self__, "update_policy_route", update_policy_route)
         if update_static_route and not isinstance(update_static_route, str):
             raise TypeError("Expected argument 'update_static_route' to be a str")
         pulumi.set(__self__, "update_static_route", update_static_route)
@@ -110,6 +135,30 @@ class GetSystemLinkMonitorResult:
         Address mode (IPv4 or IPv6).
         """
         return pulumi.get(self, "addr_mode")
+
+    @property
+    @pulumi.getter(name="classId")
+    def class_id(self) -> int:
+        """
+        Traffic class ID.
+        """
+        return pulumi.get(self, "class_id")
+
+    @property
+    @pulumi.getter
+    def diffservcode(self) -> str:
+        """
+        Differentiated services code point (DSCP) in the IP header of the probe packet.
+        """
+        return pulumi.get(self, "diffservcode")
+
+    @property
+    @pulumi.getter(name="failWeight")
+    def fail_weight(self) -> int:
+        """
+        Threshold weight to trigger link failure alert.
+        """
+        return pulumi.get(self, "fail_weight")
 
     @property
     @pulumi.getter
@@ -248,6 +297,14 @@ class GetSystemLinkMonitorResult:
         return pulumi.get(self, "recoverytime")
 
     @property
+    @pulumi.getter
+    def routes(self) -> Sequence['outputs.GetSystemLinkMonitorRouteResult']:
+        """
+        Subnet to monitor. The structure of `route` block is documented below.
+        """
+        return pulumi.get(self, "routes")
+
+    @property
     @pulumi.getter(name="securityMode")
     def security_mode(self) -> str:
         """
@@ -256,12 +313,36 @@ class GetSystemLinkMonitorResult:
         return pulumi.get(self, "security_mode")
 
     @property
+    @pulumi.getter(name="serverConfig")
+    def server_config(self) -> str:
+        """
+        Mode of server configuration.
+        """
+        return pulumi.get(self, "server_config")
+
+    @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> Sequence['outputs.GetSystemLinkMonitorServerListResult']:
+        """
+        Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @property
     @pulumi.getter
     def servers(self) -> Sequence['outputs.GetSystemLinkMonitorServerResult']:
         """
         IP address of the server(s) to be monitored. The structure of `server` block is documented below.
         """
         return pulumi.get(self, "servers")
+
+    @property
+    @pulumi.getter(name="serviceDetection")
+    def service_detection(self) -> str:
+        """
+        Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated.
+        """
+        return pulumi.get(self, "service_detection")
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -304,6 +385,14 @@ class GetSystemLinkMonitorResult:
         return pulumi.get(self, "update_cascade_interface")
 
     @property
+    @pulumi.getter(name="updatePolicyRoute")
+    def update_policy_route(self) -> str:
+        """
+        Enable/disable updating the policy route.
+        """
+        return pulumi.get(self, "update_policy_route")
+
+    @property
     @pulumi.getter(name="updateStaticRoute")
     def update_static_route(self) -> str:
         """
@@ -324,6 +413,9 @@ class AwaitableGetSystemLinkMonitorResult(GetSystemLinkMonitorResult):
             yield self
         return GetSystemLinkMonitorResult(
             addr_mode=self.addr_mode,
+            class_id=self.class_id,
+            diffservcode=self.diffservcode,
+            fail_weight=self.fail_weight,
             failtime=self.failtime,
             gateway_ip=self.gateway_ip,
             gateway_ip6=self.gateway_ip6,
@@ -341,13 +433,18 @@ class AwaitableGetSystemLinkMonitorResult(GetSystemLinkMonitorResult):
             probe_timeout=self.probe_timeout,
             protocol=self.protocol,
             recoverytime=self.recoverytime,
+            routes=self.routes,
             security_mode=self.security_mode,
+            server_config=self.server_config,
+            server_lists=self.server_lists,
             servers=self.servers,
+            service_detection=self.service_detection,
             source_ip=self.source_ip,
             source_ip6=self.source_ip6,
             srcintf=self.srcintf,
             status=self.status,
             update_cascade_interface=self.update_cascade_interface,
+            update_policy_route=self.update_policy_route,
             update_static_route=self.update_static_route,
             vdomparam=self.vdomparam)
 
@@ -369,10 +466,15 @@ def get_system_link_monitor(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemLinkMonitor:GetSystemLinkMonitor', __args__, opts=opts, typ=GetSystemLinkMonitorResult).value
 
     return AwaitableGetSystemLinkMonitorResult(
         addr_mode=__ret__.addr_mode,
+        class_id=__ret__.class_id,
+        diffservcode=__ret__.diffservcode,
+        fail_weight=__ret__.fail_weight,
         failtime=__ret__.failtime,
         gateway_ip=__ret__.gateway_ip,
         gateway_ip6=__ret__.gateway_ip6,
@@ -390,12 +492,31 @@ def get_system_link_monitor(name: Optional[str] = None,
         probe_timeout=__ret__.probe_timeout,
         protocol=__ret__.protocol,
         recoverytime=__ret__.recoverytime,
+        routes=__ret__.routes,
         security_mode=__ret__.security_mode,
+        server_config=__ret__.server_config,
+        server_lists=__ret__.server_lists,
         servers=__ret__.servers,
+        service_detection=__ret__.service_detection,
         source_ip=__ret__.source_ip,
         source_ip6=__ret__.source_ip6,
         srcintf=__ret__.srcintf,
         status=__ret__.status,
         update_cascade_interface=__ret__.update_cascade_interface,
+        update_policy_route=__ret__.update_policy_route,
         update_static_route=__ret__.update_static_route,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_link_monitor)
+def get_system_link_monitor_output(name: Optional[pulumi.Input[str]] = None,
+                                   vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemLinkMonitorResult]:
+    """
+    Use this data source to get information on an fortios system linkmonitor
+
+
+    :param str name: Specify the name of the desired system linkmonitor.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

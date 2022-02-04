@@ -18,6 +18,7 @@ class SystemDhcp6ServerArgs:
                  fosid: pulumi.Input[int],
                  interface: pulumi.Input[str],
                  subnet: pulumi.Input[str],
+                 delegated_prefix_iaid: Optional[pulumi.Input[int]] = None,
                  dns_search_list: Optional[pulumi.Input[str]] = None,
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
@@ -43,6 +44,7 @@ class SystemDhcp6ServerArgs:
         :param pulumi.Input[int] fosid: ID.
         :param pulumi.Input[str] interface: DHCP server can assign IP configurations to clients connected to this interface.
         :param pulumi.Input[str] subnet: Subnet or subnet-id if the IP mode is delegated.
+        :param pulumi.Input[int] delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param pulumi.Input[str] dns_search_list: DNS search list options. Valid values: `delegated`, `specify`.
         :param pulumi.Input[str] dns_server1: DNS server 1.
         :param pulumi.Input[str] dns_server2: DNS server 2.
@@ -67,6 +69,8 @@ class SystemDhcp6ServerArgs:
         pulumi.set(__self__, "fosid", fosid)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "subnet", subnet)
+        if delegated_prefix_iaid is not None:
+            pulumi.set(__self__, "delegated_prefix_iaid", delegated_prefix_iaid)
         if dns_search_list is not None:
             pulumi.set(__self__, "dns_search_list", dns_search_list)
         if dns_server1 is not None:
@@ -143,6 +147,18 @@ class SystemDhcp6ServerArgs:
     @subnet.setter
     def subnet(self, value: pulumi.Input[str]):
         pulumi.set(self, "subnet", value)
+
+    @property
+    @pulumi.getter(name="delegatedPrefixIaid")
+    def delegated_prefix_iaid(self) -> Optional[pulumi.Input[int]]:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "delegated_prefix_iaid")
+
+    @delegated_prefix_iaid.setter
+    def delegated_prefix_iaid(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "delegated_prefix_iaid", value)
 
     @property
     @pulumi.getter(name="dnsSearchList")
@@ -388,6 +404,7 @@ class SystemDhcp6ServerArgs:
 @pulumi.input_type
 class _SystemDhcp6ServerState:
     def __init__(__self__, *,
+                 delegated_prefix_iaid: Optional[pulumi.Input[int]] = None,
                  dns_search_list: Optional[pulumi.Input[str]] = None,
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
@@ -413,6 +430,7 @@ class _SystemDhcp6ServerState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemDhcp6Server resources.
+        :param pulumi.Input[int] delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param pulumi.Input[str] dns_search_list: DNS search list options. Valid values: `delegated`, `specify`.
         :param pulumi.Input[str] dns_server1: DNS server 1.
         :param pulumi.Input[str] dns_server2: DNS server 2.
@@ -437,6 +455,8 @@ class _SystemDhcp6ServerState:
         :param pulumi.Input[str] upstream_interface: Interface name from where delegated information is provided.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if delegated_prefix_iaid is not None:
+            pulumi.set(__self__, "delegated_prefix_iaid", delegated_prefix_iaid)
         if dns_search_list is not None:
             pulumi.set(__self__, "dns_search_list", dns_search_list)
         if dns_server1 is not None:
@@ -483,6 +503,18 @@ class _SystemDhcp6ServerState:
             pulumi.set(__self__, "upstream_interface", upstream_interface)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="delegatedPrefixIaid")
+    def delegated_prefix_iaid(self) -> Optional[pulumi.Input[int]]:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "delegated_prefix_iaid")
+
+    @delegated_prefix_iaid.setter
+    def delegated_prefix_iaid(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "delegated_prefix_iaid", value)
 
     @property
     @pulumi.getter(name="dnsSearchList")
@@ -766,6 +798,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delegated_prefix_iaid: Optional[pulumi.Input[int]] = None,
                  dns_search_list: Optional[pulumi.Input[str]] = None,
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
@@ -820,6 +853,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param pulumi.Input[str] dns_search_list: DNS search list options. Valid values: `delegated`, `specify`.
         :param pulumi.Input[str] dns_server1: DNS server 1.
         :param pulumi.Input[str] dns_server2: DNS server 2.
@@ -893,6 +927,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 delegated_prefix_iaid: Optional[pulumi.Input[int]] = None,
                  dns_search_list: Optional[pulumi.Input[str]] = None,
                  dns_server1: Optional[pulumi.Input[str]] = None,
                  dns_server2: Optional[pulumi.Input[str]] = None,
@@ -923,11 +958,14 @@ class SystemDhcp6Server(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemDhcp6ServerArgs.__new__(SystemDhcp6ServerArgs)
 
+            __props__.__dict__["delegated_prefix_iaid"] = delegated_prefix_iaid
             __props__.__dict__["dns_search_list"] = dns_search_list
             __props__.__dict__["dns_server1"] = dns_server1
             __props__.__dict__["dns_server2"] = dns_server2
@@ -967,6 +1005,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            delegated_prefix_iaid: Optional[pulumi.Input[int]] = None,
             dns_search_list: Optional[pulumi.Input[str]] = None,
             dns_server1: Optional[pulumi.Input[str]] = None,
             dns_server2: Optional[pulumi.Input[str]] = None,
@@ -997,6 +1036,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[int] delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param pulumi.Input[str] dns_search_list: DNS search list options. Valid values: `delegated`, `specify`.
         :param pulumi.Input[str] dns_server1: DNS server 1.
         :param pulumi.Input[str] dns_server2: DNS server 2.
@@ -1025,6 +1065,7 @@ class SystemDhcp6Server(pulumi.CustomResource):
 
         __props__ = _SystemDhcp6ServerState.__new__(_SystemDhcp6ServerState)
 
+        __props__.__dict__["delegated_prefix_iaid"] = delegated_prefix_iaid
         __props__.__dict__["dns_search_list"] = dns_search_list
         __props__.__dict__["dns_server1"] = dns_server1
         __props__.__dict__["dns_server2"] = dns_server2
@@ -1049,6 +1090,14 @@ class SystemDhcp6Server(pulumi.CustomResource):
         __props__.__dict__["upstream_interface"] = upstream_interface
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemDhcp6Server(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="delegatedPrefixIaid")
+    def delegated_prefix_iaid(self) -> pulumi.Output[int]:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="dnsSearchList")

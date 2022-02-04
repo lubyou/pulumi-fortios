@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,31 +28,31 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallPolicy(ctx, "trname", &fortios.FirewallPolicyArgs{
 // 			Action: pulumi.String("accept"),
-// 			Dstaddrs: fortios.FirewallPolicyDstaddrArray{
-// 				&fortios.FirewallPolicyDstaddrArgs{
+// 			Dstaddrs: FirewallPolicyDstaddrArray{
+// 				&FirewallPolicyDstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
-// 			Dstintfs: fortios.FirewallPolicyDstintfArray{
-// 				&fortios.FirewallPolicyDstintfArgs{
+// 			Dstintfs: FirewallPolicyDstintfArray{
+// 				&FirewallPolicyDstintfArgs{
 // 					Name: pulumi.String("port4"),
 // 				},
 // 			},
 // 			Logtraffic: pulumi.String("utm"),
 // 			Policyid:   pulumi.Int(1),
 // 			Schedule:   pulumi.String("always"),
-// 			Services: fortios.FirewallPolicyServiceArray{
-// 				&fortios.FirewallPolicyServiceArgs{
+// 			Services: FirewallPolicyServiceArray{
+// 				&FirewallPolicyServiceArgs{
 // 					Name: pulumi.String("HTTP"),
 // 				},
 // 			},
-// 			Srcaddrs: fortios.FirewallPolicySrcaddrArray{
-// 				&fortios.FirewallPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallPolicySrcaddrArray{
+// 				&FirewallPolicySrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
-// 			Srcintfs: fortios.FirewallPolicySrcintfArray{
-// 				&fortios.FirewallPolicySrcintfArgs{
+// 			Srcintfs: FirewallPolicySrcintfArray{
+// 				&FirewallPolicySrcintfArgs{
 // 					Name: pulumi.String("port3"),
 // 				},
 // 			},
@@ -72,18 +73,18 @@ import (
 // 			AuthPath:        pulumi.String("disable"),
 // 			AutoAsicOffload: pulumi.String("enable"),
 // 			AvProfile:       pulumi.String("wifi-default"),
-// 			Dstintfs: fortios.FirewallPolicyDstintfArray{
-// 				&fortios.FirewallPolicyDstintfArgs{
+// 			Dstintfs: FirewallPolicyDstintfArray{
+// 				&FirewallPolicyDstintfArgs{
 // 					Name: pulumi.String("port1"),
 // 				},
 // 			},
 // 			InspectionMode:  pulumi.String("flow"),
 // 			InternetService: pulumi.String("enable"),
-// 			InternetServiceNames: fortios.FirewallPolicyInternetServiceNameArray{
-// 				&fortios.FirewallPolicyInternetServiceNameArgs{
+// 			InternetServiceNames: FirewallPolicyInternetServiceNameArray{
+// 				&FirewallPolicyInternetServiceNameArgs{
 // 					Name: pulumi.String("Amazon-AWS"),
 // 				},
-// 				&fortios.FirewallPolicyInternetServiceNameArgs{
+// 				&FirewallPolicyInternetServiceNameArgs{
 // 					Name: pulumi.String("GitHub-GitHub"),
 // 				},
 // 			},
@@ -91,13 +92,13 @@ import (
 // 			Logtraffic: pulumi.String("utm"),
 // 			Policyid:   pulumi.Int(2),
 // 			Schedule:   pulumi.String("always"),
-// 			Srcaddrs: fortios.FirewallPolicySrcaddrArray{
-// 				&fortios.FirewallPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallPolicySrcaddrArray{
+// 				&FirewallPolicySrcaddrArgs{
 // 					Name: pulumi.String("FABRIC_DEVICE"),
 // 				},
 // 			},
-// 			Srcintfs: fortios.FirewallPolicySrcintfArray{
-// 				&fortios.FirewallPolicySrcintfArgs{
+// 			Srcintfs: FirewallPolicySrcintfArray{
+// 				&FirewallPolicySrcintfArgs{
 // 					Name: pulumi.String("port2"),
 // 				},
 // 			},
@@ -189,12 +190,16 @@ type FirewallPolicy struct {
 	Dstaddrs FirewallPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
 	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
 	Dstintfs FirewallPolicyDstintfArrayOutput `pulumi:"dstintfs"`
+	// Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+	DynamicShaping pulumi.StringOutput `pulumi:"dynamicShaping"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable email collection. Valid values: `enable`, `disable`.
 	EmailCollect pulumi.StringOutput `pulumi:"emailCollect"`
 	// Name of an existing email filter profile.
 	EmailfilterProfile pulumi.StringOutput `pulumi:"emailfilterProfile"`
+	// Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+	Fec pulumi.StringOutput `pulumi:"fec"`
 	// Name of an existing file-filter profile.
 	FileFilterProfile pulumi.StringOutput `pulumi:"fileFilterProfile"`
 	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
@@ -273,12 +278,18 @@ type FirewallPolicy struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Enable/disable source NAT. Valid values: `enable`, `disable`.
 	Nat pulumi.StringOutput `pulumi:"nat"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringOutput `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringOutput `pulumi:"nat64"`
 	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
 	Natinbound pulumi.StringOutput `pulumi:"natinbound"`
 	// Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 	Natip pulumi.StringOutput `pulumi:"natip"`
 	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
 	Natoutbound pulumi.StringOutput `pulumi:"natoutbound"`
+	// Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+	NpAcceleration pulumi.StringOutput `pulumi:"npAcceleration"`
 	// Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
 	Ntlm pulumi.StringOutput `pulumi:"ntlm"`
 	// HTTP-User-Agent value of supported browsers. The structure of `ntlmEnabledBrowsers` block is documented below.
@@ -287,6 +298,8 @@ type FirewallPolicy struct {
 	NtlmGuest pulumi.StringOutput `pulumi:"ntlmGuest"`
 	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
 	Outbound pulumi.StringOutput `pulumi:"outbound"`
+	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+	PassiveWanHealthMeasurement pulumi.StringOutput `pulumi:"passiveWanHealthMeasurement"`
 	// Per-IP traffic shaper.
 	PerIpShaper pulumi.StringOutput `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -327,6 +340,8 @@ type FirewallPolicy struct {
 	Schedule pulumi.StringPtrOutput `pulumi:"schedule"`
 	// Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
 	ScheduleTimeout pulumi.StringOutput `pulumi:"scheduleTimeout"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringOutput `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -335,6 +350,10 @@ type FirewallPolicy struct {
 	Services FirewallPolicyServiceArrayOutput `pulumi:"services"`
 	// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 	SessionTtl pulumi.IntOutput `pulumi:"sessionTtl"`
+	// Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+	SgtCheck pulumi.StringOutput `pulumi:"sgtCheck"`
+	// Security group tags. The structure of `sgt` block is documented below.
+	Sgts FirewallPolicySgtArrayOutput `pulumi:"sgts"`
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
 	// Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
@@ -387,6 +406,8 @@ type FirewallPolicy struct {
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntOutput `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -423,6 +444,12 @@ type FirewallPolicy struct {
 	WebproxyProfile pulumi.StringOutput `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso pulumi.StringOutput `pulumi:"wsso"`
+	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags FirewallPolicyZtnaEmsTagArrayOutput `pulumi:"ztnaEmsTags"`
+	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
+	ZtnaGeoTags FirewallPolicyZtnaGeoTagArrayOutput `pulumi:"ztnaGeoTags"`
+	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
+	ZtnaStatus pulumi.StringOutput `pulumi:"ztnaStatus"`
 }
 
 // NewFirewallPolicy registers a new resource with the given unique name, arguments, and options.
@@ -438,6 +465,7 @@ func NewFirewallPolicy(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallPolicy
 	err := ctx.RegisterResource("fortios:index/firewallPolicy:FirewallPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -524,12 +552,16 @@ type firewallPolicyState struct {
 	Dstaddrs []FirewallPolicyDstaddr `pulumi:"dstaddrs"`
 	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
 	Dstintfs []FirewallPolicyDstintf `pulumi:"dstintfs"`
+	// Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+	DynamicShaping *string `pulumi:"dynamicShaping"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable email collection. Valid values: `enable`, `disable`.
 	EmailCollect *string `pulumi:"emailCollect"`
 	// Name of an existing email filter profile.
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
+	// Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+	Fec *string `pulumi:"fec"`
 	// Name of an existing file-filter profile.
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
 	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
@@ -608,12 +640,18 @@ type firewallPolicyState struct {
 	Name *string `pulumi:"name"`
 	// Enable/disable source NAT. Valid values: `enable`, `disable`.
 	Nat *string `pulumi:"nat"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 *string `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 *string `pulumi:"nat64"`
 	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
 	Natinbound *string `pulumi:"natinbound"`
 	// Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 	Natip *string `pulumi:"natip"`
 	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
 	Natoutbound *string `pulumi:"natoutbound"`
+	// Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+	NpAcceleration *string `pulumi:"npAcceleration"`
 	// Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
 	Ntlm *string `pulumi:"ntlm"`
 	// HTTP-User-Agent value of supported browsers. The structure of `ntlmEnabledBrowsers` block is documented below.
@@ -622,6 +660,8 @@ type firewallPolicyState struct {
 	NtlmGuest *string `pulumi:"ntlmGuest"`
 	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
 	Outbound *string `pulumi:"outbound"`
+	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+	PassiveWanHealthMeasurement *string `pulumi:"passiveWanHealthMeasurement"`
 	// Per-IP traffic shaper.
 	PerIpShaper *string `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -662,6 +702,8 @@ type firewallPolicyState struct {
 	Schedule *string `pulumi:"schedule"`
 	// Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
 	ScheduleTimeout *string `pulumi:"scheduleTimeout"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket *string `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -670,6 +712,10 @@ type firewallPolicyState struct {
 	Services []FirewallPolicyService `pulumi:"services"`
 	// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 	SessionTtl *int `pulumi:"sessionTtl"`
+	// Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+	SgtCheck *string `pulumi:"sgtCheck"`
+	// Security group tags. The structure of `sgt` block is documented below.
+	Sgts []FirewallPolicySgt `pulumi:"sgts"`
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
 	// Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
@@ -722,6 +768,8 @@ type firewallPolicyState struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd *int `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -758,6 +806,12 @@ type firewallPolicyState struct {
 	WebproxyProfile *string `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso *string `pulumi:"wsso"`
+	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags []FirewallPolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
+	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
+	ZtnaGeoTags []FirewallPolicyZtnaGeoTag `pulumi:"ztnaGeoTags"`
+	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
+	ZtnaStatus *string `pulumi:"ztnaStatus"`
 }
 
 type FirewallPolicyState struct {
@@ -825,12 +879,16 @@ type FirewallPolicyState struct {
 	Dstaddrs FirewallPolicyDstaddrArrayInput
 	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
 	Dstintfs FirewallPolicyDstintfArrayInput
+	// Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+	DynamicShaping pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable email collection. Valid values: `enable`, `disable`.
 	EmailCollect pulumi.StringPtrInput
 	// Name of an existing email filter profile.
 	EmailfilterProfile pulumi.StringPtrInput
+	// Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+	Fec pulumi.StringPtrInput
 	// Name of an existing file-filter profile.
 	FileFilterProfile pulumi.StringPtrInput
 	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
@@ -909,12 +967,18 @@ type FirewallPolicyState struct {
 	Name pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `enable`, `disable`.
 	Nat pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringPtrInput
 	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
 	Natinbound pulumi.StringPtrInput
 	// Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 	Natip pulumi.StringPtrInput
 	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
 	Natoutbound pulumi.StringPtrInput
+	// Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+	NpAcceleration pulumi.StringPtrInput
 	// Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
 	Ntlm pulumi.StringPtrInput
 	// HTTP-User-Agent value of supported browsers. The structure of `ntlmEnabledBrowsers` block is documented below.
@@ -923,6 +987,8 @@ type FirewallPolicyState struct {
 	NtlmGuest pulumi.StringPtrInput
 	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
 	Outbound pulumi.StringPtrInput
+	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+	PassiveWanHealthMeasurement pulumi.StringPtrInput
 	// Per-IP traffic shaper.
 	PerIpShaper pulumi.StringPtrInput
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -963,6 +1029,8 @@ type FirewallPolicyState struct {
 	Schedule pulumi.StringPtrInput
 	// Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
 	ScheduleTimeout pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringPtrInput
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -971,6 +1039,10 @@ type FirewallPolicyState struct {
 	Services FirewallPolicyServiceArrayInput
 	// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 	SessionTtl pulumi.IntPtrInput
+	// Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+	SgtCheck pulumi.StringPtrInput
+	// Security group tags. The structure of `sgt` block is documented below.
+	Sgts FirewallPolicySgtArrayInput
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile pulumi.StringPtrInput
 	// Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
@@ -1023,6 +1095,8 @@ type FirewallPolicyState struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntPtrInput
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -1059,6 +1133,12 @@ type FirewallPolicyState struct {
 	WebproxyProfile pulumi.StringPtrInput
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso pulumi.StringPtrInput
+	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags FirewallPolicyZtnaEmsTagArrayInput
+	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
+	ZtnaGeoTags FirewallPolicyZtnaGeoTagArrayInput
+	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
+	ZtnaStatus pulumi.StringPtrInput
 }
 
 func (FirewallPolicyState) ElementType() reflect.Type {
@@ -1130,12 +1210,16 @@ type firewallPolicyArgs struct {
 	Dstaddrs []FirewallPolicyDstaddr `pulumi:"dstaddrs"`
 	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
 	Dstintfs []FirewallPolicyDstintf `pulumi:"dstintfs"`
+	// Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+	DynamicShaping *string `pulumi:"dynamicShaping"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable email collection. Valid values: `enable`, `disable`.
 	EmailCollect *string `pulumi:"emailCollect"`
 	// Name of an existing email filter profile.
 	EmailfilterProfile *string `pulumi:"emailfilterProfile"`
+	// Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+	Fec *string `pulumi:"fec"`
 	// Name of an existing file-filter profile.
 	FileFilterProfile *string `pulumi:"fileFilterProfile"`
 	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
@@ -1214,12 +1298,18 @@ type firewallPolicyArgs struct {
 	Name *string `pulumi:"name"`
 	// Enable/disable source NAT. Valid values: `enable`, `disable`.
 	Nat *string `pulumi:"nat"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 *string `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 *string `pulumi:"nat64"`
 	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
 	Natinbound *string `pulumi:"natinbound"`
 	// Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 	Natip *string `pulumi:"natip"`
 	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
 	Natoutbound *string `pulumi:"natoutbound"`
+	// Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+	NpAcceleration *string `pulumi:"npAcceleration"`
 	// Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
 	Ntlm *string `pulumi:"ntlm"`
 	// HTTP-User-Agent value of supported browsers. The structure of `ntlmEnabledBrowsers` block is documented below.
@@ -1228,6 +1318,8 @@ type firewallPolicyArgs struct {
 	NtlmGuest *string `pulumi:"ntlmGuest"`
 	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
 	Outbound *string `pulumi:"outbound"`
+	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+	PassiveWanHealthMeasurement *string `pulumi:"passiveWanHealthMeasurement"`
 	// Per-IP traffic shaper.
 	PerIpShaper *string `pulumi:"perIpShaper"`
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -1268,6 +1360,8 @@ type firewallPolicyArgs struct {
 	Schedule *string `pulumi:"schedule"`
 	// Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
 	ScheduleTimeout *string `pulumi:"scheduleTimeout"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket *string `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -1276,6 +1370,10 @@ type firewallPolicyArgs struct {
 	Services []FirewallPolicyService `pulumi:"services"`
 	// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 	SessionTtl *int `pulumi:"sessionTtl"`
+	// Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+	SgtCheck *string `pulumi:"sgtCheck"`
+	// Security group tags. The structure of `sgt` block is documented below.
+	Sgts []FirewallPolicySgt `pulumi:"sgts"`
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
 	// Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
@@ -1328,6 +1426,8 @@ type firewallPolicyArgs struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd *int `pulumi:"vlanCosFwd"`
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -1364,6 +1464,12 @@ type firewallPolicyArgs struct {
 	WebproxyProfile *string `pulumi:"webproxyProfile"`
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso *string `pulumi:"wsso"`
+	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags []FirewallPolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
+	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
+	ZtnaGeoTags []FirewallPolicyZtnaGeoTag `pulumi:"ztnaGeoTags"`
+	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
+	ZtnaStatus *string `pulumi:"ztnaStatus"`
 }
 
 // The set of arguments for constructing a FirewallPolicy resource.
@@ -1432,12 +1538,16 @@ type FirewallPolicyArgs struct {
 	Dstaddrs FirewallPolicyDstaddrArrayInput
 	// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
 	Dstintfs FirewallPolicyDstintfArrayInput
+	// Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+	DynamicShaping pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable email collection. Valid values: `enable`, `disable`.
 	EmailCollect pulumi.StringPtrInput
 	// Name of an existing email filter profile.
 	EmailfilterProfile pulumi.StringPtrInput
+	// Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+	Fec pulumi.StringPtrInput
 	// Name of an existing file-filter profile.
 	FileFilterProfile pulumi.StringPtrInput
 	// How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
@@ -1516,12 +1626,18 @@ type FirewallPolicyArgs struct {
 	Name pulumi.StringPtrInput
 	// Enable/disable source NAT. Valid values: `enable`, `disable`.
 	Nat pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringPtrInput
 	// Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
 	Natinbound pulumi.StringPtrInput
 	// Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 	Natip pulumi.StringPtrInput
 	// Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
 	Natoutbound pulumi.StringPtrInput
+	// Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+	NpAcceleration pulumi.StringPtrInput
 	// Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
 	Ntlm pulumi.StringPtrInput
 	// HTTP-User-Agent value of supported browsers. The structure of `ntlmEnabledBrowsers` block is documented below.
@@ -1530,6 +1646,8 @@ type FirewallPolicyArgs struct {
 	NtlmGuest pulumi.StringPtrInput
 	// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
 	Outbound pulumi.StringPtrInput
+	// Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+	PassiveWanHealthMeasurement pulumi.StringPtrInput
 	// Per-IP traffic shaper.
 	PerIpShaper pulumi.StringPtrInput
 	// Accept UDP packets from any host. Valid values: `enable`, `disable`.
@@ -1570,6 +1688,8 @@ type FirewallPolicyArgs struct {
 	Schedule pulumi.StringPtrInput
 	// Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
 	ScheduleTimeout pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringPtrInput
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -1578,6 +1698,10 @@ type FirewallPolicyArgs struct {
 	Services FirewallPolicyServiceArrayInput
 	// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 	SessionTtl pulumi.IntPtrInput
+	// Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+	SgtCheck pulumi.StringPtrInput
+	// Security group tags. The structure of `sgt` block is documented below.
+	Sgts FirewallPolicySgtArrayInput
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile pulumi.StringPtrInput
 	// Vendor MAC source ID. The structure of `srcVendorMac` block is documented below.
@@ -1630,6 +1754,8 @@ type FirewallPolicyArgs struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
 	// VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 	VlanCosFwd pulumi.IntPtrInput
 	// VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -1666,6 +1792,12 @@ type FirewallPolicyArgs struct {
 	WebproxyProfile pulumi.StringPtrInput
 	// Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
 	Wsso pulumi.StringPtrInput
+	// Source ztna-ems-tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags FirewallPolicyZtnaEmsTagArrayInput
+	// Source ztna-geo-tag names. The structure of `ztnaGeoTag` block is documented below.
+	ZtnaGeoTags FirewallPolicyZtnaGeoTagArrayInput
+	// Enable/disable zero trust access. Valid values: `enable`, `disable`.
+	ZtnaStatus pulumi.StringPtrInput
 }
 
 func (FirewallPolicyArgs) ElementType() reflect.Type {
@@ -1680,7 +1812,7 @@ type FirewallPolicyInput interface {
 }
 
 func (*FirewallPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallPolicy)(nil))
+	return reflect.TypeOf((**FirewallPolicy)(nil)).Elem()
 }
 
 func (i *FirewallPolicy) ToFirewallPolicyOutput() FirewallPolicyOutput {
@@ -1689,35 +1821,6 @@ func (i *FirewallPolicy) ToFirewallPolicyOutput() FirewallPolicyOutput {
 
 func (i *FirewallPolicy) ToFirewallPolicyOutputWithContext(ctx context.Context) FirewallPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyOutput)
-}
-
-func (i *FirewallPolicy) ToFirewallPolicyPtrOutput() FirewallPolicyPtrOutput {
-	return i.ToFirewallPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallPolicy) ToFirewallPolicyPtrOutputWithContext(ctx context.Context) FirewallPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyPtrOutput)
-}
-
-type FirewallPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallPolicyPtrOutput() FirewallPolicyPtrOutput
-	ToFirewallPolicyPtrOutputWithContext(ctx context.Context) FirewallPolicyPtrOutput
-}
-
-type firewallPolicyPtrType FirewallPolicyArgs
-
-func (*firewallPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallPolicy)(nil))
-}
-
-func (i *firewallPolicyPtrType) ToFirewallPolicyPtrOutput() FirewallPolicyPtrOutput {
-	return i.ToFirewallPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallPolicyPtrType) ToFirewallPolicyPtrOutputWithContext(ctx context.Context) FirewallPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyPtrOutput)
 }
 
 // FirewallPolicyArrayInput is an input type that accepts FirewallPolicyArray and FirewallPolicyArrayOutput values.
@@ -1734,7 +1837,7 @@ type FirewallPolicyArrayInput interface {
 type FirewallPolicyArray []FirewallPolicyInput
 
 func (FirewallPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallPolicy)(nil)).Elem()
 }
 
 func (i FirewallPolicyArray) ToFirewallPolicyArrayOutput() FirewallPolicyArrayOutput {
@@ -1759,7 +1862,7 @@ type FirewallPolicyMapInput interface {
 type FirewallPolicyMap map[string]FirewallPolicyInput
 
 func (FirewallPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallPolicy)(nil)).Elem()
 }
 
 func (i FirewallPolicyMap) ToFirewallPolicyMapOutput() FirewallPolicyMapOutput {
@@ -1770,12 +1873,10 @@ func (i FirewallPolicyMap) ToFirewallPolicyMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicyMapOutput)
 }
 
-type FirewallPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallPolicy)(nil))
+	return reflect.TypeOf((**FirewallPolicy)(nil)).Elem()
 }
 
 func (o FirewallPolicyOutput) ToFirewallPolicyOutput() FirewallPolicyOutput {
@@ -1786,36 +1887,10 @@ func (o FirewallPolicyOutput) ToFirewallPolicyOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o FirewallPolicyOutput) ToFirewallPolicyPtrOutput() FirewallPolicyPtrOutput {
-	return o.ToFirewallPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallPolicyOutput) ToFirewallPolicyPtrOutputWithContext(ctx context.Context) FirewallPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallPolicy) *FirewallPolicy {
-		return &v
-	}).(FirewallPolicyPtrOutput)
-}
-
-type FirewallPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallPolicy)(nil))
-}
-
-func (o FirewallPolicyPtrOutput) ToFirewallPolicyPtrOutput() FirewallPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallPolicyPtrOutput) ToFirewallPolicyPtrOutputWithContext(ctx context.Context) FirewallPolicyPtrOutput {
-	return o
-}
-
 type FirewallPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallPolicy)(nil)).Elem()
 }
 
 func (o FirewallPolicyArrayOutput) ToFirewallPolicyArrayOutput() FirewallPolicyArrayOutput {
@@ -1827,15 +1902,15 @@ func (o FirewallPolicyArrayOutput) ToFirewallPolicyArrayOutputWithContext(ctx co
 }
 
 func (o FirewallPolicyArrayOutput) Index(i pulumi.IntInput) FirewallPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallPolicy {
-		return vs[0].([]FirewallPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallPolicy {
+		return vs[0].([]*FirewallPolicy)[vs[1].(int)]
 	}).(FirewallPolicyOutput)
 }
 
 type FirewallPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallPolicy)(nil)).Elem()
 }
 
 func (o FirewallPolicyMapOutput) ToFirewallPolicyMapOutput() FirewallPolicyMapOutput {
@@ -1847,14 +1922,16 @@ func (o FirewallPolicyMapOutput) ToFirewallPolicyMapOutputWithContext(ctx contex
 }
 
 func (o FirewallPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallPolicy {
-		return vs[0].(map[string]FirewallPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallPolicy {
+		return vs[0].(map[string]*FirewallPolicy)[vs[1].(string)]
 	}).(FirewallPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyInput)(nil)).Elem(), &FirewallPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyArrayInput)(nil)).Elem(), FirewallPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicyMapInput)(nil)).Elem(), FirewallPolicyMap{})
 	pulumi.RegisterOutputType(FirewallPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicyMapOutput{})
 }

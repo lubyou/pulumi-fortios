@@ -61,6 +61,7 @@ func NewSwitchControllerVlan(ctx *pulumi.Context,
 		args = &SwitchControllerVlanArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerVlan
 	err := ctx.RegisterResource("fortios:index/switchControllerVlan:SwitchControllerVlan", name, args, &resource, opts...)
 	if err != nil {
@@ -223,7 +224,7 @@ type SwitchControllerVlanInput interface {
 }
 
 func (*SwitchControllerVlan) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerVlan)(nil))
+	return reflect.TypeOf((**SwitchControllerVlan)(nil)).Elem()
 }
 
 func (i *SwitchControllerVlan) ToSwitchControllerVlanOutput() SwitchControllerVlanOutput {
@@ -232,35 +233,6 @@ func (i *SwitchControllerVlan) ToSwitchControllerVlanOutput() SwitchControllerVl
 
 func (i *SwitchControllerVlan) ToSwitchControllerVlanOutputWithContext(ctx context.Context) SwitchControllerVlanOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanOutput)
-}
-
-func (i *SwitchControllerVlan) ToSwitchControllerVlanPtrOutput() SwitchControllerVlanPtrOutput {
-	return i.ToSwitchControllerVlanPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerVlan) ToSwitchControllerVlanPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPtrOutput)
-}
-
-type SwitchControllerVlanPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerVlanPtrOutput() SwitchControllerVlanPtrOutput
-	ToSwitchControllerVlanPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPtrOutput
-}
-
-type switchControllerVlanPtrType SwitchControllerVlanArgs
-
-func (*switchControllerVlanPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerVlan)(nil))
-}
-
-func (i *switchControllerVlanPtrType) ToSwitchControllerVlanPtrOutput() SwitchControllerVlanPtrOutput {
-	return i.ToSwitchControllerVlanPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerVlanPtrType) ToSwitchControllerVlanPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPtrOutput)
 }
 
 // SwitchControllerVlanArrayInput is an input type that accepts SwitchControllerVlanArray and SwitchControllerVlanArrayOutput values.
@@ -277,7 +249,7 @@ type SwitchControllerVlanArrayInput interface {
 type SwitchControllerVlanArray []SwitchControllerVlanInput
 
 func (SwitchControllerVlanArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerVlan)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerVlan)(nil)).Elem()
 }
 
 func (i SwitchControllerVlanArray) ToSwitchControllerVlanArrayOutput() SwitchControllerVlanArrayOutput {
@@ -302,7 +274,7 @@ type SwitchControllerVlanMapInput interface {
 type SwitchControllerVlanMap map[string]SwitchControllerVlanInput
 
 func (SwitchControllerVlanMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerVlan)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerVlan)(nil)).Elem()
 }
 
 func (i SwitchControllerVlanMap) ToSwitchControllerVlanMapOutput() SwitchControllerVlanMapOutput {
@@ -313,12 +285,10 @@ func (i SwitchControllerVlanMap) ToSwitchControllerVlanMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanMapOutput)
 }
 
-type SwitchControllerVlanOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerVlanOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerVlan)(nil))
+	return reflect.TypeOf((**SwitchControllerVlan)(nil)).Elem()
 }
 
 func (o SwitchControllerVlanOutput) ToSwitchControllerVlanOutput() SwitchControllerVlanOutput {
@@ -329,36 +299,10 @@ func (o SwitchControllerVlanOutput) ToSwitchControllerVlanOutputWithContext(ctx 
 	return o
 }
 
-func (o SwitchControllerVlanOutput) ToSwitchControllerVlanPtrOutput() SwitchControllerVlanPtrOutput {
-	return o.ToSwitchControllerVlanPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerVlanOutput) ToSwitchControllerVlanPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPtrOutput {
-	return o.ApplyT(func(v SwitchControllerVlan) *SwitchControllerVlan {
-		return &v
-	}).(SwitchControllerVlanPtrOutput)
-}
-
-type SwitchControllerVlanPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerVlanPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerVlan)(nil))
-}
-
-func (o SwitchControllerVlanPtrOutput) ToSwitchControllerVlanPtrOutput() SwitchControllerVlanPtrOutput {
-	return o
-}
-
-func (o SwitchControllerVlanPtrOutput) ToSwitchControllerVlanPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPtrOutput {
-	return o
-}
-
 type SwitchControllerVlanArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerVlan)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerVlan)(nil)).Elem()
 }
 
 func (o SwitchControllerVlanArrayOutput) ToSwitchControllerVlanArrayOutput() SwitchControllerVlanArrayOutput {
@@ -370,15 +314,15 @@ func (o SwitchControllerVlanArrayOutput) ToSwitchControllerVlanArrayOutputWithCo
 }
 
 func (o SwitchControllerVlanArrayOutput) Index(i pulumi.IntInput) SwitchControllerVlanOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerVlan {
-		return vs[0].([]SwitchControllerVlan)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerVlan {
+		return vs[0].([]*SwitchControllerVlan)[vs[1].(int)]
 	}).(SwitchControllerVlanOutput)
 }
 
 type SwitchControllerVlanMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerVlan)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerVlan)(nil)).Elem()
 }
 
 func (o SwitchControllerVlanMapOutput) ToSwitchControllerVlanMapOutput() SwitchControllerVlanMapOutput {
@@ -390,14 +334,16 @@ func (o SwitchControllerVlanMapOutput) ToSwitchControllerVlanMapOutputWithContex
 }
 
 func (o SwitchControllerVlanMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerVlanOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerVlan {
-		return vs[0].(map[string]SwitchControllerVlan)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerVlan {
+		return vs[0].(map[string]*SwitchControllerVlan)[vs[1].(string)]
 	}).(SwitchControllerVlanOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVlanInput)(nil)).Elem(), &SwitchControllerVlan{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVlanArrayInput)(nil)).Elem(), SwitchControllerVlanArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVlanMapInput)(nil)).Elem(), SwitchControllerVlanMap{})
 	pulumi.RegisterOutputType(SwitchControllerVlanOutput{})
-	pulumi.RegisterOutputType(SwitchControllerVlanPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerVlanArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerVlanMapOutput{})
 }

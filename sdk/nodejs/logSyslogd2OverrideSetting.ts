@@ -67,7 +67,7 @@ export class LogSyslogd2OverrideSetting extends pulumi.CustomResource {
      */
     public readonly facility!: pulumi.Output<string>;
     /**
-     * Log format. Valid values: `default`, `csv`, `cef`.
+     * Log format.
      */
     public readonly format!: pulumi.Output<string>;
     /**
@@ -132,55 +132,53 @@ export class LogSyslogd2OverrideSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogSyslogd2OverrideSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogSyslogd2OverrideSettingArgs | LogSyslogd2OverrideSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogSyslogd2OverrideSettingState | undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["customFieldNames"] = state ? state.customFieldNames : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["facility"] = state ? state.facility : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["maxLogRate"] = state ? state.maxLogRate : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["override"] = state ? state.override : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["syslogType"] = state ? state.syslogType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["customFieldNames"] = state ? state.customFieldNames : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["facility"] = state ? state.facility : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["override"] = state ? state.override : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["syslogType"] = state ? state.syslogType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogSyslogd2OverrideSettingArgs | undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["customFieldNames"] = args ? args.customFieldNames : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["facility"] = args ? args.facility : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["maxLogRate"] = args ? args.maxLogRate : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["override"] = args ? args.override : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["syslogType"] = args ? args.syslogType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["customFieldNames"] = args ? args.customFieldNames : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["facility"] = args ? args.facility : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["override"] = args ? args.override : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["syslogType"] = args ? args.syslogType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogSyslogd2OverrideSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogSyslogd2OverrideSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -209,7 +207,7 @@ export interface LogSyslogd2OverrideSettingState {
      */
     facility?: pulumi.Input<string>;
     /**
-     * Log format. Valid values: `default`, `csv`, `cef`.
+     * Log format.
      */
     format?: pulumi.Input<string>;
     /**
@@ -291,7 +289,7 @@ export interface LogSyslogd2OverrideSettingArgs {
      */
     facility?: pulumi.Input<string>;
     /**
-     * Log format. Valid values: `default`, `csv`, `cef`.
+     * Log format.
      */
     format?: pulumi.Input<string>;
     /**

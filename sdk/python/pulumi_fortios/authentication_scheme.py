@@ -24,12 +24,15 @@ class AuthenticationSchemeArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  negotiate_ntlm: Optional[pulumi.Input[str]] = None,
                  require_tfa: Optional[pulumi.Input[str]] = None,
+                 saml_server: Optional[pulumi.Input[str]] = None,
+                 saml_timeout: Optional[pulumi.Input[int]] = None,
                  ssh_ca: Optional[pulumi.Input[str]] = None,
+                 user_cert: Optional[pulumi.Input[str]] = None,
                  user_databases: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSchemeUserDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AuthenticationScheme resource.
-        :param pulumi.Input[str] method: Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] domain_controller: Domain controller setting.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
@@ -38,7 +41,10 @@ class AuthenticationSchemeArgs:
         :param pulumi.Input[str] name: Authentication server name.
         :param pulumi.Input[str] negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] require_tfa: Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] saml_server: SAML configuration.
+        :param pulumi.Input[int] saml_timeout: SAML authentication timeout in seconds.
         :param pulumi.Input[str] ssh_ca: SSH CA name.
+        :param pulumi.Input[str] user_cert: Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['AuthenticationSchemeUserDatabaseArgs']]] user_databases: Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `user_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -59,8 +65,14 @@ class AuthenticationSchemeArgs:
             pulumi.set(__self__, "negotiate_ntlm", negotiate_ntlm)
         if require_tfa is not None:
             pulumi.set(__self__, "require_tfa", require_tfa)
+        if saml_server is not None:
+            pulumi.set(__self__, "saml_server", saml_server)
+        if saml_timeout is not None:
+            pulumi.set(__self__, "saml_timeout", saml_timeout)
         if ssh_ca is not None:
             pulumi.set(__self__, "ssh_ca", ssh_ca)
+        if user_cert is not None:
+            pulumi.set(__self__, "user_cert", user_cert)
         if user_databases is not None:
             pulumi.set(__self__, "user_databases", user_databases)
         if vdomparam is not None:
@@ -70,7 +82,7 @@ class AuthenticationSchemeArgs:
     @pulumi.getter
     def method(self) -> pulumi.Input[str]:
         """
-        Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        Authentication methods (default = basic).
         """
         return pulumi.get(self, "method")
 
@@ -175,6 +187,30 @@ class AuthenticationSchemeArgs:
         pulumi.set(self, "require_tfa", value)
 
     @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML configuration.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @saml_server.setter
+    def saml_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "saml_server", value)
+
+    @property
+    @pulumi.getter(name="samlTimeout")
+    def saml_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        SAML authentication timeout in seconds.
+        """
+        return pulumi.get(self, "saml_timeout")
+
+    @saml_timeout.setter
+    def saml_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "saml_timeout", value)
+
+    @property
     @pulumi.getter(name="sshCa")
     def ssh_ca(self) -> Optional[pulumi.Input[str]]:
         """
@@ -185,6 +221,18 @@ class AuthenticationSchemeArgs:
     @ssh_ca.setter
     def ssh_ca(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssh_ca", value)
+
+    @property
+    @pulumi.getter(name="userCert")
+    def user_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "user_cert")
+
+    @user_cert.setter
+    def user_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_cert", value)
 
     @property
     @pulumi.getter(name="userDatabases")
@@ -223,7 +271,10 @@ class _AuthenticationSchemeState:
                  name: Optional[pulumi.Input[str]] = None,
                  negotiate_ntlm: Optional[pulumi.Input[str]] = None,
                  require_tfa: Optional[pulumi.Input[str]] = None,
+                 saml_server: Optional[pulumi.Input[str]] = None,
+                 saml_timeout: Optional[pulumi.Input[int]] = None,
                  ssh_ca: Optional[pulumi.Input[str]] = None,
+                 user_cert: Optional[pulumi.Input[str]] = None,
                  user_databases: Optional[pulumi.Input[Sequence[pulumi.Input['AuthenticationSchemeUserDatabaseArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -233,11 +284,14 @@ class _AuthenticationSchemeState:
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
-        :param pulumi.Input[str] method: Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] name: Authentication server name.
         :param pulumi.Input[str] negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] require_tfa: Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] saml_server: SAML configuration.
+        :param pulumi.Input[int] saml_timeout: SAML authentication timeout in seconds.
         :param pulumi.Input[str] ssh_ca: SSH CA name.
+        :param pulumi.Input[str] user_cert: Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['AuthenticationSchemeUserDatabaseArgs']]] user_databases: Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `user_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -259,8 +313,14 @@ class _AuthenticationSchemeState:
             pulumi.set(__self__, "negotiate_ntlm", negotiate_ntlm)
         if require_tfa is not None:
             pulumi.set(__self__, "require_tfa", require_tfa)
+        if saml_server is not None:
+            pulumi.set(__self__, "saml_server", saml_server)
+        if saml_timeout is not None:
+            pulumi.set(__self__, "saml_timeout", saml_timeout)
         if ssh_ca is not None:
             pulumi.set(__self__, "ssh_ca", ssh_ca)
+        if user_cert is not None:
+            pulumi.set(__self__, "user_cert", user_cert)
         if user_databases is not None:
             pulumi.set(__self__, "user_databases", user_databases)
         if vdomparam is not None:
@@ -330,7 +390,7 @@ class _AuthenticationSchemeState:
     @pulumi.getter
     def method(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        Authentication methods (default = basic).
         """
         return pulumi.get(self, "method")
 
@@ -375,6 +435,30 @@ class _AuthenticationSchemeState:
         pulumi.set(self, "require_tfa", value)
 
     @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        SAML configuration.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @saml_server.setter
+    def saml_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "saml_server", value)
+
+    @property
+    @pulumi.getter(name="samlTimeout")
+    def saml_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        SAML authentication timeout in seconds.
+        """
+        return pulumi.get(self, "saml_timeout")
+
+    @saml_timeout.setter
+    def saml_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "saml_timeout", value)
+
+    @property
     @pulumi.getter(name="sshCa")
     def ssh_ca(self) -> Optional[pulumi.Input[str]]:
         """
@@ -385,6 +469,18 @@ class _AuthenticationSchemeState:
     @ssh_ca.setter
     def ssh_ca(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssh_ca", value)
+
+    @property
+    @pulumi.getter(name="userCert")
+    def user_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "user_cert")
+
+    @user_cert.setter
+    def user_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_cert", value)
 
     @property
     @pulumi.getter(name="userDatabases")
@@ -425,7 +521,10 @@ class AuthenticationScheme(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  negotiate_ntlm: Optional[pulumi.Input[str]] = None,
                  require_tfa: Optional[pulumi.Input[str]] = None,
+                 saml_server: Optional[pulumi.Input[str]] = None,
+                 saml_timeout: Optional[pulumi.Input[int]] = None,
                  ssh_ca: Optional[pulumi.Input[str]] = None,
+                 user_cert: Optional[pulumi.Input[str]] = None,
                  user_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSchemeUserDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -472,11 +571,14 @@ class AuthenticationScheme(pulumi.CustomResource):
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
-        :param pulumi.Input[str] method: Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] name: Authentication server name.
         :param pulumi.Input[str] negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] require_tfa: Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] saml_server: SAML configuration.
+        :param pulumi.Input[int] saml_timeout: SAML authentication timeout in seconds.
         :param pulumi.Input[str] ssh_ca: SSH CA name.
+        :param pulumi.Input[str] user_cert: Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSchemeUserDatabaseArgs']]]] user_databases: Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `user_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -546,7 +648,10 @@ class AuthenticationScheme(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  negotiate_ntlm: Optional[pulumi.Input[str]] = None,
                  require_tfa: Optional[pulumi.Input[str]] = None,
+                 saml_server: Optional[pulumi.Input[str]] = None,
+                 saml_timeout: Optional[pulumi.Input[int]] = None,
                  ssh_ca: Optional[pulumi.Input[str]] = None,
+                 user_cert: Optional[pulumi.Input[str]] = None,
                  user_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSchemeUserDatabaseArgs']]]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -556,6 +661,8 @@ class AuthenticationScheme(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -572,7 +679,10 @@ class AuthenticationScheme(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["negotiate_ntlm"] = negotiate_ntlm
             __props__.__dict__["require_tfa"] = require_tfa
+            __props__.__dict__["saml_server"] = saml_server
+            __props__.__dict__["saml_timeout"] = saml_timeout
             __props__.__dict__["ssh_ca"] = ssh_ca
+            __props__.__dict__["user_cert"] = user_cert
             __props__.__dict__["user_databases"] = user_databases
             __props__.__dict__["vdomparam"] = vdomparam
         super(AuthenticationScheme, __self__).__init__(
@@ -594,7 +704,10 @@ class AuthenticationScheme(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             negotiate_ntlm: Optional[pulumi.Input[str]] = None,
             require_tfa: Optional[pulumi.Input[str]] = None,
+            saml_server: Optional[pulumi.Input[str]] = None,
+            saml_timeout: Optional[pulumi.Input[int]] = None,
             ssh_ca: Optional[pulumi.Input[str]] = None,
+            user_cert: Optional[pulumi.Input[str]] = None,
             user_databases: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSchemeUserDatabaseArgs']]]]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'AuthenticationScheme':
         """
@@ -609,11 +722,14 @@ class AuthenticationScheme(pulumi.CustomResource):
         :param pulumi.Input[str] fsso_agent_for_ntlm: FSSO agent to use for NTLM authentication.
         :param pulumi.Input[str] fsso_guest: Enable/disable user fsso-guest authentication (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] kerberos_keytab: Kerberos keytab setting.
-        :param pulumi.Input[str] method: Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        :param pulumi.Input[str] method: Authentication methods (default = basic).
         :param pulumi.Input[str] name: Authentication server name.
         :param pulumi.Input[str] negotiate_ntlm: Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] require_tfa: Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] saml_server: SAML configuration.
+        :param pulumi.Input[int] saml_timeout: SAML authentication timeout in seconds.
         :param pulumi.Input[str] ssh_ca: SSH CA name.
+        :param pulumi.Input[str] user_cert: Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AuthenticationSchemeUserDatabaseArgs']]]] user_databases: Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `user_database` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -630,7 +746,10 @@ class AuthenticationScheme(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["negotiate_ntlm"] = negotiate_ntlm
         __props__.__dict__["require_tfa"] = require_tfa
+        __props__.__dict__["saml_server"] = saml_server
+        __props__.__dict__["saml_timeout"] = saml_timeout
         __props__.__dict__["ssh_ca"] = ssh_ca
+        __props__.__dict__["user_cert"] = user_cert
         __props__.__dict__["user_databases"] = user_databases
         __props__.__dict__["vdomparam"] = vdomparam
         return AuthenticationScheme(resource_name, opts=opts, __props__=__props__)
@@ -679,7 +798,7 @@ class AuthenticationScheme(pulumi.CustomResource):
     @pulumi.getter
     def method(self) -> pulumi.Output[str]:
         """
-        Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+        Authentication methods (default = basic).
         """
         return pulumi.get(self, "method")
 
@@ -708,12 +827,36 @@ class AuthenticationScheme(pulumi.CustomResource):
         return pulumi.get(self, "require_tfa")
 
     @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> pulumi.Output[str]:
+        """
+        SAML configuration.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @property
+    @pulumi.getter(name="samlTimeout")
+    def saml_timeout(self) -> pulumi.Output[int]:
+        """
+        SAML authentication timeout in seconds.
+        """
+        return pulumi.get(self, "saml_timeout")
+
+    @property
     @pulumi.getter(name="sshCa")
     def ssh_ca(self) -> pulumi.Output[str]:
         """
         SSH CA name.
         """
         return pulumi.get(self, "ssh_ca")
+
+    @property
+    @pulumi.getter(name="userCert")
+    def user_cert(self) -> pulumi.Output[str]:
+        """
+        Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "user_cert")
 
     @property
     @pulumi.getter(name="userDatabases")

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,7 @@ func NewSystemNdProxy(ctx *pulumi.Context,
 		args = &SystemNdProxyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemNdProxy
 	err := ctx.RegisterResource("fortios:index/systemNdProxy:SystemNdProxy", name, args, &resource, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ type SystemNdProxyInput interface {
 }
 
 func (*SystemNdProxy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNdProxy)(nil))
+	return reflect.TypeOf((**SystemNdProxy)(nil)).Elem()
 }
 
 func (i *SystemNdProxy) ToSystemNdProxyOutput() SystemNdProxyOutput {
@@ -155,35 +156,6 @@ func (i *SystemNdProxy) ToSystemNdProxyOutput() SystemNdProxyOutput {
 
 func (i *SystemNdProxy) ToSystemNdProxyOutputWithContext(ctx context.Context) SystemNdProxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyOutput)
-}
-
-func (i *SystemNdProxy) ToSystemNdProxyPtrOutput() SystemNdProxyPtrOutput {
-	return i.ToSystemNdProxyPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemNdProxy) ToSystemNdProxyPtrOutputWithContext(ctx context.Context) SystemNdProxyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyPtrOutput)
-}
-
-type SystemNdProxyPtrInput interface {
-	pulumi.Input
-
-	ToSystemNdProxyPtrOutput() SystemNdProxyPtrOutput
-	ToSystemNdProxyPtrOutputWithContext(ctx context.Context) SystemNdProxyPtrOutput
-}
-
-type systemNdProxyPtrType SystemNdProxyArgs
-
-func (*systemNdProxyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNdProxy)(nil))
-}
-
-func (i *systemNdProxyPtrType) ToSystemNdProxyPtrOutput() SystemNdProxyPtrOutput {
-	return i.ToSystemNdProxyPtrOutputWithContext(context.Background())
-}
-
-func (i *systemNdProxyPtrType) ToSystemNdProxyPtrOutputWithContext(ctx context.Context) SystemNdProxyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyPtrOutput)
 }
 
 // SystemNdProxyArrayInput is an input type that accepts SystemNdProxyArray and SystemNdProxyArrayOutput values.
@@ -200,7 +172,7 @@ type SystemNdProxyArrayInput interface {
 type SystemNdProxyArray []SystemNdProxyInput
 
 func (SystemNdProxyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemNdProxy)(nil))
+	return reflect.TypeOf((*[]*SystemNdProxy)(nil)).Elem()
 }
 
 func (i SystemNdProxyArray) ToSystemNdProxyArrayOutput() SystemNdProxyArrayOutput {
@@ -225,7 +197,7 @@ type SystemNdProxyMapInput interface {
 type SystemNdProxyMap map[string]SystemNdProxyInput
 
 func (SystemNdProxyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemNdProxy)(nil))
+	return reflect.TypeOf((*map[string]*SystemNdProxy)(nil)).Elem()
 }
 
 func (i SystemNdProxyMap) ToSystemNdProxyMapOutput() SystemNdProxyMapOutput {
@@ -236,12 +208,10 @@ func (i SystemNdProxyMap) ToSystemNdProxyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNdProxyMapOutput)
 }
 
-type SystemNdProxyOutput struct {
-	*pulumi.OutputState
-}
+type SystemNdProxyOutput struct{ *pulumi.OutputState }
 
 func (SystemNdProxyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNdProxy)(nil))
+	return reflect.TypeOf((**SystemNdProxy)(nil)).Elem()
 }
 
 func (o SystemNdProxyOutput) ToSystemNdProxyOutput() SystemNdProxyOutput {
@@ -252,36 +222,10 @@ func (o SystemNdProxyOutput) ToSystemNdProxyOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemNdProxyOutput) ToSystemNdProxyPtrOutput() SystemNdProxyPtrOutput {
-	return o.ToSystemNdProxyPtrOutputWithContext(context.Background())
-}
-
-func (o SystemNdProxyOutput) ToSystemNdProxyPtrOutputWithContext(ctx context.Context) SystemNdProxyPtrOutput {
-	return o.ApplyT(func(v SystemNdProxy) *SystemNdProxy {
-		return &v
-	}).(SystemNdProxyPtrOutput)
-}
-
-type SystemNdProxyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemNdProxyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNdProxy)(nil))
-}
-
-func (o SystemNdProxyPtrOutput) ToSystemNdProxyPtrOutput() SystemNdProxyPtrOutput {
-	return o
-}
-
-func (o SystemNdProxyPtrOutput) ToSystemNdProxyPtrOutputWithContext(ctx context.Context) SystemNdProxyPtrOutput {
-	return o
-}
-
 type SystemNdProxyArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemNdProxyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemNdProxy)(nil))
+	return reflect.TypeOf((*[]*SystemNdProxy)(nil)).Elem()
 }
 
 func (o SystemNdProxyArrayOutput) ToSystemNdProxyArrayOutput() SystemNdProxyArrayOutput {
@@ -293,15 +237,15 @@ func (o SystemNdProxyArrayOutput) ToSystemNdProxyArrayOutputWithContext(ctx cont
 }
 
 func (o SystemNdProxyArrayOutput) Index(i pulumi.IntInput) SystemNdProxyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemNdProxy {
-		return vs[0].([]SystemNdProxy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNdProxy {
+		return vs[0].([]*SystemNdProxy)[vs[1].(int)]
 	}).(SystemNdProxyOutput)
 }
 
 type SystemNdProxyMapOutput struct{ *pulumi.OutputState }
 
 func (SystemNdProxyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemNdProxy)(nil))
+	return reflect.TypeOf((*map[string]*SystemNdProxy)(nil)).Elem()
 }
 
 func (o SystemNdProxyMapOutput) ToSystemNdProxyMapOutput() SystemNdProxyMapOutput {
@@ -313,14 +257,16 @@ func (o SystemNdProxyMapOutput) ToSystemNdProxyMapOutputWithContext(ctx context.
 }
 
 func (o SystemNdProxyMapOutput) MapIndex(k pulumi.StringInput) SystemNdProxyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemNdProxy {
-		return vs[0].(map[string]SystemNdProxy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemNdProxy {
+		return vs[0].(map[string]*SystemNdProxy)[vs[1].(string)]
 	}).(SystemNdProxyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNdProxyInput)(nil)).Elem(), &SystemNdProxy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNdProxyArrayInput)(nil)).Elem(), SystemNdProxyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNdProxyMapInput)(nil)).Elem(), SystemNdProxyMap{})
 	pulumi.RegisterOutputType(SystemNdProxyOutput{})
-	pulumi.RegisterOutputType(SystemNdProxyPtrOutput{})
 	pulumi.RegisterOutputType(SystemNdProxyArrayOutput{})
 	pulumi.RegisterOutputType(SystemNdProxyMapOutput{})
 }

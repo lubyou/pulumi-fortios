@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewFirewallObjectServiceGroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallObjectServiceGroup
 	err := ctx.RegisterResource("fortios:index/firewallObjectServiceGroup:FirewallObjectServiceGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type FirewallObjectServiceGroupInput interface {
 }
 
 func (*FirewallObjectServiceGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallObjectServiceGroup)(nil))
+	return reflect.TypeOf((**FirewallObjectServiceGroup)(nil)).Elem()
 }
 
 func (i *FirewallObjectServiceGroup) ToFirewallObjectServiceGroupOutput() FirewallObjectServiceGroupOutput {
@@ -146,35 +147,6 @@ func (i *FirewallObjectServiceGroup) ToFirewallObjectServiceGroupOutput() Firewa
 
 func (i *FirewallObjectServiceGroup) ToFirewallObjectServiceGroupOutputWithContext(ctx context.Context) FirewallObjectServiceGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceGroupOutput)
-}
-
-func (i *FirewallObjectServiceGroup) ToFirewallObjectServiceGroupPtrOutput() FirewallObjectServiceGroupPtrOutput {
-	return i.ToFirewallObjectServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallObjectServiceGroup) ToFirewallObjectServiceGroupPtrOutputWithContext(ctx context.Context) FirewallObjectServiceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceGroupPtrOutput)
-}
-
-type FirewallObjectServiceGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallObjectServiceGroupPtrOutput() FirewallObjectServiceGroupPtrOutput
-	ToFirewallObjectServiceGroupPtrOutputWithContext(ctx context.Context) FirewallObjectServiceGroupPtrOutput
-}
-
-type firewallObjectServiceGroupPtrType FirewallObjectServiceGroupArgs
-
-func (*firewallObjectServiceGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallObjectServiceGroup)(nil))
-}
-
-func (i *firewallObjectServiceGroupPtrType) ToFirewallObjectServiceGroupPtrOutput() FirewallObjectServiceGroupPtrOutput {
-	return i.ToFirewallObjectServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallObjectServiceGroupPtrType) ToFirewallObjectServiceGroupPtrOutputWithContext(ctx context.Context) FirewallObjectServiceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceGroupPtrOutput)
 }
 
 // FirewallObjectServiceGroupArrayInput is an input type that accepts FirewallObjectServiceGroupArray and FirewallObjectServiceGroupArrayOutput values.
@@ -191,7 +163,7 @@ type FirewallObjectServiceGroupArrayInput interface {
 type FirewallObjectServiceGroupArray []FirewallObjectServiceGroupInput
 
 func (FirewallObjectServiceGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallObjectServiceGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallObjectServiceGroup)(nil)).Elem()
 }
 
 func (i FirewallObjectServiceGroupArray) ToFirewallObjectServiceGroupArrayOutput() FirewallObjectServiceGroupArrayOutput {
@@ -216,7 +188,7 @@ type FirewallObjectServiceGroupMapInput interface {
 type FirewallObjectServiceGroupMap map[string]FirewallObjectServiceGroupInput
 
 func (FirewallObjectServiceGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallObjectServiceGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallObjectServiceGroup)(nil)).Elem()
 }
 
 func (i FirewallObjectServiceGroupMap) ToFirewallObjectServiceGroupMapOutput() FirewallObjectServiceGroupMapOutput {
@@ -227,12 +199,10 @@ func (i FirewallObjectServiceGroupMap) ToFirewallObjectServiceGroupMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectServiceGroupMapOutput)
 }
 
-type FirewallObjectServiceGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallObjectServiceGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectServiceGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallObjectServiceGroup)(nil))
+	return reflect.TypeOf((**FirewallObjectServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallObjectServiceGroupOutput) ToFirewallObjectServiceGroupOutput() FirewallObjectServiceGroupOutput {
@@ -243,36 +213,10 @@ func (o FirewallObjectServiceGroupOutput) ToFirewallObjectServiceGroupOutputWith
 	return o
 }
 
-func (o FirewallObjectServiceGroupOutput) ToFirewallObjectServiceGroupPtrOutput() FirewallObjectServiceGroupPtrOutput {
-	return o.ToFirewallObjectServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallObjectServiceGroupOutput) ToFirewallObjectServiceGroupPtrOutputWithContext(ctx context.Context) FirewallObjectServiceGroupPtrOutput {
-	return o.ApplyT(func(v FirewallObjectServiceGroup) *FirewallObjectServiceGroup {
-		return &v
-	}).(FirewallObjectServiceGroupPtrOutput)
-}
-
-type FirewallObjectServiceGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallObjectServiceGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallObjectServiceGroup)(nil))
-}
-
-func (o FirewallObjectServiceGroupPtrOutput) ToFirewallObjectServiceGroupPtrOutput() FirewallObjectServiceGroupPtrOutput {
-	return o
-}
-
-func (o FirewallObjectServiceGroupPtrOutput) ToFirewallObjectServiceGroupPtrOutputWithContext(ctx context.Context) FirewallObjectServiceGroupPtrOutput {
-	return o
-}
-
 type FirewallObjectServiceGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectServiceGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallObjectServiceGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallObjectServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallObjectServiceGroupArrayOutput) ToFirewallObjectServiceGroupArrayOutput() FirewallObjectServiceGroupArrayOutput {
@@ -284,15 +228,15 @@ func (o FirewallObjectServiceGroupArrayOutput) ToFirewallObjectServiceGroupArray
 }
 
 func (o FirewallObjectServiceGroupArrayOutput) Index(i pulumi.IntInput) FirewallObjectServiceGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallObjectServiceGroup {
-		return vs[0].([]FirewallObjectServiceGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallObjectServiceGroup {
+		return vs[0].([]*FirewallObjectServiceGroup)[vs[1].(int)]
 	}).(FirewallObjectServiceGroupOutput)
 }
 
 type FirewallObjectServiceGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectServiceGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallObjectServiceGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallObjectServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallObjectServiceGroupMapOutput) ToFirewallObjectServiceGroupMapOutput() FirewallObjectServiceGroupMapOutput {
@@ -304,14 +248,16 @@ func (o FirewallObjectServiceGroupMapOutput) ToFirewallObjectServiceGroupMapOutp
 }
 
 func (o FirewallObjectServiceGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallObjectServiceGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallObjectServiceGroup {
-		return vs[0].(map[string]FirewallObjectServiceGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallObjectServiceGroup {
+		return vs[0].(map[string]*FirewallObjectServiceGroup)[vs[1].(string)]
 	}).(FirewallObjectServiceGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallObjectServiceGroupInput)(nil)).Elem(), &FirewallObjectServiceGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallObjectServiceGroupArrayInput)(nil)).Elem(), FirewallObjectServiceGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallObjectServiceGroupMapInput)(nil)).Elem(), FirewallObjectServiceGroupMap{})
 	pulumi.RegisterOutputType(FirewallObjectServiceGroupOutput{})
-	pulumi.RegisterOutputType(FirewallObjectServiceGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallObjectServiceGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallObjectServiceGroupMapOutput{})
 }

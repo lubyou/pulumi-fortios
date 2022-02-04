@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,7 +64,7 @@ type LogSyslogd4Setting struct {
 	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility pulumi.StringOutput `pulumi:"facility"`
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format pulumi.StringOutput `pulumi:"format"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
@@ -99,6 +99,7 @@ func NewLogSyslogd4Setting(ctx *pulumi.Context,
 		args = &LogSyslogd4SettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogSyslogd4Setting
 	err := ctx.RegisterResource("fortios:index/logSyslogd4Setting:LogSyslogd4Setting", name, args, &resource, opts...)
 	if err != nil {
@@ -131,7 +132,7 @@ type logSyslogd4SettingState struct {
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility *string `pulumi:"facility"`
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format *string `pulumi:"format"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -170,7 +171,7 @@ type LogSyslogd4SettingState struct {
 	EncAlgorithm pulumi.StringPtrInput
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility pulumi.StringPtrInput
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -213,7 +214,7 @@ type logSyslogd4SettingArgs struct {
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility *string `pulumi:"facility"`
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format *string `pulumi:"format"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
@@ -253,7 +254,7 @@ type LogSyslogd4SettingArgs struct {
 	EncAlgorithm pulumi.StringPtrInput
 	// Remote syslog facility. Valid values: `kernel`, `user`, `mail`, `daemon`, `auth`, `syslog`, `lpr`, `news`, `uucp`, `cron`, `authpriv`, `ftp`, `ntp`, `audit`, `alert`, `clock`, `local0`, `local1`, `local2`, `local3`, `local4`, `local5`, `local6`, `local7`.
 	Facility pulumi.StringPtrInput
-	// Log format. Valid values: `default`, `csv`, `cef`.
+	// Log format.
 	Format pulumi.StringPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
@@ -293,7 +294,7 @@ type LogSyslogd4SettingInput interface {
 }
 
 func (*LogSyslogd4Setting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogd4Setting)(nil))
+	return reflect.TypeOf((**LogSyslogd4Setting)(nil)).Elem()
 }
 
 func (i *LogSyslogd4Setting) ToLogSyslogd4SettingOutput() LogSyslogd4SettingOutput {
@@ -302,35 +303,6 @@ func (i *LogSyslogd4Setting) ToLogSyslogd4SettingOutput() LogSyslogd4SettingOutp
 
 func (i *LogSyslogd4Setting) ToLogSyslogd4SettingOutputWithContext(ctx context.Context) LogSyslogd4SettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4SettingOutput)
-}
-
-func (i *LogSyslogd4Setting) ToLogSyslogd4SettingPtrOutput() LogSyslogd4SettingPtrOutput {
-	return i.ToLogSyslogd4SettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogSyslogd4Setting) ToLogSyslogd4SettingPtrOutputWithContext(ctx context.Context) LogSyslogd4SettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4SettingPtrOutput)
-}
-
-type LogSyslogd4SettingPtrInput interface {
-	pulumi.Input
-
-	ToLogSyslogd4SettingPtrOutput() LogSyslogd4SettingPtrOutput
-	ToLogSyslogd4SettingPtrOutputWithContext(ctx context.Context) LogSyslogd4SettingPtrOutput
-}
-
-type logSyslogd4SettingPtrType LogSyslogd4SettingArgs
-
-func (*logSyslogd4SettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogd4Setting)(nil))
-}
-
-func (i *logSyslogd4SettingPtrType) ToLogSyslogd4SettingPtrOutput() LogSyslogd4SettingPtrOutput {
-	return i.ToLogSyslogd4SettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logSyslogd4SettingPtrType) ToLogSyslogd4SettingPtrOutputWithContext(ctx context.Context) LogSyslogd4SettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4SettingPtrOutput)
 }
 
 // LogSyslogd4SettingArrayInput is an input type that accepts LogSyslogd4SettingArray and LogSyslogd4SettingArrayOutput values.
@@ -347,7 +319,7 @@ type LogSyslogd4SettingArrayInput interface {
 type LogSyslogd4SettingArray []LogSyslogd4SettingInput
 
 func (LogSyslogd4SettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogSyslogd4Setting)(nil))
+	return reflect.TypeOf((*[]*LogSyslogd4Setting)(nil)).Elem()
 }
 
 func (i LogSyslogd4SettingArray) ToLogSyslogd4SettingArrayOutput() LogSyslogd4SettingArrayOutput {
@@ -372,7 +344,7 @@ type LogSyslogd4SettingMapInput interface {
 type LogSyslogd4SettingMap map[string]LogSyslogd4SettingInput
 
 func (LogSyslogd4SettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogSyslogd4Setting)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogd4Setting)(nil)).Elem()
 }
 
 func (i LogSyslogd4SettingMap) ToLogSyslogd4SettingMapOutput() LogSyslogd4SettingMapOutput {
@@ -383,12 +355,10 @@ func (i LogSyslogd4SettingMap) ToLogSyslogd4SettingMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd4SettingMapOutput)
 }
 
-type LogSyslogd4SettingOutput struct {
-	*pulumi.OutputState
-}
+type LogSyslogd4SettingOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd4SettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogd4Setting)(nil))
+	return reflect.TypeOf((**LogSyslogd4Setting)(nil)).Elem()
 }
 
 func (o LogSyslogd4SettingOutput) ToLogSyslogd4SettingOutput() LogSyslogd4SettingOutput {
@@ -399,36 +369,10 @@ func (o LogSyslogd4SettingOutput) ToLogSyslogd4SettingOutputWithContext(ctx cont
 	return o
 }
 
-func (o LogSyslogd4SettingOutput) ToLogSyslogd4SettingPtrOutput() LogSyslogd4SettingPtrOutput {
-	return o.ToLogSyslogd4SettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogSyslogd4SettingOutput) ToLogSyslogd4SettingPtrOutputWithContext(ctx context.Context) LogSyslogd4SettingPtrOutput {
-	return o.ApplyT(func(v LogSyslogd4Setting) *LogSyslogd4Setting {
-		return &v
-	}).(LogSyslogd4SettingPtrOutput)
-}
-
-type LogSyslogd4SettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogSyslogd4SettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogd4Setting)(nil))
-}
-
-func (o LogSyslogd4SettingPtrOutput) ToLogSyslogd4SettingPtrOutput() LogSyslogd4SettingPtrOutput {
-	return o
-}
-
-func (o LogSyslogd4SettingPtrOutput) ToLogSyslogd4SettingPtrOutputWithContext(ctx context.Context) LogSyslogd4SettingPtrOutput {
-	return o
-}
-
 type LogSyslogd4SettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd4SettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogSyslogd4Setting)(nil))
+	return reflect.TypeOf((*[]*LogSyslogd4Setting)(nil)).Elem()
 }
 
 func (o LogSyslogd4SettingArrayOutput) ToLogSyslogd4SettingArrayOutput() LogSyslogd4SettingArrayOutput {
@@ -440,15 +384,15 @@ func (o LogSyslogd4SettingArrayOutput) ToLogSyslogd4SettingArrayOutputWithContex
 }
 
 func (o LogSyslogd4SettingArrayOutput) Index(i pulumi.IntInput) LogSyslogd4SettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogSyslogd4Setting {
-		return vs[0].([]LogSyslogd4Setting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogd4Setting {
+		return vs[0].([]*LogSyslogd4Setting)[vs[1].(int)]
 	}).(LogSyslogd4SettingOutput)
 }
 
 type LogSyslogd4SettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd4SettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogSyslogd4Setting)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogd4Setting)(nil)).Elem()
 }
 
 func (o LogSyslogd4SettingMapOutput) ToLogSyslogd4SettingMapOutput() LogSyslogd4SettingMapOutput {
@@ -460,14 +404,16 @@ func (o LogSyslogd4SettingMapOutput) ToLogSyslogd4SettingMapOutputWithContext(ct
 }
 
 func (o LogSyslogd4SettingMapOutput) MapIndex(k pulumi.StringInput) LogSyslogd4SettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogSyslogd4Setting {
-		return vs[0].(map[string]LogSyslogd4Setting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogSyslogd4Setting {
+		return vs[0].(map[string]*LogSyslogd4Setting)[vs[1].(string)]
 	}).(LogSyslogd4SettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogd4SettingInput)(nil)).Elem(), &LogSyslogd4Setting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogd4SettingArrayInput)(nil)).Elem(), LogSyslogd4SettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogd4SettingMapInput)(nil)).Elem(), LogSyslogd4SettingMap{})
 	pulumi.RegisterOutputType(LogSyslogd4SettingOutput{})
-	pulumi.RegisterOutputType(LogSyslogd4SettingPtrOutput{})
 	pulumi.RegisterOutputType(LogSyslogd4SettingArrayOutput{})
 	pulumi.RegisterOutputType(LogSyslogd4SettingMapOutput{})
 }

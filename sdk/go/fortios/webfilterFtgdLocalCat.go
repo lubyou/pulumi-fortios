@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewWebfilterFtgdLocalCat(ctx *pulumi.Context,
 		args = &WebfilterFtgdLocalCatArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterFtgdLocalCat
 	err := ctx.RegisterResource("fortios:index/webfilterFtgdLocalCat:WebfilterFtgdLocalCat", name, args, &resource, opts...)
 	if err != nil {
@@ -148,7 +149,7 @@ type WebfilterFtgdLocalCatInput interface {
 }
 
 func (*WebfilterFtgdLocalCat) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterFtgdLocalCat)(nil))
+	return reflect.TypeOf((**WebfilterFtgdLocalCat)(nil)).Elem()
 }
 
 func (i *WebfilterFtgdLocalCat) ToWebfilterFtgdLocalCatOutput() WebfilterFtgdLocalCatOutput {
@@ -157,35 +158,6 @@ func (i *WebfilterFtgdLocalCat) ToWebfilterFtgdLocalCatOutput() WebfilterFtgdLoc
 
 func (i *WebfilterFtgdLocalCat) ToWebfilterFtgdLocalCatOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalCatOutput)
-}
-
-func (i *WebfilterFtgdLocalCat) ToWebfilterFtgdLocalCatPtrOutput() WebfilterFtgdLocalCatPtrOutput {
-	return i.ToWebfilterFtgdLocalCatPtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterFtgdLocalCat) ToWebfilterFtgdLocalCatPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalCatPtrOutput)
-}
-
-type WebfilterFtgdLocalCatPtrInput interface {
-	pulumi.Input
-
-	ToWebfilterFtgdLocalCatPtrOutput() WebfilterFtgdLocalCatPtrOutput
-	ToWebfilterFtgdLocalCatPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatPtrOutput
-}
-
-type webfilterFtgdLocalCatPtrType WebfilterFtgdLocalCatArgs
-
-func (*webfilterFtgdLocalCatPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterFtgdLocalCat)(nil))
-}
-
-func (i *webfilterFtgdLocalCatPtrType) ToWebfilterFtgdLocalCatPtrOutput() WebfilterFtgdLocalCatPtrOutput {
-	return i.ToWebfilterFtgdLocalCatPtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterFtgdLocalCatPtrType) ToWebfilterFtgdLocalCatPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalCatPtrOutput)
 }
 
 // WebfilterFtgdLocalCatArrayInput is an input type that accepts WebfilterFtgdLocalCatArray and WebfilterFtgdLocalCatArrayOutput values.
@@ -202,7 +174,7 @@ type WebfilterFtgdLocalCatArrayInput interface {
 type WebfilterFtgdLocalCatArray []WebfilterFtgdLocalCatInput
 
 func (WebfilterFtgdLocalCatArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterFtgdLocalCat)(nil))
+	return reflect.TypeOf((*[]*WebfilterFtgdLocalCat)(nil)).Elem()
 }
 
 func (i WebfilterFtgdLocalCatArray) ToWebfilterFtgdLocalCatArrayOutput() WebfilterFtgdLocalCatArrayOutput {
@@ -227,7 +199,7 @@ type WebfilterFtgdLocalCatMapInput interface {
 type WebfilterFtgdLocalCatMap map[string]WebfilterFtgdLocalCatInput
 
 func (WebfilterFtgdLocalCatMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterFtgdLocalCat)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterFtgdLocalCat)(nil)).Elem()
 }
 
 func (i WebfilterFtgdLocalCatMap) ToWebfilterFtgdLocalCatMapOutput() WebfilterFtgdLocalCatMapOutput {
@@ -238,12 +210,10 @@ func (i WebfilterFtgdLocalCatMap) ToWebfilterFtgdLocalCatMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFtgdLocalCatMapOutput)
 }
 
-type WebfilterFtgdLocalCatOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterFtgdLocalCatOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalCatOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterFtgdLocalCat)(nil))
+	return reflect.TypeOf((**WebfilterFtgdLocalCat)(nil)).Elem()
 }
 
 func (o WebfilterFtgdLocalCatOutput) ToWebfilterFtgdLocalCatOutput() WebfilterFtgdLocalCatOutput {
@@ -254,36 +224,10 @@ func (o WebfilterFtgdLocalCatOutput) ToWebfilterFtgdLocalCatOutputWithContext(ct
 	return o
 }
 
-func (o WebfilterFtgdLocalCatOutput) ToWebfilterFtgdLocalCatPtrOutput() WebfilterFtgdLocalCatPtrOutput {
-	return o.ToWebfilterFtgdLocalCatPtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterFtgdLocalCatOutput) ToWebfilterFtgdLocalCatPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatPtrOutput {
-	return o.ApplyT(func(v WebfilterFtgdLocalCat) *WebfilterFtgdLocalCat {
-		return &v
-	}).(WebfilterFtgdLocalCatPtrOutput)
-}
-
-type WebfilterFtgdLocalCatPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterFtgdLocalCatPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterFtgdLocalCat)(nil))
-}
-
-func (o WebfilterFtgdLocalCatPtrOutput) ToWebfilterFtgdLocalCatPtrOutput() WebfilterFtgdLocalCatPtrOutput {
-	return o
-}
-
-func (o WebfilterFtgdLocalCatPtrOutput) ToWebfilterFtgdLocalCatPtrOutputWithContext(ctx context.Context) WebfilterFtgdLocalCatPtrOutput {
-	return o
-}
-
 type WebfilterFtgdLocalCatArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalCatArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterFtgdLocalCat)(nil))
+	return reflect.TypeOf((*[]*WebfilterFtgdLocalCat)(nil)).Elem()
 }
 
 func (o WebfilterFtgdLocalCatArrayOutput) ToWebfilterFtgdLocalCatArrayOutput() WebfilterFtgdLocalCatArrayOutput {
@@ -295,15 +239,15 @@ func (o WebfilterFtgdLocalCatArrayOutput) ToWebfilterFtgdLocalCatArrayOutputWith
 }
 
 func (o WebfilterFtgdLocalCatArrayOutput) Index(i pulumi.IntInput) WebfilterFtgdLocalCatOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterFtgdLocalCat {
-		return vs[0].([]WebfilterFtgdLocalCat)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterFtgdLocalCat {
+		return vs[0].([]*WebfilterFtgdLocalCat)[vs[1].(int)]
 	}).(WebfilterFtgdLocalCatOutput)
 }
 
 type WebfilterFtgdLocalCatMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFtgdLocalCatMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterFtgdLocalCat)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterFtgdLocalCat)(nil)).Elem()
 }
 
 func (o WebfilterFtgdLocalCatMapOutput) ToWebfilterFtgdLocalCatMapOutput() WebfilterFtgdLocalCatMapOutput {
@@ -315,14 +259,16 @@ func (o WebfilterFtgdLocalCatMapOutput) ToWebfilterFtgdLocalCatMapOutputWithCont
 }
 
 func (o WebfilterFtgdLocalCatMapOutput) MapIndex(k pulumi.StringInput) WebfilterFtgdLocalCatOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterFtgdLocalCat {
-		return vs[0].(map[string]WebfilterFtgdLocalCat)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterFtgdLocalCat {
+		return vs[0].(map[string]*WebfilterFtgdLocalCat)[vs[1].(string)]
 	}).(WebfilterFtgdLocalCatOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFtgdLocalCatInput)(nil)).Elem(), &WebfilterFtgdLocalCat{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFtgdLocalCatArrayInput)(nil)).Elem(), WebfilterFtgdLocalCatArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFtgdLocalCatMapInput)(nil)).Elem(), WebfilterFtgdLocalCatMap{})
 	pulumi.RegisterOutputType(WebfilterFtgdLocalCatOutput{})
-	pulumi.RegisterOutputType(WebfilterFtgdLocalCatPtrOutput{})
 	pulumi.RegisterOutputType(WebfilterFtgdLocalCatArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterFtgdLocalCatMapOutput{})
 }

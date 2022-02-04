@@ -75,27 +75,25 @@ export class VpnCertificateRemote extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnCertificateRemoteArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnCertificateRemoteArgs | VpnCertificateRemoteState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnCertificateRemoteState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["range"] = state ? state.range : undefined;
-            inputs["remote"] = state ? state.remote : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["range"] = state ? state.range : undefined;
+            resourceInputs["remote"] = state ? state.remote : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnCertificateRemoteArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["range"] = args ? args.range : undefined;
-            inputs["remote"] = args ? args.remote : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["range"] = args ? args.range : undefined;
+            resourceInputs["remote"] = args ? args.remote : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnCertificateRemote.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnCertificateRemote.__pulumiType, name, resourceInputs, opts);
     }
 }
 

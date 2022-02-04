@@ -54,6 +54,10 @@ export class SwitchControllerInitialConfigVlans extends pulumi.CustomResource {
      */
     public readonly nac!: pulumi.Output<string>;
     /**
+     * VLAN for NAC segemnt primary interface.
+     */
+    public readonly nacSegment!: pulumi.Output<string>;
+    /**
      * VLAN for quarantined traffic.
      */
     public readonly quarantine!: pulumi.Output<string>;
@@ -83,31 +87,31 @@ export class SwitchControllerInitialConfigVlans extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerInitialConfigVlansArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerInitialConfigVlansArgs | SwitchControllerInitialConfigVlansState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerInitialConfigVlansState | undefined;
-            inputs["defaultVlan"] = state ? state.defaultVlan : undefined;
-            inputs["nac"] = state ? state.nac : undefined;
-            inputs["quarantine"] = state ? state.quarantine : undefined;
-            inputs["rspan"] = state ? state.rspan : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["video"] = state ? state.video : undefined;
-            inputs["voice"] = state ? state.voice : undefined;
+            resourceInputs["defaultVlan"] = state ? state.defaultVlan : undefined;
+            resourceInputs["nac"] = state ? state.nac : undefined;
+            resourceInputs["nacSegment"] = state ? state.nacSegment : undefined;
+            resourceInputs["quarantine"] = state ? state.quarantine : undefined;
+            resourceInputs["rspan"] = state ? state.rspan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["video"] = state ? state.video : undefined;
+            resourceInputs["voice"] = state ? state.voice : undefined;
         } else {
             const args = argsOrState as SwitchControllerInitialConfigVlansArgs | undefined;
-            inputs["defaultVlan"] = args ? args.defaultVlan : undefined;
-            inputs["nac"] = args ? args.nac : undefined;
-            inputs["quarantine"] = args ? args.quarantine : undefined;
-            inputs["rspan"] = args ? args.rspan : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["video"] = args ? args.video : undefined;
-            inputs["voice"] = args ? args.voice : undefined;
+            resourceInputs["defaultVlan"] = args ? args.defaultVlan : undefined;
+            resourceInputs["nac"] = args ? args.nac : undefined;
+            resourceInputs["nacSegment"] = args ? args.nacSegment : undefined;
+            resourceInputs["quarantine"] = args ? args.quarantine : undefined;
+            resourceInputs["rspan"] = args ? args.rspan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["video"] = args ? args.video : undefined;
+            resourceInputs["voice"] = args ? args.voice : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerInitialConfigVlans.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerInitialConfigVlans.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -123,6 +127,10 @@ export interface SwitchControllerInitialConfigVlansState {
      * VLAN for NAC onboarding devices.
      */
     nac?: pulumi.Input<string>;
+    /**
+     * VLAN for NAC segemnt primary interface.
+     */
+    nacSegment?: pulumi.Input<string>;
     /**
      * VLAN for quarantined traffic.
      */
@@ -157,6 +165,10 @@ export interface SwitchControllerInitialConfigVlansArgs {
      * VLAN for NAC onboarding devices.
      */
     nac?: pulumi.Input<string>;
+    /**
+     * VLAN for NAC segemnt primary interface.
+     */
+    nacSegment?: pulumi.Input<string>;
     /**
      * VLAN for quarantined traffic.
      */

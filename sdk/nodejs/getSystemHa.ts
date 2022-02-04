@@ -14,9 +14,7 @@ export function getSystemHa(args?: GetSystemHaArgs, opts?: pulumi.InvokeOptions)
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemHa:GetSystemHa", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -57,6 +55,10 @@ export interface GetSystemHaResult {
      */
     readonly encryption: string;
     /**
+     * Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+     */
+    readonly failoverHoldTime: number;
+    /**
      * Dynamic weighted load balancing weight and high and low number of FTP proxy sessions.
      */
     readonly ftpProxyThreshold: string;
@@ -96,6 +98,10 @@ export interface GetSystemHaResult {
      * Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
      */
     readonly hbInterval: number;
+    /**
+     * Number of milliseconds for each heartbeat interval: 100ms or 10ms.
+     */
+    readonly hbIntervalInMilliseconds: string;
     /**
      * Number of lost heartbeats to signal a failure (1 - 60). Increase to reduce false positives.
      */
@@ -149,9 +155,29 @@ export interface GetSystemHaResult {
      */
     readonly logicalSn: string;
     /**
+     * Enable/disable memory based failover.
+     */
+    readonly memoryBasedFailover: string;
+    /**
      * Enable/disable memory compatible mode.
      */
     readonly memoryCompatibleMode: string;
+    /**
+     * Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+     */
+    readonly memoryFailoverFlipTimeout: number;
+    /**
+     * Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+     */
+    readonly memoryFailoverMonitorPeriod: number;
+    /**
+     * Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+     */
+    readonly memoryFailoverSampleRate: number;
+    /**
+     * Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+     */
+    readonly memoryFailoverThreshold: number;
     /**
      * Dynamic weighted load balancing memory usage weight and high and low thresholds.
      */
@@ -281,6 +307,10 @@ export interface GetSystemHaResult {
      */
     readonly syncPacketBalance: string;
     /**
+     * Default route gateway for unicast interface.
+     */
+    readonly unicastGateway: string;
+    /**
      * Enable/disable unicast heartbeat.
      */
     readonly unicastHb: string;
@@ -292,6 +322,18 @@ export interface GetSystemHaResult {
      * Unicast heartbeat peer IP.
      */
     readonly unicastHbPeerip: string;
+    /**
+     * Number of unicast peers. The structure of `unicastPeers` block is documented below.
+     */
+    readonly unicastPeers: outputs.GetSystemHaUnicastPeer[];
+    /**
+     * Enable/disable unicast connection.
+     */
+    readonly unicastStatus: string;
+    /**
+     * Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+     */
+    readonly uninterruptiblePrimaryWait: number;
     /**
      * Enable to upgrade a cluster without blocking network traffic.
      */
@@ -313,4 +355,18 @@ export interface GetSystemHaResult {
      * Weight-round-robin weight for each cluster unit. Syntax <priority> <weight>.
      */
     readonly weight: string;
+}
+
+export function getSystemHaOutput(args?: GetSystemHaOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemHaResult> {
+    return pulumi.output(args).apply(a => getSystemHa(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemHa.
+ */
+export interface GetSystemHaOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

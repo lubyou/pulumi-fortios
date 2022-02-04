@@ -26,6 +26,7 @@ class VpnIpsecManualkeyInterfaceArgs:
                  local_gw6: Optional[pulumi.Input[str]] = None,
                  local_spi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_spi: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -43,6 +44,7 @@ class VpnIpsecManualkeyInterfaceArgs:
         :param pulumi.Input[str] local_gw6: Local IPv6 address of VPN gateway.
         :param pulumi.Input[str] local_spi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_spi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -67,6 +69,8 @@ class VpnIpsecManualkeyInterfaceArgs:
             pulumi.set(__self__, "local_spi", local_spi)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if npu_offload is not None:
+            pulumi.set(__self__, "npu_offload", npu_offload)
         if remote_spi is not None:
             pulumi.set(__self__, "remote_spi", remote_spi)
         if vdomparam is not None:
@@ -229,6 +233,18 @@ class VpnIpsecManualkeyInterfaceArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
+
+    @npu_offload.setter
+    def npu_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_offload", value)
+
+    @property
     @pulumi.getter(name="remoteSpi")
     def remote_spi(self) -> Optional[pulumi.Input[str]]:
         """
@@ -267,6 +283,7 @@ class _VpnIpsecManualkeyInterfaceState:
                  local_gw6: Optional[pulumi.Input[str]] = None,
                  local_spi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  remote_spi: Optional[pulumi.Input[str]] = None,
@@ -284,6 +301,7 @@ class _VpnIpsecManualkeyInterfaceState:
         :param pulumi.Input[str] local_gw6: Local IPv6 address of VPN gateway.
         :param pulumi.Input[str] local_spi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
         :param pulumi.Input[str] remote_gw6: Remote IPv6 address of VPN gateway.
         :param pulumi.Input[str] remote_spi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
@@ -311,6 +329,8 @@ class _VpnIpsecManualkeyInterfaceState:
             pulumi.set(__self__, "local_spi", local_spi)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if npu_offload is not None:
+            pulumi.set(__self__, "npu_offload", npu_offload)
         if remote_gw is not None:
             pulumi.set(__self__, "remote_gw", remote_gw)
         if remote_gw6 is not None:
@@ -453,6 +473,18 @@ class _VpnIpsecManualkeyInterfaceState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
+
+    @npu_offload.setter
+    def npu_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_offload", value)
+
+    @property
     @pulumi.getter(name="remoteGw")
     def remote_gw(self) -> Optional[pulumi.Input[str]]:
         """
@@ -517,6 +549,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
                  local_gw6: Optional[pulumi.Input[str]] = None,
                  local_spi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  remote_spi: Optional[pulumi.Input[str]] = None,
@@ -570,6 +603,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
         :param pulumi.Input[str] local_gw6: Local IPv6 address of VPN gateway.
         :param pulumi.Input[str] local_spi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
         :param pulumi.Input[str] remote_gw6: Remote IPv6 address of VPN gateway.
         :param pulumi.Input[str] remote_spi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
@@ -642,6 +676,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
                  local_gw6: Optional[pulumi.Input[str]] = None,
                  local_spi: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  remote_gw: Optional[pulumi.Input[str]] = None,
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  remote_spi: Optional[pulumi.Input[str]] = None,
@@ -653,6 +688,8 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -675,6 +712,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
             __props__.__dict__["local_gw6"] = local_gw6
             __props__.__dict__["local_spi"] = local_spi
             __props__.__dict__["name"] = name
+            __props__.__dict__["npu_offload"] = npu_offload
             if remote_gw is None and not opts.urn:
                 raise TypeError("Missing required property 'remote_gw'")
             __props__.__dict__["remote_gw"] = remote_gw
@@ -704,6 +742,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
             local_gw6: Optional[pulumi.Input[str]] = None,
             local_spi: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            npu_offload: Optional[pulumi.Input[str]] = None,
             remote_gw: Optional[pulumi.Input[str]] = None,
             remote_gw6: Optional[pulumi.Input[str]] = None,
             remote_spi: Optional[pulumi.Input[str]] = None,
@@ -726,6 +765,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
         :param pulumi.Input[str] local_gw6: Local IPv6 address of VPN gateway.
         :param pulumi.Input[str] local_spi: Local SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
         :param pulumi.Input[str] name: IPsec tunnel name.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] remote_gw: IPv4 address of the remote gateway's external interface.
         :param pulumi.Input[str] remote_gw6: Remote IPv6 address of VPN gateway.
         :param pulumi.Input[str] remote_spi: Remote SPI, a hexadecimal 8-digit (4-byte) tag. Discerns between two traffic streams with different encryption rules.
@@ -746,6 +786,7 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
         __props__.__dict__["local_gw6"] = local_gw6
         __props__.__dict__["local_spi"] = local_spi
         __props__.__dict__["name"] = name
+        __props__.__dict__["npu_offload"] = npu_offload
         __props__.__dict__["remote_gw"] = remote_gw
         __props__.__dict__["remote_gw6"] = remote_gw6
         __props__.__dict__["remote_spi"] = remote_spi
@@ -839,6 +880,14 @@ class VpnIpsecManualkeyInterface(pulumi.CustomResource):
         IPsec tunnel name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
 
     @property
     @pulumi.getter(name="remoteGw")

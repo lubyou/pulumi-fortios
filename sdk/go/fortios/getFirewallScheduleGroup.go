@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewallschedule group
 func LookupFirewallScheduleGroup(ctx *pulumi.Context, args *LookupFirewallScheduleGroupArgs, opts ...pulumi.InvokeOption) (*LookupFirewallScheduleGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallScheduleGroupResult
 	err := ctx.Invoke("fortios:index/getFirewallScheduleGroup:GetFirewallScheduleGroup", args, &rv, opts...)
 	if err != nil {
@@ -29,6 +33,8 @@ type LookupFirewallScheduleGroupArgs struct {
 type LookupFirewallScheduleGroupResult struct {
 	// Color of icon on the GUI.
 	Color int `pulumi:"color"`
+	// Security Fabric global object setting.
+	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
@@ -36,4 +42,73 @@ type LookupFirewallScheduleGroupResult struct {
 	// Schedule name.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallScheduleGroupOutput(ctx *pulumi.Context, args LookupFirewallScheduleGroupOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallScheduleGroupResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallScheduleGroupResult, error) {
+			args := v.(LookupFirewallScheduleGroupArgs)
+			r, err := LookupFirewallScheduleGroup(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallScheduleGroupResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallScheduleGroup.
+type LookupFirewallScheduleGroupOutputArgs struct {
+	// Specify the name of the desired firewallschedule group.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallScheduleGroupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallScheduleGroupArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallScheduleGroup.
+type LookupFirewallScheduleGroupResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallScheduleGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallScheduleGroupResult)(nil)).Elem()
+}
+
+func (o LookupFirewallScheduleGroupResultOutput) ToLookupFirewallScheduleGroupResultOutput() LookupFirewallScheduleGroupResultOutput {
+	return o
+}
+
+func (o LookupFirewallScheduleGroupResultOutput) ToLookupFirewallScheduleGroupResultOutputWithContext(ctx context.Context) LookupFirewallScheduleGroupResultOutput {
+	return o
+}
+
+// Color of icon on the GUI.
+func (o LookupFirewallScheduleGroupResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// Security Fabric global object setting.
+func (o LookupFirewallScheduleGroupResultOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) string { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallScheduleGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Schedules added to the schedule group. The structure of `member` block is documented below.
+func (o LookupFirewallScheduleGroupResultOutput) Members() GetFirewallScheduleGroupMemberArrayOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) []GetFirewallScheduleGroupMember { return v.Members }).(GetFirewallScheduleGroupMemberArrayOutput)
+}
+
+// Schedule name.
+func (o LookupFirewallScheduleGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallScheduleGroupResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallScheduleGroupResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallScheduleGroupResultOutput{})
 }

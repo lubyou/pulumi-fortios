@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ExtenderControllerExtenderArgs', 'ExtenderControllerExtender']
 
@@ -18,28 +20,44 @@ class ExtenderControllerExtenderArgs:
                  role: pulumi.Input[str],
                  aaa_shared_secret: Optional[pulumi.Input[str]] = None,
                  access_point_name: Optional[pulumi.Input[str]] = None,
+                 allowaccess: Optional[pulumi.Input[str]] = None,
                  at_dial_script: Optional[pulumi.Input[str]] = None,
+                 authorized: Optional[pulumi.Input[str]] = None,
+                 bandwidth_limit: Optional[pulumi.Input[int]] = None,
                  billing_start_day: Optional[pulumi.Input[int]] = None,
                  cdma_aaa_spi: Optional[pulumi.Input[str]] = None,
                  cdma_ha_spi: Optional[pulumi.Input[str]] = None,
                  cdma_nai: Optional[pulumi.Input[str]] = None,
                  conn_status: Optional[pulumi.Input[int]] = None,
+                 controller_report: Optional[pulumi.Input['ExtenderControllerExtenderControllerReportArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 device_id: Optional[pulumi.Input[int]] = None,
                  dial_mode: Optional[pulumi.Input[str]] = None,
                  dial_status: Optional[pulumi.Input[int]] = None,
+                 enforce_bandwidth: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
+                 extension_type: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
+                 login_password: Optional[pulumi.Input[str]] = None,
+                 login_password_change: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
+                 modem1: Optional[pulumi.Input['ExtenderControllerExtenderModem1Args']] = None,
+                 modem2: Optional[pulumi.Input['ExtenderControllerExtenderModem2Args']] = None,
                  modem_passwd: Optional[pulumi.Input[str]] = None,
                  modem_type: Optional[pulumi.Input[str]] = None,
                  multi_mode: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 override_allowaccess: Optional[pulumi.Input[str]] = None,
+                 override_enforce_bandwidth: Optional[pulumi.Input[str]] = None,
+                 override_login_password_change: Optional[pulumi.Input[str]] = None,
                  ppp_auth_protocol: Optional[pulumi.Input[str]] = None,
                  ppp_echo_request: Optional[pulumi.Input[str]] = None,
                  ppp_password: Optional[pulumi.Input[str]] = None,
                  ppp_username: Optional[pulumi.Input[str]] = None,
                  primary_ha: Optional[pulumi.Input[str]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  quota_limit_mb: Optional[pulumi.Input[int]] = None,
                  redial: Optional[pulumi.Input[str]] = None,
                  redundant_intf: Optional[pulumi.Input[str]] = None,
@@ -48,6 +66,7 @@ class ExtenderControllerExtenderArgs:
                  sim_pin: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_extension: Optional[pulumi.Input['ExtenderControllerExtenderWanExtensionArgs']] = None,
                  wimax_auth_protocol: Optional[pulumi.Input[str]] = None,
                  wimax_carrier: Optional[pulumi.Input[str]] = None,
                  wimax_realm: Optional[pulumi.Input[str]] = None):
@@ -58,28 +77,44 @@ class ExtenderControllerExtenderArgs:
         :param pulumi.Input[str] role: FortiExtender work role(Primary, Secondary, None). Valid values: `none`, `primary`, `secondary`.
         :param pulumi.Input[str] aaa_shared_secret: AAA shared secret.
         :param pulumi.Input[str] access_point_name: Access point name(APN).
+        :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
         :param pulumi.Input[str] at_dial_script: Initialization AT commands specific to the MODEM.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[int] billing_start_day: Billing start day.
         :param pulumi.Input[str] cdma_aaa_spi: CDMA AAA SPI.
         :param pulumi.Input[str] cdma_ha_spi: CDMA HA SPI.
         :param pulumi.Input[str] cdma_nai: NAI for CDMA MODEMS.
         :param pulumi.Input[int] conn_status: Connection status.
+        :param pulumi.Input['ExtenderControllerExtenderControllerReportArgs'] controller_report: FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] dial_mode: Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
         :param pulumi.Input[int] dial_status: Dial status.
+        :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ext_name: FortiExtender name.
+        :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] login_password: FortiExtender login password.
+        :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] mode: FortiExtender mode. Valid values: `standalone`, `redundant`.
+        :param pulumi.Input['ExtenderControllerExtenderModem1Args'] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
+        :param pulumi.Input['ExtenderControllerExtenderModem2Args'] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
         :param pulumi.Input[str] modem_passwd: MODEM password.
         :param pulumi.Input[str] modem_type: MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
         :param pulumi.Input[str] multi_mode: MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
+        :param pulumi.Input[str] name: FortiExtender entry name.
+        :param pulumi.Input[str] override_allowaccess: Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_enforce_bandwidth: Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_login_password_change: Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_auth_protocol: PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
         :param pulumi.Input[str] ppp_echo_request: Enable/disable PPP echo request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_password: PPP password.
         :param pulumi.Input[str] ppp_username: PPP username.
         :param pulumi.Input[str] primary_ha: Primary HA.
+        :param pulumi.Input[str] profile: FortiExtender profile configuration.
         :param pulumi.Input[int] quota_limit_mb: Monthly quota limit (MB).
         :param pulumi.Input[str] redial: Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
         :param pulumi.Input[str] redundant_intf: Redundant interface.
@@ -88,6 +123,7 @@ class ExtenderControllerExtenderArgs:
         :param pulumi.Input[str] sim_pin: SIM PIN.
         :param pulumi.Input[int] vdom: VDOM
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input['ExtenderControllerExtenderWanExtensionArgs'] wan_extension: FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
         :param pulumi.Input[str] wimax_auth_protocol: WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
         :param pulumi.Input[str] wimax_carrier: WiMax carrier.
         :param pulumi.Input[str] wimax_realm: WiMax realm.
@@ -99,8 +135,14 @@ class ExtenderControllerExtenderArgs:
             pulumi.set(__self__, "aaa_shared_secret", aaa_shared_secret)
         if access_point_name is not None:
             pulumi.set(__self__, "access_point_name", access_point_name)
+        if allowaccess is not None:
+            pulumi.set(__self__, "allowaccess", allowaccess)
         if at_dial_script is not None:
             pulumi.set(__self__, "at_dial_script", at_dial_script)
+        if authorized is not None:
+            pulumi.set(__self__, "authorized", authorized)
+        if bandwidth_limit is not None:
+            pulumi.set(__self__, "bandwidth_limit", bandwidth_limit)
         if billing_start_day is not None:
             pulumi.set(__self__, "billing_start_day", billing_start_day)
         if cdma_aaa_spi is not None:
@@ -111,28 +153,52 @@ class ExtenderControllerExtenderArgs:
             pulumi.set(__self__, "cdma_nai", cdma_nai)
         if conn_status is not None:
             pulumi.set(__self__, "conn_status", conn_status)
+        if controller_report is not None:
+            pulumi.set(__self__, "controller_report", controller_report)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if device_id is not None:
+            pulumi.set(__self__, "device_id", device_id)
         if dial_mode is not None:
             pulumi.set(__self__, "dial_mode", dial_mode)
         if dial_status is not None:
             pulumi.set(__self__, "dial_status", dial_status)
+        if enforce_bandwidth is not None:
+            pulumi.set(__self__, "enforce_bandwidth", enforce_bandwidth)
         if ext_name is not None:
             pulumi.set(__self__, "ext_name", ext_name)
+        if extension_type is not None:
+            pulumi.set(__self__, "extension_type", extension_type)
         if ha_shared_secret is not None:
             pulumi.set(__self__, "ha_shared_secret", ha_shared_secret)
         if ifname is not None:
             pulumi.set(__self__, "ifname", ifname)
         if initiated_update is not None:
             pulumi.set(__self__, "initiated_update", initiated_update)
+        if login_password is not None:
+            pulumi.set(__self__, "login_password", login_password)
+        if login_password_change is not None:
+            pulumi.set(__self__, "login_password_change", login_password_change)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
+        if modem1 is not None:
+            pulumi.set(__self__, "modem1", modem1)
+        if modem2 is not None:
+            pulumi.set(__self__, "modem2", modem2)
         if modem_passwd is not None:
             pulumi.set(__self__, "modem_passwd", modem_passwd)
         if modem_type is not None:
             pulumi.set(__self__, "modem_type", modem_type)
         if multi_mode is not None:
             pulumi.set(__self__, "multi_mode", multi_mode)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if override_allowaccess is not None:
+            pulumi.set(__self__, "override_allowaccess", override_allowaccess)
+        if override_enforce_bandwidth is not None:
+            pulumi.set(__self__, "override_enforce_bandwidth", override_enforce_bandwidth)
+        if override_login_password_change is not None:
+            pulumi.set(__self__, "override_login_password_change", override_login_password_change)
         if ppp_auth_protocol is not None:
             pulumi.set(__self__, "ppp_auth_protocol", ppp_auth_protocol)
         if ppp_echo_request is not None:
@@ -143,6 +209,8 @@ class ExtenderControllerExtenderArgs:
             pulumi.set(__self__, "ppp_username", ppp_username)
         if primary_ha is not None:
             pulumi.set(__self__, "primary_ha", primary_ha)
+        if profile is not None:
+            pulumi.set(__self__, "profile", profile)
         if quota_limit_mb is not None:
             pulumi.set(__self__, "quota_limit_mb", quota_limit_mb)
         if redial is not None:
@@ -159,6 +227,8 @@ class ExtenderControllerExtenderArgs:
             pulumi.set(__self__, "vdom", vdom)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wan_extension is not None:
+            pulumi.set(__self__, "wan_extension", wan_extension)
         if wimax_auth_protocol is not None:
             pulumi.set(__self__, "wimax_auth_protocol", wimax_auth_protocol)
         if wimax_carrier is not None:
@@ -227,6 +297,18 @@ class ExtenderControllerExtenderArgs:
         pulumi.set(self, "access_point_name", value)
 
     @property
+    @pulumi.getter
+    def allowaccess(self) -> Optional[pulumi.Input[str]]:
+        """
+        Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+        """
+        return pulumi.get(self, "allowaccess")
+
+    @allowaccess.setter
+    def allowaccess(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowaccess", value)
+
+    @property
     @pulumi.getter(name="atDialScript")
     def at_dial_script(self) -> Optional[pulumi.Input[str]]:
         """
@@ -237,6 +319,30 @@ class ExtenderControllerExtenderArgs:
     @at_dial_script.setter
     def at_dial_script(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "at_dial_script", value)
+
+    @property
+    @pulumi.getter
+    def authorized(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "authorized")
+
+    @authorized.setter
+    def authorized(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorized", value)
+
+    @property
+    @pulumi.getter(name="bandwidthLimit")
+    def bandwidth_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        FortiExtender LAN extension bandwidth limit (Mbps).
+        """
+        return pulumi.get(self, "bandwidth_limit")
+
+    @bandwidth_limit.setter
+    def bandwidth_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bandwidth_limit", value)
 
     @property
     @pulumi.getter(name="billingStartDay")
@@ -299,6 +405,18 @@ class ExtenderControllerExtenderArgs:
         pulumi.set(self, "conn_status", value)
 
     @property
+    @pulumi.getter(name="controllerReport")
+    def controller_report(self) -> Optional[pulumi.Input['ExtenderControllerExtenderControllerReportArgs']]:
+        """
+        FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
+        """
+        return pulumi.get(self, "controller_report")
+
+    @controller_report.setter
+    def controller_report(self, value: Optional[pulumi.Input['ExtenderControllerExtenderControllerReportArgs']]):
+        pulumi.set(self, "controller_report", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -309,6 +427,18 @@ class ExtenderControllerExtenderArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        device-id
+        """
+        return pulumi.get(self, "device_id")
+
+    @device_id.setter
+    def device_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "device_id", value)
 
     @property
     @pulumi.getter(name="dialMode")
@@ -335,6 +465,18 @@ class ExtenderControllerExtenderArgs:
         pulumi.set(self, "dial_status", value)
 
     @property
+    @pulumi.getter(name="enforceBandwidth")
+    def enforce_bandwidth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "enforce_bandwidth")
+
+    @enforce_bandwidth.setter
+    def enforce_bandwidth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enforce_bandwidth", value)
+
+    @property
     @pulumi.getter(name="extName")
     def ext_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -345,6 +487,18 @@ class ExtenderControllerExtenderArgs:
     @ext_name.setter
     def ext_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ext_name", value)
+
+    @property
+    @pulumi.getter(name="extensionType")
+    def extension_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+        """
+        return pulumi.get(self, "extension_type")
+
+    @extension_type.setter
+    def extension_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extension_type", value)
 
     @property
     @pulumi.getter(name="haSharedSecret")
@@ -383,6 +537,30 @@ class ExtenderControllerExtenderArgs:
         pulumi.set(self, "initiated_update", value)
 
     @property
+    @pulumi.getter(name="loginPassword")
+    def login_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender login password.
+        """
+        return pulumi.get(self, "login_password")
+
+    @login_password.setter
+    def login_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "login_password", value)
+
+    @property
+    @pulumi.getter(name="loginPasswordChange")
+    def login_password_change(self) -> Optional[pulumi.Input[str]]:
+        """
+        Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+        """
+        return pulumi.get(self, "login_password_change")
+
+    @login_password_change.setter
+    def login_password_change(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "login_password_change", value)
+
+    @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -393,6 +571,30 @@ class ExtenderControllerExtenderArgs:
     @mode.setter
     def mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def modem1(self) -> Optional[pulumi.Input['ExtenderControllerExtenderModem1Args']]:
+        """
+        Configuration options for modem 1. The structure of `modem1` block is documented below.
+        """
+        return pulumi.get(self, "modem1")
+
+    @modem1.setter
+    def modem1(self, value: Optional[pulumi.Input['ExtenderControllerExtenderModem1Args']]):
+        pulumi.set(self, "modem1", value)
+
+    @property
+    @pulumi.getter
+    def modem2(self) -> Optional[pulumi.Input['ExtenderControllerExtenderModem2Args']]:
+        """
+        Configuration options for modem 2. The structure of `modem2` block is documented below.
+        """
+        return pulumi.get(self, "modem2")
+
+    @modem2.setter
+    def modem2(self, value: Optional[pulumi.Input['ExtenderControllerExtenderModem2Args']]):
+        pulumi.set(self, "modem2", value)
 
     @property
     @pulumi.getter(name="modemPasswd")
@@ -429,6 +631,54 @@ class ExtenderControllerExtenderArgs:
     @multi_mode.setter
     def multi_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "multi_mode", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender entry name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="overrideAllowaccess")
+    def override_allowaccess(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_allowaccess")
+
+    @override_allowaccess.setter
+    def override_allowaccess(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_allowaccess", value)
+
+    @property
+    @pulumi.getter(name="overrideEnforceBandwidth")
+    def override_enforce_bandwidth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_enforce_bandwidth")
+
+    @override_enforce_bandwidth.setter
+    def override_enforce_bandwidth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_enforce_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="overrideLoginPasswordChange")
+    def override_login_password_change(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_login_password_change")
+
+    @override_login_password_change.setter
+    def override_login_password_change(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_login_password_change", value)
 
     @property
     @pulumi.getter(name="pppAuthProtocol")
@@ -489,6 +739,18 @@ class ExtenderControllerExtenderArgs:
     @primary_ha.setter
     def primary_ha(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "primary_ha", value)
+
+    @property
+    @pulumi.getter
+    def profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender profile configuration.
+        """
+        return pulumi.get(self, "profile")
+
+    @profile.setter
+    def profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "profile", value)
 
     @property
     @pulumi.getter(name="quotaLimitMb")
@@ -587,6 +849,18 @@ class ExtenderControllerExtenderArgs:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="wanExtension")
+    def wan_extension(self) -> Optional[pulumi.Input['ExtenderControllerExtenderWanExtensionArgs']]:
+        """
+        FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
+        """
+        return pulumi.get(self, "wan_extension")
+
+    @wan_extension.setter
+    def wan_extension(self, value: Optional[pulumi.Input['ExtenderControllerExtenderWanExtensionArgs']]):
+        pulumi.set(self, "wan_extension", value)
+
+    @property
     @pulumi.getter(name="wimaxAuthProtocol")
     def wimax_auth_protocol(self) -> Optional[pulumi.Input[str]]:
         """
@@ -629,29 +903,45 @@ class _ExtenderControllerExtenderState:
                  aaa_shared_secret: Optional[pulumi.Input[str]] = None,
                  access_point_name: Optional[pulumi.Input[str]] = None,
                  admin: Optional[pulumi.Input[str]] = None,
+                 allowaccess: Optional[pulumi.Input[str]] = None,
                  at_dial_script: Optional[pulumi.Input[str]] = None,
+                 authorized: Optional[pulumi.Input[str]] = None,
+                 bandwidth_limit: Optional[pulumi.Input[int]] = None,
                  billing_start_day: Optional[pulumi.Input[int]] = None,
                  cdma_aaa_spi: Optional[pulumi.Input[str]] = None,
                  cdma_ha_spi: Optional[pulumi.Input[str]] = None,
                  cdma_nai: Optional[pulumi.Input[str]] = None,
                  conn_status: Optional[pulumi.Input[int]] = None,
+                 controller_report: Optional[pulumi.Input['ExtenderControllerExtenderControllerReportArgs']] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 device_id: Optional[pulumi.Input[int]] = None,
                  dial_mode: Optional[pulumi.Input[str]] = None,
                  dial_status: Optional[pulumi.Input[int]] = None,
+                 enforce_bandwidth: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
+                 extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
+                 login_password: Optional[pulumi.Input[str]] = None,
+                 login_password_change: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
+                 modem1: Optional[pulumi.Input['ExtenderControllerExtenderModem1Args']] = None,
+                 modem2: Optional[pulumi.Input['ExtenderControllerExtenderModem2Args']] = None,
                  modem_passwd: Optional[pulumi.Input[str]] = None,
                  modem_type: Optional[pulumi.Input[str]] = None,
                  multi_mode: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 override_allowaccess: Optional[pulumi.Input[str]] = None,
+                 override_enforce_bandwidth: Optional[pulumi.Input[str]] = None,
+                 override_login_password_change: Optional[pulumi.Input[str]] = None,
                  ppp_auth_protocol: Optional[pulumi.Input[str]] = None,
                  ppp_echo_request: Optional[pulumi.Input[str]] = None,
                  ppp_password: Optional[pulumi.Input[str]] = None,
                  ppp_username: Optional[pulumi.Input[str]] = None,
                  primary_ha: Optional[pulumi.Input[str]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  quota_limit_mb: Optional[pulumi.Input[int]] = None,
                  redial: Optional[pulumi.Input[str]] = None,
                  redundant_intf: Optional[pulumi.Input[str]] = None,
@@ -661,6 +951,7 @@ class _ExtenderControllerExtenderState:
                  sim_pin: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_extension: Optional[pulumi.Input['ExtenderControllerExtenderWanExtensionArgs']] = None,
                  wimax_auth_protocol: Optional[pulumi.Input[str]] = None,
                  wimax_carrier: Optional[pulumi.Input[str]] = None,
                  wimax_realm: Optional[pulumi.Input[str]] = None):
@@ -669,29 +960,45 @@ class _ExtenderControllerExtenderState:
         :param pulumi.Input[str] aaa_shared_secret: AAA shared secret.
         :param pulumi.Input[str] access_point_name: Access point name(APN).
         :param pulumi.Input[str] admin: FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
+        :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
         :param pulumi.Input[str] at_dial_script: Initialization AT commands specific to the MODEM.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[int] billing_start_day: Billing start day.
         :param pulumi.Input[str] cdma_aaa_spi: CDMA AAA SPI.
         :param pulumi.Input[str] cdma_ha_spi: CDMA HA SPI.
         :param pulumi.Input[str] cdma_nai: NAI for CDMA MODEMS.
         :param pulumi.Input[int] conn_status: Connection status.
+        :param pulumi.Input['ExtenderControllerExtenderControllerReportArgs'] controller_report: FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] dial_mode: Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
         :param pulumi.Input[int] dial_status: Dial status.
+        :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ext_name: FortiExtender name.
+        :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] login_password: FortiExtender login password.
+        :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] mode: FortiExtender mode. Valid values: `standalone`, `redundant`.
+        :param pulumi.Input['ExtenderControllerExtenderModem1Args'] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
+        :param pulumi.Input['ExtenderControllerExtenderModem2Args'] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
         :param pulumi.Input[str] modem_passwd: MODEM password.
         :param pulumi.Input[str] modem_type: MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
         :param pulumi.Input[str] multi_mode: MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
+        :param pulumi.Input[str] name: FortiExtender entry name.
+        :param pulumi.Input[str] override_allowaccess: Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_enforce_bandwidth: Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_login_password_change: Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_auth_protocol: PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
         :param pulumi.Input[str] ppp_echo_request: Enable/disable PPP echo request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_password: PPP password.
         :param pulumi.Input[str] ppp_username: PPP username.
         :param pulumi.Input[str] primary_ha: Primary HA.
+        :param pulumi.Input[str] profile: FortiExtender profile configuration.
         :param pulumi.Input[int] quota_limit_mb: Monthly quota limit (MB).
         :param pulumi.Input[str] redial: Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
         :param pulumi.Input[str] redundant_intf: Redundant interface.
@@ -701,6 +1008,7 @@ class _ExtenderControllerExtenderState:
         :param pulumi.Input[str] sim_pin: SIM PIN.
         :param pulumi.Input[int] vdom: VDOM
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input['ExtenderControllerExtenderWanExtensionArgs'] wan_extension: FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
         :param pulumi.Input[str] wimax_auth_protocol: WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
         :param pulumi.Input[str] wimax_carrier: WiMax carrier.
         :param pulumi.Input[str] wimax_realm: WiMax realm.
@@ -711,8 +1019,14 @@ class _ExtenderControllerExtenderState:
             pulumi.set(__self__, "access_point_name", access_point_name)
         if admin is not None:
             pulumi.set(__self__, "admin", admin)
+        if allowaccess is not None:
+            pulumi.set(__self__, "allowaccess", allowaccess)
         if at_dial_script is not None:
             pulumi.set(__self__, "at_dial_script", at_dial_script)
+        if authorized is not None:
+            pulumi.set(__self__, "authorized", authorized)
+        if bandwidth_limit is not None:
+            pulumi.set(__self__, "bandwidth_limit", bandwidth_limit)
         if billing_start_day is not None:
             pulumi.set(__self__, "billing_start_day", billing_start_day)
         if cdma_aaa_spi is not None:
@@ -723,14 +1037,22 @@ class _ExtenderControllerExtenderState:
             pulumi.set(__self__, "cdma_nai", cdma_nai)
         if conn_status is not None:
             pulumi.set(__self__, "conn_status", conn_status)
+        if controller_report is not None:
+            pulumi.set(__self__, "controller_report", controller_report)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if device_id is not None:
+            pulumi.set(__self__, "device_id", device_id)
         if dial_mode is not None:
             pulumi.set(__self__, "dial_mode", dial_mode)
         if dial_status is not None:
             pulumi.set(__self__, "dial_status", dial_status)
+        if enforce_bandwidth is not None:
+            pulumi.set(__self__, "enforce_bandwidth", enforce_bandwidth)
         if ext_name is not None:
             pulumi.set(__self__, "ext_name", ext_name)
+        if extension_type is not None:
+            pulumi.set(__self__, "extension_type", extension_type)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if ha_shared_secret is not None:
@@ -739,14 +1061,30 @@ class _ExtenderControllerExtenderState:
             pulumi.set(__self__, "ifname", ifname)
         if initiated_update is not None:
             pulumi.set(__self__, "initiated_update", initiated_update)
+        if login_password is not None:
+            pulumi.set(__self__, "login_password", login_password)
+        if login_password_change is not None:
+            pulumi.set(__self__, "login_password_change", login_password_change)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
+        if modem1 is not None:
+            pulumi.set(__self__, "modem1", modem1)
+        if modem2 is not None:
+            pulumi.set(__self__, "modem2", modem2)
         if modem_passwd is not None:
             pulumi.set(__self__, "modem_passwd", modem_passwd)
         if modem_type is not None:
             pulumi.set(__self__, "modem_type", modem_type)
         if multi_mode is not None:
             pulumi.set(__self__, "multi_mode", multi_mode)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if override_allowaccess is not None:
+            pulumi.set(__self__, "override_allowaccess", override_allowaccess)
+        if override_enforce_bandwidth is not None:
+            pulumi.set(__self__, "override_enforce_bandwidth", override_enforce_bandwidth)
+        if override_login_password_change is not None:
+            pulumi.set(__self__, "override_login_password_change", override_login_password_change)
         if ppp_auth_protocol is not None:
             pulumi.set(__self__, "ppp_auth_protocol", ppp_auth_protocol)
         if ppp_echo_request is not None:
@@ -757,6 +1095,8 @@ class _ExtenderControllerExtenderState:
             pulumi.set(__self__, "ppp_username", ppp_username)
         if primary_ha is not None:
             pulumi.set(__self__, "primary_ha", primary_ha)
+        if profile is not None:
+            pulumi.set(__self__, "profile", profile)
         if quota_limit_mb is not None:
             pulumi.set(__self__, "quota_limit_mb", quota_limit_mb)
         if redial is not None:
@@ -775,6 +1115,8 @@ class _ExtenderControllerExtenderState:
             pulumi.set(__self__, "vdom", vdom)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wan_extension is not None:
+            pulumi.set(__self__, "wan_extension", wan_extension)
         if wimax_auth_protocol is not None:
             pulumi.set(__self__, "wimax_auth_protocol", wimax_auth_protocol)
         if wimax_carrier is not None:
@@ -819,6 +1161,18 @@ class _ExtenderControllerExtenderState:
         pulumi.set(self, "admin", value)
 
     @property
+    @pulumi.getter
+    def allowaccess(self) -> Optional[pulumi.Input[str]]:
+        """
+        Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+        """
+        return pulumi.get(self, "allowaccess")
+
+    @allowaccess.setter
+    def allowaccess(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "allowaccess", value)
+
+    @property
     @pulumi.getter(name="atDialScript")
     def at_dial_script(self) -> Optional[pulumi.Input[str]]:
         """
@@ -829,6 +1183,30 @@ class _ExtenderControllerExtenderState:
     @at_dial_script.setter
     def at_dial_script(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "at_dial_script", value)
+
+    @property
+    @pulumi.getter
+    def authorized(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "authorized")
+
+    @authorized.setter
+    def authorized(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "authorized", value)
+
+    @property
+    @pulumi.getter(name="bandwidthLimit")
+    def bandwidth_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        FortiExtender LAN extension bandwidth limit (Mbps).
+        """
+        return pulumi.get(self, "bandwidth_limit")
+
+    @bandwidth_limit.setter
+    def bandwidth_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bandwidth_limit", value)
 
     @property
     @pulumi.getter(name="billingStartDay")
@@ -891,6 +1269,18 @@ class _ExtenderControllerExtenderState:
         pulumi.set(self, "conn_status", value)
 
     @property
+    @pulumi.getter(name="controllerReport")
+    def controller_report(self) -> Optional[pulumi.Input['ExtenderControllerExtenderControllerReportArgs']]:
+        """
+        FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
+        """
+        return pulumi.get(self, "controller_report")
+
+    @controller_report.setter
+    def controller_report(self, value: Optional[pulumi.Input['ExtenderControllerExtenderControllerReportArgs']]):
+        pulumi.set(self, "controller_report", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -901,6 +1291,18 @@ class _ExtenderControllerExtenderState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        device-id
+        """
+        return pulumi.get(self, "device_id")
+
+    @device_id.setter
+    def device_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "device_id", value)
 
     @property
     @pulumi.getter(name="dialMode")
@@ -927,6 +1329,18 @@ class _ExtenderControllerExtenderState:
         pulumi.set(self, "dial_status", value)
 
     @property
+    @pulumi.getter(name="enforceBandwidth")
+    def enforce_bandwidth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "enforce_bandwidth")
+
+    @enforce_bandwidth.setter
+    def enforce_bandwidth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "enforce_bandwidth", value)
+
+    @property
     @pulumi.getter(name="extName")
     def ext_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -937,6 +1351,18 @@ class _ExtenderControllerExtenderState:
     @ext_name.setter
     def ext_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ext_name", value)
+
+    @property
+    @pulumi.getter(name="extensionType")
+    def extension_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+        """
+        return pulumi.get(self, "extension_type")
+
+    @extension_type.setter
+    def extension_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extension_type", value)
 
     @property
     @pulumi.getter
@@ -987,6 +1413,30 @@ class _ExtenderControllerExtenderState:
         pulumi.set(self, "initiated_update", value)
 
     @property
+    @pulumi.getter(name="loginPassword")
+    def login_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender login password.
+        """
+        return pulumi.get(self, "login_password")
+
+    @login_password.setter
+    def login_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "login_password", value)
+
+    @property
+    @pulumi.getter(name="loginPasswordChange")
+    def login_password_change(self) -> Optional[pulumi.Input[str]]:
+        """
+        Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+        """
+        return pulumi.get(self, "login_password_change")
+
+    @login_password_change.setter
+    def login_password_change(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "login_password_change", value)
+
+    @property
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -997,6 +1447,30 @@ class _ExtenderControllerExtenderState:
     @mode.setter
     def mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mode", value)
+
+    @property
+    @pulumi.getter
+    def modem1(self) -> Optional[pulumi.Input['ExtenderControllerExtenderModem1Args']]:
+        """
+        Configuration options for modem 1. The structure of `modem1` block is documented below.
+        """
+        return pulumi.get(self, "modem1")
+
+    @modem1.setter
+    def modem1(self, value: Optional[pulumi.Input['ExtenderControllerExtenderModem1Args']]):
+        pulumi.set(self, "modem1", value)
+
+    @property
+    @pulumi.getter
+    def modem2(self) -> Optional[pulumi.Input['ExtenderControllerExtenderModem2Args']]:
+        """
+        Configuration options for modem 2. The structure of `modem2` block is documented below.
+        """
+        return pulumi.get(self, "modem2")
+
+    @modem2.setter
+    def modem2(self, value: Optional[pulumi.Input['ExtenderControllerExtenderModem2Args']]):
+        pulumi.set(self, "modem2", value)
 
     @property
     @pulumi.getter(name="modemPasswd")
@@ -1033,6 +1507,54 @@ class _ExtenderControllerExtenderState:
     @multi_mode.setter
     def multi_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "multi_mode", value)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender entry name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="overrideAllowaccess")
+    def override_allowaccess(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_allowaccess")
+
+    @override_allowaccess.setter
+    def override_allowaccess(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_allowaccess", value)
+
+    @property
+    @pulumi.getter(name="overrideEnforceBandwidth")
+    def override_enforce_bandwidth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_enforce_bandwidth")
+
+    @override_enforce_bandwidth.setter
+    def override_enforce_bandwidth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_enforce_bandwidth", value)
+
+    @property
+    @pulumi.getter(name="overrideLoginPasswordChange")
+    def override_login_password_change(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_login_password_change")
+
+    @override_login_password_change.setter
+    def override_login_password_change(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_login_password_change", value)
 
     @property
     @pulumi.getter(name="pppAuthProtocol")
@@ -1093,6 +1615,18 @@ class _ExtenderControllerExtenderState:
     @primary_ha.setter
     def primary_ha(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "primary_ha", value)
+
+    @property
+    @pulumi.getter
+    def profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        FortiExtender profile configuration.
+        """
+        return pulumi.get(self, "profile")
+
+    @profile.setter
+    def profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "profile", value)
 
     @property
     @pulumi.getter(name="quotaLimitMb")
@@ -1203,6 +1737,18 @@ class _ExtenderControllerExtenderState:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="wanExtension")
+    def wan_extension(self) -> Optional[pulumi.Input['ExtenderControllerExtenderWanExtensionArgs']]:
+        """
+        FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
+        """
+        return pulumi.get(self, "wan_extension")
+
+    @wan_extension.setter
+    def wan_extension(self, value: Optional[pulumi.Input['ExtenderControllerExtenderWanExtensionArgs']]):
+        pulumi.set(self, "wan_extension", value)
+
+    @property
     @pulumi.getter(name="wimaxAuthProtocol")
     def wimax_auth_protocol(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1247,29 +1793,45 @@ class ExtenderControllerExtender(pulumi.CustomResource):
                  aaa_shared_secret: Optional[pulumi.Input[str]] = None,
                  access_point_name: Optional[pulumi.Input[str]] = None,
                  admin: Optional[pulumi.Input[str]] = None,
+                 allowaccess: Optional[pulumi.Input[str]] = None,
                  at_dial_script: Optional[pulumi.Input[str]] = None,
+                 authorized: Optional[pulumi.Input[str]] = None,
+                 bandwidth_limit: Optional[pulumi.Input[int]] = None,
                  billing_start_day: Optional[pulumi.Input[int]] = None,
                  cdma_aaa_spi: Optional[pulumi.Input[str]] = None,
                  cdma_ha_spi: Optional[pulumi.Input[str]] = None,
                  cdma_nai: Optional[pulumi.Input[str]] = None,
                  conn_status: Optional[pulumi.Input[int]] = None,
+                 controller_report: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderControllerReportArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 device_id: Optional[pulumi.Input[int]] = None,
                  dial_mode: Optional[pulumi.Input[str]] = None,
                  dial_status: Optional[pulumi.Input[int]] = None,
+                 enforce_bandwidth: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
+                 extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
+                 login_password: Optional[pulumi.Input[str]] = None,
+                 login_password_change: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
+                 modem1: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem1Args']]] = None,
+                 modem2: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem2Args']]] = None,
                  modem_passwd: Optional[pulumi.Input[str]] = None,
                  modem_type: Optional[pulumi.Input[str]] = None,
                  multi_mode: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 override_allowaccess: Optional[pulumi.Input[str]] = None,
+                 override_enforce_bandwidth: Optional[pulumi.Input[str]] = None,
+                 override_login_password_change: Optional[pulumi.Input[str]] = None,
                  ppp_auth_protocol: Optional[pulumi.Input[str]] = None,
                  ppp_echo_request: Optional[pulumi.Input[str]] = None,
                  ppp_password: Optional[pulumi.Input[str]] = None,
                  ppp_username: Optional[pulumi.Input[str]] = None,
                  primary_ha: Optional[pulumi.Input[str]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  quota_limit_mb: Optional[pulumi.Input[int]] = None,
                  redial: Optional[pulumi.Input[str]] = None,
                  redundant_intf: Optional[pulumi.Input[str]] = None,
@@ -1279,6 +1841,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
                  sim_pin: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_extension: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderWanExtensionArgs']]] = None,
                  wimax_auth_protocol: Optional[pulumi.Input[str]] = None,
                  wimax_carrier: Optional[pulumi.Input[str]] = None,
                  wimax_realm: Optional[pulumi.Input[str]] = None,
@@ -1331,29 +1894,45 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         :param pulumi.Input[str] aaa_shared_secret: AAA shared secret.
         :param pulumi.Input[str] access_point_name: Access point name(APN).
         :param pulumi.Input[str] admin: FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
+        :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
         :param pulumi.Input[str] at_dial_script: Initialization AT commands specific to the MODEM.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[int] billing_start_day: Billing start day.
         :param pulumi.Input[str] cdma_aaa_spi: CDMA AAA SPI.
         :param pulumi.Input[str] cdma_ha_spi: CDMA HA SPI.
         :param pulumi.Input[str] cdma_nai: NAI for CDMA MODEMS.
         :param pulumi.Input[int] conn_status: Connection status.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderControllerReportArgs']] controller_report: FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] dial_mode: Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
         :param pulumi.Input[int] dial_status: Dial status.
+        :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ext_name: FortiExtender name.
+        :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] login_password: FortiExtender login password.
+        :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] mode: FortiExtender mode. Valid values: `standalone`, `redundant`.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem1Args']] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem2Args']] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
         :param pulumi.Input[str] modem_passwd: MODEM password.
         :param pulumi.Input[str] modem_type: MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
         :param pulumi.Input[str] multi_mode: MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
+        :param pulumi.Input[str] name: FortiExtender entry name.
+        :param pulumi.Input[str] override_allowaccess: Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_enforce_bandwidth: Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_login_password_change: Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_auth_protocol: PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
         :param pulumi.Input[str] ppp_echo_request: Enable/disable PPP echo request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_password: PPP password.
         :param pulumi.Input[str] ppp_username: PPP username.
         :param pulumi.Input[str] primary_ha: Primary HA.
+        :param pulumi.Input[str] profile: FortiExtender profile configuration.
         :param pulumi.Input[int] quota_limit_mb: Monthly quota limit (MB).
         :param pulumi.Input[str] redial: Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
         :param pulumi.Input[str] redundant_intf: Redundant interface.
@@ -1363,6 +1942,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         :param pulumi.Input[str] sim_pin: SIM PIN.
         :param pulumi.Input[int] vdom: VDOM
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderWanExtensionArgs']] wan_extension: FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
         :param pulumi.Input[str] wimax_auth_protocol: WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
         :param pulumi.Input[str] wimax_carrier: WiMax carrier.
         :param pulumi.Input[str] wimax_realm: WiMax realm.
@@ -1434,29 +2014,45 @@ class ExtenderControllerExtender(pulumi.CustomResource):
                  aaa_shared_secret: Optional[pulumi.Input[str]] = None,
                  access_point_name: Optional[pulumi.Input[str]] = None,
                  admin: Optional[pulumi.Input[str]] = None,
+                 allowaccess: Optional[pulumi.Input[str]] = None,
                  at_dial_script: Optional[pulumi.Input[str]] = None,
+                 authorized: Optional[pulumi.Input[str]] = None,
+                 bandwidth_limit: Optional[pulumi.Input[int]] = None,
                  billing_start_day: Optional[pulumi.Input[int]] = None,
                  cdma_aaa_spi: Optional[pulumi.Input[str]] = None,
                  cdma_ha_spi: Optional[pulumi.Input[str]] = None,
                  cdma_nai: Optional[pulumi.Input[str]] = None,
                  conn_status: Optional[pulumi.Input[int]] = None,
+                 controller_report: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderControllerReportArgs']]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 device_id: Optional[pulumi.Input[int]] = None,
                  dial_mode: Optional[pulumi.Input[str]] = None,
                  dial_status: Optional[pulumi.Input[int]] = None,
+                 enforce_bandwidth: Optional[pulumi.Input[str]] = None,
                  ext_name: Optional[pulumi.Input[str]] = None,
+                 extension_type: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[str]] = None,
                  ha_shared_secret: Optional[pulumi.Input[str]] = None,
                  ifname: Optional[pulumi.Input[str]] = None,
                  initiated_update: Optional[pulumi.Input[str]] = None,
+                 login_password: Optional[pulumi.Input[str]] = None,
+                 login_password_change: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
+                 modem1: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem1Args']]] = None,
+                 modem2: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem2Args']]] = None,
                  modem_passwd: Optional[pulumi.Input[str]] = None,
                  modem_type: Optional[pulumi.Input[str]] = None,
                  multi_mode: Optional[pulumi.Input[str]] = None,
+                 name: Optional[pulumi.Input[str]] = None,
+                 override_allowaccess: Optional[pulumi.Input[str]] = None,
+                 override_enforce_bandwidth: Optional[pulumi.Input[str]] = None,
+                 override_login_password_change: Optional[pulumi.Input[str]] = None,
                  ppp_auth_protocol: Optional[pulumi.Input[str]] = None,
                  ppp_echo_request: Optional[pulumi.Input[str]] = None,
                  ppp_password: Optional[pulumi.Input[str]] = None,
                  ppp_username: Optional[pulumi.Input[str]] = None,
                  primary_ha: Optional[pulumi.Input[str]] = None,
+                 profile: Optional[pulumi.Input[str]] = None,
                  quota_limit_mb: Optional[pulumi.Input[int]] = None,
                  redial: Optional[pulumi.Input[str]] = None,
                  redundant_intf: Optional[pulumi.Input[str]] = None,
@@ -1466,6 +2062,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
                  sim_pin: Optional[pulumi.Input[str]] = None,
                  vdom: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_extension: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderWanExtensionArgs']]] = None,
                  wimax_auth_protocol: Optional[pulumi.Input[str]] = None,
                  wimax_carrier: Optional[pulumi.Input[str]] = None,
                  wimax_realm: Optional[pulumi.Input[str]] = None,
@@ -1476,6 +2073,8 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1486,31 +2085,47 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             if admin is None and not opts.urn:
                 raise TypeError("Missing required property 'admin'")
             __props__.__dict__["admin"] = admin
+            __props__.__dict__["allowaccess"] = allowaccess
             __props__.__dict__["at_dial_script"] = at_dial_script
+            __props__.__dict__["authorized"] = authorized
+            __props__.__dict__["bandwidth_limit"] = bandwidth_limit
             __props__.__dict__["billing_start_day"] = billing_start_day
             __props__.__dict__["cdma_aaa_spi"] = cdma_aaa_spi
             __props__.__dict__["cdma_ha_spi"] = cdma_ha_spi
             __props__.__dict__["cdma_nai"] = cdma_nai
             __props__.__dict__["conn_status"] = conn_status
+            __props__.__dict__["controller_report"] = controller_report
             __props__.__dict__["description"] = description
+            __props__.__dict__["device_id"] = device_id
             __props__.__dict__["dial_mode"] = dial_mode
             __props__.__dict__["dial_status"] = dial_status
+            __props__.__dict__["enforce_bandwidth"] = enforce_bandwidth
             __props__.__dict__["ext_name"] = ext_name
+            __props__.__dict__["extension_type"] = extension_type
             if fosid is None and not opts.urn:
                 raise TypeError("Missing required property 'fosid'")
             __props__.__dict__["fosid"] = fosid
             __props__.__dict__["ha_shared_secret"] = ha_shared_secret
             __props__.__dict__["ifname"] = ifname
             __props__.__dict__["initiated_update"] = initiated_update
+            __props__.__dict__["login_password"] = login_password
+            __props__.__dict__["login_password_change"] = login_password_change
             __props__.__dict__["mode"] = mode
+            __props__.__dict__["modem1"] = modem1
+            __props__.__dict__["modem2"] = modem2
             __props__.__dict__["modem_passwd"] = modem_passwd
             __props__.__dict__["modem_type"] = modem_type
             __props__.__dict__["multi_mode"] = multi_mode
+            __props__.__dict__["name"] = name
+            __props__.__dict__["override_allowaccess"] = override_allowaccess
+            __props__.__dict__["override_enforce_bandwidth"] = override_enforce_bandwidth
+            __props__.__dict__["override_login_password_change"] = override_login_password_change
             __props__.__dict__["ppp_auth_protocol"] = ppp_auth_protocol
             __props__.__dict__["ppp_echo_request"] = ppp_echo_request
             __props__.__dict__["ppp_password"] = ppp_password
             __props__.__dict__["ppp_username"] = ppp_username
             __props__.__dict__["primary_ha"] = primary_ha
+            __props__.__dict__["profile"] = profile
             __props__.__dict__["quota_limit_mb"] = quota_limit_mb
             __props__.__dict__["redial"] = redial
             __props__.__dict__["redundant_intf"] = redundant_intf
@@ -1522,6 +2137,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             __props__.__dict__["sim_pin"] = sim_pin
             __props__.__dict__["vdom"] = vdom
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["wan_extension"] = wan_extension
             __props__.__dict__["wimax_auth_protocol"] = wimax_auth_protocol
             __props__.__dict__["wimax_carrier"] = wimax_carrier
             __props__.__dict__["wimax_realm"] = wimax_realm
@@ -1538,29 +2154,45 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             aaa_shared_secret: Optional[pulumi.Input[str]] = None,
             access_point_name: Optional[pulumi.Input[str]] = None,
             admin: Optional[pulumi.Input[str]] = None,
+            allowaccess: Optional[pulumi.Input[str]] = None,
             at_dial_script: Optional[pulumi.Input[str]] = None,
+            authorized: Optional[pulumi.Input[str]] = None,
+            bandwidth_limit: Optional[pulumi.Input[int]] = None,
             billing_start_day: Optional[pulumi.Input[int]] = None,
             cdma_aaa_spi: Optional[pulumi.Input[str]] = None,
             cdma_ha_spi: Optional[pulumi.Input[str]] = None,
             cdma_nai: Optional[pulumi.Input[str]] = None,
             conn_status: Optional[pulumi.Input[int]] = None,
+            controller_report: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderControllerReportArgs']]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            device_id: Optional[pulumi.Input[int]] = None,
             dial_mode: Optional[pulumi.Input[str]] = None,
             dial_status: Optional[pulumi.Input[int]] = None,
+            enforce_bandwidth: Optional[pulumi.Input[str]] = None,
             ext_name: Optional[pulumi.Input[str]] = None,
+            extension_type: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[str]] = None,
             ha_shared_secret: Optional[pulumi.Input[str]] = None,
             ifname: Optional[pulumi.Input[str]] = None,
             initiated_update: Optional[pulumi.Input[str]] = None,
+            login_password: Optional[pulumi.Input[str]] = None,
+            login_password_change: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
+            modem1: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem1Args']]] = None,
+            modem2: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem2Args']]] = None,
             modem_passwd: Optional[pulumi.Input[str]] = None,
             modem_type: Optional[pulumi.Input[str]] = None,
             multi_mode: Optional[pulumi.Input[str]] = None,
+            name: Optional[pulumi.Input[str]] = None,
+            override_allowaccess: Optional[pulumi.Input[str]] = None,
+            override_enforce_bandwidth: Optional[pulumi.Input[str]] = None,
+            override_login_password_change: Optional[pulumi.Input[str]] = None,
             ppp_auth_protocol: Optional[pulumi.Input[str]] = None,
             ppp_echo_request: Optional[pulumi.Input[str]] = None,
             ppp_password: Optional[pulumi.Input[str]] = None,
             ppp_username: Optional[pulumi.Input[str]] = None,
             primary_ha: Optional[pulumi.Input[str]] = None,
+            profile: Optional[pulumi.Input[str]] = None,
             quota_limit_mb: Optional[pulumi.Input[int]] = None,
             redial: Optional[pulumi.Input[str]] = None,
             redundant_intf: Optional[pulumi.Input[str]] = None,
@@ -1570,6 +2202,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
             sim_pin: Optional[pulumi.Input[str]] = None,
             vdom: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            wan_extension: Optional[pulumi.Input[pulumi.InputType['ExtenderControllerExtenderWanExtensionArgs']]] = None,
             wimax_auth_protocol: Optional[pulumi.Input[str]] = None,
             wimax_carrier: Optional[pulumi.Input[str]] = None,
             wimax_realm: Optional[pulumi.Input[str]] = None) -> 'ExtenderControllerExtender':
@@ -1583,29 +2216,45 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         :param pulumi.Input[str] aaa_shared_secret: AAA shared secret.
         :param pulumi.Input[str] access_point_name: Access point name(APN).
         :param pulumi.Input[str] admin: FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
+        :param pulumi.Input[str] allowaccess: Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
         :param pulumi.Input[str] at_dial_script: Initialization AT commands specific to the MODEM.
+        :param pulumi.Input[str] authorized: FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[int] bandwidth_limit: FortiExtender LAN extension bandwidth limit (Mbps).
         :param pulumi.Input[int] billing_start_day: Billing start day.
         :param pulumi.Input[str] cdma_aaa_spi: CDMA AAA SPI.
         :param pulumi.Input[str] cdma_ha_spi: CDMA HA SPI.
         :param pulumi.Input[str] cdma_nai: NAI for CDMA MODEMS.
         :param pulumi.Input[int] conn_status: Connection status.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderControllerReportArgs']] controller_report: FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[int] device_id: device-id
         :param pulumi.Input[str] dial_mode: Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
         :param pulumi.Input[int] dial_status: Dial status.
+        :param pulumi.Input[str] enforce_bandwidth: Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ext_name: FortiExtender name.
+        :param pulumi.Input[str] extension_type: Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
         :param pulumi.Input[str] fosid: FortiExtender serial number.
         :param pulumi.Input[str] ha_shared_secret: HA shared secret.
         :param pulumi.Input[str] ifname: FortiExtender interface name.
         :param pulumi.Input[str] initiated_update: Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] login_password: FortiExtender login password.
+        :param pulumi.Input[str] login_password_change: Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
         :param pulumi.Input[str] mode: FortiExtender mode. Valid values: `standalone`, `redundant`.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem1Args']] modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderModem2Args']] modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
         :param pulumi.Input[str] modem_passwd: MODEM password.
         :param pulumi.Input[str] modem_type: MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
         :param pulumi.Input[str] multi_mode: MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
+        :param pulumi.Input[str] name: FortiExtender entry name.
+        :param pulumi.Input[str] override_allowaccess: Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_enforce_bandwidth: Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] override_login_password_change: Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_auth_protocol: PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
         :param pulumi.Input[str] ppp_echo_request: Enable/disable PPP echo request. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ppp_password: PPP password.
         :param pulumi.Input[str] ppp_username: PPP username.
         :param pulumi.Input[str] primary_ha: Primary HA.
+        :param pulumi.Input[str] profile: FortiExtender profile configuration.
         :param pulumi.Input[int] quota_limit_mb: Monthly quota limit (MB).
         :param pulumi.Input[str] redial: Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
         :param pulumi.Input[str] redundant_intf: Redundant interface.
@@ -1615,6 +2264,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         :param pulumi.Input[str] sim_pin: SIM PIN.
         :param pulumi.Input[int] vdom: VDOM
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[pulumi.InputType['ExtenderControllerExtenderWanExtensionArgs']] wan_extension: FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
         :param pulumi.Input[str] wimax_auth_protocol: WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
         :param pulumi.Input[str] wimax_carrier: WiMax carrier.
         :param pulumi.Input[str] wimax_realm: WiMax realm.
@@ -1626,29 +2276,45 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         __props__.__dict__["aaa_shared_secret"] = aaa_shared_secret
         __props__.__dict__["access_point_name"] = access_point_name
         __props__.__dict__["admin"] = admin
+        __props__.__dict__["allowaccess"] = allowaccess
         __props__.__dict__["at_dial_script"] = at_dial_script
+        __props__.__dict__["authorized"] = authorized
+        __props__.__dict__["bandwidth_limit"] = bandwidth_limit
         __props__.__dict__["billing_start_day"] = billing_start_day
         __props__.__dict__["cdma_aaa_spi"] = cdma_aaa_spi
         __props__.__dict__["cdma_ha_spi"] = cdma_ha_spi
         __props__.__dict__["cdma_nai"] = cdma_nai
         __props__.__dict__["conn_status"] = conn_status
+        __props__.__dict__["controller_report"] = controller_report
         __props__.__dict__["description"] = description
+        __props__.__dict__["device_id"] = device_id
         __props__.__dict__["dial_mode"] = dial_mode
         __props__.__dict__["dial_status"] = dial_status
+        __props__.__dict__["enforce_bandwidth"] = enforce_bandwidth
         __props__.__dict__["ext_name"] = ext_name
+        __props__.__dict__["extension_type"] = extension_type
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["ha_shared_secret"] = ha_shared_secret
         __props__.__dict__["ifname"] = ifname
         __props__.__dict__["initiated_update"] = initiated_update
+        __props__.__dict__["login_password"] = login_password
+        __props__.__dict__["login_password_change"] = login_password_change
         __props__.__dict__["mode"] = mode
+        __props__.__dict__["modem1"] = modem1
+        __props__.__dict__["modem2"] = modem2
         __props__.__dict__["modem_passwd"] = modem_passwd
         __props__.__dict__["modem_type"] = modem_type
         __props__.__dict__["multi_mode"] = multi_mode
+        __props__.__dict__["name"] = name
+        __props__.__dict__["override_allowaccess"] = override_allowaccess
+        __props__.__dict__["override_enforce_bandwidth"] = override_enforce_bandwidth
+        __props__.__dict__["override_login_password_change"] = override_login_password_change
         __props__.__dict__["ppp_auth_protocol"] = ppp_auth_protocol
         __props__.__dict__["ppp_echo_request"] = ppp_echo_request
         __props__.__dict__["ppp_password"] = ppp_password
         __props__.__dict__["ppp_username"] = ppp_username
         __props__.__dict__["primary_ha"] = primary_ha
+        __props__.__dict__["profile"] = profile
         __props__.__dict__["quota_limit_mb"] = quota_limit_mb
         __props__.__dict__["redial"] = redial
         __props__.__dict__["redundant_intf"] = redundant_intf
@@ -1658,6 +2324,7 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         __props__.__dict__["sim_pin"] = sim_pin
         __props__.__dict__["vdom"] = vdom
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["wan_extension"] = wan_extension
         __props__.__dict__["wimax_auth_protocol"] = wimax_auth_protocol
         __props__.__dict__["wimax_carrier"] = wimax_carrier
         __props__.__dict__["wimax_realm"] = wimax_realm
@@ -1688,12 +2355,36 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         return pulumi.get(self, "admin")
 
     @property
+    @pulumi.getter
+    def allowaccess(self) -> pulumi.Output[str]:
+        """
+        Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+        """
+        return pulumi.get(self, "allowaccess")
+
+    @property
     @pulumi.getter(name="atDialScript")
     def at_dial_script(self) -> pulumi.Output[str]:
         """
         Initialization AT commands specific to the MODEM.
         """
         return pulumi.get(self, "at_dial_script")
+
+    @property
+    @pulumi.getter
+    def authorized(self) -> pulumi.Output[str]:
+        """
+        FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "authorized")
+
+    @property
+    @pulumi.getter(name="bandwidthLimit")
+    def bandwidth_limit(self) -> pulumi.Output[int]:
+        """
+        FortiExtender LAN extension bandwidth limit (Mbps).
+        """
+        return pulumi.get(self, "bandwidth_limit")
 
     @property
     @pulumi.getter(name="billingStartDay")
@@ -1736,12 +2427,28 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         return pulumi.get(self, "conn_status")
 
     @property
+    @pulumi.getter(name="controllerReport")
+    def controller_report(self) -> pulumi.Output[Optional['outputs.ExtenderControllerExtenderControllerReport']]:
+        """
+        FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
+        """
+        return pulumi.get(self, "controller_report")
+
+    @property
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         """
         Description.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="deviceId")
+    def device_id(self) -> pulumi.Output[int]:
+        """
+        device-id
+        """
+        return pulumi.get(self, "device_id")
 
     @property
     @pulumi.getter(name="dialMode")
@@ -1760,12 +2467,28 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         return pulumi.get(self, "dial_status")
 
     @property
+    @pulumi.getter(name="enforceBandwidth")
+    def enforce_bandwidth(self) -> pulumi.Output[str]:
+        """
+        Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "enforce_bandwidth")
+
+    @property
     @pulumi.getter(name="extName")
     def ext_name(self) -> pulumi.Output[str]:
         """
         FortiExtender name.
         """
         return pulumi.get(self, "ext_name")
+
+    @property
+    @pulumi.getter(name="extensionType")
+    def extension_type(self) -> pulumi.Output[str]:
+        """
+        Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+        """
+        return pulumi.get(self, "extension_type")
 
     @property
     @pulumi.getter
@@ -1800,12 +2523,44 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         return pulumi.get(self, "initiated_update")
 
     @property
+    @pulumi.getter(name="loginPassword")
+    def login_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        FortiExtender login password.
+        """
+        return pulumi.get(self, "login_password")
+
+    @property
+    @pulumi.getter(name="loginPasswordChange")
+    def login_password_change(self) -> pulumi.Output[str]:
+        """
+        Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+        """
+        return pulumi.get(self, "login_password_change")
+
+    @property
     @pulumi.getter
     def mode(self) -> pulumi.Output[str]:
         """
         FortiExtender mode. Valid values: `standalone`, `redundant`.
         """
         return pulumi.get(self, "mode")
+
+    @property
+    @pulumi.getter
+    def modem1(self) -> pulumi.Output[Optional['outputs.ExtenderControllerExtenderModem1']]:
+        """
+        Configuration options for modem 1. The structure of `modem1` block is documented below.
+        """
+        return pulumi.get(self, "modem1")
+
+    @property
+    @pulumi.getter
+    def modem2(self) -> pulumi.Output[Optional['outputs.ExtenderControllerExtenderModem2']]:
+        """
+        Configuration options for modem 2. The structure of `modem2` block is documented below.
+        """
+        return pulumi.get(self, "modem2")
 
     @property
     @pulumi.getter(name="modemPasswd")
@@ -1830,6 +2585,38 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
         """
         return pulumi.get(self, "multi_mode")
+
+    @property
+    @pulumi.getter
+    def name(self) -> pulumi.Output[str]:
+        """
+        FortiExtender entry name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="overrideAllowaccess")
+    def override_allowaccess(self) -> pulumi.Output[str]:
+        """
+        Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_allowaccess")
+
+    @property
+    @pulumi.getter(name="overrideEnforceBandwidth")
+    def override_enforce_bandwidth(self) -> pulumi.Output[str]:
+        """
+        Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_enforce_bandwidth")
+
+    @property
+    @pulumi.getter(name="overrideLoginPasswordChange")
+    def override_login_password_change(self) -> pulumi.Output[str]:
+        """
+        Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_login_password_change")
 
     @property
     @pulumi.getter(name="pppAuthProtocol")
@@ -1870,6 +2657,14 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         Primary HA.
         """
         return pulumi.get(self, "primary_ha")
+
+    @property
+    @pulumi.getter
+    def profile(self) -> pulumi.Output[str]:
+        """
+        FortiExtender profile configuration.
+        """
+        return pulumi.get(self, "profile")
 
     @property
     @pulumi.getter(name="quotaLimitMb")
@@ -1942,6 +2737,14 @@ class ExtenderControllerExtender(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="wanExtension")
+    def wan_extension(self) -> pulumi.Output[Optional['outputs.ExtenderControllerExtenderWanExtension']]:
+        """
+        FortiExtender wan extension configuration. The structure of `wan_extension` block is documented below.
+        """
+        return pulumi.get(self, "wan_extension")
 
     @property
     @pulumi.getter(name="wimaxAuthProtocol")

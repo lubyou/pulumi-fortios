@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallAddress6TemplateResult',
     'AwaitableGetFirewallAddress6TemplateResult',
     'get_firewall_address6_template',
+    'get_firewall_address6_template_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,10 @@ class GetFirewallAddress6TemplateResult:
     """
     A collection of values returned by GetFirewallAddress6Template.
     """
-    def __init__(__self__, id=None, ip6=None, name=None, subnet_segment_count=None, subnet_segments=None, vdomparam=None):
+    def __init__(__self__, fabric_object=None, id=None, ip6=None, name=None, subnet_segment_count=None, subnet_segments=None, vdomparam=None):
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -39,6 +43,14 @@ class GetFirewallAddress6TemplateResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -92,6 +104,7 @@ class AwaitableGetFirewallAddress6TemplateResult(GetFirewallAddress6TemplateResu
         if False:
             yield self
         return GetFirewallAddress6TemplateResult(
+            fabric_object=self.fabric_object,
             id=self.id,
             ip6=self.ip6,
             name=self.name,
@@ -117,12 +130,29 @@ def get_firewall_address6_template(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddress6Template:GetFirewallAddress6Template', __args__, opts=opts, typ=GetFirewallAddress6TemplateResult).value
 
     return AwaitableGetFirewallAddress6TemplateResult(
+        fabric_object=__ret__.fabric_object,
         id=__ret__.id,
         ip6=__ret__.ip6,
         name=__ret__.name,
         subnet_segment_count=__ret__.subnet_segment_count,
         subnet_segments=__ret__.subnet_segments,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_address6_template)
+def get_firewall_address6_template_output(name: Optional[pulumi.Input[str]] = None,
+                                          vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallAddress6TemplateResult]:
+    """
+    Use this data source to get information on an fortios firewall address6template
+
+
+    :param str name: Specify the name of the desired firewall address6template.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

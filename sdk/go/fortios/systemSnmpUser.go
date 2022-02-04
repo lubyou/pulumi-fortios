@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -106,6 +106,7 @@ func NewSystemSnmpUser(ctx *pulumi.Context,
 		args = &SystemSnmpUserArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSnmpUser
 	err := ctx.RegisterResource("fortios:index/systemSnmpUser:SystemSnmpUser", name, args, &resource, opts...)
 	if err != nil {
@@ -308,7 +309,7 @@ type SystemSnmpUserInput interface {
 }
 
 func (*SystemSnmpUser) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSnmpUser)(nil))
+	return reflect.TypeOf((**SystemSnmpUser)(nil)).Elem()
 }
 
 func (i *SystemSnmpUser) ToSystemSnmpUserOutput() SystemSnmpUserOutput {
@@ -317,35 +318,6 @@ func (i *SystemSnmpUser) ToSystemSnmpUserOutput() SystemSnmpUserOutput {
 
 func (i *SystemSnmpUser) ToSystemSnmpUserOutputWithContext(ctx context.Context) SystemSnmpUserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserOutput)
-}
-
-func (i *SystemSnmpUser) ToSystemSnmpUserPtrOutput() SystemSnmpUserPtrOutput {
-	return i.ToSystemSnmpUserPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSnmpUser) ToSystemSnmpUserPtrOutputWithContext(ctx context.Context) SystemSnmpUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserPtrOutput)
-}
-
-type SystemSnmpUserPtrInput interface {
-	pulumi.Input
-
-	ToSystemSnmpUserPtrOutput() SystemSnmpUserPtrOutput
-	ToSystemSnmpUserPtrOutputWithContext(ctx context.Context) SystemSnmpUserPtrOutput
-}
-
-type systemSnmpUserPtrType SystemSnmpUserArgs
-
-func (*systemSnmpUserPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSnmpUser)(nil))
-}
-
-func (i *systemSnmpUserPtrType) ToSystemSnmpUserPtrOutput() SystemSnmpUserPtrOutput {
-	return i.ToSystemSnmpUserPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSnmpUserPtrType) ToSystemSnmpUserPtrOutputWithContext(ctx context.Context) SystemSnmpUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserPtrOutput)
 }
 
 // SystemSnmpUserArrayInput is an input type that accepts SystemSnmpUserArray and SystemSnmpUserArrayOutput values.
@@ -362,7 +334,7 @@ type SystemSnmpUserArrayInput interface {
 type SystemSnmpUserArray []SystemSnmpUserInput
 
 func (SystemSnmpUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSnmpUser)(nil))
+	return reflect.TypeOf((*[]*SystemSnmpUser)(nil)).Elem()
 }
 
 func (i SystemSnmpUserArray) ToSystemSnmpUserArrayOutput() SystemSnmpUserArrayOutput {
@@ -387,7 +359,7 @@ type SystemSnmpUserMapInput interface {
 type SystemSnmpUserMap map[string]SystemSnmpUserInput
 
 func (SystemSnmpUserMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSnmpUser)(nil))
+	return reflect.TypeOf((*map[string]*SystemSnmpUser)(nil)).Elem()
 }
 
 func (i SystemSnmpUserMap) ToSystemSnmpUserMapOutput() SystemSnmpUserMapOutput {
@@ -398,12 +370,10 @@ func (i SystemSnmpUserMap) ToSystemSnmpUserMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpUserMapOutput)
 }
 
-type SystemSnmpUserOutput struct {
-	*pulumi.OutputState
-}
+type SystemSnmpUserOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSnmpUser)(nil))
+	return reflect.TypeOf((**SystemSnmpUser)(nil)).Elem()
 }
 
 func (o SystemSnmpUserOutput) ToSystemSnmpUserOutput() SystemSnmpUserOutput {
@@ -414,36 +384,10 @@ func (o SystemSnmpUserOutput) ToSystemSnmpUserOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemSnmpUserOutput) ToSystemSnmpUserPtrOutput() SystemSnmpUserPtrOutput {
-	return o.ToSystemSnmpUserPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSnmpUserOutput) ToSystemSnmpUserPtrOutputWithContext(ctx context.Context) SystemSnmpUserPtrOutput {
-	return o.ApplyT(func(v SystemSnmpUser) *SystemSnmpUser {
-		return &v
-	}).(SystemSnmpUserPtrOutput)
-}
-
-type SystemSnmpUserPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSnmpUserPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSnmpUser)(nil))
-}
-
-func (o SystemSnmpUserPtrOutput) ToSystemSnmpUserPtrOutput() SystemSnmpUserPtrOutput {
-	return o
-}
-
-func (o SystemSnmpUserPtrOutput) ToSystemSnmpUserPtrOutputWithContext(ctx context.Context) SystemSnmpUserPtrOutput {
-	return o
-}
-
 type SystemSnmpUserArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSnmpUser)(nil))
+	return reflect.TypeOf((*[]*SystemSnmpUser)(nil)).Elem()
 }
 
 func (o SystemSnmpUserArrayOutput) ToSystemSnmpUserArrayOutput() SystemSnmpUserArrayOutput {
@@ -455,15 +399,15 @@ func (o SystemSnmpUserArrayOutput) ToSystemSnmpUserArrayOutputWithContext(ctx co
 }
 
 func (o SystemSnmpUserArrayOutput) Index(i pulumi.IntInput) SystemSnmpUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSnmpUser {
-		return vs[0].([]SystemSnmpUser)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpUser {
+		return vs[0].([]*SystemSnmpUser)[vs[1].(int)]
 	}).(SystemSnmpUserOutput)
 }
 
 type SystemSnmpUserMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpUserMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSnmpUser)(nil))
+	return reflect.TypeOf((*map[string]*SystemSnmpUser)(nil)).Elem()
 }
 
 func (o SystemSnmpUserMapOutput) ToSystemSnmpUserMapOutput() SystemSnmpUserMapOutput {
@@ -475,14 +419,16 @@ func (o SystemSnmpUserMapOutput) ToSystemSnmpUserMapOutputWithContext(ctx contex
 }
 
 func (o SystemSnmpUserMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpUserOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSnmpUser {
-		return vs[0].(map[string]SystemSnmpUser)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSnmpUser {
+		return vs[0].(map[string]*SystemSnmpUser)[vs[1].(string)]
 	}).(SystemSnmpUserOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpUserInput)(nil)).Elem(), &SystemSnmpUser{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpUserArrayInput)(nil)).Elem(), SystemSnmpUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpUserMapInput)(nil)).Elem(), SystemSnmpUserMap{})
 	pulumi.RegisterOutputType(SystemSnmpUserOutput{})
-	pulumi.RegisterOutputType(SystemSnmpUserPtrOutput{})
 	pulumi.RegisterOutputType(SystemSnmpUserArrayOutput{})
 	pulumi.RegisterOutputType(SystemSnmpUserMapOutput{})
 }

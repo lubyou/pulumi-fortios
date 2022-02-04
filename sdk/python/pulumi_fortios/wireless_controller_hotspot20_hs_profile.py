@@ -20,6 +20,7 @@ class WirelessControllerHotspot20HsProfileArgs:
                  access_network_internet: Optional[pulumi.Input[str]] = None,
                  access_network_type: Optional[pulumi.Input[str]] = None,
                  access_network_uesa: Optional[pulumi.Input[str]] = None,
+                 advice_of_charge: Optional[pulumi.Input[str]] = None,
                  anqp_domain_id: Optional[pulumi.Input[int]] = None,
                  bss_transition: Optional[pulumi.Input[str]] = None,
                  conn_cap: Optional[pulumi.Input[str]] = None,
@@ -37,16 +38,21 @@ class WirelessControllerHotspot20HsProfileArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  network_auth: Optional[pulumi.Input[str]] = None,
                  oper_friendly_name: Optional[pulumi.Input[str]] = None,
+                 oper_icon: Optional[pulumi.Input[str]] = None,
+                 osu_provider_nai: Optional[pulumi.Input[str]] = None,
                  osu_providers: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]] = None,
                  osu_ssid: Optional[pulumi.Input[str]] = None,
                  pame_bi: Optional[pulumi.Input[str]] = None,
                  proxy_arp: Optional[pulumi.Input[str]] = None,
                  qos_map: Optional[pulumi.Input[str]] = None,
+                 release: Optional[pulumi.Input[int]] = None,
                  roaming_consortium: Optional[pulumi.Input[str]] = None,
+                 terms_and_conditions: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  venue_group: Optional[pulumi.Input[str]] = None,
                  venue_name: Optional[pulumi.Input[str]] = None,
                  venue_type: Optional[pulumi.Input[str]] = None,
+                 venue_url: Optional[pulumi.Input[str]] = None,
                  wan_metrics: Optional[pulumi.Input[str]] = None,
                  wnm_sleep_mode: Optional[pulumi.Input[str]] = None):
         """
@@ -56,6 +62,7 @@ class WirelessControllerHotspot20HsProfileArgs:
         :param pulumi.Input[str] access_network_internet: Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] access_network_type: Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
         :param pulumi.Input[str] access_network_uesa: Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] advice_of_charge: Advice of charge.
         :param pulumi.Input[int] anqp_domain_id: ANQP Domain ID (0-65535).
         :param pulumi.Input[str] bss_transition: Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] conn_cap: Connection capability name.
@@ -73,16 +80,21 @@ class WirelessControllerHotspot20HsProfileArgs:
         :param pulumi.Input[str] name: OSU provider name.
         :param pulumi.Input[str] network_auth: Network authentication name.
         :param pulumi.Input[str] oper_friendly_name: Operator friendly name.
+        :param pulumi.Input[str] oper_icon: Operator icon.
+        :param pulumi.Input[str] osu_provider_nai: OSU Provider NAI.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20HsProfileOsuProviderArgs']]] osu_providers: Manually selected list of OSU provider(s). The structure of `osu_provider` block is documented below.
         :param pulumi.Input[str] osu_ssid: Online sign up (OSU) SSID.
         :param pulumi.Input[str] pame_bi: Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_arp: Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] qos_map: QoS MAP set ID.
+        :param pulumi.Input[int] release: Hotspot 2.0 Release number (1, 2, 3, default = 2).
         :param pulumi.Input[str] roaming_consortium: Roaming consortium list name.
+        :param pulumi.Input[str] terms_and_conditions: Terms and conditions.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] venue_group: Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
         :param pulumi.Input[str] venue_name: Venue name.
         :param pulumi.Input[str] venue_type: Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
+        :param pulumi.Input[str] venue_url: Venue name.
         :param pulumi.Input[str] wan_metrics: WAN metric name.
         :param pulumi.Input[str] wnm_sleep_mode: Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
         """
@@ -96,6 +108,8 @@ class WirelessControllerHotspot20HsProfileArgs:
             pulumi.set(__self__, "access_network_type", access_network_type)
         if access_network_uesa is not None:
             pulumi.set(__self__, "access_network_uesa", access_network_uesa)
+        if advice_of_charge is not None:
+            pulumi.set(__self__, "advice_of_charge", advice_of_charge)
         if anqp_domain_id is not None:
             pulumi.set(__self__, "anqp_domain_id", anqp_domain_id)
         if bss_transition is not None:
@@ -130,6 +144,10 @@ class WirelessControllerHotspot20HsProfileArgs:
             pulumi.set(__self__, "network_auth", network_auth)
         if oper_friendly_name is not None:
             pulumi.set(__self__, "oper_friendly_name", oper_friendly_name)
+        if oper_icon is not None:
+            pulumi.set(__self__, "oper_icon", oper_icon)
+        if osu_provider_nai is not None:
+            pulumi.set(__self__, "osu_provider_nai", osu_provider_nai)
         if osu_providers is not None:
             pulumi.set(__self__, "osu_providers", osu_providers)
         if osu_ssid is not None:
@@ -140,8 +158,12 @@ class WirelessControllerHotspot20HsProfileArgs:
             pulumi.set(__self__, "proxy_arp", proxy_arp)
         if qos_map is not None:
             pulumi.set(__self__, "qos_map", qos_map)
+        if release is not None:
+            pulumi.set(__self__, "release", release)
         if roaming_consortium is not None:
             pulumi.set(__self__, "roaming_consortium", roaming_consortium)
+        if terms_and_conditions is not None:
+            pulumi.set(__self__, "terms_and_conditions", terms_and_conditions)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if venue_group is not None:
@@ -150,6 +172,8 @@ class WirelessControllerHotspot20HsProfileArgs:
             pulumi.set(__self__, "venue_name", venue_name)
         if venue_type is not None:
             pulumi.set(__self__, "venue_type", venue_type)
+        if venue_url is not None:
+            pulumi.set(__self__, "venue_url", venue_url)
         if wan_metrics is not None:
             pulumi.set(__self__, "wan_metrics", wan_metrics)
         if wnm_sleep_mode is not None:
@@ -214,6 +238,18 @@ class WirelessControllerHotspot20HsProfileArgs:
     @access_network_uesa.setter
     def access_network_uesa(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_network_uesa", value)
+
+    @property
+    @pulumi.getter(name="adviceOfCharge")
+    def advice_of_charge(self) -> Optional[pulumi.Input[str]]:
+        """
+        Advice of charge.
+        """
+        return pulumi.get(self, "advice_of_charge")
+
+    @advice_of_charge.setter
+    def advice_of_charge(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "advice_of_charge", value)
 
     @property
     @pulumi.getter(name="anqpDomainId")
@@ -420,6 +456,30 @@ class WirelessControllerHotspot20HsProfileArgs:
         pulumi.set(self, "oper_friendly_name", value)
 
     @property
+    @pulumi.getter(name="operIcon")
+    def oper_icon(self) -> Optional[pulumi.Input[str]]:
+        """
+        Operator icon.
+        """
+        return pulumi.get(self, "oper_icon")
+
+    @oper_icon.setter
+    def oper_icon(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oper_icon", value)
+
+    @property
+    @pulumi.getter(name="osuProviderNai")
+    def osu_provider_nai(self) -> Optional[pulumi.Input[str]]:
+        """
+        OSU Provider NAI.
+        """
+        return pulumi.get(self, "osu_provider_nai")
+
+    @osu_provider_nai.setter
+    def osu_provider_nai(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "osu_provider_nai", value)
+
+    @property
     @pulumi.getter(name="osuProviders")
     def osu_providers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]]:
         """
@@ -480,6 +540,18 @@ class WirelessControllerHotspot20HsProfileArgs:
         pulumi.set(self, "qos_map", value)
 
     @property
+    @pulumi.getter
+    def release(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hotspot 2.0 Release number (1, 2, 3, default = 2).
+        """
+        return pulumi.get(self, "release")
+
+    @release.setter
+    def release(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "release", value)
+
+    @property
     @pulumi.getter(name="roamingConsortium")
     def roaming_consortium(self) -> Optional[pulumi.Input[str]]:
         """
@@ -490,6 +562,18 @@ class WirelessControllerHotspot20HsProfileArgs:
     @roaming_consortium.setter
     def roaming_consortium(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "roaming_consortium", value)
+
+    @property
+    @pulumi.getter(name="termsAndConditions")
+    def terms_and_conditions(self) -> Optional[pulumi.Input[str]]:
+        """
+        Terms and conditions.
+        """
+        return pulumi.get(self, "terms_and_conditions")
+
+    @terms_and_conditions.setter
+    def terms_and_conditions(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "terms_and_conditions", value)
 
     @property
     @pulumi.getter
@@ -538,6 +622,18 @@ class WirelessControllerHotspot20HsProfileArgs:
     @venue_type.setter
     def venue_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "venue_type", value)
+
+    @property
+    @pulumi.getter(name="venueUrl")
+    def venue_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Venue name.
+        """
+        return pulumi.get(self, "venue_url")
+
+    @venue_url.setter
+    def venue_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "venue_url", value)
 
     @property
     @pulumi.getter(name="wanMetrics")
@@ -572,6 +668,7 @@ class _WirelessControllerHotspot20HsProfileState:
                  access_network_internet: Optional[pulumi.Input[str]] = None,
                  access_network_type: Optional[pulumi.Input[str]] = None,
                  access_network_uesa: Optional[pulumi.Input[str]] = None,
+                 advice_of_charge: Optional[pulumi.Input[str]] = None,
                  anqp_domain_id: Optional[pulumi.Input[int]] = None,
                  bss_transition: Optional[pulumi.Input[str]] = None,
                  conn_cap: Optional[pulumi.Input[str]] = None,
@@ -589,16 +686,21 @@ class _WirelessControllerHotspot20HsProfileState:
                  name: Optional[pulumi.Input[str]] = None,
                  network_auth: Optional[pulumi.Input[str]] = None,
                  oper_friendly_name: Optional[pulumi.Input[str]] = None,
+                 oper_icon: Optional[pulumi.Input[str]] = None,
+                 osu_provider_nai: Optional[pulumi.Input[str]] = None,
                  osu_providers: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]] = None,
                  osu_ssid: Optional[pulumi.Input[str]] = None,
                  pame_bi: Optional[pulumi.Input[str]] = None,
                  proxy_arp: Optional[pulumi.Input[str]] = None,
                  qos_map: Optional[pulumi.Input[str]] = None,
+                 release: Optional[pulumi.Input[int]] = None,
                  roaming_consortium: Optional[pulumi.Input[str]] = None,
+                 terms_and_conditions: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  venue_group: Optional[pulumi.Input[str]] = None,
                  venue_name: Optional[pulumi.Input[str]] = None,
                  venue_type: Optional[pulumi.Input[str]] = None,
+                 venue_url: Optional[pulumi.Input[str]] = None,
                  wan_metrics: Optional[pulumi.Input[str]] = None,
                  wnm_sleep_mode: Optional[pulumi.Input[str]] = None):
         """
@@ -608,6 +710,7 @@ class _WirelessControllerHotspot20HsProfileState:
         :param pulumi.Input[str] access_network_internet: Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] access_network_type: Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
         :param pulumi.Input[str] access_network_uesa: Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] advice_of_charge: Advice of charge.
         :param pulumi.Input[int] anqp_domain_id: ANQP Domain ID (0-65535).
         :param pulumi.Input[str] bss_transition: Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] conn_cap: Connection capability name.
@@ -625,16 +728,21 @@ class _WirelessControllerHotspot20HsProfileState:
         :param pulumi.Input[str] name: OSU provider name.
         :param pulumi.Input[str] network_auth: Network authentication name.
         :param pulumi.Input[str] oper_friendly_name: Operator friendly name.
+        :param pulumi.Input[str] oper_icon: Operator icon.
+        :param pulumi.Input[str] osu_provider_nai: OSU Provider NAI.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20HsProfileOsuProviderArgs']]] osu_providers: Manually selected list of OSU provider(s). The structure of `osu_provider` block is documented below.
         :param pulumi.Input[str] osu_ssid: Online sign up (OSU) SSID.
         :param pulumi.Input[str] pame_bi: Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_arp: Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] qos_map: QoS MAP set ID.
+        :param pulumi.Input[int] release: Hotspot 2.0 Release number (1, 2, 3, default = 2).
         :param pulumi.Input[str] roaming_consortium: Roaming consortium list name.
+        :param pulumi.Input[str] terms_and_conditions: Terms and conditions.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] venue_group: Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
         :param pulumi.Input[str] venue_name: Venue name.
         :param pulumi.Input[str] venue_type: Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
+        :param pulumi.Input[str] venue_url: Venue name.
         :param pulumi.Input[str] wan_metrics: WAN metric name.
         :param pulumi.Input[str] wnm_sleep_mode: Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
         """
@@ -648,6 +756,8 @@ class _WirelessControllerHotspot20HsProfileState:
             pulumi.set(__self__, "access_network_type", access_network_type)
         if access_network_uesa is not None:
             pulumi.set(__self__, "access_network_uesa", access_network_uesa)
+        if advice_of_charge is not None:
+            pulumi.set(__self__, "advice_of_charge", advice_of_charge)
         if anqp_domain_id is not None:
             pulumi.set(__self__, "anqp_domain_id", anqp_domain_id)
         if bss_transition is not None:
@@ -682,6 +792,10 @@ class _WirelessControllerHotspot20HsProfileState:
             pulumi.set(__self__, "network_auth", network_auth)
         if oper_friendly_name is not None:
             pulumi.set(__self__, "oper_friendly_name", oper_friendly_name)
+        if oper_icon is not None:
+            pulumi.set(__self__, "oper_icon", oper_icon)
+        if osu_provider_nai is not None:
+            pulumi.set(__self__, "osu_provider_nai", osu_provider_nai)
         if osu_providers is not None:
             pulumi.set(__self__, "osu_providers", osu_providers)
         if osu_ssid is not None:
@@ -692,8 +806,12 @@ class _WirelessControllerHotspot20HsProfileState:
             pulumi.set(__self__, "proxy_arp", proxy_arp)
         if qos_map is not None:
             pulumi.set(__self__, "qos_map", qos_map)
+        if release is not None:
+            pulumi.set(__self__, "release", release)
         if roaming_consortium is not None:
             pulumi.set(__self__, "roaming_consortium", roaming_consortium)
+        if terms_and_conditions is not None:
+            pulumi.set(__self__, "terms_and_conditions", terms_and_conditions)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if venue_group is not None:
@@ -702,6 +820,8 @@ class _WirelessControllerHotspot20HsProfileState:
             pulumi.set(__self__, "venue_name", venue_name)
         if venue_type is not None:
             pulumi.set(__self__, "venue_type", venue_type)
+        if venue_url is not None:
+            pulumi.set(__self__, "venue_url", venue_url)
         if wan_metrics is not None:
             pulumi.set(__self__, "wan_metrics", wan_metrics)
         if wnm_sleep_mode is not None:
@@ -766,6 +886,18 @@ class _WirelessControllerHotspot20HsProfileState:
     @access_network_uesa.setter
     def access_network_uesa(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "access_network_uesa", value)
+
+    @property
+    @pulumi.getter(name="adviceOfCharge")
+    def advice_of_charge(self) -> Optional[pulumi.Input[str]]:
+        """
+        Advice of charge.
+        """
+        return pulumi.get(self, "advice_of_charge")
+
+    @advice_of_charge.setter
+    def advice_of_charge(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "advice_of_charge", value)
 
     @property
     @pulumi.getter(name="anqpDomainId")
@@ -972,6 +1104,30 @@ class _WirelessControllerHotspot20HsProfileState:
         pulumi.set(self, "oper_friendly_name", value)
 
     @property
+    @pulumi.getter(name="operIcon")
+    def oper_icon(self) -> Optional[pulumi.Input[str]]:
+        """
+        Operator icon.
+        """
+        return pulumi.get(self, "oper_icon")
+
+    @oper_icon.setter
+    def oper_icon(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "oper_icon", value)
+
+    @property
+    @pulumi.getter(name="osuProviderNai")
+    def osu_provider_nai(self) -> Optional[pulumi.Input[str]]:
+        """
+        OSU Provider NAI.
+        """
+        return pulumi.get(self, "osu_provider_nai")
+
+    @osu_provider_nai.setter
+    def osu_provider_nai(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "osu_provider_nai", value)
+
+    @property
     @pulumi.getter(name="osuProviders")
     def osu_providers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]]:
         """
@@ -1032,6 +1188,18 @@ class _WirelessControllerHotspot20HsProfileState:
         pulumi.set(self, "qos_map", value)
 
     @property
+    @pulumi.getter
+    def release(self) -> Optional[pulumi.Input[int]]:
+        """
+        Hotspot 2.0 Release number (1, 2, 3, default = 2).
+        """
+        return pulumi.get(self, "release")
+
+    @release.setter
+    def release(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "release", value)
+
+    @property
     @pulumi.getter(name="roamingConsortium")
     def roaming_consortium(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1042,6 +1210,18 @@ class _WirelessControllerHotspot20HsProfileState:
     @roaming_consortium.setter
     def roaming_consortium(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "roaming_consortium", value)
+
+    @property
+    @pulumi.getter(name="termsAndConditions")
+    def terms_and_conditions(self) -> Optional[pulumi.Input[str]]:
+        """
+        Terms and conditions.
+        """
+        return pulumi.get(self, "terms_and_conditions")
+
+    @terms_and_conditions.setter
+    def terms_and_conditions(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "terms_and_conditions", value)
 
     @property
     @pulumi.getter
@@ -1090,6 +1270,18 @@ class _WirelessControllerHotspot20HsProfileState:
     @venue_type.setter
     def venue_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "venue_type", value)
+
+    @property
+    @pulumi.getter(name="venueUrl")
+    def venue_url(self) -> Optional[pulumi.Input[str]]:
+        """
+        Venue name.
+        """
+        return pulumi.get(self, "venue_url")
+
+    @venue_url.setter
+    def venue_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "venue_url", value)
 
     @property
     @pulumi.getter(name="wanMetrics")
@@ -1126,6 +1318,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
                  access_network_internet: Optional[pulumi.Input[str]] = None,
                  access_network_type: Optional[pulumi.Input[str]] = None,
                  access_network_uesa: Optional[pulumi.Input[str]] = None,
+                 advice_of_charge: Optional[pulumi.Input[str]] = None,
                  anqp_domain_id: Optional[pulumi.Input[int]] = None,
                  bss_transition: Optional[pulumi.Input[str]] = None,
                  conn_cap: Optional[pulumi.Input[str]] = None,
@@ -1143,16 +1336,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_auth: Optional[pulumi.Input[str]] = None,
                  oper_friendly_name: Optional[pulumi.Input[str]] = None,
+                 oper_icon: Optional[pulumi.Input[str]] = None,
+                 osu_provider_nai: Optional[pulumi.Input[str]] = None,
                  osu_providers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]]] = None,
                  osu_ssid: Optional[pulumi.Input[str]] = None,
                  pame_bi: Optional[pulumi.Input[str]] = None,
                  proxy_arp: Optional[pulumi.Input[str]] = None,
                  qos_map: Optional[pulumi.Input[str]] = None,
+                 release: Optional[pulumi.Input[int]] = None,
                  roaming_consortium: Optional[pulumi.Input[str]] = None,
+                 terms_and_conditions: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  venue_group: Optional[pulumi.Input[str]] = None,
                  venue_name: Optional[pulumi.Input[str]] = None,
                  venue_type: Optional[pulumi.Input[str]] = None,
+                 venue_url: Optional[pulumi.Input[str]] = None,
                  wan_metrics: Optional[pulumi.Input[str]] = None,
                  wnm_sleep_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1176,6 +1374,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         :param pulumi.Input[str] access_network_internet: Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] access_network_type: Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
         :param pulumi.Input[str] access_network_uesa: Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] advice_of_charge: Advice of charge.
         :param pulumi.Input[int] anqp_domain_id: ANQP Domain ID (0-65535).
         :param pulumi.Input[str] bss_transition: Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] conn_cap: Connection capability name.
@@ -1193,16 +1392,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         :param pulumi.Input[str] name: OSU provider name.
         :param pulumi.Input[str] network_auth: Network authentication name.
         :param pulumi.Input[str] oper_friendly_name: Operator friendly name.
+        :param pulumi.Input[str] oper_icon: Operator icon.
+        :param pulumi.Input[str] osu_provider_nai: OSU Provider NAI.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]] osu_providers: Manually selected list of OSU provider(s). The structure of `osu_provider` block is documented below.
         :param pulumi.Input[str] osu_ssid: Online sign up (OSU) SSID.
         :param pulumi.Input[str] pame_bi: Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_arp: Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] qos_map: QoS MAP set ID.
+        :param pulumi.Input[int] release: Hotspot 2.0 Release number (1, 2, 3, default = 2).
         :param pulumi.Input[str] roaming_consortium: Roaming consortium list name.
+        :param pulumi.Input[str] terms_and_conditions: Terms and conditions.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] venue_group: Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
         :param pulumi.Input[str] venue_name: Venue name.
         :param pulumi.Input[str] venue_type: Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
+        :param pulumi.Input[str] venue_url: Venue name.
         :param pulumi.Input[str] wan_metrics: WAN metric name.
         :param pulumi.Input[str] wnm_sleep_mode: Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
         """
@@ -1245,6 +1449,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
                  access_network_internet: Optional[pulumi.Input[str]] = None,
                  access_network_type: Optional[pulumi.Input[str]] = None,
                  access_network_uesa: Optional[pulumi.Input[str]] = None,
+                 advice_of_charge: Optional[pulumi.Input[str]] = None,
                  anqp_domain_id: Optional[pulumi.Input[int]] = None,
                  bss_transition: Optional[pulumi.Input[str]] = None,
                  conn_cap: Optional[pulumi.Input[str]] = None,
@@ -1262,16 +1467,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  network_auth: Optional[pulumi.Input[str]] = None,
                  oper_friendly_name: Optional[pulumi.Input[str]] = None,
+                 oper_icon: Optional[pulumi.Input[str]] = None,
+                 osu_provider_nai: Optional[pulumi.Input[str]] = None,
                  osu_providers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]]] = None,
                  osu_ssid: Optional[pulumi.Input[str]] = None,
                  pame_bi: Optional[pulumi.Input[str]] = None,
                  proxy_arp: Optional[pulumi.Input[str]] = None,
                  qos_map: Optional[pulumi.Input[str]] = None,
+                 release: Optional[pulumi.Input[int]] = None,
                  roaming_consortium: Optional[pulumi.Input[str]] = None,
+                 terms_and_conditions: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  venue_group: Optional[pulumi.Input[str]] = None,
                  venue_name: Optional[pulumi.Input[str]] = None,
                  venue_type: Optional[pulumi.Input[str]] = None,
+                 venue_url: Optional[pulumi.Input[str]] = None,
                  wan_metrics: Optional[pulumi.Input[str]] = None,
                  wnm_sleep_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1281,6 +1491,8 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1291,6 +1503,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             __props__.__dict__["access_network_internet"] = access_network_internet
             __props__.__dict__["access_network_type"] = access_network_type
             __props__.__dict__["access_network_uesa"] = access_network_uesa
+            __props__.__dict__["advice_of_charge"] = advice_of_charge
             __props__.__dict__["anqp_domain_id"] = anqp_domain_id
             __props__.__dict__["bss_transition"] = bss_transition
             __props__.__dict__["conn_cap"] = conn_cap
@@ -1308,16 +1521,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["network_auth"] = network_auth
             __props__.__dict__["oper_friendly_name"] = oper_friendly_name
+            __props__.__dict__["oper_icon"] = oper_icon
+            __props__.__dict__["osu_provider_nai"] = osu_provider_nai
             __props__.__dict__["osu_providers"] = osu_providers
             __props__.__dict__["osu_ssid"] = osu_ssid
             __props__.__dict__["pame_bi"] = pame_bi
             __props__.__dict__["proxy_arp"] = proxy_arp
             __props__.__dict__["qos_map"] = qos_map
+            __props__.__dict__["release"] = release
             __props__.__dict__["roaming_consortium"] = roaming_consortium
+            __props__.__dict__["terms_and_conditions"] = terms_and_conditions
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["venue_group"] = venue_group
             __props__.__dict__["venue_name"] = venue_name
             __props__.__dict__["venue_type"] = venue_type
+            __props__.__dict__["venue_url"] = venue_url
             __props__.__dict__["wan_metrics"] = wan_metrics
             __props__.__dict__["wnm_sleep_mode"] = wnm_sleep_mode
         super(WirelessControllerHotspot20HsProfile, __self__).__init__(
@@ -1335,6 +1553,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             access_network_internet: Optional[pulumi.Input[str]] = None,
             access_network_type: Optional[pulumi.Input[str]] = None,
             access_network_uesa: Optional[pulumi.Input[str]] = None,
+            advice_of_charge: Optional[pulumi.Input[str]] = None,
             anqp_domain_id: Optional[pulumi.Input[int]] = None,
             bss_transition: Optional[pulumi.Input[str]] = None,
             conn_cap: Optional[pulumi.Input[str]] = None,
@@ -1352,16 +1571,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             network_auth: Optional[pulumi.Input[str]] = None,
             oper_friendly_name: Optional[pulumi.Input[str]] = None,
+            oper_icon: Optional[pulumi.Input[str]] = None,
+            osu_provider_nai: Optional[pulumi.Input[str]] = None,
             osu_providers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]]] = None,
             osu_ssid: Optional[pulumi.Input[str]] = None,
             pame_bi: Optional[pulumi.Input[str]] = None,
             proxy_arp: Optional[pulumi.Input[str]] = None,
             qos_map: Optional[pulumi.Input[str]] = None,
+            release: Optional[pulumi.Input[int]] = None,
             roaming_consortium: Optional[pulumi.Input[str]] = None,
+            terms_and_conditions: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             venue_group: Optional[pulumi.Input[str]] = None,
             venue_name: Optional[pulumi.Input[str]] = None,
             venue_type: Optional[pulumi.Input[str]] = None,
+            venue_url: Optional[pulumi.Input[str]] = None,
             wan_metrics: Optional[pulumi.Input[str]] = None,
             wnm_sleep_mode: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerHotspot20HsProfile':
         """
@@ -1376,6 +1600,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         :param pulumi.Input[str] access_network_internet: Enable/disable connectivity to the Internet. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] access_network_type: Access network type. Valid values: `private-network`, `private-network-with-guest-access`, `chargeable-public-network`, `free-public-network`, `personal-device-network`, `emergency-services-only-network`, `test-or-experimental`, `wildcard`.
         :param pulumi.Input[str] access_network_uesa: Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] advice_of_charge: Advice of charge.
         :param pulumi.Input[int] anqp_domain_id: ANQP Domain ID (0-65535).
         :param pulumi.Input[str] bss_transition: Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] conn_cap: Connection capability name.
@@ -1393,16 +1618,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         :param pulumi.Input[str] name: OSU provider name.
         :param pulumi.Input[str] network_auth: Network authentication name.
         :param pulumi.Input[str] oper_friendly_name: Operator friendly name.
+        :param pulumi.Input[str] oper_icon: Operator icon.
+        :param pulumi.Input[str] osu_provider_nai: OSU Provider NAI.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerHotspot20HsProfileOsuProviderArgs']]]] osu_providers: Manually selected list of OSU provider(s). The structure of `osu_provider` block is documented below.
         :param pulumi.Input[str] osu_ssid: Online sign up (OSU) SSID.
         :param pulumi.Input[str] pame_bi: Enable/disable Pre-Association Message Exchange BSSID Independent (PAME-BI). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] proxy_arp: Enable/disable Proxy ARP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] qos_map: QoS MAP set ID.
+        :param pulumi.Input[int] release: Hotspot 2.0 Release number (1, 2, 3, default = 2).
         :param pulumi.Input[str] roaming_consortium: Roaming consortium list name.
+        :param pulumi.Input[str] terms_and_conditions: Terms and conditions.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] venue_group: Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
         :param pulumi.Input[str] venue_name: Venue name.
         :param pulumi.Input[str] venue_type: Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
+        :param pulumi.Input[str] venue_url: Venue name.
         :param pulumi.Input[str] wan_metrics: WAN metric name.
         :param pulumi.Input[str] wnm_sleep_mode: Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
         """
@@ -1415,6 +1645,7 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         __props__.__dict__["access_network_internet"] = access_network_internet
         __props__.__dict__["access_network_type"] = access_network_type
         __props__.__dict__["access_network_uesa"] = access_network_uesa
+        __props__.__dict__["advice_of_charge"] = advice_of_charge
         __props__.__dict__["anqp_domain_id"] = anqp_domain_id
         __props__.__dict__["bss_transition"] = bss_transition
         __props__.__dict__["conn_cap"] = conn_cap
@@ -1432,16 +1663,21 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["network_auth"] = network_auth
         __props__.__dict__["oper_friendly_name"] = oper_friendly_name
+        __props__.__dict__["oper_icon"] = oper_icon
+        __props__.__dict__["osu_provider_nai"] = osu_provider_nai
         __props__.__dict__["osu_providers"] = osu_providers
         __props__.__dict__["osu_ssid"] = osu_ssid
         __props__.__dict__["pame_bi"] = pame_bi
         __props__.__dict__["proxy_arp"] = proxy_arp
         __props__.__dict__["qos_map"] = qos_map
+        __props__.__dict__["release"] = release
         __props__.__dict__["roaming_consortium"] = roaming_consortium
+        __props__.__dict__["terms_and_conditions"] = terms_and_conditions
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["venue_group"] = venue_group
         __props__.__dict__["venue_name"] = venue_name
         __props__.__dict__["venue_type"] = venue_type
+        __props__.__dict__["venue_url"] = venue_url
         __props__.__dict__["wan_metrics"] = wan_metrics
         __props__.__dict__["wnm_sleep_mode"] = wnm_sleep_mode
         return WirelessControllerHotspot20HsProfile(resource_name, opts=opts, __props__=__props__)
@@ -1485,6 +1721,14 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "access_network_uesa")
+
+    @property
+    @pulumi.getter(name="adviceOfCharge")
+    def advice_of_charge(self) -> pulumi.Output[str]:
+        """
+        Advice of charge.
+        """
+        return pulumi.get(self, "advice_of_charge")
 
     @property
     @pulumi.getter(name="anqpDomainId")
@@ -1623,6 +1867,22 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         return pulumi.get(self, "oper_friendly_name")
 
     @property
+    @pulumi.getter(name="operIcon")
+    def oper_icon(self) -> pulumi.Output[str]:
+        """
+        Operator icon.
+        """
+        return pulumi.get(self, "oper_icon")
+
+    @property
+    @pulumi.getter(name="osuProviderNai")
+    def osu_provider_nai(self) -> pulumi.Output[str]:
+        """
+        OSU Provider NAI.
+        """
+        return pulumi.get(self, "osu_provider_nai")
+
+    @property
     @pulumi.getter(name="osuProviders")
     def osu_providers(self) -> pulumi.Output[Optional[Sequence['outputs.WirelessControllerHotspot20HsProfileOsuProvider']]]:
         """
@@ -1663,12 +1923,28 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         return pulumi.get(self, "qos_map")
 
     @property
+    @pulumi.getter
+    def release(self) -> pulumi.Output[int]:
+        """
+        Hotspot 2.0 Release number (1, 2, 3, default = 2).
+        """
+        return pulumi.get(self, "release")
+
+    @property
     @pulumi.getter(name="roamingConsortium")
     def roaming_consortium(self) -> pulumi.Output[str]:
         """
         Roaming consortium list name.
         """
         return pulumi.get(self, "roaming_consortium")
+
+    @property
+    @pulumi.getter(name="termsAndConditions")
+    def terms_and_conditions(self) -> pulumi.Output[str]:
+        """
+        Terms and conditions.
+        """
+        return pulumi.get(self, "terms_and_conditions")
 
     @property
     @pulumi.getter
@@ -1701,6 +1977,14 @@ class WirelessControllerHotspot20HsProfile(pulumi.CustomResource):
         Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
         """
         return pulumi.get(self, "venue_type")
+
+    @property
+    @pulumi.getter(name="venueUrl")
+    def venue_url(self) -> pulumi.Output[str]:
+        """
+        Venue name.
+        """
+        return pulumi.get(self, "venue_url")
 
     @property
     @pulumi.getter(name="wanMetrics")

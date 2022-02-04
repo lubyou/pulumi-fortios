@@ -49,6 +49,7 @@ func NewSystemDedicatedMgmt(ctx *pulumi.Context,
 		args = &SystemDedicatedMgmtArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDedicatedMgmt
 	err := ctx.RegisterResource("fortios:index/systemDedicatedMgmt:SystemDedicatedMgmt", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type SystemDedicatedMgmtInput interface {
 }
 
 func (*SystemDedicatedMgmt) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDedicatedMgmt)(nil))
+	return reflect.TypeOf((**SystemDedicatedMgmt)(nil)).Elem()
 }
 
 func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtOutput() SystemDedicatedMgmtOutput {
@@ -172,35 +173,6 @@ func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtOutput() SystemDedicatedMgmtO
 
 func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtOutputWithContext(ctx context.Context) SystemDedicatedMgmtOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtOutput)
-}
-
-func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtPtrOutput() SystemDedicatedMgmtPtrOutput {
-	return i.ToSystemDedicatedMgmtPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDedicatedMgmt) ToSystemDedicatedMgmtPtrOutputWithContext(ctx context.Context) SystemDedicatedMgmtPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtPtrOutput)
-}
-
-type SystemDedicatedMgmtPtrInput interface {
-	pulumi.Input
-
-	ToSystemDedicatedMgmtPtrOutput() SystemDedicatedMgmtPtrOutput
-	ToSystemDedicatedMgmtPtrOutputWithContext(ctx context.Context) SystemDedicatedMgmtPtrOutput
-}
-
-type systemDedicatedMgmtPtrType SystemDedicatedMgmtArgs
-
-func (*systemDedicatedMgmtPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDedicatedMgmt)(nil))
-}
-
-func (i *systemDedicatedMgmtPtrType) ToSystemDedicatedMgmtPtrOutput() SystemDedicatedMgmtPtrOutput {
-	return i.ToSystemDedicatedMgmtPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDedicatedMgmtPtrType) ToSystemDedicatedMgmtPtrOutputWithContext(ctx context.Context) SystemDedicatedMgmtPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtPtrOutput)
 }
 
 // SystemDedicatedMgmtArrayInput is an input type that accepts SystemDedicatedMgmtArray and SystemDedicatedMgmtArrayOutput values.
@@ -217,7 +189,7 @@ type SystemDedicatedMgmtArrayInput interface {
 type SystemDedicatedMgmtArray []SystemDedicatedMgmtInput
 
 func (SystemDedicatedMgmtArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDedicatedMgmt)(nil))
+	return reflect.TypeOf((*[]*SystemDedicatedMgmt)(nil)).Elem()
 }
 
 func (i SystemDedicatedMgmtArray) ToSystemDedicatedMgmtArrayOutput() SystemDedicatedMgmtArrayOutput {
@@ -242,7 +214,7 @@ type SystemDedicatedMgmtMapInput interface {
 type SystemDedicatedMgmtMap map[string]SystemDedicatedMgmtInput
 
 func (SystemDedicatedMgmtMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDedicatedMgmt)(nil))
+	return reflect.TypeOf((*map[string]*SystemDedicatedMgmt)(nil)).Elem()
 }
 
 func (i SystemDedicatedMgmtMap) ToSystemDedicatedMgmtMapOutput() SystemDedicatedMgmtMapOutput {
@@ -253,12 +225,10 @@ func (i SystemDedicatedMgmtMap) ToSystemDedicatedMgmtMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDedicatedMgmtMapOutput)
 }
 
-type SystemDedicatedMgmtOutput struct {
-	*pulumi.OutputState
-}
+type SystemDedicatedMgmtOutput struct{ *pulumi.OutputState }
 
 func (SystemDedicatedMgmtOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDedicatedMgmt)(nil))
+	return reflect.TypeOf((**SystemDedicatedMgmt)(nil)).Elem()
 }
 
 func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtOutput() SystemDedicatedMgmtOutput {
@@ -269,36 +239,10 @@ func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtPtrOutput() SystemDedicatedMgmtPtrOutput {
-	return o.ToSystemDedicatedMgmtPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDedicatedMgmtOutput) ToSystemDedicatedMgmtPtrOutputWithContext(ctx context.Context) SystemDedicatedMgmtPtrOutput {
-	return o.ApplyT(func(v SystemDedicatedMgmt) *SystemDedicatedMgmt {
-		return &v
-	}).(SystemDedicatedMgmtPtrOutput)
-}
-
-type SystemDedicatedMgmtPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDedicatedMgmtPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDedicatedMgmt)(nil))
-}
-
-func (o SystemDedicatedMgmtPtrOutput) ToSystemDedicatedMgmtPtrOutput() SystemDedicatedMgmtPtrOutput {
-	return o
-}
-
-func (o SystemDedicatedMgmtPtrOutput) ToSystemDedicatedMgmtPtrOutputWithContext(ctx context.Context) SystemDedicatedMgmtPtrOutput {
-	return o
-}
-
 type SystemDedicatedMgmtArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDedicatedMgmtArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDedicatedMgmt)(nil))
+	return reflect.TypeOf((*[]*SystemDedicatedMgmt)(nil)).Elem()
 }
 
 func (o SystemDedicatedMgmtArrayOutput) ToSystemDedicatedMgmtArrayOutput() SystemDedicatedMgmtArrayOutput {
@@ -310,15 +254,15 @@ func (o SystemDedicatedMgmtArrayOutput) ToSystemDedicatedMgmtArrayOutputWithCont
 }
 
 func (o SystemDedicatedMgmtArrayOutput) Index(i pulumi.IntInput) SystemDedicatedMgmtOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDedicatedMgmt {
-		return vs[0].([]SystemDedicatedMgmt)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDedicatedMgmt {
+		return vs[0].([]*SystemDedicatedMgmt)[vs[1].(int)]
 	}).(SystemDedicatedMgmtOutput)
 }
 
 type SystemDedicatedMgmtMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDedicatedMgmtMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDedicatedMgmt)(nil))
+	return reflect.TypeOf((*map[string]*SystemDedicatedMgmt)(nil)).Elem()
 }
 
 func (o SystemDedicatedMgmtMapOutput) ToSystemDedicatedMgmtMapOutput() SystemDedicatedMgmtMapOutput {
@@ -330,14 +274,16 @@ func (o SystemDedicatedMgmtMapOutput) ToSystemDedicatedMgmtMapOutputWithContext(
 }
 
 func (o SystemDedicatedMgmtMapOutput) MapIndex(k pulumi.StringInput) SystemDedicatedMgmtOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDedicatedMgmt {
-		return vs[0].(map[string]SystemDedicatedMgmt)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDedicatedMgmt {
+		return vs[0].(map[string]*SystemDedicatedMgmt)[vs[1].(string)]
 	}).(SystemDedicatedMgmtOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDedicatedMgmtInput)(nil)).Elem(), &SystemDedicatedMgmt{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDedicatedMgmtArrayInput)(nil)).Elem(), SystemDedicatedMgmtArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDedicatedMgmtMapInput)(nil)).Elem(), SystemDedicatedMgmtMap{})
 	pulumi.RegisterOutputType(SystemDedicatedMgmtOutput{})
-	pulumi.RegisterOutputType(SystemDedicatedMgmtPtrOutput{})
 	pulumi.RegisterOutputType(SystemDedicatedMgmtArrayOutput{})
 	pulumi.RegisterOutputType(SystemDedicatedMgmtMapOutput{})
 }

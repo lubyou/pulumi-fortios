@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -108,6 +108,7 @@ func NewWanoptWebcache(ctx *pulumi.Context,
 		args = &WanoptWebcacheArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptWebcache
 	err := ctx.RegisterResource("fortios:index/wanoptWebcache:WanoptWebcache", name, args, &resource, opts...)
 	if err != nil {
@@ -302,7 +303,7 @@ type WanoptWebcacheInput interface {
 }
 
 func (*WanoptWebcache) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptWebcache)(nil))
+	return reflect.TypeOf((**WanoptWebcache)(nil)).Elem()
 }
 
 func (i *WanoptWebcache) ToWanoptWebcacheOutput() WanoptWebcacheOutput {
@@ -311,35 +312,6 @@ func (i *WanoptWebcache) ToWanoptWebcacheOutput() WanoptWebcacheOutput {
 
 func (i *WanoptWebcache) ToWanoptWebcacheOutputWithContext(ctx context.Context) WanoptWebcacheOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcacheOutput)
-}
-
-func (i *WanoptWebcache) ToWanoptWebcachePtrOutput() WanoptWebcachePtrOutput {
-	return i.ToWanoptWebcachePtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptWebcache) ToWanoptWebcachePtrOutputWithContext(ctx context.Context) WanoptWebcachePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcachePtrOutput)
-}
-
-type WanoptWebcachePtrInput interface {
-	pulumi.Input
-
-	ToWanoptWebcachePtrOutput() WanoptWebcachePtrOutput
-	ToWanoptWebcachePtrOutputWithContext(ctx context.Context) WanoptWebcachePtrOutput
-}
-
-type wanoptWebcachePtrType WanoptWebcacheArgs
-
-func (*wanoptWebcachePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptWebcache)(nil))
-}
-
-func (i *wanoptWebcachePtrType) ToWanoptWebcachePtrOutput() WanoptWebcachePtrOutput {
-	return i.ToWanoptWebcachePtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptWebcachePtrType) ToWanoptWebcachePtrOutputWithContext(ctx context.Context) WanoptWebcachePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcachePtrOutput)
 }
 
 // WanoptWebcacheArrayInput is an input type that accepts WanoptWebcacheArray and WanoptWebcacheArrayOutput values.
@@ -356,7 +328,7 @@ type WanoptWebcacheArrayInput interface {
 type WanoptWebcacheArray []WanoptWebcacheInput
 
 func (WanoptWebcacheArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptWebcache)(nil))
+	return reflect.TypeOf((*[]*WanoptWebcache)(nil)).Elem()
 }
 
 func (i WanoptWebcacheArray) ToWanoptWebcacheArrayOutput() WanoptWebcacheArrayOutput {
@@ -381,7 +353,7 @@ type WanoptWebcacheMapInput interface {
 type WanoptWebcacheMap map[string]WanoptWebcacheInput
 
 func (WanoptWebcacheMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptWebcache)(nil))
+	return reflect.TypeOf((*map[string]*WanoptWebcache)(nil)).Elem()
 }
 
 func (i WanoptWebcacheMap) ToWanoptWebcacheMapOutput() WanoptWebcacheMapOutput {
@@ -392,12 +364,10 @@ func (i WanoptWebcacheMap) ToWanoptWebcacheMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptWebcacheMapOutput)
 }
 
-type WanoptWebcacheOutput struct {
-	*pulumi.OutputState
-}
+type WanoptWebcacheOutput struct{ *pulumi.OutputState }
 
 func (WanoptWebcacheOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptWebcache)(nil))
+	return reflect.TypeOf((**WanoptWebcache)(nil)).Elem()
 }
 
 func (o WanoptWebcacheOutput) ToWanoptWebcacheOutput() WanoptWebcacheOutput {
@@ -408,36 +378,10 @@ func (o WanoptWebcacheOutput) ToWanoptWebcacheOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o WanoptWebcacheOutput) ToWanoptWebcachePtrOutput() WanoptWebcachePtrOutput {
-	return o.ToWanoptWebcachePtrOutputWithContext(context.Background())
-}
-
-func (o WanoptWebcacheOutput) ToWanoptWebcachePtrOutputWithContext(ctx context.Context) WanoptWebcachePtrOutput {
-	return o.ApplyT(func(v WanoptWebcache) *WanoptWebcache {
-		return &v
-	}).(WanoptWebcachePtrOutput)
-}
-
-type WanoptWebcachePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptWebcachePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptWebcache)(nil))
-}
-
-func (o WanoptWebcachePtrOutput) ToWanoptWebcachePtrOutput() WanoptWebcachePtrOutput {
-	return o
-}
-
-func (o WanoptWebcachePtrOutput) ToWanoptWebcachePtrOutputWithContext(ctx context.Context) WanoptWebcachePtrOutput {
-	return o
-}
-
 type WanoptWebcacheArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptWebcacheArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptWebcache)(nil))
+	return reflect.TypeOf((*[]*WanoptWebcache)(nil)).Elem()
 }
 
 func (o WanoptWebcacheArrayOutput) ToWanoptWebcacheArrayOutput() WanoptWebcacheArrayOutput {
@@ -449,15 +393,15 @@ func (o WanoptWebcacheArrayOutput) ToWanoptWebcacheArrayOutputWithContext(ctx co
 }
 
 func (o WanoptWebcacheArrayOutput) Index(i pulumi.IntInput) WanoptWebcacheOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptWebcache {
-		return vs[0].([]WanoptWebcache)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptWebcache {
+		return vs[0].([]*WanoptWebcache)[vs[1].(int)]
 	}).(WanoptWebcacheOutput)
 }
 
 type WanoptWebcacheMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptWebcacheMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptWebcache)(nil))
+	return reflect.TypeOf((*map[string]*WanoptWebcache)(nil)).Elem()
 }
 
 func (o WanoptWebcacheMapOutput) ToWanoptWebcacheMapOutput() WanoptWebcacheMapOutput {
@@ -469,14 +413,16 @@ func (o WanoptWebcacheMapOutput) ToWanoptWebcacheMapOutputWithContext(ctx contex
 }
 
 func (o WanoptWebcacheMapOutput) MapIndex(k pulumi.StringInput) WanoptWebcacheOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptWebcache {
-		return vs[0].(map[string]WanoptWebcache)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptWebcache {
+		return vs[0].(map[string]*WanoptWebcache)[vs[1].(string)]
 	}).(WanoptWebcacheOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptWebcacheInput)(nil)).Elem(), &WanoptWebcache{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptWebcacheArrayInput)(nil)).Elem(), WanoptWebcacheArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptWebcacheMapInput)(nil)).Elem(), WanoptWebcacheMap{})
 	pulumi.RegisterOutputType(WanoptWebcacheOutput{})
-	pulumi.RegisterOutputType(WanoptWebcachePtrOutput{})
 	pulumi.RegisterOutputType(WanoptWebcacheArrayOutput{})
 	pulumi.RegisterOutputType(WanoptWebcacheMapOutput{})
 }

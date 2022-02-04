@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch RSPAN/ERSPAN traffic sniffing parameters.
+// Configure FortiSwitch RSPAN/ERSPAN traffic sniffing parameters. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -47,6 +47,7 @@ func NewSwitchControllerTrafficSniffer(ctx *pulumi.Context,
 		args = &SwitchControllerTrafficSnifferArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerTrafficSniffer
 	err := ctx.RegisterResource("fortios:index/switchControllerTrafficSniffer:SwitchControllerTrafficSniffer", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type SwitchControllerTrafficSnifferInput interface {
 }
 
 func (*SwitchControllerTrafficSniffer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerTrafficSniffer)(nil))
+	return reflect.TypeOf((**SwitchControllerTrafficSniffer)(nil)).Elem()
 }
 
 func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferOutput() SwitchControllerTrafficSnifferOutput {
@@ -162,35 +163,6 @@ func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferOutput(
 
 func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferOutput)
-}
-
-func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferPtrOutput() SwitchControllerTrafficSnifferPtrOutput {
-	return i.ToSwitchControllerTrafficSnifferPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerTrafficSniffer) ToSwitchControllerTrafficSnifferPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferPtrOutput)
-}
-
-type SwitchControllerTrafficSnifferPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerTrafficSnifferPtrOutput() SwitchControllerTrafficSnifferPtrOutput
-	ToSwitchControllerTrafficSnifferPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferPtrOutput
-}
-
-type switchControllerTrafficSnifferPtrType SwitchControllerTrafficSnifferArgs
-
-func (*switchControllerTrafficSnifferPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerTrafficSniffer)(nil))
-}
-
-func (i *switchControllerTrafficSnifferPtrType) ToSwitchControllerTrafficSnifferPtrOutput() SwitchControllerTrafficSnifferPtrOutput {
-	return i.ToSwitchControllerTrafficSnifferPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerTrafficSnifferPtrType) ToSwitchControllerTrafficSnifferPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferPtrOutput)
 }
 
 // SwitchControllerTrafficSnifferArrayInput is an input type that accepts SwitchControllerTrafficSnifferArray and SwitchControllerTrafficSnifferArrayOutput values.
@@ -207,7 +179,7 @@ type SwitchControllerTrafficSnifferArrayInput interface {
 type SwitchControllerTrafficSnifferArray []SwitchControllerTrafficSnifferInput
 
 func (SwitchControllerTrafficSnifferArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerTrafficSniffer)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerTrafficSniffer)(nil)).Elem()
 }
 
 func (i SwitchControllerTrafficSnifferArray) ToSwitchControllerTrafficSnifferArrayOutput() SwitchControllerTrafficSnifferArrayOutput {
@@ -232,7 +204,7 @@ type SwitchControllerTrafficSnifferMapInput interface {
 type SwitchControllerTrafficSnifferMap map[string]SwitchControllerTrafficSnifferInput
 
 func (SwitchControllerTrafficSnifferMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerTrafficSniffer)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerTrafficSniffer)(nil)).Elem()
 }
 
 func (i SwitchControllerTrafficSnifferMap) ToSwitchControllerTrafficSnifferMapOutput() SwitchControllerTrafficSnifferMapOutput {
@@ -243,12 +215,10 @@ func (i SwitchControllerTrafficSnifferMap) ToSwitchControllerTrafficSnifferMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficSnifferMapOutput)
 }
 
-type SwitchControllerTrafficSnifferOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerTrafficSnifferOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficSnifferOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerTrafficSniffer)(nil))
+	return reflect.TypeOf((**SwitchControllerTrafficSniffer)(nil)).Elem()
 }
 
 func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferOutput() SwitchControllerTrafficSnifferOutput {
@@ -259,36 +229,10 @@ func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferOu
 	return o
 }
 
-func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferPtrOutput() SwitchControllerTrafficSnifferPtrOutput {
-	return o.ToSwitchControllerTrafficSnifferPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerTrafficSnifferOutput) ToSwitchControllerTrafficSnifferPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferPtrOutput {
-	return o.ApplyT(func(v SwitchControllerTrafficSniffer) *SwitchControllerTrafficSniffer {
-		return &v
-	}).(SwitchControllerTrafficSnifferPtrOutput)
-}
-
-type SwitchControllerTrafficSnifferPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerTrafficSnifferPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerTrafficSniffer)(nil))
-}
-
-func (o SwitchControllerTrafficSnifferPtrOutput) ToSwitchControllerTrafficSnifferPtrOutput() SwitchControllerTrafficSnifferPtrOutput {
-	return o
-}
-
-func (o SwitchControllerTrafficSnifferPtrOutput) ToSwitchControllerTrafficSnifferPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficSnifferPtrOutput {
-	return o
-}
-
 type SwitchControllerTrafficSnifferArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficSnifferArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerTrafficSniffer)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerTrafficSniffer)(nil)).Elem()
 }
 
 func (o SwitchControllerTrafficSnifferArrayOutput) ToSwitchControllerTrafficSnifferArrayOutput() SwitchControllerTrafficSnifferArrayOutput {
@@ -300,15 +244,15 @@ func (o SwitchControllerTrafficSnifferArrayOutput) ToSwitchControllerTrafficSnif
 }
 
 func (o SwitchControllerTrafficSnifferArrayOutput) Index(i pulumi.IntInput) SwitchControllerTrafficSnifferOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerTrafficSniffer {
-		return vs[0].([]SwitchControllerTrafficSniffer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerTrafficSniffer {
+		return vs[0].([]*SwitchControllerTrafficSniffer)[vs[1].(int)]
 	}).(SwitchControllerTrafficSnifferOutput)
 }
 
 type SwitchControllerTrafficSnifferMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficSnifferMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerTrafficSniffer)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerTrafficSniffer)(nil)).Elem()
 }
 
 func (o SwitchControllerTrafficSnifferMapOutput) ToSwitchControllerTrafficSnifferMapOutput() SwitchControllerTrafficSnifferMapOutput {
@@ -320,14 +264,16 @@ func (o SwitchControllerTrafficSnifferMapOutput) ToSwitchControllerTrafficSniffe
 }
 
 func (o SwitchControllerTrafficSnifferMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerTrafficSnifferOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerTrafficSniffer {
-		return vs[0].(map[string]SwitchControllerTrafficSniffer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerTrafficSniffer {
+		return vs[0].(map[string]*SwitchControllerTrafficSniffer)[vs[1].(string)]
 	}).(SwitchControllerTrafficSnifferOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerTrafficSnifferInput)(nil)).Elem(), &SwitchControllerTrafficSniffer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerTrafficSnifferArrayInput)(nil)).Elem(), SwitchControllerTrafficSnifferArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerTrafficSnifferMapInput)(nil)).Elem(), SwitchControllerTrafficSnifferMap{})
 	pulumi.RegisterOutputType(SwitchControllerTrafficSnifferOutput{})
-	pulumi.RegisterOutputType(SwitchControllerTrafficSnifferPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerTrafficSnifferArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerTrafficSnifferMapOutput{})
 }

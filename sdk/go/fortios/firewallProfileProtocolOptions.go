@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,11 +26,11 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallProfileProtocolOptions(ctx, "trname", &fortios.FirewallProfileProtocolOptionsArgs{
-// 			Dns: &fortios.FirewallProfileProtocolOptionsDnsArgs{
+// 			Dns: &FirewallProfileProtocolOptionsDnsArgs{
 // 				Ports:  pulumi.Int(53),
 // 				Status: pulumi.String("enable"),
 // 			},
-// 			Ftp: &fortios.FirewallProfileProtocolOptionsFtpArgs{
+// 			Ftp: &FirewallProfileProtocolOptionsFtpArgs{
 // 				ComfortAmount:             pulumi.Int(1),
 // 				ComfortInterval:           pulumi.Int(10),
 // 				InspectAll:                pulumi.String("disable"),
@@ -41,7 +42,7 @@ import (
 // 				UncompressedNestLimit:     pulumi.Int(12),
 // 				UncompressedOversizeLimit: pulumi.Int(10),
 // 			},
-// 			Http: &fortios.FirewallProfileProtocolOptionsHttpArgs{
+// 			Http: &FirewallProfileProtocolOptionsHttpArgs{
 // 				BlockPageStatusCode:       pulumi.Int(403),
 // 				ComfortAmount:             pulumi.Int(1),
 // 				ComfortInterval:           pulumi.Int(10),
@@ -61,7 +62,7 @@ import (
 // 				UncompressedNestLimit:     pulumi.Int(12),
 // 				UncompressedOversizeLimit: pulumi.Int(10),
 // 			},
-// 			Imap: &fortios.FirewallProfileProtocolOptionsImapArgs{
+// 			Imap: &FirewallProfileProtocolOptionsImapArgs{
 // 				InspectAll:                pulumi.String("disable"),
 // 				Options:                   pulumi.String("fragmail"),
 // 				OversizeLimit:             pulumi.Int(10),
@@ -71,10 +72,10 @@ import (
 // 				UncompressedNestLimit:     pulumi.Int(12),
 // 				UncompressedOversizeLimit: pulumi.Int(10),
 // 			},
-// 			MailSignature: &fortios.FirewallProfileProtocolOptionsMailSignatureArgs{
+// 			MailSignature: &FirewallProfileProtocolOptionsMailSignatureArgs{
 // 				Status: pulumi.String("disable"),
 // 			},
-// 			Mapi: &fortios.FirewallProfileProtocolOptionsMapiArgs{
+// 			Mapi: &FirewallProfileProtocolOptionsMapiArgs{
 // 				Options:                   pulumi.String("fragmail"),
 // 				OversizeLimit:             pulumi.Int(10),
 // 				Ports:                     pulumi.Int(135),
@@ -83,7 +84,7 @@ import (
 // 				UncompressedNestLimit:     pulumi.Int(12),
 // 				UncompressedOversizeLimit: pulumi.Int(10),
 // 			},
-// 			Nntp: &fortios.FirewallProfileProtocolOptionsNntpArgs{
+// 			Nntp: &FirewallProfileProtocolOptionsNntpArgs{
 // 				InspectAll:                pulumi.String("disable"),
 // 				Options:                   pulumi.String("splice"),
 // 				OversizeLimit:             pulumi.Int(10),
@@ -94,7 +95,7 @@ import (
 // 				UncompressedOversizeLimit: pulumi.Int(10),
 // 			},
 // 			OversizeLog: pulumi.String("disable"),
-// 			Pop3: &fortios.FirewallProfileProtocolOptionsPop3Args{
+// 			Pop3: &FirewallProfileProtocolOptionsPop3Args{
 // 				InspectAll:                pulumi.String("disable"),
 // 				Options:                   pulumi.String("fragmail"),
 // 				OversizeLimit:             pulumi.Int(10),
@@ -105,7 +106,7 @@ import (
 // 				UncompressedOversizeLimit: pulumi.Int(10),
 // 			},
 // 			RpcOverHttp: pulumi.String("disable"),
-// 			Smtp: &fortios.FirewallProfileProtocolOptionsSmtpArgs{
+// 			Smtp: &FirewallProfileProtocolOptionsSmtpArgs{
 // 				InspectAll:                pulumi.String("disable"),
 // 				Options:                   pulumi.String("fragmail splice"),
 // 				OversizeLimit:             pulumi.Int(10),
@@ -185,6 +186,7 @@ func NewFirewallProfileProtocolOptions(ctx *pulumi.Context,
 		args = &FirewallProfileProtocolOptionsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallProfileProtocolOptions
 	err := ctx.RegisterResource("fortios:index/firewallProfileProtocolOptions:FirewallProfileProtocolOptions", name, args, &resource, opts...)
 	if err != nil {
@@ -387,7 +389,7 @@ type FirewallProfileProtocolOptionsInput interface {
 }
 
 func (*FirewallProfileProtocolOptions) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProfileProtocolOptions)(nil))
+	return reflect.TypeOf((**FirewallProfileProtocolOptions)(nil)).Elem()
 }
 
 func (i *FirewallProfileProtocolOptions) ToFirewallProfileProtocolOptionsOutput() FirewallProfileProtocolOptionsOutput {
@@ -396,35 +398,6 @@ func (i *FirewallProfileProtocolOptions) ToFirewallProfileProtocolOptionsOutput(
 
 func (i *FirewallProfileProtocolOptions) ToFirewallProfileProtocolOptionsOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsOutput)
-}
-
-func (i *FirewallProfileProtocolOptions) ToFirewallProfileProtocolOptionsPtrOutput() FirewallProfileProtocolOptionsPtrOutput {
-	return i.ToFirewallProfileProtocolOptionsPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallProfileProtocolOptions) ToFirewallProfileProtocolOptionsPtrOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsPtrOutput)
-}
-
-type FirewallProfileProtocolOptionsPtrInput interface {
-	pulumi.Input
-
-	ToFirewallProfileProtocolOptionsPtrOutput() FirewallProfileProtocolOptionsPtrOutput
-	ToFirewallProfileProtocolOptionsPtrOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsPtrOutput
-}
-
-type firewallProfileProtocolOptionsPtrType FirewallProfileProtocolOptionsArgs
-
-func (*firewallProfileProtocolOptionsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProfileProtocolOptions)(nil))
-}
-
-func (i *firewallProfileProtocolOptionsPtrType) ToFirewallProfileProtocolOptionsPtrOutput() FirewallProfileProtocolOptionsPtrOutput {
-	return i.ToFirewallProfileProtocolOptionsPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallProfileProtocolOptionsPtrType) ToFirewallProfileProtocolOptionsPtrOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsPtrOutput)
 }
 
 // FirewallProfileProtocolOptionsArrayInput is an input type that accepts FirewallProfileProtocolOptionsArray and FirewallProfileProtocolOptionsArrayOutput values.
@@ -441,7 +414,7 @@ type FirewallProfileProtocolOptionsArrayInput interface {
 type FirewallProfileProtocolOptionsArray []FirewallProfileProtocolOptionsInput
 
 func (FirewallProfileProtocolOptionsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallProfileProtocolOptions)(nil))
+	return reflect.TypeOf((*[]*FirewallProfileProtocolOptions)(nil)).Elem()
 }
 
 func (i FirewallProfileProtocolOptionsArray) ToFirewallProfileProtocolOptionsArrayOutput() FirewallProfileProtocolOptionsArrayOutput {
@@ -466,7 +439,7 @@ type FirewallProfileProtocolOptionsMapInput interface {
 type FirewallProfileProtocolOptionsMap map[string]FirewallProfileProtocolOptionsInput
 
 func (FirewallProfileProtocolOptionsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallProfileProtocolOptions)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProfileProtocolOptions)(nil)).Elem()
 }
 
 func (i FirewallProfileProtocolOptionsMap) ToFirewallProfileProtocolOptionsMapOutput() FirewallProfileProtocolOptionsMapOutput {
@@ -477,12 +450,10 @@ func (i FirewallProfileProtocolOptionsMap) ToFirewallProfileProtocolOptionsMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileProtocolOptionsMapOutput)
 }
 
-type FirewallProfileProtocolOptionsOutput struct {
-	*pulumi.OutputState
-}
+type FirewallProfileProtocolOptionsOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileProtocolOptionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProfileProtocolOptions)(nil))
+	return reflect.TypeOf((**FirewallProfileProtocolOptions)(nil)).Elem()
 }
 
 func (o FirewallProfileProtocolOptionsOutput) ToFirewallProfileProtocolOptionsOutput() FirewallProfileProtocolOptionsOutput {
@@ -493,36 +464,10 @@ func (o FirewallProfileProtocolOptionsOutput) ToFirewallProfileProtocolOptionsOu
 	return o
 }
 
-func (o FirewallProfileProtocolOptionsOutput) ToFirewallProfileProtocolOptionsPtrOutput() FirewallProfileProtocolOptionsPtrOutput {
-	return o.ToFirewallProfileProtocolOptionsPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallProfileProtocolOptionsOutput) ToFirewallProfileProtocolOptionsPtrOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsPtrOutput {
-	return o.ApplyT(func(v FirewallProfileProtocolOptions) *FirewallProfileProtocolOptions {
-		return &v
-	}).(FirewallProfileProtocolOptionsPtrOutput)
-}
-
-type FirewallProfileProtocolOptionsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallProfileProtocolOptionsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProfileProtocolOptions)(nil))
-}
-
-func (o FirewallProfileProtocolOptionsPtrOutput) ToFirewallProfileProtocolOptionsPtrOutput() FirewallProfileProtocolOptionsPtrOutput {
-	return o
-}
-
-func (o FirewallProfileProtocolOptionsPtrOutput) ToFirewallProfileProtocolOptionsPtrOutputWithContext(ctx context.Context) FirewallProfileProtocolOptionsPtrOutput {
-	return o
-}
-
 type FirewallProfileProtocolOptionsArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileProtocolOptionsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallProfileProtocolOptions)(nil))
+	return reflect.TypeOf((*[]*FirewallProfileProtocolOptions)(nil)).Elem()
 }
 
 func (o FirewallProfileProtocolOptionsArrayOutput) ToFirewallProfileProtocolOptionsArrayOutput() FirewallProfileProtocolOptionsArrayOutput {
@@ -534,15 +479,15 @@ func (o FirewallProfileProtocolOptionsArrayOutput) ToFirewallProfileProtocolOpti
 }
 
 func (o FirewallProfileProtocolOptionsArrayOutput) Index(i pulumi.IntInput) FirewallProfileProtocolOptionsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProfileProtocolOptions {
-		return vs[0].([]FirewallProfileProtocolOptions)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProfileProtocolOptions {
+		return vs[0].([]*FirewallProfileProtocolOptions)[vs[1].(int)]
 	}).(FirewallProfileProtocolOptionsOutput)
 }
 
 type FirewallProfileProtocolOptionsMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileProtocolOptionsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallProfileProtocolOptions)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProfileProtocolOptions)(nil)).Elem()
 }
 
 func (o FirewallProfileProtocolOptionsMapOutput) ToFirewallProfileProtocolOptionsMapOutput() FirewallProfileProtocolOptionsMapOutput {
@@ -554,14 +499,16 @@ func (o FirewallProfileProtocolOptionsMapOutput) ToFirewallProfileProtocolOption
 }
 
 func (o FirewallProfileProtocolOptionsMapOutput) MapIndex(k pulumi.StringInput) FirewallProfileProtocolOptionsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallProfileProtocolOptions {
-		return vs[0].(map[string]FirewallProfileProtocolOptions)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallProfileProtocolOptions {
+		return vs[0].(map[string]*FirewallProfileProtocolOptions)[vs[1].(string)]
 	}).(FirewallProfileProtocolOptionsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileProtocolOptionsInput)(nil)).Elem(), &FirewallProfileProtocolOptions{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileProtocolOptionsArrayInput)(nil)).Elem(), FirewallProfileProtocolOptionsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileProtocolOptionsMapInput)(nil)).Elem(), FirewallProfileProtocolOptionsMap{})
 	pulumi.RegisterOutputType(FirewallProfileProtocolOptionsOutput{})
-	pulumi.RegisterOutputType(FirewallProfileProtocolOptionsPtrOutput{})
 	pulumi.RegisterOutputType(FirewallProfileProtocolOptionsArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProfileProtocolOptionsMapOutput{})
 }

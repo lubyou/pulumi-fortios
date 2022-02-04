@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure anti-spam black/white list. Applies to FortiOS Version `<= 6.4.2`.
+// Configure anti-spam black/white list. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0,6.4.2`.
 //
 // ## Import
 //
@@ -45,6 +45,7 @@ func NewEmailfilterBwl(ctx *pulumi.Context,
 		args = &EmailfilterBwlArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EmailfilterBwl
 	err := ctx.RegisterResource("fortios:index/emailfilterBwl:EmailfilterBwl", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type EmailfilterBwlInput interface {
 }
 
 func (*EmailfilterBwl) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterBwl)(nil))
+	return reflect.TypeOf((**EmailfilterBwl)(nil)).Elem()
 }
 
 func (i *EmailfilterBwl) ToEmailfilterBwlOutput() EmailfilterBwlOutput {
@@ -152,35 +153,6 @@ func (i *EmailfilterBwl) ToEmailfilterBwlOutput() EmailfilterBwlOutput {
 
 func (i *EmailfilterBwl) ToEmailfilterBwlOutputWithContext(ctx context.Context) EmailfilterBwlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlOutput)
-}
-
-func (i *EmailfilterBwl) ToEmailfilterBwlPtrOutput() EmailfilterBwlPtrOutput {
-	return i.ToEmailfilterBwlPtrOutputWithContext(context.Background())
-}
-
-func (i *EmailfilterBwl) ToEmailfilterBwlPtrOutputWithContext(ctx context.Context) EmailfilterBwlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlPtrOutput)
-}
-
-type EmailfilterBwlPtrInput interface {
-	pulumi.Input
-
-	ToEmailfilterBwlPtrOutput() EmailfilterBwlPtrOutput
-	ToEmailfilterBwlPtrOutputWithContext(ctx context.Context) EmailfilterBwlPtrOutput
-}
-
-type emailfilterBwlPtrType EmailfilterBwlArgs
-
-func (*emailfilterBwlPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterBwl)(nil))
-}
-
-func (i *emailfilterBwlPtrType) ToEmailfilterBwlPtrOutput() EmailfilterBwlPtrOutput {
-	return i.ToEmailfilterBwlPtrOutputWithContext(context.Background())
-}
-
-func (i *emailfilterBwlPtrType) ToEmailfilterBwlPtrOutputWithContext(ctx context.Context) EmailfilterBwlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlPtrOutput)
 }
 
 // EmailfilterBwlArrayInput is an input type that accepts EmailfilterBwlArray and EmailfilterBwlArrayOutput values.
@@ -197,7 +169,7 @@ type EmailfilterBwlArrayInput interface {
 type EmailfilterBwlArray []EmailfilterBwlInput
 
 func (EmailfilterBwlArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EmailfilterBwl)(nil))
+	return reflect.TypeOf((*[]*EmailfilterBwl)(nil)).Elem()
 }
 
 func (i EmailfilterBwlArray) ToEmailfilterBwlArrayOutput() EmailfilterBwlArrayOutput {
@@ -222,7 +194,7 @@ type EmailfilterBwlMapInput interface {
 type EmailfilterBwlMap map[string]EmailfilterBwlInput
 
 func (EmailfilterBwlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EmailfilterBwl)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterBwl)(nil)).Elem()
 }
 
 func (i EmailfilterBwlMap) ToEmailfilterBwlMapOutput() EmailfilterBwlMapOutput {
@@ -233,12 +205,10 @@ func (i EmailfilterBwlMap) ToEmailfilterBwlMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterBwlMapOutput)
 }
 
-type EmailfilterBwlOutput struct {
-	*pulumi.OutputState
-}
+type EmailfilterBwlOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterBwlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterBwl)(nil))
+	return reflect.TypeOf((**EmailfilterBwl)(nil)).Elem()
 }
 
 func (o EmailfilterBwlOutput) ToEmailfilterBwlOutput() EmailfilterBwlOutput {
@@ -249,36 +219,10 @@ func (o EmailfilterBwlOutput) ToEmailfilterBwlOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o EmailfilterBwlOutput) ToEmailfilterBwlPtrOutput() EmailfilterBwlPtrOutput {
-	return o.ToEmailfilterBwlPtrOutputWithContext(context.Background())
-}
-
-func (o EmailfilterBwlOutput) ToEmailfilterBwlPtrOutputWithContext(ctx context.Context) EmailfilterBwlPtrOutput {
-	return o.ApplyT(func(v EmailfilterBwl) *EmailfilterBwl {
-		return &v
-	}).(EmailfilterBwlPtrOutput)
-}
-
-type EmailfilterBwlPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EmailfilterBwlPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterBwl)(nil))
-}
-
-func (o EmailfilterBwlPtrOutput) ToEmailfilterBwlPtrOutput() EmailfilterBwlPtrOutput {
-	return o
-}
-
-func (o EmailfilterBwlPtrOutput) ToEmailfilterBwlPtrOutputWithContext(ctx context.Context) EmailfilterBwlPtrOutput {
-	return o
-}
-
 type EmailfilterBwlArrayOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterBwlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EmailfilterBwl)(nil))
+	return reflect.TypeOf((*[]*EmailfilterBwl)(nil)).Elem()
 }
 
 func (o EmailfilterBwlArrayOutput) ToEmailfilterBwlArrayOutput() EmailfilterBwlArrayOutput {
@@ -290,15 +234,15 @@ func (o EmailfilterBwlArrayOutput) ToEmailfilterBwlArrayOutputWithContext(ctx co
 }
 
 func (o EmailfilterBwlArrayOutput) Index(i pulumi.IntInput) EmailfilterBwlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EmailfilterBwl {
-		return vs[0].([]EmailfilterBwl)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterBwl {
+		return vs[0].([]*EmailfilterBwl)[vs[1].(int)]
 	}).(EmailfilterBwlOutput)
 }
 
 type EmailfilterBwlMapOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterBwlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EmailfilterBwl)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterBwl)(nil)).Elem()
 }
 
 func (o EmailfilterBwlMapOutput) ToEmailfilterBwlMapOutput() EmailfilterBwlMapOutput {
@@ -310,14 +254,16 @@ func (o EmailfilterBwlMapOutput) ToEmailfilterBwlMapOutputWithContext(ctx contex
 }
 
 func (o EmailfilterBwlMapOutput) MapIndex(k pulumi.StringInput) EmailfilterBwlOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EmailfilterBwl {
-		return vs[0].(map[string]EmailfilterBwl)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EmailfilterBwl {
+		return vs[0].(map[string]*EmailfilterBwl)[vs[1].(string)]
 	}).(EmailfilterBwlOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterBwlInput)(nil)).Elem(), &EmailfilterBwl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterBwlArrayInput)(nil)).Elem(), EmailfilterBwlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterBwlMapInput)(nil)).Elem(), EmailfilterBwlMap{})
 	pulumi.RegisterOutputType(EmailfilterBwlOutput{})
-	pulumi.RegisterOutputType(EmailfilterBwlPtrOutput{})
 	pulumi.RegisterOutputType(EmailfilterBwlArrayOutput{})
 	pulumi.RegisterOutputType(EmailfilterBwlMapOutput{})
 }

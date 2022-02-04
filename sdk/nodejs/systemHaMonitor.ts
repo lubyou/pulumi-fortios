@@ -84,25 +84,23 @@ export class SystemHaMonitor extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemHaMonitorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemHaMonitorArgs | SystemHaMonitorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemHaMonitorState | undefined;
-            inputs["monitorVlan"] = state ? state.monitorVlan : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanHbInterval"] = state ? state.vlanHbInterval : undefined;
-            inputs["vlanHbLostThreshold"] = state ? state.vlanHbLostThreshold : undefined;
+            resourceInputs["monitorVlan"] = state ? state.monitorVlan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanHbInterval"] = state ? state.vlanHbInterval : undefined;
+            resourceInputs["vlanHbLostThreshold"] = state ? state.vlanHbLostThreshold : undefined;
         } else {
             const args = argsOrState as SystemHaMonitorArgs | undefined;
-            inputs["monitorVlan"] = args ? args.monitorVlan : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanHbInterval"] = args ? args.vlanHbInterval : undefined;
-            inputs["vlanHbLostThreshold"] = args ? args.vlanHbLostThreshold : undefined;
+            resourceInputs["monitorVlan"] = args ? args.monitorVlan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanHbInterval"] = args ? args.vlanHbInterval : undefined;
+            resourceInputs["vlanHbLostThreshold"] = args ? args.vlanHbLostThreshold : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemHaMonitor.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemHaMonitor.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemApiUser`.
 func GetSystemApiUserList(ctx *pulumi.Context, args *GetSystemApiUserListArgs, opts ...pulumi.InvokeOption) (*GetSystemApiUserListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemApiUserListResult
 	err := ctx.Invoke("fortios:index/getSystemApiUserList:GetSystemApiUserList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemApiUserListResult struct {
 	// A list of the `SystemApiUser`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemApiUserListOutput(ctx *pulumi.Context, args GetSystemApiUserListOutputArgs, opts ...pulumi.InvokeOption) GetSystemApiUserListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemApiUserListResult, error) {
+			args := v.(GetSystemApiUserListArgs)
+			r, err := GetSystemApiUserList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemApiUserListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemApiUserList.
+type GetSystemApiUserListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemApiUserListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemApiUserListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemApiUserList.
+type GetSystemApiUserListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemApiUserListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemApiUserListResult)(nil)).Elem()
+}
+
+func (o GetSystemApiUserListResultOutput) ToGetSystemApiUserListResultOutput() GetSystemApiUserListResultOutput {
+	return o
+}
+
+func (o GetSystemApiUserListResultOutput) ToGetSystemApiUserListResultOutputWithContext(ctx context.Context) GetSystemApiUserListResultOutput {
+	return o
+}
+
+func (o GetSystemApiUserListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemApiUserListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemApiUserListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemApiUserListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemApiUser`.
+func (o GetSystemApiUserListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemApiUserListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemApiUserListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemApiUserListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemApiUserListResultOutput{})
 }

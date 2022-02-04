@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,8 +26,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewRouterKeyChain(ctx, "trname", &fortios.RouterKeyChainArgs{
-// 			Keys: fortios.RouterKeyChainKeyArray{
-// 				&fortios.RouterKeyChainKeyArgs{
+// 			Keys: RouterKeyChainKeyArray{
+// 				&RouterKeyChainKeyArgs{
 // 					AcceptLifetime: pulumi.String("04:00:00 01 01 2008 04:00:00 01 01 2022"),
 // 					KeyString:      pulumi.String("ewiwn3i23232s212"),
 // 					SendLifetime:   pulumi.String("04:00:00 01 01 2008 04:00:00 01 01 2022"),
@@ -70,6 +71,7 @@ func NewRouterKeyChain(ctx *pulumi.Context,
 		args = &RouterKeyChainArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterKeyChain
 	err := ctx.RegisterResource("fortios:index/routerKeyChain:RouterKeyChain", name, args, &resource, opts...)
 	if err != nil {
@@ -152,7 +154,7 @@ type RouterKeyChainInput interface {
 }
 
 func (*RouterKeyChain) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterKeyChain)(nil))
+	return reflect.TypeOf((**RouterKeyChain)(nil)).Elem()
 }
 
 func (i *RouterKeyChain) ToRouterKeyChainOutput() RouterKeyChainOutput {
@@ -161,35 +163,6 @@ func (i *RouterKeyChain) ToRouterKeyChainOutput() RouterKeyChainOutput {
 
 func (i *RouterKeyChain) ToRouterKeyChainOutputWithContext(ctx context.Context) RouterKeyChainOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainOutput)
-}
-
-func (i *RouterKeyChain) ToRouterKeyChainPtrOutput() RouterKeyChainPtrOutput {
-	return i.ToRouterKeyChainPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterKeyChain) ToRouterKeyChainPtrOutputWithContext(ctx context.Context) RouterKeyChainPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainPtrOutput)
-}
-
-type RouterKeyChainPtrInput interface {
-	pulumi.Input
-
-	ToRouterKeyChainPtrOutput() RouterKeyChainPtrOutput
-	ToRouterKeyChainPtrOutputWithContext(ctx context.Context) RouterKeyChainPtrOutput
-}
-
-type routerKeyChainPtrType RouterKeyChainArgs
-
-func (*routerKeyChainPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterKeyChain)(nil))
-}
-
-func (i *routerKeyChainPtrType) ToRouterKeyChainPtrOutput() RouterKeyChainPtrOutput {
-	return i.ToRouterKeyChainPtrOutputWithContext(context.Background())
-}
-
-func (i *routerKeyChainPtrType) ToRouterKeyChainPtrOutputWithContext(ctx context.Context) RouterKeyChainPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainPtrOutput)
 }
 
 // RouterKeyChainArrayInput is an input type that accepts RouterKeyChainArray and RouterKeyChainArrayOutput values.
@@ -206,7 +179,7 @@ type RouterKeyChainArrayInput interface {
 type RouterKeyChainArray []RouterKeyChainInput
 
 func (RouterKeyChainArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterKeyChain)(nil))
+	return reflect.TypeOf((*[]*RouterKeyChain)(nil)).Elem()
 }
 
 func (i RouterKeyChainArray) ToRouterKeyChainArrayOutput() RouterKeyChainArrayOutput {
@@ -231,7 +204,7 @@ type RouterKeyChainMapInput interface {
 type RouterKeyChainMap map[string]RouterKeyChainInput
 
 func (RouterKeyChainMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterKeyChain)(nil))
+	return reflect.TypeOf((*map[string]*RouterKeyChain)(nil)).Elem()
 }
 
 func (i RouterKeyChainMap) ToRouterKeyChainMapOutput() RouterKeyChainMapOutput {
@@ -242,12 +215,10 @@ func (i RouterKeyChainMap) ToRouterKeyChainMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(RouterKeyChainMapOutput)
 }
 
-type RouterKeyChainOutput struct {
-	*pulumi.OutputState
-}
+type RouterKeyChainOutput struct{ *pulumi.OutputState }
 
 func (RouterKeyChainOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterKeyChain)(nil))
+	return reflect.TypeOf((**RouterKeyChain)(nil)).Elem()
 }
 
 func (o RouterKeyChainOutput) ToRouterKeyChainOutput() RouterKeyChainOutput {
@@ -258,36 +229,10 @@ func (o RouterKeyChainOutput) ToRouterKeyChainOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o RouterKeyChainOutput) ToRouterKeyChainPtrOutput() RouterKeyChainPtrOutput {
-	return o.ToRouterKeyChainPtrOutputWithContext(context.Background())
-}
-
-func (o RouterKeyChainOutput) ToRouterKeyChainPtrOutputWithContext(ctx context.Context) RouterKeyChainPtrOutput {
-	return o.ApplyT(func(v RouterKeyChain) *RouterKeyChain {
-		return &v
-	}).(RouterKeyChainPtrOutput)
-}
-
-type RouterKeyChainPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterKeyChainPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterKeyChain)(nil))
-}
-
-func (o RouterKeyChainPtrOutput) ToRouterKeyChainPtrOutput() RouterKeyChainPtrOutput {
-	return o
-}
-
-func (o RouterKeyChainPtrOutput) ToRouterKeyChainPtrOutputWithContext(ctx context.Context) RouterKeyChainPtrOutput {
-	return o
-}
-
 type RouterKeyChainArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterKeyChainArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterKeyChain)(nil))
+	return reflect.TypeOf((*[]*RouterKeyChain)(nil)).Elem()
 }
 
 func (o RouterKeyChainArrayOutput) ToRouterKeyChainArrayOutput() RouterKeyChainArrayOutput {
@@ -299,15 +244,15 @@ func (o RouterKeyChainArrayOutput) ToRouterKeyChainArrayOutputWithContext(ctx co
 }
 
 func (o RouterKeyChainArrayOutput) Index(i pulumi.IntInput) RouterKeyChainOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterKeyChain {
-		return vs[0].([]RouterKeyChain)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterKeyChain {
+		return vs[0].([]*RouterKeyChain)[vs[1].(int)]
 	}).(RouterKeyChainOutput)
 }
 
 type RouterKeyChainMapOutput struct{ *pulumi.OutputState }
 
 func (RouterKeyChainMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterKeyChain)(nil))
+	return reflect.TypeOf((*map[string]*RouterKeyChain)(nil)).Elem()
 }
 
 func (o RouterKeyChainMapOutput) ToRouterKeyChainMapOutput() RouterKeyChainMapOutput {
@@ -319,14 +264,16 @@ func (o RouterKeyChainMapOutput) ToRouterKeyChainMapOutputWithContext(ctx contex
 }
 
 func (o RouterKeyChainMapOutput) MapIndex(k pulumi.StringInput) RouterKeyChainOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterKeyChain {
-		return vs[0].(map[string]RouterKeyChain)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterKeyChain {
+		return vs[0].(map[string]*RouterKeyChain)[vs[1].(string)]
 	}).(RouterKeyChainOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterKeyChainInput)(nil)).Elem(), &RouterKeyChain{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterKeyChainArrayInput)(nil)).Elem(), RouterKeyChainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterKeyChainMapInput)(nil)).Elem(), RouterKeyChainMap{})
 	pulumi.RegisterOutputType(RouterKeyChainOutput{})
-	pulumi.RegisterOutputType(RouterKeyChainPtrOutput{})
 	pulumi.RegisterOutputType(RouterKeyChainArrayOutput{})
 	pulumi.RegisterOutputType(RouterKeyChainMapOutput{})
 }

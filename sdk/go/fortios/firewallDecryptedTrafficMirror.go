@@ -47,6 +47,7 @@ func NewFirewallDecryptedTrafficMirror(ctx *pulumi.Context,
 		args = &FirewallDecryptedTrafficMirrorArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallDecryptedTrafficMirror
 	err := ctx.RegisterResource("fortios:index/firewallDecryptedTrafficMirror:FirewallDecryptedTrafficMirror", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type FirewallDecryptedTrafficMirrorInput interface {
 }
 
 func (*FirewallDecryptedTrafficMirror) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallDecryptedTrafficMirror)(nil))
+	return reflect.TypeOf((**FirewallDecryptedTrafficMirror)(nil)).Elem()
 }
 
 func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorOutput() FirewallDecryptedTrafficMirrorOutput {
@@ -162,35 +163,6 @@ func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorOutput(
 
 func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorOutput)
-}
-
-func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorPtrOutput() FirewallDecryptedTrafficMirrorPtrOutput {
-	return i.ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallDecryptedTrafficMirror) ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorPtrOutput)
-}
-
-type FirewallDecryptedTrafficMirrorPtrInput interface {
-	pulumi.Input
-
-	ToFirewallDecryptedTrafficMirrorPtrOutput() FirewallDecryptedTrafficMirrorPtrOutput
-	ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorPtrOutput
-}
-
-type firewallDecryptedTrafficMirrorPtrType FirewallDecryptedTrafficMirrorArgs
-
-func (*firewallDecryptedTrafficMirrorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallDecryptedTrafficMirror)(nil))
-}
-
-func (i *firewallDecryptedTrafficMirrorPtrType) ToFirewallDecryptedTrafficMirrorPtrOutput() FirewallDecryptedTrafficMirrorPtrOutput {
-	return i.ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallDecryptedTrafficMirrorPtrType) ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorPtrOutput)
 }
 
 // FirewallDecryptedTrafficMirrorArrayInput is an input type that accepts FirewallDecryptedTrafficMirrorArray and FirewallDecryptedTrafficMirrorArrayOutput values.
@@ -207,7 +179,7 @@ type FirewallDecryptedTrafficMirrorArrayInput interface {
 type FirewallDecryptedTrafficMirrorArray []FirewallDecryptedTrafficMirrorInput
 
 func (FirewallDecryptedTrafficMirrorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallDecryptedTrafficMirror)(nil))
+	return reflect.TypeOf((*[]*FirewallDecryptedTrafficMirror)(nil)).Elem()
 }
 
 func (i FirewallDecryptedTrafficMirrorArray) ToFirewallDecryptedTrafficMirrorArrayOutput() FirewallDecryptedTrafficMirrorArrayOutput {
@@ -232,7 +204,7 @@ type FirewallDecryptedTrafficMirrorMapInput interface {
 type FirewallDecryptedTrafficMirrorMap map[string]FirewallDecryptedTrafficMirrorInput
 
 func (FirewallDecryptedTrafficMirrorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallDecryptedTrafficMirror)(nil))
+	return reflect.TypeOf((*map[string]*FirewallDecryptedTrafficMirror)(nil)).Elem()
 }
 
 func (i FirewallDecryptedTrafficMirrorMap) ToFirewallDecryptedTrafficMirrorMapOutput() FirewallDecryptedTrafficMirrorMapOutput {
@@ -243,12 +215,10 @@ func (i FirewallDecryptedTrafficMirrorMap) ToFirewallDecryptedTrafficMirrorMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDecryptedTrafficMirrorMapOutput)
 }
 
-type FirewallDecryptedTrafficMirrorOutput struct {
-	*pulumi.OutputState
-}
+type FirewallDecryptedTrafficMirrorOutput struct{ *pulumi.OutputState }
 
 func (FirewallDecryptedTrafficMirrorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallDecryptedTrafficMirror)(nil))
+	return reflect.TypeOf((**FirewallDecryptedTrafficMirror)(nil)).Elem()
 }
 
 func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorOutput() FirewallDecryptedTrafficMirrorOutput {
@@ -259,36 +229,10 @@ func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorOu
 	return o
 }
 
-func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorPtrOutput() FirewallDecryptedTrafficMirrorPtrOutput {
-	return o.ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallDecryptedTrafficMirrorOutput) ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorPtrOutput {
-	return o.ApplyT(func(v FirewallDecryptedTrafficMirror) *FirewallDecryptedTrafficMirror {
-		return &v
-	}).(FirewallDecryptedTrafficMirrorPtrOutput)
-}
-
-type FirewallDecryptedTrafficMirrorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallDecryptedTrafficMirrorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallDecryptedTrafficMirror)(nil))
-}
-
-func (o FirewallDecryptedTrafficMirrorPtrOutput) ToFirewallDecryptedTrafficMirrorPtrOutput() FirewallDecryptedTrafficMirrorPtrOutput {
-	return o
-}
-
-func (o FirewallDecryptedTrafficMirrorPtrOutput) ToFirewallDecryptedTrafficMirrorPtrOutputWithContext(ctx context.Context) FirewallDecryptedTrafficMirrorPtrOutput {
-	return o
-}
-
 type FirewallDecryptedTrafficMirrorArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallDecryptedTrafficMirrorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallDecryptedTrafficMirror)(nil))
+	return reflect.TypeOf((*[]*FirewallDecryptedTrafficMirror)(nil)).Elem()
 }
 
 func (o FirewallDecryptedTrafficMirrorArrayOutput) ToFirewallDecryptedTrafficMirrorArrayOutput() FirewallDecryptedTrafficMirrorArrayOutput {
@@ -300,15 +244,15 @@ func (o FirewallDecryptedTrafficMirrorArrayOutput) ToFirewallDecryptedTrafficMir
 }
 
 func (o FirewallDecryptedTrafficMirrorArrayOutput) Index(i pulumi.IntInput) FirewallDecryptedTrafficMirrorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallDecryptedTrafficMirror {
-		return vs[0].([]FirewallDecryptedTrafficMirror)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallDecryptedTrafficMirror {
+		return vs[0].([]*FirewallDecryptedTrafficMirror)[vs[1].(int)]
 	}).(FirewallDecryptedTrafficMirrorOutput)
 }
 
 type FirewallDecryptedTrafficMirrorMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallDecryptedTrafficMirrorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallDecryptedTrafficMirror)(nil))
+	return reflect.TypeOf((*map[string]*FirewallDecryptedTrafficMirror)(nil)).Elem()
 }
 
 func (o FirewallDecryptedTrafficMirrorMapOutput) ToFirewallDecryptedTrafficMirrorMapOutput() FirewallDecryptedTrafficMirrorMapOutput {
@@ -320,14 +264,16 @@ func (o FirewallDecryptedTrafficMirrorMapOutput) ToFirewallDecryptedTrafficMirro
 }
 
 func (o FirewallDecryptedTrafficMirrorMapOutput) MapIndex(k pulumi.StringInput) FirewallDecryptedTrafficMirrorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallDecryptedTrafficMirror {
-		return vs[0].(map[string]FirewallDecryptedTrafficMirror)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallDecryptedTrafficMirror {
+		return vs[0].(map[string]*FirewallDecryptedTrafficMirror)[vs[1].(string)]
 	}).(FirewallDecryptedTrafficMirrorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallDecryptedTrafficMirrorInput)(nil)).Elem(), &FirewallDecryptedTrafficMirror{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallDecryptedTrafficMirrorArrayInput)(nil)).Elem(), FirewallDecryptedTrafficMirrorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallDecryptedTrafficMirrorMapInput)(nil)).Elem(), FirewallDecryptedTrafficMirrorMap{})
 	pulumi.RegisterOutputType(FirewallDecryptedTrafficMirrorOutput{})
-	pulumi.RegisterOutputType(FirewallDecryptedTrafficMirrorPtrOutput{})
 	pulumi.RegisterOutputType(FirewallDecryptedTrafficMirrorArrayOutput{})
 	pulumi.RegisterOutputType(FirewallDecryptedTrafficMirrorMapOutput{})
 }

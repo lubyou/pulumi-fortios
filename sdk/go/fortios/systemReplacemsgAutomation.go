@@ -43,6 +43,7 @@ func NewSystemReplacemsgAutomation(ctx *pulumi.Context,
 		args = &SystemReplacemsgAutomationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgAutomation
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgAutomation:SystemReplacemsgAutomation", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type SystemReplacemsgAutomationInput interface {
 }
 
 func (*SystemReplacemsgAutomation) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAutomation)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAutomation)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgAutomation) ToSystemReplacemsgAutomationOutput() SystemReplacemsgAutomationOutput {
@@ -142,35 +143,6 @@ func (i *SystemReplacemsgAutomation) ToSystemReplacemsgAutomationOutput() System
 
 func (i *SystemReplacemsgAutomation) ToSystemReplacemsgAutomationOutputWithContext(ctx context.Context) SystemReplacemsgAutomationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAutomationOutput)
-}
-
-func (i *SystemReplacemsgAutomation) ToSystemReplacemsgAutomationPtrOutput() SystemReplacemsgAutomationPtrOutput {
-	return i.ToSystemReplacemsgAutomationPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgAutomation) ToSystemReplacemsgAutomationPtrOutputWithContext(ctx context.Context) SystemReplacemsgAutomationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAutomationPtrOutput)
-}
-
-type SystemReplacemsgAutomationPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgAutomationPtrOutput() SystemReplacemsgAutomationPtrOutput
-	ToSystemReplacemsgAutomationPtrOutputWithContext(ctx context.Context) SystemReplacemsgAutomationPtrOutput
-}
-
-type systemReplacemsgAutomationPtrType SystemReplacemsgAutomationArgs
-
-func (*systemReplacemsgAutomationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAutomation)(nil))
-}
-
-func (i *systemReplacemsgAutomationPtrType) ToSystemReplacemsgAutomationPtrOutput() SystemReplacemsgAutomationPtrOutput {
-	return i.ToSystemReplacemsgAutomationPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgAutomationPtrType) ToSystemReplacemsgAutomationPtrOutputWithContext(ctx context.Context) SystemReplacemsgAutomationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAutomationPtrOutput)
 }
 
 // SystemReplacemsgAutomationArrayInput is an input type that accepts SystemReplacemsgAutomationArray and SystemReplacemsgAutomationArrayOutput values.
@@ -187,7 +159,7 @@ type SystemReplacemsgAutomationArrayInput interface {
 type SystemReplacemsgAutomationArray []SystemReplacemsgAutomationInput
 
 func (SystemReplacemsgAutomationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgAutomation)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAutomation)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAutomationArray) ToSystemReplacemsgAutomationArrayOutput() SystemReplacemsgAutomationArrayOutput {
@@ -212,7 +184,7 @@ type SystemReplacemsgAutomationMapInput interface {
 type SystemReplacemsgAutomationMap map[string]SystemReplacemsgAutomationInput
 
 func (SystemReplacemsgAutomationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgAutomation)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAutomation)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAutomationMap) ToSystemReplacemsgAutomationMapOutput() SystemReplacemsgAutomationMapOutput {
@@ -223,12 +195,10 @@ func (i SystemReplacemsgAutomationMap) ToSystemReplacemsgAutomationMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAutomationMapOutput)
 }
 
-type SystemReplacemsgAutomationOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgAutomationOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAutomationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAutomation)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAutomation)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAutomationOutput) ToSystemReplacemsgAutomationOutput() SystemReplacemsgAutomationOutput {
@@ -239,36 +209,10 @@ func (o SystemReplacemsgAutomationOutput) ToSystemReplacemsgAutomationOutputWith
 	return o
 }
 
-func (o SystemReplacemsgAutomationOutput) ToSystemReplacemsgAutomationPtrOutput() SystemReplacemsgAutomationPtrOutput {
-	return o.ToSystemReplacemsgAutomationPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgAutomationOutput) ToSystemReplacemsgAutomationPtrOutputWithContext(ctx context.Context) SystemReplacemsgAutomationPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgAutomation) *SystemReplacemsgAutomation {
-		return &v
-	}).(SystemReplacemsgAutomationPtrOutput)
-}
-
-type SystemReplacemsgAutomationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgAutomationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAutomation)(nil))
-}
-
-func (o SystemReplacemsgAutomationPtrOutput) ToSystemReplacemsgAutomationPtrOutput() SystemReplacemsgAutomationPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgAutomationPtrOutput) ToSystemReplacemsgAutomationPtrOutputWithContext(ctx context.Context) SystemReplacemsgAutomationPtrOutput {
-	return o
-}
-
 type SystemReplacemsgAutomationArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAutomationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgAutomation)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAutomation)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAutomationArrayOutput) ToSystemReplacemsgAutomationArrayOutput() SystemReplacemsgAutomationArrayOutput {
@@ -280,15 +224,15 @@ func (o SystemReplacemsgAutomationArrayOutput) ToSystemReplacemsgAutomationArray
 }
 
 func (o SystemReplacemsgAutomationArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAutomationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgAutomation {
-		return vs[0].([]SystemReplacemsgAutomation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAutomation {
+		return vs[0].([]*SystemReplacemsgAutomation)[vs[1].(int)]
 	}).(SystemReplacemsgAutomationOutput)
 }
 
 type SystemReplacemsgAutomationMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAutomationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgAutomation)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAutomation)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAutomationMapOutput) ToSystemReplacemsgAutomationMapOutput() SystemReplacemsgAutomationMapOutput {
@@ -300,14 +244,16 @@ func (o SystemReplacemsgAutomationMapOutput) ToSystemReplacemsgAutomationMapOutp
 }
 
 func (o SystemReplacemsgAutomationMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAutomationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgAutomation {
-		return vs[0].(map[string]SystemReplacemsgAutomation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgAutomation {
+		return vs[0].(map[string]*SystemReplacemsgAutomation)[vs[1].(string)]
 	}).(SystemReplacemsgAutomationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAutomationInput)(nil)).Elem(), &SystemReplacemsgAutomation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAutomationArrayInput)(nil)).Elem(), SystemReplacemsgAutomationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAutomationMapInput)(nil)).Elem(), SystemReplacemsgAutomationMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgAutomationOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgAutomationPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAutomationArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAutomationMapOutput{})
 }

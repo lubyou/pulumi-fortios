@@ -71,25 +71,23 @@ export class UserDeviceCategory extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserDeviceCategoryArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserDeviceCategoryArgs | UserDeviceCategoryState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserDeviceCategoryState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["desc"] = state ? state.desc : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["desc"] = state ? state.desc : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserDeviceCategoryArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["desc"] = args ? args.desc : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["desc"] = args ? args.desc : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserDeviceCategory.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserDeviceCategory.__pulumiType, name, resourceInputs, opts);
     }
 }
 

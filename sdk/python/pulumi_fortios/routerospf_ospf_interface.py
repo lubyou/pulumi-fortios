@@ -18,6 +18,7 @@ class RouterospfOspfInterfaceArgs:
                  authentication: Optional[pulumi.Input[str]] = None,
                  authentication_key: Optional[pulumi.Input[str]] = None,
                  bfd: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  cost: Optional[pulumi.Input[int]] = None,
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
@@ -26,6 +27,7 @@ class RouterospfOspfInterfaceArgs:
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 keychain: Optional[pulumi.Input[str]] = None,
                  md5_key: Optional[pulumi.Input[str]] = None,
                  md5_keychain: Optional[pulumi.Input[str]] = None,
                  md5_keys: Optional[pulumi.Input[Sequence[pulumi.Input['RouterospfOspfInterfaceMd5KeyArgs']]]] = None,
@@ -42,9 +44,10 @@ class RouterospfOspfInterfaceArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RouterospfOspfInterface resource.
-        :param pulumi.Input[str] authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param pulumi.Input[str] authentication: Authentication type.
         :param pulumi.Input[str] authentication_key: Authentication key.
         :param pulumi.Input[str] bfd: Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
@@ -53,6 +56,7 @@ class RouterospfOspfInterfaceArgs:
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
         :param pulumi.Input[str] ip: IP address.
+        :param pulumi.Input[str] keychain: Message-digest key-chain name.
         :param pulumi.Input[str] md5_key: MD5 key.
         :param pulumi.Input[str] md5_keychain: Authentication MD5 key-chain name.
         :param pulumi.Input[Sequence[pulumi.Input['RouterospfOspfInterfaceMd5KeyArgs']]] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -74,6 +78,8 @@ class RouterospfOspfInterfaceArgs:
             pulumi.set(__self__, "authentication_key", authentication_key)
         if bfd is not None:
             pulumi.set(__self__, "bfd", bfd)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if cost is not None:
             pulumi.set(__self__, "cost", cost)
         if database_filter_out is not None:
@@ -90,6 +96,8 @@ class RouterospfOspfInterfaceArgs:
             pulumi.set(__self__, "interface", interface)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if keychain is not None:
+            pulumi.set(__self__, "keychain", keychain)
         if md5_key is not None:
             pulumi.set(__self__, "md5_key", md5_key)
         if md5_keychain is not None:
@@ -123,7 +131,7 @@ class RouterospfOspfInterfaceArgs:
     @pulumi.getter
     def authentication(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication type. Valid values: `none`, `text`, `md5`.
+        Authentication type.
         """
         return pulumi.get(self, "authentication")
 
@@ -154,6 +162,18 @@ class RouterospfOspfInterfaceArgs:
     @bfd.setter
     def bfd(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bfd", value)
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
+
+    @comments.setter
+    def comments(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comments", value)
 
     @property
     @pulumi.getter
@@ -250,6 +270,18 @@ class RouterospfOspfInterfaceArgs:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
+
+    @keychain.setter
+    def keychain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "keychain", value)
 
     @property
     @pulumi.getter(name="md5Key")
@@ -426,6 +458,7 @@ class _RouterospfOspfInterfaceState:
                  authentication: Optional[pulumi.Input[str]] = None,
                  authentication_key: Optional[pulumi.Input[str]] = None,
                  bfd: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  cost: Optional[pulumi.Input[int]] = None,
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
@@ -434,6 +467,7 @@ class _RouterospfOspfInterfaceState:
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 keychain: Optional[pulumi.Input[str]] = None,
                  md5_key: Optional[pulumi.Input[str]] = None,
                  md5_keychain: Optional[pulumi.Input[str]] = None,
                  md5_keys: Optional[pulumi.Input[Sequence[pulumi.Input['RouterospfOspfInterfaceMd5KeyArgs']]]] = None,
@@ -450,9 +484,10 @@ class _RouterospfOspfInterfaceState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RouterospfOspfInterface resources.
-        :param pulumi.Input[str] authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param pulumi.Input[str] authentication: Authentication type.
         :param pulumi.Input[str] authentication_key: Authentication key.
         :param pulumi.Input[str] bfd: Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
@@ -461,6 +496,7 @@ class _RouterospfOspfInterfaceState:
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
         :param pulumi.Input[str] ip: IP address.
+        :param pulumi.Input[str] keychain: Message-digest key-chain name.
         :param pulumi.Input[str] md5_key: MD5 key.
         :param pulumi.Input[str] md5_keychain: Authentication MD5 key-chain name.
         :param pulumi.Input[Sequence[pulumi.Input['RouterospfOspfInterfaceMd5KeyArgs']]] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -482,6 +518,8 @@ class _RouterospfOspfInterfaceState:
             pulumi.set(__self__, "authentication_key", authentication_key)
         if bfd is not None:
             pulumi.set(__self__, "bfd", bfd)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if cost is not None:
             pulumi.set(__self__, "cost", cost)
         if database_filter_out is not None:
@@ -498,6 +536,8 @@ class _RouterospfOspfInterfaceState:
             pulumi.set(__self__, "interface", interface)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if keychain is not None:
+            pulumi.set(__self__, "keychain", keychain)
         if md5_key is not None:
             pulumi.set(__self__, "md5_key", md5_key)
         if md5_keychain is not None:
@@ -531,7 +571,7 @@ class _RouterospfOspfInterfaceState:
     @pulumi.getter
     def authentication(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication type. Valid values: `none`, `text`, `md5`.
+        Authentication type.
         """
         return pulumi.get(self, "authentication")
 
@@ -562,6 +602,18 @@ class _RouterospfOspfInterfaceState:
     @bfd.setter
     def bfd(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bfd", value)
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
+
+    @comments.setter
+    def comments(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comments", value)
 
     @property
     @pulumi.getter
@@ -658,6 +710,18 @@ class _RouterospfOspfInterfaceState:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> Optional[pulumi.Input[str]]:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
+
+    @keychain.setter
+    def keychain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "keychain", value)
 
     @property
     @pulumi.getter(name="md5Key")
@@ -836,6 +900,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
                  authentication: Optional[pulumi.Input[str]] = None,
                  authentication_key: Optional[pulumi.Input[str]] = None,
                  bfd: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  cost: Optional[pulumi.Input[int]] = None,
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
@@ -844,6 +909,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 keychain: Optional[pulumi.Input[str]] = None,
                  md5_key: Optional[pulumi.Input[str]] = None,
                  md5_keychain: Optional[pulumi.Input[str]] = None,
                  md5_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterospfOspfInterfaceMd5KeyArgs']]]]] = None,
@@ -876,9 +942,10 @@ class RouterospfOspfInterface(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param pulumi.Input[str] authentication: Authentication type.
         :param pulumi.Input[str] authentication_key: Authentication key.
         :param pulumi.Input[str] bfd: Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
@@ -887,6 +954,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
         :param pulumi.Input[str] ip: IP address.
+        :param pulumi.Input[str] keychain: Message-digest key-chain name.
         :param pulumi.Input[str] md5_key: MD5 key.
         :param pulumi.Input[str] md5_keychain: Authentication MD5 key-chain name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterospfOspfInterfaceMd5KeyArgs']]]] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -941,6 +1009,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
                  authentication: Optional[pulumi.Input[str]] = None,
                  authentication_key: Optional[pulumi.Input[str]] = None,
                  bfd: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  cost: Optional[pulumi.Input[int]] = None,
                  database_filter_out: Optional[pulumi.Input[str]] = None,
                  dead_interval: Optional[pulumi.Input[int]] = None,
@@ -949,6 +1018,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
                  hello_multiplier: Optional[pulumi.Input[int]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 keychain: Optional[pulumi.Input[str]] = None,
                  md5_key: Optional[pulumi.Input[str]] = None,
                  md5_keychain: Optional[pulumi.Input[str]] = None,
                  md5_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterospfOspfInterfaceMd5KeyArgs']]]]] = None,
@@ -970,6 +1040,8 @@ class RouterospfOspfInterface(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -978,6 +1050,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
             __props__.__dict__["authentication"] = authentication
             __props__.__dict__["authentication_key"] = authentication_key
             __props__.__dict__["bfd"] = bfd
+            __props__.__dict__["comments"] = comments
             __props__.__dict__["cost"] = cost
             __props__.__dict__["database_filter_out"] = database_filter_out
             __props__.__dict__["dead_interval"] = dead_interval
@@ -986,6 +1059,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
             __props__.__dict__["hello_multiplier"] = hello_multiplier
             __props__.__dict__["interface"] = interface
             __props__.__dict__["ip"] = ip
+            __props__.__dict__["keychain"] = keychain
             __props__.__dict__["md5_key"] = md5_key
             __props__.__dict__["md5_keychain"] = md5_keychain
             __props__.__dict__["md5_keys"] = md5_keys
@@ -1013,6 +1087,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
             authentication: Optional[pulumi.Input[str]] = None,
             authentication_key: Optional[pulumi.Input[str]] = None,
             bfd: Optional[pulumi.Input[str]] = None,
+            comments: Optional[pulumi.Input[str]] = None,
             cost: Optional[pulumi.Input[int]] = None,
             database_filter_out: Optional[pulumi.Input[str]] = None,
             dead_interval: Optional[pulumi.Input[int]] = None,
@@ -1021,6 +1096,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
             hello_multiplier: Optional[pulumi.Input[int]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
+            keychain: Optional[pulumi.Input[str]] = None,
             md5_key: Optional[pulumi.Input[str]] = None,
             md5_keychain: Optional[pulumi.Input[str]] = None,
             md5_keys: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterospfOspfInterfaceMd5KeyArgs']]]]] = None,
@@ -1042,9 +1118,10 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param pulumi.Input[str] authentication: Authentication type.
         :param pulumi.Input[str] authentication_key: Authentication key.
         :param pulumi.Input[str] bfd: Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
         :param pulumi.Input[str] database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dead_interval: Dead interval.
@@ -1053,6 +1130,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         :param pulumi.Input[int] hello_multiplier: Number of hello packets within dead interval.
         :param pulumi.Input[str] interface: Configuration interface name.
         :param pulumi.Input[str] ip: IP address.
+        :param pulumi.Input[str] keychain: Message-digest key-chain name.
         :param pulumi.Input[str] md5_key: MD5 key.
         :param pulumi.Input[str] md5_keychain: Authentication MD5 key-chain name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterospfOspfInterfaceMd5KeyArgs']]]] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -1075,6 +1153,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         __props__.__dict__["authentication"] = authentication
         __props__.__dict__["authentication_key"] = authentication_key
         __props__.__dict__["bfd"] = bfd
+        __props__.__dict__["comments"] = comments
         __props__.__dict__["cost"] = cost
         __props__.__dict__["database_filter_out"] = database_filter_out
         __props__.__dict__["dead_interval"] = dead_interval
@@ -1083,6 +1162,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         __props__.__dict__["hello_multiplier"] = hello_multiplier
         __props__.__dict__["interface"] = interface
         __props__.__dict__["ip"] = ip
+        __props__.__dict__["keychain"] = keychain
         __props__.__dict__["md5_key"] = md5_key
         __props__.__dict__["md5_keychain"] = md5_keychain
         __props__.__dict__["md5_keys"] = md5_keys
@@ -1103,7 +1183,7 @@ class RouterospfOspfInterface(pulumi.CustomResource):
     @pulumi.getter
     def authentication(self) -> pulumi.Output[str]:
         """
-        Authentication type. Valid values: `none`, `text`, `md5`.
+        Authentication type.
         """
         return pulumi.get(self, "authentication")
 
@@ -1122,6 +1202,14 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
         """
         return pulumi.get(self, "bfd")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> pulumi.Output[Optional[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter
@@ -1186,6 +1274,14 @@ class RouterospfOspfInterface(pulumi.CustomResource):
         IP address.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> pulumi.Output[str]:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
 
     @property
     @pulumi.getter(name="md5Key")

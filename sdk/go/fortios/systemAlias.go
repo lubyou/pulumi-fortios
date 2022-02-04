@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,6 +60,7 @@ func NewSystemAlias(ctx *pulumi.Context,
 		args = &SystemAliasArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAlias
 	err := ctx.RegisterResource("fortios:index/systemAlias:SystemAlias", name, args, &resource, opts...)
 	if err != nil {
@@ -134,7 +135,7 @@ type SystemAliasInput interface {
 }
 
 func (*SystemAlias) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAlias)(nil))
+	return reflect.TypeOf((**SystemAlias)(nil)).Elem()
 }
 
 func (i *SystemAlias) ToSystemAliasOutput() SystemAliasOutput {
@@ -143,35 +144,6 @@ func (i *SystemAlias) ToSystemAliasOutput() SystemAliasOutput {
 
 func (i *SystemAlias) ToSystemAliasOutputWithContext(ctx context.Context) SystemAliasOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasOutput)
-}
-
-func (i *SystemAlias) ToSystemAliasPtrOutput() SystemAliasPtrOutput {
-	return i.ToSystemAliasPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAlias) ToSystemAliasPtrOutputWithContext(ctx context.Context) SystemAliasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasPtrOutput)
-}
-
-type SystemAliasPtrInput interface {
-	pulumi.Input
-
-	ToSystemAliasPtrOutput() SystemAliasPtrOutput
-	ToSystemAliasPtrOutputWithContext(ctx context.Context) SystemAliasPtrOutput
-}
-
-type systemAliasPtrType SystemAliasArgs
-
-func (*systemAliasPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAlias)(nil))
-}
-
-func (i *systemAliasPtrType) ToSystemAliasPtrOutput() SystemAliasPtrOutput {
-	return i.ToSystemAliasPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAliasPtrType) ToSystemAliasPtrOutputWithContext(ctx context.Context) SystemAliasPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasPtrOutput)
 }
 
 // SystemAliasArrayInput is an input type that accepts SystemAliasArray and SystemAliasArrayOutput values.
@@ -188,7 +160,7 @@ type SystemAliasArrayInput interface {
 type SystemAliasArray []SystemAliasInput
 
 func (SystemAliasArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAlias)(nil))
+	return reflect.TypeOf((*[]*SystemAlias)(nil)).Elem()
 }
 
 func (i SystemAliasArray) ToSystemAliasArrayOutput() SystemAliasArrayOutput {
@@ -213,7 +185,7 @@ type SystemAliasMapInput interface {
 type SystemAliasMap map[string]SystemAliasInput
 
 func (SystemAliasMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAlias)(nil))
+	return reflect.TypeOf((*map[string]*SystemAlias)(nil)).Elem()
 }
 
 func (i SystemAliasMap) ToSystemAliasMapOutput() SystemAliasMapOutput {
@@ -224,12 +196,10 @@ func (i SystemAliasMap) ToSystemAliasMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAliasMapOutput)
 }
 
-type SystemAliasOutput struct {
-	*pulumi.OutputState
-}
+type SystemAliasOutput struct{ *pulumi.OutputState }
 
 func (SystemAliasOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAlias)(nil))
+	return reflect.TypeOf((**SystemAlias)(nil)).Elem()
 }
 
 func (o SystemAliasOutput) ToSystemAliasOutput() SystemAliasOutput {
@@ -240,36 +210,10 @@ func (o SystemAliasOutput) ToSystemAliasOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemAliasOutput) ToSystemAliasPtrOutput() SystemAliasPtrOutput {
-	return o.ToSystemAliasPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAliasOutput) ToSystemAliasPtrOutputWithContext(ctx context.Context) SystemAliasPtrOutput {
-	return o.ApplyT(func(v SystemAlias) *SystemAlias {
-		return &v
-	}).(SystemAliasPtrOutput)
-}
-
-type SystemAliasPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAliasPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAlias)(nil))
-}
-
-func (o SystemAliasPtrOutput) ToSystemAliasPtrOutput() SystemAliasPtrOutput {
-	return o
-}
-
-func (o SystemAliasPtrOutput) ToSystemAliasPtrOutputWithContext(ctx context.Context) SystemAliasPtrOutput {
-	return o
-}
-
 type SystemAliasArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAliasArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAlias)(nil))
+	return reflect.TypeOf((*[]*SystemAlias)(nil)).Elem()
 }
 
 func (o SystemAliasArrayOutput) ToSystemAliasArrayOutput() SystemAliasArrayOutput {
@@ -281,15 +225,15 @@ func (o SystemAliasArrayOutput) ToSystemAliasArrayOutputWithContext(ctx context.
 }
 
 func (o SystemAliasArrayOutput) Index(i pulumi.IntInput) SystemAliasOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAlias {
-		return vs[0].([]SystemAlias)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAlias {
+		return vs[0].([]*SystemAlias)[vs[1].(int)]
 	}).(SystemAliasOutput)
 }
 
 type SystemAliasMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAliasMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAlias)(nil))
+	return reflect.TypeOf((*map[string]*SystemAlias)(nil)).Elem()
 }
 
 func (o SystemAliasMapOutput) ToSystemAliasMapOutput() SystemAliasMapOutput {
@@ -301,14 +245,16 @@ func (o SystemAliasMapOutput) ToSystemAliasMapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemAliasMapOutput) MapIndex(k pulumi.StringInput) SystemAliasOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAlias {
-		return vs[0].(map[string]SystemAlias)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAlias {
+		return vs[0].(map[string]*SystemAlias)[vs[1].(string)]
 	}).(SystemAliasOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAliasInput)(nil)).Elem(), &SystemAlias{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAliasArrayInput)(nil)).Elem(), SystemAliasArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAliasMapInput)(nil)).Elem(), SystemAliasMap{})
 	pulumi.RegisterOutputType(SystemAliasOutput{})
-	pulumi.RegisterOutputType(SystemAliasPtrOutput{})
 	pulumi.RegisterOutputType(SystemAliasArrayOutput{})
 	pulumi.RegisterOutputType(SystemAliasMapOutput{})
 }

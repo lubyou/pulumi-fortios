@@ -84,31 +84,29 @@ export class FirewallDecryptedTrafficMirror extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallDecryptedTrafficMirrorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallDecryptedTrafficMirrorArgs | FirewallDecryptedTrafficMirrorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallDecryptedTrafficMirrorState | undefined;
-            inputs["dstmac"] = state ? state.dstmac : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = state ? state.interfaces : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["trafficSource"] = state ? state.trafficSource : undefined;
-            inputs["trafficType"] = state ? state.trafficType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dstmac"] = state ? state.dstmac : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["trafficSource"] = state ? state.trafficSource : undefined;
+            resourceInputs["trafficType"] = state ? state.trafficType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallDecryptedTrafficMirrorArgs | undefined;
-            inputs["dstmac"] = args ? args.dstmac : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = args ? args.interfaces : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["trafficSource"] = args ? args.trafficSource : undefined;
-            inputs["trafficType"] = args ? args.trafficType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dstmac"] = args ? args.dstmac : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["trafficSource"] = args ? args.trafficSource : undefined;
+            resourceInputs["trafficType"] = args ? args.trafficType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallDecryptedTrafficMirror.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallDecryptedTrafficMirror.__pulumiType, name, resourceInputs, opts);
     }
 }
 

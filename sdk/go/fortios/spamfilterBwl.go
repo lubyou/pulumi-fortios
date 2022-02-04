@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewSpamfilterBwl(ctx, "trname", &fortios.SpamfilterBwlArgs{
 // 			Comment: pulumi.String("test"),
-// 			Entries: fortios.SpamfilterBwlEntryArray{
-// 				&fortios.SpamfilterBwlEntryArgs{
+// 			Entries: SpamfilterBwlEntryArray{
+// 				&SpamfilterBwlEntryArgs{
 // 					Action:      pulumi.String("reject"),
 // 					AddrType:    pulumi.String("ipv4"),
 // 					Ip4Subnet:   pulumi.String("1.1.1.0 255.255.255.0"),
@@ -84,6 +85,7 @@ func NewSpamfilterBwl(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SpamfilterBwl
 	err := ctx.RegisterResource("fortios:index/spamfilterBwl:SpamfilterBwl", name, args, &resource, opts...)
 	if err != nil {
@@ -182,7 +184,7 @@ type SpamfilterBwlInput interface {
 }
 
 func (*SpamfilterBwl) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterBwl)(nil))
+	return reflect.TypeOf((**SpamfilterBwl)(nil)).Elem()
 }
 
 func (i *SpamfilterBwl) ToSpamfilterBwlOutput() SpamfilterBwlOutput {
@@ -191,35 +193,6 @@ func (i *SpamfilterBwl) ToSpamfilterBwlOutput() SpamfilterBwlOutput {
 
 func (i *SpamfilterBwl) ToSpamfilterBwlOutputWithContext(ctx context.Context) SpamfilterBwlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterBwlOutput)
-}
-
-func (i *SpamfilterBwl) ToSpamfilterBwlPtrOutput() SpamfilterBwlPtrOutput {
-	return i.ToSpamfilterBwlPtrOutputWithContext(context.Background())
-}
-
-func (i *SpamfilterBwl) ToSpamfilterBwlPtrOutputWithContext(ctx context.Context) SpamfilterBwlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterBwlPtrOutput)
-}
-
-type SpamfilterBwlPtrInput interface {
-	pulumi.Input
-
-	ToSpamfilterBwlPtrOutput() SpamfilterBwlPtrOutput
-	ToSpamfilterBwlPtrOutputWithContext(ctx context.Context) SpamfilterBwlPtrOutput
-}
-
-type spamfilterBwlPtrType SpamfilterBwlArgs
-
-func (*spamfilterBwlPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterBwl)(nil))
-}
-
-func (i *spamfilterBwlPtrType) ToSpamfilterBwlPtrOutput() SpamfilterBwlPtrOutput {
-	return i.ToSpamfilterBwlPtrOutputWithContext(context.Background())
-}
-
-func (i *spamfilterBwlPtrType) ToSpamfilterBwlPtrOutputWithContext(ctx context.Context) SpamfilterBwlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterBwlPtrOutput)
 }
 
 // SpamfilterBwlArrayInput is an input type that accepts SpamfilterBwlArray and SpamfilterBwlArrayOutput values.
@@ -236,7 +209,7 @@ type SpamfilterBwlArrayInput interface {
 type SpamfilterBwlArray []SpamfilterBwlInput
 
 func (SpamfilterBwlArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SpamfilterBwl)(nil))
+	return reflect.TypeOf((*[]*SpamfilterBwl)(nil)).Elem()
 }
 
 func (i SpamfilterBwlArray) ToSpamfilterBwlArrayOutput() SpamfilterBwlArrayOutput {
@@ -261,7 +234,7 @@ type SpamfilterBwlMapInput interface {
 type SpamfilterBwlMap map[string]SpamfilterBwlInput
 
 func (SpamfilterBwlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SpamfilterBwl)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterBwl)(nil)).Elem()
 }
 
 func (i SpamfilterBwlMap) ToSpamfilterBwlMapOutput() SpamfilterBwlMapOutput {
@@ -272,12 +245,10 @@ func (i SpamfilterBwlMap) ToSpamfilterBwlMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterBwlMapOutput)
 }
 
-type SpamfilterBwlOutput struct {
-	*pulumi.OutputState
-}
+type SpamfilterBwlOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterBwlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterBwl)(nil))
+	return reflect.TypeOf((**SpamfilterBwl)(nil)).Elem()
 }
 
 func (o SpamfilterBwlOutput) ToSpamfilterBwlOutput() SpamfilterBwlOutput {
@@ -288,36 +259,10 @@ func (o SpamfilterBwlOutput) ToSpamfilterBwlOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SpamfilterBwlOutput) ToSpamfilterBwlPtrOutput() SpamfilterBwlPtrOutput {
-	return o.ToSpamfilterBwlPtrOutputWithContext(context.Background())
-}
-
-func (o SpamfilterBwlOutput) ToSpamfilterBwlPtrOutputWithContext(ctx context.Context) SpamfilterBwlPtrOutput {
-	return o.ApplyT(func(v SpamfilterBwl) *SpamfilterBwl {
-		return &v
-	}).(SpamfilterBwlPtrOutput)
-}
-
-type SpamfilterBwlPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SpamfilterBwlPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterBwl)(nil))
-}
-
-func (o SpamfilterBwlPtrOutput) ToSpamfilterBwlPtrOutput() SpamfilterBwlPtrOutput {
-	return o
-}
-
-func (o SpamfilterBwlPtrOutput) ToSpamfilterBwlPtrOutputWithContext(ctx context.Context) SpamfilterBwlPtrOutput {
-	return o
-}
-
 type SpamfilterBwlArrayOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterBwlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SpamfilterBwl)(nil))
+	return reflect.TypeOf((*[]*SpamfilterBwl)(nil)).Elem()
 }
 
 func (o SpamfilterBwlArrayOutput) ToSpamfilterBwlArrayOutput() SpamfilterBwlArrayOutput {
@@ -329,15 +274,15 @@ func (o SpamfilterBwlArrayOutput) ToSpamfilterBwlArrayOutputWithContext(ctx cont
 }
 
 func (o SpamfilterBwlArrayOutput) Index(i pulumi.IntInput) SpamfilterBwlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SpamfilterBwl {
-		return vs[0].([]SpamfilterBwl)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterBwl {
+		return vs[0].([]*SpamfilterBwl)[vs[1].(int)]
 	}).(SpamfilterBwlOutput)
 }
 
 type SpamfilterBwlMapOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterBwlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SpamfilterBwl)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterBwl)(nil)).Elem()
 }
 
 func (o SpamfilterBwlMapOutput) ToSpamfilterBwlMapOutput() SpamfilterBwlMapOutput {
@@ -349,14 +294,16 @@ func (o SpamfilterBwlMapOutput) ToSpamfilterBwlMapOutputWithContext(ctx context.
 }
 
 func (o SpamfilterBwlMapOutput) MapIndex(k pulumi.StringInput) SpamfilterBwlOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SpamfilterBwl {
-		return vs[0].(map[string]SpamfilterBwl)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SpamfilterBwl {
+		return vs[0].(map[string]*SpamfilterBwl)[vs[1].(string)]
 	}).(SpamfilterBwlOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterBwlInput)(nil)).Elem(), &SpamfilterBwl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterBwlArrayInput)(nil)).Elem(), SpamfilterBwlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterBwlMapInput)(nil)).Elem(), SpamfilterBwlMap{})
 	pulumi.RegisterOutputType(SpamfilterBwlOutput{})
-	pulumi.RegisterOutputType(SpamfilterBwlPtrOutput{})
 	pulumi.RegisterOutputType(SpamfilterBwlArrayOutput{})
 	pulumi.RegisterOutputType(SpamfilterBwlMapOutput{})
 }

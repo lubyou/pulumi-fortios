@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure Overlay Controller VPN settings.
+ * Configure Overlay Controller VPN settings. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -50,6 +50,10 @@ export class VpnOcvpn extends pulumi.CustomResource {
      * Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
      */
     public readonly autoDiscovery!: pulumi.Output<string>;
+    /**
+     * Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+     */
+    public readonly autoDiscoveryShortcutMode!: pulumi.Output<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -95,6 +99,10 @@ export class VpnOcvpn extends pulumi.CustomResource {
      */
     public readonly sdwan!: pulumi.Output<string>;
     /**
+     * Set SD-WAN zone.
+     */
+    public readonly sdwanZone!: pulumi.Output<string>;
+    /**
      * Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
      */
     public readonly status!: pulumi.Output<string>;
@@ -116,47 +124,49 @@ export class VpnOcvpn extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnOcvpnArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnOcvpnArgs | VpnOcvpnState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnOcvpnState | undefined;
-            inputs["autoDiscovery"] = state ? state.autoDiscovery : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["eap"] = state ? state.eap : undefined;
-            inputs["eapUsers"] = state ? state.eapUsers : undefined;
-            inputs["forticlientAccess"] = state ? state.forticlientAccess : undefined;
-            inputs["ipAllocationBlock"] = state ? state.ipAllocationBlock : undefined;
-            inputs["multipath"] = state ? state.multipath : undefined;
-            inputs["nat"] = state ? state.nat : undefined;
-            inputs["overlays"] = state ? state.overlays : undefined;
-            inputs["pollInterval"] = state ? state.pollInterval : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["sdwan"] = state ? state.sdwan : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wanInterfaces"] = state ? state.wanInterfaces : undefined;
+            resourceInputs["autoDiscovery"] = state ? state.autoDiscovery : undefined;
+            resourceInputs["autoDiscoveryShortcutMode"] = state ? state.autoDiscoveryShortcutMode : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["eap"] = state ? state.eap : undefined;
+            resourceInputs["eapUsers"] = state ? state.eapUsers : undefined;
+            resourceInputs["forticlientAccess"] = state ? state.forticlientAccess : undefined;
+            resourceInputs["ipAllocationBlock"] = state ? state.ipAllocationBlock : undefined;
+            resourceInputs["multipath"] = state ? state.multipath : undefined;
+            resourceInputs["nat"] = state ? state.nat : undefined;
+            resourceInputs["overlays"] = state ? state.overlays : undefined;
+            resourceInputs["pollInterval"] = state ? state.pollInterval : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["sdwan"] = state ? state.sdwan : undefined;
+            resourceInputs["sdwanZone"] = state ? state.sdwanZone : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wanInterfaces"] = state ? state.wanInterfaces : undefined;
         } else {
             const args = argsOrState as VpnOcvpnArgs | undefined;
-            inputs["autoDiscovery"] = args ? args.autoDiscovery : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["eap"] = args ? args.eap : undefined;
-            inputs["eapUsers"] = args ? args.eapUsers : undefined;
-            inputs["forticlientAccess"] = args ? args.forticlientAccess : undefined;
-            inputs["ipAllocationBlock"] = args ? args.ipAllocationBlock : undefined;
-            inputs["multipath"] = args ? args.multipath : undefined;
-            inputs["nat"] = args ? args.nat : undefined;
-            inputs["overlays"] = args ? args.overlays : undefined;
-            inputs["pollInterval"] = args ? args.pollInterval : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["sdwan"] = args ? args.sdwan : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wanInterfaces"] = args ? args.wanInterfaces : undefined;
+            resourceInputs["autoDiscovery"] = args ? args.autoDiscovery : undefined;
+            resourceInputs["autoDiscoveryShortcutMode"] = args ? args.autoDiscoveryShortcutMode : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["eap"] = args ? args.eap : undefined;
+            resourceInputs["eapUsers"] = args ? args.eapUsers : undefined;
+            resourceInputs["forticlientAccess"] = args ? args.forticlientAccess : undefined;
+            resourceInputs["ipAllocationBlock"] = args ? args.ipAllocationBlock : undefined;
+            resourceInputs["multipath"] = args ? args.multipath : undefined;
+            resourceInputs["nat"] = args ? args.nat : undefined;
+            resourceInputs["overlays"] = args ? args.overlays : undefined;
+            resourceInputs["pollInterval"] = args ? args.pollInterval : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["sdwan"] = args ? args.sdwan : undefined;
+            resourceInputs["sdwanZone"] = args ? args.sdwanZone : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wanInterfaces"] = args ? args.wanInterfaces : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnOcvpn.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnOcvpn.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -168,6 +178,10 @@ export interface VpnOcvpnState {
      * Enable/disable auto-discovery shortcuts. Valid values: `enable`, `disable`.
      */
     autoDiscovery?: pulumi.Input<string>;
+    /**
+     * Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+     */
+    autoDiscoveryShortcutMode?: pulumi.Input<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -212,6 +226,10 @@ export interface VpnOcvpnState {
      * Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
      */
     sdwan?: pulumi.Input<string>;
+    /**
+     * Set SD-WAN zone.
+     */
+    sdwanZone?: pulumi.Input<string>;
     /**
      * Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
      */
@@ -235,6 +253,10 @@ export interface VpnOcvpnArgs {
      */
     autoDiscovery?: pulumi.Input<string>;
     /**
+     * Control deletion of child short-cut tunnels when the parent tunnel goes down. Valid values: `independent`, `dependent`.
+     */
+    autoDiscoveryShortcutMode?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -278,6 +300,10 @@ export interface VpnOcvpnArgs {
      * Enable/disable adding OCVPN tunnels to SDWAN. Valid values: `enable`, `disable`.
      */
     sdwan?: pulumi.Input<string>;
+    /**
+     * Set SD-WAN zone.
+     */
+    sdwanZone?: pulumi.Input<string>;
     /**
      * Enable/disable FortiClient to access OCVPN networks. Valid values: `enable`, `disable`.
      */

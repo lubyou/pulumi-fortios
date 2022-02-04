@@ -108,33 +108,31 @@ export class SystemAutoScript extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAutoScriptArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutoScriptArgs | SystemAutoScriptState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutoScriptState | undefined;
-            inputs["interval"] = state ? state.interval : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["outputSize"] = state ? state.outputSize : undefined;
-            inputs["repeat"] = state ? state.repeat : undefined;
-            inputs["script"] = state ? state.script : undefined;
-            inputs["start"] = state ? state.start : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["interval"] = state ? state.interval : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["outputSize"] = state ? state.outputSize : undefined;
+            resourceInputs["repeat"] = state ? state.repeat : undefined;
+            resourceInputs["script"] = state ? state.script : undefined;
+            resourceInputs["start"] = state ? state.start : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutoScriptArgs | undefined;
-            inputs["interval"] = args ? args.interval : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["outputSize"] = args ? args.outputSize : undefined;
-            inputs["repeat"] = args ? args.repeat : undefined;
-            inputs["script"] = args ? args.script : undefined;
-            inputs["start"] = args ? args.start : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["interval"] = args ? args.interval : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["outputSize"] = args ? args.outputSize : undefined;
+            resourceInputs["repeat"] = args ? args.repeat : undefined;
+            resourceInputs["script"] = args ? args.script : undefined;
+            resourceInputs["start"] = args ? args.start : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutoScript.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutoScript.__pulumiType, name, resourceInputs, opts);
     }
 }
 

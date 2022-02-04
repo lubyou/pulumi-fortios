@@ -26,12 +26,14 @@ import (
 type RouterospfOspfInterface struct {
 	pulumi.CustomResourceState
 
-	// Authentication type. Valid values: `none`, `text`, `md5`.
+	// Authentication type.
 	Authentication pulumi.StringOutput `pulumi:"authentication"`
 	// Authentication key.
 	AuthenticationKey pulumi.StringPtrOutput `pulumi:"authenticationKey"`
 	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
 	Bfd pulumi.StringOutput `pulumi:"bfd"`
+	// Comment.
+	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
 	Cost pulumi.IntOutput `pulumi:"cost"`
 	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
@@ -48,6 +50,8 @@ type RouterospfOspfInterface struct {
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// IP address.
 	Ip pulumi.StringOutput `pulumi:"ip"`
+	// Message-digest key-chain name.
+	Keychain pulumi.StringOutput `pulumi:"keychain"`
 	// MD5 key.
 	Md5Key pulumi.StringOutput `pulumi:"md5Key"`
 	// Authentication MD5 key-chain name.
@@ -85,6 +89,7 @@ func NewRouterospfOspfInterface(ctx *pulumi.Context,
 		args = &RouterospfOspfInterfaceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterospfOspfInterface
 	err := ctx.RegisterResource("fortios:index/routerospfOspfInterface:RouterospfOspfInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -107,12 +112,14 @@ func GetRouterospfOspfInterface(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering RouterospfOspfInterface resources.
 type routerospfOspfInterfaceState struct {
-	// Authentication type. Valid values: `none`, `text`, `md5`.
+	// Authentication type.
 	Authentication *string `pulumi:"authentication"`
 	// Authentication key.
 	AuthenticationKey *string `pulumi:"authenticationKey"`
 	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
 	Bfd *string `pulumi:"bfd"`
+	// Comment.
+	Comments *string `pulumi:"comments"`
 	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
 	Cost *int `pulumi:"cost"`
 	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
@@ -129,6 +136,8 @@ type routerospfOspfInterfaceState struct {
 	Interface *string `pulumi:"interface"`
 	// IP address.
 	Ip *string `pulumi:"ip"`
+	// Message-digest key-chain name.
+	Keychain *string `pulumi:"keychain"`
 	// MD5 key.
 	Md5Key *string `pulumi:"md5Key"`
 	// Authentication MD5 key-chain name.
@@ -160,12 +169,14 @@ type routerospfOspfInterfaceState struct {
 }
 
 type RouterospfOspfInterfaceState struct {
-	// Authentication type. Valid values: `none`, `text`, `md5`.
+	// Authentication type.
 	Authentication pulumi.StringPtrInput
 	// Authentication key.
 	AuthenticationKey pulumi.StringPtrInput
 	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
 	Bfd pulumi.StringPtrInput
+	// Comment.
+	Comments pulumi.StringPtrInput
 	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
 	Cost pulumi.IntPtrInput
 	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
@@ -182,6 +193,8 @@ type RouterospfOspfInterfaceState struct {
 	Interface pulumi.StringPtrInput
 	// IP address.
 	Ip pulumi.StringPtrInput
+	// Message-digest key-chain name.
+	Keychain pulumi.StringPtrInput
 	// MD5 key.
 	Md5Key pulumi.StringPtrInput
 	// Authentication MD5 key-chain name.
@@ -217,12 +230,14 @@ func (RouterospfOspfInterfaceState) ElementType() reflect.Type {
 }
 
 type routerospfOspfInterfaceArgs struct {
-	// Authentication type. Valid values: `none`, `text`, `md5`.
+	// Authentication type.
 	Authentication *string `pulumi:"authentication"`
 	// Authentication key.
 	AuthenticationKey *string `pulumi:"authenticationKey"`
 	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
 	Bfd *string `pulumi:"bfd"`
+	// Comment.
+	Comments *string `pulumi:"comments"`
 	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
 	Cost *int `pulumi:"cost"`
 	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
@@ -239,6 +254,8 @@ type routerospfOspfInterfaceArgs struct {
 	Interface *string `pulumi:"interface"`
 	// IP address.
 	Ip *string `pulumi:"ip"`
+	// Message-digest key-chain name.
+	Keychain *string `pulumi:"keychain"`
 	// MD5 key.
 	Md5Key *string `pulumi:"md5Key"`
 	// Authentication MD5 key-chain name.
@@ -271,12 +288,14 @@ type routerospfOspfInterfaceArgs struct {
 
 // The set of arguments for constructing a RouterospfOspfInterface resource.
 type RouterospfOspfInterfaceArgs struct {
-	// Authentication type. Valid values: `none`, `text`, `md5`.
+	// Authentication type.
 	Authentication pulumi.StringPtrInput
 	// Authentication key.
 	AuthenticationKey pulumi.StringPtrInput
 	// Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
 	Bfd pulumi.StringPtrInput
+	// Comment.
+	Comments pulumi.StringPtrInput
 	// Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
 	Cost pulumi.IntPtrInput
 	// Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
@@ -293,6 +312,8 @@ type RouterospfOspfInterfaceArgs struct {
 	Interface pulumi.StringPtrInput
 	// IP address.
 	Ip pulumi.StringPtrInput
+	// Message-digest key-chain name.
+	Keychain pulumi.StringPtrInput
 	// MD5 key.
 	Md5Key pulumi.StringPtrInput
 	// Authentication MD5 key-chain name.
@@ -335,7 +356,7 @@ type RouterospfOspfInterfaceInput interface {
 }
 
 func (*RouterospfOspfInterface) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterospfOspfInterface)(nil))
+	return reflect.TypeOf((**RouterospfOspfInterface)(nil)).Elem()
 }
 
 func (i *RouterospfOspfInterface) ToRouterospfOspfInterfaceOutput() RouterospfOspfInterfaceOutput {
@@ -344,35 +365,6 @@ func (i *RouterospfOspfInterface) ToRouterospfOspfInterfaceOutput() RouterospfOs
 
 func (i *RouterospfOspfInterface) ToRouterospfOspfInterfaceOutputWithContext(ctx context.Context) RouterospfOspfInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfaceOutput)
-}
-
-func (i *RouterospfOspfInterface) ToRouterospfOspfInterfacePtrOutput() RouterospfOspfInterfacePtrOutput {
-	return i.ToRouterospfOspfInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *RouterospfOspfInterface) ToRouterospfOspfInterfacePtrOutputWithContext(ctx context.Context) RouterospfOspfInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfacePtrOutput)
-}
-
-type RouterospfOspfInterfacePtrInput interface {
-	pulumi.Input
-
-	ToRouterospfOspfInterfacePtrOutput() RouterospfOspfInterfacePtrOutput
-	ToRouterospfOspfInterfacePtrOutputWithContext(ctx context.Context) RouterospfOspfInterfacePtrOutput
-}
-
-type routerospfOspfInterfacePtrType RouterospfOspfInterfaceArgs
-
-func (*routerospfOspfInterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterospfOspfInterface)(nil))
-}
-
-func (i *routerospfOspfInterfacePtrType) ToRouterospfOspfInterfacePtrOutput() RouterospfOspfInterfacePtrOutput {
-	return i.ToRouterospfOspfInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *routerospfOspfInterfacePtrType) ToRouterospfOspfInterfacePtrOutputWithContext(ctx context.Context) RouterospfOspfInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfacePtrOutput)
 }
 
 // RouterospfOspfInterfaceArrayInput is an input type that accepts RouterospfOspfInterfaceArray and RouterospfOspfInterfaceArrayOutput values.
@@ -389,7 +381,7 @@ type RouterospfOspfInterfaceArrayInput interface {
 type RouterospfOspfInterfaceArray []RouterospfOspfInterfaceInput
 
 func (RouterospfOspfInterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterospfOspfInterface)(nil))
+	return reflect.TypeOf((*[]*RouterospfOspfInterface)(nil)).Elem()
 }
 
 func (i RouterospfOspfInterfaceArray) ToRouterospfOspfInterfaceArrayOutput() RouterospfOspfInterfaceArrayOutput {
@@ -414,7 +406,7 @@ type RouterospfOspfInterfaceMapInput interface {
 type RouterospfOspfInterfaceMap map[string]RouterospfOspfInterfaceInput
 
 func (RouterospfOspfInterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterospfOspfInterface)(nil))
+	return reflect.TypeOf((*map[string]*RouterospfOspfInterface)(nil)).Elem()
 }
 
 func (i RouterospfOspfInterfaceMap) ToRouterospfOspfInterfaceMapOutput() RouterospfOspfInterfaceMapOutput {
@@ -425,12 +417,10 @@ func (i RouterospfOspfInterfaceMap) ToRouterospfOspfInterfaceMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterospfOspfInterfaceMapOutput)
 }
 
-type RouterospfOspfInterfaceOutput struct {
-	*pulumi.OutputState
-}
+type RouterospfOspfInterfaceOutput struct{ *pulumi.OutputState }
 
 func (RouterospfOspfInterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterospfOspfInterface)(nil))
+	return reflect.TypeOf((**RouterospfOspfInterface)(nil)).Elem()
 }
 
 func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfaceOutput() RouterospfOspfInterfaceOutput {
@@ -441,36 +431,10 @@ func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfaceOutputWithContex
 	return o
 }
 
-func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfacePtrOutput() RouterospfOspfInterfacePtrOutput {
-	return o.ToRouterospfOspfInterfacePtrOutputWithContext(context.Background())
-}
-
-func (o RouterospfOspfInterfaceOutput) ToRouterospfOspfInterfacePtrOutputWithContext(ctx context.Context) RouterospfOspfInterfacePtrOutput {
-	return o.ApplyT(func(v RouterospfOspfInterface) *RouterospfOspfInterface {
-		return &v
-	}).(RouterospfOspfInterfacePtrOutput)
-}
-
-type RouterospfOspfInterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterospfOspfInterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterospfOspfInterface)(nil))
-}
-
-func (o RouterospfOspfInterfacePtrOutput) ToRouterospfOspfInterfacePtrOutput() RouterospfOspfInterfacePtrOutput {
-	return o
-}
-
-func (o RouterospfOspfInterfacePtrOutput) ToRouterospfOspfInterfacePtrOutputWithContext(ctx context.Context) RouterospfOspfInterfacePtrOutput {
-	return o
-}
-
 type RouterospfOspfInterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterospfOspfInterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterospfOspfInterface)(nil))
+	return reflect.TypeOf((*[]*RouterospfOspfInterface)(nil)).Elem()
 }
 
 func (o RouterospfOspfInterfaceArrayOutput) ToRouterospfOspfInterfaceArrayOutput() RouterospfOspfInterfaceArrayOutput {
@@ -482,15 +446,15 @@ func (o RouterospfOspfInterfaceArrayOutput) ToRouterospfOspfInterfaceArrayOutput
 }
 
 func (o RouterospfOspfInterfaceArrayOutput) Index(i pulumi.IntInput) RouterospfOspfInterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterospfOspfInterface {
-		return vs[0].([]RouterospfOspfInterface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterospfOspfInterface {
+		return vs[0].([]*RouterospfOspfInterface)[vs[1].(int)]
 	}).(RouterospfOspfInterfaceOutput)
 }
 
 type RouterospfOspfInterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (RouterospfOspfInterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterospfOspfInterface)(nil))
+	return reflect.TypeOf((*map[string]*RouterospfOspfInterface)(nil)).Elem()
 }
 
 func (o RouterospfOspfInterfaceMapOutput) ToRouterospfOspfInterfaceMapOutput() RouterospfOspfInterfaceMapOutput {
@@ -502,14 +466,16 @@ func (o RouterospfOspfInterfaceMapOutput) ToRouterospfOspfInterfaceMapOutputWith
 }
 
 func (o RouterospfOspfInterfaceMapOutput) MapIndex(k pulumi.StringInput) RouterospfOspfInterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterospfOspfInterface {
-		return vs[0].(map[string]RouterospfOspfInterface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterospfOspfInterface {
+		return vs[0].(map[string]*RouterospfOspfInterface)[vs[1].(string)]
 	}).(RouterospfOspfInterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterospfOspfInterfaceInput)(nil)).Elem(), &RouterospfOspfInterface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterospfOspfInterfaceArrayInput)(nil)).Elem(), RouterospfOspfInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterospfOspfInterfaceMapInput)(nil)).Elem(), RouterospfOspfInterfaceMap{})
 	pulumi.RegisterOutputType(RouterospfOspfInterfaceOutput{})
-	pulumi.RegisterOutputType(RouterospfOspfInterfacePtrOutput{})
 	pulumi.RegisterOutputType(RouterospfOspfInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(RouterospfOspfInterfaceMapOutput{})
 }

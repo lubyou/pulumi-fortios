@@ -88,30 +88,28 @@ export class WebProxyDebugUrl extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebProxyDebugUrlArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyDebugUrlArgs | WebProxyDebugUrlState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyDebugUrlState | undefined;
-            inputs["exact"] = state ? state.exact : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["urlPattern"] = state ? state.urlPattern : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["exact"] = state ? state.exact : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["urlPattern"] = state ? state.urlPattern : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebProxyDebugUrlArgs | undefined;
             if ((!args || args.urlPattern === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'urlPattern'");
             }
-            inputs["exact"] = args ? args.exact : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["urlPattern"] = args ? args.urlPattern : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["exact"] = args ? args.exact : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["urlPattern"] = args ? args.urlPattern : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyDebugUrl.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyDebugUrl.__pulumiType, name, resourceInputs, opts);
     }
 }
 

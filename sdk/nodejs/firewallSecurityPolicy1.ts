@@ -317,41 +317,41 @@ export class FirewallSecurityPolicy1 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallSecurityPolicy1Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSecurityPolicy1Args | FirewallSecurityPolicy1State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSecurityPolicy1State | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["applicationList"] = state ? state.applicationList : undefined;
-            inputs["avProfile"] = state ? state.avProfile : undefined;
-            inputs["capturePacket"] = state ? state.capturePacket : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["devices"] = state ? state.devices : undefined;
-            inputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dstintfs"] = state ? state.dstintfs : undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["internetService"] = state ? state.internetService : undefined;
-            inputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
-            inputs["internetServiceSrc"] = state ? state.internetServiceSrc : undefined;
-            inputs["internetServiceSrcIds"] = state ? state.internetServiceSrcIds : undefined;
-            inputs["ippool"] = state ? state.ippool : undefined;
-            inputs["ipsSensor"] = state ? state.ipsSensor : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nat"] = state ? state.nat : undefined;
-            inputs["poolnames"] = state ? state.poolnames : undefined;
-            inputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintfs"] = state ? state.srcintfs : undefined;
-            inputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["users"] = state ? state.users : undefined;
-            inputs["utmStatus"] = state ? state.utmStatus : undefined;
-            inputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["capturePacket"] = state ? state.capturePacket : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["devices"] = state ? state.devices : undefined;
+            resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
+            resourceInputs["internetServiceSrc"] = state ? state.internetServiceSrc : undefined;
+            resourceInputs["internetServiceSrcIds"] = state ? state.internetServiceSrcIds : undefined;
+            resourceInputs["ippool"] = state ? state.ippool : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nat"] = state ? state.nat : undefined;
+            resourceInputs["poolnames"] = state ? state.poolnames : undefined;
+            resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = state ? state.srcintfs : undefined;
+            resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["users"] = state ? state.users : undefined;
+            resourceInputs["utmStatus"] = state ? state.utmStatus : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
             const args = argsOrState as FirewallSecurityPolicy1Args | undefined;
             if ((!args || args.action === undefined) && !opts.urn) {
@@ -375,42 +375,40 @@ export class FirewallSecurityPolicy1 extends pulumi.CustomResource {
             if ((!args || args.srcintfs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcintfs'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["applicationList"] = args ? args.applicationList : undefined;
-            inputs["avProfile"] = args ? args.avProfile : undefined;
-            inputs["capturePacket"] = args ? args.capturePacket : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["devices"] = args ? args.devices : undefined;
-            inputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dstintfs"] = args ? args.dstintfs : undefined;
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["internetService"] = args ? args.internetService : undefined;
-            inputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
-            inputs["internetServiceSrc"] = args ? args.internetServiceSrc : undefined;
-            inputs["internetServiceSrcIds"] = args ? args.internetServiceSrcIds : undefined;
-            inputs["ippool"] = args ? args.ippool : undefined;
-            inputs["ipsSensor"] = args ? args.ipsSensor : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nat"] = args ? args.nat : undefined;
-            inputs["poolnames"] = args ? args.poolnames : undefined;
-            inputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintfs"] = args ? args.srcintfs : undefined;
-            inputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["users"] = args ? args.users : undefined;
-            inputs["utmStatus"] = args ? args.utmStatus : undefined;
-            inputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["capturePacket"] = args ? args.capturePacket : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["devices"] = args ? args.devices : undefined;
+            resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
+            resourceInputs["internetServiceSrc"] = args ? args.internetServiceSrc : undefined;
+            resourceInputs["internetServiceSrcIds"] = args ? args.internetServiceSrcIds : undefined;
+            resourceInputs["ippool"] = args ? args.ippool : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nat"] = args ? args.nat : undefined;
+            resourceInputs["poolnames"] = args ? args.poolnames : undefined;
+            resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = args ? args.srcintfs : undefined;
+            resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["utmStatus"] = args ? args.utmStatus : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSecurityPolicy1.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSecurityPolicy1.__pulumiType, name, resourceInputs, opts);
     }
 }
 

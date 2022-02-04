@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -13,9 +12,7 @@ export function getUserSaml(args: GetUserSamlArgs, opts?: pulumi.InvokeOptions):
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getUserSaml:GetUserSaml", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -41,13 +38,29 @@ export interface GetUserSamlArgs {
  */
 export interface GetUserSamlResult {
     /**
+     * Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable).
+     */
+    readonly adfsClaim: string;
+    /**
      * Certificate to sign SAML messages.
      */
     readonly cert: string;
     /**
+     * Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+     */
+    readonly clockTolerance: number;
+    /**
+     * Digest Method Algorithm. (default = sha1).
+     */
+    readonly digestMethod: string;
+    /**
      * SP entity ID.
      */
     readonly entityId: string;
+    /**
+     * Group claim in assertion statement.
+     */
+    readonly groupClaimType: string;
     /**
      * Group name in assertion statement.
      */
@@ -73,6 +86,10 @@ export interface GetUserSamlResult {
      */
     readonly idpSingleSignOnUrl: string;
     /**
+     * Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes).
+     */
+    readonly limitRelaystate: string;
+    /**
      * SAML server entry name.
      */
     readonly name: string;
@@ -85,8 +102,30 @@ export interface GetUserSamlResult {
      */
     readonly singleSignOnUrl: string;
     /**
+     * User name claim in assertion statement.
+     */
+    readonly userClaimType: string;
+    /**
      * User name in assertion statement.
      */
     readonly userName: string;
     readonly vdomparam?: string;
+}
+
+export function getUserSamlOutput(args: GetUserSamlOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserSamlResult> {
+    return pulumi.output(args).apply(a => getUserSaml(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetUserSaml.
+ */
+export interface GetUserSamlOutputArgs {
+    /**
+     * Specify the name of the desired user saml.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

@@ -20,16 +20,23 @@ class SystemCsfArgs:
                  authorization_request_type: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  configuration_sync: Optional[pulumi.Input[str]] = None,
+                 downstream_access: Optional[pulumi.Input[str]] = None,
+                 downstream_accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_connectors: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]]] = None,
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricDeviceArgs']]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
+                 fabric_workers: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
+                 forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
+                 log_unification: Optional[pulumi.Input[str]] = None,
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfTrustedListArgs']]]] = None,
+                 upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -40,16 +47,23 @@ class SystemCsfArgs:
         :param pulumi.Input[str] authorization_request_type: Authorization request type. Valid values: `serial`, `certificate`.
         :param pulumi.Input[str] certificate: Certificate.
         :param pulumi.Input[str] configuration_sync: Configuration sync mode. Valid values: `default`, `local`.
+        :param pulumi.Input[str] downstream_access: Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] downstream_accprofile: Default access profile for requests from downstream devices.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]] fabric_connectors: Fabric connector configuration. The structure of `fabric_connector` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricDeviceArgs']]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
+        :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
+        :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
+        :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['SystemCsfTrustedListArgs']]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -63,18 +77,30 @@ class SystemCsfArgs:
             pulumi.set(__self__, "certificate", certificate)
         if configuration_sync is not None:
             pulumi.set(__self__, "configuration_sync", configuration_sync)
+        if downstream_access is not None:
+            pulumi.set(__self__, "downstream_access", downstream_access)
+        if downstream_accprofile is not None:
+            pulumi.set(__self__, "downstream_accprofile", downstream_accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_connectors is not None:
+            pulumi.set(__self__, "fabric_connectors", fabric_connectors)
         if fabric_devices is not None:
             pulumi.set(__self__, "fabric_devices", fabric_devices)
         if fabric_object_unification is not None:
             pulumi.set(__self__, "fabric_object_unification", fabric_object_unification)
+        if fabric_workers is not None:
+            pulumi.set(__self__, "fabric_workers", fabric_workers)
         if fixed_key is not None:
             pulumi.set(__self__, "fixed_key", fixed_key)
+        if forticloud_account_enforcement is not None:
+            pulumi.set(__self__, "forticloud_account_enforcement", forticloud_account_enforcement)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if group_password is not None:
             pulumi.set(__self__, "group_password", group_password)
+        if log_unification is not None:
+            pulumi.set(__self__, "log_unification", log_unification)
         if management_ip is not None:
             pulumi.set(__self__, "management_ip", management_ip)
         if management_port is not None:
@@ -83,6 +109,8 @@ class SystemCsfArgs:
             pulumi.set(__self__, "saml_configuration_sync", saml_configuration_sync)
         if trusted_lists is not None:
             pulumi.set(__self__, "trusted_lists", trusted_lists)
+        if upstream is not None:
+            pulumi.set(__self__, "upstream", upstream)
         if upstream_ip is not None:
             pulumi.set(__self__, "upstream_ip", upstream_ip)
         if upstream_port is not None:
@@ -151,6 +179,30 @@ class SystemCsfArgs:
         pulumi.set(self, "configuration_sync", value)
 
     @property
+    @pulumi.getter(name="downstreamAccess")
+    def downstream_access(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "downstream_access")
+
+    @downstream_access.setter
+    def downstream_access(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "downstream_access", value)
+
+    @property
+    @pulumi.getter(name="downstreamAccprofile")
+    def downstream_accprofile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default access profile for requests from downstream devices.
+        """
+        return pulumi.get(self, "downstream_accprofile")
+
+    @downstream_accprofile.setter
+    def downstream_accprofile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "downstream_accprofile", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -161,6 +213,18 @@ class SystemCsfArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricConnectors")
+    def fabric_connectors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]]]:
+        """
+        Fabric connector configuration. The structure of `fabric_connector` block is documented below.
+        """
+        return pulumi.get(self, "fabric_connectors")
+
+    @fabric_connectors.setter
+    def fabric_connectors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]]]):
+        pulumi.set(self, "fabric_connectors", value)
 
     @property
     @pulumi.getter(name="fabricDevices")
@@ -187,6 +251,18 @@ class SystemCsfArgs:
         pulumi.set(self, "fabric_object_unification", value)
 
     @property
+    @pulumi.getter(name="fabricWorkers")
+    def fabric_workers(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of worker processes for Security Fabric daemon.
+        """
+        return pulumi.get(self, "fabric_workers")
+
+    @fabric_workers.setter
+    def fabric_workers(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fabric_workers", value)
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -197,6 +273,18 @@ class SystemCsfArgs:
     @fixed_key.setter
     def fixed_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fixed_key", value)
+
+    @property
+    @pulumi.getter(name="forticloudAccountEnforcement")
+    def forticloud_account_enforcement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forticloud_account_enforcement")
+
+    @forticloud_account_enforcement.setter
+    def forticloud_account_enforcement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticloud_account_enforcement", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -221,6 +309,18 @@ class SystemCsfArgs:
     @group_password.setter
     def group_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "group_password", value)
+
+    @property
+    @pulumi.getter(name="logUnification")
+    def log_unification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "log_unification")
+
+    @log_unification.setter
+    def log_unification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_unification", value)
 
     @property
     @pulumi.getter(name="managementIp")
@@ -271,6 +371,18 @@ class SystemCsfArgs:
         pulumi.set(self, "trusted_lists", value)
 
     @property
+    @pulumi.getter
+    def upstream(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        """
+        return pulumi.get(self, "upstream")
+
+    @upstream.setter
+    def upstream(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upstream", value)
+
+    @property
     @pulumi.getter(name="upstreamIp")
     def upstream_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -314,17 +426,24 @@ class _SystemCsfState:
                  authorization_request_type: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  configuration_sync: Optional[pulumi.Input[str]] = None,
+                 downstream_access: Optional[pulumi.Input[str]] = None,
+                 downstream_accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_connectors: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]]] = None,
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricDeviceArgs']]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
+                 fabric_workers: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
+                 forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
+                 log_unification: Optional[pulumi.Input[str]] = None,
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfTrustedListArgs']]]] = None,
+                 upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -334,17 +453,24 @@ class _SystemCsfState:
         :param pulumi.Input[str] authorization_request_type: Authorization request type. Valid values: `serial`, `certificate`.
         :param pulumi.Input[str] certificate: Certificate.
         :param pulumi.Input[str] configuration_sync: Configuration sync mode. Valid values: `default`, `local`.
+        :param pulumi.Input[str] downstream_access: Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] downstream_accprofile: Default access profile for requests from downstream devices.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]] fabric_connectors: Fabric connector configuration. The structure of `fabric_connector` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricDeviceArgs']]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
+        :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
+        :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
+        :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SystemCsfTrustedListArgs']]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -357,18 +483,30 @@ class _SystemCsfState:
             pulumi.set(__self__, "certificate", certificate)
         if configuration_sync is not None:
             pulumi.set(__self__, "configuration_sync", configuration_sync)
+        if downstream_access is not None:
+            pulumi.set(__self__, "downstream_access", downstream_access)
+        if downstream_accprofile is not None:
+            pulumi.set(__self__, "downstream_accprofile", downstream_accprofile)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_connectors is not None:
+            pulumi.set(__self__, "fabric_connectors", fabric_connectors)
         if fabric_devices is not None:
             pulumi.set(__self__, "fabric_devices", fabric_devices)
         if fabric_object_unification is not None:
             pulumi.set(__self__, "fabric_object_unification", fabric_object_unification)
+        if fabric_workers is not None:
+            pulumi.set(__self__, "fabric_workers", fabric_workers)
         if fixed_key is not None:
             pulumi.set(__self__, "fixed_key", fixed_key)
+        if forticloud_account_enforcement is not None:
+            pulumi.set(__self__, "forticloud_account_enforcement", forticloud_account_enforcement)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if group_password is not None:
             pulumi.set(__self__, "group_password", group_password)
+        if log_unification is not None:
+            pulumi.set(__self__, "log_unification", log_unification)
         if management_ip is not None:
             pulumi.set(__self__, "management_ip", management_ip)
         if management_port is not None:
@@ -379,6 +517,8 @@ class _SystemCsfState:
             pulumi.set(__self__, "status", status)
         if trusted_lists is not None:
             pulumi.set(__self__, "trusted_lists", trusted_lists)
+        if upstream is not None:
+            pulumi.set(__self__, "upstream", upstream)
         if upstream_ip is not None:
             pulumi.set(__self__, "upstream_ip", upstream_ip)
         if upstream_port is not None:
@@ -435,6 +575,30 @@ class _SystemCsfState:
         pulumi.set(self, "configuration_sync", value)
 
     @property
+    @pulumi.getter(name="downstreamAccess")
+    def downstream_access(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "downstream_access")
+
+    @downstream_access.setter
+    def downstream_access(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "downstream_access", value)
+
+    @property
+    @pulumi.getter(name="downstreamAccprofile")
+    def downstream_accprofile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Default access profile for requests from downstream devices.
+        """
+        return pulumi.get(self, "downstream_accprofile")
+
+    @downstream_accprofile.setter
+    def downstream_accprofile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "downstream_accprofile", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -445,6 +609,18 @@ class _SystemCsfState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricConnectors")
+    def fabric_connectors(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]]]:
+        """
+        Fabric connector configuration. The structure of `fabric_connector` block is documented below.
+        """
+        return pulumi.get(self, "fabric_connectors")
+
+    @fabric_connectors.setter
+    def fabric_connectors(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemCsfFabricConnectorArgs']]]]):
+        pulumi.set(self, "fabric_connectors", value)
 
     @property
     @pulumi.getter(name="fabricDevices")
@@ -471,6 +647,18 @@ class _SystemCsfState:
         pulumi.set(self, "fabric_object_unification", value)
 
     @property
+    @pulumi.getter(name="fabricWorkers")
+    def fabric_workers(self) -> Optional[pulumi.Input[int]]:
+        """
+        Number of worker processes for Security Fabric daemon.
+        """
+        return pulumi.get(self, "fabric_workers")
+
+    @fabric_workers.setter
+    def fabric_workers(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fabric_workers", value)
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> Optional[pulumi.Input[str]]:
         """
@@ -481,6 +669,18 @@ class _SystemCsfState:
     @fixed_key.setter
     def fixed_key(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fixed_key", value)
+
+    @property
+    @pulumi.getter(name="forticloudAccountEnforcement")
+    def forticloud_account_enforcement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forticloud_account_enforcement")
+
+    @forticloud_account_enforcement.setter
+    def forticloud_account_enforcement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "forticloud_account_enforcement", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -505,6 +705,18 @@ class _SystemCsfState:
     @group_password.setter
     def group_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "group_password", value)
+
+    @property
+    @pulumi.getter(name="logUnification")
+    def log_unification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "log_unification")
+
+    @log_unification.setter
+    def log_unification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log_unification", value)
 
     @property
     @pulumi.getter(name="managementIp")
@@ -567,6 +779,18 @@ class _SystemCsfState:
         pulumi.set(self, "trusted_lists", value)
 
     @property
+    @pulumi.getter
+    def upstream(self) -> Optional[pulumi.Input[str]]:
+        """
+        IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        """
+        return pulumi.get(self, "upstream")
+
+    @upstream.setter
+    def upstream(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "upstream", value)
+
+    @property
     @pulumi.getter(name="upstreamIp")
     def upstream_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -612,17 +836,24 @@ class SystemCsf(pulumi.CustomResource):
                  authorization_request_type: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  configuration_sync: Optional[pulumi.Input[str]] = None,
+                 downstream_access: Optional[pulumi.Input[str]] = None,
+                 downstream_accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_connectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricConnectorArgs']]]]] = None,
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
+                 fabric_workers: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
+                 forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
+                 log_unification: Optional[pulumi.Input[str]] = None,
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfTrustedListArgs']]]]] = None,
+                 upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -662,17 +893,24 @@ class SystemCsf(pulumi.CustomResource):
         :param pulumi.Input[str] authorization_request_type: Authorization request type. Valid values: `serial`, `certificate`.
         :param pulumi.Input[str] certificate: Certificate.
         :param pulumi.Input[str] configuration_sync: Configuration sync mode. Valid values: `default`, `local`.
+        :param pulumi.Input[str] downstream_access: Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] downstream_accprofile: Default access profile for requests from downstream devices.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricConnectorArgs']]]] fabric_connectors: Fabric connector configuration. The structure of `fabric_connector` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
+        :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
+        :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
+        :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfTrustedListArgs']]]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -731,17 +969,24 @@ class SystemCsf(pulumi.CustomResource):
                  authorization_request_type: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  configuration_sync: Optional[pulumi.Input[str]] = None,
+                 downstream_access: Optional[pulumi.Input[str]] = None,
+                 downstream_accprofile: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_connectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricConnectorArgs']]]]] = None,
                  fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]]] = None,
                  fabric_object_unification: Optional[pulumi.Input[str]] = None,
+                 fabric_workers: Optional[pulumi.Input[int]] = None,
                  fixed_key: Optional[pulumi.Input[str]] = None,
+                 forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  group_password: Optional[pulumi.Input[str]] = None,
+                 log_unification: Optional[pulumi.Input[str]] = None,
                  management_ip: Optional[pulumi.Input[str]] = None,
                  management_port: Optional[pulumi.Input[int]] = None,
                  saml_configuration_sync: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfTrustedListArgs']]]]] = None,
+                 upstream: Optional[pulumi.Input[str]] = None,
                  upstream_ip: Optional[pulumi.Input[str]] = None,
                  upstream_port: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -752,6 +997,8 @@ class SystemCsf(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -761,12 +1008,18 @@ class SystemCsf(pulumi.CustomResource):
             __props__.__dict__["authorization_request_type"] = authorization_request_type
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["configuration_sync"] = configuration_sync
+            __props__.__dict__["downstream_access"] = downstream_access
+            __props__.__dict__["downstream_accprofile"] = downstream_accprofile
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fabric_connectors"] = fabric_connectors
             __props__.__dict__["fabric_devices"] = fabric_devices
             __props__.__dict__["fabric_object_unification"] = fabric_object_unification
+            __props__.__dict__["fabric_workers"] = fabric_workers
             __props__.__dict__["fixed_key"] = fixed_key
+            __props__.__dict__["forticloud_account_enforcement"] = forticloud_account_enforcement
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["group_password"] = group_password
+            __props__.__dict__["log_unification"] = log_unification
             __props__.__dict__["management_ip"] = management_ip
             __props__.__dict__["management_port"] = management_port
             __props__.__dict__["saml_configuration_sync"] = saml_configuration_sync
@@ -774,6 +1027,7 @@ class SystemCsf(pulumi.CustomResource):
                 raise TypeError("Missing required property 'status'")
             __props__.__dict__["status"] = status
             __props__.__dict__["trusted_lists"] = trusted_lists
+            __props__.__dict__["upstream"] = upstream
             __props__.__dict__["upstream_ip"] = upstream_ip
             __props__.__dict__["upstream_port"] = upstream_port
             __props__.__dict__["vdomparam"] = vdomparam
@@ -791,17 +1045,24 @@ class SystemCsf(pulumi.CustomResource):
             authorization_request_type: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             configuration_sync: Optional[pulumi.Input[str]] = None,
+            downstream_access: Optional[pulumi.Input[str]] = None,
+            downstream_accprofile: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fabric_connectors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricConnectorArgs']]]]] = None,
             fabric_devices: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]]] = None,
             fabric_object_unification: Optional[pulumi.Input[str]] = None,
+            fabric_workers: Optional[pulumi.Input[int]] = None,
             fixed_key: Optional[pulumi.Input[str]] = None,
+            forticloud_account_enforcement: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             group_password: Optional[pulumi.Input[str]] = None,
+            log_unification: Optional[pulumi.Input[str]] = None,
             management_ip: Optional[pulumi.Input[str]] = None,
             management_port: Optional[pulumi.Input[int]] = None,
             saml_configuration_sync: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             trusted_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfTrustedListArgs']]]]] = None,
+            upstream: Optional[pulumi.Input[str]] = None,
             upstream_ip: Optional[pulumi.Input[str]] = None,
             upstream_port: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemCsf':
@@ -816,17 +1077,24 @@ class SystemCsf(pulumi.CustomResource):
         :param pulumi.Input[str] authorization_request_type: Authorization request type. Valid values: `serial`, `certificate`.
         :param pulumi.Input[str] certificate: Certificate.
         :param pulumi.Input[str] configuration_sync: Configuration sync mode. Valid values: `default`, `local`.
+        :param pulumi.Input[str] downstream_access: Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] downstream_accprofile: Default access profile for requests from downstream devices.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricConnectorArgs']]]] fabric_connectors: Fabric connector configuration. The structure of `fabric_connector` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfFabricDeviceArgs']]]] fabric_devices: Fabric device configuration. The structure of `fabric_device` block is documented below.
         :param pulumi.Input[str] fabric_object_unification: Fabric CMDB Object Unification Valid values: `default`, `local`.
+        :param pulumi.Input[int] fabric_workers: Number of worker processes for Security Fabric daemon.
         :param pulumi.Input[str] fixed_key: Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
+        :param pulumi.Input[str] forticloud_account_enforcement: Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] group_name: Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
         :param pulumi.Input[str] group_password: Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
+        :param pulumi.Input[str] log_unification: Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] management_ip: Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
         :param pulumi.Input[int] management_port: Overriding port for management connection (Overrides admin port).
         :param pulumi.Input[str] saml_configuration_sync: SAML setting configuration synchronization. Valid values: `default`, `local`.
         :param pulumi.Input[str] status: Enable/disable Security Fabric. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemCsfTrustedListArgs']]]] trusted_lists: Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
+        :param pulumi.Input[str] upstream: IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[str] upstream_ip: IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
         :param pulumi.Input[int] upstream_port: The port number to use to communicate with the FortiGate upstream from this FortiGate in the Security Fabric (default = 8013).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -839,17 +1107,24 @@ class SystemCsf(pulumi.CustomResource):
         __props__.__dict__["authorization_request_type"] = authorization_request_type
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["configuration_sync"] = configuration_sync
+        __props__.__dict__["downstream_access"] = downstream_access
+        __props__.__dict__["downstream_accprofile"] = downstream_accprofile
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fabric_connectors"] = fabric_connectors
         __props__.__dict__["fabric_devices"] = fabric_devices
         __props__.__dict__["fabric_object_unification"] = fabric_object_unification
+        __props__.__dict__["fabric_workers"] = fabric_workers
         __props__.__dict__["fixed_key"] = fixed_key
+        __props__.__dict__["forticloud_account_enforcement"] = forticloud_account_enforcement
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["group_password"] = group_password
+        __props__.__dict__["log_unification"] = log_unification
         __props__.__dict__["management_ip"] = management_ip
         __props__.__dict__["management_port"] = management_port
         __props__.__dict__["saml_configuration_sync"] = saml_configuration_sync
         __props__.__dict__["status"] = status
         __props__.__dict__["trusted_lists"] = trusted_lists
+        __props__.__dict__["upstream"] = upstream
         __props__.__dict__["upstream_ip"] = upstream_ip
         __props__.__dict__["upstream_port"] = upstream_port
         __props__.__dict__["vdomparam"] = vdomparam
@@ -888,12 +1163,36 @@ class SystemCsf(pulumi.CustomResource):
         return pulumi.get(self, "configuration_sync")
 
     @property
+    @pulumi.getter(name="downstreamAccess")
+    def downstream_access(self) -> pulumi.Output[str]:
+        """
+        Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "downstream_access")
+
+    @property
+    @pulumi.getter(name="downstreamAccprofile")
+    def downstream_accprofile(self) -> pulumi.Output[str]:
+        """
+        Default access profile for requests from downstream devices.
+        """
+        return pulumi.get(self, "downstream_accprofile")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         """
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="fabricConnectors")
+    def fabric_connectors(self) -> pulumi.Output[Optional[Sequence['outputs.SystemCsfFabricConnector']]]:
+        """
+        Fabric connector configuration. The structure of `fabric_connector` block is documented below.
+        """
+        return pulumi.get(self, "fabric_connectors")
 
     @property
     @pulumi.getter(name="fabricDevices")
@@ -912,12 +1211,28 @@ class SystemCsf(pulumi.CustomResource):
         return pulumi.get(self, "fabric_object_unification")
 
     @property
+    @pulumi.getter(name="fabricWorkers")
+    def fabric_workers(self) -> pulumi.Output[int]:
+        """
+        Number of worker processes for Security Fabric daemon.
+        """
+        return pulumi.get(self, "fabric_workers")
+
+    @property
     @pulumi.getter(name="fixedKey")
     def fixed_key(self) -> pulumi.Output[Optional[str]]:
         """
         Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
         """
         return pulumi.get(self, "fixed_key")
+
+    @property
+    @pulumi.getter(name="forticloudAccountEnforcement")
+    def forticloud_account_enforcement(self) -> pulumi.Output[str]:
+        """
+        Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "forticloud_account_enforcement")
 
     @property
     @pulumi.getter(name="groupName")
@@ -934,6 +1249,14 @@ class SystemCsf(pulumi.CustomResource):
         Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
         """
         return pulumi.get(self, "group_password")
+
+    @property
+    @pulumi.getter(name="logUnification")
+    def log_unification(self) -> pulumi.Output[str]:
+        """
+        Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "log_unification")
 
     @property
     @pulumi.getter(name="managementIp")
@@ -974,6 +1297,14 @@ class SystemCsf(pulumi.CustomResource):
         Pre-authorized and blocked security fabric nodes. The structure of `trusted_list` block is documented below.
         """
         return pulumi.get(self, "trusted_lists")
+
+    @property
+    @pulumi.getter
+    def upstream(self) -> pulumi.Output[str]:
+        """
+        IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+        """
+        return pulumi.get(self, "upstream")
 
     @property
     @pulumi.getter(name="upstreamIp")

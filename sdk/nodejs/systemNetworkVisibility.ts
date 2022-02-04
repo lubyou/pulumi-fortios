@@ -99,31 +99,29 @@ export class SystemNetworkVisibility extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemNetworkVisibilityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemNetworkVisibilityArgs | SystemNetworkVisibilityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemNetworkVisibilityState | undefined;
-            inputs["destinationHostnameVisibility"] = state ? state.destinationHostnameVisibility : undefined;
-            inputs["destinationLocation"] = state ? state.destinationLocation : undefined;
-            inputs["destinationVisibility"] = state ? state.destinationVisibility : undefined;
-            inputs["hostnameLimit"] = state ? state.hostnameLimit : undefined;
-            inputs["hostnameTtl"] = state ? state.hostnameTtl : undefined;
-            inputs["sourceLocation"] = state ? state.sourceLocation : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["destinationHostnameVisibility"] = state ? state.destinationHostnameVisibility : undefined;
+            resourceInputs["destinationLocation"] = state ? state.destinationLocation : undefined;
+            resourceInputs["destinationVisibility"] = state ? state.destinationVisibility : undefined;
+            resourceInputs["hostnameLimit"] = state ? state.hostnameLimit : undefined;
+            resourceInputs["hostnameTtl"] = state ? state.hostnameTtl : undefined;
+            resourceInputs["sourceLocation"] = state ? state.sourceLocation : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemNetworkVisibilityArgs | undefined;
-            inputs["destinationHostnameVisibility"] = args ? args.destinationHostnameVisibility : undefined;
-            inputs["destinationLocation"] = args ? args.destinationLocation : undefined;
-            inputs["destinationVisibility"] = args ? args.destinationVisibility : undefined;
-            inputs["hostnameLimit"] = args ? args.hostnameLimit : undefined;
-            inputs["hostnameTtl"] = args ? args.hostnameTtl : undefined;
-            inputs["sourceLocation"] = args ? args.sourceLocation : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["destinationHostnameVisibility"] = args ? args.destinationHostnameVisibility : undefined;
+            resourceInputs["destinationLocation"] = args ? args.destinationLocation : undefined;
+            resourceInputs["destinationVisibility"] = args ? args.destinationVisibility : undefined;
+            resourceInputs["hostnameLimit"] = args ? args.hostnameLimit : undefined;
+            resourceInputs["hostnameTtl"] = args ? args.hostnameTtl : undefined;
+            resourceInputs["sourceLocation"] = args ? args.sourceLocation : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemNetworkVisibility.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemNetworkVisibility.__pulumiType, name, resourceInputs, opts);
     }
 }
 

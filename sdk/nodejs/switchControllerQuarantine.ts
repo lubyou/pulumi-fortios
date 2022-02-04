@@ -72,25 +72,23 @@ export class SwitchControllerQuarantine extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerQuarantineArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerQuarantineArgs | SwitchControllerQuarantineState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerQuarantineState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["quarantine"] = state ? state.quarantine : undefined;
-            inputs["targets"] = state ? state.targets : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["quarantine"] = state ? state.quarantine : undefined;
+            resourceInputs["targets"] = state ? state.targets : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerQuarantineArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["quarantine"] = args ? args.quarantine : undefined;
-            inputs["targets"] = args ? args.targets : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["quarantine"] = args ? args.quarantine : undefined;
+            resourceInputs["targets"] = args ? args.targets : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerQuarantine.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerQuarantine.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -59,6 +59,10 @@ export class FirewallServiceCategory extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Service category name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -76,23 +80,23 @@ export class FirewallServiceCategory extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallServiceCategoryArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallServiceCategoryArgs | FirewallServiceCategoryState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallServiceCategoryState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallServiceCategoryArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallServiceCategory.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallServiceCategory.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -104,6 +108,10 @@ export interface FirewallServiceCategoryState {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Service category name.
      */
@@ -122,6 +130,10 @@ export interface FirewallServiceCategoryArgs {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Service category name.
      */

@@ -16,30 +16,37 @@ class EndpointControlFctemsArgs:
                  admin_password: Optional[pulumi.Input[str]] = None,
                  admin_username: Optional[pulumi.Input[str]] = None,
                  call_timeout: Optional[pulumi.Input[int]] = None,
+                 capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  fortinetone_cloud_authentication: Optional[pulumi.Input[str]] = None,
                  https_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 preserve_ssl_session: Optional[pulumi.Input[str]] = None,
                  pull_avatars: Optional[pulumi.Input[str]] = None,
+                 pull_malware_hash: Optional[pulumi.Input[str]] = None,
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 websocket_override: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a EndpointControlFctems resource.
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] name: FortiClient Enterprise Management Server (EMS) name.
+        :param pulumi.Input[str] preserve_ssl_session: Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_avatars: Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pull_malware_hash: Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
@@ -47,6 +54,7 @@ class EndpointControlFctemsArgs:
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         if admin_password is not None:
             pulumi.set(__self__, "admin_password", admin_password)
@@ -54,6 +62,8 @@ class EndpointControlFctemsArgs:
             pulumi.set(__self__, "admin_username", admin_username)
         if call_timeout is not None:
             pulumi.set(__self__, "call_timeout", call_timeout)
+        if capabilities is not None:
+            pulumi.set(__self__, "capabilities", capabilities)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if cloud_server_type is not None:
@@ -64,8 +74,12 @@ class EndpointControlFctemsArgs:
             pulumi.set(__self__, "https_port", https_port)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if preserve_ssl_session is not None:
+            pulumi.set(__self__, "preserve_ssl_session", preserve_ssl_session)
         if pull_avatars is not None:
             pulumi.set(__self__, "pull_avatars", pull_avatars)
+        if pull_malware_hash is not None:
+            pulumi.set(__self__, "pull_malware_hash", pull_malware_hash)
         if pull_sysinfo is not None:
             pulumi.set(__self__, "pull_sysinfo", pull_sysinfo)
         if pull_tags is not None:
@@ -80,6 +94,8 @@ class EndpointControlFctemsArgs:
             pulumi.set(__self__, "source_ip", source_ip)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if websocket_override is not None:
+            pulumi.set(__self__, "websocket_override", websocket_override)
 
     @property
     @pulumi.getter(name="adminPassword")
@@ -116,6 +132,18 @@ class EndpointControlFctemsArgs:
     @call_timeout.setter
     def call_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "call_timeout", value)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of EMS capabilities.
+        """
+        return pulumi.get(self, "capabilities")
+
+    @capabilities.setter
+    def capabilities(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "capabilities", value)
 
     @property
     @pulumi.getter
@@ -178,6 +206,18 @@ class EndpointControlFctemsArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="preserveSslSession")
+    def preserve_ssl_session(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "preserve_ssl_session")
+
+    @preserve_ssl_session.setter
+    def preserve_ssl_session(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preserve_ssl_session", value)
+
+    @property
     @pulumi.getter(name="pullAvatars")
     def pull_avatars(self) -> Optional[pulumi.Input[str]]:
         """
@@ -188,6 +228,18 @@ class EndpointControlFctemsArgs:
     @pull_avatars.setter
     def pull_avatars(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "pull_avatars", value)
+
+    @property
+    @pulumi.getter(name="pullMalwareHash")
+    def pull_malware_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pull_malware_hash")
+
+    @pull_malware_hash.setter
+    def pull_malware_hash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pull_malware_hash", value)
 
     @property
     @pulumi.getter(name="pullSysinfo")
@@ -272,6 +324,18 @@ class EndpointControlFctemsArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="websocketOverride")
+    def websocket_override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "websocket_override")
+
+    @websocket_override.setter
+    def websocket_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "websocket_override", value)
 
 
 @pulumi.input_type
@@ -280,30 +344,37 @@ class _EndpointControlFctemsState:
                  admin_password: Optional[pulumi.Input[str]] = None,
                  admin_username: Optional[pulumi.Input[str]] = None,
                  call_timeout: Optional[pulumi.Input[int]] = None,
+                 capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  fortinetone_cloud_authentication: Optional[pulumi.Input[str]] = None,
                  https_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 preserve_ssl_session: Optional[pulumi.Input[str]] = None,
                  pull_avatars: Optional[pulumi.Input[str]] = None,
+                 pull_malware_hash: Optional[pulumi.Input[str]] = None,
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
                  serial_number: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 websocket_override: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering EndpointControlFctems resources.
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] name: FortiClient Enterprise Management Server (EMS) name.
+        :param pulumi.Input[str] preserve_ssl_session: Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_avatars: Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pull_malware_hash: Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
@@ -311,6 +382,7 @@ class _EndpointControlFctemsState:
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         if admin_password is not None:
             pulumi.set(__self__, "admin_password", admin_password)
@@ -318,6 +390,8 @@ class _EndpointControlFctemsState:
             pulumi.set(__self__, "admin_username", admin_username)
         if call_timeout is not None:
             pulumi.set(__self__, "call_timeout", call_timeout)
+        if capabilities is not None:
+            pulumi.set(__self__, "capabilities", capabilities)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
         if cloud_server_type is not None:
@@ -328,8 +402,12 @@ class _EndpointControlFctemsState:
             pulumi.set(__self__, "https_port", https_port)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if preserve_ssl_session is not None:
+            pulumi.set(__self__, "preserve_ssl_session", preserve_ssl_session)
         if pull_avatars is not None:
             pulumi.set(__self__, "pull_avatars", pull_avatars)
+        if pull_malware_hash is not None:
+            pulumi.set(__self__, "pull_malware_hash", pull_malware_hash)
         if pull_sysinfo is not None:
             pulumi.set(__self__, "pull_sysinfo", pull_sysinfo)
         if pull_tags is not None:
@@ -344,6 +422,8 @@ class _EndpointControlFctemsState:
             pulumi.set(__self__, "source_ip", source_ip)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if websocket_override is not None:
+            pulumi.set(__self__, "websocket_override", websocket_override)
 
     @property
     @pulumi.getter(name="adminPassword")
@@ -380,6 +460,18 @@ class _EndpointControlFctemsState:
     @call_timeout.setter
     def call_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "call_timeout", value)
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> Optional[pulumi.Input[str]]:
+        """
+        List of EMS capabilities.
+        """
+        return pulumi.get(self, "capabilities")
+
+    @capabilities.setter
+    def capabilities(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "capabilities", value)
 
     @property
     @pulumi.getter
@@ -442,6 +534,18 @@ class _EndpointControlFctemsState:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="preserveSslSession")
+    def preserve_ssl_session(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "preserve_ssl_session")
+
+    @preserve_ssl_session.setter
+    def preserve_ssl_session(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preserve_ssl_session", value)
+
+    @property
     @pulumi.getter(name="pullAvatars")
     def pull_avatars(self) -> Optional[pulumi.Input[str]]:
         """
@@ -452,6 +556,18 @@ class _EndpointControlFctemsState:
     @pull_avatars.setter
     def pull_avatars(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "pull_avatars", value)
+
+    @property
+    @pulumi.getter(name="pullMalwareHash")
+    def pull_malware_hash(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pull_malware_hash")
+
+    @pull_malware_hash.setter
+    def pull_malware_hash(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "pull_malware_hash", value)
 
     @property
     @pulumi.getter(name="pullSysinfo")
@@ -536,6 +652,18 @@ class _EndpointControlFctemsState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="websocketOverride")
+    def websocket_override(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "websocket_override")
+
+    @websocket_override.setter
+    def websocket_override(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "websocket_override", value)
 
 
 class EndpointControlFctems(pulumi.CustomResource):
@@ -546,12 +674,15 @@ class EndpointControlFctems(pulumi.CustomResource):
                  admin_password: Optional[pulumi.Input[str]] = None,
                  admin_username: Optional[pulumi.Input[str]] = None,
                  call_timeout: Optional[pulumi.Input[int]] = None,
+                 capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  fortinetone_cloud_authentication: Optional[pulumi.Input[str]] = None,
                  https_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 preserve_ssl_session: Optional[pulumi.Input[str]] = None,
                  pull_avatars: Optional[pulumi.Input[str]] = None,
+                 pull_malware_hash: Optional[pulumi.Input[str]] = None,
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
@@ -559,9 +690,10 @@ class EndpointControlFctems(pulumi.CustomResource):
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 websocket_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure FortiClient Enterprise Management Server (EMS) entries.
+        Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -578,12 +710,15 @@ class EndpointControlFctems(pulumi.CustomResource):
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] name: FortiClient Enterprise Management Server (EMS) name.
+        :param pulumi.Input[str] preserve_ssl_session: Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_avatars: Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pull_malware_hash: Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
@@ -591,6 +726,7 @@ class EndpointControlFctems(pulumi.CustomResource):
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         ...
     @overload
@@ -599,7 +735,7 @@ class EndpointControlFctems(pulumi.CustomResource):
                  args: Optional[EndpointControlFctemsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure FortiClient Enterprise Management Server (EMS) entries.
+        Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -629,12 +765,15 @@ class EndpointControlFctems(pulumi.CustomResource):
                  admin_password: Optional[pulumi.Input[str]] = None,
                  admin_username: Optional[pulumi.Input[str]] = None,
                  call_timeout: Optional[pulumi.Input[int]] = None,
+                 capabilities: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
                  cloud_server_type: Optional[pulumi.Input[str]] = None,
                  fortinetone_cloud_authentication: Optional[pulumi.Input[str]] = None,
                  https_port: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 preserve_ssl_session: Optional[pulumi.Input[str]] = None,
                  pull_avatars: Optional[pulumi.Input[str]] = None,
+                 pull_malware_hash: Optional[pulumi.Input[str]] = None,
                  pull_sysinfo: Optional[pulumi.Input[str]] = None,
                  pull_tags: Optional[pulumi.Input[str]] = None,
                  pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
@@ -642,6 +781,7 @@ class EndpointControlFctems(pulumi.CustomResource):
                  server: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 websocket_override: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -649,6 +789,8 @@ class EndpointControlFctems(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -657,12 +799,15 @@ class EndpointControlFctems(pulumi.CustomResource):
             __props__.__dict__["admin_password"] = admin_password
             __props__.__dict__["admin_username"] = admin_username
             __props__.__dict__["call_timeout"] = call_timeout
+            __props__.__dict__["capabilities"] = capabilities
             __props__.__dict__["certificate"] = certificate
             __props__.__dict__["cloud_server_type"] = cloud_server_type
             __props__.__dict__["fortinetone_cloud_authentication"] = fortinetone_cloud_authentication
             __props__.__dict__["https_port"] = https_port
             __props__.__dict__["name"] = name
+            __props__.__dict__["preserve_ssl_session"] = preserve_ssl_session
             __props__.__dict__["pull_avatars"] = pull_avatars
+            __props__.__dict__["pull_malware_hash"] = pull_malware_hash
             __props__.__dict__["pull_sysinfo"] = pull_sysinfo
             __props__.__dict__["pull_tags"] = pull_tags
             __props__.__dict__["pull_vulnerabilities"] = pull_vulnerabilities
@@ -670,6 +815,7 @@ class EndpointControlFctems(pulumi.CustomResource):
             __props__.__dict__["server"] = server
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["websocket_override"] = websocket_override
         super(EndpointControlFctems, __self__).__init__(
             'fortios:index/endpointControlFctems:EndpointControlFctems',
             resource_name,
@@ -683,19 +829,23 @@ class EndpointControlFctems(pulumi.CustomResource):
             admin_password: Optional[pulumi.Input[str]] = None,
             admin_username: Optional[pulumi.Input[str]] = None,
             call_timeout: Optional[pulumi.Input[int]] = None,
+            capabilities: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
             cloud_server_type: Optional[pulumi.Input[str]] = None,
             fortinetone_cloud_authentication: Optional[pulumi.Input[str]] = None,
             https_port: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            preserve_ssl_session: Optional[pulumi.Input[str]] = None,
             pull_avatars: Optional[pulumi.Input[str]] = None,
+            pull_malware_hash: Optional[pulumi.Input[str]] = None,
             pull_sysinfo: Optional[pulumi.Input[str]] = None,
             pull_tags: Optional[pulumi.Input[str]] = None,
             pull_vulnerabilities: Optional[pulumi.Input[str]] = None,
             serial_number: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'EndpointControlFctems':
+            vdomparam: Optional[pulumi.Input[str]] = None,
+            websocket_override: Optional[pulumi.Input[str]] = None) -> 'EndpointControlFctems':
         """
         Get an existing EndpointControlFctems resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -706,12 +856,15 @@ class EndpointControlFctems(pulumi.CustomResource):
         :param pulumi.Input[str] admin_password: FortiClient EMS admin password.
         :param pulumi.Input[str] admin_username: FortiClient EMS admin username.
         :param pulumi.Input[int] call_timeout: FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
+        :param pulumi.Input[str] capabilities: List of EMS capabilities.
         :param pulumi.Input[str] certificate: FortiClient EMS certificate.
         :param pulumi.Input[str] cloud_server_type: Cloud server type. Valid values: `production`, `alpha`, `beta`.
         :param pulumi.Input[str] fortinetone_cloud_authentication: Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] https_port: FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
         :param pulumi.Input[str] name: FortiClient Enterprise Management Server (EMS) name.
+        :param pulumi.Input[str] preserve_ssl_session: Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_avatars: Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] pull_malware_hash: Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_sysinfo: Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_tags: Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] pull_vulnerabilities: Enable/disable pulling vulnerabilities from EMS. Valid values: `enable`, `disable`.
@@ -719,6 +872,7 @@ class EndpointControlFctems(pulumi.CustomResource):
         :param pulumi.Input[str] server: FortiClient EMS FQDN or IPv4 address.
         :param pulumi.Input[str] source_ip: REST API call source IP.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] websocket_override: Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -727,12 +881,15 @@ class EndpointControlFctems(pulumi.CustomResource):
         __props__.__dict__["admin_password"] = admin_password
         __props__.__dict__["admin_username"] = admin_username
         __props__.__dict__["call_timeout"] = call_timeout
+        __props__.__dict__["capabilities"] = capabilities
         __props__.__dict__["certificate"] = certificate
         __props__.__dict__["cloud_server_type"] = cloud_server_type
         __props__.__dict__["fortinetone_cloud_authentication"] = fortinetone_cloud_authentication
         __props__.__dict__["https_port"] = https_port
         __props__.__dict__["name"] = name
+        __props__.__dict__["preserve_ssl_session"] = preserve_ssl_session
         __props__.__dict__["pull_avatars"] = pull_avatars
+        __props__.__dict__["pull_malware_hash"] = pull_malware_hash
         __props__.__dict__["pull_sysinfo"] = pull_sysinfo
         __props__.__dict__["pull_tags"] = pull_tags
         __props__.__dict__["pull_vulnerabilities"] = pull_vulnerabilities
@@ -740,6 +897,7 @@ class EndpointControlFctems(pulumi.CustomResource):
         __props__.__dict__["server"] = server
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["websocket_override"] = websocket_override
         return EndpointControlFctems(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -765,6 +923,14 @@ class EndpointControlFctems(pulumi.CustomResource):
         FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
         """
         return pulumi.get(self, "call_timeout")
+
+    @property
+    @pulumi.getter
+    def capabilities(self) -> pulumi.Output[str]:
+        """
+        List of EMS capabilities.
+        """
+        return pulumi.get(self, "capabilities")
 
     @property
     @pulumi.getter
@@ -807,12 +973,28 @@ class EndpointControlFctems(pulumi.CustomResource):
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="preserveSslSession")
+    def preserve_ssl_session(self) -> pulumi.Output[str]:
+        """
+        Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "preserve_ssl_session")
+
+    @property
     @pulumi.getter(name="pullAvatars")
     def pull_avatars(self) -> pulumi.Output[str]:
         """
         Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "pull_avatars")
+
+    @property
+    @pulumi.getter(name="pullMalwareHash")
+    def pull_malware_hash(self) -> pulumi.Output[str]:
+        """
+        Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "pull_malware_hash")
 
     @property
     @pulumi.getter(name="pullSysinfo")
@@ -869,4 +1051,12 @@ class EndpointControlFctems(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="websocketOverride")
+    def websocket_override(self) -> pulumi.Output[str]:
+        """
+        Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "websocket_override")
 

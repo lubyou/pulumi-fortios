@@ -16,12 +16,14 @@ class FirewallVendorMacArgs:
                  fosid: Optional[pulumi.Input[int]] = None,
                  mac_number: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 obsolete: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallVendorMac resource.
         :param pulumi.Input[int] fosid: Vendor ID.
         :param pulumi.Input[int] mac_number: Total number of MAC addresses.
         :param pulumi.Input[str] name: Vendor name.
+        :param pulumi.Input[int] obsolete: Indicates whether the Vendor ID can be used.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if fosid is not None:
@@ -30,6 +32,8 @@ class FirewallVendorMacArgs:
             pulumi.set(__self__, "mac_number", mac_number)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if obsolete is not None:
+            pulumi.set(__self__, "obsolete", obsolete)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -68,6 +72,18 @@ class FirewallVendorMacArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def obsolete(self) -> Optional[pulumi.Input[int]]:
+        """
+        Indicates whether the Vendor ID can be used.
+        """
+        return pulumi.get(self, "obsolete")
+
+    @obsolete.setter
+    def obsolete(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "obsolete", value)
 
     @property
     @pulumi.getter
@@ -88,12 +104,14 @@ class _FirewallVendorMacState:
                  fosid: Optional[pulumi.Input[int]] = None,
                  mac_number: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 obsolete: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallVendorMac resources.
         :param pulumi.Input[int] fosid: Vendor ID.
         :param pulumi.Input[int] mac_number: Total number of MAC addresses.
         :param pulumi.Input[str] name: Vendor name.
+        :param pulumi.Input[int] obsolete: Indicates whether the Vendor ID can be used.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if fosid is not None:
@@ -102,6 +120,8 @@ class _FirewallVendorMacState:
             pulumi.set(__self__, "mac_number", mac_number)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if obsolete is not None:
+            pulumi.set(__self__, "obsolete", obsolete)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -140,6 +160,18 @@ class _FirewallVendorMacState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def obsolete(self) -> Optional[pulumi.Input[int]]:
+        """
+        Indicates whether the Vendor ID can be used.
+        """
+        return pulumi.get(self, "obsolete")
+
+    @obsolete.setter
+    def obsolete(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "obsolete", value)
 
     @property
     @pulumi.getter
@@ -162,6 +194,7 @@ class FirewallVendorMac(pulumi.CustomResource):
                  fosid: Optional[pulumi.Input[int]] = None,
                  mac_number: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 obsolete: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -182,6 +215,7 @@ class FirewallVendorMac(pulumi.CustomResource):
         :param pulumi.Input[int] fosid: Vendor ID.
         :param pulumi.Input[int] mac_number: Total number of MAC addresses.
         :param pulumi.Input[str] name: Vendor name.
+        :param pulumi.Input[int] obsolete: Indicates whether the Vendor ID can be used.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -221,6 +255,7 @@ class FirewallVendorMac(pulumi.CustomResource):
                  fosid: Optional[pulumi.Input[int]] = None,
                  mac_number: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 obsolete: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -229,6 +264,8 @@ class FirewallVendorMac(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -237,6 +274,7 @@ class FirewallVendorMac(pulumi.CustomResource):
             __props__.__dict__["fosid"] = fosid
             __props__.__dict__["mac_number"] = mac_number
             __props__.__dict__["name"] = name
+            __props__.__dict__["obsolete"] = obsolete
             __props__.__dict__["vdomparam"] = vdomparam
         super(FirewallVendorMac, __self__).__init__(
             'fortios:index/firewallVendorMac:FirewallVendorMac',
@@ -251,6 +289,7 @@ class FirewallVendorMac(pulumi.CustomResource):
             fosid: Optional[pulumi.Input[int]] = None,
             mac_number: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            obsolete: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallVendorMac':
         """
         Get an existing FirewallVendorMac resource's state with the given name, id, and optional extra
@@ -262,6 +301,7 @@ class FirewallVendorMac(pulumi.CustomResource):
         :param pulumi.Input[int] fosid: Vendor ID.
         :param pulumi.Input[int] mac_number: Total number of MAC addresses.
         :param pulumi.Input[str] name: Vendor name.
+        :param pulumi.Input[int] obsolete: Indicates whether the Vendor ID can be used.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -271,6 +311,7 @@ class FirewallVendorMac(pulumi.CustomResource):
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["mac_number"] = mac_number
         __props__.__dict__["name"] = name
+        __props__.__dict__["obsolete"] = obsolete
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallVendorMac(resource_name, opts=opts, __props__=__props__)
 
@@ -297,6 +338,14 @@ class FirewallVendorMac(pulumi.CustomResource):
         Vendor name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def obsolete(self) -> pulumi.Output[int]:
+        """
+        Indicates whether the Vendor ID can be used.
+        """
+        return pulumi.get(self, "obsolete")
 
     @property
     @pulumi.getter

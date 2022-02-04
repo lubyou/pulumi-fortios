@@ -43,6 +43,7 @@ func NewNsxtServiceChain(ctx *pulumi.Context,
 		args = &NsxtServiceChainArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NsxtServiceChain
 	err := ctx.RegisterResource("fortios:index/nsxtServiceChain:NsxtServiceChain", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type NsxtServiceChainInput interface {
 }
 
 func (*NsxtServiceChain) ElementType() reflect.Type {
-	return reflect.TypeOf((*NsxtServiceChain)(nil))
+	return reflect.TypeOf((**NsxtServiceChain)(nil)).Elem()
 }
 
 func (i *NsxtServiceChain) ToNsxtServiceChainOutput() NsxtServiceChainOutput {
@@ -142,35 +143,6 @@ func (i *NsxtServiceChain) ToNsxtServiceChainOutput() NsxtServiceChainOutput {
 
 func (i *NsxtServiceChain) ToNsxtServiceChainOutputWithContext(ctx context.Context) NsxtServiceChainOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainOutput)
-}
-
-func (i *NsxtServiceChain) ToNsxtServiceChainPtrOutput() NsxtServiceChainPtrOutput {
-	return i.ToNsxtServiceChainPtrOutputWithContext(context.Background())
-}
-
-func (i *NsxtServiceChain) ToNsxtServiceChainPtrOutputWithContext(ctx context.Context) NsxtServiceChainPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainPtrOutput)
-}
-
-type NsxtServiceChainPtrInput interface {
-	pulumi.Input
-
-	ToNsxtServiceChainPtrOutput() NsxtServiceChainPtrOutput
-	ToNsxtServiceChainPtrOutputWithContext(ctx context.Context) NsxtServiceChainPtrOutput
-}
-
-type nsxtServiceChainPtrType NsxtServiceChainArgs
-
-func (*nsxtServiceChainPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**NsxtServiceChain)(nil))
-}
-
-func (i *nsxtServiceChainPtrType) ToNsxtServiceChainPtrOutput() NsxtServiceChainPtrOutput {
-	return i.ToNsxtServiceChainPtrOutputWithContext(context.Background())
-}
-
-func (i *nsxtServiceChainPtrType) ToNsxtServiceChainPtrOutputWithContext(ctx context.Context) NsxtServiceChainPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainPtrOutput)
 }
 
 // NsxtServiceChainArrayInput is an input type that accepts NsxtServiceChainArray and NsxtServiceChainArrayOutput values.
@@ -187,7 +159,7 @@ type NsxtServiceChainArrayInput interface {
 type NsxtServiceChainArray []NsxtServiceChainInput
 
 func (NsxtServiceChainArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*NsxtServiceChain)(nil))
+	return reflect.TypeOf((*[]*NsxtServiceChain)(nil)).Elem()
 }
 
 func (i NsxtServiceChainArray) ToNsxtServiceChainArrayOutput() NsxtServiceChainArrayOutput {
@@ -212,7 +184,7 @@ type NsxtServiceChainMapInput interface {
 type NsxtServiceChainMap map[string]NsxtServiceChainInput
 
 func (NsxtServiceChainMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*NsxtServiceChain)(nil))
+	return reflect.TypeOf((*map[string]*NsxtServiceChain)(nil)).Elem()
 }
 
 func (i NsxtServiceChainMap) ToNsxtServiceChainMapOutput() NsxtServiceChainMapOutput {
@@ -223,12 +195,10 @@ func (i NsxtServiceChainMap) ToNsxtServiceChainMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtServiceChainMapOutput)
 }
 
-type NsxtServiceChainOutput struct {
-	*pulumi.OutputState
-}
+type NsxtServiceChainOutput struct{ *pulumi.OutputState }
 
 func (NsxtServiceChainOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NsxtServiceChain)(nil))
+	return reflect.TypeOf((**NsxtServiceChain)(nil)).Elem()
 }
 
 func (o NsxtServiceChainOutput) ToNsxtServiceChainOutput() NsxtServiceChainOutput {
@@ -239,36 +209,10 @@ func (o NsxtServiceChainOutput) ToNsxtServiceChainOutputWithContext(ctx context.
 	return o
 }
 
-func (o NsxtServiceChainOutput) ToNsxtServiceChainPtrOutput() NsxtServiceChainPtrOutput {
-	return o.ToNsxtServiceChainPtrOutputWithContext(context.Background())
-}
-
-func (o NsxtServiceChainOutput) ToNsxtServiceChainPtrOutputWithContext(ctx context.Context) NsxtServiceChainPtrOutput {
-	return o.ApplyT(func(v NsxtServiceChain) *NsxtServiceChain {
-		return &v
-	}).(NsxtServiceChainPtrOutput)
-}
-
-type NsxtServiceChainPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (NsxtServiceChainPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**NsxtServiceChain)(nil))
-}
-
-func (o NsxtServiceChainPtrOutput) ToNsxtServiceChainPtrOutput() NsxtServiceChainPtrOutput {
-	return o
-}
-
-func (o NsxtServiceChainPtrOutput) ToNsxtServiceChainPtrOutputWithContext(ctx context.Context) NsxtServiceChainPtrOutput {
-	return o
-}
-
 type NsxtServiceChainArrayOutput struct{ *pulumi.OutputState }
 
 func (NsxtServiceChainArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NsxtServiceChain)(nil))
+	return reflect.TypeOf((*[]*NsxtServiceChain)(nil)).Elem()
 }
 
 func (o NsxtServiceChainArrayOutput) ToNsxtServiceChainArrayOutput() NsxtServiceChainArrayOutput {
@@ -280,15 +224,15 @@ func (o NsxtServiceChainArrayOutput) ToNsxtServiceChainArrayOutputWithContext(ct
 }
 
 func (o NsxtServiceChainArrayOutput) Index(i pulumi.IntInput) NsxtServiceChainOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NsxtServiceChain {
-		return vs[0].([]NsxtServiceChain)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NsxtServiceChain {
+		return vs[0].([]*NsxtServiceChain)[vs[1].(int)]
 	}).(NsxtServiceChainOutput)
 }
 
 type NsxtServiceChainMapOutput struct{ *pulumi.OutputState }
 
 func (NsxtServiceChainMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]NsxtServiceChain)(nil))
+	return reflect.TypeOf((*map[string]*NsxtServiceChain)(nil)).Elem()
 }
 
 func (o NsxtServiceChainMapOutput) ToNsxtServiceChainMapOutput() NsxtServiceChainMapOutput {
@@ -300,14 +244,16 @@ func (o NsxtServiceChainMapOutput) ToNsxtServiceChainMapOutputWithContext(ctx co
 }
 
 func (o NsxtServiceChainMapOutput) MapIndex(k pulumi.StringInput) NsxtServiceChainOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NsxtServiceChain {
-		return vs[0].(map[string]NsxtServiceChain)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *NsxtServiceChain {
+		return vs[0].(map[string]*NsxtServiceChain)[vs[1].(string)]
 	}).(NsxtServiceChainOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*NsxtServiceChainInput)(nil)).Elem(), &NsxtServiceChain{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NsxtServiceChainArrayInput)(nil)).Elem(), NsxtServiceChainArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NsxtServiceChainMapInput)(nil)).Elem(), NsxtServiceChainMap{})
 	pulumi.RegisterOutputType(NsxtServiceChainOutput{})
-	pulumi.RegisterOutputType(NsxtServiceChainPtrOutput{})
 	pulumi.RegisterOutputType(NsxtServiceChainArrayOutput{})
 	pulumi.RegisterOutputType(NsxtServiceChainMapOutput{})
 }

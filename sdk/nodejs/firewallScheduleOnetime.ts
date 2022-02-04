@@ -72,6 +72,10 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
      */
     public readonly expirationDays!: pulumi.Output<number>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Onetime schedule name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -93,16 +97,17 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallScheduleOnetimeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallScheduleOnetimeArgs | FirewallScheduleOnetimeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallScheduleOnetimeState | undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["end"] = state ? state.end : undefined;
-            inputs["expirationDays"] = state ? state.expirationDays : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["start"] = state ? state.start : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["end"] = state ? state.end : undefined;
+            resourceInputs["expirationDays"] = state ? state.expirationDays : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["start"] = state ? state.start : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallScheduleOnetimeArgs | undefined;
             if ((!args || args.end === undefined) && !opts.urn) {
@@ -111,17 +116,16 @@ export class FirewallScheduleOnetime extends pulumi.CustomResource {
             if ((!args || args.start === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'start'");
             }
-            inputs["color"] = args ? args.color : undefined;
-            inputs["end"] = args ? args.end : undefined;
-            inputs["expirationDays"] = args ? args.expirationDays : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["start"] = args ? args.start : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["end"] = args ? args.end : undefined;
+            resourceInputs["expirationDays"] = args ? args.expirationDays : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["start"] = args ? args.start : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallScheduleOnetime.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallScheduleOnetime.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -141,6 +145,10 @@ export interface FirewallScheduleOnetimeState {
      * Write an event log message this many days before the schedule expires.
      */
     expirationDays?: pulumi.Input<number>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Onetime schedule name.
      */
@@ -171,6 +179,10 @@ export interface FirewallScheduleOnetimeArgs {
      * Write an event log message this many days before the schedule expires.
      */
     expirationDays?: pulumi.Input<number>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Onetime schedule name.
      */

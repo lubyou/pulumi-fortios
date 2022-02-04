@@ -13,9 +13,7 @@ export function getFirewallProfileProtocolOptions(args: GetFirewallProfileProtoc
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallProfileProtocolOptions:GetFirewallProfileProtocolOptions", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -117,4 +115,22 @@ export interface GetFirewallProfileProtocolOptionsResult {
      */
     readonly switchingProtocolsLog: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallProfileProtocolOptionsOutput(args: GetFirewallProfileProtocolOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallProfileProtocolOptionsResult> {
+    return pulumi.output(args).apply(a => getFirewallProfileProtocolOptions(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallProfileProtocolOptions.
+ */
+export interface GetFirewallProfileProtocolOptionsOutputArgs {
+    /**
+     * Specify the name of the desired firewall profileprotocoloptions.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

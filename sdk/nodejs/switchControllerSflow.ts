@@ -79,26 +79,24 @@ export class SwitchControllerSflow extends pulumi.CustomResource {
      */
     constructor(name: string, args: SwitchControllerSflowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSflowArgs | SwitchControllerSflowState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSflowState | undefined;
-            inputs["collectorIp"] = state ? state.collectorIp : undefined;
-            inputs["collectorPort"] = state ? state.collectorPort : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
+            resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSflowArgs | undefined;
             if ((!args || args.collectorIp === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'collectorIp'");
             }
-            inputs["collectorIp"] = args ? args.collectorIp : undefined;
-            inputs["collectorPort"] = args ? args.collectorPort : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
+            resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSflow.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSflow.__pulumiType, name, resourceInputs, opts);
     }
 }
 

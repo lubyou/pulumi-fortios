@@ -79,6 +79,18 @@ export class SystemClusterSync extends pulumi.CustomResource {
      */
     public readonly hbLostThreshold!: pulumi.Output<number>;
     /**
+     * IKE heartbeat interval (1 - 60 secs).
+     */
+    public readonly ikeHeartbeatInterval!: pulumi.Output<number>;
+    /**
+     * Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+     */
+    public readonly ikeMonitor!: pulumi.Output<string>;
+    /**
+     * IKE HA monitor interval (10 - 300 secs).
+     */
+    public readonly ikeMonitorInterval!: pulumi.Output<number>;
+    /**
      * Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
      */
     public readonly ipsecTunnelSync!: pulumi.Output<string>;
@@ -90,6 +102,10 @@ export class SystemClusterSync extends pulumi.CustomResource {
      * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
      */
     public readonly peervd!: pulumi.Output<string>;
+    /**
+     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+     */
+    public readonly secondaryAddIpsecRoutes!: pulumi.Output<string>;
     /**
      * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
      */
@@ -120,41 +136,47 @@ export class SystemClusterSync extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemClusterSyncArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemClusterSyncArgs | SystemClusterSyncState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemClusterSyncState | undefined;
-            inputs["downIntfsBeforeSessSyncs"] = state ? state.downIntfsBeforeSessSyncs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["hbInterval"] = state ? state.hbInterval : undefined;
-            inputs["hbLostThreshold"] = state ? state.hbLostThreshold : undefined;
-            inputs["ipsecTunnelSync"] = state ? state.ipsecTunnelSync : undefined;
-            inputs["peerip"] = state ? state.peerip : undefined;
-            inputs["peervd"] = state ? state.peervd : undefined;
-            inputs["sessionSyncFilter"] = state ? state.sessionSyncFilter : undefined;
-            inputs["slaveAddIkeRoutes"] = state ? state.slaveAddIkeRoutes : undefined;
-            inputs["syncId"] = state ? state.syncId : undefined;
-            inputs["syncvds"] = state ? state.syncvds : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["downIntfsBeforeSessSyncs"] = state ? state.downIntfsBeforeSessSyncs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["hbInterval"] = state ? state.hbInterval : undefined;
+            resourceInputs["hbLostThreshold"] = state ? state.hbLostThreshold : undefined;
+            resourceInputs["ikeHeartbeatInterval"] = state ? state.ikeHeartbeatInterval : undefined;
+            resourceInputs["ikeMonitor"] = state ? state.ikeMonitor : undefined;
+            resourceInputs["ikeMonitorInterval"] = state ? state.ikeMonitorInterval : undefined;
+            resourceInputs["ipsecTunnelSync"] = state ? state.ipsecTunnelSync : undefined;
+            resourceInputs["peerip"] = state ? state.peerip : undefined;
+            resourceInputs["peervd"] = state ? state.peervd : undefined;
+            resourceInputs["secondaryAddIpsecRoutes"] = state ? state.secondaryAddIpsecRoutes : undefined;
+            resourceInputs["sessionSyncFilter"] = state ? state.sessionSyncFilter : undefined;
+            resourceInputs["slaveAddIkeRoutes"] = state ? state.slaveAddIkeRoutes : undefined;
+            resourceInputs["syncId"] = state ? state.syncId : undefined;
+            resourceInputs["syncvds"] = state ? state.syncvds : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemClusterSyncArgs | undefined;
-            inputs["downIntfsBeforeSessSyncs"] = args ? args.downIntfsBeforeSessSyncs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["hbInterval"] = args ? args.hbInterval : undefined;
-            inputs["hbLostThreshold"] = args ? args.hbLostThreshold : undefined;
-            inputs["ipsecTunnelSync"] = args ? args.ipsecTunnelSync : undefined;
-            inputs["peerip"] = args ? args.peerip : undefined;
-            inputs["peervd"] = args ? args.peervd : undefined;
-            inputs["sessionSyncFilter"] = args ? args.sessionSyncFilter : undefined;
-            inputs["slaveAddIkeRoutes"] = args ? args.slaveAddIkeRoutes : undefined;
-            inputs["syncId"] = args ? args.syncId : undefined;
-            inputs["syncvds"] = args ? args.syncvds : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["downIntfsBeforeSessSyncs"] = args ? args.downIntfsBeforeSessSyncs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["hbInterval"] = args ? args.hbInterval : undefined;
+            resourceInputs["hbLostThreshold"] = args ? args.hbLostThreshold : undefined;
+            resourceInputs["ikeHeartbeatInterval"] = args ? args.ikeHeartbeatInterval : undefined;
+            resourceInputs["ikeMonitor"] = args ? args.ikeMonitor : undefined;
+            resourceInputs["ikeMonitorInterval"] = args ? args.ikeMonitorInterval : undefined;
+            resourceInputs["ipsecTunnelSync"] = args ? args.ipsecTunnelSync : undefined;
+            resourceInputs["peerip"] = args ? args.peerip : undefined;
+            resourceInputs["peervd"] = args ? args.peervd : undefined;
+            resourceInputs["secondaryAddIpsecRoutes"] = args ? args.secondaryAddIpsecRoutes : undefined;
+            resourceInputs["sessionSyncFilter"] = args ? args.sessionSyncFilter : undefined;
+            resourceInputs["slaveAddIkeRoutes"] = args ? args.slaveAddIkeRoutes : undefined;
+            resourceInputs["syncId"] = args ? args.syncId : undefined;
+            resourceInputs["syncvds"] = args ? args.syncvds : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemClusterSync.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemClusterSync.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -179,6 +201,18 @@ export interface SystemClusterSyncState {
      */
     hbLostThreshold?: pulumi.Input<number>;
     /**
+     * IKE heartbeat interval (1 - 60 secs).
+     */
+    ikeHeartbeatInterval?: pulumi.Input<number>;
+    /**
+     * Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+     */
+    ikeMonitor?: pulumi.Input<string>;
+    /**
+     * IKE HA monitor interval (10 - 300 secs).
+     */
+    ikeMonitorInterval?: pulumi.Input<number>;
+    /**
      * Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
      */
     ipsecTunnelSync?: pulumi.Input<string>;
@@ -190,6 +224,10 @@ export interface SystemClusterSyncState {
      * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
      */
     peervd?: pulumi.Input<string>;
+    /**
+     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+     */
+    secondaryAddIpsecRoutes?: pulumi.Input<string>;
     /**
      * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
      */
@@ -233,6 +271,18 @@ export interface SystemClusterSyncArgs {
      */
     hbLostThreshold?: pulumi.Input<number>;
     /**
+     * IKE heartbeat interval (1 - 60 secs).
+     */
+    ikeHeartbeatInterval?: pulumi.Input<number>;
+    /**
+     * Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+     */
+    ikeMonitor?: pulumi.Input<string>;
+    /**
+     * IKE HA monitor interval (10 - 300 secs).
+     */
+    ikeMonitorInterval?: pulumi.Input<number>;
+    /**
      * Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
      */
     ipsecTunnelSync?: pulumi.Input<string>;
@@ -244,6 +294,10 @@ export interface SystemClusterSyncArgs {
      * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
      */
     peervd?: pulumi.Input<string>;
+    /**
+     * Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+     */
+    secondaryAddIpsecRoutes?: pulumi.Input<string>;
     /**
      * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
      */

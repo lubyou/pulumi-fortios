@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FM.
+// Configure FM. Applies to FortiOS Version `<= 7.0.1`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -77,6 +77,7 @@ func NewSystemFm(ctx *pulumi.Context,
 		args = &SystemFmArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFm
 	err := ctx.RegisterResource("fortios:index/systemFm:SystemFm", name, args, &resource, opts...)
 	if err != nil {
@@ -191,7 +192,7 @@ type SystemFmInput interface {
 }
 
 func (*SystemFm) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFm)(nil))
+	return reflect.TypeOf((**SystemFm)(nil)).Elem()
 }
 
 func (i *SystemFm) ToSystemFmOutput() SystemFmOutput {
@@ -200,35 +201,6 @@ func (i *SystemFm) ToSystemFmOutput() SystemFmOutput {
 
 func (i *SystemFm) ToSystemFmOutputWithContext(ctx context.Context) SystemFmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFmOutput)
-}
-
-func (i *SystemFm) ToSystemFmPtrOutput() SystemFmPtrOutput {
-	return i.ToSystemFmPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFm) ToSystemFmPtrOutputWithContext(ctx context.Context) SystemFmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFmPtrOutput)
-}
-
-type SystemFmPtrInput interface {
-	pulumi.Input
-
-	ToSystemFmPtrOutput() SystemFmPtrOutput
-	ToSystemFmPtrOutputWithContext(ctx context.Context) SystemFmPtrOutput
-}
-
-type systemFmPtrType SystemFmArgs
-
-func (*systemFmPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFm)(nil))
-}
-
-func (i *systemFmPtrType) ToSystemFmPtrOutput() SystemFmPtrOutput {
-	return i.ToSystemFmPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFmPtrType) ToSystemFmPtrOutputWithContext(ctx context.Context) SystemFmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFmPtrOutput)
 }
 
 // SystemFmArrayInput is an input type that accepts SystemFmArray and SystemFmArrayOutput values.
@@ -245,7 +217,7 @@ type SystemFmArrayInput interface {
 type SystemFmArray []SystemFmInput
 
 func (SystemFmArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFm)(nil))
+	return reflect.TypeOf((*[]*SystemFm)(nil)).Elem()
 }
 
 func (i SystemFmArray) ToSystemFmArrayOutput() SystemFmArrayOutput {
@@ -270,7 +242,7 @@ type SystemFmMapInput interface {
 type SystemFmMap map[string]SystemFmInput
 
 func (SystemFmMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFm)(nil))
+	return reflect.TypeOf((*map[string]*SystemFm)(nil)).Elem()
 }
 
 func (i SystemFmMap) ToSystemFmMapOutput() SystemFmMapOutput {
@@ -281,12 +253,10 @@ func (i SystemFmMap) ToSystemFmMapOutputWithContext(ctx context.Context) SystemF
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFmMapOutput)
 }
 
-type SystemFmOutput struct {
-	*pulumi.OutputState
-}
+type SystemFmOutput struct{ *pulumi.OutputState }
 
 func (SystemFmOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFm)(nil))
+	return reflect.TypeOf((**SystemFm)(nil)).Elem()
 }
 
 func (o SystemFmOutput) ToSystemFmOutput() SystemFmOutput {
@@ -297,36 +267,10 @@ func (o SystemFmOutput) ToSystemFmOutputWithContext(ctx context.Context) SystemF
 	return o
 }
 
-func (o SystemFmOutput) ToSystemFmPtrOutput() SystemFmPtrOutput {
-	return o.ToSystemFmPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFmOutput) ToSystemFmPtrOutputWithContext(ctx context.Context) SystemFmPtrOutput {
-	return o.ApplyT(func(v SystemFm) *SystemFm {
-		return &v
-	}).(SystemFmPtrOutput)
-}
-
-type SystemFmPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFmPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFm)(nil))
-}
-
-func (o SystemFmPtrOutput) ToSystemFmPtrOutput() SystemFmPtrOutput {
-	return o
-}
-
-func (o SystemFmPtrOutput) ToSystemFmPtrOutputWithContext(ctx context.Context) SystemFmPtrOutput {
-	return o
-}
-
 type SystemFmArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFmArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFm)(nil))
+	return reflect.TypeOf((*[]*SystemFm)(nil)).Elem()
 }
 
 func (o SystemFmArrayOutput) ToSystemFmArrayOutput() SystemFmArrayOutput {
@@ -338,15 +282,15 @@ func (o SystemFmArrayOutput) ToSystemFmArrayOutputWithContext(ctx context.Contex
 }
 
 func (o SystemFmArrayOutput) Index(i pulumi.IntInput) SystemFmOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFm {
-		return vs[0].([]SystemFm)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFm {
+		return vs[0].([]*SystemFm)[vs[1].(int)]
 	}).(SystemFmOutput)
 }
 
 type SystemFmMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFmMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFm)(nil))
+	return reflect.TypeOf((*map[string]*SystemFm)(nil)).Elem()
 }
 
 func (o SystemFmMapOutput) ToSystemFmMapOutput() SystemFmMapOutput {
@@ -358,14 +302,16 @@ func (o SystemFmMapOutput) ToSystemFmMapOutputWithContext(ctx context.Context) S
 }
 
 func (o SystemFmMapOutput) MapIndex(k pulumi.StringInput) SystemFmOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFm {
-		return vs[0].(map[string]SystemFm)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFm {
+		return vs[0].(map[string]*SystemFm)[vs[1].(string)]
 	}).(SystemFmOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFmInput)(nil)).Elem(), &SystemFm{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFmArrayInput)(nil)).Elem(), SystemFmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFmMapInput)(nil)).Elem(), SystemFmMap{})
 	pulumi.RegisterOutputType(SystemFmOutput{})
-	pulumi.RegisterOutputType(SystemFmPtrOutput{})
 	pulumi.RegisterOutputType(SystemFmArrayOutput{})
 	pulumi.RegisterOutputType(SystemFmMapOutput{})
 }

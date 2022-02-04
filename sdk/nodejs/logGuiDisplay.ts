@@ -84,25 +84,23 @@ export class LogGuiDisplay extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogGuiDisplayArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogGuiDisplayArgs | LogGuiDisplayState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogGuiDisplayState | undefined;
-            inputs["fortiviewUnscannedApps"] = state ? state.fortiviewUnscannedApps : undefined;
-            inputs["resolveApps"] = state ? state.resolveApps : undefined;
-            inputs["resolveHosts"] = state ? state.resolveHosts : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fortiviewUnscannedApps"] = state ? state.fortiviewUnscannedApps : undefined;
+            resourceInputs["resolveApps"] = state ? state.resolveApps : undefined;
+            resourceInputs["resolveHosts"] = state ? state.resolveHosts : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogGuiDisplayArgs | undefined;
-            inputs["fortiviewUnscannedApps"] = args ? args.fortiviewUnscannedApps : undefined;
-            inputs["resolveApps"] = args ? args.resolveApps : undefined;
-            inputs["resolveHosts"] = args ? args.resolveHosts : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fortiviewUnscannedApps"] = args ? args.fortiviewUnscannedApps : undefined;
+            resourceInputs["resolveApps"] = args ? args.resolveApps : undefined;
+            resourceInputs["resolveHosts"] = args ? args.resolveHosts : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogGuiDisplay.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogGuiDisplay.__pulumiType, name, resourceInputs, opts);
     }
 }
 

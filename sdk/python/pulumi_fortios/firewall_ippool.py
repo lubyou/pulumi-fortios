@@ -15,6 +15,7 @@ class FirewallIppoolArgs:
     def __init__(__self__, *,
                  endip: pulumi.Input[str],
                  startip: pulumi.Input[str],
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_intf: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  associated_interface: Optional[pulumi.Input[str]] = None,
@@ -22,6 +23,7 @@ class FirewallIppoolArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  endport: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
@@ -35,6 +37,7 @@ class FirewallIppoolArgs:
         The set of arguments for constructing a FirewallIppool resource.
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[str] startip: First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
@@ -42,6 +45,7 @@ class FirewallIppoolArgs:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
         :param pulumi.Input[str] name: IP pool name.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -54,6 +58,8 @@ class FirewallIppoolArgs:
         """
         pulumi.set(__self__, "endip", endip)
         pulumi.set(__self__, "startip", startip)
+        if add_nat64_route is not None:
+            pulumi.set(__self__, "add_nat64_route", add_nat64_route)
         if arp_intf is not None:
             pulumi.set(__self__, "arp_intf", arp_intf)
         if arp_reply is not None:
@@ -68,6 +74,8 @@ class FirewallIppoolArgs:
             pulumi.set(__self__, "endport", endport)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if num_blocks_per_user is not None:
             pulumi.set(__self__, "num_blocks_per_user", num_blocks_per_user)
         if pba_timeout is not None:
@@ -110,6 +118,18 @@ class FirewallIppoolArgs:
     @startip.setter
     def startip(self, value: pulumi.Input[str]):
         pulumi.set(self, "startip", value)
+
+    @property
+    @pulumi.getter(name="addNat64Route")
+    def add_nat64_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat64_route")
+
+    @add_nat64_route.setter
+    def add_nat64_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "add_nat64_route", value)
 
     @property
     @pulumi.getter(name="arpIntf")
@@ -194,6 +214,18 @@ class FirewallIppoolArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
 
     @property
     @pulumi.getter(name="numBlocksPerUser")
@@ -307,6 +339,7 @@ class FirewallIppoolArgs:
 @pulumi.input_type
 class _FirewallIppoolState:
     def __init__(__self__, *,
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_intf: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  associated_interface: Optional[pulumi.Input[str]] = None,
@@ -315,6 +348,7 @@ class _FirewallIppoolState:
                  endip: Optional[pulumi.Input[str]] = None,
                  endport: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
@@ -327,6 +361,7 @@ class _FirewallIppoolState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallIppool resources.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
@@ -335,6 +370,7 @@ class _FirewallIppoolState:
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
         :param pulumi.Input[str] name: IP pool name.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -346,6 +382,8 @@ class _FirewallIppoolState:
         :param pulumi.Input[str] type: IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if add_nat64_route is not None:
+            pulumi.set(__self__, "add_nat64_route", add_nat64_route)
         if arp_intf is not None:
             pulumi.set(__self__, "arp_intf", arp_intf)
         if arp_reply is not None:
@@ -362,6 +400,8 @@ class _FirewallIppoolState:
             pulumi.set(__self__, "endport", endport)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if num_blocks_per_user is not None:
             pulumi.set(__self__, "num_blocks_per_user", num_blocks_per_user)
         if pba_timeout is not None:
@@ -382,6 +422,18 @@ class _FirewallIppoolState:
             pulumi.set(__self__, "type", type)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="addNat64Route")
+    def add_nat64_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat64_route")
+
+    @add_nat64_route.setter
+    def add_nat64_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "add_nat64_route", value)
 
     @property
     @pulumi.getter(name="arpIntf")
@@ -478,6 +530,18 @@ class _FirewallIppoolState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
 
     @property
     @pulumi.getter(name="numBlocksPerUser")
@@ -605,6 +669,7 @@ class FirewallIppool(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_intf: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  associated_interface: Optional[pulumi.Input[str]] = None,
@@ -613,6 +678,7 @@ class FirewallIppool(pulumi.CustomResource):
                  endip: Optional[pulumi.Input[str]] = None,
                  endport: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
@@ -658,6 +724,7 @@ class FirewallIppool(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
@@ -666,6 +733,7 @@ class FirewallIppool(pulumi.CustomResource):
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
         :param pulumi.Input[str] name: IP pool name.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -730,6 +798,7 @@ class FirewallIppool(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_intf: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  associated_interface: Optional[pulumi.Input[str]] = None,
@@ -738,6 +807,7 @@ class FirewallIppool(pulumi.CustomResource):
                  endip: Optional[pulumi.Input[str]] = None,
                  endport: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  num_blocks_per_user: Optional[pulumi.Input[int]] = None,
                  pba_timeout: Optional[pulumi.Input[int]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
@@ -755,11 +825,14 @@ class FirewallIppool(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallIppoolArgs.__new__(FirewallIppoolArgs)
 
+            __props__.__dict__["add_nat64_route"] = add_nat64_route
             __props__.__dict__["arp_intf"] = arp_intf
             __props__.__dict__["arp_reply"] = arp_reply
             __props__.__dict__["associated_interface"] = associated_interface
@@ -770,6 +843,7 @@ class FirewallIppool(pulumi.CustomResource):
             __props__.__dict__["endip"] = endip
             __props__.__dict__["endport"] = endport
             __props__.__dict__["name"] = name
+            __props__.__dict__["nat64"] = nat64
             __props__.__dict__["num_blocks_per_user"] = num_blocks_per_user
             __props__.__dict__["pba_timeout"] = pba_timeout
             __props__.__dict__["permit_any_host"] = permit_any_host
@@ -792,6 +866,7 @@ class FirewallIppool(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            add_nat64_route: Optional[pulumi.Input[str]] = None,
             arp_intf: Optional[pulumi.Input[str]] = None,
             arp_reply: Optional[pulumi.Input[str]] = None,
             associated_interface: Optional[pulumi.Input[str]] = None,
@@ -800,6 +875,7 @@ class FirewallIppool(pulumi.CustomResource):
             endip: Optional[pulumi.Input[str]] = None,
             endport: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nat64: Optional[pulumi.Input[str]] = None,
             num_blocks_per_user: Optional[pulumi.Input[int]] = None,
             pba_timeout: Optional[pulumi.Input[int]] = None,
             permit_any_host: Optional[pulumi.Input[str]] = None,
@@ -817,6 +893,7 @@ class FirewallIppool(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_intf: Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
         :param pulumi.Input[str] arp_reply: Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] associated_interface: Associated interface name.
@@ -825,6 +902,7 @@ class FirewallIppool(pulumi.CustomResource):
         :param pulumi.Input[str] endip: Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
         :param pulumi.Input[int] endport: Final port number (inclusive) in the range for the address pool (Default: 65533).
         :param pulumi.Input[str] name: IP pool name.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] num_blocks_per_user: Number of addresses blocks that can be used by a user (1 to 128, default = 8).
         :param pulumi.Input[int] pba_timeout: Port block allocation timeout (seconds).
         :param pulumi.Input[str] permit_any_host: Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -840,6 +918,7 @@ class FirewallIppool(pulumi.CustomResource):
 
         __props__ = _FirewallIppoolState.__new__(_FirewallIppoolState)
 
+        __props__.__dict__["add_nat64_route"] = add_nat64_route
         __props__.__dict__["arp_intf"] = arp_intf
         __props__.__dict__["arp_reply"] = arp_reply
         __props__.__dict__["associated_interface"] = associated_interface
@@ -848,6 +927,7 @@ class FirewallIppool(pulumi.CustomResource):
         __props__.__dict__["endip"] = endip
         __props__.__dict__["endport"] = endport
         __props__.__dict__["name"] = name
+        __props__.__dict__["nat64"] = nat64
         __props__.__dict__["num_blocks_per_user"] = num_blocks_per_user
         __props__.__dict__["pba_timeout"] = pba_timeout
         __props__.__dict__["permit_any_host"] = permit_any_host
@@ -859,6 +939,14 @@ class FirewallIppool(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallIppool(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addNat64Route")
+    def add_nat64_route(self) -> pulumi.Output[str]:
+        """
+        Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat64_route")
 
     @property
     @pulumi.getter(name="arpIntf")
@@ -923,6 +1011,14 @@ class FirewallIppool(pulumi.CustomResource):
         IP pool name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT64. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat64")
 
     @property
     @pulumi.getter(name="numBlocksPerUser")

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewSystemObjectTagging(ctx *pulumi.Context,
 		args = &SystemObjectTaggingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemObjectTagging
 	err := ctx.RegisterResource("fortios:index/systemObjectTagging:SystemObjectTagging", name, args, &resource, opts...)
 	if err != nil {
@@ -201,7 +202,7 @@ type SystemObjectTaggingInput interface {
 }
 
 func (*SystemObjectTagging) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemObjectTagging)(nil))
+	return reflect.TypeOf((**SystemObjectTagging)(nil)).Elem()
 }
 
 func (i *SystemObjectTagging) ToSystemObjectTaggingOutput() SystemObjectTaggingOutput {
@@ -210,35 +211,6 @@ func (i *SystemObjectTagging) ToSystemObjectTaggingOutput() SystemObjectTaggingO
 
 func (i *SystemObjectTagging) ToSystemObjectTaggingOutputWithContext(ctx context.Context) SystemObjectTaggingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingOutput)
-}
-
-func (i *SystemObjectTagging) ToSystemObjectTaggingPtrOutput() SystemObjectTaggingPtrOutput {
-	return i.ToSystemObjectTaggingPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemObjectTagging) ToSystemObjectTaggingPtrOutputWithContext(ctx context.Context) SystemObjectTaggingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingPtrOutput)
-}
-
-type SystemObjectTaggingPtrInput interface {
-	pulumi.Input
-
-	ToSystemObjectTaggingPtrOutput() SystemObjectTaggingPtrOutput
-	ToSystemObjectTaggingPtrOutputWithContext(ctx context.Context) SystemObjectTaggingPtrOutput
-}
-
-type systemObjectTaggingPtrType SystemObjectTaggingArgs
-
-func (*systemObjectTaggingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemObjectTagging)(nil))
-}
-
-func (i *systemObjectTaggingPtrType) ToSystemObjectTaggingPtrOutput() SystemObjectTaggingPtrOutput {
-	return i.ToSystemObjectTaggingPtrOutputWithContext(context.Background())
-}
-
-func (i *systemObjectTaggingPtrType) ToSystemObjectTaggingPtrOutputWithContext(ctx context.Context) SystemObjectTaggingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingPtrOutput)
 }
 
 // SystemObjectTaggingArrayInput is an input type that accepts SystemObjectTaggingArray and SystemObjectTaggingArrayOutput values.
@@ -255,7 +227,7 @@ type SystemObjectTaggingArrayInput interface {
 type SystemObjectTaggingArray []SystemObjectTaggingInput
 
 func (SystemObjectTaggingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemObjectTagging)(nil))
+	return reflect.TypeOf((*[]*SystemObjectTagging)(nil)).Elem()
 }
 
 func (i SystemObjectTaggingArray) ToSystemObjectTaggingArrayOutput() SystemObjectTaggingArrayOutput {
@@ -280,7 +252,7 @@ type SystemObjectTaggingMapInput interface {
 type SystemObjectTaggingMap map[string]SystemObjectTaggingInput
 
 func (SystemObjectTaggingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemObjectTagging)(nil))
+	return reflect.TypeOf((*map[string]*SystemObjectTagging)(nil)).Elem()
 }
 
 func (i SystemObjectTaggingMap) ToSystemObjectTaggingMapOutput() SystemObjectTaggingMapOutput {
@@ -291,12 +263,10 @@ func (i SystemObjectTaggingMap) ToSystemObjectTaggingMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemObjectTaggingMapOutput)
 }
 
-type SystemObjectTaggingOutput struct {
-	*pulumi.OutputState
-}
+type SystemObjectTaggingOutput struct{ *pulumi.OutputState }
 
 func (SystemObjectTaggingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemObjectTagging)(nil))
+	return reflect.TypeOf((**SystemObjectTagging)(nil)).Elem()
 }
 
 func (o SystemObjectTaggingOutput) ToSystemObjectTaggingOutput() SystemObjectTaggingOutput {
@@ -307,36 +277,10 @@ func (o SystemObjectTaggingOutput) ToSystemObjectTaggingOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemObjectTaggingOutput) ToSystemObjectTaggingPtrOutput() SystemObjectTaggingPtrOutput {
-	return o.ToSystemObjectTaggingPtrOutputWithContext(context.Background())
-}
-
-func (o SystemObjectTaggingOutput) ToSystemObjectTaggingPtrOutputWithContext(ctx context.Context) SystemObjectTaggingPtrOutput {
-	return o.ApplyT(func(v SystemObjectTagging) *SystemObjectTagging {
-		return &v
-	}).(SystemObjectTaggingPtrOutput)
-}
-
-type SystemObjectTaggingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemObjectTaggingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemObjectTagging)(nil))
-}
-
-func (o SystemObjectTaggingPtrOutput) ToSystemObjectTaggingPtrOutput() SystemObjectTaggingPtrOutput {
-	return o
-}
-
-func (o SystemObjectTaggingPtrOutput) ToSystemObjectTaggingPtrOutputWithContext(ctx context.Context) SystemObjectTaggingPtrOutput {
-	return o
-}
-
 type SystemObjectTaggingArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemObjectTaggingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemObjectTagging)(nil))
+	return reflect.TypeOf((*[]*SystemObjectTagging)(nil)).Elem()
 }
 
 func (o SystemObjectTaggingArrayOutput) ToSystemObjectTaggingArrayOutput() SystemObjectTaggingArrayOutput {
@@ -348,15 +292,15 @@ func (o SystemObjectTaggingArrayOutput) ToSystemObjectTaggingArrayOutputWithCont
 }
 
 func (o SystemObjectTaggingArrayOutput) Index(i pulumi.IntInput) SystemObjectTaggingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemObjectTagging {
-		return vs[0].([]SystemObjectTagging)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemObjectTagging {
+		return vs[0].([]*SystemObjectTagging)[vs[1].(int)]
 	}).(SystemObjectTaggingOutput)
 }
 
 type SystemObjectTaggingMapOutput struct{ *pulumi.OutputState }
 
 func (SystemObjectTaggingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemObjectTagging)(nil))
+	return reflect.TypeOf((*map[string]*SystemObjectTagging)(nil)).Elem()
 }
 
 func (o SystemObjectTaggingMapOutput) ToSystemObjectTaggingMapOutput() SystemObjectTaggingMapOutput {
@@ -368,14 +312,16 @@ func (o SystemObjectTaggingMapOutput) ToSystemObjectTaggingMapOutputWithContext(
 }
 
 func (o SystemObjectTaggingMapOutput) MapIndex(k pulumi.StringInput) SystemObjectTaggingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemObjectTagging {
-		return vs[0].(map[string]SystemObjectTagging)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemObjectTagging {
+		return vs[0].(map[string]*SystemObjectTagging)[vs[1].(string)]
 	}).(SystemObjectTaggingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemObjectTaggingInput)(nil)).Elem(), &SystemObjectTagging{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemObjectTaggingArrayInput)(nil)).Elem(), SystemObjectTaggingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemObjectTaggingMapInput)(nil)).Elem(), SystemObjectTaggingMap{})
 	pulumi.RegisterOutputType(SystemObjectTaggingOutput{})
-	pulumi.RegisterOutputType(SystemObjectTaggingPtrOutput{})
 	pulumi.RegisterOutputType(SystemObjectTaggingArrayOutput{})
 	pulumi.RegisterOutputType(SystemObjectTaggingMapOutput{})
 }

@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemSnmpSysinfoResult',
     'AwaitableGetSystemSnmpSysinfoResult',
     'get_system_snmp_sysinfo',
+    'get_system_snmp_sysinfo_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetSystemSnmpSysinfoResult:
     """
     A collection of values returned by GetSystemSnmpSysinfo.
     """
-    def __init__(__self__, contact_info=None, description=None, engine_id=None, id=None, location=None, status=None, trap_high_cpu_threshold=None, trap_log_full_threshold=None, trap_low_memory_threshold=None, vdomparam=None):
+    def __init__(__self__, contact_info=None, description=None, engine_id=None, engine_id_type=None, id=None, location=None, status=None, trap_high_cpu_threshold=None, trap_log_full_threshold=None, trap_low_memory_threshold=None, vdomparam=None):
         if contact_info and not isinstance(contact_info, str):
             raise TypeError("Expected argument 'contact_info' to be a str")
         pulumi.set(__self__, "contact_info", contact_info)
@@ -29,6 +30,9 @@ class GetSystemSnmpSysinfoResult:
         if engine_id and not isinstance(engine_id, str):
             raise TypeError("Expected argument 'engine_id' to be a str")
         pulumi.set(__self__, "engine_id", engine_id)
+        if engine_id_type and not isinstance(engine_id_type, str):
+            raise TypeError("Expected argument 'engine_id_type' to be a str")
+        pulumi.set(__self__, "engine_id_type", engine_id_type)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -74,6 +78,14 @@ class GetSystemSnmpSysinfoResult:
         Local SNMP engineID string (maximum 24 characters).
         """
         return pulumi.get(self, "engine_id")
+
+    @property
+    @pulumi.getter(name="engineIdType")
+    def engine_id_type(self) -> str:
+        """
+        Local SNMP engineID type (text/hex/mac).
+        """
+        return pulumi.get(self, "engine_id_type")
 
     @property
     @pulumi.getter
@@ -138,6 +150,7 @@ class AwaitableGetSystemSnmpSysinfoResult(GetSystemSnmpSysinfoResult):
             contact_info=self.contact_info,
             description=self.description,
             engine_id=self.engine_id,
+            engine_id_type=self.engine_id_type,
             id=self.id,
             location=self.location,
             status=self.status,
@@ -161,12 +174,15 @@ def get_system_snmp_sysinfo(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemSnmpSysinfo:GetSystemSnmpSysinfo', __args__, opts=opts, typ=GetSystemSnmpSysinfoResult).value
 
     return AwaitableGetSystemSnmpSysinfoResult(
         contact_info=__ret__.contact_info,
         description=__ret__.description,
         engine_id=__ret__.engine_id,
+        engine_id_type=__ret__.engine_id_type,
         id=__ret__.id,
         location=__ret__.location,
         status=__ret__.status,
@@ -174,3 +190,15 @@ def get_system_snmp_sysinfo(vdomparam: Optional[str] = None,
         trap_log_full_threshold=__ret__.trap_log_full_threshold,
         trap_low_memory_threshold=__ret__.trap_low_memory_threshold,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_snmp_sysinfo)
+def get_system_snmp_sysinfo_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemSnmpSysinfoResult]:
+    """
+    Use this data source to get information on fortios systemsnmp sysinfo
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

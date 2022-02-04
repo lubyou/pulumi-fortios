@@ -113,37 +113,35 @@ export class FortimanagerFirewallObjectAddress extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerFirewallObjectAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerFirewallObjectAddressArgs | FortimanagerFirewallObjectAddressState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerFirewallObjectAddressState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["allowRouting"] = state ? state.allowRouting : undefined;
-            inputs["associatedIntf"] = state ? state.associatedIntf : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["endIp"] = state ? state.endIp : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["startIp"] = state ? state.startIp : undefined;
-            inputs["subnet"] = state ? state.subnet : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["allowRouting"] = state ? state.allowRouting : undefined;
+            resourceInputs["associatedIntf"] = state ? state.associatedIntf : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["startIp"] = state ? state.startIp : undefined;
+            resourceInputs["subnet"] = state ? state.subnet : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as FortimanagerFirewallObjectAddressArgs | undefined;
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["allowRouting"] = args ? args.allowRouting : undefined;
-            inputs["associatedIntf"] = args ? args.associatedIntf : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["endIp"] = args ? args.endIp : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["startIp"] = args ? args.startIp : undefined;
-            inputs["subnet"] = args ? args.subnet : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["allowRouting"] = args ? args.allowRouting : undefined;
+            resourceInputs["associatedIntf"] = args ? args.associatedIntf : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["startIp"] = args ? args.startIp : undefined;
+            resourceInputs["subnet"] = args ? args.subnet : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerFirewallObjectAddress.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerFirewallObjectAddress.__pulumiType, name, resourceInputs, opts);
     }
 }
 

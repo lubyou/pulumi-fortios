@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `fortios_firewall_DoSpolicy`.
 func GetFirewallDosPolicyList(ctx *pulumi.Context, args *GetFirewallDosPolicyListArgs, opts ...pulumi.InvokeOption) (*GetFirewallDosPolicyListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallDosPolicyListResult
 	err := ctx.Invoke("fortios:index/getFirewallDosPolicyList:GetFirewallDosPolicyList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallDosPolicyListResult struct {
 	// A list of the `fortios_firewall_DoSpolicy`.
 	Policyidlists []int   `pulumi:"policyidlists"`
 	Vdomparam     *string `pulumi:"vdomparam"`
+}
+
+func GetFirewallDosPolicyListOutput(ctx *pulumi.Context, args GetFirewallDosPolicyListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallDosPolicyListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallDosPolicyListResult, error) {
+			args := v.(GetFirewallDosPolicyListArgs)
+			r, err := GetFirewallDosPolicyList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallDosPolicyListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallDosPolicyList.
+type GetFirewallDosPolicyListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallDosPolicyListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallDosPolicyListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallDosPolicyList.
+type GetFirewallDosPolicyListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallDosPolicyListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallDosPolicyListResult)(nil)).Elem()
+}
+
+func (o GetFirewallDosPolicyListResultOutput) ToGetFirewallDosPolicyListResultOutput() GetFirewallDosPolicyListResultOutput {
+	return o
+}
+
+func (o GetFirewallDosPolicyListResultOutput) ToGetFirewallDosPolicyListResultOutputWithContext(ctx context.Context) GetFirewallDosPolicyListResultOutput {
+	return o
+}
+
+func (o GetFirewallDosPolicyListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallDosPolicyListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallDosPolicyListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallDosPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `fortios_firewall_DoSpolicy`.
+func (o GetFirewallDosPolicyListResultOutput) Policyidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetFirewallDosPolicyListResult) []int { return v.Policyidlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetFirewallDosPolicyListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallDosPolicyListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallDosPolicyListResultOutput{})
 }

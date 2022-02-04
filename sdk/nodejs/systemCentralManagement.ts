@@ -183,63 +183,61 @@ export class SystemCentralManagement extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemCentralManagementArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemCentralManagementArgs | SystemCentralManagementState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemCentralManagementState | undefined;
-            inputs["allowMonitor"] = state ? state.allowMonitor : undefined;
-            inputs["allowPushConfiguration"] = state ? state.allowPushConfiguration : undefined;
-            inputs["allowPushFirmware"] = state ? state.allowPushFirmware : undefined;
-            inputs["allowRemoteFirmwareUpgrade"] = state ? state.allowRemoteFirmwareUpgrade : undefined;
-            inputs["caCert"] = state ? state.caCert : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["fmg"] = state ? state.fmg : undefined;
-            inputs["fmgSourceIp"] = state ? state.fmgSourceIp : undefined;
-            inputs["fmgSourceIp6"] = state ? state.fmgSourceIp6 : undefined;
-            inputs["fmgUpdatePort"] = state ? state.fmgUpdatePort : undefined;
-            inputs["includeDefaultServers"] = state ? state.includeDefaultServers : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["localCert"] = state ? state.localCert : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["scheduleConfigRestore"] = state ? state.scheduleConfigRestore : undefined;
-            inputs["scheduleScriptRestore"] = state ? state.scheduleScriptRestore : undefined;
-            inputs["serialNumber"] = state ? state.serialNumber : undefined;
-            inputs["serverLists"] = state ? state.serverLists : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["allowMonitor"] = state ? state.allowMonitor : undefined;
+            resourceInputs["allowPushConfiguration"] = state ? state.allowPushConfiguration : undefined;
+            resourceInputs["allowPushFirmware"] = state ? state.allowPushFirmware : undefined;
+            resourceInputs["allowRemoteFirmwareUpgrade"] = state ? state.allowRemoteFirmwareUpgrade : undefined;
+            resourceInputs["caCert"] = state ? state.caCert : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["fmg"] = state ? state.fmg : undefined;
+            resourceInputs["fmgSourceIp"] = state ? state.fmgSourceIp : undefined;
+            resourceInputs["fmgSourceIp6"] = state ? state.fmgSourceIp6 : undefined;
+            resourceInputs["fmgUpdatePort"] = state ? state.fmgUpdatePort : undefined;
+            resourceInputs["includeDefaultServers"] = state ? state.includeDefaultServers : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["localCert"] = state ? state.localCert : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["scheduleConfigRestore"] = state ? state.scheduleConfigRestore : undefined;
+            resourceInputs["scheduleScriptRestore"] = state ? state.scheduleScriptRestore : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["serverLists"] = state ? state.serverLists : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemCentralManagementArgs | undefined;
-            inputs["allowMonitor"] = args ? args.allowMonitor : undefined;
-            inputs["allowPushConfiguration"] = args ? args.allowPushConfiguration : undefined;
-            inputs["allowPushFirmware"] = args ? args.allowPushFirmware : undefined;
-            inputs["allowRemoteFirmwareUpgrade"] = args ? args.allowRemoteFirmwareUpgrade : undefined;
-            inputs["caCert"] = args ? args.caCert : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["fmg"] = args ? args.fmg : undefined;
-            inputs["fmgSourceIp"] = args ? args.fmgSourceIp : undefined;
-            inputs["fmgSourceIp6"] = args ? args.fmgSourceIp6 : undefined;
-            inputs["fmgUpdatePort"] = args ? args.fmgUpdatePort : undefined;
-            inputs["includeDefaultServers"] = args ? args.includeDefaultServers : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["localCert"] = args ? args.localCert : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["scheduleConfigRestore"] = args ? args.scheduleConfigRestore : undefined;
-            inputs["scheduleScriptRestore"] = args ? args.scheduleScriptRestore : undefined;
-            inputs["serialNumber"] = args ? args.serialNumber : undefined;
-            inputs["serverLists"] = args ? args.serverLists : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["allowMonitor"] = args ? args.allowMonitor : undefined;
+            resourceInputs["allowPushConfiguration"] = args ? args.allowPushConfiguration : undefined;
+            resourceInputs["allowPushFirmware"] = args ? args.allowPushFirmware : undefined;
+            resourceInputs["allowRemoteFirmwareUpgrade"] = args ? args.allowRemoteFirmwareUpgrade : undefined;
+            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["fmg"] = args ? args.fmg : undefined;
+            resourceInputs["fmgSourceIp"] = args ? args.fmgSourceIp : undefined;
+            resourceInputs["fmgSourceIp6"] = args ? args.fmgSourceIp6 : undefined;
+            resourceInputs["fmgUpdatePort"] = args ? args.fmgUpdatePort : undefined;
+            resourceInputs["includeDefaultServers"] = args ? args.includeDefaultServers : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["localCert"] = args ? args.localCert : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["scheduleConfigRestore"] = args ? args.scheduleConfigRestore : undefined;
+            resourceInputs["scheduleScriptRestore"] = args ? args.scheduleScriptRestore : undefined;
+            resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
+            resourceInputs["serverLists"] = args ? args.serverLists : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemCentralManagement.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemCentralManagement.__pulumiType, name, resourceInputs, opts);
     }
 }
 

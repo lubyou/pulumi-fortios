@@ -92,34 +92,32 @@ export class LogSyslogSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args: LogSyslogSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogSyslogSettingArgs | LogSyslogSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogSyslogSettingState | undefined;
-            inputs["facility"] = state ? state.facility : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["status"] = state ? state.status : undefined;
+            resourceInputs["facility"] = state ? state.facility : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
         } else {
             const args = argsOrState as LogSyslogSettingArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["facility"] = args ? args.facility : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["status"] = args ? args.status : undefined;
+            resourceInputs["facility"] = args ? args.facility : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogSyslogSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogSyslogSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

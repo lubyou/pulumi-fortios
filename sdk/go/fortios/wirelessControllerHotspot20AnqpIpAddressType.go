@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -65,6 +65,7 @@ func NewWirelessControllerHotspot20AnqpIpAddressType(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20AnqpIpAddressTypeArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20AnqpIpAddressType
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20AnqpIpAddressType:WirelessControllerHotspot20AnqpIpAddressType", name, args, &resource, opts...)
 	if err != nil {
@@ -147,7 +148,7 @@ type WirelessControllerHotspot20AnqpIpAddressTypeInput interface {
 }
 
 func (*WirelessControllerHotspot20AnqpIpAddressType) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20AnqpIpAddressType)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20AnqpIpAddressType)(nil)).Elem()
 }
 
 func (i *WirelessControllerHotspot20AnqpIpAddressType) ToWirelessControllerHotspot20AnqpIpAddressTypeOutput() WirelessControllerHotspot20AnqpIpAddressTypeOutput {
@@ -156,35 +157,6 @@ func (i *WirelessControllerHotspot20AnqpIpAddressType) ToWirelessControllerHotsp
 
 func (i *WirelessControllerHotspot20AnqpIpAddressType) ToWirelessControllerHotspot20AnqpIpAddressTypeOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpIpAddressTypeOutput)
-}
-
-func (i *WirelessControllerHotspot20AnqpIpAddressType) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutput() WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return i.ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerHotspot20AnqpIpAddressType) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpIpAddressTypePtrOutput)
-}
-
-type WirelessControllerHotspot20AnqpIpAddressTypePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutput() WirelessControllerHotspot20AnqpIpAddressTypePtrOutput
-	ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypePtrOutput
-}
-
-type wirelessControllerHotspot20AnqpIpAddressTypePtrType WirelessControllerHotspot20AnqpIpAddressTypeArgs
-
-func (*wirelessControllerHotspot20AnqpIpAddressTypePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20AnqpIpAddressType)(nil))
-}
-
-func (i *wirelessControllerHotspot20AnqpIpAddressTypePtrType) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutput() WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return i.ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerHotspot20AnqpIpAddressTypePtrType) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpIpAddressTypePtrOutput)
 }
 
 // WirelessControllerHotspot20AnqpIpAddressTypeArrayInput is an input type that accepts WirelessControllerHotspot20AnqpIpAddressTypeArray and WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput values.
@@ -201,7 +173,7 @@ type WirelessControllerHotspot20AnqpIpAddressTypeArrayInput interface {
 type WirelessControllerHotspot20AnqpIpAddressTypeArray []WirelessControllerHotspot20AnqpIpAddressTypeInput
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerHotspot20AnqpIpAddressType)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20AnqpIpAddressType)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20AnqpIpAddressTypeArray) ToWirelessControllerHotspot20AnqpIpAddressTypeArrayOutput() WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput {
@@ -226,7 +198,7 @@ type WirelessControllerHotspot20AnqpIpAddressTypeMapInput interface {
 type WirelessControllerHotspot20AnqpIpAddressTypeMap map[string]WirelessControllerHotspot20AnqpIpAddressTypeInput
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerHotspot20AnqpIpAddressType)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20AnqpIpAddressType)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20AnqpIpAddressTypeMap) ToWirelessControllerHotspot20AnqpIpAddressTypeMapOutput() WirelessControllerHotspot20AnqpIpAddressTypeMapOutput {
@@ -237,12 +209,10 @@ func (i WirelessControllerHotspot20AnqpIpAddressTypeMap) ToWirelessControllerHot
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20AnqpIpAddressTypeMapOutput)
 }
 
-type WirelessControllerHotspot20AnqpIpAddressTypeOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerHotspot20AnqpIpAddressTypeOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20AnqpIpAddressType)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20AnqpIpAddressType)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) ToWirelessControllerHotspot20AnqpIpAddressTypeOutput() WirelessControllerHotspot20AnqpIpAddressTypeOutput {
@@ -253,36 +223,10 @@ func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) ToWirelessController
 	return o
 }
 
-func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutput() WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return o.ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerHotspot20AnqpIpAddressTypeOutput) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return o.ApplyT(func(v WirelessControllerHotspot20AnqpIpAddressType) *WirelessControllerHotspot20AnqpIpAddressType {
-		return &v
-	}).(WirelessControllerHotspot20AnqpIpAddressTypePtrOutput)
-}
-
-type WirelessControllerHotspot20AnqpIpAddressTypePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerHotspot20AnqpIpAddressTypePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20AnqpIpAddressType)(nil))
-}
-
-func (o WirelessControllerHotspot20AnqpIpAddressTypePtrOutput) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutput() WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return o
-}
-
-func (o WirelessControllerHotspot20AnqpIpAddressTypePtrOutput) ToWirelessControllerHotspot20AnqpIpAddressTypePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20AnqpIpAddressTypePtrOutput {
-	return o
-}
-
 type WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerHotspot20AnqpIpAddressType)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20AnqpIpAddressType)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput) ToWirelessControllerHotspot20AnqpIpAddressTypeArrayOutput() WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput {
@@ -294,15 +238,15 @@ func (o WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput) ToWirelessContr
 }
 
 func (o WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20AnqpIpAddressTypeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerHotspot20AnqpIpAddressType {
-		return vs[0].([]WirelessControllerHotspot20AnqpIpAddressType)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20AnqpIpAddressType {
+		return vs[0].([]*WirelessControllerHotspot20AnqpIpAddressType)[vs[1].(int)]
 	}).(WirelessControllerHotspot20AnqpIpAddressTypeOutput)
 }
 
 type WirelessControllerHotspot20AnqpIpAddressTypeMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20AnqpIpAddressTypeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerHotspot20AnqpIpAddressType)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20AnqpIpAddressType)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20AnqpIpAddressTypeMapOutput) ToWirelessControllerHotspot20AnqpIpAddressTypeMapOutput() WirelessControllerHotspot20AnqpIpAddressTypeMapOutput {
@@ -314,14 +258,16 @@ func (o WirelessControllerHotspot20AnqpIpAddressTypeMapOutput) ToWirelessControl
 }
 
 func (o WirelessControllerHotspot20AnqpIpAddressTypeMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20AnqpIpAddressTypeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerHotspot20AnqpIpAddressType {
-		return vs[0].(map[string]WirelessControllerHotspot20AnqpIpAddressType)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20AnqpIpAddressType {
+		return vs[0].(map[string]*WirelessControllerHotspot20AnqpIpAddressType)[vs[1].(string)]
 	}).(WirelessControllerHotspot20AnqpIpAddressTypeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20AnqpIpAddressTypeInput)(nil)).Elem(), &WirelessControllerHotspot20AnqpIpAddressType{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20AnqpIpAddressTypeArrayInput)(nil)).Elem(), WirelessControllerHotspot20AnqpIpAddressTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20AnqpIpAddressTypeMapInput)(nil)).Elem(), WirelessControllerHotspot20AnqpIpAddressTypeMap{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpIpAddressTypeOutput{})
-	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpIpAddressTypePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpIpAddressTypeArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20AnqpIpAddressTypeMapOutput{})
 }

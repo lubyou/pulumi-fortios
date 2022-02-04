@@ -25,9 +25,7 @@ export function getRouterbgpNeighbor(args: GetRouterbgpNeighborArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterbgpNeighbor:GetRouterbgpNeighbor", {
         "ip": args.ip,
         "vdomparam": args.vdomparam,
@@ -148,6 +146,10 @@ export interface GetRouterbgpNeighborResult {
      * Enable/disable advertise route refresh capability to this neighbor.
      */
     readonly capabilityRouteRefresh: string;
+    /**
+     * IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+     */
+    readonly conditionalAdvertise6s: outputs.GetRouterbgpNeighborConditionalAdvertise6[];
     /**
      * Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
      */
@@ -421,4 +423,22 @@ export interface GetRouterbgpNeighborResult {
      * Neighbor weight.
      */
     readonly weight: number;
+}
+
+export function getRouterbgpNeighborOutput(args: GetRouterbgpNeighborOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterbgpNeighborResult> {
+    return pulumi.output(args).apply(a => getRouterbgpNeighbor(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterbgpNeighbor.
+ */
+export interface GetRouterbgpNeighborOutputArgs {
+    /**
+     * Specify the ip of the desired routerbgp neighbor.
+     */
+    ip: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

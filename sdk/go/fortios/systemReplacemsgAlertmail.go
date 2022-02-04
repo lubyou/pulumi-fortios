@@ -47,6 +47,7 @@ func NewSystemReplacemsgAlertmail(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgAlertmail
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgAlertmail:SystemReplacemsgAlertmail", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgAlertmailInput interface {
 }
 
 func (*SystemReplacemsgAlertmail) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAlertmail)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAlertmail)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgAlertmail) ToSystemReplacemsgAlertmailOutput() SystemReplacemsgAlertmailOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgAlertmail) ToSystemReplacemsgAlertmailOutput() SystemRe
 
 func (i *SystemReplacemsgAlertmail) ToSystemReplacemsgAlertmailOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailOutput)
-}
-
-func (i *SystemReplacemsgAlertmail) ToSystemReplacemsgAlertmailPtrOutput() SystemReplacemsgAlertmailPtrOutput {
-	return i.ToSystemReplacemsgAlertmailPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgAlertmail) ToSystemReplacemsgAlertmailPtrOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailPtrOutput)
-}
-
-type SystemReplacemsgAlertmailPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgAlertmailPtrOutput() SystemReplacemsgAlertmailPtrOutput
-	ToSystemReplacemsgAlertmailPtrOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailPtrOutput
-}
-
-type systemReplacemsgAlertmailPtrType SystemReplacemsgAlertmailArgs
-
-func (*systemReplacemsgAlertmailPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAlertmail)(nil))
-}
-
-func (i *systemReplacemsgAlertmailPtrType) ToSystemReplacemsgAlertmailPtrOutput() SystemReplacemsgAlertmailPtrOutput {
-	return i.ToSystemReplacemsgAlertmailPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgAlertmailPtrType) ToSystemReplacemsgAlertmailPtrOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailPtrOutput)
 }
 
 // SystemReplacemsgAlertmailArrayInput is an input type that accepts SystemReplacemsgAlertmailArray and SystemReplacemsgAlertmailArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgAlertmailArrayInput interface {
 type SystemReplacemsgAlertmailArray []SystemReplacemsgAlertmailInput
 
 func (SystemReplacemsgAlertmailArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgAlertmail)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAlertmail)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAlertmailArray) ToSystemReplacemsgAlertmailArrayOutput() SystemReplacemsgAlertmailArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgAlertmailMapInput interface {
 type SystemReplacemsgAlertmailMap map[string]SystemReplacemsgAlertmailInput
 
 func (SystemReplacemsgAlertmailMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgAlertmail)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAlertmail)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAlertmailMap) ToSystemReplacemsgAlertmailMapOutput() SystemReplacemsgAlertmailMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgAlertmailMap) ToSystemReplacemsgAlertmailMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAlertmailMapOutput)
 }
 
-type SystemReplacemsgAlertmailOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgAlertmailOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAlertmailOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAlertmail)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAlertmail)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAlertmailOutput) ToSystemReplacemsgAlertmailOutput() SystemReplacemsgAlertmailOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgAlertmailOutput) ToSystemReplacemsgAlertmailOutputWithCo
 	return o
 }
 
-func (o SystemReplacemsgAlertmailOutput) ToSystemReplacemsgAlertmailPtrOutput() SystemReplacemsgAlertmailPtrOutput {
-	return o.ToSystemReplacemsgAlertmailPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgAlertmailOutput) ToSystemReplacemsgAlertmailPtrOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgAlertmail) *SystemReplacemsgAlertmail {
-		return &v
-	}).(SystemReplacemsgAlertmailPtrOutput)
-}
-
-type SystemReplacemsgAlertmailPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgAlertmailPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAlertmail)(nil))
-}
-
-func (o SystemReplacemsgAlertmailPtrOutput) ToSystemReplacemsgAlertmailPtrOutput() SystemReplacemsgAlertmailPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgAlertmailPtrOutput) ToSystemReplacemsgAlertmailPtrOutputWithContext(ctx context.Context) SystemReplacemsgAlertmailPtrOutput {
-	return o
-}
-
 type SystemReplacemsgAlertmailArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAlertmailArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgAlertmail)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAlertmail)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAlertmailArrayOutput) ToSystemReplacemsgAlertmailArrayOutput() SystemReplacemsgAlertmailArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgAlertmailArrayOutput) ToSystemReplacemsgAlertmailArrayOu
 }
 
 func (o SystemReplacemsgAlertmailArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAlertmailOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgAlertmail {
-		return vs[0].([]SystemReplacemsgAlertmail)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAlertmail {
+		return vs[0].([]*SystemReplacemsgAlertmail)[vs[1].(int)]
 	}).(SystemReplacemsgAlertmailOutput)
 }
 
 type SystemReplacemsgAlertmailMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAlertmailMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgAlertmail)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAlertmail)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAlertmailMapOutput) ToSystemReplacemsgAlertmailMapOutput() SystemReplacemsgAlertmailMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgAlertmailMapOutput) ToSystemReplacemsgAlertmailMapOutput
 }
 
 func (o SystemReplacemsgAlertmailMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAlertmailOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgAlertmail {
-		return vs[0].(map[string]SystemReplacemsgAlertmail)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgAlertmail {
+		return vs[0].(map[string]*SystemReplacemsgAlertmail)[vs[1].(string)]
 	}).(SystemReplacemsgAlertmailOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAlertmailInput)(nil)).Elem(), &SystemReplacemsgAlertmail{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAlertmailArrayInput)(nil)).Elem(), SystemReplacemsgAlertmailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAlertmailMapInput)(nil)).Elem(), SystemReplacemsgAlertmailMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgAlertmailOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgAlertmailPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAlertmailArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAlertmailMapOutput{})
 }

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemLldpNetworkPolicy`.
 func GetSystemLldpNetworkPolicyList(ctx *pulumi.Context, args *GetSystemLldpNetworkPolicyListArgs, opts ...pulumi.InvokeOption) (*GetSystemLldpNetworkPolicyListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemLldpNetworkPolicyListResult
 	err := ctx.Invoke("fortios:index/getSystemLldpNetworkPolicyList:GetSystemLldpNetworkPolicyList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemLldpNetworkPolicyListResult struct {
 	// A list of the `SystemLldpNetworkPolicy`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemLldpNetworkPolicyListOutput(ctx *pulumi.Context, args GetSystemLldpNetworkPolicyListOutputArgs, opts ...pulumi.InvokeOption) GetSystemLldpNetworkPolicyListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemLldpNetworkPolicyListResult, error) {
+			args := v.(GetSystemLldpNetworkPolicyListArgs)
+			r, err := GetSystemLldpNetworkPolicyList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemLldpNetworkPolicyListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemLldpNetworkPolicyList.
+type GetSystemLldpNetworkPolicyListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemLldpNetworkPolicyListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemLldpNetworkPolicyListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemLldpNetworkPolicyList.
+type GetSystemLldpNetworkPolicyListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemLldpNetworkPolicyListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemLldpNetworkPolicyListResult)(nil)).Elem()
+}
+
+func (o GetSystemLldpNetworkPolicyListResultOutput) ToGetSystemLldpNetworkPolicyListResultOutput() GetSystemLldpNetworkPolicyListResultOutput {
+	return o
+}
+
+func (o GetSystemLldpNetworkPolicyListResultOutput) ToGetSystemLldpNetworkPolicyListResultOutputWithContext(ctx context.Context) GetSystemLldpNetworkPolicyListResultOutput {
+	return o
+}
+
+func (o GetSystemLldpNetworkPolicyListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemLldpNetworkPolicyListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemLldpNetworkPolicyListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemLldpNetworkPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemLldpNetworkPolicy`.
+func (o GetSystemLldpNetworkPolicyListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemLldpNetworkPolicyListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemLldpNetworkPolicyListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemLldpNetworkPolicyListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemLldpNetworkPolicyListResultOutput{})
 }

@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -31,7 +32,7 @@ import (
 // 			Description: pulumi.String("Created by Terraform Provider for FortiOS"),
 // 			Distance:    pulumi.Int(5),
 // 			Ip:          pulumi.String("0.0.0.0 0.0.0.0"),
-// 			Ipv6: &fortios.SystemInterfaceIpv6Args{
+// 			Ipv6: &SystemInterfaceIpv6Args{
 // 				NdMode: pulumi.String("basic"),
 // 			},
 // 			Mode:        pulumi.String("dhcp"),
@@ -75,6 +76,10 @@ type SystemInterface struct {
 	ApDiscover pulumi.StringOutput `pulumi:"apDiscover"`
 	// Enable/disable ARP forwarding. Valid values: `enable`, `disable`.
 	Arpforward pulumi.StringOutput `pulumi:"arpforward"`
+	// HTTPS server certificate.
+	AuthCert pulumi.StringOutput `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr pulumi.StringOutput `pulumi:"authPortalAddr"`
 	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
 	AuthType pulumi.StringOutput `pulumi:"authType"`
 	// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. Valid values: `enable`, `disable`.
@@ -127,6 +132,8 @@ type SystemInterface struct {
 	DeviceUserIdentification pulumi.StringOutput `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex pulumi.IntOutput `pulumi:"devindex"`
+	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+	DhcpClasslessRouteAddition pulumi.StringOutput `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier pulumi.StringOutput `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
@@ -137,12 +144,18 @@ type SystemInterface struct {
 	DhcpRelayInterfaceSelectMethod pulumi.StringOutput `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	// DHCP relay IP address.
 	DhcpRelayIp pulumi.StringOutput `pulumi:"dhcpRelayIp"`
+	// DHCP relay link selection.
+	DhcpRelayLinkSelection pulumi.StringOutput `pulumi:"dhcpRelayLinkSelection"`
+	// Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+	DhcpRelayRequestAllServer pulumi.StringOutput `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService pulumi.StringOutput `pulumi:"dhcpRelayService"`
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType pulumi.StringOutput `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime pulumi.IntOutput `pulumi:"dhcpRenewTime"`
+	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+	DhcpSnoopingServerLists SystemInterfaceDhcpSnoopingServerListArrayOutput `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 	DiscRetryTimeout pulumi.IntOutput `pulumi:"discRetryTimeout"`
 	// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -151,6 +164,8 @@ type SystemInterface struct {
 	Distance pulumi.IntOutput `pulumi:"distance"`
 	// Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
 	DnsServerOverride pulumi.StringOutput `pulumi:"dnsServerOverride"`
+	// DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+	DnsServerProtocol pulumi.StringOutput `pulumi:"dnsServerProtocol"`
 	// Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
 	DropFragment pulumi.StringOutput `pulumi:"dropFragment"`
 	// Enable/disable drop overlapped fragment packets. Valid values: `enable`, `disable`.
@@ -195,6 +210,8 @@ type SystemInterface struct {
 	FortilinkStacking pulumi.StringOutput `pulumi:"fortilinkStacking"`
 	// Transparent mode forward domain.
 	ForwardDomain pulumi.IntOutput `pulumi:"forwardDomain"`
+	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+	ForwardErrorCorrection pulumi.StringOutput `pulumi:"forwardErrorCorrection"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringOutput `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -253,7 +270,7 @@ type SystemInterface struct {
 	Macaddr pulumi.StringOutput `pulumi:"macaddr"`
 	// Available when FortiLink is enabled, used for managed devices through FortiLink interface. The structure of `managedDevice` block is documented below.
 	ManagedDevices SystemInterfaceManagedDeviceArrayOutput `pulumi:"managedDevices"`
-	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
 	ManagedSubnetworkSize pulumi.StringOutput `pulumi:"managedSubnetworkSize"`
 	// High Availability in-band management IP address of this interface.
 	ManagementIp pulumi.StringOutput `pulumi:"managementIp"`
@@ -261,6 +278,8 @@ type SystemInterface struct {
 	MeasuredDownstreamBandwidth pulumi.IntOutput `pulumi:"measuredDownstreamBandwidth"`
 	// Measured upstream bandwidth (kbps).
 	MeasuredUpstreamBandwidth pulumi.IntOutput `pulumi:"measuredUpstreamBandwidth"`
+	// Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+	Mediatype pulumi.StringOutput `pulumi:"mediatype"`
 	// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
 	Members SystemInterfaceMemberArrayOutput `pulumi:"members"`
 	// Minimum number of aggregated ports that must be up.
@@ -315,6 +334,8 @@ type SystemInterface struct {
 	PriorityOverride pulumi.StringOutput `pulumi:"priorityOverride"`
 	// Enable/disable proxy captive portal on this interface. Valid values: `enable`, `disable`.
 	ProxyCaptivePortal pulumi.StringOutput `pulumi:"proxyCaptivePortal"`
+	// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+	ReachableTime pulumi.IntOutput `pulumi:"reachableTime"`
 	// Redundant interface.
 	RedundantInterface pulumi.StringOutput `pulumi:"redundantInterface"`
 	// Remote IP address of tunnel.
@@ -333,7 +354,8 @@ type SystemInterface struct {
 	SampleRate pulumi.IntOutput `pulumi:"sampleRate"`
 	// Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
 	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
-	SecondaryIp           pulumi.StringOutput `pulumi:"secondaryIp"`
+	// Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+	SecondaryIp pulumi.StringOutput `pulumi:"secondaryIp"`
 	// Second IP address of interface. The structure of `secondaryip` block is documented below.
 	Secondaryips SystemInterfaceSecondaryipArrayOutput `pulumi:"secondaryips"`
 	// Name of security-exempt-list.
@@ -356,7 +378,7 @@ type SystemInterface struct {
 	SflowSampler pulumi.StringOutput `pulumi:"sflowSampler"`
 	// Permanent SNMP Index of the interface.
 	SnmpIndex pulumi.IntOutput `pulumi:"snmpIndex"`
-	// Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+	// Interface speed. The default setting and the options available depend on the interface hardware.
 	Speed pulumi.StringOutput `pulumi:"speed"`
 	// Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	SpilloverThreshold pulumi.IntOutput `pulumi:"spilloverThreshold"`
@@ -364,6 +386,10 @@ type SystemInterface struct {
 	SrcCheck pulumi.StringOutput `pulumi:"srcCheck"`
 	// Enable/disable VRRP. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Enable/disable STP. Valid values: `disable`, `enable`.
+	Stp pulumi.StringOutput `pulumi:"stp"`
+	// Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+	StpHaSecondary pulumi.StringOutput `pulumi:"stpHaSecondary"`
 	// Enable/disable STP forwarding. Valid values: `enable`, `disable`.
 	Stpforward pulumi.StringOutput `pulumi:"stpforward"`
 	// Configure STP forwarding mode. Valid values: `rpl-all-ext-id`, `rpl-bridge-ext-id`, `rpl-nothing`.
@@ -388,7 +414,9 @@ type SystemInterface struct {
 	SwitchControllerDhcpSnoopingOption82 pulumi.StringOutput `pulumi:"switchControllerDhcpSnoopingOption82"`
 	// Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnoopingVerifyMac pulumi.StringOutput `pulumi:"switchControllerDhcpSnoopingVerifyMac"`
-	// Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+	// Integrated FortiLink settings for managed FortiSwitch.
+	SwitchControllerDynamic pulumi.StringOutput `pulumi:"switchControllerDynamic"`
+	// Interface's purpose when assigning traffic (read only).
 	SwitchControllerFeature pulumi.StringOutput `pulumi:"switchControllerFeature"`
 	// Switch controller IGMP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerIgmpSnooping pulumi.StringOutput `pulumi:"switchControllerIgmpSnooping"`
@@ -410,10 +438,16 @@ type SystemInterface struct {
 	SwitchControllerSourceIp pulumi.StringOutput `pulumi:"switchControllerSourceIp"`
 	// Switch controller traffic policy for the VLAN.
 	SwitchControllerTrafficPolicy pulumi.StringOutput `pulumi:"switchControllerTrafficPolicy"`
+	// Define a system ID for the aggregate interface.
+	SystemId pulumi.StringOutput `pulumi:"systemId"`
+	// Method in which system ID is generated. Valid values: `auto`, `user`.
+	SystemIdType pulumi.StringOutput `pulumi:"systemIdType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings SystemInterfaceTaggingArrayOutput `pulumi:"taggings"`
 	// TCP maximum segment size. 0 means do not change segment size.
 	TcpMss pulumi.IntOutput `pulumi:"tcpMss"`
+	// Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+	Trunk pulumi.StringOutput `pulumi:"trunk"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
 	TrustIp1 pulumi.StringOutput `pulumi:"trustIp1"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
@@ -466,6 +500,7 @@ func NewSystemInterface(ctx *pulumi.Context,
 	if args.Vdom == nil {
 		return nil, errors.New("invalid value for required argument 'Vdom'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemInterface
 	err := ctx.RegisterResource("fortios:index/systemInterface:SystemInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -502,6 +537,10 @@ type systemInterfaceState struct {
 	ApDiscover *string `pulumi:"apDiscover"`
 	// Enable/disable ARP forwarding. Valid values: `enable`, `disable`.
 	Arpforward *string `pulumi:"arpforward"`
+	// HTTPS server certificate.
+	AuthCert *string `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr *string `pulumi:"authPortalAddr"`
 	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
 	AuthType *string `pulumi:"authType"`
 	// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. Valid values: `enable`, `disable`.
@@ -554,6 +593,8 @@ type systemInterfaceState struct {
 	DeviceUserIdentification *string `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex *int `pulumi:"devindex"`
+	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+	DhcpClasslessRouteAddition *string `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier *string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
@@ -564,12 +605,18 @@ type systemInterfaceState struct {
 	DhcpRelayInterfaceSelectMethod *string `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	// DHCP relay IP address.
 	DhcpRelayIp *string `pulumi:"dhcpRelayIp"`
+	// DHCP relay link selection.
+	DhcpRelayLinkSelection *string `pulumi:"dhcpRelayLinkSelection"`
+	// Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+	DhcpRelayRequestAllServer *string `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService *string `pulumi:"dhcpRelayService"`
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType *string `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime *int `pulumi:"dhcpRenewTime"`
+	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+	DhcpSnoopingServerLists []SystemInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 	DiscRetryTimeout *int `pulumi:"discRetryTimeout"`
 	// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -578,6 +625,8 @@ type systemInterfaceState struct {
 	Distance *int `pulumi:"distance"`
 	// Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
 	DnsServerOverride *string `pulumi:"dnsServerOverride"`
+	// DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+	DnsServerProtocol *string `pulumi:"dnsServerProtocol"`
 	// Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
 	DropFragment *string `pulumi:"dropFragment"`
 	// Enable/disable drop overlapped fragment packets. Valid values: `enable`, `disable`.
@@ -622,6 +671,8 @@ type systemInterfaceState struct {
 	FortilinkStacking *string `pulumi:"fortilinkStacking"`
 	// Transparent mode forward domain.
 	ForwardDomain *int `pulumi:"forwardDomain"`
+	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+	ForwardErrorCorrection *string `pulumi:"forwardErrorCorrection"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect *string `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -680,7 +731,7 @@ type systemInterfaceState struct {
 	Macaddr *string `pulumi:"macaddr"`
 	// Available when FortiLink is enabled, used for managed devices through FortiLink interface. The structure of `managedDevice` block is documented below.
 	ManagedDevices []SystemInterfaceManagedDevice `pulumi:"managedDevices"`
-	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
 	ManagedSubnetworkSize *string `pulumi:"managedSubnetworkSize"`
 	// High Availability in-band management IP address of this interface.
 	ManagementIp *string `pulumi:"managementIp"`
@@ -688,6 +739,8 @@ type systemInterfaceState struct {
 	MeasuredDownstreamBandwidth *int `pulumi:"measuredDownstreamBandwidth"`
 	// Measured upstream bandwidth (kbps).
 	MeasuredUpstreamBandwidth *int `pulumi:"measuredUpstreamBandwidth"`
+	// Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+	Mediatype *string `pulumi:"mediatype"`
 	// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
 	Members []SystemInterfaceMember `pulumi:"members"`
 	// Minimum number of aggregated ports that must be up.
@@ -742,6 +795,8 @@ type systemInterfaceState struct {
 	PriorityOverride *string `pulumi:"priorityOverride"`
 	// Enable/disable proxy captive portal on this interface. Valid values: `enable`, `disable`.
 	ProxyCaptivePortal *string `pulumi:"proxyCaptivePortal"`
+	// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+	ReachableTime *int `pulumi:"reachableTime"`
 	// Redundant interface.
 	RedundantInterface *string `pulumi:"redundantInterface"`
 	// Remote IP address of tunnel.
@@ -760,7 +815,8 @@ type systemInterfaceState struct {
 	SampleRate *int `pulumi:"sampleRate"`
 	// Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
 	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	SecondaryIp           *string `pulumi:"secondaryIp"`
+	// Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+	SecondaryIp *string `pulumi:"secondaryIp"`
 	// Second IP address of interface. The structure of `secondaryip` block is documented below.
 	Secondaryips []SystemInterfaceSecondaryip `pulumi:"secondaryips"`
 	// Name of security-exempt-list.
@@ -783,7 +839,7 @@ type systemInterfaceState struct {
 	SflowSampler *string `pulumi:"sflowSampler"`
 	// Permanent SNMP Index of the interface.
 	SnmpIndex *int `pulumi:"snmpIndex"`
-	// Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+	// Interface speed. The default setting and the options available depend on the interface hardware.
 	Speed *string `pulumi:"speed"`
 	// Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	SpilloverThreshold *int `pulumi:"spilloverThreshold"`
@@ -791,6 +847,10 @@ type systemInterfaceState struct {
 	SrcCheck *string `pulumi:"srcCheck"`
 	// Enable/disable VRRP. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable STP. Valid values: `disable`, `enable`.
+	Stp *string `pulumi:"stp"`
+	// Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+	StpHaSecondary *string `pulumi:"stpHaSecondary"`
 	// Enable/disable STP forwarding. Valid values: `enable`, `disable`.
 	Stpforward *string `pulumi:"stpforward"`
 	// Configure STP forwarding mode. Valid values: `rpl-all-ext-id`, `rpl-bridge-ext-id`, `rpl-nothing`.
@@ -815,7 +875,9 @@ type systemInterfaceState struct {
 	SwitchControllerDhcpSnoopingOption82 *string `pulumi:"switchControllerDhcpSnoopingOption82"`
 	// Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnoopingVerifyMac *string `pulumi:"switchControllerDhcpSnoopingVerifyMac"`
-	// Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+	// Integrated FortiLink settings for managed FortiSwitch.
+	SwitchControllerDynamic *string `pulumi:"switchControllerDynamic"`
+	// Interface's purpose when assigning traffic (read only).
 	SwitchControllerFeature *string `pulumi:"switchControllerFeature"`
 	// Switch controller IGMP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerIgmpSnooping *string `pulumi:"switchControllerIgmpSnooping"`
@@ -837,10 +899,16 @@ type systemInterfaceState struct {
 	SwitchControllerSourceIp *string `pulumi:"switchControllerSourceIp"`
 	// Switch controller traffic policy for the VLAN.
 	SwitchControllerTrafficPolicy *string `pulumi:"switchControllerTrafficPolicy"`
+	// Define a system ID for the aggregate interface.
+	SystemId *string `pulumi:"systemId"`
+	// Method in which system ID is generated. Valid values: `auto`, `user`.
+	SystemIdType *string `pulumi:"systemIdType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings []SystemInterfaceTagging `pulumi:"taggings"`
 	// TCP maximum segment size. 0 means do not change segment size.
 	TcpMss *int `pulumi:"tcpMss"`
+	// Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+	Trunk *string `pulumi:"trunk"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
 	TrustIp1 *string `pulumi:"trustIp1"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
@@ -898,6 +966,10 @@ type SystemInterfaceState struct {
 	ApDiscover pulumi.StringPtrInput
 	// Enable/disable ARP forwarding. Valid values: `enable`, `disable`.
 	Arpforward pulumi.StringPtrInput
+	// HTTPS server certificate.
+	AuthCert pulumi.StringPtrInput
+	// Address of captive portal.
+	AuthPortalAddr pulumi.StringPtrInput
 	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
 	AuthType pulumi.StringPtrInput
 	// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. Valid values: `enable`, `disable`.
@@ -950,6 +1022,8 @@ type SystemInterfaceState struct {
 	DeviceUserIdentification pulumi.StringPtrInput
 	// Device Index.
 	Devindex pulumi.IntPtrInput
+	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+	DhcpClasslessRouteAddition pulumi.StringPtrInput
 	// DHCP client identifier.
 	DhcpClientIdentifier pulumi.StringPtrInput
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
@@ -960,12 +1034,18 @@ type SystemInterfaceState struct {
 	DhcpRelayInterfaceSelectMethod pulumi.StringPtrInput
 	// DHCP relay IP address.
 	DhcpRelayIp pulumi.StringPtrInput
+	// DHCP relay link selection.
+	DhcpRelayLinkSelection pulumi.StringPtrInput
+	// Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+	DhcpRelayRequestAllServer pulumi.StringPtrInput
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService pulumi.StringPtrInput
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType pulumi.StringPtrInput
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime pulumi.IntPtrInput
+	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+	DhcpSnoopingServerLists SystemInterfaceDhcpSnoopingServerListArrayInput
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 	DiscRetryTimeout pulumi.IntPtrInput
 	// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -974,6 +1054,8 @@ type SystemInterfaceState struct {
 	Distance pulumi.IntPtrInput
 	// Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
 	DnsServerOverride pulumi.StringPtrInput
+	// DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+	DnsServerProtocol pulumi.StringPtrInput
 	// Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
 	DropFragment pulumi.StringPtrInput
 	// Enable/disable drop overlapped fragment packets. Valid values: `enable`, `disable`.
@@ -1018,6 +1100,8 @@ type SystemInterfaceState struct {
 	FortilinkStacking pulumi.StringPtrInput
 	// Transparent mode forward domain.
 	ForwardDomain pulumi.IntPtrInput
+	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+	ForwardErrorCorrection pulumi.StringPtrInput
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringPtrInput
 	// HA election priority for the PING server.
@@ -1076,7 +1160,7 @@ type SystemInterfaceState struct {
 	Macaddr pulumi.StringPtrInput
 	// Available when FortiLink is enabled, used for managed devices through FortiLink interface. The structure of `managedDevice` block is documented below.
 	ManagedDevices SystemInterfaceManagedDeviceArrayInput
-	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
 	ManagedSubnetworkSize pulumi.StringPtrInput
 	// High Availability in-band management IP address of this interface.
 	ManagementIp pulumi.StringPtrInput
@@ -1084,6 +1168,8 @@ type SystemInterfaceState struct {
 	MeasuredDownstreamBandwidth pulumi.IntPtrInput
 	// Measured upstream bandwidth (kbps).
 	MeasuredUpstreamBandwidth pulumi.IntPtrInput
+	// Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+	Mediatype pulumi.StringPtrInput
 	// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
 	Members SystemInterfaceMemberArrayInput
 	// Minimum number of aggregated ports that must be up.
@@ -1138,6 +1224,8 @@ type SystemInterfaceState struct {
 	PriorityOverride pulumi.StringPtrInput
 	// Enable/disable proxy captive portal on this interface. Valid values: `enable`, `disable`.
 	ProxyCaptivePortal pulumi.StringPtrInput
+	// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+	ReachableTime pulumi.IntPtrInput
 	// Redundant interface.
 	RedundantInterface pulumi.StringPtrInput
 	// Remote IP address of tunnel.
@@ -1156,7 +1244,8 @@ type SystemInterfaceState struct {
 	SampleRate pulumi.IntPtrInput
 	// Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
 	ScanBotnetConnections pulumi.StringPtrInput
-	SecondaryIp           pulumi.StringPtrInput
+	// Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+	SecondaryIp pulumi.StringPtrInput
 	// Second IP address of interface. The structure of `secondaryip` block is documented below.
 	Secondaryips SystemInterfaceSecondaryipArrayInput
 	// Name of security-exempt-list.
@@ -1179,7 +1268,7 @@ type SystemInterfaceState struct {
 	SflowSampler pulumi.StringPtrInput
 	// Permanent SNMP Index of the interface.
 	SnmpIndex pulumi.IntPtrInput
-	// Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+	// Interface speed. The default setting and the options available depend on the interface hardware.
 	Speed pulumi.StringPtrInput
 	// Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	SpilloverThreshold pulumi.IntPtrInput
@@ -1187,6 +1276,10 @@ type SystemInterfaceState struct {
 	SrcCheck pulumi.StringPtrInput
 	// Enable/disable VRRP. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Enable/disable STP. Valid values: `disable`, `enable`.
+	Stp pulumi.StringPtrInput
+	// Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+	StpHaSecondary pulumi.StringPtrInput
 	// Enable/disable STP forwarding. Valid values: `enable`, `disable`.
 	Stpforward pulumi.StringPtrInput
 	// Configure STP forwarding mode. Valid values: `rpl-all-ext-id`, `rpl-bridge-ext-id`, `rpl-nothing`.
@@ -1211,7 +1304,9 @@ type SystemInterfaceState struct {
 	SwitchControllerDhcpSnoopingOption82 pulumi.StringPtrInput
 	// Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnoopingVerifyMac pulumi.StringPtrInput
-	// Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+	// Integrated FortiLink settings for managed FortiSwitch.
+	SwitchControllerDynamic pulumi.StringPtrInput
+	// Interface's purpose when assigning traffic (read only).
 	SwitchControllerFeature pulumi.StringPtrInput
 	// Switch controller IGMP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerIgmpSnooping pulumi.StringPtrInput
@@ -1233,10 +1328,16 @@ type SystemInterfaceState struct {
 	SwitchControllerSourceIp pulumi.StringPtrInput
 	// Switch controller traffic policy for the VLAN.
 	SwitchControllerTrafficPolicy pulumi.StringPtrInput
+	// Define a system ID for the aggregate interface.
+	SystemId pulumi.StringPtrInput
+	// Method in which system ID is generated. Valid values: `auto`, `user`.
+	SystemIdType pulumi.StringPtrInput
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings SystemInterfaceTaggingArrayInput
 	// TCP maximum segment size. 0 means do not change segment size.
 	TcpMss pulumi.IntPtrInput
+	// Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+	Trunk pulumi.StringPtrInput
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
 	TrustIp1 pulumi.StringPtrInput
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
@@ -1298,6 +1399,10 @@ type systemInterfaceArgs struct {
 	ApDiscover *string `pulumi:"apDiscover"`
 	// Enable/disable ARP forwarding. Valid values: `enable`, `disable`.
 	Arpforward *string `pulumi:"arpforward"`
+	// HTTPS server certificate.
+	AuthCert *string `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr *string `pulumi:"authPortalAddr"`
 	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
 	AuthType *string `pulumi:"authType"`
 	// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. Valid values: `enable`, `disable`.
@@ -1350,6 +1455,8 @@ type systemInterfaceArgs struct {
 	DeviceUserIdentification *string `pulumi:"deviceUserIdentification"`
 	// Device Index.
 	Devindex *int `pulumi:"devindex"`
+	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+	DhcpClasslessRouteAddition *string `pulumi:"dhcpClasslessRouteAddition"`
 	// DHCP client identifier.
 	DhcpClientIdentifier *string `pulumi:"dhcpClientIdentifier"`
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
@@ -1360,12 +1467,18 @@ type systemInterfaceArgs struct {
 	DhcpRelayInterfaceSelectMethod *string `pulumi:"dhcpRelayInterfaceSelectMethod"`
 	// DHCP relay IP address.
 	DhcpRelayIp *string `pulumi:"dhcpRelayIp"`
+	// DHCP relay link selection.
+	DhcpRelayLinkSelection *string `pulumi:"dhcpRelayLinkSelection"`
+	// Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+	DhcpRelayRequestAllServer *string `pulumi:"dhcpRelayRequestAllServer"`
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService *string `pulumi:"dhcpRelayService"`
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType *string `pulumi:"dhcpRelayType"`
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime *int `pulumi:"dhcpRenewTime"`
+	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+	DhcpSnoopingServerLists []SystemInterfaceDhcpSnoopingServerList `pulumi:"dhcpSnoopingServerLists"`
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 	DiscRetryTimeout *int `pulumi:"discRetryTimeout"`
 	// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -1374,6 +1487,8 @@ type systemInterfaceArgs struct {
 	Distance *int `pulumi:"distance"`
 	// Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
 	DnsServerOverride *string `pulumi:"dnsServerOverride"`
+	// DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+	DnsServerProtocol *string `pulumi:"dnsServerProtocol"`
 	// Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
 	DropFragment *string `pulumi:"dropFragment"`
 	// Enable/disable drop overlapped fragment packets. Valid values: `enable`, `disable`.
@@ -1418,6 +1533,8 @@ type systemInterfaceArgs struct {
 	FortilinkStacking *string `pulumi:"fortilinkStacking"`
 	// Transparent mode forward domain.
 	ForwardDomain *int `pulumi:"forwardDomain"`
+	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+	ForwardErrorCorrection *string `pulumi:"forwardErrorCorrection"`
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect *string `pulumi:"gwdetect"`
 	// HA election priority for the PING server.
@@ -1476,7 +1593,7 @@ type systemInterfaceArgs struct {
 	Macaddr *string `pulumi:"macaddr"`
 	// Available when FortiLink is enabled, used for managed devices through FortiLink interface. The structure of `managedDevice` block is documented below.
 	ManagedDevices []SystemInterfaceManagedDevice `pulumi:"managedDevices"`
-	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
 	ManagedSubnetworkSize *string `pulumi:"managedSubnetworkSize"`
 	// High Availability in-band management IP address of this interface.
 	ManagementIp *string `pulumi:"managementIp"`
@@ -1484,6 +1601,8 @@ type systemInterfaceArgs struct {
 	MeasuredDownstreamBandwidth *int `pulumi:"measuredDownstreamBandwidth"`
 	// Measured upstream bandwidth (kbps).
 	MeasuredUpstreamBandwidth *int `pulumi:"measuredUpstreamBandwidth"`
+	// Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+	Mediatype *string `pulumi:"mediatype"`
 	// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
 	Members []SystemInterfaceMember `pulumi:"members"`
 	// Minimum number of aggregated ports that must be up.
@@ -1538,6 +1657,8 @@ type systemInterfaceArgs struct {
 	PriorityOverride *string `pulumi:"priorityOverride"`
 	// Enable/disable proxy captive portal on this interface. Valid values: `enable`, `disable`.
 	ProxyCaptivePortal *string `pulumi:"proxyCaptivePortal"`
+	// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+	ReachableTime *int `pulumi:"reachableTime"`
 	// Redundant interface.
 	RedundantInterface *string `pulumi:"redundantInterface"`
 	// Remote IP address of tunnel.
@@ -1556,7 +1677,8 @@ type systemInterfaceArgs struct {
 	SampleRate *int `pulumi:"sampleRate"`
 	// Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
 	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
-	SecondaryIp           *string `pulumi:"secondaryIp"`
+	// Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+	SecondaryIp *string `pulumi:"secondaryIp"`
 	// Second IP address of interface. The structure of `secondaryip` block is documented below.
 	Secondaryips []SystemInterfaceSecondaryip `pulumi:"secondaryips"`
 	// Name of security-exempt-list.
@@ -1579,7 +1701,7 @@ type systemInterfaceArgs struct {
 	SflowSampler *string `pulumi:"sflowSampler"`
 	// Permanent SNMP Index of the interface.
 	SnmpIndex *int `pulumi:"snmpIndex"`
-	// Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+	// Interface speed. The default setting and the options available depend on the interface hardware.
 	Speed *string `pulumi:"speed"`
 	// Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	SpilloverThreshold *int `pulumi:"spilloverThreshold"`
@@ -1587,6 +1709,10 @@ type systemInterfaceArgs struct {
 	SrcCheck *string `pulumi:"srcCheck"`
 	// Enable/disable VRRP. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Enable/disable STP. Valid values: `disable`, `enable`.
+	Stp *string `pulumi:"stp"`
+	// Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+	StpHaSecondary *string `pulumi:"stpHaSecondary"`
 	// Enable/disable STP forwarding. Valid values: `enable`, `disable`.
 	Stpforward *string `pulumi:"stpforward"`
 	// Configure STP forwarding mode. Valid values: `rpl-all-ext-id`, `rpl-bridge-ext-id`, `rpl-nothing`.
@@ -1611,7 +1737,9 @@ type systemInterfaceArgs struct {
 	SwitchControllerDhcpSnoopingOption82 *string `pulumi:"switchControllerDhcpSnoopingOption82"`
 	// Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnoopingVerifyMac *string `pulumi:"switchControllerDhcpSnoopingVerifyMac"`
-	// Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+	// Integrated FortiLink settings for managed FortiSwitch.
+	SwitchControllerDynamic *string `pulumi:"switchControllerDynamic"`
+	// Interface's purpose when assigning traffic (read only).
 	SwitchControllerFeature *string `pulumi:"switchControllerFeature"`
 	// Switch controller IGMP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerIgmpSnooping *string `pulumi:"switchControllerIgmpSnooping"`
@@ -1633,10 +1761,16 @@ type systemInterfaceArgs struct {
 	SwitchControllerSourceIp *string `pulumi:"switchControllerSourceIp"`
 	// Switch controller traffic policy for the VLAN.
 	SwitchControllerTrafficPolicy *string `pulumi:"switchControllerTrafficPolicy"`
+	// Define a system ID for the aggregate interface.
+	SystemId *string `pulumi:"systemId"`
+	// Method in which system ID is generated. Valid values: `auto`, `user`.
+	SystemIdType *string `pulumi:"systemIdType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings []SystemInterfaceTagging `pulumi:"taggings"`
 	// TCP maximum segment size. 0 means do not change segment size.
 	TcpMss *int `pulumi:"tcpMss"`
+	// Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+	Trunk *string `pulumi:"trunk"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
 	TrustIp1 *string `pulumi:"trustIp1"`
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
@@ -1695,6 +1829,10 @@ type SystemInterfaceArgs struct {
 	ApDiscover pulumi.StringPtrInput
 	// Enable/disable ARP forwarding. Valid values: `enable`, `disable`.
 	Arpforward pulumi.StringPtrInput
+	// HTTPS server certificate.
+	AuthCert pulumi.StringPtrInput
+	// Address of captive portal.
+	AuthPortalAddr pulumi.StringPtrInput
 	// PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
 	AuthType pulumi.StringPtrInput
 	// Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. Valid values: `enable`, `disable`.
@@ -1747,6 +1885,8 @@ type SystemInterfaceArgs struct {
 	DeviceUserIdentification pulumi.StringPtrInput
 	// Device Index.
 	Devindex pulumi.IntPtrInput
+	// Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+	DhcpClasslessRouteAddition pulumi.StringPtrInput
 	// DHCP client identifier.
 	DhcpClientIdentifier pulumi.StringPtrInput
 	// Enable/disable DHCP relay agent option. Valid values: `enable`, `disable`.
@@ -1757,12 +1897,18 @@ type SystemInterfaceArgs struct {
 	DhcpRelayInterfaceSelectMethod pulumi.StringPtrInput
 	// DHCP relay IP address.
 	DhcpRelayIp pulumi.StringPtrInput
+	// DHCP relay link selection.
+	DhcpRelayLinkSelection pulumi.StringPtrInput
+	// Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+	DhcpRelayRequestAllServer pulumi.StringPtrInput
 	// Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 	DhcpRelayService pulumi.StringPtrInput
 	// DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 	DhcpRelayType pulumi.StringPtrInput
 	// DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
 	DhcpRenewTime pulumi.IntPtrInput
+	// Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+	DhcpSnoopingServerLists SystemInterfaceDhcpSnoopingServerListArrayInput
 	// Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 	DiscRetryTimeout pulumi.IntPtrInput
 	// Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
@@ -1771,6 +1917,8 @@ type SystemInterfaceArgs struct {
 	Distance pulumi.IntPtrInput
 	// Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
 	DnsServerOverride pulumi.StringPtrInput
+	// DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+	DnsServerProtocol pulumi.StringPtrInput
 	// Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
 	DropFragment pulumi.StringPtrInput
 	// Enable/disable drop overlapped fragment packets. Valid values: `enable`, `disable`.
@@ -1815,6 +1963,8 @@ type SystemInterfaceArgs struct {
 	FortilinkStacking pulumi.StringPtrInput
 	// Transparent mode forward domain.
 	ForwardDomain pulumi.IntPtrInput
+	// Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+	ForwardErrorCorrection pulumi.StringPtrInput
 	// Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
 	Gwdetect pulumi.StringPtrInput
 	// HA election priority for the PING server.
@@ -1873,7 +2023,7 @@ type SystemInterfaceArgs struct {
 	Macaddr pulumi.StringPtrInput
 	// Available when FortiLink is enabled, used for managed devices through FortiLink interface. The structure of `managedDevice` block is documented below.
 	ManagedDevices SystemInterfaceManagedDeviceArrayInput
-	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+	// Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
 	ManagedSubnetworkSize pulumi.StringPtrInput
 	// High Availability in-band management IP address of this interface.
 	ManagementIp pulumi.StringPtrInput
@@ -1881,6 +2031,8 @@ type SystemInterfaceArgs struct {
 	MeasuredDownstreamBandwidth pulumi.IntPtrInput
 	// Measured upstream bandwidth (kbps).
 	MeasuredUpstreamBandwidth pulumi.IntPtrInput
+	// Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+	Mediatype pulumi.StringPtrInput
 	// Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
 	Members SystemInterfaceMemberArrayInput
 	// Minimum number of aggregated ports that must be up.
@@ -1935,6 +2087,8 @@ type SystemInterfaceArgs struct {
 	PriorityOverride pulumi.StringPtrInput
 	// Enable/disable proxy captive portal on this interface. Valid values: `enable`, `disable`.
 	ProxyCaptivePortal pulumi.StringPtrInput
+	// IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+	ReachableTime pulumi.IntPtrInput
 	// Redundant interface.
 	RedundantInterface pulumi.StringPtrInput
 	// Remote IP address of tunnel.
@@ -1953,7 +2107,8 @@ type SystemInterfaceArgs struct {
 	SampleRate pulumi.IntPtrInput
 	// Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
 	ScanBotnetConnections pulumi.StringPtrInput
-	SecondaryIp           pulumi.StringPtrInput
+	// Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+	SecondaryIp pulumi.StringPtrInput
 	// Second IP address of interface. The structure of `secondaryip` block is documented below.
 	Secondaryips SystemInterfaceSecondaryipArrayInput
 	// Name of security-exempt-list.
@@ -1976,7 +2131,7 @@ type SystemInterfaceArgs struct {
 	SflowSampler pulumi.StringPtrInput
 	// Permanent SNMP Index of the interface.
 	SnmpIndex pulumi.IntPtrInput
-	// Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+	// Interface speed. The default setting and the options available depend on the interface hardware.
 	Speed pulumi.StringPtrInput
 	// Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
 	SpilloverThreshold pulumi.IntPtrInput
@@ -1984,6 +2139,10 @@ type SystemInterfaceArgs struct {
 	SrcCheck pulumi.StringPtrInput
 	// Enable/disable VRRP. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Enable/disable STP. Valid values: `disable`, `enable`.
+	Stp pulumi.StringPtrInput
+	// Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+	StpHaSecondary pulumi.StringPtrInput
 	// Enable/disable STP forwarding. Valid values: `enable`, `disable`.
 	Stpforward pulumi.StringPtrInput
 	// Configure STP forwarding mode. Valid values: `rpl-all-ext-id`, `rpl-bridge-ext-id`, `rpl-nothing`.
@@ -2008,7 +2167,9 @@ type SystemInterfaceArgs struct {
 	SwitchControllerDhcpSnoopingOption82 pulumi.StringPtrInput
 	// Switch controller DHCP snooping verify MAC. Valid values: `enable`, `disable`.
 	SwitchControllerDhcpSnoopingVerifyMac pulumi.StringPtrInput
-	// Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+	// Integrated FortiLink settings for managed FortiSwitch.
+	SwitchControllerDynamic pulumi.StringPtrInput
+	// Interface's purpose when assigning traffic (read only).
 	SwitchControllerFeature pulumi.StringPtrInput
 	// Switch controller IGMP snooping. Valid values: `enable`, `disable`.
 	SwitchControllerIgmpSnooping pulumi.StringPtrInput
@@ -2030,10 +2191,16 @@ type SystemInterfaceArgs struct {
 	SwitchControllerSourceIp pulumi.StringPtrInput
 	// Switch controller traffic policy for the VLAN.
 	SwitchControllerTrafficPolicy pulumi.StringPtrInput
+	// Define a system ID for the aggregate interface.
+	SystemId pulumi.StringPtrInput
+	// Method in which system ID is generated. Valid values: `auto`, `user`.
+	SystemIdType pulumi.StringPtrInput
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings SystemInterfaceTaggingArrayInput
 	// TCP maximum segment size. 0 means do not change segment size.
 	TcpMss pulumi.IntPtrInput
+	// Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+	Trunk pulumi.StringPtrInput
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
 	TrustIp1 pulumi.StringPtrInput
 	// Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
@@ -2088,7 +2255,7 @@ type SystemInterfaceInput interface {
 }
 
 func (*SystemInterface) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemInterface)(nil))
+	return reflect.TypeOf((**SystemInterface)(nil)).Elem()
 }
 
 func (i *SystemInterface) ToSystemInterfaceOutput() SystemInterfaceOutput {
@@ -2097,35 +2264,6 @@ func (i *SystemInterface) ToSystemInterfaceOutput() SystemInterfaceOutput {
 
 func (i *SystemInterface) ToSystemInterfaceOutputWithContext(ctx context.Context) SystemInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfaceOutput)
-}
-
-func (i *SystemInterface) ToSystemInterfacePtrOutput() SystemInterfacePtrOutput {
-	return i.ToSystemInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemInterface) ToSystemInterfacePtrOutputWithContext(ctx context.Context) SystemInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfacePtrOutput)
-}
-
-type SystemInterfacePtrInput interface {
-	pulumi.Input
-
-	ToSystemInterfacePtrOutput() SystemInterfacePtrOutput
-	ToSystemInterfacePtrOutputWithContext(ctx context.Context) SystemInterfacePtrOutput
-}
-
-type systemInterfacePtrType SystemInterfaceArgs
-
-func (*systemInterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemInterface)(nil))
-}
-
-func (i *systemInterfacePtrType) ToSystemInterfacePtrOutput() SystemInterfacePtrOutput {
-	return i.ToSystemInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *systemInterfacePtrType) ToSystemInterfacePtrOutputWithContext(ctx context.Context) SystemInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfacePtrOutput)
 }
 
 // SystemInterfaceArrayInput is an input type that accepts SystemInterfaceArray and SystemInterfaceArrayOutput values.
@@ -2142,7 +2280,7 @@ type SystemInterfaceArrayInput interface {
 type SystemInterfaceArray []SystemInterfaceInput
 
 func (SystemInterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemInterface)(nil))
+	return reflect.TypeOf((*[]*SystemInterface)(nil)).Elem()
 }
 
 func (i SystemInterfaceArray) ToSystemInterfaceArrayOutput() SystemInterfaceArrayOutput {
@@ -2167,7 +2305,7 @@ type SystemInterfaceMapInput interface {
 type SystemInterfaceMap map[string]SystemInterfaceInput
 
 func (SystemInterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemInterface)(nil))
+	return reflect.TypeOf((*map[string]*SystemInterface)(nil)).Elem()
 }
 
 func (i SystemInterfaceMap) ToSystemInterfaceMapOutput() SystemInterfaceMapOutput {
@@ -2178,12 +2316,10 @@ func (i SystemInterfaceMap) ToSystemInterfaceMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemInterfaceMapOutput)
 }
 
-type SystemInterfaceOutput struct {
-	*pulumi.OutputState
-}
+type SystemInterfaceOutput struct{ *pulumi.OutputState }
 
 func (SystemInterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemInterface)(nil))
+	return reflect.TypeOf((**SystemInterface)(nil)).Elem()
 }
 
 func (o SystemInterfaceOutput) ToSystemInterfaceOutput() SystemInterfaceOutput {
@@ -2194,36 +2330,10 @@ func (o SystemInterfaceOutput) ToSystemInterfaceOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemInterfaceOutput) ToSystemInterfacePtrOutput() SystemInterfacePtrOutput {
-	return o.ToSystemInterfacePtrOutputWithContext(context.Background())
-}
-
-func (o SystemInterfaceOutput) ToSystemInterfacePtrOutputWithContext(ctx context.Context) SystemInterfacePtrOutput {
-	return o.ApplyT(func(v SystemInterface) *SystemInterface {
-		return &v
-	}).(SystemInterfacePtrOutput)
-}
-
-type SystemInterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemInterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemInterface)(nil))
-}
-
-func (o SystemInterfacePtrOutput) ToSystemInterfacePtrOutput() SystemInterfacePtrOutput {
-	return o
-}
-
-func (o SystemInterfacePtrOutput) ToSystemInterfacePtrOutputWithContext(ctx context.Context) SystemInterfacePtrOutput {
-	return o
-}
-
 type SystemInterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemInterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemInterface)(nil))
+	return reflect.TypeOf((*[]*SystemInterface)(nil)).Elem()
 }
 
 func (o SystemInterfaceArrayOutput) ToSystemInterfaceArrayOutput() SystemInterfaceArrayOutput {
@@ -2235,15 +2345,15 @@ func (o SystemInterfaceArrayOutput) ToSystemInterfaceArrayOutputWithContext(ctx 
 }
 
 func (o SystemInterfaceArrayOutput) Index(i pulumi.IntInput) SystemInterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemInterface {
-		return vs[0].([]SystemInterface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemInterface {
+		return vs[0].([]*SystemInterface)[vs[1].(int)]
 	}).(SystemInterfaceOutput)
 }
 
 type SystemInterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (SystemInterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemInterface)(nil))
+	return reflect.TypeOf((*map[string]*SystemInterface)(nil)).Elem()
 }
 
 func (o SystemInterfaceMapOutput) ToSystemInterfaceMapOutput() SystemInterfaceMapOutput {
@@ -2255,14 +2365,16 @@ func (o SystemInterfaceMapOutput) ToSystemInterfaceMapOutputWithContext(ctx cont
 }
 
 func (o SystemInterfaceMapOutput) MapIndex(k pulumi.StringInput) SystemInterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemInterface {
-		return vs[0].(map[string]SystemInterface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemInterface {
+		return vs[0].(map[string]*SystemInterface)[vs[1].(string)]
 	}).(SystemInterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemInterfaceInput)(nil)).Elem(), &SystemInterface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemInterfaceArrayInput)(nil)).Elem(), SystemInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemInterfaceMapInput)(nil)).Elem(), SystemInterfaceMap{})
 	pulumi.RegisterOutputType(SystemInterfaceOutput{})
-	pulumi.RegisterOutputType(SystemInterfacePtrOutput{})
 	pulumi.RegisterOutputType(SystemInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(SystemInterfaceMapOutput{})
 }

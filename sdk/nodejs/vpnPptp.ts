@@ -99,34 +99,32 @@ export class VpnPptp extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnPptpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnPptpArgs | VpnPptpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnPptpState | undefined;
-            inputs["eip"] = state ? state.eip : undefined;
-            inputs["ipMode"] = state ? state.ipMode : undefined;
-            inputs["localIp"] = state ? state.localIp : undefined;
-            inputs["sip"] = state ? state.sip : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["usrgrp"] = state ? state.usrgrp : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["eip"] = state ? state.eip : undefined;
+            resourceInputs["ipMode"] = state ? state.ipMode : undefined;
+            resourceInputs["localIp"] = state ? state.localIp : undefined;
+            resourceInputs["sip"] = state ? state.sip : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["usrgrp"] = state ? state.usrgrp : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnPptpArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["eip"] = args ? args.eip : undefined;
-            inputs["ipMode"] = args ? args.ipMode : undefined;
-            inputs["localIp"] = args ? args.localIp : undefined;
-            inputs["sip"] = args ? args.sip : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["usrgrp"] = args ? args.usrgrp : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["eip"] = args ? args.eip : undefined;
+            resourceInputs["ipMode"] = args ? args.ipMode : undefined;
+            resourceInputs["localIp"] = args ? args.localIp : undefined;
+            resourceInputs["sip"] = args ? args.sip : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["usrgrp"] = args ? args.usrgrp : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnPptp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnPptp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

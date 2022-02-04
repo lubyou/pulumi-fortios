@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure SSO admin users.
+ * Configure SSO admin users. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Example Usage
  *
@@ -90,30 +90,28 @@ export class SystemSsoAdmin extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemSsoAdminArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSsoAdminArgs | SystemSsoAdminState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSsoAdminState | undefined;
-            inputs["accprofile"] = state ? state.accprofile : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vdoms"] = state ? state.vdoms : undefined;
+            resourceInputs["accprofile"] = state ? state.accprofile : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemSsoAdminArgs | undefined;
             if ((!args || args.accprofile === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'accprofile'");
             }
-            inputs["accprofile"] = args ? args.accprofile : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vdoms"] = args ? args.vdoms : undefined;
+            resourceInputs["accprofile"] = args ? args.accprofile : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSsoAdmin.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSsoAdmin.__pulumiType, name, resourceInputs, opts);
     }
 }
 

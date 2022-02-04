@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure names for shaping classes.
+ * Configure names for shaping classes. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -67,23 +67,21 @@ export class FirewallTrafficClass extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallTrafficClassArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallTrafficClassArgs | FirewallTrafficClassState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallTrafficClassState | undefined;
-            inputs["classId"] = state ? state.classId : undefined;
-            inputs["className"] = state ? state.className : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["classId"] = state ? state.classId : undefined;
+            resourceInputs["className"] = state ? state.className : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallTrafficClassArgs | undefined;
-            inputs["classId"] = args ? args.classId : undefined;
-            inputs["className"] = args ? args.className : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["classId"] = args ? args.classId : undefined;
+            resourceInputs["className"] = args ? args.className : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallTrafficClass.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallTrafficClass.__pulumiType, name, resourceInputs, opts);
     }
 }
 

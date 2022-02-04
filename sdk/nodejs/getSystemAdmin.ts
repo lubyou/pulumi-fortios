@@ -13,9 +13,7 @@ export function getSystemAdmin(args: GetSystemAdminArgs, opts?: pulumi.InvokeOpt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemAdmin:GetSystemAdmin", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -281,4 +279,22 @@ export interface GetSystemAdminResult {
      * Enable/disable wildcard RADIUS authentication.
      */
     readonly wildcard: string;
+}
+
+export function getSystemAdminOutput(args: GetSystemAdminOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemAdminResult> {
+    return pulumi.output(args).apply(a => getSystemAdmin(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemAdmin.
+ */
+export interface GetSystemAdminOutputArgs {
+    /**
+     * Specify the name of the desired system admin.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

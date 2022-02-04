@@ -75,15 +75,15 @@ export class SystemAffinityPacketRedistribution extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAffinityPacketRedistributionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAffinityPacketRedistributionArgs | SystemAffinityPacketRedistributionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAffinityPacketRedistributionState | undefined;
-            inputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["rxqid"] = state ? state.rxqid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["rxqid"] = state ? state.rxqid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAffinityPacketRedistributionArgs | undefined;
             if ((!args || args.affinityCpumask === undefined) && !opts.urn) {
@@ -98,16 +98,14 @@ export class SystemAffinityPacketRedistribution extends pulumi.CustomResource {
             if ((!args || args.rxqid === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rxqid'");
             }
-            inputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["rxqid"] = args ? args.rxqid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["rxqid"] = args ? args.rxqid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAffinityPacketRedistribution.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAffinityPacketRedistribution.__pulumiType, name, resourceInputs, opts);
     }
 }
 

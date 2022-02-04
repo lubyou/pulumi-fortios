@@ -156,67 +156,65 @@ export class WirelessControllerQosProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerQosProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerQosProfileArgs | WirelessControllerQosProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerQosProfileState | undefined;
-            inputs["bandwidthAdmissionControl"] = state ? state.bandwidthAdmissionControl : undefined;
-            inputs["bandwidthCapacity"] = state ? state.bandwidthCapacity : undefined;
-            inputs["burst"] = state ? state.burst : undefined;
-            inputs["callAdmissionControl"] = state ? state.callAdmissionControl : undefined;
-            inputs["callCapacity"] = state ? state.callCapacity : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["downlink"] = state ? state.downlink : undefined;
-            inputs["downlinkSta"] = state ? state.downlinkSta : undefined;
-            inputs["dscpWmmBes"] = state ? state.dscpWmmBes : undefined;
-            inputs["dscpWmmBks"] = state ? state.dscpWmmBks : undefined;
-            inputs["dscpWmmMapping"] = state ? state.dscpWmmMapping : undefined;
-            inputs["dscpWmmVis"] = state ? state.dscpWmmVis : undefined;
-            inputs["dscpWmmVos"] = state ? state.dscpWmmVos : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["uplink"] = state ? state.uplink : undefined;
-            inputs["uplinkSta"] = state ? state.uplinkSta : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wmm"] = state ? state.wmm : undefined;
-            inputs["wmmBeDscp"] = state ? state.wmmBeDscp : undefined;
-            inputs["wmmBkDscp"] = state ? state.wmmBkDscp : undefined;
-            inputs["wmmDscpMarking"] = state ? state.wmmDscpMarking : undefined;
-            inputs["wmmUapsd"] = state ? state.wmmUapsd : undefined;
-            inputs["wmmViDscp"] = state ? state.wmmViDscp : undefined;
-            inputs["wmmVoDscp"] = state ? state.wmmVoDscp : undefined;
+            resourceInputs["bandwidthAdmissionControl"] = state ? state.bandwidthAdmissionControl : undefined;
+            resourceInputs["bandwidthCapacity"] = state ? state.bandwidthCapacity : undefined;
+            resourceInputs["burst"] = state ? state.burst : undefined;
+            resourceInputs["callAdmissionControl"] = state ? state.callAdmissionControl : undefined;
+            resourceInputs["callCapacity"] = state ? state.callCapacity : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["downlink"] = state ? state.downlink : undefined;
+            resourceInputs["downlinkSta"] = state ? state.downlinkSta : undefined;
+            resourceInputs["dscpWmmBes"] = state ? state.dscpWmmBes : undefined;
+            resourceInputs["dscpWmmBks"] = state ? state.dscpWmmBks : undefined;
+            resourceInputs["dscpWmmMapping"] = state ? state.dscpWmmMapping : undefined;
+            resourceInputs["dscpWmmVis"] = state ? state.dscpWmmVis : undefined;
+            resourceInputs["dscpWmmVos"] = state ? state.dscpWmmVos : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["uplink"] = state ? state.uplink : undefined;
+            resourceInputs["uplinkSta"] = state ? state.uplinkSta : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wmm"] = state ? state.wmm : undefined;
+            resourceInputs["wmmBeDscp"] = state ? state.wmmBeDscp : undefined;
+            resourceInputs["wmmBkDscp"] = state ? state.wmmBkDscp : undefined;
+            resourceInputs["wmmDscpMarking"] = state ? state.wmmDscpMarking : undefined;
+            resourceInputs["wmmUapsd"] = state ? state.wmmUapsd : undefined;
+            resourceInputs["wmmViDscp"] = state ? state.wmmViDscp : undefined;
+            resourceInputs["wmmVoDscp"] = state ? state.wmmVoDscp : undefined;
         } else {
             const args = argsOrState as WirelessControllerQosProfileArgs | undefined;
-            inputs["bandwidthAdmissionControl"] = args ? args.bandwidthAdmissionControl : undefined;
-            inputs["bandwidthCapacity"] = args ? args.bandwidthCapacity : undefined;
-            inputs["burst"] = args ? args.burst : undefined;
-            inputs["callAdmissionControl"] = args ? args.callAdmissionControl : undefined;
-            inputs["callCapacity"] = args ? args.callCapacity : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["downlink"] = args ? args.downlink : undefined;
-            inputs["downlinkSta"] = args ? args.downlinkSta : undefined;
-            inputs["dscpWmmBes"] = args ? args.dscpWmmBes : undefined;
-            inputs["dscpWmmBks"] = args ? args.dscpWmmBks : undefined;
-            inputs["dscpWmmMapping"] = args ? args.dscpWmmMapping : undefined;
-            inputs["dscpWmmVis"] = args ? args.dscpWmmVis : undefined;
-            inputs["dscpWmmVos"] = args ? args.dscpWmmVos : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["uplink"] = args ? args.uplink : undefined;
-            inputs["uplinkSta"] = args ? args.uplinkSta : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wmm"] = args ? args.wmm : undefined;
-            inputs["wmmBeDscp"] = args ? args.wmmBeDscp : undefined;
-            inputs["wmmBkDscp"] = args ? args.wmmBkDscp : undefined;
-            inputs["wmmDscpMarking"] = args ? args.wmmDscpMarking : undefined;
-            inputs["wmmUapsd"] = args ? args.wmmUapsd : undefined;
-            inputs["wmmViDscp"] = args ? args.wmmViDscp : undefined;
-            inputs["wmmVoDscp"] = args ? args.wmmVoDscp : undefined;
+            resourceInputs["bandwidthAdmissionControl"] = args ? args.bandwidthAdmissionControl : undefined;
+            resourceInputs["bandwidthCapacity"] = args ? args.bandwidthCapacity : undefined;
+            resourceInputs["burst"] = args ? args.burst : undefined;
+            resourceInputs["callAdmissionControl"] = args ? args.callAdmissionControl : undefined;
+            resourceInputs["callCapacity"] = args ? args.callCapacity : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["downlink"] = args ? args.downlink : undefined;
+            resourceInputs["downlinkSta"] = args ? args.downlinkSta : undefined;
+            resourceInputs["dscpWmmBes"] = args ? args.dscpWmmBes : undefined;
+            resourceInputs["dscpWmmBks"] = args ? args.dscpWmmBks : undefined;
+            resourceInputs["dscpWmmMapping"] = args ? args.dscpWmmMapping : undefined;
+            resourceInputs["dscpWmmVis"] = args ? args.dscpWmmVis : undefined;
+            resourceInputs["dscpWmmVos"] = args ? args.dscpWmmVos : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["uplink"] = args ? args.uplink : undefined;
+            resourceInputs["uplinkSta"] = args ? args.uplinkSta : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wmm"] = args ? args.wmm : undefined;
+            resourceInputs["wmmBeDscp"] = args ? args.wmmBeDscp : undefined;
+            resourceInputs["wmmBkDscp"] = args ? args.wmmBkDscp : undefined;
+            resourceInputs["wmmDscpMarking"] = args ? args.wmmDscpMarking : undefined;
+            resourceInputs["wmmUapsd"] = args ? args.wmmUapsd : undefined;
+            resourceInputs["wmmViDscp"] = args ? args.wmmViDscp : undefined;
+            resourceInputs["wmmVoDscp"] = args ? args.wmmVoDscp : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerQosProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerQosProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

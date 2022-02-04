@@ -95,31 +95,29 @@ export class SystemZone extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemZoneArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemZoneArgs | SystemZoneState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemZoneState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = state ? state.interfaces : undefined;
-            inputs["intrazone"] = state ? state.intrazone : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["intrazone"] = state ? state.intrazone : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemZoneArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = args ? args.interfaces : undefined;
-            inputs["intrazone"] = args ? args.intrazone : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["intrazone"] = args ? args.intrazone : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemZone.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemZone.__pulumiType, name, resourceInputs, opts);
     }
 }
 

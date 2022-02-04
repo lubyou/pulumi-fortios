@@ -20,6 +20,7 @@ class UserNacPolicyArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
+                 firewall_address: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
@@ -27,10 +28,12 @@ class UserNacPolicyArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  src: Optional[pulumi.Input[str]] = None,
+                 ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  sw_version: Optional[pulumi.Input[str]] = None,
                  switch_auto_auth: Optional[pulumi.Input[str]] = None,
                  switch_fortilink: Optional[pulumi.Input[str]] = None,
+                 switch_groups: Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]]] = None,
                  switch_mac_policy: Optional[pulumi.Input[str]] = None,
                  switch_port_policy: Optional[pulumi.Input[str]] = None,
                  switch_scopes: Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchScopeArgs']]]] = None,
@@ -45,17 +48,20 @@ class UserNacPolicyArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
+        :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
-        :param pulumi.Input[str] name: NAC policy name.
+        :param pulumi.Input[str] name: Managed FortiSwitch group name from available options.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[str] src: NAC policy matching source.
+        :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sw_version: NAC policy matching software version.
         :param pulumi.Input[str] switch_auto_auth: NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
         :param pulumi.Input[str] switch_fortilink: FortiLink interface for which this NAC policy belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]] switch_groups: List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
         :param pulumi.Input[str] switch_mac_policy: switch-mac-policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] switch_port_policy: switch-port-policy to be applied on the matched NAC policy.
         :param pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchScopeArgs']]] switch_scopes: List of managed FortiSwitches on which NAC policy can be applied. The structure of `switch_scope` block is documented below.
@@ -74,6 +80,8 @@ class UserNacPolicyArgs:
             pulumi.set(__self__, "ems_tag", ems_tag)
         if family is not None:
             pulumi.set(__self__, "family", family)
+        if firewall_address is not None:
+            pulumi.set(__self__, "firewall_address", firewall_address)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if hw_vendor is not None:
@@ -88,6 +96,8 @@ class UserNacPolicyArgs:
             pulumi.set(__self__, "os", os)
         if src is not None:
             pulumi.set(__self__, "src", src)
+        if ssid_policy is not None:
+            pulumi.set(__self__, "ssid_policy", ssid_policy)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if sw_version is not None:
@@ -96,6 +106,8 @@ class UserNacPolicyArgs:
             pulumi.set(__self__, "switch_auto_auth", switch_auto_auth)
         if switch_fortilink is not None:
             pulumi.set(__self__, "switch_fortilink", switch_fortilink)
+        if switch_groups is not None:
+            pulumi.set(__self__, "switch_groups", switch_groups)
         if switch_mac_policy is not None:
             pulumi.set(__self__, "switch_mac_policy", switch_mac_policy)
         if switch_port_policy is not None:
@@ -172,6 +184,18 @@ class UserNacPolicyArgs:
         pulumi.set(self, "family", value)
 
     @property
+    @pulumi.getter(name="firewallAddress")
+    def firewall_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic firewall address to associate MAC which match this policy.
+        """
+        return pulumi.get(self, "firewall_address")
+
+    @firewall_address.setter
+    def firewall_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firewall_address", value)
+
+    @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
@@ -223,7 +247,7 @@ class UserNacPolicyArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        NAC policy name.
+        Managed FortiSwitch group name from available options.
         """
         return pulumi.get(self, "name")
 
@@ -254,6 +278,18 @@ class UserNacPolicyArgs:
     @src.setter
     def src(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "src", value)
+
+    @property
+    @pulumi.getter(name="ssidPolicy")
+    def ssid_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        SSID policy to be applied on the matched NAC policy.
+        """
+        return pulumi.get(self, "ssid_policy")
+
+    @ssid_policy.setter
+    def ssid_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssid_policy", value)
 
     @property
     @pulumi.getter
@@ -302,6 +338,18 @@ class UserNacPolicyArgs:
     @switch_fortilink.setter
     def switch_fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "switch_fortilink", value)
+
+    @property
+    @pulumi.getter(name="switchGroups")
+    def switch_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]]]:
+        """
+        List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
+        """
+        return pulumi.get(self, "switch_groups")
+
+    @switch_groups.setter
+    def switch_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]]]):
+        pulumi.set(self, "switch_groups", value)
 
     @property
     @pulumi.getter(name="switchMacPolicy")
@@ -396,6 +444,7 @@ class _UserNacPolicyState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
+                 firewall_address: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
@@ -403,10 +452,12 @@ class _UserNacPolicyState:
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  src: Optional[pulumi.Input[str]] = None,
+                 ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  sw_version: Optional[pulumi.Input[str]] = None,
                  switch_auto_auth: Optional[pulumi.Input[str]] = None,
                  switch_fortilink: Optional[pulumi.Input[str]] = None,
+                 switch_groups: Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]]] = None,
                  switch_mac_policy: Optional[pulumi.Input[str]] = None,
                  switch_port_policy: Optional[pulumi.Input[str]] = None,
                  switch_scopes: Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchScopeArgs']]]] = None,
@@ -421,17 +472,20 @@ class _UserNacPolicyState:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
+        :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
-        :param pulumi.Input[str] name: NAC policy name.
+        :param pulumi.Input[str] name: Managed FortiSwitch group name from available options.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[str] src: NAC policy matching source.
+        :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sw_version: NAC policy matching software version.
         :param pulumi.Input[str] switch_auto_auth: NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
         :param pulumi.Input[str] switch_fortilink: FortiLink interface for which this NAC policy belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]] switch_groups: List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
         :param pulumi.Input[str] switch_mac_policy: switch-mac-policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] switch_port_policy: switch-port-policy to be applied on the matched NAC policy.
         :param pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchScopeArgs']]] switch_scopes: List of managed FortiSwitches on which NAC policy can be applied. The structure of `switch_scope` block is documented below.
@@ -450,6 +504,8 @@ class _UserNacPolicyState:
             pulumi.set(__self__, "ems_tag", ems_tag)
         if family is not None:
             pulumi.set(__self__, "family", family)
+        if firewall_address is not None:
+            pulumi.set(__self__, "firewall_address", firewall_address)
         if host is not None:
             pulumi.set(__self__, "host", host)
         if hw_vendor is not None:
@@ -464,6 +520,8 @@ class _UserNacPolicyState:
             pulumi.set(__self__, "os", os)
         if src is not None:
             pulumi.set(__self__, "src", src)
+        if ssid_policy is not None:
+            pulumi.set(__self__, "ssid_policy", ssid_policy)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if sw_version is not None:
@@ -472,6 +530,8 @@ class _UserNacPolicyState:
             pulumi.set(__self__, "switch_auto_auth", switch_auto_auth)
         if switch_fortilink is not None:
             pulumi.set(__self__, "switch_fortilink", switch_fortilink)
+        if switch_groups is not None:
+            pulumi.set(__self__, "switch_groups", switch_groups)
         if switch_mac_policy is not None:
             pulumi.set(__self__, "switch_mac_policy", switch_mac_policy)
         if switch_port_policy is not None:
@@ -548,6 +608,18 @@ class _UserNacPolicyState:
         pulumi.set(self, "family", value)
 
     @property
+    @pulumi.getter(name="firewallAddress")
+    def firewall_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Dynamic firewall address to associate MAC which match this policy.
+        """
+        return pulumi.get(self, "firewall_address")
+
+    @firewall_address.setter
+    def firewall_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firewall_address", value)
+
+    @property
     @pulumi.getter
     def host(self) -> Optional[pulumi.Input[str]]:
         """
@@ -599,7 +671,7 @@ class _UserNacPolicyState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        NAC policy name.
+        Managed FortiSwitch group name from available options.
         """
         return pulumi.get(self, "name")
 
@@ -630,6 +702,18 @@ class _UserNacPolicyState:
     @src.setter
     def src(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "src", value)
+
+    @property
+    @pulumi.getter(name="ssidPolicy")
+    def ssid_policy(self) -> Optional[pulumi.Input[str]]:
+        """
+        SSID policy to be applied on the matched NAC policy.
+        """
+        return pulumi.get(self, "ssid_policy")
+
+    @ssid_policy.setter
+    def ssid_policy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssid_policy", value)
 
     @property
     @pulumi.getter
@@ -678,6 +762,18 @@ class _UserNacPolicyState:
     @switch_fortilink.setter
     def switch_fortilink(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "switch_fortilink", value)
+
+    @property
+    @pulumi.getter(name="switchGroups")
+    def switch_groups(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]]]:
+        """
+        List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
+        """
+        return pulumi.get(self, "switch_groups")
+
+    @switch_groups.setter
+    def switch_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['UserNacPolicySwitchGroupArgs']]]]):
+        pulumi.set(self, "switch_groups", value)
 
     @property
     @pulumi.getter(name="switchMacPolicy")
@@ -774,6 +870,7 @@ class UserNacPolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
+                 firewall_address: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
@@ -781,10 +878,12 @@ class UserNacPolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  src: Optional[pulumi.Input[str]] = None,
+                 ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  sw_version: Optional[pulumi.Input[str]] = None,
                  switch_auto_auth: Optional[pulumi.Input[str]] = None,
                  switch_fortilink: Optional[pulumi.Input[str]] = None,
+                 switch_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchGroupArgs']]]]] = None,
                  switch_mac_policy: Optional[pulumi.Input[str]] = None,
                  switch_port_policy: Optional[pulumi.Input[str]] = None,
                  switch_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchScopeArgs']]]]] = None,
@@ -813,17 +912,20 @@ class UserNacPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
+        :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
-        :param pulumi.Input[str] name: NAC policy name.
+        :param pulumi.Input[str] name: Managed FortiSwitch group name from available options.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[str] src: NAC policy matching source.
+        :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sw_version: NAC policy matching software version.
         :param pulumi.Input[str] switch_auto_auth: NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
         :param pulumi.Input[str] switch_fortilink: FortiLink interface for which this NAC policy belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchGroupArgs']]]] switch_groups: List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
         :param pulumi.Input[str] switch_mac_policy: switch-mac-policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] switch_port_policy: switch-port-policy to be applied on the matched NAC policy.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchScopeArgs']]]] switch_scopes: List of managed FortiSwitches on which NAC policy can be applied. The structure of `switch_scope` block is documented below.
@@ -871,6 +973,7 @@ class UserNacPolicy(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ems_tag: Optional[pulumi.Input[str]] = None,
                  family: Optional[pulumi.Input[str]] = None,
+                 firewall_address: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  hw_vendor: Optional[pulumi.Input[str]] = None,
                  hw_version: Optional[pulumi.Input[str]] = None,
@@ -878,10 +981,12 @@ class UserNacPolicy(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  os: Optional[pulumi.Input[str]] = None,
                  src: Optional[pulumi.Input[str]] = None,
+                 ssid_policy: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  sw_version: Optional[pulumi.Input[str]] = None,
                  switch_auto_auth: Optional[pulumi.Input[str]] = None,
                  switch_fortilink: Optional[pulumi.Input[str]] = None,
+                 switch_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchGroupArgs']]]]] = None,
                  switch_mac_policy: Optional[pulumi.Input[str]] = None,
                  switch_port_policy: Optional[pulumi.Input[str]] = None,
                  switch_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchScopeArgs']]]]] = None,
@@ -896,6 +1001,8 @@ class UserNacPolicy(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -906,6 +1013,7 @@ class UserNacPolicy(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ems_tag"] = ems_tag
             __props__.__dict__["family"] = family
+            __props__.__dict__["firewall_address"] = firewall_address
             __props__.__dict__["host"] = host
             __props__.__dict__["hw_vendor"] = hw_vendor
             __props__.__dict__["hw_version"] = hw_version
@@ -913,10 +1021,12 @@ class UserNacPolicy(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["os"] = os
             __props__.__dict__["src"] = src
+            __props__.__dict__["ssid_policy"] = ssid_policy
             __props__.__dict__["status"] = status
             __props__.__dict__["sw_version"] = sw_version
             __props__.__dict__["switch_auto_auth"] = switch_auto_auth
             __props__.__dict__["switch_fortilink"] = switch_fortilink
+            __props__.__dict__["switch_groups"] = switch_groups
             __props__.__dict__["switch_mac_policy"] = switch_mac_policy
             __props__.__dict__["switch_port_policy"] = switch_port_policy
             __props__.__dict__["switch_scopes"] = switch_scopes
@@ -939,6 +1049,7 @@ class UserNacPolicy(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ems_tag: Optional[pulumi.Input[str]] = None,
             family: Optional[pulumi.Input[str]] = None,
+            firewall_address: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             hw_vendor: Optional[pulumi.Input[str]] = None,
             hw_version: Optional[pulumi.Input[str]] = None,
@@ -946,10 +1057,12 @@ class UserNacPolicy(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             os: Optional[pulumi.Input[str]] = None,
             src: Optional[pulumi.Input[str]] = None,
+            ssid_policy: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             sw_version: Optional[pulumi.Input[str]] = None,
             switch_auto_auth: Optional[pulumi.Input[str]] = None,
             switch_fortilink: Optional[pulumi.Input[str]] = None,
+            switch_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchGroupArgs']]]]] = None,
             switch_mac_policy: Optional[pulumi.Input[str]] = None,
             switch_port_policy: Optional[pulumi.Input[str]] = None,
             switch_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchScopeArgs']]]]] = None,
@@ -969,17 +1082,20 @@ class UserNacPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] ems_tag: NAC policy matching EMS tag.
         :param pulumi.Input[str] family: NAC policy matching family.
+        :param pulumi.Input[str] firewall_address: Dynamic firewall address to associate MAC which match this policy.
         :param pulumi.Input[str] host: NAC policy matching host.
         :param pulumi.Input[str] hw_vendor: NAC policy matching hardware vendor.
         :param pulumi.Input[str] hw_version: NAC policy matching hardware version.
         :param pulumi.Input[str] mac: NAC policy matching MAC address.
-        :param pulumi.Input[str] name: NAC policy name.
+        :param pulumi.Input[str] name: Managed FortiSwitch group name from available options.
         :param pulumi.Input[str] os: NAC policy matching operating system.
         :param pulumi.Input[str] src: NAC policy matching source.
+        :param pulumi.Input[str] ssid_policy: SSID policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] status: Enable/disable NAC policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sw_version: NAC policy matching software version.
         :param pulumi.Input[str] switch_auto_auth: NAC device auto authorization when discovered and nac-policy matched. Valid values: `global`, `disable`, `enable`.
         :param pulumi.Input[str] switch_fortilink: FortiLink interface for which this NAC policy belongs to.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchGroupArgs']]]] switch_groups: List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
         :param pulumi.Input[str] switch_mac_policy: switch-mac-policy to be applied on the matched NAC policy.
         :param pulumi.Input[str] switch_port_policy: switch-port-policy to be applied on the matched NAC policy.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['UserNacPolicySwitchScopeArgs']]]] switch_scopes: List of managed FortiSwitches on which NAC policy can be applied. The structure of `switch_scope` block is documented below.
@@ -997,6 +1113,7 @@ class UserNacPolicy(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ems_tag"] = ems_tag
         __props__.__dict__["family"] = family
+        __props__.__dict__["firewall_address"] = firewall_address
         __props__.__dict__["host"] = host
         __props__.__dict__["hw_vendor"] = hw_vendor
         __props__.__dict__["hw_version"] = hw_version
@@ -1004,10 +1121,12 @@ class UserNacPolicy(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["os"] = os
         __props__.__dict__["src"] = src
+        __props__.__dict__["ssid_policy"] = ssid_policy
         __props__.__dict__["status"] = status
         __props__.__dict__["sw_version"] = sw_version
         __props__.__dict__["switch_auto_auth"] = switch_auto_auth
         __props__.__dict__["switch_fortilink"] = switch_fortilink
+        __props__.__dict__["switch_groups"] = switch_groups
         __props__.__dict__["switch_mac_policy"] = switch_mac_policy
         __props__.__dict__["switch_port_policy"] = switch_port_policy
         __props__.__dict__["switch_scopes"] = switch_scopes
@@ -1058,6 +1177,14 @@ class UserNacPolicy(pulumi.CustomResource):
         return pulumi.get(self, "family")
 
     @property
+    @pulumi.getter(name="firewallAddress")
+    def firewall_address(self) -> pulumi.Output[str]:
+        """
+        Dynamic firewall address to associate MAC which match this policy.
+        """
+        return pulumi.get(self, "firewall_address")
+
+    @property
     @pulumi.getter
     def host(self) -> pulumi.Output[str]:
         """
@@ -1093,7 +1220,7 @@ class UserNacPolicy(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        NAC policy name.
+        Managed FortiSwitch group name from available options.
         """
         return pulumi.get(self, "name")
 
@@ -1112,6 +1239,14 @@ class UserNacPolicy(pulumi.CustomResource):
         NAC policy matching source.
         """
         return pulumi.get(self, "src")
+
+    @property
+    @pulumi.getter(name="ssidPolicy")
+    def ssid_policy(self) -> pulumi.Output[str]:
+        """
+        SSID policy to be applied on the matched NAC policy.
+        """
+        return pulumi.get(self, "ssid_policy")
 
     @property
     @pulumi.getter
@@ -1144,6 +1279,14 @@ class UserNacPolicy(pulumi.CustomResource):
         FortiLink interface for which this NAC policy belongs to.
         """
         return pulumi.get(self, "switch_fortilink")
+
+    @property
+    @pulumi.getter(name="switchGroups")
+    def switch_groups(self) -> pulumi.Output[Optional[Sequence['outputs.UserNacPolicySwitchGroup']]]:
+        """
+        List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switch_group` block is documented below.
+        """
+        return pulumi.get(self, "switch_groups")
 
     @property
     @pulumi.getter(name="switchMacPolicy")

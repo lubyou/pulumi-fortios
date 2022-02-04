@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure the MAC address group.
+ * Configure the MAC address group. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -76,27 +76,25 @@ export class WirelessControllerAddrgrp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerAddrgrpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerAddrgrpArgs | WirelessControllerAddrgrpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerAddrgrpState | undefined;
-            inputs["addresses"] = state ? state.addresses : undefined;
-            inputs["defaultPolicy"] = state ? state.defaultPolicy : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addresses"] = state ? state.addresses : undefined;
+            resourceInputs["defaultPolicy"] = state ? state.defaultPolicy : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerAddrgrpArgs | undefined;
-            inputs["addresses"] = args ? args.addresses : undefined;
-            inputs["defaultPolicy"] = args ? args.defaultPolicy : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addresses"] = args ? args.addresses : undefined;
+            resourceInputs["defaultPolicy"] = args ? args.defaultPolicy : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerAddrgrp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerAddrgrp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

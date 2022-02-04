@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,7 +75,7 @@ type AuthenticationScheme struct {
 	FssoGuest pulumi.StringOutput `pulumi:"fssoGuest"`
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringOutput `pulumi:"kerberosKeytab"`
-	// Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+	// Authentication methods (default = basic).
 	Method pulumi.StringOutput `pulumi:"method"`
 	// Authentication server name.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -83,8 +83,14 @@ type AuthenticationScheme struct {
 	NegotiateNtlm pulumi.StringOutput `pulumi:"negotiateNtlm"`
 	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
 	RequireTfa pulumi.StringOutput `pulumi:"requireTfa"`
+	// SAML configuration.
+	SamlServer pulumi.StringOutput `pulumi:"samlServer"`
+	// SAML authentication timeout in seconds.
+	SamlTimeout pulumi.IntOutput `pulumi:"samlTimeout"`
 	// SSH CA name.
 	SshCa pulumi.StringOutput `pulumi:"sshCa"`
+	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+	UserCert pulumi.StringOutput `pulumi:"userCert"`
 	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
 	UserDatabases AuthenticationSchemeUserDatabaseArrayOutput `pulumi:"userDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -101,6 +107,7 @@ func NewAuthenticationScheme(ctx *pulumi.Context,
 	if args.Method == nil {
 		return nil, errors.New("invalid value for required argument 'Method'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AuthenticationScheme
 	err := ctx.RegisterResource("fortios:index/authenticationScheme:AuthenticationScheme", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +140,7 @@ type authenticationSchemeState struct {
 	FssoGuest *string `pulumi:"fssoGuest"`
 	// Kerberos keytab setting.
 	KerberosKeytab *string `pulumi:"kerberosKeytab"`
-	// Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+	// Authentication methods (default = basic).
 	Method *string `pulumi:"method"`
 	// Authentication server name.
 	Name *string `pulumi:"name"`
@@ -141,8 +148,14 @@ type authenticationSchemeState struct {
 	NegotiateNtlm *string `pulumi:"negotiateNtlm"`
 	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
 	RequireTfa *string `pulumi:"requireTfa"`
+	// SAML configuration.
+	SamlServer *string `pulumi:"samlServer"`
+	// SAML authentication timeout in seconds.
+	SamlTimeout *int `pulumi:"samlTimeout"`
 	// SSH CA name.
 	SshCa *string `pulumi:"sshCa"`
+	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+	UserCert *string `pulumi:"userCert"`
 	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
 	UserDatabases []AuthenticationSchemeUserDatabase `pulumi:"userDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -160,7 +173,7 @@ type AuthenticationSchemeState struct {
 	FssoGuest pulumi.StringPtrInput
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringPtrInput
-	// Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+	// Authentication methods (default = basic).
 	Method pulumi.StringPtrInput
 	// Authentication server name.
 	Name pulumi.StringPtrInput
@@ -168,8 +181,14 @@ type AuthenticationSchemeState struct {
 	NegotiateNtlm pulumi.StringPtrInput
 	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
 	RequireTfa pulumi.StringPtrInput
+	// SAML configuration.
+	SamlServer pulumi.StringPtrInput
+	// SAML authentication timeout in seconds.
+	SamlTimeout pulumi.IntPtrInput
 	// SSH CA name.
 	SshCa pulumi.StringPtrInput
+	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+	UserCert pulumi.StringPtrInput
 	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
 	UserDatabases AuthenticationSchemeUserDatabaseArrayInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -191,7 +210,7 @@ type authenticationSchemeArgs struct {
 	FssoGuest *string `pulumi:"fssoGuest"`
 	// Kerberos keytab setting.
 	KerberosKeytab *string `pulumi:"kerberosKeytab"`
-	// Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+	// Authentication methods (default = basic).
 	Method string `pulumi:"method"`
 	// Authentication server name.
 	Name *string `pulumi:"name"`
@@ -199,8 +218,14 @@ type authenticationSchemeArgs struct {
 	NegotiateNtlm *string `pulumi:"negotiateNtlm"`
 	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
 	RequireTfa *string `pulumi:"requireTfa"`
+	// SAML configuration.
+	SamlServer *string `pulumi:"samlServer"`
+	// SAML authentication timeout in seconds.
+	SamlTimeout *int `pulumi:"samlTimeout"`
 	// SSH CA name.
 	SshCa *string `pulumi:"sshCa"`
+	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+	UserCert *string `pulumi:"userCert"`
 	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
 	UserDatabases []AuthenticationSchemeUserDatabase `pulumi:"userDatabases"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -219,7 +244,7 @@ type AuthenticationSchemeArgs struct {
 	FssoGuest pulumi.StringPtrInput
 	// Kerberos keytab setting.
 	KerberosKeytab pulumi.StringPtrInput
-	// Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+	// Authentication methods (default = basic).
 	Method pulumi.StringInput
 	// Authentication server name.
 	Name pulumi.StringPtrInput
@@ -227,8 +252,14 @@ type AuthenticationSchemeArgs struct {
 	NegotiateNtlm pulumi.StringPtrInput
 	// Enable/disable two-factor authentication (default = disable). Valid values: `enable`, `disable`.
 	RequireTfa pulumi.StringPtrInput
+	// SAML configuration.
+	SamlServer pulumi.StringPtrInput
+	// SAML authentication timeout in seconds.
+	SamlTimeout pulumi.IntPtrInput
 	// SSH CA name.
 	SshCa pulumi.StringPtrInput
+	// Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+	UserCert pulumi.StringPtrInput
 	// Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
 	UserDatabases AuthenticationSchemeUserDatabaseArrayInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -247,7 +278,7 @@ type AuthenticationSchemeInput interface {
 }
 
 func (*AuthenticationScheme) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthenticationScheme)(nil))
+	return reflect.TypeOf((**AuthenticationScheme)(nil)).Elem()
 }
 
 func (i *AuthenticationScheme) ToAuthenticationSchemeOutput() AuthenticationSchemeOutput {
@@ -256,35 +287,6 @@ func (i *AuthenticationScheme) ToAuthenticationSchemeOutput() AuthenticationSche
 
 func (i *AuthenticationScheme) ToAuthenticationSchemeOutputWithContext(ctx context.Context) AuthenticationSchemeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemeOutput)
-}
-
-func (i *AuthenticationScheme) ToAuthenticationSchemePtrOutput() AuthenticationSchemePtrOutput {
-	return i.ToAuthenticationSchemePtrOutputWithContext(context.Background())
-}
-
-func (i *AuthenticationScheme) ToAuthenticationSchemePtrOutputWithContext(ctx context.Context) AuthenticationSchemePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemePtrOutput)
-}
-
-type AuthenticationSchemePtrInput interface {
-	pulumi.Input
-
-	ToAuthenticationSchemePtrOutput() AuthenticationSchemePtrOutput
-	ToAuthenticationSchemePtrOutputWithContext(ctx context.Context) AuthenticationSchemePtrOutput
-}
-
-type authenticationSchemePtrType AuthenticationSchemeArgs
-
-func (*authenticationSchemePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthenticationScheme)(nil))
-}
-
-func (i *authenticationSchemePtrType) ToAuthenticationSchemePtrOutput() AuthenticationSchemePtrOutput {
-	return i.ToAuthenticationSchemePtrOutputWithContext(context.Background())
-}
-
-func (i *authenticationSchemePtrType) ToAuthenticationSchemePtrOutputWithContext(ctx context.Context) AuthenticationSchemePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemePtrOutput)
 }
 
 // AuthenticationSchemeArrayInput is an input type that accepts AuthenticationSchemeArray and AuthenticationSchemeArrayOutput values.
@@ -301,7 +303,7 @@ type AuthenticationSchemeArrayInput interface {
 type AuthenticationSchemeArray []AuthenticationSchemeInput
 
 func (AuthenticationSchemeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AuthenticationScheme)(nil))
+	return reflect.TypeOf((*[]*AuthenticationScheme)(nil)).Elem()
 }
 
 func (i AuthenticationSchemeArray) ToAuthenticationSchemeArrayOutput() AuthenticationSchemeArrayOutput {
@@ -326,7 +328,7 @@ type AuthenticationSchemeMapInput interface {
 type AuthenticationSchemeMap map[string]AuthenticationSchemeInput
 
 func (AuthenticationSchemeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AuthenticationScheme)(nil))
+	return reflect.TypeOf((*map[string]*AuthenticationScheme)(nil)).Elem()
 }
 
 func (i AuthenticationSchemeMap) ToAuthenticationSchemeMapOutput() AuthenticationSchemeMapOutput {
@@ -337,12 +339,10 @@ func (i AuthenticationSchemeMap) ToAuthenticationSchemeMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSchemeMapOutput)
 }
 
-type AuthenticationSchemeOutput struct {
-	*pulumi.OutputState
-}
+type AuthenticationSchemeOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSchemeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthenticationScheme)(nil))
+	return reflect.TypeOf((**AuthenticationScheme)(nil)).Elem()
 }
 
 func (o AuthenticationSchemeOutput) ToAuthenticationSchemeOutput() AuthenticationSchemeOutput {
@@ -353,36 +353,10 @@ func (o AuthenticationSchemeOutput) ToAuthenticationSchemeOutputWithContext(ctx 
 	return o
 }
 
-func (o AuthenticationSchemeOutput) ToAuthenticationSchemePtrOutput() AuthenticationSchemePtrOutput {
-	return o.ToAuthenticationSchemePtrOutputWithContext(context.Background())
-}
-
-func (o AuthenticationSchemeOutput) ToAuthenticationSchemePtrOutputWithContext(ctx context.Context) AuthenticationSchemePtrOutput {
-	return o.ApplyT(func(v AuthenticationScheme) *AuthenticationScheme {
-		return &v
-	}).(AuthenticationSchemePtrOutput)
-}
-
-type AuthenticationSchemePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AuthenticationSchemePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthenticationScheme)(nil))
-}
-
-func (o AuthenticationSchemePtrOutput) ToAuthenticationSchemePtrOutput() AuthenticationSchemePtrOutput {
-	return o
-}
-
-func (o AuthenticationSchemePtrOutput) ToAuthenticationSchemePtrOutputWithContext(ctx context.Context) AuthenticationSchemePtrOutput {
-	return o
-}
-
 type AuthenticationSchemeArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSchemeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthenticationScheme)(nil))
+	return reflect.TypeOf((*[]*AuthenticationScheme)(nil)).Elem()
 }
 
 func (o AuthenticationSchemeArrayOutput) ToAuthenticationSchemeArrayOutput() AuthenticationSchemeArrayOutput {
@@ -394,15 +368,15 @@ func (o AuthenticationSchemeArrayOutput) ToAuthenticationSchemeArrayOutputWithCo
 }
 
 func (o AuthenticationSchemeArrayOutput) Index(i pulumi.IntInput) AuthenticationSchemeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthenticationScheme {
-		return vs[0].([]AuthenticationScheme)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthenticationScheme {
+		return vs[0].([]*AuthenticationScheme)[vs[1].(int)]
 	}).(AuthenticationSchemeOutput)
 }
 
 type AuthenticationSchemeMapOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSchemeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AuthenticationScheme)(nil))
+	return reflect.TypeOf((*map[string]*AuthenticationScheme)(nil)).Elem()
 }
 
 func (o AuthenticationSchemeMapOutput) ToAuthenticationSchemeMapOutput() AuthenticationSchemeMapOutput {
@@ -414,14 +388,16 @@ func (o AuthenticationSchemeMapOutput) ToAuthenticationSchemeMapOutputWithContex
 }
 
 func (o AuthenticationSchemeMapOutput) MapIndex(k pulumi.StringInput) AuthenticationSchemeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthenticationScheme {
-		return vs[0].(map[string]AuthenticationScheme)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthenticationScheme {
+		return vs[0].(map[string]*AuthenticationScheme)[vs[1].(string)]
 	}).(AuthenticationSchemeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationSchemeInput)(nil)).Elem(), &AuthenticationScheme{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationSchemeArrayInput)(nil)).Elem(), AuthenticationSchemeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationSchemeMapInput)(nil)).Elem(), AuthenticationSchemeMap{})
 	pulumi.RegisterOutputType(AuthenticationSchemeOutput{})
-	pulumi.RegisterOutputType(AuthenticationSchemePtrOutput{})
 	pulumi.RegisterOutputType(AuthenticationSchemeArrayOutput{})
 	pulumi.RegisterOutputType(AuthenticationSchemeMapOutput{})
 }

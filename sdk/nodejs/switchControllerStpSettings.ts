@@ -108,35 +108,33 @@ export class SwitchControllerStpSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerStpSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerStpSettingsArgs | SwitchControllerStpSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerStpSettingsState | undefined;
-            inputs["forwardTime"] = state ? state.forwardTime : undefined;
-            inputs["helloTime"] = state ? state.helloTime : undefined;
-            inputs["maxAge"] = state ? state.maxAge : undefined;
-            inputs["maxHops"] = state ? state.maxHops : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pendingTimer"] = state ? state.pendingTimer : undefined;
-            inputs["revision"] = state ? state.revision : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["forwardTime"] = state ? state.forwardTime : undefined;
+            resourceInputs["helloTime"] = state ? state.helloTime : undefined;
+            resourceInputs["maxAge"] = state ? state.maxAge : undefined;
+            resourceInputs["maxHops"] = state ? state.maxHops : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pendingTimer"] = state ? state.pendingTimer : undefined;
+            resourceInputs["revision"] = state ? state.revision : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerStpSettingsArgs | undefined;
-            inputs["forwardTime"] = args ? args.forwardTime : undefined;
-            inputs["helloTime"] = args ? args.helloTime : undefined;
-            inputs["maxAge"] = args ? args.maxAge : undefined;
-            inputs["maxHops"] = args ? args.maxHops : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pendingTimer"] = args ? args.pendingTimer : undefined;
-            inputs["revision"] = args ? args.revision : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["forwardTime"] = args ? args.forwardTime : undefined;
+            resourceInputs["helloTime"] = args ? args.helloTime : undefined;
+            resourceInputs["maxAge"] = args ? args.maxAge : undefined;
+            resourceInputs["maxHops"] = args ? args.maxHops : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pendingTimer"] = args ? args.pendingTimer : undefined;
+            resourceInputs["revision"] = args ? args.revision : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerStpSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerStpSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

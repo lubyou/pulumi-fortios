@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -115,6 +115,7 @@ func NewFirewallSslSetting(ctx *pulumi.Context,
 	if args.SslSendEmptyFrags == nil {
 		return nil, errors.New("invalid value for required argument 'SslSendEmptyFrags'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSslSetting
 	err := ctx.RegisterResource("fortios:index/firewallSslSetting:FirewallSslSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -261,7 +262,7 @@ type FirewallSslSettingInput interface {
 }
 
 func (*FirewallSslSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSslSetting)(nil))
+	return reflect.TypeOf((**FirewallSslSetting)(nil)).Elem()
 }
 
 func (i *FirewallSslSetting) ToFirewallSslSettingOutput() FirewallSslSettingOutput {
@@ -270,35 +271,6 @@ func (i *FirewallSslSetting) ToFirewallSslSettingOutput() FirewallSslSettingOutp
 
 func (i *FirewallSslSetting) ToFirewallSslSettingOutputWithContext(ctx context.Context) FirewallSslSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingOutput)
-}
-
-func (i *FirewallSslSetting) ToFirewallSslSettingPtrOutput() FirewallSslSettingPtrOutput {
-	return i.ToFirewallSslSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSslSetting) ToFirewallSslSettingPtrOutputWithContext(ctx context.Context) FirewallSslSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingPtrOutput)
-}
-
-type FirewallSslSettingPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSslSettingPtrOutput() FirewallSslSettingPtrOutput
-	ToFirewallSslSettingPtrOutputWithContext(ctx context.Context) FirewallSslSettingPtrOutput
-}
-
-type firewallSslSettingPtrType FirewallSslSettingArgs
-
-func (*firewallSslSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSslSetting)(nil))
-}
-
-func (i *firewallSslSettingPtrType) ToFirewallSslSettingPtrOutput() FirewallSslSettingPtrOutput {
-	return i.ToFirewallSslSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSslSettingPtrType) ToFirewallSslSettingPtrOutputWithContext(ctx context.Context) FirewallSslSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingPtrOutput)
 }
 
 // FirewallSslSettingArrayInput is an input type that accepts FirewallSslSettingArray and FirewallSslSettingArrayOutput values.
@@ -315,7 +287,7 @@ type FirewallSslSettingArrayInput interface {
 type FirewallSslSettingArray []FirewallSslSettingInput
 
 func (FirewallSslSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSslSetting)(nil))
+	return reflect.TypeOf((*[]*FirewallSslSetting)(nil)).Elem()
 }
 
 func (i FirewallSslSettingArray) ToFirewallSslSettingArrayOutput() FirewallSslSettingArrayOutput {
@@ -340,7 +312,7 @@ type FirewallSslSettingMapInput interface {
 type FirewallSslSettingMap map[string]FirewallSslSettingInput
 
 func (FirewallSslSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSslSetting)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSslSetting)(nil)).Elem()
 }
 
 func (i FirewallSslSettingMap) ToFirewallSslSettingMapOutput() FirewallSslSettingMapOutput {
@@ -351,12 +323,10 @@ func (i FirewallSslSettingMap) ToFirewallSslSettingMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslSettingMapOutput)
 }
 
-type FirewallSslSettingOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSslSettingOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSslSetting)(nil))
+	return reflect.TypeOf((**FirewallSslSetting)(nil)).Elem()
 }
 
 func (o FirewallSslSettingOutput) ToFirewallSslSettingOutput() FirewallSslSettingOutput {
@@ -367,36 +337,10 @@ func (o FirewallSslSettingOutput) ToFirewallSslSettingOutputWithContext(ctx cont
 	return o
 }
 
-func (o FirewallSslSettingOutput) ToFirewallSslSettingPtrOutput() FirewallSslSettingPtrOutput {
-	return o.ToFirewallSslSettingPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSslSettingOutput) ToFirewallSslSettingPtrOutputWithContext(ctx context.Context) FirewallSslSettingPtrOutput {
-	return o.ApplyT(func(v FirewallSslSetting) *FirewallSslSetting {
-		return &v
-	}).(FirewallSslSettingPtrOutput)
-}
-
-type FirewallSslSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSslSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSslSetting)(nil))
-}
-
-func (o FirewallSslSettingPtrOutput) ToFirewallSslSettingPtrOutput() FirewallSslSettingPtrOutput {
-	return o
-}
-
-func (o FirewallSslSettingPtrOutput) ToFirewallSslSettingPtrOutputWithContext(ctx context.Context) FirewallSslSettingPtrOutput {
-	return o
-}
-
 type FirewallSslSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSslSetting)(nil))
+	return reflect.TypeOf((*[]*FirewallSslSetting)(nil)).Elem()
 }
 
 func (o FirewallSslSettingArrayOutput) ToFirewallSslSettingArrayOutput() FirewallSslSettingArrayOutput {
@@ -408,15 +352,15 @@ func (o FirewallSslSettingArrayOutput) ToFirewallSslSettingArrayOutputWithContex
 }
 
 func (o FirewallSslSettingArrayOutput) Index(i pulumi.IntInput) FirewallSslSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSslSetting {
-		return vs[0].([]FirewallSslSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSslSetting {
+		return vs[0].([]*FirewallSslSetting)[vs[1].(int)]
 	}).(FirewallSslSettingOutput)
 }
 
 type FirewallSslSettingMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSslSetting)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSslSetting)(nil)).Elem()
 }
 
 func (o FirewallSslSettingMapOutput) ToFirewallSslSettingMapOutput() FirewallSslSettingMapOutput {
@@ -428,14 +372,16 @@ func (o FirewallSslSettingMapOutput) ToFirewallSslSettingMapOutputWithContext(ct
 }
 
 func (o FirewallSslSettingMapOutput) MapIndex(k pulumi.StringInput) FirewallSslSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSslSetting {
-		return vs[0].(map[string]FirewallSslSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSslSetting {
+		return vs[0].(map[string]*FirewallSslSetting)[vs[1].(string)]
 	}).(FirewallSslSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslSettingInput)(nil)).Elem(), &FirewallSslSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslSettingArrayInput)(nil)).Elem(), FirewallSslSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslSettingMapInput)(nil)).Elem(), FirewallSslSettingMap{})
 	pulumi.RegisterOutputType(FirewallSslSettingOutput{})
-	pulumi.RegisterOutputType(FirewallSslSettingPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSslSettingArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSslSettingMapOutput{})
 }

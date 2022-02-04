@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -97,6 +97,7 @@ func NewNetworkingRouteStatic(ctx *pulumi.Context,
 	if args.Gateway == nil {
 		return nil, errors.New("invalid value for required argument 'Gateway'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NetworkingRouteStatic
 	err := ctx.RegisterResource("fortios:index/networkingRouteStatic:NetworkingRouteStatic", name, args, &resource, opts...)
 	if err != nil {
@@ -227,7 +228,7 @@ type NetworkingRouteStaticInput interface {
 }
 
 func (*NetworkingRouteStatic) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkingRouteStatic)(nil))
+	return reflect.TypeOf((**NetworkingRouteStatic)(nil)).Elem()
 }
 
 func (i *NetworkingRouteStatic) ToNetworkingRouteStaticOutput() NetworkingRouteStaticOutput {
@@ -236,35 +237,6 @@ func (i *NetworkingRouteStatic) ToNetworkingRouteStaticOutput() NetworkingRouteS
 
 func (i *NetworkingRouteStatic) ToNetworkingRouteStaticOutputWithContext(ctx context.Context) NetworkingRouteStaticOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticOutput)
-}
-
-func (i *NetworkingRouteStatic) ToNetworkingRouteStaticPtrOutput() NetworkingRouteStaticPtrOutput {
-	return i.ToNetworkingRouteStaticPtrOutputWithContext(context.Background())
-}
-
-func (i *NetworkingRouteStatic) ToNetworkingRouteStaticPtrOutputWithContext(ctx context.Context) NetworkingRouteStaticPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticPtrOutput)
-}
-
-type NetworkingRouteStaticPtrInput interface {
-	pulumi.Input
-
-	ToNetworkingRouteStaticPtrOutput() NetworkingRouteStaticPtrOutput
-	ToNetworkingRouteStaticPtrOutputWithContext(ctx context.Context) NetworkingRouteStaticPtrOutput
-}
-
-type networkingRouteStaticPtrType NetworkingRouteStaticArgs
-
-func (*networkingRouteStaticPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**NetworkingRouteStatic)(nil))
-}
-
-func (i *networkingRouteStaticPtrType) ToNetworkingRouteStaticPtrOutput() NetworkingRouteStaticPtrOutput {
-	return i.ToNetworkingRouteStaticPtrOutputWithContext(context.Background())
-}
-
-func (i *networkingRouteStaticPtrType) ToNetworkingRouteStaticPtrOutputWithContext(ctx context.Context) NetworkingRouteStaticPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticPtrOutput)
 }
 
 // NetworkingRouteStaticArrayInput is an input type that accepts NetworkingRouteStaticArray and NetworkingRouteStaticArrayOutput values.
@@ -281,7 +253,7 @@ type NetworkingRouteStaticArrayInput interface {
 type NetworkingRouteStaticArray []NetworkingRouteStaticInput
 
 func (NetworkingRouteStaticArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*NetworkingRouteStatic)(nil))
+	return reflect.TypeOf((*[]*NetworkingRouteStatic)(nil)).Elem()
 }
 
 func (i NetworkingRouteStaticArray) ToNetworkingRouteStaticArrayOutput() NetworkingRouteStaticArrayOutput {
@@ -306,7 +278,7 @@ type NetworkingRouteStaticMapInput interface {
 type NetworkingRouteStaticMap map[string]NetworkingRouteStaticInput
 
 func (NetworkingRouteStaticMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*NetworkingRouteStatic)(nil))
+	return reflect.TypeOf((*map[string]*NetworkingRouteStatic)(nil)).Elem()
 }
 
 func (i NetworkingRouteStaticMap) ToNetworkingRouteStaticMapOutput() NetworkingRouteStaticMapOutput {
@@ -317,12 +289,10 @@ func (i NetworkingRouteStaticMap) ToNetworkingRouteStaticMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingRouteStaticMapOutput)
 }
 
-type NetworkingRouteStaticOutput struct {
-	*pulumi.OutputState
-}
+type NetworkingRouteStaticOutput struct{ *pulumi.OutputState }
 
 func (NetworkingRouteStaticOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkingRouteStatic)(nil))
+	return reflect.TypeOf((**NetworkingRouteStatic)(nil)).Elem()
 }
 
 func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticOutput() NetworkingRouteStaticOutput {
@@ -333,36 +303,10 @@ func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticOutputWithContext(ct
 	return o
 }
 
-func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticPtrOutput() NetworkingRouteStaticPtrOutput {
-	return o.ToNetworkingRouteStaticPtrOutputWithContext(context.Background())
-}
-
-func (o NetworkingRouteStaticOutput) ToNetworkingRouteStaticPtrOutputWithContext(ctx context.Context) NetworkingRouteStaticPtrOutput {
-	return o.ApplyT(func(v NetworkingRouteStatic) *NetworkingRouteStatic {
-		return &v
-	}).(NetworkingRouteStaticPtrOutput)
-}
-
-type NetworkingRouteStaticPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (NetworkingRouteStaticPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**NetworkingRouteStatic)(nil))
-}
-
-func (o NetworkingRouteStaticPtrOutput) ToNetworkingRouteStaticPtrOutput() NetworkingRouteStaticPtrOutput {
-	return o
-}
-
-func (o NetworkingRouteStaticPtrOutput) ToNetworkingRouteStaticPtrOutputWithContext(ctx context.Context) NetworkingRouteStaticPtrOutput {
-	return o
-}
-
 type NetworkingRouteStaticArrayOutput struct{ *pulumi.OutputState }
 
 func (NetworkingRouteStaticArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NetworkingRouteStatic)(nil))
+	return reflect.TypeOf((*[]*NetworkingRouteStatic)(nil)).Elem()
 }
 
 func (o NetworkingRouteStaticArrayOutput) ToNetworkingRouteStaticArrayOutput() NetworkingRouteStaticArrayOutput {
@@ -374,15 +318,15 @@ func (o NetworkingRouteStaticArrayOutput) ToNetworkingRouteStaticArrayOutputWith
 }
 
 func (o NetworkingRouteStaticArrayOutput) Index(i pulumi.IntInput) NetworkingRouteStaticOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkingRouteStatic {
-		return vs[0].([]NetworkingRouteStatic)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NetworkingRouteStatic {
+		return vs[0].([]*NetworkingRouteStatic)[vs[1].(int)]
 	}).(NetworkingRouteStaticOutput)
 }
 
 type NetworkingRouteStaticMapOutput struct{ *pulumi.OutputState }
 
 func (NetworkingRouteStaticMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]NetworkingRouteStatic)(nil))
+	return reflect.TypeOf((*map[string]*NetworkingRouteStatic)(nil)).Elem()
 }
 
 func (o NetworkingRouteStaticMapOutput) ToNetworkingRouteStaticMapOutput() NetworkingRouteStaticMapOutput {
@@ -394,14 +338,16 @@ func (o NetworkingRouteStaticMapOutput) ToNetworkingRouteStaticMapOutputWithCont
 }
 
 func (o NetworkingRouteStaticMapOutput) MapIndex(k pulumi.StringInput) NetworkingRouteStaticOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NetworkingRouteStatic {
-		return vs[0].(map[string]NetworkingRouteStatic)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *NetworkingRouteStatic {
+		return vs[0].(map[string]*NetworkingRouteStatic)[vs[1].(string)]
 	}).(NetworkingRouteStaticOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkingRouteStaticInput)(nil)).Elem(), &NetworkingRouteStatic{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkingRouteStaticArrayInput)(nil)).Elem(), NetworkingRouteStaticArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkingRouteStaticMapInput)(nil)).Elem(), NetworkingRouteStaticMap{})
 	pulumi.RegisterOutputType(NetworkingRouteStaticOutput{})
-	pulumi.RegisterOutputType(NetworkingRouteStaticPtrOutput{})
 	pulumi.RegisterOutputType(NetworkingRouteStaticArrayOutput{})
 	pulumi.RegisterOutputType(NetworkingRouteStaticMapOutput{})
 }

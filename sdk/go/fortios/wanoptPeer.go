@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewWanoptPeer(ctx *pulumi.Context,
 		args = &WanoptPeerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptPeer
 	err := ctx.RegisterResource("fortios:index/wanoptPeer:WanoptPeer", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type WanoptPeerInput interface {
 }
 
 func (*WanoptPeer) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptPeer)(nil))
+	return reflect.TypeOf((**WanoptPeer)(nil)).Elem()
 }
 
 func (i *WanoptPeer) ToWanoptPeerOutput() WanoptPeerOutput {
@@ -146,35 +147,6 @@ func (i *WanoptPeer) ToWanoptPeerOutput() WanoptPeerOutput {
 
 func (i *WanoptPeer) ToWanoptPeerOutputWithContext(ctx context.Context) WanoptPeerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerOutput)
-}
-
-func (i *WanoptPeer) ToWanoptPeerPtrOutput() WanoptPeerPtrOutput {
-	return i.ToWanoptPeerPtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptPeer) ToWanoptPeerPtrOutputWithContext(ctx context.Context) WanoptPeerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerPtrOutput)
-}
-
-type WanoptPeerPtrInput interface {
-	pulumi.Input
-
-	ToWanoptPeerPtrOutput() WanoptPeerPtrOutput
-	ToWanoptPeerPtrOutputWithContext(ctx context.Context) WanoptPeerPtrOutput
-}
-
-type wanoptPeerPtrType WanoptPeerArgs
-
-func (*wanoptPeerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptPeer)(nil))
-}
-
-func (i *wanoptPeerPtrType) ToWanoptPeerPtrOutput() WanoptPeerPtrOutput {
-	return i.ToWanoptPeerPtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptPeerPtrType) ToWanoptPeerPtrOutputWithContext(ctx context.Context) WanoptPeerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerPtrOutput)
 }
 
 // WanoptPeerArrayInput is an input type that accepts WanoptPeerArray and WanoptPeerArrayOutput values.
@@ -191,7 +163,7 @@ type WanoptPeerArrayInput interface {
 type WanoptPeerArray []WanoptPeerInput
 
 func (WanoptPeerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptPeer)(nil))
+	return reflect.TypeOf((*[]*WanoptPeer)(nil)).Elem()
 }
 
 func (i WanoptPeerArray) ToWanoptPeerArrayOutput() WanoptPeerArrayOutput {
@@ -216,7 +188,7 @@ type WanoptPeerMapInput interface {
 type WanoptPeerMap map[string]WanoptPeerInput
 
 func (WanoptPeerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptPeer)(nil))
+	return reflect.TypeOf((*map[string]*WanoptPeer)(nil)).Elem()
 }
 
 func (i WanoptPeerMap) ToWanoptPeerMapOutput() WanoptPeerMapOutput {
@@ -227,12 +199,10 @@ func (i WanoptPeerMap) ToWanoptPeerMapOutputWithContext(ctx context.Context) Wan
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptPeerMapOutput)
 }
 
-type WanoptPeerOutput struct {
-	*pulumi.OutputState
-}
+type WanoptPeerOutput struct{ *pulumi.OutputState }
 
 func (WanoptPeerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptPeer)(nil))
+	return reflect.TypeOf((**WanoptPeer)(nil)).Elem()
 }
 
 func (o WanoptPeerOutput) ToWanoptPeerOutput() WanoptPeerOutput {
@@ -243,36 +213,10 @@ func (o WanoptPeerOutput) ToWanoptPeerOutputWithContext(ctx context.Context) Wan
 	return o
 }
 
-func (o WanoptPeerOutput) ToWanoptPeerPtrOutput() WanoptPeerPtrOutput {
-	return o.ToWanoptPeerPtrOutputWithContext(context.Background())
-}
-
-func (o WanoptPeerOutput) ToWanoptPeerPtrOutputWithContext(ctx context.Context) WanoptPeerPtrOutput {
-	return o.ApplyT(func(v WanoptPeer) *WanoptPeer {
-		return &v
-	}).(WanoptPeerPtrOutput)
-}
-
-type WanoptPeerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptPeerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptPeer)(nil))
-}
-
-func (o WanoptPeerPtrOutput) ToWanoptPeerPtrOutput() WanoptPeerPtrOutput {
-	return o
-}
-
-func (o WanoptPeerPtrOutput) ToWanoptPeerPtrOutputWithContext(ctx context.Context) WanoptPeerPtrOutput {
-	return o
-}
-
 type WanoptPeerArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptPeerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptPeer)(nil))
+	return reflect.TypeOf((*[]*WanoptPeer)(nil)).Elem()
 }
 
 func (o WanoptPeerArrayOutput) ToWanoptPeerArrayOutput() WanoptPeerArrayOutput {
@@ -284,15 +228,15 @@ func (o WanoptPeerArrayOutput) ToWanoptPeerArrayOutputWithContext(ctx context.Co
 }
 
 func (o WanoptPeerArrayOutput) Index(i pulumi.IntInput) WanoptPeerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptPeer {
-		return vs[0].([]WanoptPeer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptPeer {
+		return vs[0].([]*WanoptPeer)[vs[1].(int)]
 	}).(WanoptPeerOutput)
 }
 
 type WanoptPeerMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptPeerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptPeer)(nil))
+	return reflect.TypeOf((*map[string]*WanoptPeer)(nil)).Elem()
 }
 
 func (o WanoptPeerMapOutput) ToWanoptPeerMapOutput() WanoptPeerMapOutput {
@@ -304,14 +248,16 @@ func (o WanoptPeerMapOutput) ToWanoptPeerMapOutputWithContext(ctx context.Contex
 }
 
 func (o WanoptPeerMapOutput) MapIndex(k pulumi.StringInput) WanoptPeerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptPeer {
-		return vs[0].(map[string]WanoptPeer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptPeer {
+		return vs[0].(map[string]*WanoptPeer)[vs[1].(string)]
 	}).(WanoptPeerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptPeerInput)(nil)).Elem(), &WanoptPeer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptPeerArrayInput)(nil)).Elem(), WanoptPeerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptPeerMapInput)(nil)).Elem(), WanoptPeerMap{})
 	pulumi.RegisterOutputType(WanoptPeerOutput{})
-	pulumi.RegisterOutputType(WanoptPeerPtrOutput{})
 	pulumi.RegisterOutputType(WanoptPeerArrayOutput{})
 	pulumi.RegisterOutputType(WanoptPeerMapOutput{})
 }

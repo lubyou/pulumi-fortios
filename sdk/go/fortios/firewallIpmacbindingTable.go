@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,6 +75,7 @@ func NewFirewallIpmacbindingTable(ctx *pulumi.Context,
 	if args.Ip == nil {
 		return nil, errors.New("invalid value for required argument 'Ip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallIpmacbindingTable
 	err := ctx.RegisterResource("fortios:index/firewallIpmacbindingTable:FirewallIpmacbindingTable", name, args, &resource, opts...)
 	if err != nil {
@@ -173,7 +174,7 @@ type FirewallIpmacbindingTableInput interface {
 }
 
 func (*FirewallIpmacbindingTable) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIpmacbindingTable)(nil))
+	return reflect.TypeOf((**FirewallIpmacbindingTable)(nil)).Elem()
 }
 
 func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTableOutput() FirewallIpmacbindingTableOutput {
@@ -182,35 +183,6 @@ func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTableOutput() Firewall
 
 func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTableOutputWithContext(ctx context.Context) FirewallIpmacbindingTableOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTableOutput)
-}
-
-func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTablePtrOutput() FirewallIpmacbindingTablePtrOutput {
-	return i.ToFirewallIpmacbindingTablePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallIpmacbindingTable) ToFirewallIpmacbindingTablePtrOutputWithContext(ctx context.Context) FirewallIpmacbindingTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTablePtrOutput)
-}
-
-type FirewallIpmacbindingTablePtrInput interface {
-	pulumi.Input
-
-	ToFirewallIpmacbindingTablePtrOutput() FirewallIpmacbindingTablePtrOutput
-	ToFirewallIpmacbindingTablePtrOutputWithContext(ctx context.Context) FirewallIpmacbindingTablePtrOutput
-}
-
-type firewallIpmacbindingTablePtrType FirewallIpmacbindingTableArgs
-
-func (*firewallIpmacbindingTablePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIpmacbindingTable)(nil))
-}
-
-func (i *firewallIpmacbindingTablePtrType) ToFirewallIpmacbindingTablePtrOutput() FirewallIpmacbindingTablePtrOutput {
-	return i.ToFirewallIpmacbindingTablePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallIpmacbindingTablePtrType) ToFirewallIpmacbindingTablePtrOutputWithContext(ctx context.Context) FirewallIpmacbindingTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTablePtrOutput)
 }
 
 // FirewallIpmacbindingTableArrayInput is an input type that accepts FirewallIpmacbindingTableArray and FirewallIpmacbindingTableArrayOutput values.
@@ -227,7 +199,7 @@ type FirewallIpmacbindingTableArrayInput interface {
 type FirewallIpmacbindingTableArray []FirewallIpmacbindingTableInput
 
 func (FirewallIpmacbindingTableArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallIpmacbindingTable)(nil))
+	return reflect.TypeOf((*[]*FirewallIpmacbindingTable)(nil)).Elem()
 }
 
 func (i FirewallIpmacbindingTableArray) ToFirewallIpmacbindingTableArrayOutput() FirewallIpmacbindingTableArrayOutput {
@@ -252,7 +224,7 @@ type FirewallIpmacbindingTableMapInput interface {
 type FirewallIpmacbindingTableMap map[string]FirewallIpmacbindingTableInput
 
 func (FirewallIpmacbindingTableMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallIpmacbindingTable)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIpmacbindingTable)(nil)).Elem()
 }
 
 func (i FirewallIpmacbindingTableMap) ToFirewallIpmacbindingTableMapOutput() FirewallIpmacbindingTableMapOutput {
@@ -263,12 +235,10 @@ func (i FirewallIpmacbindingTableMap) ToFirewallIpmacbindingTableMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpmacbindingTableMapOutput)
 }
 
-type FirewallIpmacbindingTableOutput struct {
-	*pulumi.OutputState
-}
+type FirewallIpmacbindingTableOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpmacbindingTableOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIpmacbindingTable)(nil))
+	return reflect.TypeOf((**FirewallIpmacbindingTable)(nil)).Elem()
 }
 
 func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTableOutput() FirewallIpmacbindingTableOutput {
@@ -279,36 +249,10 @@ func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTableOutputWithCo
 	return o
 }
 
-func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTablePtrOutput() FirewallIpmacbindingTablePtrOutput {
-	return o.ToFirewallIpmacbindingTablePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallIpmacbindingTableOutput) ToFirewallIpmacbindingTablePtrOutputWithContext(ctx context.Context) FirewallIpmacbindingTablePtrOutput {
-	return o.ApplyT(func(v FirewallIpmacbindingTable) *FirewallIpmacbindingTable {
-		return &v
-	}).(FirewallIpmacbindingTablePtrOutput)
-}
-
-type FirewallIpmacbindingTablePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallIpmacbindingTablePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIpmacbindingTable)(nil))
-}
-
-func (o FirewallIpmacbindingTablePtrOutput) ToFirewallIpmacbindingTablePtrOutput() FirewallIpmacbindingTablePtrOutput {
-	return o
-}
-
-func (o FirewallIpmacbindingTablePtrOutput) ToFirewallIpmacbindingTablePtrOutputWithContext(ctx context.Context) FirewallIpmacbindingTablePtrOutput {
-	return o
-}
-
 type FirewallIpmacbindingTableArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpmacbindingTableArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallIpmacbindingTable)(nil))
+	return reflect.TypeOf((*[]*FirewallIpmacbindingTable)(nil)).Elem()
 }
 
 func (o FirewallIpmacbindingTableArrayOutput) ToFirewallIpmacbindingTableArrayOutput() FirewallIpmacbindingTableArrayOutput {
@@ -320,15 +264,15 @@ func (o FirewallIpmacbindingTableArrayOutput) ToFirewallIpmacbindingTableArrayOu
 }
 
 func (o FirewallIpmacbindingTableArrayOutput) Index(i pulumi.IntInput) FirewallIpmacbindingTableOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIpmacbindingTable {
-		return vs[0].([]FirewallIpmacbindingTable)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpmacbindingTable {
+		return vs[0].([]*FirewallIpmacbindingTable)[vs[1].(int)]
 	}).(FirewallIpmacbindingTableOutput)
 }
 
 type FirewallIpmacbindingTableMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpmacbindingTableMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallIpmacbindingTable)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIpmacbindingTable)(nil)).Elem()
 }
 
 func (o FirewallIpmacbindingTableMapOutput) ToFirewallIpmacbindingTableMapOutput() FirewallIpmacbindingTableMapOutput {
@@ -340,14 +284,16 @@ func (o FirewallIpmacbindingTableMapOutput) ToFirewallIpmacbindingTableMapOutput
 }
 
 func (o FirewallIpmacbindingTableMapOutput) MapIndex(k pulumi.StringInput) FirewallIpmacbindingTableOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallIpmacbindingTable {
-		return vs[0].(map[string]FirewallIpmacbindingTable)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallIpmacbindingTable {
+		return vs[0].(map[string]*FirewallIpmacbindingTable)[vs[1].(string)]
 	}).(FirewallIpmacbindingTableOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpmacbindingTableInput)(nil)).Elem(), &FirewallIpmacbindingTable{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpmacbindingTableArrayInput)(nil)).Elem(), FirewallIpmacbindingTableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpmacbindingTableMapInput)(nil)).Elem(), FirewallIpmacbindingTableMap{})
 	pulumi.RegisterOutputType(FirewallIpmacbindingTableOutput{})
-	pulumi.RegisterOutputType(FirewallIpmacbindingTablePtrOutput{})
 	pulumi.RegisterOutputType(FirewallIpmacbindingTableArrayOutput{})
 	pulumi.RegisterOutputType(FirewallIpmacbindingTableMapOutput{})
 }

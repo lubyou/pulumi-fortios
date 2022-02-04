@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios router multicast
 func LookupRouterMulticast(ctx *pulumi.Context, args *LookupRouterMulticastArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticastResult
 	err := ctx.Invoke("fortios:index/getRouterMulticast:GetRouterMulticast", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,76 @@ type LookupRouterMulticastResult struct {
 	// Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
 	RouteThreshold int     `pulumi:"routeThreshold"`
 	Vdomparam      *string `pulumi:"vdomparam"`
+}
+
+func LookupRouterMulticastOutput(ctx *pulumi.Context, args LookupRouterMulticastOutputArgs, opts ...pulumi.InvokeOption) LookupRouterMulticastResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterMulticastResult, error) {
+			args := v.(LookupRouterMulticastArgs)
+			r, err := LookupRouterMulticast(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterMulticastResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterMulticast.
+type LookupRouterMulticastOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterMulticastOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterMulticastArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterMulticast.
+type LookupRouterMulticastResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterMulticastResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterMulticastResult)(nil)).Elem()
+}
+
+func (o LookupRouterMulticastResultOutput) ToLookupRouterMulticastResultOutput() LookupRouterMulticastResultOutput {
+	return o
+}
+
+func (o LookupRouterMulticastResultOutput) ToLookupRouterMulticastResultOutputWithContext(ctx context.Context) LookupRouterMulticastResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterMulticastResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// PIM interfaces. The structure of `interface` block is documented below.
+func (o LookupRouterMulticastResultOutput) Interfaces() GetRouterMulticastInterfaceArrayOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) []GetRouterMulticastInterface { return v.Interfaces }).(GetRouterMulticastInterfaceArrayOutput)
+}
+
+// Enable/disable IP multicast routing.
+func (o LookupRouterMulticastResultOutput) MulticastRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) string { return v.MulticastRouting }).(pulumi.StringOutput)
+}
+
+// PIM sparse-mode global settings. The structure of `pimSmGlobal` block is documented below.
+func (o LookupRouterMulticastResultOutput) PimSmGlobal() GetRouterMulticastPimSmGlobalOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) GetRouterMulticastPimSmGlobal { return v.PimSmGlobal }).(GetRouterMulticastPimSmGlobalOutput)
+}
+
+// Maximum number of multicast routes.
+func (o LookupRouterMulticastResultOutput) RouteLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) int { return v.RouteLimit }).(pulumi.IntOutput)
+}
+
+// Generate warnings when the number of multicast routes exceeds this number, must not be greater than route-limit.
+func (o LookupRouterMulticastResultOutput) RouteThreshold() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) int { return v.RouteThreshold }).(pulumi.IntOutput)
+}
+
+func (o LookupRouterMulticastResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterMulticastResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterMulticastResultOutput{})
 }

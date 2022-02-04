@@ -83,31 +83,29 @@ export class SystemStandaloneCluster extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemStandaloneClusterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemStandaloneClusterArgs | SystemStandaloneClusterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemStandaloneClusterState | undefined;
-            inputs["encryption"] = state ? state.encryption : undefined;
-            inputs["groupMemberId"] = state ? state.groupMemberId : undefined;
-            inputs["layer2Connection"] = state ? state.layer2Connection : undefined;
-            inputs["psksecret"] = state ? state.psksecret : undefined;
-            inputs["sessionSyncDev"] = state ? state.sessionSyncDev : undefined;
-            inputs["standaloneGroupId"] = state ? state.standaloneGroupId : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["encryption"] = state ? state.encryption : undefined;
+            resourceInputs["groupMemberId"] = state ? state.groupMemberId : undefined;
+            resourceInputs["layer2Connection"] = state ? state.layer2Connection : undefined;
+            resourceInputs["psksecret"] = state ? state.psksecret : undefined;
+            resourceInputs["sessionSyncDev"] = state ? state.sessionSyncDev : undefined;
+            resourceInputs["standaloneGroupId"] = state ? state.standaloneGroupId : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemStandaloneClusterArgs | undefined;
-            inputs["encryption"] = args ? args.encryption : undefined;
-            inputs["groupMemberId"] = args ? args.groupMemberId : undefined;
-            inputs["layer2Connection"] = args ? args.layer2Connection : undefined;
-            inputs["psksecret"] = args ? args.psksecret : undefined;
-            inputs["sessionSyncDev"] = args ? args.sessionSyncDev : undefined;
-            inputs["standaloneGroupId"] = args ? args.standaloneGroupId : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["encryption"] = args ? args.encryption : undefined;
+            resourceInputs["groupMemberId"] = args ? args.groupMemberId : undefined;
+            resourceInputs["layer2Connection"] = args ? args.layer2Connection : undefined;
+            resourceInputs["psksecret"] = args ? args.psksecret : undefined;
+            resourceInputs["sessionSyncDev"] = args ? args.sessionSyncDev : undefined;
+            resourceInputs["standaloneGroupId"] = args ? args.standaloneGroupId : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemStandaloneCluster.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemStandaloneCluster.__pulumiType, name, resourceInputs, opts);
     }
 }
 

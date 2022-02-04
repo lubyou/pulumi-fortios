@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemFtmPushResult',
     'AwaitableGetSystemFtmPushResult',
     'get_system_ftm_push',
+    'get_system_ftm_push_output',
 ]
 
 @pulumi.output_type
@@ -19,10 +20,13 @@ class GetSystemFtmPushResult:
     """
     A collection of values returned by GetSystemFtmPush.
     """
-    def __init__(__self__, id=None, server_cert=None, server_ip=None, server_port=None, status=None, vdomparam=None):
+    def __init__(__self__, id=None, server=None, server_cert=None, server_ip=None, server_port=None, status=None, vdomparam=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if server and not isinstance(server, str):
+            raise TypeError("Expected argument 'server' to be a str")
+        pulumi.set(__self__, "server", server)
         if server_cert and not isinstance(server_cert, str):
             raise TypeError("Expected argument 'server_cert' to be a str")
         pulumi.set(__self__, "server_cert", server_cert)
@@ -46,6 +50,14 @@ class GetSystemFtmPushResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def server(self) -> str:
+        """
+        IPv4 address or domain name of FortiToken Mobile push services server.
+        """
+        return pulumi.get(self, "server")
 
     @property
     @pulumi.getter(name="serverCert")
@@ -92,6 +104,7 @@ class AwaitableGetSystemFtmPushResult(GetSystemFtmPushResult):
             yield self
         return GetSystemFtmPushResult(
             id=self.id,
+            server=self.server,
             server_cert=self.server_cert,
             server_ip=self.server_ip,
             server_port=self.server_port,
@@ -113,12 +126,27 @@ def get_system_ftm_push(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFtmPush:GetSystemFtmPush', __args__, opts=opts, typ=GetSystemFtmPushResult).value
 
     return AwaitableGetSystemFtmPushResult(
         id=__ret__.id,
+        server=__ret__.server,
         server_cert=__ret__.server_cert,
         server_ip=__ret__.server_ip,
         server_port=__ret__.server_port,
         status=__ret__.status,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_ftm_push)
+def get_system_ftm_push_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                               opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemFtmPushResult]:
+    """
+    Use this data source to get information on fortios system ftmpush
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

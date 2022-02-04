@@ -159,55 +159,53 @@ export class SystemResourceLimits extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemResourceLimitsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemResourceLimitsArgs | SystemResourceLimitsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemResourceLimitsState | undefined;
-            inputs["customService"] = state ? state.customService : undefined;
-            inputs["dialupTunnel"] = state ? state.dialupTunnel : undefined;
-            inputs["firewallAddress"] = state ? state.firewallAddress : undefined;
-            inputs["firewallAddrgrp"] = state ? state.firewallAddrgrp : undefined;
-            inputs["firewallPolicy"] = state ? state.firewallPolicy : undefined;
-            inputs["ipsecPhase1"] = state ? state.ipsecPhase1 : undefined;
-            inputs["ipsecPhase1Interface"] = state ? state.ipsecPhase1Interface : undefined;
-            inputs["ipsecPhase2"] = state ? state.ipsecPhase2 : undefined;
-            inputs["ipsecPhase2Interface"] = state ? state.ipsecPhase2Interface : undefined;
-            inputs["logDiskQuota"] = state ? state.logDiskQuota : undefined;
-            inputs["onetimeSchedule"] = state ? state.onetimeSchedule : undefined;
-            inputs["proxy"] = state ? state.proxy : undefined;
-            inputs["recurringSchedule"] = state ? state.recurringSchedule : undefined;
-            inputs["serviceGroup"] = state ? state.serviceGroup : undefined;
-            inputs["session"] = state ? state.session : undefined;
-            inputs["sslvpn"] = state ? state.sslvpn : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["userGroup"] = state ? state.userGroup : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["customService"] = state ? state.customService : undefined;
+            resourceInputs["dialupTunnel"] = state ? state.dialupTunnel : undefined;
+            resourceInputs["firewallAddress"] = state ? state.firewallAddress : undefined;
+            resourceInputs["firewallAddrgrp"] = state ? state.firewallAddrgrp : undefined;
+            resourceInputs["firewallPolicy"] = state ? state.firewallPolicy : undefined;
+            resourceInputs["ipsecPhase1"] = state ? state.ipsecPhase1 : undefined;
+            resourceInputs["ipsecPhase1Interface"] = state ? state.ipsecPhase1Interface : undefined;
+            resourceInputs["ipsecPhase2"] = state ? state.ipsecPhase2 : undefined;
+            resourceInputs["ipsecPhase2Interface"] = state ? state.ipsecPhase2Interface : undefined;
+            resourceInputs["logDiskQuota"] = state ? state.logDiskQuota : undefined;
+            resourceInputs["onetimeSchedule"] = state ? state.onetimeSchedule : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
+            resourceInputs["recurringSchedule"] = state ? state.recurringSchedule : undefined;
+            resourceInputs["serviceGroup"] = state ? state.serviceGroup : undefined;
+            resourceInputs["session"] = state ? state.session : undefined;
+            resourceInputs["sslvpn"] = state ? state.sslvpn : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["userGroup"] = state ? state.userGroup : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemResourceLimitsArgs | undefined;
-            inputs["customService"] = args ? args.customService : undefined;
-            inputs["dialupTunnel"] = args ? args.dialupTunnel : undefined;
-            inputs["firewallAddress"] = args ? args.firewallAddress : undefined;
-            inputs["firewallAddrgrp"] = args ? args.firewallAddrgrp : undefined;
-            inputs["firewallPolicy"] = args ? args.firewallPolicy : undefined;
-            inputs["ipsecPhase1"] = args ? args.ipsecPhase1 : undefined;
-            inputs["ipsecPhase1Interface"] = args ? args.ipsecPhase1Interface : undefined;
-            inputs["ipsecPhase2"] = args ? args.ipsecPhase2 : undefined;
-            inputs["ipsecPhase2Interface"] = args ? args.ipsecPhase2Interface : undefined;
-            inputs["logDiskQuota"] = args ? args.logDiskQuota : undefined;
-            inputs["onetimeSchedule"] = args ? args.onetimeSchedule : undefined;
-            inputs["proxy"] = args ? args.proxy : undefined;
-            inputs["recurringSchedule"] = args ? args.recurringSchedule : undefined;
-            inputs["serviceGroup"] = args ? args.serviceGroup : undefined;
-            inputs["session"] = args ? args.session : undefined;
-            inputs["sslvpn"] = args ? args.sslvpn : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["userGroup"] = args ? args.userGroup : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["customService"] = args ? args.customService : undefined;
+            resourceInputs["dialupTunnel"] = args ? args.dialupTunnel : undefined;
+            resourceInputs["firewallAddress"] = args ? args.firewallAddress : undefined;
+            resourceInputs["firewallAddrgrp"] = args ? args.firewallAddrgrp : undefined;
+            resourceInputs["firewallPolicy"] = args ? args.firewallPolicy : undefined;
+            resourceInputs["ipsecPhase1"] = args ? args.ipsecPhase1 : undefined;
+            resourceInputs["ipsecPhase1Interface"] = args ? args.ipsecPhase1Interface : undefined;
+            resourceInputs["ipsecPhase2"] = args ? args.ipsecPhase2 : undefined;
+            resourceInputs["ipsecPhase2Interface"] = args ? args.ipsecPhase2Interface : undefined;
+            resourceInputs["logDiskQuota"] = args ? args.logDiskQuota : undefined;
+            resourceInputs["onetimeSchedule"] = args ? args.onetimeSchedule : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["recurringSchedule"] = args ? args.recurringSchedule : undefined;
+            resourceInputs["serviceGroup"] = args ? args.serviceGroup : undefined;
+            resourceInputs["session"] = args ? args.session : undefined;
+            resourceInputs["sslvpn"] = args ? args.sslvpn : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["userGroup"] = args ? args.userGroup : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemResourceLimits.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemResourceLimits.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemSnmpUser`.
 func GetSystemSnmpUserList(ctx *pulumi.Context, args *GetSystemSnmpUserListArgs, opts ...pulumi.InvokeOption) (*GetSystemSnmpUserListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSnmpUserListResult
 	err := ctx.Invoke("fortios:index/getSystemSnmpUserList:GetSystemSnmpUserList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemSnmpUserListResult struct {
 	// A list of the `SystemSnmpUser`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemSnmpUserListOutput(ctx *pulumi.Context, args GetSystemSnmpUserListOutputArgs, opts ...pulumi.InvokeOption) GetSystemSnmpUserListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemSnmpUserListResult, error) {
+			args := v.(GetSystemSnmpUserListArgs)
+			r, err := GetSystemSnmpUserList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemSnmpUserListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSnmpUserList.
+type GetSystemSnmpUserListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemSnmpUserListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSnmpUserListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSnmpUserList.
+type GetSystemSnmpUserListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemSnmpUserListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSnmpUserListResult)(nil)).Elem()
+}
+
+func (o GetSystemSnmpUserListResultOutput) ToGetSystemSnmpUserListResultOutput() GetSystemSnmpUserListResultOutput {
+	return o
+}
+
+func (o GetSystemSnmpUserListResultOutput) ToGetSystemSnmpUserListResultOutputWithContext(ctx context.Context) GetSystemSnmpUserListResultOutput {
+	return o
+}
+
+func (o GetSystemSnmpUserListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSnmpUserListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemSnmpUserListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemSnmpUserListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemSnmpUser`.
+func (o GetSystemSnmpUserListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemSnmpUserListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemSnmpUserListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSnmpUserListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemSnmpUserListResultOutput{})
 }

@@ -43,6 +43,7 @@ func NewUserSecurityExemptList(ctx *pulumi.Context,
 		args = &UserSecurityExemptListArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserSecurityExemptList
 	err := ctx.RegisterResource("fortios:index/userSecurityExemptList:UserSecurityExemptList", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type UserSecurityExemptListInput interface {
 }
 
 func (*UserSecurityExemptList) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserSecurityExemptList)(nil))
+	return reflect.TypeOf((**UserSecurityExemptList)(nil)).Elem()
 }
 
 func (i *UserSecurityExemptList) ToUserSecurityExemptListOutput() UserSecurityExemptListOutput {
@@ -142,35 +143,6 @@ func (i *UserSecurityExemptList) ToUserSecurityExemptListOutput() UserSecurityEx
 
 func (i *UserSecurityExemptList) ToUserSecurityExemptListOutputWithContext(ctx context.Context) UserSecurityExemptListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListOutput)
-}
-
-func (i *UserSecurityExemptList) ToUserSecurityExemptListPtrOutput() UserSecurityExemptListPtrOutput {
-	return i.ToUserSecurityExemptListPtrOutputWithContext(context.Background())
-}
-
-func (i *UserSecurityExemptList) ToUserSecurityExemptListPtrOutputWithContext(ctx context.Context) UserSecurityExemptListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListPtrOutput)
-}
-
-type UserSecurityExemptListPtrInput interface {
-	pulumi.Input
-
-	ToUserSecurityExemptListPtrOutput() UserSecurityExemptListPtrOutput
-	ToUserSecurityExemptListPtrOutputWithContext(ctx context.Context) UserSecurityExemptListPtrOutput
-}
-
-type userSecurityExemptListPtrType UserSecurityExemptListArgs
-
-func (*userSecurityExemptListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserSecurityExemptList)(nil))
-}
-
-func (i *userSecurityExemptListPtrType) ToUserSecurityExemptListPtrOutput() UserSecurityExemptListPtrOutput {
-	return i.ToUserSecurityExemptListPtrOutputWithContext(context.Background())
-}
-
-func (i *userSecurityExemptListPtrType) ToUserSecurityExemptListPtrOutputWithContext(ctx context.Context) UserSecurityExemptListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListPtrOutput)
 }
 
 // UserSecurityExemptListArrayInput is an input type that accepts UserSecurityExemptListArray and UserSecurityExemptListArrayOutput values.
@@ -187,7 +159,7 @@ type UserSecurityExemptListArrayInput interface {
 type UserSecurityExemptListArray []UserSecurityExemptListInput
 
 func (UserSecurityExemptListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserSecurityExemptList)(nil))
+	return reflect.TypeOf((*[]*UserSecurityExemptList)(nil)).Elem()
 }
 
 func (i UserSecurityExemptListArray) ToUserSecurityExemptListArrayOutput() UserSecurityExemptListArrayOutput {
@@ -212,7 +184,7 @@ type UserSecurityExemptListMapInput interface {
 type UserSecurityExemptListMap map[string]UserSecurityExemptListInput
 
 func (UserSecurityExemptListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserSecurityExemptList)(nil))
+	return reflect.TypeOf((*map[string]*UserSecurityExemptList)(nil)).Elem()
 }
 
 func (i UserSecurityExemptListMap) ToUserSecurityExemptListMapOutput() UserSecurityExemptListMapOutput {
@@ -223,12 +195,10 @@ func (i UserSecurityExemptListMap) ToUserSecurityExemptListMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(UserSecurityExemptListMapOutput)
 }
 
-type UserSecurityExemptListOutput struct {
-	*pulumi.OutputState
-}
+type UserSecurityExemptListOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserSecurityExemptList)(nil))
+	return reflect.TypeOf((**UserSecurityExemptList)(nil)).Elem()
 }
 
 func (o UserSecurityExemptListOutput) ToUserSecurityExemptListOutput() UserSecurityExemptListOutput {
@@ -239,36 +209,10 @@ func (o UserSecurityExemptListOutput) ToUserSecurityExemptListOutputWithContext(
 	return o
 }
 
-func (o UserSecurityExemptListOutput) ToUserSecurityExemptListPtrOutput() UserSecurityExemptListPtrOutput {
-	return o.ToUserSecurityExemptListPtrOutputWithContext(context.Background())
-}
-
-func (o UserSecurityExemptListOutput) ToUserSecurityExemptListPtrOutputWithContext(ctx context.Context) UserSecurityExemptListPtrOutput {
-	return o.ApplyT(func(v UserSecurityExemptList) *UserSecurityExemptList {
-		return &v
-	}).(UserSecurityExemptListPtrOutput)
-}
-
-type UserSecurityExemptListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserSecurityExemptListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserSecurityExemptList)(nil))
-}
-
-func (o UserSecurityExemptListPtrOutput) ToUserSecurityExemptListPtrOutput() UserSecurityExemptListPtrOutput {
-	return o
-}
-
-func (o UserSecurityExemptListPtrOutput) ToUserSecurityExemptListPtrOutputWithContext(ctx context.Context) UserSecurityExemptListPtrOutput {
-	return o
-}
-
 type UserSecurityExemptListArrayOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserSecurityExemptList)(nil))
+	return reflect.TypeOf((*[]*UserSecurityExemptList)(nil)).Elem()
 }
 
 func (o UserSecurityExemptListArrayOutput) ToUserSecurityExemptListArrayOutput() UserSecurityExemptListArrayOutput {
@@ -280,15 +224,15 @@ func (o UserSecurityExemptListArrayOutput) ToUserSecurityExemptListArrayOutputWi
 }
 
 func (o UserSecurityExemptListArrayOutput) Index(i pulumi.IntInput) UserSecurityExemptListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserSecurityExemptList {
-		return vs[0].([]UserSecurityExemptList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserSecurityExemptList {
+		return vs[0].([]*UserSecurityExemptList)[vs[1].(int)]
 	}).(UserSecurityExemptListOutput)
 }
 
 type UserSecurityExemptListMapOutput struct{ *pulumi.OutputState }
 
 func (UserSecurityExemptListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserSecurityExemptList)(nil))
+	return reflect.TypeOf((*map[string]*UserSecurityExemptList)(nil)).Elem()
 }
 
 func (o UserSecurityExemptListMapOutput) ToUserSecurityExemptListMapOutput() UserSecurityExemptListMapOutput {
@@ -300,14 +244,16 @@ func (o UserSecurityExemptListMapOutput) ToUserSecurityExemptListMapOutputWithCo
 }
 
 func (o UserSecurityExemptListMapOutput) MapIndex(k pulumi.StringInput) UserSecurityExemptListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserSecurityExemptList {
-		return vs[0].(map[string]UserSecurityExemptList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserSecurityExemptList {
+		return vs[0].(map[string]*UserSecurityExemptList)[vs[1].(string)]
 	}).(UserSecurityExemptListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListInput)(nil)).Elem(), &UserSecurityExemptList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListArrayInput)(nil)).Elem(), UserSecurityExemptListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserSecurityExemptListMapInput)(nil)).Elem(), UserSecurityExemptListMap{})
 	pulumi.RegisterOutputType(UserSecurityExemptListOutput{})
-	pulumi.RegisterOutputType(UserSecurityExemptListPtrOutput{})
 	pulumi.RegisterOutputType(UserSecurityExemptListArrayOutput{})
 	pulumi.RegisterOutputType(UserSecurityExemptListMapOutput{})
 }

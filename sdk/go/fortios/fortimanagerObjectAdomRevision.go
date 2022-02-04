@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -58,6 +58,7 @@ func NewFortimanagerObjectAdomRevision(ctx *pulumi.Context,
 		args = &FortimanagerObjectAdomRevisionArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerObjectAdomRevision
 	err := ctx.RegisterResource("fortios:index/fortimanagerObjectAdomRevision:FortimanagerObjectAdomRevision", name, args, &resource, opts...)
 	if err != nil {
@@ -148,7 +149,7 @@ type FortimanagerObjectAdomRevisionInput interface {
 }
 
 func (*FortimanagerObjectAdomRevision) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerObjectAdomRevision)(nil))
+	return reflect.TypeOf((**FortimanagerObjectAdomRevision)(nil)).Elem()
 }
 
 func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionOutput() FortimanagerObjectAdomRevisionOutput {
@@ -157,35 +158,6 @@ func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionOutput(
 
 func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionOutput)
-}
-
-func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionPtrOutput() FortimanagerObjectAdomRevisionPtrOutput {
-	return i.ToFortimanagerObjectAdomRevisionPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerObjectAdomRevision) ToFortimanagerObjectAdomRevisionPtrOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionPtrOutput)
-}
-
-type FortimanagerObjectAdomRevisionPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerObjectAdomRevisionPtrOutput() FortimanagerObjectAdomRevisionPtrOutput
-	ToFortimanagerObjectAdomRevisionPtrOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionPtrOutput
-}
-
-type fortimanagerObjectAdomRevisionPtrType FortimanagerObjectAdomRevisionArgs
-
-func (*fortimanagerObjectAdomRevisionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerObjectAdomRevision)(nil))
-}
-
-func (i *fortimanagerObjectAdomRevisionPtrType) ToFortimanagerObjectAdomRevisionPtrOutput() FortimanagerObjectAdomRevisionPtrOutput {
-	return i.ToFortimanagerObjectAdomRevisionPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerObjectAdomRevisionPtrType) ToFortimanagerObjectAdomRevisionPtrOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionPtrOutput)
 }
 
 // FortimanagerObjectAdomRevisionArrayInput is an input type that accepts FortimanagerObjectAdomRevisionArray and FortimanagerObjectAdomRevisionArrayOutput values.
@@ -202,7 +174,7 @@ type FortimanagerObjectAdomRevisionArrayInput interface {
 type FortimanagerObjectAdomRevisionArray []FortimanagerObjectAdomRevisionInput
 
 func (FortimanagerObjectAdomRevisionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerObjectAdomRevision)(nil))
+	return reflect.TypeOf((*[]*FortimanagerObjectAdomRevision)(nil)).Elem()
 }
 
 func (i FortimanagerObjectAdomRevisionArray) ToFortimanagerObjectAdomRevisionArrayOutput() FortimanagerObjectAdomRevisionArrayOutput {
@@ -227,7 +199,7 @@ type FortimanagerObjectAdomRevisionMapInput interface {
 type FortimanagerObjectAdomRevisionMap map[string]FortimanagerObjectAdomRevisionInput
 
 func (FortimanagerObjectAdomRevisionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerObjectAdomRevision)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerObjectAdomRevision)(nil)).Elem()
 }
 
 func (i FortimanagerObjectAdomRevisionMap) ToFortimanagerObjectAdomRevisionMapOutput() FortimanagerObjectAdomRevisionMapOutput {
@@ -238,12 +210,10 @@ func (i FortimanagerObjectAdomRevisionMap) ToFortimanagerObjectAdomRevisionMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerObjectAdomRevisionMapOutput)
 }
 
-type FortimanagerObjectAdomRevisionOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerObjectAdomRevisionOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerObjectAdomRevisionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerObjectAdomRevision)(nil))
+	return reflect.TypeOf((**FortimanagerObjectAdomRevision)(nil)).Elem()
 }
 
 func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionOutput() FortimanagerObjectAdomRevisionOutput {
@@ -254,36 +224,10 @@ func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionOu
 	return o
 }
 
-func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionPtrOutput() FortimanagerObjectAdomRevisionPtrOutput {
-	return o.ToFortimanagerObjectAdomRevisionPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerObjectAdomRevisionOutput) ToFortimanagerObjectAdomRevisionPtrOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionPtrOutput {
-	return o.ApplyT(func(v FortimanagerObjectAdomRevision) *FortimanagerObjectAdomRevision {
-		return &v
-	}).(FortimanagerObjectAdomRevisionPtrOutput)
-}
-
-type FortimanagerObjectAdomRevisionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerObjectAdomRevisionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerObjectAdomRevision)(nil))
-}
-
-func (o FortimanagerObjectAdomRevisionPtrOutput) ToFortimanagerObjectAdomRevisionPtrOutput() FortimanagerObjectAdomRevisionPtrOutput {
-	return o
-}
-
-func (o FortimanagerObjectAdomRevisionPtrOutput) ToFortimanagerObjectAdomRevisionPtrOutputWithContext(ctx context.Context) FortimanagerObjectAdomRevisionPtrOutput {
-	return o
-}
-
 type FortimanagerObjectAdomRevisionArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerObjectAdomRevisionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerObjectAdomRevision)(nil))
+	return reflect.TypeOf((*[]*FortimanagerObjectAdomRevision)(nil)).Elem()
 }
 
 func (o FortimanagerObjectAdomRevisionArrayOutput) ToFortimanagerObjectAdomRevisionArrayOutput() FortimanagerObjectAdomRevisionArrayOutput {
@@ -295,15 +239,15 @@ func (o FortimanagerObjectAdomRevisionArrayOutput) ToFortimanagerObjectAdomRevis
 }
 
 func (o FortimanagerObjectAdomRevisionArrayOutput) Index(i pulumi.IntInput) FortimanagerObjectAdomRevisionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerObjectAdomRevision {
-		return vs[0].([]FortimanagerObjectAdomRevision)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerObjectAdomRevision {
+		return vs[0].([]*FortimanagerObjectAdomRevision)[vs[1].(int)]
 	}).(FortimanagerObjectAdomRevisionOutput)
 }
 
 type FortimanagerObjectAdomRevisionMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerObjectAdomRevisionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerObjectAdomRevision)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerObjectAdomRevision)(nil)).Elem()
 }
 
 func (o FortimanagerObjectAdomRevisionMapOutput) ToFortimanagerObjectAdomRevisionMapOutput() FortimanagerObjectAdomRevisionMapOutput {
@@ -315,14 +259,16 @@ func (o FortimanagerObjectAdomRevisionMapOutput) ToFortimanagerObjectAdomRevisio
 }
 
 func (o FortimanagerObjectAdomRevisionMapOutput) MapIndex(k pulumi.StringInput) FortimanagerObjectAdomRevisionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerObjectAdomRevision {
-		return vs[0].(map[string]FortimanagerObjectAdomRevision)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerObjectAdomRevision {
+		return vs[0].(map[string]*FortimanagerObjectAdomRevision)[vs[1].(string)]
 	}).(FortimanagerObjectAdomRevisionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerObjectAdomRevisionInput)(nil)).Elem(), &FortimanagerObjectAdomRevision{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerObjectAdomRevisionArrayInput)(nil)).Elem(), FortimanagerObjectAdomRevisionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerObjectAdomRevisionMapInput)(nil)).Elem(), FortimanagerObjectAdomRevisionMap{})
 	pulumi.RegisterOutputType(FortimanagerObjectAdomRevisionOutput{})
-	pulumi.RegisterOutputType(FortimanagerObjectAdomRevisionPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerObjectAdomRevisionArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerObjectAdomRevisionMapOutput{})
 }

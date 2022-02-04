@@ -76,6 +76,10 @@ export class LogSetting extends pulumi.CustomResource {
     }
 
     /**
+     * User name anonymization hash salt.
+     */
+    public readonly anonymizationHash!: pulumi.Output<string>;
+    /**
      * Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
      */
     public readonly briefTrafficFormat!: pulumi.Output<string>;
@@ -152,6 +156,14 @@ export class LogSetting extends pulumi.CustomResource {
      */
     public readonly resolvePort!: pulumi.Output<string>;
     /**
+     * Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+     */
+    public readonly restApiGet!: pulumi.Output<string>;
+    /**
+     * Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+     */
+    public readonly restApiSet!: pulumi.Output<string>;
+    /**
      * Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
      */
     public readonly syslogOverride!: pulumi.Output<string>;
@@ -173,61 +185,65 @@ export class LogSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogSettingArgs | LogSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogSettingState | undefined;
-            inputs["briefTrafficFormat"] = state ? state.briefTrafficFormat : undefined;
-            inputs["customLogFields"] = state ? state.customLogFields : undefined;
-            inputs["daemonLog"] = state ? state.daemonLog : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["expolicyImplicitLog"] = state ? state.expolicyImplicitLog : undefined;
-            inputs["fazOverride"] = state ? state.fazOverride : undefined;
-            inputs["fwpolicy6ImplicitLog"] = state ? state.fwpolicy6ImplicitLog : undefined;
-            inputs["fwpolicyImplicitLog"] = state ? state.fwpolicyImplicitLog : undefined;
-            inputs["localInAllow"] = state ? state.localInAllow : undefined;
-            inputs["localInDenyBroadcast"] = state ? state.localInDenyBroadcast : undefined;
-            inputs["localInDenyUnicast"] = state ? state.localInDenyUnicast : undefined;
-            inputs["localOut"] = state ? state.localOut : undefined;
-            inputs["logInvalidPacket"] = state ? state.logInvalidPacket : undefined;
-            inputs["logPolicyComment"] = state ? state.logPolicyComment : undefined;
-            inputs["logPolicyName"] = state ? state.logPolicyName : undefined;
-            inputs["logUserInUpper"] = state ? state.logUserInUpper : undefined;
-            inputs["neighborEvent"] = state ? state.neighborEvent : undefined;
-            inputs["resolveIp"] = state ? state.resolveIp : undefined;
-            inputs["resolvePort"] = state ? state.resolvePort : undefined;
-            inputs["syslogOverride"] = state ? state.syslogOverride : undefined;
-            inputs["userAnonymize"] = state ? state.userAnonymize : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["anonymizationHash"] = state ? state.anonymizationHash : undefined;
+            resourceInputs["briefTrafficFormat"] = state ? state.briefTrafficFormat : undefined;
+            resourceInputs["customLogFields"] = state ? state.customLogFields : undefined;
+            resourceInputs["daemonLog"] = state ? state.daemonLog : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["expolicyImplicitLog"] = state ? state.expolicyImplicitLog : undefined;
+            resourceInputs["fazOverride"] = state ? state.fazOverride : undefined;
+            resourceInputs["fwpolicy6ImplicitLog"] = state ? state.fwpolicy6ImplicitLog : undefined;
+            resourceInputs["fwpolicyImplicitLog"] = state ? state.fwpolicyImplicitLog : undefined;
+            resourceInputs["localInAllow"] = state ? state.localInAllow : undefined;
+            resourceInputs["localInDenyBroadcast"] = state ? state.localInDenyBroadcast : undefined;
+            resourceInputs["localInDenyUnicast"] = state ? state.localInDenyUnicast : undefined;
+            resourceInputs["localOut"] = state ? state.localOut : undefined;
+            resourceInputs["logInvalidPacket"] = state ? state.logInvalidPacket : undefined;
+            resourceInputs["logPolicyComment"] = state ? state.logPolicyComment : undefined;
+            resourceInputs["logPolicyName"] = state ? state.logPolicyName : undefined;
+            resourceInputs["logUserInUpper"] = state ? state.logUserInUpper : undefined;
+            resourceInputs["neighborEvent"] = state ? state.neighborEvent : undefined;
+            resourceInputs["resolveIp"] = state ? state.resolveIp : undefined;
+            resourceInputs["resolvePort"] = state ? state.resolvePort : undefined;
+            resourceInputs["restApiGet"] = state ? state.restApiGet : undefined;
+            resourceInputs["restApiSet"] = state ? state.restApiSet : undefined;
+            resourceInputs["syslogOverride"] = state ? state.syslogOverride : undefined;
+            resourceInputs["userAnonymize"] = state ? state.userAnonymize : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogSettingArgs | undefined;
-            inputs["briefTrafficFormat"] = args ? args.briefTrafficFormat : undefined;
-            inputs["customLogFields"] = args ? args.customLogFields : undefined;
-            inputs["daemonLog"] = args ? args.daemonLog : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["expolicyImplicitLog"] = args ? args.expolicyImplicitLog : undefined;
-            inputs["fazOverride"] = args ? args.fazOverride : undefined;
-            inputs["fwpolicy6ImplicitLog"] = args ? args.fwpolicy6ImplicitLog : undefined;
-            inputs["fwpolicyImplicitLog"] = args ? args.fwpolicyImplicitLog : undefined;
-            inputs["localInAllow"] = args ? args.localInAllow : undefined;
-            inputs["localInDenyBroadcast"] = args ? args.localInDenyBroadcast : undefined;
-            inputs["localInDenyUnicast"] = args ? args.localInDenyUnicast : undefined;
-            inputs["localOut"] = args ? args.localOut : undefined;
-            inputs["logInvalidPacket"] = args ? args.logInvalidPacket : undefined;
-            inputs["logPolicyComment"] = args ? args.logPolicyComment : undefined;
-            inputs["logPolicyName"] = args ? args.logPolicyName : undefined;
-            inputs["logUserInUpper"] = args ? args.logUserInUpper : undefined;
-            inputs["neighborEvent"] = args ? args.neighborEvent : undefined;
-            inputs["resolveIp"] = args ? args.resolveIp : undefined;
-            inputs["resolvePort"] = args ? args.resolvePort : undefined;
-            inputs["syslogOverride"] = args ? args.syslogOverride : undefined;
-            inputs["userAnonymize"] = args ? args.userAnonymize : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["anonymizationHash"] = args ? args.anonymizationHash : undefined;
+            resourceInputs["briefTrafficFormat"] = args ? args.briefTrafficFormat : undefined;
+            resourceInputs["customLogFields"] = args ? args.customLogFields : undefined;
+            resourceInputs["daemonLog"] = args ? args.daemonLog : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["expolicyImplicitLog"] = args ? args.expolicyImplicitLog : undefined;
+            resourceInputs["fazOverride"] = args ? args.fazOverride : undefined;
+            resourceInputs["fwpolicy6ImplicitLog"] = args ? args.fwpolicy6ImplicitLog : undefined;
+            resourceInputs["fwpolicyImplicitLog"] = args ? args.fwpolicyImplicitLog : undefined;
+            resourceInputs["localInAllow"] = args ? args.localInAllow : undefined;
+            resourceInputs["localInDenyBroadcast"] = args ? args.localInDenyBroadcast : undefined;
+            resourceInputs["localInDenyUnicast"] = args ? args.localInDenyUnicast : undefined;
+            resourceInputs["localOut"] = args ? args.localOut : undefined;
+            resourceInputs["logInvalidPacket"] = args ? args.logInvalidPacket : undefined;
+            resourceInputs["logPolicyComment"] = args ? args.logPolicyComment : undefined;
+            resourceInputs["logPolicyName"] = args ? args.logPolicyName : undefined;
+            resourceInputs["logUserInUpper"] = args ? args.logUserInUpper : undefined;
+            resourceInputs["neighborEvent"] = args ? args.neighborEvent : undefined;
+            resourceInputs["resolveIp"] = args ? args.resolveIp : undefined;
+            resourceInputs["resolvePort"] = args ? args.resolvePort : undefined;
+            resourceInputs["restApiGet"] = args ? args.restApiGet : undefined;
+            resourceInputs["restApiSet"] = args ? args.restApiSet : undefined;
+            resourceInputs["syslogOverride"] = args ? args.syslogOverride : undefined;
+            resourceInputs["userAnonymize"] = args ? args.userAnonymize : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -235,6 +251,10 @@ export class LogSetting extends pulumi.CustomResource {
  * Input properties used for looking up and filtering LogSetting resources.
  */
 export interface LogSettingState {
+    /**
+     * User name anonymization hash salt.
+     */
+    anonymizationHash?: pulumi.Input<string>;
     /**
      * Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
      */
@@ -311,6 +331,14 @@ export interface LogSettingState {
      * Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
      */
     resolvePort?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+     */
+    restApiGet?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+     */
+    restApiSet?: pulumi.Input<string>;
     /**
      * Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
      */
@@ -330,6 +358,10 @@ export interface LogSettingState {
  */
 export interface LogSettingArgs {
     /**
+     * User name anonymization hash salt.
+     */
+    anonymizationHash?: pulumi.Input<string>;
+    /**
      * Enable/disable brief format traffic logging. Valid values: `enable`, `disable`.
      */
     briefTrafficFormat?: pulumi.Input<string>;
@@ -405,6 +437,14 @@ export interface LogSettingArgs {
      * Enable/disable adding resolved service names to traffic logs. Valid values: `enable`, `disable`.
      */
     resolvePort?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API GET request logging. Valid values: `enable`, `disable`.
+     */
+    restApiGet?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API POST/PUT/DELETE request logging. Valid values: `enable`, `disable`.
+     */
+    restApiSet?: pulumi.Input<string>;
     /**
      * Enable/disable override Syslog settings. Valid values: `enable`, `disable`.
      */

@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch multiple spanning tree protocol (MSTP) instances.
+ * Configure FortiSwitch multiple spanning tree protocol (MSTP) instances. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -72,25 +72,23 @@ export class SwitchControllerStpInstance extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerStpInstanceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerStpInstanceArgs | SwitchControllerStpInstanceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerStpInstanceState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanRanges"] = state ? state.vlanRanges : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanRanges"] = state ? state.vlanRanges : undefined;
         } else {
             const args = argsOrState as SwitchControllerStpInstanceArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanRanges"] = args ? args.vlanRanges : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanRanges"] = args ? args.vlanRanges : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerStpInstance.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerStpInstance.__pulumiType, name, resourceInputs, opts);
     }
 }
 

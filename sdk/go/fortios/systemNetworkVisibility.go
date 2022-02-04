@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,6 +75,7 @@ func NewSystemNetworkVisibility(ctx *pulumi.Context,
 		args = &SystemNetworkVisibilityArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemNetworkVisibility
 	err := ctx.RegisterResource("fortios:index/systemNetworkVisibility:SystemNetworkVisibility", name, args, &resource, opts...)
 	if err != nil {
@@ -181,7 +182,7 @@ type SystemNetworkVisibilityInput interface {
 }
 
 func (*SystemNetworkVisibility) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNetworkVisibility)(nil))
+	return reflect.TypeOf((**SystemNetworkVisibility)(nil)).Elem()
 }
 
 func (i *SystemNetworkVisibility) ToSystemNetworkVisibilityOutput() SystemNetworkVisibilityOutput {
@@ -190,35 +191,6 @@ func (i *SystemNetworkVisibility) ToSystemNetworkVisibilityOutput() SystemNetwor
 
 func (i *SystemNetworkVisibility) ToSystemNetworkVisibilityOutputWithContext(ctx context.Context) SystemNetworkVisibilityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetworkVisibilityOutput)
-}
-
-func (i *SystemNetworkVisibility) ToSystemNetworkVisibilityPtrOutput() SystemNetworkVisibilityPtrOutput {
-	return i.ToSystemNetworkVisibilityPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemNetworkVisibility) ToSystemNetworkVisibilityPtrOutputWithContext(ctx context.Context) SystemNetworkVisibilityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNetworkVisibilityPtrOutput)
-}
-
-type SystemNetworkVisibilityPtrInput interface {
-	pulumi.Input
-
-	ToSystemNetworkVisibilityPtrOutput() SystemNetworkVisibilityPtrOutput
-	ToSystemNetworkVisibilityPtrOutputWithContext(ctx context.Context) SystemNetworkVisibilityPtrOutput
-}
-
-type systemNetworkVisibilityPtrType SystemNetworkVisibilityArgs
-
-func (*systemNetworkVisibilityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNetworkVisibility)(nil))
-}
-
-func (i *systemNetworkVisibilityPtrType) ToSystemNetworkVisibilityPtrOutput() SystemNetworkVisibilityPtrOutput {
-	return i.ToSystemNetworkVisibilityPtrOutputWithContext(context.Background())
-}
-
-func (i *systemNetworkVisibilityPtrType) ToSystemNetworkVisibilityPtrOutputWithContext(ctx context.Context) SystemNetworkVisibilityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNetworkVisibilityPtrOutput)
 }
 
 // SystemNetworkVisibilityArrayInput is an input type that accepts SystemNetworkVisibilityArray and SystemNetworkVisibilityArrayOutput values.
@@ -235,7 +207,7 @@ type SystemNetworkVisibilityArrayInput interface {
 type SystemNetworkVisibilityArray []SystemNetworkVisibilityInput
 
 func (SystemNetworkVisibilityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemNetworkVisibility)(nil))
+	return reflect.TypeOf((*[]*SystemNetworkVisibility)(nil)).Elem()
 }
 
 func (i SystemNetworkVisibilityArray) ToSystemNetworkVisibilityArrayOutput() SystemNetworkVisibilityArrayOutput {
@@ -260,7 +232,7 @@ type SystemNetworkVisibilityMapInput interface {
 type SystemNetworkVisibilityMap map[string]SystemNetworkVisibilityInput
 
 func (SystemNetworkVisibilityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemNetworkVisibility)(nil))
+	return reflect.TypeOf((*map[string]*SystemNetworkVisibility)(nil)).Elem()
 }
 
 func (i SystemNetworkVisibilityMap) ToSystemNetworkVisibilityMapOutput() SystemNetworkVisibilityMapOutput {
@@ -271,12 +243,10 @@ func (i SystemNetworkVisibilityMap) ToSystemNetworkVisibilityMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNetworkVisibilityMapOutput)
 }
 
-type SystemNetworkVisibilityOutput struct {
-	*pulumi.OutputState
-}
+type SystemNetworkVisibilityOutput struct{ *pulumi.OutputState }
 
 func (SystemNetworkVisibilityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNetworkVisibility)(nil))
+	return reflect.TypeOf((**SystemNetworkVisibility)(nil)).Elem()
 }
 
 func (o SystemNetworkVisibilityOutput) ToSystemNetworkVisibilityOutput() SystemNetworkVisibilityOutput {
@@ -287,36 +257,10 @@ func (o SystemNetworkVisibilityOutput) ToSystemNetworkVisibilityOutputWithContex
 	return o
 }
 
-func (o SystemNetworkVisibilityOutput) ToSystemNetworkVisibilityPtrOutput() SystemNetworkVisibilityPtrOutput {
-	return o.ToSystemNetworkVisibilityPtrOutputWithContext(context.Background())
-}
-
-func (o SystemNetworkVisibilityOutput) ToSystemNetworkVisibilityPtrOutputWithContext(ctx context.Context) SystemNetworkVisibilityPtrOutput {
-	return o.ApplyT(func(v SystemNetworkVisibility) *SystemNetworkVisibility {
-		return &v
-	}).(SystemNetworkVisibilityPtrOutput)
-}
-
-type SystemNetworkVisibilityPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemNetworkVisibilityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNetworkVisibility)(nil))
-}
-
-func (o SystemNetworkVisibilityPtrOutput) ToSystemNetworkVisibilityPtrOutput() SystemNetworkVisibilityPtrOutput {
-	return o
-}
-
-func (o SystemNetworkVisibilityPtrOutput) ToSystemNetworkVisibilityPtrOutputWithContext(ctx context.Context) SystemNetworkVisibilityPtrOutput {
-	return o
-}
-
 type SystemNetworkVisibilityArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemNetworkVisibilityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemNetworkVisibility)(nil))
+	return reflect.TypeOf((*[]*SystemNetworkVisibility)(nil)).Elem()
 }
 
 func (o SystemNetworkVisibilityArrayOutput) ToSystemNetworkVisibilityArrayOutput() SystemNetworkVisibilityArrayOutput {
@@ -328,15 +272,15 @@ func (o SystemNetworkVisibilityArrayOutput) ToSystemNetworkVisibilityArrayOutput
 }
 
 func (o SystemNetworkVisibilityArrayOutput) Index(i pulumi.IntInput) SystemNetworkVisibilityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemNetworkVisibility {
-		return vs[0].([]SystemNetworkVisibility)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNetworkVisibility {
+		return vs[0].([]*SystemNetworkVisibility)[vs[1].(int)]
 	}).(SystemNetworkVisibilityOutput)
 }
 
 type SystemNetworkVisibilityMapOutput struct{ *pulumi.OutputState }
 
 func (SystemNetworkVisibilityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemNetworkVisibility)(nil))
+	return reflect.TypeOf((*map[string]*SystemNetworkVisibility)(nil)).Elem()
 }
 
 func (o SystemNetworkVisibilityMapOutput) ToSystemNetworkVisibilityMapOutput() SystemNetworkVisibilityMapOutput {
@@ -348,14 +292,16 @@ func (o SystemNetworkVisibilityMapOutput) ToSystemNetworkVisibilityMapOutputWith
 }
 
 func (o SystemNetworkVisibilityMapOutput) MapIndex(k pulumi.StringInput) SystemNetworkVisibilityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemNetworkVisibility {
-		return vs[0].(map[string]SystemNetworkVisibility)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemNetworkVisibility {
+		return vs[0].(map[string]*SystemNetworkVisibility)[vs[1].(string)]
 	}).(SystemNetworkVisibilityOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNetworkVisibilityInput)(nil)).Elem(), &SystemNetworkVisibility{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNetworkVisibilityArrayInput)(nil)).Elem(), SystemNetworkVisibilityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNetworkVisibilityMapInput)(nil)).Elem(), SystemNetworkVisibilityMap{})
 	pulumi.RegisterOutputType(SystemNetworkVisibilityOutput{})
-	pulumi.RegisterOutputType(SystemNetworkVisibilityPtrOutput{})
 	pulumi.RegisterOutputType(SystemNetworkVisibilityArrayOutput{})
 	pulumi.RegisterOutputType(SystemNetworkVisibilityMapOutput{})
 }

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -13,9 +12,7 @@ export function getRouterPolicy6(args: GetRouterPolicy6Args, opts?: pulumi.Invok
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterPolicy6:GetRouterPolicy6", {
         "seqNum": args.seqNum,
         "vdomparam": args.vdomparam,
@@ -97,4 +94,22 @@ export interface GetRouterPolicy6Result {
      */
     readonly tosMask: string;
     readonly vdomparam?: string;
+}
+
+export function getRouterPolicy6Output(args: GetRouterPolicy6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterPolicy6Result> {
+    return pulumi.output(args).apply(a => getRouterPolicy6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterPolicy6.
+ */
+export interface GetRouterPolicy6OutputArgs {
+    /**
+     * Specify the seqNum of the desired router policy6.
+     */
+    seqNum: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

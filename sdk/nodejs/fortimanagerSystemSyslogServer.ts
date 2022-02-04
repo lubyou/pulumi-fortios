@@ -69,23 +69,21 @@ export class FortimanagerSystemSyslogServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerSystemSyslogServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemSyslogServerArgs | FortimanagerSystemSyslogServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemSyslogServerState | undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemSyslogServerArgs | undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemSyslogServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemSyslogServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

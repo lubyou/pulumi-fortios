@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Override FortiAnalyzer Cloud settings.
+ * Override FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -63,21 +63,19 @@ export class LogFortianalyzerCloudOverrideSetting extends pulumi.CustomResource 
      */
     constructor(name: string, args?: LogFortianalyzerCloudOverrideSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortianalyzerCloudOverrideSettingArgs | LogFortianalyzerCloudOverrideSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortianalyzerCloudOverrideSettingState | undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogFortianalyzerCloudOverrideSettingArgs | undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortianalyzerCloudOverrideSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortianalyzerCloudOverrideSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

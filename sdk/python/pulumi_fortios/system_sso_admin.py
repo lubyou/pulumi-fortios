@@ -199,7 +199,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                  vdoms: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSsoAdminVdomArgs']]]]] = None,
                  __props__=None):
         """
-        Configure SSO admin users.
+        Configure SSO admin users. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -239,7 +239,7 @@ class SystemSsoAdmin(pulumi.CustomResource):
                  args: SystemSsoAdminArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure SSO admin users.
+        Configure SSO admin users. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -291,6 +291,8 @@ class SystemSsoAdmin(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `RouterAuthPath`.
 func GetRouterAuthPathList(ctx *pulumi.Context, args *GetRouterAuthPathListArgs, opts ...pulumi.InvokeOption) (*GetRouterAuthPathListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterAuthPathListResult
 	err := ctx.Invoke("fortios:index/getRouterAuthPathList:GetRouterAuthPathList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetRouterAuthPathListResult struct {
 	// A list of the `RouterAuthPath`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetRouterAuthPathListOutput(ctx *pulumi.Context, args GetRouterAuthPathListOutputArgs, opts ...pulumi.InvokeOption) GetRouterAuthPathListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterAuthPathListResult, error) {
+			args := v.(GetRouterAuthPathListArgs)
+			r, err := GetRouterAuthPathList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterAuthPathListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterAuthPathList.
+type GetRouterAuthPathListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterAuthPathListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterAuthPathListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterAuthPathList.
+type GetRouterAuthPathListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterAuthPathListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterAuthPathListResult)(nil)).Elem()
+}
+
+func (o GetRouterAuthPathListResultOutput) ToGetRouterAuthPathListResultOutput() GetRouterAuthPathListResultOutput {
+	return o
+}
+
+func (o GetRouterAuthPathListResultOutput) ToGetRouterAuthPathListResultOutputWithContext(ctx context.Context) GetRouterAuthPathListResultOutput {
+	return o
+}
+
+func (o GetRouterAuthPathListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterAuthPathListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterAuthPathListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterAuthPathListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterAuthPath`.
+func (o GetRouterAuthPathListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouterAuthPathListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRouterAuthPathListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterAuthPathListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterAuthPathListResultOutput{})
 }

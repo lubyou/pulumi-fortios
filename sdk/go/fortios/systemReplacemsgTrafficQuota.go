@@ -47,6 +47,7 @@ func NewSystemReplacemsgTrafficQuota(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgTrafficQuota
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgTrafficQuota:SystemReplacemsgTrafficQuota", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgTrafficQuotaInput interface {
 }
 
 func (*SystemReplacemsgTrafficQuota) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgTrafficQuota)(nil))
+	return reflect.TypeOf((**SystemReplacemsgTrafficQuota)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgTrafficQuota) ToSystemReplacemsgTrafficQuotaOutput() SystemReplacemsgTrafficQuotaOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgTrafficQuota) ToSystemReplacemsgTrafficQuotaOutput() Sy
 
 func (i *SystemReplacemsgTrafficQuota) ToSystemReplacemsgTrafficQuotaOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaOutput)
-}
-
-func (i *SystemReplacemsgTrafficQuota) ToSystemReplacemsgTrafficQuotaPtrOutput() SystemReplacemsgTrafficQuotaPtrOutput {
-	return i.ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgTrafficQuota) ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaPtrOutput)
-}
-
-type SystemReplacemsgTrafficQuotaPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgTrafficQuotaPtrOutput() SystemReplacemsgTrafficQuotaPtrOutput
-	ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaPtrOutput
-}
-
-type systemReplacemsgTrafficQuotaPtrType SystemReplacemsgTrafficQuotaArgs
-
-func (*systemReplacemsgTrafficQuotaPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgTrafficQuota)(nil))
-}
-
-func (i *systemReplacemsgTrafficQuotaPtrType) ToSystemReplacemsgTrafficQuotaPtrOutput() SystemReplacemsgTrafficQuotaPtrOutput {
-	return i.ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgTrafficQuotaPtrType) ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaPtrOutput)
 }
 
 // SystemReplacemsgTrafficQuotaArrayInput is an input type that accepts SystemReplacemsgTrafficQuotaArray and SystemReplacemsgTrafficQuotaArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgTrafficQuotaArrayInput interface {
 type SystemReplacemsgTrafficQuotaArray []SystemReplacemsgTrafficQuotaInput
 
 func (SystemReplacemsgTrafficQuotaArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgTrafficQuota)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgTrafficQuota)(nil)).Elem()
 }
 
 func (i SystemReplacemsgTrafficQuotaArray) ToSystemReplacemsgTrafficQuotaArrayOutput() SystemReplacemsgTrafficQuotaArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgTrafficQuotaMapInput interface {
 type SystemReplacemsgTrafficQuotaMap map[string]SystemReplacemsgTrafficQuotaInput
 
 func (SystemReplacemsgTrafficQuotaMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgTrafficQuota)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgTrafficQuota)(nil)).Elem()
 }
 
 func (i SystemReplacemsgTrafficQuotaMap) ToSystemReplacemsgTrafficQuotaMapOutput() SystemReplacemsgTrafficQuotaMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgTrafficQuotaMap) ToSystemReplacemsgTrafficQuotaMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgTrafficQuotaMapOutput)
 }
 
-type SystemReplacemsgTrafficQuotaOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgTrafficQuotaOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgTrafficQuotaOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgTrafficQuota)(nil))
+	return reflect.TypeOf((**SystemReplacemsgTrafficQuota)(nil)).Elem()
 }
 
 func (o SystemReplacemsgTrafficQuotaOutput) ToSystemReplacemsgTrafficQuotaOutput() SystemReplacemsgTrafficQuotaOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgTrafficQuotaOutput) ToSystemReplacemsgTrafficQuotaOutput
 	return o
 }
 
-func (o SystemReplacemsgTrafficQuotaOutput) ToSystemReplacemsgTrafficQuotaPtrOutput() SystemReplacemsgTrafficQuotaPtrOutput {
-	return o.ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgTrafficQuotaOutput) ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgTrafficQuota) *SystemReplacemsgTrafficQuota {
-		return &v
-	}).(SystemReplacemsgTrafficQuotaPtrOutput)
-}
-
-type SystemReplacemsgTrafficQuotaPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgTrafficQuotaPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgTrafficQuota)(nil))
-}
-
-func (o SystemReplacemsgTrafficQuotaPtrOutput) ToSystemReplacemsgTrafficQuotaPtrOutput() SystemReplacemsgTrafficQuotaPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgTrafficQuotaPtrOutput) ToSystemReplacemsgTrafficQuotaPtrOutputWithContext(ctx context.Context) SystemReplacemsgTrafficQuotaPtrOutput {
-	return o
-}
-
 type SystemReplacemsgTrafficQuotaArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgTrafficQuotaArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgTrafficQuota)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgTrafficQuota)(nil)).Elem()
 }
 
 func (o SystemReplacemsgTrafficQuotaArrayOutput) ToSystemReplacemsgTrafficQuotaArrayOutput() SystemReplacemsgTrafficQuotaArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgTrafficQuotaArrayOutput) ToSystemReplacemsgTrafficQuotaA
 }
 
 func (o SystemReplacemsgTrafficQuotaArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgTrafficQuotaOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgTrafficQuota {
-		return vs[0].([]SystemReplacemsgTrafficQuota)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgTrafficQuota {
+		return vs[0].([]*SystemReplacemsgTrafficQuota)[vs[1].(int)]
 	}).(SystemReplacemsgTrafficQuotaOutput)
 }
 
 type SystemReplacemsgTrafficQuotaMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgTrafficQuotaMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgTrafficQuota)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgTrafficQuota)(nil)).Elem()
 }
 
 func (o SystemReplacemsgTrafficQuotaMapOutput) ToSystemReplacemsgTrafficQuotaMapOutput() SystemReplacemsgTrafficQuotaMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgTrafficQuotaMapOutput) ToSystemReplacemsgTrafficQuotaMap
 }
 
 func (o SystemReplacemsgTrafficQuotaMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgTrafficQuotaOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgTrafficQuota {
-		return vs[0].(map[string]SystemReplacemsgTrafficQuota)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgTrafficQuota {
+		return vs[0].(map[string]*SystemReplacemsgTrafficQuota)[vs[1].(string)]
 	}).(SystemReplacemsgTrafficQuotaOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgTrafficQuotaInput)(nil)).Elem(), &SystemReplacemsgTrafficQuota{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgTrafficQuotaArrayInput)(nil)).Elem(), SystemReplacemsgTrafficQuotaArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgTrafficQuotaMapInput)(nil)).Elem(), SystemReplacemsgTrafficQuotaMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgTrafficQuotaOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgTrafficQuotaPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgTrafficQuotaArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgTrafficQuotaMapOutput{})
 }

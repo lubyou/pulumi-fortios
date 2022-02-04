@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios router multicastflow
 func LookupRouterMulticastFlow(ctx *pulumi.Context, args *LookupRouterMulticastFlowArgs, opts ...pulumi.InvokeOption) (*LookupRouterMulticastFlowResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterMulticastFlowResult
 	err := ctx.Invoke("fortios:index/getRouterMulticastFlow:GetRouterMulticastFlow", args, &rv, opts...)
 	if err != nil {
@@ -36,4 +40,68 @@ type LookupRouterMulticastFlowResult struct {
 	// Name.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupRouterMulticastFlowOutput(ctx *pulumi.Context, args LookupRouterMulticastFlowOutputArgs, opts ...pulumi.InvokeOption) LookupRouterMulticastFlowResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterMulticastFlowResult, error) {
+			args := v.(LookupRouterMulticastFlowArgs)
+			r, err := LookupRouterMulticastFlow(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterMulticastFlowResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterMulticastFlow.
+type LookupRouterMulticastFlowOutputArgs struct {
+	// Specify the name of the desired router multicastflow.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterMulticastFlowOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterMulticastFlowArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterMulticastFlow.
+type LookupRouterMulticastFlowResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterMulticastFlowResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterMulticastFlowResult)(nil)).Elem()
+}
+
+func (o LookupRouterMulticastFlowResultOutput) ToLookupRouterMulticastFlowResultOutput() LookupRouterMulticastFlowResultOutput {
+	return o
+}
+
+func (o LookupRouterMulticastFlowResultOutput) ToLookupRouterMulticastFlowResultOutputWithContext(ctx context.Context) LookupRouterMulticastFlowResultOutput {
+	return o
+}
+
+// Comment.
+func (o LookupRouterMulticastFlowResultOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterMulticastFlowResult) string { return v.Comments }).(pulumi.StringOutput)
+}
+
+// Multicast-flow entries. The structure of `flows` block is documented below.
+func (o LookupRouterMulticastFlowResultOutput) Flows() GetRouterMulticastFlowFlowArrayOutput {
+	return o.ApplyT(func(v LookupRouterMulticastFlowResult) []GetRouterMulticastFlowFlow { return v.Flows }).(GetRouterMulticastFlowFlowArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterMulticastFlowResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterMulticastFlowResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name.
+func (o LookupRouterMulticastFlowResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterMulticastFlowResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterMulticastFlowResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterMulticastFlowResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterMulticastFlowResultOutput{})
 }

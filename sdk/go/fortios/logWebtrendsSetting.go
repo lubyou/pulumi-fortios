@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -62,6 +62,7 @@ func NewLogWebtrendsSetting(ctx *pulumi.Context,
 		args = &LogWebtrendsSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogWebtrendsSetting
 	err := ctx.RegisterResource("fortios:index/logWebtrendsSetting:LogWebtrendsSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -136,7 +137,7 @@ type LogWebtrendsSettingInput interface {
 }
 
 func (*LogWebtrendsSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogWebtrendsSetting)(nil))
+	return reflect.TypeOf((**LogWebtrendsSetting)(nil)).Elem()
 }
 
 func (i *LogWebtrendsSetting) ToLogWebtrendsSettingOutput() LogWebtrendsSettingOutput {
@@ -145,35 +146,6 @@ func (i *LogWebtrendsSetting) ToLogWebtrendsSettingOutput() LogWebtrendsSettingO
 
 func (i *LogWebtrendsSetting) ToLogWebtrendsSettingOutputWithContext(ctx context.Context) LogWebtrendsSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingOutput)
-}
-
-func (i *LogWebtrendsSetting) ToLogWebtrendsSettingPtrOutput() LogWebtrendsSettingPtrOutput {
-	return i.ToLogWebtrendsSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogWebtrendsSetting) ToLogWebtrendsSettingPtrOutputWithContext(ctx context.Context) LogWebtrendsSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingPtrOutput)
-}
-
-type LogWebtrendsSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogWebtrendsSettingPtrOutput() LogWebtrendsSettingPtrOutput
-	ToLogWebtrendsSettingPtrOutputWithContext(ctx context.Context) LogWebtrendsSettingPtrOutput
-}
-
-type logWebtrendsSettingPtrType LogWebtrendsSettingArgs
-
-func (*logWebtrendsSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogWebtrendsSetting)(nil))
-}
-
-func (i *logWebtrendsSettingPtrType) ToLogWebtrendsSettingPtrOutput() LogWebtrendsSettingPtrOutput {
-	return i.ToLogWebtrendsSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logWebtrendsSettingPtrType) ToLogWebtrendsSettingPtrOutputWithContext(ctx context.Context) LogWebtrendsSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingPtrOutput)
 }
 
 // LogWebtrendsSettingArrayInput is an input type that accepts LogWebtrendsSettingArray and LogWebtrendsSettingArrayOutput values.
@@ -190,7 +162,7 @@ type LogWebtrendsSettingArrayInput interface {
 type LogWebtrendsSettingArray []LogWebtrendsSettingInput
 
 func (LogWebtrendsSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogWebtrendsSetting)(nil))
+	return reflect.TypeOf((*[]*LogWebtrendsSetting)(nil)).Elem()
 }
 
 func (i LogWebtrendsSettingArray) ToLogWebtrendsSettingArrayOutput() LogWebtrendsSettingArrayOutput {
@@ -215,7 +187,7 @@ type LogWebtrendsSettingMapInput interface {
 type LogWebtrendsSettingMap map[string]LogWebtrendsSettingInput
 
 func (LogWebtrendsSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogWebtrendsSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogWebtrendsSetting)(nil)).Elem()
 }
 
 func (i LogWebtrendsSettingMap) ToLogWebtrendsSettingMapOutput() LogWebtrendsSettingMapOutput {
@@ -226,12 +198,10 @@ func (i LogWebtrendsSettingMap) ToLogWebtrendsSettingMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LogWebtrendsSettingMapOutput)
 }
 
-type LogWebtrendsSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogWebtrendsSettingOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogWebtrendsSetting)(nil))
+	return reflect.TypeOf((**LogWebtrendsSetting)(nil)).Elem()
 }
 
 func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingOutput() LogWebtrendsSettingOutput {
@@ -242,36 +212,10 @@ func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingOutputWithContext(ctx co
 	return o
 }
 
-func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingPtrOutput() LogWebtrendsSettingPtrOutput {
-	return o.ToLogWebtrendsSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogWebtrendsSettingOutput) ToLogWebtrendsSettingPtrOutputWithContext(ctx context.Context) LogWebtrendsSettingPtrOutput {
-	return o.ApplyT(func(v LogWebtrendsSetting) *LogWebtrendsSetting {
-		return &v
-	}).(LogWebtrendsSettingPtrOutput)
-}
-
-type LogWebtrendsSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogWebtrendsSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogWebtrendsSetting)(nil))
-}
-
-func (o LogWebtrendsSettingPtrOutput) ToLogWebtrendsSettingPtrOutput() LogWebtrendsSettingPtrOutput {
-	return o
-}
-
-func (o LogWebtrendsSettingPtrOutput) ToLogWebtrendsSettingPtrOutputWithContext(ctx context.Context) LogWebtrendsSettingPtrOutput {
-	return o
-}
-
 type LogWebtrendsSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogWebtrendsSetting)(nil))
+	return reflect.TypeOf((*[]*LogWebtrendsSetting)(nil)).Elem()
 }
 
 func (o LogWebtrendsSettingArrayOutput) ToLogWebtrendsSettingArrayOutput() LogWebtrendsSettingArrayOutput {
@@ -283,15 +227,15 @@ func (o LogWebtrendsSettingArrayOutput) ToLogWebtrendsSettingArrayOutputWithCont
 }
 
 func (o LogWebtrendsSettingArrayOutput) Index(i pulumi.IntInput) LogWebtrendsSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogWebtrendsSetting {
-		return vs[0].([]LogWebtrendsSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogWebtrendsSetting {
+		return vs[0].([]*LogWebtrendsSetting)[vs[1].(int)]
 	}).(LogWebtrendsSettingOutput)
 }
 
 type LogWebtrendsSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogWebtrendsSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogWebtrendsSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogWebtrendsSetting)(nil)).Elem()
 }
 
 func (o LogWebtrendsSettingMapOutput) ToLogWebtrendsSettingMapOutput() LogWebtrendsSettingMapOutput {
@@ -303,14 +247,16 @@ func (o LogWebtrendsSettingMapOutput) ToLogWebtrendsSettingMapOutputWithContext(
 }
 
 func (o LogWebtrendsSettingMapOutput) MapIndex(k pulumi.StringInput) LogWebtrendsSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogWebtrendsSetting {
-		return vs[0].(map[string]LogWebtrendsSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogWebtrendsSetting {
+		return vs[0].(map[string]*LogWebtrendsSetting)[vs[1].(string)]
 	}).(LogWebtrendsSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogWebtrendsSettingInput)(nil)).Elem(), &LogWebtrendsSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogWebtrendsSettingArrayInput)(nil)).Elem(), LogWebtrendsSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogWebtrendsSettingMapInput)(nil)).Elem(), LogWebtrendsSettingMap{})
 	pulumi.RegisterOutputType(LogWebtrendsSettingOutput{})
-	pulumi.RegisterOutputType(LogWebtrendsSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogWebtrendsSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogWebtrendsSettingMapOutput{})
 }

@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname1WebProxyForwardServer = new fortios.WebProxyForwardServer("trname1WebProxyForwardServer", {
  *     addrType: "fqdn",
@@ -109,31 +109,29 @@ export class WebProxyForwardServerGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebProxyForwardServerGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyForwardServerGroupArgs | WebProxyForwardServerGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyForwardServerGroupState | undefined;
-            inputs["affinity"] = state ? state.affinity : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["groupDownOption"] = state ? state.groupDownOption : undefined;
-            inputs["ldbMethod"] = state ? state.ldbMethod : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["serverLists"] = state ? state.serverLists : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["affinity"] = state ? state.affinity : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["groupDownOption"] = state ? state.groupDownOption : undefined;
+            resourceInputs["ldbMethod"] = state ? state.ldbMethod : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["serverLists"] = state ? state.serverLists : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebProxyForwardServerGroupArgs | undefined;
-            inputs["affinity"] = args ? args.affinity : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["groupDownOption"] = args ? args.groupDownOption : undefined;
-            inputs["ldbMethod"] = args ? args.ldbMethod : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["serverLists"] = args ? args.serverLists : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["affinity"] = args ? args.affinity : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["groupDownOption"] = args ? args.groupDownOption : undefined;
+            resourceInputs["ldbMethod"] = args ? args.ldbMethod : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serverLists"] = args ? args.serverLists : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyForwardServerGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyForwardServerGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

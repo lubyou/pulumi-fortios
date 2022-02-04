@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallConsolidatedPolicyResult',
     'AwaitableGetFirewallConsolidatedPolicyResult',
     'get_firewall_consolidated_policy',
+    'get_firewall_consolidated_policy_output',
 ]
 
 @pulumi.output_type
@@ -1149,6 +1150,8 @@ def get_firewall_consolidated_policy(policyid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallConsolidatedPolicy:GetFirewallConsolidatedPolicy', __args__, opts=opts, typ=GetFirewallConsolidatedPolicyResult).value
 
     return AwaitableGetFirewallConsolidatedPolicyResult(
@@ -1244,3 +1247,17 @@ def get_firewall_consolidated_policy(policyid: Optional[int] = None,
         webfilter_profile=__ret__.webfilter_profile,
         webproxy_forward_server=__ret__.webproxy_forward_server,
         webproxy_profile=__ret__.webproxy_profile)
+
+
+@_utilities.lift_output_func(get_firewall_consolidated_policy)
+def get_firewall_consolidated_policy_output(policyid: Optional[pulumi.Input[int]] = None,
+                                            vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                            opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallConsolidatedPolicyResult]:
+    """
+    Use this data source to get information on an fortios firewallconsolidated policy
+
+
+    :param int policyid: Specify the policyid of the desired firewallconsolidated policy.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

@@ -101,33 +101,31 @@ export class VpnCertificateOcspServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnCertificateOcspServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnCertificateOcspServerArgs | VpnCertificateOcspServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnCertificateOcspServerState | undefined;
-            inputs["cert"] = state ? state.cert : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["secondaryCert"] = state ? state.secondaryCert : undefined;
-            inputs["secondaryUrl"] = state ? state.secondaryUrl : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["unavailAction"] = state ? state.unavailAction : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cert"] = state ? state.cert : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["secondaryCert"] = state ? state.secondaryCert : undefined;
+            resourceInputs["secondaryUrl"] = state ? state.secondaryUrl : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["unavailAction"] = state ? state.unavailAction : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnCertificateOcspServerArgs | undefined;
-            inputs["cert"] = args ? args.cert : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["secondaryCert"] = args ? args.secondaryCert : undefined;
-            inputs["secondaryUrl"] = args ? args.secondaryUrl : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["unavailAction"] = args ? args.unavailAction : undefined;
-            inputs["url"] = args ? args.url : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cert"] = args ? args.cert : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["secondaryCert"] = args ? args.secondaryCert : undefined;
+            resourceInputs["secondaryUrl"] = args ? args.secondaryUrl : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["unavailAction"] = args ? args.unavailAction : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnCertificateOcspServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnCertificateOcspServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

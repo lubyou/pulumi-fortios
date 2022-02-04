@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system ipv6tunnel
 func LookupSystemIpv6Tunnel(ctx *pulumi.Context, args *LookupSystemIpv6TunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemIpv6TunnelResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemIpv6TunnelResult
 	err := ctx.Invoke("fortios:index/getSystemIpv6Tunnel:GetSystemIpv6Tunnel", args, &rv, opts...)
 	if err != nil {
@@ -27,6 +31,8 @@ type LookupSystemIpv6TunnelArgs struct {
 
 // A collection of values returned by GetSystemIpv6Tunnel.
 type LookupSystemIpv6TunnelResult struct {
+	// Enable/disable tunnel ASIC offloading.
+	AutoAsicOffload string `pulumi:"autoAsicOffload"`
 	// Remote IPv6 address of the tunnel.
 	Destination string `pulumi:"destination"`
 	// The provider-assigned unique ID for this managed resource.
@@ -36,6 +42,87 @@ type LookupSystemIpv6TunnelResult struct {
 	// IPv6 tunnel name.
 	Name string `pulumi:"name"`
 	// Local IPv6 address of the tunnel.
-	Source    string  `pulumi:"source"`
+	Source string `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway.
+	UseSdwan  string  `pulumi:"useSdwan"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemIpv6TunnelOutput(ctx *pulumi.Context, args LookupSystemIpv6TunnelOutputArgs, opts ...pulumi.InvokeOption) LookupSystemIpv6TunnelResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemIpv6TunnelResult, error) {
+			args := v.(LookupSystemIpv6TunnelArgs)
+			r, err := LookupSystemIpv6Tunnel(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemIpv6TunnelResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemIpv6Tunnel.
+type LookupSystemIpv6TunnelOutputArgs struct {
+	// Specify the name of the desired system ipv6tunnel.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemIpv6TunnelOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemIpv6TunnelArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemIpv6Tunnel.
+type LookupSystemIpv6TunnelResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemIpv6TunnelResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemIpv6TunnelResult)(nil)).Elem()
+}
+
+func (o LookupSystemIpv6TunnelResultOutput) ToLookupSystemIpv6TunnelResultOutput() LookupSystemIpv6TunnelResultOutput {
+	return o
+}
+
+func (o LookupSystemIpv6TunnelResultOutput) ToLookupSystemIpv6TunnelResultOutputWithContext(ctx context.Context) LookupSystemIpv6TunnelResultOutput {
+	return o
+}
+
+// Enable/disable tunnel ASIC offloading.
+func (o LookupSystemIpv6TunnelResultOutput) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+// Remote IPv6 address of the tunnel.
+func (o LookupSystemIpv6TunnelResultOutput) Destination() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.Destination }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemIpv6TunnelResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Interface name.
+func (o LookupSystemIpv6TunnelResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// IPv6 tunnel name.
+func (o LookupSystemIpv6TunnelResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Local IPv6 address of the tunnel.
+func (o LookupSystemIpv6TunnelResultOutput) Source() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.Source }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of SD-WAN to reach remote gateway.
+func (o LookupSystemIpv6TunnelResultOutput) UseSdwan() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) string { return v.UseSdwan }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemIpv6TunnelResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemIpv6TunnelResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemIpv6TunnelResultOutput{})
 }

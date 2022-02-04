@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -88,6 +88,7 @@ func NewSwitchControllerLldpProfile(ctx *pulumi.Context,
 		args = &SwitchControllerLldpProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerLldpProfile
 	err := ctx.RegisterResource("fortios:index/switchControllerLldpProfile:SwitchControllerLldpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -250,7 +251,7 @@ type SwitchControllerLldpProfileInput interface {
 }
 
 func (*SwitchControllerLldpProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerLldpProfile)(nil))
+	return reflect.TypeOf((**SwitchControllerLldpProfile)(nil)).Elem()
 }
 
 func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutput() SwitchControllerLldpProfileOutput {
@@ -259,35 +260,6 @@ func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutput() Swit
 
 func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfileOutputWithContext(ctx context.Context) SwitchControllerLldpProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileOutput)
-}
-
-func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfilePtrOutput() SwitchControllerLldpProfilePtrOutput {
-	return i.ToSwitchControllerLldpProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerLldpProfile) ToSwitchControllerLldpProfilePtrOutputWithContext(ctx context.Context) SwitchControllerLldpProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfilePtrOutput)
-}
-
-type SwitchControllerLldpProfilePtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerLldpProfilePtrOutput() SwitchControllerLldpProfilePtrOutput
-	ToSwitchControllerLldpProfilePtrOutputWithContext(ctx context.Context) SwitchControllerLldpProfilePtrOutput
-}
-
-type switchControllerLldpProfilePtrType SwitchControllerLldpProfileArgs
-
-func (*switchControllerLldpProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerLldpProfile)(nil))
-}
-
-func (i *switchControllerLldpProfilePtrType) ToSwitchControllerLldpProfilePtrOutput() SwitchControllerLldpProfilePtrOutput {
-	return i.ToSwitchControllerLldpProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerLldpProfilePtrType) ToSwitchControllerLldpProfilePtrOutputWithContext(ctx context.Context) SwitchControllerLldpProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfilePtrOutput)
 }
 
 // SwitchControllerLldpProfileArrayInput is an input type that accepts SwitchControllerLldpProfileArray and SwitchControllerLldpProfileArrayOutput values.
@@ -304,7 +276,7 @@ type SwitchControllerLldpProfileArrayInput interface {
 type SwitchControllerLldpProfileArray []SwitchControllerLldpProfileInput
 
 func (SwitchControllerLldpProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerLldpProfile)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerLldpProfile)(nil)).Elem()
 }
 
 func (i SwitchControllerLldpProfileArray) ToSwitchControllerLldpProfileArrayOutput() SwitchControllerLldpProfileArrayOutput {
@@ -329,7 +301,7 @@ type SwitchControllerLldpProfileMapInput interface {
 type SwitchControllerLldpProfileMap map[string]SwitchControllerLldpProfileInput
 
 func (SwitchControllerLldpProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerLldpProfile)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerLldpProfile)(nil)).Elem()
 }
 
 func (i SwitchControllerLldpProfileMap) ToSwitchControllerLldpProfileMapOutput() SwitchControllerLldpProfileMapOutput {
@@ -340,12 +312,10 @@ func (i SwitchControllerLldpProfileMap) ToSwitchControllerLldpProfileMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpProfileMapOutput)
 }
 
-type SwitchControllerLldpProfileOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerLldpProfileOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerLldpProfile)(nil))
+	return reflect.TypeOf((**SwitchControllerLldpProfile)(nil)).Elem()
 }
 
 func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutput() SwitchControllerLldpProfileOutput {
@@ -356,36 +326,10 @@ func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfileOutputWi
 	return o
 }
 
-func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfilePtrOutput() SwitchControllerLldpProfilePtrOutput {
-	return o.ToSwitchControllerLldpProfilePtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerLldpProfileOutput) ToSwitchControllerLldpProfilePtrOutputWithContext(ctx context.Context) SwitchControllerLldpProfilePtrOutput {
-	return o.ApplyT(func(v SwitchControllerLldpProfile) *SwitchControllerLldpProfile {
-		return &v
-	}).(SwitchControllerLldpProfilePtrOutput)
-}
-
-type SwitchControllerLldpProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerLldpProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerLldpProfile)(nil))
-}
-
-func (o SwitchControllerLldpProfilePtrOutput) ToSwitchControllerLldpProfilePtrOutput() SwitchControllerLldpProfilePtrOutput {
-	return o
-}
-
-func (o SwitchControllerLldpProfilePtrOutput) ToSwitchControllerLldpProfilePtrOutputWithContext(ctx context.Context) SwitchControllerLldpProfilePtrOutput {
-	return o
-}
-
 type SwitchControllerLldpProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerLldpProfile)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerLldpProfile)(nil)).Elem()
 }
 
 func (o SwitchControllerLldpProfileArrayOutput) ToSwitchControllerLldpProfileArrayOutput() SwitchControllerLldpProfileArrayOutput {
@@ -397,15 +341,15 @@ func (o SwitchControllerLldpProfileArrayOutput) ToSwitchControllerLldpProfileArr
 }
 
 func (o SwitchControllerLldpProfileArrayOutput) Index(i pulumi.IntInput) SwitchControllerLldpProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerLldpProfile {
-		return vs[0].([]SwitchControllerLldpProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLldpProfile {
+		return vs[0].([]*SwitchControllerLldpProfile)[vs[1].(int)]
 	}).(SwitchControllerLldpProfileOutput)
 }
 
 type SwitchControllerLldpProfileMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerLldpProfile)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerLldpProfile)(nil)).Elem()
 }
 
 func (o SwitchControllerLldpProfileMapOutput) ToSwitchControllerLldpProfileMapOutput() SwitchControllerLldpProfileMapOutput {
@@ -417,14 +361,16 @@ func (o SwitchControllerLldpProfileMapOutput) ToSwitchControllerLldpProfileMapOu
 }
 
 func (o SwitchControllerLldpProfileMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLldpProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerLldpProfile {
-		return vs[0].(map[string]SwitchControllerLldpProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerLldpProfile {
+		return vs[0].(map[string]*SwitchControllerLldpProfile)[vs[1].(string)]
 	}).(SwitchControllerLldpProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLldpProfileInput)(nil)).Elem(), &SwitchControllerLldpProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLldpProfileArrayInput)(nil)).Elem(), SwitchControllerLldpProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLldpProfileMapInput)(nil)).Elem(), SwitchControllerLldpProfileMap{})
 	pulumi.RegisterOutputType(SwitchControllerLldpProfileOutput{})
-	pulumi.RegisterOutputType(SwitchControllerLldpProfilePtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerLldpProfileArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerLldpProfileMapOutput{})
 }

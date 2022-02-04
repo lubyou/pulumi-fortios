@@ -64,6 +64,10 @@ export class SystemConsole extends pulumi.CustomResource {
      */
     public readonly baudrate!: pulumi.Output<string>;
     /**
+     * Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+     */
+    public readonly fortiexplorer!: pulumi.Output<string>;
+    /**
      * Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
      */
     public readonly login!: pulumi.Output<string>;
@@ -89,27 +93,27 @@ export class SystemConsole extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemConsoleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemConsoleArgs | SystemConsoleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemConsoleState | undefined;
-            inputs["baudrate"] = state ? state.baudrate : undefined;
-            inputs["login"] = state ? state.login : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["output"] = state ? state.output : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["baudrate"] = state ? state.baudrate : undefined;
+            resourceInputs["fortiexplorer"] = state ? state.fortiexplorer : undefined;
+            resourceInputs["login"] = state ? state.login : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["output"] = state ? state.output : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemConsoleArgs | undefined;
-            inputs["baudrate"] = args ? args.baudrate : undefined;
-            inputs["login"] = args ? args.login : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["output"] = args ? args.output : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["baudrate"] = args ? args.baudrate : undefined;
+            resourceInputs["fortiexplorer"] = args ? args.fortiexplorer : undefined;
+            resourceInputs["login"] = args ? args.login : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["output"] = args ? args.output : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemConsole.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemConsole.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -121,6 +125,10 @@ export interface SystemConsoleState {
      * Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
      */
     baudrate?: pulumi.Input<string>;
+    /**
+     * Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+     */
+    fortiexplorer?: pulumi.Input<string>;
     /**
      * Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
      */
@@ -147,6 +155,10 @@ export interface SystemConsoleArgs {
      * Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
      */
     baudrate?: pulumi.Input<string>;
+    /**
+     * Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+     */
+    fortiexplorer?: pulumi.Input<string>;
     /**
      * Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
      */

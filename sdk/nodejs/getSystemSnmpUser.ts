@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -13,9 +12,7 @@ export function getSystemSnmpUser(args: GetSystemSnmpUserArgs, opts?: pulumi.Inv
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemSnmpUser:GetSystemSnmpUser", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -117,4 +114,22 @@ export interface GetSystemSnmpUserResult {
      */
     readonly trapStatus: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemSnmpUserOutput(args: GetSystemSnmpUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSnmpUserResult> {
+    return pulumi.output(args).apply(a => getSystemSnmpUser(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemSnmpUser.
+ */
+export interface GetSystemSnmpUserOutputArgs {
+    /**
+     * Specify the name of the desired systemsnmp user.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

@@ -58,6 +58,10 @@ export class FirewallVendorMac extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
+     * Indicates whether the Vendor ID can be used.
+     */
+    public readonly obsolete!: pulumi.Output<number>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -71,25 +75,25 @@ export class FirewallVendorMac extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallVendorMacArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallVendorMacArgs | FirewallVendorMacState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallVendorMacState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["macNumber"] = state ? state.macNumber : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["macNumber"] = state ? state.macNumber : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["obsolete"] = state ? state.obsolete : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallVendorMacArgs | undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["macNumber"] = args ? args.macNumber : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["macNumber"] = args ? args.macNumber : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["obsolete"] = args ? args.obsolete : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallVendorMac.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallVendorMac.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -109,6 +113,10 @@ export interface FirewallVendorMacState {
      * Vendor name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Indicates whether the Vendor ID can be used.
+     */
+    obsolete?: pulumi.Input<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -131,6 +139,10 @@ export interface FirewallVendorMacArgs {
      * Vendor name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Indicates whether the Vendor ID can be used.
+     */
+    obsolete?: pulumi.Input<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

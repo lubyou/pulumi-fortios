@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallServiceCategory`.
 func GetFirewallServiceCategoryList(ctx *pulumi.Context, args *GetFirewallServiceCategoryListArgs, opts ...pulumi.InvokeOption) (*GetFirewallServiceCategoryListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallServiceCategoryListResult
 	err := ctx.Invoke("fortios:index/getFirewallServiceCategoryList:GetFirewallServiceCategoryList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallServiceCategoryListResult struct {
 	// A list of the `FirewallServiceCategory`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallServiceCategoryListOutput(ctx *pulumi.Context, args GetFirewallServiceCategoryListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallServiceCategoryListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallServiceCategoryListResult, error) {
+			args := v.(GetFirewallServiceCategoryListArgs)
+			r, err := GetFirewallServiceCategoryList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallServiceCategoryListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallServiceCategoryList.
+type GetFirewallServiceCategoryListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallServiceCategoryListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallServiceCategoryListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallServiceCategoryList.
+type GetFirewallServiceCategoryListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallServiceCategoryListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallServiceCategoryListResult)(nil)).Elem()
+}
+
+func (o GetFirewallServiceCategoryListResultOutput) ToGetFirewallServiceCategoryListResultOutput() GetFirewallServiceCategoryListResultOutput {
+	return o
+}
+
+func (o GetFirewallServiceCategoryListResultOutput) ToGetFirewallServiceCategoryListResultOutputWithContext(ctx context.Context) GetFirewallServiceCategoryListResultOutput {
+	return o
+}
+
+func (o GetFirewallServiceCategoryListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallServiceCategoryListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallServiceCategoryListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallServiceCategoryListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallServiceCategory`.
+func (o GetFirewallServiceCategoryListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallServiceCategoryListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallServiceCategoryListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallServiceCategoryListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallServiceCategoryListResultOutput{})
 }

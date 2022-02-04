@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure port policy to be applied on the managed FortiSwitch ports through NAC device. Applies to FortiOS Version `>= 6.4.0`.
+ * Configure port policy to be applied on the managed FortiSwitch ports through NAC device. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
  *
  * ## Import
  *
@@ -91,35 +91,33 @@ export class SwitchControllerPortPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerPortPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerPortPolicyArgs | SwitchControllerPortPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerPortPolicyState | undefined;
-            inputs["bouncePortLink"] = state ? state.bouncePortLink : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["fortilink"] = state ? state.fortilink : undefined;
-            inputs["lldpProfile"] = state ? state.lldpProfile : undefined;
-            inputs["n8021x"] = state ? state.n8021x : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["qosPolicy"] = state ? state.qosPolicy : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanPolicy"] = state ? state.vlanPolicy : undefined;
+            resourceInputs["bouncePortLink"] = state ? state.bouncePortLink : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["lldpProfile"] = state ? state.lldpProfile : undefined;
+            resourceInputs["n8021x"] = state ? state.n8021x : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["qosPolicy"] = state ? state.qosPolicy : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanPolicy"] = state ? state.vlanPolicy : undefined;
         } else {
             const args = argsOrState as SwitchControllerPortPolicyArgs | undefined;
-            inputs["bouncePortLink"] = args ? args.bouncePortLink : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["fortilink"] = args ? args.fortilink : undefined;
-            inputs["lldpProfile"] = args ? args.lldpProfile : undefined;
-            inputs["n8021x"] = args ? args.n8021x : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["qosPolicy"] = args ? args.qosPolicy : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanPolicy"] = args ? args.vlanPolicy : undefined;
+            resourceInputs["bouncePortLink"] = args ? args.bouncePortLink : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["lldpProfile"] = args ? args.lldpProfile : undefined;
+            resourceInputs["n8021x"] = args ? args.n8021x : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["qosPolicy"] = args ? args.qosPolicy : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanPolicy"] = args ? args.vlanPolicy : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerPortPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerPortPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

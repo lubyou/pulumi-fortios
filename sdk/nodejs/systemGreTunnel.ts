@@ -139,6 +139,10 @@ export class SystemGreTunnel extends pulumi.CustomResource {
      */
     public readonly sequenceNumberTransmission!: pulumi.Output<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    public readonly useSdwan!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -152,28 +156,29 @@ export class SystemGreTunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemGreTunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemGreTunnelArgs | SystemGreTunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemGreTunnelState | undefined;
-            inputs["checksumReception"] = state ? state.checksumReception : undefined;
-            inputs["checksumTransmission"] = state ? state.checksumTransmission : undefined;
-            inputs["diffservcode"] = state ? state.diffservcode : undefined;
-            inputs["dscpCopying"] = state ? state.dscpCopying : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipVersion"] = state ? state.ipVersion : undefined;
-            inputs["keepaliveFailtimes"] = state ? state.keepaliveFailtimes : undefined;
-            inputs["keepaliveInterval"] = state ? state.keepaliveInterval : undefined;
-            inputs["keyInbound"] = state ? state.keyInbound : undefined;
-            inputs["keyOutbound"] = state ? state.keyOutbound : undefined;
-            inputs["localGw"] = state ? state.localGw : undefined;
-            inputs["localGw6"] = state ? state.localGw6 : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["remoteGw"] = state ? state.remoteGw : undefined;
-            inputs["remoteGw6"] = state ? state.remoteGw6 : undefined;
-            inputs["sequenceNumberReception"] = state ? state.sequenceNumberReception : undefined;
-            inputs["sequenceNumberTransmission"] = state ? state.sequenceNumberTransmission : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["checksumReception"] = state ? state.checksumReception : undefined;
+            resourceInputs["checksumTransmission"] = state ? state.checksumTransmission : undefined;
+            resourceInputs["diffservcode"] = state ? state.diffservcode : undefined;
+            resourceInputs["dscpCopying"] = state ? state.dscpCopying : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["keepaliveFailtimes"] = state ? state.keepaliveFailtimes : undefined;
+            resourceInputs["keepaliveInterval"] = state ? state.keepaliveInterval : undefined;
+            resourceInputs["keyInbound"] = state ? state.keyInbound : undefined;
+            resourceInputs["keyOutbound"] = state ? state.keyOutbound : undefined;
+            resourceInputs["localGw"] = state ? state.localGw : undefined;
+            resourceInputs["localGw6"] = state ? state.localGw6 : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["remoteGw6"] = state ? state.remoteGw6 : undefined;
+            resourceInputs["sequenceNumberReception"] = state ? state.sequenceNumberReception : undefined;
+            resourceInputs["sequenceNumberTransmission"] = state ? state.sequenceNumberTransmission : undefined;
+            resourceInputs["useSdwan"] = state ? state.useSdwan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemGreTunnelArgs | undefined;
             if ((!args || args.localGw === undefined) && !opts.urn) {
@@ -182,29 +187,28 @@ export class SystemGreTunnel extends pulumi.CustomResource {
             if ((!args || args.remoteGw === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'remoteGw'");
             }
-            inputs["checksumReception"] = args ? args.checksumReception : undefined;
-            inputs["checksumTransmission"] = args ? args.checksumTransmission : undefined;
-            inputs["diffservcode"] = args ? args.diffservcode : undefined;
-            inputs["dscpCopying"] = args ? args.dscpCopying : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipVersion"] = args ? args.ipVersion : undefined;
-            inputs["keepaliveFailtimes"] = args ? args.keepaliveFailtimes : undefined;
-            inputs["keepaliveInterval"] = args ? args.keepaliveInterval : undefined;
-            inputs["keyInbound"] = args ? args.keyInbound : undefined;
-            inputs["keyOutbound"] = args ? args.keyOutbound : undefined;
-            inputs["localGw"] = args ? args.localGw : undefined;
-            inputs["localGw6"] = args ? args.localGw6 : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["remoteGw"] = args ? args.remoteGw : undefined;
-            inputs["remoteGw6"] = args ? args.remoteGw6 : undefined;
-            inputs["sequenceNumberReception"] = args ? args.sequenceNumberReception : undefined;
-            inputs["sequenceNumberTransmission"] = args ? args.sequenceNumberTransmission : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["checksumReception"] = args ? args.checksumReception : undefined;
+            resourceInputs["checksumTransmission"] = args ? args.checksumTransmission : undefined;
+            resourceInputs["diffservcode"] = args ? args.diffservcode : undefined;
+            resourceInputs["dscpCopying"] = args ? args.dscpCopying : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["keepaliveFailtimes"] = args ? args.keepaliveFailtimes : undefined;
+            resourceInputs["keepaliveInterval"] = args ? args.keepaliveInterval : undefined;
+            resourceInputs["keyInbound"] = args ? args.keyInbound : undefined;
+            resourceInputs["keyOutbound"] = args ? args.keyOutbound : undefined;
+            resourceInputs["localGw"] = args ? args.localGw : undefined;
+            resourceInputs["localGw6"] = args ? args.localGw6 : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["remoteGw6"] = args ? args.remoteGw6 : undefined;
+            resourceInputs["sequenceNumberReception"] = args ? args.sequenceNumberReception : undefined;
+            resourceInputs["sequenceNumberTransmission"] = args ? args.sequenceNumberTransmission : undefined;
+            resourceInputs["useSdwan"] = args ? args.useSdwan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemGreTunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemGreTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -280,6 +284,10 @@ export interface SystemGreTunnelState {
      * Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
      */
     sequenceNumberTransmission?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -358,6 +366,10 @@ export interface SystemGreTunnelArgs {
      * Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
      */
     sequenceNumberTransmission?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

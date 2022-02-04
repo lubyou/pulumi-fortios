@@ -47,6 +47,7 @@ func NewSystemStandaloneCluster(ctx *pulumi.Context,
 		args = &SystemStandaloneClusterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemStandaloneCluster
 	err := ctx.RegisterResource("fortios:index/systemStandaloneCluster:SystemStandaloneCluster", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type SystemStandaloneClusterInput interface {
 }
 
 func (*SystemStandaloneCluster) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemStandaloneCluster)(nil))
+	return reflect.TypeOf((**SystemStandaloneCluster)(nil)).Elem()
 }
 
 func (i *SystemStandaloneCluster) ToSystemStandaloneClusterOutput() SystemStandaloneClusterOutput {
@@ -162,35 +163,6 @@ func (i *SystemStandaloneCluster) ToSystemStandaloneClusterOutput() SystemStanda
 
 func (i *SystemStandaloneCluster) ToSystemStandaloneClusterOutputWithContext(ctx context.Context) SystemStandaloneClusterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterOutput)
-}
-
-func (i *SystemStandaloneCluster) ToSystemStandaloneClusterPtrOutput() SystemStandaloneClusterPtrOutput {
-	return i.ToSystemStandaloneClusterPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemStandaloneCluster) ToSystemStandaloneClusterPtrOutputWithContext(ctx context.Context) SystemStandaloneClusterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterPtrOutput)
-}
-
-type SystemStandaloneClusterPtrInput interface {
-	pulumi.Input
-
-	ToSystemStandaloneClusterPtrOutput() SystemStandaloneClusterPtrOutput
-	ToSystemStandaloneClusterPtrOutputWithContext(ctx context.Context) SystemStandaloneClusterPtrOutput
-}
-
-type systemStandaloneClusterPtrType SystemStandaloneClusterArgs
-
-func (*systemStandaloneClusterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemStandaloneCluster)(nil))
-}
-
-func (i *systemStandaloneClusterPtrType) ToSystemStandaloneClusterPtrOutput() SystemStandaloneClusterPtrOutput {
-	return i.ToSystemStandaloneClusterPtrOutputWithContext(context.Background())
-}
-
-func (i *systemStandaloneClusterPtrType) ToSystemStandaloneClusterPtrOutputWithContext(ctx context.Context) SystemStandaloneClusterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterPtrOutput)
 }
 
 // SystemStandaloneClusterArrayInput is an input type that accepts SystemStandaloneClusterArray and SystemStandaloneClusterArrayOutput values.
@@ -207,7 +179,7 @@ type SystemStandaloneClusterArrayInput interface {
 type SystemStandaloneClusterArray []SystemStandaloneClusterInput
 
 func (SystemStandaloneClusterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemStandaloneCluster)(nil))
+	return reflect.TypeOf((*[]*SystemStandaloneCluster)(nil)).Elem()
 }
 
 func (i SystemStandaloneClusterArray) ToSystemStandaloneClusterArrayOutput() SystemStandaloneClusterArrayOutput {
@@ -232,7 +204,7 @@ type SystemStandaloneClusterMapInput interface {
 type SystemStandaloneClusterMap map[string]SystemStandaloneClusterInput
 
 func (SystemStandaloneClusterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemStandaloneCluster)(nil))
+	return reflect.TypeOf((*map[string]*SystemStandaloneCluster)(nil)).Elem()
 }
 
 func (i SystemStandaloneClusterMap) ToSystemStandaloneClusterMapOutput() SystemStandaloneClusterMapOutput {
@@ -243,12 +215,10 @@ func (i SystemStandaloneClusterMap) ToSystemStandaloneClusterMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemStandaloneClusterMapOutput)
 }
 
-type SystemStandaloneClusterOutput struct {
-	*pulumi.OutputState
-}
+type SystemStandaloneClusterOutput struct{ *pulumi.OutputState }
 
 func (SystemStandaloneClusterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemStandaloneCluster)(nil))
+	return reflect.TypeOf((**SystemStandaloneCluster)(nil)).Elem()
 }
 
 func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterOutput() SystemStandaloneClusterOutput {
@@ -259,36 +229,10 @@ func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterOutputWithContex
 	return o
 }
 
-func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterPtrOutput() SystemStandaloneClusterPtrOutput {
-	return o.ToSystemStandaloneClusterPtrOutputWithContext(context.Background())
-}
-
-func (o SystemStandaloneClusterOutput) ToSystemStandaloneClusterPtrOutputWithContext(ctx context.Context) SystemStandaloneClusterPtrOutput {
-	return o.ApplyT(func(v SystemStandaloneCluster) *SystemStandaloneCluster {
-		return &v
-	}).(SystemStandaloneClusterPtrOutput)
-}
-
-type SystemStandaloneClusterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemStandaloneClusterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemStandaloneCluster)(nil))
-}
-
-func (o SystemStandaloneClusterPtrOutput) ToSystemStandaloneClusterPtrOutput() SystemStandaloneClusterPtrOutput {
-	return o
-}
-
-func (o SystemStandaloneClusterPtrOutput) ToSystemStandaloneClusterPtrOutputWithContext(ctx context.Context) SystemStandaloneClusterPtrOutput {
-	return o
-}
-
 type SystemStandaloneClusterArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemStandaloneClusterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemStandaloneCluster)(nil))
+	return reflect.TypeOf((*[]*SystemStandaloneCluster)(nil)).Elem()
 }
 
 func (o SystemStandaloneClusterArrayOutput) ToSystemStandaloneClusterArrayOutput() SystemStandaloneClusterArrayOutput {
@@ -300,15 +244,15 @@ func (o SystemStandaloneClusterArrayOutput) ToSystemStandaloneClusterArrayOutput
 }
 
 func (o SystemStandaloneClusterArrayOutput) Index(i pulumi.IntInput) SystemStandaloneClusterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemStandaloneCluster {
-		return vs[0].([]SystemStandaloneCluster)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemStandaloneCluster {
+		return vs[0].([]*SystemStandaloneCluster)[vs[1].(int)]
 	}).(SystemStandaloneClusterOutput)
 }
 
 type SystemStandaloneClusterMapOutput struct{ *pulumi.OutputState }
 
 func (SystemStandaloneClusterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemStandaloneCluster)(nil))
+	return reflect.TypeOf((*map[string]*SystemStandaloneCluster)(nil)).Elem()
 }
 
 func (o SystemStandaloneClusterMapOutput) ToSystemStandaloneClusterMapOutput() SystemStandaloneClusterMapOutput {
@@ -320,14 +264,16 @@ func (o SystemStandaloneClusterMapOutput) ToSystemStandaloneClusterMapOutputWith
 }
 
 func (o SystemStandaloneClusterMapOutput) MapIndex(k pulumi.StringInput) SystemStandaloneClusterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemStandaloneCluster {
-		return vs[0].(map[string]SystemStandaloneCluster)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemStandaloneCluster {
+		return vs[0].(map[string]*SystemStandaloneCluster)[vs[1].(string)]
 	}).(SystemStandaloneClusterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemStandaloneClusterInput)(nil)).Elem(), &SystemStandaloneCluster{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemStandaloneClusterArrayInput)(nil)).Elem(), SystemStandaloneClusterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemStandaloneClusterMapInput)(nil)).Elem(), SystemStandaloneClusterMap{})
 	pulumi.RegisterOutputType(SystemStandaloneClusterOutput{})
-	pulumi.RegisterOutputType(SystemStandaloneClusterPtrOutput{})
 	pulumi.RegisterOutputType(SystemStandaloneClusterArrayOutput{})
 	pulumi.RegisterOutputType(SystemStandaloneClusterMapOutput{})
 }

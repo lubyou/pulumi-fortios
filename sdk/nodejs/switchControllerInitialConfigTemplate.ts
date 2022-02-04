@@ -83,31 +83,29 @@ export class SwitchControllerInitialConfigTemplate extends pulumi.CustomResource
      */
     constructor(name: string, args?: SwitchControllerInitialConfigTemplateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerInitialConfigTemplateArgs | SwitchControllerInitialConfigTemplateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerInitialConfigTemplateState | undefined;
-            inputs["allowaccess"] = state ? state.allowaccess : undefined;
-            inputs["autoIp"] = state ? state.autoIp : undefined;
-            inputs["dhcpServer"] = state ? state.dhcpServer : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanid"] = state ? state.vlanid : undefined;
+            resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
+            resourceInputs["autoIp"] = state ? state.autoIp : undefined;
+            resourceInputs["dhcpServer"] = state ? state.dhcpServer : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanid"] = state ? state.vlanid : undefined;
         } else {
             const args = argsOrState as SwitchControllerInitialConfigTemplateArgs | undefined;
-            inputs["allowaccess"] = args ? args.allowaccess : undefined;
-            inputs["autoIp"] = args ? args.autoIp : undefined;
-            inputs["dhcpServer"] = args ? args.dhcpServer : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanid"] = args ? args.vlanid : undefined;
+            resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
+            resourceInputs["autoIp"] = args ? args.autoIp : undefined;
+            resourceInputs["dhcpServer"] = args ? args.dhcpServer : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanid"] = args ? args.vlanid : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerInitialConfigTemplate.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerInitialConfigTemplate.__pulumiType, name, resourceInputs, opts);
     }
 }
 

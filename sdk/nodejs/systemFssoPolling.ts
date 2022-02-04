@@ -88,27 +88,25 @@ export class SystemFssoPolling extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFssoPollingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFssoPollingArgs | SystemFssoPollingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFssoPollingState | undefined;
-            inputs["authPassword"] = state ? state.authPassword : undefined;
-            inputs["authentication"] = state ? state.authentication : undefined;
-            inputs["listeningPort"] = state ? state.listeningPort : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authPassword"] = state ? state.authPassword : undefined;
+            resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["listeningPort"] = state ? state.listeningPort : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFssoPollingArgs | undefined;
-            inputs["authPassword"] = args ? args.authPassword : undefined;
-            inputs["authentication"] = args ? args.authentication : undefined;
-            inputs["listeningPort"] = args ? args.listeningPort : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authPassword"] = args ? args.authPassword : undefined;
+            resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["listeningPort"] = args ? args.listeningPort : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFssoPolling.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFssoPolling.__pulumiType, name, resourceInputs, opts);
     }
 }
 

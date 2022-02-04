@@ -335,7 +335,7 @@ export class RouterBgp extends pulumi.CustomResource {
      */
     public readonly network6s!: pulumi.Output<outputs.RouterBgpNetwork6[] | undefined>;
     /**
-     * Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
      */
     public readonly networkImportCheck!: pulumi.Output<string>;
     /**
@@ -367,9 +367,17 @@ export class RouterBgp extends pulumi.CustomResource {
      */
     public readonly synchronization!: pulumi.Output<string>;
     /**
+     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+     */
+    public readonly tagResolveMode!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+     */
+    public readonly vrfLeak6s!: pulumi.Output<outputs.RouterBgpVrfLeak6[] | undefined>;
     /**
      * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
      */
@@ -384,140 +392,142 @@ export class RouterBgp extends pulumi.CustomResource {
      */
     constructor(name: string, args: RouterBgpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterBgpArgs | RouterBgpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterBgpState | undefined;
-            inputs["additionalPath"] = state ? state.additionalPath : undefined;
-            inputs["additionalPath6"] = state ? state.additionalPath6 : undefined;
-            inputs["additionalPathSelect"] = state ? state.additionalPathSelect : undefined;
-            inputs["additionalPathSelect6"] = state ? state.additionalPathSelect6 : undefined;
-            inputs["adminDistances"] = state ? state.adminDistances : undefined;
-            inputs["aggregateAddress6s"] = state ? state.aggregateAddress6s : undefined;
-            inputs["aggregateAddresses"] = state ? state.aggregateAddresses : undefined;
-            inputs["alwaysCompareMed"] = state ? state.alwaysCompareMed : undefined;
-            inputs["as"] = state ? state.as : undefined;
-            inputs["bestpathAsPathIgnore"] = state ? state.bestpathAsPathIgnore : undefined;
-            inputs["bestpathCmpConfedAspath"] = state ? state.bestpathCmpConfedAspath : undefined;
-            inputs["bestpathCmpRouterid"] = state ? state.bestpathCmpRouterid : undefined;
-            inputs["bestpathMedConfed"] = state ? state.bestpathMedConfed : undefined;
-            inputs["bestpathMedMissingAsWorst"] = state ? state.bestpathMedMissingAsWorst : undefined;
-            inputs["clientToClientReflection"] = state ? state.clientToClientReflection : undefined;
-            inputs["clusterId"] = state ? state.clusterId : undefined;
-            inputs["confederationIdentifier"] = state ? state.confederationIdentifier : undefined;
-            inputs["confederationPeers"] = state ? state.confederationPeers : undefined;
-            inputs["dampening"] = state ? state.dampening : undefined;
-            inputs["dampeningMaxSuppressTime"] = state ? state.dampeningMaxSuppressTime : undefined;
-            inputs["dampeningReachabilityHalfLife"] = state ? state.dampeningReachabilityHalfLife : undefined;
-            inputs["dampeningReuse"] = state ? state.dampeningReuse : undefined;
-            inputs["dampeningRouteMap"] = state ? state.dampeningRouteMap : undefined;
-            inputs["dampeningSuppress"] = state ? state.dampeningSuppress : undefined;
-            inputs["dampeningUnreachabilityHalfLife"] = state ? state.dampeningUnreachabilityHalfLife : undefined;
-            inputs["defaultLocalPreference"] = state ? state.defaultLocalPreference : undefined;
-            inputs["deterministicMed"] = state ? state.deterministicMed : undefined;
-            inputs["distanceExternal"] = state ? state.distanceExternal : undefined;
-            inputs["distanceInternal"] = state ? state.distanceInternal : undefined;
-            inputs["distanceLocal"] = state ? state.distanceLocal : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ebgpMultipath"] = state ? state.ebgpMultipath : undefined;
-            inputs["enforceFirstAs"] = state ? state.enforceFirstAs : undefined;
-            inputs["fastExternalFailover"] = state ? state.fastExternalFailover : undefined;
-            inputs["gracefulEndOnTimer"] = state ? state.gracefulEndOnTimer : undefined;
-            inputs["gracefulRestart"] = state ? state.gracefulRestart : undefined;
-            inputs["gracefulRestartTime"] = state ? state.gracefulRestartTime : undefined;
-            inputs["gracefulStalepathTime"] = state ? state.gracefulStalepathTime : undefined;
-            inputs["gracefulUpdateDelay"] = state ? state.gracefulUpdateDelay : undefined;
-            inputs["holdtimeTimer"] = state ? state.holdtimeTimer : undefined;
-            inputs["ibgpMultipath"] = state ? state.ibgpMultipath : undefined;
-            inputs["ignoreOptionalCapability"] = state ? state.ignoreOptionalCapability : undefined;
-            inputs["keepaliveTimer"] = state ? state.keepaliveTimer : undefined;
-            inputs["logNeighbourChanges"] = state ? state.logNeighbourChanges : undefined;
-            inputs["multipathRecursiveDistance"] = state ? state.multipathRecursiveDistance : undefined;
-            inputs["neighborGroups"] = state ? state.neighborGroups : undefined;
-            inputs["neighborRange6s"] = state ? state.neighborRange6s : undefined;
-            inputs["neighborRanges"] = state ? state.neighborRanges : undefined;
-            inputs["neighbors"] = state ? state.neighbors : undefined;
-            inputs["network6s"] = state ? state.network6s : undefined;
-            inputs["networkImportCheck"] = state ? state.networkImportCheck : undefined;
-            inputs["networks"] = state ? state.networks : undefined;
-            inputs["recursiveNextHop"] = state ? state.recursiveNextHop : undefined;
-            inputs["redistribute6s"] = state ? state.redistribute6s : undefined;
-            inputs["redistributes"] = state ? state.redistributes : undefined;
-            inputs["routerId"] = state ? state.routerId : undefined;
-            inputs["scanTime"] = state ? state.scanTime : undefined;
-            inputs["synchronization"] = state ? state.synchronization : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vrfLeaks"] = state ? state.vrfLeaks : undefined;
+            resourceInputs["additionalPath"] = state ? state.additionalPath : undefined;
+            resourceInputs["additionalPath6"] = state ? state.additionalPath6 : undefined;
+            resourceInputs["additionalPathSelect"] = state ? state.additionalPathSelect : undefined;
+            resourceInputs["additionalPathSelect6"] = state ? state.additionalPathSelect6 : undefined;
+            resourceInputs["adminDistances"] = state ? state.adminDistances : undefined;
+            resourceInputs["aggregateAddress6s"] = state ? state.aggregateAddress6s : undefined;
+            resourceInputs["aggregateAddresses"] = state ? state.aggregateAddresses : undefined;
+            resourceInputs["alwaysCompareMed"] = state ? state.alwaysCompareMed : undefined;
+            resourceInputs["as"] = state ? state.as : undefined;
+            resourceInputs["bestpathAsPathIgnore"] = state ? state.bestpathAsPathIgnore : undefined;
+            resourceInputs["bestpathCmpConfedAspath"] = state ? state.bestpathCmpConfedAspath : undefined;
+            resourceInputs["bestpathCmpRouterid"] = state ? state.bestpathCmpRouterid : undefined;
+            resourceInputs["bestpathMedConfed"] = state ? state.bestpathMedConfed : undefined;
+            resourceInputs["bestpathMedMissingAsWorst"] = state ? state.bestpathMedMissingAsWorst : undefined;
+            resourceInputs["clientToClientReflection"] = state ? state.clientToClientReflection : undefined;
+            resourceInputs["clusterId"] = state ? state.clusterId : undefined;
+            resourceInputs["confederationIdentifier"] = state ? state.confederationIdentifier : undefined;
+            resourceInputs["confederationPeers"] = state ? state.confederationPeers : undefined;
+            resourceInputs["dampening"] = state ? state.dampening : undefined;
+            resourceInputs["dampeningMaxSuppressTime"] = state ? state.dampeningMaxSuppressTime : undefined;
+            resourceInputs["dampeningReachabilityHalfLife"] = state ? state.dampeningReachabilityHalfLife : undefined;
+            resourceInputs["dampeningReuse"] = state ? state.dampeningReuse : undefined;
+            resourceInputs["dampeningRouteMap"] = state ? state.dampeningRouteMap : undefined;
+            resourceInputs["dampeningSuppress"] = state ? state.dampeningSuppress : undefined;
+            resourceInputs["dampeningUnreachabilityHalfLife"] = state ? state.dampeningUnreachabilityHalfLife : undefined;
+            resourceInputs["defaultLocalPreference"] = state ? state.defaultLocalPreference : undefined;
+            resourceInputs["deterministicMed"] = state ? state.deterministicMed : undefined;
+            resourceInputs["distanceExternal"] = state ? state.distanceExternal : undefined;
+            resourceInputs["distanceInternal"] = state ? state.distanceInternal : undefined;
+            resourceInputs["distanceLocal"] = state ? state.distanceLocal : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ebgpMultipath"] = state ? state.ebgpMultipath : undefined;
+            resourceInputs["enforceFirstAs"] = state ? state.enforceFirstAs : undefined;
+            resourceInputs["fastExternalFailover"] = state ? state.fastExternalFailover : undefined;
+            resourceInputs["gracefulEndOnTimer"] = state ? state.gracefulEndOnTimer : undefined;
+            resourceInputs["gracefulRestart"] = state ? state.gracefulRestart : undefined;
+            resourceInputs["gracefulRestartTime"] = state ? state.gracefulRestartTime : undefined;
+            resourceInputs["gracefulStalepathTime"] = state ? state.gracefulStalepathTime : undefined;
+            resourceInputs["gracefulUpdateDelay"] = state ? state.gracefulUpdateDelay : undefined;
+            resourceInputs["holdtimeTimer"] = state ? state.holdtimeTimer : undefined;
+            resourceInputs["ibgpMultipath"] = state ? state.ibgpMultipath : undefined;
+            resourceInputs["ignoreOptionalCapability"] = state ? state.ignoreOptionalCapability : undefined;
+            resourceInputs["keepaliveTimer"] = state ? state.keepaliveTimer : undefined;
+            resourceInputs["logNeighbourChanges"] = state ? state.logNeighbourChanges : undefined;
+            resourceInputs["multipathRecursiveDistance"] = state ? state.multipathRecursiveDistance : undefined;
+            resourceInputs["neighborGroups"] = state ? state.neighborGroups : undefined;
+            resourceInputs["neighborRange6s"] = state ? state.neighborRange6s : undefined;
+            resourceInputs["neighborRanges"] = state ? state.neighborRanges : undefined;
+            resourceInputs["neighbors"] = state ? state.neighbors : undefined;
+            resourceInputs["network6s"] = state ? state.network6s : undefined;
+            resourceInputs["networkImportCheck"] = state ? state.networkImportCheck : undefined;
+            resourceInputs["networks"] = state ? state.networks : undefined;
+            resourceInputs["recursiveNextHop"] = state ? state.recursiveNextHop : undefined;
+            resourceInputs["redistribute6s"] = state ? state.redistribute6s : undefined;
+            resourceInputs["redistributes"] = state ? state.redistributes : undefined;
+            resourceInputs["routerId"] = state ? state.routerId : undefined;
+            resourceInputs["scanTime"] = state ? state.scanTime : undefined;
+            resourceInputs["synchronization"] = state ? state.synchronization : undefined;
+            resourceInputs["tagResolveMode"] = state ? state.tagResolveMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vrfLeak6s"] = state ? state.vrfLeak6s : undefined;
+            resourceInputs["vrfLeaks"] = state ? state.vrfLeaks : undefined;
         } else {
             const args = argsOrState as RouterBgpArgs | undefined;
             if ((!args || args.as === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'as'");
             }
-            inputs["additionalPath"] = args ? args.additionalPath : undefined;
-            inputs["additionalPath6"] = args ? args.additionalPath6 : undefined;
-            inputs["additionalPathSelect"] = args ? args.additionalPathSelect : undefined;
-            inputs["additionalPathSelect6"] = args ? args.additionalPathSelect6 : undefined;
-            inputs["adminDistances"] = args ? args.adminDistances : undefined;
-            inputs["aggregateAddress6s"] = args ? args.aggregateAddress6s : undefined;
-            inputs["aggregateAddresses"] = args ? args.aggregateAddresses : undefined;
-            inputs["alwaysCompareMed"] = args ? args.alwaysCompareMed : undefined;
-            inputs["as"] = args ? args.as : undefined;
-            inputs["bestpathAsPathIgnore"] = args ? args.bestpathAsPathIgnore : undefined;
-            inputs["bestpathCmpConfedAspath"] = args ? args.bestpathCmpConfedAspath : undefined;
-            inputs["bestpathCmpRouterid"] = args ? args.bestpathCmpRouterid : undefined;
-            inputs["bestpathMedConfed"] = args ? args.bestpathMedConfed : undefined;
-            inputs["bestpathMedMissingAsWorst"] = args ? args.bestpathMedMissingAsWorst : undefined;
-            inputs["clientToClientReflection"] = args ? args.clientToClientReflection : undefined;
-            inputs["clusterId"] = args ? args.clusterId : undefined;
-            inputs["confederationIdentifier"] = args ? args.confederationIdentifier : undefined;
-            inputs["confederationPeers"] = args ? args.confederationPeers : undefined;
-            inputs["dampening"] = args ? args.dampening : undefined;
-            inputs["dampeningMaxSuppressTime"] = args ? args.dampeningMaxSuppressTime : undefined;
-            inputs["dampeningReachabilityHalfLife"] = args ? args.dampeningReachabilityHalfLife : undefined;
-            inputs["dampeningReuse"] = args ? args.dampeningReuse : undefined;
-            inputs["dampeningRouteMap"] = args ? args.dampeningRouteMap : undefined;
-            inputs["dampeningSuppress"] = args ? args.dampeningSuppress : undefined;
-            inputs["dampeningUnreachabilityHalfLife"] = args ? args.dampeningUnreachabilityHalfLife : undefined;
-            inputs["defaultLocalPreference"] = args ? args.defaultLocalPreference : undefined;
-            inputs["deterministicMed"] = args ? args.deterministicMed : undefined;
-            inputs["distanceExternal"] = args ? args.distanceExternal : undefined;
-            inputs["distanceInternal"] = args ? args.distanceInternal : undefined;
-            inputs["distanceLocal"] = args ? args.distanceLocal : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ebgpMultipath"] = args ? args.ebgpMultipath : undefined;
-            inputs["enforceFirstAs"] = args ? args.enforceFirstAs : undefined;
-            inputs["fastExternalFailover"] = args ? args.fastExternalFailover : undefined;
-            inputs["gracefulEndOnTimer"] = args ? args.gracefulEndOnTimer : undefined;
-            inputs["gracefulRestart"] = args ? args.gracefulRestart : undefined;
-            inputs["gracefulRestartTime"] = args ? args.gracefulRestartTime : undefined;
-            inputs["gracefulStalepathTime"] = args ? args.gracefulStalepathTime : undefined;
-            inputs["gracefulUpdateDelay"] = args ? args.gracefulUpdateDelay : undefined;
-            inputs["holdtimeTimer"] = args ? args.holdtimeTimer : undefined;
-            inputs["ibgpMultipath"] = args ? args.ibgpMultipath : undefined;
-            inputs["ignoreOptionalCapability"] = args ? args.ignoreOptionalCapability : undefined;
-            inputs["keepaliveTimer"] = args ? args.keepaliveTimer : undefined;
-            inputs["logNeighbourChanges"] = args ? args.logNeighbourChanges : undefined;
-            inputs["multipathRecursiveDistance"] = args ? args.multipathRecursiveDistance : undefined;
-            inputs["neighborGroups"] = args ? args.neighborGroups : undefined;
-            inputs["neighborRange6s"] = args ? args.neighborRange6s : undefined;
-            inputs["neighborRanges"] = args ? args.neighborRanges : undefined;
-            inputs["neighbors"] = args ? args.neighbors : undefined;
-            inputs["network6s"] = args ? args.network6s : undefined;
-            inputs["networkImportCheck"] = args ? args.networkImportCheck : undefined;
-            inputs["networks"] = args ? args.networks : undefined;
-            inputs["recursiveNextHop"] = args ? args.recursiveNextHop : undefined;
-            inputs["redistribute6s"] = args ? args.redistribute6s : undefined;
-            inputs["redistributes"] = args ? args.redistributes : undefined;
-            inputs["routerId"] = args ? args.routerId : undefined;
-            inputs["scanTime"] = args ? args.scanTime : undefined;
-            inputs["synchronization"] = args ? args.synchronization : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vrfLeaks"] = args ? args.vrfLeaks : undefined;
+            resourceInputs["additionalPath"] = args ? args.additionalPath : undefined;
+            resourceInputs["additionalPath6"] = args ? args.additionalPath6 : undefined;
+            resourceInputs["additionalPathSelect"] = args ? args.additionalPathSelect : undefined;
+            resourceInputs["additionalPathSelect6"] = args ? args.additionalPathSelect6 : undefined;
+            resourceInputs["adminDistances"] = args ? args.adminDistances : undefined;
+            resourceInputs["aggregateAddress6s"] = args ? args.aggregateAddress6s : undefined;
+            resourceInputs["aggregateAddresses"] = args ? args.aggregateAddresses : undefined;
+            resourceInputs["alwaysCompareMed"] = args ? args.alwaysCompareMed : undefined;
+            resourceInputs["as"] = args ? args.as : undefined;
+            resourceInputs["bestpathAsPathIgnore"] = args ? args.bestpathAsPathIgnore : undefined;
+            resourceInputs["bestpathCmpConfedAspath"] = args ? args.bestpathCmpConfedAspath : undefined;
+            resourceInputs["bestpathCmpRouterid"] = args ? args.bestpathCmpRouterid : undefined;
+            resourceInputs["bestpathMedConfed"] = args ? args.bestpathMedConfed : undefined;
+            resourceInputs["bestpathMedMissingAsWorst"] = args ? args.bestpathMedMissingAsWorst : undefined;
+            resourceInputs["clientToClientReflection"] = args ? args.clientToClientReflection : undefined;
+            resourceInputs["clusterId"] = args ? args.clusterId : undefined;
+            resourceInputs["confederationIdentifier"] = args ? args.confederationIdentifier : undefined;
+            resourceInputs["confederationPeers"] = args ? args.confederationPeers : undefined;
+            resourceInputs["dampening"] = args ? args.dampening : undefined;
+            resourceInputs["dampeningMaxSuppressTime"] = args ? args.dampeningMaxSuppressTime : undefined;
+            resourceInputs["dampeningReachabilityHalfLife"] = args ? args.dampeningReachabilityHalfLife : undefined;
+            resourceInputs["dampeningReuse"] = args ? args.dampeningReuse : undefined;
+            resourceInputs["dampeningRouteMap"] = args ? args.dampeningRouteMap : undefined;
+            resourceInputs["dampeningSuppress"] = args ? args.dampeningSuppress : undefined;
+            resourceInputs["dampeningUnreachabilityHalfLife"] = args ? args.dampeningUnreachabilityHalfLife : undefined;
+            resourceInputs["defaultLocalPreference"] = args ? args.defaultLocalPreference : undefined;
+            resourceInputs["deterministicMed"] = args ? args.deterministicMed : undefined;
+            resourceInputs["distanceExternal"] = args ? args.distanceExternal : undefined;
+            resourceInputs["distanceInternal"] = args ? args.distanceInternal : undefined;
+            resourceInputs["distanceLocal"] = args ? args.distanceLocal : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ebgpMultipath"] = args ? args.ebgpMultipath : undefined;
+            resourceInputs["enforceFirstAs"] = args ? args.enforceFirstAs : undefined;
+            resourceInputs["fastExternalFailover"] = args ? args.fastExternalFailover : undefined;
+            resourceInputs["gracefulEndOnTimer"] = args ? args.gracefulEndOnTimer : undefined;
+            resourceInputs["gracefulRestart"] = args ? args.gracefulRestart : undefined;
+            resourceInputs["gracefulRestartTime"] = args ? args.gracefulRestartTime : undefined;
+            resourceInputs["gracefulStalepathTime"] = args ? args.gracefulStalepathTime : undefined;
+            resourceInputs["gracefulUpdateDelay"] = args ? args.gracefulUpdateDelay : undefined;
+            resourceInputs["holdtimeTimer"] = args ? args.holdtimeTimer : undefined;
+            resourceInputs["ibgpMultipath"] = args ? args.ibgpMultipath : undefined;
+            resourceInputs["ignoreOptionalCapability"] = args ? args.ignoreOptionalCapability : undefined;
+            resourceInputs["keepaliveTimer"] = args ? args.keepaliveTimer : undefined;
+            resourceInputs["logNeighbourChanges"] = args ? args.logNeighbourChanges : undefined;
+            resourceInputs["multipathRecursiveDistance"] = args ? args.multipathRecursiveDistance : undefined;
+            resourceInputs["neighborGroups"] = args ? args.neighborGroups : undefined;
+            resourceInputs["neighborRange6s"] = args ? args.neighborRange6s : undefined;
+            resourceInputs["neighborRanges"] = args ? args.neighborRanges : undefined;
+            resourceInputs["neighbors"] = args ? args.neighbors : undefined;
+            resourceInputs["network6s"] = args ? args.network6s : undefined;
+            resourceInputs["networkImportCheck"] = args ? args.networkImportCheck : undefined;
+            resourceInputs["networks"] = args ? args.networks : undefined;
+            resourceInputs["recursiveNextHop"] = args ? args.recursiveNextHop : undefined;
+            resourceInputs["redistribute6s"] = args ? args.redistribute6s : undefined;
+            resourceInputs["redistributes"] = args ? args.redistributes : undefined;
+            resourceInputs["routerId"] = args ? args.routerId : undefined;
+            resourceInputs["scanTime"] = args ? args.scanTime : undefined;
+            resourceInputs["synchronization"] = args ? args.synchronization : undefined;
+            resourceInputs["tagResolveMode"] = args ? args.tagResolveMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vrfLeak6s"] = args ? args.vrfLeak6s : undefined;
+            resourceInputs["vrfLeaks"] = args ? args.vrfLeaks : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterBgp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterBgp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -726,7 +736,7 @@ export interface RouterBgpState {
      */
     network6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpNetwork6>[]>;
     /**
-     * Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
      */
     networkImportCheck?: pulumi.Input<string>;
     /**
@@ -758,9 +768,17 @@ export interface RouterBgpState {
      */
     synchronization?: pulumi.Input<string>;
     /**
+     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+     */
+    tagResolveMode?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+     */
+    vrfLeak6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrfLeak6>[]>;
     /**
      * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
      */
@@ -972,7 +990,7 @@ export interface RouterBgpArgs {
      */
     network6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpNetwork6>[]>;
     /**
-     * Enable/disable ensure BGP network route exists in IGP. Valid values: `enable`, `disable`.
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
      */
     networkImportCheck?: pulumi.Input<string>;
     /**
@@ -1004,9 +1022,17 @@ export interface RouterBgpArgs {
      */
     synchronization?: pulumi.Input<string>;
     /**
+     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag. Valid values: `disable`, `preferred`, `merge`.
+     */
+    tagResolveMode?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+     */
+    vrfLeak6s?: pulumi.Input<pulumi.Input<inputs.RouterBgpVrfLeak6>[]>;
     /**
      * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
      */

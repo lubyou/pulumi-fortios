@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname2 = new fortios.UserLdap("trname2", {
  *     accountKeyFilter: `(&(userPrincipalName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))`,
@@ -110,16 +110,16 @@ export class UserKrbKeytab extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserKrbKeytabArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserKrbKeytabArgs | UserKrbKeytabState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserKrbKeytabState | undefined;
-            inputs["keytab"] = state ? state.keytab : undefined;
-            inputs["ldapServer"] = state ? state.ldapServer : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pacData"] = state ? state.pacData : undefined;
-            inputs["principal"] = state ? state.principal : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["keytab"] = state ? state.keytab : undefined;
+            resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pacData"] = state ? state.pacData : undefined;
+            resourceInputs["principal"] = state ? state.principal : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserKrbKeytabArgs | undefined;
             if ((!args || args.keytab === undefined) && !opts.urn) {
@@ -131,17 +131,15 @@ export class UserKrbKeytab extends pulumi.CustomResource {
             if ((!args || args.principal === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'principal'");
             }
-            inputs["keytab"] = args ? args.keytab : undefined;
-            inputs["ldapServer"] = args ? args.ldapServer : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pacData"] = args ? args.pacData : undefined;
-            inputs["principal"] = args ? args.principal : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["keytab"] = args ? args.keytab : undefined;
+            resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pacData"] = args ? args.pacData : undefined;
+            resourceInputs["principal"] = args ? args.principal : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserKrbKeytab.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserKrbKeytab.__pulumiType, name, resourceInputs, opts);
     }
 }
 

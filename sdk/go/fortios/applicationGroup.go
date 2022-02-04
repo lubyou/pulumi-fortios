@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,8 +26,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewApplicationGroup(ctx, "trname", &fortios.ApplicationGroupArgs{
-// 			Categories: fortios.ApplicationGroupCategoryArray{
-// 				&fortios.ApplicationGroupCategoryArgs{
+// 			Categories: ApplicationGroupCategoryArray{
+// 				&ApplicationGroupCategoryArgs{
 // 					Id: pulumi.Int(2),
 // 				},
 // 			},
@@ -88,6 +89,7 @@ func NewApplicationGroup(ctx *pulumi.Context,
 		args = &ApplicationGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApplicationGroup
 	err := ctx.RegisterResource("fortios:index/applicationGroup:ApplicationGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -242,7 +244,7 @@ type ApplicationGroupInput interface {
 }
 
 func (*ApplicationGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationGroup)(nil))
+	return reflect.TypeOf((**ApplicationGroup)(nil)).Elem()
 }
 
 func (i *ApplicationGroup) ToApplicationGroupOutput() ApplicationGroupOutput {
@@ -251,35 +253,6 @@ func (i *ApplicationGroup) ToApplicationGroupOutput() ApplicationGroupOutput {
 
 func (i *ApplicationGroup) ToApplicationGroupOutputWithContext(ctx context.Context) ApplicationGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationGroupOutput)
-}
-
-func (i *ApplicationGroup) ToApplicationGroupPtrOutput() ApplicationGroupPtrOutput {
-	return i.ToApplicationGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *ApplicationGroup) ToApplicationGroupPtrOutputWithContext(ctx context.Context) ApplicationGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationGroupPtrOutput)
-}
-
-type ApplicationGroupPtrInput interface {
-	pulumi.Input
-
-	ToApplicationGroupPtrOutput() ApplicationGroupPtrOutput
-	ToApplicationGroupPtrOutputWithContext(ctx context.Context) ApplicationGroupPtrOutput
-}
-
-type applicationGroupPtrType ApplicationGroupArgs
-
-func (*applicationGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationGroup)(nil))
-}
-
-func (i *applicationGroupPtrType) ToApplicationGroupPtrOutput() ApplicationGroupPtrOutput {
-	return i.ToApplicationGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *applicationGroupPtrType) ToApplicationGroupPtrOutputWithContext(ctx context.Context) ApplicationGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationGroupPtrOutput)
 }
 
 // ApplicationGroupArrayInput is an input type that accepts ApplicationGroupArray and ApplicationGroupArrayOutput values.
@@ -296,7 +269,7 @@ type ApplicationGroupArrayInput interface {
 type ApplicationGroupArray []ApplicationGroupInput
 
 func (ApplicationGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ApplicationGroup)(nil))
+	return reflect.TypeOf((*[]*ApplicationGroup)(nil)).Elem()
 }
 
 func (i ApplicationGroupArray) ToApplicationGroupArrayOutput() ApplicationGroupArrayOutput {
@@ -321,7 +294,7 @@ type ApplicationGroupMapInput interface {
 type ApplicationGroupMap map[string]ApplicationGroupInput
 
 func (ApplicationGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ApplicationGroup)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationGroup)(nil)).Elem()
 }
 
 func (i ApplicationGroupMap) ToApplicationGroupMapOutput() ApplicationGroupMapOutput {
@@ -332,12 +305,10 @@ func (i ApplicationGroupMap) ToApplicationGroupMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationGroupMapOutput)
 }
 
-type ApplicationGroupOutput struct {
-	*pulumi.OutputState
-}
+type ApplicationGroupOutput struct{ *pulumi.OutputState }
 
 func (ApplicationGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationGroup)(nil))
+	return reflect.TypeOf((**ApplicationGroup)(nil)).Elem()
 }
 
 func (o ApplicationGroupOutput) ToApplicationGroupOutput() ApplicationGroupOutput {
@@ -348,36 +319,10 @@ func (o ApplicationGroupOutput) ToApplicationGroupOutputWithContext(ctx context.
 	return o
 }
 
-func (o ApplicationGroupOutput) ToApplicationGroupPtrOutput() ApplicationGroupPtrOutput {
-	return o.ToApplicationGroupPtrOutputWithContext(context.Background())
-}
-
-func (o ApplicationGroupOutput) ToApplicationGroupPtrOutputWithContext(ctx context.Context) ApplicationGroupPtrOutput {
-	return o.ApplyT(func(v ApplicationGroup) *ApplicationGroup {
-		return &v
-	}).(ApplicationGroupPtrOutput)
-}
-
-type ApplicationGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ApplicationGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationGroup)(nil))
-}
-
-func (o ApplicationGroupPtrOutput) ToApplicationGroupPtrOutput() ApplicationGroupPtrOutput {
-	return o
-}
-
-func (o ApplicationGroupPtrOutput) ToApplicationGroupPtrOutputWithContext(ctx context.Context) ApplicationGroupPtrOutput {
-	return o
-}
-
 type ApplicationGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (ApplicationGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ApplicationGroup)(nil))
+	return reflect.TypeOf((*[]*ApplicationGroup)(nil)).Elem()
 }
 
 func (o ApplicationGroupArrayOutput) ToApplicationGroupArrayOutput() ApplicationGroupArrayOutput {
@@ -389,15 +334,15 @@ func (o ApplicationGroupArrayOutput) ToApplicationGroupArrayOutputWithContext(ct
 }
 
 func (o ApplicationGroupArrayOutput) Index(i pulumi.IntInput) ApplicationGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationGroup {
-		return vs[0].([]ApplicationGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationGroup {
+		return vs[0].([]*ApplicationGroup)[vs[1].(int)]
 	}).(ApplicationGroupOutput)
 }
 
 type ApplicationGroupMapOutput struct{ *pulumi.OutputState }
 
 func (ApplicationGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ApplicationGroup)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationGroup)(nil)).Elem()
 }
 
 func (o ApplicationGroupMapOutput) ToApplicationGroupMapOutput() ApplicationGroupMapOutput {
@@ -409,14 +354,16 @@ func (o ApplicationGroupMapOutput) ToApplicationGroupMapOutputWithContext(ctx co
 }
 
 func (o ApplicationGroupMapOutput) MapIndex(k pulumi.StringInput) ApplicationGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApplicationGroup {
-		return vs[0].(map[string]ApplicationGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApplicationGroup {
+		return vs[0].(map[string]*ApplicationGroup)[vs[1].(string)]
 	}).(ApplicationGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationGroupInput)(nil)).Elem(), &ApplicationGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationGroupArrayInput)(nil)).Elem(), ApplicationGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationGroupMapInput)(nil)).Elem(), ApplicationGroupMap{})
 	pulumi.RegisterOutputType(ApplicationGroupOutput{})
-	pulumi.RegisterOutputType(ApplicationGroupPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationGroupArrayOutput{})
 	pulumi.RegisterOutputType(ApplicationGroupMapOutput{})
 }

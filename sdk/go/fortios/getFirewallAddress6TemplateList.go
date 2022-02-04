@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallAddress6Template`.
 func GetFirewallAddress6TemplateList(ctx *pulumi.Context, args *GetFirewallAddress6TemplateListArgs, opts ...pulumi.InvokeOption) (*GetFirewallAddress6TemplateListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallAddress6TemplateListResult
 	err := ctx.Invoke("fortios:index/getFirewallAddress6TemplateList:GetFirewallAddress6TemplateList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallAddress6TemplateListResult struct {
 	// A list of the `FirewallAddress6Template`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallAddress6TemplateListOutput(ctx *pulumi.Context, args GetFirewallAddress6TemplateListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallAddress6TemplateListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallAddress6TemplateListResult, error) {
+			args := v.(GetFirewallAddress6TemplateListArgs)
+			r, err := GetFirewallAddress6TemplateList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallAddress6TemplateListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallAddress6TemplateList.
+type GetFirewallAddress6TemplateListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallAddress6TemplateListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallAddress6TemplateListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallAddress6TemplateList.
+type GetFirewallAddress6TemplateListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallAddress6TemplateListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallAddress6TemplateListResult)(nil)).Elem()
+}
+
+func (o GetFirewallAddress6TemplateListResultOutput) ToGetFirewallAddress6TemplateListResultOutput() GetFirewallAddress6TemplateListResultOutput {
+	return o
+}
+
+func (o GetFirewallAddress6TemplateListResultOutput) ToGetFirewallAddress6TemplateListResultOutputWithContext(ctx context.Context) GetFirewallAddress6TemplateListResultOutput {
+	return o
+}
+
+func (o GetFirewallAddress6TemplateListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallAddress6TemplateListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallAddress6TemplateListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallAddress6TemplateListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallAddress6Template`.
+func (o GetFirewallAddress6TemplateListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallAddress6TemplateListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallAddress6TemplateListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallAddress6TemplateListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallAddress6TemplateListResultOutput{})
 }

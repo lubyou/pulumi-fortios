@@ -203,63 +203,61 @@ export class SpamfilterProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SpamfilterProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SpamfilterProfileArgs | SpamfilterProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SpamfilterProfileState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["external"] = state ? state.external : undefined;
-            inputs["flowBased"] = state ? state.flowBased : undefined;
-            inputs["gmail"] = state ? state.gmail : undefined;
-            inputs["imap"] = state ? state.imap : undefined;
-            inputs["mapi"] = state ? state.mapi : undefined;
-            inputs["msnHotmail"] = state ? state.msnHotmail : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["pop3"] = state ? state.pop3 : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["smtp"] = state ? state.smtp : undefined;
-            inputs["spamBwlTable"] = state ? state.spamBwlTable : undefined;
-            inputs["spamBwordTable"] = state ? state.spamBwordTable : undefined;
-            inputs["spamBwordThreshold"] = state ? state.spamBwordThreshold : undefined;
-            inputs["spamFiltering"] = state ? state.spamFiltering : undefined;
-            inputs["spamIptrustTable"] = state ? state.spamIptrustTable : undefined;
-            inputs["spamLog"] = state ? state.spamLog : undefined;
-            inputs["spamLogFortiguardResponse"] = state ? state.spamLogFortiguardResponse : undefined;
-            inputs["spamMheaderTable"] = state ? state.spamMheaderTable : undefined;
-            inputs["spamRblTable"] = state ? state.spamRblTable : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["yahooMail"] = state ? state.yahooMail : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["external"] = state ? state.external : undefined;
+            resourceInputs["flowBased"] = state ? state.flowBased : undefined;
+            resourceInputs["gmail"] = state ? state.gmail : undefined;
+            resourceInputs["imap"] = state ? state.imap : undefined;
+            resourceInputs["mapi"] = state ? state.mapi : undefined;
+            resourceInputs["msnHotmail"] = state ? state.msnHotmail : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["pop3"] = state ? state.pop3 : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["smtp"] = state ? state.smtp : undefined;
+            resourceInputs["spamBwlTable"] = state ? state.spamBwlTable : undefined;
+            resourceInputs["spamBwordTable"] = state ? state.spamBwordTable : undefined;
+            resourceInputs["spamBwordThreshold"] = state ? state.spamBwordThreshold : undefined;
+            resourceInputs["spamFiltering"] = state ? state.spamFiltering : undefined;
+            resourceInputs["spamIptrustTable"] = state ? state.spamIptrustTable : undefined;
+            resourceInputs["spamLog"] = state ? state.spamLog : undefined;
+            resourceInputs["spamLogFortiguardResponse"] = state ? state.spamLogFortiguardResponse : undefined;
+            resourceInputs["spamMheaderTable"] = state ? state.spamMheaderTable : undefined;
+            resourceInputs["spamRblTable"] = state ? state.spamRblTable : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["yahooMail"] = state ? state.yahooMail : undefined;
         } else {
             const args = argsOrState as SpamfilterProfileArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["external"] = args ? args.external : undefined;
-            inputs["flowBased"] = args ? args.flowBased : undefined;
-            inputs["gmail"] = args ? args.gmail : undefined;
-            inputs["imap"] = args ? args.imap : undefined;
-            inputs["mapi"] = args ? args.mapi : undefined;
-            inputs["msnHotmail"] = args ? args.msnHotmail : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["pop3"] = args ? args.pop3 : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["smtp"] = args ? args.smtp : undefined;
-            inputs["spamBwlTable"] = args ? args.spamBwlTable : undefined;
-            inputs["spamBwordTable"] = args ? args.spamBwordTable : undefined;
-            inputs["spamBwordThreshold"] = args ? args.spamBwordThreshold : undefined;
-            inputs["spamFiltering"] = args ? args.spamFiltering : undefined;
-            inputs["spamIptrustTable"] = args ? args.spamIptrustTable : undefined;
-            inputs["spamLog"] = args ? args.spamLog : undefined;
-            inputs["spamLogFortiguardResponse"] = args ? args.spamLogFortiguardResponse : undefined;
-            inputs["spamMheaderTable"] = args ? args.spamMheaderTable : undefined;
-            inputs["spamRblTable"] = args ? args.spamRblTable : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["yahooMail"] = args ? args.yahooMail : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["external"] = args ? args.external : undefined;
+            resourceInputs["flowBased"] = args ? args.flowBased : undefined;
+            resourceInputs["gmail"] = args ? args.gmail : undefined;
+            resourceInputs["imap"] = args ? args.imap : undefined;
+            resourceInputs["mapi"] = args ? args.mapi : undefined;
+            resourceInputs["msnHotmail"] = args ? args.msnHotmail : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["pop3"] = args ? args.pop3 : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["smtp"] = args ? args.smtp : undefined;
+            resourceInputs["spamBwlTable"] = args ? args.spamBwlTable : undefined;
+            resourceInputs["spamBwordTable"] = args ? args.spamBwordTable : undefined;
+            resourceInputs["spamBwordThreshold"] = args ? args.spamBwordThreshold : undefined;
+            resourceInputs["spamFiltering"] = args ? args.spamFiltering : undefined;
+            resourceInputs["spamIptrustTable"] = args ? args.spamIptrustTable : undefined;
+            resourceInputs["spamLog"] = args ? args.spamLog : undefined;
+            resourceInputs["spamLogFortiguardResponse"] = args ? args.spamLogFortiguardResponse : undefined;
+            resourceInputs["spamMheaderTable"] = args ? args.spamMheaderTable : undefined;
+            resourceInputs["spamRblTable"] = args ? args.spamRblTable : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["yahooMail"] = args ? args.yahooMail : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SpamfilterProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SpamfilterProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

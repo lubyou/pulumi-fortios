@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `RouterPolicy`.
 func GetRouterPolicyList(ctx *pulumi.Context, args *GetRouterPolicyListArgs, opts ...pulumi.InvokeOption) (*GetRouterPolicyListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterPolicyListResult
 	err := ctx.Invoke("fortios:index/getRouterPolicyList:GetRouterPolicyList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetRouterPolicyListResult struct {
 	// A list of the `RouterPolicy`.
 	SeqNumlists []int   `pulumi:"seqNumlists"`
 	Vdomparam   *string `pulumi:"vdomparam"`
+}
+
+func GetRouterPolicyListOutput(ctx *pulumi.Context, args GetRouterPolicyListOutputArgs, opts ...pulumi.InvokeOption) GetRouterPolicyListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterPolicyListResult, error) {
+			args := v.(GetRouterPolicyListArgs)
+			r, err := GetRouterPolicyList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterPolicyListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterPolicyList.
+type GetRouterPolicyListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterPolicyListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterPolicyListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterPolicyList.
+type GetRouterPolicyListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterPolicyListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterPolicyListResult)(nil)).Elem()
+}
+
+func (o GetRouterPolicyListResultOutput) ToGetRouterPolicyListResultOutput() GetRouterPolicyListResultOutput {
+	return o
+}
+
+func (o GetRouterPolicyListResultOutput) ToGetRouterPolicyListResultOutputWithContext(ctx context.Context) GetRouterPolicyListResultOutput {
+	return o
+}
+
+func (o GetRouterPolicyListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterPolicyListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterPolicyListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterPolicy`.
+func (o GetRouterPolicyListResultOutput) SeqNumlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetRouterPolicyListResult) []int { return v.SeqNumlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetRouterPolicyListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterPolicyListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterPolicyListResultOutput{})
 }

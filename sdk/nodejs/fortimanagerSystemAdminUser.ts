@@ -110,40 +110,38 @@ export class FortimanagerSystemAdminUser extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerSystemAdminUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemAdminUserArgs | FortimanagerSystemAdminUserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemAdminUserState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["profileid"] = state ? state.profileid : undefined;
-            inputs["radiusServer"] = state ? state.radiusServer : undefined;
-            inputs["rpcPermit"] = state ? state.rpcPermit : undefined;
-            inputs["trusthost1"] = state ? state.trusthost1 : undefined;
-            inputs["trusthost2"] = state ? state.trusthost2 : undefined;
-            inputs["trusthost3"] = state ? state.trusthost3 : undefined;
-            inputs["userType"] = state ? state.userType : undefined;
-            inputs["userid"] = state ? state.userid : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["profileid"] = state ? state.profileid : undefined;
+            resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
+            resourceInputs["rpcPermit"] = state ? state.rpcPermit : undefined;
+            resourceInputs["trusthost1"] = state ? state.trusthost1 : undefined;
+            resourceInputs["trusthost2"] = state ? state.trusthost2 : undefined;
+            resourceInputs["trusthost3"] = state ? state.trusthost3 : undefined;
+            resourceInputs["userType"] = state ? state.userType : undefined;
+            resourceInputs["userid"] = state ? state.userid : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemAdminUserArgs | undefined;
             if ((!args || args.userid === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userid'");
             }
-            inputs["description"] = args ? args.description : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["profileid"] = args ? args.profileid : undefined;
-            inputs["radiusServer"] = args ? args.radiusServer : undefined;
-            inputs["rpcPermit"] = args ? args.rpcPermit : undefined;
-            inputs["trusthost1"] = args ? args.trusthost1 : undefined;
-            inputs["trusthost2"] = args ? args.trusthost2 : undefined;
-            inputs["trusthost3"] = args ? args.trusthost3 : undefined;
-            inputs["userType"] = args ? args.userType : undefined;
-            inputs["userid"] = args ? args.userid : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["profileid"] = args ? args.profileid : undefined;
+            resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
+            resourceInputs["rpcPermit"] = args ? args.rpcPermit : undefined;
+            resourceInputs["trusthost1"] = args ? args.trusthost1 : undefined;
+            resourceInputs["trusthost2"] = args ? args.trusthost2 : undefined;
+            resourceInputs["trusthost3"] = args ? args.trusthost3 : undefined;
+            resourceInputs["userType"] = args ? args.userType : undefined;
+            resourceInputs["userid"] = args ? args.userid : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemAdminUser.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemAdminUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 

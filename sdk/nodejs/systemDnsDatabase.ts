@@ -156,28 +156,28 @@ export class SystemDnsDatabase extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemDnsDatabaseArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDnsDatabaseArgs | SystemDnsDatabaseState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDnsDatabaseState | undefined;
-            inputs["allowTransfer"] = state ? state.allowTransfer : undefined;
-            inputs["authoritative"] = state ? state.authoritative : undefined;
-            inputs["contact"] = state ? state.contact : undefined;
-            inputs["dnsEntries"] = state ? state.dnsEntries : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["forwarder"] = state ? state.forwarder : undefined;
-            inputs["ipMaster"] = state ? state.ipMaster : undefined;
-            inputs["ipPrimary"] = state ? state.ipPrimary : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["primaryName"] = state ? state.primaryName : undefined;
-            inputs["rrMax"] = state ? state.rrMax : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["view"] = state ? state.view : undefined;
+            resourceInputs["allowTransfer"] = state ? state.allowTransfer : undefined;
+            resourceInputs["authoritative"] = state ? state.authoritative : undefined;
+            resourceInputs["contact"] = state ? state.contact : undefined;
+            resourceInputs["dnsEntries"] = state ? state.dnsEntries : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["forwarder"] = state ? state.forwarder : undefined;
+            resourceInputs["ipMaster"] = state ? state.ipMaster : undefined;
+            resourceInputs["ipPrimary"] = state ? state.ipPrimary : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["primaryName"] = state ? state.primaryName : undefined;
+            resourceInputs["rrMax"] = state ? state.rrMax : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["view"] = state ? state.view : undefined;
         } else {
             const args = argsOrState as SystemDnsDatabaseArgs | undefined;
             if ((!args || args.authoritative === undefined) && !opts.urn) {
@@ -195,29 +195,27 @@ export class SystemDnsDatabase extends pulumi.CustomResource {
             if ((!args || args.view === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'view'");
             }
-            inputs["allowTransfer"] = args ? args.allowTransfer : undefined;
-            inputs["authoritative"] = args ? args.authoritative : undefined;
-            inputs["contact"] = args ? args.contact : undefined;
-            inputs["dnsEntries"] = args ? args.dnsEntries : undefined;
-            inputs["domain"] = args ? args.domain : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["forwarder"] = args ? args.forwarder : undefined;
-            inputs["ipMaster"] = args ? args.ipMaster : undefined;
-            inputs["ipPrimary"] = args ? args.ipPrimary : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["primaryName"] = args ? args.primaryName : undefined;
-            inputs["rrMax"] = args ? args.rrMax : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["view"] = args ? args.view : undefined;
+            resourceInputs["allowTransfer"] = args ? args.allowTransfer : undefined;
+            resourceInputs["authoritative"] = args ? args.authoritative : undefined;
+            resourceInputs["contact"] = args ? args.contact : undefined;
+            resourceInputs["dnsEntries"] = args ? args.dnsEntries : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["forwarder"] = args ? args.forwarder : undefined;
+            resourceInputs["ipMaster"] = args ? args.ipMaster : undefined;
+            resourceInputs["ipPrimary"] = args ? args.ipPrimary : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["primaryName"] = args ? args.primaryName : undefined;
+            resourceInputs["rrMax"] = args ? args.rrMax : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["view"] = args ? args.view : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDnsDatabase.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDnsDatabase.__pulumiType, name, resourceInputs, opts);
     }
 }
 

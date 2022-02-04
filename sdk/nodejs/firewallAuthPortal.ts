@@ -94,29 +94,27 @@ export class FirewallAuthPortal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallAuthPortalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallAuthPortalArgs | FirewallAuthPortalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAuthPortalState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["identityBasedRoute"] = state ? state.identityBasedRoute : undefined;
-            inputs["portalAddr"] = state ? state.portalAddr : undefined;
-            inputs["portalAddr6"] = state ? state.portalAddr6 : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["identityBasedRoute"] = state ? state.identityBasedRoute : undefined;
+            resourceInputs["portalAddr"] = state ? state.portalAddr : undefined;
+            resourceInputs["portalAddr6"] = state ? state.portalAddr6 : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallAuthPortalArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["identityBasedRoute"] = args ? args.identityBasedRoute : undefined;
-            inputs["portalAddr"] = args ? args.portalAddr : undefined;
-            inputs["portalAddr6"] = args ? args.portalAddr6 : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["identityBasedRoute"] = args ? args.identityBasedRoute : undefined;
+            resourceInputs["portalAddr"] = args ? args.portalAddr : undefined;
+            resourceInputs["portalAddr6"] = args ? args.portalAddr6 : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallAuthPortal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallAuthPortal.__pulumiType, name, resourceInputs, opts);
     }
 }
 

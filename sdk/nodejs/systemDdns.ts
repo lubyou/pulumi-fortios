@@ -73,6 +73,10 @@ export class SystemDdns extends pulumi.CustomResource {
     }
 
     /**
+     * Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+     */
+    public readonly addrType!: pulumi.Output<string>;
+    /**
      * Bound IP address.
      */
     public readonly boundIp!: pulumi.Output<string>;
@@ -104,6 +108,10 @@ export class SystemDdns extends pulumi.CustomResource {
      * Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
      */
     public readonly ddnsServer!: pulumi.Output<string>;
+    /**
+     * Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+     */
+    public readonly ddnsServerAddrs!: pulumi.Output<outputs.SystemDdnsDdnsServerAddr[] | undefined>;
     /**
      * Generic DDNS server IP.
      */
@@ -137,6 +145,10 @@ export class SystemDdns extends pulumi.CustomResource {
      */
     public readonly monitorInterfaces!: pulumi.Output<outputs.SystemDdnsMonitorInterface[]>;
     /**
+     * Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+     */
+    public readonly serverType!: pulumi.Output<string>;
+    /**
      * Name of local certificate for SSL connections.
      */
     public readonly sslCertificate!: pulumi.Output<string>;
@@ -162,30 +174,33 @@ export class SystemDdns extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemDdnsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDdnsArgs | SystemDdnsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDdnsState | undefined;
-            inputs["boundIp"] = state ? state.boundIp : undefined;
-            inputs["clearText"] = state ? state.clearText : undefined;
-            inputs["ddnsAuth"] = state ? state.ddnsAuth : undefined;
-            inputs["ddnsDomain"] = state ? state.ddnsDomain : undefined;
-            inputs["ddnsKey"] = state ? state.ddnsKey : undefined;
-            inputs["ddnsKeyname"] = state ? state.ddnsKeyname : undefined;
-            inputs["ddnsPassword"] = state ? state.ddnsPassword : undefined;
-            inputs["ddnsServer"] = state ? state.ddnsServer : undefined;
-            inputs["ddnsServerIp"] = state ? state.ddnsServerIp : undefined;
-            inputs["ddnsSn"] = state ? state.ddnsSn : undefined;
-            inputs["ddnsTtl"] = state ? state.ddnsTtl : undefined;
-            inputs["ddnsUsername"] = state ? state.ddnsUsername : undefined;
-            inputs["ddnsZone"] = state ? state.ddnsZone : undefined;
-            inputs["ddnsid"] = state ? state.ddnsid : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["monitorInterfaces"] = state ? state.monitorInterfaces : undefined;
-            inputs["sslCertificate"] = state ? state.sslCertificate : undefined;
-            inputs["updateInterval"] = state ? state.updateInterval : undefined;
-            inputs["usePublicIp"] = state ? state.usePublicIp : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addrType"] = state ? state.addrType : undefined;
+            resourceInputs["boundIp"] = state ? state.boundIp : undefined;
+            resourceInputs["clearText"] = state ? state.clearText : undefined;
+            resourceInputs["ddnsAuth"] = state ? state.ddnsAuth : undefined;
+            resourceInputs["ddnsDomain"] = state ? state.ddnsDomain : undefined;
+            resourceInputs["ddnsKey"] = state ? state.ddnsKey : undefined;
+            resourceInputs["ddnsKeyname"] = state ? state.ddnsKeyname : undefined;
+            resourceInputs["ddnsPassword"] = state ? state.ddnsPassword : undefined;
+            resourceInputs["ddnsServer"] = state ? state.ddnsServer : undefined;
+            resourceInputs["ddnsServerAddrs"] = state ? state.ddnsServerAddrs : undefined;
+            resourceInputs["ddnsServerIp"] = state ? state.ddnsServerIp : undefined;
+            resourceInputs["ddnsSn"] = state ? state.ddnsSn : undefined;
+            resourceInputs["ddnsTtl"] = state ? state.ddnsTtl : undefined;
+            resourceInputs["ddnsUsername"] = state ? state.ddnsUsername : undefined;
+            resourceInputs["ddnsZone"] = state ? state.ddnsZone : undefined;
+            resourceInputs["ddnsid"] = state ? state.ddnsid : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["monitorInterfaces"] = state ? state.monitorInterfaces : undefined;
+            resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
+            resourceInputs["updateInterval"] = state ? state.updateInterval : undefined;
+            resourceInputs["usePublicIp"] = state ? state.usePublicIp : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemDdnsArgs | undefined;
             if ((!args || args.ddnsServer === undefined) && !opts.urn) {
@@ -194,31 +209,32 @@ export class SystemDdns extends pulumi.CustomResource {
             if ((!args || args.monitorInterfaces === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'monitorInterfaces'");
             }
-            inputs["boundIp"] = args ? args.boundIp : undefined;
-            inputs["clearText"] = args ? args.clearText : undefined;
-            inputs["ddnsAuth"] = args ? args.ddnsAuth : undefined;
-            inputs["ddnsDomain"] = args ? args.ddnsDomain : undefined;
-            inputs["ddnsKey"] = args ? args.ddnsKey : undefined;
-            inputs["ddnsKeyname"] = args ? args.ddnsKeyname : undefined;
-            inputs["ddnsPassword"] = args ? args.ddnsPassword : undefined;
-            inputs["ddnsServer"] = args ? args.ddnsServer : undefined;
-            inputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
-            inputs["ddnsSn"] = args ? args.ddnsSn : undefined;
-            inputs["ddnsTtl"] = args ? args.ddnsTtl : undefined;
-            inputs["ddnsUsername"] = args ? args.ddnsUsername : undefined;
-            inputs["ddnsZone"] = args ? args.ddnsZone : undefined;
-            inputs["ddnsid"] = args ? args.ddnsid : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["monitorInterfaces"] = args ? args.monitorInterfaces : undefined;
-            inputs["sslCertificate"] = args ? args.sslCertificate : undefined;
-            inputs["updateInterval"] = args ? args.updateInterval : undefined;
-            inputs["usePublicIp"] = args ? args.usePublicIp : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addrType"] = args ? args.addrType : undefined;
+            resourceInputs["boundIp"] = args ? args.boundIp : undefined;
+            resourceInputs["clearText"] = args ? args.clearText : undefined;
+            resourceInputs["ddnsAuth"] = args ? args.ddnsAuth : undefined;
+            resourceInputs["ddnsDomain"] = args ? args.ddnsDomain : undefined;
+            resourceInputs["ddnsKey"] = args ? args.ddnsKey : undefined;
+            resourceInputs["ddnsKeyname"] = args ? args.ddnsKeyname : undefined;
+            resourceInputs["ddnsPassword"] = args ? args.ddnsPassword : undefined;
+            resourceInputs["ddnsServer"] = args ? args.ddnsServer : undefined;
+            resourceInputs["ddnsServerAddrs"] = args ? args.ddnsServerAddrs : undefined;
+            resourceInputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
+            resourceInputs["ddnsSn"] = args ? args.ddnsSn : undefined;
+            resourceInputs["ddnsTtl"] = args ? args.ddnsTtl : undefined;
+            resourceInputs["ddnsUsername"] = args ? args.ddnsUsername : undefined;
+            resourceInputs["ddnsZone"] = args ? args.ddnsZone : undefined;
+            resourceInputs["ddnsid"] = args ? args.ddnsid : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["monitorInterfaces"] = args ? args.monitorInterfaces : undefined;
+            resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
+            resourceInputs["updateInterval"] = args ? args.updateInterval : undefined;
+            resourceInputs["usePublicIp"] = args ? args.usePublicIp : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDdns.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDdns.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -226,6 +242,10 @@ export class SystemDdns extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemDdns resources.
  */
 export interface SystemDdnsState {
+    /**
+     * Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+     */
+    addrType?: pulumi.Input<string>;
     /**
      * Bound IP address.
      */
@@ -259,6 +279,10 @@ export interface SystemDdnsState {
      */
     ddnsServer?: pulumi.Input<string>;
     /**
+     * Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+     */
+    ddnsServerAddrs?: pulumi.Input<pulumi.Input<inputs.SystemDdnsDdnsServerAddr>[]>;
+    /**
      * Generic DDNS server IP.
      */
     ddnsServerIp?: pulumi.Input<string>;
@@ -291,6 +315,10 @@ export interface SystemDdnsState {
      */
     monitorInterfaces?: pulumi.Input<pulumi.Input<inputs.SystemDdnsMonitorInterface>[]>;
     /**
+     * Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+     */
+    serverType?: pulumi.Input<string>;
+    /**
      * Name of local certificate for SSL connections.
      */
     sslCertificate?: pulumi.Input<string>;
@@ -312,6 +340,10 @@ export interface SystemDdnsState {
  * The set of arguments for constructing a SystemDdns resource.
  */
 export interface SystemDdnsArgs {
+    /**
+     * Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+     */
+    addrType?: pulumi.Input<string>;
     /**
      * Bound IP address.
      */
@@ -345,6 +377,10 @@ export interface SystemDdnsArgs {
      */
     ddnsServer: pulumi.Input<string>;
     /**
+     * Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+     */
+    ddnsServerAddrs?: pulumi.Input<pulumi.Input<inputs.SystemDdnsDdnsServerAddr>[]>;
+    /**
      * Generic DDNS server IP.
      */
     ddnsServerIp?: pulumi.Input<string>;
@@ -376,6 +412,10 @@ export interface SystemDdnsArgs {
      * Monitored interface. The structure of `monitorInterface` block is documented below.
      */
     monitorInterfaces: pulumi.Input<pulumi.Input<inputs.SystemDdnsMonitorInterface>[]>;
+    /**
+     * Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+     */
+    serverType?: pulumi.Input<string>;
     /**
      * Name of local certificate for SSL connections.
      */

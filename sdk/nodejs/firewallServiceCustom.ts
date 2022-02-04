@@ -104,6 +104,10 @@ export class FirewallServiceCustom extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Fully qualified domain name.
      */
     public readonly fqdn!: pulumi.Output<string>;
@@ -160,6 +164,10 @@ export class FirewallServiceCustom extends pulumi.CustomResource {
      */
     public readonly tcpPortrange!: pulumi.Output<string>;
     /**
+     * Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+     */
+    public readonly tcpRstTimer!: pulumi.Output<number>;
+    /**
      * Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
      */
     public readonly tcpTimewaitTimer!: pulumi.Output<number>;
@@ -189,71 +197,73 @@ export class FirewallServiceCustom extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallServiceCustomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallServiceCustomArgs | FirewallServiceCustomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallServiceCustomState | undefined;
-            inputs["appCategories"] = state ? state.appCategories : undefined;
-            inputs["appServiceType"] = state ? state.appServiceType : undefined;
-            inputs["applications"] = state ? state.applications : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["checkResetRange"] = state ? state.checkResetRange : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["helper"] = state ? state.helper : undefined;
-            inputs["icmpcode"] = state ? state.icmpcode : undefined;
-            inputs["icmptype"] = state ? state.icmptype : undefined;
-            inputs["iprange"] = state ? state.iprange : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["protocolNumber"] = state ? state.protocolNumber : undefined;
-            inputs["proxy"] = state ? state.proxy : undefined;
-            inputs["sctpPortrange"] = state ? state.sctpPortrange : undefined;
-            inputs["sessionTtl"] = state ? state.sessionTtl : undefined;
-            inputs["tcpHalfcloseTimer"] = state ? state.tcpHalfcloseTimer : undefined;
-            inputs["tcpHalfopenTimer"] = state ? state.tcpHalfopenTimer : undefined;
-            inputs["tcpPortrange"] = state ? state.tcpPortrange : undefined;
-            inputs["tcpTimewaitTimer"] = state ? state.tcpTimewaitTimer : undefined;
-            inputs["udpIdleTimer"] = state ? state.udpIdleTimer : undefined;
-            inputs["udpPortrange"] = state ? state.udpPortrange : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["appCategories"] = state ? state.appCategories : undefined;
+            resourceInputs["appServiceType"] = state ? state.appServiceType : undefined;
+            resourceInputs["applications"] = state ? state.applications : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["checkResetRange"] = state ? state.checkResetRange : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["helper"] = state ? state.helper : undefined;
+            resourceInputs["icmpcode"] = state ? state.icmpcode : undefined;
+            resourceInputs["icmptype"] = state ? state.icmptype : undefined;
+            resourceInputs["iprange"] = state ? state.iprange : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["protocolNumber"] = state ? state.protocolNumber : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
+            resourceInputs["sctpPortrange"] = state ? state.sctpPortrange : undefined;
+            resourceInputs["sessionTtl"] = state ? state.sessionTtl : undefined;
+            resourceInputs["tcpHalfcloseTimer"] = state ? state.tcpHalfcloseTimer : undefined;
+            resourceInputs["tcpHalfopenTimer"] = state ? state.tcpHalfopenTimer : undefined;
+            resourceInputs["tcpPortrange"] = state ? state.tcpPortrange : undefined;
+            resourceInputs["tcpRstTimer"] = state ? state.tcpRstTimer : undefined;
+            resourceInputs["tcpTimewaitTimer"] = state ? state.tcpTimewaitTimer : undefined;
+            resourceInputs["udpIdleTimer"] = state ? state.udpIdleTimer : undefined;
+            resourceInputs["udpPortrange"] = state ? state.udpPortrange : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallServiceCustomArgs | undefined;
-            inputs["appCategories"] = args ? args.appCategories : undefined;
-            inputs["appServiceType"] = args ? args.appServiceType : undefined;
-            inputs["applications"] = args ? args.applications : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["checkResetRange"] = args ? args.checkResetRange : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["helper"] = args ? args.helper : undefined;
-            inputs["icmpcode"] = args ? args.icmpcode : undefined;
-            inputs["icmptype"] = args ? args.icmptype : undefined;
-            inputs["iprange"] = args ? args.iprange : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["protocolNumber"] = args ? args.protocolNumber : undefined;
-            inputs["proxy"] = args ? args.proxy : undefined;
-            inputs["sctpPortrange"] = args ? args.sctpPortrange : undefined;
-            inputs["sessionTtl"] = args ? args.sessionTtl : undefined;
-            inputs["tcpHalfcloseTimer"] = args ? args.tcpHalfcloseTimer : undefined;
-            inputs["tcpHalfopenTimer"] = args ? args.tcpHalfopenTimer : undefined;
-            inputs["tcpPortrange"] = args ? args.tcpPortrange : undefined;
-            inputs["tcpTimewaitTimer"] = args ? args.tcpTimewaitTimer : undefined;
-            inputs["udpIdleTimer"] = args ? args.udpIdleTimer : undefined;
-            inputs["udpPortrange"] = args ? args.udpPortrange : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["appCategories"] = args ? args.appCategories : undefined;
+            resourceInputs["appServiceType"] = args ? args.appServiceType : undefined;
+            resourceInputs["applications"] = args ? args.applications : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["checkResetRange"] = args ? args.checkResetRange : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["helper"] = args ? args.helper : undefined;
+            resourceInputs["icmpcode"] = args ? args.icmpcode : undefined;
+            resourceInputs["icmptype"] = args ? args.icmptype : undefined;
+            resourceInputs["iprange"] = args ? args.iprange : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["protocolNumber"] = args ? args.protocolNumber : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["sctpPortrange"] = args ? args.sctpPortrange : undefined;
+            resourceInputs["sessionTtl"] = args ? args.sessionTtl : undefined;
+            resourceInputs["tcpHalfcloseTimer"] = args ? args.tcpHalfcloseTimer : undefined;
+            resourceInputs["tcpHalfopenTimer"] = args ? args.tcpHalfopenTimer : undefined;
+            resourceInputs["tcpPortrange"] = args ? args.tcpPortrange : undefined;
+            resourceInputs["tcpRstTimer"] = args ? args.tcpRstTimer : undefined;
+            resourceInputs["tcpTimewaitTimer"] = args ? args.tcpTimewaitTimer : undefined;
+            resourceInputs["udpIdleTimer"] = args ? args.udpIdleTimer : undefined;
+            resourceInputs["udpPortrange"] = args ? args.udpPortrange : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallServiceCustom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallServiceCustom.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -293,6 +303,10 @@ export interface FirewallServiceCustomState {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Fully qualified domain name.
      */
@@ -349,6 +363,10 @@ export interface FirewallServiceCustomState {
      * Multiple TCP port ranges.
      */
     tcpPortrange?: pulumi.Input<string>;
+    /**
+     * Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+     */
+    tcpRstTimer?: pulumi.Input<number>;
     /**
      * Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
      */
@@ -408,6 +426,10 @@ export interface FirewallServiceCustomArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
+    /**
      * Fully qualified domain name.
      */
     fqdn?: pulumi.Input<string>;
@@ -463,6 +485,10 @@ export interface FirewallServiceCustomArgs {
      * Multiple TCP port ranges.
      */
     tcpPortrange?: pulumi.Input<string>;
+    /**
+     * Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+     */
+    tcpRstTimer?: pulumi.Input<number>;
     /**
      * Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
      */

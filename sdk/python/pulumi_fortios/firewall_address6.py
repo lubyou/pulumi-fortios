@@ -22,11 +22,13 @@ class FirewallAddress6Args:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6ListArgs']]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
@@ -48,11 +50,13 @@ class FirewallAddress6Args:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddress6ListArgs']]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
         :param pulumi.Input[str] sdn: SDN.
@@ -80,6 +84,8 @@ class FirewallAddress6Args:
             pulumi.set(__self__, "end_ip", end_ip)
         if end_mac is not None:
             pulumi.set(__self__, "end_mac", end_mac)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
         if host is not None:
@@ -90,6 +96,8 @@ class FirewallAddress6Args:
             pulumi.set(__self__, "ip6", ip6)
         if lists is not None:
             pulumi.set(__self__, "lists", lists)
+        if macaddrs is not None:
+            pulumi.set(__self__, "macaddrs", macaddrs)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if obj_id is not None:
@@ -200,6 +208,18 @@ class FirewallAddress6Args:
         pulumi.set(self, "end_mac", value)
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
+
+    @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
         """
@@ -258,6 +278,18 @@ class FirewallAddress6Args:
     @lists.setter
     def lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6ListArgs']]]]):
         pulumi.set(self, "lists", value)
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]]]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
+
+    @macaddrs.setter
+    def macaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]]]):
+        pulumi.set(self, "macaddrs", value)
 
     @property
     @pulumi.getter
@@ -414,11 +446,13 @@ class _FirewallAddress6State:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6ListArgs']]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
@@ -440,11 +474,13 @@ class _FirewallAddress6State:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddress6ListArgs']]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
         :param pulumi.Input[str] sdn: SDN.
@@ -472,6 +508,8 @@ class _FirewallAddress6State:
             pulumi.set(__self__, "end_ip", end_ip)
         if end_mac is not None:
             pulumi.set(__self__, "end_mac", end_mac)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
         if host is not None:
@@ -482,6 +520,8 @@ class _FirewallAddress6State:
             pulumi.set(__self__, "ip6", ip6)
         if lists is not None:
             pulumi.set(__self__, "lists", lists)
+        if macaddrs is not None:
+            pulumi.set(__self__, "macaddrs", macaddrs)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if obj_id is not None:
@@ -592,6 +632,18 @@ class _FirewallAddress6State:
         pulumi.set(self, "end_mac", value)
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
+
+    @property
     @pulumi.getter
     def fqdn(self) -> Optional[pulumi.Input[str]]:
         """
@@ -650,6 +702,18 @@ class _FirewallAddress6State:
     @lists.setter
     def lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6ListArgs']]]]):
         pulumi.set(self, "lists", value)
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]]]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
+
+    @macaddrs.setter
+    def macaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6MacaddrArgs']]]]):
+        pulumi.set(self, "macaddrs", value)
 
     @property
     @pulumi.getter
@@ -808,11 +872,13 @@ class FirewallAddress6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6ListArgs']]]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6MacaddrArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
@@ -866,11 +932,13 @@ class FirewallAddress6(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6ListArgs']]]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6MacaddrArgs']]]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
         :param pulumi.Input[str] sdn: SDN.
@@ -943,11 +1011,13 @@ class FirewallAddress6(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  host: Optional[pulumi.Input[str]] = None,
                  host_type: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6ListArgs']]]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6MacaddrArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
                  sdn: Optional[pulumi.Input[str]] = None,
@@ -967,6 +1037,8 @@ class FirewallAddress6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -979,11 +1051,13 @@ class FirewallAddress6(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["end_ip"] = end_ip
             __props__.__dict__["end_mac"] = end_mac
+            __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["host"] = host
             __props__.__dict__["host_type"] = host_type
             __props__.__dict__["ip6"] = ip6
             __props__.__dict__["lists"] = lists
+            __props__.__dict__["macaddrs"] = macaddrs
             __props__.__dict__["name"] = name
             __props__.__dict__["obj_id"] = obj_id
             __props__.__dict__["sdn"] = sdn
@@ -1013,11 +1087,13 @@ class FirewallAddress6(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             end_ip: Optional[pulumi.Input[str]] = None,
             end_mac: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
             host: Optional[pulumi.Input[str]] = None,
             host_type: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
             lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6ListArgs']]]]] = None,
+            macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6MacaddrArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             obj_id: Optional[pulumi.Input[str]] = None,
             sdn: Optional[pulumi.Input[str]] = None,
@@ -1044,11 +1120,13 @@ class FirewallAddress6(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] host: Host Address.
         :param pulumi.Input[str] host_type: Host type. Valid values: `any`, `specific`.
         :param pulumi.Input[str] ip6: IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6ListArgs']]]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddress6MacaddrArgs']]]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
         :param pulumi.Input[str] sdn: SDN.
@@ -1073,11 +1151,13 @@ class FirewallAddress6(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["end_ip"] = end_ip
         __props__.__dict__["end_mac"] = end_mac
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["host"] = host
         __props__.__dict__["host_type"] = host_type
         __props__.__dict__["ip6"] = ip6
         __props__.__dict__["lists"] = lists
+        __props__.__dict__["macaddrs"] = macaddrs
         __props__.__dict__["name"] = name
         __props__.__dict__["obj_id"] = obj_id
         __props__.__dict__["sdn"] = sdn
@@ -1149,6 +1229,14 @@ class FirewallAddress6(pulumi.CustomResource):
         return pulumi.get(self, "end_mac")
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @property
     @pulumi.getter
     def fqdn(self) -> pulumi.Output[str]:
         """
@@ -1187,6 +1275,14 @@ class FirewallAddress6(pulumi.CustomResource):
         IP address list. The structure of `list` block is documented below.
         """
         return pulumi.get(self, "lists")
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallAddress6Macaddr']]]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
 
     @property
     @pulumi.getter

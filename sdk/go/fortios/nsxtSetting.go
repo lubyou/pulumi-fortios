@@ -39,6 +39,7 @@ func NewNsxtSetting(ctx *pulumi.Context,
 		args = &NsxtSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NsxtSetting
 	err := ctx.RegisterResource("fortios:index/nsxtSetting:NsxtSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type NsxtSettingInput interface {
 }
 
 func (*NsxtSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*NsxtSetting)(nil))
+	return reflect.TypeOf((**NsxtSetting)(nil)).Elem()
 }
 
 func (i *NsxtSetting) ToNsxtSettingOutput() NsxtSettingOutput {
@@ -122,35 +123,6 @@ func (i *NsxtSetting) ToNsxtSettingOutput() NsxtSettingOutput {
 
 func (i *NsxtSetting) ToNsxtSettingOutputWithContext(ctx context.Context) NsxtSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingOutput)
-}
-
-func (i *NsxtSetting) ToNsxtSettingPtrOutput() NsxtSettingPtrOutput {
-	return i.ToNsxtSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *NsxtSetting) ToNsxtSettingPtrOutputWithContext(ctx context.Context) NsxtSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingPtrOutput)
-}
-
-type NsxtSettingPtrInput interface {
-	pulumi.Input
-
-	ToNsxtSettingPtrOutput() NsxtSettingPtrOutput
-	ToNsxtSettingPtrOutputWithContext(ctx context.Context) NsxtSettingPtrOutput
-}
-
-type nsxtSettingPtrType NsxtSettingArgs
-
-func (*nsxtSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**NsxtSetting)(nil))
-}
-
-func (i *nsxtSettingPtrType) ToNsxtSettingPtrOutput() NsxtSettingPtrOutput {
-	return i.ToNsxtSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *nsxtSettingPtrType) ToNsxtSettingPtrOutputWithContext(ctx context.Context) NsxtSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingPtrOutput)
 }
 
 // NsxtSettingArrayInput is an input type that accepts NsxtSettingArray and NsxtSettingArrayOutput values.
@@ -167,7 +139,7 @@ type NsxtSettingArrayInput interface {
 type NsxtSettingArray []NsxtSettingInput
 
 func (NsxtSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*NsxtSetting)(nil))
+	return reflect.TypeOf((*[]*NsxtSetting)(nil)).Elem()
 }
 
 func (i NsxtSettingArray) ToNsxtSettingArrayOutput() NsxtSettingArrayOutput {
@@ -192,7 +164,7 @@ type NsxtSettingMapInput interface {
 type NsxtSettingMap map[string]NsxtSettingInput
 
 func (NsxtSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*NsxtSetting)(nil))
+	return reflect.TypeOf((*map[string]*NsxtSetting)(nil)).Elem()
 }
 
 func (i NsxtSettingMap) ToNsxtSettingMapOutput() NsxtSettingMapOutput {
@@ -203,12 +175,10 @@ func (i NsxtSettingMap) ToNsxtSettingMapOutputWithContext(ctx context.Context) N
 	return pulumi.ToOutputWithContext(ctx, i).(NsxtSettingMapOutput)
 }
 
-type NsxtSettingOutput struct {
-	*pulumi.OutputState
-}
+type NsxtSettingOutput struct{ *pulumi.OutputState }
 
 func (NsxtSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NsxtSetting)(nil))
+	return reflect.TypeOf((**NsxtSetting)(nil)).Elem()
 }
 
 func (o NsxtSettingOutput) ToNsxtSettingOutput() NsxtSettingOutput {
@@ -219,36 +189,10 @@ func (o NsxtSettingOutput) ToNsxtSettingOutputWithContext(ctx context.Context) N
 	return o
 }
 
-func (o NsxtSettingOutput) ToNsxtSettingPtrOutput() NsxtSettingPtrOutput {
-	return o.ToNsxtSettingPtrOutputWithContext(context.Background())
-}
-
-func (o NsxtSettingOutput) ToNsxtSettingPtrOutputWithContext(ctx context.Context) NsxtSettingPtrOutput {
-	return o.ApplyT(func(v NsxtSetting) *NsxtSetting {
-		return &v
-	}).(NsxtSettingPtrOutput)
-}
-
-type NsxtSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (NsxtSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**NsxtSetting)(nil))
-}
-
-func (o NsxtSettingPtrOutput) ToNsxtSettingPtrOutput() NsxtSettingPtrOutput {
-	return o
-}
-
-func (o NsxtSettingPtrOutput) ToNsxtSettingPtrOutputWithContext(ctx context.Context) NsxtSettingPtrOutput {
-	return o
-}
-
 type NsxtSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (NsxtSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NsxtSetting)(nil))
+	return reflect.TypeOf((*[]*NsxtSetting)(nil)).Elem()
 }
 
 func (o NsxtSettingArrayOutput) ToNsxtSettingArrayOutput() NsxtSettingArrayOutput {
@@ -260,15 +204,15 @@ func (o NsxtSettingArrayOutput) ToNsxtSettingArrayOutputWithContext(ctx context.
 }
 
 func (o NsxtSettingArrayOutput) Index(i pulumi.IntInput) NsxtSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NsxtSetting {
-		return vs[0].([]NsxtSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NsxtSetting {
+		return vs[0].([]*NsxtSetting)[vs[1].(int)]
 	}).(NsxtSettingOutput)
 }
 
 type NsxtSettingMapOutput struct{ *pulumi.OutputState }
 
 func (NsxtSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]NsxtSetting)(nil))
+	return reflect.TypeOf((*map[string]*NsxtSetting)(nil)).Elem()
 }
 
 func (o NsxtSettingMapOutput) ToNsxtSettingMapOutput() NsxtSettingMapOutput {
@@ -280,14 +224,16 @@ func (o NsxtSettingMapOutput) ToNsxtSettingMapOutputWithContext(ctx context.Cont
 }
 
 func (o NsxtSettingMapOutput) MapIndex(k pulumi.StringInput) NsxtSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NsxtSetting {
-		return vs[0].(map[string]NsxtSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *NsxtSetting {
+		return vs[0].(map[string]*NsxtSetting)[vs[1].(string)]
 	}).(NsxtSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*NsxtSettingInput)(nil)).Elem(), &NsxtSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NsxtSettingArrayInput)(nil)).Elem(), NsxtSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NsxtSettingMapInput)(nil)).Elem(), NsxtSettingMap{})
 	pulumi.RegisterOutputType(NsxtSettingOutput{})
-	pulumi.RegisterOutputType(NsxtSettingPtrOutput{})
 	pulumi.RegisterOutputType(NsxtSettingArrayOutput{})
 	pulumi.RegisterOutputType(NsxtSettingMapOutput{})
 }

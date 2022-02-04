@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define known domain controller servers. Applies to FortiOS Version `<= 6.4.0`.
+// Define known domain controller servers. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
 //
 // ## Import
 //
@@ -49,6 +49,7 @@ func NewCifsDomainController(ctx *pulumi.Context,
 		args = &CifsDomainControllerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CifsDomainController
 	err := ctx.RegisterResource("fortios:index/cifsDomainController:CifsDomainController", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type CifsDomainControllerInput interface {
 }
 
 func (*CifsDomainController) ElementType() reflect.Type {
-	return reflect.TypeOf((*CifsDomainController)(nil))
+	return reflect.TypeOf((**CifsDomainController)(nil)).Elem()
 }
 
 func (i *CifsDomainController) ToCifsDomainControllerOutput() CifsDomainControllerOutput {
@@ -172,35 +173,6 @@ func (i *CifsDomainController) ToCifsDomainControllerOutput() CifsDomainControll
 
 func (i *CifsDomainController) ToCifsDomainControllerOutputWithContext(ctx context.Context) CifsDomainControllerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerOutput)
-}
-
-func (i *CifsDomainController) ToCifsDomainControllerPtrOutput() CifsDomainControllerPtrOutput {
-	return i.ToCifsDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *CifsDomainController) ToCifsDomainControllerPtrOutputWithContext(ctx context.Context) CifsDomainControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerPtrOutput)
-}
-
-type CifsDomainControllerPtrInput interface {
-	pulumi.Input
-
-	ToCifsDomainControllerPtrOutput() CifsDomainControllerPtrOutput
-	ToCifsDomainControllerPtrOutputWithContext(ctx context.Context) CifsDomainControllerPtrOutput
-}
-
-type cifsDomainControllerPtrType CifsDomainControllerArgs
-
-func (*cifsDomainControllerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CifsDomainController)(nil))
-}
-
-func (i *cifsDomainControllerPtrType) ToCifsDomainControllerPtrOutput() CifsDomainControllerPtrOutput {
-	return i.ToCifsDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *cifsDomainControllerPtrType) ToCifsDomainControllerPtrOutputWithContext(ctx context.Context) CifsDomainControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerPtrOutput)
 }
 
 // CifsDomainControllerArrayInput is an input type that accepts CifsDomainControllerArray and CifsDomainControllerArrayOutput values.
@@ -217,7 +189,7 @@ type CifsDomainControllerArrayInput interface {
 type CifsDomainControllerArray []CifsDomainControllerInput
 
 func (CifsDomainControllerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CifsDomainController)(nil))
+	return reflect.TypeOf((*[]*CifsDomainController)(nil)).Elem()
 }
 
 func (i CifsDomainControllerArray) ToCifsDomainControllerArrayOutput() CifsDomainControllerArrayOutput {
@@ -242,7 +214,7 @@ type CifsDomainControllerMapInput interface {
 type CifsDomainControllerMap map[string]CifsDomainControllerInput
 
 func (CifsDomainControllerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CifsDomainController)(nil))
+	return reflect.TypeOf((*map[string]*CifsDomainController)(nil)).Elem()
 }
 
 func (i CifsDomainControllerMap) ToCifsDomainControllerMapOutput() CifsDomainControllerMapOutput {
@@ -253,12 +225,10 @@ func (i CifsDomainControllerMap) ToCifsDomainControllerMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(CifsDomainControllerMapOutput)
 }
 
-type CifsDomainControllerOutput struct {
-	*pulumi.OutputState
-}
+type CifsDomainControllerOutput struct{ *pulumi.OutputState }
 
 func (CifsDomainControllerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CifsDomainController)(nil))
+	return reflect.TypeOf((**CifsDomainController)(nil)).Elem()
 }
 
 func (o CifsDomainControllerOutput) ToCifsDomainControllerOutput() CifsDomainControllerOutput {
@@ -269,36 +239,10 @@ func (o CifsDomainControllerOutput) ToCifsDomainControllerOutputWithContext(ctx 
 	return o
 }
 
-func (o CifsDomainControllerOutput) ToCifsDomainControllerPtrOutput() CifsDomainControllerPtrOutput {
-	return o.ToCifsDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (o CifsDomainControllerOutput) ToCifsDomainControllerPtrOutputWithContext(ctx context.Context) CifsDomainControllerPtrOutput {
-	return o.ApplyT(func(v CifsDomainController) *CifsDomainController {
-		return &v
-	}).(CifsDomainControllerPtrOutput)
-}
-
-type CifsDomainControllerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CifsDomainControllerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CifsDomainController)(nil))
-}
-
-func (o CifsDomainControllerPtrOutput) ToCifsDomainControllerPtrOutput() CifsDomainControllerPtrOutput {
-	return o
-}
-
-func (o CifsDomainControllerPtrOutput) ToCifsDomainControllerPtrOutputWithContext(ctx context.Context) CifsDomainControllerPtrOutput {
-	return o
-}
-
 type CifsDomainControllerArrayOutput struct{ *pulumi.OutputState }
 
 func (CifsDomainControllerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CifsDomainController)(nil))
+	return reflect.TypeOf((*[]*CifsDomainController)(nil)).Elem()
 }
 
 func (o CifsDomainControllerArrayOutput) ToCifsDomainControllerArrayOutput() CifsDomainControllerArrayOutput {
@@ -310,15 +254,15 @@ func (o CifsDomainControllerArrayOutput) ToCifsDomainControllerArrayOutputWithCo
 }
 
 func (o CifsDomainControllerArrayOutput) Index(i pulumi.IntInput) CifsDomainControllerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CifsDomainController {
-		return vs[0].([]CifsDomainController)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CifsDomainController {
+		return vs[0].([]*CifsDomainController)[vs[1].(int)]
 	}).(CifsDomainControllerOutput)
 }
 
 type CifsDomainControllerMapOutput struct{ *pulumi.OutputState }
 
 func (CifsDomainControllerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CifsDomainController)(nil))
+	return reflect.TypeOf((*map[string]*CifsDomainController)(nil)).Elem()
 }
 
 func (o CifsDomainControllerMapOutput) ToCifsDomainControllerMapOutput() CifsDomainControllerMapOutput {
@@ -330,14 +274,16 @@ func (o CifsDomainControllerMapOutput) ToCifsDomainControllerMapOutputWithContex
 }
 
 func (o CifsDomainControllerMapOutput) MapIndex(k pulumi.StringInput) CifsDomainControllerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CifsDomainController {
-		return vs[0].(map[string]CifsDomainController)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CifsDomainController {
+		return vs[0].(map[string]*CifsDomainController)[vs[1].(string)]
 	}).(CifsDomainControllerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CifsDomainControllerInput)(nil)).Elem(), &CifsDomainController{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CifsDomainControllerArrayInput)(nil)).Elem(), CifsDomainControllerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CifsDomainControllerMapInput)(nil)).Elem(), CifsDomainControllerMap{})
 	pulumi.RegisterOutputType(CifsDomainControllerOutput{})
-	pulumi.RegisterOutputType(CifsDomainControllerPtrOutput{})
 	pulumi.RegisterOutputType(CifsDomainControllerArrayOutput{})
 	pulumi.RegisterOutputType(CifsDomainControllerMapOutput{})
 }

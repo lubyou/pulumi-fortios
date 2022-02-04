@@ -84,25 +84,23 @@ export class FirewallIpmacbindingSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallIpmacbindingSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallIpmacbindingSettingArgs | FirewallIpmacbindingSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallIpmacbindingSettingState | undefined;
-            inputs["bindthroughfw"] = state ? state.bindthroughfw : undefined;
-            inputs["bindtofw"] = state ? state.bindtofw : undefined;
-            inputs["undefinedhost"] = state ? state.undefinedhost : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bindthroughfw"] = state ? state.bindthroughfw : undefined;
+            resourceInputs["bindtofw"] = state ? state.bindtofw : undefined;
+            resourceInputs["undefinedhost"] = state ? state.undefinedhost : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallIpmacbindingSettingArgs | undefined;
-            inputs["bindthroughfw"] = args ? args.bindthroughfw : undefined;
-            inputs["bindtofw"] = args ? args.bindtofw : undefined;
-            inputs["undefinedhost"] = args ? args.undefinedhost : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bindthroughfw"] = args ? args.bindthroughfw : undefined;
+            resourceInputs["bindtofw"] = args ? args.bindtofw : undefined;
+            resourceInputs["undefinedhost"] = args ? args.undefinedhost : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallIpmacbindingSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallIpmacbindingSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

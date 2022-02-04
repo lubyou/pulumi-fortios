@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,8 +37,8 @@ import (
 // 		_, err = fortios.NewFirewallWildcardFqdnGroup(ctx, "trname", &fortios.FirewallWildcardFqdnGroupArgs{
 // 			Color:      pulumi.Int(0),
 // 			Visibility: pulumi.String("enable"),
-// 			Members: fortios.FirewallWildcardFqdnGroupMemberArray{
-// 				&fortios.FirewallWildcardFqdnGroupMemberArgs{
+// 			Members: FirewallWildcardFqdnGroupMemberArray{
+// 				&FirewallWildcardFqdnGroupMemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -90,6 +91,7 @@ func NewFirewallWildcardFqdnGroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallWildcardFqdnGroup
 	err := ctx.RegisterResource("fortios:index/firewallWildcardFqdnGroup:FirewallWildcardFqdnGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -204,7 +206,7 @@ type FirewallWildcardFqdnGroupInput interface {
 }
 
 func (*FirewallWildcardFqdnGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallWildcardFqdnGroup)(nil))
+	return reflect.TypeOf((**FirewallWildcardFqdnGroup)(nil)).Elem()
 }
 
 func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupOutput() FirewallWildcardFqdnGroupOutput {
@@ -213,35 +215,6 @@ func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupOutput() Firewall
 
 func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupOutput)
-}
-
-func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupPtrOutput() FirewallWildcardFqdnGroupPtrOutput {
-	return i.ToFirewallWildcardFqdnGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallWildcardFqdnGroup) ToFirewallWildcardFqdnGroupPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupPtrOutput)
-}
-
-type FirewallWildcardFqdnGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallWildcardFqdnGroupPtrOutput() FirewallWildcardFqdnGroupPtrOutput
-	ToFirewallWildcardFqdnGroupPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupPtrOutput
-}
-
-type firewallWildcardFqdnGroupPtrType FirewallWildcardFqdnGroupArgs
-
-func (*firewallWildcardFqdnGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallWildcardFqdnGroup)(nil))
-}
-
-func (i *firewallWildcardFqdnGroupPtrType) ToFirewallWildcardFqdnGroupPtrOutput() FirewallWildcardFqdnGroupPtrOutput {
-	return i.ToFirewallWildcardFqdnGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallWildcardFqdnGroupPtrType) ToFirewallWildcardFqdnGroupPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupPtrOutput)
 }
 
 // FirewallWildcardFqdnGroupArrayInput is an input type that accepts FirewallWildcardFqdnGroupArray and FirewallWildcardFqdnGroupArrayOutput values.
@@ -258,7 +231,7 @@ type FirewallWildcardFqdnGroupArrayInput interface {
 type FirewallWildcardFqdnGroupArray []FirewallWildcardFqdnGroupInput
 
 func (FirewallWildcardFqdnGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallWildcardFqdnGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallWildcardFqdnGroup)(nil)).Elem()
 }
 
 func (i FirewallWildcardFqdnGroupArray) ToFirewallWildcardFqdnGroupArrayOutput() FirewallWildcardFqdnGroupArrayOutput {
@@ -283,7 +256,7 @@ type FirewallWildcardFqdnGroupMapInput interface {
 type FirewallWildcardFqdnGroupMap map[string]FirewallWildcardFqdnGroupInput
 
 func (FirewallWildcardFqdnGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallWildcardFqdnGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallWildcardFqdnGroup)(nil)).Elem()
 }
 
 func (i FirewallWildcardFqdnGroupMap) ToFirewallWildcardFqdnGroupMapOutput() FirewallWildcardFqdnGroupMapOutput {
@@ -294,12 +267,10 @@ func (i FirewallWildcardFqdnGroupMap) ToFirewallWildcardFqdnGroupMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnGroupMapOutput)
 }
 
-type FirewallWildcardFqdnGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallWildcardFqdnGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallWildcardFqdnGroup)(nil))
+	return reflect.TypeOf((**FirewallWildcardFqdnGroup)(nil)).Elem()
 }
 
 func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupOutput() FirewallWildcardFqdnGroupOutput {
@@ -310,36 +281,10 @@ func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupOutputWithCo
 	return o
 }
 
-func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupPtrOutput() FirewallWildcardFqdnGroupPtrOutput {
-	return o.ToFirewallWildcardFqdnGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallWildcardFqdnGroupOutput) ToFirewallWildcardFqdnGroupPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupPtrOutput {
-	return o.ApplyT(func(v FirewallWildcardFqdnGroup) *FirewallWildcardFqdnGroup {
-		return &v
-	}).(FirewallWildcardFqdnGroupPtrOutput)
-}
-
-type FirewallWildcardFqdnGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallWildcardFqdnGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallWildcardFqdnGroup)(nil))
-}
-
-func (o FirewallWildcardFqdnGroupPtrOutput) ToFirewallWildcardFqdnGroupPtrOutput() FirewallWildcardFqdnGroupPtrOutput {
-	return o
-}
-
-func (o FirewallWildcardFqdnGroupPtrOutput) ToFirewallWildcardFqdnGroupPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnGroupPtrOutput {
-	return o
-}
-
 type FirewallWildcardFqdnGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallWildcardFqdnGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallWildcardFqdnGroup)(nil)).Elem()
 }
 
 func (o FirewallWildcardFqdnGroupArrayOutput) ToFirewallWildcardFqdnGroupArrayOutput() FirewallWildcardFqdnGroupArrayOutput {
@@ -351,15 +296,15 @@ func (o FirewallWildcardFqdnGroupArrayOutput) ToFirewallWildcardFqdnGroupArrayOu
 }
 
 func (o FirewallWildcardFqdnGroupArrayOutput) Index(i pulumi.IntInput) FirewallWildcardFqdnGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallWildcardFqdnGroup {
-		return vs[0].([]FirewallWildcardFqdnGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallWildcardFqdnGroup {
+		return vs[0].([]*FirewallWildcardFqdnGroup)[vs[1].(int)]
 	}).(FirewallWildcardFqdnGroupOutput)
 }
 
 type FirewallWildcardFqdnGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallWildcardFqdnGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallWildcardFqdnGroup)(nil)).Elem()
 }
 
 func (o FirewallWildcardFqdnGroupMapOutput) ToFirewallWildcardFqdnGroupMapOutput() FirewallWildcardFqdnGroupMapOutput {
@@ -371,14 +316,16 @@ func (o FirewallWildcardFqdnGroupMapOutput) ToFirewallWildcardFqdnGroupMapOutput
 }
 
 func (o FirewallWildcardFqdnGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallWildcardFqdnGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallWildcardFqdnGroup {
-		return vs[0].(map[string]FirewallWildcardFqdnGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallWildcardFqdnGroup {
+		return vs[0].(map[string]*FirewallWildcardFqdnGroup)[vs[1].(string)]
 	}).(FirewallWildcardFqdnGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallWildcardFqdnGroupInput)(nil)).Elem(), &FirewallWildcardFqdnGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallWildcardFqdnGroupArrayInput)(nil)).Elem(), FirewallWildcardFqdnGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallWildcardFqdnGroupMapInput)(nil)).Elem(), FirewallWildcardFqdnGroupMap{})
 	pulumi.RegisterOutputType(FirewallWildcardFqdnGroupOutput{})
-	pulumi.RegisterOutputType(FirewallWildcardFqdnGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallWildcardFqdnGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallWildcardFqdnGroupMapOutput{})
 }

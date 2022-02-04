@@ -13,9 +13,7 @@ export function getRouterStatic6(args: GetRouterStatic6Args, opts?: pulumi.Invok
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterStatic6:GetRouterStatic6", {
         "seqNum": args.seqNum,
         "vdomparam": args.vdomparam,
@@ -69,6 +67,10 @@ export interface GetRouterStatic6Result {
      */
     readonly dst: string;
     /**
+     * Enable use of dynamic gateway retrieved from Router Advertisement (RA).
+     */
+    readonly dynamicGateway: string;
+    /**
      * IPv6 address of the gateway.
      */
     readonly gateway: string;
@@ -89,6 +91,10 @@ export interface GetRouterStatic6Result {
      */
     readonly sdwan: string;
     /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    readonly sdwanZones: outputs.GetRouterStatic6SdwanZone[];
+    /**
      * Sequence number.
      */
     readonly seqNum: number;
@@ -101,4 +107,26 @@ export interface GetRouterStatic6Result {
      * Enable/disable egress through the virtual-wan-link.
      */
     readonly virtualWanLink: string;
+    /**
+     * Virtual Routing Forwarding ID.
+     */
+    readonly vrf: number;
+}
+
+export function getRouterStatic6Output(args: GetRouterStatic6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterStatic6Result> {
+    return pulumi.output(args).apply(a => getRouterStatic6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterStatic6.
+ */
+export interface GetRouterStatic6OutputArgs {
+    /**
+     * Specify the seqNum of the desired router static6.
+     */
+    seqNum: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

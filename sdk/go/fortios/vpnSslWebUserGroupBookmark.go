@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,8 +26,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewVpnSslWebUserGroupBookmark(ctx, "trname", &fortios.VpnSslWebUserGroupBookmarkArgs{
-// 			Bookmarks: fortios.VpnSslWebUserGroupBookmarkBookmarkArray{
-// 				&fortios.VpnSslWebUserGroupBookmarkBookmarkArgs{
+// 			Bookmarks: VpnSslWebUserGroupBookmarkBookmarkArray{
+// 				&VpnSslWebUserGroupBookmarkBookmarkArgs{
 // 					Apptype:               pulumi.String("citrix"),
 // 					ListeningPort:         pulumi.Int(0),
 // 					Name:                  pulumi.String("b1"),
@@ -79,6 +80,7 @@ func NewVpnSslWebUserGroupBookmark(ctx *pulumi.Context,
 		args = &VpnSslWebUserGroupBookmarkArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnSslWebUserGroupBookmark
 	err := ctx.RegisterResource("fortios:index/vpnSslWebUserGroupBookmark:VpnSslWebUserGroupBookmark", name, args, &resource, opts...)
 	if err != nil {
@@ -161,7 +163,7 @@ type VpnSslWebUserGroupBookmarkInput interface {
 }
 
 func (*VpnSslWebUserGroupBookmark) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebUserGroupBookmark)(nil))
+	return reflect.TypeOf((**VpnSslWebUserGroupBookmark)(nil)).Elem()
 }
 
 func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkOutput() VpnSslWebUserGroupBookmarkOutput {
@@ -170,35 +172,6 @@ func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkOutput() VpnSsl
 
 func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkOutput)
-}
-
-func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkPtrOutput() VpnSslWebUserGroupBookmarkPtrOutput {
-	return i.ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnSslWebUserGroupBookmark) ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkPtrOutput)
-}
-
-type VpnSslWebUserGroupBookmarkPtrInput interface {
-	pulumi.Input
-
-	ToVpnSslWebUserGroupBookmarkPtrOutput() VpnSslWebUserGroupBookmarkPtrOutput
-	ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkPtrOutput
-}
-
-type vpnSslWebUserGroupBookmarkPtrType VpnSslWebUserGroupBookmarkArgs
-
-func (*vpnSslWebUserGroupBookmarkPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebUserGroupBookmark)(nil))
-}
-
-func (i *vpnSslWebUserGroupBookmarkPtrType) ToVpnSslWebUserGroupBookmarkPtrOutput() VpnSslWebUserGroupBookmarkPtrOutput {
-	return i.ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnSslWebUserGroupBookmarkPtrType) ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkPtrOutput)
 }
 
 // VpnSslWebUserGroupBookmarkArrayInput is an input type that accepts VpnSslWebUserGroupBookmarkArray and VpnSslWebUserGroupBookmarkArrayOutput values.
@@ -215,7 +188,7 @@ type VpnSslWebUserGroupBookmarkArrayInput interface {
 type VpnSslWebUserGroupBookmarkArray []VpnSslWebUserGroupBookmarkInput
 
 func (VpnSslWebUserGroupBookmarkArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnSslWebUserGroupBookmark)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebUserGroupBookmark)(nil)).Elem()
 }
 
 func (i VpnSslWebUserGroupBookmarkArray) ToVpnSslWebUserGroupBookmarkArrayOutput() VpnSslWebUserGroupBookmarkArrayOutput {
@@ -240,7 +213,7 @@ type VpnSslWebUserGroupBookmarkMapInput interface {
 type VpnSslWebUserGroupBookmarkMap map[string]VpnSslWebUserGroupBookmarkInput
 
 func (VpnSslWebUserGroupBookmarkMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnSslWebUserGroupBookmark)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebUserGroupBookmark)(nil)).Elem()
 }
 
 func (i VpnSslWebUserGroupBookmarkMap) ToVpnSslWebUserGroupBookmarkMapOutput() VpnSslWebUserGroupBookmarkMapOutput {
@@ -251,12 +224,10 @@ func (i VpnSslWebUserGroupBookmarkMap) ToVpnSslWebUserGroupBookmarkMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebUserGroupBookmarkMapOutput)
 }
 
-type VpnSslWebUserGroupBookmarkOutput struct {
-	*pulumi.OutputState
-}
+type VpnSslWebUserGroupBookmarkOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserGroupBookmarkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebUserGroupBookmark)(nil))
+	return reflect.TypeOf((**VpnSslWebUserGroupBookmark)(nil)).Elem()
 }
 
 func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkOutput() VpnSslWebUserGroupBookmarkOutput {
@@ -267,36 +238,10 @@ func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkOutputWith
 	return o
 }
 
-func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkPtrOutput() VpnSslWebUserGroupBookmarkPtrOutput {
-	return o.ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(context.Background())
-}
-
-func (o VpnSslWebUserGroupBookmarkOutput) ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkPtrOutput {
-	return o.ApplyT(func(v VpnSslWebUserGroupBookmark) *VpnSslWebUserGroupBookmark {
-		return &v
-	}).(VpnSslWebUserGroupBookmarkPtrOutput)
-}
-
-type VpnSslWebUserGroupBookmarkPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnSslWebUserGroupBookmarkPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebUserGroupBookmark)(nil))
-}
-
-func (o VpnSslWebUserGroupBookmarkPtrOutput) ToVpnSslWebUserGroupBookmarkPtrOutput() VpnSslWebUserGroupBookmarkPtrOutput {
-	return o
-}
-
-func (o VpnSslWebUserGroupBookmarkPtrOutput) ToVpnSslWebUserGroupBookmarkPtrOutputWithContext(ctx context.Context) VpnSslWebUserGroupBookmarkPtrOutput {
-	return o
-}
-
 type VpnSslWebUserGroupBookmarkArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserGroupBookmarkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnSslWebUserGroupBookmark)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebUserGroupBookmark)(nil)).Elem()
 }
 
 func (o VpnSslWebUserGroupBookmarkArrayOutput) ToVpnSslWebUserGroupBookmarkArrayOutput() VpnSslWebUserGroupBookmarkArrayOutput {
@@ -308,15 +253,15 @@ func (o VpnSslWebUserGroupBookmarkArrayOutput) ToVpnSslWebUserGroupBookmarkArray
 }
 
 func (o VpnSslWebUserGroupBookmarkArrayOutput) Index(i pulumi.IntInput) VpnSslWebUserGroupBookmarkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebUserGroupBookmark {
-		return vs[0].([]VpnSslWebUserGroupBookmark)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebUserGroupBookmark {
+		return vs[0].([]*VpnSslWebUserGroupBookmark)[vs[1].(int)]
 	}).(VpnSslWebUserGroupBookmarkOutput)
 }
 
 type VpnSslWebUserGroupBookmarkMapOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebUserGroupBookmarkMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnSslWebUserGroupBookmark)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebUserGroupBookmark)(nil)).Elem()
 }
 
 func (o VpnSslWebUserGroupBookmarkMapOutput) ToVpnSslWebUserGroupBookmarkMapOutput() VpnSslWebUserGroupBookmarkMapOutput {
@@ -328,14 +273,16 @@ func (o VpnSslWebUserGroupBookmarkMapOutput) ToVpnSslWebUserGroupBookmarkMapOutp
 }
 
 func (o VpnSslWebUserGroupBookmarkMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebUserGroupBookmarkOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnSslWebUserGroupBookmark {
-		return vs[0].(map[string]VpnSslWebUserGroupBookmark)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnSslWebUserGroupBookmark {
+		return vs[0].(map[string]*VpnSslWebUserGroupBookmark)[vs[1].(string)]
 	}).(VpnSslWebUserGroupBookmarkOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebUserGroupBookmarkInput)(nil)).Elem(), &VpnSslWebUserGroupBookmark{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebUserGroupBookmarkArrayInput)(nil)).Elem(), VpnSslWebUserGroupBookmarkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebUserGroupBookmarkMapInput)(nil)).Elem(), VpnSslWebUserGroupBookmarkMap{})
 	pulumi.RegisterOutputType(VpnSslWebUserGroupBookmarkOutput{})
-	pulumi.RegisterOutputType(VpnSslWebUserGroupBookmarkPtrOutput{})
 	pulumi.RegisterOutputType(VpnSslWebUserGroupBookmarkArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslWebUserGroupBookmarkMapOutput{})
 }

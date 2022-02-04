@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Show Internet Service reputation.
+// Show Internet Service reputation. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -39,6 +39,7 @@ func NewFirewallInternetServiceReputation(ctx *pulumi.Context,
 		args = &FirewallInternetServiceReputationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceReputation
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceReputation:FirewallInternetServiceReputation", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallInternetServiceReputationInput interface {
 }
 
 func (*FirewallInternetServiceReputation) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceReputation)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceReputation)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationOutput() FirewallInternetServiceReputationOutput {
@@ -122,35 +123,6 @@ func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationO
 
 func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationOutputWithContext(ctx context.Context) FirewallInternetServiceReputationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationOutput)
-}
-
-func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationPtrOutput() FirewallInternetServiceReputationPtrOutput {
-	return i.ToFirewallInternetServiceReputationPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceReputation) ToFirewallInternetServiceReputationPtrOutputWithContext(ctx context.Context) FirewallInternetServiceReputationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationPtrOutput)
-}
-
-type FirewallInternetServiceReputationPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceReputationPtrOutput() FirewallInternetServiceReputationPtrOutput
-	ToFirewallInternetServiceReputationPtrOutputWithContext(ctx context.Context) FirewallInternetServiceReputationPtrOutput
-}
-
-type firewallInternetServiceReputationPtrType FirewallInternetServiceReputationArgs
-
-func (*firewallInternetServiceReputationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceReputation)(nil))
-}
-
-func (i *firewallInternetServiceReputationPtrType) ToFirewallInternetServiceReputationPtrOutput() FirewallInternetServiceReputationPtrOutput {
-	return i.ToFirewallInternetServiceReputationPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceReputationPtrType) ToFirewallInternetServiceReputationPtrOutputWithContext(ctx context.Context) FirewallInternetServiceReputationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationPtrOutput)
 }
 
 // FirewallInternetServiceReputationArrayInput is an input type that accepts FirewallInternetServiceReputationArray and FirewallInternetServiceReputationArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallInternetServiceReputationArrayInput interface {
 type FirewallInternetServiceReputationArray []FirewallInternetServiceReputationInput
 
 func (FirewallInternetServiceReputationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceReputation)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceReputation)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceReputationArray) ToFirewallInternetServiceReputationArrayOutput() FirewallInternetServiceReputationArrayOutput {
@@ -192,7 +164,7 @@ type FirewallInternetServiceReputationMapInput interface {
 type FirewallInternetServiceReputationMap map[string]FirewallInternetServiceReputationInput
 
 func (FirewallInternetServiceReputationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceReputation)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceReputation)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceReputationMap) ToFirewallInternetServiceReputationMapOutput() FirewallInternetServiceReputationMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallInternetServiceReputationMap) ToFirewallInternetServiceReputatio
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceReputationMapOutput)
 }
 
-type FirewallInternetServiceReputationOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceReputationOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceReputationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceReputation)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceReputation)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputationOutput() FirewallInternetServiceReputationOutput {
@@ -219,36 +189,10 @@ func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputa
 	return o
 }
 
-func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputationPtrOutput() FirewallInternetServiceReputationPtrOutput {
-	return o.ToFirewallInternetServiceReputationPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceReputationOutput) ToFirewallInternetServiceReputationPtrOutputWithContext(ctx context.Context) FirewallInternetServiceReputationPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceReputation) *FirewallInternetServiceReputation {
-		return &v
-	}).(FirewallInternetServiceReputationPtrOutput)
-}
-
-type FirewallInternetServiceReputationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceReputationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceReputation)(nil))
-}
-
-func (o FirewallInternetServiceReputationPtrOutput) ToFirewallInternetServiceReputationPtrOutput() FirewallInternetServiceReputationPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceReputationPtrOutput) ToFirewallInternetServiceReputationPtrOutputWithContext(ctx context.Context) FirewallInternetServiceReputationPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceReputationArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceReputationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceReputation)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceReputation)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceReputationArrayOutput) ToFirewallInternetServiceReputationArrayOutput() FirewallInternetServiceReputationArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallInternetServiceReputationArrayOutput) ToFirewallInternetServiceR
 }
 
 func (o FirewallInternetServiceReputationArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceReputationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceReputation {
-		return vs[0].([]FirewallInternetServiceReputation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceReputation {
+		return vs[0].([]*FirewallInternetServiceReputation)[vs[1].(int)]
 	}).(FirewallInternetServiceReputationOutput)
 }
 
 type FirewallInternetServiceReputationMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceReputationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceReputation)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceReputation)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceReputationMapOutput) ToFirewallInternetServiceReputationMapOutput() FirewallInternetServiceReputationMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallInternetServiceReputationMapOutput) ToFirewallInternetServiceRep
 }
 
 func (o FirewallInternetServiceReputationMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceReputationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceReputation {
-		return vs[0].(map[string]FirewallInternetServiceReputation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceReputation {
+		return vs[0].(map[string]*FirewallInternetServiceReputation)[vs[1].(string)]
 	}).(FirewallInternetServiceReputationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceReputationInput)(nil)).Elem(), &FirewallInternetServiceReputation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceReputationArrayInput)(nil)).Elem(), FirewallInternetServiceReputationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceReputationMapInput)(nil)).Elem(), FirewallInternetServiceReputationMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceReputationOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceReputationPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceReputationArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceReputationMapOutput{})
 }

@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallMulticastAddressResult',
     'AwaitableGetFirewallMulticastAddressResult',
     'get_firewall_multicast_address',
+    'get_firewall_multicast_address_output',
 ]
 
 @pulumi.output_type
@@ -189,6 +190,8 @@ def get_firewall_multicast_address(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallMulticastAddress:GetFirewallMulticastAddress', __args__, opts=opts, typ=GetFirewallMulticastAddressResult).value
 
     return AwaitableGetFirewallMulticastAddressResult(
@@ -204,3 +207,17 @@ def get_firewall_multicast_address(name: Optional[str] = None,
         type=__ret__.type,
         vdomparam=__ret__.vdomparam,
         visibility=__ret__.visibility)
+
+
+@_utilities.lift_output_func(get_firewall_multicast_address)
+def get_firewall_multicast_address_output(name: Optional[pulumi.Input[str]] = None,
+                                          vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallMulticastAddressResult]:
+    """
+    Use this data source to get information on an fortios firewall multicastaddress
+
+
+    :param str name: Specify the name of the desired firewall multicastaddress.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

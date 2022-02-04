@@ -118,20 +118,20 @@ export class FirewallTtlPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallTtlPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallTtlPolicyArgs | FirewallTtlPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallTtlPolicyState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintf"] = state ? state.srcintf : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["ttl"] = state ? state.ttl : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintf"] = state ? state.srcintf : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["ttl"] = state ? state.ttl : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallTtlPolicyArgs | undefined;
             if ((!args || args.fosid === undefined) && !opts.urn) {
@@ -152,21 +152,19 @@ export class FirewallTtlPolicy extends pulumi.CustomResource {
             if ((!args || args.ttl === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ttl'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintf"] = args ? args.srcintf : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["ttl"] = args ? args.ttl : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintf"] = args ? args.srcintf : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["ttl"] = args ? args.ttl : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallTtlPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallTtlPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

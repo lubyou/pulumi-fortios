@@ -93,29 +93,27 @@ export class DlpSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DlpSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DlpSettingsArgs | DlpSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DlpSettingsState | undefined;
-            inputs["cacheMemPercent"] = state ? state.cacheMemPercent : undefined;
-            inputs["chunkSize"] = state ? state.chunkSize : undefined;
-            inputs["dbMode"] = state ? state.dbMode : undefined;
-            inputs["size"] = state ? state.size : undefined;
-            inputs["storageDevice"] = state ? state.storageDevice : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cacheMemPercent"] = state ? state.cacheMemPercent : undefined;
+            resourceInputs["chunkSize"] = state ? state.chunkSize : undefined;
+            resourceInputs["dbMode"] = state ? state.dbMode : undefined;
+            resourceInputs["size"] = state ? state.size : undefined;
+            resourceInputs["storageDevice"] = state ? state.storageDevice : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as DlpSettingsArgs | undefined;
-            inputs["cacheMemPercent"] = args ? args.cacheMemPercent : undefined;
-            inputs["chunkSize"] = args ? args.chunkSize : undefined;
-            inputs["dbMode"] = args ? args.dbMode : undefined;
-            inputs["size"] = args ? args.size : undefined;
-            inputs["storageDevice"] = args ? args.storageDevice : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cacheMemPercent"] = args ? args.cacheMemPercent : undefined;
+            resourceInputs["chunkSize"] = args ? args.chunkSize : undefined;
+            resourceInputs["dbMode"] = args ? args.dbMode : undefined;
+            resourceInputs["size"] = args ? args.size : undefined;
+            resourceInputs["storageDevice"] = args ? args.storageDevice : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DlpSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DlpSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

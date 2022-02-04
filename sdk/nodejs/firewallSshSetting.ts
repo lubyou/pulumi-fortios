@@ -114,37 +114,35 @@ export class FirewallSshSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallSshSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSshSettingArgs | FirewallSshSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSshSettingState | undefined;
-            inputs["caname"] = state ? state.caname : undefined;
-            inputs["hostTrustedChecking"] = state ? state.hostTrustedChecking : undefined;
-            inputs["hostkeyDsa1024"] = state ? state.hostkeyDsa1024 : undefined;
-            inputs["hostkeyEcdsa256"] = state ? state.hostkeyEcdsa256 : undefined;
-            inputs["hostkeyEcdsa384"] = state ? state.hostkeyEcdsa384 : undefined;
-            inputs["hostkeyEcdsa521"] = state ? state.hostkeyEcdsa521 : undefined;
-            inputs["hostkeyEd25519"] = state ? state.hostkeyEd25519 : undefined;
-            inputs["hostkeyRsa2048"] = state ? state.hostkeyRsa2048 : undefined;
-            inputs["untrustedCaname"] = state ? state.untrustedCaname : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["caname"] = state ? state.caname : undefined;
+            resourceInputs["hostTrustedChecking"] = state ? state.hostTrustedChecking : undefined;
+            resourceInputs["hostkeyDsa1024"] = state ? state.hostkeyDsa1024 : undefined;
+            resourceInputs["hostkeyEcdsa256"] = state ? state.hostkeyEcdsa256 : undefined;
+            resourceInputs["hostkeyEcdsa384"] = state ? state.hostkeyEcdsa384 : undefined;
+            resourceInputs["hostkeyEcdsa521"] = state ? state.hostkeyEcdsa521 : undefined;
+            resourceInputs["hostkeyEd25519"] = state ? state.hostkeyEd25519 : undefined;
+            resourceInputs["hostkeyRsa2048"] = state ? state.hostkeyRsa2048 : undefined;
+            resourceInputs["untrustedCaname"] = state ? state.untrustedCaname : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallSshSettingArgs | undefined;
-            inputs["caname"] = args ? args.caname : undefined;
-            inputs["hostTrustedChecking"] = args ? args.hostTrustedChecking : undefined;
-            inputs["hostkeyDsa1024"] = args ? args.hostkeyDsa1024 : undefined;
-            inputs["hostkeyEcdsa256"] = args ? args.hostkeyEcdsa256 : undefined;
-            inputs["hostkeyEcdsa384"] = args ? args.hostkeyEcdsa384 : undefined;
-            inputs["hostkeyEcdsa521"] = args ? args.hostkeyEcdsa521 : undefined;
-            inputs["hostkeyEd25519"] = args ? args.hostkeyEd25519 : undefined;
-            inputs["hostkeyRsa2048"] = args ? args.hostkeyRsa2048 : undefined;
-            inputs["untrustedCaname"] = args ? args.untrustedCaname : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["caname"] = args ? args.caname : undefined;
+            resourceInputs["hostTrustedChecking"] = args ? args.hostTrustedChecking : undefined;
+            resourceInputs["hostkeyDsa1024"] = args ? args.hostkeyDsa1024 : undefined;
+            resourceInputs["hostkeyEcdsa256"] = args ? args.hostkeyEcdsa256 : undefined;
+            resourceInputs["hostkeyEcdsa384"] = args ? args.hostkeyEcdsa384 : undefined;
+            resourceInputs["hostkeyEcdsa521"] = args ? args.hostkeyEcdsa521 : undefined;
+            resourceInputs["hostkeyEd25519"] = args ? args.hostkeyEd25519 : undefined;
+            resourceInputs["hostkeyRsa2048"] = args ? args.hostkeyRsa2048 : undefined;
+            resourceInputs["untrustedCaname"] = args ? args.untrustedCaname : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSshSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSshSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

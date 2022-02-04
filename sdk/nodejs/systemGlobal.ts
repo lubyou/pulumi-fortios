@@ -68,6 +68,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly adminConsoleTimeout!: pulumi.Output<number>;
     /**
+     * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
+     */
+    public readonly adminForticloudSsoLogin!: pulumi.Output<string>;
+    /**
      * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
      */
     public readonly adminHstsMaxAge!: pulumi.Output<number>;
@@ -79,6 +83,14 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
      */
     public readonly adminHttpsRedirect!: pulumi.Output<string>;
+    /**
+     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+     */
+    public readonly adminHttpsSslBannedCiphers!: pulumi.Output<string>;
+    /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+     */
+    public readonly adminHttpsSslCiphersuites!: pulumi.Output<string>;
     /**
      * Allowed TLS versions for web administration.
      */
@@ -252,6 +264,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly cltCertReq!: pulumi.Output<string>;
     /**
+     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    public readonly cmdbsvrAffinity!: pulumi.Output<string>;
+    /**
      * Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
      */
     public readonly complianceCheck!: pulumi.Output<string>;
@@ -296,6 +312,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly dst!: pulumi.Output<string>;
     /**
+     * Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
+     */
+    public readonly editVdomPrompt!: pulumi.Output<string>;
+    /**
      * Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
      */
     public readonly endpointControlFdsAccess!: pulumi.Output<string>;
@@ -303,6 +323,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Endpoint control portal port (1 - 65535).
      */
     public readonly endpointControlPortalPort!: pulumi.Output<number>;
+    /**
+     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+     */
+    public readonly extenderControllerReservedNetwork!: pulumi.Output<string>;
     /**
      * Fail-time for server lost.
      */
@@ -336,6 +360,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly fortiextenderDataPort!: pulumi.Output<number>;
     /**
+     * Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
+     */
+    public readonly fortiextenderDiscoveryLockdown!: pulumi.Output<string>;
+    /**
      * Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
      */
     public readonly fortiextenderVlanMode!: pulumi.Output<string>;
@@ -355,6 +383,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
      */
     public readonly guiAllowDefaultHostname!: pulumi.Output<string>;
+    /**
+     * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
+     */
+    public readonly guiCdnUsage!: pulumi.Output<string>;
     /**
      * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
      */
@@ -412,6 +444,18 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly guiLinesPerPage!: pulumi.Output<number>;
     /**
+     * Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiLocalOut!: pulumi.Output<string>;
+    /**
+     * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+     */
+    public readonly guiReplacementMessageGroups!: pulumi.Output<string>;
+    /**
+     * Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
+     */
+    public readonly guiRestApiCache!: pulumi.Output<string>;
+    /**
      * Color scheme for the administration GUI.
      */
     public readonly guiTheme!: pulumi.Output<string>;
@@ -419,6 +463,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
      */
     public readonly guiWirelessOpensecurity!: pulumi.Output<string>;
+    /**
+     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    public readonly haAffinity!: pulumi.Output<string>;
     /**
      * Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
      */
@@ -436,6 +484,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly ikeEmbryonicLimit!: pulumi.Output<number>;
     /**
+     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+     */
+    public readonly internetServiceDatabase!: pulumi.Output<string>;
+    /**
      * Dead gateway detection interval.
      */
     public readonly interval!: pulumi.Output<number>;
@@ -451,6 +503,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
      */
     public readonly ipsecAsicOffload!: pulumi.Output<string>;
+    /**
+     * ESP jump ahead rate (1G - 10G pps equivalent).
+     */
+    public readonly ipsecHaSeqjumpRate!: pulumi.Output<number>;
     /**
      * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
      */
@@ -512,6 +568,18 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly longVdomName!: pulumi.Output<string>;
     /**
+     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+     */
+    public readonly managementIp!: pulumi.Output<string>;
+    /**
+     * Overriding port for management connection (Overrides admin port).
+     */
+    public readonly managementPort!: pulumi.Output<number>;
+    /**
+     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
+     */
+    public readonly managementPortUseAdminSport!: pulumi.Output<string>;
+    /**
      * Management virtual domain name.
      */
     public readonly managementVdom!: pulumi.Output<string>;
@@ -568,6 +636,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly perUserBwl!: pulumi.Output<string>;
     /**
+     * Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
+     */
+    public readonly pmtuDiscovery!: pulumi.Output<string>;
+    /**
      * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
      */
     public readonly policyAuthConcurrent!: pulumi.Output<number>;
@@ -596,9 +668,17 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly proxyAuthTimeout!: pulumi.Output<number>;
     /**
+     * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
+     */
+    public readonly proxyCertUseMgmtVdom!: pulumi.Output<string>;
+    /**
      * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
      */
     public readonly proxyCipherHardwareAcceleration!: pulumi.Output<string>;
+    /**
+     * Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
+     */
+    public readonly proxyHardwareAcceleration!: pulumi.Output<string>;
     /**
      * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
      */
@@ -607,6 +687,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
      */
     public readonly proxyReAuthenticationMode!: pulumi.Output<string>;
+    /**
+     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
+     */
+    public readonly proxyResourceMode!: pulumi.Output<string>;
     /**
      * Proxy worker count.
      */
@@ -668,6 +752,14 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly specialFile23Support!: pulumi.Output<string>;
     /**
+     * Enable/disable speed test server. Valid values: `enable`, `disable`.
+     */
+    public readonly speedtestServer!: pulumi.Output<string>;
+    /**
+     * Split port(s) to multiple 10Gbps ports.
+     */
+    public readonly splitPort!: pulumi.Output<string>;
+    /**
      * Date within a month to run ssd trim.
      */
     public readonly ssdTrimDate!: pulumi.Output<number>;
@@ -692,13 +784,25 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly sshCbcCipher!: pulumi.Output<string>;
     /**
+     * Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+     */
+    public readonly sshEncAlgo!: pulumi.Output<string>;
+    /**
      * Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
      */
     public readonly sshHmacMd5!: pulumi.Output<string>;
     /**
+     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+     */
+    public readonly sshKexAlgo!: pulumi.Output<string>;
+    /**
      * Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
      */
     public readonly sshKexSha1!: pulumi.Output<string>;
+    /**
+     * Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+     */
+    public readonly sshMacAlgo!: pulumi.Output<string>;
     /**
      * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
      */
@@ -764,6 +868,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly tcpOption!: pulumi.Output<string>;
     /**
+     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+     */
+    public readonly tcpRstTimer!: pulumi.Output<number>;
+    /**
      * Length of the TCP TIME-WAIT state in seconds.
      */
     public readonly tcpTimewaitTimer!: pulumi.Output<number>;
@@ -824,6 +932,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly userDeviceStoreMaxDevices!: pulumi.Output<number>;
     /**
+     * Maximum unified memory allowed in user device store.
+     */
+    public readonly userDeviceStoreMaxUnifiedMem!: pulumi.Output<number>;
+    /**
      * Maximum number of users allowed in user device store.
      */
     public readonly userDeviceStoreMaxUsers!: pulumi.Output<number>;
@@ -836,7 +948,7 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     public readonly vdomAdmin!: pulumi.Output<string>;
     /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+     * Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
      */
     public readonly vdomMode!: pulumi.Output<string>;
     /**
@@ -855,6 +967,10 @@ export class SystemGlobal extends pulumi.CustomResource {
      * Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
      */
     public readonly virtualServerHardwareAcceleration!: pulumi.Output<string>;
+    /**
+     * Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
+     */
+    public readonly virtualSwitchVlan!: pulumi.Output<string>;
     /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
@@ -909,437 +1025,493 @@ export class SystemGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemGlobalArgs | SystemGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemGlobalState | undefined;
-            inputs["adminConcurrent"] = state ? state.adminConcurrent : undefined;
-            inputs["adminConsoleTimeout"] = state ? state.adminConsoleTimeout : undefined;
-            inputs["adminHstsMaxAge"] = state ? state.adminHstsMaxAge : undefined;
-            inputs["adminHttpsPkiRequired"] = state ? state.adminHttpsPkiRequired : undefined;
-            inputs["adminHttpsRedirect"] = state ? state.adminHttpsRedirect : undefined;
-            inputs["adminHttpsSslVersions"] = state ? state.adminHttpsSslVersions : undefined;
-            inputs["adminLockoutDuration"] = state ? state.adminLockoutDuration : undefined;
-            inputs["adminLockoutThreshold"] = state ? state.adminLockoutThreshold : undefined;
-            inputs["adminLoginMax"] = state ? state.adminLoginMax : undefined;
-            inputs["adminMaintainer"] = state ? state.adminMaintainer : undefined;
-            inputs["adminPort"] = state ? state.adminPort : undefined;
-            inputs["adminRestrictLocal"] = state ? state.adminRestrictLocal : undefined;
-            inputs["adminScp"] = state ? state.adminScp : undefined;
-            inputs["adminServerCert"] = state ? state.adminServerCert : undefined;
-            inputs["adminSport"] = state ? state.adminSport : undefined;
-            inputs["adminSshGraceTime"] = state ? state.adminSshGraceTime : undefined;
-            inputs["adminSshPassword"] = state ? state.adminSshPassword : undefined;
-            inputs["adminSshPort"] = state ? state.adminSshPort : undefined;
-            inputs["adminSshV1"] = state ? state.adminSshV1 : undefined;
-            inputs["adminTelnet"] = state ? state.adminTelnet : undefined;
-            inputs["adminTelnetPort"] = state ? state.adminTelnetPort : undefined;
-            inputs["admintimeout"] = state ? state.admintimeout : undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["allowTrafficRedirect"] = state ? state.allowTrafficRedirect : undefined;
-            inputs["antiReplay"] = state ? state.antiReplay : undefined;
-            inputs["arpMaxEntry"] = state ? state.arpMaxEntry : undefined;
-            inputs["asymroute"] = state ? state.asymroute : undefined;
-            inputs["authCert"] = state ? state.authCert : undefined;
-            inputs["authHttpPort"] = state ? state.authHttpPort : undefined;
-            inputs["authHttpsPort"] = state ? state.authHttpsPort : undefined;
-            inputs["authKeepalive"] = state ? state.authKeepalive : undefined;
-            inputs["authSessionLimit"] = state ? state.authSessionLimit : undefined;
-            inputs["autoAuthExtensionDevice"] = state ? state.autoAuthExtensionDevice : undefined;
-            inputs["autorunLogFsck"] = state ? state.autorunLogFsck : undefined;
-            inputs["avAffinity"] = state ? state.avAffinity : undefined;
-            inputs["avFailopen"] = state ? state.avFailopen : undefined;
-            inputs["avFailopenSession"] = state ? state.avFailopenSession : undefined;
-            inputs["batchCmdb"] = state ? state.batchCmdb : undefined;
-            inputs["blockSessionTimer"] = state ? state.blockSessionTimer : undefined;
-            inputs["brFdbMaxEntry"] = state ? state.brFdbMaxEntry : undefined;
-            inputs["certChainMax"] = state ? state.certChainMax : undefined;
-            inputs["cfgRevertTimeout"] = state ? state.cfgRevertTimeout : undefined;
-            inputs["cfgSave"] = state ? state.cfgSave : undefined;
-            inputs["checkProtocolHeader"] = state ? state.checkProtocolHeader : undefined;
-            inputs["checkResetRange"] = state ? state.checkResetRange : undefined;
-            inputs["cliAuditLog"] = state ? state.cliAuditLog : undefined;
-            inputs["cloudCommunication"] = state ? state.cloudCommunication : undefined;
-            inputs["cltCertReq"] = state ? state.cltCertReq : undefined;
-            inputs["complianceCheck"] = state ? state.complianceCheck : undefined;
-            inputs["complianceCheckTime"] = state ? state.complianceCheckTime : undefined;
-            inputs["cpuUseThreshold"] = state ? state.cpuUseThreshold : undefined;
-            inputs["csrCaAttribute"] = state ? state.csrCaAttribute : undefined;
-            inputs["dailyRestart"] = state ? state.dailyRestart : undefined;
-            inputs["defaultServiceSourcePort"] = state ? state.defaultServiceSourcePort : undefined;
-            inputs["deviceIdentificationActiveScanDelay"] = state ? state.deviceIdentificationActiveScanDelay : undefined;
-            inputs["deviceIdleTimeout"] = state ? state.deviceIdleTimeout : undefined;
-            inputs["dhParams"] = state ? state.dhParams : undefined;
-            inputs["dnsproxyWorkerCount"] = state ? state.dnsproxyWorkerCount : undefined;
-            inputs["dst"] = state ? state.dst : undefined;
-            inputs["endpointControlFdsAccess"] = state ? state.endpointControlFdsAccess : undefined;
-            inputs["endpointControlPortalPort"] = state ? state.endpointControlPortalPort : undefined;
-            inputs["failtime"] = state ? state.failtime : undefined;
-            inputs["fazDiskBufferSize"] = state ? state.fazDiskBufferSize : undefined;
-            inputs["fdsStatistics"] = state ? state.fdsStatistics : undefined;
-            inputs["fdsStatisticsPeriod"] = state ? state.fdsStatisticsPeriod : undefined;
-            inputs["fecPort"] = state ? state.fecPort : undefined;
-            inputs["fgdAlertSubscription"] = state ? state.fgdAlertSubscription : undefined;
-            inputs["fortiextender"] = state ? state.fortiextender : undefined;
-            inputs["fortiextenderDataPort"] = state ? state.fortiextenderDataPort : undefined;
-            inputs["fortiextenderVlanMode"] = state ? state.fortiextenderVlanMode : undefined;
-            inputs["fortiipamIntegration"] = state ? state.fortiipamIntegration : undefined;
-            inputs["fortiservicePort"] = state ? state.fortiservicePort : undefined;
-            inputs["fortitokenCloud"] = state ? state.fortitokenCloud : undefined;
-            inputs["guiAllowDefaultHostname"] = state ? state.guiAllowDefaultHostname : undefined;
-            inputs["guiCertificates"] = state ? state.guiCertificates : undefined;
-            inputs["guiCustomLanguage"] = state ? state.guiCustomLanguage : undefined;
-            inputs["guiDateFormat"] = state ? state.guiDateFormat : undefined;
-            inputs["guiDateTimeSource"] = state ? state.guiDateTimeSource : undefined;
-            inputs["guiDeviceLatitude"] = state ? state.guiDeviceLatitude : undefined;
-            inputs["guiDeviceLongitude"] = state ? state.guiDeviceLongitude : undefined;
-            inputs["guiDisplayHostname"] = state ? state.guiDisplayHostname : undefined;
-            inputs["guiFirmwareUpgradeSetupWarning"] = state ? state.guiFirmwareUpgradeSetupWarning : undefined;
-            inputs["guiFirmwareUpgradeWarning"] = state ? state.guiFirmwareUpgradeWarning : undefined;
-            inputs["guiForticareRegistrationSetupWarning"] = state ? state.guiForticareRegistrationSetupWarning : undefined;
-            inputs["guiFortigateCloudSandbox"] = state ? state.guiFortigateCloudSandbox : undefined;
-            inputs["guiFortisandboxCloud"] = state ? state.guiFortisandboxCloud : undefined;
-            inputs["guiIpv6"] = state ? state.guiIpv6 : undefined;
-            inputs["guiLinesPerPage"] = state ? state.guiLinesPerPage : undefined;
-            inputs["guiTheme"] = state ? state.guiTheme : undefined;
-            inputs["guiWirelessOpensecurity"] = state ? state.guiWirelessOpensecurity : undefined;
-            inputs["honorDf"] = state ? state.honorDf : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["igmpStateLimit"] = state ? state.igmpStateLimit : undefined;
-            inputs["ikeEmbryonicLimit"] = state ? state.ikeEmbryonicLimit : undefined;
-            inputs["interval"] = state ? state.interval : undefined;
-            inputs["ipSrcPortRange"] = state ? state.ipSrcPortRange : undefined;
-            inputs["ipsAffinity"] = state ? state.ipsAffinity : undefined;
-            inputs["ipsecAsicOffload"] = state ? state.ipsecAsicOffload : undefined;
-            inputs["ipsecHmacOffload"] = state ? state.ipsecHmacOffload : undefined;
-            inputs["ipsecSoftDecAsync"] = state ? state.ipsecSoftDecAsync : undefined;
-            inputs["ipv6AcceptDad"] = state ? state.ipv6AcceptDad : undefined;
-            inputs["ipv6AllowAnycastProbe"] = state ? state.ipv6AllowAnycastProbe : undefined;
-            inputs["ipv6AllowTrafficRedirect"] = state ? state.ipv6AllowTrafficRedirect : undefined;
-            inputs["irqTimeAccounting"] = state ? state.irqTimeAccounting : undefined;
-            inputs["language"] = state ? state.language : undefined;
-            inputs["ldapconntimeout"] = state ? state.ldapconntimeout : undefined;
-            inputs["lldpReception"] = state ? state.lldpReception : undefined;
-            inputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
-            inputs["logSslConnection"] = state ? state.logSslConnection : undefined;
-            inputs["logUuidAddress"] = state ? state.logUuidAddress : undefined;
-            inputs["logUuidPolicy"] = state ? state.logUuidPolicy : undefined;
-            inputs["loginTimestamp"] = state ? state.loginTimestamp : undefined;
-            inputs["longVdomName"] = state ? state.longVdomName : undefined;
-            inputs["managementVdom"] = state ? state.managementVdom : undefined;
-            inputs["maxDlpstatMemory"] = state ? state.maxDlpstatMemory : undefined;
-            inputs["maxRouteCacheSize"] = state ? state.maxRouteCacheSize : undefined;
-            inputs["mcTtlNotchange"] = state ? state.mcTtlNotchange : undefined;
-            inputs["memoryUseThresholdExtreme"] = state ? state.memoryUseThresholdExtreme : undefined;
-            inputs["memoryUseThresholdGreen"] = state ? state.memoryUseThresholdGreen : undefined;
-            inputs["memoryUseThresholdRed"] = state ? state.memoryUseThresholdRed : undefined;
-            inputs["miglogAffinity"] = state ? state.miglogAffinity : undefined;
-            inputs["miglogdChildren"] = state ? state.miglogdChildren : undefined;
-            inputs["multiFactorAuthentication"] = state ? state.multiFactorAuthentication : undefined;
-            inputs["multicastForward"] = state ? state.multicastForward : undefined;
-            inputs["ndpMaxEntry"] = state ? state.ndpMaxEntry : undefined;
-            inputs["perUserBal"] = state ? state.perUserBal : undefined;
-            inputs["perUserBwl"] = state ? state.perUserBwl : undefined;
-            inputs["policyAuthConcurrent"] = state ? state.policyAuthConcurrent : undefined;
-            inputs["postLoginBanner"] = state ? state.postLoginBanner : undefined;
-            inputs["preLoginBanner"] = state ? state.preLoginBanner : undefined;
-            inputs["privateDataEncryption"] = state ? state.privateDataEncryption : undefined;
-            inputs["proxyAuthLifetime"] = state ? state.proxyAuthLifetime : undefined;
-            inputs["proxyAuthLifetimeTimeout"] = state ? state.proxyAuthLifetimeTimeout : undefined;
-            inputs["proxyAuthTimeout"] = state ? state.proxyAuthTimeout : undefined;
-            inputs["proxyCipherHardwareAcceleration"] = state ? state.proxyCipherHardwareAcceleration : undefined;
-            inputs["proxyKxpHardwareAcceleration"] = state ? state.proxyKxpHardwareAcceleration : undefined;
-            inputs["proxyReAuthenticationMode"] = state ? state.proxyReAuthenticationMode : undefined;
-            inputs["proxyWorkerCount"] = state ? state.proxyWorkerCount : undefined;
-            inputs["radiusPort"] = state ? state.radiusPort : undefined;
-            inputs["rebootUponConfigRestore"] = state ? state.rebootUponConfigRestore : undefined;
-            inputs["refresh"] = state ? state.refresh : undefined;
-            inputs["remoteauthtimeout"] = state ? state.remoteauthtimeout : undefined;
-            inputs["resetSessionlessTcp"] = state ? state.resetSessionlessTcp : undefined;
-            inputs["restartTime"] = state ? state.restartTime : undefined;
-            inputs["revisionBackupOnLogout"] = state ? state.revisionBackupOnLogout : undefined;
-            inputs["revisionImageAutoBackup"] = state ? state.revisionImageAutoBackup : undefined;
-            inputs["scanunitCount"] = state ? state.scanunitCount : undefined;
-            inputs["securityRatingResultSubmission"] = state ? state.securityRatingResultSubmission : undefined;
-            inputs["securityRatingRunOnSchedule"] = state ? state.securityRatingRunOnSchedule : undefined;
-            inputs["sendPmtuIcmp"] = state ? state.sendPmtuIcmp : undefined;
-            inputs["snatRouteChange"] = state ? state.snatRouteChange : undefined;
-            inputs["specialFile23Support"] = state ? state.specialFile23Support : undefined;
-            inputs["ssdTrimDate"] = state ? state.ssdTrimDate : undefined;
-            inputs["ssdTrimFreq"] = state ? state.ssdTrimFreq : undefined;
-            inputs["ssdTrimHour"] = state ? state.ssdTrimHour : undefined;
-            inputs["ssdTrimMin"] = state ? state.ssdTrimMin : undefined;
-            inputs["ssdTrimWeekday"] = state ? state.ssdTrimWeekday : undefined;
-            inputs["sshCbcCipher"] = state ? state.sshCbcCipher : undefined;
-            inputs["sshHmacMd5"] = state ? state.sshHmacMd5 : undefined;
-            inputs["sshKexSha1"] = state ? state.sshKexSha1 : undefined;
-            inputs["sshMacWeak"] = state ? state.sshMacWeak : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["sslStaticKeyCiphers"] = state ? state.sslStaticKeyCiphers : undefined;
-            inputs["sslvpnCipherHardwareAcceleration"] = state ? state.sslvpnCipherHardwareAcceleration : undefined;
-            inputs["sslvpnEmsSnCheck"] = state ? state.sslvpnEmsSnCheck : undefined;
-            inputs["sslvpnKxpHardwareAcceleration"] = state ? state.sslvpnKxpHardwareAcceleration : undefined;
-            inputs["sslvpnMaxWorkerCount"] = state ? state.sslvpnMaxWorkerCount : undefined;
-            inputs["sslvpnPluginVersionCheck"] = state ? state.sslvpnPluginVersionCheck : undefined;
-            inputs["strictDirtySessionCheck"] = state ? state.strictDirtySessionCheck : undefined;
-            inputs["strongCrypto"] = state ? state.strongCrypto : undefined;
-            inputs["switchController"] = state ? state.switchController : undefined;
-            inputs["switchControllerReservedNetwork"] = state ? state.switchControllerReservedNetwork : undefined;
-            inputs["sysPerfLogInterval"] = state ? state.sysPerfLogInterval : undefined;
-            inputs["tcpHalfcloseTimer"] = state ? state.tcpHalfcloseTimer : undefined;
-            inputs["tcpHalfopenTimer"] = state ? state.tcpHalfopenTimer : undefined;
-            inputs["tcpOption"] = state ? state.tcpOption : undefined;
-            inputs["tcpTimewaitTimer"] = state ? state.tcpTimewaitTimer : undefined;
-            inputs["tftp"] = state ? state.tftp : undefined;
-            inputs["timezone"] = state ? state.timezone : undefined;
-            inputs["tpMcSkipPolicy"] = state ? state.tpMcSkipPolicy : undefined;
-            inputs["trafficPriority"] = state ? state.trafficPriority : undefined;
-            inputs["trafficPriorityLevel"] = state ? state.trafficPriorityLevel : undefined;
-            inputs["twoFactorEmailExpiry"] = state ? state.twoFactorEmailExpiry : undefined;
-            inputs["twoFactorFacExpiry"] = state ? state.twoFactorFacExpiry : undefined;
-            inputs["twoFactorFtkExpiry"] = state ? state.twoFactorFtkExpiry : undefined;
-            inputs["twoFactorFtmExpiry"] = state ? state.twoFactorFtmExpiry : undefined;
-            inputs["twoFactorSmsExpiry"] = state ? state.twoFactorSmsExpiry : undefined;
-            inputs["udpIdleTimer"] = state ? state.udpIdleTimer : undefined;
-            inputs["urlFilterAffinity"] = state ? state.urlFilterAffinity : undefined;
-            inputs["urlFilterCount"] = state ? state.urlFilterCount : undefined;
-            inputs["userDeviceStoreMaxDevices"] = state ? state.userDeviceStoreMaxDevices : undefined;
-            inputs["userDeviceStoreMaxUsers"] = state ? state.userDeviceStoreMaxUsers : undefined;
-            inputs["userServerCert"] = state ? state.userServerCert : undefined;
-            inputs["vdomAdmin"] = state ? state.vdomAdmin : undefined;
-            inputs["vdomMode"] = state ? state.vdomMode : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vipArpRange"] = state ? state.vipArpRange : undefined;
-            inputs["virtualServerCount"] = state ? state.virtualServerCount : undefined;
-            inputs["virtualServerHardwareAcceleration"] = state ? state.virtualServerHardwareAcceleration : undefined;
-            inputs["wadAffinity"] = state ? state.wadAffinity : undefined;
-            inputs["wadCsvcCsCount"] = state ? state.wadCsvcCsCount : undefined;
-            inputs["wadCsvcDbCount"] = state ? state.wadCsvcDbCount : undefined;
-            inputs["wadMemoryChangeGranularity"] = state ? state.wadMemoryChangeGranularity : undefined;
-            inputs["wadSourceAffinity"] = state ? state.wadSourceAffinity : undefined;
-            inputs["wadWorkerCount"] = state ? state.wadWorkerCount : undefined;
-            inputs["wifiCaCertificate"] = state ? state.wifiCaCertificate : undefined;
-            inputs["wifiCertificate"] = state ? state.wifiCertificate : undefined;
-            inputs["wimax4gUsb"] = state ? state.wimax4gUsb : undefined;
-            inputs["wirelessController"] = state ? state.wirelessController : undefined;
-            inputs["wirelessControllerPort"] = state ? state.wirelessControllerPort : undefined;
+            resourceInputs["adminConcurrent"] = state ? state.adminConcurrent : undefined;
+            resourceInputs["adminConsoleTimeout"] = state ? state.adminConsoleTimeout : undefined;
+            resourceInputs["adminForticloudSsoLogin"] = state ? state.adminForticloudSsoLogin : undefined;
+            resourceInputs["adminHstsMaxAge"] = state ? state.adminHstsMaxAge : undefined;
+            resourceInputs["adminHttpsPkiRequired"] = state ? state.adminHttpsPkiRequired : undefined;
+            resourceInputs["adminHttpsRedirect"] = state ? state.adminHttpsRedirect : undefined;
+            resourceInputs["adminHttpsSslBannedCiphers"] = state ? state.adminHttpsSslBannedCiphers : undefined;
+            resourceInputs["adminHttpsSslCiphersuites"] = state ? state.adminHttpsSslCiphersuites : undefined;
+            resourceInputs["adminHttpsSslVersions"] = state ? state.adminHttpsSslVersions : undefined;
+            resourceInputs["adminLockoutDuration"] = state ? state.adminLockoutDuration : undefined;
+            resourceInputs["adminLockoutThreshold"] = state ? state.adminLockoutThreshold : undefined;
+            resourceInputs["adminLoginMax"] = state ? state.adminLoginMax : undefined;
+            resourceInputs["adminMaintainer"] = state ? state.adminMaintainer : undefined;
+            resourceInputs["adminPort"] = state ? state.adminPort : undefined;
+            resourceInputs["adminRestrictLocal"] = state ? state.adminRestrictLocal : undefined;
+            resourceInputs["adminScp"] = state ? state.adminScp : undefined;
+            resourceInputs["adminServerCert"] = state ? state.adminServerCert : undefined;
+            resourceInputs["adminSport"] = state ? state.adminSport : undefined;
+            resourceInputs["adminSshGraceTime"] = state ? state.adminSshGraceTime : undefined;
+            resourceInputs["adminSshPassword"] = state ? state.adminSshPassword : undefined;
+            resourceInputs["adminSshPort"] = state ? state.adminSshPort : undefined;
+            resourceInputs["adminSshV1"] = state ? state.adminSshV1 : undefined;
+            resourceInputs["adminTelnet"] = state ? state.adminTelnet : undefined;
+            resourceInputs["adminTelnetPort"] = state ? state.adminTelnetPort : undefined;
+            resourceInputs["admintimeout"] = state ? state.admintimeout : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["allowTrafficRedirect"] = state ? state.allowTrafficRedirect : undefined;
+            resourceInputs["antiReplay"] = state ? state.antiReplay : undefined;
+            resourceInputs["arpMaxEntry"] = state ? state.arpMaxEntry : undefined;
+            resourceInputs["asymroute"] = state ? state.asymroute : undefined;
+            resourceInputs["authCert"] = state ? state.authCert : undefined;
+            resourceInputs["authHttpPort"] = state ? state.authHttpPort : undefined;
+            resourceInputs["authHttpsPort"] = state ? state.authHttpsPort : undefined;
+            resourceInputs["authKeepalive"] = state ? state.authKeepalive : undefined;
+            resourceInputs["authSessionLimit"] = state ? state.authSessionLimit : undefined;
+            resourceInputs["autoAuthExtensionDevice"] = state ? state.autoAuthExtensionDevice : undefined;
+            resourceInputs["autorunLogFsck"] = state ? state.autorunLogFsck : undefined;
+            resourceInputs["avAffinity"] = state ? state.avAffinity : undefined;
+            resourceInputs["avFailopen"] = state ? state.avFailopen : undefined;
+            resourceInputs["avFailopenSession"] = state ? state.avFailopenSession : undefined;
+            resourceInputs["batchCmdb"] = state ? state.batchCmdb : undefined;
+            resourceInputs["blockSessionTimer"] = state ? state.blockSessionTimer : undefined;
+            resourceInputs["brFdbMaxEntry"] = state ? state.brFdbMaxEntry : undefined;
+            resourceInputs["certChainMax"] = state ? state.certChainMax : undefined;
+            resourceInputs["cfgRevertTimeout"] = state ? state.cfgRevertTimeout : undefined;
+            resourceInputs["cfgSave"] = state ? state.cfgSave : undefined;
+            resourceInputs["checkProtocolHeader"] = state ? state.checkProtocolHeader : undefined;
+            resourceInputs["checkResetRange"] = state ? state.checkResetRange : undefined;
+            resourceInputs["cliAuditLog"] = state ? state.cliAuditLog : undefined;
+            resourceInputs["cloudCommunication"] = state ? state.cloudCommunication : undefined;
+            resourceInputs["cltCertReq"] = state ? state.cltCertReq : undefined;
+            resourceInputs["cmdbsvrAffinity"] = state ? state.cmdbsvrAffinity : undefined;
+            resourceInputs["complianceCheck"] = state ? state.complianceCheck : undefined;
+            resourceInputs["complianceCheckTime"] = state ? state.complianceCheckTime : undefined;
+            resourceInputs["cpuUseThreshold"] = state ? state.cpuUseThreshold : undefined;
+            resourceInputs["csrCaAttribute"] = state ? state.csrCaAttribute : undefined;
+            resourceInputs["dailyRestart"] = state ? state.dailyRestart : undefined;
+            resourceInputs["defaultServiceSourcePort"] = state ? state.defaultServiceSourcePort : undefined;
+            resourceInputs["deviceIdentificationActiveScanDelay"] = state ? state.deviceIdentificationActiveScanDelay : undefined;
+            resourceInputs["deviceIdleTimeout"] = state ? state.deviceIdleTimeout : undefined;
+            resourceInputs["dhParams"] = state ? state.dhParams : undefined;
+            resourceInputs["dnsproxyWorkerCount"] = state ? state.dnsproxyWorkerCount : undefined;
+            resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["editVdomPrompt"] = state ? state.editVdomPrompt : undefined;
+            resourceInputs["endpointControlFdsAccess"] = state ? state.endpointControlFdsAccess : undefined;
+            resourceInputs["endpointControlPortalPort"] = state ? state.endpointControlPortalPort : undefined;
+            resourceInputs["extenderControllerReservedNetwork"] = state ? state.extenderControllerReservedNetwork : undefined;
+            resourceInputs["failtime"] = state ? state.failtime : undefined;
+            resourceInputs["fazDiskBufferSize"] = state ? state.fazDiskBufferSize : undefined;
+            resourceInputs["fdsStatistics"] = state ? state.fdsStatistics : undefined;
+            resourceInputs["fdsStatisticsPeriod"] = state ? state.fdsStatisticsPeriod : undefined;
+            resourceInputs["fecPort"] = state ? state.fecPort : undefined;
+            resourceInputs["fgdAlertSubscription"] = state ? state.fgdAlertSubscription : undefined;
+            resourceInputs["fortiextender"] = state ? state.fortiextender : undefined;
+            resourceInputs["fortiextenderDataPort"] = state ? state.fortiextenderDataPort : undefined;
+            resourceInputs["fortiextenderDiscoveryLockdown"] = state ? state.fortiextenderDiscoveryLockdown : undefined;
+            resourceInputs["fortiextenderVlanMode"] = state ? state.fortiextenderVlanMode : undefined;
+            resourceInputs["fortiipamIntegration"] = state ? state.fortiipamIntegration : undefined;
+            resourceInputs["fortiservicePort"] = state ? state.fortiservicePort : undefined;
+            resourceInputs["fortitokenCloud"] = state ? state.fortitokenCloud : undefined;
+            resourceInputs["guiAllowDefaultHostname"] = state ? state.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiCdnUsage"] = state ? state.guiCdnUsage : undefined;
+            resourceInputs["guiCertificates"] = state ? state.guiCertificates : undefined;
+            resourceInputs["guiCustomLanguage"] = state ? state.guiCustomLanguage : undefined;
+            resourceInputs["guiDateFormat"] = state ? state.guiDateFormat : undefined;
+            resourceInputs["guiDateTimeSource"] = state ? state.guiDateTimeSource : undefined;
+            resourceInputs["guiDeviceLatitude"] = state ? state.guiDeviceLatitude : undefined;
+            resourceInputs["guiDeviceLongitude"] = state ? state.guiDeviceLongitude : undefined;
+            resourceInputs["guiDisplayHostname"] = state ? state.guiDisplayHostname : undefined;
+            resourceInputs["guiFirmwareUpgradeSetupWarning"] = state ? state.guiFirmwareUpgradeSetupWarning : undefined;
+            resourceInputs["guiFirmwareUpgradeWarning"] = state ? state.guiFirmwareUpgradeWarning : undefined;
+            resourceInputs["guiForticareRegistrationSetupWarning"] = state ? state.guiForticareRegistrationSetupWarning : undefined;
+            resourceInputs["guiFortigateCloudSandbox"] = state ? state.guiFortigateCloudSandbox : undefined;
+            resourceInputs["guiFortisandboxCloud"] = state ? state.guiFortisandboxCloud : undefined;
+            resourceInputs["guiIpv6"] = state ? state.guiIpv6 : undefined;
+            resourceInputs["guiLinesPerPage"] = state ? state.guiLinesPerPage : undefined;
+            resourceInputs["guiLocalOut"] = state ? state.guiLocalOut : undefined;
+            resourceInputs["guiReplacementMessageGroups"] = state ? state.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiRestApiCache"] = state ? state.guiRestApiCache : undefined;
+            resourceInputs["guiTheme"] = state ? state.guiTheme : undefined;
+            resourceInputs["guiWirelessOpensecurity"] = state ? state.guiWirelessOpensecurity : undefined;
+            resourceInputs["haAffinity"] = state ? state.haAffinity : undefined;
+            resourceInputs["honorDf"] = state ? state.honorDf : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["igmpStateLimit"] = state ? state.igmpStateLimit : undefined;
+            resourceInputs["ikeEmbryonicLimit"] = state ? state.ikeEmbryonicLimit : undefined;
+            resourceInputs["internetServiceDatabase"] = state ? state.internetServiceDatabase : undefined;
+            resourceInputs["interval"] = state ? state.interval : undefined;
+            resourceInputs["ipSrcPortRange"] = state ? state.ipSrcPortRange : undefined;
+            resourceInputs["ipsAffinity"] = state ? state.ipsAffinity : undefined;
+            resourceInputs["ipsecAsicOffload"] = state ? state.ipsecAsicOffload : undefined;
+            resourceInputs["ipsecHaSeqjumpRate"] = state ? state.ipsecHaSeqjumpRate : undefined;
+            resourceInputs["ipsecHmacOffload"] = state ? state.ipsecHmacOffload : undefined;
+            resourceInputs["ipsecSoftDecAsync"] = state ? state.ipsecSoftDecAsync : undefined;
+            resourceInputs["ipv6AcceptDad"] = state ? state.ipv6AcceptDad : undefined;
+            resourceInputs["ipv6AllowAnycastProbe"] = state ? state.ipv6AllowAnycastProbe : undefined;
+            resourceInputs["ipv6AllowTrafficRedirect"] = state ? state.ipv6AllowTrafficRedirect : undefined;
+            resourceInputs["irqTimeAccounting"] = state ? state.irqTimeAccounting : undefined;
+            resourceInputs["language"] = state ? state.language : undefined;
+            resourceInputs["ldapconntimeout"] = state ? state.ldapconntimeout : undefined;
+            resourceInputs["lldpReception"] = state ? state.lldpReception : undefined;
+            resourceInputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
+            resourceInputs["logSslConnection"] = state ? state.logSslConnection : undefined;
+            resourceInputs["logUuidAddress"] = state ? state.logUuidAddress : undefined;
+            resourceInputs["logUuidPolicy"] = state ? state.logUuidPolicy : undefined;
+            resourceInputs["loginTimestamp"] = state ? state.loginTimestamp : undefined;
+            resourceInputs["longVdomName"] = state ? state.longVdomName : undefined;
+            resourceInputs["managementIp"] = state ? state.managementIp : undefined;
+            resourceInputs["managementPort"] = state ? state.managementPort : undefined;
+            resourceInputs["managementPortUseAdminSport"] = state ? state.managementPortUseAdminSport : undefined;
+            resourceInputs["managementVdom"] = state ? state.managementVdom : undefined;
+            resourceInputs["maxDlpstatMemory"] = state ? state.maxDlpstatMemory : undefined;
+            resourceInputs["maxRouteCacheSize"] = state ? state.maxRouteCacheSize : undefined;
+            resourceInputs["mcTtlNotchange"] = state ? state.mcTtlNotchange : undefined;
+            resourceInputs["memoryUseThresholdExtreme"] = state ? state.memoryUseThresholdExtreme : undefined;
+            resourceInputs["memoryUseThresholdGreen"] = state ? state.memoryUseThresholdGreen : undefined;
+            resourceInputs["memoryUseThresholdRed"] = state ? state.memoryUseThresholdRed : undefined;
+            resourceInputs["miglogAffinity"] = state ? state.miglogAffinity : undefined;
+            resourceInputs["miglogdChildren"] = state ? state.miglogdChildren : undefined;
+            resourceInputs["multiFactorAuthentication"] = state ? state.multiFactorAuthentication : undefined;
+            resourceInputs["multicastForward"] = state ? state.multicastForward : undefined;
+            resourceInputs["ndpMaxEntry"] = state ? state.ndpMaxEntry : undefined;
+            resourceInputs["perUserBal"] = state ? state.perUserBal : undefined;
+            resourceInputs["perUserBwl"] = state ? state.perUserBwl : undefined;
+            resourceInputs["pmtuDiscovery"] = state ? state.pmtuDiscovery : undefined;
+            resourceInputs["policyAuthConcurrent"] = state ? state.policyAuthConcurrent : undefined;
+            resourceInputs["postLoginBanner"] = state ? state.postLoginBanner : undefined;
+            resourceInputs["preLoginBanner"] = state ? state.preLoginBanner : undefined;
+            resourceInputs["privateDataEncryption"] = state ? state.privateDataEncryption : undefined;
+            resourceInputs["proxyAuthLifetime"] = state ? state.proxyAuthLifetime : undefined;
+            resourceInputs["proxyAuthLifetimeTimeout"] = state ? state.proxyAuthLifetimeTimeout : undefined;
+            resourceInputs["proxyAuthTimeout"] = state ? state.proxyAuthTimeout : undefined;
+            resourceInputs["proxyCertUseMgmtVdom"] = state ? state.proxyCertUseMgmtVdom : undefined;
+            resourceInputs["proxyCipherHardwareAcceleration"] = state ? state.proxyCipherHardwareAcceleration : undefined;
+            resourceInputs["proxyHardwareAcceleration"] = state ? state.proxyHardwareAcceleration : undefined;
+            resourceInputs["proxyKxpHardwareAcceleration"] = state ? state.proxyKxpHardwareAcceleration : undefined;
+            resourceInputs["proxyReAuthenticationMode"] = state ? state.proxyReAuthenticationMode : undefined;
+            resourceInputs["proxyResourceMode"] = state ? state.proxyResourceMode : undefined;
+            resourceInputs["proxyWorkerCount"] = state ? state.proxyWorkerCount : undefined;
+            resourceInputs["radiusPort"] = state ? state.radiusPort : undefined;
+            resourceInputs["rebootUponConfigRestore"] = state ? state.rebootUponConfigRestore : undefined;
+            resourceInputs["refresh"] = state ? state.refresh : undefined;
+            resourceInputs["remoteauthtimeout"] = state ? state.remoteauthtimeout : undefined;
+            resourceInputs["resetSessionlessTcp"] = state ? state.resetSessionlessTcp : undefined;
+            resourceInputs["restartTime"] = state ? state.restartTime : undefined;
+            resourceInputs["revisionBackupOnLogout"] = state ? state.revisionBackupOnLogout : undefined;
+            resourceInputs["revisionImageAutoBackup"] = state ? state.revisionImageAutoBackup : undefined;
+            resourceInputs["scanunitCount"] = state ? state.scanunitCount : undefined;
+            resourceInputs["securityRatingResultSubmission"] = state ? state.securityRatingResultSubmission : undefined;
+            resourceInputs["securityRatingRunOnSchedule"] = state ? state.securityRatingRunOnSchedule : undefined;
+            resourceInputs["sendPmtuIcmp"] = state ? state.sendPmtuIcmp : undefined;
+            resourceInputs["snatRouteChange"] = state ? state.snatRouteChange : undefined;
+            resourceInputs["specialFile23Support"] = state ? state.specialFile23Support : undefined;
+            resourceInputs["speedtestServer"] = state ? state.speedtestServer : undefined;
+            resourceInputs["splitPort"] = state ? state.splitPort : undefined;
+            resourceInputs["ssdTrimDate"] = state ? state.ssdTrimDate : undefined;
+            resourceInputs["ssdTrimFreq"] = state ? state.ssdTrimFreq : undefined;
+            resourceInputs["ssdTrimHour"] = state ? state.ssdTrimHour : undefined;
+            resourceInputs["ssdTrimMin"] = state ? state.ssdTrimMin : undefined;
+            resourceInputs["ssdTrimWeekday"] = state ? state.ssdTrimWeekday : undefined;
+            resourceInputs["sshCbcCipher"] = state ? state.sshCbcCipher : undefined;
+            resourceInputs["sshEncAlgo"] = state ? state.sshEncAlgo : undefined;
+            resourceInputs["sshHmacMd5"] = state ? state.sshHmacMd5 : undefined;
+            resourceInputs["sshKexAlgo"] = state ? state.sshKexAlgo : undefined;
+            resourceInputs["sshKexSha1"] = state ? state.sshKexSha1 : undefined;
+            resourceInputs["sshMacAlgo"] = state ? state.sshMacAlgo : undefined;
+            resourceInputs["sshMacWeak"] = state ? state.sshMacWeak : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["sslStaticKeyCiphers"] = state ? state.sslStaticKeyCiphers : undefined;
+            resourceInputs["sslvpnCipherHardwareAcceleration"] = state ? state.sslvpnCipherHardwareAcceleration : undefined;
+            resourceInputs["sslvpnEmsSnCheck"] = state ? state.sslvpnEmsSnCheck : undefined;
+            resourceInputs["sslvpnKxpHardwareAcceleration"] = state ? state.sslvpnKxpHardwareAcceleration : undefined;
+            resourceInputs["sslvpnMaxWorkerCount"] = state ? state.sslvpnMaxWorkerCount : undefined;
+            resourceInputs["sslvpnPluginVersionCheck"] = state ? state.sslvpnPluginVersionCheck : undefined;
+            resourceInputs["strictDirtySessionCheck"] = state ? state.strictDirtySessionCheck : undefined;
+            resourceInputs["strongCrypto"] = state ? state.strongCrypto : undefined;
+            resourceInputs["switchController"] = state ? state.switchController : undefined;
+            resourceInputs["switchControllerReservedNetwork"] = state ? state.switchControllerReservedNetwork : undefined;
+            resourceInputs["sysPerfLogInterval"] = state ? state.sysPerfLogInterval : undefined;
+            resourceInputs["tcpHalfcloseTimer"] = state ? state.tcpHalfcloseTimer : undefined;
+            resourceInputs["tcpHalfopenTimer"] = state ? state.tcpHalfopenTimer : undefined;
+            resourceInputs["tcpOption"] = state ? state.tcpOption : undefined;
+            resourceInputs["tcpRstTimer"] = state ? state.tcpRstTimer : undefined;
+            resourceInputs["tcpTimewaitTimer"] = state ? state.tcpTimewaitTimer : undefined;
+            resourceInputs["tftp"] = state ? state.tftp : undefined;
+            resourceInputs["timezone"] = state ? state.timezone : undefined;
+            resourceInputs["tpMcSkipPolicy"] = state ? state.tpMcSkipPolicy : undefined;
+            resourceInputs["trafficPriority"] = state ? state.trafficPriority : undefined;
+            resourceInputs["trafficPriorityLevel"] = state ? state.trafficPriorityLevel : undefined;
+            resourceInputs["twoFactorEmailExpiry"] = state ? state.twoFactorEmailExpiry : undefined;
+            resourceInputs["twoFactorFacExpiry"] = state ? state.twoFactorFacExpiry : undefined;
+            resourceInputs["twoFactorFtkExpiry"] = state ? state.twoFactorFtkExpiry : undefined;
+            resourceInputs["twoFactorFtmExpiry"] = state ? state.twoFactorFtmExpiry : undefined;
+            resourceInputs["twoFactorSmsExpiry"] = state ? state.twoFactorSmsExpiry : undefined;
+            resourceInputs["udpIdleTimer"] = state ? state.udpIdleTimer : undefined;
+            resourceInputs["urlFilterAffinity"] = state ? state.urlFilterAffinity : undefined;
+            resourceInputs["urlFilterCount"] = state ? state.urlFilterCount : undefined;
+            resourceInputs["userDeviceStoreMaxDevices"] = state ? state.userDeviceStoreMaxDevices : undefined;
+            resourceInputs["userDeviceStoreMaxUnifiedMem"] = state ? state.userDeviceStoreMaxUnifiedMem : undefined;
+            resourceInputs["userDeviceStoreMaxUsers"] = state ? state.userDeviceStoreMaxUsers : undefined;
+            resourceInputs["userServerCert"] = state ? state.userServerCert : undefined;
+            resourceInputs["vdomAdmin"] = state ? state.vdomAdmin : undefined;
+            resourceInputs["vdomMode"] = state ? state.vdomMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vipArpRange"] = state ? state.vipArpRange : undefined;
+            resourceInputs["virtualServerCount"] = state ? state.virtualServerCount : undefined;
+            resourceInputs["virtualServerHardwareAcceleration"] = state ? state.virtualServerHardwareAcceleration : undefined;
+            resourceInputs["virtualSwitchVlan"] = state ? state.virtualSwitchVlan : undefined;
+            resourceInputs["wadAffinity"] = state ? state.wadAffinity : undefined;
+            resourceInputs["wadCsvcCsCount"] = state ? state.wadCsvcCsCount : undefined;
+            resourceInputs["wadCsvcDbCount"] = state ? state.wadCsvcDbCount : undefined;
+            resourceInputs["wadMemoryChangeGranularity"] = state ? state.wadMemoryChangeGranularity : undefined;
+            resourceInputs["wadSourceAffinity"] = state ? state.wadSourceAffinity : undefined;
+            resourceInputs["wadWorkerCount"] = state ? state.wadWorkerCount : undefined;
+            resourceInputs["wifiCaCertificate"] = state ? state.wifiCaCertificate : undefined;
+            resourceInputs["wifiCertificate"] = state ? state.wifiCertificate : undefined;
+            resourceInputs["wimax4gUsb"] = state ? state.wimax4gUsb : undefined;
+            resourceInputs["wirelessController"] = state ? state.wirelessController : undefined;
+            resourceInputs["wirelessControllerPort"] = state ? state.wirelessControllerPort : undefined;
         } else {
             const args = argsOrState as SystemGlobalArgs | undefined;
-            inputs["adminConcurrent"] = args ? args.adminConcurrent : undefined;
-            inputs["adminConsoleTimeout"] = args ? args.adminConsoleTimeout : undefined;
-            inputs["adminHstsMaxAge"] = args ? args.adminHstsMaxAge : undefined;
-            inputs["adminHttpsPkiRequired"] = args ? args.adminHttpsPkiRequired : undefined;
-            inputs["adminHttpsRedirect"] = args ? args.adminHttpsRedirect : undefined;
-            inputs["adminHttpsSslVersions"] = args ? args.adminHttpsSslVersions : undefined;
-            inputs["adminLockoutDuration"] = args ? args.adminLockoutDuration : undefined;
-            inputs["adminLockoutThreshold"] = args ? args.adminLockoutThreshold : undefined;
-            inputs["adminLoginMax"] = args ? args.adminLoginMax : undefined;
-            inputs["adminMaintainer"] = args ? args.adminMaintainer : undefined;
-            inputs["adminPort"] = args ? args.adminPort : undefined;
-            inputs["adminRestrictLocal"] = args ? args.adminRestrictLocal : undefined;
-            inputs["adminScp"] = args ? args.adminScp : undefined;
-            inputs["adminServerCert"] = args ? args.adminServerCert : undefined;
-            inputs["adminSport"] = args ? args.adminSport : undefined;
-            inputs["adminSshGraceTime"] = args ? args.adminSshGraceTime : undefined;
-            inputs["adminSshPassword"] = args ? args.adminSshPassword : undefined;
-            inputs["adminSshPort"] = args ? args.adminSshPort : undefined;
-            inputs["adminSshV1"] = args ? args.adminSshV1 : undefined;
-            inputs["adminTelnet"] = args ? args.adminTelnet : undefined;
-            inputs["adminTelnetPort"] = args ? args.adminTelnetPort : undefined;
-            inputs["admintimeout"] = args ? args.admintimeout : undefined;
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["allowTrafficRedirect"] = args ? args.allowTrafficRedirect : undefined;
-            inputs["antiReplay"] = args ? args.antiReplay : undefined;
-            inputs["arpMaxEntry"] = args ? args.arpMaxEntry : undefined;
-            inputs["asymroute"] = args ? args.asymroute : undefined;
-            inputs["authCert"] = args ? args.authCert : undefined;
-            inputs["authHttpPort"] = args ? args.authHttpPort : undefined;
-            inputs["authHttpsPort"] = args ? args.authHttpsPort : undefined;
-            inputs["authKeepalive"] = args ? args.authKeepalive : undefined;
-            inputs["authSessionLimit"] = args ? args.authSessionLimit : undefined;
-            inputs["autoAuthExtensionDevice"] = args ? args.autoAuthExtensionDevice : undefined;
-            inputs["autorunLogFsck"] = args ? args.autorunLogFsck : undefined;
-            inputs["avAffinity"] = args ? args.avAffinity : undefined;
-            inputs["avFailopen"] = args ? args.avFailopen : undefined;
-            inputs["avFailopenSession"] = args ? args.avFailopenSession : undefined;
-            inputs["batchCmdb"] = args ? args.batchCmdb : undefined;
-            inputs["blockSessionTimer"] = args ? args.blockSessionTimer : undefined;
-            inputs["brFdbMaxEntry"] = args ? args.brFdbMaxEntry : undefined;
-            inputs["certChainMax"] = args ? args.certChainMax : undefined;
-            inputs["cfgRevertTimeout"] = args ? args.cfgRevertTimeout : undefined;
-            inputs["cfgSave"] = args ? args.cfgSave : undefined;
-            inputs["checkProtocolHeader"] = args ? args.checkProtocolHeader : undefined;
-            inputs["checkResetRange"] = args ? args.checkResetRange : undefined;
-            inputs["cliAuditLog"] = args ? args.cliAuditLog : undefined;
-            inputs["cloudCommunication"] = args ? args.cloudCommunication : undefined;
-            inputs["cltCertReq"] = args ? args.cltCertReq : undefined;
-            inputs["complianceCheck"] = args ? args.complianceCheck : undefined;
-            inputs["complianceCheckTime"] = args ? args.complianceCheckTime : undefined;
-            inputs["cpuUseThreshold"] = args ? args.cpuUseThreshold : undefined;
-            inputs["csrCaAttribute"] = args ? args.csrCaAttribute : undefined;
-            inputs["dailyRestart"] = args ? args.dailyRestart : undefined;
-            inputs["defaultServiceSourcePort"] = args ? args.defaultServiceSourcePort : undefined;
-            inputs["deviceIdentificationActiveScanDelay"] = args ? args.deviceIdentificationActiveScanDelay : undefined;
-            inputs["deviceIdleTimeout"] = args ? args.deviceIdleTimeout : undefined;
-            inputs["dhParams"] = args ? args.dhParams : undefined;
-            inputs["dnsproxyWorkerCount"] = args ? args.dnsproxyWorkerCount : undefined;
-            inputs["dst"] = args ? args.dst : undefined;
-            inputs["endpointControlFdsAccess"] = args ? args.endpointControlFdsAccess : undefined;
-            inputs["endpointControlPortalPort"] = args ? args.endpointControlPortalPort : undefined;
-            inputs["failtime"] = args ? args.failtime : undefined;
-            inputs["fazDiskBufferSize"] = args ? args.fazDiskBufferSize : undefined;
-            inputs["fdsStatistics"] = args ? args.fdsStatistics : undefined;
-            inputs["fdsStatisticsPeriod"] = args ? args.fdsStatisticsPeriod : undefined;
-            inputs["fecPort"] = args ? args.fecPort : undefined;
-            inputs["fgdAlertSubscription"] = args ? args.fgdAlertSubscription : undefined;
-            inputs["fortiextender"] = args ? args.fortiextender : undefined;
-            inputs["fortiextenderDataPort"] = args ? args.fortiextenderDataPort : undefined;
-            inputs["fortiextenderVlanMode"] = args ? args.fortiextenderVlanMode : undefined;
-            inputs["fortiipamIntegration"] = args ? args.fortiipamIntegration : undefined;
-            inputs["fortiservicePort"] = args ? args.fortiservicePort : undefined;
-            inputs["fortitokenCloud"] = args ? args.fortitokenCloud : undefined;
-            inputs["guiAllowDefaultHostname"] = args ? args.guiAllowDefaultHostname : undefined;
-            inputs["guiCertificates"] = args ? args.guiCertificates : undefined;
-            inputs["guiCustomLanguage"] = args ? args.guiCustomLanguage : undefined;
-            inputs["guiDateFormat"] = args ? args.guiDateFormat : undefined;
-            inputs["guiDateTimeSource"] = args ? args.guiDateTimeSource : undefined;
-            inputs["guiDeviceLatitude"] = args ? args.guiDeviceLatitude : undefined;
-            inputs["guiDeviceLongitude"] = args ? args.guiDeviceLongitude : undefined;
-            inputs["guiDisplayHostname"] = args ? args.guiDisplayHostname : undefined;
-            inputs["guiFirmwareUpgradeSetupWarning"] = args ? args.guiFirmwareUpgradeSetupWarning : undefined;
-            inputs["guiFirmwareUpgradeWarning"] = args ? args.guiFirmwareUpgradeWarning : undefined;
-            inputs["guiForticareRegistrationSetupWarning"] = args ? args.guiForticareRegistrationSetupWarning : undefined;
-            inputs["guiFortigateCloudSandbox"] = args ? args.guiFortigateCloudSandbox : undefined;
-            inputs["guiFortisandboxCloud"] = args ? args.guiFortisandboxCloud : undefined;
-            inputs["guiIpv6"] = args ? args.guiIpv6 : undefined;
-            inputs["guiLinesPerPage"] = args ? args.guiLinesPerPage : undefined;
-            inputs["guiTheme"] = args ? args.guiTheme : undefined;
-            inputs["guiWirelessOpensecurity"] = args ? args.guiWirelessOpensecurity : undefined;
-            inputs["honorDf"] = args ? args.honorDf : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["igmpStateLimit"] = args ? args.igmpStateLimit : undefined;
-            inputs["ikeEmbryonicLimit"] = args ? args.ikeEmbryonicLimit : undefined;
-            inputs["interval"] = args ? args.interval : undefined;
-            inputs["ipSrcPortRange"] = args ? args.ipSrcPortRange : undefined;
-            inputs["ipsAffinity"] = args ? args.ipsAffinity : undefined;
-            inputs["ipsecAsicOffload"] = args ? args.ipsecAsicOffload : undefined;
-            inputs["ipsecHmacOffload"] = args ? args.ipsecHmacOffload : undefined;
-            inputs["ipsecSoftDecAsync"] = args ? args.ipsecSoftDecAsync : undefined;
-            inputs["ipv6AcceptDad"] = args ? args.ipv6AcceptDad : undefined;
-            inputs["ipv6AllowAnycastProbe"] = args ? args.ipv6AllowAnycastProbe : undefined;
-            inputs["ipv6AllowTrafficRedirect"] = args ? args.ipv6AllowTrafficRedirect : undefined;
-            inputs["irqTimeAccounting"] = args ? args.irqTimeAccounting : undefined;
-            inputs["language"] = args ? args.language : undefined;
-            inputs["ldapconntimeout"] = args ? args.ldapconntimeout : undefined;
-            inputs["lldpReception"] = args ? args.lldpReception : undefined;
-            inputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
-            inputs["logSslConnection"] = args ? args.logSslConnection : undefined;
-            inputs["logUuidAddress"] = args ? args.logUuidAddress : undefined;
-            inputs["logUuidPolicy"] = args ? args.logUuidPolicy : undefined;
-            inputs["loginTimestamp"] = args ? args.loginTimestamp : undefined;
-            inputs["longVdomName"] = args ? args.longVdomName : undefined;
-            inputs["managementVdom"] = args ? args.managementVdom : undefined;
-            inputs["maxDlpstatMemory"] = args ? args.maxDlpstatMemory : undefined;
-            inputs["maxRouteCacheSize"] = args ? args.maxRouteCacheSize : undefined;
-            inputs["mcTtlNotchange"] = args ? args.mcTtlNotchange : undefined;
-            inputs["memoryUseThresholdExtreme"] = args ? args.memoryUseThresholdExtreme : undefined;
-            inputs["memoryUseThresholdGreen"] = args ? args.memoryUseThresholdGreen : undefined;
-            inputs["memoryUseThresholdRed"] = args ? args.memoryUseThresholdRed : undefined;
-            inputs["miglogAffinity"] = args ? args.miglogAffinity : undefined;
-            inputs["miglogdChildren"] = args ? args.miglogdChildren : undefined;
-            inputs["multiFactorAuthentication"] = args ? args.multiFactorAuthentication : undefined;
-            inputs["multicastForward"] = args ? args.multicastForward : undefined;
-            inputs["ndpMaxEntry"] = args ? args.ndpMaxEntry : undefined;
-            inputs["perUserBal"] = args ? args.perUserBal : undefined;
-            inputs["perUserBwl"] = args ? args.perUserBwl : undefined;
-            inputs["policyAuthConcurrent"] = args ? args.policyAuthConcurrent : undefined;
-            inputs["postLoginBanner"] = args ? args.postLoginBanner : undefined;
-            inputs["preLoginBanner"] = args ? args.preLoginBanner : undefined;
-            inputs["privateDataEncryption"] = args ? args.privateDataEncryption : undefined;
-            inputs["proxyAuthLifetime"] = args ? args.proxyAuthLifetime : undefined;
-            inputs["proxyAuthLifetimeTimeout"] = args ? args.proxyAuthLifetimeTimeout : undefined;
-            inputs["proxyAuthTimeout"] = args ? args.proxyAuthTimeout : undefined;
-            inputs["proxyCipherHardwareAcceleration"] = args ? args.proxyCipherHardwareAcceleration : undefined;
-            inputs["proxyKxpHardwareAcceleration"] = args ? args.proxyKxpHardwareAcceleration : undefined;
-            inputs["proxyReAuthenticationMode"] = args ? args.proxyReAuthenticationMode : undefined;
-            inputs["proxyWorkerCount"] = args ? args.proxyWorkerCount : undefined;
-            inputs["radiusPort"] = args ? args.radiusPort : undefined;
-            inputs["rebootUponConfigRestore"] = args ? args.rebootUponConfigRestore : undefined;
-            inputs["refresh"] = args ? args.refresh : undefined;
-            inputs["remoteauthtimeout"] = args ? args.remoteauthtimeout : undefined;
-            inputs["resetSessionlessTcp"] = args ? args.resetSessionlessTcp : undefined;
-            inputs["restartTime"] = args ? args.restartTime : undefined;
-            inputs["revisionBackupOnLogout"] = args ? args.revisionBackupOnLogout : undefined;
-            inputs["revisionImageAutoBackup"] = args ? args.revisionImageAutoBackup : undefined;
-            inputs["scanunitCount"] = args ? args.scanunitCount : undefined;
-            inputs["securityRatingResultSubmission"] = args ? args.securityRatingResultSubmission : undefined;
-            inputs["securityRatingRunOnSchedule"] = args ? args.securityRatingRunOnSchedule : undefined;
-            inputs["sendPmtuIcmp"] = args ? args.sendPmtuIcmp : undefined;
-            inputs["snatRouteChange"] = args ? args.snatRouteChange : undefined;
-            inputs["specialFile23Support"] = args ? args.specialFile23Support : undefined;
-            inputs["ssdTrimDate"] = args ? args.ssdTrimDate : undefined;
-            inputs["ssdTrimFreq"] = args ? args.ssdTrimFreq : undefined;
-            inputs["ssdTrimHour"] = args ? args.ssdTrimHour : undefined;
-            inputs["ssdTrimMin"] = args ? args.ssdTrimMin : undefined;
-            inputs["ssdTrimWeekday"] = args ? args.ssdTrimWeekday : undefined;
-            inputs["sshCbcCipher"] = args ? args.sshCbcCipher : undefined;
-            inputs["sshHmacMd5"] = args ? args.sshHmacMd5 : undefined;
-            inputs["sshKexSha1"] = args ? args.sshKexSha1 : undefined;
-            inputs["sshMacWeak"] = args ? args.sshMacWeak : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["sslStaticKeyCiphers"] = args ? args.sslStaticKeyCiphers : undefined;
-            inputs["sslvpnCipherHardwareAcceleration"] = args ? args.sslvpnCipherHardwareAcceleration : undefined;
-            inputs["sslvpnEmsSnCheck"] = args ? args.sslvpnEmsSnCheck : undefined;
-            inputs["sslvpnKxpHardwareAcceleration"] = args ? args.sslvpnKxpHardwareAcceleration : undefined;
-            inputs["sslvpnMaxWorkerCount"] = args ? args.sslvpnMaxWorkerCount : undefined;
-            inputs["sslvpnPluginVersionCheck"] = args ? args.sslvpnPluginVersionCheck : undefined;
-            inputs["strictDirtySessionCheck"] = args ? args.strictDirtySessionCheck : undefined;
-            inputs["strongCrypto"] = args ? args.strongCrypto : undefined;
-            inputs["switchController"] = args ? args.switchController : undefined;
-            inputs["switchControllerReservedNetwork"] = args ? args.switchControllerReservedNetwork : undefined;
-            inputs["sysPerfLogInterval"] = args ? args.sysPerfLogInterval : undefined;
-            inputs["tcpHalfcloseTimer"] = args ? args.tcpHalfcloseTimer : undefined;
-            inputs["tcpHalfopenTimer"] = args ? args.tcpHalfopenTimer : undefined;
-            inputs["tcpOption"] = args ? args.tcpOption : undefined;
-            inputs["tcpTimewaitTimer"] = args ? args.tcpTimewaitTimer : undefined;
-            inputs["tftp"] = args ? args.tftp : undefined;
-            inputs["timezone"] = args ? args.timezone : undefined;
-            inputs["tpMcSkipPolicy"] = args ? args.tpMcSkipPolicy : undefined;
-            inputs["trafficPriority"] = args ? args.trafficPriority : undefined;
-            inputs["trafficPriorityLevel"] = args ? args.trafficPriorityLevel : undefined;
-            inputs["twoFactorEmailExpiry"] = args ? args.twoFactorEmailExpiry : undefined;
-            inputs["twoFactorFacExpiry"] = args ? args.twoFactorFacExpiry : undefined;
-            inputs["twoFactorFtkExpiry"] = args ? args.twoFactorFtkExpiry : undefined;
-            inputs["twoFactorFtmExpiry"] = args ? args.twoFactorFtmExpiry : undefined;
-            inputs["twoFactorSmsExpiry"] = args ? args.twoFactorSmsExpiry : undefined;
-            inputs["udpIdleTimer"] = args ? args.udpIdleTimer : undefined;
-            inputs["urlFilterAffinity"] = args ? args.urlFilterAffinity : undefined;
-            inputs["urlFilterCount"] = args ? args.urlFilterCount : undefined;
-            inputs["userDeviceStoreMaxDevices"] = args ? args.userDeviceStoreMaxDevices : undefined;
-            inputs["userDeviceStoreMaxUsers"] = args ? args.userDeviceStoreMaxUsers : undefined;
-            inputs["userServerCert"] = args ? args.userServerCert : undefined;
-            inputs["vdomAdmin"] = args ? args.vdomAdmin : undefined;
-            inputs["vdomMode"] = args ? args.vdomMode : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vipArpRange"] = args ? args.vipArpRange : undefined;
-            inputs["virtualServerCount"] = args ? args.virtualServerCount : undefined;
-            inputs["virtualServerHardwareAcceleration"] = args ? args.virtualServerHardwareAcceleration : undefined;
-            inputs["wadAffinity"] = args ? args.wadAffinity : undefined;
-            inputs["wadCsvcCsCount"] = args ? args.wadCsvcCsCount : undefined;
-            inputs["wadCsvcDbCount"] = args ? args.wadCsvcDbCount : undefined;
-            inputs["wadMemoryChangeGranularity"] = args ? args.wadMemoryChangeGranularity : undefined;
-            inputs["wadSourceAffinity"] = args ? args.wadSourceAffinity : undefined;
-            inputs["wadWorkerCount"] = args ? args.wadWorkerCount : undefined;
-            inputs["wifiCaCertificate"] = args ? args.wifiCaCertificate : undefined;
-            inputs["wifiCertificate"] = args ? args.wifiCertificate : undefined;
-            inputs["wimax4gUsb"] = args ? args.wimax4gUsb : undefined;
-            inputs["wirelessController"] = args ? args.wirelessController : undefined;
-            inputs["wirelessControllerPort"] = args ? args.wirelessControllerPort : undefined;
+            resourceInputs["adminConcurrent"] = args ? args.adminConcurrent : undefined;
+            resourceInputs["adminConsoleTimeout"] = args ? args.adminConsoleTimeout : undefined;
+            resourceInputs["adminForticloudSsoLogin"] = args ? args.adminForticloudSsoLogin : undefined;
+            resourceInputs["adminHstsMaxAge"] = args ? args.adminHstsMaxAge : undefined;
+            resourceInputs["adminHttpsPkiRequired"] = args ? args.adminHttpsPkiRequired : undefined;
+            resourceInputs["adminHttpsRedirect"] = args ? args.adminHttpsRedirect : undefined;
+            resourceInputs["adminHttpsSslBannedCiphers"] = args ? args.adminHttpsSslBannedCiphers : undefined;
+            resourceInputs["adminHttpsSslCiphersuites"] = args ? args.adminHttpsSslCiphersuites : undefined;
+            resourceInputs["adminHttpsSslVersions"] = args ? args.adminHttpsSslVersions : undefined;
+            resourceInputs["adminLockoutDuration"] = args ? args.adminLockoutDuration : undefined;
+            resourceInputs["adminLockoutThreshold"] = args ? args.adminLockoutThreshold : undefined;
+            resourceInputs["adminLoginMax"] = args ? args.adminLoginMax : undefined;
+            resourceInputs["adminMaintainer"] = args ? args.adminMaintainer : undefined;
+            resourceInputs["adminPort"] = args ? args.adminPort : undefined;
+            resourceInputs["adminRestrictLocal"] = args ? args.adminRestrictLocal : undefined;
+            resourceInputs["adminScp"] = args ? args.adminScp : undefined;
+            resourceInputs["adminServerCert"] = args ? args.adminServerCert : undefined;
+            resourceInputs["adminSport"] = args ? args.adminSport : undefined;
+            resourceInputs["adminSshGraceTime"] = args ? args.adminSshGraceTime : undefined;
+            resourceInputs["adminSshPassword"] = args ? args.adminSshPassword : undefined;
+            resourceInputs["adminSshPort"] = args ? args.adminSshPort : undefined;
+            resourceInputs["adminSshV1"] = args ? args.adminSshV1 : undefined;
+            resourceInputs["adminTelnet"] = args ? args.adminTelnet : undefined;
+            resourceInputs["adminTelnetPort"] = args ? args.adminTelnetPort : undefined;
+            resourceInputs["admintimeout"] = args ? args.admintimeout : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["allowTrafficRedirect"] = args ? args.allowTrafficRedirect : undefined;
+            resourceInputs["antiReplay"] = args ? args.antiReplay : undefined;
+            resourceInputs["arpMaxEntry"] = args ? args.arpMaxEntry : undefined;
+            resourceInputs["asymroute"] = args ? args.asymroute : undefined;
+            resourceInputs["authCert"] = args ? args.authCert : undefined;
+            resourceInputs["authHttpPort"] = args ? args.authHttpPort : undefined;
+            resourceInputs["authHttpsPort"] = args ? args.authHttpsPort : undefined;
+            resourceInputs["authKeepalive"] = args ? args.authKeepalive : undefined;
+            resourceInputs["authSessionLimit"] = args ? args.authSessionLimit : undefined;
+            resourceInputs["autoAuthExtensionDevice"] = args ? args.autoAuthExtensionDevice : undefined;
+            resourceInputs["autorunLogFsck"] = args ? args.autorunLogFsck : undefined;
+            resourceInputs["avAffinity"] = args ? args.avAffinity : undefined;
+            resourceInputs["avFailopen"] = args ? args.avFailopen : undefined;
+            resourceInputs["avFailopenSession"] = args ? args.avFailopenSession : undefined;
+            resourceInputs["batchCmdb"] = args ? args.batchCmdb : undefined;
+            resourceInputs["blockSessionTimer"] = args ? args.blockSessionTimer : undefined;
+            resourceInputs["brFdbMaxEntry"] = args ? args.brFdbMaxEntry : undefined;
+            resourceInputs["certChainMax"] = args ? args.certChainMax : undefined;
+            resourceInputs["cfgRevertTimeout"] = args ? args.cfgRevertTimeout : undefined;
+            resourceInputs["cfgSave"] = args ? args.cfgSave : undefined;
+            resourceInputs["checkProtocolHeader"] = args ? args.checkProtocolHeader : undefined;
+            resourceInputs["checkResetRange"] = args ? args.checkResetRange : undefined;
+            resourceInputs["cliAuditLog"] = args ? args.cliAuditLog : undefined;
+            resourceInputs["cloudCommunication"] = args ? args.cloudCommunication : undefined;
+            resourceInputs["cltCertReq"] = args ? args.cltCertReq : undefined;
+            resourceInputs["cmdbsvrAffinity"] = args ? args.cmdbsvrAffinity : undefined;
+            resourceInputs["complianceCheck"] = args ? args.complianceCheck : undefined;
+            resourceInputs["complianceCheckTime"] = args ? args.complianceCheckTime : undefined;
+            resourceInputs["cpuUseThreshold"] = args ? args.cpuUseThreshold : undefined;
+            resourceInputs["csrCaAttribute"] = args ? args.csrCaAttribute : undefined;
+            resourceInputs["dailyRestart"] = args ? args.dailyRestart : undefined;
+            resourceInputs["defaultServiceSourcePort"] = args ? args.defaultServiceSourcePort : undefined;
+            resourceInputs["deviceIdentificationActiveScanDelay"] = args ? args.deviceIdentificationActiveScanDelay : undefined;
+            resourceInputs["deviceIdleTimeout"] = args ? args.deviceIdleTimeout : undefined;
+            resourceInputs["dhParams"] = args ? args.dhParams : undefined;
+            resourceInputs["dnsproxyWorkerCount"] = args ? args.dnsproxyWorkerCount : undefined;
+            resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["editVdomPrompt"] = args ? args.editVdomPrompt : undefined;
+            resourceInputs["endpointControlFdsAccess"] = args ? args.endpointControlFdsAccess : undefined;
+            resourceInputs["endpointControlPortalPort"] = args ? args.endpointControlPortalPort : undefined;
+            resourceInputs["extenderControllerReservedNetwork"] = args ? args.extenderControllerReservedNetwork : undefined;
+            resourceInputs["failtime"] = args ? args.failtime : undefined;
+            resourceInputs["fazDiskBufferSize"] = args ? args.fazDiskBufferSize : undefined;
+            resourceInputs["fdsStatistics"] = args ? args.fdsStatistics : undefined;
+            resourceInputs["fdsStatisticsPeriod"] = args ? args.fdsStatisticsPeriod : undefined;
+            resourceInputs["fecPort"] = args ? args.fecPort : undefined;
+            resourceInputs["fgdAlertSubscription"] = args ? args.fgdAlertSubscription : undefined;
+            resourceInputs["fortiextender"] = args ? args.fortiextender : undefined;
+            resourceInputs["fortiextenderDataPort"] = args ? args.fortiextenderDataPort : undefined;
+            resourceInputs["fortiextenderDiscoveryLockdown"] = args ? args.fortiextenderDiscoveryLockdown : undefined;
+            resourceInputs["fortiextenderVlanMode"] = args ? args.fortiextenderVlanMode : undefined;
+            resourceInputs["fortiipamIntegration"] = args ? args.fortiipamIntegration : undefined;
+            resourceInputs["fortiservicePort"] = args ? args.fortiservicePort : undefined;
+            resourceInputs["fortitokenCloud"] = args ? args.fortitokenCloud : undefined;
+            resourceInputs["guiAllowDefaultHostname"] = args ? args.guiAllowDefaultHostname : undefined;
+            resourceInputs["guiCdnUsage"] = args ? args.guiCdnUsage : undefined;
+            resourceInputs["guiCertificates"] = args ? args.guiCertificates : undefined;
+            resourceInputs["guiCustomLanguage"] = args ? args.guiCustomLanguage : undefined;
+            resourceInputs["guiDateFormat"] = args ? args.guiDateFormat : undefined;
+            resourceInputs["guiDateTimeSource"] = args ? args.guiDateTimeSource : undefined;
+            resourceInputs["guiDeviceLatitude"] = args ? args.guiDeviceLatitude : undefined;
+            resourceInputs["guiDeviceLongitude"] = args ? args.guiDeviceLongitude : undefined;
+            resourceInputs["guiDisplayHostname"] = args ? args.guiDisplayHostname : undefined;
+            resourceInputs["guiFirmwareUpgradeSetupWarning"] = args ? args.guiFirmwareUpgradeSetupWarning : undefined;
+            resourceInputs["guiFirmwareUpgradeWarning"] = args ? args.guiFirmwareUpgradeWarning : undefined;
+            resourceInputs["guiForticareRegistrationSetupWarning"] = args ? args.guiForticareRegistrationSetupWarning : undefined;
+            resourceInputs["guiFortigateCloudSandbox"] = args ? args.guiFortigateCloudSandbox : undefined;
+            resourceInputs["guiFortisandboxCloud"] = args ? args.guiFortisandboxCloud : undefined;
+            resourceInputs["guiIpv6"] = args ? args.guiIpv6 : undefined;
+            resourceInputs["guiLinesPerPage"] = args ? args.guiLinesPerPage : undefined;
+            resourceInputs["guiLocalOut"] = args ? args.guiLocalOut : undefined;
+            resourceInputs["guiReplacementMessageGroups"] = args ? args.guiReplacementMessageGroups : undefined;
+            resourceInputs["guiRestApiCache"] = args ? args.guiRestApiCache : undefined;
+            resourceInputs["guiTheme"] = args ? args.guiTheme : undefined;
+            resourceInputs["guiWirelessOpensecurity"] = args ? args.guiWirelessOpensecurity : undefined;
+            resourceInputs["haAffinity"] = args ? args.haAffinity : undefined;
+            resourceInputs["honorDf"] = args ? args.honorDf : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["igmpStateLimit"] = args ? args.igmpStateLimit : undefined;
+            resourceInputs["ikeEmbryonicLimit"] = args ? args.ikeEmbryonicLimit : undefined;
+            resourceInputs["internetServiceDatabase"] = args ? args.internetServiceDatabase : undefined;
+            resourceInputs["interval"] = args ? args.interval : undefined;
+            resourceInputs["ipSrcPortRange"] = args ? args.ipSrcPortRange : undefined;
+            resourceInputs["ipsAffinity"] = args ? args.ipsAffinity : undefined;
+            resourceInputs["ipsecAsicOffload"] = args ? args.ipsecAsicOffload : undefined;
+            resourceInputs["ipsecHaSeqjumpRate"] = args ? args.ipsecHaSeqjumpRate : undefined;
+            resourceInputs["ipsecHmacOffload"] = args ? args.ipsecHmacOffload : undefined;
+            resourceInputs["ipsecSoftDecAsync"] = args ? args.ipsecSoftDecAsync : undefined;
+            resourceInputs["ipv6AcceptDad"] = args ? args.ipv6AcceptDad : undefined;
+            resourceInputs["ipv6AllowAnycastProbe"] = args ? args.ipv6AllowAnycastProbe : undefined;
+            resourceInputs["ipv6AllowTrafficRedirect"] = args ? args.ipv6AllowTrafficRedirect : undefined;
+            resourceInputs["irqTimeAccounting"] = args ? args.irqTimeAccounting : undefined;
+            resourceInputs["language"] = args ? args.language : undefined;
+            resourceInputs["ldapconntimeout"] = args ? args.ldapconntimeout : undefined;
+            resourceInputs["lldpReception"] = args ? args.lldpReception : undefined;
+            resourceInputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
+            resourceInputs["logSslConnection"] = args ? args.logSslConnection : undefined;
+            resourceInputs["logUuidAddress"] = args ? args.logUuidAddress : undefined;
+            resourceInputs["logUuidPolicy"] = args ? args.logUuidPolicy : undefined;
+            resourceInputs["loginTimestamp"] = args ? args.loginTimestamp : undefined;
+            resourceInputs["longVdomName"] = args ? args.longVdomName : undefined;
+            resourceInputs["managementIp"] = args ? args.managementIp : undefined;
+            resourceInputs["managementPort"] = args ? args.managementPort : undefined;
+            resourceInputs["managementPortUseAdminSport"] = args ? args.managementPortUseAdminSport : undefined;
+            resourceInputs["managementVdom"] = args ? args.managementVdom : undefined;
+            resourceInputs["maxDlpstatMemory"] = args ? args.maxDlpstatMemory : undefined;
+            resourceInputs["maxRouteCacheSize"] = args ? args.maxRouteCacheSize : undefined;
+            resourceInputs["mcTtlNotchange"] = args ? args.mcTtlNotchange : undefined;
+            resourceInputs["memoryUseThresholdExtreme"] = args ? args.memoryUseThresholdExtreme : undefined;
+            resourceInputs["memoryUseThresholdGreen"] = args ? args.memoryUseThresholdGreen : undefined;
+            resourceInputs["memoryUseThresholdRed"] = args ? args.memoryUseThresholdRed : undefined;
+            resourceInputs["miglogAffinity"] = args ? args.miglogAffinity : undefined;
+            resourceInputs["miglogdChildren"] = args ? args.miglogdChildren : undefined;
+            resourceInputs["multiFactorAuthentication"] = args ? args.multiFactorAuthentication : undefined;
+            resourceInputs["multicastForward"] = args ? args.multicastForward : undefined;
+            resourceInputs["ndpMaxEntry"] = args ? args.ndpMaxEntry : undefined;
+            resourceInputs["perUserBal"] = args ? args.perUserBal : undefined;
+            resourceInputs["perUserBwl"] = args ? args.perUserBwl : undefined;
+            resourceInputs["pmtuDiscovery"] = args ? args.pmtuDiscovery : undefined;
+            resourceInputs["policyAuthConcurrent"] = args ? args.policyAuthConcurrent : undefined;
+            resourceInputs["postLoginBanner"] = args ? args.postLoginBanner : undefined;
+            resourceInputs["preLoginBanner"] = args ? args.preLoginBanner : undefined;
+            resourceInputs["privateDataEncryption"] = args ? args.privateDataEncryption : undefined;
+            resourceInputs["proxyAuthLifetime"] = args ? args.proxyAuthLifetime : undefined;
+            resourceInputs["proxyAuthLifetimeTimeout"] = args ? args.proxyAuthLifetimeTimeout : undefined;
+            resourceInputs["proxyAuthTimeout"] = args ? args.proxyAuthTimeout : undefined;
+            resourceInputs["proxyCertUseMgmtVdom"] = args ? args.proxyCertUseMgmtVdom : undefined;
+            resourceInputs["proxyCipherHardwareAcceleration"] = args ? args.proxyCipherHardwareAcceleration : undefined;
+            resourceInputs["proxyHardwareAcceleration"] = args ? args.proxyHardwareAcceleration : undefined;
+            resourceInputs["proxyKxpHardwareAcceleration"] = args ? args.proxyKxpHardwareAcceleration : undefined;
+            resourceInputs["proxyReAuthenticationMode"] = args ? args.proxyReAuthenticationMode : undefined;
+            resourceInputs["proxyResourceMode"] = args ? args.proxyResourceMode : undefined;
+            resourceInputs["proxyWorkerCount"] = args ? args.proxyWorkerCount : undefined;
+            resourceInputs["radiusPort"] = args ? args.radiusPort : undefined;
+            resourceInputs["rebootUponConfigRestore"] = args ? args.rebootUponConfigRestore : undefined;
+            resourceInputs["refresh"] = args ? args.refresh : undefined;
+            resourceInputs["remoteauthtimeout"] = args ? args.remoteauthtimeout : undefined;
+            resourceInputs["resetSessionlessTcp"] = args ? args.resetSessionlessTcp : undefined;
+            resourceInputs["restartTime"] = args ? args.restartTime : undefined;
+            resourceInputs["revisionBackupOnLogout"] = args ? args.revisionBackupOnLogout : undefined;
+            resourceInputs["revisionImageAutoBackup"] = args ? args.revisionImageAutoBackup : undefined;
+            resourceInputs["scanunitCount"] = args ? args.scanunitCount : undefined;
+            resourceInputs["securityRatingResultSubmission"] = args ? args.securityRatingResultSubmission : undefined;
+            resourceInputs["securityRatingRunOnSchedule"] = args ? args.securityRatingRunOnSchedule : undefined;
+            resourceInputs["sendPmtuIcmp"] = args ? args.sendPmtuIcmp : undefined;
+            resourceInputs["snatRouteChange"] = args ? args.snatRouteChange : undefined;
+            resourceInputs["specialFile23Support"] = args ? args.specialFile23Support : undefined;
+            resourceInputs["speedtestServer"] = args ? args.speedtestServer : undefined;
+            resourceInputs["splitPort"] = args ? args.splitPort : undefined;
+            resourceInputs["ssdTrimDate"] = args ? args.ssdTrimDate : undefined;
+            resourceInputs["ssdTrimFreq"] = args ? args.ssdTrimFreq : undefined;
+            resourceInputs["ssdTrimHour"] = args ? args.ssdTrimHour : undefined;
+            resourceInputs["ssdTrimMin"] = args ? args.ssdTrimMin : undefined;
+            resourceInputs["ssdTrimWeekday"] = args ? args.ssdTrimWeekday : undefined;
+            resourceInputs["sshCbcCipher"] = args ? args.sshCbcCipher : undefined;
+            resourceInputs["sshEncAlgo"] = args ? args.sshEncAlgo : undefined;
+            resourceInputs["sshHmacMd5"] = args ? args.sshHmacMd5 : undefined;
+            resourceInputs["sshKexAlgo"] = args ? args.sshKexAlgo : undefined;
+            resourceInputs["sshKexSha1"] = args ? args.sshKexSha1 : undefined;
+            resourceInputs["sshMacAlgo"] = args ? args.sshMacAlgo : undefined;
+            resourceInputs["sshMacWeak"] = args ? args.sshMacWeak : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["sslStaticKeyCiphers"] = args ? args.sslStaticKeyCiphers : undefined;
+            resourceInputs["sslvpnCipherHardwareAcceleration"] = args ? args.sslvpnCipherHardwareAcceleration : undefined;
+            resourceInputs["sslvpnEmsSnCheck"] = args ? args.sslvpnEmsSnCheck : undefined;
+            resourceInputs["sslvpnKxpHardwareAcceleration"] = args ? args.sslvpnKxpHardwareAcceleration : undefined;
+            resourceInputs["sslvpnMaxWorkerCount"] = args ? args.sslvpnMaxWorkerCount : undefined;
+            resourceInputs["sslvpnPluginVersionCheck"] = args ? args.sslvpnPluginVersionCheck : undefined;
+            resourceInputs["strictDirtySessionCheck"] = args ? args.strictDirtySessionCheck : undefined;
+            resourceInputs["strongCrypto"] = args ? args.strongCrypto : undefined;
+            resourceInputs["switchController"] = args ? args.switchController : undefined;
+            resourceInputs["switchControllerReservedNetwork"] = args ? args.switchControllerReservedNetwork : undefined;
+            resourceInputs["sysPerfLogInterval"] = args ? args.sysPerfLogInterval : undefined;
+            resourceInputs["tcpHalfcloseTimer"] = args ? args.tcpHalfcloseTimer : undefined;
+            resourceInputs["tcpHalfopenTimer"] = args ? args.tcpHalfopenTimer : undefined;
+            resourceInputs["tcpOption"] = args ? args.tcpOption : undefined;
+            resourceInputs["tcpRstTimer"] = args ? args.tcpRstTimer : undefined;
+            resourceInputs["tcpTimewaitTimer"] = args ? args.tcpTimewaitTimer : undefined;
+            resourceInputs["tftp"] = args ? args.tftp : undefined;
+            resourceInputs["timezone"] = args ? args.timezone : undefined;
+            resourceInputs["tpMcSkipPolicy"] = args ? args.tpMcSkipPolicy : undefined;
+            resourceInputs["trafficPriority"] = args ? args.trafficPriority : undefined;
+            resourceInputs["trafficPriorityLevel"] = args ? args.trafficPriorityLevel : undefined;
+            resourceInputs["twoFactorEmailExpiry"] = args ? args.twoFactorEmailExpiry : undefined;
+            resourceInputs["twoFactorFacExpiry"] = args ? args.twoFactorFacExpiry : undefined;
+            resourceInputs["twoFactorFtkExpiry"] = args ? args.twoFactorFtkExpiry : undefined;
+            resourceInputs["twoFactorFtmExpiry"] = args ? args.twoFactorFtmExpiry : undefined;
+            resourceInputs["twoFactorSmsExpiry"] = args ? args.twoFactorSmsExpiry : undefined;
+            resourceInputs["udpIdleTimer"] = args ? args.udpIdleTimer : undefined;
+            resourceInputs["urlFilterAffinity"] = args ? args.urlFilterAffinity : undefined;
+            resourceInputs["urlFilterCount"] = args ? args.urlFilterCount : undefined;
+            resourceInputs["userDeviceStoreMaxDevices"] = args ? args.userDeviceStoreMaxDevices : undefined;
+            resourceInputs["userDeviceStoreMaxUnifiedMem"] = args ? args.userDeviceStoreMaxUnifiedMem : undefined;
+            resourceInputs["userDeviceStoreMaxUsers"] = args ? args.userDeviceStoreMaxUsers : undefined;
+            resourceInputs["userServerCert"] = args ? args.userServerCert : undefined;
+            resourceInputs["vdomAdmin"] = args ? args.vdomAdmin : undefined;
+            resourceInputs["vdomMode"] = args ? args.vdomMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vipArpRange"] = args ? args.vipArpRange : undefined;
+            resourceInputs["virtualServerCount"] = args ? args.virtualServerCount : undefined;
+            resourceInputs["virtualServerHardwareAcceleration"] = args ? args.virtualServerHardwareAcceleration : undefined;
+            resourceInputs["virtualSwitchVlan"] = args ? args.virtualSwitchVlan : undefined;
+            resourceInputs["wadAffinity"] = args ? args.wadAffinity : undefined;
+            resourceInputs["wadCsvcCsCount"] = args ? args.wadCsvcCsCount : undefined;
+            resourceInputs["wadCsvcDbCount"] = args ? args.wadCsvcDbCount : undefined;
+            resourceInputs["wadMemoryChangeGranularity"] = args ? args.wadMemoryChangeGranularity : undefined;
+            resourceInputs["wadSourceAffinity"] = args ? args.wadSourceAffinity : undefined;
+            resourceInputs["wadWorkerCount"] = args ? args.wadWorkerCount : undefined;
+            resourceInputs["wifiCaCertificate"] = args ? args.wifiCaCertificate : undefined;
+            resourceInputs["wifiCertificate"] = args ? args.wifiCertificate : undefined;
+            resourceInputs["wimax4gUsb"] = args ? args.wimax4gUsb : undefined;
+            resourceInputs["wirelessController"] = args ? args.wirelessController : undefined;
+            resourceInputs["wirelessControllerPort"] = args ? args.wirelessControllerPort : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -1356,6 +1528,10 @@ export interface SystemGlobalState {
      */
     adminConsoleTimeout?: pulumi.Input<number>;
     /**
+     * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
+     */
+    adminForticloudSsoLogin?: pulumi.Input<string>;
+    /**
      * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
      */
     adminHstsMaxAge?: pulumi.Input<number>;
@@ -1367,6 +1543,14 @@ export interface SystemGlobalState {
      * Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
      */
     adminHttpsRedirect?: pulumi.Input<string>;
+    /**
+     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+     */
+    adminHttpsSslBannedCiphers?: pulumi.Input<string>;
+    /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+     */
+    adminHttpsSslCiphersuites?: pulumi.Input<string>;
     /**
      * Allowed TLS versions for web administration.
      */
@@ -1540,6 +1724,10 @@ export interface SystemGlobalState {
      */
     cltCertReq?: pulumi.Input<string>;
     /**
+     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    cmdbsvrAffinity?: pulumi.Input<string>;
+    /**
      * Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
      */
     complianceCheck?: pulumi.Input<string>;
@@ -1584,6 +1772,10 @@ export interface SystemGlobalState {
      */
     dst?: pulumi.Input<string>;
     /**
+     * Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
+     */
+    editVdomPrompt?: pulumi.Input<string>;
+    /**
      * Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
      */
     endpointControlFdsAccess?: pulumi.Input<string>;
@@ -1591,6 +1783,10 @@ export interface SystemGlobalState {
      * Endpoint control portal port (1 - 65535).
      */
     endpointControlPortalPort?: pulumi.Input<number>;
+    /**
+     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+     */
+    extenderControllerReservedNetwork?: pulumi.Input<string>;
     /**
      * Fail-time for server lost.
      */
@@ -1624,6 +1820,10 @@ export interface SystemGlobalState {
      */
     fortiextenderDataPort?: pulumi.Input<number>;
     /**
+     * Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
+     */
+    fortiextenderDiscoveryLockdown?: pulumi.Input<string>;
+    /**
      * Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
      */
     fortiextenderVlanMode?: pulumi.Input<string>;
@@ -1643,6 +1843,10 @@ export interface SystemGlobalState {
      * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
      */
     guiAllowDefaultHostname?: pulumi.Input<string>;
+    /**
+     * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
+     */
+    guiCdnUsage?: pulumi.Input<string>;
     /**
      * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
      */
@@ -1700,6 +1904,18 @@ export interface SystemGlobalState {
      */
     guiLinesPerPage?: pulumi.Input<number>;
     /**
+     * Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiLocalOut?: pulumi.Input<string>;
+    /**
+     * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiReplacementMessageGroups?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
+     */
+    guiRestApiCache?: pulumi.Input<string>;
+    /**
      * Color scheme for the administration GUI.
      */
     guiTheme?: pulumi.Input<string>;
@@ -1707,6 +1923,10 @@ export interface SystemGlobalState {
      * Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
      */
     guiWirelessOpensecurity?: pulumi.Input<string>;
+    /**
+     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    haAffinity?: pulumi.Input<string>;
     /**
      * Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
      */
@@ -1724,6 +1944,10 @@ export interface SystemGlobalState {
      */
     ikeEmbryonicLimit?: pulumi.Input<number>;
     /**
+     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+     */
+    internetServiceDatabase?: pulumi.Input<string>;
+    /**
      * Dead gateway detection interval.
      */
     interval?: pulumi.Input<number>;
@@ -1739,6 +1963,10 @@ export interface SystemGlobalState {
      * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
      */
     ipsecAsicOffload?: pulumi.Input<string>;
+    /**
+     * ESP jump ahead rate (1G - 10G pps equivalent).
+     */
+    ipsecHaSeqjumpRate?: pulumi.Input<number>;
     /**
      * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
      */
@@ -1800,6 +2028,18 @@ export interface SystemGlobalState {
      */
     longVdomName?: pulumi.Input<string>;
     /**
+     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+     */
+    managementIp?: pulumi.Input<string>;
+    /**
+     * Overriding port for management connection (Overrides admin port).
+     */
+    managementPort?: pulumi.Input<number>;
+    /**
+     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
+     */
+    managementPortUseAdminSport?: pulumi.Input<string>;
+    /**
      * Management virtual domain name.
      */
     managementVdom?: pulumi.Input<string>;
@@ -1856,6 +2096,10 @@ export interface SystemGlobalState {
      */
     perUserBwl?: pulumi.Input<string>;
     /**
+     * Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
+     */
+    pmtuDiscovery?: pulumi.Input<string>;
+    /**
      * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
      */
     policyAuthConcurrent?: pulumi.Input<number>;
@@ -1884,9 +2128,17 @@ export interface SystemGlobalState {
      */
     proxyAuthTimeout?: pulumi.Input<number>;
     /**
+     * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
+     */
+    proxyCertUseMgmtVdom?: pulumi.Input<string>;
+    /**
      * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
      */
     proxyCipherHardwareAcceleration?: pulumi.Input<string>;
+    /**
+     * Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
+     */
+    proxyHardwareAcceleration?: pulumi.Input<string>;
     /**
      * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
      */
@@ -1895,6 +2147,10 @@ export interface SystemGlobalState {
      * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
      */
     proxyReAuthenticationMode?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
+     */
+    proxyResourceMode?: pulumi.Input<string>;
     /**
      * Proxy worker count.
      */
@@ -1956,6 +2212,14 @@ export interface SystemGlobalState {
      */
     specialFile23Support?: pulumi.Input<string>;
     /**
+     * Enable/disable speed test server. Valid values: `enable`, `disable`.
+     */
+    speedtestServer?: pulumi.Input<string>;
+    /**
+     * Split port(s) to multiple 10Gbps ports.
+     */
+    splitPort?: pulumi.Input<string>;
+    /**
      * Date within a month to run ssd trim.
      */
     ssdTrimDate?: pulumi.Input<number>;
@@ -1980,13 +2244,25 @@ export interface SystemGlobalState {
      */
     sshCbcCipher?: pulumi.Input<string>;
     /**
+     * Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+     */
+    sshEncAlgo?: pulumi.Input<string>;
+    /**
      * Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
      */
     sshHmacMd5?: pulumi.Input<string>;
     /**
+     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+     */
+    sshKexAlgo?: pulumi.Input<string>;
+    /**
      * Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
      */
     sshKexSha1?: pulumi.Input<string>;
+    /**
+     * Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+     */
+    sshMacAlgo?: pulumi.Input<string>;
     /**
      * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
      */
@@ -2052,6 +2328,10 @@ export interface SystemGlobalState {
      */
     tcpOption?: pulumi.Input<string>;
     /**
+     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+     */
+    tcpRstTimer?: pulumi.Input<number>;
+    /**
      * Length of the TCP TIME-WAIT state in seconds.
      */
     tcpTimewaitTimer?: pulumi.Input<number>;
@@ -2112,6 +2392,10 @@ export interface SystemGlobalState {
      */
     userDeviceStoreMaxDevices?: pulumi.Input<number>;
     /**
+     * Maximum unified memory allowed in user device store.
+     */
+    userDeviceStoreMaxUnifiedMem?: pulumi.Input<number>;
+    /**
      * Maximum number of users allowed in user device store.
      */
     userDeviceStoreMaxUsers?: pulumi.Input<number>;
@@ -2124,7 +2408,7 @@ export interface SystemGlobalState {
      */
     vdomAdmin?: pulumi.Input<string>;
     /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+     * Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
      */
     vdomMode?: pulumi.Input<string>;
     /**
@@ -2143,6 +2427,10 @@ export interface SystemGlobalState {
      * Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
      */
     virtualServerHardwareAcceleration?: pulumi.Input<string>;
+    /**
+     * Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
+     */
+    virtualSwitchVlan?: pulumi.Input<string>;
     /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
@@ -2202,6 +2490,10 @@ export interface SystemGlobalArgs {
      */
     adminConsoleTimeout?: pulumi.Input<number>;
     /**
+     * Enable/disable FortiCloud admin login via SSO. Valid values: `enable`, `disable`.
+     */
+    adminForticloudSsoLogin?: pulumi.Input<string>;
+    /**
      * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
      */
     adminHstsMaxAge?: pulumi.Input<number>;
@@ -2213,6 +2505,14 @@ export interface SystemGlobalArgs {
      * Enable/disable redirection of HTTP administration access to HTTPS. Valid values: `enable`, `disable`.
      */
     adminHttpsRedirect?: pulumi.Input<string>;
+    /**
+     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below. Valid values: `RSA`, `DHE`, `ECDHE`, `DSS`, `ECDSA`, `AES`, `AESGCM`, `CAMELLIA`, `3DES`, `SHA1`, `SHA256`, `SHA384`, `STATIC`, `CHACHA20`, `ARIA`, `AESCCM`.
+     */
+    adminHttpsSslBannedCiphers?: pulumi.Input<string>;
+    /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+     */
+    adminHttpsSslCiphersuites?: pulumi.Input<string>;
     /**
      * Allowed TLS versions for web administration.
      */
@@ -2386,6 +2686,10 @@ export interface SystemGlobalArgs {
      */
     cltCertReq?: pulumi.Input<string>;
     /**
+     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    cmdbsvrAffinity?: pulumi.Input<string>;
+    /**
      * Enable/disable global PCI DSS compliance check. Valid values: `enable`, `disable`.
      */
     complianceCheck?: pulumi.Input<string>;
@@ -2430,6 +2734,10 @@ export interface SystemGlobalArgs {
      */
     dst?: pulumi.Input<string>;
     /**
+     * Enable/disable edit new VDOM prompt. Valid values: `enable`, `disable`.
+     */
+    editVdomPrompt?: pulumi.Input<string>;
+    /**
      * Enable/disable access to the FortiGuard network for non-compliant endpoints. Valid values: `enable`, `disable`.
      */
     endpointControlFdsAccess?: pulumi.Input<string>;
@@ -2437,6 +2745,10 @@ export interface SystemGlobalArgs {
      * Endpoint control portal port (1 - 65535).
      */
     endpointControlPortalPort?: pulumi.Input<number>;
+    /**
+     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+     */
+    extenderControllerReservedNetwork?: pulumi.Input<string>;
     /**
      * Fail-time for server lost.
      */
@@ -2470,6 +2782,10 @@ export interface SystemGlobalArgs {
      */
     fortiextenderDataPort?: pulumi.Input<number>;
     /**
+     * Enable/disable FortiExtender CAPWAP lockdown. Valid values: `disable`, `enable`.
+     */
+    fortiextenderDiscoveryLockdown?: pulumi.Input<string>;
+    /**
      * Enable/disable FortiExtender VLAN mode. Valid values: `enable`, `disable`.
      */
     fortiextenderVlanMode?: pulumi.Input<string>;
@@ -2489,6 +2805,10 @@ export interface SystemGlobalArgs {
      * Enable/disable the GUI warning about using a default hostname Valid values: `enable`, `disable`.
      */
     guiAllowDefaultHostname?: pulumi.Input<string>;
+    /**
+     * Enable/disable Load GUI static files from a CDN. Valid values: `enable`, `disable`.
+     */
+    guiCdnUsage?: pulumi.Input<string>;
     /**
      * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI. Valid values: `enable`, `disable`.
      */
@@ -2546,6 +2866,18 @@ export interface SystemGlobalArgs {
      */
     guiLinesPerPage?: pulumi.Input<number>;
     /**
+     * Enable/disable Local-out traffic on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiLocalOut?: pulumi.Input<string>;
+    /**
+     * Enable/disable replacement message groups on the GUI. Valid values: `enable`, `disable`.
+     */
+    guiReplacementMessageGroups?: pulumi.Input<string>;
+    /**
+     * Enable/disable REST API result caching on FortiGate. Valid values: `enable`, `disable`.
+     */
+    guiRestApiCache?: pulumi.Input<string>;
+    /**
      * Color scheme for the administration GUI.
      */
     guiTheme?: pulumi.Input<string>;
@@ -2553,6 +2885,10 @@ export interface SystemGlobalArgs {
      * Enable/disable wireless open security option on the GUI. Valid values: `enable`, `disable`.
      */
     guiWirelessOpensecurity?: pulumi.Input<string>;
+    /**
+     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    haAffinity?: pulumi.Input<string>;
     /**
      * Enable/disable honoring of Don't-Fragment (DF) flag. Valid values: `enable`, `disable`.
      */
@@ -2570,6 +2906,10 @@ export interface SystemGlobalArgs {
      */
     ikeEmbryonicLimit?: pulumi.Input<number>;
     /**
+     * Configure which Internet Service database size to download from FortiGuard and use. Valid values: `mini`, `standard`, `full`.
+     */
+    internetServiceDatabase?: pulumi.Input<string>;
+    /**
      * Dead gateway detection interval.
      */
     interval?: pulumi.Input<number>;
@@ -2585,6 +2925,10 @@ export interface SystemGlobalArgs {
      * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption. Valid values: `enable`, `disable`.
      */
     ipsecAsicOffload?: pulumi.Input<string>;
+    /**
+     * ESP jump ahead rate (1G - 10G pps equivalent).
+     */
+    ipsecHaSeqjumpRate?: pulumi.Input<number>;
     /**
      * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN. Valid values: `enable`, `disable`.
      */
@@ -2646,6 +2990,18 @@ export interface SystemGlobalArgs {
      */
     longVdomName?: pulumi.Input<string>;
     /**
+     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+     */
+    managementIp?: pulumi.Input<string>;
+    /**
+     * Overriding port for management connection (Overrides admin port).
+     */
+    managementPort?: pulumi.Input<number>;
+    /**
+     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port. Valid values: `enable`, `disable`.
+     */
+    managementPortUseAdminSport?: pulumi.Input<string>;
+    /**
      * Management virtual domain name.
      */
     managementVdom?: pulumi.Input<string>;
@@ -2702,6 +3058,10 @@ export interface SystemGlobalArgs {
      */
     perUserBwl?: pulumi.Input<string>;
     /**
+     * Enable/disable path MTU discovery. Valid values: `enable`, `disable`.
+     */
+    pmtuDiscovery?: pulumi.Input<string>;
+    /**
      * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
      */
     policyAuthConcurrent?: pulumi.Input<number>;
@@ -2730,9 +3090,17 @@ export interface SystemGlobalArgs {
      */
     proxyAuthTimeout?: pulumi.Input<number>;
     /**
+     * Enable/disable using management VDOM to send requests. Valid values: `enable`, `disable`.
+     */
+    proxyCertUseMgmtVdom?: pulumi.Input<string>;
+    /**
      * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic. Valid values: `disable`, `enable`.
      */
     proxyCipherHardwareAcceleration?: pulumi.Input<string>;
+    /**
+     * Enable/disable email proxy hardware acceleration. Valid values: `disable`, `enable`.
+     */
+    proxyHardwareAcceleration?: pulumi.Input<string>;
     /**
      * Enable/disable using the content processor to accelerate KXP traffic. Valid values: `disable`, `enable`.
      */
@@ -2741,6 +3109,10 @@ export interface SystemGlobalArgs {
      * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created. Valid values: `session`, `traffic`, `absolute`.
      */
     proxyReAuthenticationMode?: pulumi.Input<string>;
+    /**
+     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources. Valid values: `enable`, `disable`.
+     */
+    proxyResourceMode?: pulumi.Input<string>;
     /**
      * Proxy worker count.
      */
@@ -2802,6 +3174,14 @@ export interface SystemGlobalArgs {
      */
     specialFile23Support?: pulumi.Input<string>;
     /**
+     * Enable/disable speed test server. Valid values: `enable`, `disable`.
+     */
+    speedtestServer?: pulumi.Input<string>;
+    /**
+     * Split port(s) to multiple 10Gbps ports.
+     */
+    splitPort?: pulumi.Input<string>;
+    /**
      * Date within a month to run ssd trim.
      */
     ssdTrimDate?: pulumi.Input<number>;
@@ -2826,13 +3206,25 @@ export interface SystemGlobalArgs {
      */
     sshCbcCipher?: pulumi.Input<string>;
     /**
+     * Select one or more SSH ciphers. Valid values: `chacha20-poly1305@openssh.com`, `aes128-ctr`, `aes192-ctr`, `aes256-ctr`, `arcfour256`, `arcfour128`, `aes128-cbc`, `3des-cbc`, `blowfish-cbc`, `cast128-cbc`, `aes192-cbc`, `aes256-cbc`, `arcfour`, `rijndael-cbc@lysator.liu.se`, `aes128-gcm@openssh.com`, `aes256-gcm@openssh.com`.
+     */
+    sshEncAlgo?: pulumi.Input<string>;
+    /**
      * Enable/disable HMAC-MD5 for SSH access. Valid values: `enable`, `disable`.
      */
     sshHmacMd5?: pulumi.Input<string>;
     /**
+     * Select one or more SSH kex algorithms. Valid values: `diffie-hellman-group1-sha1`, `diffie-hellman-group14-sha1`, `diffie-hellman-group-exchange-sha1`, `diffie-hellman-group-exchange-sha256`, `curve25519-sha256@libssh.org`, `ecdh-sha2-nistp256`, `ecdh-sha2-nistp384`, `ecdh-sha2-nistp521`.
+     */
+    sshKexAlgo?: pulumi.Input<string>;
+    /**
      * Enable/disable SHA1 key exchange for SSH access. Valid values: `enable`, `disable`.
      */
     sshKexSha1?: pulumi.Input<string>;
+    /**
+     * Select one or more SSH MAC algorithms. Valid values: `hmac-md5`, `hmac-md5-etm@openssh.com`, `hmac-md5-96`, `hmac-md5-96-etm@openssh.com`, `hmac-sha1`, `hmac-sha1-etm@openssh.com`, `hmac-sha2-256`, `hmac-sha2-256-etm@openssh.com`, `hmac-sha2-512`, `hmac-sha2-512-etm@openssh.com`, `hmac-ripemd160`, `hmac-ripemd160@openssh.com`, `hmac-ripemd160-etm@openssh.com`, `umac-64@openssh.com`, `umac-128@openssh.com`, `umac-64-etm@openssh.com`, `umac-128-etm@openssh.com`.
+     */
+    sshMacAlgo?: pulumi.Input<string>;
     /**
      * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access. Valid values: `enable`, `disable`.
      */
@@ -2898,6 +3290,10 @@ export interface SystemGlobalArgs {
      */
     tcpOption?: pulumi.Input<string>;
     /**
+     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+     */
+    tcpRstTimer?: pulumi.Input<number>;
+    /**
      * Length of the TCP TIME-WAIT state in seconds.
      */
     tcpTimewaitTimer?: pulumi.Input<number>;
@@ -2958,6 +3354,10 @@ export interface SystemGlobalArgs {
      */
     userDeviceStoreMaxDevices?: pulumi.Input<number>;
     /**
+     * Maximum unified memory allowed in user device store.
+     */
+    userDeviceStoreMaxUnifiedMem?: pulumi.Input<number>;
+    /**
      * Maximum number of users allowed in user device store.
      */
     userDeviceStoreMaxUsers?: pulumi.Input<number>;
@@ -2970,7 +3370,7 @@ export interface SystemGlobalArgs {
      */
     vdomAdmin?: pulumi.Input<string>;
     /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+     * Enable/disable support for split/multiple virtual domains (VDOMs). Valid values: `no-vdom`, `split-vdom`, `multi-vdom`.
      */
     vdomMode?: pulumi.Input<string>;
     /**
@@ -2989,6 +3389,10 @@ export interface SystemGlobalArgs {
      * Enable/disable virtual server hardware acceleration. Valid values: `disable`, `enable`.
      */
     virtualServerHardwareAcceleration?: pulumi.Input<string>;
+    /**
+     * Enable/disable virtual switch VLAN. Valid values: `enable`, `disable`.
+     */
+    virtualSwitchVlan?: pulumi.Input<string>;
     /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */

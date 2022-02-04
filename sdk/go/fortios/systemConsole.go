@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -52,6 +52,8 @@ type SystemConsole struct {
 
 	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
 	Baudrate pulumi.StringOutput `pulumi:"baudrate"`
+	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Fortiexplorer pulumi.StringOutput `pulumi:"fortiexplorer"`
 	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
 	Login pulumi.StringOutput `pulumi:"login"`
 	// Console mode. Valid values: `batch`, `line`.
@@ -69,6 +71,7 @@ func NewSystemConsole(ctx *pulumi.Context,
 		args = &SystemConsoleArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemConsole
 	err := ctx.RegisterResource("fortios:index/systemConsole:SystemConsole", name, args, &resource, opts...)
 	if err != nil {
@@ -93,6 +96,8 @@ func GetSystemConsole(ctx *pulumi.Context,
 type systemConsoleState struct {
 	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
 	Baudrate *string `pulumi:"baudrate"`
+	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Fortiexplorer *string `pulumi:"fortiexplorer"`
 	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
 	Login *string `pulumi:"login"`
 	// Console mode. Valid values: `batch`, `line`.
@@ -106,6 +111,8 @@ type systemConsoleState struct {
 type SystemConsoleState struct {
 	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
 	Baudrate pulumi.StringPtrInput
+	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Fortiexplorer pulumi.StringPtrInput
 	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
 	Login pulumi.StringPtrInput
 	// Console mode. Valid values: `batch`, `line`.
@@ -123,6 +130,8 @@ func (SystemConsoleState) ElementType() reflect.Type {
 type systemConsoleArgs struct {
 	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
 	Baudrate *string `pulumi:"baudrate"`
+	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Fortiexplorer *string `pulumi:"fortiexplorer"`
 	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
 	Login *string `pulumi:"login"`
 	// Console mode. Valid values: `batch`, `line`.
@@ -137,6 +146,8 @@ type systemConsoleArgs struct {
 type SystemConsoleArgs struct {
 	// Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
 	Baudrate pulumi.StringPtrInput
+	// Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+	Fortiexplorer pulumi.StringPtrInput
 	// Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
 	Login pulumi.StringPtrInput
 	// Console mode. Valid values: `batch`, `line`.
@@ -159,7 +170,7 @@ type SystemConsoleInput interface {
 }
 
 func (*SystemConsole) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemConsole)(nil))
+	return reflect.TypeOf((**SystemConsole)(nil)).Elem()
 }
 
 func (i *SystemConsole) ToSystemConsoleOutput() SystemConsoleOutput {
@@ -168,35 +179,6 @@ func (i *SystemConsole) ToSystemConsoleOutput() SystemConsoleOutput {
 
 func (i *SystemConsole) ToSystemConsoleOutputWithContext(ctx context.Context) SystemConsoleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemConsoleOutput)
-}
-
-func (i *SystemConsole) ToSystemConsolePtrOutput() SystemConsolePtrOutput {
-	return i.ToSystemConsolePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemConsole) ToSystemConsolePtrOutputWithContext(ctx context.Context) SystemConsolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemConsolePtrOutput)
-}
-
-type SystemConsolePtrInput interface {
-	pulumi.Input
-
-	ToSystemConsolePtrOutput() SystemConsolePtrOutput
-	ToSystemConsolePtrOutputWithContext(ctx context.Context) SystemConsolePtrOutput
-}
-
-type systemConsolePtrType SystemConsoleArgs
-
-func (*systemConsolePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemConsole)(nil))
-}
-
-func (i *systemConsolePtrType) ToSystemConsolePtrOutput() SystemConsolePtrOutput {
-	return i.ToSystemConsolePtrOutputWithContext(context.Background())
-}
-
-func (i *systemConsolePtrType) ToSystemConsolePtrOutputWithContext(ctx context.Context) SystemConsolePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemConsolePtrOutput)
 }
 
 // SystemConsoleArrayInput is an input type that accepts SystemConsoleArray and SystemConsoleArrayOutput values.
@@ -213,7 +195,7 @@ type SystemConsoleArrayInput interface {
 type SystemConsoleArray []SystemConsoleInput
 
 func (SystemConsoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemConsole)(nil))
+	return reflect.TypeOf((*[]*SystemConsole)(nil)).Elem()
 }
 
 func (i SystemConsoleArray) ToSystemConsoleArrayOutput() SystemConsoleArrayOutput {
@@ -238,7 +220,7 @@ type SystemConsoleMapInput interface {
 type SystemConsoleMap map[string]SystemConsoleInput
 
 func (SystemConsoleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemConsole)(nil))
+	return reflect.TypeOf((*map[string]*SystemConsole)(nil)).Elem()
 }
 
 func (i SystemConsoleMap) ToSystemConsoleMapOutput() SystemConsoleMapOutput {
@@ -249,12 +231,10 @@ func (i SystemConsoleMap) ToSystemConsoleMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemConsoleMapOutput)
 }
 
-type SystemConsoleOutput struct {
-	*pulumi.OutputState
-}
+type SystemConsoleOutput struct{ *pulumi.OutputState }
 
 func (SystemConsoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemConsole)(nil))
+	return reflect.TypeOf((**SystemConsole)(nil)).Elem()
 }
 
 func (o SystemConsoleOutput) ToSystemConsoleOutput() SystemConsoleOutput {
@@ -265,36 +245,10 @@ func (o SystemConsoleOutput) ToSystemConsoleOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemConsoleOutput) ToSystemConsolePtrOutput() SystemConsolePtrOutput {
-	return o.ToSystemConsolePtrOutputWithContext(context.Background())
-}
-
-func (o SystemConsoleOutput) ToSystemConsolePtrOutputWithContext(ctx context.Context) SystemConsolePtrOutput {
-	return o.ApplyT(func(v SystemConsole) *SystemConsole {
-		return &v
-	}).(SystemConsolePtrOutput)
-}
-
-type SystemConsolePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemConsolePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemConsole)(nil))
-}
-
-func (o SystemConsolePtrOutput) ToSystemConsolePtrOutput() SystemConsolePtrOutput {
-	return o
-}
-
-func (o SystemConsolePtrOutput) ToSystemConsolePtrOutputWithContext(ctx context.Context) SystemConsolePtrOutput {
-	return o
-}
-
 type SystemConsoleArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemConsoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemConsole)(nil))
+	return reflect.TypeOf((*[]*SystemConsole)(nil)).Elem()
 }
 
 func (o SystemConsoleArrayOutput) ToSystemConsoleArrayOutput() SystemConsoleArrayOutput {
@@ -306,15 +260,15 @@ func (o SystemConsoleArrayOutput) ToSystemConsoleArrayOutputWithContext(ctx cont
 }
 
 func (o SystemConsoleArrayOutput) Index(i pulumi.IntInput) SystemConsoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemConsole {
-		return vs[0].([]SystemConsole)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemConsole {
+		return vs[0].([]*SystemConsole)[vs[1].(int)]
 	}).(SystemConsoleOutput)
 }
 
 type SystemConsoleMapOutput struct{ *pulumi.OutputState }
 
 func (SystemConsoleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemConsole)(nil))
+	return reflect.TypeOf((*map[string]*SystemConsole)(nil)).Elem()
 }
 
 func (o SystemConsoleMapOutput) ToSystemConsoleMapOutput() SystemConsoleMapOutput {
@@ -326,14 +280,16 @@ func (o SystemConsoleMapOutput) ToSystemConsoleMapOutputWithContext(ctx context.
 }
 
 func (o SystemConsoleMapOutput) MapIndex(k pulumi.StringInput) SystemConsoleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemConsole {
-		return vs[0].(map[string]SystemConsole)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemConsole {
+		return vs[0].(map[string]*SystemConsole)[vs[1].(string)]
 	}).(SystemConsoleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemConsoleInput)(nil)).Elem(), &SystemConsole{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemConsoleArrayInput)(nil)).Elem(), SystemConsoleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemConsoleMapInput)(nil)).Elem(), SystemConsoleMap{})
 	pulumi.RegisterOutputType(SystemConsoleOutput{})
-	pulumi.RegisterOutputType(SystemConsolePtrOutput{})
 	pulumi.RegisterOutputType(SystemConsoleArrayOutput{})
 	pulumi.RegisterOutputType(SystemConsoleMapOutput{})
 }

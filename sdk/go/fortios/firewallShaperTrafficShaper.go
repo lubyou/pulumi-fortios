@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -92,6 +92,7 @@ func NewFirewallShaperTrafficShaper(ctx *pulumi.Context,
 		args = &FirewallShaperTrafficShaperArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallShaperTrafficShaper
 	err := ctx.RegisterResource("fortios:index/firewallShaperTrafficShaper:FirewallShaperTrafficShaper", name, args, &resource, opts...)
 	if err != nil {
@@ -262,7 +263,7 @@ type FirewallShaperTrafficShaperInput interface {
 }
 
 func (*FirewallShaperTrafficShaper) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShaperTrafficShaper)(nil))
+	return reflect.TypeOf((**FirewallShaperTrafficShaper)(nil)).Elem()
 }
 
 func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperOutput() FirewallShaperTrafficShaperOutput {
@@ -271,35 +272,6 @@ func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperOutput() Fire
 
 func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperOutput)
-}
-
-func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperPtrOutput() FirewallShaperTrafficShaperPtrOutput {
-	return i.ToFirewallShaperTrafficShaperPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallShaperTrafficShaper) ToFirewallShaperTrafficShaperPtrOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperPtrOutput)
-}
-
-type FirewallShaperTrafficShaperPtrInput interface {
-	pulumi.Input
-
-	ToFirewallShaperTrafficShaperPtrOutput() FirewallShaperTrafficShaperPtrOutput
-	ToFirewallShaperTrafficShaperPtrOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperPtrOutput
-}
-
-type firewallShaperTrafficShaperPtrType FirewallShaperTrafficShaperArgs
-
-func (*firewallShaperTrafficShaperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShaperTrafficShaper)(nil))
-}
-
-func (i *firewallShaperTrafficShaperPtrType) ToFirewallShaperTrafficShaperPtrOutput() FirewallShaperTrafficShaperPtrOutput {
-	return i.ToFirewallShaperTrafficShaperPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallShaperTrafficShaperPtrType) ToFirewallShaperTrafficShaperPtrOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperPtrOutput)
 }
 
 // FirewallShaperTrafficShaperArrayInput is an input type that accepts FirewallShaperTrafficShaperArray and FirewallShaperTrafficShaperArrayOutput values.
@@ -316,7 +288,7 @@ type FirewallShaperTrafficShaperArrayInput interface {
 type FirewallShaperTrafficShaperArray []FirewallShaperTrafficShaperInput
 
 func (FirewallShaperTrafficShaperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallShaperTrafficShaper)(nil))
+	return reflect.TypeOf((*[]*FirewallShaperTrafficShaper)(nil)).Elem()
 }
 
 func (i FirewallShaperTrafficShaperArray) ToFirewallShaperTrafficShaperArrayOutput() FirewallShaperTrafficShaperArrayOutput {
@@ -341,7 +313,7 @@ type FirewallShaperTrafficShaperMapInput interface {
 type FirewallShaperTrafficShaperMap map[string]FirewallShaperTrafficShaperInput
 
 func (FirewallShaperTrafficShaperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallShaperTrafficShaper)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShaperTrafficShaper)(nil)).Elem()
 }
 
 func (i FirewallShaperTrafficShaperMap) ToFirewallShaperTrafficShaperMapOutput() FirewallShaperTrafficShaperMapOutput {
@@ -352,12 +324,10 @@ func (i FirewallShaperTrafficShaperMap) ToFirewallShaperTrafficShaperMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperTrafficShaperMapOutput)
 }
 
-type FirewallShaperTrafficShaperOutput struct {
-	*pulumi.OutputState
-}
+type FirewallShaperTrafficShaperOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperTrafficShaperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShaperTrafficShaper)(nil))
+	return reflect.TypeOf((**FirewallShaperTrafficShaper)(nil)).Elem()
 }
 
 func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperOutput() FirewallShaperTrafficShaperOutput {
@@ -368,36 +338,10 @@ func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperOutputWi
 	return o
 }
 
-func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperPtrOutput() FirewallShaperTrafficShaperPtrOutput {
-	return o.ToFirewallShaperTrafficShaperPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallShaperTrafficShaperOutput) ToFirewallShaperTrafficShaperPtrOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperPtrOutput {
-	return o.ApplyT(func(v FirewallShaperTrafficShaper) *FirewallShaperTrafficShaper {
-		return &v
-	}).(FirewallShaperTrafficShaperPtrOutput)
-}
-
-type FirewallShaperTrafficShaperPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallShaperTrafficShaperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShaperTrafficShaper)(nil))
-}
-
-func (o FirewallShaperTrafficShaperPtrOutput) ToFirewallShaperTrafficShaperPtrOutput() FirewallShaperTrafficShaperPtrOutput {
-	return o
-}
-
-func (o FirewallShaperTrafficShaperPtrOutput) ToFirewallShaperTrafficShaperPtrOutputWithContext(ctx context.Context) FirewallShaperTrafficShaperPtrOutput {
-	return o
-}
-
 type FirewallShaperTrafficShaperArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperTrafficShaperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallShaperTrafficShaper)(nil))
+	return reflect.TypeOf((*[]*FirewallShaperTrafficShaper)(nil)).Elem()
 }
 
 func (o FirewallShaperTrafficShaperArrayOutput) ToFirewallShaperTrafficShaperArrayOutput() FirewallShaperTrafficShaperArrayOutput {
@@ -409,15 +353,15 @@ func (o FirewallShaperTrafficShaperArrayOutput) ToFirewallShaperTrafficShaperArr
 }
 
 func (o FirewallShaperTrafficShaperArrayOutput) Index(i pulumi.IntInput) FirewallShaperTrafficShaperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallShaperTrafficShaper {
-		return vs[0].([]FirewallShaperTrafficShaper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallShaperTrafficShaper {
+		return vs[0].([]*FirewallShaperTrafficShaper)[vs[1].(int)]
 	}).(FirewallShaperTrafficShaperOutput)
 }
 
 type FirewallShaperTrafficShaperMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperTrafficShaperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallShaperTrafficShaper)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShaperTrafficShaper)(nil)).Elem()
 }
 
 func (o FirewallShaperTrafficShaperMapOutput) ToFirewallShaperTrafficShaperMapOutput() FirewallShaperTrafficShaperMapOutput {
@@ -429,14 +373,16 @@ func (o FirewallShaperTrafficShaperMapOutput) ToFirewallShaperTrafficShaperMapOu
 }
 
 func (o FirewallShaperTrafficShaperMapOutput) MapIndex(k pulumi.StringInput) FirewallShaperTrafficShaperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallShaperTrafficShaper {
-		return vs[0].(map[string]FirewallShaperTrafficShaper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallShaperTrafficShaper {
+		return vs[0].(map[string]*FirewallShaperTrafficShaper)[vs[1].(string)]
 	}).(FirewallShaperTrafficShaperOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShaperTrafficShaperInput)(nil)).Elem(), &FirewallShaperTrafficShaper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShaperTrafficShaperArrayInput)(nil)).Elem(), FirewallShaperTrafficShaperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShaperTrafficShaperMapInput)(nil)).Elem(), FirewallShaperTrafficShaperMap{})
 	pulumi.RegisterOutputType(FirewallShaperTrafficShaperOutput{})
-	pulumi.RegisterOutputType(FirewallShaperTrafficShaperPtrOutput{})
 	pulumi.RegisterOutputType(FirewallShaperTrafficShaperArrayOutput{})
 	pulumi.RegisterOutputType(FirewallShaperTrafficShaperMapOutput{})
 }

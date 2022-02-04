@@ -50,6 +50,10 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
      */
     public readonly dataSyncInterval!: pulumi.Output<number>;
     /**
+     * Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+     */
+    public readonly dynamicPeriodicInterval!: pulumi.Output<number>;
+    /**
      * MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
      */
     public readonly iotHoldoff!: pulumi.Output<number>;
@@ -78,6 +82,10 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
      */
     public readonly parallelProcessOverride!: pulumi.Output<string>;
     /**
+     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     */
+    public readonly tunnelMode!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -91,35 +99,37 @@ export class SwitchControllerSystem extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSystemArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSystemArgs | SwitchControllerSystemState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSystemState | undefined;
-            inputs["dataSyncInterval"] = state ? state.dataSyncInterval : undefined;
-            inputs["iotHoldoff"] = state ? state.iotHoldoff : undefined;
-            inputs["iotMacIdle"] = state ? state.iotMacIdle : undefined;
-            inputs["iotScanInterval"] = state ? state.iotScanInterval : undefined;
-            inputs["iotWeightThreshold"] = state ? state.iotWeightThreshold : undefined;
-            inputs["nacPeriodicInterval"] = state ? state.nacPeriodicInterval : undefined;
-            inputs["parallelProcess"] = state ? state.parallelProcess : undefined;
-            inputs["parallelProcessOverride"] = state ? state.parallelProcessOverride : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dataSyncInterval"] = state ? state.dataSyncInterval : undefined;
+            resourceInputs["dynamicPeriodicInterval"] = state ? state.dynamicPeriodicInterval : undefined;
+            resourceInputs["iotHoldoff"] = state ? state.iotHoldoff : undefined;
+            resourceInputs["iotMacIdle"] = state ? state.iotMacIdle : undefined;
+            resourceInputs["iotScanInterval"] = state ? state.iotScanInterval : undefined;
+            resourceInputs["iotWeightThreshold"] = state ? state.iotWeightThreshold : undefined;
+            resourceInputs["nacPeriodicInterval"] = state ? state.nacPeriodicInterval : undefined;
+            resourceInputs["parallelProcess"] = state ? state.parallelProcess : undefined;
+            resourceInputs["parallelProcessOverride"] = state ? state.parallelProcessOverride : undefined;
+            resourceInputs["tunnelMode"] = state ? state.tunnelMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSystemArgs | undefined;
-            inputs["dataSyncInterval"] = args ? args.dataSyncInterval : undefined;
-            inputs["iotHoldoff"] = args ? args.iotHoldoff : undefined;
-            inputs["iotMacIdle"] = args ? args.iotMacIdle : undefined;
-            inputs["iotScanInterval"] = args ? args.iotScanInterval : undefined;
-            inputs["iotWeightThreshold"] = args ? args.iotWeightThreshold : undefined;
-            inputs["nacPeriodicInterval"] = args ? args.nacPeriodicInterval : undefined;
-            inputs["parallelProcess"] = args ? args.parallelProcess : undefined;
-            inputs["parallelProcessOverride"] = args ? args.parallelProcessOverride : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dataSyncInterval"] = args ? args.dataSyncInterval : undefined;
+            resourceInputs["dynamicPeriodicInterval"] = args ? args.dynamicPeriodicInterval : undefined;
+            resourceInputs["iotHoldoff"] = args ? args.iotHoldoff : undefined;
+            resourceInputs["iotMacIdle"] = args ? args.iotMacIdle : undefined;
+            resourceInputs["iotScanInterval"] = args ? args.iotScanInterval : undefined;
+            resourceInputs["iotWeightThreshold"] = args ? args.iotWeightThreshold : undefined;
+            resourceInputs["nacPeriodicInterval"] = args ? args.nacPeriodicInterval : undefined;
+            resourceInputs["parallelProcess"] = args ? args.parallelProcess : undefined;
+            resourceInputs["parallelProcessOverride"] = args ? args.parallelProcessOverride : undefined;
+            resourceInputs["tunnelMode"] = args ? args.tunnelMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSystem.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSystem.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -131,6 +141,10 @@ export interface SwitchControllerSystemState {
      * Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
      */
     dataSyncInterval?: pulumi.Input<number>;
+    /**
+     * Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+     */
+    dynamicPeriodicInterval?: pulumi.Input<number>;
     /**
      * MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
      */
@@ -159,6 +173,10 @@ export interface SwitchControllerSystemState {
      * Enable/disable parallel process override. Valid values: `disable`, `enable`.
      */
     parallelProcessOverride?: pulumi.Input<string>;
+    /**
+     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     */
+    tunnelMode?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -174,6 +192,10 @@ export interface SwitchControllerSystemArgs {
      */
     dataSyncInterval?: pulumi.Input<number>;
     /**
+     * Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+     */
+    dynamicPeriodicInterval?: pulumi.Input<number>;
+    /**
      * MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
      */
     iotHoldoff?: pulumi.Input<number>;
@@ -201,6 +223,10 @@ export interface SwitchControllerSystemArgs {
      * Enable/disable parallel process override. Valid values: `disable`, `enable`.
      */
     parallelProcessOverride?: pulumi.Input<string>;
+    /**
+     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     */
+    tunnelMode?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

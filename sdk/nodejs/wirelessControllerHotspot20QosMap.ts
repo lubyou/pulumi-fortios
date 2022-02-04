@@ -76,27 +76,25 @@ export class WirelessControllerHotspot20QosMap extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerHotspot20QosMapArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20QosMapArgs | WirelessControllerHotspot20QosMapState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20QosMapState | undefined;
-            inputs["dscpExcepts"] = state ? state.dscpExcepts : undefined;
-            inputs["dscpRanges"] = state ? state.dscpRanges : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dscpExcepts"] = state ? state.dscpExcepts : undefined;
+            resourceInputs["dscpRanges"] = state ? state.dscpRanges : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20QosMapArgs | undefined;
-            inputs["dscpExcepts"] = args ? args.dscpExcepts : undefined;
-            inputs["dscpRanges"] = args ? args.dscpRanges : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dscpExcepts"] = args ? args.dscpExcepts : undefined;
+            resourceInputs["dscpRanges"] = args ? args.dscpRanges : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20QosMap.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20QosMap.__pulumiType, name, resourceInputs, opts);
     }
 }
 

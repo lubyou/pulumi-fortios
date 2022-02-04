@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewSystemAutomationDestination(ctx *pulumi.Context,
 		args = &SystemAutomationDestinationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutomationDestination
 	err := ctx.RegisterResource("fortios:index/systemAutomationDestination:SystemAutomationDestination", name, args, &resource, opts...)
 	if err != nil {
@@ -167,7 +168,7 @@ type SystemAutomationDestinationInput interface {
 }
 
 func (*SystemAutomationDestination) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationDestination)(nil))
+	return reflect.TypeOf((**SystemAutomationDestination)(nil)).Elem()
 }
 
 func (i *SystemAutomationDestination) ToSystemAutomationDestinationOutput() SystemAutomationDestinationOutput {
@@ -176,35 +177,6 @@ func (i *SystemAutomationDestination) ToSystemAutomationDestinationOutput() Syst
 
 func (i *SystemAutomationDestination) ToSystemAutomationDestinationOutputWithContext(ctx context.Context) SystemAutomationDestinationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationOutput)
-}
-
-func (i *SystemAutomationDestination) ToSystemAutomationDestinationPtrOutput() SystemAutomationDestinationPtrOutput {
-	return i.ToSystemAutomationDestinationPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutomationDestination) ToSystemAutomationDestinationPtrOutputWithContext(ctx context.Context) SystemAutomationDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationPtrOutput)
-}
-
-type SystemAutomationDestinationPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutomationDestinationPtrOutput() SystemAutomationDestinationPtrOutput
-	ToSystemAutomationDestinationPtrOutputWithContext(ctx context.Context) SystemAutomationDestinationPtrOutput
-}
-
-type systemAutomationDestinationPtrType SystemAutomationDestinationArgs
-
-func (*systemAutomationDestinationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationDestination)(nil))
-}
-
-func (i *systemAutomationDestinationPtrType) ToSystemAutomationDestinationPtrOutput() SystemAutomationDestinationPtrOutput {
-	return i.ToSystemAutomationDestinationPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutomationDestinationPtrType) ToSystemAutomationDestinationPtrOutputWithContext(ctx context.Context) SystemAutomationDestinationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationPtrOutput)
 }
 
 // SystemAutomationDestinationArrayInput is an input type that accepts SystemAutomationDestinationArray and SystemAutomationDestinationArrayOutput values.
@@ -221,7 +193,7 @@ type SystemAutomationDestinationArrayInput interface {
 type SystemAutomationDestinationArray []SystemAutomationDestinationInput
 
 func (SystemAutomationDestinationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutomationDestination)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationDestination)(nil)).Elem()
 }
 
 func (i SystemAutomationDestinationArray) ToSystemAutomationDestinationArrayOutput() SystemAutomationDestinationArrayOutput {
@@ -246,7 +218,7 @@ type SystemAutomationDestinationMapInput interface {
 type SystemAutomationDestinationMap map[string]SystemAutomationDestinationInput
 
 func (SystemAutomationDestinationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutomationDestination)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationDestination)(nil)).Elem()
 }
 
 func (i SystemAutomationDestinationMap) ToSystemAutomationDestinationMapOutput() SystemAutomationDestinationMapOutput {
@@ -257,12 +229,10 @@ func (i SystemAutomationDestinationMap) ToSystemAutomationDestinationMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationDestinationMapOutput)
 }
 
-type SystemAutomationDestinationOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutomationDestinationOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationDestinationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationDestination)(nil))
+	return reflect.TypeOf((**SystemAutomationDestination)(nil)).Elem()
 }
 
 func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationOutput() SystemAutomationDestinationOutput {
@@ -273,36 +243,10 @@ func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationOutputWi
 	return o
 }
 
-func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationPtrOutput() SystemAutomationDestinationPtrOutput {
-	return o.ToSystemAutomationDestinationPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutomationDestinationOutput) ToSystemAutomationDestinationPtrOutputWithContext(ctx context.Context) SystemAutomationDestinationPtrOutput {
-	return o.ApplyT(func(v SystemAutomationDestination) *SystemAutomationDestination {
-		return &v
-	}).(SystemAutomationDestinationPtrOutput)
-}
-
-type SystemAutomationDestinationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutomationDestinationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationDestination)(nil))
-}
-
-func (o SystemAutomationDestinationPtrOutput) ToSystemAutomationDestinationPtrOutput() SystemAutomationDestinationPtrOutput {
-	return o
-}
-
-func (o SystemAutomationDestinationPtrOutput) ToSystemAutomationDestinationPtrOutputWithContext(ctx context.Context) SystemAutomationDestinationPtrOutput {
-	return o
-}
-
 type SystemAutomationDestinationArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationDestinationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutomationDestination)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationDestination)(nil)).Elem()
 }
 
 func (o SystemAutomationDestinationArrayOutput) ToSystemAutomationDestinationArrayOutput() SystemAutomationDestinationArrayOutput {
@@ -314,15 +258,15 @@ func (o SystemAutomationDestinationArrayOutput) ToSystemAutomationDestinationArr
 }
 
 func (o SystemAutomationDestinationArrayOutput) Index(i pulumi.IntInput) SystemAutomationDestinationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutomationDestination {
-		return vs[0].([]SystemAutomationDestination)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationDestination {
+		return vs[0].([]*SystemAutomationDestination)[vs[1].(int)]
 	}).(SystemAutomationDestinationOutput)
 }
 
 type SystemAutomationDestinationMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationDestinationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutomationDestination)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationDestination)(nil)).Elem()
 }
 
 func (o SystemAutomationDestinationMapOutput) ToSystemAutomationDestinationMapOutput() SystemAutomationDestinationMapOutput {
@@ -334,14 +278,16 @@ func (o SystemAutomationDestinationMapOutput) ToSystemAutomationDestinationMapOu
 }
 
 func (o SystemAutomationDestinationMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationDestinationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutomationDestination {
-		return vs[0].(map[string]SystemAutomationDestination)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutomationDestination {
+		return vs[0].(map[string]*SystemAutomationDestination)[vs[1].(string)]
 	}).(SystemAutomationDestinationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationDestinationInput)(nil)).Elem(), &SystemAutomationDestination{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationDestinationArrayInput)(nil)).Elem(), SystemAutomationDestinationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationDestinationMapInput)(nil)).Elem(), SystemAutomationDestinationMap{})
 	pulumi.RegisterOutputType(SystemAutomationDestinationOutput{})
-	pulumi.RegisterOutputType(SystemAutomationDestinationPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutomationDestinationArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutomationDestinationMapOutput{})
 }

@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallAddressResult',
     'AwaitableGetFirewallAddressResult',
     'get_firewall_address',
+    'get_firewall_address_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetFirewallAddressResult:
     """
     A collection of values returned by GetFirewallAddress.
     """
-    def __init__(__self__, allow_routing=None, associated_interface=None, cache_ttl=None, clearpass_spt=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, filter=None, fqdn=None, fsso_groups=None, id=None, interface=None, lists=None, name=None, node_ip_only=None, obj_id=None, obj_tag=None, obj_type=None, organization=None, policy_group=None, sdn=None, sdn_addr_type=None, sdn_tag=None, start_ip=None, start_mac=None, sub_type=None, subnet=None, subnet_name=None, taggings=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None, wildcard=None, wildcard_fqdn=None):
+    def __init__(__self__, allow_routing=None, associated_interface=None, cache_ttl=None, clearpass_spt=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, epg_name=None, fabric_object=None, filter=None, fqdn=None, fsso_groups=None, id=None, interface=None, lists=None, macaddrs=None, name=None, node_ip_only=None, obj_id=None, obj_tag=None, obj_type=None, organization=None, policy_group=None, sdn=None, sdn_addr_type=None, sdn_tag=None, start_ip=None, start_mac=None, sub_type=None, subnet=None, subnet_name=None, tag_detection_level=None, tag_type=None, taggings=None, tenant=None, type=None, uuid=None, vdomparam=None, visibility=None, wildcard=None, wildcard_fqdn=None):
         if allow_routing and not isinstance(allow_routing, str):
             raise TypeError("Expected argument 'allow_routing' to be a str")
         pulumi.set(__self__, "allow_routing", allow_routing)
@@ -51,6 +52,9 @@ class GetFirewallAddressResult:
         if epg_name and not isinstance(epg_name, str):
             raise TypeError("Expected argument 'epg_name' to be a str")
         pulumi.set(__self__, "epg_name", epg_name)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if filter and not isinstance(filter, str):
             raise TypeError("Expected argument 'filter' to be a str")
         pulumi.set(__self__, "filter", filter)
@@ -69,6 +73,9 @@ class GetFirewallAddressResult:
         if lists and not isinstance(lists, list):
             raise TypeError("Expected argument 'lists' to be a list")
         pulumi.set(__self__, "lists", lists)
+        if macaddrs and not isinstance(macaddrs, list):
+            raise TypeError("Expected argument 'macaddrs' to be a list")
+        pulumi.set(__self__, "macaddrs", macaddrs)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -114,6 +121,12 @@ class GetFirewallAddressResult:
         if subnet_name and not isinstance(subnet_name, str):
             raise TypeError("Expected argument 'subnet_name' to be a str")
         pulumi.set(__self__, "subnet_name", subnet_name)
+        if tag_detection_level and not isinstance(tag_detection_level, str):
+            raise TypeError("Expected argument 'tag_detection_level' to be a str")
+        pulumi.set(__self__, "tag_detection_level", tag_detection_level)
+        if tag_type and not isinstance(tag_type, str):
+            raise TypeError("Expected argument 'tag_type' to be a str")
+        pulumi.set(__self__, "tag_type", tag_type)
         if taggings and not isinstance(taggings, list):
             raise TypeError("Expected argument 'taggings' to be a list")
         pulumi.set(__self__, "taggings", taggings)
@@ -220,6 +233,14 @@ class GetFirewallAddressResult:
         return pulumi.get(self, "epg_name")
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @property
     @pulumi.getter
     def filter(self) -> str:
         """
@@ -266,6 +287,14 @@ class GetFirewallAddressResult:
         IP address list. The structure of `list` block is documented below.
         """
         return pulumi.get(self, "lists")
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> Sequence['outputs.GetFirewallAddressMacaddrResult']:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
 
     @property
     @pulumi.getter
@@ -388,6 +417,22 @@ class GetFirewallAddressResult:
         return pulumi.get(self, "subnet_name")
 
     @property
+    @pulumi.getter(name="tagDetectionLevel")
+    def tag_detection_level(self) -> str:
+        """
+        Tag detection level of dynamic address object.
+        """
+        return pulumi.get(self, "tag_detection_level")
+
+    @property
+    @pulumi.getter(name="tagType")
+    def tag_type(self) -> str:
+        """
+        Tag type of dynamic address object.
+        """
+        return pulumi.get(self, "tag_type")
+
+    @property
     @pulumi.getter
     def taggings(self) -> Sequence['outputs.GetFirewallAddressTaggingResult']:
         """
@@ -465,12 +510,14 @@ class AwaitableGetFirewallAddressResult(GetFirewallAddressResult):
             end_ip=self.end_ip,
             end_mac=self.end_mac,
             epg_name=self.epg_name,
+            fabric_object=self.fabric_object,
             filter=self.filter,
             fqdn=self.fqdn,
             fsso_groups=self.fsso_groups,
             id=self.id,
             interface=self.interface,
             lists=self.lists,
+            macaddrs=self.macaddrs,
             name=self.name,
             node_ip_only=self.node_ip_only,
             obj_id=self.obj_id,
@@ -486,6 +533,8 @@ class AwaitableGetFirewallAddressResult(GetFirewallAddressResult):
             sub_type=self.sub_type,
             subnet=self.subnet,
             subnet_name=self.subnet_name,
+            tag_detection_level=self.tag_detection_level,
+            tag_type=self.tag_type,
             taggings=self.taggings,
             tenant=self.tenant,
             type=self.type,
@@ -513,6 +562,8 @@ def get_firewall_address(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddress:GetFirewallAddress', __args__, opts=opts, typ=GetFirewallAddressResult).value
 
     return AwaitableGetFirewallAddressResult(
@@ -526,12 +577,14 @@ def get_firewall_address(name: Optional[str] = None,
         end_ip=__ret__.end_ip,
         end_mac=__ret__.end_mac,
         epg_name=__ret__.epg_name,
+        fabric_object=__ret__.fabric_object,
         filter=__ret__.filter,
         fqdn=__ret__.fqdn,
         fsso_groups=__ret__.fsso_groups,
         id=__ret__.id,
         interface=__ret__.interface,
         lists=__ret__.lists,
+        macaddrs=__ret__.macaddrs,
         name=__ret__.name,
         node_ip_only=__ret__.node_ip_only,
         obj_id=__ret__.obj_id,
@@ -547,6 +600,8 @@ def get_firewall_address(name: Optional[str] = None,
         sub_type=__ret__.sub_type,
         subnet=__ret__.subnet,
         subnet_name=__ret__.subnet_name,
+        tag_detection_level=__ret__.tag_detection_level,
+        tag_type=__ret__.tag_type,
         taggings=__ret__.taggings,
         tenant=__ret__.tenant,
         type=__ret__.type,
@@ -555,3 +610,17 @@ def get_firewall_address(name: Optional[str] = None,
         visibility=__ret__.visibility,
         wildcard=__ret__.wildcard,
         wildcard_fqdn=__ret__.wildcard_fqdn)
+
+
+@_utilities.lift_output_func(get_firewall_address)
+def get_firewall_address_output(name: Optional[pulumi.Input[str]] = None,
+                                vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallAddressResult]:
+    """
+    Use this data source to get information on an fortios firewall address
+
+
+    :param str name: Specify the name of the desired firewall address.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

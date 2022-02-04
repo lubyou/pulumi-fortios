@@ -83,6 +83,10 @@ export class SystemPasswordPolicyGuestAdmin extends pulumi.CustomResource {
      */
     public readonly expireStatus!: pulumi.Output<string>;
     /**
+     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     */
+    public readonly minChangeCharacters!: pulumi.Output<number>;
+    /**
      * Minimum number of lowercase characters in password (0 - 128, default = 0).
      */
     public readonly minLowerCaseLetter!: pulumi.Output<number>;
@@ -124,41 +128,41 @@ export class SystemPasswordPolicyGuestAdmin extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemPasswordPolicyGuestAdminArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemPasswordPolicyGuestAdminArgs | SystemPasswordPolicyGuestAdminState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemPasswordPolicyGuestAdminState | undefined;
-            inputs["applyTo"] = state ? state.applyTo : undefined;
-            inputs["change4Characters"] = state ? state.change4Characters : undefined;
-            inputs["expireDay"] = state ? state.expireDay : undefined;
-            inputs["expireStatus"] = state ? state.expireStatus : undefined;
-            inputs["minLowerCaseLetter"] = state ? state.minLowerCaseLetter : undefined;
-            inputs["minNonAlphanumeric"] = state ? state.minNonAlphanumeric : undefined;
-            inputs["minNumber"] = state ? state.minNumber : undefined;
-            inputs["minUpperCaseLetter"] = state ? state.minUpperCaseLetter : undefined;
-            inputs["minimumLength"] = state ? state.minimumLength : undefined;
-            inputs["reusePassword"] = state ? state.reusePassword : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["applyTo"] = state ? state.applyTo : undefined;
+            resourceInputs["change4Characters"] = state ? state.change4Characters : undefined;
+            resourceInputs["expireDay"] = state ? state.expireDay : undefined;
+            resourceInputs["expireStatus"] = state ? state.expireStatus : undefined;
+            resourceInputs["minChangeCharacters"] = state ? state.minChangeCharacters : undefined;
+            resourceInputs["minLowerCaseLetter"] = state ? state.minLowerCaseLetter : undefined;
+            resourceInputs["minNonAlphanumeric"] = state ? state.minNonAlphanumeric : undefined;
+            resourceInputs["minNumber"] = state ? state.minNumber : undefined;
+            resourceInputs["minUpperCaseLetter"] = state ? state.minUpperCaseLetter : undefined;
+            resourceInputs["minimumLength"] = state ? state.minimumLength : undefined;
+            resourceInputs["reusePassword"] = state ? state.reusePassword : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemPasswordPolicyGuestAdminArgs | undefined;
-            inputs["applyTo"] = args ? args.applyTo : undefined;
-            inputs["change4Characters"] = args ? args.change4Characters : undefined;
-            inputs["expireDay"] = args ? args.expireDay : undefined;
-            inputs["expireStatus"] = args ? args.expireStatus : undefined;
-            inputs["minLowerCaseLetter"] = args ? args.minLowerCaseLetter : undefined;
-            inputs["minNonAlphanumeric"] = args ? args.minNonAlphanumeric : undefined;
-            inputs["minNumber"] = args ? args.minNumber : undefined;
-            inputs["minUpperCaseLetter"] = args ? args.minUpperCaseLetter : undefined;
-            inputs["minimumLength"] = args ? args.minimumLength : undefined;
-            inputs["reusePassword"] = args ? args.reusePassword : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["applyTo"] = args ? args.applyTo : undefined;
+            resourceInputs["change4Characters"] = args ? args.change4Characters : undefined;
+            resourceInputs["expireDay"] = args ? args.expireDay : undefined;
+            resourceInputs["expireStatus"] = args ? args.expireStatus : undefined;
+            resourceInputs["minChangeCharacters"] = args ? args.minChangeCharacters : undefined;
+            resourceInputs["minLowerCaseLetter"] = args ? args.minLowerCaseLetter : undefined;
+            resourceInputs["minNonAlphanumeric"] = args ? args.minNonAlphanumeric : undefined;
+            resourceInputs["minNumber"] = args ? args.minNumber : undefined;
+            resourceInputs["minUpperCaseLetter"] = args ? args.minUpperCaseLetter : undefined;
+            resourceInputs["minimumLength"] = args ? args.minimumLength : undefined;
+            resourceInputs["reusePassword"] = args ? args.reusePassword : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemPasswordPolicyGuestAdmin.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemPasswordPolicyGuestAdmin.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -182,6 +186,10 @@ export interface SystemPasswordPolicyGuestAdminState {
      * Enable/disable password expiration. Valid values: `enable`, `disable`.
      */
     expireStatus?: pulumi.Input<string>;
+    /**
+     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     */
+    minChangeCharacters?: pulumi.Input<number>;
     /**
      * Minimum number of lowercase characters in password (0 - 128, default = 0).
      */
@@ -236,6 +244,10 @@ export interface SystemPasswordPolicyGuestAdminArgs {
      * Enable/disable password expiration. Valid values: `enable`, `disable`.
      */
     expireStatus?: pulumi.Input<string>;
+    /**
+     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     */
+    minChangeCharacters?: pulumi.Input<number>;
     /**
      * Minimum number of lowercase characters in password (0 - 128, default = 0).
      */

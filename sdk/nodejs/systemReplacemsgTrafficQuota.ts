@@ -75,30 +75,28 @@ export class SystemReplacemsgTrafficQuota extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemReplacemsgTrafficQuotaArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemReplacemsgTrafficQuotaArgs | SystemReplacemsgTrafficQuotaState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemReplacemsgTrafficQuotaState | undefined;
-            inputs["buffer"] = state ? state.buffer : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["header"] = state ? state.header : undefined;
-            inputs["msgType"] = state ? state.msgType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["buffer"] = state ? state.buffer : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["header"] = state ? state.header : undefined;
+            resourceInputs["msgType"] = state ? state.msgType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemReplacemsgTrafficQuotaArgs | undefined;
             if ((!args || args.msgType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'msgType'");
             }
-            inputs["buffer"] = args ? args.buffer : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["header"] = args ? args.header : undefined;
-            inputs["msgType"] = args ? args.msgType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["buffer"] = args ? args.buffer : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["header"] = args ? args.header : undefined;
+            resourceInputs["msgType"] = args ? args.msgType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemReplacemsgTrafficQuota.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemReplacemsgTrafficQuota.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -80,9 +80,21 @@ export class SystemCsf extends pulumi.CustomResource {
      */
     public readonly configurationSync!: pulumi.Output<string>;
     /**
+     * Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+     */
+    public readonly downstreamAccess!: pulumi.Output<string>;
+    /**
+     * Default access profile for requests from downstream devices.
+     */
+    public readonly downstreamAccprofile!: pulumi.Output<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Fabric connector configuration. The structure of `fabricConnector` block is documented below.
+     */
+    public readonly fabricConnectors!: pulumi.Output<outputs.SystemCsfFabricConnector[] | undefined>;
     /**
      * Fabric device configuration. The structure of `fabricDevice` block is documented below.
      */
@@ -92,9 +104,17 @@ export class SystemCsf extends pulumi.CustomResource {
      */
     public readonly fabricObjectUnification!: pulumi.Output<string>;
     /**
+     * Number of worker processes for Security Fabric daemon.
+     */
+    public readonly fabricWorkers!: pulumi.Output<number>;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     public readonly fixedKey!: pulumi.Output<string | undefined>;
+    /**
+     * Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+     */
+    public readonly forticloudAccountEnforcement!: pulumi.Output<string>;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -103,6 +123,10 @@ export class SystemCsf extends pulumi.CustomResource {
      * Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
      */
     public readonly groupPassword!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
+     */
+    public readonly logUnification!: pulumi.Output<string>;
     /**
      * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
      */
@@ -123,6 +147,10 @@ export class SystemCsf extends pulumi.CustomResource {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     public readonly trustedLists!: pulumi.Output<outputs.SystemCsfTrustedList[] | undefined>;
+    /**
+     * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+     */
+    public readonly upstream!: pulumi.Output<string>;
     /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
@@ -145,56 +173,68 @@ export class SystemCsf extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemCsfArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemCsfArgs | SystemCsfState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemCsfState | undefined;
-            inputs["acceptAuthByCert"] = state ? state.acceptAuthByCert : undefined;
-            inputs["authorizationRequestType"] = state ? state.authorizationRequestType : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["configurationSync"] = state ? state.configurationSync : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fabricDevices"] = state ? state.fabricDevices : undefined;
-            inputs["fabricObjectUnification"] = state ? state.fabricObjectUnification : undefined;
-            inputs["fixedKey"] = state ? state.fixedKey : undefined;
-            inputs["groupName"] = state ? state.groupName : undefined;
-            inputs["groupPassword"] = state ? state.groupPassword : undefined;
-            inputs["managementIp"] = state ? state.managementIp : undefined;
-            inputs["managementPort"] = state ? state.managementPort : undefined;
-            inputs["samlConfigurationSync"] = state ? state.samlConfigurationSync : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["trustedLists"] = state ? state.trustedLists : undefined;
-            inputs["upstreamIp"] = state ? state.upstreamIp : undefined;
-            inputs["upstreamPort"] = state ? state.upstreamPort : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["acceptAuthByCert"] = state ? state.acceptAuthByCert : undefined;
+            resourceInputs["authorizationRequestType"] = state ? state.authorizationRequestType : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["configurationSync"] = state ? state.configurationSync : undefined;
+            resourceInputs["downstreamAccess"] = state ? state.downstreamAccess : undefined;
+            resourceInputs["downstreamAccprofile"] = state ? state.downstreamAccprofile : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fabricConnectors"] = state ? state.fabricConnectors : undefined;
+            resourceInputs["fabricDevices"] = state ? state.fabricDevices : undefined;
+            resourceInputs["fabricObjectUnification"] = state ? state.fabricObjectUnification : undefined;
+            resourceInputs["fabricWorkers"] = state ? state.fabricWorkers : undefined;
+            resourceInputs["fixedKey"] = state ? state.fixedKey : undefined;
+            resourceInputs["forticloudAccountEnforcement"] = state ? state.forticloudAccountEnforcement : undefined;
+            resourceInputs["groupName"] = state ? state.groupName : undefined;
+            resourceInputs["groupPassword"] = state ? state.groupPassword : undefined;
+            resourceInputs["logUnification"] = state ? state.logUnification : undefined;
+            resourceInputs["managementIp"] = state ? state.managementIp : undefined;
+            resourceInputs["managementPort"] = state ? state.managementPort : undefined;
+            resourceInputs["samlConfigurationSync"] = state ? state.samlConfigurationSync : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["trustedLists"] = state ? state.trustedLists : undefined;
+            resourceInputs["upstream"] = state ? state.upstream : undefined;
+            resourceInputs["upstreamIp"] = state ? state.upstreamIp : undefined;
+            resourceInputs["upstreamPort"] = state ? state.upstreamPort : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemCsfArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["acceptAuthByCert"] = args ? args.acceptAuthByCert : undefined;
-            inputs["authorizationRequestType"] = args ? args.authorizationRequestType : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["configurationSync"] = args ? args.configurationSync : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fabricDevices"] = args ? args.fabricDevices : undefined;
-            inputs["fabricObjectUnification"] = args ? args.fabricObjectUnification : undefined;
-            inputs["fixedKey"] = args ? args.fixedKey : undefined;
-            inputs["groupName"] = args ? args.groupName : undefined;
-            inputs["groupPassword"] = args ? args.groupPassword : undefined;
-            inputs["managementIp"] = args ? args.managementIp : undefined;
-            inputs["managementPort"] = args ? args.managementPort : undefined;
-            inputs["samlConfigurationSync"] = args ? args.samlConfigurationSync : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["trustedLists"] = args ? args.trustedLists : undefined;
-            inputs["upstreamIp"] = args ? args.upstreamIp : undefined;
-            inputs["upstreamPort"] = args ? args.upstreamPort : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["acceptAuthByCert"] = args ? args.acceptAuthByCert : undefined;
+            resourceInputs["authorizationRequestType"] = args ? args.authorizationRequestType : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["configurationSync"] = args ? args.configurationSync : undefined;
+            resourceInputs["downstreamAccess"] = args ? args.downstreamAccess : undefined;
+            resourceInputs["downstreamAccprofile"] = args ? args.downstreamAccprofile : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fabricConnectors"] = args ? args.fabricConnectors : undefined;
+            resourceInputs["fabricDevices"] = args ? args.fabricDevices : undefined;
+            resourceInputs["fabricObjectUnification"] = args ? args.fabricObjectUnification : undefined;
+            resourceInputs["fabricWorkers"] = args ? args.fabricWorkers : undefined;
+            resourceInputs["fixedKey"] = args ? args.fixedKey : undefined;
+            resourceInputs["forticloudAccountEnforcement"] = args ? args.forticloudAccountEnforcement : undefined;
+            resourceInputs["groupName"] = args ? args.groupName : undefined;
+            resourceInputs["groupPassword"] = args ? args.groupPassword : undefined;
+            resourceInputs["logUnification"] = args ? args.logUnification : undefined;
+            resourceInputs["managementIp"] = args ? args.managementIp : undefined;
+            resourceInputs["managementPort"] = args ? args.managementPort : undefined;
+            resourceInputs["samlConfigurationSync"] = args ? args.samlConfigurationSync : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["trustedLists"] = args ? args.trustedLists : undefined;
+            resourceInputs["upstream"] = args ? args.upstream : undefined;
+            resourceInputs["upstreamIp"] = args ? args.upstreamIp : undefined;
+            resourceInputs["upstreamPort"] = args ? args.upstreamPort : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemCsf.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemCsf.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -219,9 +259,21 @@ export interface SystemCsfState {
      */
     configurationSync?: pulumi.Input<string>;
     /**
+     * Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+     */
+    downstreamAccess?: pulumi.Input<string>;
+    /**
+     * Default access profile for requests from downstream devices.
+     */
+    downstreamAccprofile?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Fabric connector configuration. The structure of `fabricConnector` block is documented below.
+     */
+    fabricConnectors?: pulumi.Input<pulumi.Input<inputs.SystemCsfFabricConnector>[]>;
     /**
      * Fabric device configuration. The structure of `fabricDevice` block is documented below.
      */
@@ -231,9 +283,17 @@ export interface SystemCsfState {
      */
     fabricObjectUnification?: pulumi.Input<string>;
     /**
+     * Number of worker processes for Security Fabric daemon.
+     */
+    fabricWorkers?: pulumi.Input<number>;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     fixedKey?: pulumi.Input<string>;
+    /**
+     * Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+     */
+    forticloudAccountEnforcement?: pulumi.Input<string>;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -242,6 +302,10 @@ export interface SystemCsfState {
      * Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
      */
     groupPassword?: pulumi.Input<string>;
+    /**
+     * Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
+     */
+    logUnification?: pulumi.Input<string>;
     /**
      * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
      */
@@ -262,6 +326,10 @@ export interface SystemCsfState {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     trustedLists?: pulumi.Input<pulumi.Input<inputs.SystemCsfTrustedList>[]>;
+    /**
+     * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+     */
+    upstream?: pulumi.Input<string>;
     /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */
@@ -297,9 +365,21 @@ export interface SystemCsfArgs {
      */
     configurationSync?: pulumi.Input<string>;
     /**
+     * Enable/disable downstream device access to this device's configuration and data. Valid values: `enable`, `disable`.
+     */
+    downstreamAccess?: pulumi.Input<string>;
+    /**
+     * Default access profile for requests from downstream devices.
+     */
+    downstreamAccprofile?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Fabric connector configuration. The structure of `fabricConnector` block is documented below.
+     */
+    fabricConnectors?: pulumi.Input<pulumi.Input<inputs.SystemCsfFabricConnector>[]>;
     /**
      * Fabric device configuration. The structure of `fabricDevice` block is documented below.
      */
@@ -309,9 +389,17 @@ export interface SystemCsfArgs {
      */
     fabricObjectUnification?: pulumi.Input<string>;
     /**
+     * Number of worker processes for Security Fabric daemon.
+     */
+    fabricWorkers?: pulumi.Input<number>;
+    /**
      * Auto-generated fixed key used when this device is the root. (Will automatically be generated if not set.)
      */
     fixedKey?: pulumi.Input<string>;
+    /**
+     * Fabric FortiCloud account unification. Valid values: `enable`, `disable`.
+     */
+    forticloudAccountEnforcement?: pulumi.Input<string>;
     /**
      * Security Fabric group name. All FortiGates in a Security Fabric must have the same group name.
      */
@@ -320,6 +408,10 @@ export interface SystemCsfArgs {
      * Security Fabric group password. All FortiGates in a Security Fabric must have the same group password.
      */
     groupPassword?: pulumi.Input<string>;
+    /**
+     * Enable/disable broadcast of discovery messages for log unification. Valid values: `disable`, `enable`.
+     */
+    logUnification?: pulumi.Input<string>;
     /**
      * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
      */
@@ -340,6 +432,10 @@ export interface SystemCsfArgs {
      * Pre-authorized and blocked security fabric nodes. The structure of `trustedList` block is documented below.
      */
     trustedLists?: pulumi.Input<pulumi.Input<inputs.SystemCsfTrustedList>[]>;
+    /**
+     * IP/FQDN of the FortiGate upstream from this FortiGate in the Security Fabric.
+     */
+    upstream?: pulumi.Input<string>;
     /**
      * IP address of the FortiGate upstream from this FortiGate in the Security Fabric.
      */

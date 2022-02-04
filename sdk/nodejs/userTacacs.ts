@@ -125,45 +125,43 @@ export class UserTacacs extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserTacacsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserTacacsArgs | UserTacacsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserTacacsState | undefined;
-            inputs["authenType"] = state ? state.authenType : undefined;
-            inputs["authorization"] = state ? state.authorization : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["secondaryKey"] = state ? state.secondaryKey : undefined;
-            inputs["secondaryServer"] = state ? state.secondaryServer : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["tertiaryKey"] = state ? state.tertiaryKey : undefined;
-            inputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authenType"] = state ? state.authenType : undefined;
+            resourceInputs["authorization"] = state ? state.authorization : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["secondaryKey"] = state ? state.secondaryKey : undefined;
+            resourceInputs["secondaryServer"] = state ? state.secondaryServer : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["tertiaryKey"] = state ? state.tertiaryKey : undefined;
+            resourceInputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserTacacsArgs | undefined;
-            inputs["authenType"] = args ? args.authenType : undefined;
-            inputs["authorization"] = args ? args.authorization : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["secondaryKey"] = args ? args.secondaryKey : undefined;
-            inputs["secondaryServer"] = args ? args.secondaryServer : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["tertiaryKey"] = args ? args.tertiaryKey : undefined;
-            inputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authenType"] = args ? args.authenType : undefined;
+            resourceInputs["authorization"] = args ? args.authorization : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["secondaryKey"] = args ? args.secondaryKey : undefined;
+            resourceInputs["secondaryServer"] = args ? args.secondaryServer : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["tertiaryKey"] = args ? args.tertiaryKey : undefined;
+            resourceInputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserTacacs.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserTacacs.__pulumiType, name, resourceInputs, opts);
     }
 }
 

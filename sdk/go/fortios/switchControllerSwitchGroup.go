@@ -45,6 +45,7 @@ func NewSwitchControllerSwitchGroup(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchGroup
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchGroup:SwitchControllerSwitchGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type SwitchControllerSwitchGroupInput interface {
 }
 
 func (*SwitchControllerSwitchGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchGroup)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchGroup)(nil)).Elem()
 }
 
 func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupOutput() SwitchControllerSwitchGroupOutput {
@@ -152,35 +153,6 @@ func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupOutput() Swit
 
 func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupOutput)
-}
-
-func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupPtrOutput() SwitchControllerSwitchGroupPtrOutput {
-	return i.ToSwitchControllerSwitchGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSwitchGroup) ToSwitchControllerSwitchGroupPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupPtrOutput)
-}
-
-type SwitchControllerSwitchGroupPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSwitchGroupPtrOutput() SwitchControllerSwitchGroupPtrOutput
-	ToSwitchControllerSwitchGroupPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupPtrOutput
-}
-
-type switchControllerSwitchGroupPtrType SwitchControllerSwitchGroupArgs
-
-func (*switchControllerSwitchGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchGroup)(nil))
-}
-
-func (i *switchControllerSwitchGroupPtrType) ToSwitchControllerSwitchGroupPtrOutput() SwitchControllerSwitchGroupPtrOutput {
-	return i.ToSwitchControllerSwitchGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSwitchGroupPtrType) ToSwitchControllerSwitchGroupPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupPtrOutput)
 }
 
 // SwitchControllerSwitchGroupArrayInput is an input type that accepts SwitchControllerSwitchGroupArray and SwitchControllerSwitchGroupArrayOutput values.
@@ -197,7 +169,7 @@ type SwitchControllerSwitchGroupArrayInput interface {
 type SwitchControllerSwitchGroupArray []SwitchControllerSwitchGroupInput
 
 func (SwitchControllerSwitchGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSwitchGroup)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchGroup)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchGroupArray) ToSwitchControllerSwitchGroupArrayOutput() SwitchControllerSwitchGroupArrayOutput {
@@ -222,7 +194,7 @@ type SwitchControllerSwitchGroupMapInput interface {
 type SwitchControllerSwitchGroupMap map[string]SwitchControllerSwitchGroupInput
 
 func (SwitchControllerSwitchGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSwitchGroup)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchGroup)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchGroupMap) ToSwitchControllerSwitchGroupMapOutput() SwitchControllerSwitchGroupMapOutput {
@@ -233,12 +205,10 @@ func (i SwitchControllerSwitchGroupMap) ToSwitchControllerSwitchGroupMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchGroupMapOutput)
 }
 
-type SwitchControllerSwitchGroupOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSwitchGroupOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchGroup)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchGroup)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupOutput() SwitchControllerSwitchGroupOutput {
@@ -249,36 +219,10 @@ func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupOutputWi
 	return o
 }
 
-func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupPtrOutput() SwitchControllerSwitchGroupPtrOutput {
-	return o.ToSwitchControllerSwitchGroupPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSwitchGroupOutput) ToSwitchControllerSwitchGroupPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSwitchGroup) *SwitchControllerSwitchGroup {
-		return &v
-	}).(SwitchControllerSwitchGroupPtrOutput)
-}
-
-type SwitchControllerSwitchGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSwitchGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchGroup)(nil))
-}
-
-func (o SwitchControllerSwitchGroupPtrOutput) ToSwitchControllerSwitchGroupPtrOutput() SwitchControllerSwitchGroupPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSwitchGroupPtrOutput) ToSwitchControllerSwitchGroupPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchGroupPtrOutput {
-	return o
-}
-
 type SwitchControllerSwitchGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSwitchGroup)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchGroup)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchGroupArrayOutput) ToSwitchControllerSwitchGroupArrayOutput() SwitchControllerSwitchGroupArrayOutput {
@@ -290,15 +234,15 @@ func (o SwitchControllerSwitchGroupArrayOutput) ToSwitchControllerSwitchGroupArr
 }
 
 func (o SwitchControllerSwitchGroupArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSwitchGroup {
-		return vs[0].([]SwitchControllerSwitchGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchGroup {
+		return vs[0].([]*SwitchControllerSwitchGroup)[vs[1].(int)]
 	}).(SwitchControllerSwitchGroupOutput)
 }
 
 type SwitchControllerSwitchGroupMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSwitchGroup)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchGroup)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchGroupMapOutput) ToSwitchControllerSwitchGroupMapOutput() SwitchControllerSwitchGroupMapOutput {
@@ -310,14 +254,16 @@ func (o SwitchControllerSwitchGroupMapOutput) ToSwitchControllerSwitchGroupMapOu
 }
 
 func (o SwitchControllerSwitchGroupMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSwitchGroup {
-		return vs[0].(map[string]SwitchControllerSwitchGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSwitchGroup {
+		return vs[0].(map[string]*SwitchControllerSwitchGroup)[vs[1].(string)]
 	}).(SwitchControllerSwitchGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchGroupInput)(nil)).Elem(), &SwitchControllerSwitchGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchGroupArrayInput)(nil)).Elem(), SwitchControllerSwitchGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchGroupMapInput)(nil)).Elem(), SwitchControllerSwitchGroupMap{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchGroupOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSwitchGroupPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchGroupArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchGroupMapOutput{})
 }

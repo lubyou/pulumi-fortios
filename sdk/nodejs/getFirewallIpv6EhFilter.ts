@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,9 +13,7 @@ export function getFirewallIpv6EhFilter(args?: GetFirewallIpv6EhFilterArgs, opts
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallIpv6EhFilter:GetFirewallIpv6EhFilter", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -73,4 +70,18 @@ export interface GetFirewallIpv6EhFilterResult {
      */
     readonly routingType: number;
     readonly vdomparam?: string;
+}
+
+export function getFirewallIpv6EhFilterOutput(args?: GetFirewallIpv6EhFilterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallIpv6EhFilterResult> {
+    return pulumi.output(args).apply(a => getFirewallIpv6EhFilter(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallIpv6EhFilter.
+ */
+export interface GetFirewallIpv6EhFilterOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

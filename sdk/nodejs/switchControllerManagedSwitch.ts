@@ -63,6 +63,10 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string>;
     /**
+     * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+     */
+    public readonly dhcpServerAccessList!: pulumi.Output<string>;
+    /**
      * Directly connected FortiSwitch.
      */
     public readonly directlyConnected!: pulumi.Output<number>;
@@ -82,6 +86,10 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
      * Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
      */
     public readonly firmwareProvision!: pulumi.Output<string>;
+    /**
+     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+     */
+    public readonly firmwareProvisionLatest!: pulumi.Output<string>;
     /**
      * Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
      */
@@ -130,6 +138,9 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
      * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
      */
     public readonly mirrors!: pulumi.Output<outputs.SwitchControllerManagedSwitchMirror[] | undefined>;
+    /**
+     * Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
+     */
     public readonly n8021xSettings!: pulumi.Output<outputs.SwitchControllerManagedSwitchN8021xSettings | undefined>;
     /**
      * Interface name.
@@ -260,7 +271,7 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     /**
-     * FortiSwitch version.
+     * IGMP snooping querier version.
      */
     public readonly version!: pulumi.Output<number>;
 
@@ -273,65 +284,67 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
      */
     constructor(name: string, args: SwitchControllerManagedSwitchArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerManagedSwitchArgs | SwitchControllerManagedSwitchState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerManagedSwitchState | undefined;
-            inputs["accessProfile"] = state ? state.accessProfile : undefined;
-            inputs["customCommands"] = state ? state.customCommands : undefined;
-            inputs["delayedRestartTrigger"] = state ? state.delayedRestartTrigger : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["directlyConnected"] = state ? state.directlyConnected : undefined;
-            inputs["dynamicCapability"] = state ? state.dynamicCapability : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["dynamicallyDiscovered"] = state ? state.dynamicallyDiscovered : undefined;
-            inputs["firmwareProvision"] = state ? state.firmwareProvision : undefined;
-            inputs["firmwareProvisionVersion"] = state ? state.firmwareProvisionVersion : undefined;
-            inputs["flowIdentity"] = state ? state.flowIdentity : undefined;
-            inputs["fswWan1Admin"] = state ? state.fswWan1Admin : undefined;
-            inputs["fswWan1Peer"] = state ? state.fswWan1Peer : undefined;
-            inputs["fswWan2Admin"] = state ? state.fswWan2Admin : undefined;
-            inputs["fswWan2Peer"] = state ? state.fswWan2Peer : undefined;
-            inputs["igmpSnooping"] = state ? state.igmpSnooping : undefined;
-            inputs["ipSourceGuards"] = state ? state.ipSourceGuards : undefined;
-            inputs["l3Discovered"] = state ? state.l3Discovered : undefined;
-            inputs["maxAllowedTrunkMembers"] = state ? state.maxAllowedTrunkMembers : undefined;
-            inputs["mclagIgmpSnoopingAware"] = state ? state.mclagIgmpSnoopingAware : undefined;
-            inputs["mirrors"] = state ? state.mirrors : undefined;
-            inputs["n8021xSettings"] = state ? state.n8021xSettings : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["overrideSnmpCommunity"] = state ? state.overrideSnmpCommunity : undefined;
-            inputs["overrideSnmpSysinfo"] = state ? state.overrideSnmpSysinfo : undefined;
-            inputs["overrideSnmpTrapThreshold"] = state ? state.overrideSnmpTrapThreshold : undefined;
-            inputs["overrideSnmpUser"] = state ? state.overrideSnmpUser : undefined;
-            inputs["ownerVdom"] = state ? state.ownerVdom : undefined;
-            inputs["poeDetectionType"] = state ? state.poeDetectionType : undefined;
-            inputs["poeLldpDetection"] = state ? state.poeLldpDetection : undefined;
-            inputs["poePreStandardDetection"] = state ? state.poePreStandardDetection : undefined;
-            inputs["ports"] = state ? state.ports : undefined;
-            inputs["preProvisioned"] = state ? state.preProvisioned : undefined;
-            inputs["qosDropPolicy"] = state ? state.qosDropPolicy : undefined;
-            inputs["qosRedProbability"] = state ? state.qosRedProbability : undefined;
-            inputs["remoteLogs"] = state ? state.remoteLogs : undefined;
-            inputs["snmpCommunities"] = state ? state.snmpCommunities : undefined;
-            inputs["snmpSysinfo"] = state ? state.snmpSysinfo : undefined;
-            inputs["snmpTrapThreshold"] = state ? state.snmpTrapThreshold : undefined;
-            inputs["snmpUsers"] = state ? state.snmpUsers : undefined;
-            inputs["stagedImageVersion"] = state ? state.stagedImageVersion : undefined;
-            inputs["staticMacs"] = state ? state.staticMacs : undefined;
-            inputs["stormControl"] = state ? state.stormControl : undefined;
-            inputs["stpInstances"] = state ? state.stpInstances : undefined;
-            inputs["stpSettings"] = state ? state.stpSettings : undefined;
-            inputs["switchDeviceTag"] = state ? state.switchDeviceTag : undefined;
-            inputs["switchDhcpOpt43Key"] = state ? state.switchDhcpOpt43Key : undefined;
-            inputs["switchId"] = state ? state.switchId : undefined;
-            inputs["switchLog"] = state ? state.switchLog : undefined;
-            inputs["switchProfile"] = state ? state.switchProfile : undefined;
-            inputs["switchStpSettings"] = state ? state.switchStpSettings : undefined;
-            inputs["tdrSupported"] = state ? state.tdrSupported : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["accessProfile"] = state ? state.accessProfile : undefined;
+            resourceInputs["customCommands"] = state ? state.customCommands : undefined;
+            resourceInputs["delayedRestartTrigger"] = state ? state.delayedRestartTrigger : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dhcpServerAccessList"] = state ? state.dhcpServerAccessList : undefined;
+            resourceInputs["directlyConnected"] = state ? state.directlyConnected : undefined;
+            resourceInputs["dynamicCapability"] = state ? state.dynamicCapability : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["dynamicallyDiscovered"] = state ? state.dynamicallyDiscovered : undefined;
+            resourceInputs["firmwareProvision"] = state ? state.firmwareProvision : undefined;
+            resourceInputs["firmwareProvisionLatest"] = state ? state.firmwareProvisionLatest : undefined;
+            resourceInputs["firmwareProvisionVersion"] = state ? state.firmwareProvisionVersion : undefined;
+            resourceInputs["flowIdentity"] = state ? state.flowIdentity : undefined;
+            resourceInputs["fswWan1Admin"] = state ? state.fswWan1Admin : undefined;
+            resourceInputs["fswWan1Peer"] = state ? state.fswWan1Peer : undefined;
+            resourceInputs["fswWan2Admin"] = state ? state.fswWan2Admin : undefined;
+            resourceInputs["fswWan2Peer"] = state ? state.fswWan2Peer : undefined;
+            resourceInputs["igmpSnooping"] = state ? state.igmpSnooping : undefined;
+            resourceInputs["ipSourceGuards"] = state ? state.ipSourceGuards : undefined;
+            resourceInputs["l3Discovered"] = state ? state.l3Discovered : undefined;
+            resourceInputs["maxAllowedTrunkMembers"] = state ? state.maxAllowedTrunkMembers : undefined;
+            resourceInputs["mclagIgmpSnoopingAware"] = state ? state.mclagIgmpSnoopingAware : undefined;
+            resourceInputs["mirrors"] = state ? state.mirrors : undefined;
+            resourceInputs["n8021xSettings"] = state ? state.n8021xSettings : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overrideSnmpCommunity"] = state ? state.overrideSnmpCommunity : undefined;
+            resourceInputs["overrideSnmpSysinfo"] = state ? state.overrideSnmpSysinfo : undefined;
+            resourceInputs["overrideSnmpTrapThreshold"] = state ? state.overrideSnmpTrapThreshold : undefined;
+            resourceInputs["overrideSnmpUser"] = state ? state.overrideSnmpUser : undefined;
+            resourceInputs["ownerVdom"] = state ? state.ownerVdom : undefined;
+            resourceInputs["poeDetectionType"] = state ? state.poeDetectionType : undefined;
+            resourceInputs["poeLldpDetection"] = state ? state.poeLldpDetection : undefined;
+            resourceInputs["poePreStandardDetection"] = state ? state.poePreStandardDetection : undefined;
+            resourceInputs["ports"] = state ? state.ports : undefined;
+            resourceInputs["preProvisioned"] = state ? state.preProvisioned : undefined;
+            resourceInputs["qosDropPolicy"] = state ? state.qosDropPolicy : undefined;
+            resourceInputs["qosRedProbability"] = state ? state.qosRedProbability : undefined;
+            resourceInputs["remoteLogs"] = state ? state.remoteLogs : undefined;
+            resourceInputs["snmpCommunities"] = state ? state.snmpCommunities : undefined;
+            resourceInputs["snmpSysinfo"] = state ? state.snmpSysinfo : undefined;
+            resourceInputs["snmpTrapThreshold"] = state ? state.snmpTrapThreshold : undefined;
+            resourceInputs["snmpUsers"] = state ? state.snmpUsers : undefined;
+            resourceInputs["stagedImageVersion"] = state ? state.stagedImageVersion : undefined;
+            resourceInputs["staticMacs"] = state ? state.staticMacs : undefined;
+            resourceInputs["stormControl"] = state ? state.stormControl : undefined;
+            resourceInputs["stpInstances"] = state ? state.stpInstances : undefined;
+            resourceInputs["stpSettings"] = state ? state.stpSettings : undefined;
+            resourceInputs["switchDeviceTag"] = state ? state.switchDeviceTag : undefined;
+            resourceInputs["switchDhcpOpt43Key"] = state ? state.switchDhcpOpt43Key : undefined;
+            resourceInputs["switchId"] = state ? state.switchId : undefined;
+            resourceInputs["switchLog"] = state ? state.switchLog : undefined;
+            resourceInputs["switchProfile"] = state ? state.switchProfile : undefined;
+            resourceInputs["switchStpSettings"] = state ? state.switchStpSettings : undefined;
+            resourceInputs["tdrSupported"] = state ? state.tdrSupported : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as SwitchControllerManagedSwitchArgs | undefined;
             if ((!args || args.fswWan1Peer === undefined) && !opts.urn) {
@@ -340,66 +353,66 @@ export class SwitchControllerManagedSwitch extends pulumi.CustomResource {
             if ((!args || args.switchId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'switchId'");
             }
-            inputs["accessProfile"] = args ? args.accessProfile : undefined;
-            inputs["customCommands"] = args ? args.customCommands : undefined;
-            inputs["delayedRestartTrigger"] = args ? args.delayedRestartTrigger : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["directlyConnected"] = args ? args.directlyConnected : undefined;
-            inputs["dynamicCapability"] = args ? args.dynamicCapability : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["dynamicallyDiscovered"] = args ? args.dynamicallyDiscovered : undefined;
-            inputs["firmwareProvision"] = args ? args.firmwareProvision : undefined;
-            inputs["firmwareProvisionVersion"] = args ? args.firmwareProvisionVersion : undefined;
-            inputs["flowIdentity"] = args ? args.flowIdentity : undefined;
-            inputs["fswWan1Admin"] = args ? args.fswWan1Admin : undefined;
-            inputs["fswWan1Peer"] = args ? args.fswWan1Peer : undefined;
-            inputs["fswWan2Admin"] = args ? args.fswWan2Admin : undefined;
-            inputs["fswWan2Peer"] = args ? args.fswWan2Peer : undefined;
-            inputs["igmpSnooping"] = args ? args.igmpSnooping : undefined;
-            inputs["ipSourceGuards"] = args ? args.ipSourceGuards : undefined;
-            inputs["l3Discovered"] = args ? args.l3Discovered : undefined;
-            inputs["maxAllowedTrunkMembers"] = args ? args.maxAllowedTrunkMembers : undefined;
-            inputs["mclagIgmpSnoopingAware"] = args ? args.mclagIgmpSnoopingAware : undefined;
-            inputs["mirrors"] = args ? args.mirrors : undefined;
-            inputs["n8021xSettings"] = args ? args.n8021xSettings : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["overrideSnmpCommunity"] = args ? args.overrideSnmpCommunity : undefined;
-            inputs["overrideSnmpSysinfo"] = args ? args.overrideSnmpSysinfo : undefined;
-            inputs["overrideSnmpTrapThreshold"] = args ? args.overrideSnmpTrapThreshold : undefined;
-            inputs["overrideSnmpUser"] = args ? args.overrideSnmpUser : undefined;
-            inputs["ownerVdom"] = args ? args.ownerVdom : undefined;
-            inputs["poeDetectionType"] = args ? args.poeDetectionType : undefined;
-            inputs["poeLldpDetection"] = args ? args.poeLldpDetection : undefined;
-            inputs["poePreStandardDetection"] = args ? args.poePreStandardDetection : undefined;
-            inputs["ports"] = args ? args.ports : undefined;
-            inputs["preProvisioned"] = args ? args.preProvisioned : undefined;
-            inputs["qosDropPolicy"] = args ? args.qosDropPolicy : undefined;
-            inputs["qosRedProbability"] = args ? args.qosRedProbability : undefined;
-            inputs["remoteLogs"] = args ? args.remoteLogs : undefined;
-            inputs["snmpCommunities"] = args ? args.snmpCommunities : undefined;
-            inputs["snmpSysinfo"] = args ? args.snmpSysinfo : undefined;
-            inputs["snmpTrapThreshold"] = args ? args.snmpTrapThreshold : undefined;
-            inputs["snmpUsers"] = args ? args.snmpUsers : undefined;
-            inputs["stagedImageVersion"] = args ? args.stagedImageVersion : undefined;
-            inputs["staticMacs"] = args ? args.staticMacs : undefined;
-            inputs["stormControl"] = args ? args.stormControl : undefined;
-            inputs["stpInstances"] = args ? args.stpInstances : undefined;
-            inputs["stpSettings"] = args ? args.stpSettings : undefined;
-            inputs["switchDeviceTag"] = args ? args.switchDeviceTag : undefined;
-            inputs["switchDhcpOpt43Key"] = args ? args.switchDhcpOpt43Key : undefined;
-            inputs["switchId"] = args ? args.switchId : undefined;
-            inputs["switchLog"] = args ? args.switchLog : undefined;
-            inputs["switchProfile"] = args ? args.switchProfile : undefined;
-            inputs["switchStpSettings"] = args ? args.switchStpSettings : undefined;
-            inputs["tdrSupported"] = args ? args.tdrSupported : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["version"] = args ? args.version : undefined;
+            resourceInputs["accessProfile"] = args ? args.accessProfile : undefined;
+            resourceInputs["customCommands"] = args ? args.customCommands : undefined;
+            resourceInputs["delayedRestartTrigger"] = args ? args.delayedRestartTrigger : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dhcpServerAccessList"] = args ? args.dhcpServerAccessList : undefined;
+            resourceInputs["directlyConnected"] = args ? args.directlyConnected : undefined;
+            resourceInputs["dynamicCapability"] = args ? args.dynamicCapability : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["dynamicallyDiscovered"] = args ? args.dynamicallyDiscovered : undefined;
+            resourceInputs["firmwareProvision"] = args ? args.firmwareProvision : undefined;
+            resourceInputs["firmwareProvisionLatest"] = args ? args.firmwareProvisionLatest : undefined;
+            resourceInputs["firmwareProvisionVersion"] = args ? args.firmwareProvisionVersion : undefined;
+            resourceInputs["flowIdentity"] = args ? args.flowIdentity : undefined;
+            resourceInputs["fswWan1Admin"] = args ? args.fswWan1Admin : undefined;
+            resourceInputs["fswWan1Peer"] = args ? args.fswWan1Peer : undefined;
+            resourceInputs["fswWan2Admin"] = args ? args.fswWan2Admin : undefined;
+            resourceInputs["fswWan2Peer"] = args ? args.fswWan2Peer : undefined;
+            resourceInputs["igmpSnooping"] = args ? args.igmpSnooping : undefined;
+            resourceInputs["ipSourceGuards"] = args ? args.ipSourceGuards : undefined;
+            resourceInputs["l3Discovered"] = args ? args.l3Discovered : undefined;
+            resourceInputs["maxAllowedTrunkMembers"] = args ? args.maxAllowedTrunkMembers : undefined;
+            resourceInputs["mclagIgmpSnoopingAware"] = args ? args.mclagIgmpSnoopingAware : undefined;
+            resourceInputs["mirrors"] = args ? args.mirrors : undefined;
+            resourceInputs["n8021xSettings"] = args ? args.n8021xSettings : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overrideSnmpCommunity"] = args ? args.overrideSnmpCommunity : undefined;
+            resourceInputs["overrideSnmpSysinfo"] = args ? args.overrideSnmpSysinfo : undefined;
+            resourceInputs["overrideSnmpTrapThreshold"] = args ? args.overrideSnmpTrapThreshold : undefined;
+            resourceInputs["overrideSnmpUser"] = args ? args.overrideSnmpUser : undefined;
+            resourceInputs["ownerVdom"] = args ? args.ownerVdom : undefined;
+            resourceInputs["poeDetectionType"] = args ? args.poeDetectionType : undefined;
+            resourceInputs["poeLldpDetection"] = args ? args.poeLldpDetection : undefined;
+            resourceInputs["poePreStandardDetection"] = args ? args.poePreStandardDetection : undefined;
+            resourceInputs["ports"] = args ? args.ports : undefined;
+            resourceInputs["preProvisioned"] = args ? args.preProvisioned : undefined;
+            resourceInputs["qosDropPolicy"] = args ? args.qosDropPolicy : undefined;
+            resourceInputs["qosRedProbability"] = args ? args.qosRedProbability : undefined;
+            resourceInputs["remoteLogs"] = args ? args.remoteLogs : undefined;
+            resourceInputs["snmpCommunities"] = args ? args.snmpCommunities : undefined;
+            resourceInputs["snmpSysinfo"] = args ? args.snmpSysinfo : undefined;
+            resourceInputs["snmpTrapThreshold"] = args ? args.snmpTrapThreshold : undefined;
+            resourceInputs["snmpUsers"] = args ? args.snmpUsers : undefined;
+            resourceInputs["stagedImageVersion"] = args ? args.stagedImageVersion : undefined;
+            resourceInputs["staticMacs"] = args ? args.staticMacs : undefined;
+            resourceInputs["stormControl"] = args ? args.stormControl : undefined;
+            resourceInputs["stpInstances"] = args ? args.stpInstances : undefined;
+            resourceInputs["stpSettings"] = args ? args.stpSettings : undefined;
+            resourceInputs["switchDeviceTag"] = args ? args.switchDeviceTag : undefined;
+            resourceInputs["switchDhcpOpt43Key"] = args ? args.switchDhcpOpt43Key : undefined;
+            resourceInputs["switchId"] = args ? args.switchId : undefined;
+            resourceInputs["switchLog"] = args ? args.switchLog : undefined;
+            resourceInputs["switchProfile"] = args ? args.switchProfile : undefined;
+            resourceInputs["switchStpSettings"] = args ? args.switchStpSettings : undefined;
+            resourceInputs["tdrSupported"] = args ? args.tdrSupported : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerManagedSwitch.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerManagedSwitch.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -424,6 +437,10 @@ export interface SwitchControllerManagedSwitchState {
      */
     description?: pulumi.Input<string>;
     /**
+     * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+     */
+    dhcpServerAccessList?: pulumi.Input<string>;
+    /**
      * Directly connected FortiSwitch.
      */
     directlyConnected?: pulumi.Input<number>;
@@ -443,6 +460,10 @@ export interface SwitchControllerManagedSwitchState {
      * Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
      */
     firmwareProvision?: pulumi.Input<string>;
+    /**
+     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+     */
+    firmwareProvisionLatest?: pulumi.Input<string>;
     /**
      * Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
      */
@@ -491,6 +512,9 @@ export interface SwitchControllerManagedSwitchState {
      * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
      */
     mirrors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchMirror>[]>;
+    /**
+     * Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
+     */
     n8021xSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchN8021xSettings>;
     /**
      * Interface name.
@@ -621,7 +645,7 @@ export interface SwitchControllerManagedSwitchState {
      */
     vdomparam?: pulumi.Input<string>;
     /**
-     * FortiSwitch version.
+     * IGMP snooping querier version.
      */
     version?: pulumi.Input<number>;
 }
@@ -647,6 +671,10 @@ export interface SwitchControllerManagedSwitchArgs {
      */
     description?: pulumi.Input<string>;
     /**
+     * DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+     */
+    dhcpServerAccessList?: pulumi.Input<string>;
+    /**
      * Directly connected FortiSwitch.
      */
     directlyConnected?: pulumi.Input<number>;
@@ -666,6 +694,10 @@ export interface SwitchControllerManagedSwitchArgs {
      * Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
      */
     firmwareProvision?: pulumi.Input<string>;
+    /**
+     * Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+     */
+    firmwareProvisionLatest?: pulumi.Input<string>;
     /**
      * Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
      */
@@ -714,6 +746,9 @@ export interface SwitchControllerManagedSwitchArgs {
      * Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
      */
     mirrors?: pulumi.Input<pulumi.Input<inputs.SwitchControllerManagedSwitchMirror>[]>;
+    /**
+     * Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n8021xSettings` block is documented below.
+     */
     n8021xSettings?: pulumi.Input<inputs.SwitchControllerManagedSwitchN8021xSettings>;
     /**
      * Interface name.
@@ -844,7 +879,7 @@ export interface SwitchControllerManagedSwitchArgs {
      */
     vdomparam?: pulumi.Input<string>;
     /**
-     * FortiSwitch version.
+     * IGMP snooping querier version.
      */
     version?: pulumi.Input<number>;
 }

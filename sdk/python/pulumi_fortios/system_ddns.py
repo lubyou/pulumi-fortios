@@ -17,6 +17,7 @@ class SystemDdnsArgs:
     def __init__(__self__, *,
                  ddns_server: pulumi.Input[str],
                  monitor_interfaces: pulumi.Input[Sequence[pulumi.Input['SystemDdnsMonitorInterfaceArgs']]],
+                 addr_type: Optional[pulumi.Input[str]] = None,
                  bound_ip: Optional[pulumi.Input[str]] = None,
                  clear_text: Optional[pulumi.Input[str]] = None,
                  ddns_auth: Optional[pulumi.Input[str]] = None,
@@ -24,6 +25,7 @@ class SystemDdnsArgs:
                  ddns_key: Optional[pulumi.Input[str]] = None,
                  ddns_keyname: Optional[pulumi.Input[str]] = None,
                  ddns_password: Optional[pulumi.Input[str]] = None,
+                 ddns_server_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_sn: Optional[pulumi.Input[str]] = None,
                  ddns_ttl: Optional[pulumi.Input[int]] = None,
@@ -31,6 +33,7 @@ class SystemDdnsArgs:
                  ddns_zone: Optional[pulumi.Input[str]] = None,
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  update_interval: Optional[pulumi.Input[int]] = None,
                  use_public_ip: Optional[pulumi.Input[str]] = None,
@@ -39,6 +42,7 @@ class SystemDdnsArgs:
         The set of arguments for constructing a SystemDdns resource.
         :param pulumi.Input[str] ddns_server: Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
         :param pulumi.Input[Sequence[pulumi.Input['SystemDdnsMonitorInterfaceArgs']]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
+        :param pulumi.Input[str] addr_type: Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
@@ -46,6 +50,7 @@ class SystemDdnsArgs:
         :param pulumi.Input[str] ddns_key: DDNS update key (base 64 encoding).
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]] ddns_server_addrs: Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
         :param pulumi.Input[str] ddns_server_ip: Generic DDNS server IP.
         :param pulumi.Input[str] ddns_sn: DDNS Serial Number.
         :param pulumi.Input[int] ddns_ttl: Time-to-live for DDNS packets.
@@ -53,6 +58,7 @@ class SystemDdnsArgs:
         :param pulumi.Input[str] ddns_zone: Zone of your domain name (for example, DDNS.com).
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
@@ -60,6 +66,8 @@ class SystemDdnsArgs:
         """
         pulumi.set(__self__, "ddns_server", ddns_server)
         pulumi.set(__self__, "monitor_interfaces", monitor_interfaces)
+        if addr_type is not None:
+            pulumi.set(__self__, "addr_type", addr_type)
         if bound_ip is not None:
             pulumi.set(__self__, "bound_ip", bound_ip)
         if clear_text is not None:
@@ -74,6 +82,8 @@ class SystemDdnsArgs:
             pulumi.set(__self__, "ddns_keyname", ddns_keyname)
         if ddns_password is not None:
             pulumi.set(__self__, "ddns_password", ddns_password)
+        if ddns_server_addrs is not None:
+            pulumi.set(__self__, "ddns_server_addrs", ddns_server_addrs)
         if ddns_server_ip is not None:
             pulumi.set(__self__, "ddns_server_ip", ddns_server_ip)
         if ddns_sn is not None:
@@ -88,6 +98,8 @@ class SystemDdnsArgs:
             pulumi.set(__self__, "ddnsid", ddnsid)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if server_type is not None:
+            pulumi.set(__self__, "server_type", server_type)
         if ssl_certificate is not None:
             pulumi.set(__self__, "ssl_certificate", ssl_certificate)
         if update_interval is not None:
@@ -120,6 +132,18 @@ class SystemDdnsArgs:
     @monitor_interfaces.setter
     def monitor_interfaces(self, value: pulumi.Input[Sequence[pulumi.Input['SystemDdnsMonitorInterfaceArgs']]]):
         pulumi.set(self, "monitor_interfaces", value)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @addr_type.setter
+    def addr_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "addr_type", value)
 
     @property
     @pulumi.getter(name="boundIp")
@@ -206,6 +230,18 @@ class SystemDdnsArgs:
         pulumi.set(self, "ddns_password", value)
 
     @property
+    @pulumi.getter(name="ddnsServerAddrs")
+    def ddns_server_addrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]]]:
+        """
+        Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
+        """
+        return pulumi.get(self, "ddns_server_addrs")
+
+    @ddns_server_addrs.setter
+    def ddns_server_addrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]]]):
+        pulumi.set(self, "ddns_server_addrs", value)
+
+    @property
     @pulumi.getter(name="ddnsServerIp")
     def ddns_server_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -290,6 +326,18 @@ class SystemDdnsArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+        """
+        return pulumi.get(self, "server_type")
+
+    @server_type.setter
+    def server_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_type", value)
+
+    @property
     @pulumi.getter(name="sslCertificate")
     def ssl_certificate(self) -> Optional[pulumi.Input[str]]:
         """
@@ -341,6 +389,7 @@ class SystemDdnsArgs:
 @pulumi.input_type
 class _SystemDdnsState:
     def __init__(__self__, *,
+                 addr_type: Optional[pulumi.Input[str]] = None,
                  bound_ip: Optional[pulumi.Input[str]] = None,
                  clear_text: Optional[pulumi.Input[str]] = None,
                  ddns_auth: Optional[pulumi.Input[str]] = None,
@@ -349,6 +398,7 @@ class _SystemDdnsState:
                  ddns_keyname: Optional[pulumi.Input[str]] = None,
                  ddns_password: Optional[pulumi.Input[str]] = None,
                  ddns_server: Optional[pulumi.Input[str]] = None,
+                 ddns_server_addrs: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_sn: Optional[pulumi.Input[str]] = None,
                  ddns_ttl: Optional[pulumi.Input[int]] = None,
@@ -357,12 +407,14 @@ class _SystemDdnsState:
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsMonitorInterfaceArgs']]]] = None,
+                 server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  update_interval: Optional[pulumi.Input[int]] = None,
                  use_public_ip: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemDdns resources.
+        :param pulumi.Input[str] addr_type: Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
@@ -371,6 +423,7 @@ class _SystemDdnsState:
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
         :param pulumi.Input[str] ddns_server: Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]] ddns_server_addrs: Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
         :param pulumi.Input[str] ddns_server_ip: Generic DDNS server IP.
         :param pulumi.Input[str] ddns_sn: DDNS Serial Number.
         :param pulumi.Input[int] ddns_ttl: Time-to-live for DDNS packets.
@@ -379,11 +432,14 @@ class _SystemDdnsState:
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[Sequence[pulumi.Input['SystemDdnsMonitorInterfaceArgs']]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
+        :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if addr_type is not None:
+            pulumi.set(__self__, "addr_type", addr_type)
         if bound_ip is not None:
             pulumi.set(__self__, "bound_ip", bound_ip)
         if clear_text is not None:
@@ -400,6 +456,8 @@ class _SystemDdnsState:
             pulumi.set(__self__, "ddns_password", ddns_password)
         if ddns_server is not None:
             pulumi.set(__self__, "ddns_server", ddns_server)
+        if ddns_server_addrs is not None:
+            pulumi.set(__self__, "ddns_server_addrs", ddns_server_addrs)
         if ddns_server_ip is not None:
             pulumi.set(__self__, "ddns_server_ip", ddns_server_ip)
         if ddns_sn is not None:
@@ -416,6 +474,8 @@ class _SystemDdnsState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if monitor_interfaces is not None:
             pulumi.set(__self__, "monitor_interfaces", monitor_interfaces)
+        if server_type is not None:
+            pulumi.set(__self__, "server_type", server_type)
         if ssl_certificate is not None:
             pulumi.set(__self__, "ssl_certificate", ssl_certificate)
         if update_interval is not None:
@@ -424,6 +484,18 @@ class _SystemDdnsState:
             pulumi.set(__self__, "use_public_ip", use_public_ip)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @addr_type.setter
+    def addr_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "addr_type", value)
 
     @property
     @pulumi.getter(name="boundIp")
@@ -522,6 +594,18 @@ class _SystemDdnsState:
         pulumi.set(self, "ddns_server", value)
 
     @property
+    @pulumi.getter(name="ddnsServerAddrs")
+    def ddns_server_addrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]]]:
+        """
+        Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
+        """
+        return pulumi.get(self, "ddns_server_addrs")
+
+    @ddns_server_addrs.setter
+    def ddns_server_addrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDdnsDdnsServerAddrArgs']]]]):
+        pulumi.set(self, "ddns_server_addrs", value)
+
+    @property
     @pulumi.getter(name="ddnsServerIp")
     def ddns_server_ip(self) -> Optional[pulumi.Input[str]]:
         """
@@ -618,6 +702,18 @@ class _SystemDdnsState:
         pulumi.set(self, "monitor_interfaces", value)
 
     @property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+        """
+        return pulumi.get(self, "server_type")
+
+    @server_type.setter
+    def server_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_type", value)
+
+    @property
     @pulumi.getter(name="sslCertificate")
     def ssl_certificate(self) -> Optional[pulumi.Input[str]]:
         """
@@ -671,6 +767,7 @@ class SystemDdns(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 addr_type: Optional[pulumi.Input[str]] = None,
                  bound_ip: Optional[pulumi.Input[str]] = None,
                  clear_text: Optional[pulumi.Input[str]] = None,
                  ddns_auth: Optional[pulumi.Input[str]] = None,
@@ -679,6 +776,7 @@ class SystemDdns(pulumi.CustomResource):
                  ddns_keyname: Optional[pulumi.Input[str]] = None,
                  ddns_password: Optional[pulumi.Input[str]] = None,
                  ddns_server: Optional[pulumi.Input[str]] = None,
+                 ddns_server_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsDdnsServerAddrArgs']]]]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_sn: Optional[pulumi.Input[str]] = None,
                  ddns_ttl: Optional[pulumi.Input[int]] = None,
@@ -687,6 +785,7 @@ class SystemDdns(pulumi.CustomResource):
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsMonitorInterfaceArgs']]]]] = None,
+                 server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  update_interval: Optional[pulumi.Input[int]] = None,
                  use_public_ip: Optional[pulumi.Input[str]] = None,
@@ -732,6 +831,7 @@ class SystemDdns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] addr_type: Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
@@ -740,6 +840,7 @@ class SystemDdns(pulumi.CustomResource):
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
         :param pulumi.Input[str] ddns_server: Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsDdnsServerAddrArgs']]]] ddns_server_addrs: Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
         :param pulumi.Input[str] ddns_server_ip: Generic DDNS server IP.
         :param pulumi.Input[str] ddns_sn: DDNS Serial Number.
         :param pulumi.Input[int] ddns_ttl: Time-to-live for DDNS packets.
@@ -748,6 +849,7 @@ class SystemDdns(pulumi.CustomResource):
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsMonitorInterfaceArgs']]]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
+        :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
@@ -812,6 +914,7 @@ class SystemDdns(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 addr_type: Optional[pulumi.Input[str]] = None,
                  bound_ip: Optional[pulumi.Input[str]] = None,
                  clear_text: Optional[pulumi.Input[str]] = None,
                  ddns_auth: Optional[pulumi.Input[str]] = None,
@@ -820,6 +923,7 @@ class SystemDdns(pulumi.CustomResource):
                  ddns_keyname: Optional[pulumi.Input[str]] = None,
                  ddns_password: Optional[pulumi.Input[str]] = None,
                  ddns_server: Optional[pulumi.Input[str]] = None,
+                 ddns_server_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsDdnsServerAddrArgs']]]]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
                  ddns_sn: Optional[pulumi.Input[str]] = None,
                  ddns_ttl: Optional[pulumi.Input[int]] = None,
@@ -828,6 +932,7 @@ class SystemDdns(pulumi.CustomResource):
                  ddnsid: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsMonitorInterfaceArgs']]]]] = None,
+                 server_type: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  update_interval: Optional[pulumi.Input[int]] = None,
                  use_public_ip: Optional[pulumi.Input[str]] = None,
@@ -839,11 +944,14 @@ class SystemDdns(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemDdnsArgs.__new__(SystemDdnsArgs)
 
+            __props__.__dict__["addr_type"] = addr_type
             __props__.__dict__["bound_ip"] = bound_ip
             __props__.__dict__["clear_text"] = clear_text
             __props__.__dict__["ddns_auth"] = ddns_auth
@@ -854,6 +962,7 @@ class SystemDdns(pulumi.CustomResource):
             if ddns_server is None and not opts.urn:
                 raise TypeError("Missing required property 'ddns_server'")
             __props__.__dict__["ddns_server"] = ddns_server
+            __props__.__dict__["ddns_server_addrs"] = ddns_server_addrs
             __props__.__dict__["ddns_server_ip"] = ddns_server_ip
             __props__.__dict__["ddns_sn"] = ddns_sn
             __props__.__dict__["ddns_ttl"] = ddns_ttl
@@ -864,6 +973,7 @@ class SystemDdns(pulumi.CustomResource):
             if monitor_interfaces is None and not opts.urn:
                 raise TypeError("Missing required property 'monitor_interfaces'")
             __props__.__dict__["monitor_interfaces"] = monitor_interfaces
+            __props__.__dict__["server_type"] = server_type
             __props__.__dict__["ssl_certificate"] = ssl_certificate
             __props__.__dict__["update_interval"] = update_interval
             __props__.__dict__["use_public_ip"] = use_public_ip
@@ -878,6 +988,7 @@ class SystemDdns(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            addr_type: Optional[pulumi.Input[str]] = None,
             bound_ip: Optional[pulumi.Input[str]] = None,
             clear_text: Optional[pulumi.Input[str]] = None,
             ddns_auth: Optional[pulumi.Input[str]] = None,
@@ -886,6 +997,7 @@ class SystemDdns(pulumi.CustomResource):
             ddns_keyname: Optional[pulumi.Input[str]] = None,
             ddns_password: Optional[pulumi.Input[str]] = None,
             ddns_server: Optional[pulumi.Input[str]] = None,
+            ddns_server_addrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsDdnsServerAddrArgs']]]]] = None,
             ddns_server_ip: Optional[pulumi.Input[str]] = None,
             ddns_sn: Optional[pulumi.Input[str]] = None,
             ddns_ttl: Optional[pulumi.Input[int]] = None,
@@ -894,6 +1006,7 @@ class SystemDdns(pulumi.CustomResource):
             ddnsid: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             monitor_interfaces: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsMonitorInterfaceArgs']]]]] = None,
+            server_type: Optional[pulumi.Input[str]] = None,
             ssl_certificate: Optional[pulumi.Input[str]] = None,
             update_interval: Optional[pulumi.Input[int]] = None,
             use_public_ip: Optional[pulumi.Input[str]] = None,
@@ -905,6 +1018,7 @@ class SystemDdns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] addr_type: Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] bound_ip: Bound IP address.
         :param pulumi.Input[str] clear_text: Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ddns_auth: Enable/disable TSIG authentication for your DDNS server. Valid values: `disable`, `tsig`.
@@ -913,6 +1027,7 @@ class SystemDdns(pulumi.CustomResource):
         :param pulumi.Input[str] ddns_keyname: DDNS update key name.
         :param pulumi.Input[str] ddns_password: DDNS password.
         :param pulumi.Input[str] ddns_server: Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsDdnsServerAddrArgs']]]] ddns_server_addrs: Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
         :param pulumi.Input[str] ddns_server_ip: Generic DDNS server IP.
         :param pulumi.Input[str] ddns_sn: DDNS Serial Number.
         :param pulumi.Input[int] ddns_ttl: Time-to-live for DDNS packets.
@@ -921,6 +1036,7 @@ class SystemDdns(pulumi.CustomResource):
         :param pulumi.Input[int] ddnsid: DDNS ID.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDdnsMonitorInterfaceArgs']]]] monitor_interfaces: Monitored interface. The structure of `monitor_interface` block is documented below.
+        :param pulumi.Input[str] server_type: Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] update_interval: DDNS update interval (60 - 2592000 sec, default = 300).
         :param pulumi.Input[str] use_public_ip: Enable/disable use of public IP address. Valid values: `disable`, `enable`.
@@ -930,6 +1046,7 @@ class SystemDdns(pulumi.CustomResource):
 
         __props__ = _SystemDdnsState.__new__(_SystemDdnsState)
 
+        __props__.__dict__["addr_type"] = addr_type
         __props__.__dict__["bound_ip"] = bound_ip
         __props__.__dict__["clear_text"] = clear_text
         __props__.__dict__["ddns_auth"] = ddns_auth
@@ -938,6 +1055,7 @@ class SystemDdns(pulumi.CustomResource):
         __props__.__dict__["ddns_keyname"] = ddns_keyname
         __props__.__dict__["ddns_password"] = ddns_password
         __props__.__dict__["ddns_server"] = ddns_server
+        __props__.__dict__["ddns_server_addrs"] = ddns_server_addrs
         __props__.__dict__["ddns_server_ip"] = ddns_server_ip
         __props__.__dict__["ddns_sn"] = ddns_sn
         __props__.__dict__["ddns_ttl"] = ddns_ttl
@@ -946,11 +1064,20 @@ class SystemDdns(pulumi.CustomResource):
         __props__.__dict__["ddnsid"] = ddnsid
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["monitor_interfaces"] = monitor_interfaces
+        __props__.__dict__["server_type"] = server_type
         __props__.__dict__["ssl_certificate"] = ssl_certificate
         __props__.__dict__["update_interval"] = update_interval
         __props__.__dict__["use_public_ip"] = use_public_ip
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemDdns(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> pulumi.Output[str]:
+        """
+        Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+        """
+        return pulumi.get(self, "addr_type")
 
     @property
     @pulumi.getter(name="boundIp")
@@ -1017,6 +1144,14 @@ class SystemDdns(pulumi.CustomResource):
         return pulumi.get(self, "ddns_server")
 
     @property
+    @pulumi.getter(name="ddnsServerAddrs")
+    def ddns_server_addrs(self) -> pulumi.Output[Optional[Sequence['outputs.SystemDdnsDdnsServerAddr']]]:
+        """
+        Generic DDNS server IP/FQDN list. The structure of `ddns_server_addr` block is documented below.
+        """
+        return pulumi.get(self, "ddns_server_addrs")
+
+    @property
     @pulumi.getter(name="ddnsServerIp")
     def ddns_server_ip(self) -> pulumi.Output[str]:
         """
@@ -1079,6 +1214,14 @@ class SystemDdns(pulumi.CustomResource):
         Monitored interface. The structure of `monitor_interface` block is documented below.
         """
         return pulumi.get(self, "monitor_interfaces")
+
+    @property
+    @pulumi.getter(name="serverType")
+    def server_type(self) -> pulumi.Output[str]:
+        """
+        Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+        """
+        return pulumi.get(self, "server_type")
 
     @property
     @pulumi.getter(name="sslCertificate")

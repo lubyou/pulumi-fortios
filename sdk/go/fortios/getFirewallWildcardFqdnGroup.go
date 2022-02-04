@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewallwildcardfqdn group
 func LookupFirewallWildcardFqdnGroup(ctx *pulumi.Context, args *LookupFirewallWildcardFqdnGroupArgs, opts ...pulumi.InvokeOption) (*LookupFirewallWildcardFqdnGroupResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallWildcardFqdnGroupResult
 	err := ctx.Invoke("fortios:index/getFirewallWildcardFqdnGroup:GetFirewallWildcardFqdnGroup", args, &rv, opts...)
 	if err != nil {
@@ -42,4 +46,83 @@ type LookupFirewallWildcardFqdnGroupResult struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable address visibility.
 	Visibility string `pulumi:"visibility"`
+}
+
+func LookupFirewallWildcardFqdnGroupOutput(ctx *pulumi.Context, args LookupFirewallWildcardFqdnGroupOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallWildcardFqdnGroupResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallWildcardFqdnGroupResult, error) {
+			args := v.(LookupFirewallWildcardFqdnGroupArgs)
+			r, err := LookupFirewallWildcardFqdnGroup(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallWildcardFqdnGroupResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallWildcardFqdnGroup.
+type LookupFirewallWildcardFqdnGroupOutputArgs struct {
+	// Specify the name of the desired firewallwildcardfqdn group.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallWildcardFqdnGroupOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallWildcardFqdnGroupArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallWildcardFqdnGroup.
+type LookupFirewallWildcardFqdnGroupResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallWildcardFqdnGroupResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallWildcardFqdnGroupResult)(nil)).Elem()
+}
+
+func (o LookupFirewallWildcardFqdnGroupResultOutput) ToLookupFirewallWildcardFqdnGroupResultOutput() LookupFirewallWildcardFqdnGroupResultOutput {
+	return o
+}
+
+func (o LookupFirewallWildcardFqdnGroupResultOutput) ToLookupFirewallWildcardFqdnGroupResultOutputWithContext(ctx context.Context) LookupFirewallWildcardFqdnGroupResultOutput {
+	return o
+}
+
+// GUI icon color.
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// Comment.
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Address group members. The structure of `member` block is documented below.
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Members() GetFirewallWildcardFqdnGroupMemberArrayOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) []GetFirewallWildcardFqdnGroupMember { return v.Members }).(GetFirewallWildcardFqdnGroupMemberArrayOutput)
+}
+
+// Address name.
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable address visibility.
+func (o LookupFirewallWildcardFqdnGroupResultOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallWildcardFqdnGroupResult) string { return v.Visibility }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallWildcardFqdnGroupResultOutput{})
 }

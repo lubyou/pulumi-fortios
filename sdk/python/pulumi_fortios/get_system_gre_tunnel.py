@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemGreTunnelResult',
     'AwaitableGetSystemGreTunnelResult',
     'get_system_gre_tunnel',
+    'get_system_gre_tunnel_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetSystemGreTunnelResult:
     """
     A collection of values returned by GetSystemGreTunnel.
     """
-    def __init__(__self__, checksum_reception=None, checksum_transmission=None, diffservcode=None, dscp_copying=None, id=None, interface=None, ip_version=None, keepalive_failtimes=None, keepalive_interval=None, key_inbound=None, key_outbound=None, local_gw=None, local_gw6=None, name=None, remote_gw=None, remote_gw6=None, sequence_number_reception=None, sequence_number_transmission=None, vdomparam=None):
+    def __init__(__self__, checksum_reception=None, checksum_transmission=None, diffservcode=None, dscp_copying=None, id=None, interface=None, ip_version=None, keepalive_failtimes=None, keepalive_interval=None, key_inbound=None, key_outbound=None, local_gw=None, local_gw6=None, name=None, remote_gw=None, remote_gw6=None, sequence_number_reception=None, sequence_number_transmission=None, use_sdwan=None, vdomparam=None):
         if checksum_reception and not isinstance(checksum_reception, str):
             raise TypeError("Expected argument 'checksum_reception' to be a str")
         pulumi.set(__self__, "checksum_reception", checksum_reception)
@@ -74,6 +75,9 @@ class GetSystemGreTunnelResult:
         if sequence_number_transmission and not isinstance(sequence_number_transmission, str):
             raise TypeError("Expected argument 'sequence_number_transmission' to be a str")
         pulumi.set(__self__, "sequence_number_transmission", sequence_number_transmission)
+        if use_sdwan and not isinstance(use_sdwan, str):
+            raise TypeError("Expected argument 'use_sdwan' to be a str")
+        pulumi.set(__self__, "use_sdwan", use_sdwan)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
@@ -223,6 +227,14 @@ class GetSystemGreTunnelResult:
         return pulumi.get(self, "sequence_number_transmission")
 
     @property
+    @pulumi.getter(name="useSdwan")
+    def use_sdwan(self) -> str:
+        """
+        Enable/disable use of SD-WAN to reach remote gateway.
+        """
+        return pulumi.get(self, "use_sdwan")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
@@ -252,6 +264,7 @@ class AwaitableGetSystemGreTunnelResult(GetSystemGreTunnelResult):
             remote_gw6=self.remote_gw6,
             sequence_number_reception=self.sequence_number_reception,
             sequence_number_transmission=self.sequence_number_transmission,
+            use_sdwan=self.use_sdwan,
             vdomparam=self.vdomparam)
 
 
@@ -272,6 +285,8 @@ def get_system_gre_tunnel(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemGreTunnel:GetSystemGreTunnel', __args__, opts=opts, typ=GetSystemGreTunnelResult).value
 
     return AwaitableGetSystemGreTunnelResult(
@@ -293,4 +308,19 @@ def get_system_gre_tunnel(name: Optional[str] = None,
         remote_gw6=__ret__.remote_gw6,
         sequence_number_reception=__ret__.sequence_number_reception,
         sequence_number_transmission=__ret__.sequence_number_transmission,
+        use_sdwan=__ret__.use_sdwan,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_gre_tunnel)
+def get_system_gre_tunnel_output(name: Optional[pulumi.Input[str]] = None,
+                                 vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemGreTunnelResult]:
+    """
+    Use this data source to get information on an fortios system gretunnel
+
+
+    :param str name: Specify the name of the desired system gretunnel.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

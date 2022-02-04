@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios router rip
 func LookupRouterRip(ctx *pulumi.Context, args *LookupRouterRipArgs, opts ...pulumi.InvokeOption) (*LookupRouterRipResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterRipResult
 	err := ctx.Invoke("fortios:index/getRouterRip:GetRouterRip", args, &rv, opts...)
 	if err != nil {
@@ -60,4 +64,131 @@ type LookupRouterRipResult struct {
 	Vdomparam   *string `pulumi:"vdomparam"`
 	// RIP version.
 	Version string `pulumi:"version"`
+}
+
+func LookupRouterRipOutput(ctx *pulumi.Context, args LookupRouterRipOutputArgs, opts ...pulumi.InvokeOption) LookupRouterRipResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterRipResult, error) {
+			args := v.(LookupRouterRipArgs)
+			r, err := LookupRouterRip(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterRipResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterRip.
+type LookupRouterRipOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterRipOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterRipArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterRip.
+type LookupRouterRipResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterRipResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterRipResult)(nil)).Elem()
+}
+
+func (o LookupRouterRipResultOutput) ToLookupRouterRipResultOutput() LookupRouterRipResultOutput {
+	return o
+}
+
+func (o LookupRouterRipResultOutput) ToLookupRouterRipResultOutputWithContext(ctx context.Context) LookupRouterRipResultOutput {
+	return o
+}
+
+// Enable/disable generation of default route.
+func (o LookupRouterRipResultOutput) DefaultInformationOriginate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) string { return v.DefaultInformationOriginate }).(pulumi.StringOutput)
+}
+
+// Default metric.
+func (o LookupRouterRipResultOutput) DefaultMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) int { return v.DefaultMetric }).(pulumi.IntOutput)
+}
+
+// Distance (1 - 255).
+func (o LookupRouterRipResultOutput) Distances() GetRouterRipDistanceArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipDistance { return v.Distances }).(GetRouterRipDistanceArrayOutput)
+}
+
+// Distribute list. The structure of `distributeList` block is documented below.
+func (o LookupRouterRipResultOutput) DistributeLists() GetRouterRipDistributeListArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipDistributeList { return v.DistributeLists }).(GetRouterRipDistributeListArrayOutput)
+}
+
+// Garbage timer in seconds.
+func (o LookupRouterRipResultOutput) GarbageTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) int { return v.GarbageTimer }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterRipResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Interface name.
+func (o LookupRouterRipResultOutput) Interfaces() GetRouterRipInterfaceArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipInterface { return v.Interfaces }).(GetRouterRipInterfaceArrayOutput)
+}
+
+// Maximum metric allowed to output(0 means 'not set').
+func (o LookupRouterRipResultOutput) MaxOutMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) int { return v.MaxOutMetric }).(pulumi.IntOutput)
+}
+
+// neighbor The structure of `neighbor` block is documented below.
+func (o LookupRouterRipResultOutput) Neighbors() GetRouterRipNeighborArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipNeighbor { return v.Neighbors }).(GetRouterRipNeighborArrayOutput)
+}
+
+// network The structure of `network` block is documented below.
+func (o LookupRouterRipResultOutput) Networks() GetRouterRipNetworkArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipNetwork { return v.Networks }).(GetRouterRipNetworkArrayOutput)
+}
+
+// Offset list. The structure of `offsetList` block is documented below.
+func (o LookupRouterRipResultOutput) OffsetLists() GetRouterRipOffsetListArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipOffsetList { return v.OffsetLists }).(GetRouterRipOffsetListArrayOutput)
+}
+
+// Passive interface configuration. The structure of `passiveInterface` block is documented below.
+func (o LookupRouterRipResultOutput) PassiveInterfaces() GetRouterRipPassiveInterfaceArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipPassiveInterface { return v.PassiveInterfaces }).(GetRouterRipPassiveInterfaceArrayOutput)
+}
+
+// Receiving buffer size.
+func (o LookupRouterRipResultOutput) RecvBufferSize() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) int { return v.RecvBufferSize }).(pulumi.IntOutput)
+}
+
+// Redistribute configuration. The structure of `redistribute` block is documented below.
+func (o LookupRouterRipResultOutput) Redistributes() GetRouterRipRedistributeArrayOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) []GetRouterRipRedistribute { return v.Redistributes }).(GetRouterRipRedistributeArrayOutput)
+}
+
+// Timeout timer in seconds.
+func (o LookupRouterRipResultOutput) TimeoutTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) int { return v.TimeoutTimer }).(pulumi.IntOutput)
+}
+
+// Update timer in seconds.
+func (o LookupRouterRipResultOutput) UpdateTimer() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) int { return v.UpdateTimer }).(pulumi.IntOutput)
+}
+
+func (o LookupRouterRipResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// RIP version.
+func (o LookupRouterRipResultOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterRipResult) string { return v.Version }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterRipResultOutput{})
 }

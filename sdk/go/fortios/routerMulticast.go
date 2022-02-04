@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,7 +27,7 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewRouterMulticast(ctx, "trname", &fortios.RouterMulticastArgs{
 // 			MulticastRouting: pulumi.String("disable"),
-// 			PimSmGlobal: &fortios.RouterMulticastPimSmGlobalArgs{
+// 			PimSmGlobal: &RouterMulticastPimSmGlobalArgs{
 // 				BsrAllowQuickRefresh:     pulumi.String("disable"),
 // 				BsrCandidate:             pulumi.String("disable"),
 // 				BsrHash:                  pulumi.Int(10),
@@ -92,6 +93,7 @@ func NewRouterMulticast(ctx *pulumi.Context,
 		args = &RouterMulticastArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterMulticast
 	err := ctx.RegisterResource("fortios:index/routerMulticast:RouterMulticast", name, args, &resource, opts...)
 	if err != nil {
@@ -198,7 +200,7 @@ type RouterMulticastInput interface {
 }
 
 func (*RouterMulticast) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterMulticast)(nil))
+	return reflect.TypeOf((**RouterMulticast)(nil)).Elem()
 }
 
 func (i *RouterMulticast) ToRouterMulticastOutput() RouterMulticastOutput {
@@ -207,35 +209,6 @@ func (i *RouterMulticast) ToRouterMulticastOutput() RouterMulticastOutput {
 
 func (i *RouterMulticast) ToRouterMulticastOutputWithContext(ctx context.Context) RouterMulticastOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterMulticastOutput)
-}
-
-func (i *RouterMulticast) ToRouterMulticastPtrOutput() RouterMulticastPtrOutput {
-	return i.ToRouterMulticastPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterMulticast) ToRouterMulticastPtrOutputWithContext(ctx context.Context) RouterMulticastPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterMulticastPtrOutput)
-}
-
-type RouterMulticastPtrInput interface {
-	pulumi.Input
-
-	ToRouterMulticastPtrOutput() RouterMulticastPtrOutput
-	ToRouterMulticastPtrOutputWithContext(ctx context.Context) RouterMulticastPtrOutput
-}
-
-type routerMulticastPtrType RouterMulticastArgs
-
-func (*routerMulticastPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterMulticast)(nil))
-}
-
-func (i *routerMulticastPtrType) ToRouterMulticastPtrOutput() RouterMulticastPtrOutput {
-	return i.ToRouterMulticastPtrOutputWithContext(context.Background())
-}
-
-func (i *routerMulticastPtrType) ToRouterMulticastPtrOutputWithContext(ctx context.Context) RouterMulticastPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterMulticastPtrOutput)
 }
 
 // RouterMulticastArrayInput is an input type that accepts RouterMulticastArray and RouterMulticastArrayOutput values.
@@ -252,7 +225,7 @@ type RouterMulticastArrayInput interface {
 type RouterMulticastArray []RouterMulticastInput
 
 func (RouterMulticastArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterMulticast)(nil))
+	return reflect.TypeOf((*[]*RouterMulticast)(nil)).Elem()
 }
 
 func (i RouterMulticastArray) ToRouterMulticastArrayOutput() RouterMulticastArrayOutput {
@@ -277,7 +250,7 @@ type RouterMulticastMapInput interface {
 type RouterMulticastMap map[string]RouterMulticastInput
 
 func (RouterMulticastMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterMulticast)(nil))
+	return reflect.TypeOf((*map[string]*RouterMulticast)(nil)).Elem()
 }
 
 func (i RouterMulticastMap) ToRouterMulticastMapOutput() RouterMulticastMapOutput {
@@ -288,12 +261,10 @@ func (i RouterMulticastMap) ToRouterMulticastMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(RouterMulticastMapOutput)
 }
 
-type RouterMulticastOutput struct {
-	*pulumi.OutputState
-}
+type RouterMulticastOutput struct{ *pulumi.OutputState }
 
 func (RouterMulticastOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterMulticast)(nil))
+	return reflect.TypeOf((**RouterMulticast)(nil)).Elem()
 }
 
 func (o RouterMulticastOutput) ToRouterMulticastOutput() RouterMulticastOutput {
@@ -304,36 +275,10 @@ func (o RouterMulticastOutput) ToRouterMulticastOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o RouterMulticastOutput) ToRouterMulticastPtrOutput() RouterMulticastPtrOutput {
-	return o.ToRouterMulticastPtrOutputWithContext(context.Background())
-}
-
-func (o RouterMulticastOutput) ToRouterMulticastPtrOutputWithContext(ctx context.Context) RouterMulticastPtrOutput {
-	return o.ApplyT(func(v RouterMulticast) *RouterMulticast {
-		return &v
-	}).(RouterMulticastPtrOutput)
-}
-
-type RouterMulticastPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterMulticastPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterMulticast)(nil))
-}
-
-func (o RouterMulticastPtrOutput) ToRouterMulticastPtrOutput() RouterMulticastPtrOutput {
-	return o
-}
-
-func (o RouterMulticastPtrOutput) ToRouterMulticastPtrOutputWithContext(ctx context.Context) RouterMulticastPtrOutput {
-	return o
-}
-
 type RouterMulticastArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterMulticastArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterMulticast)(nil))
+	return reflect.TypeOf((*[]*RouterMulticast)(nil)).Elem()
 }
 
 func (o RouterMulticastArrayOutput) ToRouterMulticastArrayOutput() RouterMulticastArrayOutput {
@@ -345,15 +290,15 @@ func (o RouterMulticastArrayOutput) ToRouterMulticastArrayOutputWithContext(ctx 
 }
 
 func (o RouterMulticastArrayOutput) Index(i pulumi.IntInput) RouterMulticastOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterMulticast {
-		return vs[0].([]RouterMulticast)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterMulticast {
+		return vs[0].([]*RouterMulticast)[vs[1].(int)]
 	}).(RouterMulticastOutput)
 }
 
 type RouterMulticastMapOutput struct{ *pulumi.OutputState }
 
 func (RouterMulticastMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterMulticast)(nil))
+	return reflect.TypeOf((*map[string]*RouterMulticast)(nil)).Elem()
 }
 
 func (o RouterMulticastMapOutput) ToRouterMulticastMapOutput() RouterMulticastMapOutput {
@@ -365,14 +310,16 @@ func (o RouterMulticastMapOutput) ToRouterMulticastMapOutputWithContext(ctx cont
 }
 
 func (o RouterMulticastMapOutput) MapIndex(k pulumi.StringInput) RouterMulticastOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterMulticast {
-		return vs[0].(map[string]RouterMulticast)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterMulticast {
+		return vs[0].(map[string]*RouterMulticast)[vs[1].(string)]
 	}).(RouterMulticastOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterMulticastInput)(nil)).Elem(), &RouterMulticast{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterMulticastArrayInput)(nil)).Elem(), RouterMulticastArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterMulticastMapInput)(nil)).Elem(), RouterMulticastMap{})
 	pulumi.RegisterOutputType(RouterMulticastOutput{})
-	pulumi.RegisterOutputType(RouterMulticastPtrOutput{})
 	pulumi.RegisterOutputType(RouterMulticastArrayOutput{})
 	pulumi.RegisterOutputType(RouterMulticastMapOutput{})
 }

@@ -17,6 +17,8 @@ class SystemNetflowArgs:
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  template_tx_counter: Optional[pulumi.Input[int]] = None,
                  template_tx_timeout: Optional[pulumi.Input[int]] = None,
@@ -27,6 +29,8 @@ class SystemNetflowArgs:
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
         :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
@@ -40,6 +44,10 @@ class SystemNetflowArgs:
             pulumi.set(__self__, "collector_port", collector_port)
         if inactive_flow_timeout is not None:
             pulumi.set(__self__, "inactive_flow_timeout", inactive_flow_timeout)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if template_tx_counter is not None:
@@ -96,6 +104,30 @@ class SystemNetflowArgs:
     @inactive_flow_timeout.setter
     def inactive_flow_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "inactive_flow_timeout", value)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @interface_select_method.setter
+    def interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -153,6 +185,8 @@ class _SystemNetflowState:
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  template_tx_counter: Optional[pulumi.Input[int]] = None,
                  template_tx_timeout: Optional[pulumi.Input[int]] = None,
@@ -163,6 +197,8 @@ class _SystemNetflowState:
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
         :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
@@ -176,6 +212,10 @@ class _SystemNetflowState:
             pulumi.set(__self__, "collector_port", collector_port)
         if inactive_flow_timeout is not None:
             pulumi.set(__self__, "inactive_flow_timeout", inactive_flow_timeout)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if template_tx_counter is not None:
@@ -232,6 +272,30 @@ class _SystemNetflowState:
     @inactive_flow_timeout.setter
     def inactive_flow_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "inactive_flow_timeout", value)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @interface_select_method.setter
+    def interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -291,6 +355,8 @@ class SystemNetflow(pulumi.CustomResource):
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  template_tx_counter: Optional[pulumi.Input[int]] = None,
                  template_tx_timeout: Optional[pulumi.Input[int]] = None,
@@ -331,6 +397,8 @@ class SystemNetflow(pulumi.CustomResource):
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
         :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
@@ -390,6 +458,8 @@ class SystemNetflow(pulumi.CustomResource):
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
                  inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  template_tx_counter: Optional[pulumi.Input[int]] = None,
                  template_tx_timeout: Optional[pulumi.Input[int]] = None,
@@ -401,6 +471,8 @@ class SystemNetflow(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -410,6 +482,8 @@ class SystemNetflow(pulumi.CustomResource):
             __props__.__dict__["collector_ip"] = collector_ip
             __props__.__dict__["collector_port"] = collector_port
             __props__.__dict__["inactive_flow_timeout"] = inactive_flow_timeout
+            __props__.__dict__["interface"] = interface
+            __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["template_tx_counter"] = template_tx_counter
             __props__.__dict__["template_tx_timeout"] = template_tx_timeout
@@ -428,6 +502,8 @@ class SystemNetflow(pulumi.CustomResource):
             collector_ip: Optional[pulumi.Input[str]] = None,
             collector_port: Optional[pulumi.Input[int]] = None,
             inactive_flow_timeout: Optional[pulumi.Input[int]] = None,
+            interface: Optional[pulumi.Input[str]] = None,
+            interface_select_method: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             template_tx_counter: Optional[pulumi.Input[int]] = None,
             template_tx_timeout: Optional[pulumi.Input[int]] = None,
@@ -443,6 +519,8 @@ class SystemNetflow(pulumi.CustomResource):
         :param pulumi.Input[str] collector_ip: Collector IP.
         :param pulumi.Input[int] collector_port: NetFlow collector port number.
         :param pulumi.Input[int] inactive_flow_timeout: Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for communication with the NetFlow agent.
         :param pulumi.Input[int] template_tx_counter: Counter of flowset records before resending a template flowset record.
         :param pulumi.Input[int] template_tx_timeout: Timeout for periodic template flowset transmission (1 - 1440 min, default = 30).
@@ -456,6 +534,8 @@ class SystemNetflow(pulumi.CustomResource):
         __props__.__dict__["collector_ip"] = collector_ip
         __props__.__dict__["collector_port"] = collector_port
         __props__.__dict__["inactive_flow_timeout"] = inactive_flow_timeout
+        __props__.__dict__["interface"] = interface
+        __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["template_tx_counter"] = template_tx_counter
         __props__.__dict__["template_tx_timeout"] = template_tx_timeout
@@ -493,6 +573,22 @@ class SystemNetflow(pulumi.CustomResource):
         Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
         """
         return pulumi.get(self, "inactive_flow_timeout")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> pulumi.Output[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> pulumi.Output[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
 
     @property
     @pulumi.getter(name="sourceIp")

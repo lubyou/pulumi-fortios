@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,7 @@ func NewSystemAdminAdministrator(ctx *pulumi.Context,
 	if args.Password == nil {
 		return nil, errors.New("invalid value for required argument 'Password'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAdminAdministrator
 	err := ctx.RegisterResource("fortios:index/systemAdminAdministrator:SystemAdminAdministrator", name, args, &resource, opts...)
 	if err != nil {
@@ -212,7 +213,7 @@ type SystemAdminAdministratorInput interface {
 }
 
 func (*SystemAdminAdministrator) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAdminAdministrator)(nil))
+	return reflect.TypeOf((**SystemAdminAdministrator)(nil)).Elem()
 }
 
 func (i *SystemAdminAdministrator) ToSystemAdminAdministratorOutput() SystemAdminAdministratorOutput {
@@ -221,35 +222,6 @@ func (i *SystemAdminAdministrator) ToSystemAdminAdministratorOutput() SystemAdmi
 
 func (i *SystemAdminAdministrator) ToSystemAdminAdministratorOutputWithContext(ctx context.Context) SystemAdminAdministratorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorOutput)
-}
-
-func (i *SystemAdminAdministrator) ToSystemAdminAdministratorPtrOutput() SystemAdminAdministratorPtrOutput {
-	return i.ToSystemAdminAdministratorPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAdminAdministrator) ToSystemAdminAdministratorPtrOutputWithContext(ctx context.Context) SystemAdminAdministratorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorPtrOutput)
-}
-
-type SystemAdminAdministratorPtrInput interface {
-	pulumi.Input
-
-	ToSystemAdminAdministratorPtrOutput() SystemAdminAdministratorPtrOutput
-	ToSystemAdminAdministratorPtrOutputWithContext(ctx context.Context) SystemAdminAdministratorPtrOutput
-}
-
-type systemAdminAdministratorPtrType SystemAdminAdministratorArgs
-
-func (*systemAdminAdministratorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAdminAdministrator)(nil))
-}
-
-func (i *systemAdminAdministratorPtrType) ToSystemAdminAdministratorPtrOutput() SystemAdminAdministratorPtrOutput {
-	return i.ToSystemAdminAdministratorPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAdminAdministratorPtrType) ToSystemAdminAdministratorPtrOutputWithContext(ctx context.Context) SystemAdminAdministratorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorPtrOutput)
 }
 
 // SystemAdminAdministratorArrayInput is an input type that accepts SystemAdminAdministratorArray and SystemAdminAdministratorArrayOutput values.
@@ -266,7 +238,7 @@ type SystemAdminAdministratorArrayInput interface {
 type SystemAdminAdministratorArray []SystemAdminAdministratorInput
 
 func (SystemAdminAdministratorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAdminAdministrator)(nil))
+	return reflect.TypeOf((*[]*SystemAdminAdministrator)(nil)).Elem()
 }
 
 func (i SystemAdminAdministratorArray) ToSystemAdminAdministratorArrayOutput() SystemAdminAdministratorArrayOutput {
@@ -291,7 +263,7 @@ type SystemAdminAdministratorMapInput interface {
 type SystemAdminAdministratorMap map[string]SystemAdminAdministratorInput
 
 func (SystemAdminAdministratorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAdminAdministrator)(nil))
+	return reflect.TypeOf((*map[string]*SystemAdminAdministrator)(nil)).Elem()
 }
 
 func (i SystemAdminAdministratorMap) ToSystemAdminAdministratorMapOutput() SystemAdminAdministratorMapOutput {
@@ -302,12 +274,10 @@ func (i SystemAdminAdministratorMap) ToSystemAdminAdministratorMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminAdministratorMapOutput)
 }
 
-type SystemAdminAdministratorOutput struct {
-	*pulumi.OutputState
-}
+type SystemAdminAdministratorOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminAdministratorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAdminAdministrator)(nil))
+	return reflect.TypeOf((**SystemAdminAdministrator)(nil)).Elem()
 }
 
 func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorOutput() SystemAdminAdministratorOutput {
@@ -318,36 +288,10 @@ func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorOutputWithCont
 	return o
 }
 
-func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorPtrOutput() SystemAdminAdministratorPtrOutput {
-	return o.ToSystemAdminAdministratorPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAdminAdministratorOutput) ToSystemAdminAdministratorPtrOutputWithContext(ctx context.Context) SystemAdminAdministratorPtrOutput {
-	return o.ApplyT(func(v SystemAdminAdministrator) *SystemAdminAdministrator {
-		return &v
-	}).(SystemAdminAdministratorPtrOutput)
-}
-
-type SystemAdminAdministratorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAdminAdministratorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAdminAdministrator)(nil))
-}
-
-func (o SystemAdminAdministratorPtrOutput) ToSystemAdminAdministratorPtrOutput() SystemAdminAdministratorPtrOutput {
-	return o
-}
-
-func (o SystemAdminAdministratorPtrOutput) ToSystemAdminAdministratorPtrOutputWithContext(ctx context.Context) SystemAdminAdministratorPtrOutput {
-	return o
-}
-
 type SystemAdminAdministratorArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminAdministratorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAdminAdministrator)(nil))
+	return reflect.TypeOf((*[]*SystemAdminAdministrator)(nil)).Elem()
 }
 
 func (o SystemAdminAdministratorArrayOutput) ToSystemAdminAdministratorArrayOutput() SystemAdminAdministratorArrayOutput {
@@ -359,15 +303,15 @@ func (o SystemAdminAdministratorArrayOutput) ToSystemAdminAdministratorArrayOutp
 }
 
 func (o SystemAdminAdministratorArrayOutput) Index(i pulumi.IntInput) SystemAdminAdministratorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAdminAdministrator {
-		return vs[0].([]SystemAdminAdministrator)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAdminAdministrator {
+		return vs[0].([]*SystemAdminAdministrator)[vs[1].(int)]
 	}).(SystemAdminAdministratorOutput)
 }
 
 type SystemAdminAdministratorMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminAdministratorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAdminAdministrator)(nil))
+	return reflect.TypeOf((*map[string]*SystemAdminAdministrator)(nil)).Elem()
 }
 
 func (o SystemAdminAdministratorMapOutput) ToSystemAdminAdministratorMapOutput() SystemAdminAdministratorMapOutput {
@@ -379,14 +323,16 @@ func (o SystemAdminAdministratorMapOutput) ToSystemAdminAdministratorMapOutputWi
 }
 
 func (o SystemAdminAdministratorMapOutput) MapIndex(k pulumi.StringInput) SystemAdminAdministratorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAdminAdministrator {
-		return vs[0].(map[string]SystemAdminAdministrator)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAdminAdministrator {
+		return vs[0].(map[string]*SystemAdminAdministrator)[vs[1].(string)]
 	}).(SystemAdminAdministratorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminAdministratorInput)(nil)).Elem(), &SystemAdminAdministrator{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminAdministratorArrayInput)(nil)).Elem(), SystemAdminAdministratorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminAdministratorMapInput)(nil)).Elem(), SystemAdminAdministratorMap{})
 	pulumi.RegisterOutputType(SystemAdminAdministratorOutput{})
-	pulumi.RegisterOutputType(SystemAdminAdministratorPtrOutput{})
 	pulumi.RegisterOutputType(SystemAdminAdministratorArrayOutput{})
 	pulumi.RegisterOutputType(SystemAdminAdministratorMapOutput{})
 }

@@ -26,6 +26,8 @@ type SwitchControllerSystem struct {
 
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntOutput `pulumi:"dataSyncInterval"`
+	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DynamicPeriodicInterval pulumi.IntOutput `pulumi:"dynamicPeriodicInterval"`
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff pulumi.IntOutput `pulumi:"iotHoldoff"`
 	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
@@ -40,6 +42,8 @@ type SwitchControllerSystem struct {
 	ParallelProcess pulumi.IntOutput `pulumi:"parallelProcess"`
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride pulumi.StringOutput `pulumi:"parallelProcessOverride"`
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode pulumi.StringOutput `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -51,6 +55,7 @@ func NewSwitchControllerSystem(ctx *pulumi.Context,
 		args = &SwitchControllerSystemArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSystem
 	err := ctx.RegisterResource("fortios:index/switchControllerSystem:SwitchControllerSystem", name, args, &resource, opts...)
 	if err != nil {
@@ -75,6 +80,8 @@ func GetSwitchControllerSystem(ctx *pulumi.Context,
 type switchControllerSystemState struct {
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval *int `pulumi:"dataSyncInterval"`
+	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DynamicPeriodicInterval *int `pulumi:"dynamicPeriodicInterval"`
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff *int `pulumi:"iotHoldoff"`
 	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
@@ -89,6 +96,8 @@ type switchControllerSystemState struct {
 	ParallelProcess *int `pulumi:"parallelProcess"`
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride *string `pulumi:"parallelProcessOverride"`
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -96,6 +105,8 @@ type switchControllerSystemState struct {
 type SwitchControllerSystemState struct {
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntPtrInput
+	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DynamicPeriodicInterval pulumi.IntPtrInput
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff pulumi.IntPtrInput
 	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
@@ -110,6 +121,8 @@ type SwitchControllerSystemState struct {
 	ParallelProcess pulumi.IntPtrInput
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride pulumi.StringPtrInput
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -121,6 +134,8 @@ func (SwitchControllerSystemState) ElementType() reflect.Type {
 type switchControllerSystemArgs struct {
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval *int `pulumi:"dataSyncInterval"`
+	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DynamicPeriodicInterval *int `pulumi:"dynamicPeriodicInterval"`
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff *int `pulumi:"iotHoldoff"`
 	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
@@ -135,6 +150,8 @@ type switchControllerSystemArgs struct {
 	ParallelProcess *int `pulumi:"parallelProcess"`
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride *string `pulumi:"parallelProcessOverride"`
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode *string `pulumi:"tunnelMode"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -143,6 +160,8 @@ type switchControllerSystemArgs struct {
 type SwitchControllerSystemArgs struct {
 	// Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
 	DataSyncInterval pulumi.IntPtrInput
+	// Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+	DynamicPeriodicInterval pulumi.IntPtrInput
 	// MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
 	IotHoldoff pulumi.IntPtrInput
 	// MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
@@ -157,6 +176,8 @@ type SwitchControllerSystemArgs struct {
 	ParallelProcess pulumi.IntPtrInput
 	// Enable/disable parallel process override. Valid values: `disable`, `enable`.
 	ParallelProcessOverride pulumi.StringPtrInput
+	// Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+	TunnelMode pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -173,7 +194,7 @@ type SwitchControllerSystemInput interface {
 }
 
 func (*SwitchControllerSystem) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSystem)(nil))
+	return reflect.TypeOf((**SwitchControllerSystem)(nil)).Elem()
 }
 
 func (i *SwitchControllerSystem) ToSwitchControllerSystemOutput() SwitchControllerSystemOutput {
@@ -182,35 +203,6 @@ func (i *SwitchControllerSystem) ToSwitchControllerSystemOutput() SwitchControll
 
 func (i *SwitchControllerSystem) ToSwitchControllerSystemOutputWithContext(ctx context.Context) SwitchControllerSystemOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemOutput)
-}
-
-func (i *SwitchControllerSystem) ToSwitchControllerSystemPtrOutput() SwitchControllerSystemPtrOutput {
-	return i.ToSwitchControllerSystemPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSystem) ToSwitchControllerSystemPtrOutputWithContext(ctx context.Context) SwitchControllerSystemPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemPtrOutput)
-}
-
-type SwitchControllerSystemPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSystemPtrOutput() SwitchControllerSystemPtrOutput
-	ToSwitchControllerSystemPtrOutputWithContext(ctx context.Context) SwitchControllerSystemPtrOutput
-}
-
-type switchControllerSystemPtrType SwitchControllerSystemArgs
-
-func (*switchControllerSystemPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSystem)(nil))
-}
-
-func (i *switchControllerSystemPtrType) ToSwitchControllerSystemPtrOutput() SwitchControllerSystemPtrOutput {
-	return i.ToSwitchControllerSystemPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSystemPtrType) ToSwitchControllerSystemPtrOutputWithContext(ctx context.Context) SwitchControllerSystemPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemPtrOutput)
 }
 
 // SwitchControllerSystemArrayInput is an input type that accepts SwitchControllerSystemArray and SwitchControllerSystemArrayOutput values.
@@ -227,7 +219,7 @@ type SwitchControllerSystemArrayInput interface {
 type SwitchControllerSystemArray []SwitchControllerSystemInput
 
 func (SwitchControllerSystemArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSystem)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSystem)(nil)).Elem()
 }
 
 func (i SwitchControllerSystemArray) ToSwitchControllerSystemArrayOutput() SwitchControllerSystemArrayOutput {
@@ -252,7 +244,7 @@ type SwitchControllerSystemMapInput interface {
 type SwitchControllerSystemMap map[string]SwitchControllerSystemInput
 
 func (SwitchControllerSystemMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSystem)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSystem)(nil)).Elem()
 }
 
 func (i SwitchControllerSystemMap) ToSwitchControllerSystemMapOutput() SwitchControllerSystemMapOutput {
@@ -263,12 +255,10 @@ func (i SwitchControllerSystemMap) ToSwitchControllerSystemMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSystemMapOutput)
 }
 
-type SwitchControllerSystemOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSystemOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSystemOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSystem)(nil))
+	return reflect.TypeOf((**SwitchControllerSystem)(nil)).Elem()
 }
 
 func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutput() SwitchControllerSystemOutput {
@@ -279,36 +269,10 @@ func (o SwitchControllerSystemOutput) ToSwitchControllerSystemOutputWithContext(
 	return o
 }
 
-func (o SwitchControllerSystemOutput) ToSwitchControllerSystemPtrOutput() SwitchControllerSystemPtrOutput {
-	return o.ToSwitchControllerSystemPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSystemOutput) ToSwitchControllerSystemPtrOutputWithContext(ctx context.Context) SwitchControllerSystemPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSystem) *SwitchControllerSystem {
-		return &v
-	}).(SwitchControllerSystemPtrOutput)
-}
-
-type SwitchControllerSystemPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSystemPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSystem)(nil))
-}
-
-func (o SwitchControllerSystemPtrOutput) ToSwitchControllerSystemPtrOutput() SwitchControllerSystemPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSystemPtrOutput) ToSwitchControllerSystemPtrOutputWithContext(ctx context.Context) SwitchControllerSystemPtrOutput {
-	return o
-}
-
 type SwitchControllerSystemArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSystemArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSystem)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSystem)(nil)).Elem()
 }
 
 func (o SwitchControllerSystemArrayOutput) ToSwitchControllerSystemArrayOutput() SwitchControllerSystemArrayOutput {
@@ -320,15 +284,15 @@ func (o SwitchControllerSystemArrayOutput) ToSwitchControllerSystemArrayOutputWi
 }
 
 func (o SwitchControllerSystemArrayOutput) Index(i pulumi.IntInput) SwitchControllerSystemOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSystem {
-		return vs[0].([]SwitchControllerSystem)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSystem {
+		return vs[0].([]*SwitchControllerSystem)[vs[1].(int)]
 	}).(SwitchControllerSystemOutput)
 }
 
 type SwitchControllerSystemMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSystemMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSystem)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSystem)(nil)).Elem()
 }
 
 func (o SwitchControllerSystemMapOutput) ToSwitchControllerSystemMapOutput() SwitchControllerSystemMapOutput {
@@ -340,14 +304,16 @@ func (o SwitchControllerSystemMapOutput) ToSwitchControllerSystemMapOutputWithCo
 }
 
 func (o SwitchControllerSystemMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSystemOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSystem {
-		return vs[0].(map[string]SwitchControllerSystem)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSystem {
+		return vs[0].(map[string]*SwitchControllerSystem)[vs[1].(string)]
 	}).(SwitchControllerSystemOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSystemInput)(nil)).Elem(), &SwitchControllerSystem{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSystemArrayInput)(nil)).Elem(), SwitchControllerSystemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSystemMapInput)(nil)).Elem(), SwitchControllerSystemMap{})
 	pulumi.RegisterOutputType(SwitchControllerSystemOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSystemPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSystemArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSystemMapOutput{})
 }

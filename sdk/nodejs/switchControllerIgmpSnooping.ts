@@ -79,23 +79,21 @@ export class SwitchControllerIgmpSnooping extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerIgmpSnoopingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerIgmpSnoopingArgs | SwitchControllerIgmpSnoopingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerIgmpSnoopingState | undefined;
-            inputs["agingTime"] = state ? state.agingTime : undefined;
-            inputs["floodUnknownMulticast"] = state ? state.floodUnknownMulticast : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["agingTime"] = state ? state.agingTime : undefined;
+            resourceInputs["floodUnknownMulticast"] = state ? state.floodUnknownMulticast : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerIgmpSnoopingArgs | undefined;
-            inputs["agingTime"] = args ? args.agingTime : undefined;
-            inputs["floodUnknownMulticast"] = args ? args.floodUnknownMulticast : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["agingTime"] = args ? args.agingTime : undefined;
+            resourceInputs["floodUnknownMulticast"] = args ? args.floodUnknownMulticast : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerIgmpSnooping.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerIgmpSnooping.__pulumiType, name, resourceInputs, opts);
     }
 }
 

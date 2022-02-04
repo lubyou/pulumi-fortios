@@ -13,9 +13,7 @@ export function getSystemSdnConnector(args: GetSystemSdnConnectorArgs, opts?: pu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemSdnConnector:GetSystemSdnConnector", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -73,13 +71,25 @@ export interface GetSystemSdnConnectorResult {
      */
     readonly domain: string;
     /**
+     * Configure AWS external account list. The structure of `externalAccountList` block is documented below.
+     */
+    readonly externalAccountLists: outputs.GetSystemSdnConnectorExternalAccountList[];
+    /**
      * Configure GCP external IP. The structure of `externalIp` block is documented below.
      */
     readonly externalIps: outputs.GetSystemSdnConnectorExternalIp[];
     /**
+     * Configure GCP forwarding rule. The structure of `forwardingRule` block is documented below.
+     */
+    readonly forwardingRules: outputs.GetSystemSdnConnectorForwardingRule[];
+    /**
      * GCP project name.
      */
     readonly gcpProject: string;
+    /**
+     * Configure GCP project list. The structure of `gcpProjectList` block is documented below.
+     */
+    readonly gcpProjectLists: outputs.GetSystemSdnConnectorGcpProjectList[];
     /**
      * Group name of computers.
      */
@@ -105,7 +115,7 @@ export interface GetSystemSdnConnectorResult {
      */
     readonly loginEndpoint: string;
     /**
-     * Route name.
+     * GCP zone name.
      */
     readonly name: string;
     /**
@@ -169,6 +179,10 @@ export interface GetSystemSdnConnectorResult {
      */
     readonly server: string;
     /**
+     * Server address list of the remote SDN connector. The structure of `serverList` block is documented below.
+     */
+    readonly serverLists: outputs.GetSystemSdnConnectorServerList[];
+    /**
      * Port number of the remote SDN connector.
      */
     readonly serverPort: number;
@@ -222,7 +236,29 @@ export interface GetSystemSdnConnectorResult {
     readonly vcenterUsername: string;
     readonly vdomparam?: string;
     /**
+     * Enable/disable server certificate verification.
+     */
+    readonly verifyCertificate: string;
+    /**
      * AWS VPC ID.
      */
     readonly vpcId: string;
+}
+
+export function getSystemSdnConnectorOutput(args: GetSystemSdnConnectorOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemSdnConnectorResult> {
+    return pulumi.output(args).apply(a => getSystemSdnConnector(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemSdnConnector.
+ */
+export interface GetSystemSdnConnectorOutputArgs {
+    /**
+     * Specify the name of the desired system sdnconnector.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

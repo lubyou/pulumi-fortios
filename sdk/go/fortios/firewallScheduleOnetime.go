@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -57,6 +57,8 @@ type FirewallScheduleOnetime struct {
 	End pulumi.StringOutput `pulumi:"end"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays pulumi.IntOutput `pulumi:"expirationDays"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Onetime schedule name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
@@ -78,6 +80,7 @@ func NewFirewallScheduleOnetime(ctx *pulumi.Context,
 	if args.Start == nil {
 		return nil, errors.New("invalid value for required argument 'Start'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallScheduleOnetime
 	err := ctx.RegisterResource("fortios:index/firewallScheduleOnetime:FirewallScheduleOnetime", name, args, &resource, opts...)
 	if err != nil {
@@ -106,6 +109,8 @@ type firewallScheduleOnetimeState struct {
 	End *string `pulumi:"end"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays *int `pulumi:"expirationDays"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Onetime schedule name.
 	Name *string `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
@@ -121,6 +126,8 @@ type FirewallScheduleOnetimeState struct {
 	End pulumi.StringPtrInput
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays pulumi.IntPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Onetime schedule name.
 	Name pulumi.StringPtrInput
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
@@ -140,6 +147,8 @@ type firewallScheduleOnetimeArgs struct {
 	End string `pulumi:"end"`
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays *int `pulumi:"expirationDays"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Onetime schedule name.
 	Name *string `pulumi:"name"`
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
@@ -156,6 +165,8 @@ type FirewallScheduleOnetimeArgs struct {
 	End pulumi.StringInput
 	// Write an event log message this many days before the schedule expires.
 	ExpirationDays pulumi.IntPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Onetime schedule name.
 	Name pulumi.StringPtrInput
 	// Schedule start date and time, format hh:mm yyyy/mm/dd.
@@ -176,7 +187,7 @@ type FirewallScheduleOnetimeInput interface {
 }
 
 func (*FirewallScheduleOnetime) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallScheduleOnetime)(nil))
+	return reflect.TypeOf((**FirewallScheduleOnetime)(nil)).Elem()
 }
 
 func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimeOutput() FirewallScheduleOnetimeOutput {
@@ -185,35 +196,6 @@ func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimeOutput() FirewallSche
 
 func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimeOutputWithContext(ctx context.Context) FirewallScheduleOnetimeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimeOutput)
-}
-
-func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimePtrOutput() FirewallScheduleOnetimePtrOutput {
-	return i.ToFirewallScheduleOnetimePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallScheduleOnetime) ToFirewallScheduleOnetimePtrOutputWithContext(ctx context.Context) FirewallScheduleOnetimePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimePtrOutput)
-}
-
-type FirewallScheduleOnetimePtrInput interface {
-	pulumi.Input
-
-	ToFirewallScheduleOnetimePtrOutput() FirewallScheduleOnetimePtrOutput
-	ToFirewallScheduleOnetimePtrOutputWithContext(ctx context.Context) FirewallScheduleOnetimePtrOutput
-}
-
-type firewallScheduleOnetimePtrType FirewallScheduleOnetimeArgs
-
-func (*firewallScheduleOnetimePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallScheduleOnetime)(nil))
-}
-
-func (i *firewallScheduleOnetimePtrType) ToFirewallScheduleOnetimePtrOutput() FirewallScheduleOnetimePtrOutput {
-	return i.ToFirewallScheduleOnetimePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallScheduleOnetimePtrType) ToFirewallScheduleOnetimePtrOutputWithContext(ctx context.Context) FirewallScheduleOnetimePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimePtrOutput)
 }
 
 // FirewallScheduleOnetimeArrayInput is an input type that accepts FirewallScheduleOnetimeArray and FirewallScheduleOnetimeArrayOutput values.
@@ -230,7 +212,7 @@ type FirewallScheduleOnetimeArrayInput interface {
 type FirewallScheduleOnetimeArray []FirewallScheduleOnetimeInput
 
 func (FirewallScheduleOnetimeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallScheduleOnetime)(nil))
+	return reflect.TypeOf((*[]*FirewallScheduleOnetime)(nil)).Elem()
 }
 
 func (i FirewallScheduleOnetimeArray) ToFirewallScheduleOnetimeArrayOutput() FirewallScheduleOnetimeArrayOutput {
@@ -255,7 +237,7 @@ type FirewallScheduleOnetimeMapInput interface {
 type FirewallScheduleOnetimeMap map[string]FirewallScheduleOnetimeInput
 
 func (FirewallScheduleOnetimeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallScheduleOnetime)(nil))
+	return reflect.TypeOf((*map[string]*FirewallScheduleOnetime)(nil)).Elem()
 }
 
 func (i FirewallScheduleOnetimeMap) ToFirewallScheduleOnetimeMapOutput() FirewallScheduleOnetimeMapOutput {
@@ -266,12 +248,10 @@ func (i FirewallScheduleOnetimeMap) ToFirewallScheduleOnetimeMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleOnetimeMapOutput)
 }
 
-type FirewallScheduleOnetimeOutput struct {
-	*pulumi.OutputState
-}
+type FirewallScheduleOnetimeOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleOnetimeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallScheduleOnetime)(nil))
+	return reflect.TypeOf((**FirewallScheduleOnetime)(nil)).Elem()
 }
 
 func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimeOutput() FirewallScheduleOnetimeOutput {
@@ -282,36 +262,10 @@ func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimeOutputWithContex
 	return o
 }
 
-func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimePtrOutput() FirewallScheduleOnetimePtrOutput {
-	return o.ToFirewallScheduleOnetimePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallScheduleOnetimeOutput) ToFirewallScheduleOnetimePtrOutputWithContext(ctx context.Context) FirewallScheduleOnetimePtrOutput {
-	return o.ApplyT(func(v FirewallScheduleOnetime) *FirewallScheduleOnetime {
-		return &v
-	}).(FirewallScheduleOnetimePtrOutput)
-}
-
-type FirewallScheduleOnetimePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallScheduleOnetimePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallScheduleOnetime)(nil))
-}
-
-func (o FirewallScheduleOnetimePtrOutput) ToFirewallScheduleOnetimePtrOutput() FirewallScheduleOnetimePtrOutput {
-	return o
-}
-
-func (o FirewallScheduleOnetimePtrOutput) ToFirewallScheduleOnetimePtrOutputWithContext(ctx context.Context) FirewallScheduleOnetimePtrOutput {
-	return o
-}
-
 type FirewallScheduleOnetimeArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleOnetimeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallScheduleOnetime)(nil))
+	return reflect.TypeOf((*[]*FirewallScheduleOnetime)(nil)).Elem()
 }
 
 func (o FirewallScheduleOnetimeArrayOutput) ToFirewallScheduleOnetimeArrayOutput() FirewallScheduleOnetimeArrayOutput {
@@ -323,15 +277,15 @@ func (o FirewallScheduleOnetimeArrayOutput) ToFirewallScheduleOnetimeArrayOutput
 }
 
 func (o FirewallScheduleOnetimeArrayOutput) Index(i pulumi.IntInput) FirewallScheduleOnetimeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallScheduleOnetime {
-		return vs[0].([]FirewallScheduleOnetime)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallScheduleOnetime {
+		return vs[0].([]*FirewallScheduleOnetime)[vs[1].(int)]
 	}).(FirewallScheduleOnetimeOutput)
 }
 
 type FirewallScheduleOnetimeMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleOnetimeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallScheduleOnetime)(nil))
+	return reflect.TypeOf((*map[string]*FirewallScheduleOnetime)(nil)).Elem()
 }
 
 func (o FirewallScheduleOnetimeMapOutput) ToFirewallScheduleOnetimeMapOutput() FirewallScheduleOnetimeMapOutput {
@@ -343,14 +297,16 @@ func (o FirewallScheduleOnetimeMapOutput) ToFirewallScheduleOnetimeMapOutputWith
 }
 
 func (o FirewallScheduleOnetimeMapOutput) MapIndex(k pulumi.StringInput) FirewallScheduleOnetimeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallScheduleOnetime {
-		return vs[0].(map[string]FirewallScheduleOnetime)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallScheduleOnetime {
+		return vs[0].(map[string]*FirewallScheduleOnetime)[vs[1].(string)]
 	}).(FirewallScheduleOnetimeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleOnetimeInput)(nil)).Elem(), &FirewallScheduleOnetime{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleOnetimeArrayInput)(nil)).Elem(), FirewallScheduleOnetimeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleOnetimeMapInput)(nil)).Elem(), FirewallScheduleOnetimeMap{})
 	pulumi.RegisterOutputType(FirewallScheduleOnetimeOutput{})
-	pulumi.RegisterOutputType(FirewallScheduleOnetimePtrOutput{})
 	pulumi.RegisterOutputType(FirewallScheduleOnetimeArrayOutput{})
 	pulumi.RegisterOutputType(FirewallScheduleOnetimeMapOutput{})
 }

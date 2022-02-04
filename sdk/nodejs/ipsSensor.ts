@@ -100,39 +100,37 @@ export class IpsSensor extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IpsSensorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IpsSensorArgs | IpsSensorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpsSensorState | undefined;
-            inputs["blockMaliciousUrl"] = state ? state.blockMaliciousUrl : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["entries"] = state ? state.entries : undefined;
-            inputs["extendedLog"] = state ? state.extendedLog : undefined;
-            inputs["filters"] = state ? state.filters : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["overrides"] = state ? state.overrides : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["blockMaliciousUrl"] = state ? state.blockMaliciousUrl : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = state ? state.entries : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
+            resourceInputs["filters"] = state ? state.filters : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overrides"] = state ? state.overrides : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpsSensorArgs | undefined;
-            inputs["blockMaliciousUrl"] = args ? args.blockMaliciousUrl : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["entries"] = args ? args.entries : undefined;
-            inputs["extendedLog"] = args ? args.extendedLog : undefined;
-            inputs["filters"] = args ? args.filters : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["overrides"] = args ? args.overrides : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["blockMaliciousUrl"] = args ? args.blockMaliciousUrl : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["entries"] = args ? args.entries : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
+            resourceInputs["filters"] = args ? args.filters : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overrides"] = args ? args.overrides : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IpsSensor.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IpsSensor.__pulumiType, name, resourceInputs, opts);
     }
 }
 

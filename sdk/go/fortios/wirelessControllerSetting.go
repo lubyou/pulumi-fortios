@@ -46,6 +46,8 @@ type WirelessControllerSetting struct {
 	FakeSsidAction pulumi.StringOutput `pulumi:"fakeSsidAction"`
 	// Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
 	FapcCompatibility pulumi.StringOutput `pulumi:"fapcCompatibility"`
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids WirelessControllerSettingOffendingSsidArrayOutput `pulumi:"offendingSsids"`
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
@@ -63,6 +65,7 @@ func NewWirelessControllerSetting(ctx *pulumi.Context,
 		args = &WirelessControllerSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerSetting
 	err := ctx.RegisterResource("fortios:index/wirelessControllerSetting:WirelessControllerSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -107,6 +110,8 @@ type wirelessControllerSettingState struct {
 	FakeSsidAction *string `pulumi:"fakeSsidAction"`
 	// Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
 	FapcCompatibility *string `pulumi:"fapcCompatibility"`
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids []WirelessControllerSettingOffendingSsid `pulumi:"offendingSsids"`
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
@@ -140,6 +145,8 @@ type WirelessControllerSettingState struct {
 	FakeSsidAction pulumi.StringPtrInput
 	// Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
 	FapcCompatibility pulumi.StringPtrInput
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids WirelessControllerSettingOffendingSsidArrayInput
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
@@ -177,6 +184,8 @@ type wirelessControllerSettingArgs struct {
 	FakeSsidAction *string `pulumi:"fakeSsidAction"`
 	// Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
 	FapcCompatibility *string `pulumi:"fapcCompatibility"`
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids []WirelessControllerSettingOffendingSsid `pulumi:"offendingSsids"`
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
@@ -211,6 +220,8 @@ type WirelessControllerSettingArgs struct {
 	FakeSsidAction pulumi.StringPtrInput
 	// Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
 	FapcCompatibility pulumi.StringPtrInput
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
 	// Configure offending SSID. The structure of `offendingSsid` block is documented below.
 	OffendingSsids WirelessControllerSettingOffendingSsidArrayInput
 	// Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
@@ -233,7 +244,7 @@ type WirelessControllerSettingInput interface {
 }
 
 func (*WirelessControllerSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerSetting)(nil))
+	return reflect.TypeOf((**WirelessControllerSetting)(nil)).Elem()
 }
 
 func (i *WirelessControllerSetting) ToWirelessControllerSettingOutput() WirelessControllerSettingOutput {
@@ -242,35 +253,6 @@ func (i *WirelessControllerSetting) ToWirelessControllerSettingOutput() Wireless
 
 func (i *WirelessControllerSetting) ToWirelessControllerSettingOutputWithContext(ctx context.Context) WirelessControllerSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingOutput)
-}
-
-func (i *WirelessControllerSetting) ToWirelessControllerSettingPtrOutput() WirelessControllerSettingPtrOutput {
-	return i.ToWirelessControllerSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerSetting) ToWirelessControllerSettingPtrOutputWithContext(ctx context.Context) WirelessControllerSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingPtrOutput)
-}
-
-type WirelessControllerSettingPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerSettingPtrOutput() WirelessControllerSettingPtrOutput
-	ToWirelessControllerSettingPtrOutputWithContext(ctx context.Context) WirelessControllerSettingPtrOutput
-}
-
-type wirelessControllerSettingPtrType WirelessControllerSettingArgs
-
-func (*wirelessControllerSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerSetting)(nil))
-}
-
-func (i *wirelessControllerSettingPtrType) ToWirelessControllerSettingPtrOutput() WirelessControllerSettingPtrOutput {
-	return i.ToWirelessControllerSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerSettingPtrType) ToWirelessControllerSettingPtrOutputWithContext(ctx context.Context) WirelessControllerSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingPtrOutput)
 }
 
 // WirelessControllerSettingArrayInput is an input type that accepts WirelessControllerSettingArray and WirelessControllerSettingArrayOutput values.
@@ -287,7 +269,7 @@ type WirelessControllerSettingArrayInput interface {
 type WirelessControllerSettingArray []WirelessControllerSettingInput
 
 func (WirelessControllerSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerSetting)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerSetting)(nil)).Elem()
 }
 
 func (i WirelessControllerSettingArray) ToWirelessControllerSettingArrayOutput() WirelessControllerSettingArrayOutput {
@@ -312,7 +294,7 @@ type WirelessControllerSettingMapInput interface {
 type WirelessControllerSettingMap map[string]WirelessControllerSettingInput
 
 func (WirelessControllerSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerSetting)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerSetting)(nil)).Elem()
 }
 
 func (i WirelessControllerSettingMap) ToWirelessControllerSettingMapOutput() WirelessControllerSettingMapOutput {
@@ -323,12 +305,10 @@ func (i WirelessControllerSettingMap) ToWirelessControllerSettingMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerSettingMapOutput)
 }
 
-type WirelessControllerSettingOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerSettingOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerSetting)(nil))
+	return reflect.TypeOf((**WirelessControllerSetting)(nil)).Elem()
 }
 
 func (o WirelessControllerSettingOutput) ToWirelessControllerSettingOutput() WirelessControllerSettingOutput {
@@ -339,36 +319,10 @@ func (o WirelessControllerSettingOutput) ToWirelessControllerSettingOutputWithCo
 	return o
 }
 
-func (o WirelessControllerSettingOutput) ToWirelessControllerSettingPtrOutput() WirelessControllerSettingPtrOutput {
-	return o.ToWirelessControllerSettingPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerSettingOutput) ToWirelessControllerSettingPtrOutputWithContext(ctx context.Context) WirelessControllerSettingPtrOutput {
-	return o.ApplyT(func(v WirelessControllerSetting) *WirelessControllerSetting {
-		return &v
-	}).(WirelessControllerSettingPtrOutput)
-}
-
-type WirelessControllerSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerSetting)(nil))
-}
-
-func (o WirelessControllerSettingPtrOutput) ToWirelessControllerSettingPtrOutput() WirelessControllerSettingPtrOutput {
-	return o
-}
-
-func (o WirelessControllerSettingPtrOutput) ToWirelessControllerSettingPtrOutputWithContext(ctx context.Context) WirelessControllerSettingPtrOutput {
-	return o
-}
-
 type WirelessControllerSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerSetting)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerSetting)(nil)).Elem()
 }
 
 func (o WirelessControllerSettingArrayOutput) ToWirelessControllerSettingArrayOutput() WirelessControllerSettingArrayOutput {
@@ -380,15 +334,15 @@ func (o WirelessControllerSettingArrayOutput) ToWirelessControllerSettingArrayOu
 }
 
 func (o WirelessControllerSettingArrayOutput) Index(i pulumi.IntInput) WirelessControllerSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerSetting {
-		return vs[0].([]WirelessControllerSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerSetting {
+		return vs[0].([]*WirelessControllerSetting)[vs[1].(int)]
 	}).(WirelessControllerSettingOutput)
 }
 
 type WirelessControllerSettingMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerSetting)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerSetting)(nil)).Elem()
 }
 
 func (o WirelessControllerSettingMapOutput) ToWirelessControllerSettingMapOutput() WirelessControllerSettingMapOutput {
@@ -400,14 +354,16 @@ func (o WirelessControllerSettingMapOutput) ToWirelessControllerSettingMapOutput
 }
 
 func (o WirelessControllerSettingMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerSetting {
-		return vs[0].(map[string]WirelessControllerSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerSetting {
+		return vs[0].(map[string]*WirelessControllerSetting)[vs[1].(string)]
 	}).(WirelessControllerSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerSettingInput)(nil)).Elem(), &WirelessControllerSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerSettingArrayInput)(nil)).Elem(), WirelessControllerSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerSettingMapInput)(nil)).Elem(), WirelessControllerSettingMap{})
 	pulumi.RegisterOutputType(WirelessControllerSettingOutput{})
-	pulumi.RegisterOutputType(WirelessControllerSettingPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerSettingArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerSettingMapOutput{})
 }

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -51,9 +50,7 @@ export function getIPMaskCIDR(args?: GetIPMaskCIDRArgs, opts?: pulumi.InvokeOpti
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getIPMaskCIDR:GetIPMaskCIDR", {
         "ipmask": args.ipmask,
         "ipmasklists": args.ipmasklists,
@@ -98,4 +95,22 @@ export interface GetIPMaskCIDRResult {
      * IP/MASK list.
      */
     readonly ipmasklists?: string[];
+}
+
+export function getIPMaskCIDROutput(args?: GetIPMaskCIDROutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIPMaskCIDRResult> {
+    return pulumi.output(args).apply(a => getIPMaskCIDR(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetIPMaskCIDR.
+ */
+export interface GetIPMaskCIDROutputArgs {
+    /**
+     * Specify IP/MASK.
+     */
+    ipmask?: pulumi.Input<string>;
+    /**
+     * Specify IP/MASK list.
+     */
+    ipmasklists?: pulumi.Input<pulumi.Input<string>[]>;
 }

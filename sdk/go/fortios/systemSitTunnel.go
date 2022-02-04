@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -51,6 +51,8 @@ import (
 type SystemSitTunnel struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
 	// Destination IP address of the tunnel.
 	Destination pulumi.StringOutput `pulumi:"destination"`
 	// Interface name.
@@ -61,6 +63,8 @@ type SystemSitTunnel struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Source IP address of the tunnel.
 	Source pulumi.StringOutput `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -75,6 +79,7 @@ func NewSystemSitTunnel(ctx *pulumi.Context,
 	if args.Destination == nil {
 		return nil, errors.New("invalid value for required argument 'Destination'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSitTunnel
 	err := ctx.RegisterResource("fortios:index/systemSitTunnel:SystemSitTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -97,6 +102,8 @@ func GetSystemSitTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSitTunnel resources.
 type systemSitTunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// Destination IP address of the tunnel.
 	Destination *string `pulumi:"destination"`
 	// Interface name.
@@ -107,11 +114,15 @@ type systemSitTunnelState struct {
 	Name *string `pulumi:"name"`
 	// Source IP address of the tunnel.
 	Source *string `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemSitTunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// Destination IP address of the tunnel.
 	Destination pulumi.StringPtrInput
 	// Interface name.
@@ -122,6 +133,8 @@ type SystemSitTunnelState struct {
 	Name pulumi.StringPtrInput
 	// Source IP address of the tunnel.
 	Source pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -131,6 +144,8 @@ func (SystemSitTunnelState) ElementType() reflect.Type {
 }
 
 type systemSitTunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// Destination IP address of the tunnel.
 	Destination string `pulumi:"destination"`
 	// Interface name.
@@ -141,12 +156,16 @@ type systemSitTunnelArgs struct {
 	Name *string `pulumi:"name"`
 	// Source IP address of the tunnel.
 	Source *string `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemSitTunnel resource.
 type SystemSitTunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// Destination IP address of the tunnel.
 	Destination pulumi.StringInput
 	// Interface name.
@@ -157,6 +176,8 @@ type SystemSitTunnelArgs struct {
 	Name pulumi.StringPtrInput
 	// Source IP address of the tunnel.
 	Source pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -173,7 +194,7 @@ type SystemSitTunnelInput interface {
 }
 
 func (*SystemSitTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSitTunnel)(nil))
+	return reflect.TypeOf((**SystemSitTunnel)(nil)).Elem()
 }
 
 func (i *SystemSitTunnel) ToSystemSitTunnelOutput() SystemSitTunnelOutput {
@@ -182,35 +203,6 @@ func (i *SystemSitTunnel) ToSystemSitTunnelOutput() SystemSitTunnelOutput {
 
 func (i *SystemSitTunnel) ToSystemSitTunnelOutputWithContext(ctx context.Context) SystemSitTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelOutput)
-}
-
-func (i *SystemSitTunnel) ToSystemSitTunnelPtrOutput() SystemSitTunnelPtrOutput {
-	return i.ToSystemSitTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSitTunnel) ToSystemSitTunnelPtrOutputWithContext(ctx context.Context) SystemSitTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelPtrOutput)
-}
-
-type SystemSitTunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemSitTunnelPtrOutput() SystemSitTunnelPtrOutput
-	ToSystemSitTunnelPtrOutputWithContext(ctx context.Context) SystemSitTunnelPtrOutput
-}
-
-type systemSitTunnelPtrType SystemSitTunnelArgs
-
-func (*systemSitTunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSitTunnel)(nil))
-}
-
-func (i *systemSitTunnelPtrType) ToSystemSitTunnelPtrOutput() SystemSitTunnelPtrOutput {
-	return i.ToSystemSitTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSitTunnelPtrType) ToSystemSitTunnelPtrOutputWithContext(ctx context.Context) SystemSitTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelPtrOutput)
 }
 
 // SystemSitTunnelArrayInput is an input type that accepts SystemSitTunnelArray and SystemSitTunnelArrayOutput values.
@@ -227,7 +219,7 @@ type SystemSitTunnelArrayInput interface {
 type SystemSitTunnelArray []SystemSitTunnelInput
 
 func (SystemSitTunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSitTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemSitTunnel)(nil)).Elem()
 }
 
 func (i SystemSitTunnelArray) ToSystemSitTunnelArrayOutput() SystemSitTunnelArrayOutput {
@@ -252,7 +244,7 @@ type SystemSitTunnelMapInput interface {
 type SystemSitTunnelMap map[string]SystemSitTunnelInput
 
 func (SystemSitTunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSitTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemSitTunnel)(nil)).Elem()
 }
 
 func (i SystemSitTunnelMap) ToSystemSitTunnelMapOutput() SystemSitTunnelMapOutput {
@@ -263,12 +255,10 @@ func (i SystemSitTunnelMap) ToSystemSitTunnelMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSitTunnelMapOutput)
 }
 
-type SystemSitTunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemSitTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemSitTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSitTunnel)(nil))
+	return reflect.TypeOf((**SystemSitTunnel)(nil)).Elem()
 }
 
 func (o SystemSitTunnelOutput) ToSystemSitTunnelOutput() SystemSitTunnelOutput {
@@ -279,36 +269,10 @@ func (o SystemSitTunnelOutput) ToSystemSitTunnelOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemSitTunnelOutput) ToSystemSitTunnelPtrOutput() SystemSitTunnelPtrOutput {
-	return o.ToSystemSitTunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSitTunnelOutput) ToSystemSitTunnelPtrOutputWithContext(ctx context.Context) SystemSitTunnelPtrOutput {
-	return o.ApplyT(func(v SystemSitTunnel) *SystemSitTunnel {
-		return &v
-	}).(SystemSitTunnelPtrOutput)
-}
-
-type SystemSitTunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSitTunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSitTunnel)(nil))
-}
-
-func (o SystemSitTunnelPtrOutput) ToSystemSitTunnelPtrOutput() SystemSitTunnelPtrOutput {
-	return o
-}
-
-func (o SystemSitTunnelPtrOutput) ToSystemSitTunnelPtrOutputWithContext(ctx context.Context) SystemSitTunnelPtrOutput {
-	return o
-}
-
 type SystemSitTunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSitTunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSitTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemSitTunnel)(nil)).Elem()
 }
 
 func (o SystemSitTunnelArrayOutput) ToSystemSitTunnelArrayOutput() SystemSitTunnelArrayOutput {
@@ -320,15 +284,15 @@ func (o SystemSitTunnelArrayOutput) ToSystemSitTunnelArrayOutputWithContext(ctx 
 }
 
 func (o SystemSitTunnelArrayOutput) Index(i pulumi.IntInput) SystemSitTunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSitTunnel {
-		return vs[0].([]SystemSitTunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSitTunnel {
+		return vs[0].([]*SystemSitTunnel)[vs[1].(int)]
 	}).(SystemSitTunnelOutput)
 }
 
 type SystemSitTunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSitTunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSitTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemSitTunnel)(nil)).Elem()
 }
 
 func (o SystemSitTunnelMapOutput) ToSystemSitTunnelMapOutput() SystemSitTunnelMapOutput {
@@ -340,14 +304,16 @@ func (o SystemSitTunnelMapOutput) ToSystemSitTunnelMapOutputWithContext(ctx cont
 }
 
 func (o SystemSitTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemSitTunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSitTunnel {
-		return vs[0].(map[string]SystemSitTunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSitTunnel {
+		return vs[0].(map[string]*SystemSitTunnel)[vs[1].(string)]
 	}).(SystemSitTunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSitTunnelInput)(nil)).Elem(), &SystemSitTunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSitTunnelArrayInput)(nil)).Elem(), SystemSitTunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSitTunnelMapInput)(nil)).Elem(), SystemSitTunnelMap{})
 	pulumi.RegisterOutputType(SystemSitTunnelOutput{})
-	pulumi.RegisterOutputType(SystemSitTunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemSitTunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemSitTunnelMapOutput{})
 }

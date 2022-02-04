@@ -14,9 +14,7 @@ export function getRouterMulticast6(args?: GetRouterMulticast6Args, opts?: pulum
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterMulticast6:GetRouterMulticast6", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -57,4 +55,18 @@ export interface GetRouterMulticast6Result {
      */
     readonly pimSmGlobal: outputs.GetRouterMulticast6PimSmGlobal;
     readonly vdomparam?: string;
+}
+
+export function getRouterMulticast6Output(args?: GetRouterMulticast6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterMulticast6Result> {
+    return pulumi.output(args).apply(a => getRouterMulticast6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterMulticast6.
+ */
+export interface GetRouterMulticast6OutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

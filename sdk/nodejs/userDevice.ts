@@ -114,39 +114,37 @@ export class UserDevice extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserDeviceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserDeviceArgs | UserDeviceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserDeviceState | undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["avatar"] = state ? state.avatar : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["masterDevice"] = state ? state.masterDevice : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["avatar"] = state ? state.avatar : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["masterDevice"] = state ? state.masterDevice : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserDeviceArgs | undefined;
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["avatar"] = args ? args.avatar : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["masterDevice"] = args ? args.masterDevice : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["avatar"] = args ? args.avatar : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["masterDevice"] = args ? args.masterDevice : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserDevice.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserDevice.__pulumiType, name, resourceInputs, opts);
     }
 }
 

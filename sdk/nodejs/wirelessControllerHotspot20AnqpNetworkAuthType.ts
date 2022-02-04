@@ -83,25 +83,23 @@ export class WirelessControllerHotspot20AnqpNetworkAuthType extends pulumi.Custo
      */
     constructor(name: string, args?: WirelessControllerHotspot20AnqpNetworkAuthTypeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20AnqpNetworkAuthTypeArgs | WirelessControllerHotspot20AnqpNetworkAuthTypeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20AnqpNetworkAuthTypeState | undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20AnqpNetworkAuthTypeArgs | undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["url"] = args ? args.url : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20AnqpNetworkAuthType.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20AnqpNetworkAuthType.__pulumiType, name, resourceInputs, opts);
     }
 }
 

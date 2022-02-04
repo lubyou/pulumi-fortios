@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemDhcpServer`.
 func GetSystemDhcpServerList(ctx *pulumi.Context, args *GetSystemDhcpServerListArgs, opts ...pulumi.InvokeOption) (*GetSystemDhcpServerListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemDhcpServerListResult
 	err := ctx.Invoke("fortios:index/getSystemDhcpServerList:GetSystemDhcpServerList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemDhcpServerListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemDhcpServerListOutput(ctx *pulumi.Context, args GetSystemDhcpServerListOutputArgs, opts ...pulumi.InvokeOption) GetSystemDhcpServerListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemDhcpServerListResult, error) {
+			args := v.(GetSystemDhcpServerListArgs)
+			r, err := GetSystemDhcpServerList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemDhcpServerListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemDhcpServerList.
+type GetSystemDhcpServerListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemDhcpServerListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemDhcpServerListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemDhcpServerList.
+type GetSystemDhcpServerListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemDhcpServerListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemDhcpServerListResult)(nil)).Elem()
+}
+
+func (o GetSystemDhcpServerListResultOutput) ToGetSystemDhcpServerListResultOutput() GetSystemDhcpServerListResultOutput {
+	return o
+}
+
+func (o GetSystemDhcpServerListResultOutput) ToGetSystemDhcpServerListResultOutputWithContext(ctx context.Context) GetSystemDhcpServerListResultOutput {
+	return o
+}
+
+func (o GetSystemDhcpServerListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemDhcpServerListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `SystemDhcpServer`.
+func (o GetSystemDhcpServerListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemDhcpServerListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemDhcpServerListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemDhcpServerListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemDhcpServerListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemDhcpServerListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemDhcpServerListResultOutput{})
 }

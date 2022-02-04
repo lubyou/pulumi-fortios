@@ -13,9 +13,7 @@ export function getFirewallAddrgrp6(args: GetFirewallAddrgrp6Args, opts?: pulumi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallAddrgrp6:GetFirewallAddrgrp6", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -49,6 +47,10 @@ export interface GetFirewallAddrgrp6Result {
      */
     readonly comment: string;
     /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -73,4 +75,22 @@ export interface GetFirewallAddrgrp6Result {
      * Enable/disable address group6 visibility in the GUI.
      */
     readonly visibility: string;
+}
+
+export function getFirewallAddrgrp6Output(args: GetFirewallAddrgrp6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddrgrp6Result> {
+    return pulumi.output(args).apply(a => getFirewallAddrgrp6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallAddrgrp6.
+ */
+export interface GetFirewallAddrgrp6OutputArgs {
+    /**
+     * Specify the name of the desired firewall addrgrp6.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

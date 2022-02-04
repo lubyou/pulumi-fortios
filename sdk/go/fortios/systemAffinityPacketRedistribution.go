@@ -56,6 +56,7 @@ func NewSystemAffinityPacketRedistribution(ctx *pulumi.Context,
 	if args.Rxqid == nil {
 		return nil, errors.New("invalid value for required argument 'Rxqid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAffinityPacketRedistribution
 	err := ctx.RegisterResource("fortios:index/systemAffinityPacketRedistribution:SystemAffinityPacketRedistribution", name, args, &resource, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ type SystemAffinityPacketRedistributionInput interface {
 }
 
 func (*SystemAffinityPacketRedistribution) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAffinityPacketRedistribution)(nil))
+	return reflect.TypeOf((**SystemAffinityPacketRedistribution)(nil)).Elem()
 }
 
 func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributionOutput() SystemAffinityPacketRedistributionOutput {
@@ -155,35 +156,6 @@ func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributio
 
 func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributionOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionOutput)
-}
-
-func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributionPtrOutput() SystemAffinityPacketRedistributionPtrOutput {
-	return i.ToSystemAffinityPacketRedistributionPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAffinityPacketRedistribution) ToSystemAffinityPacketRedistributionPtrOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionPtrOutput)
-}
-
-type SystemAffinityPacketRedistributionPtrInput interface {
-	pulumi.Input
-
-	ToSystemAffinityPacketRedistributionPtrOutput() SystemAffinityPacketRedistributionPtrOutput
-	ToSystemAffinityPacketRedistributionPtrOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionPtrOutput
-}
-
-type systemAffinityPacketRedistributionPtrType SystemAffinityPacketRedistributionArgs
-
-func (*systemAffinityPacketRedistributionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAffinityPacketRedistribution)(nil))
-}
-
-func (i *systemAffinityPacketRedistributionPtrType) ToSystemAffinityPacketRedistributionPtrOutput() SystemAffinityPacketRedistributionPtrOutput {
-	return i.ToSystemAffinityPacketRedistributionPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAffinityPacketRedistributionPtrType) ToSystemAffinityPacketRedistributionPtrOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionPtrOutput)
 }
 
 // SystemAffinityPacketRedistributionArrayInput is an input type that accepts SystemAffinityPacketRedistributionArray and SystemAffinityPacketRedistributionArrayOutput values.
@@ -200,7 +172,7 @@ type SystemAffinityPacketRedistributionArrayInput interface {
 type SystemAffinityPacketRedistributionArray []SystemAffinityPacketRedistributionInput
 
 func (SystemAffinityPacketRedistributionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAffinityPacketRedistribution)(nil))
+	return reflect.TypeOf((*[]*SystemAffinityPacketRedistribution)(nil)).Elem()
 }
 
 func (i SystemAffinityPacketRedistributionArray) ToSystemAffinityPacketRedistributionArrayOutput() SystemAffinityPacketRedistributionArrayOutput {
@@ -225,7 +197,7 @@ type SystemAffinityPacketRedistributionMapInput interface {
 type SystemAffinityPacketRedistributionMap map[string]SystemAffinityPacketRedistributionInput
 
 func (SystemAffinityPacketRedistributionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAffinityPacketRedistribution)(nil))
+	return reflect.TypeOf((*map[string]*SystemAffinityPacketRedistribution)(nil)).Elem()
 }
 
 func (i SystemAffinityPacketRedistributionMap) ToSystemAffinityPacketRedistributionMapOutput() SystemAffinityPacketRedistributionMapOutput {
@@ -236,12 +208,10 @@ func (i SystemAffinityPacketRedistributionMap) ToSystemAffinityPacketRedistribut
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAffinityPacketRedistributionMapOutput)
 }
 
-type SystemAffinityPacketRedistributionOutput struct {
-	*pulumi.OutputState
-}
+type SystemAffinityPacketRedistributionOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityPacketRedistributionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAffinityPacketRedistribution)(nil))
+	return reflect.TypeOf((**SystemAffinityPacketRedistribution)(nil)).Elem()
 }
 
 func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistributionOutput() SystemAffinityPacketRedistributionOutput {
@@ -252,36 +222,10 @@ func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistri
 	return o
 }
 
-func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistributionPtrOutput() SystemAffinityPacketRedistributionPtrOutput {
-	return o.ToSystemAffinityPacketRedistributionPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAffinityPacketRedistributionOutput) ToSystemAffinityPacketRedistributionPtrOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionPtrOutput {
-	return o.ApplyT(func(v SystemAffinityPacketRedistribution) *SystemAffinityPacketRedistribution {
-		return &v
-	}).(SystemAffinityPacketRedistributionPtrOutput)
-}
-
-type SystemAffinityPacketRedistributionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAffinityPacketRedistributionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAffinityPacketRedistribution)(nil))
-}
-
-func (o SystemAffinityPacketRedistributionPtrOutput) ToSystemAffinityPacketRedistributionPtrOutput() SystemAffinityPacketRedistributionPtrOutput {
-	return o
-}
-
-func (o SystemAffinityPacketRedistributionPtrOutput) ToSystemAffinityPacketRedistributionPtrOutputWithContext(ctx context.Context) SystemAffinityPacketRedistributionPtrOutput {
-	return o
-}
-
 type SystemAffinityPacketRedistributionArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityPacketRedistributionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAffinityPacketRedistribution)(nil))
+	return reflect.TypeOf((*[]*SystemAffinityPacketRedistribution)(nil)).Elem()
 }
 
 func (o SystemAffinityPacketRedistributionArrayOutput) ToSystemAffinityPacketRedistributionArrayOutput() SystemAffinityPacketRedistributionArrayOutput {
@@ -293,15 +237,15 @@ func (o SystemAffinityPacketRedistributionArrayOutput) ToSystemAffinityPacketRed
 }
 
 func (o SystemAffinityPacketRedistributionArrayOutput) Index(i pulumi.IntInput) SystemAffinityPacketRedistributionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAffinityPacketRedistribution {
-		return vs[0].([]SystemAffinityPacketRedistribution)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAffinityPacketRedistribution {
+		return vs[0].([]*SystemAffinityPacketRedistribution)[vs[1].(int)]
 	}).(SystemAffinityPacketRedistributionOutput)
 }
 
 type SystemAffinityPacketRedistributionMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAffinityPacketRedistributionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAffinityPacketRedistribution)(nil))
+	return reflect.TypeOf((*map[string]*SystemAffinityPacketRedistribution)(nil)).Elem()
 }
 
 func (o SystemAffinityPacketRedistributionMapOutput) ToSystemAffinityPacketRedistributionMapOutput() SystemAffinityPacketRedistributionMapOutput {
@@ -313,14 +257,16 @@ func (o SystemAffinityPacketRedistributionMapOutput) ToSystemAffinityPacketRedis
 }
 
 func (o SystemAffinityPacketRedistributionMapOutput) MapIndex(k pulumi.StringInput) SystemAffinityPacketRedistributionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAffinityPacketRedistribution {
-		return vs[0].(map[string]SystemAffinityPacketRedistribution)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAffinityPacketRedistribution {
+		return vs[0].(map[string]*SystemAffinityPacketRedistribution)[vs[1].(string)]
 	}).(SystemAffinityPacketRedistributionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAffinityPacketRedistributionInput)(nil)).Elem(), &SystemAffinityPacketRedistribution{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAffinityPacketRedistributionArrayInput)(nil)).Elem(), SystemAffinityPacketRedistributionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAffinityPacketRedistributionMapInput)(nil)).Elem(), SystemAffinityPacketRedistributionMap{})
 	pulumi.RegisterOutputType(SystemAffinityPacketRedistributionOutput{})
-	pulumi.RegisterOutputType(SystemAffinityPacketRedistributionPtrOutput{})
 	pulumi.RegisterOutputType(SystemAffinityPacketRedistributionArrayOutput{})
 	pulumi.RegisterOutputType(SystemAffinityPacketRedistributionMapOutput{})
 }

@@ -58,6 +58,10 @@ export class CertificateCa extends pulumi.CustomResource {
      */
     public readonly ca!: pulumi.Output<string>;
     /**
+     * CA identifier of the SCEP server.
+     */
+    public readonly caIdentifier!: pulumi.Output<string>;
+    /**
      * Time at which CA was last updated.
      */
     public readonly lastUpdated!: pulumi.Output<number>;
@@ -103,44 +107,44 @@ export class CertificateCa extends pulumi.CustomResource {
      */
     constructor(name: string, args: CertificateCaArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CertificateCaArgs | CertificateCaState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CertificateCaState | undefined;
-            inputs["autoUpdateDays"] = state ? state.autoUpdateDays : undefined;
-            inputs["autoUpdateDaysWarning"] = state ? state.autoUpdateDaysWarning : undefined;
-            inputs["ca"] = state ? state.ca : undefined;
-            inputs["lastUpdated"] = state ? state.lastUpdated : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["range"] = state ? state.range : undefined;
-            inputs["scepUrl"] = state ? state.scepUrl : undefined;
-            inputs["source"] = state ? state.source : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslInspectionTrusted"] = state ? state.sslInspectionTrusted : undefined;
-            inputs["trusted"] = state ? state.trusted : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoUpdateDays"] = state ? state.autoUpdateDays : undefined;
+            resourceInputs["autoUpdateDaysWarning"] = state ? state.autoUpdateDaysWarning : undefined;
+            resourceInputs["ca"] = state ? state.ca : undefined;
+            resourceInputs["caIdentifier"] = state ? state.caIdentifier : undefined;
+            resourceInputs["lastUpdated"] = state ? state.lastUpdated : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["range"] = state ? state.range : undefined;
+            resourceInputs["scepUrl"] = state ? state.scepUrl : undefined;
+            resourceInputs["source"] = state ? state.source : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslInspectionTrusted"] = state ? state.sslInspectionTrusted : undefined;
+            resourceInputs["trusted"] = state ? state.trusted : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as CertificateCaArgs | undefined;
             if ((!args || args.ca === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ca'");
             }
-            inputs["autoUpdateDays"] = args ? args.autoUpdateDays : undefined;
-            inputs["autoUpdateDaysWarning"] = args ? args.autoUpdateDaysWarning : undefined;
-            inputs["ca"] = args ? args.ca : undefined;
-            inputs["lastUpdated"] = args ? args.lastUpdated : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["range"] = args ? args.range : undefined;
-            inputs["scepUrl"] = args ? args.scepUrl : undefined;
-            inputs["source"] = args ? args.source : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslInspectionTrusted"] = args ? args.sslInspectionTrusted : undefined;
-            inputs["trusted"] = args ? args.trusted : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoUpdateDays"] = args ? args.autoUpdateDays : undefined;
+            resourceInputs["autoUpdateDaysWarning"] = args ? args.autoUpdateDaysWarning : undefined;
+            resourceInputs["ca"] = args ? args.ca : undefined;
+            resourceInputs["caIdentifier"] = args ? args.caIdentifier : undefined;
+            resourceInputs["lastUpdated"] = args ? args.lastUpdated : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["range"] = args ? args.range : undefined;
+            resourceInputs["scepUrl"] = args ? args.scepUrl : undefined;
+            resourceInputs["source"] = args ? args.source : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslInspectionTrusted"] = args ? args.sslInspectionTrusted : undefined;
+            resourceInputs["trusted"] = args ? args.trusted : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CertificateCa.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CertificateCa.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -160,6 +164,10 @@ export interface CertificateCaState {
      * CA certificate as a PEM file.
      */
     ca?: pulumi.Input<string>;
+    /**
+     * CA identifier of the SCEP server.
+     */
+    caIdentifier?: pulumi.Input<string>;
     /**
      * Time at which CA was last updated.
      */
@@ -214,6 +222,10 @@ export interface CertificateCaArgs {
      * CA certificate as a PEM file.
      */
     ca: pulumi.Input<string>;
+    /**
+     * CA identifier of the SCEP server.
+     */
+    caIdentifier?: pulumi.Input<string>;
     /**
      * Time at which CA was last updated.
      */

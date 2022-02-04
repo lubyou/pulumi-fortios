@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report dataset configuration.
+// Report dataset configuration. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -71,6 +71,7 @@ func NewReportDataset(ctx *pulumi.Context,
 		args = &ReportDatasetArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReportDataset
 	err := ctx.RegisterResource("fortios:index/reportDataset:ReportDataset", name, args, &resource, opts...)
 	if err != nil {
@@ -177,7 +178,7 @@ type ReportDatasetInput interface {
 }
 
 func (*ReportDataset) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportDataset)(nil))
+	return reflect.TypeOf((**ReportDataset)(nil)).Elem()
 }
 
 func (i *ReportDataset) ToReportDatasetOutput() ReportDatasetOutput {
@@ -186,35 +187,6 @@ func (i *ReportDataset) ToReportDatasetOutput() ReportDatasetOutput {
 
 func (i *ReportDataset) ToReportDatasetOutputWithContext(ctx context.Context) ReportDatasetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetOutput)
-}
-
-func (i *ReportDataset) ToReportDatasetPtrOutput() ReportDatasetPtrOutput {
-	return i.ToReportDatasetPtrOutputWithContext(context.Background())
-}
-
-func (i *ReportDataset) ToReportDatasetPtrOutputWithContext(ctx context.Context) ReportDatasetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetPtrOutput)
-}
-
-type ReportDatasetPtrInput interface {
-	pulumi.Input
-
-	ToReportDatasetPtrOutput() ReportDatasetPtrOutput
-	ToReportDatasetPtrOutputWithContext(ctx context.Context) ReportDatasetPtrOutput
-}
-
-type reportDatasetPtrType ReportDatasetArgs
-
-func (*reportDatasetPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportDataset)(nil))
-}
-
-func (i *reportDatasetPtrType) ToReportDatasetPtrOutput() ReportDatasetPtrOutput {
-	return i.ToReportDatasetPtrOutputWithContext(context.Background())
-}
-
-func (i *reportDatasetPtrType) ToReportDatasetPtrOutputWithContext(ctx context.Context) ReportDatasetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetPtrOutput)
 }
 
 // ReportDatasetArrayInput is an input type that accepts ReportDatasetArray and ReportDatasetArrayOutput values.
@@ -231,7 +203,7 @@ type ReportDatasetArrayInput interface {
 type ReportDatasetArray []ReportDatasetInput
 
 func (ReportDatasetArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ReportDataset)(nil))
+	return reflect.TypeOf((*[]*ReportDataset)(nil)).Elem()
 }
 
 func (i ReportDatasetArray) ToReportDatasetArrayOutput() ReportDatasetArrayOutput {
@@ -256,7 +228,7 @@ type ReportDatasetMapInput interface {
 type ReportDatasetMap map[string]ReportDatasetInput
 
 func (ReportDatasetMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ReportDataset)(nil))
+	return reflect.TypeOf((*map[string]*ReportDataset)(nil)).Elem()
 }
 
 func (i ReportDatasetMap) ToReportDatasetMapOutput() ReportDatasetMapOutput {
@@ -267,12 +239,10 @@ func (i ReportDatasetMap) ToReportDatasetMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ReportDatasetMapOutput)
 }
 
-type ReportDatasetOutput struct {
-	*pulumi.OutputState
-}
+type ReportDatasetOutput struct{ *pulumi.OutputState }
 
 func (ReportDatasetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportDataset)(nil))
+	return reflect.TypeOf((**ReportDataset)(nil)).Elem()
 }
 
 func (o ReportDatasetOutput) ToReportDatasetOutput() ReportDatasetOutput {
@@ -283,36 +253,10 @@ func (o ReportDatasetOutput) ToReportDatasetOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ReportDatasetOutput) ToReportDatasetPtrOutput() ReportDatasetPtrOutput {
-	return o.ToReportDatasetPtrOutputWithContext(context.Background())
-}
-
-func (o ReportDatasetOutput) ToReportDatasetPtrOutputWithContext(ctx context.Context) ReportDatasetPtrOutput {
-	return o.ApplyT(func(v ReportDataset) *ReportDataset {
-		return &v
-	}).(ReportDatasetPtrOutput)
-}
-
-type ReportDatasetPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ReportDatasetPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportDataset)(nil))
-}
-
-func (o ReportDatasetPtrOutput) ToReportDatasetPtrOutput() ReportDatasetPtrOutput {
-	return o
-}
-
-func (o ReportDatasetPtrOutput) ToReportDatasetPtrOutputWithContext(ctx context.Context) ReportDatasetPtrOutput {
-	return o
-}
-
 type ReportDatasetArrayOutput struct{ *pulumi.OutputState }
 
 func (ReportDatasetArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ReportDataset)(nil))
+	return reflect.TypeOf((*[]*ReportDataset)(nil)).Elem()
 }
 
 func (o ReportDatasetArrayOutput) ToReportDatasetArrayOutput() ReportDatasetArrayOutput {
@@ -324,15 +268,15 @@ func (o ReportDatasetArrayOutput) ToReportDatasetArrayOutputWithContext(ctx cont
 }
 
 func (o ReportDatasetArrayOutput) Index(i pulumi.IntInput) ReportDatasetOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportDataset {
-		return vs[0].([]ReportDataset)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportDataset {
+		return vs[0].([]*ReportDataset)[vs[1].(int)]
 	}).(ReportDatasetOutput)
 }
 
 type ReportDatasetMapOutput struct{ *pulumi.OutputState }
 
 func (ReportDatasetMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ReportDataset)(nil))
+	return reflect.TypeOf((*map[string]*ReportDataset)(nil)).Elem()
 }
 
 func (o ReportDatasetMapOutput) ToReportDatasetMapOutput() ReportDatasetMapOutput {
@@ -344,14 +288,16 @@ func (o ReportDatasetMapOutput) ToReportDatasetMapOutputWithContext(ctx context.
 }
 
 func (o ReportDatasetMapOutput) MapIndex(k pulumi.StringInput) ReportDatasetOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ReportDataset {
-		return vs[0].(map[string]ReportDataset)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ReportDataset {
+		return vs[0].(map[string]*ReportDataset)[vs[1].(string)]
 	}).(ReportDatasetOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDatasetInput)(nil)).Elem(), &ReportDataset{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDatasetArrayInput)(nil)).Elem(), ReportDatasetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportDatasetMapInput)(nil)).Elem(), ReportDatasetMap{})
 	pulumi.RegisterOutputType(ReportDatasetOutput{})
-	pulumi.RegisterOutputType(ReportDatasetPtrOutput{})
 	pulumi.RegisterOutputType(ReportDatasetArrayOutput{})
 	pulumi.RegisterOutputType(ReportDatasetMapOutput{})
 }

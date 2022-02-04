@@ -108,37 +108,35 @@ export class SystemFortisandbox extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFortisandboxArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFortisandboxArgs | SystemFortisandboxState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFortisandboxState | undefined;
-            inputs["email"] = state ? state.email : undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["forticloud"] = state ? state.forticloud : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["forticloud"] = state ? state.forticloud : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFortisandboxArgs | undefined;
-            inputs["email"] = args ? args.email : undefined;
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["forticloud"] = args ? args.forticloud : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["forticloud"] = args ? args.forticloud : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFortisandbox.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFortisandbox.__pulumiType, name, resourceInputs, opts);
     }
 }
 

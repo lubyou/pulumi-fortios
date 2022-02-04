@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report style configuration.
+// Report style configuration. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -117,6 +117,7 @@ func NewReportStyle(ctx *pulumi.Context,
 		args = &ReportStyleArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReportStyle
 	err := ctx.RegisterResource("fortios:index/reportStyle:ReportStyle", name, args, &resource, opts...)
 	if err != nil {
@@ -383,7 +384,7 @@ type ReportStyleInput interface {
 }
 
 func (*ReportStyle) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportStyle)(nil))
+	return reflect.TypeOf((**ReportStyle)(nil)).Elem()
 }
 
 func (i *ReportStyle) ToReportStyleOutput() ReportStyleOutput {
@@ -392,35 +393,6 @@ func (i *ReportStyle) ToReportStyleOutput() ReportStyleOutput {
 
 func (i *ReportStyle) ToReportStyleOutputWithContext(ctx context.Context) ReportStyleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportStyleOutput)
-}
-
-func (i *ReportStyle) ToReportStylePtrOutput() ReportStylePtrOutput {
-	return i.ToReportStylePtrOutputWithContext(context.Background())
-}
-
-func (i *ReportStyle) ToReportStylePtrOutputWithContext(ctx context.Context) ReportStylePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportStylePtrOutput)
-}
-
-type ReportStylePtrInput interface {
-	pulumi.Input
-
-	ToReportStylePtrOutput() ReportStylePtrOutput
-	ToReportStylePtrOutputWithContext(ctx context.Context) ReportStylePtrOutput
-}
-
-type reportStylePtrType ReportStyleArgs
-
-func (*reportStylePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportStyle)(nil))
-}
-
-func (i *reportStylePtrType) ToReportStylePtrOutput() ReportStylePtrOutput {
-	return i.ToReportStylePtrOutputWithContext(context.Background())
-}
-
-func (i *reportStylePtrType) ToReportStylePtrOutputWithContext(ctx context.Context) ReportStylePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportStylePtrOutput)
 }
 
 // ReportStyleArrayInput is an input type that accepts ReportStyleArray and ReportStyleArrayOutput values.
@@ -437,7 +409,7 @@ type ReportStyleArrayInput interface {
 type ReportStyleArray []ReportStyleInput
 
 func (ReportStyleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ReportStyle)(nil))
+	return reflect.TypeOf((*[]*ReportStyle)(nil)).Elem()
 }
 
 func (i ReportStyleArray) ToReportStyleArrayOutput() ReportStyleArrayOutput {
@@ -462,7 +434,7 @@ type ReportStyleMapInput interface {
 type ReportStyleMap map[string]ReportStyleInput
 
 func (ReportStyleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ReportStyle)(nil))
+	return reflect.TypeOf((*map[string]*ReportStyle)(nil)).Elem()
 }
 
 func (i ReportStyleMap) ToReportStyleMapOutput() ReportStyleMapOutput {
@@ -473,12 +445,10 @@ func (i ReportStyleMap) ToReportStyleMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(ReportStyleMapOutput)
 }
 
-type ReportStyleOutput struct {
-	*pulumi.OutputState
-}
+type ReportStyleOutput struct{ *pulumi.OutputState }
 
 func (ReportStyleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportStyle)(nil))
+	return reflect.TypeOf((**ReportStyle)(nil)).Elem()
 }
 
 func (o ReportStyleOutput) ToReportStyleOutput() ReportStyleOutput {
@@ -489,36 +459,10 @@ func (o ReportStyleOutput) ToReportStyleOutputWithContext(ctx context.Context) R
 	return o
 }
 
-func (o ReportStyleOutput) ToReportStylePtrOutput() ReportStylePtrOutput {
-	return o.ToReportStylePtrOutputWithContext(context.Background())
-}
-
-func (o ReportStyleOutput) ToReportStylePtrOutputWithContext(ctx context.Context) ReportStylePtrOutput {
-	return o.ApplyT(func(v ReportStyle) *ReportStyle {
-		return &v
-	}).(ReportStylePtrOutput)
-}
-
-type ReportStylePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ReportStylePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportStyle)(nil))
-}
-
-func (o ReportStylePtrOutput) ToReportStylePtrOutput() ReportStylePtrOutput {
-	return o
-}
-
-func (o ReportStylePtrOutput) ToReportStylePtrOutputWithContext(ctx context.Context) ReportStylePtrOutput {
-	return o
-}
-
 type ReportStyleArrayOutput struct{ *pulumi.OutputState }
 
 func (ReportStyleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ReportStyle)(nil))
+	return reflect.TypeOf((*[]*ReportStyle)(nil)).Elem()
 }
 
 func (o ReportStyleArrayOutput) ToReportStyleArrayOutput() ReportStyleArrayOutput {
@@ -530,15 +474,15 @@ func (o ReportStyleArrayOutput) ToReportStyleArrayOutputWithContext(ctx context.
 }
 
 func (o ReportStyleArrayOutput) Index(i pulumi.IntInput) ReportStyleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportStyle {
-		return vs[0].([]ReportStyle)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportStyle {
+		return vs[0].([]*ReportStyle)[vs[1].(int)]
 	}).(ReportStyleOutput)
 }
 
 type ReportStyleMapOutput struct{ *pulumi.OutputState }
 
 func (ReportStyleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ReportStyle)(nil))
+	return reflect.TypeOf((*map[string]*ReportStyle)(nil)).Elem()
 }
 
 func (o ReportStyleMapOutput) ToReportStyleMapOutput() ReportStyleMapOutput {
@@ -550,14 +494,16 @@ func (o ReportStyleMapOutput) ToReportStyleMapOutputWithContext(ctx context.Cont
 }
 
 func (o ReportStyleMapOutput) MapIndex(k pulumi.StringInput) ReportStyleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ReportStyle {
-		return vs[0].(map[string]ReportStyle)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ReportStyle {
+		return vs[0].(map[string]*ReportStyle)[vs[1].(string)]
 	}).(ReportStyleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportStyleInput)(nil)).Elem(), &ReportStyle{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportStyleArrayInput)(nil)).Elem(), ReportStyleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportStyleMapInput)(nil)).Elem(), ReportStyleMap{})
 	pulumi.RegisterOutputType(ReportStyleOutput{})
-	pulumi.RegisterOutputType(ReportStylePtrOutput{})
 	pulumi.RegisterOutputType(ReportStyleArrayOutput{})
 	pulumi.RegisterOutputType(ReportStyleMapOutput{})
 }

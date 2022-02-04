@@ -115,47 +115,45 @@ export class IpsCustom extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IpsCustomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IpsCustomArgs | IpsCustomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpsCustomState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["application"] = state ? state.application : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["location"] = state ? state.location : undefined;
-            inputs["log"] = state ? state.log : undefined;
-            inputs["logPacket"] = state ? state.logPacket : undefined;
-            inputs["os"] = state ? state.os : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["ruleId"] = state ? state.ruleId : undefined;
-            inputs["severity"] = state ? state.severity : undefined;
-            inputs["sigName"] = state ? state.sigName : undefined;
-            inputs["signature"] = state ? state.signature : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tag"] = state ? state.tag : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["application"] = state ? state.application : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
+            resourceInputs["logPacket"] = state ? state.logPacket : undefined;
+            resourceInputs["os"] = state ? state.os : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["ruleId"] = state ? state.ruleId : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
+            resourceInputs["sigName"] = state ? state.sigName : undefined;
+            resourceInputs["signature"] = state ? state.signature : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tag"] = state ? state.tag : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpsCustomArgs | undefined;
-            inputs["action"] = args ? args.action : undefined;
-            inputs["application"] = args ? args.application : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["location"] = args ? args.location : undefined;
-            inputs["log"] = args ? args.log : undefined;
-            inputs["logPacket"] = args ? args.logPacket : undefined;
-            inputs["os"] = args ? args.os : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["ruleId"] = args ? args.ruleId : undefined;
-            inputs["severity"] = args ? args.severity : undefined;
-            inputs["sigName"] = args ? args.sigName : undefined;
-            inputs["signature"] = args ? args.signature : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tag"] = args ? args.tag : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["application"] = args ? args.application : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
+            resourceInputs["logPacket"] = args ? args.logPacket : undefined;
+            resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["ruleId"] = args ? args.ruleId : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
+            resourceInputs["sigName"] = args ? args.sigName : undefined;
+            resourceInputs["signature"] = args ? args.signature : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tag"] = args ? args.tag : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IpsCustom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IpsCustom.__pulumiType, name, resourceInputs, opts);
     }
 }
 

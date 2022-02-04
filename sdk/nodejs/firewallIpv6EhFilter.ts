@@ -107,35 +107,33 @@ export class FirewallIpv6EhFilter extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallIpv6EhFilterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallIpv6EhFilterArgs | FirewallIpv6EhFilterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallIpv6EhFilterState | undefined;
-            inputs["auth"] = state ? state.auth : undefined;
-            inputs["destOpt"] = state ? state.destOpt : undefined;
-            inputs["fragment"] = state ? state.fragment : undefined;
-            inputs["hdoptType"] = state ? state.hdoptType : undefined;
-            inputs["hopOpt"] = state ? state.hopOpt : undefined;
-            inputs["noNext"] = state ? state.noNext : undefined;
-            inputs["routing"] = state ? state.routing : undefined;
-            inputs["routingType"] = state ? state.routingType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["auth"] = state ? state.auth : undefined;
+            resourceInputs["destOpt"] = state ? state.destOpt : undefined;
+            resourceInputs["fragment"] = state ? state.fragment : undefined;
+            resourceInputs["hdoptType"] = state ? state.hdoptType : undefined;
+            resourceInputs["hopOpt"] = state ? state.hopOpt : undefined;
+            resourceInputs["noNext"] = state ? state.noNext : undefined;
+            resourceInputs["routing"] = state ? state.routing : undefined;
+            resourceInputs["routingType"] = state ? state.routingType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallIpv6EhFilterArgs | undefined;
-            inputs["auth"] = args ? args.auth : undefined;
-            inputs["destOpt"] = args ? args.destOpt : undefined;
-            inputs["fragment"] = args ? args.fragment : undefined;
-            inputs["hdoptType"] = args ? args.hdoptType : undefined;
-            inputs["hopOpt"] = args ? args.hopOpt : undefined;
-            inputs["noNext"] = args ? args.noNext : undefined;
-            inputs["routing"] = args ? args.routing : undefined;
-            inputs["routingType"] = args ? args.routingType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["auth"] = args ? args.auth : undefined;
+            resourceInputs["destOpt"] = args ? args.destOpt : undefined;
+            resourceInputs["fragment"] = args ? args.fragment : undefined;
+            resourceInputs["hdoptType"] = args ? args.hdoptType : undefined;
+            resourceInputs["hopOpt"] = args ? args.hopOpt : undefined;
+            resourceInputs["noNext"] = args ? args.noNext : undefined;
+            resourceInputs["routing"] = args ? args.routing : undefined;
+            resourceInputs["routingType"] = args ? args.routingType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallIpv6EhFilter.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallIpv6EhFilter.__pulumiType, name, resourceInputs, opts);
     }
 }
 

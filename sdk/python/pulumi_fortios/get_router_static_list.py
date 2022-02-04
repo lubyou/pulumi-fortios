@@ -12,6 +12,7 @@ __all__ = [
     'GetRouterStaticListResult',
     'AwaitableGetRouterStaticListResult',
     'get_router_static_list',
+    'get_router_static_list_output',
 ]
 
 @pulumi.output_type
@@ -98,6 +99,8 @@ def get_router_static_list(filter: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterStaticList:GetRouterStaticList', __args__, opts=opts, typ=GetRouterStaticListResult).value
 
     return AwaitableGetRouterStaticListResult(
@@ -105,3 +108,26 @@ def get_router_static_list(filter: Optional[str] = None,
         id=__ret__.id,
         seq_numlists=__ret__.seq_numlists,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_router_static_list)
+def get_router_static_list_output(filter: Optional[pulumi.Input[Optional[str]]] = None,
+                                  vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterStaticListResult]:
+    """
+    Provides a list of `RouterStatic`.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fortios as fortios
+
+    sample1 = fortios.get_router_static_list(filter="seq_num>1")
+    pulumi.export("output1", sample1.seq_numlists)
+    ```
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

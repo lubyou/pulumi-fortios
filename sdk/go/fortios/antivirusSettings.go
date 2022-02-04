@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -48,10 +48,16 @@ import (
 type AntivirusSettings struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheCleanResult pulumi.StringOutput `pulumi:"cacheCleanResult"`
+	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheInfectedResult pulumi.StringOutput `pulumi:"cacheInfectedResult"`
 	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
 	DefaultDb pulumi.StringOutput `pulumi:"defaultDb"`
 	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
 	Grayware pulumi.StringOutput `pulumi:"grayware"`
+	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	MachineLearningDetection pulumi.StringOutput `pulumi:"machineLearningDetection"`
 	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
 	OverrideTimeout pulumi.IntOutput `pulumi:"overrideTimeout"`
 	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
@@ -67,6 +73,7 @@ func NewAntivirusSettings(ctx *pulumi.Context,
 		args = &AntivirusSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AntivirusSettings
 	err := ctx.RegisterResource("fortios:index/antivirusSettings:AntivirusSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -89,10 +96,16 @@ func GetAntivirusSettings(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering AntivirusSettings resources.
 type antivirusSettingsState struct {
+	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheCleanResult *string `pulumi:"cacheCleanResult"`
+	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheInfectedResult *string `pulumi:"cacheInfectedResult"`
 	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
 	DefaultDb *string `pulumi:"defaultDb"`
 	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
 	Grayware *string `pulumi:"grayware"`
+	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	MachineLearningDetection *string `pulumi:"machineLearningDetection"`
 	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
 	OverrideTimeout *int `pulumi:"overrideTimeout"`
 	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
@@ -102,10 +115,16 @@ type antivirusSettingsState struct {
 }
 
 type AntivirusSettingsState struct {
+	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheCleanResult pulumi.StringPtrInput
+	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheInfectedResult pulumi.StringPtrInput
 	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
 	DefaultDb pulumi.StringPtrInput
 	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
 	Grayware pulumi.StringPtrInput
+	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	MachineLearningDetection pulumi.StringPtrInput
 	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
 	OverrideTimeout pulumi.IntPtrInput
 	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
@@ -119,10 +138,16 @@ func (AntivirusSettingsState) ElementType() reflect.Type {
 }
 
 type antivirusSettingsArgs struct {
+	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheCleanResult *string `pulumi:"cacheCleanResult"`
+	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheInfectedResult *string `pulumi:"cacheInfectedResult"`
 	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
 	DefaultDb *string `pulumi:"defaultDb"`
 	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
 	Grayware *string `pulumi:"grayware"`
+	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	MachineLearningDetection *string `pulumi:"machineLearningDetection"`
 	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
 	OverrideTimeout *int `pulumi:"overrideTimeout"`
 	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
@@ -133,10 +158,16 @@ type antivirusSettingsArgs struct {
 
 // The set of arguments for constructing a AntivirusSettings resource.
 type AntivirusSettingsArgs struct {
+	// Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheCleanResult pulumi.StringPtrInput
+	// Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+	CacheInfectedResult pulumi.StringPtrInput
 	// Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
 	DefaultDb pulumi.StringPtrInput
 	// Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
 	Grayware pulumi.StringPtrInput
+	// Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+	MachineLearningDetection pulumi.StringPtrInput
 	// Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
 	OverrideTimeout pulumi.IntPtrInput
 	// Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
@@ -157,7 +188,7 @@ type AntivirusSettingsInput interface {
 }
 
 func (*AntivirusSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusSettings)(nil))
+	return reflect.TypeOf((**AntivirusSettings)(nil)).Elem()
 }
 
 func (i *AntivirusSettings) ToAntivirusSettingsOutput() AntivirusSettingsOutput {
@@ -166,35 +197,6 @@ func (i *AntivirusSettings) ToAntivirusSettingsOutput() AntivirusSettingsOutput 
 
 func (i *AntivirusSettings) ToAntivirusSettingsOutputWithContext(ctx context.Context) AntivirusSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsOutput)
-}
-
-func (i *AntivirusSettings) ToAntivirusSettingsPtrOutput() AntivirusSettingsPtrOutput {
-	return i.ToAntivirusSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *AntivirusSettings) ToAntivirusSettingsPtrOutputWithContext(ctx context.Context) AntivirusSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsPtrOutput)
-}
-
-type AntivirusSettingsPtrInput interface {
-	pulumi.Input
-
-	ToAntivirusSettingsPtrOutput() AntivirusSettingsPtrOutput
-	ToAntivirusSettingsPtrOutputWithContext(ctx context.Context) AntivirusSettingsPtrOutput
-}
-
-type antivirusSettingsPtrType AntivirusSettingsArgs
-
-func (*antivirusSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusSettings)(nil))
-}
-
-func (i *antivirusSettingsPtrType) ToAntivirusSettingsPtrOutput() AntivirusSettingsPtrOutput {
-	return i.ToAntivirusSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *antivirusSettingsPtrType) ToAntivirusSettingsPtrOutputWithContext(ctx context.Context) AntivirusSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsPtrOutput)
 }
 
 // AntivirusSettingsArrayInput is an input type that accepts AntivirusSettingsArray and AntivirusSettingsArrayOutput values.
@@ -211,7 +213,7 @@ type AntivirusSettingsArrayInput interface {
 type AntivirusSettingsArray []AntivirusSettingsInput
 
 func (AntivirusSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AntivirusSettings)(nil))
+	return reflect.TypeOf((*[]*AntivirusSettings)(nil)).Elem()
 }
 
 func (i AntivirusSettingsArray) ToAntivirusSettingsArrayOutput() AntivirusSettingsArrayOutput {
@@ -236,7 +238,7 @@ type AntivirusSettingsMapInput interface {
 type AntivirusSettingsMap map[string]AntivirusSettingsInput
 
 func (AntivirusSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AntivirusSettings)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusSettings)(nil)).Elem()
 }
 
 func (i AntivirusSettingsMap) ToAntivirusSettingsMapOutput() AntivirusSettingsMapOutput {
@@ -247,12 +249,10 @@ func (i AntivirusSettingsMap) ToAntivirusSettingsMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusSettingsMapOutput)
 }
 
-type AntivirusSettingsOutput struct {
-	*pulumi.OutputState
-}
+type AntivirusSettingsOutput struct{ *pulumi.OutputState }
 
 func (AntivirusSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusSettings)(nil))
+	return reflect.TypeOf((**AntivirusSettings)(nil)).Elem()
 }
 
 func (o AntivirusSettingsOutput) ToAntivirusSettingsOutput() AntivirusSettingsOutput {
@@ -263,36 +263,10 @@ func (o AntivirusSettingsOutput) ToAntivirusSettingsOutputWithContext(ctx contex
 	return o
 }
 
-func (o AntivirusSettingsOutput) ToAntivirusSettingsPtrOutput() AntivirusSettingsPtrOutput {
-	return o.ToAntivirusSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o AntivirusSettingsOutput) ToAntivirusSettingsPtrOutputWithContext(ctx context.Context) AntivirusSettingsPtrOutput {
-	return o.ApplyT(func(v AntivirusSettings) *AntivirusSettings {
-		return &v
-	}).(AntivirusSettingsPtrOutput)
-}
-
-type AntivirusSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AntivirusSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusSettings)(nil))
-}
-
-func (o AntivirusSettingsPtrOutput) ToAntivirusSettingsPtrOutput() AntivirusSettingsPtrOutput {
-	return o
-}
-
-func (o AntivirusSettingsPtrOutput) ToAntivirusSettingsPtrOutputWithContext(ctx context.Context) AntivirusSettingsPtrOutput {
-	return o
-}
-
 type AntivirusSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (AntivirusSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AntivirusSettings)(nil))
+	return reflect.TypeOf((*[]*AntivirusSettings)(nil)).Elem()
 }
 
 func (o AntivirusSettingsArrayOutput) ToAntivirusSettingsArrayOutput() AntivirusSettingsArrayOutput {
@@ -304,15 +278,15 @@ func (o AntivirusSettingsArrayOutput) ToAntivirusSettingsArrayOutputWithContext(
 }
 
 func (o AntivirusSettingsArrayOutput) Index(i pulumi.IntInput) AntivirusSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AntivirusSettings {
-		return vs[0].([]AntivirusSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusSettings {
+		return vs[0].([]*AntivirusSettings)[vs[1].(int)]
 	}).(AntivirusSettingsOutput)
 }
 
 type AntivirusSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (AntivirusSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AntivirusSettings)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusSettings)(nil)).Elem()
 }
 
 func (o AntivirusSettingsMapOutput) ToAntivirusSettingsMapOutput() AntivirusSettingsMapOutput {
@@ -324,14 +298,16 @@ func (o AntivirusSettingsMapOutput) ToAntivirusSettingsMapOutputWithContext(ctx 
 }
 
 func (o AntivirusSettingsMapOutput) MapIndex(k pulumi.StringInput) AntivirusSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AntivirusSettings {
-		return vs[0].(map[string]AntivirusSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AntivirusSettings {
+		return vs[0].(map[string]*AntivirusSettings)[vs[1].(string)]
 	}).(AntivirusSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusSettingsInput)(nil)).Elem(), &AntivirusSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusSettingsArrayInput)(nil)).Elem(), AntivirusSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusSettingsMapInput)(nil)).Elem(), AntivirusSettingsMap{})
 	pulumi.RegisterOutputType(AntivirusSettingsOutput{})
-	pulumi.RegisterOutputType(AntivirusSettingsPtrOutput{})
 	pulumi.RegisterOutputType(AntivirusSettingsArrayOutput{})
 	pulumi.RegisterOutputType(AntivirusSettingsMapOutput{})
 }

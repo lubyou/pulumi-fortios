@@ -39,6 +39,7 @@ func NewWafSignature(ctx *pulumi.Context,
 		args = &WafSignatureArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WafSignature
 	err := ctx.RegisterResource("fortios:index/wafSignature:WafSignature", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type WafSignatureInput interface {
 }
 
 func (*WafSignature) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafSignature)(nil))
+	return reflect.TypeOf((**WafSignature)(nil)).Elem()
 }
 
 func (i *WafSignature) ToWafSignatureOutput() WafSignatureOutput {
@@ -122,35 +123,6 @@ func (i *WafSignature) ToWafSignatureOutput() WafSignatureOutput {
 
 func (i *WafSignature) ToWafSignatureOutputWithContext(ctx context.Context) WafSignatureOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafSignatureOutput)
-}
-
-func (i *WafSignature) ToWafSignaturePtrOutput() WafSignaturePtrOutput {
-	return i.ToWafSignaturePtrOutputWithContext(context.Background())
-}
-
-func (i *WafSignature) ToWafSignaturePtrOutputWithContext(ctx context.Context) WafSignaturePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafSignaturePtrOutput)
-}
-
-type WafSignaturePtrInput interface {
-	pulumi.Input
-
-	ToWafSignaturePtrOutput() WafSignaturePtrOutput
-	ToWafSignaturePtrOutputWithContext(ctx context.Context) WafSignaturePtrOutput
-}
-
-type wafSignaturePtrType WafSignatureArgs
-
-func (*wafSignaturePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafSignature)(nil))
-}
-
-func (i *wafSignaturePtrType) ToWafSignaturePtrOutput() WafSignaturePtrOutput {
-	return i.ToWafSignaturePtrOutputWithContext(context.Background())
-}
-
-func (i *wafSignaturePtrType) ToWafSignaturePtrOutputWithContext(ctx context.Context) WafSignaturePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafSignaturePtrOutput)
 }
 
 // WafSignatureArrayInput is an input type that accepts WafSignatureArray and WafSignatureArrayOutput values.
@@ -167,7 +139,7 @@ type WafSignatureArrayInput interface {
 type WafSignatureArray []WafSignatureInput
 
 func (WafSignatureArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WafSignature)(nil))
+	return reflect.TypeOf((*[]*WafSignature)(nil)).Elem()
 }
 
 func (i WafSignatureArray) ToWafSignatureArrayOutput() WafSignatureArrayOutput {
@@ -192,7 +164,7 @@ type WafSignatureMapInput interface {
 type WafSignatureMap map[string]WafSignatureInput
 
 func (WafSignatureMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WafSignature)(nil))
+	return reflect.TypeOf((*map[string]*WafSignature)(nil)).Elem()
 }
 
 func (i WafSignatureMap) ToWafSignatureMapOutput() WafSignatureMapOutput {
@@ -203,12 +175,10 @@ func (i WafSignatureMap) ToWafSignatureMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(WafSignatureMapOutput)
 }
 
-type WafSignatureOutput struct {
-	*pulumi.OutputState
-}
+type WafSignatureOutput struct{ *pulumi.OutputState }
 
 func (WafSignatureOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafSignature)(nil))
+	return reflect.TypeOf((**WafSignature)(nil)).Elem()
 }
 
 func (o WafSignatureOutput) ToWafSignatureOutput() WafSignatureOutput {
@@ -219,36 +189,10 @@ func (o WafSignatureOutput) ToWafSignatureOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o WafSignatureOutput) ToWafSignaturePtrOutput() WafSignaturePtrOutput {
-	return o.ToWafSignaturePtrOutputWithContext(context.Background())
-}
-
-func (o WafSignatureOutput) ToWafSignaturePtrOutputWithContext(ctx context.Context) WafSignaturePtrOutput {
-	return o.ApplyT(func(v WafSignature) *WafSignature {
-		return &v
-	}).(WafSignaturePtrOutput)
-}
-
-type WafSignaturePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WafSignaturePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafSignature)(nil))
-}
-
-func (o WafSignaturePtrOutput) ToWafSignaturePtrOutput() WafSignaturePtrOutput {
-	return o
-}
-
-func (o WafSignaturePtrOutput) ToWafSignaturePtrOutputWithContext(ctx context.Context) WafSignaturePtrOutput {
-	return o
-}
-
 type WafSignatureArrayOutput struct{ *pulumi.OutputState }
 
 func (WafSignatureArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WafSignature)(nil))
+	return reflect.TypeOf((*[]*WafSignature)(nil)).Elem()
 }
 
 func (o WafSignatureArrayOutput) ToWafSignatureArrayOutput() WafSignatureArrayOutput {
@@ -260,15 +204,15 @@ func (o WafSignatureArrayOutput) ToWafSignatureArrayOutputWithContext(ctx contex
 }
 
 func (o WafSignatureArrayOutput) Index(i pulumi.IntInput) WafSignatureOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafSignature {
-		return vs[0].([]WafSignature)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafSignature {
+		return vs[0].([]*WafSignature)[vs[1].(int)]
 	}).(WafSignatureOutput)
 }
 
 type WafSignatureMapOutput struct{ *pulumi.OutputState }
 
 func (WafSignatureMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WafSignature)(nil))
+	return reflect.TypeOf((*map[string]*WafSignature)(nil)).Elem()
 }
 
 func (o WafSignatureMapOutput) ToWafSignatureMapOutput() WafSignatureMapOutput {
@@ -280,14 +224,16 @@ func (o WafSignatureMapOutput) ToWafSignatureMapOutputWithContext(ctx context.Co
 }
 
 func (o WafSignatureMapOutput) MapIndex(k pulumi.StringInput) WafSignatureOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WafSignature {
-		return vs[0].(map[string]WafSignature)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WafSignature {
+		return vs[0].(map[string]*WafSignature)[vs[1].(string)]
 	}).(WafSignatureOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WafSignatureInput)(nil)).Elem(), &WafSignature{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafSignatureArrayInput)(nil)).Elem(), WafSignatureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafSignatureMapInput)(nil)).Elem(), WafSignatureMap{})
 	pulumi.RegisterOutputType(WafSignatureOutput{})
-	pulumi.RegisterOutputType(WafSignaturePtrOutput{})
 	pulumi.RegisterOutputType(WafSignatureArrayOutput{})
 	pulumi.RegisterOutputType(WafSignatureMapOutput{})
 }

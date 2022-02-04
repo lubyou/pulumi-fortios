@@ -14,6 +14,11 @@ __all__ = ['CertificateLocalArgs', 'CertificateLocal']
 class CertificateLocalArgs:
     def __init__(__self__, *,
                  private_key: pulumi.Input[str],
+                 acme_ca_url: Optional[pulumi.Input[str]] = None,
+                 acme_domain: Optional[pulumi.Input[str]] = None,
+                 acme_email: Optional[pulumi.Input[str]] = None,
+                 acme_renew_window: Optional[pulumi.Input[int]] = None,
+                 acme_rsa_key_size: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
@@ -42,6 +47,16 @@ class CertificateLocalArgs:
         The set of arguments for constructing a CertificateLocal resource.
         """
         pulumi.set(__self__, "private_key", private_key)
+        if acme_ca_url is not None:
+            pulumi.set(__self__, "acme_ca_url", acme_ca_url)
+        if acme_domain is not None:
+            pulumi.set(__self__, "acme_domain", acme_domain)
+        if acme_email is not None:
+            pulumi.set(__self__, "acme_email", acme_email)
+        if acme_renew_window is not None:
+            pulumi.set(__self__, "acme_renew_window", acme_renew_window)
+        if acme_rsa_key_size is not None:
+            pulumi.set(__self__, "acme_rsa_key_size", acme_rsa_key_size)
         if auto_regenerate_days is not None:
             pulumi.set(__self__, "auto_regenerate_days", auto_regenerate_days)
         if auto_regenerate_days_warning is not None:
@@ -99,6 +114,51 @@ class CertificateLocalArgs:
     @private_key.setter
     def private_key(self, value: pulumi.Input[str]):
         pulumi.set(self, "private_key", value)
+
+    @property
+    @pulumi.getter(name="acmeCaUrl")
+    def acme_ca_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "acme_ca_url")
+
+    @acme_ca_url.setter
+    def acme_ca_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acme_ca_url", value)
+
+    @property
+    @pulumi.getter(name="acmeDomain")
+    def acme_domain(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "acme_domain")
+
+    @acme_domain.setter
+    def acme_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acme_domain", value)
+
+    @property
+    @pulumi.getter(name="acmeEmail")
+    def acme_email(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "acme_email")
+
+    @acme_email.setter
+    def acme_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acme_email", value)
+
+    @property
+    @pulumi.getter(name="acmeRenewWindow")
+    def acme_renew_window(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "acme_renew_window")
+
+    @acme_renew_window.setter
+    def acme_renew_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acme_renew_window", value)
+
+    @property
+    @pulumi.getter(name="acmeRsaKeySize")
+    def acme_rsa_key_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "acme_rsa_key_size")
+
+    @acme_rsa_key_size.setter
+    def acme_rsa_key_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acme_rsa_key_size", value)
 
     @property
     @pulumi.getter(name="autoRegenerateDays")
@@ -320,6 +380,11 @@ class CertificateLocalArgs:
 @pulumi.input_type
 class _CertificateLocalState:
     def __init__(__self__, *,
+                 acme_ca_url: Optional[pulumi.Input[str]] = None,
+                 acme_domain: Optional[pulumi.Input[str]] = None,
+                 acme_email: Optional[pulumi.Input[str]] = None,
+                 acme_renew_window: Optional[pulumi.Input[int]] = None,
+                 acme_rsa_key_size: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
@@ -348,6 +413,16 @@ class _CertificateLocalState:
         """
         Input properties used for looking up and filtering CertificateLocal resources.
         """
+        if acme_ca_url is not None:
+            pulumi.set(__self__, "acme_ca_url", acme_ca_url)
+        if acme_domain is not None:
+            pulumi.set(__self__, "acme_domain", acme_domain)
+        if acme_email is not None:
+            pulumi.set(__self__, "acme_email", acme_email)
+        if acme_renew_window is not None:
+            pulumi.set(__self__, "acme_renew_window", acme_renew_window)
+        if acme_rsa_key_size is not None:
+            pulumi.set(__self__, "acme_rsa_key_size", acme_rsa_key_size)
         if auto_regenerate_days is not None:
             pulumi.set(__self__, "auto_regenerate_days", auto_regenerate_days)
         if auto_regenerate_days_warning is not None:
@@ -398,6 +473,51 @@ class _CertificateLocalState:
             pulumi.set(__self__, "state", state)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="acmeCaUrl")
+    def acme_ca_url(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "acme_ca_url")
+
+    @acme_ca_url.setter
+    def acme_ca_url(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acme_ca_url", value)
+
+    @property
+    @pulumi.getter(name="acmeDomain")
+    def acme_domain(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "acme_domain")
+
+    @acme_domain.setter
+    def acme_domain(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acme_domain", value)
+
+    @property
+    @pulumi.getter(name="acmeEmail")
+    def acme_email(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "acme_email")
+
+    @acme_email.setter
+    def acme_email(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "acme_email", value)
+
+    @property
+    @pulumi.getter(name="acmeRenewWindow")
+    def acme_renew_window(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "acme_renew_window")
+
+    @acme_renew_window.setter
+    def acme_renew_window(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acme_renew_window", value)
+
+    @property
+    @pulumi.getter(name="acmeRsaKeySize")
+    def acme_rsa_key_size(self) -> Optional[pulumi.Input[int]]:
+        return pulumi.get(self, "acme_rsa_key_size")
+
+    @acme_rsa_key_size.setter
+    def acme_rsa_key_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "acme_rsa_key_size", value)
 
     @property
     @pulumi.getter(name="autoRegenerateDays")
@@ -630,6 +750,11 @@ class CertificateLocal(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acme_ca_url: Optional[pulumi.Input[str]] = None,
+                 acme_domain: Optional[pulumi.Input[str]] = None,
+                 acme_email: Optional[pulumi.Input[str]] = None,
+                 acme_renew_window: Optional[pulumi.Input[int]] = None,
+                 acme_rsa_key_size: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
@@ -728,6 +853,11 @@ class CertificateLocal(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 acme_ca_url: Optional[pulumi.Input[str]] = None,
+                 acme_domain: Optional[pulumi.Input[str]] = None,
+                 acme_email: Optional[pulumi.Input[str]] = None,
+                 acme_renew_window: Optional[pulumi.Input[int]] = None,
+                 acme_rsa_key_size: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days: Optional[pulumi.Input[int]] = None,
                  auto_regenerate_days_warning: Optional[pulumi.Input[int]] = None,
                  ca_identifier: Optional[pulumi.Input[str]] = None,
@@ -760,11 +890,18 @@ class CertificateLocal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CertificateLocalArgs.__new__(CertificateLocalArgs)
 
+            __props__.__dict__["acme_ca_url"] = acme_ca_url
+            __props__.__dict__["acme_domain"] = acme_domain
+            __props__.__dict__["acme_email"] = acme_email
+            __props__.__dict__["acme_renew_window"] = acme_renew_window
+            __props__.__dict__["acme_rsa_key_size"] = acme_rsa_key_size
             __props__.__dict__["auto_regenerate_days"] = auto_regenerate_days
             __props__.__dict__["auto_regenerate_days_warning"] = auto_regenerate_days_warning
             __props__.__dict__["ca_identifier"] = ca_identifier
@@ -802,6 +939,11 @@ class CertificateLocal(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            acme_ca_url: Optional[pulumi.Input[str]] = None,
+            acme_domain: Optional[pulumi.Input[str]] = None,
+            acme_email: Optional[pulumi.Input[str]] = None,
+            acme_renew_window: Optional[pulumi.Input[int]] = None,
+            acme_rsa_key_size: Optional[pulumi.Input[int]] = None,
             auto_regenerate_days: Optional[pulumi.Input[int]] = None,
             auto_regenerate_days_warning: Optional[pulumi.Input[int]] = None,
             ca_identifier: Optional[pulumi.Input[str]] = None,
@@ -839,6 +981,11 @@ class CertificateLocal(pulumi.CustomResource):
 
         __props__ = _CertificateLocalState.__new__(_CertificateLocalState)
 
+        __props__.__dict__["acme_ca_url"] = acme_ca_url
+        __props__.__dict__["acme_domain"] = acme_domain
+        __props__.__dict__["acme_email"] = acme_email
+        __props__.__dict__["acme_renew_window"] = acme_renew_window
+        __props__.__dict__["acme_rsa_key_size"] = acme_rsa_key_size
         __props__.__dict__["auto_regenerate_days"] = auto_regenerate_days
         __props__.__dict__["auto_regenerate_days_warning"] = auto_regenerate_days_warning
         __props__.__dict__["ca_identifier"] = ca_identifier
@@ -865,6 +1012,31 @@ class CertificateLocal(pulumi.CustomResource):
         __props__.__dict__["state"] = state
         __props__.__dict__["vdomparam"] = vdomparam
         return CertificateLocal(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="acmeCaUrl")
+    def acme_ca_url(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "acme_ca_url")
+
+    @property
+    @pulumi.getter(name="acmeDomain")
+    def acme_domain(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "acme_domain")
+
+    @property
+    @pulumi.getter(name="acmeEmail")
+    def acme_email(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "acme_email")
+
+    @property
+    @pulumi.getter(name="acmeRenewWindow")
+    def acme_renew_window(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "acme_renew_window")
+
+    @property
+    @pulumi.getter(name="acmeRsaKeySize")
+    def acme_rsa_key_size(self) -> pulumi.Output[int]:
+        return pulumi.get(self, "acme_rsa_key_size")
 
     @property
     @pulumi.getter(name="autoRegenerateDays")

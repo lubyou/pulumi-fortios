@@ -25,6 +25,8 @@ class FirewallCentralSnatMapArgs:
                  comments: Optional[pulumi.Input[str]] = None,
                  dst_addr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstAddr6Args']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppool6Args']]]] = None,
                  nat_ippools: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppoolArgs']]]] = None,
                  nat_port: Optional[pulumi.Input[str]] = None,
@@ -46,6 +48,8 @@ class FirewallCentralSnatMapArgs:
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstAddr6Args']]] dst_addr6s: IPv6 Destination address. The structure of `dst_addr6` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppool6Args']]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppoolArgs']]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
         :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
@@ -69,6 +73,10 @@ class FirewallCentralSnatMapArgs:
             pulumi.set(__self__, "dst_addr6s", dst_addr6s)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if nat_ippool6s is not None:
             pulumi.set(__self__, "nat_ippool6s", nat_ippool6s)
         if nat_ippools is not None:
@@ -209,6 +217,30 @@ class FirewallCentralSnatMapArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
+
+    @property
     @pulumi.getter(name="natIppool6s")
     def nat_ippool6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppool6Args']]]]:
         """
@@ -326,6 +358,8 @@ class _FirewallCentralSnatMapState:
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstintfArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppool6Args']]]] = None,
                  nat_ippools: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppoolArgs']]]] = None,
                  nat_port: Optional[pulumi.Input[str]] = None,
@@ -347,6 +381,8 @@ class _FirewallCentralSnatMapState:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapDstintfArgs']]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppool6Args']]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallCentralSnatMapNatIppoolArgs']]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
         :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
@@ -373,6 +409,10 @@ class _FirewallCentralSnatMapState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if nat is not None:
             pulumi.set(__self__, "nat", nat)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if nat_ippool6s is not None:
             pulumi.set(__self__, "nat_ippool6s", nat_ippool6s)
         if nat_ippools is not None:
@@ -471,6 +511,30 @@ class _FirewallCentralSnatMapState:
     @nat.setter
     def nat(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nat", value)
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
 
     @property
     @pulumi.getter(name="natIppool6s")
@@ -640,6 +704,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppool6Args']]]]] = None,
                  nat_ippools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppoolArgs']]]]] = None,
                  nat_port: Optional[pulumi.Input[str]] = None,
@@ -702,6 +768,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppool6Args']]]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppoolArgs']]]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
         :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
@@ -783,6 +851,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppool6Args']]]]] = None,
                  nat_ippools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppoolArgs']]]]] = None,
                  nat_port: Optional[pulumi.Input[str]] = None,
@@ -803,6 +873,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -820,6 +892,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
             if nat is None and not opts.urn:
                 raise TypeError("Missing required property 'nat'")
             __props__.__dict__["nat"] = nat
+            __props__.__dict__["nat46"] = nat46
+            __props__.__dict__["nat64"] = nat64
             __props__.__dict__["nat_ippool6s"] = nat_ippool6s
             __props__.__dict__["nat_ippools"] = nat_ippools
             __props__.__dict__["nat_port"] = nat_port
@@ -857,6 +931,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
             dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             nat: Optional[pulumi.Input[str]] = None,
+            nat46: Optional[pulumi.Input[str]] = None,
+            nat64: Optional[pulumi.Input[str]] = None,
             nat_ippool6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppool6Args']]]]] = None,
             nat_ippools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppoolArgs']]]]] = None,
             nat_port: Optional[pulumi.Input[str]] = None,
@@ -883,6 +959,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapDstintfArgs']]]] dstintfs: Destination interface name from available interfaces. The structure of `dstintf` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppool6Args']]]] nat_ippool6s: IPv6 pools to be used for source NAT. The structure of `nat_ippool6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallCentralSnatMapNatIppoolArgs']]]] nat_ippools: Name of the IP pools to be used to translate addresses from available IP Pools. The structure of `nat_ippool` block is documented below.
         :param pulumi.Input[str] nat_port: Translated port or port range (0 to 65535).
@@ -907,6 +985,8 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
         __props__.__dict__["dstintfs"] = dstintfs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["nat"] = nat
+        __props__.__dict__["nat46"] = nat46
+        __props__.__dict__["nat64"] = nat64
         __props__.__dict__["nat_ippool6s"] = nat_ippool6s
         __props__.__dict__["nat_ippools"] = nat_ippools
         __props__.__dict__["nat_port"] = nat_port
@@ -969,6 +1049,22 @@ class FirewallCentralSnatMap(pulumi.CustomResource):
         Enable/disable source NAT. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "nat")
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
 
     @property
     @pulumi.getter(name="natIppool6s")

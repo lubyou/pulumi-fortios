@@ -130,25 +130,25 @@ export class SystemExternalResource extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemExternalResourceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemExternalResourceArgs | SystemExternalResourceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemExternalResourceState | undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["refreshRate"] = state ? state.refreshRate : undefined;
-            inputs["resource"] = state ? state.resource : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["userAgent"] = state ? state.userAgent : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["refreshRate"] = state ? state.refreshRate : undefined;
+            resourceInputs["resource"] = state ? state.resource : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["userAgent"] = state ? state.userAgent : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemExternalResourceArgs | undefined;
             if ((!args || args.refreshRate === undefined) && !opts.urn) {
@@ -157,26 +157,24 @@ export class SystemExternalResource extends pulumi.CustomResource {
             if ((!args || args.resource === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'resource'");
             }
-            inputs["category"] = args ? args.category : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["refreshRate"] = args ? args.refreshRate : undefined;
-            inputs["resource"] = args ? args.resource : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["userAgent"] = args ? args.userAgent : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["refreshRate"] = args ? args.refreshRate : undefined;
+            resourceInputs["resource"] = args ? args.resource : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["userAgent"] = args ? args.userAgent : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemExternalResource.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemExternalResource.__pulumiType, name, resourceInputs, opts);
     }
 }
 

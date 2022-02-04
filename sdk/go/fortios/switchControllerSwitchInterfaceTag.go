@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -58,6 +58,7 @@ func NewSwitchControllerSwitchInterfaceTag(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchInterfaceTagArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchInterfaceTag
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchInterfaceTag:SwitchControllerSwitchInterfaceTag", name, args, &resource, opts...)
 	if err != nil {
@@ -124,7 +125,7 @@ type SwitchControllerSwitchInterfaceTagInput interface {
 }
 
 func (*SwitchControllerSwitchInterfaceTag) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchInterfaceTag)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchInterfaceTag)(nil)).Elem()
 }
 
 func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTagOutput() SwitchControllerSwitchInterfaceTagOutput {
@@ -133,35 +134,6 @@ func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTa
 
 func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTagOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagOutput)
-}
-
-func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTagPtrOutput() SwitchControllerSwitchInterfaceTagPtrOutput {
-	return i.ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSwitchInterfaceTag) ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagPtrOutput)
-}
-
-type SwitchControllerSwitchInterfaceTagPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSwitchInterfaceTagPtrOutput() SwitchControllerSwitchInterfaceTagPtrOutput
-	ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagPtrOutput
-}
-
-type switchControllerSwitchInterfaceTagPtrType SwitchControllerSwitchInterfaceTagArgs
-
-func (*switchControllerSwitchInterfaceTagPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchInterfaceTag)(nil))
-}
-
-func (i *switchControllerSwitchInterfaceTagPtrType) ToSwitchControllerSwitchInterfaceTagPtrOutput() SwitchControllerSwitchInterfaceTagPtrOutput {
-	return i.ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSwitchInterfaceTagPtrType) ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagPtrOutput)
 }
 
 // SwitchControllerSwitchInterfaceTagArrayInput is an input type that accepts SwitchControllerSwitchInterfaceTagArray and SwitchControllerSwitchInterfaceTagArrayOutput values.
@@ -178,7 +150,7 @@ type SwitchControllerSwitchInterfaceTagArrayInput interface {
 type SwitchControllerSwitchInterfaceTagArray []SwitchControllerSwitchInterfaceTagInput
 
 func (SwitchControllerSwitchInterfaceTagArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSwitchInterfaceTag)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchInterfaceTag)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchInterfaceTagArray) ToSwitchControllerSwitchInterfaceTagArrayOutput() SwitchControllerSwitchInterfaceTagArrayOutput {
@@ -203,7 +175,7 @@ type SwitchControllerSwitchInterfaceTagMapInput interface {
 type SwitchControllerSwitchInterfaceTagMap map[string]SwitchControllerSwitchInterfaceTagInput
 
 func (SwitchControllerSwitchInterfaceTagMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSwitchInterfaceTag)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchInterfaceTag)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchInterfaceTagMap) ToSwitchControllerSwitchInterfaceTagMapOutput() SwitchControllerSwitchInterfaceTagMapOutput {
@@ -214,12 +186,10 @@ func (i SwitchControllerSwitchInterfaceTagMap) ToSwitchControllerSwitchInterface
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchInterfaceTagMapOutput)
 }
 
-type SwitchControllerSwitchInterfaceTagOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSwitchInterfaceTagOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchInterfaceTagOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchInterfaceTag)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchInterfaceTag)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterfaceTagOutput() SwitchControllerSwitchInterfaceTagOutput {
@@ -230,36 +200,10 @@ func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterf
 	return o
 }
 
-func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterfaceTagPtrOutput() SwitchControllerSwitchInterfaceTagPtrOutput {
-	return o.ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSwitchInterfaceTagOutput) ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSwitchInterfaceTag) *SwitchControllerSwitchInterfaceTag {
-		return &v
-	}).(SwitchControllerSwitchInterfaceTagPtrOutput)
-}
-
-type SwitchControllerSwitchInterfaceTagPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSwitchInterfaceTagPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchInterfaceTag)(nil))
-}
-
-func (o SwitchControllerSwitchInterfaceTagPtrOutput) ToSwitchControllerSwitchInterfaceTagPtrOutput() SwitchControllerSwitchInterfaceTagPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSwitchInterfaceTagPtrOutput) ToSwitchControllerSwitchInterfaceTagPtrOutputWithContext(ctx context.Context) SwitchControllerSwitchInterfaceTagPtrOutput {
-	return o
-}
-
 type SwitchControllerSwitchInterfaceTagArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchInterfaceTagArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSwitchInterfaceTag)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchInterfaceTag)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchInterfaceTagArrayOutput) ToSwitchControllerSwitchInterfaceTagArrayOutput() SwitchControllerSwitchInterfaceTagArrayOutput {
@@ -271,15 +215,15 @@ func (o SwitchControllerSwitchInterfaceTagArrayOutput) ToSwitchControllerSwitchI
 }
 
 func (o SwitchControllerSwitchInterfaceTagArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchInterfaceTagOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSwitchInterfaceTag {
-		return vs[0].([]SwitchControllerSwitchInterfaceTag)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchInterfaceTag {
+		return vs[0].([]*SwitchControllerSwitchInterfaceTag)[vs[1].(int)]
 	}).(SwitchControllerSwitchInterfaceTagOutput)
 }
 
 type SwitchControllerSwitchInterfaceTagMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchInterfaceTagMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSwitchInterfaceTag)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchInterfaceTag)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchInterfaceTagMapOutput) ToSwitchControllerSwitchInterfaceTagMapOutput() SwitchControllerSwitchInterfaceTagMapOutput {
@@ -291,14 +235,16 @@ func (o SwitchControllerSwitchInterfaceTagMapOutput) ToSwitchControllerSwitchInt
 }
 
 func (o SwitchControllerSwitchInterfaceTagMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchInterfaceTagOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSwitchInterfaceTag {
-		return vs[0].(map[string]SwitchControllerSwitchInterfaceTag)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSwitchInterfaceTag {
+		return vs[0].(map[string]*SwitchControllerSwitchInterfaceTag)[vs[1].(string)]
 	}).(SwitchControllerSwitchInterfaceTagOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchInterfaceTagInput)(nil)).Elem(), &SwitchControllerSwitchInterfaceTag{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchInterfaceTagArrayInput)(nil)).Elem(), SwitchControllerSwitchInterfaceTagArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchInterfaceTagMapInput)(nil)).Elem(), SwitchControllerSwitchInterfaceTagMap{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchInterfaceTagOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSwitchInterfaceTagPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchInterfaceTagArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchInterfaceTagMapOutput{})
 }

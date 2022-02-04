@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Show Internet Service reputation.
+ * Show Internet Service reputation. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -67,23 +67,21 @@ export class FirewallInternetServiceReputation extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallInternetServiceReputationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallInternetServiceReputationArgs | FirewallInternetServiceReputationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceReputationState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceReputationArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallInternetServiceReputation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallInternetServiceReputation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

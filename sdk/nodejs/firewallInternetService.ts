@@ -107,43 +107,41 @@ export class FirewallInternetService extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallInternetServiceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallInternetServiceArgs | FirewallInternetServiceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceState | undefined;
-            inputs["database"] = state ? state.database : undefined;
-            inputs["direction"] = state ? state.direction : undefined;
-            inputs["extraIpRangeNumber"] = state ? state.extraIpRangeNumber : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["iconId"] = state ? state.iconId : undefined;
-            inputs["ipNumber"] = state ? state.ipNumber : undefined;
-            inputs["ipRangeNumber"] = state ? state.ipRangeNumber : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["obsolete"] = state ? state.obsolete : undefined;
-            inputs["reputation"] = state ? state.reputation : undefined;
-            inputs["singularity"] = state ? state.singularity : undefined;
-            inputs["sldId"] = state ? state.sldId : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["database"] = state ? state.database : undefined;
+            resourceInputs["direction"] = state ? state.direction : undefined;
+            resourceInputs["extraIpRangeNumber"] = state ? state.extraIpRangeNumber : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["iconId"] = state ? state.iconId : undefined;
+            resourceInputs["ipNumber"] = state ? state.ipNumber : undefined;
+            resourceInputs["ipRangeNumber"] = state ? state.ipRangeNumber : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["obsolete"] = state ? state.obsolete : undefined;
+            resourceInputs["reputation"] = state ? state.reputation : undefined;
+            resourceInputs["singularity"] = state ? state.singularity : undefined;
+            resourceInputs["sldId"] = state ? state.sldId : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceArgs | undefined;
-            inputs["database"] = args ? args.database : undefined;
-            inputs["direction"] = args ? args.direction : undefined;
-            inputs["extraIpRangeNumber"] = args ? args.extraIpRangeNumber : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["iconId"] = args ? args.iconId : undefined;
-            inputs["ipNumber"] = args ? args.ipNumber : undefined;
-            inputs["ipRangeNumber"] = args ? args.ipRangeNumber : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["obsolete"] = args ? args.obsolete : undefined;
-            inputs["reputation"] = args ? args.reputation : undefined;
-            inputs["singularity"] = args ? args.singularity : undefined;
-            inputs["sldId"] = args ? args.sldId : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["database"] = args ? args.database : undefined;
+            resourceInputs["direction"] = args ? args.direction : undefined;
+            resourceInputs["extraIpRangeNumber"] = args ? args.extraIpRangeNumber : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["iconId"] = args ? args.iconId : undefined;
+            resourceInputs["ipNumber"] = args ? args.ipNumber : undefined;
+            resourceInputs["ipRangeNumber"] = args ? args.ipRangeNumber : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["obsolete"] = args ? args.obsolete : undefined;
+            resourceInputs["reputation"] = args ? args.reputation : undefined;
+            resourceInputs["singularity"] = args ? args.singularity : undefined;
+            resourceInputs["sldId"] = args ? args.sldId : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallInternetService.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallInternetService.__pulumiType, name, resourceInputs, opts);
     }
 }
 

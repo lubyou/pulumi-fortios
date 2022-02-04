@@ -120,52 +120,50 @@ export class ApplicationName extends pulumi.CustomResource {
      */
     constructor(name: string, args: ApplicationNameArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApplicationNameArgs | ApplicationNameState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApplicationNameState | undefined;
-            inputs["behavior"] = state ? state.behavior : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["metadatas"] = state ? state.metadatas : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["parameter"] = state ? state.parameter : undefined;
-            inputs["parameters"] = state ? state.parameters : undefined;
-            inputs["popularity"] = state ? state.popularity : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["risk"] = state ? state.risk : undefined;
-            inputs["subCategory"] = state ? state.subCategory : undefined;
-            inputs["technology"] = state ? state.technology : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vendor"] = state ? state.vendor : undefined;
-            inputs["weight"] = state ? state.weight : undefined;
+            resourceInputs["behavior"] = state ? state.behavior : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["metadatas"] = state ? state.metadatas : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["parameter"] = state ? state.parameter : undefined;
+            resourceInputs["parameters"] = state ? state.parameters : undefined;
+            resourceInputs["popularity"] = state ? state.popularity : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["risk"] = state ? state.risk : undefined;
+            resourceInputs["subCategory"] = state ? state.subCategory : undefined;
+            resourceInputs["technology"] = state ? state.technology : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vendor"] = state ? state.vendor : undefined;
+            resourceInputs["weight"] = state ? state.weight : undefined;
         } else {
             const args = argsOrState as ApplicationNameArgs | undefined;
             if ((!args || args.category === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'category'");
             }
-            inputs["behavior"] = args ? args.behavior : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["metadatas"] = args ? args.metadatas : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["parameter"] = args ? args.parameter : undefined;
-            inputs["parameters"] = args ? args.parameters : undefined;
-            inputs["popularity"] = args ? args.popularity : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["risk"] = args ? args.risk : undefined;
-            inputs["subCategory"] = args ? args.subCategory : undefined;
-            inputs["technology"] = args ? args.technology : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vendor"] = args ? args.vendor : undefined;
-            inputs["weight"] = args ? args.weight : undefined;
+            resourceInputs["behavior"] = args ? args.behavior : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["metadatas"] = args ? args.metadatas : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["parameter"] = args ? args.parameter : undefined;
+            resourceInputs["parameters"] = args ? args.parameters : undefined;
+            resourceInputs["popularity"] = args ? args.popularity : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["risk"] = args ? args.risk : undefined;
+            resourceInputs["subCategory"] = args ? args.subCategory : undefined;
+            resourceInputs["technology"] = args ? args.technology : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["weight"] = args ? args.weight : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ApplicationName.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ApplicationName.__pulumiType, name, resourceInputs, opts);
     }
 }
 

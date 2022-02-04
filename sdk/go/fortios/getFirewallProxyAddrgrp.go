@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall proxyaddrgrp
 func LookupFirewallProxyAddrgrp(ctx *pulumi.Context, args *LookupFirewallProxyAddrgrpArgs, opts ...pulumi.InvokeOption) (*LookupFirewallProxyAddrgrpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallProxyAddrgrpResult
 	err := ctx.Invoke("fortios:index/getFirewallProxyAddrgrp:GetFirewallProxyAddrgrp", args, &rv, opts...)
 	if err != nil {
@@ -46,4 +50,93 @@ type LookupFirewallProxyAddrgrpResult struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable visibility of the object in the GUI.
 	Visibility string `pulumi:"visibility"`
+}
+
+func LookupFirewallProxyAddrgrpOutput(ctx *pulumi.Context, args LookupFirewallProxyAddrgrpOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallProxyAddrgrpResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallProxyAddrgrpResult, error) {
+			args := v.(LookupFirewallProxyAddrgrpArgs)
+			r, err := LookupFirewallProxyAddrgrp(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallProxyAddrgrpResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallProxyAddrgrp.
+type LookupFirewallProxyAddrgrpOutputArgs struct {
+	// Specify the name of the desired firewall proxyaddrgrp.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallProxyAddrgrpOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallProxyAddrgrpArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallProxyAddrgrp.
+type LookupFirewallProxyAddrgrpResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallProxyAddrgrpResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallProxyAddrgrpResult)(nil)).Elem()
+}
+
+func (o LookupFirewallProxyAddrgrpResultOutput) ToLookupFirewallProxyAddrgrpResultOutput() LookupFirewallProxyAddrgrpResultOutput {
+	return o
+}
+
+func (o LookupFirewallProxyAddrgrpResultOutput) ToLookupFirewallProxyAddrgrpResultOutputWithContext(ctx context.Context) LookupFirewallProxyAddrgrpResultOutput {
+	return o
+}
+
+// Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets value to 1).
+func (o LookupFirewallProxyAddrgrpResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// Optional comments.
+func (o LookupFirewallProxyAddrgrpResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallProxyAddrgrpResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Members of address group. The structure of `member` block is documented below.
+func (o LookupFirewallProxyAddrgrpResultOutput) Members() GetFirewallProxyAddrgrpMemberArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) []GetFirewallProxyAddrgrpMember { return v.Members }).(GetFirewallProxyAddrgrpMemberArrayOutput)
+}
+
+// Tag name.
+func (o LookupFirewallProxyAddrgrpResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Config object tagging. The structure of `tagging` block is documented below.
+func (o LookupFirewallProxyAddrgrpResultOutput) Taggings() GetFirewallProxyAddrgrpTaggingArrayOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) []GetFirewallProxyAddrgrpTagging { return v.Taggings }).(GetFirewallProxyAddrgrpTaggingArrayOutput)
+}
+
+// Source or destination address group type.
+func (o LookupFirewallProxyAddrgrpResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallProxyAddrgrpResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallProxyAddrgrpResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable visibility of the object in the GUI.
+func (o LookupFirewallProxyAddrgrpResultOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallProxyAddrgrpResult) string { return v.Visibility }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallProxyAddrgrpResultOutput{})
 }

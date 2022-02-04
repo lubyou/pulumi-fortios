@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -86,6 +86,7 @@ func NewSystemVirtualWanLink(ctx *pulumi.Context,
 		args = &SystemVirtualWanLinkArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVirtualWanLink
 	err := ctx.RegisterResource("fortios:index/systemVirtualWanLink:SystemVirtualWanLink", name, args, &resource, opts...)
 	if err != nil {
@@ -248,7 +249,7 @@ type SystemVirtualWanLinkInput interface {
 }
 
 func (*SystemVirtualWanLink) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVirtualWanLink)(nil))
+	return reflect.TypeOf((**SystemVirtualWanLink)(nil)).Elem()
 }
 
 func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkOutput() SystemVirtualWanLinkOutput {
@@ -257,35 +258,6 @@ func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkOutput() SystemVirtualWanLi
 
 func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkOutputWithContext(ctx context.Context) SystemVirtualWanLinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkOutput)
-}
-
-func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkPtrOutput() SystemVirtualWanLinkPtrOutput {
-	return i.ToSystemVirtualWanLinkPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVirtualWanLink) ToSystemVirtualWanLinkPtrOutputWithContext(ctx context.Context) SystemVirtualWanLinkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkPtrOutput)
-}
-
-type SystemVirtualWanLinkPtrInput interface {
-	pulumi.Input
-
-	ToSystemVirtualWanLinkPtrOutput() SystemVirtualWanLinkPtrOutput
-	ToSystemVirtualWanLinkPtrOutputWithContext(ctx context.Context) SystemVirtualWanLinkPtrOutput
-}
-
-type systemVirtualWanLinkPtrType SystemVirtualWanLinkArgs
-
-func (*systemVirtualWanLinkPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVirtualWanLink)(nil))
-}
-
-func (i *systemVirtualWanLinkPtrType) ToSystemVirtualWanLinkPtrOutput() SystemVirtualWanLinkPtrOutput {
-	return i.ToSystemVirtualWanLinkPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVirtualWanLinkPtrType) ToSystemVirtualWanLinkPtrOutputWithContext(ctx context.Context) SystemVirtualWanLinkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkPtrOutput)
 }
 
 // SystemVirtualWanLinkArrayInput is an input type that accepts SystemVirtualWanLinkArray and SystemVirtualWanLinkArrayOutput values.
@@ -302,7 +274,7 @@ type SystemVirtualWanLinkArrayInput interface {
 type SystemVirtualWanLinkArray []SystemVirtualWanLinkInput
 
 func (SystemVirtualWanLinkArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVirtualWanLink)(nil))
+	return reflect.TypeOf((*[]*SystemVirtualWanLink)(nil)).Elem()
 }
 
 func (i SystemVirtualWanLinkArray) ToSystemVirtualWanLinkArrayOutput() SystemVirtualWanLinkArrayOutput {
@@ -327,7 +299,7 @@ type SystemVirtualWanLinkMapInput interface {
 type SystemVirtualWanLinkMap map[string]SystemVirtualWanLinkInput
 
 func (SystemVirtualWanLinkMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVirtualWanLink)(nil))
+	return reflect.TypeOf((*map[string]*SystemVirtualWanLink)(nil)).Elem()
 }
 
 func (i SystemVirtualWanLinkMap) ToSystemVirtualWanLinkMapOutput() SystemVirtualWanLinkMapOutput {
@@ -338,12 +310,10 @@ func (i SystemVirtualWanLinkMap) ToSystemVirtualWanLinkMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWanLinkMapOutput)
 }
 
-type SystemVirtualWanLinkOutput struct {
-	*pulumi.OutputState
-}
+type SystemVirtualWanLinkOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWanLinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVirtualWanLink)(nil))
+	return reflect.TypeOf((**SystemVirtualWanLink)(nil)).Elem()
 }
 
 func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkOutput() SystemVirtualWanLinkOutput {
@@ -354,36 +324,10 @@ func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkPtrOutput() SystemVirtualWanLinkPtrOutput {
-	return o.ToSystemVirtualWanLinkPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVirtualWanLinkOutput) ToSystemVirtualWanLinkPtrOutputWithContext(ctx context.Context) SystemVirtualWanLinkPtrOutput {
-	return o.ApplyT(func(v SystemVirtualWanLink) *SystemVirtualWanLink {
-		return &v
-	}).(SystemVirtualWanLinkPtrOutput)
-}
-
-type SystemVirtualWanLinkPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVirtualWanLinkPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVirtualWanLink)(nil))
-}
-
-func (o SystemVirtualWanLinkPtrOutput) ToSystemVirtualWanLinkPtrOutput() SystemVirtualWanLinkPtrOutput {
-	return o
-}
-
-func (o SystemVirtualWanLinkPtrOutput) ToSystemVirtualWanLinkPtrOutputWithContext(ctx context.Context) SystemVirtualWanLinkPtrOutput {
-	return o
-}
-
 type SystemVirtualWanLinkArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWanLinkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVirtualWanLink)(nil))
+	return reflect.TypeOf((*[]*SystemVirtualWanLink)(nil)).Elem()
 }
 
 func (o SystemVirtualWanLinkArrayOutput) ToSystemVirtualWanLinkArrayOutput() SystemVirtualWanLinkArrayOutput {
@@ -395,15 +339,15 @@ func (o SystemVirtualWanLinkArrayOutput) ToSystemVirtualWanLinkArrayOutputWithCo
 }
 
 func (o SystemVirtualWanLinkArrayOutput) Index(i pulumi.IntInput) SystemVirtualWanLinkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualWanLink {
-		return vs[0].([]SystemVirtualWanLink)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVirtualWanLink {
+		return vs[0].([]*SystemVirtualWanLink)[vs[1].(int)]
 	}).(SystemVirtualWanLinkOutput)
 }
 
 type SystemVirtualWanLinkMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWanLinkMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVirtualWanLink)(nil))
+	return reflect.TypeOf((*map[string]*SystemVirtualWanLink)(nil)).Elem()
 }
 
 func (o SystemVirtualWanLinkMapOutput) ToSystemVirtualWanLinkMapOutput() SystemVirtualWanLinkMapOutput {
@@ -415,14 +359,16 @@ func (o SystemVirtualWanLinkMapOutput) ToSystemVirtualWanLinkMapOutputWithContex
 }
 
 func (o SystemVirtualWanLinkMapOutput) MapIndex(k pulumi.StringInput) SystemVirtualWanLinkOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVirtualWanLink {
-		return vs[0].(map[string]SystemVirtualWanLink)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVirtualWanLink {
+		return vs[0].(map[string]*SystemVirtualWanLink)[vs[1].(string)]
 	}).(SystemVirtualWanLinkOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkInput)(nil)).Elem(), &SystemVirtualWanLink{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkArrayInput)(nil)).Elem(), SystemVirtualWanLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWanLinkMapInput)(nil)).Elem(), SystemVirtualWanLinkMap{})
 	pulumi.RegisterOutputType(SystemVirtualWanLinkOutput{})
-	pulumi.RegisterOutputType(SystemVirtualWanLinkPtrOutput{})
 	pulumi.RegisterOutputType(SystemVirtualWanLinkArrayOutput{})
 	pulumi.RegisterOutputType(SystemVirtualWanLinkMapOutput{})
 }

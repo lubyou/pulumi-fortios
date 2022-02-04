@@ -52,6 +52,10 @@ export class RouterospfNetwork extends pulumi.CustomResource {
      */
     public readonly area!: pulumi.Output<string>;
     /**
+     * Comment.
+     */
+    public readonly comments!: pulumi.Output<string | undefined>;
+    /**
      * Network entry ID.
      */
     public readonly fosid!: pulumi.Output<number>;
@@ -73,25 +77,25 @@ export class RouterospfNetwork extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterospfNetworkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterospfNetworkArgs | RouterospfNetworkState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterospfNetworkState | undefined;
-            inputs["area"] = state ? state.area : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["prefix"] = state ? state.prefix : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["area"] = state ? state.area : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["prefix"] = state ? state.prefix : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterospfNetworkArgs | undefined;
-            inputs["area"] = args ? args.area : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["prefix"] = args ? args.prefix : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["area"] = args ? args.area : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["prefix"] = args ? args.prefix : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterospfNetwork.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterospfNetwork.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -103,6 +107,10 @@ export interface RouterospfNetworkState {
      * Attach the network to area.
      */
     area?: pulumi.Input<string>;
+    /**
+     * Comment.
+     */
+    comments?: pulumi.Input<string>;
     /**
      * Network entry ID.
      */
@@ -125,6 +133,10 @@ export interface RouterospfNetworkArgs {
      * Attach the network to area.
      */
     area?: pulumi.Input<string>;
+    /**
+     * Comment.
+     */
+    comments?: pulumi.Input<string>;
     /**
      * Network entry ID.
      */

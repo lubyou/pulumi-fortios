@@ -349,6 +349,10 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
      */
     public readonly enforceUniqueId!: pulumi.Output<string>;
     /**
+     * Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+     */
+    public readonly esn!: pulumi.Output<string>;
+    /**
      * Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
      */
     public readonly exchangeInterfaceIp!: pulumi.Output<string>;
@@ -373,9 +377,17 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
      */
     public readonly fecEgress!: pulumi.Output<string>;
     /**
+     * SD-WAN health check.
+     */
+    public readonly fecHealthCheck!: pulumi.Output<string>;
+    /**
      * Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
      */
     public readonly fecIngress!: pulumi.Output<string>;
+    /**
+     * Forward Error Correction (FEC) mapping profile.
+     */
+    public readonly fecMappingProfile!: pulumi.Output<string>;
     /**
      * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
      */
@@ -432,6 +444,10 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
      * Local physical, aggregate, or VLAN outgoing interface.
      */
     public readonly interface!: pulumi.Output<string>;
+    /**
+     * IP address reuse delay interval in seconds (0 - 28800).
+     */
+    public readonly ipDelayInterval!: pulumi.Output<number>;
     /**
      * Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
      */
@@ -553,6 +569,10 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
      */
     public readonly localidType!: pulumi.Output<string>;
     /**
+     * Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+     */
+    public readonly loopbackAsymroute!: pulumi.Output<string>;
+    /**
      * Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
      */
     public readonly meshSelectorType!: pulumi.Output<string>;
@@ -608,6 +628,10 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
      * Enable/disable network overlays. Valid values: `disable`, `enable`.
      */
     public readonly networkOverlay!: pulumi.Output<string>;
+    /**
+     * Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+     */
+    public readonly npuOffload!: pulumi.Output<string>;
     /**
      * Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
      */
@@ -742,155 +766,161 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnIpsecPhase1InterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnIpsecPhase1InterfaceArgs | VpnIpsecPhase1InterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnIpsecPhase1InterfaceState | undefined;
-            inputs["acctVerify"] = state ? state.acctVerify : undefined;
-            inputs["addGwRoute"] = state ? state.addGwRoute : undefined;
-            inputs["addRoute"] = state ? state.addRoute : undefined;
-            inputs["aggregateMember"] = state ? state.aggregateMember : undefined;
-            inputs["aggregateWeight"] = state ? state.aggregateWeight : undefined;
-            inputs["assignIp"] = state ? state.assignIp : undefined;
-            inputs["assignIpFrom"] = state ? state.assignIpFrom : undefined;
-            inputs["authmethod"] = state ? state.authmethod : undefined;
-            inputs["authmethodRemote"] = state ? state.authmethodRemote : undefined;
-            inputs["authpasswd"] = state ? state.authpasswd : undefined;
-            inputs["authusr"] = state ? state.authusr : undefined;
-            inputs["authusrgrp"] = state ? state.authusrgrp : undefined;
-            inputs["autoDiscoveryForwarder"] = state ? state.autoDiscoveryForwarder : undefined;
-            inputs["autoDiscoveryPsk"] = state ? state.autoDiscoveryPsk : undefined;
-            inputs["autoDiscoveryReceiver"] = state ? state.autoDiscoveryReceiver : undefined;
-            inputs["autoDiscoverySender"] = state ? state.autoDiscoverySender : undefined;
-            inputs["autoDiscoveryShortcuts"] = state ? state.autoDiscoveryShortcuts : undefined;
-            inputs["autoNegotiate"] = state ? state.autoNegotiate : undefined;
-            inputs["backupGateways"] = state ? state.backupGateways : undefined;
-            inputs["banner"] = state ? state.banner : undefined;
-            inputs["certIdValidation"] = state ? state.certIdValidation : undefined;
-            inputs["certificates"] = state ? state.certificates : undefined;
-            inputs["childlessIke"] = state ? state.childlessIke : undefined;
-            inputs["clientAutoNegotiate"] = state ? state.clientAutoNegotiate : undefined;
-            inputs["clientKeepAlive"] = state ? state.clientKeepAlive : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["defaultGw"] = state ? state.defaultGw : undefined;
-            inputs["defaultGwPriority"] = state ? state.defaultGwPriority : undefined;
-            inputs["dhcp6RaLinkaddr"] = state ? state.dhcp6RaLinkaddr : undefined;
-            inputs["dhcpRaGiaddr"] = state ? state.dhcpRaGiaddr : undefined;
-            inputs["dhgrp"] = state ? state.dhgrp : undefined;
-            inputs["digitalSignatureAuth"] = state ? state.digitalSignatureAuth : undefined;
-            inputs["distance"] = state ? state.distance : undefined;
-            inputs["dnsMode"] = state ? state.dnsMode : undefined;
-            inputs["domain"] = state ? state.domain : undefined;
-            inputs["dpd"] = state ? state.dpd : undefined;
-            inputs["dpdRetrycount"] = state ? state.dpdRetrycount : undefined;
-            inputs["dpdRetryinterval"] = state ? state.dpdRetryinterval : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["eap"] = state ? state.eap : undefined;
-            inputs["eapExcludePeergrp"] = state ? state.eapExcludePeergrp : undefined;
-            inputs["eapIdentity"] = state ? state.eapIdentity : undefined;
-            inputs["encapLocalGw4"] = state ? state.encapLocalGw4 : undefined;
-            inputs["encapLocalGw6"] = state ? state.encapLocalGw6 : undefined;
-            inputs["encapRemoteGw4"] = state ? state.encapRemoteGw4 : undefined;
-            inputs["encapRemoteGw6"] = state ? state.encapRemoteGw6 : undefined;
-            inputs["encapsulation"] = state ? state.encapsulation : undefined;
-            inputs["encapsulationAddress"] = state ? state.encapsulationAddress : undefined;
-            inputs["enforceUniqueId"] = state ? state.enforceUniqueId : undefined;
-            inputs["exchangeInterfaceIp"] = state ? state.exchangeInterfaceIp : undefined;
-            inputs["exchangeIpAddr4"] = state ? state.exchangeIpAddr4 : undefined;
-            inputs["exchangeIpAddr6"] = state ? state.exchangeIpAddr6 : undefined;
-            inputs["fecBase"] = state ? state.fecBase : undefined;
-            inputs["fecCodec"] = state ? state.fecCodec : undefined;
-            inputs["fecEgress"] = state ? state.fecEgress : undefined;
-            inputs["fecIngress"] = state ? state.fecIngress : undefined;
-            inputs["fecReceiveTimeout"] = state ? state.fecReceiveTimeout : undefined;
-            inputs["fecRedundant"] = state ? state.fecRedundant : undefined;
-            inputs["fecSendTimeout"] = state ? state.fecSendTimeout : undefined;
-            inputs["forticlientEnforcement"] = state ? state.forticlientEnforcement : undefined;
-            inputs["fragmentation"] = state ? state.fragmentation : undefined;
-            inputs["fragmentationMtu"] = state ? state.fragmentationMtu : undefined;
-            inputs["groupAuthentication"] = state ? state.groupAuthentication : undefined;
-            inputs["groupAuthenticationSecret"] = state ? state.groupAuthenticationSecret : undefined;
-            inputs["haSyncEspSeqno"] = state ? state.haSyncEspSeqno : undefined;
-            inputs["idleTimeout"] = state ? state.idleTimeout : undefined;
-            inputs["idleTimeoutinterval"] = state ? state.idleTimeoutinterval : undefined;
-            inputs["ikeVersion"] = state ? state.ikeVersion : undefined;
-            inputs["includeLocalLan"] = state ? state.includeLocalLan : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipFragmentation"] = state ? state.ipFragmentation : undefined;
-            inputs["ipVersion"] = state ? state.ipVersion : undefined;
-            inputs["ipv4DnsServer1"] = state ? state.ipv4DnsServer1 : undefined;
-            inputs["ipv4DnsServer2"] = state ? state.ipv4DnsServer2 : undefined;
-            inputs["ipv4DnsServer3"] = state ? state.ipv4DnsServer3 : undefined;
-            inputs["ipv4EndIp"] = state ? state.ipv4EndIp : undefined;
-            inputs["ipv4ExcludeRanges"] = state ? state.ipv4ExcludeRanges : undefined;
-            inputs["ipv4Name"] = state ? state.ipv4Name : undefined;
-            inputs["ipv4Netmask"] = state ? state.ipv4Netmask : undefined;
-            inputs["ipv4SplitExclude"] = state ? state.ipv4SplitExclude : undefined;
-            inputs["ipv4SplitInclude"] = state ? state.ipv4SplitInclude : undefined;
-            inputs["ipv4StartIp"] = state ? state.ipv4StartIp : undefined;
-            inputs["ipv4WinsServer1"] = state ? state.ipv4WinsServer1 : undefined;
-            inputs["ipv4WinsServer2"] = state ? state.ipv4WinsServer2 : undefined;
-            inputs["ipv6DnsServer1"] = state ? state.ipv6DnsServer1 : undefined;
-            inputs["ipv6DnsServer2"] = state ? state.ipv6DnsServer2 : undefined;
-            inputs["ipv6DnsServer3"] = state ? state.ipv6DnsServer3 : undefined;
-            inputs["ipv6EndIp"] = state ? state.ipv6EndIp : undefined;
-            inputs["ipv6ExcludeRanges"] = state ? state.ipv6ExcludeRanges : undefined;
-            inputs["ipv6Name"] = state ? state.ipv6Name : undefined;
-            inputs["ipv6Prefix"] = state ? state.ipv6Prefix : undefined;
-            inputs["ipv6SplitExclude"] = state ? state.ipv6SplitExclude : undefined;
-            inputs["ipv6SplitInclude"] = state ? state.ipv6SplitInclude : undefined;
-            inputs["ipv6StartIp"] = state ? state.ipv6StartIp : undefined;
-            inputs["keepalive"] = state ? state.keepalive : undefined;
-            inputs["keylife"] = state ? state.keylife : undefined;
-            inputs["localGw"] = state ? state.localGw : undefined;
-            inputs["localGw6"] = state ? state.localGw6 : undefined;
-            inputs["localid"] = state ? state.localid : undefined;
-            inputs["localidType"] = state ? state.localidType : undefined;
-            inputs["meshSelectorType"] = state ? state.meshSelectorType : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["modeCfg"] = state ? state.modeCfg : undefined;
-            inputs["monitor"] = state ? state.monitor : undefined;
-            inputs["monitorHoldDownDelay"] = state ? state.monitorHoldDownDelay : undefined;
-            inputs["monitorHoldDownTime"] = state ? state.monitorHoldDownTime : undefined;
-            inputs["monitorHoldDownType"] = state ? state.monitorHoldDownType : undefined;
-            inputs["monitorHoldDownWeekday"] = state ? state.monitorHoldDownWeekday : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nattraversal"] = state ? state.nattraversal : undefined;
-            inputs["negotiateTimeout"] = state ? state.negotiateTimeout : undefined;
-            inputs["netDevice"] = state ? state.netDevice : undefined;
-            inputs["networkId"] = state ? state.networkId : undefined;
-            inputs["networkOverlay"] = state ? state.networkOverlay : undefined;
-            inputs["passiveMode"] = state ? state.passiveMode : undefined;
-            inputs["peer"] = state ? state.peer : undefined;
-            inputs["peergrp"] = state ? state.peergrp : undefined;
-            inputs["peerid"] = state ? state.peerid : undefined;
-            inputs["peertype"] = state ? state.peertype : undefined;
-            inputs["ppk"] = state ? state.ppk : undefined;
-            inputs["ppkIdentity"] = state ? state.ppkIdentity : undefined;
-            inputs["ppkSecret"] = state ? state.ppkSecret : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["proposal"] = state ? state.proposal : undefined;
-            inputs["psksecret"] = state ? state.psksecret : undefined;
-            inputs["psksecretRemote"] = state ? state.psksecretRemote : undefined;
-            inputs["reauth"] = state ? state.reauth : undefined;
-            inputs["rekey"] = state ? state.rekey : undefined;
-            inputs["remoteGw"] = state ? state.remoteGw : undefined;
-            inputs["remoteGw6"] = state ? state.remoteGw6 : undefined;
-            inputs["remotegwDdns"] = state ? state.remotegwDdns : undefined;
-            inputs["rsaSignatureFormat"] = state ? state.rsaSignatureFormat : undefined;
-            inputs["savePassword"] = state ? state.savePassword : undefined;
-            inputs["sendCertChain"] = state ? state.sendCertChain : undefined;
-            inputs["signatureHashAlg"] = state ? state.signatureHashAlg : undefined;
-            inputs["splitIncludeService"] = state ? state.splitIncludeService : undefined;
-            inputs["suiteB"] = state ? state.suiteB : undefined;
-            inputs["tunnelSearch"] = state ? state.tunnelSearch : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["unitySupport"] = state ? state.unitySupport : undefined;
-            inputs["usrgrp"] = state ? state.usrgrp : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vni"] = state ? state.vni : undefined;
-            inputs["wizardType"] = state ? state.wizardType : undefined;
-            inputs["xauthtype"] = state ? state.xauthtype : undefined;
+            resourceInputs["acctVerify"] = state ? state.acctVerify : undefined;
+            resourceInputs["addGwRoute"] = state ? state.addGwRoute : undefined;
+            resourceInputs["addRoute"] = state ? state.addRoute : undefined;
+            resourceInputs["aggregateMember"] = state ? state.aggregateMember : undefined;
+            resourceInputs["aggregateWeight"] = state ? state.aggregateWeight : undefined;
+            resourceInputs["assignIp"] = state ? state.assignIp : undefined;
+            resourceInputs["assignIpFrom"] = state ? state.assignIpFrom : undefined;
+            resourceInputs["authmethod"] = state ? state.authmethod : undefined;
+            resourceInputs["authmethodRemote"] = state ? state.authmethodRemote : undefined;
+            resourceInputs["authpasswd"] = state ? state.authpasswd : undefined;
+            resourceInputs["authusr"] = state ? state.authusr : undefined;
+            resourceInputs["authusrgrp"] = state ? state.authusrgrp : undefined;
+            resourceInputs["autoDiscoveryForwarder"] = state ? state.autoDiscoveryForwarder : undefined;
+            resourceInputs["autoDiscoveryPsk"] = state ? state.autoDiscoveryPsk : undefined;
+            resourceInputs["autoDiscoveryReceiver"] = state ? state.autoDiscoveryReceiver : undefined;
+            resourceInputs["autoDiscoverySender"] = state ? state.autoDiscoverySender : undefined;
+            resourceInputs["autoDiscoveryShortcuts"] = state ? state.autoDiscoveryShortcuts : undefined;
+            resourceInputs["autoNegotiate"] = state ? state.autoNegotiate : undefined;
+            resourceInputs["backupGateways"] = state ? state.backupGateways : undefined;
+            resourceInputs["banner"] = state ? state.banner : undefined;
+            resourceInputs["certIdValidation"] = state ? state.certIdValidation : undefined;
+            resourceInputs["certificates"] = state ? state.certificates : undefined;
+            resourceInputs["childlessIke"] = state ? state.childlessIke : undefined;
+            resourceInputs["clientAutoNegotiate"] = state ? state.clientAutoNegotiate : undefined;
+            resourceInputs["clientKeepAlive"] = state ? state.clientKeepAlive : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["defaultGw"] = state ? state.defaultGw : undefined;
+            resourceInputs["defaultGwPriority"] = state ? state.defaultGwPriority : undefined;
+            resourceInputs["dhcp6RaLinkaddr"] = state ? state.dhcp6RaLinkaddr : undefined;
+            resourceInputs["dhcpRaGiaddr"] = state ? state.dhcpRaGiaddr : undefined;
+            resourceInputs["dhgrp"] = state ? state.dhgrp : undefined;
+            resourceInputs["digitalSignatureAuth"] = state ? state.digitalSignatureAuth : undefined;
+            resourceInputs["distance"] = state ? state.distance : undefined;
+            resourceInputs["dnsMode"] = state ? state.dnsMode : undefined;
+            resourceInputs["domain"] = state ? state.domain : undefined;
+            resourceInputs["dpd"] = state ? state.dpd : undefined;
+            resourceInputs["dpdRetrycount"] = state ? state.dpdRetrycount : undefined;
+            resourceInputs["dpdRetryinterval"] = state ? state.dpdRetryinterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["eap"] = state ? state.eap : undefined;
+            resourceInputs["eapExcludePeergrp"] = state ? state.eapExcludePeergrp : undefined;
+            resourceInputs["eapIdentity"] = state ? state.eapIdentity : undefined;
+            resourceInputs["encapLocalGw4"] = state ? state.encapLocalGw4 : undefined;
+            resourceInputs["encapLocalGw6"] = state ? state.encapLocalGw6 : undefined;
+            resourceInputs["encapRemoteGw4"] = state ? state.encapRemoteGw4 : undefined;
+            resourceInputs["encapRemoteGw6"] = state ? state.encapRemoteGw6 : undefined;
+            resourceInputs["encapsulation"] = state ? state.encapsulation : undefined;
+            resourceInputs["encapsulationAddress"] = state ? state.encapsulationAddress : undefined;
+            resourceInputs["enforceUniqueId"] = state ? state.enforceUniqueId : undefined;
+            resourceInputs["esn"] = state ? state.esn : undefined;
+            resourceInputs["exchangeInterfaceIp"] = state ? state.exchangeInterfaceIp : undefined;
+            resourceInputs["exchangeIpAddr4"] = state ? state.exchangeIpAddr4 : undefined;
+            resourceInputs["exchangeIpAddr6"] = state ? state.exchangeIpAddr6 : undefined;
+            resourceInputs["fecBase"] = state ? state.fecBase : undefined;
+            resourceInputs["fecCodec"] = state ? state.fecCodec : undefined;
+            resourceInputs["fecEgress"] = state ? state.fecEgress : undefined;
+            resourceInputs["fecHealthCheck"] = state ? state.fecHealthCheck : undefined;
+            resourceInputs["fecIngress"] = state ? state.fecIngress : undefined;
+            resourceInputs["fecMappingProfile"] = state ? state.fecMappingProfile : undefined;
+            resourceInputs["fecReceiveTimeout"] = state ? state.fecReceiveTimeout : undefined;
+            resourceInputs["fecRedundant"] = state ? state.fecRedundant : undefined;
+            resourceInputs["fecSendTimeout"] = state ? state.fecSendTimeout : undefined;
+            resourceInputs["forticlientEnforcement"] = state ? state.forticlientEnforcement : undefined;
+            resourceInputs["fragmentation"] = state ? state.fragmentation : undefined;
+            resourceInputs["fragmentationMtu"] = state ? state.fragmentationMtu : undefined;
+            resourceInputs["groupAuthentication"] = state ? state.groupAuthentication : undefined;
+            resourceInputs["groupAuthenticationSecret"] = state ? state.groupAuthenticationSecret : undefined;
+            resourceInputs["haSyncEspSeqno"] = state ? state.haSyncEspSeqno : undefined;
+            resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
+            resourceInputs["idleTimeoutinterval"] = state ? state.idleTimeoutinterval : undefined;
+            resourceInputs["ikeVersion"] = state ? state.ikeVersion : undefined;
+            resourceInputs["includeLocalLan"] = state ? state.includeLocalLan : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipDelayInterval"] = state ? state.ipDelayInterval : undefined;
+            resourceInputs["ipFragmentation"] = state ? state.ipFragmentation : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["ipv4DnsServer1"] = state ? state.ipv4DnsServer1 : undefined;
+            resourceInputs["ipv4DnsServer2"] = state ? state.ipv4DnsServer2 : undefined;
+            resourceInputs["ipv4DnsServer3"] = state ? state.ipv4DnsServer3 : undefined;
+            resourceInputs["ipv4EndIp"] = state ? state.ipv4EndIp : undefined;
+            resourceInputs["ipv4ExcludeRanges"] = state ? state.ipv4ExcludeRanges : undefined;
+            resourceInputs["ipv4Name"] = state ? state.ipv4Name : undefined;
+            resourceInputs["ipv4Netmask"] = state ? state.ipv4Netmask : undefined;
+            resourceInputs["ipv4SplitExclude"] = state ? state.ipv4SplitExclude : undefined;
+            resourceInputs["ipv4SplitInclude"] = state ? state.ipv4SplitInclude : undefined;
+            resourceInputs["ipv4StartIp"] = state ? state.ipv4StartIp : undefined;
+            resourceInputs["ipv4WinsServer1"] = state ? state.ipv4WinsServer1 : undefined;
+            resourceInputs["ipv4WinsServer2"] = state ? state.ipv4WinsServer2 : undefined;
+            resourceInputs["ipv6DnsServer1"] = state ? state.ipv6DnsServer1 : undefined;
+            resourceInputs["ipv6DnsServer2"] = state ? state.ipv6DnsServer2 : undefined;
+            resourceInputs["ipv6DnsServer3"] = state ? state.ipv6DnsServer3 : undefined;
+            resourceInputs["ipv6EndIp"] = state ? state.ipv6EndIp : undefined;
+            resourceInputs["ipv6ExcludeRanges"] = state ? state.ipv6ExcludeRanges : undefined;
+            resourceInputs["ipv6Name"] = state ? state.ipv6Name : undefined;
+            resourceInputs["ipv6Prefix"] = state ? state.ipv6Prefix : undefined;
+            resourceInputs["ipv6SplitExclude"] = state ? state.ipv6SplitExclude : undefined;
+            resourceInputs["ipv6SplitInclude"] = state ? state.ipv6SplitInclude : undefined;
+            resourceInputs["ipv6StartIp"] = state ? state.ipv6StartIp : undefined;
+            resourceInputs["keepalive"] = state ? state.keepalive : undefined;
+            resourceInputs["keylife"] = state ? state.keylife : undefined;
+            resourceInputs["localGw"] = state ? state.localGw : undefined;
+            resourceInputs["localGw6"] = state ? state.localGw6 : undefined;
+            resourceInputs["localid"] = state ? state.localid : undefined;
+            resourceInputs["localidType"] = state ? state.localidType : undefined;
+            resourceInputs["loopbackAsymroute"] = state ? state.loopbackAsymroute : undefined;
+            resourceInputs["meshSelectorType"] = state ? state.meshSelectorType : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["modeCfg"] = state ? state.modeCfg : undefined;
+            resourceInputs["monitor"] = state ? state.monitor : undefined;
+            resourceInputs["monitorHoldDownDelay"] = state ? state.monitorHoldDownDelay : undefined;
+            resourceInputs["monitorHoldDownTime"] = state ? state.monitorHoldDownTime : undefined;
+            resourceInputs["monitorHoldDownType"] = state ? state.monitorHoldDownType : undefined;
+            resourceInputs["monitorHoldDownWeekday"] = state ? state.monitorHoldDownWeekday : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nattraversal"] = state ? state.nattraversal : undefined;
+            resourceInputs["negotiateTimeout"] = state ? state.negotiateTimeout : undefined;
+            resourceInputs["netDevice"] = state ? state.netDevice : undefined;
+            resourceInputs["networkId"] = state ? state.networkId : undefined;
+            resourceInputs["networkOverlay"] = state ? state.networkOverlay : undefined;
+            resourceInputs["npuOffload"] = state ? state.npuOffload : undefined;
+            resourceInputs["passiveMode"] = state ? state.passiveMode : undefined;
+            resourceInputs["peer"] = state ? state.peer : undefined;
+            resourceInputs["peergrp"] = state ? state.peergrp : undefined;
+            resourceInputs["peerid"] = state ? state.peerid : undefined;
+            resourceInputs["peertype"] = state ? state.peertype : undefined;
+            resourceInputs["ppk"] = state ? state.ppk : undefined;
+            resourceInputs["ppkIdentity"] = state ? state.ppkIdentity : undefined;
+            resourceInputs["ppkSecret"] = state ? state.ppkSecret : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["proposal"] = state ? state.proposal : undefined;
+            resourceInputs["psksecret"] = state ? state.psksecret : undefined;
+            resourceInputs["psksecretRemote"] = state ? state.psksecretRemote : undefined;
+            resourceInputs["reauth"] = state ? state.reauth : undefined;
+            resourceInputs["rekey"] = state ? state.rekey : undefined;
+            resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["remoteGw6"] = state ? state.remoteGw6 : undefined;
+            resourceInputs["remotegwDdns"] = state ? state.remotegwDdns : undefined;
+            resourceInputs["rsaSignatureFormat"] = state ? state.rsaSignatureFormat : undefined;
+            resourceInputs["savePassword"] = state ? state.savePassword : undefined;
+            resourceInputs["sendCertChain"] = state ? state.sendCertChain : undefined;
+            resourceInputs["signatureHashAlg"] = state ? state.signatureHashAlg : undefined;
+            resourceInputs["splitIncludeService"] = state ? state.splitIncludeService : undefined;
+            resourceInputs["suiteB"] = state ? state.suiteB : undefined;
+            resourceInputs["tunnelSearch"] = state ? state.tunnelSearch : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["unitySupport"] = state ? state.unitySupport : undefined;
+            resourceInputs["usrgrp"] = state ? state.usrgrp : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vni"] = state ? state.vni : undefined;
+            resourceInputs["wizardType"] = state ? state.wizardType : undefined;
+            resourceInputs["xauthtype"] = state ? state.xauthtype : undefined;
         } else {
             const args = argsOrState as VpnIpsecPhase1InterfaceArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
@@ -899,156 +929,160 @@ export class VpnIpsecPhase1Interface extends pulumi.CustomResource {
             if ((!args || args.proposal === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'proposal'");
             }
-            inputs["acctVerify"] = args ? args.acctVerify : undefined;
-            inputs["addGwRoute"] = args ? args.addGwRoute : undefined;
-            inputs["addRoute"] = args ? args.addRoute : undefined;
-            inputs["aggregateMember"] = args ? args.aggregateMember : undefined;
-            inputs["aggregateWeight"] = args ? args.aggregateWeight : undefined;
-            inputs["assignIp"] = args ? args.assignIp : undefined;
-            inputs["assignIpFrom"] = args ? args.assignIpFrom : undefined;
-            inputs["authmethod"] = args ? args.authmethod : undefined;
-            inputs["authmethodRemote"] = args ? args.authmethodRemote : undefined;
-            inputs["authpasswd"] = args ? args.authpasswd : undefined;
-            inputs["authusr"] = args ? args.authusr : undefined;
-            inputs["authusrgrp"] = args ? args.authusrgrp : undefined;
-            inputs["autoDiscoveryForwarder"] = args ? args.autoDiscoveryForwarder : undefined;
-            inputs["autoDiscoveryPsk"] = args ? args.autoDiscoveryPsk : undefined;
-            inputs["autoDiscoveryReceiver"] = args ? args.autoDiscoveryReceiver : undefined;
-            inputs["autoDiscoverySender"] = args ? args.autoDiscoverySender : undefined;
-            inputs["autoDiscoveryShortcuts"] = args ? args.autoDiscoveryShortcuts : undefined;
-            inputs["autoNegotiate"] = args ? args.autoNegotiate : undefined;
-            inputs["backupGateways"] = args ? args.backupGateways : undefined;
-            inputs["banner"] = args ? args.banner : undefined;
-            inputs["certIdValidation"] = args ? args.certIdValidation : undefined;
-            inputs["certificates"] = args ? args.certificates : undefined;
-            inputs["childlessIke"] = args ? args.childlessIke : undefined;
-            inputs["clientAutoNegotiate"] = args ? args.clientAutoNegotiate : undefined;
-            inputs["clientKeepAlive"] = args ? args.clientKeepAlive : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["defaultGw"] = args ? args.defaultGw : undefined;
-            inputs["defaultGwPriority"] = args ? args.defaultGwPriority : undefined;
-            inputs["dhcp6RaLinkaddr"] = args ? args.dhcp6RaLinkaddr : undefined;
-            inputs["dhcpRaGiaddr"] = args ? args.dhcpRaGiaddr : undefined;
-            inputs["dhgrp"] = args ? args.dhgrp : undefined;
-            inputs["digitalSignatureAuth"] = args ? args.digitalSignatureAuth : undefined;
-            inputs["distance"] = args ? args.distance : undefined;
-            inputs["dnsMode"] = args ? args.dnsMode : undefined;
-            inputs["domain"] = args ? args.domain : undefined;
-            inputs["dpd"] = args ? args.dpd : undefined;
-            inputs["dpdRetrycount"] = args ? args.dpdRetrycount : undefined;
-            inputs["dpdRetryinterval"] = args ? args.dpdRetryinterval : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["eap"] = args ? args.eap : undefined;
-            inputs["eapExcludePeergrp"] = args ? args.eapExcludePeergrp : undefined;
-            inputs["eapIdentity"] = args ? args.eapIdentity : undefined;
-            inputs["encapLocalGw4"] = args ? args.encapLocalGw4 : undefined;
-            inputs["encapLocalGw6"] = args ? args.encapLocalGw6 : undefined;
-            inputs["encapRemoteGw4"] = args ? args.encapRemoteGw4 : undefined;
-            inputs["encapRemoteGw6"] = args ? args.encapRemoteGw6 : undefined;
-            inputs["encapsulation"] = args ? args.encapsulation : undefined;
-            inputs["encapsulationAddress"] = args ? args.encapsulationAddress : undefined;
-            inputs["enforceUniqueId"] = args ? args.enforceUniqueId : undefined;
-            inputs["exchangeInterfaceIp"] = args ? args.exchangeInterfaceIp : undefined;
-            inputs["exchangeIpAddr4"] = args ? args.exchangeIpAddr4 : undefined;
-            inputs["exchangeIpAddr6"] = args ? args.exchangeIpAddr6 : undefined;
-            inputs["fecBase"] = args ? args.fecBase : undefined;
-            inputs["fecCodec"] = args ? args.fecCodec : undefined;
-            inputs["fecEgress"] = args ? args.fecEgress : undefined;
-            inputs["fecIngress"] = args ? args.fecIngress : undefined;
-            inputs["fecReceiveTimeout"] = args ? args.fecReceiveTimeout : undefined;
-            inputs["fecRedundant"] = args ? args.fecRedundant : undefined;
-            inputs["fecSendTimeout"] = args ? args.fecSendTimeout : undefined;
-            inputs["forticlientEnforcement"] = args ? args.forticlientEnforcement : undefined;
-            inputs["fragmentation"] = args ? args.fragmentation : undefined;
-            inputs["fragmentationMtu"] = args ? args.fragmentationMtu : undefined;
-            inputs["groupAuthentication"] = args ? args.groupAuthentication : undefined;
-            inputs["groupAuthenticationSecret"] = args ? args.groupAuthenticationSecret : undefined;
-            inputs["haSyncEspSeqno"] = args ? args.haSyncEspSeqno : undefined;
-            inputs["idleTimeout"] = args ? args.idleTimeout : undefined;
-            inputs["idleTimeoutinterval"] = args ? args.idleTimeoutinterval : undefined;
-            inputs["ikeVersion"] = args ? args.ikeVersion : undefined;
-            inputs["includeLocalLan"] = args ? args.includeLocalLan : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipFragmentation"] = args ? args.ipFragmentation : undefined;
-            inputs["ipVersion"] = args ? args.ipVersion : undefined;
-            inputs["ipv4DnsServer1"] = args ? args.ipv4DnsServer1 : undefined;
-            inputs["ipv4DnsServer2"] = args ? args.ipv4DnsServer2 : undefined;
-            inputs["ipv4DnsServer3"] = args ? args.ipv4DnsServer3 : undefined;
-            inputs["ipv4EndIp"] = args ? args.ipv4EndIp : undefined;
-            inputs["ipv4ExcludeRanges"] = args ? args.ipv4ExcludeRanges : undefined;
-            inputs["ipv4Name"] = args ? args.ipv4Name : undefined;
-            inputs["ipv4Netmask"] = args ? args.ipv4Netmask : undefined;
-            inputs["ipv4SplitExclude"] = args ? args.ipv4SplitExclude : undefined;
-            inputs["ipv4SplitInclude"] = args ? args.ipv4SplitInclude : undefined;
-            inputs["ipv4StartIp"] = args ? args.ipv4StartIp : undefined;
-            inputs["ipv4WinsServer1"] = args ? args.ipv4WinsServer1 : undefined;
-            inputs["ipv4WinsServer2"] = args ? args.ipv4WinsServer2 : undefined;
-            inputs["ipv6DnsServer1"] = args ? args.ipv6DnsServer1 : undefined;
-            inputs["ipv6DnsServer2"] = args ? args.ipv6DnsServer2 : undefined;
-            inputs["ipv6DnsServer3"] = args ? args.ipv6DnsServer3 : undefined;
-            inputs["ipv6EndIp"] = args ? args.ipv6EndIp : undefined;
-            inputs["ipv6ExcludeRanges"] = args ? args.ipv6ExcludeRanges : undefined;
-            inputs["ipv6Name"] = args ? args.ipv6Name : undefined;
-            inputs["ipv6Prefix"] = args ? args.ipv6Prefix : undefined;
-            inputs["ipv6SplitExclude"] = args ? args.ipv6SplitExclude : undefined;
-            inputs["ipv6SplitInclude"] = args ? args.ipv6SplitInclude : undefined;
-            inputs["ipv6StartIp"] = args ? args.ipv6StartIp : undefined;
-            inputs["keepalive"] = args ? args.keepalive : undefined;
-            inputs["keylife"] = args ? args.keylife : undefined;
-            inputs["localGw"] = args ? args.localGw : undefined;
-            inputs["localGw6"] = args ? args.localGw6 : undefined;
-            inputs["localid"] = args ? args.localid : undefined;
-            inputs["localidType"] = args ? args.localidType : undefined;
-            inputs["meshSelectorType"] = args ? args.meshSelectorType : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["modeCfg"] = args ? args.modeCfg : undefined;
-            inputs["monitor"] = args ? args.monitor : undefined;
-            inputs["monitorHoldDownDelay"] = args ? args.monitorHoldDownDelay : undefined;
-            inputs["monitorHoldDownTime"] = args ? args.monitorHoldDownTime : undefined;
-            inputs["monitorHoldDownType"] = args ? args.monitorHoldDownType : undefined;
-            inputs["monitorHoldDownWeekday"] = args ? args.monitorHoldDownWeekday : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nattraversal"] = args ? args.nattraversal : undefined;
-            inputs["negotiateTimeout"] = args ? args.negotiateTimeout : undefined;
-            inputs["netDevice"] = args ? args.netDevice : undefined;
-            inputs["networkId"] = args ? args.networkId : undefined;
-            inputs["networkOverlay"] = args ? args.networkOverlay : undefined;
-            inputs["passiveMode"] = args ? args.passiveMode : undefined;
-            inputs["peer"] = args ? args.peer : undefined;
-            inputs["peergrp"] = args ? args.peergrp : undefined;
-            inputs["peerid"] = args ? args.peerid : undefined;
-            inputs["peertype"] = args ? args.peertype : undefined;
-            inputs["ppk"] = args ? args.ppk : undefined;
-            inputs["ppkIdentity"] = args ? args.ppkIdentity : undefined;
-            inputs["ppkSecret"] = args ? args.ppkSecret : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["proposal"] = args ? args.proposal : undefined;
-            inputs["psksecret"] = args ? args.psksecret : undefined;
-            inputs["psksecretRemote"] = args ? args.psksecretRemote : undefined;
-            inputs["reauth"] = args ? args.reauth : undefined;
-            inputs["rekey"] = args ? args.rekey : undefined;
-            inputs["remoteGw"] = args ? args.remoteGw : undefined;
-            inputs["remoteGw6"] = args ? args.remoteGw6 : undefined;
-            inputs["remotegwDdns"] = args ? args.remotegwDdns : undefined;
-            inputs["rsaSignatureFormat"] = args ? args.rsaSignatureFormat : undefined;
-            inputs["savePassword"] = args ? args.savePassword : undefined;
-            inputs["sendCertChain"] = args ? args.sendCertChain : undefined;
-            inputs["signatureHashAlg"] = args ? args.signatureHashAlg : undefined;
-            inputs["splitIncludeService"] = args ? args.splitIncludeService : undefined;
-            inputs["suiteB"] = args ? args.suiteB : undefined;
-            inputs["tunnelSearch"] = args ? args.tunnelSearch : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["unitySupport"] = args ? args.unitySupport : undefined;
-            inputs["usrgrp"] = args ? args.usrgrp : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vni"] = args ? args.vni : undefined;
-            inputs["wizardType"] = args ? args.wizardType : undefined;
-            inputs["xauthtype"] = args ? args.xauthtype : undefined;
+            resourceInputs["acctVerify"] = args ? args.acctVerify : undefined;
+            resourceInputs["addGwRoute"] = args ? args.addGwRoute : undefined;
+            resourceInputs["addRoute"] = args ? args.addRoute : undefined;
+            resourceInputs["aggregateMember"] = args ? args.aggregateMember : undefined;
+            resourceInputs["aggregateWeight"] = args ? args.aggregateWeight : undefined;
+            resourceInputs["assignIp"] = args ? args.assignIp : undefined;
+            resourceInputs["assignIpFrom"] = args ? args.assignIpFrom : undefined;
+            resourceInputs["authmethod"] = args ? args.authmethod : undefined;
+            resourceInputs["authmethodRemote"] = args ? args.authmethodRemote : undefined;
+            resourceInputs["authpasswd"] = args ? args.authpasswd : undefined;
+            resourceInputs["authusr"] = args ? args.authusr : undefined;
+            resourceInputs["authusrgrp"] = args ? args.authusrgrp : undefined;
+            resourceInputs["autoDiscoveryForwarder"] = args ? args.autoDiscoveryForwarder : undefined;
+            resourceInputs["autoDiscoveryPsk"] = args ? args.autoDiscoveryPsk : undefined;
+            resourceInputs["autoDiscoveryReceiver"] = args ? args.autoDiscoveryReceiver : undefined;
+            resourceInputs["autoDiscoverySender"] = args ? args.autoDiscoverySender : undefined;
+            resourceInputs["autoDiscoveryShortcuts"] = args ? args.autoDiscoveryShortcuts : undefined;
+            resourceInputs["autoNegotiate"] = args ? args.autoNegotiate : undefined;
+            resourceInputs["backupGateways"] = args ? args.backupGateways : undefined;
+            resourceInputs["banner"] = args ? args.banner : undefined;
+            resourceInputs["certIdValidation"] = args ? args.certIdValidation : undefined;
+            resourceInputs["certificates"] = args ? args.certificates : undefined;
+            resourceInputs["childlessIke"] = args ? args.childlessIke : undefined;
+            resourceInputs["clientAutoNegotiate"] = args ? args.clientAutoNegotiate : undefined;
+            resourceInputs["clientKeepAlive"] = args ? args.clientKeepAlive : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["defaultGw"] = args ? args.defaultGw : undefined;
+            resourceInputs["defaultGwPriority"] = args ? args.defaultGwPriority : undefined;
+            resourceInputs["dhcp6RaLinkaddr"] = args ? args.dhcp6RaLinkaddr : undefined;
+            resourceInputs["dhcpRaGiaddr"] = args ? args.dhcpRaGiaddr : undefined;
+            resourceInputs["dhgrp"] = args ? args.dhgrp : undefined;
+            resourceInputs["digitalSignatureAuth"] = args ? args.digitalSignatureAuth : undefined;
+            resourceInputs["distance"] = args ? args.distance : undefined;
+            resourceInputs["dnsMode"] = args ? args.dnsMode : undefined;
+            resourceInputs["domain"] = args ? args.domain : undefined;
+            resourceInputs["dpd"] = args ? args.dpd : undefined;
+            resourceInputs["dpdRetrycount"] = args ? args.dpdRetrycount : undefined;
+            resourceInputs["dpdRetryinterval"] = args ? args.dpdRetryinterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["eap"] = args ? args.eap : undefined;
+            resourceInputs["eapExcludePeergrp"] = args ? args.eapExcludePeergrp : undefined;
+            resourceInputs["eapIdentity"] = args ? args.eapIdentity : undefined;
+            resourceInputs["encapLocalGw4"] = args ? args.encapLocalGw4 : undefined;
+            resourceInputs["encapLocalGw6"] = args ? args.encapLocalGw6 : undefined;
+            resourceInputs["encapRemoteGw4"] = args ? args.encapRemoteGw4 : undefined;
+            resourceInputs["encapRemoteGw6"] = args ? args.encapRemoteGw6 : undefined;
+            resourceInputs["encapsulation"] = args ? args.encapsulation : undefined;
+            resourceInputs["encapsulationAddress"] = args ? args.encapsulationAddress : undefined;
+            resourceInputs["enforceUniqueId"] = args ? args.enforceUniqueId : undefined;
+            resourceInputs["esn"] = args ? args.esn : undefined;
+            resourceInputs["exchangeInterfaceIp"] = args ? args.exchangeInterfaceIp : undefined;
+            resourceInputs["exchangeIpAddr4"] = args ? args.exchangeIpAddr4 : undefined;
+            resourceInputs["exchangeIpAddr6"] = args ? args.exchangeIpAddr6 : undefined;
+            resourceInputs["fecBase"] = args ? args.fecBase : undefined;
+            resourceInputs["fecCodec"] = args ? args.fecCodec : undefined;
+            resourceInputs["fecEgress"] = args ? args.fecEgress : undefined;
+            resourceInputs["fecHealthCheck"] = args ? args.fecHealthCheck : undefined;
+            resourceInputs["fecIngress"] = args ? args.fecIngress : undefined;
+            resourceInputs["fecMappingProfile"] = args ? args.fecMappingProfile : undefined;
+            resourceInputs["fecReceiveTimeout"] = args ? args.fecReceiveTimeout : undefined;
+            resourceInputs["fecRedundant"] = args ? args.fecRedundant : undefined;
+            resourceInputs["fecSendTimeout"] = args ? args.fecSendTimeout : undefined;
+            resourceInputs["forticlientEnforcement"] = args ? args.forticlientEnforcement : undefined;
+            resourceInputs["fragmentation"] = args ? args.fragmentation : undefined;
+            resourceInputs["fragmentationMtu"] = args ? args.fragmentationMtu : undefined;
+            resourceInputs["groupAuthentication"] = args ? args.groupAuthentication : undefined;
+            resourceInputs["groupAuthenticationSecret"] = args ? args.groupAuthenticationSecret : undefined;
+            resourceInputs["haSyncEspSeqno"] = args ? args.haSyncEspSeqno : undefined;
+            resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
+            resourceInputs["idleTimeoutinterval"] = args ? args.idleTimeoutinterval : undefined;
+            resourceInputs["ikeVersion"] = args ? args.ikeVersion : undefined;
+            resourceInputs["includeLocalLan"] = args ? args.includeLocalLan : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipDelayInterval"] = args ? args.ipDelayInterval : undefined;
+            resourceInputs["ipFragmentation"] = args ? args.ipFragmentation : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["ipv4DnsServer1"] = args ? args.ipv4DnsServer1 : undefined;
+            resourceInputs["ipv4DnsServer2"] = args ? args.ipv4DnsServer2 : undefined;
+            resourceInputs["ipv4DnsServer3"] = args ? args.ipv4DnsServer3 : undefined;
+            resourceInputs["ipv4EndIp"] = args ? args.ipv4EndIp : undefined;
+            resourceInputs["ipv4ExcludeRanges"] = args ? args.ipv4ExcludeRanges : undefined;
+            resourceInputs["ipv4Name"] = args ? args.ipv4Name : undefined;
+            resourceInputs["ipv4Netmask"] = args ? args.ipv4Netmask : undefined;
+            resourceInputs["ipv4SplitExclude"] = args ? args.ipv4SplitExclude : undefined;
+            resourceInputs["ipv4SplitInclude"] = args ? args.ipv4SplitInclude : undefined;
+            resourceInputs["ipv4StartIp"] = args ? args.ipv4StartIp : undefined;
+            resourceInputs["ipv4WinsServer1"] = args ? args.ipv4WinsServer1 : undefined;
+            resourceInputs["ipv4WinsServer2"] = args ? args.ipv4WinsServer2 : undefined;
+            resourceInputs["ipv6DnsServer1"] = args ? args.ipv6DnsServer1 : undefined;
+            resourceInputs["ipv6DnsServer2"] = args ? args.ipv6DnsServer2 : undefined;
+            resourceInputs["ipv6DnsServer3"] = args ? args.ipv6DnsServer3 : undefined;
+            resourceInputs["ipv6EndIp"] = args ? args.ipv6EndIp : undefined;
+            resourceInputs["ipv6ExcludeRanges"] = args ? args.ipv6ExcludeRanges : undefined;
+            resourceInputs["ipv6Name"] = args ? args.ipv6Name : undefined;
+            resourceInputs["ipv6Prefix"] = args ? args.ipv6Prefix : undefined;
+            resourceInputs["ipv6SplitExclude"] = args ? args.ipv6SplitExclude : undefined;
+            resourceInputs["ipv6SplitInclude"] = args ? args.ipv6SplitInclude : undefined;
+            resourceInputs["ipv6StartIp"] = args ? args.ipv6StartIp : undefined;
+            resourceInputs["keepalive"] = args ? args.keepalive : undefined;
+            resourceInputs["keylife"] = args ? args.keylife : undefined;
+            resourceInputs["localGw"] = args ? args.localGw : undefined;
+            resourceInputs["localGw6"] = args ? args.localGw6 : undefined;
+            resourceInputs["localid"] = args ? args.localid : undefined;
+            resourceInputs["localidType"] = args ? args.localidType : undefined;
+            resourceInputs["loopbackAsymroute"] = args ? args.loopbackAsymroute : undefined;
+            resourceInputs["meshSelectorType"] = args ? args.meshSelectorType : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["modeCfg"] = args ? args.modeCfg : undefined;
+            resourceInputs["monitor"] = args ? args.monitor : undefined;
+            resourceInputs["monitorHoldDownDelay"] = args ? args.monitorHoldDownDelay : undefined;
+            resourceInputs["monitorHoldDownTime"] = args ? args.monitorHoldDownTime : undefined;
+            resourceInputs["monitorHoldDownType"] = args ? args.monitorHoldDownType : undefined;
+            resourceInputs["monitorHoldDownWeekday"] = args ? args.monitorHoldDownWeekday : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nattraversal"] = args ? args.nattraversal : undefined;
+            resourceInputs["negotiateTimeout"] = args ? args.negotiateTimeout : undefined;
+            resourceInputs["netDevice"] = args ? args.netDevice : undefined;
+            resourceInputs["networkId"] = args ? args.networkId : undefined;
+            resourceInputs["networkOverlay"] = args ? args.networkOverlay : undefined;
+            resourceInputs["npuOffload"] = args ? args.npuOffload : undefined;
+            resourceInputs["passiveMode"] = args ? args.passiveMode : undefined;
+            resourceInputs["peer"] = args ? args.peer : undefined;
+            resourceInputs["peergrp"] = args ? args.peergrp : undefined;
+            resourceInputs["peerid"] = args ? args.peerid : undefined;
+            resourceInputs["peertype"] = args ? args.peertype : undefined;
+            resourceInputs["ppk"] = args ? args.ppk : undefined;
+            resourceInputs["ppkIdentity"] = args ? args.ppkIdentity : undefined;
+            resourceInputs["ppkSecret"] = args ? args.ppkSecret : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["proposal"] = args ? args.proposal : undefined;
+            resourceInputs["psksecret"] = args ? args.psksecret : undefined;
+            resourceInputs["psksecretRemote"] = args ? args.psksecretRemote : undefined;
+            resourceInputs["reauth"] = args ? args.reauth : undefined;
+            resourceInputs["rekey"] = args ? args.rekey : undefined;
+            resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["remoteGw6"] = args ? args.remoteGw6 : undefined;
+            resourceInputs["remotegwDdns"] = args ? args.remotegwDdns : undefined;
+            resourceInputs["rsaSignatureFormat"] = args ? args.rsaSignatureFormat : undefined;
+            resourceInputs["savePassword"] = args ? args.savePassword : undefined;
+            resourceInputs["sendCertChain"] = args ? args.sendCertChain : undefined;
+            resourceInputs["signatureHashAlg"] = args ? args.signatureHashAlg : undefined;
+            resourceInputs["splitIncludeService"] = args ? args.splitIncludeService : undefined;
+            resourceInputs["suiteB"] = args ? args.suiteB : undefined;
+            resourceInputs["tunnelSearch"] = args ? args.tunnelSearch : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["unitySupport"] = args ? args.unitySupport : undefined;
+            resourceInputs["usrgrp"] = args ? args.usrgrp : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vni"] = args ? args.vni : undefined;
+            resourceInputs["wizardType"] = args ? args.wizardType : undefined;
+            resourceInputs["xauthtype"] = args ? args.xauthtype : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnIpsecPhase1Interface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnIpsecPhase1Interface.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -1253,6 +1287,10 @@ export interface VpnIpsecPhase1InterfaceState {
      */
     enforceUniqueId?: pulumi.Input<string>;
     /**
+     * Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+     */
+    esn?: pulumi.Input<string>;
+    /**
      * Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
      */
     exchangeInterfaceIp?: pulumi.Input<string>;
@@ -1277,9 +1315,17 @@ export interface VpnIpsecPhase1InterfaceState {
      */
     fecEgress?: pulumi.Input<string>;
     /**
+     * SD-WAN health check.
+     */
+    fecHealthCheck?: pulumi.Input<string>;
+    /**
      * Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
      */
     fecIngress?: pulumi.Input<string>;
+    /**
+     * Forward Error Correction (FEC) mapping profile.
+     */
+    fecMappingProfile?: pulumi.Input<string>;
     /**
      * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
      */
@@ -1336,6 +1382,10 @@ export interface VpnIpsecPhase1InterfaceState {
      * Local physical, aggregate, or VLAN outgoing interface.
      */
     interface?: pulumi.Input<string>;
+    /**
+     * IP address reuse delay interval in seconds (0 - 28800).
+     */
+    ipDelayInterval?: pulumi.Input<number>;
     /**
      * Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
      */
@@ -1457,6 +1507,10 @@ export interface VpnIpsecPhase1InterfaceState {
      */
     localidType?: pulumi.Input<string>;
     /**
+     * Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+     */
+    loopbackAsymroute?: pulumi.Input<string>;
+    /**
      * Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
      */
     meshSelectorType?: pulumi.Input<string>;
@@ -1512,6 +1566,10 @@ export interface VpnIpsecPhase1InterfaceState {
      * Enable/disable network overlays. Valid values: `disable`, `enable`.
      */
     networkOverlay?: pulumi.Input<string>;
+    /**
+     * Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+     */
+    npuOffload?: pulumi.Input<string>;
     /**
      * Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
      */
@@ -1839,6 +1897,10 @@ export interface VpnIpsecPhase1InterfaceArgs {
      */
     enforceUniqueId?: pulumi.Input<string>;
     /**
+     * Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+     */
+    esn?: pulumi.Input<string>;
+    /**
      * Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
      */
     exchangeInterfaceIp?: pulumi.Input<string>;
@@ -1863,9 +1925,17 @@ export interface VpnIpsecPhase1InterfaceArgs {
      */
     fecEgress?: pulumi.Input<string>;
     /**
+     * SD-WAN health check.
+     */
+    fecHealthCheck?: pulumi.Input<string>;
+    /**
      * Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
      */
     fecIngress?: pulumi.Input<string>;
+    /**
+     * Forward Error Correction (FEC) mapping profile.
+     */
+    fecMappingProfile?: pulumi.Input<string>;
     /**
      * Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
      */
@@ -1922,6 +1992,10 @@ export interface VpnIpsecPhase1InterfaceArgs {
      * Local physical, aggregate, or VLAN outgoing interface.
      */
     interface: pulumi.Input<string>;
+    /**
+     * IP address reuse delay interval in seconds (0 - 28800).
+     */
+    ipDelayInterval?: pulumi.Input<number>;
     /**
      * Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
      */
@@ -2043,6 +2117,10 @@ export interface VpnIpsecPhase1InterfaceArgs {
      */
     localidType?: pulumi.Input<string>;
     /**
+     * Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+     */
+    loopbackAsymroute?: pulumi.Input<string>;
+    /**
      * Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
      */
     meshSelectorType?: pulumi.Input<string>;
@@ -2098,6 +2176,10 @@ export interface VpnIpsecPhase1InterfaceArgs {
      * Enable/disable network overlays. Valid values: `disable`, `enable`.
      */
     networkOverlay?: pulumi.Input<string>;
+    /**
+     * Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+     */
+    npuOffload?: pulumi.Input<string>;
     /**
      * Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
      */

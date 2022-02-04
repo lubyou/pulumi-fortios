@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,7 +26,7 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewWanoptProfile(ctx, "trname", &fortios.WanoptProfileArgs{
-// 			Cifs: &fortios.WanoptProfileCifsArgs{
+// 			Cifs: &WanoptProfileCifsArgs{
 // 				ByteCaching:    pulumi.String("enable"),
 // 				LogTraffic:     pulumi.String("enable"),
 // 				Port:           pulumi.Int(445),
@@ -35,7 +36,7 @@ import (
 // 				TunnelSharing:  pulumi.String("private"),
 // 			},
 // 			Comments: pulumi.String("test"),
-// 			Ftp: &fortios.WanoptProfileFtpArgs{
+// 			Ftp: &WanoptProfileFtpArgs{
 // 				ByteCaching:    pulumi.String("enable"),
 // 				LogTraffic:     pulumi.String("enable"),
 // 				Port:           pulumi.Int(21),
@@ -44,7 +45,7 @@ import (
 // 				Status:         pulumi.String("disable"),
 // 				TunnelSharing:  pulumi.String("private"),
 // 			},
-// 			Http: &fortios.WanoptProfileHttpArgs{
+// 			Http: &WanoptProfileHttpArgs{
 // 				ByteCaching:        pulumi.String("enable"),
 // 				LogTraffic:         pulumi.String("enable"),
 // 				Port:               pulumi.Int(80),
@@ -57,7 +58,7 @@ import (
 // 				TunnelSharing:      pulumi.String("private"),
 // 				UnknownHttpVersion: pulumi.String("tunnel"),
 // 			},
-// 			Mapi: &fortios.WanoptProfileMapiArgs{
+// 			Mapi: &WanoptProfileMapiArgs{
 // 				ByteCaching:   pulumi.String("enable"),
 // 				LogTraffic:    pulumi.String("enable"),
 // 				Port:          pulumi.Int(135),
@@ -65,7 +66,7 @@ import (
 // 				Status:        pulumi.String("disable"),
 // 				TunnelSharing: pulumi.String("private"),
 // 			},
-// 			Tcp: &fortios.WanoptProfileTcpArgs{
+// 			Tcp: &WanoptProfileTcpArgs{
 // 				ByteCaching:    pulumi.String("disable"),
 // 				ByteCachingOpt: pulumi.String("mem-only"),
 // 				LogTraffic:     pulumi.String("enable"),
@@ -127,6 +128,7 @@ func NewWanoptProfile(ctx *pulumi.Context,
 		args = &WanoptProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptProfile
 	err := ctx.RegisterResource("fortios:index/wanoptProfile:WanoptProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -257,7 +259,7 @@ type WanoptProfileInput interface {
 }
 
 func (*WanoptProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptProfile)(nil))
+	return reflect.TypeOf((**WanoptProfile)(nil)).Elem()
 }
 
 func (i *WanoptProfile) ToWanoptProfileOutput() WanoptProfileOutput {
@@ -266,35 +268,6 @@ func (i *WanoptProfile) ToWanoptProfileOutput() WanoptProfileOutput {
 
 func (i *WanoptProfile) ToWanoptProfileOutputWithContext(ctx context.Context) WanoptProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileOutput)
-}
-
-func (i *WanoptProfile) ToWanoptProfilePtrOutput() WanoptProfilePtrOutput {
-	return i.ToWanoptProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptProfile) ToWanoptProfilePtrOutputWithContext(ctx context.Context) WanoptProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfilePtrOutput)
-}
-
-type WanoptProfilePtrInput interface {
-	pulumi.Input
-
-	ToWanoptProfilePtrOutput() WanoptProfilePtrOutput
-	ToWanoptProfilePtrOutputWithContext(ctx context.Context) WanoptProfilePtrOutput
-}
-
-type wanoptProfilePtrType WanoptProfileArgs
-
-func (*wanoptProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptProfile)(nil))
-}
-
-func (i *wanoptProfilePtrType) ToWanoptProfilePtrOutput() WanoptProfilePtrOutput {
-	return i.ToWanoptProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptProfilePtrType) ToWanoptProfilePtrOutputWithContext(ctx context.Context) WanoptProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfilePtrOutput)
 }
 
 // WanoptProfileArrayInput is an input type that accepts WanoptProfileArray and WanoptProfileArrayOutput values.
@@ -311,7 +284,7 @@ type WanoptProfileArrayInput interface {
 type WanoptProfileArray []WanoptProfileInput
 
 func (WanoptProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptProfile)(nil))
+	return reflect.TypeOf((*[]*WanoptProfile)(nil)).Elem()
 }
 
 func (i WanoptProfileArray) ToWanoptProfileArrayOutput() WanoptProfileArrayOutput {
@@ -336,7 +309,7 @@ type WanoptProfileMapInput interface {
 type WanoptProfileMap map[string]WanoptProfileInput
 
 func (WanoptProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptProfile)(nil))
+	return reflect.TypeOf((*map[string]*WanoptProfile)(nil)).Elem()
 }
 
 func (i WanoptProfileMap) ToWanoptProfileMapOutput() WanoptProfileMapOutput {
@@ -347,12 +320,10 @@ func (i WanoptProfileMap) ToWanoptProfileMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptProfileMapOutput)
 }
 
-type WanoptProfileOutput struct {
-	*pulumi.OutputState
-}
+type WanoptProfileOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptProfile)(nil))
+	return reflect.TypeOf((**WanoptProfile)(nil)).Elem()
 }
 
 func (o WanoptProfileOutput) ToWanoptProfileOutput() WanoptProfileOutput {
@@ -363,36 +334,10 @@ func (o WanoptProfileOutput) ToWanoptProfileOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o WanoptProfileOutput) ToWanoptProfilePtrOutput() WanoptProfilePtrOutput {
-	return o.ToWanoptProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WanoptProfileOutput) ToWanoptProfilePtrOutputWithContext(ctx context.Context) WanoptProfilePtrOutput {
-	return o.ApplyT(func(v WanoptProfile) *WanoptProfile {
-		return &v
-	}).(WanoptProfilePtrOutput)
-}
-
-type WanoptProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptProfile)(nil))
-}
-
-func (o WanoptProfilePtrOutput) ToWanoptProfilePtrOutput() WanoptProfilePtrOutput {
-	return o
-}
-
-func (o WanoptProfilePtrOutput) ToWanoptProfilePtrOutputWithContext(ctx context.Context) WanoptProfilePtrOutput {
-	return o
-}
-
 type WanoptProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptProfile)(nil))
+	return reflect.TypeOf((*[]*WanoptProfile)(nil)).Elem()
 }
 
 func (o WanoptProfileArrayOutput) ToWanoptProfileArrayOutput() WanoptProfileArrayOutput {
@@ -404,15 +349,15 @@ func (o WanoptProfileArrayOutput) ToWanoptProfileArrayOutputWithContext(ctx cont
 }
 
 func (o WanoptProfileArrayOutput) Index(i pulumi.IntInput) WanoptProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptProfile {
-		return vs[0].([]WanoptProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptProfile {
+		return vs[0].([]*WanoptProfile)[vs[1].(int)]
 	}).(WanoptProfileOutput)
 }
 
 type WanoptProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptProfile)(nil))
+	return reflect.TypeOf((*map[string]*WanoptProfile)(nil)).Elem()
 }
 
 func (o WanoptProfileMapOutput) ToWanoptProfileMapOutput() WanoptProfileMapOutput {
@@ -424,14 +369,16 @@ func (o WanoptProfileMapOutput) ToWanoptProfileMapOutputWithContext(ctx context.
 }
 
 func (o WanoptProfileMapOutput) MapIndex(k pulumi.StringInput) WanoptProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptProfile {
-		return vs[0].(map[string]WanoptProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptProfile {
+		return vs[0].(map[string]*WanoptProfile)[vs[1].(string)]
 	}).(WanoptProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptProfileInput)(nil)).Elem(), &WanoptProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptProfileArrayInput)(nil)).Elem(), WanoptProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptProfileMapInput)(nil)).Elem(), WanoptProfileMap{})
 	pulumi.RegisterOutputType(WanoptProfileOutput{})
-	pulumi.RegisterOutputType(WanoptProfilePtrOutput{})
 	pulumi.RegisterOutputType(WanoptProfileArrayOutput{})
 	pulumi.RegisterOutputType(WanoptProfileMapOutput{})
 }

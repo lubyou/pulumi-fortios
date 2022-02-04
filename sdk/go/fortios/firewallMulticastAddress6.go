@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,6 +78,7 @@ func NewFirewallMulticastAddress6(ctx *pulumi.Context,
 	if args.Ip6 == nil {
 		return nil, errors.New("invalid value for required argument 'Ip6'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallMulticastAddress6
 	err := ctx.RegisterResource("fortios:index/firewallMulticastAddress6:FirewallMulticastAddress6", name, args, &resource, opts...)
 	if err != nil {
@@ -192,7 +193,7 @@ type FirewallMulticastAddress6Input interface {
 }
 
 func (*FirewallMulticastAddress6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallMulticastAddress6)(nil))
+	return reflect.TypeOf((**FirewallMulticastAddress6)(nil)).Elem()
 }
 
 func (i *FirewallMulticastAddress6) ToFirewallMulticastAddress6Output() FirewallMulticastAddress6Output {
@@ -201,35 +202,6 @@ func (i *FirewallMulticastAddress6) ToFirewallMulticastAddress6Output() Firewall
 
 func (i *FirewallMulticastAddress6) ToFirewallMulticastAddress6OutputWithContext(ctx context.Context) FirewallMulticastAddress6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddress6Output)
-}
-
-func (i *FirewallMulticastAddress6) ToFirewallMulticastAddress6PtrOutput() FirewallMulticastAddress6PtrOutput {
-	return i.ToFirewallMulticastAddress6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallMulticastAddress6) ToFirewallMulticastAddress6PtrOutputWithContext(ctx context.Context) FirewallMulticastAddress6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddress6PtrOutput)
-}
-
-type FirewallMulticastAddress6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallMulticastAddress6PtrOutput() FirewallMulticastAddress6PtrOutput
-	ToFirewallMulticastAddress6PtrOutputWithContext(ctx context.Context) FirewallMulticastAddress6PtrOutput
-}
-
-type firewallMulticastAddress6PtrType FirewallMulticastAddress6Args
-
-func (*firewallMulticastAddress6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallMulticastAddress6)(nil))
-}
-
-func (i *firewallMulticastAddress6PtrType) ToFirewallMulticastAddress6PtrOutput() FirewallMulticastAddress6PtrOutput {
-	return i.ToFirewallMulticastAddress6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallMulticastAddress6PtrType) ToFirewallMulticastAddress6PtrOutputWithContext(ctx context.Context) FirewallMulticastAddress6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddress6PtrOutput)
 }
 
 // FirewallMulticastAddress6ArrayInput is an input type that accepts FirewallMulticastAddress6Array and FirewallMulticastAddress6ArrayOutput values.
@@ -246,7 +218,7 @@ type FirewallMulticastAddress6ArrayInput interface {
 type FirewallMulticastAddress6Array []FirewallMulticastAddress6Input
 
 func (FirewallMulticastAddress6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallMulticastAddress6)(nil))
+	return reflect.TypeOf((*[]*FirewallMulticastAddress6)(nil)).Elem()
 }
 
 func (i FirewallMulticastAddress6Array) ToFirewallMulticastAddress6ArrayOutput() FirewallMulticastAddress6ArrayOutput {
@@ -271,7 +243,7 @@ type FirewallMulticastAddress6MapInput interface {
 type FirewallMulticastAddress6Map map[string]FirewallMulticastAddress6Input
 
 func (FirewallMulticastAddress6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallMulticastAddress6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallMulticastAddress6)(nil)).Elem()
 }
 
 func (i FirewallMulticastAddress6Map) ToFirewallMulticastAddress6MapOutput() FirewallMulticastAddress6MapOutput {
@@ -282,12 +254,10 @@ func (i FirewallMulticastAddress6Map) ToFirewallMulticastAddress6MapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastAddress6MapOutput)
 }
 
-type FirewallMulticastAddress6Output struct {
-	*pulumi.OutputState
-}
+type FirewallMulticastAddress6Output struct{ *pulumi.OutputState }
 
 func (FirewallMulticastAddress6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallMulticastAddress6)(nil))
+	return reflect.TypeOf((**FirewallMulticastAddress6)(nil)).Elem()
 }
 
 func (o FirewallMulticastAddress6Output) ToFirewallMulticastAddress6Output() FirewallMulticastAddress6Output {
@@ -298,36 +268,10 @@ func (o FirewallMulticastAddress6Output) ToFirewallMulticastAddress6OutputWithCo
 	return o
 }
 
-func (o FirewallMulticastAddress6Output) ToFirewallMulticastAddress6PtrOutput() FirewallMulticastAddress6PtrOutput {
-	return o.ToFirewallMulticastAddress6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallMulticastAddress6Output) ToFirewallMulticastAddress6PtrOutputWithContext(ctx context.Context) FirewallMulticastAddress6PtrOutput {
-	return o.ApplyT(func(v FirewallMulticastAddress6) *FirewallMulticastAddress6 {
-		return &v
-	}).(FirewallMulticastAddress6PtrOutput)
-}
-
-type FirewallMulticastAddress6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallMulticastAddress6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallMulticastAddress6)(nil))
-}
-
-func (o FirewallMulticastAddress6PtrOutput) ToFirewallMulticastAddress6PtrOutput() FirewallMulticastAddress6PtrOutput {
-	return o
-}
-
-func (o FirewallMulticastAddress6PtrOutput) ToFirewallMulticastAddress6PtrOutputWithContext(ctx context.Context) FirewallMulticastAddress6PtrOutput {
-	return o
-}
-
 type FirewallMulticastAddress6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallMulticastAddress6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallMulticastAddress6)(nil))
+	return reflect.TypeOf((*[]*FirewallMulticastAddress6)(nil)).Elem()
 }
 
 func (o FirewallMulticastAddress6ArrayOutput) ToFirewallMulticastAddress6ArrayOutput() FirewallMulticastAddress6ArrayOutput {
@@ -339,15 +283,15 @@ func (o FirewallMulticastAddress6ArrayOutput) ToFirewallMulticastAddress6ArrayOu
 }
 
 func (o FirewallMulticastAddress6ArrayOutput) Index(i pulumi.IntInput) FirewallMulticastAddress6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallMulticastAddress6 {
-		return vs[0].([]FirewallMulticastAddress6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallMulticastAddress6 {
+		return vs[0].([]*FirewallMulticastAddress6)[vs[1].(int)]
 	}).(FirewallMulticastAddress6Output)
 }
 
 type FirewallMulticastAddress6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallMulticastAddress6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallMulticastAddress6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallMulticastAddress6)(nil)).Elem()
 }
 
 func (o FirewallMulticastAddress6MapOutput) ToFirewallMulticastAddress6MapOutput() FirewallMulticastAddress6MapOutput {
@@ -359,14 +303,16 @@ func (o FirewallMulticastAddress6MapOutput) ToFirewallMulticastAddress6MapOutput
 }
 
 func (o FirewallMulticastAddress6MapOutput) MapIndex(k pulumi.StringInput) FirewallMulticastAddress6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallMulticastAddress6 {
-		return vs[0].(map[string]FirewallMulticastAddress6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallMulticastAddress6 {
+		return vs[0].(map[string]*FirewallMulticastAddress6)[vs[1].(string)]
 	}).(FirewallMulticastAddress6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallMulticastAddress6Input)(nil)).Elem(), &FirewallMulticastAddress6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallMulticastAddress6ArrayInput)(nil)).Elem(), FirewallMulticastAddress6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallMulticastAddress6MapInput)(nil)).Elem(), FirewallMulticastAddress6Map{})
 	pulumi.RegisterOutputType(FirewallMulticastAddress6Output{})
-	pulumi.RegisterOutputType(FirewallMulticastAddress6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallMulticastAddress6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallMulticastAddress6MapOutput{})
 }

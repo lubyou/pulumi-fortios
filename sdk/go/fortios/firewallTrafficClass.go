@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure names for shaping classes.
+// Configure names for shaping classes. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -39,6 +39,7 @@ func NewFirewallTrafficClass(ctx *pulumi.Context,
 		args = &FirewallTrafficClassArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallTrafficClass
 	err := ctx.RegisterResource("fortios:index/firewallTrafficClass:FirewallTrafficClass", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallTrafficClassInput interface {
 }
 
 func (*FirewallTrafficClass) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallTrafficClass)(nil))
+	return reflect.TypeOf((**FirewallTrafficClass)(nil)).Elem()
 }
 
 func (i *FirewallTrafficClass) ToFirewallTrafficClassOutput() FirewallTrafficClassOutput {
@@ -122,35 +123,6 @@ func (i *FirewallTrafficClass) ToFirewallTrafficClassOutput() FirewallTrafficCla
 
 func (i *FirewallTrafficClass) ToFirewallTrafficClassOutputWithContext(ctx context.Context) FirewallTrafficClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassOutput)
-}
-
-func (i *FirewallTrafficClass) ToFirewallTrafficClassPtrOutput() FirewallTrafficClassPtrOutput {
-	return i.ToFirewallTrafficClassPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallTrafficClass) ToFirewallTrafficClassPtrOutputWithContext(ctx context.Context) FirewallTrafficClassPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassPtrOutput)
-}
-
-type FirewallTrafficClassPtrInput interface {
-	pulumi.Input
-
-	ToFirewallTrafficClassPtrOutput() FirewallTrafficClassPtrOutput
-	ToFirewallTrafficClassPtrOutputWithContext(ctx context.Context) FirewallTrafficClassPtrOutput
-}
-
-type firewallTrafficClassPtrType FirewallTrafficClassArgs
-
-func (*firewallTrafficClassPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallTrafficClass)(nil))
-}
-
-func (i *firewallTrafficClassPtrType) ToFirewallTrafficClassPtrOutput() FirewallTrafficClassPtrOutput {
-	return i.ToFirewallTrafficClassPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallTrafficClassPtrType) ToFirewallTrafficClassPtrOutputWithContext(ctx context.Context) FirewallTrafficClassPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassPtrOutput)
 }
 
 // FirewallTrafficClassArrayInput is an input type that accepts FirewallTrafficClassArray and FirewallTrafficClassArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallTrafficClassArrayInput interface {
 type FirewallTrafficClassArray []FirewallTrafficClassInput
 
 func (FirewallTrafficClassArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallTrafficClass)(nil))
+	return reflect.TypeOf((*[]*FirewallTrafficClass)(nil)).Elem()
 }
 
 func (i FirewallTrafficClassArray) ToFirewallTrafficClassArrayOutput() FirewallTrafficClassArrayOutput {
@@ -192,7 +164,7 @@ type FirewallTrafficClassMapInput interface {
 type FirewallTrafficClassMap map[string]FirewallTrafficClassInput
 
 func (FirewallTrafficClassMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallTrafficClass)(nil))
+	return reflect.TypeOf((*map[string]*FirewallTrafficClass)(nil)).Elem()
 }
 
 func (i FirewallTrafficClassMap) ToFirewallTrafficClassMapOutput() FirewallTrafficClassMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallTrafficClassMap) ToFirewallTrafficClassMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallTrafficClassMapOutput)
 }
 
-type FirewallTrafficClassOutput struct {
-	*pulumi.OutputState
-}
+type FirewallTrafficClassOutput struct{ *pulumi.OutputState }
 
 func (FirewallTrafficClassOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallTrafficClass)(nil))
+	return reflect.TypeOf((**FirewallTrafficClass)(nil)).Elem()
 }
 
 func (o FirewallTrafficClassOutput) ToFirewallTrafficClassOutput() FirewallTrafficClassOutput {
@@ -219,36 +189,10 @@ func (o FirewallTrafficClassOutput) ToFirewallTrafficClassOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallTrafficClassOutput) ToFirewallTrafficClassPtrOutput() FirewallTrafficClassPtrOutput {
-	return o.ToFirewallTrafficClassPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallTrafficClassOutput) ToFirewallTrafficClassPtrOutputWithContext(ctx context.Context) FirewallTrafficClassPtrOutput {
-	return o.ApplyT(func(v FirewallTrafficClass) *FirewallTrafficClass {
-		return &v
-	}).(FirewallTrafficClassPtrOutput)
-}
-
-type FirewallTrafficClassPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallTrafficClassPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallTrafficClass)(nil))
-}
-
-func (o FirewallTrafficClassPtrOutput) ToFirewallTrafficClassPtrOutput() FirewallTrafficClassPtrOutput {
-	return o
-}
-
-func (o FirewallTrafficClassPtrOutput) ToFirewallTrafficClassPtrOutputWithContext(ctx context.Context) FirewallTrafficClassPtrOutput {
-	return o
-}
-
 type FirewallTrafficClassArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallTrafficClassArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallTrafficClass)(nil))
+	return reflect.TypeOf((*[]*FirewallTrafficClass)(nil)).Elem()
 }
 
 func (o FirewallTrafficClassArrayOutput) ToFirewallTrafficClassArrayOutput() FirewallTrafficClassArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallTrafficClassArrayOutput) ToFirewallTrafficClassArrayOutputWithCo
 }
 
 func (o FirewallTrafficClassArrayOutput) Index(i pulumi.IntInput) FirewallTrafficClassOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallTrafficClass {
-		return vs[0].([]FirewallTrafficClass)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallTrafficClass {
+		return vs[0].([]*FirewallTrafficClass)[vs[1].(int)]
 	}).(FirewallTrafficClassOutput)
 }
 
 type FirewallTrafficClassMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallTrafficClassMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallTrafficClass)(nil))
+	return reflect.TypeOf((*map[string]*FirewallTrafficClass)(nil)).Elem()
 }
 
 func (o FirewallTrafficClassMapOutput) ToFirewallTrafficClassMapOutput() FirewallTrafficClassMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallTrafficClassMapOutput) ToFirewallTrafficClassMapOutputWithContex
 }
 
 func (o FirewallTrafficClassMapOutput) MapIndex(k pulumi.StringInput) FirewallTrafficClassOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallTrafficClass {
-		return vs[0].(map[string]FirewallTrafficClass)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallTrafficClass {
+		return vs[0].(map[string]*FirewallTrafficClass)[vs[1].(string)]
 	}).(FirewallTrafficClassOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallTrafficClassInput)(nil)).Elem(), &FirewallTrafficClass{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallTrafficClassArrayInput)(nil)).Elem(), FirewallTrafficClassArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallTrafficClassMapInput)(nil)).Elem(), FirewallTrafficClassMap{})
 	pulumi.RegisterOutputType(FirewallTrafficClassOutput{})
-	pulumi.RegisterOutputType(FirewallTrafficClassPtrOutput{})
 	pulumi.RegisterOutputType(FirewallTrafficClassArrayOutput{})
 	pulumi.RegisterOutputType(FirewallTrafficClassMapOutput{})
 }

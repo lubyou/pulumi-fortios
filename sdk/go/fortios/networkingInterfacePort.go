@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -50,7 +50,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -80,7 +80,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -166,6 +166,7 @@ func NewNetworkingInterfacePort(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource NetworkingInterfacePort
 	err := ctx.RegisterResource("fortios:index/networkingInterfacePort:NetworkingInterfacePort", name, args, &resource, opts...)
 	if err != nil {
@@ -376,7 +377,7 @@ type NetworkingInterfacePortInput interface {
 }
 
 func (*NetworkingInterfacePort) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkingInterfacePort)(nil))
+	return reflect.TypeOf((**NetworkingInterfacePort)(nil)).Elem()
 }
 
 func (i *NetworkingInterfacePort) ToNetworkingInterfacePortOutput() NetworkingInterfacePortOutput {
@@ -385,35 +386,6 @@ func (i *NetworkingInterfacePort) ToNetworkingInterfacePortOutput() NetworkingIn
 
 func (i *NetworkingInterfacePort) ToNetworkingInterfacePortOutputWithContext(ctx context.Context) NetworkingInterfacePortOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortOutput)
-}
-
-func (i *NetworkingInterfacePort) ToNetworkingInterfacePortPtrOutput() NetworkingInterfacePortPtrOutput {
-	return i.ToNetworkingInterfacePortPtrOutputWithContext(context.Background())
-}
-
-func (i *NetworkingInterfacePort) ToNetworkingInterfacePortPtrOutputWithContext(ctx context.Context) NetworkingInterfacePortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortPtrOutput)
-}
-
-type NetworkingInterfacePortPtrInput interface {
-	pulumi.Input
-
-	ToNetworkingInterfacePortPtrOutput() NetworkingInterfacePortPtrOutput
-	ToNetworkingInterfacePortPtrOutputWithContext(ctx context.Context) NetworkingInterfacePortPtrOutput
-}
-
-type networkingInterfacePortPtrType NetworkingInterfacePortArgs
-
-func (*networkingInterfacePortPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**NetworkingInterfacePort)(nil))
-}
-
-func (i *networkingInterfacePortPtrType) ToNetworkingInterfacePortPtrOutput() NetworkingInterfacePortPtrOutput {
-	return i.ToNetworkingInterfacePortPtrOutputWithContext(context.Background())
-}
-
-func (i *networkingInterfacePortPtrType) ToNetworkingInterfacePortPtrOutputWithContext(ctx context.Context) NetworkingInterfacePortPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortPtrOutput)
 }
 
 // NetworkingInterfacePortArrayInput is an input type that accepts NetworkingInterfacePortArray and NetworkingInterfacePortArrayOutput values.
@@ -430,7 +402,7 @@ type NetworkingInterfacePortArrayInput interface {
 type NetworkingInterfacePortArray []NetworkingInterfacePortInput
 
 func (NetworkingInterfacePortArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*NetworkingInterfacePort)(nil))
+	return reflect.TypeOf((*[]*NetworkingInterfacePort)(nil)).Elem()
 }
 
 func (i NetworkingInterfacePortArray) ToNetworkingInterfacePortArrayOutput() NetworkingInterfacePortArrayOutput {
@@ -455,7 +427,7 @@ type NetworkingInterfacePortMapInput interface {
 type NetworkingInterfacePortMap map[string]NetworkingInterfacePortInput
 
 func (NetworkingInterfacePortMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*NetworkingInterfacePort)(nil))
+	return reflect.TypeOf((*map[string]*NetworkingInterfacePort)(nil)).Elem()
 }
 
 func (i NetworkingInterfacePortMap) ToNetworkingInterfacePortMapOutput() NetworkingInterfacePortMapOutput {
@@ -466,12 +438,10 @@ func (i NetworkingInterfacePortMap) ToNetworkingInterfacePortMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(NetworkingInterfacePortMapOutput)
 }
 
-type NetworkingInterfacePortOutput struct {
-	*pulumi.OutputState
-}
+type NetworkingInterfacePortOutput struct{ *pulumi.OutputState }
 
 func (NetworkingInterfacePortOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*NetworkingInterfacePort)(nil))
+	return reflect.TypeOf((**NetworkingInterfacePort)(nil)).Elem()
 }
 
 func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortOutput() NetworkingInterfacePortOutput {
@@ -482,36 +452,10 @@ func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortOutputWithContex
 	return o
 }
 
-func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortPtrOutput() NetworkingInterfacePortPtrOutput {
-	return o.ToNetworkingInterfacePortPtrOutputWithContext(context.Background())
-}
-
-func (o NetworkingInterfacePortOutput) ToNetworkingInterfacePortPtrOutputWithContext(ctx context.Context) NetworkingInterfacePortPtrOutput {
-	return o.ApplyT(func(v NetworkingInterfacePort) *NetworkingInterfacePort {
-		return &v
-	}).(NetworkingInterfacePortPtrOutput)
-}
-
-type NetworkingInterfacePortPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (NetworkingInterfacePortPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**NetworkingInterfacePort)(nil))
-}
-
-func (o NetworkingInterfacePortPtrOutput) ToNetworkingInterfacePortPtrOutput() NetworkingInterfacePortPtrOutput {
-	return o
-}
-
-func (o NetworkingInterfacePortPtrOutput) ToNetworkingInterfacePortPtrOutputWithContext(ctx context.Context) NetworkingInterfacePortPtrOutput {
-	return o
-}
-
 type NetworkingInterfacePortArrayOutput struct{ *pulumi.OutputState }
 
 func (NetworkingInterfacePortArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]NetworkingInterfacePort)(nil))
+	return reflect.TypeOf((*[]*NetworkingInterfacePort)(nil)).Elem()
 }
 
 func (o NetworkingInterfacePortArrayOutput) ToNetworkingInterfacePortArrayOutput() NetworkingInterfacePortArrayOutput {
@@ -523,15 +467,15 @@ func (o NetworkingInterfacePortArrayOutput) ToNetworkingInterfacePortArrayOutput
 }
 
 func (o NetworkingInterfacePortArrayOutput) Index(i pulumi.IntInput) NetworkingInterfacePortOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) NetworkingInterfacePort {
-		return vs[0].([]NetworkingInterfacePort)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *NetworkingInterfacePort {
+		return vs[0].([]*NetworkingInterfacePort)[vs[1].(int)]
 	}).(NetworkingInterfacePortOutput)
 }
 
 type NetworkingInterfacePortMapOutput struct{ *pulumi.OutputState }
 
 func (NetworkingInterfacePortMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]NetworkingInterfacePort)(nil))
+	return reflect.TypeOf((*map[string]*NetworkingInterfacePort)(nil)).Elem()
 }
 
 func (o NetworkingInterfacePortMapOutput) ToNetworkingInterfacePortMapOutput() NetworkingInterfacePortMapOutput {
@@ -543,14 +487,16 @@ func (o NetworkingInterfacePortMapOutput) ToNetworkingInterfacePortMapOutputWith
 }
 
 func (o NetworkingInterfacePortMapOutput) MapIndex(k pulumi.StringInput) NetworkingInterfacePortOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) NetworkingInterfacePort {
-		return vs[0].(map[string]NetworkingInterfacePort)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *NetworkingInterfacePort {
+		return vs[0].(map[string]*NetworkingInterfacePort)[vs[1].(string)]
 	}).(NetworkingInterfacePortOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkingInterfacePortInput)(nil)).Elem(), &NetworkingInterfacePort{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkingInterfacePortArrayInput)(nil)).Elem(), NetworkingInterfacePortArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*NetworkingInterfacePortMapInput)(nil)).Elem(), NetworkingInterfacePortMap{})
 	pulumi.RegisterOutputType(NetworkingInterfacePortOutput{})
-	pulumi.RegisterOutputType(NetworkingInterfacePortPtrOutput{})
 	pulumi.RegisterOutputType(NetworkingInterfacePortArrayOutput{})
 	pulumi.RegisterOutputType(NetworkingInterfacePortMapOutput{})
 }

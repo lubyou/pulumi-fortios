@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemConsoleResult',
     'AwaitableGetSystemConsoleResult',
     'get_system_console',
+    'get_system_console_output',
 ]
 
 @pulumi.output_type
@@ -19,10 +20,13 @@ class GetSystemConsoleResult:
     """
     A collection of values returned by GetSystemConsole.
     """
-    def __init__(__self__, baudrate=None, id=None, login=None, mode=None, output=None, vdomparam=None):
+    def __init__(__self__, baudrate=None, fortiexplorer=None, id=None, login=None, mode=None, output=None, vdomparam=None):
         if baudrate and not isinstance(baudrate, str):
             raise TypeError("Expected argument 'baudrate' to be a str")
         pulumi.set(__self__, "baudrate", baudrate)
+        if fortiexplorer and not isinstance(fortiexplorer, str):
+            raise TypeError("Expected argument 'fortiexplorer' to be a str")
+        pulumi.set(__self__, "fortiexplorer", fortiexplorer)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -46,6 +50,14 @@ class GetSystemConsoleResult:
         Console baud rate.
         """
         return pulumi.get(self, "baudrate")
+
+    @property
+    @pulumi.getter
+    def fortiexplorer(self) -> str:
+        """
+        Enable/disable access for FortiExplorer.
+        """
+        return pulumi.get(self, "fortiexplorer")
 
     @property
     @pulumi.getter
@@ -92,6 +104,7 @@ class AwaitableGetSystemConsoleResult(GetSystemConsoleResult):
             yield self
         return GetSystemConsoleResult(
             baudrate=self.baudrate,
+            fortiexplorer=self.fortiexplorer,
             id=self.id,
             login=self.login,
             mode=self.mode,
@@ -113,12 +126,27 @@ def get_system_console(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemConsole:GetSystemConsole', __args__, opts=opts, typ=GetSystemConsoleResult).value
 
     return AwaitableGetSystemConsoleResult(
         baudrate=__ret__.baudrate,
+        fortiexplorer=__ret__.fortiexplorer,
         id=__ret__.id,
         login=__ret__.login,
         mode=__ret__.mode,
         output=__ret__.output,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_console)
+def get_system_console_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemConsoleResult]:
+    """
+    Use this data source to get information on fortios system console
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

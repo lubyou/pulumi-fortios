@@ -49,6 +49,7 @@ func NewEndpointControlRegisteredForticlient(ctx *pulumi.Context,
 		args = &EndpointControlRegisteredForticlientArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlRegisteredForticlient
 	err := ctx.RegisterResource("fortios:index/endpointControlRegisteredForticlient:EndpointControlRegisteredForticlient", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type EndpointControlRegisteredForticlientInput interface {
 }
 
 func (*EndpointControlRegisteredForticlient) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlRegisteredForticlient)(nil))
+	return reflect.TypeOf((**EndpointControlRegisteredForticlient)(nil)).Elem()
 }
 
 func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredForticlientOutput() EndpointControlRegisteredForticlientOutput {
@@ -172,35 +173,6 @@ func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredFortic
 
 func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredForticlientOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientOutput)
-}
-
-func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredForticlientPtrOutput() EndpointControlRegisteredForticlientPtrOutput {
-	return i.ToEndpointControlRegisteredForticlientPtrOutputWithContext(context.Background())
-}
-
-func (i *EndpointControlRegisteredForticlient) ToEndpointControlRegisteredForticlientPtrOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientPtrOutput)
-}
-
-type EndpointControlRegisteredForticlientPtrInput interface {
-	pulumi.Input
-
-	ToEndpointControlRegisteredForticlientPtrOutput() EndpointControlRegisteredForticlientPtrOutput
-	ToEndpointControlRegisteredForticlientPtrOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientPtrOutput
-}
-
-type endpointControlRegisteredForticlientPtrType EndpointControlRegisteredForticlientArgs
-
-func (*endpointControlRegisteredForticlientPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlRegisteredForticlient)(nil))
-}
-
-func (i *endpointControlRegisteredForticlientPtrType) ToEndpointControlRegisteredForticlientPtrOutput() EndpointControlRegisteredForticlientPtrOutput {
-	return i.ToEndpointControlRegisteredForticlientPtrOutputWithContext(context.Background())
-}
-
-func (i *endpointControlRegisteredForticlientPtrType) ToEndpointControlRegisteredForticlientPtrOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientPtrOutput)
 }
 
 // EndpointControlRegisteredForticlientArrayInput is an input type that accepts EndpointControlRegisteredForticlientArray and EndpointControlRegisteredForticlientArrayOutput values.
@@ -217,7 +189,7 @@ type EndpointControlRegisteredForticlientArrayInput interface {
 type EndpointControlRegisteredForticlientArray []EndpointControlRegisteredForticlientInput
 
 func (EndpointControlRegisteredForticlientArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EndpointControlRegisteredForticlient)(nil))
+	return reflect.TypeOf((*[]*EndpointControlRegisteredForticlient)(nil)).Elem()
 }
 
 func (i EndpointControlRegisteredForticlientArray) ToEndpointControlRegisteredForticlientArrayOutput() EndpointControlRegisteredForticlientArrayOutput {
@@ -242,7 +214,7 @@ type EndpointControlRegisteredForticlientMapInput interface {
 type EndpointControlRegisteredForticlientMap map[string]EndpointControlRegisteredForticlientInput
 
 func (EndpointControlRegisteredForticlientMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EndpointControlRegisteredForticlient)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlRegisteredForticlient)(nil)).Elem()
 }
 
 func (i EndpointControlRegisteredForticlientMap) ToEndpointControlRegisteredForticlientMapOutput() EndpointControlRegisteredForticlientMapOutput {
@@ -253,12 +225,10 @@ func (i EndpointControlRegisteredForticlientMap) ToEndpointControlRegisteredFort
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlRegisteredForticlientMapOutput)
 }
 
-type EndpointControlRegisteredForticlientOutput struct {
-	*pulumi.OutputState
-}
+type EndpointControlRegisteredForticlientOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlRegisteredForticlientOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlRegisteredForticlient)(nil))
+	return reflect.TypeOf((**EndpointControlRegisteredForticlient)(nil)).Elem()
 }
 
 func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredForticlientOutput() EndpointControlRegisteredForticlientOutput {
@@ -269,36 +239,10 @@ func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredF
 	return o
 }
 
-func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredForticlientPtrOutput() EndpointControlRegisteredForticlientPtrOutput {
-	return o.ToEndpointControlRegisteredForticlientPtrOutputWithContext(context.Background())
-}
-
-func (o EndpointControlRegisteredForticlientOutput) ToEndpointControlRegisteredForticlientPtrOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientPtrOutput {
-	return o.ApplyT(func(v EndpointControlRegisteredForticlient) *EndpointControlRegisteredForticlient {
-		return &v
-	}).(EndpointControlRegisteredForticlientPtrOutput)
-}
-
-type EndpointControlRegisteredForticlientPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EndpointControlRegisteredForticlientPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlRegisteredForticlient)(nil))
-}
-
-func (o EndpointControlRegisteredForticlientPtrOutput) ToEndpointControlRegisteredForticlientPtrOutput() EndpointControlRegisteredForticlientPtrOutput {
-	return o
-}
-
-func (o EndpointControlRegisteredForticlientPtrOutput) ToEndpointControlRegisteredForticlientPtrOutputWithContext(ctx context.Context) EndpointControlRegisteredForticlientPtrOutput {
-	return o
-}
-
 type EndpointControlRegisteredForticlientArrayOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlRegisteredForticlientArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointControlRegisteredForticlient)(nil))
+	return reflect.TypeOf((*[]*EndpointControlRegisteredForticlient)(nil)).Elem()
 }
 
 func (o EndpointControlRegisteredForticlientArrayOutput) ToEndpointControlRegisteredForticlientArrayOutput() EndpointControlRegisteredForticlientArrayOutput {
@@ -310,15 +254,15 @@ func (o EndpointControlRegisteredForticlientArrayOutput) ToEndpointControlRegist
 }
 
 func (o EndpointControlRegisteredForticlientArrayOutput) Index(i pulumi.IntInput) EndpointControlRegisteredForticlientOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointControlRegisteredForticlient {
-		return vs[0].([]EndpointControlRegisteredForticlient)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlRegisteredForticlient {
+		return vs[0].([]*EndpointControlRegisteredForticlient)[vs[1].(int)]
 	}).(EndpointControlRegisteredForticlientOutput)
 }
 
 type EndpointControlRegisteredForticlientMapOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlRegisteredForticlientMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EndpointControlRegisteredForticlient)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlRegisteredForticlient)(nil)).Elem()
 }
 
 func (o EndpointControlRegisteredForticlientMapOutput) ToEndpointControlRegisteredForticlientMapOutput() EndpointControlRegisteredForticlientMapOutput {
@@ -330,14 +274,16 @@ func (o EndpointControlRegisteredForticlientMapOutput) ToEndpointControlRegister
 }
 
 func (o EndpointControlRegisteredForticlientMapOutput) MapIndex(k pulumi.StringInput) EndpointControlRegisteredForticlientOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EndpointControlRegisteredForticlient {
-		return vs[0].(map[string]EndpointControlRegisteredForticlient)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EndpointControlRegisteredForticlient {
+		return vs[0].(map[string]*EndpointControlRegisteredForticlient)[vs[1].(string)]
 	}).(EndpointControlRegisteredForticlientOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlRegisteredForticlientInput)(nil)).Elem(), &EndpointControlRegisteredForticlient{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlRegisteredForticlientArrayInput)(nil)).Elem(), EndpointControlRegisteredForticlientArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlRegisteredForticlientMapInput)(nil)).Elem(), EndpointControlRegisteredForticlientMap{})
 	pulumi.RegisterOutputType(EndpointControlRegisteredForticlientOutput{})
-	pulumi.RegisterOutputType(EndpointControlRegisteredForticlientPtrOutput{})
 	pulumi.RegisterOutputType(EndpointControlRegisteredForticlientArrayOutput{})
 	pulumi.RegisterOutputType(EndpointControlRegisteredForticlientMapOutput{})
 }

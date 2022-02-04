@@ -15,7 +15,10 @@ __all__ = ['IcapProfileArgs', 'IcapProfile']
 @pulumi.input_type
 class IcapProfileArgs:
     def __init__(__self__, *,
+                 chunk_encap: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 extension_feature: Optional[pulumi.Input[str]] = None,
+                 icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input['IcapProfileIcapHeaderArgs']]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -33,11 +36,15 @@ class IcapProfileArgs:
                  response_path: Optional[pulumi.Input[str]] = None,
                  response_req_hdr: Optional[pulumi.Input[str]] = None,
                  response_server: Optional[pulumi.Input[str]] = None,
+                 scan_progress_interval: Optional[pulumi.Input[int]] = None,
                  streaming_content_bypass: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a IcapProfile resource.
+        :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['IcapProfileIcapHeaderArgs']]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
         :param pulumi.Input[str] name: Address name.
@@ -55,11 +62,18 @@ class IcapProfileArgs:
         :param pulumi.Input[str] response_path: Path component of the ICAP URI that identifies the HTTP response processing service.
         :param pulumi.Input[str] response_req_hdr: Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] response_server: ICAP server to use for an HTTP response.
+        :param pulumi.Input[int] scan_progress_interval: Scan progress interval value.
         :param pulumi.Input[str] streaming_content_bypass: Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if chunk_encap is not None:
+            pulumi.set(__self__, "chunk_encap", chunk_encap)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if extension_feature is not None:
+            pulumi.set(__self__, "extension_feature", extension_feature)
+        if icap_block_log is not None:
+            pulumi.set(__self__, "icap_block_log", icap_block_log)
         if icap_headers is not None:
             pulumi.set(__self__, "icap_headers", icap_headers)
         if methods is not None:
@@ -94,10 +108,24 @@ class IcapProfileArgs:
             pulumi.set(__self__, "response_req_hdr", response_req_hdr)
         if response_server is not None:
             pulumi.set(__self__, "response_server", response_server)
+        if scan_progress_interval is not None:
+            pulumi.set(__self__, "scan_progress_interval", scan_progress_interval)
         if streaming_content_bypass is not None:
             pulumi.set(__self__, "streaming_content_bypass", streaming_content_bypass)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="chunkEncap")
+    def chunk_encap(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "chunk_encap")
+
+    @chunk_encap.setter
+    def chunk_encap(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chunk_encap", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -110,6 +138,30 @@ class IcapProfileArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="extensionFeature")
+    def extension_feature(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        """
+        return pulumi.get(self, "extension_feature")
+
+    @extension_feature.setter
+    def extension_feature(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extension_feature", value)
+
+    @property
+    @pulumi.getter(name="icapBlockLog")
+    def icap_block_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "icap_block_log")
+
+    @icap_block_log.setter
+    def icap_block_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icap_block_log", value)
 
     @property
     @pulumi.getter(name="icapHeaders")
@@ -314,6 +366,18 @@ class IcapProfileArgs:
     @response_server.setter
     def response_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_server", value)
+
+    @property
+    @pulumi.getter(name="scanProgressInterval")
+    def scan_progress_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan progress interval value.
+        """
+        return pulumi.get(self, "scan_progress_interval")
+
+    @scan_progress_interval.setter
+    def scan_progress_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_progress_interval", value)
 
     @property
     @pulumi.getter(name="streamingContentBypass")
@@ -343,7 +407,10 @@ class IcapProfileArgs:
 @pulumi.input_type
 class _IcapProfileState:
     def __init__(__self__, *,
+                 chunk_encap: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 extension_feature: Optional[pulumi.Input[str]] = None,
+                 icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input['IcapProfileIcapHeaderArgs']]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -361,11 +428,15 @@ class _IcapProfileState:
                  response_path: Optional[pulumi.Input[str]] = None,
                  response_req_hdr: Optional[pulumi.Input[str]] = None,
                  response_server: Optional[pulumi.Input[str]] = None,
+                 scan_progress_interval: Optional[pulumi.Input[int]] = None,
                  streaming_content_bypass: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering IcapProfile resources.
+        :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['IcapProfileIcapHeaderArgs']]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
         :param pulumi.Input[str] name: Address name.
@@ -383,11 +454,18 @@ class _IcapProfileState:
         :param pulumi.Input[str] response_path: Path component of the ICAP URI that identifies the HTTP response processing service.
         :param pulumi.Input[str] response_req_hdr: Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] response_server: ICAP server to use for an HTTP response.
+        :param pulumi.Input[int] scan_progress_interval: Scan progress interval value.
         :param pulumi.Input[str] streaming_content_bypass: Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if chunk_encap is not None:
+            pulumi.set(__self__, "chunk_encap", chunk_encap)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if extension_feature is not None:
+            pulumi.set(__self__, "extension_feature", extension_feature)
+        if icap_block_log is not None:
+            pulumi.set(__self__, "icap_block_log", icap_block_log)
         if icap_headers is not None:
             pulumi.set(__self__, "icap_headers", icap_headers)
         if methods is not None:
@@ -422,10 +500,24 @@ class _IcapProfileState:
             pulumi.set(__self__, "response_req_hdr", response_req_hdr)
         if response_server is not None:
             pulumi.set(__self__, "response_server", response_server)
+        if scan_progress_interval is not None:
+            pulumi.set(__self__, "scan_progress_interval", scan_progress_interval)
         if streaming_content_bypass is not None:
             pulumi.set(__self__, "streaming_content_bypass", streaming_content_bypass)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="chunkEncap")
+    def chunk_encap(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "chunk_encap")
+
+    @chunk_encap.setter
+    def chunk_encap(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "chunk_encap", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -438,6 +530,30 @@ class _IcapProfileState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="extensionFeature")
+    def extension_feature(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        """
+        return pulumi.get(self, "extension_feature")
+
+    @extension_feature.setter
+    def extension_feature(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "extension_feature", value)
+
+    @property
+    @pulumi.getter(name="icapBlockLog")
+    def icap_block_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "icap_block_log")
+
+    @icap_block_log.setter
+    def icap_block_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "icap_block_log", value)
 
     @property
     @pulumi.getter(name="icapHeaders")
@@ -642,6 +758,18 @@ class _IcapProfileState:
     @response_server.setter
     def response_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "response_server", value)
+
+    @property
+    @pulumi.getter(name="scanProgressInterval")
+    def scan_progress_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Scan progress interval value.
+        """
+        return pulumi.get(self, "scan_progress_interval")
+
+    @scan_progress_interval.setter
+    def scan_progress_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "scan_progress_interval", value)
 
     @property
     @pulumi.getter(name="streamingContentBypass")
@@ -673,7 +801,10 @@ class IcapProfile(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 chunk_encap: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 extension_feature: Optional[pulumi.Input[str]] = None,
+                 icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -691,6 +822,7 @@ class IcapProfile(pulumi.CustomResource):
                  response_path: Optional[pulumi.Input[str]] = None,
                  response_req_hdr: Optional[pulumi.Input[str]] = None,
                  response_server: Optional[pulumi.Input[str]] = None,
+                 scan_progress_interval: Optional[pulumi.Input[int]] = None,
                  streaming_content_bypass: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -730,7 +862,10 @@ class IcapProfile(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
         :param pulumi.Input[str] name: Address name.
@@ -748,6 +883,7 @@ class IcapProfile(pulumi.CustomResource):
         :param pulumi.Input[str] response_path: Path component of the ICAP URI that identifies the HTTP response processing service.
         :param pulumi.Input[str] response_req_hdr: Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] response_server: ICAP server to use for an HTTP response.
+        :param pulumi.Input[int] scan_progress_interval: Scan progress interval value.
         :param pulumi.Input[str] streaming_content_bypass: Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -806,7 +942,10 @@ class IcapProfile(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 chunk_encap: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 extension_feature: Optional[pulumi.Input[str]] = None,
+                 icap_block_log: Optional[pulumi.Input[str]] = None,
                  icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]]] = None,
                  methods: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -824,6 +963,7 @@ class IcapProfile(pulumi.CustomResource):
                  response_path: Optional[pulumi.Input[str]] = None,
                  response_req_hdr: Optional[pulumi.Input[str]] = None,
                  response_server: Optional[pulumi.Input[str]] = None,
+                 scan_progress_interval: Optional[pulumi.Input[int]] = None,
                  streaming_content_bypass: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -833,12 +973,17 @@ class IcapProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IcapProfileArgs.__new__(IcapProfileArgs)
 
+            __props__.__dict__["chunk_encap"] = chunk_encap
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["extension_feature"] = extension_feature
+            __props__.__dict__["icap_block_log"] = icap_block_log
             __props__.__dict__["icap_headers"] = icap_headers
             __props__.__dict__["methods"] = methods
             __props__.__dict__["name"] = name
@@ -856,6 +1001,7 @@ class IcapProfile(pulumi.CustomResource):
             __props__.__dict__["response_path"] = response_path
             __props__.__dict__["response_req_hdr"] = response_req_hdr
             __props__.__dict__["response_server"] = response_server
+            __props__.__dict__["scan_progress_interval"] = scan_progress_interval
             __props__.__dict__["streaming_content_bypass"] = streaming_content_bypass
             __props__.__dict__["vdomparam"] = vdomparam
         super(IcapProfile, __self__).__init__(
@@ -868,7 +1014,10 @@ class IcapProfile(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            chunk_encap: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            extension_feature: Optional[pulumi.Input[str]] = None,
+            icap_block_log: Optional[pulumi.Input[str]] = None,
             icap_headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]]] = None,
             methods: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -886,6 +1035,7 @@ class IcapProfile(pulumi.CustomResource):
             response_path: Optional[pulumi.Input[str]] = None,
             response_req_hdr: Optional[pulumi.Input[str]] = None,
             response_server: Optional[pulumi.Input[str]] = None,
+            scan_progress_interval: Optional[pulumi.Input[int]] = None,
             streaming_content_bypass: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'IcapProfile':
         """
@@ -895,7 +1045,10 @@ class IcapProfile(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] chunk_encap: Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] extension_feature: Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        :param pulumi.Input[str] icap_block_log: Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IcapProfileIcapHeaderArgs']]]] icap_headers: Configure ICAP forwarded request headers. The structure of `icap_headers` block is documented below.
         :param pulumi.Input[str] methods: The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
         :param pulumi.Input[str] name: Address name.
@@ -913,6 +1066,7 @@ class IcapProfile(pulumi.CustomResource):
         :param pulumi.Input[str] response_path: Path component of the ICAP URI that identifies the HTTP response processing service.
         :param pulumi.Input[str] response_req_hdr: Enable/disable addition of req-hdr for ICAP response modification (respmod) processing. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] response_server: ICAP server to use for an HTTP response.
+        :param pulumi.Input[int] scan_progress_interval: Scan progress interval value.
         :param pulumi.Input[str] streaming_content_bypass: Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -920,7 +1074,10 @@ class IcapProfile(pulumi.CustomResource):
 
         __props__ = _IcapProfileState.__new__(_IcapProfileState)
 
+        __props__.__dict__["chunk_encap"] = chunk_encap
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["extension_feature"] = extension_feature
+        __props__.__dict__["icap_block_log"] = icap_block_log
         __props__.__dict__["icap_headers"] = icap_headers
         __props__.__dict__["methods"] = methods
         __props__.__dict__["name"] = name
@@ -938,9 +1095,18 @@ class IcapProfile(pulumi.CustomResource):
         __props__.__dict__["response_path"] = response_path
         __props__.__dict__["response_req_hdr"] = response_req_hdr
         __props__.__dict__["response_server"] = response_server
+        __props__.__dict__["scan_progress_interval"] = scan_progress_interval
         __props__.__dict__["streaming_content_bypass"] = streaming_content_bypass
         __props__.__dict__["vdomparam"] = vdomparam
         return IcapProfile(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="chunkEncap")
+    def chunk_encap(self) -> pulumi.Output[str]:
+        """
+        Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "chunk_encap")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -949,6 +1115,22 @@ class IcapProfile(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="extensionFeature")
+    def extension_feature(self) -> pulumi.Output[str]:
+        """
+        Enable/disable ICAP extension features. Valid values: `scan-progress`.
+        """
+        return pulumi.get(self, "extension_feature")
+
+    @property
+    @pulumi.getter(name="icapBlockLog")
+    def icap_block_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "icap_block_log")
 
     @property
     @pulumi.getter(name="icapHeaders")
@@ -1085,6 +1267,14 @@ class IcapProfile(pulumi.CustomResource):
         ICAP server to use for an HTTP response.
         """
         return pulumi.get(self, "response_server")
+
+    @property
+    @pulumi.getter(name="scanProgressInterval")
+    def scan_progress_interval(self) -> pulumi.Output[int]:
+        """
+        Scan progress interval value.
+        """
+        return pulumi.get(self, "scan_progress_interval")
 
     @property
     @pulumi.getter(name="streamingContentBypass")

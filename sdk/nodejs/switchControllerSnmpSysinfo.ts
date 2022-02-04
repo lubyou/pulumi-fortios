@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch SNMP system information globally.
+ * Configure FortiSwitch SNMP system information globally. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -79,29 +79,27 @@ export class SwitchControllerSnmpSysinfo extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSnmpSysinfoArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSnmpSysinfoArgs | SwitchControllerSnmpSysinfoState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSnmpSysinfoState | undefined;
-            inputs["contactInfo"] = state ? state.contactInfo : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["engineId"] = state ? state.engineId : undefined;
-            inputs["location"] = state ? state.location : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["contactInfo"] = state ? state.contactInfo : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["engineId"] = state ? state.engineId : undefined;
+            resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSnmpSysinfoArgs | undefined;
-            inputs["contactInfo"] = args ? args.contactInfo : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["engineId"] = args ? args.engineId : undefined;
-            inputs["location"] = args ? args.location : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["contactInfo"] = args ? args.contactInfo : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["engineId"] = args ? args.engineId : undefined;
+            resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSnmpSysinfo.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSnmpSysinfo.__pulumiType, name, resourceInputs, opts);
     }
 }
 

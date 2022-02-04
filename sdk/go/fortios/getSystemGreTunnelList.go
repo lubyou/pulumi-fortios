@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemGreTunnel`.
 func GetSystemGreTunnelList(ctx *pulumi.Context, args *GetSystemGreTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemGreTunnelListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemGreTunnelListResult
 	err := ctx.Invoke("fortios:index/getSystemGreTunnelList:GetSystemGreTunnelList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemGreTunnelListResult struct {
 	// A list of the `SystemGreTunnel`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemGreTunnelListOutput(ctx *pulumi.Context, args GetSystemGreTunnelListOutputArgs, opts ...pulumi.InvokeOption) GetSystemGreTunnelListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemGreTunnelListResult, error) {
+			args := v.(GetSystemGreTunnelListArgs)
+			r, err := GetSystemGreTunnelList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemGreTunnelListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemGreTunnelList.
+type GetSystemGreTunnelListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemGreTunnelListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemGreTunnelListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemGreTunnelList.
+type GetSystemGreTunnelListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemGreTunnelListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemGreTunnelListResult)(nil)).Elem()
+}
+
+func (o GetSystemGreTunnelListResultOutput) ToGetSystemGreTunnelListResultOutput() GetSystemGreTunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemGreTunnelListResultOutput) ToGetSystemGreTunnelListResultOutputWithContext(ctx context.Context) GetSystemGreTunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemGreTunnelListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemGreTunnelListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemGreTunnelListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemGreTunnelListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemGreTunnel`.
+func (o GetSystemGreTunnelListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemGreTunnelListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemGreTunnelListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemGreTunnelListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemGreTunnelListResultOutput{})
 }

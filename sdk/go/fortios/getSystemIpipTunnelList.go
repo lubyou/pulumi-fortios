@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemIpipTunnel`.
 func GetSystemIpipTunnelList(ctx *pulumi.Context, args *GetSystemIpipTunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemIpipTunnelListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemIpipTunnelListResult
 	err := ctx.Invoke("fortios:index/getSystemIpipTunnelList:GetSystemIpipTunnelList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemIpipTunnelListResult struct {
 	// A list of the `SystemIpipTunnel`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemIpipTunnelListOutput(ctx *pulumi.Context, args GetSystemIpipTunnelListOutputArgs, opts ...pulumi.InvokeOption) GetSystemIpipTunnelListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemIpipTunnelListResult, error) {
+			args := v.(GetSystemIpipTunnelListArgs)
+			r, err := GetSystemIpipTunnelList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemIpipTunnelListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemIpipTunnelList.
+type GetSystemIpipTunnelListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemIpipTunnelListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemIpipTunnelListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemIpipTunnelList.
+type GetSystemIpipTunnelListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemIpipTunnelListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemIpipTunnelListResult)(nil)).Elem()
+}
+
+func (o GetSystemIpipTunnelListResultOutput) ToGetSystemIpipTunnelListResultOutput() GetSystemIpipTunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemIpipTunnelListResultOutput) ToGetSystemIpipTunnelListResultOutputWithContext(ctx context.Context) GetSystemIpipTunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemIpipTunnelListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemIpipTunnelListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemIpipTunnelListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemIpipTunnelListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemIpipTunnel`.
+func (o GetSystemIpipTunnelListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemIpipTunnelListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemIpipTunnelListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemIpipTunnelListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemIpipTunnelListResultOutput{})
 }

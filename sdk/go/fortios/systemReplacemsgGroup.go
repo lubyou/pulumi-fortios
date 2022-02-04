@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -109,6 +109,7 @@ func NewSystemReplacemsgGroup(ctx *pulumi.Context,
 	if args.GroupType == nil {
 		return nil, errors.New("invalid value for required argument 'GroupType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgGroup
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgGroup:SystemReplacemsgGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -351,7 +352,7 @@ type SystemReplacemsgGroupInput interface {
 }
 
 func (*SystemReplacemsgGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgGroup)(nil))
+	return reflect.TypeOf((**SystemReplacemsgGroup)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupOutput() SystemReplacemsgGroupOutput {
@@ -360,35 +361,6 @@ func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupOutput() SystemReplacemsg
 
 func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupOutputWithContext(ctx context.Context) SystemReplacemsgGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupOutput)
-}
-
-func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupPtrOutput() SystemReplacemsgGroupPtrOutput {
-	return i.ToSystemReplacemsgGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgGroup) ToSystemReplacemsgGroupPtrOutputWithContext(ctx context.Context) SystemReplacemsgGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupPtrOutput)
-}
-
-type SystemReplacemsgGroupPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgGroupPtrOutput() SystemReplacemsgGroupPtrOutput
-	ToSystemReplacemsgGroupPtrOutputWithContext(ctx context.Context) SystemReplacemsgGroupPtrOutput
-}
-
-type systemReplacemsgGroupPtrType SystemReplacemsgGroupArgs
-
-func (*systemReplacemsgGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgGroup)(nil))
-}
-
-func (i *systemReplacemsgGroupPtrType) ToSystemReplacemsgGroupPtrOutput() SystemReplacemsgGroupPtrOutput {
-	return i.ToSystemReplacemsgGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgGroupPtrType) ToSystemReplacemsgGroupPtrOutputWithContext(ctx context.Context) SystemReplacemsgGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupPtrOutput)
 }
 
 // SystemReplacemsgGroupArrayInput is an input type that accepts SystemReplacemsgGroupArray and SystemReplacemsgGroupArrayOutput values.
@@ -405,7 +377,7 @@ type SystemReplacemsgGroupArrayInput interface {
 type SystemReplacemsgGroupArray []SystemReplacemsgGroupInput
 
 func (SystemReplacemsgGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgGroup)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgGroup)(nil)).Elem()
 }
 
 func (i SystemReplacemsgGroupArray) ToSystemReplacemsgGroupArrayOutput() SystemReplacemsgGroupArrayOutput {
@@ -430,7 +402,7 @@ type SystemReplacemsgGroupMapInput interface {
 type SystemReplacemsgGroupMap map[string]SystemReplacemsgGroupInput
 
 func (SystemReplacemsgGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgGroup)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgGroup)(nil)).Elem()
 }
 
 func (i SystemReplacemsgGroupMap) ToSystemReplacemsgGroupMapOutput() SystemReplacemsgGroupMapOutput {
@@ -441,12 +413,10 @@ func (i SystemReplacemsgGroupMap) ToSystemReplacemsgGroupMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgGroupMapOutput)
 }
 
-type SystemReplacemsgGroupOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgGroupOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgGroup)(nil))
+	return reflect.TypeOf((**SystemReplacemsgGroup)(nil)).Elem()
 }
 
 func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupOutput() SystemReplacemsgGroupOutput {
@@ -457,36 +427,10 @@ func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupOutputWithContext(ct
 	return o
 }
 
-func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupPtrOutput() SystemReplacemsgGroupPtrOutput {
-	return o.ToSystemReplacemsgGroupPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgGroupOutput) ToSystemReplacemsgGroupPtrOutputWithContext(ctx context.Context) SystemReplacemsgGroupPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgGroup) *SystemReplacemsgGroup {
-		return &v
-	}).(SystemReplacemsgGroupPtrOutput)
-}
-
-type SystemReplacemsgGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgGroup)(nil))
-}
-
-func (o SystemReplacemsgGroupPtrOutput) ToSystemReplacemsgGroupPtrOutput() SystemReplacemsgGroupPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgGroupPtrOutput) ToSystemReplacemsgGroupPtrOutputWithContext(ctx context.Context) SystemReplacemsgGroupPtrOutput {
-	return o
-}
-
 type SystemReplacemsgGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgGroup)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgGroup)(nil)).Elem()
 }
 
 func (o SystemReplacemsgGroupArrayOutput) ToSystemReplacemsgGroupArrayOutput() SystemReplacemsgGroupArrayOutput {
@@ -498,15 +442,15 @@ func (o SystemReplacemsgGroupArrayOutput) ToSystemReplacemsgGroupArrayOutputWith
 }
 
 func (o SystemReplacemsgGroupArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgGroup {
-		return vs[0].([]SystemReplacemsgGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgGroup {
+		return vs[0].([]*SystemReplacemsgGroup)[vs[1].(int)]
 	}).(SystemReplacemsgGroupOutput)
 }
 
 type SystemReplacemsgGroupMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgGroup)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgGroup)(nil)).Elem()
 }
 
 func (o SystemReplacemsgGroupMapOutput) ToSystemReplacemsgGroupMapOutput() SystemReplacemsgGroupMapOutput {
@@ -518,14 +462,16 @@ func (o SystemReplacemsgGroupMapOutput) ToSystemReplacemsgGroupMapOutputWithCont
 }
 
 func (o SystemReplacemsgGroupMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgGroup {
-		return vs[0].(map[string]SystemReplacemsgGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgGroup {
+		return vs[0].(map[string]*SystemReplacemsgGroup)[vs[1].(string)]
 	}).(SystemReplacemsgGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgGroupInput)(nil)).Elem(), &SystemReplacemsgGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgGroupArrayInput)(nil)).Elem(), SystemReplacemsgGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgGroupMapInput)(nil)).Elem(), SystemReplacemsgGroupMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgGroupOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgGroupPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgGroupArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgGroupMapOutput{})
 }

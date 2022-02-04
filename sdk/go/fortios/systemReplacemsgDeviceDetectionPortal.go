@@ -47,6 +47,7 @@ func NewSystemReplacemsgDeviceDetectionPortal(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgDeviceDetectionPortal
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgDeviceDetectionPortal:SystemReplacemsgDeviceDetectionPortal", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgDeviceDetectionPortalInput interface {
 }
 
 func (*SystemReplacemsgDeviceDetectionPortal) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgDeviceDetectionPortal)(nil))
+	return reflect.TypeOf((**SystemReplacemsgDeviceDetectionPortal)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectionPortalOutput() SystemReplacemsgDeviceDetectionPortalOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectio
 
 func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectionPortalOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalOutput)
-}
-
-func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectionPortalPtrOutput() SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return i.ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgDeviceDetectionPortal) ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalPtrOutput)
-}
-
-type SystemReplacemsgDeviceDetectionPortalPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgDeviceDetectionPortalPtrOutput() SystemReplacemsgDeviceDetectionPortalPtrOutput
-	ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalPtrOutput
-}
-
-type systemReplacemsgDeviceDetectionPortalPtrType SystemReplacemsgDeviceDetectionPortalArgs
-
-func (*systemReplacemsgDeviceDetectionPortalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgDeviceDetectionPortal)(nil))
-}
-
-func (i *systemReplacemsgDeviceDetectionPortalPtrType) ToSystemReplacemsgDeviceDetectionPortalPtrOutput() SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return i.ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgDeviceDetectionPortalPtrType) ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalPtrOutput)
 }
 
 // SystemReplacemsgDeviceDetectionPortalArrayInput is an input type that accepts SystemReplacemsgDeviceDetectionPortalArray and SystemReplacemsgDeviceDetectionPortalArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgDeviceDetectionPortalArrayInput interface {
 type SystemReplacemsgDeviceDetectionPortalArray []SystemReplacemsgDeviceDetectionPortalInput
 
 func (SystemReplacemsgDeviceDetectionPortalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgDeviceDetectionPortal)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgDeviceDetectionPortal)(nil)).Elem()
 }
 
 func (i SystemReplacemsgDeviceDetectionPortalArray) ToSystemReplacemsgDeviceDetectionPortalArrayOutput() SystemReplacemsgDeviceDetectionPortalArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgDeviceDetectionPortalMapInput interface {
 type SystemReplacemsgDeviceDetectionPortalMap map[string]SystemReplacemsgDeviceDetectionPortalInput
 
 func (SystemReplacemsgDeviceDetectionPortalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgDeviceDetectionPortal)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgDeviceDetectionPortal)(nil)).Elem()
 }
 
 func (i SystemReplacemsgDeviceDetectionPortalMap) ToSystemReplacemsgDeviceDetectionPortalMapOutput() SystemReplacemsgDeviceDetectionPortalMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgDeviceDetectionPortalMap) ToSystemReplacemsgDeviceDetect
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgDeviceDetectionPortalMapOutput)
 }
 
-type SystemReplacemsgDeviceDetectionPortalOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgDeviceDetectionPortalOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgDeviceDetectionPortalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgDeviceDetectionPortal)(nil))
+	return reflect.TypeOf((**SystemReplacemsgDeviceDetectionPortal)(nil)).Elem()
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDetectionPortalOutput() SystemReplacemsgDeviceDetectionPortalOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDet
 	return o
 }
 
-func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDetectionPortalPtrOutput() SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return o.ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgDeviceDetectionPortalOutput) ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgDeviceDetectionPortal) *SystemReplacemsgDeviceDetectionPortal {
-		return &v
-	}).(SystemReplacemsgDeviceDetectionPortalPtrOutput)
-}
-
-type SystemReplacemsgDeviceDetectionPortalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgDeviceDetectionPortalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgDeviceDetectionPortal)(nil))
-}
-
-func (o SystemReplacemsgDeviceDetectionPortalPtrOutput) ToSystemReplacemsgDeviceDetectionPortalPtrOutput() SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgDeviceDetectionPortalPtrOutput) ToSystemReplacemsgDeviceDetectionPortalPtrOutputWithContext(ctx context.Context) SystemReplacemsgDeviceDetectionPortalPtrOutput {
-	return o
-}
-
 type SystemReplacemsgDeviceDetectionPortalArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgDeviceDetectionPortalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgDeviceDetectionPortal)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgDeviceDetectionPortal)(nil)).Elem()
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalArrayOutput) ToSystemReplacemsgDeviceDetectionPortalArrayOutput() SystemReplacemsgDeviceDetectionPortalArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgDeviceDetectionPortalArrayOutput) ToSystemReplacemsgDevi
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgDeviceDetectionPortalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgDeviceDetectionPortal {
-		return vs[0].([]SystemReplacemsgDeviceDetectionPortal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgDeviceDetectionPortal {
+		return vs[0].([]*SystemReplacemsgDeviceDetectionPortal)[vs[1].(int)]
 	}).(SystemReplacemsgDeviceDetectionPortalOutput)
 }
 
 type SystemReplacemsgDeviceDetectionPortalMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgDeviceDetectionPortalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgDeviceDetectionPortal)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgDeviceDetectionPortal)(nil)).Elem()
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalMapOutput) ToSystemReplacemsgDeviceDetectionPortalMapOutput() SystemReplacemsgDeviceDetectionPortalMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgDeviceDetectionPortalMapOutput) ToSystemReplacemsgDevice
 }
 
 func (o SystemReplacemsgDeviceDetectionPortalMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgDeviceDetectionPortalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgDeviceDetectionPortal {
-		return vs[0].(map[string]SystemReplacemsgDeviceDetectionPortal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgDeviceDetectionPortal {
+		return vs[0].(map[string]*SystemReplacemsgDeviceDetectionPortal)[vs[1].(string)]
 	}).(SystemReplacemsgDeviceDetectionPortalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgDeviceDetectionPortalInput)(nil)).Elem(), &SystemReplacemsgDeviceDetectionPortal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgDeviceDetectionPortalArrayInput)(nil)).Elem(), SystemReplacemsgDeviceDetectionPortalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgDeviceDetectionPortalMapInput)(nil)).Elem(), SystemReplacemsgDeviceDetectionPortalMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgDeviceDetectionPortalOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgDeviceDetectionPortalPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgDeviceDetectionPortalArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgDeviceDetectionPortalMapOutput{})
 }

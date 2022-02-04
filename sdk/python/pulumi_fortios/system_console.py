@@ -14,6 +14,7 @@ __all__ = ['SystemConsoleArgs', 'SystemConsole']
 class SystemConsoleArgs:
     def __init__(__self__, *,
                  baudrate: Optional[pulumi.Input[str]] = None,
+                 fortiexplorer: Optional[pulumi.Input[str]] = None,
                  login: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  output: Optional[pulumi.Input[str]] = None,
@@ -21,6 +22,7 @@ class SystemConsoleArgs:
         """
         The set of arguments for constructing a SystemConsole resource.
         :param pulumi.Input[str] baudrate: Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
+        :param pulumi.Input[str] fortiexplorer: Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login: Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: Console mode. Valid values: `batch`, `line`.
         :param pulumi.Input[str] output: Console output mode. Valid values: `standard`, `more`.
@@ -28,6 +30,8 @@ class SystemConsoleArgs:
         """
         if baudrate is not None:
             pulumi.set(__self__, "baudrate", baudrate)
+        if fortiexplorer is not None:
+            pulumi.set(__self__, "fortiexplorer", fortiexplorer)
         if login is not None:
             pulumi.set(__self__, "login", login)
         if mode is not None:
@@ -48,6 +52,18 @@ class SystemConsoleArgs:
     @baudrate.setter
     def baudrate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "baudrate", value)
+
+    @property
+    @pulumi.getter
+    def fortiexplorer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fortiexplorer")
+
+    @fortiexplorer.setter
+    def fortiexplorer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiexplorer", value)
 
     @property
     @pulumi.getter
@@ -102,6 +118,7 @@ class SystemConsoleArgs:
 class _SystemConsoleState:
     def __init__(__self__, *,
                  baudrate: Optional[pulumi.Input[str]] = None,
+                 fortiexplorer: Optional[pulumi.Input[str]] = None,
                  login: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  output: Optional[pulumi.Input[str]] = None,
@@ -109,6 +126,7 @@ class _SystemConsoleState:
         """
         Input properties used for looking up and filtering SystemConsole resources.
         :param pulumi.Input[str] baudrate: Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
+        :param pulumi.Input[str] fortiexplorer: Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login: Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: Console mode. Valid values: `batch`, `line`.
         :param pulumi.Input[str] output: Console output mode. Valid values: `standard`, `more`.
@@ -116,6 +134,8 @@ class _SystemConsoleState:
         """
         if baudrate is not None:
             pulumi.set(__self__, "baudrate", baudrate)
+        if fortiexplorer is not None:
+            pulumi.set(__self__, "fortiexplorer", fortiexplorer)
         if login is not None:
             pulumi.set(__self__, "login", login)
         if mode is not None:
@@ -136,6 +156,18 @@ class _SystemConsoleState:
     @baudrate.setter
     def baudrate(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "baudrate", value)
+
+    @property
+    @pulumi.getter
+    def fortiexplorer(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fortiexplorer")
+
+    @fortiexplorer.setter
+    def fortiexplorer(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiexplorer", value)
 
     @property
     @pulumi.getter
@@ -192,6 +224,7 @@ class SystemConsole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  baudrate: Optional[pulumi.Input[str]] = None,
+                 fortiexplorer: Optional[pulumi.Input[str]] = None,
                  login: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  output: Optional[pulumi.Input[str]] = None,
@@ -226,6 +259,7 @@ class SystemConsole(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] baudrate: Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
+        :param pulumi.Input[str] fortiexplorer: Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login: Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: Console mode. Valid values: `batch`, `line`.
         :param pulumi.Input[str] output: Console output mode. Valid values: `standard`, `more`.
@@ -279,6 +313,7 @@ class SystemConsole(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  baudrate: Optional[pulumi.Input[str]] = None,
+                 fortiexplorer: Optional[pulumi.Input[str]] = None,
                  login: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  output: Optional[pulumi.Input[str]] = None,
@@ -290,12 +325,15 @@ class SystemConsole(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemConsoleArgs.__new__(SystemConsoleArgs)
 
             __props__.__dict__["baudrate"] = baudrate
+            __props__.__dict__["fortiexplorer"] = fortiexplorer
             __props__.__dict__["login"] = login
             __props__.__dict__["mode"] = mode
             __props__.__dict__["output"] = output
@@ -311,6 +349,7 @@ class SystemConsole(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             baudrate: Optional[pulumi.Input[str]] = None,
+            fortiexplorer: Optional[pulumi.Input[str]] = None,
             login: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             output: Optional[pulumi.Input[str]] = None,
@@ -323,6 +362,7 @@ class SystemConsole(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] baudrate: Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
+        :param pulumi.Input[str] fortiexplorer: Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] login: Enable/disable serial console and FortiExplorer. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: Console mode. Valid values: `batch`, `line`.
         :param pulumi.Input[str] output: Console output mode. Valid values: `standard`, `more`.
@@ -333,6 +373,7 @@ class SystemConsole(pulumi.CustomResource):
         __props__ = _SystemConsoleState.__new__(_SystemConsoleState)
 
         __props__.__dict__["baudrate"] = baudrate
+        __props__.__dict__["fortiexplorer"] = fortiexplorer
         __props__.__dict__["login"] = login
         __props__.__dict__["mode"] = mode
         __props__.__dict__["output"] = output
@@ -346,6 +387,14 @@ class SystemConsole(pulumi.CustomResource):
         Console baud rate. Valid values: `9600`, `19200`, `38400`, `57600`, `115200`.
         """
         return pulumi.get(self, "baudrate")
+
+    @property
+    @pulumi.getter
+    def fortiexplorer(self) -> pulumi.Output[str]:
+        """
+        Enable/disable access for FortiExplorer. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fortiexplorer")
 
     @property
     @pulumi.getter

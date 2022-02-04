@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -76,6 +76,7 @@ func NewWanoptAuthGroup(ctx *pulumi.Context,
 	if args.Cert == nil {
 		return nil, errors.New("invalid value for required argument 'Cert'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptAuthGroup
 	err := ctx.RegisterResource("fortios:index/wanoptAuthGroup:WanoptAuthGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -182,7 +183,7 @@ type WanoptAuthGroupInput interface {
 }
 
 func (*WanoptAuthGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptAuthGroup)(nil))
+	return reflect.TypeOf((**WanoptAuthGroup)(nil)).Elem()
 }
 
 func (i *WanoptAuthGroup) ToWanoptAuthGroupOutput() WanoptAuthGroupOutput {
@@ -191,35 +192,6 @@ func (i *WanoptAuthGroup) ToWanoptAuthGroupOutput() WanoptAuthGroupOutput {
 
 func (i *WanoptAuthGroup) ToWanoptAuthGroupOutputWithContext(ctx context.Context) WanoptAuthGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptAuthGroupOutput)
-}
-
-func (i *WanoptAuthGroup) ToWanoptAuthGroupPtrOutput() WanoptAuthGroupPtrOutput {
-	return i.ToWanoptAuthGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptAuthGroup) ToWanoptAuthGroupPtrOutputWithContext(ctx context.Context) WanoptAuthGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptAuthGroupPtrOutput)
-}
-
-type WanoptAuthGroupPtrInput interface {
-	pulumi.Input
-
-	ToWanoptAuthGroupPtrOutput() WanoptAuthGroupPtrOutput
-	ToWanoptAuthGroupPtrOutputWithContext(ctx context.Context) WanoptAuthGroupPtrOutput
-}
-
-type wanoptAuthGroupPtrType WanoptAuthGroupArgs
-
-func (*wanoptAuthGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptAuthGroup)(nil))
-}
-
-func (i *wanoptAuthGroupPtrType) ToWanoptAuthGroupPtrOutput() WanoptAuthGroupPtrOutput {
-	return i.ToWanoptAuthGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptAuthGroupPtrType) ToWanoptAuthGroupPtrOutputWithContext(ctx context.Context) WanoptAuthGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptAuthGroupPtrOutput)
 }
 
 // WanoptAuthGroupArrayInput is an input type that accepts WanoptAuthGroupArray and WanoptAuthGroupArrayOutput values.
@@ -236,7 +208,7 @@ type WanoptAuthGroupArrayInput interface {
 type WanoptAuthGroupArray []WanoptAuthGroupInput
 
 func (WanoptAuthGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptAuthGroup)(nil))
+	return reflect.TypeOf((*[]*WanoptAuthGroup)(nil)).Elem()
 }
 
 func (i WanoptAuthGroupArray) ToWanoptAuthGroupArrayOutput() WanoptAuthGroupArrayOutput {
@@ -261,7 +233,7 @@ type WanoptAuthGroupMapInput interface {
 type WanoptAuthGroupMap map[string]WanoptAuthGroupInput
 
 func (WanoptAuthGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptAuthGroup)(nil))
+	return reflect.TypeOf((*map[string]*WanoptAuthGroup)(nil)).Elem()
 }
 
 func (i WanoptAuthGroupMap) ToWanoptAuthGroupMapOutput() WanoptAuthGroupMapOutput {
@@ -272,12 +244,10 @@ func (i WanoptAuthGroupMap) ToWanoptAuthGroupMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptAuthGroupMapOutput)
 }
 
-type WanoptAuthGroupOutput struct {
-	*pulumi.OutputState
-}
+type WanoptAuthGroupOutput struct{ *pulumi.OutputState }
 
 func (WanoptAuthGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptAuthGroup)(nil))
+	return reflect.TypeOf((**WanoptAuthGroup)(nil)).Elem()
 }
 
 func (o WanoptAuthGroupOutput) ToWanoptAuthGroupOutput() WanoptAuthGroupOutput {
@@ -288,36 +258,10 @@ func (o WanoptAuthGroupOutput) ToWanoptAuthGroupOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o WanoptAuthGroupOutput) ToWanoptAuthGroupPtrOutput() WanoptAuthGroupPtrOutput {
-	return o.ToWanoptAuthGroupPtrOutputWithContext(context.Background())
-}
-
-func (o WanoptAuthGroupOutput) ToWanoptAuthGroupPtrOutputWithContext(ctx context.Context) WanoptAuthGroupPtrOutput {
-	return o.ApplyT(func(v WanoptAuthGroup) *WanoptAuthGroup {
-		return &v
-	}).(WanoptAuthGroupPtrOutput)
-}
-
-type WanoptAuthGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptAuthGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptAuthGroup)(nil))
-}
-
-func (o WanoptAuthGroupPtrOutput) ToWanoptAuthGroupPtrOutput() WanoptAuthGroupPtrOutput {
-	return o
-}
-
-func (o WanoptAuthGroupPtrOutput) ToWanoptAuthGroupPtrOutputWithContext(ctx context.Context) WanoptAuthGroupPtrOutput {
-	return o
-}
-
 type WanoptAuthGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptAuthGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptAuthGroup)(nil))
+	return reflect.TypeOf((*[]*WanoptAuthGroup)(nil)).Elem()
 }
 
 func (o WanoptAuthGroupArrayOutput) ToWanoptAuthGroupArrayOutput() WanoptAuthGroupArrayOutput {
@@ -329,15 +273,15 @@ func (o WanoptAuthGroupArrayOutput) ToWanoptAuthGroupArrayOutputWithContext(ctx 
 }
 
 func (o WanoptAuthGroupArrayOutput) Index(i pulumi.IntInput) WanoptAuthGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptAuthGroup {
-		return vs[0].([]WanoptAuthGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptAuthGroup {
+		return vs[0].([]*WanoptAuthGroup)[vs[1].(int)]
 	}).(WanoptAuthGroupOutput)
 }
 
 type WanoptAuthGroupMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptAuthGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptAuthGroup)(nil))
+	return reflect.TypeOf((*map[string]*WanoptAuthGroup)(nil)).Elem()
 }
 
 func (o WanoptAuthGroupMapOutput) ToWanoptAuthGroupMapOutput() WanoptAuthGroupMapOutput {
@@ -349,14 +293,16 @@ func (o WanoptAuthGroupMapOutput) ToWanoptAuthGroupMapOutputWithContext(ctx cont
 }
 
 func (o WanoptAuthGroupMapOutput) MapIndex(k pulumi.StringInput) WanoptAuthGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptAuthGroup {
-		return vs[0].(map[string]WanoptAuthGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptAuthGroup {
+		return vs[0].(map[string]*WanoptAuthGroup)[vs[1].(string)]
 	}).(WanoptAuthGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptAuthGroupInput)(nil)).Elem(), &WanoptAuthGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptAuthGroupArrayInput)(nil)).Elem(), WanoptAuthGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptAuthGroupMapInput)(nil)).Elem(), WanoptAuthGroupMap{})
 	pulumi.RegisterOutputType(WanoptAuthGroupOutput{})
-	pulumi.RegisterOutputType(WanoptAuthGroupPtrOutput{})
 	pulumi.RegisterOutputType(WanoptAuthGroupArrayOutput{})
 	pulumi.RegisterOutputType(WanoptAuthGroupMapOutput{})
 }

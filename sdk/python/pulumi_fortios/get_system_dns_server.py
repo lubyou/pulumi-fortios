@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemDnsServerResult',
     'AwaitableGetSystemDnsServerResult',
     'get_system_dns_server',
+    'get_system_dns_server_output',
 ]
 
 @pulumi.output_type
@@ -19,10 +20,13 @@ class GetSystemDnsServerResult:
     """
     A collection of values returned by GetSystemDnsServer.
     """
-    def __init__(__self__, dnsfilter_profile=None, id=None, mode=None, name=None, vdomparam=None):
+    def __init__(__self__, dnsfilter_profile=None, doh=None, id=None, mode=None, name=None, vdomparam=None):
         if dnsfilter_profile and not isinstance(dnsfilter_profile, str):
             raise TypeError("Expected argument 'dnsfilter_profile' to be a str")
         pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
+        if doh and not isinstance(doh, str):
+            raise TypeError("Expected argument 'doh' to be a str")
+        pulumi.set(__self__, "doh", doh)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -43,6 +47,14 @@ class GetSystemDnsServerResult:
         DNS filter profile.
         """
         return pulumi.get(self, "dnsfilter_profile")
+
+    @property
+    @pulumi.getter
+    def doh(self) -> str:
+        """
+        DNS over HTTPS.
+        """
+        return pulumi.get(self, "doh")
 
     @property
     @pulumi.getter
@@ -81,6 +93,7 @@ class AwaitableGetSystemDnsServerResult(GetSystemDnsServerResult):
             yield self
         return GetSystemDnsServerResult(
             dnsfilter_profile=self.dnsfilter_profile,
+            doh=self.doh,
             id=self.id,
             mode=self.mode,
             name=self.name,
@@ -104,11 +117,28 @@ def get_system_dns_server(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDnsServer:GetSystemDnsServer', __args__, opts=opts, typ=GetSystemDnsServerResult).value
 
     return AwaitableGetSystemDnsServerResult(
         dnsfilter_profile=__ret__.dnsfilter_profile,
+        doh=__ret__.doh,
         id=__ret__.id,
         mode=__ret__.mode,
         name=__ret__.name,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_dns_server)
+def get_system_dns_server_output(name: Optional[pulumi.Input[str]] = None,
+                                 vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemDnsServerResult]:
+    """
+    Use this data source to get information on an fortios system dnsserver
+
+
+    :param str name: Specify the name of the desired system dnsserver.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

@@ -48,16 +48,16 @@ export class FirewallCentralsnatmapMove extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallCentralsnatmapMoveArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallCentralsnatmapMoveArgs | FirewallCentralsnatmapMoveState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallCentralsnatmapMoveState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["move"] = state ? state.move : undefined;
-            inputs["policyidDst"] = state ? state.policyidDst : undefined;
-            inputs["policyidSrc"] = state ? state.policyidSrc : undefined;
-            inputs["statePolicySrcdstPos"] = state ? state.statePolicySrcdstPos : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["move"] = state ? state.move : undefined;
+            resourceInputs["policyidDst"] = state ? state.policyidDst : undefined;
+            resourceInputs["policyidSrc"] = state ? state.policyidSrc : undefined;
+            resourceInputs["statePolicySrcdstPos"] = state ? state.statePolicySrcdstPos : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallCentralsnatmapMoveArgs | undefined;
             if ((!args || args.move === undefined) && !opts.urn) {
@@ -69,17 +69,15 @@ export class FirewallCentralsnatmapMove extends pulumi.CustomResource {
             if ((!args || args.policyidSrc === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policyidSrc'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["move"] = args ? args.move : undefined;
-            inputs["policyidDst"] = args ? args.policyidDst : undefined;
-            inputs["policyidSrc"] = args ? args.policyidSrc : undefined;
-            inputs["statePolicySrcdstPos"] = args ? args.statePolicySrcdstPos : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["move"] = args ? args.move : undefined;
+            resourceInputs["policyidDst"] = args ? args.policyidDst : undefined;
+            resourceInputs["policyidSrc"] = args ? args.policyidSrc : undefined;
+            resourceInputs["statePolicySrcdstPos"] = args ? args.statePolicySrcdstPos : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallCentralsnatmapMove.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallCentralsnatmapMove.__pulumiType, name, resourceInputs, opts);
     }
 }
 

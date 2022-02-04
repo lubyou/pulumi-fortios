@@ -104,41 +104,39 @@ export class SystemSwitchInterface extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSwitchInterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSwitchInterfaceArgs | SystemSwitchInterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSwitchInterfaceState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["intraSwitchPolicy"] = state ? state.intraSwitchPolicy : undefined;
-            inputs["macTtl"] = state ? state.macTtl : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["span"] = state ? state.span : undefined;
-            inputs["spanDestPort"] = state ? state.spanDestPort : undefined;
-            inputs["spanDirection"] = state ? state.spanDirection : undefined;
-            inputs["spanSourcePorts"] = state ? state.spanSourcePorts : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["intraSwitchPolicy"] = state ? state.intraSwitchPolicy : undefined;
+            resourceInputs["macTtl"] = state ? state.macTtl : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["span"] = state ? state.span : undefined;
+            resourceInputs["spanDestPort"] = state ? state.spanDestPort : undefined;
+            resourceInputs["spanDirection"] = state ? state.spanDirection : undefined;
+            resourceInputs["spanSourcePorts"] = state ? state.spanSourcePorts : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSwitchInterfaceArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["intraSwitchPolicy"] = args ? args.intraSwitchPolicy : undefined;
-            inputs["macTtl"] = args ? args.macTtl : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["span"] = args ? args.span : undefined;
-            inputs["spanDestPort"] = args ? args.spanDestPort : undefined;
-            inputs["spanDirection"] = args ? args.spanDirection : undefined;
-            inputs["spanSourcePorts"] = args ? args.spanSourcePorts : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["intraSwitchPolicy"] = args ? args.intraSwitchPolicy : undefined;
+            resourceInputs["macTtl"] = args ? args.macTtl : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["span"] = args ? args.span : undefined;
+            resourceInputs["spanDestPort"] = args ? args.spanDestPort : undefined;
+            resourceInputs["spanDirection"] = args ? args.spanDirection : undefined;
+            resourceInputs["spanSourcePorts"] = args ? args.spanSourcePorts : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSwitchInterface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSwitchInterface.__pulumiType, name, resourceInputs, opts);
     }
 }
 

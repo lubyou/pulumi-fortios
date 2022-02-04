@@ -38,6 +38,7 @@ func NewSystemSettingGlobal(ctx *pulumi.Context,
 	if args.Hostname == nil {
 		return nil, errors.New("invalid value for required argument 'Hostname'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSettingGlobal
 	err := ctx.RegisterResource("fortios:index/systemSettingGlobal:SystemSettingGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -136,7 +137,7 @@ type SystemSettingGlobalInput interface {
 }
 
 func (*SystemSettingGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettingGlobal)(nil))
+	return reflect.TypeOf((**SystemSettingGlobal)(nil)).Elem()
 }
 
 func (i *SystemSettingGlobal) ToSystemSettingGlobalOutput() SystemSettingGlobalOutput {
@@ -145,35 +146,6 @@ func (i *SystemSettingGlobal) ToSystemSettingGlobalOutput() SystemSettingGlobalO
 
 func (i *SystemSettingGlobal) ToSystemSettingGlobalOutputWithContext(ctx context.Context) SystemSettingGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalOutput)
-}
-
-func (i *SystemSettingGlobal) ToSystemSettingGlobalPtrOutput() SystemSettingGlobalPtrOutput {
-	return i.ToSystemSettingGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSettingGlobal) ToSystemSettingGlobalPtrOutputWithContext(ctx context.Context) SystemSettingGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalPtrOutput)
-}
-
-type SystemSettingGlobalPtrInput interface {
-	pulumi.Input
-
-	ToSystemSettingGlobalPtrOutput() SystemSettingGlobalPtrOutput
-	ToSystemSettingGlobalPtrOutputWithContext(ctx context.Context) SystemSettingGlobalPtrOutput
-}
-
-type systemSettingGlobalPtrType SystemSettingGlobalArgs
-
-func (*systemSettingGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettingGlobal)(nil))
-}
-
-func (i *systemSettingGlobalPtrType) ToSystemSettingGlobalPtrOutput() SystemSettingGlobalPtrOutput {
-	return i.ToSystemSettingGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSettingGlobalPtrType) ToSystemSettingGlobalPtrOutputWithContext(ctx context.Context) SystemSettingGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalPtrOutput)
 }
 
 // SystemSettingGlobalArrayInput is an input type that accepts SystemSettingGlobalArray and SystemSettingGlobalArrayOutput values.
@@ -190,7 +162,7 @@ type SystemSettingGlobalArrayInput interface {
 type SystemSettingGlobalArray []SystemSettingGlobalInput
 
 func (SystemSettingGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSettingGlobal)(nil))
+	return reflect.TypeOf((*[]*SystemSettingGlobal)(nil)).Elem()
 }
 
 func (i SystemSettingGlobalArray) ToSystemSettingGlobalArrayOutput() SystemSettingGlobalArrayOutput {
@@ -215,7 +187,7 @@ type SystemSettingGlobalMapInput interface {
 type SystemSettingGlobalMap map[string]SystemSettingGlobalInput
 
 func (SystemSettingGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSettingGlobal)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettingGlobal)(nil)).Elem()
 }
 
 func (i SystemSettingGlobalMap) ToSystemSettingGlobalMapOutput() SystemSettingGlobalMapOutput {
@@ -226,12 +198,10 @@ func (i SystemSettingGlobalMap) ToSystemSettingGlobalMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingGlobalMapOutput)
 }
 
-type SystemSettingGlobalOutput struct {
-	*pulumi.OutputState
-}
+type SystemSettingGlobalOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettingGlobal)(nil))
+	return reflect.TypeOf((**SystemSettingGlobal)(nil)).Elem()
 }
 
 func (o SystemSettingGlobalOutput) ToSystemSettingGlobalOutput() SystemSettingGlobalOutput {
@@ -242,36 +212,10 @@ func (o SystemSettingGlobalOutput) ToSystemSettingGlobalOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemSettingGlobalOutput) ToSystemSettingGlobalPtrOutput() SystemSettingGlobalPtrOutput {
-	return o.ToSystemSettingGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSettingGlobalOutput) ToSystemSettingGlobalPtrOutputWithContext(ctx context.Context) SystemSettingGlobalPtrOutput {
-	return o.ApplyT(func(v SystemSettingGlobal) *SystemSettingGlobal {
-		return &v
-	}).(SystemSettingGlobalPtrOutput)
-}
-
-type SystemSettingGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSettingGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettingGlobal)(nil))
-}
-
-func (o SystemSettingGlobalPtrOutput) ToSystemSettingGlobalPtrOutput() SystemSettingGlobalPtrOutput {
-	return o
-}
-
-func (o SystemSettingGlobalPtrOutput) ToSystemSettingGlobalPtrOutputWithContext(ctx context.Context) SystemSettingGlobalPtrOutput {
-	return o
-}
-
 type SystemSettingGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSettingGlobal)(nil))
+	return reflect.TypeOf((*[]*SystemSettingGlobal)(nil)).Elem()
 }
 
 func (o SystemSettingGlobalArrayOutput) ToSystemSettingGlobalArrayOutput() SystemSettingGlobalArrayOutput {
@@ -283,15 +227,15 @@ func (o SystemSettingGlobalArrayOutput) ToSystemSettingGlobalArrayOutputWithCont
 }
 
 func (o SystemSettingGlobalArrayOutput) Index(i pulumi.IntInput) SystemSettingGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSettingGlobal {
-		return vs[0].([]SystemSettingGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettingGlobal {
+		return vs[0].([]*SystemSettingGlobal)[vs[1].(int)]
 	}).(SystemSettingGlobalOutput)
 }
 
 type SystemSettingGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSettingGlobal)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettingGlobal)(nil)).Elem()
 }
 
 func (o SystemSettingGlobalMapOutput) ToSystemSettingGlobalMapOutput() SystemSettingGlobalMapOutput {
@@ -303,14 +247,16 @@ func (o SystemSettingGlobalMapOutput) ToSystemSettingGlobalMapOutputWithContext(
 }
 
 func (o SystemSettingGlobalMapOutput) MapIndex(k pulumi.StringInput) SystemSettingGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSettingGlobal {
-		return vs[0].(map[string]SystemSettingGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSettingGlobal {
+		return vs[0].(map[string]*SystemSettingGlobal)[vs[1].(string)]
 	}).(SystemSettingGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingGlobalInput)(nil)).Elem(), &SystemSettingGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingGlobalArrayInput)(nil)).Elem(), SystemSettingGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingGlobalMapInput)(nil)).Elem(), SystemSettingGlobalMap{})
 	pulumi.RegisterOutputType(SystemSettingGlobalOutput{})
-	pulumi.RegisterOutputType(SystemSettingGlobalPtrOutput{})
 	pulumi.RegisterOutputType(SystemSettingGlobalArrayOutput{})
 	pulumi.RegisterOutputType(SystemSettingGlobalMapOutput{})
 }

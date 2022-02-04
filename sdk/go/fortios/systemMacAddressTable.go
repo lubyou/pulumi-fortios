@@ -48,6 +48,7 @@ func NewSystemMacAddressTable(ctx *pulumi.Context,
 	if args.Mac == nil {
 		return nil, errors.New("invalid value for required argument 'Mac'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemMacAddressTable
 	err := ctx.RegisterResource("fortios:index/systemMacAddressTable:SystemMacAddressTable", name, args, &resource, opts...)
 	if err != nil {
@@ -130,7 +131,7 @@ type SystemMacAddressTableInput interface {
 }
 
 func (*SystemMacAddressTable) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemMacAddressTable)(nil))
+	return reflect.TypeOf((**SystemMacAddressTable)(nil)).Elem()
 }
 
 func (i *SystemMacAddressTable) ToSystemMacAddressTableOutput() SystemMacAddressTableOutput {
@@ -139,35 +140,6 @@ func (i *SystemMacAddressTable) ToSystemMacAddressTableOutput() SystemMacAddress
 
 func (i *SystemMacAddressTable) ToSystemMacAddressTableOutputWithContext(ctx context.Context) SystemMacAddressTableOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTableOutput)
-}
-
-func (i *SystemMacAddressTable) ToSystemMacAddressTablePtrOutput() SystemMacAddressTablePtrOutput {
-	return i.ToSystemMacAddressTablePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemMacAddressTable) ToSystemMacAddressTablePtrOutputWithContext(ctx context.Context) SystemMacAddressTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTablePtrOutput)
-}
-
-type SystemMacAddressTablePtrInput interface {
-	pulumi.Input
-
-	ToSystemMacAddressTablePtrOutput() SystemMacAddressTablePtrOutput
-	ToSystemMacAddressTablePtrOutputWithContext(ctx context.Context) SystemMacAddressTablePtrOutput
-}
-
-type systemMacAddressTablePtrType SystemMacAddressTableArgs
-
-func (*systemMacAddressTablePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemMacAddressTable)(nil))
-}
-
-func (i *systemMacAddressTablePtrType) ToSystemMacAddressTablePtrOutput() SystemMacAddressTablePtrOutput {
-	return i.ToSystemMacAddressTablePtrOutputWithContext(context.Background())
-}
-
-func (i *systemMacAddressTablePtrType) ToSystemMacAddressTablePtrOutputWithContext(ctx context.Context) SystemMacAddressTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTablePtrOutput)
 }
 
 // SystemMacAddressTableArrayInput is an input type that accepts SystemMacAddressTableArray and SystemMacAddressTableArrayOutput values.
@@ -184,7 +156,7 @@ type SystemMacAddressTableArrayInput interface {
 type SystemMacAddressTableArray []SystemMacAddressTableInput
 
 func (SystemMacAddressTableArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemMacAddressTable)(nil))
+	return reflect.TypeOf((*[]*SystemMacAddressTable)(nil)).Elem()
 }
 
 func (i SystemMacAddressTableArray) ToSystemMacAddressTableArrayOutput() SystemMacAddressTableArrayOutput {
@@ -209,7 +181,7 @@ type SystemMacAddressTableMapInput interface {
 type SystemMacAddressTableMap map[string]SystemMacAddressTableInput
 
 func (SystemMacAddressTableMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemMacAddressTable)(nil))
+	return reflect.TypeOf((*map[string]*SystemMacAddressTable)(nil)).Elem()
 }
 
 func (i SystemMacAddressTableMap) ToSystemMacAddressTableMapOutput() SystemMacAddressTableMapOutput {
@@ -220,12 +192,10 @@ func (i SystemMacAddressTableMap) ToSystemMacAddressTableMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemMacAddressTableMapOutput)
 }
 
-type SystemMacAddressTableOutput struct {
-	*pulumi.OutputState
-}
+type SystemMacAddressTableOutput struct{ *pulumi.OutputState }
 
 func (SystemMacAddressTableOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemMacAddressTable)(nil))
+	return reflect.TypeOf((**SystemMacAddressTable)(nil)).Elem()
 }
 
 func (o SystemMacAddressTableOutput) ToSystemMacAddressTableOutput() SystemMacAddressTableOutput {
@@ -236,36 +206,10 @@ func (o SystemMacAddressTableOutput) ToSystemMacAddressTableOutputWithContext(ct
 	return o
 }
 
-func (o SystemMacAddressTableOutput) ToSystemMacAddressTablePtrOutput() SystemMacAddressTablePtrOutput {
-	return o.ToSystemMacAddressTablePtrOutputWithContext(context.Background())
-}
-
-func (o SystemMacAddressTableOutput) ToSystemMacAddressTablePtrOutputWithContext(ctx context.Context) SystemMacAddressTablePtrOutput {
-	return o.ApplyT(func(v SystemMacAddressTable) *SystemMacAddressTable {
-		return &v
-	}).(SystemMacAddressTablePtrOutput)
-}
-
-type SystemMacAddressTablePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemMacAddressTablePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemMacAddressTable)(nil))
-}
-
-func (o SystemMacAddressTablePtrOutput) ToSystemMacAddressTablePtrOutput() SystemMacAddressTablePtrOutput {
-	return o
-}
-
-func (o SystemMacAddressTablePtrOutput) ToSystemMacAddressTablePtrOutputWithContext(ctx context.Context) SystemMacAddressTablePtrOutput {
-	return o
-}
-
 type SystemMacAddressTableArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemMacAddressTableArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemMacAddressTable)(nil))
+	return reflect.TypeOf((*[]*SystemMacAddressTable)(nil)).Elem()
 }
 
 func (o SystemMacAddressTableArrayOutput) ToSystemMacAddressTableArrayOutput() SystemMacAddressTableArrayOutput {
@@ -277,15 +221,15 @@ func (o SystemMacAddressTableArrayOutput) ToSystemMacAddressTableArrayOutputWith
 }
 
 func (o SystemMacAddressTableArrayOutput) Index(i pulumi.IntInput) SystemMacAddressTableOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemMacAddressTable {
-		return vs[0].([]SystemMacAddressTable)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemMacAddressTable {
+		return vs[0].([]*SystemMacAddressTable)[vs[1].(int)]
 	}).(SystemMacAddressTableOutput)
 }
 
 type SystemMacAddressTableMapOutput struct{ *pulumi.OutputState }
 
 func (SystemMacAddressTableMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemMacAddressTable)(nil))
+	return reflect.TypeOf((*map[string]*SystemMacAddressTable)(nil)).Elem()
 }
 
 func (o SystemMacAddressTableMapOutput) ToSystemMacAddressTableMapOutput() SystemMacAddressTableMapOutput {
@@ -297,14 +241,16 @@ func (o SystemMacAddressTableMapOutput) ToSystemMacAddressTableMapOutputWithCont
 }
 
 func (o SystemMacAddressTableMapOutput) MapIndex(k pulumi.StringInput) SystemMacAddressTableOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemMacAddressTable {
-		return vs[0].(map[string]SystemMacAddressTable)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemMacAddressTable {
+		return vs[0].(map[string]*SystemMacAddressTable)[vs[1].(string)]
 	}).(SystemMacAddressTableOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemMacAddressTableInput)(nil)).Elem(), &SystemMacAddressTable{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemMacAddressTableArrayInput)(nil)).Elem(), SystemMacAddressTableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemMacAddressTableMapInput)(nil)).Elem(), SystemMacAddressTableMap{})
 	pulumi.RegisterOutputType(SystemMacAddressTableOutput{})
-	pulumi.RegisterOutputType(SystemMacAddressTablePtrOutput{})
 	pulumi.RegisterOutputType(SystemMacAddressTableArrayOutput{})
 	pulumi.RegisterOutputType(SystemMacAddressTableMapOutput{})
 }

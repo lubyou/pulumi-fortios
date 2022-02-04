@@ -14,9 +14,7 @@ export function getSystemCentralManagement(args?: GetSystemCentralManagementArgs
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemCentralManagement:GetSystemCentralManagement", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -125,4 +123,18 @@ export interface GetSystemCentralManagementResult {
      */
     readonly vdom: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemCentralManagementOutput(args?: GetSystemCentralManagementOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemCentralManagementResult> {
+    return pulumi.output(args).apply(a => getSystemCentralManagement(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemCentralManagement.
+ */
+export interface GetSystemCentralManagementOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

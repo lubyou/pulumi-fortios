@@ -235,48 +235,46 @@ export class VPNIPsecPhase2InterfaceLegacy extends pulumi.CustomResource {
      */
     constructor(name: string, args: VPNIPsecPhase2InterfaceLegacyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VPNIPsecPhase2InterfaceLegacyArgs | VPNIPsecPhase2InterfaceLegacyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VPNIPsecPhase2InterfaceLegacyState | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstAddrType"] = state ? state.dstAddrType : undefined;
-            inputs["dstEndIp"] = state ? state.dstEndIp : undefined;
-            inputs["dstName"] = state ? state.dstName : undefined;
-            inputs["dstStartIp"] = state ? state.dstStartIp : undefined;
-            inputs["dstSubnet"] = state ? state.dstSubnet : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["phase1name"] = state ? state.phase1name : undefined;
-            inputs["proposal"] = state ? state.proposal : undefined;
-            inputs["srcAddrType"] = state ? state.srcAddrType : undefined;
-            inputs["srcEndIp"] = state ? state.srcEndIp : undefined;
-            inputs["srcName"] = state ? state.srcName : undefined;
-            inputs["srcStartIp"] = state ? state.srcStartIp : undefined;
-            inputs["srcSubnet"] = state ? state.srcSubnet : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstAddrType"] = state ? state.dstAddrType : undefined;
+            resourceInputs["dstEndIp"] = state ? state.dstEndIp : undefined;
+            resourceInputs["dstName"] = state ? state.dstName : undefined;
+            resourceInputs["dstStartIp"] = state ? state.dstStartIp : undefined;
+            resourceInputs["dstSubnet"] = state ? state.dstSubnet : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["phase1name"] = state ? state.phase1name : undefined;
+            resourceInputs["proposal"] = state ? state.proposal : undefined;
+            resourceInputs["srcAddrType"] = state ? state.srcAddrType : undefined;
+            resourceInputs["srcEndIp"] = state ? state.srcEndIp : undefined;
+            resourceInputs["srcName"] = state ? state.srcName : undefined;
+            resourceInputs["srcStartIp"] = state ? state.srcStartIp : undefined;
+            resourceInputs["srcSubnet"] = state ? state.srcSubnet : undefined;
         } else {
             const args = argsOrState as VPNIPsecPhase2InterfaceLegacyArgs | undefined;
             if ((!args || args.phase1name === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'phase1name'");
             }
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstAddrType"] = args ? args.dstAddrType : undefined;
-            inputs["dstEndIp"] = args ? args.dstEndIp : undefined;
-            inputs["dstName"] = args ? args.dstName : undefined;
-            inputs["dstStartIp"] = args ? args.dstStartIp : undefined;
-            inputs["dstSubnet"] = args ? args.dstSubnet : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["phase1name"] = args ? args.phase1name : undefined;
-            inputs["proposal"] = args ? args.proposal : undefined;
-            inputs["srcAddrType"] = args ? args.srcAddrType : undefined;
-            inputs["srcEndIp"] = args ? args.srcEndIp : undefined;
-            inputs["srcName"] = args ? args.srcName : undefined;
-            inputs["srcStartIp"] = args ? args.srcStartIp : undefined;
-            inputs["srcSubnet"] = args ? args.srcSubnet : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstAddrType"] = args ? args.dstAddrType : undefined;
+            resourceInputs["dstEndIp"] = args ? args.dstEndIp : undefined;
+            resourceInputs["dstName"] = args ? args.dstName : undefined;
+            resourceInputs["dstStartIp"] = args ? args.dstStartIp : undefined;
+            resourceInputs["dstSubnet"] = args ? args.dstSubnet : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["phase1name"] = args ? args.phase1name : undefined;
+            resourceInputs["proposal"] = args ? args.proposal : undefined;
+            resourceInputs["srcAddrType"] = args ? args.srcAddrType : undefined;
+            resourceInputs["srcEndIp"] = args ? args.srcEndIp : undefined;
+            resourceInputs["srcName"] = args ? args.srcName : undefined;
+            resourceInputs["srcStartIp"] = args ? args.srcStartIp : undefined;
+            resourceInputs["srcSubnet"] = args ? args.srcSubnet : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VPNIPsecPhase2InterfaceLegacy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VPNIPsecPhase2InterfaceLegacy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

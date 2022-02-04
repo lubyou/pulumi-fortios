@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system proxyarp
 func LookupSystemProxyArp(ctx *pulumi.Context, args *LookupSystemProxyArpArgs, opts ...pulumi.InvokeOption) (*LookupSystemProxyArpResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemProxyArpResult
 	err := ctx.Invoke("fortios:index/getSystemProxyArp:GetSystemProxyArp", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,73 @@ type LookupSystemProxyArpResult struct {
 	// IP address or start IP to be proxied.
 	Ip        string  `pulumi:"ip"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemProxyArpOutput(ctx *pulumi.Context, args LookupSystemProxyArpOutputArgs, opts ...pulumi.InvokeOption) LookupSystemProxyArpResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemProxyArpResult, error) {
+			args := v.(LookupSystemProxyArpArgs)
+			r, err := LookupSystemProxyArp(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemProxyArpResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemProxyArp.
+type LookupSystemProxyArpOutputArgs struct {
+	// Specify the fosid of the desired system proxyarp.
+	Fosid pulumi.IntInput `pulumi:"fosid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemProxyArpOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemProxyArpArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemProxyArp.
+type LookupSystemProxyArpResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemProxyArpResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemProxyArpResult)(nil)).Elem()
+}
+
+func (o LookupSystemProxyArpResultOutput) ToLookupSystemProxyArpResultOutput() LookupSystemProxyArpResultOutput {
+	return o
+}
+
+func (o LookupSystemProxyArpResultOutput) ToLookupSystemProxyArpResultOutputWithContext(ctx context.Context) LookupSystemProxyArpResultOutput {
+	return o
+}
+
+// End IP of IP range to be proxied.
+func (o LookupSystemProxyArpResultOutput) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProxyArpResult) string { return v.EndIp }).(pulumi.StringOutput)
+}
+
+// Unique integer ID of the entry.
+func (o LookupSystemProxyArpResultOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemProxyArpResult) int { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemProxyArpResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProxyArpResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Interface acting proxy-ARP.
+func (o LookupSystemProxyArpResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProxyArpResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// IP address or start IP to be proxied.
+func (o LookupSystemProxyArpResultOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemProxyArpResult) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemProxyArpResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemProxyArpResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemProxyArpResultOutput{})
 }

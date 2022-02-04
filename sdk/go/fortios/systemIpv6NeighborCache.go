@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,7 @@ func NewSystemIpv6NeighborCache(ctx *pulumi.Context,
 	if args.Mac == nil {
 		return nil, errors.New("invalid value for required argument 'Mac'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemIpv6NeighborCache
 	err := ctx.RegisterResource("fortios:index/systemIpv6NeighborCache:SystemIpv6NeighborCache", name, args, &resource, opts...)
 	if err != nil {
@@ -172,7 +173,7 @@ type SystemIpv6NeighborCacheInput interface {
 }
 
 func (*SystemIpv6NeighborCache) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpv6NeighborCache)(nil))
+	return reflect.TypeOf((**SystemIpv6NeighborCache)(nil)).Elem()
 }
 
 func (i *SystemIpv6NeighborCache) ToSystemIpv6NeighborCacheOutput() SystemIpv6NeighborCacheOutput {
@@ -181,35 +182,6 @@ func (i *SystemIpv6NeighborCache) ToSystemIpv6NeighborCacheOutput() SystemIpv6Ne
 
 func (i *SystemIpv6NeighborCache) ToSystemIpv6NeighborCacheOutputWithContext(ctx context.Context) SystemIpv6NeighborCacheOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCacheOutput)
-}
-
-func (i *SystemIpv6NeighborCache) ToSystemIpv6NeighborCachePtrOutput() SystemIpv6NeighborCachePtrOutput {
-	return i.ToSystemIpv6NeighborCachePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemIpv6NeighborCache) ToSystemIpv6NeighborCachePtrOutputWithContext(ctx context.Context) SystemIpv6NeighborCachePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCachePtrOutput)
-}
-
-type SystemIpv6NeighborCachePtrInput interface {
-	pulumi.Input
-
-	ToSystemIpv6NeighborCachePtrOutput() SystemIpv6NeighborCachePtrOutput
-	ToSystemIpv6NeighborCachePtrOutputWithContext(ctx context.Context) SystemIpv6NeighborCachePtrOutput
-}
-
-type systemIpv6NeighborCachePtrType SystemIpv6NeighborCacheArgs
-
-func (*systemIpv6NeighborCachePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpv6NeighborCache)(nil))
-}
-
-func (i *systemIpv6NeighborCachePtrType) ToSystemIpv6NeighborCachePtrOutput() SystemIpv6NeighborCachePtrOutput {
-	return i.ToSystemIpv6NeighborCachePtrOutputWithContext(context.Background())
-}
-
-func (i *systemIpv6NeighborCachePtrType) ToSystemIpv6NeighborCachePtrOutputWithContext(ctx context.Context) SystemIpv6NeighborCachePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCachePtrOutput)
 }
 
 // SystemIpv6NeighborCacheArrayInput is an input type that accepts SystemIpv6NeighborCacheArray and SystemIpv6NeighborCacheArrayOutput values.
@@ -226,7 +198,7 @@ type SystemIpv6NeighborCacheArrayInput interface {
 type SystemIpv6NeighborCacheArray []SystemIpv6NeighborCacheInput
 
 func (SystemIpv6NeighborCacheArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemIpv6NeighborCache)(nil))
+	return reflect.TypeOf((*[]*SystemIpv6NeighborCache)(nil)).Elem()
 }
 
 func (i SystemIpv6NeighborCacheArray) ToSystemIpv6NeighborCacheArrayOutput() SystemIpv6NeighborCacheArrayOutput {
@@ -251,7 +223,7 @@ type SystemIpv6NeighborCacheMapInput interface {
 type SystemIpv6NeighborCacheMap map[string]SystemIpv6NeighborCacheInput
 
 func (SystemIpv6NeighborCacheMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemIpv6NeighborCache)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpv6NeighborCache)(nil)).Elem()
 }
 
 func (i SystemIpv6NeighborCacheMap) ToSystemIpv6NeighborCacheMapOutput() SystemIpv6NeighborCacheMapOutput {
@@ -262,12 +234,10 @@ func (i SystemIpv6NeighborCacheMap) ToSystemIpv6NeighborCacheMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6NeighborCacheMapOutput)
 }
 
-type SystemIpv6NeighborCacheOutput struct {
-	*pulumi.OutputState
-}
+type SystemIpv6NeighborCacheOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6NeighborCacheOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpv6NeighborCache)(nil))
+	return reflect.TypeOf((**SystemIpv6NeighborCache)(nil)).Elem()
 }
 
 func (o SystemIpv6NeighborCacheOutput) ToSystemIpv6NeighborCacheOutput() SystemIpv6NeighborCacheOutput {
@@ -278,36 +248,10 @@ func (o SystemIpv6NeighborCacheOutput) ToSystemIpv6NeighborCacheOutputWithContex
 	return o
 }
 
-func (o SystemIpv6NeighborCacheOutput) ToSystemIpv6NeighborCachePtrOutput() SystemIpv6NeighborCachePtrOutput {
-	return o.ToSystemIpv6NeighborCachePtrOutputWithContext(context.Background())
-}
-
-func (o SystemIpv6NeighborCacheOutput) ToSystemIpv6NeighborCachePtrOutputWithContext(ctx context.Context) SystemIpv6NeighborCachePtrOutput {
-	return o.ApplyT(func(v SystemIpv6NeighborCache) *SystemIpv6NeighborCache {
-		return &v
-	}).(SystemIpv6NeighborCachePtrOutput)
-}
-
-type SystemIpv6NeighborCachePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemIpv6NeighborCachePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpv6NeighborCache)(nil))
-}
-
-func (o SystemIpv6NeighborCachePtrOutput) ToSystemIpv6NeighborCachePtrOutput() SystemIpv6NeighborCachePtrOutput {
-	return o
-}
-
-func (o SystemIpv6NeighborCachePtrOutput) ToSystemIpv6NeighborCachePtrOutputWithContext(ctx context.Context) SystemIpv6NeighborCachePtrOutput {
-	return o
-}
-
 type SystemIpv6NeighborCacheArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6NeighborCacheArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemIpv6NeighborCache)(nil))
+	return reflect.TypeOf((*[]*SystemIpv6NeighborCache)(nil)).Elem()
 }
 
 func (o SystemIpv6NeighborCacheArrayOutput) ToSystemIpv6NeighborCacheArrayOutput() SystemIpv6NeighborCacheArrayOutput {
@@ -319,15 +263,15 @@ func (o SystemIpv6NeighborCacheArrayOutput) ToSystemIpv6NeighborCacheArrayOutput
 }
 
 func (o SystemIpv6NeighborCacheArrayOutput) Index(i pulumi.IntInput) SystemIpv6NeighborCacheOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemIpv6NeighborCache {
-		return vs[0].([]SystemIpv6NeighborCache)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpv6NeighborCache {
+		return vs[0].([]*SystemIpv6NeighborCache)[vs[1].(int)]
 	}).(SystemIpv6NeighborCacheOutput)
 }
 
 type SystemIpv6NeighborCacheMapOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6NeighborCacheMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemIpv6NeighborCache)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpv6NeighborCache)(nil)).Elem()
 }
 
 func (o SystemIpv6NeighborCacheMapOutput) ToSystemIpv6NeighborCacheMapOutput() SystemIpv6NeighborCacheMapOutput {
@@ -339,14 +283,16 @@ func (o SystemIpv6NeighborCacheMapOutput) ToSystemIpv6NeighborCacheMapOutputWith
 }
 
 func (o SystemIpv6NeighborCacheMapOutput) MapIndex(k pulumi.StringInput) SystemIpv6NeighborCacheOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemIpv6NeighborCache {
-		return vs[0].(map[string]SystemIpv6NeighborCache)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemIpv6NeighborCache {
+		return vs[0].(map[string]*SystemIpv6NeighborCache)[vs[1].(string)]
 	}).(SystemIpv6NeighborCacheOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpv6NeighborCacheInput)(nil)).Elem(), &SystemIpv6NeighborCache{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpv6NeighborCacheArrayInput)(nil)).Elem(), SystemIpv6NeighborCacheArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpv6NeighborCacheMapInput)(nil)).Elem(), SystemIpv6NeighborCacheMap{})
 	pulumi.RegisterOutputType(SystemIpv6NeighborCacheOutput{})
-	pulumi.RegisterOutputType(SystemIpv6NeighborCachePtrOutput{})
 	pulumi.RegisterOutputType(SystemIpv6NeighborCacheArrayOutput{})
 	pulumi.RegisterOutputType(SystemIpv6NeighborCacheMapOutput{})
 }

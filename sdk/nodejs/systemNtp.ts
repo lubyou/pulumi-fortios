@@ -128,45 +128,43 @@ export class SystemNtp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemNtpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemNtpArgs | SystemNtpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemNtpState | undefined;
-            inputs["authentication"] = state ? state.authentication : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = state ? state.interfaces : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["keyId"] = state ? state.keyId : undefined;
-            inputs["keyType"] = state ? state.keyType : undefined;
-            inputs["ntpservers"] = state ? state.ntpservers : undefined;
-            inputs["ntpsync"] = state ? state.ntpsync : undefined;
-            inputs["serverMode"] = state ? state.serverMode : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
-            inputs["syncinterval"] = state ? state.syncinterval : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["keyId"] = state ? state.keyId : undefined;
+            resourceInputs["keyType"] = state ? state.keyType : undefined;
+            resourceInputs["ntpservers"] = state ? state.ntpservers : undefined;
+            resourceInputs["ntpsync"] = state ? state.ntpsync : undefined;
+            resourceInputs["serverMode"] = state ? state.serverMode : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["syncinterval"] = state ? state.syncinterval : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemNtpArgs | undefined;
-            inputs["authentication"] = args ? args.authentication : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = args ? args.interfaces : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["keyId"] = args ? args.keyId : undefined;
-            inputs["keyType"] = args ? args.keyType : undefined;
-            inputs["ntpservers"] = args ? args.ntpservers : undefined;
-            inputs["ntpsync"] = args ? args.ntpsync : undefined;
-            inputs["serverMode"] = args ? args.serverMode : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
-            inputs["syncinterval"] = args ? args.syncinterval : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["keyId"] = args ? args.keyId : undefined;
+            resourceInputs["keyType"] = args ? args.keyType : undefined;
+            resourceInputs["ntpservers"] = args ? args.ntpservers : undefined;
+            resourceInputs["ntpsync"] = args ? args.ntpsync : undefined;
+            resourceInputs["serverMode"] = args ? args.serverMode : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["syncinterval"] = args ? args.syncinterval : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemNtp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemNtp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

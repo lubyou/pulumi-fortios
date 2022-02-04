@@ -52,14 +52,18 @@ class FirewallSecurityPolicyArgs:
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyServiceArgs']]]] = None,
@@ -75,6 +79,7 @@ class FirewallSecurityPolicyArgs:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
@@ -116,14 +121,18 @@ class FirewallSecurityPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyInternetServiceSrcNameArgs']]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Names of FSSO groups.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
         :param pulumi.Input[str] schedule: Schedule name.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
@@ -139,6 +148,7 @@ class FirewallSecurityPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUserArgs']]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -216,12 +226,18 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "internet_service_src_negate", internet_service_src_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if learning_mode is not None:
+            pulumi.set(__self__, "learning_mode", learning_mode)
         if logtraffic is not None:
             pulumi.set(__self__, "logtraffic", logtraffic)
         if logtraffic_start is not None:
             pulumi.set(__self__, "logtraffic_start", logtraffic_start)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if profile_group is not None:
@@ -232,6 +248,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "profile_type", profile_type)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if send_deny_packet is not None:
             pulumi.set(__self__, "send_deny_packet", send_deny_packet)
         if service_negate is not None:
@@ -262,6 +280,8 @@ class FirewallSecurityPolicyArgs:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if webfilter_profile is not None:
@@ -712,6 +732,18 @@ class FirewallSecurityPolicyArgs:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="learningMode")
+    def learning_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "learning_mode")
+
+    @learning_mode.setter
+    def learning_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "learning_mode", value)
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -746,6 +778,30 @@ class FirewallSecurityPolicyArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
 
     @property
     @pulumi.getter
@@ -806,6 +862,18 @@ class FirewallSecurityPolicyArgs:
     @schedule.setter
     def schedule(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
 
     @property
     @pulumi.getter(name="sendDenyPacket")
@@ -986,6 +1054,18 @@ class FirewallSecurityPolicyArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -1052,14 +1132,18 @@ class _FirewallSecurityPolicyState:
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyServiceArgs']]]] = None,
@@ -1075,6 +1159,7 @@ class _FirewallSecurityPolicyState:
                  users: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUserArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
@@ -1116,14 +1201,18 @@ class _FirewallSecurityPolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyInternetServiceSrcNameArgs']]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Names of FSSO groups.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
         :param pulumi.Input[str] schedule: Schedule name.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
@@ -1139,6 +1228,7 @@ class _FirewallSecurityPolicyState:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSecurityPolicyUserArgs']]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -1216,12 +1306,18 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "internet_service_src_negate", internet_service_src_negate)
         if ips_sensor is not None:
             pulumi.set(__self__, "ips_sensor", ips_sensor)
+        if learning_mode is not None:
+            pulumi.set(__self__, "learning_mode", learning_mode)
         if logtraffic is not None:
             pulumi.set(__self__, "logtraffic", logtraffic)
         if logtraffic_start is not None:
             pulumi.set(__self__, "logtraffic_start", logtraffic_start)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
         if profile_group is not None:
@@ -1232,6 +1328,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "profile_type", profile_type)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if send_deny_packet is not None:
             pulumi.set(__self__, "send_deny_packet", send_deny_packet)
         if service_negate is not None:
@@ -1262,6 +1360,8 @@ class _FirewallSecurityPolicyState:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if webfilter_profile is not None:
@@ -1712,6 +1812,18 @@ class _FirewallSecurityPolicyState:
         pulumi.set(self, "ips_sensor", value)
 
     @property
+    @pulumi.getter(name="learningMode")
+    def learning_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "learning_mode")
+
+    @learning_mode.setter
+    def learning_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "learning_mode", value)
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1746,6 +1858,30 @@ class _FirewallSecurityPolicyState:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
 
     @property
     @pulumi.getter
@@ -1806,6 +1942,18 @@ class _FirewallSecurityPolicyState:
     @schedule.setter
     def schedule(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
 
     @property
     @pulumi.getter(name="sendDenyPacket")
@@ -1986,6 +2134,18 @@ class _FirewallSecurityPolicyState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -2054,14 +2214,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]]] = None,
@@ -2077,11 +2241,12 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure NGFW IPv4/IPv6 application policies.
+        Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -2160,14 +2325,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Names of FSSO groups.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
         :param pulumi.Input[str] schedule: Schedule name.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]] services: Service and service group names. The structure of `service` block is documented below.
@@ -2183,6 +2352,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -2193,7 +2363,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  args: Optional[FirewallSecurityPolicyArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure NGFW IPv4/IPv6 application policies.
+        Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -2285,14 +2455,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]]] = None,
                  internet_service_src_negate: Optional[pulumi.Input[str]] = None,
                  ips_sensor: Optional[pulumi.Input[str]] = None,
+                 learning_mode: Optional[pulumi.Input[str]] = None,
                  logtraffic: Optional[pulumi.Input[str]] = None,
                  logtraffic_start: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  profile_group: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
                  profile_type: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]]] = None,
@@ -2308,6 +2482,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
                  users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -2317,6 +2492,8 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -2359,14 +2536,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["internet_service_src_names"] = internet_service_src_names
             __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
             __props__.__dict__["ips_sensor"] = ips_sensor
+            __props__.__dict__["learning_mode"] = learning_mode
             __props__.__dict__["logtraffic"] = logtraffic
             __props__.__dict__["logtraffic_start"] = logtraffic_start
             __props__.__dict__["name"] = name
+            __props__.__dict__["nat46"] = nat46
+            __props__.__dict__["nat64"] = nat64
             __props__.__dict__["policyid"] = policyid
             __props__.__dict__["profile_group"] = profile_group
             __props__.__dict__["profile_protocol_options"] = profile_protocol_options
             __props__.__dict__["profile_type"] = profile_type
             __props__.__dict__["schedule"] = schedule
+            __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
             __props__.__dict__["send_deny_packet"] = send_deny_packet
             __props__.__dict__["service_negate"] = service_negate
             __props__.__dict__["services"] = services
@@ -2382,6 +2563,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             __props__.__dict__["users"] = users
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["videofilter_profile"] = videofilter_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["webfilter_profile"] = webfilter_profile
         super(FirewallSecurityPolicy, __self__).__init__(
@@ -2431,14 +2613,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             internet_service_src_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]]] = None,
             internet_service_src_negate: Optional[pulumi.Input[str]] = None,
             ips_sensor: Optional[pulumi.Input[str]] = None,
+            learning_mode: Optional[pulumi.Input[str]] = None,
             logtraffic: Optional[pulumi.Input[str]] = None,
             logtraffic_start: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nat46: Optional[pulumi.Input[str]] = None,
+            nat64: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
             profile_group: Optional[pulumi.Input[str]] = None,
             profile_protocol_options: Optional[pulumi.Input[str]] = None,
             profile_type: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
+            sctp_filter_profile: Optional[pulumi.Input[str]] = None,
             send_deny_packet: Optional[pulumi.Input[str]] = None,
             service_negate: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]]] = None,
@@ -2454,6 +2640,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
             users: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            videofilter_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'FirewallSecurityPolicy':
         """
@@ -2500,14 +2687,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyInternetServiceSrcNameArgs']]]] internet_service_src_names: Internet Service source name. The structure of `internet_service_src_name` block is documented below.
         :param pulumi.Input[str] internet_service_src_negate: When enabled internet-service-src specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
+        :param pulumi.Input[str] learning_mode: Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] logtraffic: Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
         :param pulumi.Input[str] logtraffic_start: Record logs when a session starts. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Names of FSSO groups.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] policyid: Policy ID.
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
         :param pulumi.Input[str] schedule: Schedule name.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyServiceArgs']]]] services: Service and service group names. The structure of `service` block is documented below.
@@ -2523,6 +2714,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSecurityPolicyUserArgs']]]] users: Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         """
@@ -2567,14 +2759,18 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["internet_service_src_names"] = internet_service_src_names
         __props__.__dict__["internet_service_src_negate"] = internet_service_src_negate
         __props__.__dict__["ips_sensor"] = ips_sensor
+        __props__.__dict__["learning_mode"] = learning_mode
         __props__.__dict__["logtraffic"] = logtraffic
         __props__.__dict__["logtraffic_start"] = logtraffic_start
         __props__.__dict__["name"] = name
+        __props__.__dict__["nat46"] = nat46
+        __props__.__dict__["nat64"] = nat64
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["profile_group"] = profile_group
         __props__.__dict__["profile_protocol_options"] = profile_protocol_options
         __props__.__dict__["profile_type"] = profile_type
         __props__.__dict__["schedule"] = schedule
+        __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
         __props__.__dict__["send_deny_packet"] = send_deny_packet
         __props__.__dict__["service_negate"] = service_negate
         __props__.__dict__["services"] = services
@@ -2590,6 +2786,7 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         __props__.__dict__["users"] = users
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["videofilter_profile"] = videofilter_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["webfilter_profile"] = webfilter_profile
         return FirewallSecurityPolicy(resource_name, opts=opts, __props__=__props__)
@@ -2891,6 +3088,14 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         return pulumi.get(self, "ips_sensor")
 
     @property
+    @pulumi.getter(name="learningMode")
+    def learning_mode(self) -> pulumi.Output[str]:
+        """
+        Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "learning_mode")
+
+    @property
     @pulumi.getter
     def logtraffic(self) -> pulumi.Output[str]:
         """
@@ -2913,6 +3118,22 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         Names of FSSO groups.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
 
     @property
     @pulumi.getter
@@ -2953,6 +3174,14 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         Schedule name.
         """
         return pulumi.get(self, "schedule")
+
+    @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
 
     @property
     @pulumi.getter(name="sendDenyPacket")
@@ -3073,6 +3302,14 @@ class FirewallSecurityPolicy(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
 
     @property
     @pulumi.getter(name="voipProfile")

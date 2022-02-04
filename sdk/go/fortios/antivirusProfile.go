@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,10 +79,22 @@ type AntivirusProfile struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 	ContentDisarm AntivirusProfileContentDisarmPtrOutput `pulumi:"contentDisarm"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+	EmsThreatFeed pulumi.StringOutput `pulumi:"emsThreatFeed"`
 	// Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
 	ExtendedLog pulumi.StringOutput `pulumi:"extendedLog"`
+	// Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+	ExternalBlocklistEnableAll pulumi.StringOutput `pulumi:"externalBlocklistEnableAll"`
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+	ExternalBlocklists AntivirusProfileExternalBlocklistArrayOutput `pulumi:"externalBlocklists"`
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet pulumi.StringOutput `pulumi:"featureSet"`
+	// Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiErrorAction pulumi.StringOutput `pulumi:"fortiaiErrorAction"`
+	// Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiTimeoutAction pulumi.StringOutput `pulumi:"fortiaiTimeoutAction"`
 	// Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 	FtgdAnalytics pulumi.StringOutput `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
@@ -99,12 +111,14 @@ type AntivirusProfile struct {
 	MobileMalwareDb pulumi.StringOutput `pulumi:"mobileMalwareDb"`
 	// Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
 	NacQuar AntivirusProfileNacQuarPtrOutput `pulumi:"nacQuar"`
-	// Profile name.
+	// External blocklist.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
 	Nntp AntivirusProfileNntpPtrOutput `pulumi:"nntp"`
 	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention AntivirusProfileOutbreakPreventionPtrOutput `pulumi:"outbreakPrevention"`
+	// Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+	OutbreakPreventionArchiveScan pulumi.StringOutput `pulumi:"outbreakPreventionArchiveScan"`
 	// Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
 	Pop3 AntivirusProfilePop3PtrOutput `pulumi:"pop3"`
 	// Replacement message group customized for this profile.
@@ -128,6 +142,7 @@ func NewAntivirusProfile(ctx *pulumi.Context,
 		args = &AntivirusProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AntivirusProfile
 	err := ctx.RegisterResource("fortios:index/antivirusProfile:AntivirusProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -172,10 +187,22 @@ type antivirusProfileState struct {
 	Comment *string `pulumi:"comment"`
 	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 	ContentDisarm *AntivirusProfileContentDisarm `pulumi:"contentDisarm"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+	EmsThreatFeed *string `pulumi:"emsThreatFeed"`
 	// Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
 	ExtendedLog *string `pulumi:"extendedLog"`
+	// Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+	ExternalBlocklistEnableAll *string `pulumi:"externalBlocklistEnableAll"`
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+	ExternalBlocklists []AntivirusProfileExternalBlocklist `pulumi:"externalBlocklists"`
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet *string `pulumi:"featureSet"`
+	// Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiErrorAction *string `pulumi:"fortiaiErrorAction"`
+	// Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiTimeoutAction *string `pulumi:"fortiaiTimeoutAction"`
 	// Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 	FtgdAnalytics *string `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
@@ -192,12 +219,14 @@ type antivirusProfileState struct {
 	MobileMalwareDb *string `pulumi:"mobileMalwareDb"`
 	// Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
 	NacQuar *AntivirusProfileNacQuar `pulumi:"nacQuar"`
-	// Profile name.
+	// External blocklist.
 	Name *string `pulumi:"name"`
 	// Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
 	Nntp *AntivirusProfileNntp `pulumi:"nntp"`
 	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention *AntivirusProfileOutbreakPrevention `pulumi:"outbreakPrevention"`
+	// Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+	OutbreakPreventionArchiveScan *string `pulumi:"outbreakPreventionArchiveScan"`
 	// Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
 	Pop3 *AntivirusProfilePop3 `pulumi:"pop3"`
 	// Replacement message group customized for this profile.
@@ -237,10 +266,22 @@ type AntivirusProfileState struct {
 	Comment pulumi.StringPtrInput
 	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 	ContentDisarm AntivirusProfileContentDisarmPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+	EmsThreatFeed pulumi.StringPtrInput
 	// Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
 	ExtendedLog pulumi.StringPtrInput
+	// Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+	ExternalBlocklistEnableAll pulumi.StringPtrInput
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+	ExternalBlocklists AntivirusProfileExternalBlocklistArrayInput
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet pulumi.StringPtrInput
+	// Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiErrorAction pulumi.StringPtrInput
+	// Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiTimeoutAction pulumi.StringPtrInput
 	// Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 	FtgdAnalytics pulumi.StringPtrInput
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
@@ -257,12 +298,14 @@ type AntivirusProfileState struct {
 	MobileMalwareDb pulumi.StringPtrInput
 	// Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
 	NacQuar AntivirusProfileNacQuarPtrInput
-	// Profile name.
+	// External blocklist.
 	Name pulumi.StringPtrInput
 	// Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
 	Nntp AntivirusProfileNntpPtrInput
 	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention AntivirusProfileOutbreakPreventionPtrInput
+	// Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+	OutbreakPreventionArchiveScan pulumi.StringPtrInput
 	// Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
 	Pop3 AntivirusProfilePop3PtrInput
 	// Replacement message group customized for this profile.
@@ -306,10 +349,22 @@ type antivirusProfileArgs struct {
 	Comment *string `pulumi:"comment"`
 	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 	ContentDisarm *AntivirusProfileContentDisarm `pulumi:"contentDisarm"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+	EmsThreatFeed *string `pulumi:"emsThreatFeed"`
 	// Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
 	ExtendedLog *string `pulumi:"extendedLog"`
+	// Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+	ExternalBlocklistEnableAll *string `pulumi:"externalBlocklistEnableAll"`
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+	ExternalBlocklists []AntivirusProfileExternalBlocklist `pulumi:"externalBlocklists"`
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet *string `pulumi:"featureSet"`
+	// Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiErrorAction *string `pulumi:"fortiaiErrorAction"`
+	// Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiTimeoutAction *string `pulumi:"fortiaiTimeoutAction"`
 	// Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 	FtgdAnalytics *string `pulumi:"ftgdAnalytics"`
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
@@ -326,12 +381,14 @@ type antivirusProfileArgs struct {
 	MobileMalwareDb *string `pulumi:"mobileMalwareDb"`
 	// Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
 	NacQuar *AntivirusProfileNacQuar `pulumi:"nacQuar"`
-	// Profile name.
+	// External blocklist.
 	Name *string `pulumi:"name"`
 	// Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
 	Nntp *AntivirusProfileNntp `pulumi:"nntp"`
 	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention *AntivirusProfileOutbreakPrevention `pulumi:"outbreakPrevention"`
+	// Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+	OutbreakPreventionArchiveScan *string `pulumi:"outbreakPreventionArchiveScan"`
 	// Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
 	Pop3 *AntivirusProfilePop3 `pulumi:"pop3"`
 	// Replacement message group customized for this profile.
@@ -372,10 +429,22 @@ type AntivirusProfileArgs struct {
 	Comment pulumi.StringPtrInput
 	// Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 	ContentDisarm AntivirusProfileContentDisarmPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+	EmsThreatFeed pulumi.StringPtrInput
 	// Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
 	ExtendedLog pulumi.StringPtrInput
+	// Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+	ExternalBlocklistEnableAll pulumi.StringPtrInput
+	// Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+	ExternalBlocklists AntivirusProfileExternalBlocklistArrayInput
 	// Flow/proxy feature set. Valid values: `flow`, `proxy`.
 	FeatureSet pulumi.StringPtrInput
+	// Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiErrorAction pulumi.StringPtrInput
+	// Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+	FortiaiTimeoutAction pulumi.StringPtrInput
 	// Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 	FtgdAnalytics pulumi.StringPtrInput
 	// Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
@@ -392,12 +461,14 @@ type AntivirusProfileArgs struct {
 	MobileMalwareDb pulumi.StringPtrInput
 	// Configure AntiVirus quarantine settings. The structure of `nacQuar` block is documented below.
 	NacQuar AntivirusProfileNacQuarPtrInput
-	// Profile name.
+	// External blocklist.
 	Name pulumi.StringPtrInput
 	// Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
 	Nntp AntivirusProfileNntpPtrInput
 	// Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 	OutbreakPrevention AntivirusProfileOutbreakPreventionPtrInput
+	// Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+	OutbreakPreventionArchiveScan pulumi.StringPtrInput
 	// Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
 	Pop3 AntivirusProfilePop3PtrInput
 	// Replacement message group customized for this profile.
@@ -426,7 +497,7 @@ type AntivirusProfileInput interface {
 }
 
 func (*AntivirusProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfile)(nil))
+	return reflect.TypeOf((**AntivirusProfile)(nil)).Elem()
 }
 
 func (i *AntivirusProfile) ToAntivirusProfileOutput() AntivirusProfileOutput {
@@ -435,35 +506,6 @@ func (i *AntivirusProfile) ToAntivirusProfileOutput() AntivirusProfileOutput {
 
 func (i *AntivirusProfile) ToAntivirusProfileOutputWithContext(ctx context.Context) AntivirusProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileOutput)
-}
-
-func (i *AntivirusProfile) ToAntivirusProfilePtrOutput() AntivirusProfilePtrOutput {
-	return i.ToAntivirusProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *AntivirusProfile) ToAntivirusProfilePtrOutputWithContext(ctx context.Context) AntivirusProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfilePtrOutput)
-}
-
-type AntivirusProfilePtrInput interface {
-	pulumi.Input
-
-	ToAntivirusProfilePtrOutput() AntivirusProfilePtrOutput
-	ToAntivirusProfilePtrOutputWithContext(ctx context.Context) AntivirusProfilePtrOutput
-}
-
-type antivirusProfilePtrType AntivirusProfileArgs
-
-func (*antivirusProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfile)(nil))
-}
-
-func (i *antivirusProfilePtrType) ToAntivirusProfilePtrOutput() AntivirusProfilePtrOutput {
-	return i.ToAntivirusProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *antivirusProfilePtrType) ToAntivirusProfilePtrOutputWithContext(ctx context.Context) AntivirusProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfilePtrOutput)
 }
 
 // AntivirusProfileArrayInput is an input type that accepts AntivirusProfileArray and AntivirusProfileArrayOutput values.
@@ -480,7 +522,7 @@ type AntivirusProfileArrayInput interface {
 type AntivirusProfileArray []AntivirusProfileInput
 
 func (AntivirusProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AntivirusProfile)(nil))
+	return reflect.TypeOf((*[]*AntivirusProfile)(nil)).Elem()
 }
 
 func (i AntivirusProfileArray) ToAntivirusProfileArrayOutput() AntivirusProfileArrayOutput {
@@ -505,7 +547,7 @@ type AntivirusProfileMapInput interface {
 type AntivirusProfileMap map[string]AntivirusProfileInput
 
 func (AntivirusProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AntivirusProfile)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusProfile)(nil)).Elem()
 }
 
 func (i AntivirusProfileMap) ToAntivirusProfileMapOutput() AntivirusProfileMapOutput {
@@ -516,12 +558,10 @@ func (i AntivirusProfileMap) ToAntivirusProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusProfileMapOutput)
 }
 
-type AntivirusProfileOutput struct {
-	*pulumi.OutputState
-}
+type AntivirusProfileOutput struct{ *pulumi.OutputState }
 
 func (AntivirusProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusProfile)(nil))
+	return reflect.TypeOf((**AntivirusProfile)(nil)).Elem()
 }
 
 func (o AntivirusProfileOutput) ToAntivirusProfileOutput() AntivirusProfileOutput {
@@ -532,36 +572,10 @@ func (o AntivirusProfileOutput) ToAntivirusProfileOutputWithContext(ctx context.
 	return o
 }
 
-func (o AntivirusProfileOutput) ToAntivirusProfilePtrOutput() AntivirusProfilePtrOutput {
-	return o.ToAntivirusProfilePtrOutputWithContext(context.Background())
-}
-
-func (o AntivirusProfileOutput) ToAntivirusProfilePtrOutputWithContext(ctx context.Context) AntivirusProfilePtrOutput {
-	return o.ApplyT(func(v AntivirusProfile) *AntivirusProfile {
-		return &v
-	}).(AntivirusProfilePtrOutput)
-}
-
-type AntivirusProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AntivirusProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusProfile)(nil))
-}
-
-func (o AntivirusProfilePtrOutput) ToAntivirusProfilePtrOutput() AntivirusProfilePtrOutput {
-	return o
-}
-
-func (o AntivirusProfilePtrOutput) ToAntivirusProfilePtrOutputWithContext(ctx context.Context) AntivirusProfilePtrOutput {
-	return o
-}
-
 type AntivirusProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (AntivirusProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AntivirusProfile)(nil))
+	return reflect.TypeOf((*[]*AntivirusProfile)(nil)).Elem()
 }
 
 func (o AntivirusProfileArrayOutput) ToAntivirusProfileArrayOutput() AntivirusProfileArrayOutput {
@@ -573,15 +587,15 @@ func (o AntivirusProfileArrayOutput) ToAntivirusProfileArrayOutputWithContext(ct
 }
 
 func (o AntivirusProfileArrayOutput) Index(i pulumi.IntInput) AntivirusProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AntivirusProfile {
-		return vs[0].([]AntivirusProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusProfile {
+		return vs[0].([]*AntivirusProfile)[vs[1].(int)]
 	}).(AntivirusProfileOutput)
 }
 
 type AntivirusProfileMapOutput struct{ *pulumi.OutputState }
 
 func (AntivirusProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AntivirusProfile)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusProfile)(nil)).Elem()
 }
 
 func (o AntivirusProfileMapOutput) ToAntivirusProfileMapOutput() AntivirusProfileMapOutput {
@@ -593,14 +607,16 @@ func (o AntivirusProfileMapOutput) ToAntivirusProfileMapOutputWithContext(ctx co
 }
 
 func (o AntivirusProfileMapOutput) MapIndex(k pulumi.StringInput) AntivirusProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AntivirusProfile {
-		return vs[0].(map[string]AntivirusProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AntivirusProfile {
+		return vs[0].(map[string]*AntivirusProfile)[vs[1].(string)]
 	}).(AntivirusProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileInput)(nil)).Elem(), &AntivirusProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileArrayInput)(nil)).Elem(), AntivirusProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusProfileMapInput)(nil)).Elem(), AntivirusProfileMap{})
 	pulumi.RegisterOutputType(AntivirusProfileOutput{})
-	pulumi.RegisterOutputType(AntivirusProfilePtrOutput{})
 	pulumi.RegisterOutputType(AntivirusProfileArrayOutput{})
 	pulumi.RegisterOutputType(AntivirusProfileMapOutput{})
 }

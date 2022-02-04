@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,6 +60,7 @@ func NewSwitchControllerNetworkMonitorSettings(ctx *pulumi.Context,
 		args = &SwitchControllerNetworkMonitorSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerNetworkMonitorSettings
 	err := ctx.RegisterResource("fortios:index/switchControllerNetworkMonitorSettings:SwitchControllerNetworkMonitorSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -126,7 +127,7 @@ type SwitchControllerNetworkMonitorSettingsInput interface {
 }
 
 func (*SwitchControllerNetworkMonitorSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerNetworkMonitorSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerNetworkMonitorSettings)(nil)).Elem()
 }
 
 func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonitorSettingsOutput() SwitchControllerNetworkMonitorSettingsOutput {
@@ -135,35 +136,6 @@ func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonito
 
 func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonitorSettingsOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsOutput)
-}
-
-func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonitorSettingsPtrOutput() SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return i.ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerNetworkMonitorSettings) ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsPtrOutput)
-}
-
-type SwitchControllerNetworkMonitorSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerNetworkMonitorSettingsPtrOutput() SwitchControllerNetworkMonitorSettingsPtrOutput
-	ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsPtrOutput
-}
-
-type switchControllerNetworkMonitorSettingsPtrType SwitchControllerNetworkMonitorSettingsArgs
-
-func (*switchControllerNetworkMonitorSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerNetworkMonitorSettings)(nil))
-}
-
-func (i *switchControllerNetworkMonitorSettingsPtrType) ToSwitchControllerNetworkMonitorSettingsPtrOutput() SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return i.ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerNetworkMonitorSettingsPtrType) ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsPtrOutput)
 }
 
 // SwitchControllerNetworkMonitorSettingsArrayInput is an input type that accepts SwitchControllerNetworkMonitorSettingsArray and SwitchControllerNetworkMonitorSettingsArrayOutput values.
@@ -180,7 +152,7 @@ type SwitchControllerNetworkMonitorSettingsArrayInput interface {
 type SwitchControllerNetworkMonitorSettingsArray []SwitchControllerNetworkMonitorSettingsInput
 
 func (SwitchControllerNetworkMonitorSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerNetworkMonitorSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerNetworkMonitorSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerNetworkMonitorSettingsArray) ToSwitchControllerNetworkMonitorSettingsArrayOutput() SwitchControllerNetworkMonitorSettingsArrayOutput {
@@ -205,7 +177,7 @@ type SwitchControllerNetworkMonitorSettingsMapInput interface {
 type SwitchControllerNetworkMonitorSettingsMap map[string]SwitchControllerNetworkMonitorSettingsInput
 
 func (SwitchControllerNetworkMonitorSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerNetworkMonitorSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerNetworkMonitorSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerNetworkMonitorSettingsMap) ToSwitchControllerNetworkMonitorSettingsMapOutput() SwitchControllerNetworkMonitorSettingsMapOutput {
@@ -216,12 +188,10 @@ func (i SwitchControllerNetworkMonitorSettingsMap) ToSwitchControllerNetworkMoni
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerNetworkMonitorSettingsMapOutput)
 }
 
-type SwitchControllerNetworkMonitorSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerNetworkMonitorSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNetworkMonitorSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerNetworkMonitorSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerNetworkMonitorSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkMonitorSettingsOutput() SwitchControllerNetworkMonitorSettingsOutput {
@@ -232,36 +202,10 @@ func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkM
 	return o
 }
 
-func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkMonitorSettingsPtrOutput() SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return o.ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerNetworkMonitorSettingsOutput) ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return o.ApplyT(func(v SwitchControllerNetworkMonitorSettings) *SwitchControllerNetworkMonitorSettings {
-		return &v
-	}).(SwitchControllerNetworkMonitorSettingsPtrOutput)
-}
-
-type SwitchControllerNetworkMonitorSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerNetworkMonitorSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerNetworkMonitorSettings)(nil))
-}
-
-func (o SwitchControllerNetworkMonitorSettingsPtrOutput) ToSwitchControllerNetworkMonitorSettingsPtrOutput() SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return o
-}
-
-func (o SwitchControllerNetworkMonitorSettingsPtrOutput) ToSwitchControllerNetworkMonitorSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerNetworkMonitorSettingsPtrOutput {
-	return o
-}
-
 type SwitchControllerNetworkMonitorSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNetworkMonitorSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerNetworkMonitorSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerNetworkMonitorSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerNetworkMonitorSettingsArrayOutput) ToSwitchControllerNetworkMonitorSettingsArrayOutput() SwitchControllerNetworkMonitorSettingsArrayOutput {
@@ -273,15 +217,15 @@ func (o SwitchControllerNetworkMonitorSettingsArrayOutput) ToSwitchControllerNet
 }
 
 func (o SwitchControllerNetworkMonitorSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerNetworkMonitorSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerNetworkMonitorSettings {
-		return vs[0].([]SwitchControllerNetworkMonitorSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerNetworkMonitorSettings {
+		return vs[0].([]*SwitchControllerNetworkMonitorSettings)[vs[1].(int)]
 	}).(SwitchControllerNetworkMonitorSettingsOutput)
 }
 
 type SwitchControllerNetworkMonitorSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerNetworkMonitorSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerNetworkMonitorSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerNetworkMonitorSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerNetworkMonitorSettingsMapOutput) ToSwitchControllerNetworkMonitorSettingsMapOutput() SwitchControllerNetworkMonitorSettingsMapOutput {
@@ -293,14 +237,16 @@ func (o SwitchControllerNetworkMonitorSettingsMapOutput) ToSwitchControllerNetwo
 }
 
 func (o SwitchControllerNetworkMonitorSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerNetworkMonitorSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerNetworkMonitorSettings {
-		return vs[0].(map[string]SwitchControllerNetworkMonitorSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerNetworkMonitorSettings {
+		return vs[0].(map[string]*SwitchControllerNetworkMonitorSettings)[vs[1].(string)]
 	}).(SwitchControllerNetworkMonitorSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNetworkMonitorSettingsInput)(nil)).Elem(), &SwitchControllerNetworkMonitorSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNetworkMonitorSettingsArrayInput)(nil)).Elem(), SwitchControllerNetworkMonitorSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerNetworkMonitorSettingsMapInput)(nil)).Elem(), SwitchControllerNetworkMonitorSettingsMap{})
 	pulumi.RegisterOutputType(SwitchControllerNetworkMonitorSettingsOutput{})
-	pulumi.RegisterOutputType(SwitchControllerNetworkMonitorSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerNetworkMonitorSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerNetworkMonitorSettingsMapOutput{})
 }

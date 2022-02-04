@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch flow tracking and export via ipfix/netflow.
+ * Configure FortiSwitch flow tracking and export via ipfix/netflow. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -128,53 +128,51 @@ export class SwitchControllerFlowTracking extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerFlowTrackingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerFlowTrackingArgs | SwitchControllerFlowTrackingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerFlowTrackingState | undefined;
-            inputs["aggregates"] = state ? state.aggregates : undefined;
-            inputs["collectorIp"] = state ? state.collectorIp : undefined;
-            inputs["collectorPort"] = state ? state.collectorPort : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["format"] = state ? state.format : undefined;
-            inputs["level"] = state ? state.level : undefined;
-            inputs["maxExportPktSize"] = state ? state.maxExportPktSize : undefined;
-            inputs["sampleMode"] = state ? state.sampleMode : undefined;
-            inputs["sampleRate"] = state ? state.sampleRate : undefined;
-            inputs["timeoutGeneral"] = state ? state.timeoutGeneral : undefined;
-            inputs["timeoutIcmp"] = state ? state.timeoutIcmp : undefined;
-            inputs["timeoutMax"] = state ? state.timeoutMax : undefined;
-            inputs["timeoutTcp"] = state ? state.timeoutTcp : undefined;
-            inputs["timeoutTcpFin"] = state ? state.timeoutTcpFin : undefined;
-            inputs["timeoutTcpRst"] = state ? state.timeoutTcpRst : undefined;
-            inputs["timeoutUdp"] = state ? state.timeoutUdp : undefined;
-            inputs["transport"] = state ? state.transport : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["aggregates"] = state ? state.aggregates : undefined;
+            resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
+            resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["format"] = state ? state.format : undefined;
+            resourceInputs["level"] = state ? state.level : undefined;
+            resourceInputs["maxExportPktSize"] = state ? state.maxExportPktSize : undefined;
+            resourceInputs["sampleMode"] = state ? state.sampleMode : undefined;
+            resourceInputs["sampleRate"] = state ? state.sampleRate : undefined;
+            resourceInputs["timeoutGeneral"] = state ? state.timeoutGeneral : undefined;
+            resourceInputs["timeoutIcmp"] = state ? state.timeoutIcmp : undefined;
+            resourceInputs["timeoutMax"] = state ? state.timeoutMax : undefined;
+            resourceInputs["timeoutTcp"] = state ? state.timeoutTcp : undefined;
+            resourceInputs["timeoutTcpFin"] = state ? state.timeoutTcpFin : undefined;
+            resourceInputs["timeoutTcpRst"] = state ? state.timeoutTcpRst : undefined;
+            resourceInputs["timeoutUdp"] = state ? state.timeoutUdp : undefined;
+            resourceInputs["transport"] = state ? state.transport : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerFlowTrackingArgs | undefined;
-            inputs["aggregates"] = args ? args.aggregates : undefined;
-            inputs["collectorIp"] = args ? args.collectorIp : undefined;
-            inputs["collectorPort"] = args ? args.collectorPort : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["format"] = args ? args.format : undefined;
-            inputs["level"] = args ? args.level : undefined;
-            inputs["maxExportPktSize"] = args ? args.maxExportPktSize : undefined;
-            inputs["sampleMode"] = args ? args.sampleMode : undefined;
-            inputs["sampleRate"] = args ? args.sampleRate : undefined;
-            inputs["timeoutGeneral"] = args ? args.timeoutGeneral : undefined;
-            inputs["timeoutIcmp"] = args ? args.timeoutIcmp : undefined;
-            inputs["timeoutMax"] = args ? args.timeoutMax : undefined;
-            inputs["timeoutTcp"] = args ? args.timeoutTcp : undefined;
-            inputs["timeoutTcpFin"] = args ? args.timeoutTcpFin : undefined;
-            inputs["timeoutTcpRst"] = args ? args.timeoutTcpRst : undefined;
-            inputs["timeoutUdp"] = args ? args.timeoutUdp : undefined;
-            inputs["transport"] = args ? args.transport : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["aggregates"] = args ? args.aggregates : undefined;
+            resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
+            resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["format"] = args ? args.format : undefined;
+            resourceInputs["level"] = args ? args.level : undefined;
+            resourceInputs["maxExportPktSize"] = args ? args.maxExportPktSize : undefined;
+            resourceInputs["sampleMode"] = args ? args.sampleMode : undefined;
+            resourceInputs["sampleRate"] = args ? args.sampleRate : undefined;
+            resourceInputs["timeoutGeneral"] = args ? args.timeoutGeneral : undefined;
+            resourceInputs["timeoutIcmp"] = args ? args.timeoutIcmp : undefined;
+            resourceInputs["timeoutMax"] = args ? args.timeoutMax : undefined;
+            resourceInputs["timeoutTcp"] = args ? args.timeoutTcp : undefined;
+            resourceInputs["timeoutTcpFin"] = args ? args.timeoutTcpFin : undefined;
+            resourceInputs["timeoutTcpRst"] = args ? args.timeoutTcpRst : undefined;
+            resourceInputs["timeoutUdp"] = args ? args.timeoutUdp : undefined;
+            resourceInputs["transport"] = args ? args.transport : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerFlowTracking.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerFlowTracking.__pulumiType, name, resourceInputs, opts);
     }
 }
 

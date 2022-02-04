@@ -16,6 +16,7 @@ __all__ = ['SystemSpeedTestScheduleArgs', 'SystemSpeedTestSchedule']
 class SystemSpeedTestScheduleArgs:
     def __init__(__self__, *,
                  diffserv: Optional[pulumi.Input[str]] = None,
+                 dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSpeedTestScheduleScheduleArgs']]]] = None,
@@ -31,6 +32,7 @@ class SystemSpeedTestScheduleArgs:
         """
         The set of arguments for constructing a SystemSpeedTestSchedule resource.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
+        :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSpeedTestScheduleScheduleArgs']]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
@@ -46,6 +48,8 @@ class SystemSpeedTestScheduleArgs:
         """
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
+        if dynamic_server is not None:
+            pulumi.set(__self__, "dynamic_server", dynamic_server)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if interface is not None:
@@ -82,6 +86,18 @@ class SystemSpeedTestScheduleArgs:
     @diffserv.setter
     def diffserv(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "diffserv", value)
+
+    @property
+    @pulumi.getter(name="dynamicServer")
+    def dynamic_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dynamic_server")
+
+    @dynamic_server.setter
+    def dynamic_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_server", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -232,6 +248,7 @@ class SystemSpeedTestScheduleArgs:
 class _SystemSpeedTestScheduleState:
     def __init__(__self__, *,
                  diffserv: Optional[pulumi.Input[str]] = None,
+                 dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSpeedTestScheduleScheduleArgs']]]] = None,
@@ -247,6 +264,7 @@ class _SystemSpeedTestScheduleState:
         """
         Input properties used for looking up and filtering SystemSpeedTestSchedule resources.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
+        :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSpeedTestScheduleScheduleArgs']]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
@@ -262,6 +280,8 @@ class _SystemSpeedTestScheduleState:
         """
         if diffserv is not None:
             pulumi.set(__self__, "diffserv", diffserv)
+        if dynamic_server is not None:
+            pulumi.set(__self__, "dynamic_server", dynamic_server)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if interface is not None:
@@ -298,6 +318,18 @@ class _SystemSpeedTestScheduleState:
     @diffserv.setter
     def diffserv(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "diffserv", value)
+
+    @property
+    @pulumi.getter(name="dynamicServer")
+    def dynamic_server(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dynamic_server")
+
+    @dynamic_server.setter
+    def dynamic_server(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_server", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -450,6 +482,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
+                 dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]]] = None,
@@ -479,6 +512,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
+        :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
@@ -527,6 +561,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  diffserv: Optional[pulumi.Input[str]] = None,
+                 dynamic_server: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]]] = None,
@@ -546,12 +581,15 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemSpeedTestScheduleArgs.__new__(SystemSpeedTestScheduleArgs)
 
             __props__.__dict__["diffserv"] = diffserv
+            __props__.__dict__["dynamic_server"] = dynamic_server
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["interface"] = interface
             __props__.__dict__["schedules"] = schedules
@@ -575,6 +613,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             diffserv: Optional[pulumi.Input[str]] = None,
+            dynamic_server: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]]] = None,
@@ -595,6 +634,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] diffserv: DSCP used for speed test.
+        :param pulumi.Input[str] dynamic_server: Enable/disable dynamic server option. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Interface name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSpeedTestScheduleScheduleArgs']]]] schedules: Schedules for the interface. The structure of `schedules` block is documented below.
@@ -613,6 +653,7 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
         __props__ = _SystemSpeedTestScheduleState.__new__(_SystemSpeedTestScheduleState)
 
         __props__.__dict__["diffserv"] = diffserv
+        __props__.__dict__["dynamic_server"] = dynamic_server
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["interface"] = interface
         __props__.__dict__["schedules"] = schedules
@@ -634,6 +675,14 @@ class SystemSpeedTestSchedule(pulumi.CustomResource):
         DSCP used for speed test.
         """
         return pulumi.get(self, "diffserv")
+
+    @property
+    @pulumi.getter(name="dynamicServer")
+    def dynamic_server(self) -> pulumi.Output[str]:
+        """
+        Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dynamic_server")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")

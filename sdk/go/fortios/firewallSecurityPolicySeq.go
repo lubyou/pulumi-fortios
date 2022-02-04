@@ -45,6 +45,7 @@ func NewFirewallSecurityPolicySeq(ctx *pulumi.Context,
 	if args.PolicySrcId == nil {
 		return nil, errors.New("invalid value for required argument 'PolicySrcId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSecurityPolicySeq
 	err := ctx.RegisterResource("fortios:index/firewallSecurityPolicySeq:FirewallSecurityPolicySeq", name, args, &resource, opts...)
 	if err != nil {
@@ -145,7 +146,7 @@ type FirewallSecurityPolicySeqInput interface {
 }
 
 func (*FirewallSecurityPolicySeq) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSecurityPolicySeq)(nil))
+	return reflect.TypeOf((**FirewallSecurityPolicySeq)(nil)).Elem()
 }
 
 func (i *FirewallSecurityPolicySeq) ToFirewallSecurityPolicySeqOutput() FirewallSecurityPolicySeqOutput {
@@ -154,35 +155,6 @@ func (i *FirewallSecurityPolicySeq) ToFirewallSecurityPolicySeqOutput() Firewall
 
 func (i *FirewallSecurityPolicySeq) ToFirewallSecurityPolicySeqOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySeqOutput)
-}
-
-func (i *FirewallSecurityPolicySeq) ToFirewallSecurityPolicySeqPtrOutput() FirewallSecurityPolicySeqPtrOutput {
-	return i.ToFirewallSecurityPolicySeqPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSecurityPolicySeq) ToFirewallSecurityPolicySeqPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySeqPtrOutput)
-}
-
-type FirewallSecurityPolicySeqPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSecurityPolicySeqPtrOutput() FirewallSecurityPolicySeqPtrOutput
-	ToFirewallSecurityPolicySeqPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqPtrOutput
-}
-
-type firewallSecurityPolicySeqPtrType FirewallSecurityPolicySeqArgs
-
-func (*firewallSecurityPolicySeqPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicySeq)(nil))
-}
-
-func (i *firewallSecurityPolicySeqPtrType) ToFirewallSecurityPolicySeqPtrOutput() FirewallSecurityPolicySeqPtrOutput {
-	return i.ToFirewallSecurityPolicySeqPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSecurityPolicySeqPtrType) ToFirewallSecurityPolicySeqPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySeqPtrOutput)
 }
 
 // FirewallSecurityPolicySeqArrayInput is an input type that accepts FirewallSecurityPolicySeqArray and FirewallSecurityPolicySeqArrayOutput values.
@@ -199,7 +171,7 @@ type FirewallSecurityPolicySeqArrayInput interface {
 type FirewallSecurityPolicySeqArray []FirewallSecurityPolicySeqInput
 
 func (FirewallSecurityPolicySeqArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSecurityPolicySeq)(nil))
+	return reflect.TypeOf((*[]*FirewallSecurityPolicySeq)(nil)).Elem()
 }
 
 func (i FirewallSecurityPolicySeqArray) ToFirewallSecurityPolicySeqArrayOutput() FirewallSecurityPolicySeqArrayOutput {
@@ -224,7 +196,7 @@ type FirewallSecurityPolicySeqMapInput interface {
 type FirewallSecurityPolicySeqMap map[string]FirewallSecurityPolicySeqInput
 
 func (FirewallSecurityPolicySeqMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSecurityPolicySeq)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSecurityPolicySeq)(nil)).Elem()
 }
 
 func (i FirewallSecurityPolicySeqMap) ToFirewallSecurityPolicySeqMapOutput() FirewallSecurityPolicySeqMapOutput {
@@ -235,12 +207,10 @@ func (i FirewallSecurityPolicySeqMap) ToFirewallSecurityPolicySeqMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicySeqMapOutput)
 }
 
-type FirewallSecurityPolicySeqOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSecurityPolicySeqOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicySeqOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSecurityPolicySeq)(nil))
+	return reflect.TypeOf((**FirewallSecurityPolicySeq)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicySeqOutput) ToFirewallSecurityPolicySeqOutput() FirewallSecurityPolicySeqOutput {
@@ -251,36 +221,10 @@ func (o FirewallSecurityPolicySeqOutput) ToFirewallSecurityPolicySeqOutputWithCo
 	return o
 }
 
-func (o FirewallSecurityPolicySeqOutput) ToFirewallSecurityPolicySeqPtrOutput() FirewallSecurityPolicySeqPtrOutput {
-	return o.ToFirewallSecurityPolicySeqPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSecurityPolicySeqOutput) ToFirewallSecurityPolicySeqPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqPtrOutput {
-	return o.ApplyT(func(v FirewallSecurityPolicySeq) *FirewallSecurityPolicySeq {
-		return &v
-	}).(FirewallSecurityPolicySeqPtrOutput)
-}
-
-type FirewallSecurityPolicySeqPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSecurityPolicySeqPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicySeq)(nil))
-}
-
-func (o FirewallSecurityPolicySeqPtrOutput) ToFirewallSecurityPolicySeqPtrOutput() FirewallSecurityPolicySeqPtrOutput {
-	return o
-}
-
-func (o FirewallSecurityPolicySeqPtrOutput) ToFirewallSecurityPolicySeqPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicySeqPtrOutput {
-	return o
-}
-
 type FirewallSecurityPolicySeqArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicySeqArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSecurityPolicySeq)(nil))
+	return reflect.TypeOf((*[]*FirewallSecurityPolicySeq)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicySeqArrayOutput) ToFirewallSecurityPolicySeqArrayOutput() FirewallSecurityPolicySeqArrayOutput {
@@ -292,15 +236,15 @@ func (o FirewallSecurityPolicySeqArrayOutput) ToFirewallSecurityPolicySeqArrayOu
 }
 
 func (o FirewallSecurityPolicySeqArrayOutput) Index(i pulumi.IntInput) FirewallSecurityPolicySeqOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSecurityPolicySeq {
-		return vs[0].([]FirewallSecurityPolicySeq)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecurityPolicySeq {
+		return vs[0].([]*FirewallSecurityPolicySeq)[vs[1].(int)]
 	}).(FirewallSecurityPolicySeqOutput)
 }
 
 type FirewallSecurityPolicySeqMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicySeqMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSecurityPolicySeq)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSecurityPolicySeq)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicySeqMapOutput) ToFirewallSecurityPolicySeqMapOutput() FirewallSecurityPolicySeqMapOutput {
@@ -312,14 +256,16 @@ func (o FirewallSecurityPolicySeqMapOutput) ToFirewallSecurityPolicySeqMapOutput
 }
 
 func (o FirewallSecurityPolicySeqMapOutput) MapIndex(k pulumi.StringInput) FirewallSecurityPolicySeqOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSecurityPolicySeq {
-		return vs[0].(map[string]FirewallSecurityPolicySeq)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSecurityPolicySeq {
+		return vs[0].(map[string]*FirewallSecurityPolicySeq)[vs[1].(string)]
 	}).(FirewallSecurityPolicySeqOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicySeqInput)(nil)).Elem(), &FirewallSecurityPolicySeq{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicySeqArrayInput)(nil)).Elem(), FirewallSecurityPolicySeqArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicySeqMapInput)(nil)).Elem(), FirewallSecurityPolicySeqMap{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicySeqOutput{})
-	pulumi.RegisterOutputType(FirewallSecurityPolicySeqPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicySeqArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicySeqMapOutput{})
 }

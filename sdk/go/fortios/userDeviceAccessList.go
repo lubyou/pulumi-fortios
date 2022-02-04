@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewUserDeviceAccessList(ctx *pulumi.Context,
 		args = &UserDeviceAccessListArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserDeviceAccessList
 	err := ctx.RegisterResource("fortios:index/userDeviceAccessList:UserDeviceAccessList", name, args, &resource, opts...)
 	if err != nil {
@@ -156,7 +157,7 @@ type UserDeviceAccessListInput interface {
 }
 
 func (*UserDeviceAccessList) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDeviceAccessList)(nil))
+	return reflect.TypeOf((**UserDeviceAccessList)(nil)).Elem()
 }
 
 func (i *UserDeviceAccessList) ToUserDeviceAccessListOutput() UserDeviceAccessListOutput {
@@ -165,35 +166,6 @@ func (i *UserDeviceAccessList) ToUserDeviceAccessListOutput() UserDeviceAccessLi
 
 func (i *UserDeviceAccessList) ToUserDeviceAccessListOutputWithContext(ctx context.Context) UserDeviceAccessListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceAccessListOutput)
-}
-
-func (i *UserDeviceAccessList) ToUserDeviceAccessListPtrOutput() UserDeviceAccessListPtrOutput {
-	return i.ToUserDeviceAccessListPtrOutputWithContext(context.Background())
-}
-
-func (i *UserDeviceAccessList) ToUserDeviceAccessListPtrOutputWithContext(ctx context.Context) UserDeviceAccessListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceAccessListPtrOutput)
-}
-
-type UserDeviceAccessListPtrInput interface {
-	pulumi.Input
-
-	ToUserDeviceAccessListPtrOutput() UserDeviceAccessListPtrOutput
-	ToUserDeviceAccessListPtrOutputWithContext(ctx context.Context) UserDeviceAccessListPtrOutput
-}
-
-type userDeviceAccessListPtrType UserDeviceAccessListArgs
-
-func (*userDeviceAccessListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDeviceAccessList)(nil))
-}
-
-func (i *userDeviceAccessListPtrType) ToUserDeviceAccessListPtrOutput() UserDeviceAccessListPtrOutput {
-	return i.ToUserDeviceAccessListPtrOutputWithContext(context.Background())
-}
-
-func (i *userDeviceAccessListPtrType) ToUserDeviceAccessListPtrOutputWithContext(ctx context.Context) UserDeviceAccessListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceAccessListPtrOutput)
 }
 
 // UserDeviceAccessListArrayInput is an input type that accepts UserDeviceAccessListArray and UserDeviceAccessListArrayOutput values.
@@ -210,7 +182,7 @@ type UserDeviceAccessListArrayInput interface {
 type UserDeviceAccessListArray []UserDeviceAccessListInput
 
 func (UserDeviceAccessListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserDeviceAccessList)(nil))
+	return reflect.TypeOf((*[]*UserDeviceAccessList)(nil)).Elem()
 }
 
 func (i UserDeviceAccessListArray) ToUserDeviceAccessListArrayOutput() UserDeviceAccessListArrayOutput {
@@ -235,7 +207,7 @@ type UserDeviceAccessListMapInput interface {
 type UserDeviceAccessListMap map[string]UserDeviceAccessListInput
 
 func (UserDeviceAccessListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserDeviceAccessList)(nil))
+	return reflect.TypeOf((*map[string]*UserDeviceAccessList)(nil)).Elem()
 }
 
 func (i UserDeviceAccessListMap) ToUserDeviceAccessListMapOutput() UserDeviceAccessListMapOutput {
@@ -246,12 +218,10 @@ func (i UserDeviceAccessListMap) ToUserDeviceAccessListMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceAccessListMapOutput)
 }
 
-type UserDeviceAccessListOutput struct {
-	*pulumi.OutputState
-}
+type UserDeviceAccessListOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceAccessListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDeviceAccessList)(nil))
+	return reflect.TypeOf((**UserDeviceAccessList)(nil)).Elem()
 }
 
 func (o UserDeviceAccessListOutput) ToUserDeviceAccessListOutput() UserDeviceAccessListOutput {
@@ -262,36 +232,10 @@ func (o UserDeviceAccessListOutput) ToUserDeviceAccessListOutputWithContext(ctx 
 	return o
 }
 
-func (o UserDeviceAccessListOutput) ToUserDeviceAccessListPtrOutput() UserDeviceAccessListPtrOutput {
-	return o.ToUserDeviceAccessListPtrOutputWithContext(context.Background())
-}
-
-func (o UserDeviceAccessListOutput) ToUserDeviceAccessListPtrOutputWithContext(ctx context.Context) UserDeviceAccessListPtrOutput {
-	return o.ApplyT(func(v UserDeviceAccessList) *UserDeviceAccessList {
-		return &v
-	}).(UserDeviceAccessListPtrOutput)
-}
-
-type UserDeviceAccessListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserDeviceAccessListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDeviceAccessList)(nil))
-}
-
-func (o UserDeviceAccessListPtrOutput) ToUserDeviceAccessListPtrOutput() UserDeviceAccessListPtrOutput {
-	return o
-}
-
-func (o UserDeviceAccessListPtrOutput) ToUserDeviceAccessListPtrOutputWithContext(ctx context.Context) UserDeviceAccessListPtrOutput {
-	return o
-}
-
 type UserDeviceAccessListArrayOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceAccessListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserDeviceAccessList)(nil))
+	return reflect.TypeOf((*[]*UserDeviceAccessList)(nil)).Elem()
 }
 
 func (o UserDeviceAccessListArrayOutput) ToUserDeviceAccessListArrayOutput() UserDeviceAccessListArrayOutput {
@@ -303,15 +247,15 @@ func (o UserDeviceAccessListArrayOutput) ToUserDeviceAccessListArrayOutputWithCo
 }
 
 func (o UserDeviceAccessListArrayOutput) Index(i pulumi.IntInput) UserDeviceAccessListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDeviceAccessList {
-		return vs[0].([]UserDeviceAccessList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDeviceAccessList {
+		return vs[0].([]*UserDeviceAccessList)[vs[1].(int)]
 	}).(UserDeviceAccessListOutput)
 }
 
 type UserDeviceAccessListMapOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceAccessListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserDeviceAccessList)(nil))
+	return reflect.TypeOf((*map[string]*UserDeviceAccessList)(nil)).Elem()
 }
 
 func (o UserDeviceAccessListMapOutput) ToUserDeviceAccessListMapOutput() UserDeviceAccessListMapOutput {
@@ -323,14 +267,16 @@ func (o UserDeviceAccessListMapOutput) ToUserDeviceAccessListMapOutputWithContex
 }
 
 func (o UserDeviceAccessListMapOutput) MapIndex(k pulumi.StringInput) UserDeviceAccessListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserDeviceAccessList {
-		return vs[0].(map[string]UserDeviceAccessList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserDeviceAccessList {
+		return vs[0].(map[string]*UserDeviceAccessList)[vs[1].(string)]
 	}).(UserDeviceAccessListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceAccessListInput)(nil)).Elem(), &UserDeviceAccessList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceAccessListArrayInput)(nil)).Elem(), UserDeviceAccessListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceAccessListMapInput)(nil)).Elem(), UserDeviceAccessListMap{})
 	pulumi.RegisterOutputType(UserDeviceAccessListOutput{})
-	pulumi.RegisterOutputType(UserDeviceAccessListPtrOutput{})
 	pulumi.RegisterOutputType(UserDeviceAccessListArrayOutput{})
 	pulumi.RegisterOutputType(UserDeviceAccessListMapOutput{})
 }

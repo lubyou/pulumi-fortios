@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -171,6 +171,7 @@ func NewUserRadius(ctx *pulumi.Context,
 		args = &UserRadiusArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserRadius
 	err := ctx.RegisterResource("fortios:index/userRadius:UserRadius", name, args, &resource, opts...)
 	if err != nil {
@@ -581,7 +582,7 @@ type UserRadiusInput interface {
 }
 
 func (*UserRadius) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserRadius)(nil))
+	return reflect.TypeOf((**UserRadius)(nil)).Elem()
 }
 
 func (i *UserRadius) ToUserRadiusOutput() UserRadiusOutput {
@@ -590,35 +591,6 @@ func (i *UserRadius) ToUserRadiusOutput() UserRadiusOutput {
 
 func (i *UserRadius) ToUserRadiusOutputWithContext(ctx context.Context) UserRadiusOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusOutput)
-}
-
-func (i *UserRadius) ToUserRadiusPtrOutput() UserRadiusPtrOutput {
-	return i.ToUserRadiusPtrOutputWithContext(context.Background())
-}
-
-func (i *UserRadius) ToUserRadiusPtrOutputWithContext(ctx context.Context) UserRadiusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusPtrOutput)
-}
-
-type UserRadiusPtrInput interface {
-	pulumi.Input
-
-	ToUserRadiusPtrOutput() UserRadiusPtrOutput
-	ToUserRadiusPtrOutputWithContext(ctx context.Context) UserRadiusPtrOutput
-}
-
-type userRadiusPtrType UserRadiusArgs
-
-func (*userRadiusPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserRadius)(nil))
-}
-
-func (i *userRadiusPtrType) ToUserRadiusPtrOutput() UserRadiusPtrOutput {
-	return i.ToUserRadiusPtrOutputWithContext(context.Background())
-}
-
-func (i *userRadiusPtrType) ToUserRadiusPtrOutputWithContext(ctx context.Context) UserRadiusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusPtrOutput)
 }
 
 // UserRadiusArrayInput is an input type that accepts UserRadiusArray and UserRadiusArrayOutput values.
@@ -635,7 +607,7 @@ type UserRadiusArrayInput interface {
 type UserRadiusArray []UserRadiusInput
 
 func (UserRadiusArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserRadius)(nil))
+	return reflect.TypeOf((*[]*UserRadius)(nil)).Elem()
 }
 
 func (i UserRadiusArray) ToUserRadiusArrayOutput() UserRadiusArrayOutput {
@@ -660,7 +632,7 @@ type UserRadiusMapInput interface {
 type UserRadiusMap map[string]UserRadiusInput
 
 func (UserRadiusMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserRadius)(nil))
+	return reflect.TypeOf((*map[string]*UserRadius)(nil)).Elem()
 }
 
 func (i UserRadiusMap) ToUserRadiusMapOutput() UserRadiusMapOutput {
@@ -671,12 +643,10 @@ func (i UserRadiusMap) ToUserRadiusMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserRadiusMapOutput)
 }
 
-type UserRadiusOutput struct {
-	*pulumi.OutputState
-}
+type UserRadiusOutput struct{ *pulumi.OutputState }
 
 func (UserRadiusOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserRadius)(nil))
+	return reflect.TypeOf((**UserRadius)(nil)).Elem()
 }
 
 func (o UserRadiusOutput) ToUserRadiusOutput() UserRadiusOutput {
@@ -687,36 +657,10 @@ func (o UserRadiusOutput) ToUserRadiusOutputWithContext(ctx context.Context) Use
 	return o
 }
 
-func (o UserRadiusOutput) ToUserRadiusPtrOutput() UserRadiusPtrOutput {
-	return o.ToUserRadiusPtrOutputWithContext(context.Background())
-}
-
-func (o UserRadiusOutput) ToUserRadiusPtrOutputWithContext(ctx context.Context) UserRadiusPtrOutput {
-	return o.ApplyT(func(v UserRadius) *UserRadius {
-		return &v
-	}).(UserRadiusPtrOutput)
-}
-
-type UserRadiusPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserRadiusPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserRadius)(nil))
-}
-
-func (o UserRadiusPtrOutput) ToUserRadiusPtrOutput() UserRadiusPtrOutput {
-	return o
-}
-
-func (o UserRadiusPtrOutput) ToUserRadiusPtrOutputWithContext(ctx context.Context) UserRadiusPtrOutput {
-	return o
-}
-
 type UserRadiusArrayOutput struct{ *pulumi.OutputState }
 
 func (UserRadiusArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserRadius)(nil))
+	return reflect.TypeOf((*[]*UserRadius)(nil)).Elem()
 }
 
 func (o UserRadiusArrayOutput) ToUserRadiusArrayOutput() UserRadiusArrayOutput {
@@ -728,15 +672,15 @@ func (o UserRadiusArrayOutput) ToUserRadiusArrayOutputWithContext(ctx context.Co
 }
 
 func (o UserRadiusArrayOutput) Index(i pulumi.IntInput) UserRadiusOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserRadius {
-		return vs[0].([]UserRadius)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserRadius {
+		return vs[0].([]*UserRadius)[vs[1].(int)]
 	}).(UserRadiusOutput)
 }
 
 type UserRadiusMapOutput struct{ *pulumi.OutputState }
 
 func (UserRadiusMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserRadius)(nil))
+	return reflect.TypeOf((*map[string]*UserRadius)(nil)).Elem()
 }
 
 func (o UserRadiusMapOutput) ToUserRadiusMapOutput() UserRadiusMapOutput {
@@ -748,14 +692,16 @@ func (o UserRadiusMapOutput) ToUserRadiusMapOutputWithContext(ctx context.Contex
 }
 
 func (o UserRadiusMapOutput) MapIndex(k pulumi.StringInput) UserRadiusOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserRadius {
-		return vs[0].(map[string]UserRadius)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserRadius {
+		return vs[0].(map[string]*UserRadius)[vs[1].(string)]
 	}).(UserRadiusOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusInput)(nil)).Elem(), &UserRadius{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusArrayInput)(nil)).Elem(), UserRadiusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserRadiusMapInput)(nil)).Elem(), UserRadiusMap{})
 	pulumi.RegisterOutputType(UserRadiusOutput{})
-	pulumi.RegisterOutputType(UserRadiusPtrOutput{})
 	pulumi.RegisterOutputType(UserRadiusArrayOutput{})
 	pulumi.RegisterOutputType(UserRadiusMapOutput{})
 }

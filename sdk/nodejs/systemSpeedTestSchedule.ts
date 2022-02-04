@@ -51,6 +51,10 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
      */
     public readonly diffserv!: pulumi.Output<string>;
     /**
+     * Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+     */
+    public readonly dynamicServer!: pulumi.Output<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -108,43 +112,43 @@ export class SystemSpeedTestSchedule extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSpeedTestScheduleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSpeedTestScheduleArgs | SystemSpeedTestScheduleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSpeedTestScheduleState | undefined;
-            inputs["diffserv"] = state ? state.diffserv : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["schedules"] = state ? state.schedules : undefined;
-            inputs["serverName"] = state ? state.serverName : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["updateInbandwidth"] = state ? state.updateInbandwidth : undefined;
-            inputs["updateInbandwidthMaximum"] = state ? state.updateInbandwidthMaximum : undefined;
-            inputs["updateInbandwidthMinimum"] = state ? state.updateInbandwidthMinimum : undefined;
-            inputs["updateOutbandwidth"] = state ? state.updateOutbandwidth : undefined;
-            inputs["updateOutbandwidthMaximum"] = state ? state.updateOutbandwidthMaximum : undefined;
-            inputs["updateOutbandwidthMinimum"] = state ? state.updateOutbandwidthMinimum : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["diffserv"] = state ? state.diffserv : undefined;
+            resourceInputs["dynamicServer"] = state ? state.dynamicServer : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["schedules"] = state ? state.schedules : undefined;
+            resourceInputs["serverName"] = state ? state.serverName : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updateInbandwidth"] = state ? state.updateInbandwidth : undefined;
+            resourceInputs["updateInbandwidthMaximum"] = state ? state.updateInbandwidthMaximum : undefined;
+            resourceInputs["updateInbandwidthMinimum"] = state ? state.updateInbandwidthMinimum : undefined;
+            resourceInputs["updateOutbandwidth"] = state ? state.updateOutbandwidth : undefined;
+            resourceInputs["updateOutbandwidthMaximum"] = state ? state.updateOutbandwidthMaximum : undefined;
+            resourceInputs["updateOutbandwidthMinimum"] = state ? state.updateOutbandwidthMinimum : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSpeedTestScheduleArgs | undefined;
-            inputs["diffserv"] = args ? args.diffserv : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["schedules"] = args ? args.schedules : undefined;
-            inputs["serverName"] = args ? args.serverName : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["updateInbandwidth"] = args ? args.updateInbandwidth : undefined;
-            inputs["updateInbandwidthMaximum"] = args ? args.updateInbandwidthMaximum : undefined;
-            inputs["updateInbandwidthMinimum"] = args ? args.updateInbandwidthMinimum : undefined;
-            inputs["updateOutbandwidth"] = args ? args.updateOutbandwidth : undefined;
-            inputs["updateOutbandwidthMaximum"] = args ? args.updateOutbandwidthMaximum : undefined;
-            inputs["updateOutbandwidthMinimum"] = args ? args.updateOutbandwidthMinimum : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["diffserv"] = args ? args.diffserv : undefined;
+            resourceInputs["dynamicServer"] = args ? args.dynamicServer : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["schedules"] = args ? args.schedules : undefined;
+            resourceInputs["serverName"] = args ? args.serverName : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["updateInbandwidth"] = args ? args.updateInbandwidth : undefined;
+            resourceInputs["updateInbandwidthMaximum"] = args ? args.updateInbandwidthMaximum : undefined;
+            resourceInputs["updateInbandwidthMinimum"] = args ? args.updateInbandwidthMinimum : undefined;
+            resourceInputs["updateOutbandwidth"] = args ? args.updateOutbandwidth : undefined;
+            resourceInputs["updateOutbandwidthMaximum"] = args ? args.updateOutbandwidthMaximum : undefined;
+            resourceInputs["updateOutbandwidthMinimum"] = args ? args.updateOutbandwidthMinimum : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSpeedTestSchedule.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSpeedTestSchedule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -156,6 +160,10 @@ export interface SystemSpeedTestScheduleState {
      * DSCP used for speed test.
      */
     diffserv?: pulumi.Input<string>;
+    /**
+     * Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+     */
+    dynamicServer?: pulumi.Input<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -214,6 +222,10 @@ export interface SystemSpeedTestScheduleArgs {
      * DSCP used for speed test.
      */
     diffserv?: pulumi.Input<string>;
+    /**
+     * Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+     */
+    dynamicServer?: pulumi.Input<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */

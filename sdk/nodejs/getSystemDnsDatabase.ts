@@ -13,9 +13,7 @@ export function getSystemDnsDatabase(args: GetSystemDnsDatabaseArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemDnsDatabase:GetSystemDnsDatabase", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -111,4 +109,22 @@ export interface GetSystemDnsDatabaseResult {
      * Zone view (public to serve public clients, shadow to serve internal clients).
      */
     readonly view: string;
+}
+
+export function getSystemDnsDatabaseOutput(args: GetSystemDnsDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDnsDatabaseResult> {
+    return pulumi.output(args).apply(a => getSystemDnsDatabase(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemDnsDatabase.
+ */
+export interface GetSystemDnsDatabaseOutputArgs {
+    /**
+     * Specify the name of the desired system dnsdatabase.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

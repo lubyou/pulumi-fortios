@@ -16,6 +16,8 @@ __all__ = ['SystemDnsArgs', 'SystemDns']
 class SystemDnsArgs:
     def __init__(__self__, *,
                  primary: pulumi.Input[str],
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  cache_notfound_responses: Optional[pulumi.Input[str]] = None,
                  dns_cache_limit: Optional[pulumi.Input[int]] = None,
                  dns_cache_ttl: Optional[pulumi.Input[int]] = None,
@@ -26,9 +28,12 @@ class SystemDnsArgs:
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  retry: Optional[pulumi.Input[int]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsServerHostnameArgs']]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
@@ -36,6 +41,8 @@ class SystemDnsArgs:
         """
         The set of arguments for constructing a SystemDns resource.
         :param pulumi.Input[str] primary: Primary DNS server IP address.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -46,15 +53,22 @@ class SystemDnsArgs:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
         :param pulumi.Input[str] ip6_secondary: Secondary DNS server IPv6 address.
+        :param pulumi.Input[str] log: Local DNS log setting. Valid values: `disable`, `error`, `all`.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[int] retry: Number of times to retry (0 - 5).
         :param pulumi.Input[str] secondary: Secondary DNS server IP address.
         :param pulumi.Input[Sequence[pulumi.Input['SystemDnsServerHostnameArgs']]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: IP address used by the DNS server as its source IP.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] timeout: DNS query timeout interval in seconds (1 - 10).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "primary", primary)
+        if alt_primary is not None:
+            pulumi.set(__self__, "alt_primary", alt_primary)
+        if alt_secondary is not None:
+            pulumi.set(__self__, "alt_secondary", alt_secondary)
         if cache_notfound_responses is not None:
             pulumi.set(__self__, "cache_notfound_responses", cache_notfound_responses)
         if dns_cache_limit is not None:
@@ -75,12 +89,18 @@ class SystemDnsArgs:
             pulumi.set(__self__, "ip6_primary", ip6_primary)
         if ip6_secondary is not None:
             pulumi.set(__self__, "ip6_secondary", ip6_secondary)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if retry is not None:
             pulumi.set(__self__, "retry", retry)
         if secondary is not None:
             pulumi.set(__self__, "secondary", secondary)
         if server_hostnames is not None:
             pulumi.set(__self__, "server_hostnames", server_hostnames)
+        if server_select_method is not None:
+            pulumi.set(__self__, "server_select_method", server_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_certificate is not None:
@@ -101,6 +121,30 @@ class SystemDnsArgs:
     @primary.setter
     def primary(self, value: pulumi.Input[str]):
         pulumi.set(self, "primary", value)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @alt_primary.setter
+    def alt_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_primary", value)
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
+
+    @alt_secondary.setter
+    def alt_secondary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_secondary", value)
 
     @property
     @pulumi.getter(name="cacheNotfoundResponses")
@@ -224,6 +268,30 @@ class SystemDnsArgs:
 
     @property
     @pulumi.getter
+    def log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local DNS log setting. Valid values: `disable`, `error`, `all`.
+        """
+        return pulumi.get(self, "log")
+
+    @log.setter
+    def log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
     def retry(self) -> Optional[pulumi.Input[int]]:
         """
         Number of times to retry (0 - 5).
@@ -257,6 +325,18 @@ class SystemDnsArgs:
     @server_hostnames.setter
     def server_hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsServerHostnameArgs']]]]):
         pulumi.set(self, "server_hostnames", value)
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+        """
+        return pulumi.get(self, "server_select_method")
+
+    @server_select_method.setter
+    def server_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -310,6 +390,8 @@ class SystemDnsArgs:
 @pulumi.input_type
 class _SystemDnsState:
     def __init__(__self__, *,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  cache_notfound_responses: Optional[pulumi.Input[str]] = None,
                  dns_cache_limit: Optional[pulumi.Input[int]] = None,
                  dns_cache_ttl: Optional[pulumi.Input[int]] = None,
@@ -320,16 +402,21 @@ class _SystemDnsState:
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  retry: Optional[pulumi.Input[int]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsServerHostnameArgs']]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemDns resources.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -340,15 +427,22 @@ class _SystemDnsState:
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
         :param pulumi.Input[str] ip6_secondary: Secondary DNS server IPv6 address.
+        :param pulumi.Input[str] log: Local DNS log setting. Valid values: `disable`, `error`, `all`.
         :param pulumi.Input[str] primary: Primary DNS server IP address.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[int] retry: Number of times to retry (0 - 5).
         :param pulumi.Input[str] secondary: Secondary DNS server IP address.
         :param pulumi.Input[Sequence[pulumi.Input['SystemDnsServerHostnameArgs']]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: IP address used by the DNS server as its source IP.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] timeout: DNS query timeout interval in seconds (1 - 10).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if alt_primary is not None:
+            pulumi.set(__self__, "alt_primary", alt_primary)
+        if alt_secondary is not None:
+            pulumi.set(__self__, "alt_secondary", alt_secondary)
         if cache_notfound_responses is not None:
             pulumi.set(__self__, "cache_notfound_responses", cache_notfound_responses)
         if dns_cache_limit is not None:
@@ -369,14 +463,20 @@ class _SystemDnsState:
             pulumi.set(__self__, "ip6_primary", ip6_primary)
         if ip6_secondary is not None:
             pulumi.set(__self__, "ip6_secondary", ip6_secondary)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
         if primary is not None:
             pulumi.set(__self__, "primary", primary)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if retry is not None:
             pulumi.set(__self__, "retry", retry)
         if secondary is not None:
             pulumi.set(__self__, "secondary", secondary)
         if server_hostnames is not None:
             pulumi.set(__self__, "server_hostnames", server_hostnames)
+        if server_select_method is not None:
+            pulumi.set(__self__, "server_select_method", server_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_certificate is not None:
@@ -385,6 +485,30 @@ class _SystemDnsState:
             pulumi.set(__self__, "timeout", timeout)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @alt_primary.setter
+    def alt_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_primary", value)
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
+
+    @alt_secondary.setter
+    def alt_secondary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_secondary", value)
 
     @property
     @pulumi.getter(name="cacheNotfoundResponses")
@@ -508,6 +632,18 @@ class _SystemDnsState:
 
     @property
     @pulumi.getter
+    def log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local DNS log setting. Valid values: `disable`, `error`, `all`.
+        """
+        return pulumi.get(self, "log")
+
+    @log.setter
+    def log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "log", value)
+
+    @property
+    @pulumi.getter
     def primary(self) -> Optional[pulumi.Input[str]]:
         """
         Primary DNS server IP address.
@@ -517,6 +653,18 @@ class _SystemDnsState:
     @primary.setter
     def primary(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "primary", value)
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
 
     @property
     @pulumi.getter
@@ -553,6 +701,18 @@ class _SystemDnsState:
     @server_hostnames.setter
     def server_hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemDnsServerHostnameArgs']]]]):
         pulumi.set(self, "server_hostnames", value)
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+        """
+        return pulumi.get(self, "server_select_method")
+
+    @server_select_method.setter
+    def server_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -608,6 +768,8 @@ class SystemDns(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  cache_notfound_responses: Optional[pulumi.Input[str]] = None,
                  dns_cache_limit: Optional[pulumi.Input[int]] = None,
                  dns_cache_ttl: Optional[pulumi.Input[int]] = None,
@@ -618,10 +780,13 @@ class SystemDns(pulumi.CustomResource):
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  retry: Optional[pulumi.Input[int]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsServerHostnameArgs']]]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
@@ -661,6 +826,8 @@ class SystemDns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -671,10 +838,13 @@ class SystemDns(pulumi.CustomResource):
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
         :param pulumi.Input[str] ip6_secondary: Secondary DNS server IPv6 address.
+        :param pulumi.Input[str] log: Local DNS log setting. Valid values: `disable`, `error`, `all`.
         :param pulumi.Input[str] primary: Primary DNS server IP address.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[int] retry: Number of times to retry (0 - 5).
         :param pulumi.Input[str] secondary: Secondary DNS server IP address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsServerHostnameArgs']]]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: IP address used by the DNS server as its source IP.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] timeout: DNS query timeout interval in seconds (1 - 10).
@@ -733,6 +903,8 @@ class SystemDns(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  cache_notfound_responses: Optional[pulumi.Input[str]] = None,
                  dns_cache_limit: Optional[pulumi.Input[int]] = None,
                  dns_cache_ttl: Optional[pulumi.Input[int]] = None,
@@ -743,10 +915,13 @@ class SystemDns(pulumi.CustomResource):
                  interface_select_method: Optional[pulumi.Input[str]] = None,
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
+                 log: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  retry: Optional[pulumi.Input[int]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsServerHostnameArgs']]]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  timeout: Optional[pulumi.Input[int]] = None,
@@ -758,11 +933,15 @@ class SystemDns(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemDnsArgs.__new__(SystemDnsArgs)
 
+            __props__.__dict__["alt_primary"] = alt_primary
+            __props__.__dict__["alt_secondary"] = alt_secondary
             __props__.__dict__["cache_notfound_responses"] = cache_notfound_responses
             __props__.__dict__["dns_cache_limit"] = dns_cache_limit
             __props__.__dict__["dns_cache_ttl"] = dns_cache_ttl
@@ -773,12 +952,15 @@ class SystemDns(pulumi.CustomResource):
             __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["ip6_primary"] = ip6_primary
             __props__.__dict__["ip6_secondary"] = ip6_secondary
+            __props__.__dict__["log"] = log
             if primary is None and not opts.urn:
                 raise TypeError("Missing required property 'primary'")
             __props__.__dict__["primary"] = primary
+            __props__.__dict__["protocol"] = protocol
             __props__.__dict__["retry"] = retry
             __props__.__dict__["secondary"] = secondary
             __props__.__dict__["server_hostnames"] = server_hostnames
+            __props__.__dict__["server_select_method"] = server_select_method
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["ssl_certificate"] = ssl_certificate
             __props__.__dict__["timeout"] = timeout
@@ -793,6 +975,8 @@ class SystemDns(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alt_primary: Optional[pulumi.Input[str]] = None,
+            alt_secondary: Optional[pulumi.Input[str]] = None,
             cache_notfound_responses: Optional[pulumi.Input[str]] = None,
             dns_cache_limit: Optional[pulumi.Input[int]] = None,
             dns_cache_ttl: Optional[pulumi.Input[int]] = None,
@@ -803,10 +987,13 @@ class SystemDns(pulumi.CustomResource):
             interface_select_method: Optional[pulumi.Input[str]] = None,
             ip6_primary: Optional[pulumi.Input[str]] = None,
             ip6_secondary: Optional[pulumi.Input[str]] = None,
+            log: Optional[pulumi.Input[str]] = None,
             primary: Optional[pulumi.Input[str]] = None,
+            protocol: Optional[pulumi.Input[str]] = None,
             retry: Optional[pulumi.Input[int]] = None,
             secondary: Optional[pulumi.Input[str]] = None,
             server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsServerHostnameArgs']]]]] = None,
+            server_select_method: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             ssl_certificate: Optional[pulumi.Input[str]] = None,
             timeout: Optional[pulumi.Input[int]] = None,
@@ -818,6 +1005,8 @@ class SystemDns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] cache_notfound_responses: Enable/disable response from the DNS server when a record is not in cache. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] dns_cache_limit: Maximum number of records in the DNS cache.
         :param pulumi.Input[int] dns_cache_ttl: Duration in seconds that the DNS cache retains information.
@@ -828,10 +1017,13 @@ class SystemDns(pulumi.CustomResource):
         :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] ip6_primary: Primary DNS server IPv6 address.
         :param pulumi.Input[str] ip6_secondary: Secondary DNS server IPv6 address.
+        :param pulumi.Input[str] log: Local DNS log setting. Valid values: `disable`, `error`, `all`.
         :param pulumi.Input[str] primary: Primary DNS server IP address.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[int] retry: Number of times to retry (0 - 5).
         :param pulumi.Input[str] secondary: Secondary DNS server IP address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemDnsServerHostnameArgs']]]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: IP address used by the DNS server as its source IP.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[int] timeout: DNS query timeout interval in seconds (1 - 10).
@@ -841,6 +1033,8 @@ class SystemDns(pulumi.CustomResource):
 
         __props__ = _SystemDnsState.__new__(_SystemDnsState)
 
+        __props__.__dict__["alt_primary"] = alt_primary
+        __props__.__dict__["alt_secondary"] = alt_secondary
         __props__.__dict__["cache_notfound_responses"] = cache_notfound_responses
         __props__.__dict__["dns_cache_limit"] = dns_cache_limit
         __props__.__dict__["dns_cache_ttl"] = dns_cache_ttl
@@ -851,15 +1045,34 @@ class SystemDns(pulumi.CustomResource):
         __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["ip6_primary"] = ip6_primary
         __props__.__dict__["ip6_secondary"] = ip6_secondary
+        __props__.__dict__["log"] = log
         __props__.__dict__["primary"] = primary
+        __props__.__dict__["protocol"] = protocol
         __props__.__dict__["retry"] = retry
         __props__.__dict__["secondary"] = secondary
         __props__.__dict__["server_hostnames"] = server_hostnames
+        __props__.__dict__["server_select_method"] = server_select_method
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["ssl_certificate"] = ssl_certificate
         __props__.__dict__["timeout"] = timeout
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemDns(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> pulumi.Output[str]:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> pulumi.Output[str]:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
 
     @property
     @pulumi.getter(name="cacheNotfoundResponses")
@@ -943,11 +1156,27 @@ class SystemDns(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def log(self) -> pulumi.Output[str]:
+        """
+        Local DNS log setting. Valid values: `disable`, `error`, `all`.
+        """
+        return pulumi.get(self, "log")
+
+    @property
+    @pulumi.getter
     def primary(self) -> pulumi.Output[str]:
         """
         Primary DNS server IP address.
         """
         return pulumi.get(self, "primary")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Output[str]:
+        """
+        DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+        """
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
@@ -972,6 +1201,14 @@ class SystemDns(pulumi.CustomResource):
         DNS server host name list. The structure of `server_hostname` block is documented below.
         """
         return pulumi.get(self, "server_hostnames")
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> pulumi.Output[str]:
+        """
+        Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+        """
+        return pulumi.get(self, "server_select_method")
 
     @property
     @pulumi.getter(name="sourceIp")

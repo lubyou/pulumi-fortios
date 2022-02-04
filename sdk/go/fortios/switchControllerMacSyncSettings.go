@@ -37,6 +37,7 @@ func NewSwitchControllerMacSyncSettings(ctx *pulumi.Context,
 		args = &SwitchControllerMacSyncSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerMacSyncSettings
 	err := ctx.RegisterResource("fortios:index/switchControllerMacSyncSettings:SwitchControllerMacSyncSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type SwitchControllerMacSyncSettingsInput interface {
 }
 
 func (*SwitchControllerMacSyncSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerMacSyncSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerMacSyncSettings)(nil)).Elem()
 }
 
 func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsOutput() SwitchControllerMacSyncSettingsOutput {
@@ -112,35 +113,6 @@ func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsOutpu
 
 func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsOutput)
-}
-
-func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsPtrOutput() SwitchControllerMacSyncSettingsPtrOutput {
-	return i.ToSwitchControllerMacSyncSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerMacSyncSettings) ToSwitchControllerMacSyncSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsPtrOutput)
-}
-
-type SwitchControllerMacSyncSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerMacSyncSettingsPtrOutput() SwitchControllerMacSyncSettingsPtrOutput
-	ToSwitchControllerMacSyncSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsPtrOutput
-}
-
-type switchControllerMacSyncSettingsPtrType SwitchControllerMacSyncSettingsArgs
-
-func (*switchControllerMacSyncSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerMacSyncSettings)(nil))
-}
-
-func (i *switchControllerMacSyncSettingsPtrType) ToSwitchControllerMacSyncSettingsPtrOutput() SwitchControllerMacSyncSettingsPtrOutput {
-	return i.ToSwitchControllerMacSyncSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerMacSyncSettingsPtrType) ToSwitchControllerMacSyncSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsPtrOutput)
 }
 
 // SwitchControllerMacSyncSettingsArrayInput is an input type that accepts SwitchControllerMacSyncSettingsArray and SwitchControllerMacSyncSettingsArrayOutput values.
@@ -157,7 +129,7 @@ type SwitchControllerMacSyncSettingsArrayInput interface {
 type SwitchControllerMacSyncSettingsArray []SwitchControllerMacSyncSettingsInput
 
 func (SwitchControllerMacSyncSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerMacSyncSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerMacSyncSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerMacSyncSettingsArray) ToSwitchControllerMacSyncSettingsArrayOutput() SwitchControllerMacSyncSettingsArrayOutput {
@@ -182,7 +154,7 @@ type SwitchControllerMacSyncSettingsMapInput interface {
 type SwitchControllerMacSyncSettingsMap map[string]SwitchControllerMacSyncSettingsInput
 
 func (SwitchControllerMacSyncSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerMacSyncSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerMacSyncSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerMacSyncSettingsMap) ToSwitchControllerMacSyncSettingsMapOutput() SwitchControllerMacSyncSettingsMapOutput {
@@ -193,12 +165,10 @@ func (i SwitchControllerMacSyncSettingsMap) ToSwitchControllerMacSyncSettingsMap
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerMacSyncSettingsMapOutput)
 }
 
-type SwitchControllerMacSyncSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerMacSyncSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerMacSyncSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerMacSyncSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerMacSyncSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettingsOutput() SwitchControllerMacSyncSettingsOutput {
@@ -209,36 +179,10 @@ func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettings
 	return o
 }
 
-func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettingsPtrOutput() SwitchControllerMacSyncSettingsPtrOutput {
-	return o.ToSwitchControllerMacSyncSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerMacSyncSettingsOutput) ToSwitchControllerMacSyncSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsPtrOutput {
-	return o.ApplyT(func(v SwitchControllerMacSyncSettings) *SwitchControllerMacSyncSettings {
-		return &v
-	}).(SwitchControllerMacSyncSettingsPtrOutput)
-}
-
-type SwitchControllerMacSyncSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerMacSyncSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerMacSyncSettings)(nil))
-}
-
-func (o SwitchControllerMacSyncSettingsPtrOutput) ToSwitchControllerMacSyncSettingsPtrOutput() SwitchControllerMacSyncSettingsPtrOutput {
-	return o
-}
-
-func (o SwitchControllerMacSyncSettingsPtrOutput) ToSwitchControllerMacSyncSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerMacSyncSettingsPtrOutput {
-	return o
-}
-
 type SwitchControllerMacSyncSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerMacSyncSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerMacSyncSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerMacSyncSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerMacSyncSettingsArrayOutput) ToSwitchControllerMacSyncSettingsArrayOutput() SwitchControllerMacSyncSettingsArrayOutput {
@@ -250,15 +194,15 @@ func (o SwitchControllerMacSyncSettingsArrayOutput) ToSwitchControllerMacSyncSet
 }
 
 func (o SwitchControllerMacSyncSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerMacSyncSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerMacSyncSettings {
-		return vs[0].([]SwitchControllerMacSyncSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerMacSyncSettings {
+		return vs[0].([]*SwitchControllerMacSyncSettings)[vs[1].(int)]
 	}).(SwitchControllerMacSyncSettingsOutput)
 }
 
 type SwitchControllerMacSyncSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerMacSyncSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerMacSyncSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerMacSyncSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerMacSyncSettingsMapOutput) ToSwitchControllerMacSyncSettingsMapOutput() SwitchControllerMacSyncSettingsMapOutput {
@@ -270,14 +214,16 @@ func (o SwitchControllerMacSyncSettingsMapOutput) ToSwitchControllerMacSyncSetti
 }
 
 func (o SwitchControllerMacSyncSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerMacSyncSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerMacSyncSettings {
-		return vs[0].(map[string]SwitchControllerMacSyncSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerMacSyncSettings {
+		return vs[0].(map[string]*SwitchControllerMacSyncSettings)[vs[1].(string)]
 	}).(SwitchControllerMacSyncSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerMacSyncSettingsInput)(nil)).Elem(), &SwitchControllerMacSyncSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerMacSyncSettingsArrayInput)(nil)).Elem(), SwitchControllerMacSyncSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerMacSyncSettingsMapInput)(nil)).Elem(), SwitchControllerMacSyncSettingsMap{})
 	pulumi.RegisterOutputType(SwitchControllerMacSyncSettingsOutput{})
-	pulumi.RegisterOutputType(SwitchControllerMacSyncSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerMacSyncSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerMacSyncSettingsMapOutput{})
 }

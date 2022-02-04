@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewFirewallDnstranslation(ctx *pulumi.Context,
 		args = &FirewallDnstranslationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallDnstranslation
 	err := ctx.RegisterResource("fortios:index/firewallDnstranslation:FirewallDnstranslation", name, args, &resource, opts...)
 	if err != nil {
@@ -159,7 +160,7 @@ type FirewallDnstranslationInput interface {
 }
 
 func (*FirewallDnstranslation) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallDnstranslation)(nil))
+	return reflect.TypeOf((**FirewallDnstranslation)(nil)).Elem()
 }
 
 func (i *FirewallDnstranslation) ToFirewallDnstranslationOutput() FirewallDnstranslationOutput {
@@ -168,35 +169,6 @@ func (i *FirewallDnstranslation) ToFirewallDnstranslationOutput() FirewallDnstra
 
 func (i *FirewallDnstranslation) ToFirewallDnstranslationOutputWithContext(ctx context.Context) FirewallDnstranslationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDnstranslationOutput)
-}
-
-func (i *FirewallDnstranslation) ToFirewallDnstranslationPtrOutput() FirewallDnstranslationPtrOutput {
-	return i.ToFirewallDnstranslationPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallDnstranslation) ToFirewallDnstranslationPtrOutputWithContext(ctx context.Context) FirewallDnstranslationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallDnstranslationPtrOutput)
-}
-
-type FirewallDnstranslationPtrInput interface {
-	pulumi.Input
-
-	ToFirewallDnstranslationPtrOutput() FirewallDnstranslationPtrOutput
-	ToFirewallDnstranslationPtrOutputWithContext(ctx context.Context) FirewallDnstranslationPtrOutput
-}
-
-type firewallDnstranslationPtrType FirewallDnstranslationArgs
-
-func (*firewallDnstranslationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallDnstranslation)(nil))
-}
-
-func (i *firewallDnstranslationPtrType) ToFirewallDnstranslationPtrOutput() FirewallDnstranslationPtrOutput {
-	return i.ToFirewallDnstranslationPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallDnstranslationPtrType) ToFirewallDnstranslationPtrOutputWithContext(ctx context.Context) FirewallDnstranslationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallDnstranslationPtrOutput)
 }
 
 // FirewallDnstranslationArrayInput is an input type that accepts FirewallDnstranslationArray and FirewallDnstranslationArrayOutput values.
@@ -213,7 +185,7 @@ type FirewallDnstranslationArrayInput interface {
 type FirewallDnstranslationArray []FirewallDnstranslationInput
 
 func (FirewallDnstranslationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallDnstranslation)(nil))
+	return reflect.TypeOf((*[]*FirewallDnstranslation)(nil)).Elem()
 }
 
 func (i FirewallDnstranslationArray) ToFirewallDnstranslationArrayOutput() FirewallDnstranslationArrayOutput {
@@ -238,7 +210,7 @@ type FirewallDnstranslationMapInput interface {
 type FirewallDnstranslationMap map[string]FirewallDnstranslationInput
 
 func (FirewallDnstranslationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallDnstranslation)(nil))
+	return reflect.TypeOf((*map[string]*FirewallDnstranslation)(nil)).Elem()
 }
 
 func (i FirewallDnstranslationMap) ToFirewallDnstranslationMapOutput() FirewallDnstranslationMapOutput {
@@ -249,12 +221,10 @@ func (i FirewallDnstranslationMap) ToFirewallDnstranslationMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallDnstranslationMapOutput)
 }
 
-type FirewallDnstranslationOutput struct {
-	*pulumi.OutputState
-}
+type FirewallDnstranslationOutput struct{ *pulumi.OutputState }
 
 func (FirewallDnstranslationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallDnstranslation)(nil))
+	return reflect.TypeOf((**FirewallDnstranslation)(nil)).Elem()
 }
 
 func (o FirewallDnstranslationOutput) ToFirewallDnstranslationOutput() FirewallDnstranslationOutput {
@@ -265,36 +235,10 @@ func (o FirewallDnstranslationOutput) ToFirewallDnstranslationOutputWithContext(
 	return o
 }
 
-func (o FirewallDnstranslationOutput) ToFirewallDnstranslationPtrOutput() FirewallDnstranslationPtrOutput {
-	return o.ToFirewallDnstranslationPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallDnstranslationOutput) ToFirewallDnstranslationPtrOutputWithContext(ctx context.Context) FirewallDnstranslationPtrOutput {
-	return o.ApplyT(func(v FirewallDnstranslation) *FirewallDnstranslation {
-		return &v
-	}).(FirewallDnstranslationPtrOutput)
-}
-
-type FirewallDnstranslationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallDnstranslationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallDnstranslation)(nil))
-}
-
-func (o FirewallDnstranslationPtrOutput) ToFirewallDnstranslationPtrOutput() FirewallDnstranslationPtrOutput {
-	return o
-}
-
-func (o FirewallDnstranslationPtrOutput) ToFirewallDnstranslationPtrOutputWithContext(ctx context.Context) FirewallDnstranslationPtrOutput {
-	return o
-}
-
 type FirewallDnstranslationArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallDnstranslationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallDnstranslation)(nil))
+	return reflect.TypeOf((*[]*FirewallDnstranslation)(nil)).Elem()
 }
 
 func (o FirewallDnstranslationArrayOutput) ToFirewallDnstranslationArrayOutput() FirewallDnstranslationArrayOutput {
@@ -306,15 +250,15 @@ func (o FirewallDnstranslationArrayOutput) ToFirewallDnstranslationArrayOutputWi
 }
 
 func (o FirewallDnstranslationArrayOutput) Index(i pulumi.IntInput) FirewallDnstranslationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallDnstranslation {
-		return vs[0].([]FirewallDnstranslation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallDnstranslation {
+		return vs[0].([]*FirewallDnstranslation)[vs[1].(int)]
 	}).(FirewallDnstranslationOutput)
 }
 
 type FirewallDnstranslationMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallDnstranslationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallDnstranslation)(nil))
+	return reflect.TypeOf((*map[string]*FirewallDnstranslation)(nil)).Elem()
 }
 
 func (o FirewallDnstranslationMapOutput) ToFirewallDnstranslationMapOutput() FirewallDnstranslationMapOutput {
@@ -326,14 +270,16 @@ func (o FirewallDnstranslationMapOutput) ToFirewallDnstranslationMapOutputWithCo
 }
 
 func (o FirewallDnstranslationMapOutput) MapIndex(k pulumi.StringInput) FirewallDnstranslationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallDnstranslation {
-		return vs[0].(map[string]FirewallDnstranslation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallDnstranslation {
+		return vs[0].(map[string]*FirewallDnstranslation)[vs[1].(string)]
 	}).(FirewallDnstranslationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallDnstranslationInput)(nil)).Elem(), &FirewallDnstranslation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallDnstranslationArrayInput)(nil)).Elem(), FirewallDnstranslationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallDnstranslationMapInput)(nil)).Elem(), FirewallDnstranslationMap{})
 	pulumi.RegisterOutputType(FirewallDnstranslationOutput{})
-	pulumi.RegisterOutputType(FirewallDnstranslationPtrOutput{})
 	pulumi.RegisterOutputType(FirewallDnstranslationArrayOutput{})
 	pulumi.RegisterOutputType(FirewallDnstranslationMapOutput{})
 }

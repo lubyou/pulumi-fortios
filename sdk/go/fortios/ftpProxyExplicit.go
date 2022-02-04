@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,6 +78,7 @@ func NewFtpProxyExplicit(ctx *pulumi.Context,
 		args = &FtpProxyExplicitArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FtpProxyExplicit
 	err := ctx.RegisterResource("fortios:index/ftpProxyExplicit:FtpProxyExplicit", name, args, &resource, opts...)
 	if err != nil {
@@ -208,7 +209,7 @@ type FtpProxyExplicitInput interface {
 }
 
 func (*FtpProxyExplicit) ElementType() reflect.Type {
-	return reflect.TypeOf((*FtpProxyExplicit)(nil))
+	return reflect.TypeOf((**FtpProxyExplicit)(nil)).Elem()
 }
 
 func (i *FtpProxyExplicit) ToFtpProxyExplicitOutput() FtpProxyExplicitOutput {
@@ -217,35 +218,6 @@ func (i *FtpProxyExplicit) ToFtpProxyExplicitOutput() FtpProxyExplicitOutput {
 
 func (i *FtpProxyExplicit) ToFtpProxyExplicitOutputWithContext(ctx context.Context) FtpProxyExplicitOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitOutput)
-}
-
-func (i *FtpProxyExplicit) ToFtpProxyExplicitPtrOutput() FtpProxyExplicitPtrOutput {
-	return i.ToFtpProxyExplicitPtrOutputWithContext(context.Background())
-}
-
-func (i *FtpProxyExplicit) ToFtpProxyExplicitPtrOutputWithContext(ctx context.Context) FtpProxyExplicitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitPtrOutput)
-}
-
-type FtpProxyExplicitPtrInput interface {
-	pulumi.Input
-
-	ToFtpProxyExplicitPtrOutput() FtpProxyExplicitPtrOutput
-	ToFtpProxyExplicitPtrOutputWithContext(ctx context.Context) FtpProxyExplicitPtrOutput
-}
-
-type ftpProxyExplicitPtrType FtpProxyExplicitArgs
-
-func (*ftpProxyExplicitPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FtpProxyExplicit)(nil))
-}
-
-func (i *ftpProxyExplicitPtrType) ToFtpProxyExplicitPtrOutput() FtpProxyExplicitPtrOutput {
-	return i.ToFtpProxyExplicitPtrOutputWithContext(context.Background())
-}
-
-func (i *ftpProxyExplicitPtrType) ToFtpProxyExplicitPtrOutputWithContext(ctx context.Context) FtpProxyExplicitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitPtrOutput)
 }
 
 // FtpProxyExplicitArrayInput is an input type that accepts FtpProxyExplicitArray and FtpProxyExplicitArrayOutput values.
@@ -262,7 +234,7 @@ type FtpProxyExplicitArrayInput interface {
 type FtpProxyExplicitArray []FtpProxyExplicitInput
 
 func (FtpProxyExplicitArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FtpProxyExplicit)(nil))
+	return reflect.TypeOf((*[]*FtpProxyExplicit)(nil)).Elem()
 }
 
 func (i FtpProxyExplicitArray) ToFtpProxyExplicitArrayOutput() FtpProxyExplicitArrayOutput {
@@ -287,7 +259,7 @@ type FtpProxyExplicitMapInput interface {
 type FtpProxyExplicitMap map[string]FtpProxyExplicitInput
 
 func (FtpProxyExplicitMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FtpProxyExplicit)(nil))
+	return reflect.TypeOf((*map[string]*FtpProxyExplicit)(nil)).Elem()
 }
 
 func (i FtpProxyExplicitMap) ToFtpProxyExplicitMapOutput() FtpProxyExplicitMapOutput {
@@ -298,12 +270,10 @@ func (i FtpProxyExplicitMap) ToFtpProxyExplicitMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FtpProxyExplicitMapOutput)
 }
 
-type FtpProxyExplicitOutput struct {
-	*pulumi.OutputState
-}
+type FtpProxyExplicitOutput struct{ *pulumi.OutputState }
 
 func (FtpProxyExplicitOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FtpProxyExplicit)(nil))
+	return reflect.TypeOf((**FtpProxyExplicit)(nil)).Elem()
 }
 
 func (o FtpProxyExplicitOutput) ToFtpProxyExplicitOutput() FtpProxyExplicitOutput {
@@ -314,36 +284,10 @@ func (o FtpProxyExplicitOutput) ToFtpProxyExplicitOutputWithContext(ctx context.
 	return o
 }
 
-func (o FtpProxyExplicitOutput) ToFtpProxyExplicitPtrOutput() FtpProxyExplicitPtrOutput {
-	return o.ToFtpProxyExplicitPtrOutputWithContext(context.Background())
-}
-
-func (o FtpProxyExplicitOutput) ToFtpProxyExplicitPtrOutputWithContext(ctx context.Context) FtpProxyExplicitPtrOutput {
-	return o.ApplyT(func(v FtpProxyExplicit) *FtpProxyExplicit {
-		return &v
-	}).(FtpProxyExplicitPtrOutput)
-}
-
-type FtpProxyExplicitPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FtpProxyExplicitPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FtpProxyExplicit)(nil))
-}
-
-func (o FtpProxyExplicitPtrOutput) ToFtpProxyExplicitPtrOutput() FtpProxyExplicitPtrOutput {
-	return o
-}
-
-func (o FtpProxyExplicitPtrOutput) ToFtpProxyExplicitPtrOutputWithContext(ctx context.Context) FtpProxyExplicitPtrOutput {
-	return o
-}
-
 type FtpProxyExplicitArrayOutput struct{ *pulumi.OutputState }
 
 func (FtpProxyExplicitArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FtpProxyExplicit)(nil))
+	return reflect.TypeOf((*[]*FtpProxyExplicit)(nil)).Elem()
 }
 
 func (o FtpProxyExplicitArrayOutput) ToFtpProxyExplicitArrayOutput() FtpProxyExplicitArrayOutput {
@@ -355,15 +299,15 @@ func (o FtpProxyExplicitArrayOutput) ToFtpProxyExplicitArrayOutputWithContext(ct
 }
 
 func (o FtpProxyExplicitArrayOutput) Index(i pulumi.IntInput) FtpProxyExplicitOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FtpProxyExplicit {
-		return vs[0].([]FtpProxyExplicit)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FtpProxyExplicit {
+		return vs[0].([]*FtpProxyExplicit)[vs[1].(int)]
 	}).(FtpProxyExplicitOutput)
 }
 
 type FtpProxyExplicitMapOutput struct{ *pulumi.OutputState }
 
 func (FtpProxyExplicitMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FtpProxyExplicit)(nil))
+	return reflect.TypeOf((*map[string]*FtpProxyExplicit)(nil)).Elem()
 }
 
 func (o FtpProxyExplicitMapOutput) ToFtpProxyExplicitMapOutput() FtpProxyExplicitMapOutput {
@@ -375,14 +319,16 @@ func (o FtpProxyExplicitMapOutput) ToFtpProxyExplicitMapOutputWithContext(ctx co
 }
 
 func (o FtpProxyExplicitMapOutput) MapIndex(k pulumi.StringInput) FtpProxyExplicitOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FtpProxyExplicit {
-		return vs[0].(map[string]FtpProxyExplicit)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FtpProxyExplicit {
+		return vs[0].(map[string]*FtpProxyExplicit)[vs[1].(string)]
 	}).(FtpProxyExplicitOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FtpProxyExplicitInput)(nil)).Elem(), &FtpProxyExplicit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FtpProxyExplicitArrayInput)(nil)).Elem(), FtpProxyExplicitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FtpProxyExplicitMapInput)(nil)).Elem(), FtpProxyExplicitMap{})
 	pulumi.RegisterOutputType(FtpProxyExplicitOutput{})
-	pulumi.RegisterOutputType(FtpProxyExplicitPtrOutput{})
 	pulumi.RegisterOutputType(FtpProxyExplicitArrayOutput{})
 	pulumi.RegisterOutputType(FtpProxyExplicitMapOutput{})
 }

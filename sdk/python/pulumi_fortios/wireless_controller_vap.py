@@ -20,11 +20,19 @@ class WirelessControllerVapArgs:
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
+                 antivirus_profile: Optional[pulumi.Input[str]] = None,
+                 application_list: Optional[pulumi.Input[str]] = None,
                  atf_weight: Optional[pulumi.Input[int]] = None,
                  auth: Optional[pulumi.Input[str]] = None,
+                 auth_cert: Optional[pulumi.Input[str]] = None,
+                 auth_portal_addr: Optional[pulumi.Input[str]] = None,
+                 beacon_advertising: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
+                 bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
+                 bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -32,6 +40,7 @@ class WirelessControllerVapArgs:
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_session_timeout_interval: Optional[pulumi.Input[int]] = None,
+                 dhcp_address_enforcement: Optional[pulumi.Input[str]] = None,
                  dhcp_lease_time: Optional[pulumi.Input[int]] = None,
                  dhcp_option43_insertion: Optional[pulumi.Input[str]] = None,
                  dhcp_option82_circuit_id_insertion: Optional[pulumi.Input[str]] = None,
@@ -52,6 +61,8 @@ class WirelessControllerVapArgs:
                  ft_mobility_domain: Optional[pulumi.Input[int]] = None,
                  ft_over_ds: Optional[pulumi.Input[str]] = None,
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
+                 gas_comeback_delay: Optional[pulumi.Input[int]] = None,
+                 gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -59,6 +70,7 @@ class WirelessControllerVapArgs:
                  igmp_snooping: Optional[pulumi.Input[str]] = None,
                  intra_vap_privacy: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  ipv6_rules: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  keyindex: Optional[pulumi.Input[int]] = None,
@@ -67,13 +79,22 @@ class WirelessControllerVapArgs:
                  local_bridging: Optional[pulumi.Input[str]] = None,
                  local_lan: Optional[pulumi.Input[str]] = None,
                  local_standalone: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns_ip: Optional[pulumi.Input[str]] = None,
                  local_standalone_nat: Optional[pulumi.Input[str]] = None,
                  mac_auth_bypass: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
                  mac_filter: Optional[pulumi.Input[str]] = None,
                  mac_filter_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapMacFilterListArgs']]]] = None,
                  mac_filter_policy_other: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_clients_ap: Optional[pulumi.Input[int]] = None,
+                 mbo: Optional[pulumi.Input[str]] = None,
+                 mbo_cell_data_conn_pref: Optional[pulumi.Input[str]] = None,
                  me_disable_thresh: Optional[pulumi.Input[int]] = None,
                  mesh_backhaul: Optional[pulumi.Input[str]] = None,
                  mpsk: Optional[pulumi.Input[str]] = None,
@@ -83,8 +104,12 @@ class WirelessControllerVapArgs:
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 nac: Optional[pulumi.Input[str]] = None,
+                 nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
+                 osen: Optional[pulumi.Input[str]] = None,
                  owe_groups: Optional[pulumi.Input[str]] = None,
                  owe_transition: Optional[pulumi.Input[str]] = None,
                  owe_transition_ssid: Optional[pulumi.Input[str]] = None,
@@ -111,15 +136,20 @@ class WirelessControllerVapArgs:
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]] = None,
+                 radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_mpsk_timeout: Optional[pulumi.Input[int]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  rates11a: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss12: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss34: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
+                 scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  secondary_wag_profile: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[str]] = None,
@@ -137,13 +167,17 @@ class WirelessControllerVapArgs:
                  tunnel_echo_interval: Optional[pulumi.Input[int]] = None,
                  tunnel_fallback_interval: Optional[pulumi.Input[int]] = None,
                  usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapUsergroupArgs']]]] = None,
+                 utm_log: Optional[pulumi.Input[str]] = None,
                  utm_profile: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_auto: Optional[pulumi.Input[str]] = None,
+                 vlan_names: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]]] = None,
                  vlan_pooling: Optional[pulumi.Input[str]] = None,
                  vlan_pools: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanPoolArgs']]]] = None,
                  vlanid: Optional[pulumi.Input[int]] = None,
-                 voice_enterprise: Optional[pulumi.Input[str]] = None):
+                 voice_enterprise: Optional[pulumi.Input[str]] = None,
+                 webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WirelessControllerVap resource.
         :param pulumi.Input[str] access_control_list: access-control-list profile name.
@@ -151,11 +185,19 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] alias: Alias.
+        :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
+        :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
         :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth_cert: HTTPS server certificate.
+        :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
+        :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
@@ -163,6 +205,7 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
         :param pulumi.Input[str] captive_portal_radius_server: Captive portal RADIUS server domain name or IP address.
         :param pulumi.Input[int] captive_portal_session_timeout_interval: Session timeout interval (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] dhcp_address_enforcement: Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dhcp_lease_time: DHCP lease time in seconds for NAT IP address.
         :param pulumi.Input[str] dhcp_option43_insertion: Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82 circuit-id insert (default = disable).
@@ -183,6 +226,8 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[int] ft_mobility_domain: Mobility domain identifier in FT (1 - 65535, default = 1000).
         :param pulumi.Input[str] ft_over_ds: Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
+        :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -190,6 +235,7 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intra_vap_privacy: Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip: IP address and subnet mask for the local standalone NAT subnet.
+        :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ipv6_rules: Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
         :param pulumi.Input[str] key: WEP Key.
         :param pulumi.Input[int] keyindex: WEP key index (1 - 4).
@@ -198,13 +244,22 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[str] local_bridging: Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_lan: Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
         :param pulumi.Input[str] local_standalone: Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns: Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns_ip: IPv4 addresses for the local standalone DNS.
         :param pulumi.Input[str] local_standalone_nat: Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_auth_bypass: Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_case: MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
         :param pulumi.Input[str] mac_filter: Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapMacFilterListArgs']]] mac_filter_lists: Create a list of MAC addresses for MAC address filtering. The structure of `mac_filter_list` block is documented below.
         :param pulumi.Input[str] mac_filter_policy_other: Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_clients_ap: Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
+        :param pulumi.Input[str] mbo: Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
         :param pulumi.Input[int] me_disable_thresh: Disable multicast enhancement when this many clients are receiving multicast traffic.
         :param pulumi.Input[str] mesh_backhaul: Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mpsk: Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
@@ -214,8 +269,12 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nac_profile: NAC profile name.
+        :param pulumi.Input[str] name: VLAN name.
+        :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] owe_groups: OWE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] owe_transition: Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] owe_transition_ssid: OWE transition mode peer SSID.
@@ -242,15 +301,20 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapRadiusMacAuthUsergroupArgs']]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
+        :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
         :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
+        :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
         :param pulumi.Input[str] schedule: VAP schedule name.
         :param pulumi.Input[str] secondary_wag_profile: Secondary wireless access gateway profile name.
         :param pulumi.Input[str] security: Security mode for the wireless interface (default = wpa2-only-personal).
@@ -268,13 +332,17 @@ class WirelessControllerVapArgs:
         :param pulumi.Input[int] tunnel_echo_interval: The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
         :param pulumi.Input[int] tunnel_fallback_interval: The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapUsergroupArgs']]] usergroups: Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
+        :param pulumi.Input[str] utm_log: Enable/disable UTM logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utm_profile: UTM profile name.
+        :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_auto: Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]] vlan_names: Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
         :param pulumi.Input[str] vlan_pooling: Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanPoolArgs']]] vlan_pools: VLAN pool. The structure of `vlan_pool` block is documented below.
         :param pulumi.Input[int] vlanid: Optional VLAN ID.
         :param pulumi.Input[str] voice_enterprise: Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] webfilter_profile: WebFilter profile name.
         """
         if access_control_list is not None:
             pulumi.set(__self__, "access_control_list", access_control_list)
@@ -286,16 +354,32 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "address_group", address_group)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if antivirus_profile is not None:
+            pulumi.set(__self__, "antivirus_profile", antivirus_profile)
+        if application_list is not None:
+            pulumi.set(__self__, "application_list", application_list)
         if atf_weight is not None:
             pulumi.set(__self__, "atf_weight", atf_weight)
         if auth is not None:
             pulumi.set(__self__, "auth", auth)
+        if auth_cert is not None:
+            pulumi.set(__self__, "auth_cert", auth_cert)
+        if auth_portal_addr is not None:
+            pulumi.set(__self__, "auth_portal_addr", auth_portal_addr)
+        if beacon_advertising is not None:
+            pulumi.set(__self__, "beacon_advertising", beacon_advertising)
         if broadcast_ssid is not None:
             pulumi.set(__self__, "broadcast_ssid", broadcast_ssid)
         if broadcast_suppression is not None:
             pulumi.set(__self__, "broadcast_suppression", broadcast_suppression)
         if bss_color_partial is not None:
             pulumi.set(__self__, "bss_color_partial", bss_color_partial)
+        if bstm_disassociation_imminent is not None:
+            pulumi.set(__self__, "bstm_disassociation_imminent", bstm_disassociation_imminent)
+        if bstm_load_balancing_disassoc_timer is not None:
+            pulumi.set(__self__, "bstm_load_balancing_disassoc_timer", bstm_load_balancing_disassoc_timer)
+        if bstm_rssi_disassoc_timer is not None:
+            pulumi.set(__self__, "bstm_rssi_disassoc_timer", bstm_rssi_disassoc_timer)
         if captive_portal_ac_name is not None:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
@@ -310,6 +394,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "captive_portal_radius_server", captive_portal_radius_server)
         if captive_portal_session_timeout_interval is not None:
             pulumi.set(__self__, "captive_portal_session_timeout_interval", captive_portal_session_timeout_interval)
+        if dhcp_address_enforcement is not None:
+            pulumi.set(__self__, "dhcp_address_enforcement", dhcp_address_enforcement)
         if dhcp_lease_time is not None:
             pulumi.set(__self__, "dhcp_lease_time", dhcp_lease_time)
         if dhcp_option43_insertion is not None:
@@ -350,6 +436,10 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "ft_over_ds", ft_over_ds)
         if ft_r0_key_lifetime is not None:
             pulumi.set(__self__, "ft_r0_key_lifetime", ft_r0_key_lifetime)
+        if gas_comeback_delay is not None:
+            pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
+        if gas_fragmentation_limit is not None:
+            pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
         if gtk_rekey is not None:
             pulumi.set(__self__, "gtk_rekey", gtk_rekey)
         if gtk_rekey_intv is not None:
@@ -364,6 +454,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "intra_vap_privacy", intra_vap_privacy)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ips_sensor is not None:
+            pulumi.set(__self__, "ips_sensor", ips_sensor)
         if ipv6_rules is not None:
             pulumi.set(__self__, "ipv6_rules", ipv6_rules)
         if key is not None:
@@ -380,20 +472,38 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "local_lan", local_lan)
         if local_standalone is not None:
             pulumi.set(__self__, "local_standalone", local_standalone)
+        if local_standalone_dns is not None:
+            pulumi.set(__self__, "local_standalone_dns", local_standalone_dns)
+        if local_standalone_dns_ip is not None:
+            pulumi.set(__self__, "local_standalone_dns_ip", local_standalone_dns_ip)
         if local_standalone_nat is not None:
             pulumi.set(__self__, "local_standalone_nat", local_standalone_nat)
         if mac_auth_bypass is not None:
             pulumi.set(__self__, "mac_auth_bypass", mac_auth_bypass)
+        if mac_called_station_delimiter is not None:
+            pulumi.set(__self__, "mac_called_station_delimiter", mac_called_station_delimiter)
+        if mac_calling_station_delimiter is not None:
+            pulumi.set(__self__, "mac_calling_station_delimiter", mac_calling_station_delimiter)
+        if mac_case is not None:
+            pulumi.set(__self__, "mac_case", mac_case)
         if mac_filter is not None:
             pulumi.set(__self__, "mac_filter", mac_filter)
         if mac_filter_lists is not None:
             pulumi.set(__self__, "mac_filter_lists", mac_filter_lists)
         if mac_filter_policy_other is not None:
             pulumi.set(__self__, "mac_filter_policy_other", mac_filter_policy_other)
+        if mac_password_delimiter is not None:
+            pulumi.set(__self__, "mac_password_delimiter", mac_password_delimiter)
+        if mac_username_delimiter is not None:
+            pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_clients_ap is not None:
             pulumi.set(__self__, "max_clients_ap", max_clients_ap)
+        if mbo is not None:
+            pulumi.set(__self__, "mbo", mbo)
+        if mbo_cell_data_conn_pref is not None:
+            pulumi.set(__self__, "mbo_cell_data_conn_pref", mbo_cell_data_conn_pref)
         if me_disable_thresh is not None:
             pulumi.set(__self__, "me_disable_thresh", me_disable_thresh)
         if mesh_backhaul is not None:
@@ -412,10 +522,18 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "multicast_enhance", multicast_enhance)
         if multicast_rate is not None:
             pulumi.set(__self__, "multicast_rate", multicast_rate)
+        if nac is not None:
+            pulumi.set(__self__, "nac", nac)
+        if nac_profile is not None:
+            pulumi.set(__self__, "nac_profile", nac_profile)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if neighbor_report_dual_band is not None:
+            pulumi.set(__self__, "neighbor_report_dual_band", neighbor_report_dual_band)
         if okc is not None:
             pulumi.set(__self__, "okc", okc)
+        if osen is not None:
+            pulumi.set(__self__, "osen", osen)
         if owe_groups is not None:
             pulumi.set(__self__, "owe_groups", owe_groups)
         if owe_transition is not None:
@@ -468,6 +586,10 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "radius_mac_auth_server", radius_mac_auth_server)
         if radius_mac_auth_usergroups is not None:
             pulumi.set(__self__, "radius_mac_auth_usergroups", radius_mac_auth_usergroups)
+        if radius_mac_mpsk_auth is not None:
+            pulumi.set(__self__, "radius_mac_mpsk_auth", radius_mac_mpsk_auth)
+        if radius_mac_mpsk_timeout is not None:
+            pulumi.set(__self__, "radius_mac_mpsk_timeout", radius_mac_mpsk_timeout)
         if radius_server is not None:
             pulumi.set(__self__, "radius_server", radius_server)
         if rates11a is not None:
@@ -476,6 +598,10 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "rates11ac_ss12", rates11ac_ss12)
         if rates11ac_ss34 is not None:
             pulumi.set(__self__, "rates11ac_ss34", rates11ac_ss34)
+        if rates11ax_ss12 is not None:
+            pulumi.set(__self__, "rates11ax_ss12", rates11ax_ss12)
+        if rates11ax_ss34 is not None:
+            pulumi.set(__self__, "rates11ax_ss34", rates11ax_ss34)
         if rates11bg is not None:
             pulumi.set(__self__, "rates11bg", rates11bg)
         if rates11n_ss12 is not None:
@@ -486,6 +612,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "sae_groups", sae_groups)
         if sae_password is not None:
             pulumi.set(__self__, "sae_password", sae_password)
+        if scan_botnet_connections is not None:
+            pulumi.set(__self__, "scan_botnet_connections", scan_botnet_connections)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
         if secondary_wag_profile is not None:
@@ -520,12 +648,18 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "tunnel_fallback_interval", tunnel_fallback_interval)
         if usergroups is not None:
             pulumi.set(__self__, "usergroups", usergroups)
+        if utm_log is not None:
+            pulumi.set(__self__, "utm_log", utm_log)
         if utm_profile is not None:
             pulumi.set(__self__, "utm_profile", utm_profile)
+        if utm_status is not None:
+            pulumi.set(__self__, "utm_status", utm_status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_auto is not None:
             pulumi.set(__self__, "vlan_auto", vlan_auto)
+        if vlan_names is not None:
+            pulumi.set(__self__, "vlan_names", vlan_names)
         if vlan_pooling is not None:
             pulumi.set(__self__, "vlan_pooling", vlan_pooling)
         if vlan_pools is not None:
@@ -534,6 +668,8 @@ class WirelessControllerVapArgs:
             pulumi.set(__self__, "vlanid", vlanid)
         if voice_enterprise is not None:
             pulumi.set(__self__, "voice_enterprise", voice_enterprise)
+        if webfilter_profile is not None:
+            pulumi.set(__self__, "webfilter_profile", webfilter_profile)
 
     @property
     @pulumi.getter(name="accessControlList")
@@ -596,6 +732,30 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "alias", value)
 
     @property
+    @pulumi.getter(name="antivirusProfile")
+    def antivirus_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        AntiVirus profile name.
+        """
+        return pulumi.get(self, "antivirus_profile")
+
+    @antivirus_profile.setter
+    def antivirus_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "antivirus_profile", value)
+
+    @property
+    @pulumi.getter(name="applicationList")
+    def application_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        Application control list name.
+        """
+        return pulumi.get(self, "application_list")
+
+    @application_list.setter
+    def application_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application_list", value)
+
+    @property
     @pulumi.getter(name="atfWeight")
     def atf_weight(self) -> Optional[pulumi.Input[int]]:
         """
@@ -618,6 +778,42 @@ class WirelessControllerVapArgs:
     @auth.setter
     def auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth", value)
+
+    @property
+    @pulumi.getter(name="authCert")
+    def auth_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTPS server certificate.
+        """
+        return pulumi.get(self, "auth_cert")
+
+    @auth_cert.setter
+    def auth_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_cert", value)
+
+    @property
+    @pulumi.getter(name="authPortalAddr")
+    def auth_portal_addr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address of captive portal.
+        """
+        return pulumi.get(self, "auth_portal_addr")
+
+    @auth_portal_addr.setter
+    def auth_portal_addr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_portal_addr", value)
+
+    @property
+    @pulumi.getter(name="beaconAdvertising")
+    def beacon_advertising(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        """
+        return pulumi.get(self, "beacon_advertising")
+
+    @beacon_advertising.setter
+    def beacon_advertising(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "beacon_advertising", value)
 
     @property
     @pulumi.getter(name="broadcastSsid")
@@ -654,6 +850,42 @@ class WirelessControllerVapArgs:
     @bss_color_partial.setter
     def bss_color_partial(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bss_color_partial", value)
+
+    @property
+    @pulumi.getter(name="bstmDisassociationImminent")
+    def bstm_disassociation_imminent(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "bstm_disassociation_imminent")
+
+    @bstm_disassociation_imminent.setter
+    def bstm_disassociation_imminent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bstm_disassociation_imminent", value)
+
+    @property
+    @pulumi.getter(name="bstmLoadBalancingDisassocTimer")
+    def bstm_load_balancing_disassoc_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        """
+        return pulumi.get(self, "bstm_load_balancing_disassoc_timer")
+
+    @bstm_load_balancing_disassoc_timer.setter
+    def bstm_load_balancing_disassoc_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bstm_load_balancing_disassoc_timer", value)
+
+    @property
+    @pulumi.getter(name="bstmRssiDisassocTimer")
+    def bstm_rssi_disassoc_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        """
+        return pulumi.get(self, "bstm_rssi_disassoc_timer")
+
+    @bstm_rssi_disassoc_timer.setter
+    def bstm_rssi_disassoc_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bstm_rssi_disassoc_timer", value)
 
     @property
     @pulumi.getter(name="captivePortalAcName")
@@ -738,6 +970,18 @@ class WirelessControllerVapArgs:
     @captive_portal_session_timeout_interval.setter
     def captive_portal_session_timeout_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "captive_portal_session_timeout_interval", value)
+
+    @property
+    @pulumi.getter(name="dhcpAddressEnforcement")
+    def dhcp_address_enforcement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_address_enforcement")
+
+    @dhcp_address_enforcement.setter
+    def dhcp_address_enforcement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_address_enforcement", value)
 
     @property
     @pulumi.getter(name="dhcpLeaseTime")
@@ -980,6 +1224,30 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "ft_r0_key_lifetime", value)
 
     @property
+    @pulumi.getter(name="gasComebackDelay")
+    def gas_comeback_delay(self) -> Optional[pulumi.Input[int]]:
+        """
+        GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        """
+        return pulumi.get(self, "gas_comeback_delay")
+
+    @gas_comeback_delay.setter
+    def gas_comeback_delay(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "gas_comeback_delay", value)
+
+    @property
+    @pulumi.getter(name="gasFragmentationLimit")
+    def gas_fragmentation_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        GAS fragmentation limit (512 - 4096, default = 1024).
+        """
+        return pulumi.get(self, "gas_fragmentation_limit")
+
+    @gas_fragmentation_limit.setter
+    def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
     @pulumi.getter(name="gtkRekey")
     def gtk_rekey(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1062,6 +1330,18 @@ class WirelessControllerVapArgs:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter(name="ipsSensor")
+    def ips_sensor(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPS sensor name.
+        """
+        return pulumi.get(self, "ips_sensor")
+
+    @ips_sensor.setter
+    def ips_sensor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_sensor", value)
 
     @property
     @pulumi.getter(name="ipv6Rules")
@@ -1160,6 +1440,30 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "local_standalone", value)
 
     @property
+    @pulumi.getter(name="localStandaloneDns")
+    def local_standalone_dns(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "local_standalone_dns")
+
+    @local_standalone_dns.setter
+    def local_standalone_dns(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_standalone_dns", value)
+
+    @property
+    @pulumi.getter(name="localStandaloneDnsIp")
+    def local_standalone_dns_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 addresses for the local standalone DNS.
+        """
+        return pulumi.get(self, "local_standalone_dns_ip")
+
+    @local_standalone_dns_ip.setter
+    def local_standalone_dns_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_standalone_dns_ip", value)
+
+    @property
     @pulumi.getter(name="localStandaloneNat")
     def local_standalone_nat(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1182,6 +1486,42 @@ class WirelessControllerVapArgs:
     @mac_auth_bypass.setter
     def mac_auth_bypass(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac_auth_bypass", value)
+
+    @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @mac_called_station_delimiter.setter
+    def mac_called_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_called_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @mac_calling_station_delimiter.setter
+    def mac_calling_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_calling_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+        """
+        return pulumi.get(self, "mac_case")
+
+    @mac_case.setter
+    def mac_case(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_case", value)
 
     @property
     @pulumi.getter(name="macFilter")
@@ -1220,6 +1560,30 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "mac_filter_policy_other", value)
 
     @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @mac_password_delimiter.setter
+    def mac_password_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_password_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
+
+    @mac_username_delimiter.setter
+    def mac_username_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_username_delimiter", value)
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1242,6 +1606,30 @@ class WirelessControllerVapArgs:
     @max_clients_ap.setter
     def max_clients_ap(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_clients_ap", value)
+
+    @property
+    @pulumi.getter
+    def mbo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "mbo")
+
+    @mbo.setter
+    def mbo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mbo", value)
+
+    @property
+    @pulumi.getter(name="mboCellDataConnPref")
+    def mbo_cell_data_conn_pref(self) -> Optional[pulumi.Input[str]]:
+        """
+        MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+        """
+        return pulumi.get(self, "mbo_cell_data_conn_pref")
+
+    @mbo_cell_data_conn_pref.setter
+    def mbo_cell_data_conn_pref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mbo_cell_data_conn_pref", value)
 
     @property
     @pulumi.getter(name="meDisableThresh")
@@ -1353,15 +1741,51 @@ class WirelessControllerVapArgs:
 
     @property
     @pulumi.getter
+    def nac(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable network access control. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nac")
+
+    @nac.setter
+    def nac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nac", value)
+
+    @property
+    @pulumi.getter(name="nacProfile")
+    def nac_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAC profile name.
+        """
+        return pulumi.get(self, "nac_profile")
+
+    @nac_profile.setter
+    def nac_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nac_profile", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="neighborReportDualBand")
+    def neighbor_report_dual_band(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "neighbor_report_dual_band")
+
+    @neighbor_report_dual_band.setter
+    def neighbor_report_dual_band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "neighbor_report_dual_band", value)
 
     @property
     @pulumi.getter
@@ -1374,6 +1798,18 @@ class WirelessControllerVapArgs:
     @okc.setter
     def okc(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "okc", value)
+
+    @property
+    @pulumi.getter
+    def osen(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "osen")
+
+    @osen.setter
+    def osen(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "osen", value)
 
     @property
     @pulumi.getter(name="oweGroups")
@@ -1688,6 +2124,30 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "radius_mac_auth_usergroups", value)
 
     @property
+    @pulumi.getter(name="radiusMacMpskAuth")
+    def radius_mac_mpsk_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "radius_mac_mpsk_auth")
+
+    @radius_mac_mpsk_auth.setter
+    def radius_mac_mpsk_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "radius_mac_mpsk_auth", value)
+
+    @property
+    @pulumi.getter(name="radiusMacMpskTimeout")
+    def radius_mac_mpsk_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+        """
+        return pulumi.get(self, "radius_mac_mpsk_timeout")
+
+    @radius_mac_mpsk_timeout.setter
+    def radius_mac_mpsk_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "radius_mac_mpsk_timeout", value)
+
+    @property
     @pulumi.getter(name="radiusServer")
     def radius_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1734,6 +2194,30 @@ class WirelessControllerVapArgs:
     @rates11ac_ss34.setter
     def rates11ac_ss34(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "rates11ac_ss34", value)
+
+    @property
+    @pulumi.getter(name="rates11axSs12")
+    def rates11ax_ss12(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        """
+        return pulumi.get(self, "rates11ax_ss12")
+
+    @rates11ax_ss12.setter
+    def rates11ax_ss12(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11ax_ss12", value)
+
+    @property
+    @pulumi.getter(name="rates11axSs34")
+    def rates11ax_ss34(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        """
+        return pulumi.get(self, "rates11ax_ss34")
+
+    @rates11ax_ss34.setter
+    def rates11ax_ss34(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11ax_ss34", value)
 
     @property
     @pulumi.getter
@@ -1794,6 +2278,18 @@ class WirelessControllerVapArgs:
     @sae_password.setter
     def sae_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sae_password", value)
+
+    @property
+    @pulumi.getter(name="scanBotnetConnections")
+    def scan_botnet_connections(self) -> Optional[pulumi.Input[str]]:
+        """
+        Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "scan_botnet_connections")
+
+    @scan_botnet_connections.setter
+    def scan_botnet_connections(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_botnet_connections", value)
 
     @property
     @pulumi.getter
@@ -2000,6 +2496,18 @@ class WirelessControllerVapArgs:
         pulumi.set(self, "usergroups", value)
 
     @property
+    @pulumi.getter(name="utmLog")
+    def utm_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UTM logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_log")
+
+    @utm_log.setter
+    def utm_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "utm_log", value)
+
+    @property
     @pulumi.getter(name="utmProfile")
     def utm_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2010,6 +2518,18 @@ class WirelessControllerVapArgs:
     @utm_profile.setter
     def utm_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "utm_profile", value)
+
+    @property
+    @pulumi.getter(name="utmStatus")
+    def utm_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_status")
+
+    @utm_status.setter
+    def utm_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "utm_status", value)
 
     @property
     @pulumi.getter
@@ -2034,6 +2554,18 @@ class WirelessControllerVapArgs:
     @vlan_auto.setter
     def vlan_auto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vlan_auto", value)
+
+    @property
+    @pulumi.getter(name="vlanNames")
+    def vlan_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]]]:
+        """
+        Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
+        """
+        return pulumi.get(self, "vlan_names")
+
+    @vlan_names.setter
+    def vlan_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]]]):
+        pulumi.set(self, "vlan_names", value)
 
     @property
     @pulumi.getter(name="vlanPooling")
@@ -2082,6 +2614,18 @@ class WirelessControllerVapArgs:
     @voice_enterprise.setter
     def voice_enterprise(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "voice_enterprise", value)
+
+    @property
+    @pulumi.getter(name="webfilterProfile")
+    def webfilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        WebFilter profile name.
+        """
+        return pulumi.get(self, "webfilter_profile")
+
+    @webfilter_profile.setter
+    def webfilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webfilter_profile", value)
 
 
 @pulumi.input_type
@@ -2092,11 +2636,19 @@ class _WirelessControllerVapState:
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
+                 antivirus_profile: Optional[pulumi.Input[str]] = None,
+                 application_list: Optional[pulumi.Input[str]] = None,
                  atf_weight: Optional[pulumi.Input[int]] = None,
                  auth: Optional[pulumi.Input[str]] = None,
+                 auth_cert: Optional[pulumi.Input[str]] = None,
+                 auth_portal_addr: Optional[pulumi.Input[str]] = None,
+                 beacon_advertising: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
+                 bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
+                 bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -2104,6 +2656,7 @@ class _WirelessControllerVapState:
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_session_timeout_interval: Optional[pulumi.Input[int]] = None,
+                 dhcp_address_enforcement: Optional[pulumi.Input[str]] = None,
                  dhcp_lease_time: Optional[pulumi.Input[int]] = None,
                  dhcp_option43_insertion: Optional[pulumi.Input[str]] = None,
                  dhcp_option82_circuit_id_insertion: Optional[pulumi.Input[str]] = None,
@@ -2124,6 +2677,8 @@ class _WirelessControllerVapState:
                  ft_mobility_domain: Optional[pulumi.Input[int]] = None,
                  ft_over_ds: Optional[pulumi.Input[str]] = None,
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
+                 gas_comeback_delay: Optional[pulumi.Input[int]] = None,
+                 gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -2131,6 +2686,7 @@ class _WirelessControllerVapState:
                  igmp_snooping: Optional[pulumi.Input[str]] = None,
                  intra_vap_privacy: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  ipv6_rules: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  keyindex: Optional[pulumi.Input[int]] = None,
@@ -2139,13 +2695,22 @@ class _WirelessControllerVapState:
                  local_bridging: Optional[pulumi.Input[str]] = None,
                  local_lan: Optional[pulumi.Input[str]] = None,
                  local_standalone: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns_ip: Optional[pulumi.Input[str]] = None,
                  local_standalone_nat: Optional[pulumi.Input[str]] = None,
                  mac_auth_bypass: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
                  mac_filter: Optional[pulumi.Input[str]] = None,
                  mac_filter_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapMacFilterListArgs']]]] = None,
                  mac_filter_policy_other: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_clients_ap: Optional[pulumi.Input[int]] = None,
+                 mbo: Optional[pulumi.Input[str]] = None,
+                 mbo_cell_data_conn_pref: Optional[pulumi.Input[str]] = None,
                  me_disable_thresh: Optional[pulumi.Input[int]] = None,
                  mesh_backhaul: Optional[pulumi.Input[str]] = None,
                  mpsk: Optional[pulumi.Input[str]] = None,
@@ -2155,8 +2720,12 @@ class _WirelessControllerVapState:
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 nac: Optional[pulumi.Input[str]] = None,
+                 nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
+                 osen: Optional[pulumi.Input[str]] = None,
                  owe_groups: Optional[pulumi.Input[str]] = None,
                  owe_transition: Optional[pulumi.Input[str]] = None,
                  owe_transition_ssid: Optional[pulumi.Input[str]] = None,
@@ -2183,15 +2752,20 @@ class _WirelessControllerVapState:
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]] = None,
+                 radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_mpsk_timeout: Optional[pulumi.Input[int]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  rates11a: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss12: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss34: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
+                 scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  secondary_wag_profile: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[str]] = None,
@@ -2209,13 +2783,17 @@ class _WirelessControllerVapState:
                  tunnel_echo_interval: Optional[pulumi.Input[int]] = None,
                  tunnel_fallback_interval: Optional[pulumi.Input[int]] = None,
                  usergroups: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapUsergroupArgs']]]] = None,
+                 utm_log: Optional[pulumi.Input[str]] = None,
                  utm_profile: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_auto: Optional[pulumi.Input[str]] = None,
+                 vlan_names: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]]] = None,
                  vlan_pooling: Optional[pulumi.Input[str]] = None,
                  vlan_pools: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanPoolArgs']]]] = None,
                  vlanid: Optional[pulumi.Input[int]] = None,
-                 voice_enterprise: Optional[pulumi.Input[str]] = None):
+                 voice_enterprise: Optional[pulumi.Input[str]] = None,
+                 webfilter_profile: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WirelessControllerVap resources.
         :param pulumi.Input[str] access_control_list: access-control-list profile name.
@@ -2223,11 +2801,19 @@ class _WirelessControllerVapState:
         :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] alias: Alias.
+        :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
+        :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
         :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth_cert: HTTPS server certificate.
+        :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
+        :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
@@ -2235,6 +2821,7 @@ class _WirelessControllerVapState:
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
         :param pulumi.Input[str] captive_portal_radius_server: Captive portal RADIUS server domain name or IP address.
         :param pulumi.Input[int] captive_portal_session_timeout_interval: Session timeout interval (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] dhcp_address_enforcement: Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dhcp_lease_time: DHCP lease time in seconds for NAT IP address.
         :param pulumi.Input[str] dhcp_option43_insertion: Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82 circuit-id insert (default = disable).
@@ -2255,6 +2842,8 @@ class _WirelessControllerVapState:
         :param pulumi.Input[int] ft_mobility_domain: Mobility domain identifier in FT (1 - 65535, default = 1000).
         :param pulumi.Input[str] ft_over_ds: Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
+        :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -2262,6 +2851,7 @@ class _WirelessControllerVapState:
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intra_vap_privacy: Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip: IP address and subnet mask for the local standalone NAT subnet.
+        :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ipv6_rules: Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
         :param pulumi.Input[str] key: WEP Key.
         :param pulumi.Input[int] keyindex: WEP key index (1 - 4).
@@ -2270,13 +2860,22 @@ class _WirelessControllerVapState:
         :param pulumi.Input[str] local_bridging: Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_lan: Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
         :param pulumi.Input[str] local_standalone: Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns: Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns_ip: IPv4 addresses for the local standalone DNS.
         :param pulumi.Input[str] local_standalone_nat: Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_auth_bypass: Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_case: MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
         :param pulumi.Input[str] mac_filter: Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapMacFilterListArgs']]] mac_filter_lists: Create a list of MAC addresses for MAC address filtering. The structure of `mac_filter_list` block is documented below.
         :param pulumi.Input[str] mac_filter_policy_other: Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_clients_ap: Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
+        :param pulumi.Input[str] mbo: Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
         :param pulumi.Input[int] me_disable_thresh: Disable multicast enhancement when this many clients are receiving multicast traffic.
         :param pulumi.Input[str] mesh_backhaul: Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mpsk: Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
@@ -2286,8 +2885,12 @@ class _WirelessControllerVapState:
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nac_profile: NAC profile name.
+        :param pulumi.Input[str] name: VLAN name.
+        :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] owe_groups: OWE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] owe_transition: Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] owe_transition_ssid: OWE transition mode peer SSID.
@@ -2314,15 +2917,20 @@ class _WirelessControllerVapState:
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapRadiusMacAuthUsergroupArgs']]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
+        :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
         :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
+        :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
         :param pulumi.Input[str] schedule: VAP schedule name.
         :param pulumi.Input[str] secondary_wag_profile: Secondary wireless access gateway profile name.
         :param pulumi.Input[str] security: Security mode for the wireless interface (default = wpa2-only-personal).
@@ -2340,13 +2948,17 @@ class _WirelessControllerVapState:
         :param pulumi.Input[int] tunnel_echo_interval: The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
         :param pulumi.Input[int] tunnel_fallback_interval: The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapUsergroupArgs']]] usergroups: Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
+        :param pulumi.Input[str] utm_log: Enable/disable UTM logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utm_profile: UTM profile name.
+        :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_auto: Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]] vlan_names: Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
         :param pulumi.Input[str] vlan_pooling: Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanPoolArgs']]] vlan_pools: VLAN pool. The structure of `vlan_pool` block is documented below.
         :param pulumi.Input[int] vlanid: Optional VLAN ID.
         :param pulumi.Input[str] voice_enterprise: Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] webfilter_profile: WebFilter profile name.
         """
         if access_control_list is not None:
             pulumi.set(__self__, "access_control_list", access_control_list)
@@ -2358,16 +2970,32 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "address_group", address_group)
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
+        if antivirus_profile is not None:
+            pulumi.set(__self__, "antivirus_profile", antivirus_profile)
+        if application_list is not None:
+            pulumi.set(__self__, "application_list", application_list)
         if atf_weight is not None:
             pulumi.set(__self__, "atf_weight", atf_weight)
         if auth is not None:
             pulumi.set(__self__, "auth", auth)
+        if auth_cert is not None:
+            pulumi.set(__self__, "auth_cert", auth_cert)
+        if auth_portal_addr is not None:
+            pulumi.set(__self__, "auth_portal_addr", auth_portal_addr)
+        if beacon_advertising is not None:
+            pulumi.set(__self__, "beacon_advertising", beacon_advertising)
         if broadcast_ssid is not None:
             pulumi.set(__self__, "broadcast_ssid", broadcast_ssid)
         if broadcast_suppression is not None:
             pulumi.set(__self__, "broadcast_suppression", broadcast_suppression)
         if bss_color_partial is not None:
             pulumi.set(__self__, "bss_color_partial", bss_color_partial)
+        if bstm_disassociation_imminent is not None:
+            pulumi.set(__self__, "bstm_disassociation_imminent", bstm_disassociation_imminent)
+        if bstm_load_balancing_disassoc_timer is not None:
+            pulumi.set(__self__, "bstm_load_balancing_disassoc_timer", bstm_load_balancing_disassoc_timer)
+        if bstm_rssi_disassoc_timer is not None:
+            pulumi.set(__self__, "bstm_rssi_disassoc_timer", bstm_rssi_disassoc_timer)
         if captive_portal_ac_name is not None:
             pulumi.set(__self__, "captive_portal_ac_name", captive_portal_ac_name)
         if captive_portal_auth_timeout is not None:
@@ -2382,6 +3010,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "captive_portal_radius_server", captive_portal_radius_server)
         if captive_portal_session_timeout_interval is not None:
             pulumi.set(__self__, "captive_portal_session_timeout_interval", captive_portal_session_timeout_interval)
+        if dhcp_address_enforcement is not None:
+            pulumi.set(__self__, "dhcp_address_enforcement", dhcp_address_enforcement)
         if dhcp_lease_time is not None:
             pulumi.set(__self__, "dhcp_lease_time", dhcp_lease_time)
         if dhcp_option43_insertion is not None:
@@ -2422,6 +3052,10 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "ft_over_ds", ft_over_ds)
         if ft_r0_key_lifetime is not None:
             pulumi.set(__self__, "ft_r0_key_lifetime", ft_r0_key_lifetime)
+        if gas_comeback_delay is not None:
+            pulumi.set(__self__, "gas_comeback_delay", gas_comeback_delay)
+        if gas_fragmentation_limit is not None:
+            pulumi.set(__self__, "gas_fragmentation_limit", gas_fragmentation_limit)
         if gtk_rekey is not None:
             pulumi.set(__self__, "gtk_rekey", gtk_rekey)
         if gtk_rekey_intv is not None:
@@ -2436,6 +3070,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "intra_vap_privacy", intra_vap_privacy)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if ips_sensor is not None:
+            pulumi.set(__self__, "ips_sensor", ips_sensor)
         if ipv6_rules is not None:
             pulumi.set(__self__, "ipv6_rules", ipv6_rules)
         if key is not None:
@@ -2452,20 +3088,38 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "local_lan", local_lan)
         if local_standalone is not None:
             pulumi.set(__self__, "local_standalone", local_standalone)
+        if local_standalone_dns is not None:
+            pulumi.set(__self__, "local_standalone_dns", local_standalone_dns)
+        if local_standalone_dns_ip is not None:
+            pulumi.set(__self__, "local_standalone_dns_ip", local_standalone_dns_ip)
         if local_standalone_nat is not None:
             pulumi.set(__self__, "local_standalone_nat", local_standalone_nat)
         if mac_auth_bypass is not None:
             pulumi.set(__self__, "mac_auth_bypass", mac_auth_bypass)
+        if mac_called_station_delimiter is not None:
+            pulumi.set(__self__, "mac_called_station_delimiter", mac_called_station_delimiter)
+        if mac_calling_station_delimiter is not None:
+            pulumi.set(__self__, "mac_calling_station_delimiter", mac_calling_station_delimiter)
+        if mac_case is not None:
+            pulumi.set(__self__, "mac_case", mac_case)
         if mac_filter is not None:
             pulumi.set(__self__, "mac_filter", mac_filter)
         if mac_filter_lists is not None:
             pulumi.set(__self__, "mac_filter_lists", mac_filter_lists)
         if mac_filter_policy_other is not None:
             pulumi.set(__self__, "mac_filter_policy_other", mac_filter_policy_other)
+        if mac_password_delimiter is not None:
+            pulumi.set(__self__, "mac_password_delimiter", mac_password_delimiter)
+        if mac_username_delimiter is not None:
+            pulumi.set(__self__, "mac_username_delimiter", mac_username_delimiter)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_clients_ap is not None:
             pulumi.set(__self__, "max_clients_ap", max_clients_ap)
+        if mbo is not None:
+            pulumi.set(__self__, "mbo", mbo)
+        if mbo_cell_data_conn_pref is not None:
+            pulumi.set(__self__, "mbo_cell_data_conn_pref", mbo_cell_data_conn_pref)
         if me_disable_thresh is not None:
             pulumi.set(__self__, "me_disable_thresh", me_disable_thresh)
         if mesh_backhaul is not None:
@@ -2484,10 +3138,18 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "multicast_enhance", multicast_enhance)
         if multicast_rate is not None:
             pulumi.set(__self__, "multicast_rate", multicast_rate)
+        if nac is not None:
+            pulumi.set(__self__, "nac", nac)
+        if nac_profile is not None:
+            pulumi.set(__self__, "nac_profile", nac_profile)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if neighbor_report_dual_band is not None:
+            pulumi.set(__self__, "neighbor_report_dual_band", neighbor_report_dual_band)
         if okc is not None:
             pulumi.set(__self__, "okc", okc)
+        if osen is not None:
+            pulumi.set(__self__, "osen", osen)
         if owe_groups is not None:
             pulumi.set(__self__, "owe_groups", owe_groups)
         if owe_transition is not None:
@@ -2540,6 +3202,10 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "radius_mac_auth_server", radius_mac_auth_server)
         if radius_mac_auth_usergroups is not None:
             pulumi.set(__self__, "radius_mac_auth_usergroups", radius_mac_auth_usergroups)
+        if radius_mac_mpsk_auth is not None:
+            pulumi.set(__self__, "radius_mac_mpsk_auth", radius_mac_mpsk_auth)
+        if radius_mac_mpsk_timeout is not None:
+            pulumi.set(__self__, "radius_mac_mpsk_timeout", radius_mac_mpsk_timeout)
         if radius_server is not None:
             pulumi.set(__self__, "radius_server", radius_server)
         if rates11a is not None:
@@ -2548,6 +3214,10 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "rates11ac_ss12", rates11ac_ss12)
         if rates11ac_ss34 is not None:
             pulumi.set(__self__, "rates11ac_ss34", rates11ac_ss34)
+        if rates11ax_ss12 is not None:
+            pulumi.set(__self__, "rates11ax_ss12", rates11ax_ss12)
+        if rates11ax_ss34 is not None:
+            pulumi.set(__self__, "rates11ax_ss34", rates11ax_ss34)
         if rates11bg is not None:
             pulumi.set(__self__, "rates11bg", rates11bg)
         if rates11n_ss12 is not None:
@@ -2558,6 +3228,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "sae_groups", sae_groups)
         if sae_password is not None:
             pulumi.set(__self__, "sae_password", sae_password)
+        if scan_botnet_connections is not None:
+            pulumi.set(__self__, "scan_botnet_connections", scan_botnet_connections)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
         if secondary_wag_profile is not None:
@@ -2592,12 +3264,18 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "tunnel_fallback_interval", tunnel_fallback_interval)
         if usergroups is not None:
             pulumi.set(__self__, "usergroups", usergroups)
+        if utm_log is not None:
+            pulumi.set(__self__, "utm_log", utm_log)
         if utm_profile is not None:
             pulumi.set(__self__, "utm_profile", utm_profile)
+        if utm_status is not None:
+            pulumi.set(__self__, "utm_status", utm_status)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if vlan_auto is not None:
             pulumi.set(__self__, "vlan_auto", vlan_auto)
+        if vlan_names is not None:
+            pulumi.set(__self__, "vlan_names", vlan_names)
         if vlan_pooling is not None:
             pulumi.set(__self__, "vlan_pooling", vlan_pooling)
         if vlan_pools is not None:
@@ -2606,6 +3284,8 @@ class _WirelessControllerVapState:
             pulumi.set(__self__, "vlanid", vlanid)
         if voice_enterprise is not None:
             pulumi.set(__self__, "voice_enterprise", voice_enterprise)
+        if webfilter_profile is not None:
+            pulumi.set(__self__, "webfilter_profile", webfilter_profile)
 
     @property
     @pulumi.getter(name="accessControlList")
@@ -2668,6 +3348,30 @@ class _WirelessControllerVapState:
         pulumi.set(self, "alias", value)
 
     @property
+    @pulumi.getter(name="antivirusProfile")
+    def antivirus_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        AntiVirus profile name.
+        """
+        return pulumi.get(self, "antivirus_profile")
+
+    @antivirus_profile.setter
+    def antivirus_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "antivirus_profile", value)
+
+    @property
+    @pulumi.getter(name="applicationList")
+    def application_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        Application control list name.
+        """
+        return pulumi.get(self, "application_list")
+
+    @application_list.setter
+    def application_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application_list", value)
+
+    @property
     @pulumi.getter(name="atfWeight")
     def atf_weight(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2690,6 +3394,42 @@ class _WirelessControllerVapState:
     @auth.setter
     def auth(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth", value)
+
+    @property
+    @pulumi.getter(name="authCert")
+    def auth_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        HTTPS server certificate.
+        """
+        return pulumi.get(self, "auth_cert")
+
+    @auth_cert.setter
+    def auth_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_cert", value)
+
+    @property
+    @pulumi.getter(name="authPortalAddr")
+    def auth_portal_addr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Address of captive portal.
+        """
+        return pulumi.get(self, "auth_portal_addr")
+
+    @auth_portal_addr.setter
+    def auth_portal_addr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_portal_addr", value)
+
+    @property
+    @pulumi.getter(name="beaconAdvertising")
+    def beacon_advertising(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        """
+        return pulumi.get(self, "beacon_advertising")
+
+    @beacon_advertising.setter
+    def beacon_advertising(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "beacon_advertising", value)
 
     @property
     @pulumi.getter(name="broadcastSsid")
@@ -2726,6 +3466,42 @@ class _WirelessControllerVapState:
     @bss_color_partial.setter
     def bss_color_partial(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "bss_color_partial", value)
+
+    @property
+    @pulumi.getter(name="bstmDisassociationImminent")
+    def bstm_disassociation_imminent(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "bstm_disassociation_imminent")
+
+    @bstm_disassociation_imminent.setter
+    def bstm_disassociation_imminent(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "bstm_disassociation_imminent", value)
+
+    @property
+    @pulumi.getter(name="bstmLoadBalancingDisassocTimer")
+    def bstm_load_balancing_disassoc_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        """
+        return pulumi.get(self, "bstm_load_balancing_disassoc_timer")
+
+    @bstm_load_balancing_disassoc_timer.setter
+    def bstm_load_balancing_disassoc_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bstm_load_balancing_disassoc_timer", value)
+
+    @property
+    @pulumi.getter(name="bstmRssiDisassocTimer")
+    def bstm_rssi_disassoc_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        """
+        return pulumi.get(self, "bstm_rssi_disassoc_timer")
+
+    @bstm_rssi_disassoc_timer.setter
+    def bstm_rssi_disassoc_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "bstm_rssi_disassoc_timer", value)
 
     @property
     @pulumi.getter(name="captivePortalAcName")
@@ -2810,6 +3586,18 @@ class _WirelessControllerVapState:
     @captive_portal_session_timeout_interval.setter
     def captive_portal_session_timeout_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "captive_portal_session_timeout_interval", value)
+
+    @property
+    @pulumi.getter(name="dhcpAddressEnforcement")
+    def dhcp_address_enforcement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_address_enforcement")
+
+    @dhcp_address_enforcement.setter
+    def dhcp_address_enforcement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_address_enforcement", value)
 
     @property
     @pulumi.getter(name="dhcpLeaseTime")
@@ -3052,6 +3840,30 @@ class _WirelessControllerVapState:
         pulumi.set(self, "ft_r0_key_lifetime", value)
 
     @property
+    @pulumi.getter(name="gasComebackDelay")
+    def gas_comeback_delay(self) -> Optional[pulumi.Input[int]]:
+        """
+        GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        """
+        return pulumi.get(self, "gas_comeback_delay")
+
+    @gas_comeback_delay.setter
+    def gas_comeback_delay(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "gas_comeback_delay", value)
+
+    @property
+    @pulumi.getter(name="gasFragmentationLimit")
+    def gas_fragmentation_limit(self) -> Optional[pulumi.Input[int]]:
+        """
+        GAS fragmentation limit (512 - 4096, default = 1024).
+        """
+        return pulumi.get(self, "gas_fragmentation_limit")
+
+    @gas_fragmentation_limit.setter
+    def gas_fragmentation_limit(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "gas_fragmentation_limit", value)
+
+    @property
     @pulumi.getter(name="gtkRekey")
     def gtk_rekey(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3134,6 +3946,18 @@ class _WirelessControllerVapState:
     @ip.setter
     def ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ip", value)
+
+    @property
+    @pulumi.getter(name="ipsSensor")
+    def ips_sensor(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPS sensor name.
+        """
+        return pulumi.get(self, "ips_sensor")
+
+    @ips_sensor.setter
+    def ips_sensor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_sensor", value)
 
     @property
     @pulumi.getter(name="ipv6Rules")
@@ -3232,6 +4056,30 @@ class _WirelessControllerVapState:
         pulumi.set(self, "local_standalone", value)
 
     @property
+    @pulumi.getter(name="localStandaloneDns")
+    def local_standalone_dns(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "local_standalone_dns")
+
+    @local_standalone_dns.setter
+    def local_standalone_dns(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_standalone_dns", value)
+
+    @property
+    @pulumi.getter(name="localStandaloneDnsIp")
+    def local_standalone_dns_ip(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 addresses for the local standalone DNS.
+        """
+        return pulumi.get(self, "local_standalone_dns_ip")
+
+    @local_standalone_dns_ip.setter
+    def local_standalone_dns_ip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "local_standalone_dns_ip", value)
+
+    @property
     @pulumi.getter(name="localStandaloneNat")
     def local_standalone_nat(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3254,6 +4102,42 @@ class _WirelessControllerVapState:
     @mac_auth_bypass.setter
     def mac_auth_bypass(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "mac_auth_bypass", value)
+
+    @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @mac_called_station_delimiter.setter
+    def mac_called_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_called_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @mac_calling_station_delimiter.setter
+    def mac_calling_station_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_calling_station_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+        """
+        return pulumi.get(self, "mac_case")
+
+    @mac_case.setter
+    def mac_case(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_case", value)
 
     @property
     @pulumi.getter(name="macFilter")
@@ -3292,6 +4176,30 @@ class _WirelessControllerVapState:
         pulumi.set(self, "mac_filter_policy_other", value)
 
     @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @mac_password_delimiter.setter
+    def mac_password_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_password_delimiter", value)
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> Optional[pulumi.Input[str]]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
+
+    @mac_username_delimiter.setter
+    def mac_username_delimiter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mac_username_delimiter", value)
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[pulumi.Input[int]]:
         """
@@ -3314,6 +4222,30 @@ class _WirelessControllerVapState:
     @max_clients_ap.setter
     def max_clients_ap(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_clients_ap", value)
+
+    @property
+    @pulumi.getter
+    def mbo(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "mbo")
+
+    @mbo.setter
+    def mbo(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mbo", value)
+
+    @property
+    @pulumi.getter(name="mboCellDataConnPref")
+    def mbo_cell_data_conn_pref(self) -> Optional[pulumi.Input[str]]:
+        """
+        MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+        """
+        return pulumi.get(self, "mbo_cell_data_conn_pref")
+
+    @mbo_cell_data_conn_pref.setter
+    def mbo_cell_data_conn_pref(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "mbo_cell_data_conn_pref", value)
 
     @property
     @pulumi.getter(name="meDisableThresh")
@@ -3425,15 +4357,51 @@ class _WirelessControllerVapState:
 
     @property
     @pulumi.getter
+    def nac(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable network access control. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nac")
+
+    @nac.setter
+    def nac(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nac", value)
+
+    @property
+    @pulumi.getter(name="nacProfile")
+    def nac_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        NAC profile name.
+        """
+        return pulumi.get(self, "nac_profile")
+
+    @nac_profile.setter
+    def nac_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nac_profile", value)
+
+    @property
+    @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="neighborReportDualBand")
+    def neighbor_report_dual_band(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "neighbor_report_dual_band")
+
+    @neighbor_report_dual_band.setter
+    def neighbor_report_dual_band(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "neighbor_report_dual_band", value)
 
     @property
     @pulumi.getter
@@ -3446,6 +4414,18 @@ class _WirelessControllerVapState:
     @okc.setter
     def okc(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "okc", value)
+
+    @property
+    @pulumi.getter
+    def osen(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "osen")
+
+    @osen.setter
+    def osen(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "osen", value)
 
     @property
     @pulumi.getter(name="oweGroups")
@@ -3760,6 +4740,30 @@ class _WirelessControllerVapState:
         pulumi.set(self, "radius_mac_auth_usergroups", value)
 
     @property
+    @pulumi.getter(name="radiusMacMpskAuth")
+    def radius_mac_mpsk_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "radius_mac_mpsk_auth")
+
+    @radius_mac_mpsk_auth.setter
+    def radius_mac_mpsk_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "radius_mac_mpsk_auth", value)
+
+    @property
+    @pulumi.getter(name="radiusMacMpskTimeout")
+    def radius_mac_mpsk_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+        """
+        return pulumi.get(self, "radius_mac_mpsk_timeout")
+
+    @radius_mac_mpsk_timeout.setter
+    def radius_mac_mpsk_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "radius_mac_mpsk_timeout", value)
+
+    @property
     @pulumi.getter(name="radiusServer")
     def radius_server(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3806,6 +4810,30 @@ class _WirelessControllerVapState:
     @rates11ac_ss34.setter
     def rates11ac_ss34(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "rates11ac_ss34", value)
+
+    @property
+    @pulumi.getter(name="rates11axSs12")
+    def rates11ax_ss12(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        """
+        return pulumi.get(self, "rates11ax_ss12")
+
+    @rates11ax_ss12.setter
+    def rates11ax_ss12(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11ax_ss12", value)
+
+    @property
+    @pulumi.getter(name="rates11axSs34")
+    def rates11ax_ss34(self) -> Optional[pulumi.Input[str]]:
+        """
+        Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        """
+        return pulumi.get(self, "rates11ax_ss34")
+
+    @rates11ax_ss34.setter
+    def rates11ax_ss34(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rates11ax_ss34", value)
 
     @property
     @pulumi.getter
@@ -3866,6 +4894,18 @@ class _WirelessControllerVapState:
     @sae_password.setter
     def sae_password(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sae_password", value)
+
+    @property
+    @pulumi.getter(name="scanBotnetConnections")
+    def scan_botnet_connections(self) -> Optional[pulumi.Input[str]]:
+        """
+        Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "scan_botnet_connections")
+
+    @scan_botnet_connections.setter
+    def scan_botnet_connections(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "scan_botnet_connections", value)
 
     @property
     @pulumi.getter
@@ -4072,6 +5112,18 @@ class _WirelessControllerVapState:
         pulumi.set(self, "usergroups", value)
 
     @property
+    @pulumi.getter(name="utmLog")
+    def utm_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UTM logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_log")
+
+    @utm_log.setter
+    def utm_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "utm_log", value)
+
+    @property
     @pulumi.getter(name="utmProfile")
     def utm_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4082,6 +5134,18 @@ class _WirelessControllerVapState:
     @utm_profile.setter
     def utm_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "utm_profile", value)
+
+    @property
+    @pulumi.getter(name="utmStatus")
+    def utm_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_status")
+
+    @utm_status.setter
+    def utm_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "utm_status", value)
 
     @property
     @pulumi.getter
@@ -4106,6 +5170,18 @@ class _WirelessControllerVapState:
     @vlan_auto.setter
     def vlan_auto(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vlan_auto", value)
+
+    @property
+    @pulumi.getter(name="vlanNames")
+    def vlan_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]]]:
+        """
+        Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
+        """
+        return pulumi.get(self, "vlan_names")
+
+    @vlan_names.setter
+    def vlan_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerVapVlanNameArgs']]]]):
+        pulumi.set(self, "vlan_names", value)
 
     @property
     @pulumi.getter(name="vlanPooling")
@@ -4154,6 +5230,18 @@ class _WirelessControllerVapState:
     @voice_enterprise.setter
     def voice_enterprise(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "voice_enterprise", value)
+
+    @property
+    @pulumi.getter(name="webfilterProfile")
+    def webfilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        WebFilter profile name.
+        """
+        return pulumi.get(self, "webfilter_profile")
+
+    @webfilter_profile.setter
+    def webfilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "webfilter_profile", value)
 
 
 class WirelessControllerVap(pulumi.CustomResource):
@@ -4166,11 +5254,19 @@ class WirelessControllerVap(pulumi.CustomResource):
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
+                 antivirus_profile: Optional[pulumi.Input[str]] = None,
+                 application_list: Optional[pulumi.Input[str]] = None,
                  atf_weight: Optional[pulumi.Input[int]] = None,
                  auth: Optional[pulumi.Input[str]] = None,
+                 auth_cert: Optional[pulumi.Input[str]] = None,
+                 auth_portal_addr: Optional[pulumi.Input[str]] = None,
+                 beacon_advertising: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
+                 bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
+                 bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -4178,6 +5274,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_session_timeout_interval: Optional[pulumi.Input[int]] = None,
+                 dhcp_address_enforcement: Optional[pulumi.Input[str]] = None,
                  dhcp_lease_time: Optional[pulumi.Input[int]] = None,
                  dhcp_option43_insertion: Optional[pulumi.Input[str]] = None,
                  dhcp_option82_circuit_id_insertion: Optional[pulumi.Input[str]] = None,
@@ -4198,6 +5295,8 @@ class WirelessControllerVap(pulumi.CustomResource):
                  ft_mobility_domain: Optional[pulumi.Input[int]] = None,
                  ft_over_ds: Optional[pulumi.Input[str]] = None,
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
+                 gas_comeback_delay: Optional[pulumi.Input[int]] = None,
+                 gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -4205,6 +5304,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  igmp_snooping: Optional[pulumi.Input[str]] = None,
                  intra_vap_privacy: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  ipv6_rules: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  keyindex: Optional[pulumi.Input[int]] = None,
@@ -4213,13 +5313,22 @@ class WirelessControllerVap(pulumi.CustomResource):
                  local_bridging: Optional[pulumi.Input[str]] = None,
                  local_lan: Optional[pulumi.Input[str]] = None,
                  local_standalone: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns_ip: Optional[pulumi.Input[str]] = None,
                  local_standalone_nat: Optional[pulumi.Input[str]] = None,
                  mac_auth_bypass: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
                  mac_filter: Optional[pulumi.Input[str]] = None,
                  mac_filter_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapMacFilterListArgs']]]]] = None,
                  mac_filter_policy_other: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_clients_ap: Optional[pulumi.Input[int]] = None,
+                 mbo: Optional[pulumi.Input[str]] = None,
+                 mbo_cell_data_conn_pref: Optional[pulumi.Input[str]] = None,
                  me_disable_thresh: Optional[pulumi.Input[int]] = None,
                  mesh_backhaul: Optional[pulumi.Input[str]] = None,
                  mpsk: Optional[pulumi.Input[str]] = None,
@@ -4229,8 +5338,12 @@ class WirelessControllerVap(pulumi.CustomResource):
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 nac: Optional[pulumi.Input[str]] = None,
+                 nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
+                 osen: Optional[pulumi.Input[str]] = None,
                  owe_groups: Optional[pulumi.Input[str]] = None,
                  owe_transition: Optional[pulumi.Input[str]] = None,
                  owe_transition_ssid: Optional[pulumi.Input[str]] = None,
@@ -4257,15 +5370,20 @@ class WirelessControllerVap(pulumi.CustomResource):
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]]] = None,
+                 radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_mpsk_timeout: Optional[pulumi.Input[int]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  rates11a: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss12: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss34: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
+                 scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  secondary_wag_profile: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[str]] = None,
@@ -4283,13 +5401,17 @@ class WirelessControllerVap(pulumi.CustomResource):
                  tunnel_echo_interval: Optional[pulumi.Input[int]] = None,
                  tunnel_fallback_interval: Optional[pulumi.Input[int]] = None,
                  usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapUsergroupArgs']]]]] = None,
+                 utm_log: Optional[pulumi.Input[str]] = None,
                  utm_profile: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_auto: Optional[pulumi.Input[str]] = None,
+                 vlan_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanNameArgs']]]]] = None,
                  vlan_pooling: Optional[pulumi.Input[str]] = None,
                  vlan_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanPoolArgs']]]]] = None,
                  vlanid: Optional[pulumi.Input[int]] = None,
                  voice_enterprise: Optional[pulumi.Input[str]] = None,
+                 webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure Virtual Access Points (VAPs).
@@ -4311,11 +5433,19 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] alias: Alias.
+        :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
+        :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
         :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth_cert: HTTPS server certificate.
+        :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
+        :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
@@ -4323,6 +5453,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
         :param pulumi.Input[str] captive_portal_radius_server: Captive portal RADIUS server domain name or IP address.
         :param pulumi.Input[int] captive_portal_session_timeout_interval: Session timeout interval (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] dhcp_address_enforcement: Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dhcp_lease_time: DHCP lease time in seconds for NAT IP address.
         :param pulumi.Input[str] dhcp_option43_insertion: Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82 circuit-id insert (default = disable).
@@ -4343,6 +5474,8 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[int] ft_mobility_domain: Mobility domain identifier in FT (1 - 65535, default = 1000).
         :param pulumi.Input[str] ft_over_ds: Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
+        :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -4350,6 +5483,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intra_vap_privacy: Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip: IP address and subnet mask for the local standalone NAT subnet.
+        :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ipv6_rules: Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
         :param pulumi.Input[str] key: WEP Key.
         :param pulumi.Input[int] keyindex: WEP key index (1 - 4).
@@ -4358,13 +5492,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] local_bridging: Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_lan: Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
         :param pulumi.Input[str] local_standalone: Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns: Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns_ip: IPv4 addresses for the local standalone DNS.
         :param pulumi.Input[str] local_standalone_nat: Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_auth_bypass: Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_case: MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
         :param pulumi.Input[str] mac_filter: Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapMacFilterListArgs']]]] mac_filter_lists: Create a list of MAC addresses for MAC address filtering. The structure of `mac_filter_list` block is documented below.
         :param pulumi.Input[str] mac_filter_policy_other: Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_clients_ap: Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
+        :param pulumi.Input[str] mbo: Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
         :param pulumi.Input[int] me_disable_thresh: Disable multicast enhancement when this many clients are receiving multicast traffic.
         :param pulumi.Input[str] mesh_backhaul: Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mpsk: Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
@@ -4374,8 +5517,12 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nac_profile: NAC profile name.
+        :param pulumi.Input[str] name: VLAN name.
+        :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] owe_groups: OWE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] owe_transition: Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] owe_transition_ssid: OWE transition mode peer SSID.
@@ -4402,15 +5549,20 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
+        :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
         :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
+        :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
         :param pulumi.Input[str] schedule: VAP schedule name.
         :param pulumi.Input[str] secondary_wag_profile: Secondary wireless access gateway profile name.
         :param pulumi.Input[str] security: Security mode for the wireless interface (default = wpa2-only-personal).
@@ -4428,13 +5580,17 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[int] tunnel_echo_interval: The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
         :param pulumi.Input[int] tunnel_fallback_interval: The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapUsergroupArgs']]]] usergroups: Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
+        :param pulumi.Input[str] utm_log: Enable/disable UTM logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utm_profile: UTM profile name.
+        :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_auto: Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanNameArgs']]]] vlan_names: Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
         :param pulumi.Input[str] vlan_pooling: Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanPoolArgs']]]] vlan_pools: VLAN pool. The structure of `vlan_pool` block is documented below.
         :param pulumi.Input[int] vlanid: Optional VLAN ID.
         :param pulumi.Input[str] voice_enterprise: Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] webfilter_profile: WebFilter profile name.
         """
         ...
     @overload
@@ -4475,11 +5631,19 @@ class WirelessControllerVap(pulumi.CustomResource):
                  additional_akms: Optional[pulumi.Input[str]] = None,
                  address_group: Optional[pulumi.Input[str]] = None,
                  alias: Optional[pulumi.Input[str]] = None,
+                 antivirus_profile: Optional[pulumi.Input[str]] = None,
+                 application_list: Optional[pulumi.Input[str]] = None,
                  atf_weight: Optional[pulumi.Input[int]] = None,
                  auth: Optional[pulumi.Input[str]] = None,
+                 auth_cert: Optional[pulumi.Input[str]] = None,
+                 auth_portal_addr: Optional[pulumi.Input[str]] = None,
+                 beacon_advertising: Optional[pulumi.Input[str]] = None,
                  broadcast_ssid: Optional[pulumi.Input[str]] = None,
                  broadcast_suppression: Optional[pulumi.Input[str]] = None,
                  bss_color_partial: Optional[pulumi.Input[str]] = None,
+                 bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
+                 bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
+                 bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
                  captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
                  captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
                  captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -4487,6 +5651,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
                  captive_portal_radius_server: Optional[pulumi.Input[str]] = None,
                  captive_portal_session_timeout_interval: Optional[pulumi.Input[int]] = None,
+                 dhcp_address_enforcement: Optional[pulumi.Input[str]] = None,
                  dhcp_lease_time: Optional[pulumi.Input[int]] = None,
                  dhcp_option43_insertion: Optional[pulumi.Input[str]] = None,
                  dhcp_option82_circuit_id_insertion: Optional[pulumi.Input[str]] = None,
@@ -4507,6 +5672,8 @@ class WirelessControllerVap(pulumi.CustomResource):
                  ft_mobility_domain: Optional[pulumi.Input[int]] = None,
                  ft_over_ds: Optional[pulumi.Input[str]] = None,
                  ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
+                 gas_comeback_delay: Optional[pulumi.Input[int]] = None,
+                 gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
                  gtk_rekey: Optional[pulumi.Input[str]] = None,
                  gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
                  high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -4514,6 +5681,7 @@ class WirelessControllerVap(pulumi.CustomResource):
                  igmp_snooping: Optional[pulumi.Input[str]] = None,
                  intra_vap_privacy: Optional[pulumi.Input[str]] = None,
                  ip: Optional[pulumi.Input[str]] = None,
+                 ips_sensor: Optional[pulumi.Input[str]] = None,
                  ipv6_rules: Optional[pulumi.Input[str]] = None,
                  key: Optional[pulumi.Input[str]] = None,
                  keyindex: Optional[pulumi.Input[int]] = None,
@@ -4522,13 +5690,22 @@ class WirelessControllerVap(pulumi.CustomResource):
                  local_bridging: Optional[pulumi.Input[str]] = None,
                  local_lan: Optional[pulumi.Input[str]] = None,
                  local_standalone: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns: Optional[pulumi.Input[str]] = None,
+                 local_standalone_dns_ip: Optional[pulumi.Input[str]] = None,
                  local_standalone_nat: Optional[pulumi.Input[str]] = None,
                  mac_auth_bypass: Optional[pulumi.Input[str]] = None,
+                 mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_case: Optional[pulumi.Input[str]] = None,
                  mac_filter: Optional[pulumi.Input[str]] = None,
                  mac_filter_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapMacFilterListArgs']]]]] = None,
                  mac_filter_policy_other: Optional[pulumi.Input[str]] = None,
+                 mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+                 mac_username_delimiter: Optional[pulumi.Input[str]] = None,
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_clients_ap: Optional[pulumi.Input[int]] = None,
+                 mbo: Optional[pulumi.Input[str]] = None,
+                 mbo_cell_data_conn_pref: Optional[pulumi.Input[str]] = None,
                  me_disable_thresh: Optional[pulumi.Input[int]] = None,
                  mesh_backhaul: Optional[pulumi.Input[str]] = None,
                  mpsk: Optional[pulumi.Input[str]] = None,
@@ -4538,8 +5715,12 @@ class WirelessControllerVap(pulumi.CustomResource):
                  mu_mimo: Optional[pulumi.Input[str]] = None,
                  multicast_enhance: Optional[pulumi.Input[str]] = None,
                  multicast_rate: Optional[pulumi.Input[str]] = None,
+                 nac: Optional[pulumi.Input[str]] = None,
+                 nac_profile: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
                  okc: Optional[pulumi.Input[str]] = None,
+                 osen: Optional[pulumi.Input[str]] = None,
                  owe_groups: Optional[pulumi.Input[str]] = None,
                  owe_transition: Optional[pulumi.Input[str]] = None,
                  owe_transition_ssid: Optional[pulumi.Input[str]] = None,
@@ -4566,15 +5747,20 @@ class WirelessControllerVap(pulumi.CustomResource):
                  radius_mac_auth: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
                  radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]]] = None,
+                 radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
+                 radius_mac_mpsk_timeout: Optional[pulumi.Input[int]] = None,
                  radius_server: Optional[pulumi.Input[str]] = None,
                  rates11a: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss12: Optional[pulumi.Input[str]] = None,
                  rates11ac_ss34: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss12: Optional[pulumi.Input[str]] = None,
+                 rates11ax_ss34: Optional[pulumi.Input[str]] = None,
                  rates11bg: Optional[pulumi.Input[str]] = None,
                  rates11n_ss12: Optional[pulumi.Input[str]] = None,
                  rates11n_ss34: Optional[pulumi.Input[str]] = None,
                  sae_groups: Optional[pulumi.Input[str]] = None,
                  sae_password: Optional[pulumi.Input[str]] = None,
+                 scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  secondary_wag_profile: Optional[pulumi.Input[str]] = None,
                  security: Optional[pulumi.Input[str]] = None,
@@ -4592,13 +5778,17 @@ class WirelessControllerVap(pulumi.CustomResource):
                  tunnel_echo_interval: Optional[pulumi.Input[int]] = None,
                  tunnel_fallback_interval: Optional[pulumi.Input[int]] = None,
                  usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapUsergroupArgs']]]]] = None,
+                 utm_log: Optional[pulumi.Input[str]] = None,
                  utm_profile: Optional[pulumi.Input[str]] = None,
+                 utm_status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vlan_auto: Optional[pulumi.Input[str]] = None,
+                 vlan_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanNameArgs']]]]] = None,
                  vlan_pooling: Optional[pulumi.Input[str]] = None,
                  vlan_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanPoolArgs']]]]] = None,
                  vlanid: Optional[pulumi.Input[int]] = None,
                  voice_enterprise: Optional[pulumi.Input[str]] = None,
+                 webfilter_profile: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -4606,6 +5796,8 @@ class WirelessControllerVap(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -4616,11 +5808,19 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["additional_akms"] = additional_akms
             __props__.__dict__["address_group"] = address_group
             __props__.__dict__["alias"] = alias
+            __props__.__dict__["antivirus_profile"] = antivirus_profile
+            __props__.__dict__["application_list"] = application_list
             __props__.__dict__["atf_weight"] = atf_weight
             __props__.__dict__["auth"] = auth
+            __props__.__dict__["auth_cert"] = auth_cert
+            __props__.__dict__["auth_portal_addr"] = auth_portal_addr
+            __props__.__dict__["beacon_advertising"] = beacon_advertising
             __props__.__dict__["broadcast_ssid"] = broadcast_ssid
             __props__.__dict__["broadcast_suppression"] = broadcast_suppression
             __props__.__dict__["bss_color_partial"] = bss_color_partial
+            __props__.__dict__["bstm_disassociation_imminent"] = bstm_disassociation_imminent
+            __props__.__dict__["bstm_load_balancing_disassoc_timer"] = bstm_load_balancing_disassoc_timer
+            __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
             __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
             __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
             __props__.__dict__["captive_portal_macauth_radius_secret"] = captive_portal_macauth_radius_secret
@@ -4628,6 +5828,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["captive_portal_radius_secret"] = captive_portal_radius_secret
             __props__.__dict__["captive_portal_radius_server"] = captive_portal_radius_server
             __props__.__dict__["captive_portal_session_timeout_interval"] = captive_portal_session_timeout_interval
+            __props__.__dict__["dhcp_address_enforcement"] = dhcp_address_enforcement
             __props__.__dict__["dhcp_lease_time"] = dhcp_lease_time
             __props__.__dict__["dhcp_option43_insertion"] = dhcp_option43_insertion
             __props__.__dict__["dhcp_option82_circuit_id_insertion"] = dhcp_option82_circuit_id_insertion
@@ -4648,6 +5849,8 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["ft_mobility_domain"] = ft_mobility_domain
             __props__.__dict__["ft_over_ds"] = ft_over_ds
             __props__.__dict__["ft_r0_key_lifetime"] = ft_r0_key_lifetime
+            __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
+            __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
             __props__.__dict__["gtk_rekey"] = gtk_rekey
             __props__.__dict__["gtk_rekey_intv"] = gtk_rekey_intv
             __props__.__dict__["high_efficiency"] = high_efficiency
@@ -4655,6 +5858,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["igmp_snooping"] = igmp_snooping
             __props__.__dict__["intra_vap_privacy"] = intra_vap_privacy
             __props__.__dict__["ip"] = ip
+            __props__.__dict__["ips_sensor"] = ips_sensor
             __props__.__dict__["ipv6_rules"] = ipv6_rules
             __props__.__dict__["key"] = key
             __props__.__dict__["keyindex"] = keyindex
@@ -4663,13 +5867,22 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["local_bridging"] = local_bridging
             __props__.__dict__["local_lan"] = local_lan
             __props__.__dict__["local_standalone"] = local_standalone
+            __props__.__dict__["local_standalone_dns"] = local_standalone_dns
+            __props__.__dict__["local_standalone_dns_ip"] = local_standalone_dns_ip
             __props__.__dict__["local_standalone_nat"] = local_standalone_nat
             __props__.__dict__["mac_auth_bypass"] = mac_auth_bypass
+            __props__.__dict__["mac_called_station_delimiter"] = mac_called_station_delimiter
+            __props__.__dict__["mac_calling_station_delimiter"] = mac_calling_station_delimiter
+            __props__.__dict__["mac_case"] = mac_case
             __props__.__dict__["mac_filter"] = mac_filter
             __props__.__dict__["mac_filter_lists"] = mac_filter_lists
             __props__.__dict__["mac_filter_policy_other"] = mac_filter_policy_other
+            __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
+            __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
             __props__.__dict__["max_clients"] = max_clients
             __props__.__dict__["max_clients_ap"] = max_clients_ap
+            __props__.__dict__["mbo"] = mbo
+            __props__.__dict__["mbo_cell_data_conn_pref"] = mbo_cell_data_conn_pref
             __props__.__dict__["me_disable_thresh"] = me_disable_thresh
             __props__.__dict__["mesh_backhaul"] = mesh_backhaul
             __props__.__dict__["mpsk"] = mpsk
@@ -4679,8 +5892,12 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["mu_mimo"] = mu_mimo
             __props__.__dict__["multicast_enhance"] = multicast_enhance
             __props__.__dict__["multicast_rate"] = multicast_rate
+            __props__.__dict__["nac"] = nac
+            __props__.__dict__["nac_profile"] = nac_profile
             __props__.__dict__["name"] = name
+            __props__.__dict__["neighbor_report_dual_band"] = neighbor_report_dual_band
             __props__.__dict__["okc"] = okc
+            __props__.__dict__["osen"] = osen
             __props__.__dict__["owe_groups"] = owe_groups
             __props__.__dict__["owe_transition"] = owe_transition
             __props__.__dict__["owe_transition_ssid"] = owe_transition_ssid
@@ -4707,15 +5924,20 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["radius_mac_auth"] = radius_mac_auth
             __props__.__dict__["radius_mac_auth_server"] = radius_mac_auth_server
             __props__.__dict__["radius_mac_auth_usergroups"] = radius_mac_auth_usergroups
+            __props__.__dict__["radius_mac_mpsk_auth"] = radius_mac_mpsk_auth
+            __props__.__dict__["radius_mac_mpsk_timeout"] = radius_mac_mpsk_timeout
             __props__.__dict__["radius_server"] = radius_server
             __props__.__dict__["rates11a"] = rates11a
             __props__.__dict__["rates11ac_ss12"] = rates11ac_ss12
             __props__.__dict__["rates11ac_ss34"] = rates11ac_ss34
+            __props__.__dict__["rates11ax_ss12"] = rates11ax_ss12
+            __props__.__dict__["rates11ax_ss34"] = rates11ax_ss34
             __props__.__dict__["rates11bg"] = rates11bg
             __props__.__dict__["rates11n_ss12"] = rates11n_ss12
             __props__.__dict__["rates11n_ss34"] = rates11n_ss34
             __props__.__dict__["sae_groups"] = sae_groups
             __props__.__dict__["sae_password"] = sae_password
+            __props__.__dict__["scan_botnet_connections"] = scan_botnet_connections
             __props__.__dict__["schedule"] = schedule
             __props__.__dict__["secondary_wag_profile"] = secondary_wag_profile
             __props__.__dict__["security"] = security
@@ -4733,13 +5955,17 @@ class WirelessControllerVap(pulumi.CustomResource):
             __props__.__dict__["tunnel_echo_interval"] = tunnel_echo_interval
             __props__.__dict__["tunnel_fallback_interval"] = tunnel_fallback_interval
             __props__.__dict__["usergroups"] = usergroups
+            __props__.__dict__["utm_log"] = utm_log
             __props__.__dict__["utm_profile"] = utm_profile
+            __props__.__dict__["utm_status"] = utm_status
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["vlan_auto"] = vlan_auto
+            __props__.__dict__["vlan_names"] = vlan_names
             __props__.__dict__["vlan_pooling"] = vlan_pooling
             __props__.__dict__["vlan_pools"] = vlan_pools
             __props__.__dict__["vlanid"] = vlanid
             __props__.__dict__["voice_enterprise"] = voice_enterprise
+            __props__.__dict__["webfilter_profile"] = webfilter_profile
         super(WirelessControllerVap, __self__).__init__(
             'fortios:index/wirelessControllerVap:WirelessControllerVap',
             resource_name,
@@ -4755,11 +5981,19 @@ class WirelessControllerVap(pulumi.CustomResource):
             additional_akms: Optional[pulumi.Input[str]] = None,
             address_group: Optional[pulumi.Input[str]] = None,
             alias: Optional[pulumi.Input[str]] = None,
+            antivirus_profile: Optional[pulumi.Input[str]] = None,
+            application_list: Optional[pulumi.Input[str]] = None,
             atf_weight: Optional[pulumi.Input[int]] = None,
             auth: Optional[pulumi.Input[str]] = None,
+            auth_cert: Optional[pulumi.Input[str]] = None,
+            auth_portal_addr: Optional[pulumi.Input[str]] = None,
+            beacon_advertising: Optional[pulumi.Input[str]] = None,
             broadcast_ssid: Optional[pulumi.Input[str]] = None,
             broadcast_suppression: Optional[pulumi.Input[str]] = None,
             bss_color_partial: Optional[pulumi.Input[str]] = None,
+            bstm_disassociation_imminent: Optional[pulumi.Input[str]] = None,
+            bstm_load_balancing_disassoc_timer: Optional[pulumi.Input[int]] = None,
+            bstm_rssi_disassoc_timer: Optional[pulumi.Input[int]] = None,
             captive_portal_ac_name: Optional[pulumi.Input[str]] = None,
             captive_portal_auth_timeout: Optional[pulumi.Input[int]] = None,
             captive_portal_macauth_radius_secret: Optional[pulumi.Input[str]] = None,
@@ -4767,6 +6001,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             captive_portal_radius_secret: Optional[pulumi.Input[str]] = None,
             captive_portal_radius_server: Optional[pulumi.Input[str]] = None,
             captive_portal_session_timeout_interval: Optional[pulumi.Input[int]] = None,
+            dhcp_address_enforcement: Optional[pulumi.Input[str]] = None,
             dhcp_lease_time: Optional[pulumi.Input[int]] = None,
             dhcp_option43_insertion: Optional[pulumi.Input[str]] = None,
             dhcp_option82_circuit_id_insertion: Optional[pulumi.Input[str]] = None,
@@ -4787,6 +6022,8 @@ class WirelessControllerVap(pulumi.CustomResource):
             ft_mobility_domain: Optional[pulumi.Input[int]] = None,
             ft_over_ds: Optional[pulumi.Input[str]] = None,
             ft_r0_key_lifetime: Optional[pulumi.Input[int]] = None,
+            gas_comeback_delay: Optional[pulumi.Input[int]] = None,
+            gas_fragmentation_limit: Optional[pulumi.Input[int]] = None,
             gtk_rekey: Optional[pulumi.Input[str]] = None,
             gtk_rekey_intv: Optional[pulumi.Input[int]] = None,
             high_efficiency: Optional[pulumi.Input[str]] = None,
@@ -4794,6 +6031,7 @@ class WirelessControllerVap(pulumi.CustomResource):
             igmp_snooping: Optional[pulumi.Input[str]] = None,
             intra_vap_privacy: Optional[pulumi.Input[str]] = None,
             ip: Optional[pulumi.Input[str]] = None,
+            ips_sensor: Optional[pulumi.Input[str]] = None,
             ipv6_rules: Optional[pulumi.Input[str]] = None,
             key: Optional[pulumi.Input[str]] = None,
             keyindex: Optional[pulumi.Input[int]] = None,
@@ -4802,13 +6040,22 @@ class WirelessControllerVap(pulumi.CustomResource):
             local_bridging: Optional[pulumi.Input[str]] = None,
             local_lan: Optional[pulumi.Input[str]] = None,
             local_standalone: Optional[pulumi.Input[str]] = None,
+            local_standalone_dns: Optional[pulumi.Input[str]] = None,
+            local_standalone_dns_ip: Optional[pulumi.Input[str]] = None,
             local_standalone_nat: Optional[pulumi.Input[str]] = None,
             mac_auth_bypass: Optional[pulumi.Input[str]] = None,
+            mac_called_station_delimiter: Optional[pulumi.Input[str]] = None,
+            mac_calling_station_delimiter: Optional[pulumi.Input[str]] = None,
+            mac_case: Optional[pulumi.Input[str]] = None,
             mac_filter: Optional[pulumi.Input[str]] = None,
             mac_filter_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapMacFilterListArgs']]]]] = None,
             mac_filter_policy_other: Optional[pulumi.Input[str]] = None,
+            mac_password_delimiter: Optional[pulumi.Input[str]] = None,
+            mac_username_delimiter: Optional[pulumi.Input[str]] = None,
             max_clients: Optional[pulumi.Input[int]] = None,
             max_clients_ap: Optional[pulumi.Input[int]] = None,
+            mbo: Optional[pulumi.Input[str]] = None,
+            mbo_cell_data_conn_pref: Optional[pulumi.Input[str]] = None,
             me_disable_thresh: Optional[pulumi.Input[int]] = None,
             mesh_backhaul: Optional[pulumi.Input[str]] = None,
             mpsk: Optional[pulumi.Input[str]] = None,
@@ -4818,8 +6065,12 @@ class WirelessControllerVap(pulumi.CustomResource):
             mu_mimo: Optional[pulumi.Input[str]] = None,
             multicast_enhance: Optional[pulumi.Input[str]] = None,
             multicast_rate: Optional[pulumi.Input[str]] = None,
+            nac: Optional[pulumi.Input[str]] = None,
+            nac_profile: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            neighbor_report_dual_band: Optional[pulumi.Input[str]] = None,
             okc: Optional[pulumi.Input[str]] = None,
+            osen: Optional[pulumi.Input[str]] = None,
             owe_groups: Optional[pulumi.Input[str]] = None,
             owe_transition: Optional[pulumi.Input[str]] = None,
             owe_transition_ssid: Optional[pulumi.Input[str]] = None,
@@ -4846,15 +6097,20 @@ class WirelessControllerVap(pulumi.CustomResource):
             radius_mac_auth: Optional[pulumi.Input[str]] = None,
             radius_mac_auth_server: Optional[pulumi.Input[str]] = None,
             radius_mac_auth_usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]]] = None,
+            radius_mac_mpsk_auth: Optional[pulumi.Input[str]] = None,
+            radius_mac_mpsk_timeout: Optional[pulumi.Input[int]] = None,
             radius_server: Optional[pulumi.Input[str]] = None,
             rates11a: Optional[pulumi.Input[str]] = None,
             rates11ac_ss12: Optional[pulumi.Input[str]] = None,
             rates11ac_ss34: Optional[pulumi.Input[str]] = None,
+            rates11ax_ss12: Optional[pulumi.Input[str]] = None,
+            rates11ax_ss34: Optional[pulumi.Input[str]] = None,
             rates11bg: Optional[pulumi.Input[str]] = None,
             rates11n_ss12: Optional[pulumi.Input[str]] = None,
             rates11n_ss34: Optional[pulumi.Input[str]] = None,
             sae_groups: Optional[pulumi.Input[str]] = None,
             sae_password: Optional[pulumi.Input[str]] = None,
+            scan_botnet_connections: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
             secondary_wag_profile: Optional[pulumi.Input[str]] = None,
             security: Optional[pulumi.Input[str]] = None,
@@ -4872,13 +6128,17 @@ class WirelessControllerVap(pulumi.CustomResource):
             tunnel_echo_interval: Optional[pulumi.Input[int]] = None,
             tunnel_fallback_interval: Optional[pulumi.Input[int]] = None,
             usergroups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapUsergroupArgs']]]]] = None,
+            utm_log: Optional[pulumi.Input[str]] = None,
             utm_profile: Optional[pulumi.Input[str]] = None,
+            utm_status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             vlan_auto: Optional[pulumi.Input[str]] = None,
+            vlan_names: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanNameArgs']]]]] = None,
             vlan_pooling: Optional[pulumi.Input[str]] = None,
             vlan_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanPoolArgs']]]]] = None,
             vlanid: Optional[pulumi.Input[int]] = None,
-            voice_enterprise: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerVap':
+            voice_enterprise: Optional[pulumi.Input[str]] = None,
+            webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerVap':
         """
         Get an existing WirelessControllerVap resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -4891,11 +6151,19 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] additional_akms: Additional AKMs. Valid values: `akm6`.
         :param pulumi.Input[str] address_group: Address group ID.
         :param pulumi.Input[str] alias: Alias.
+        :param pulumi.Input[str] antivirus_profile: AntiVirus profile name.
+        :param pulumi.Input[str] application_list: Application control list name.
         :param pulumi.Input[int] atf_weight: Airtime weight in percentage (default = 20).
         :param pulumi.Input[str] auth: Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
+        :param pulumi.Input[str] auth_cert: HTTPS server certificate.
+        :param pulumi.Input[str] auth_portal_addr: Address of captive portal.
+        :param pulumi.Input[str] beacon_advertising: Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
         :param pulumi.Input[str] broadcast_ssid: Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] broadcast_suppression: Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
         :param pulumi.Input[str] bss_color_partial: Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] bstm_disassociation_imminent: Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] bstm_load_balancing_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        :param pulumi.Input[int] bstm_rssi_disassoc_timer: Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
         :param pulumi.Input[str] captive_portal_ac_name: Local-bridging captive portal ac-name.
         :param pulumi.Input[int] captive_portal_auth_timeout: Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
         :param pulumi.Input[str] captive_portal_macauth_radius_secret: Secret key to access the macauth RADIUS server.
@@ -4903,6 +6171,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] captive_portal_radius_secret: Secret key to access the RADIUS server.
         :param pulumi.Input[str] captive_portal_radius_server: Captive portal RADIUS server domain name or IP address.
         :param pulumi.Input[int] captive_portal_session_timeout_interval: Session timeout interval (0 - 864000 sec, default = 0).
+        :param pulumi.Input[str] dhcp_address_enforcement: Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] dhcp_lease_time: DHCP lease time in seconds for NAT IP address.
         :param pulumi.Input[str] dhcp_option43_insertion: Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dhcp_option82_circuit_id_insertion: Enable/disable DHCP option 82 circuit-id insert (default = disable).
@@ -4923,6 +6192,8 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[int] ft_mobility_domain: Mobility domain identifier in FT (1 - 65535, default = 1000).
         :param pulumi.Input[str] ft_over_ds: Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ft_r0_key_lifetime: Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
+        :param pulumi.Input[int] gas_comeback_delay: GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        :param pulumi.Input[int] gas_fragmentation_limit: GAS fragmentation limit (512 - 4096, default = 1024).
         :param pulumi.Input[str] gtk_rekey: Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] gtk_rekey_intv: GTK rekey interval (1800 - 864000 sec, default = 86400).
         :param pulumi.Input[str] high_efficiency: Enable/disable 802.11ax high efficiency (default = enable). Valid values: `enable`, `disable`.
@@ -4930,6 +6201,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] igmp_snooping: Enable/disable IGMP snooping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intra_vap_privacy: Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip: IP address and subnet mask for the local standalone NAT subnet.
+        :param pulumi.Input[str] ips_sensor: IPS sensor name.
         :param pulumi.Input[str] ipv6_rules: Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
         :param pulumi.Input[str] key: WEP Key.
         :param pulumi.Input[int] keyindex: WEP key index (1 - 4).
@@ -4938,13 +6210,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] local_bridging: Enable/disable bridging of wireless and Ethernet interfaces on the FortiAP (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] local_lan: Allow/deny traffic destined for a Class A, B, or C private IP address (default = allow). Valid values: `allow`, `deny`.
         :param pulumi.Input[str] local_standalone: Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns: Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] local_standalone_dns_ip: IPv4 addresses for the local standalone DNS.
         :param pulumi.Input[str] local_standalone_nat: Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mac_auth_bypass: Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] mac_called_station_delimiter: MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_calling_station_delimiter: MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_case: MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
         :param pulumi.Input[str] mac_filter: Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapMacFilterListArgs']]]] mac_filter_lists: Create a list of MAC addresses for MAC address filtering. The structure of `mac_filter_list` block is documented below.
         :param pulumi.Input[str] mac_filter_policy_other: Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
+        :param pulumi.Input[str] mac_password_delimiter: MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        :param pulumi.Input[str] mac_username_delimiter: MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_clients_ap: Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
+        :param pulumi.Input[str] mbo: Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] mbo_cell_data_conn_pref: MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
         :param pulumi.Input[int] me_disable_thresh: Disable multicast enhancement when this many clients are receiving multicast traffic.
         :param pulumi.Input[str] mesh_backhaul: Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mpsk: Enable/disable multiple pre-shared keys (PSKs.) Valid values: `enable`, `disable`.
@@ -4954,8 +6235,12 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] mu_mimo: Enable/disable Multi-user MIMO (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_enhance: Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] multicast_rate: Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
-        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] nac: Enable/disable network access control. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nac_profile: NAC profile name.
+        :param pulumi.Input[str] name: VLAN name.
+        :param pulumi.Input[str] neighbor_report_dual_band: Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] okc: Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] osen: Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] owe_groups: OWE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] owe_transition: Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] owe_transition_ssid: OWE transition mode peer SSID.
@@ -4982,15 +6267,20 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[str] radius_mac_auth: Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] radius_mac_auth_server: RADIUS-based MAC authentication server.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapRadiusMacAuthUsergroupArgs']]]] radius_mac_auth_usergroups: Selective user groups that are permitted for RADIUS mac authentication. The structure of `radius_mac_auth_usergroups` block is documented below.
+        :param pulumi.Input[str] radius_mac_mpsk_auth: Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] radius_mac_mpsk_timeout: RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
         :param pulumi.Input[str] radius_server: RADIUS server to be used to authenticate WiFi users.
         :param pulumi.Input[str] rates11a: Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11ac_ss12: Allowed data rates for 802.11ac with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
         :param pulumi.Input[str] rates11ac_ss34: Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        :param pulumi.Input[str] rates11ax_ss12: Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        :param pulumi.Input[str] rates11ax_ss34: Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         :param pulumi.Input[str] rates11bg: Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
         :param pulumi.Input[str] rates11n_ss12: Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
         :param pulumi.Input[str] rates11n_ss34: Allowed data rates for 802.11n with 3 or 4 spatial streams. Valid values: `mcs16/3`, `mcs17/3`, `mcs18/3`, `mcs19/3`, `mcs20/3`, `mcs21/3`, `mcs22/3`, `mcs23/3`, `mcs24/4`, `mcs25/4`, `mcs26/4`, `mcs27/4`, `mcs28/4`, `mcs29/4`, `mcs30/4`, `mcs31/4`.
         :param pulumi.Input[str] sae_groups: SAE-Groups. Valid values: `19`, `20`, `21`.
         :param pulumi.Input[str] sae_password: WPA3 SAE password to be used to authenticate WiFi users.
+        :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
         :param pulumi.Input[str] schedule: VAP schedule name.
         :param pulumi.Input[str] secondary_wag_profile: Secondary wireless access gateway profile name.
         :param pulumi.Input[str] security: Security mode for the wireless interface (default = wpa2-only-personal).
@@ -5008,13 +6298,17 @@ class WirelessControllerVap(pulumi.CustomResource):
         :param pulumi.Input[int] tunnel_echo_interval: The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
         :param pulumi.Input[int] tunnel_fallback_interval: The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapUsergroupArgs']]]] usergroups: Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
+        :param pulumi.Input[str] utm_log: Enable/disable UTM logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] utm_profile: UTM profile name.
+        :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] vlan_auto: Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanNameArgs']]]] vlan_names: Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
         :param pulumi.Input[str] vlan_pooling: Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerVapVlanPoolArgs']]]] vlan_pools: VLAN pool. The structure of `vlan_pool` block is documented below.
         :param pulumi.Input[int] vlanid: Optional VLAN ID.
         :param pulumi.Input[str] voice_enterprise: Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] webfilter_profile: WebFilter profile name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -5025,11 +6319,19 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["additional_akms"] = additional_akms
         __props__.__dict__["address_group"] = address_group
         __props__.__dict__["alias"] = alias
+        __props__.__dict__["antivirus_profile"] = antivirus_profile
+        __props__.__dict__["application_list"] = application_list
         __props__.__dict__["atf_weight"] = atf_weight
         __props__.__dict__["auth"] = auth
+        __props__.__dict__["auth_cert"] = auth_cert
+        __props__.__dict__["auth_portal_addr"] = auth_portal_addr
+        __props__.__dict__["beacon_advertising"] = beacon_advertising
         __props__.__dict__["broadcast_ssid"] = broadcast_ssid
         __props__.__dict__["broadcast_suppression"] = broadcast_suppression
         __props__.__dict__["bss_color_partial"] = bss_color_partial
+        __props__.__dict__["bstm_disassociation_imminent"] = bstm_disassociation_imminent
+        __props__.__dict__["bstm_load_balancing_disassoc_timer"] = bstm_load_balancing_disassoc_timer
+        __props__.__dict__["bstm_rssi_disassoc_timer"] = bstm_rssi_disassoc_timer
         __props__.__dict__["captive_portal_ac_name"] = captive_portal_ac_name
         __props__.__dict__["captive_portal_auth_timeout"] = captive_portal_auth_timeout
         __props__.__dict__["captive_portal_macauth_radius_secret"] = captive_portal_macauth_radius_secret
@@ -5037,6 +6339,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["captive_portal_radius_secret"] = captive_portal_radius_secret
         __props__.__dict__["captive_portal_radius_server"] = captive_portal_radius_server
         __props__.__dict__["captive_portal_session_timeout_interval"] = captive_portal_session_timeout_interval
+        __props__.__dict__["dhcp_address_enforcement"] = dhcp_address_enforcement
         __props__.__dict__["dhcp_lease_time"] = dhcp_lease_time
         __props__.__dict__["dhcp_option43_insertion"] = dhcp_option43_insertion
         __props__.__dict__["dhcp_option82_circuit_id_insertion"] = dhcp_option82_circuit_id_insertion
@@ -5057,6 +6360,8 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["ft_mobility_domain"] = ft_mobility_domain
         __props__.__dict__["ft_over_ds"] = ft_over_ds
         __props__.__dict__["ft_r0_key_lifetime"] = ft_r0_key_lifetime
+        __props__.__dict__["gas_comeback_delay"] = gas_comeback_delay
+        __props__.__dict__["gas_fragmentation_limit"] = gas_fragmentation_limit
         __props__.__dict__["gtk_rekey"] = gtk_rekey
         __props__.__dict__["gtk_rekey_intv"] = gtk_rekey_intv
         __props__.__dict__["high_efficiency"] = high_efficiency
@@ -5064,6 +6369,7 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["igmp_snooping"] = igmp_snooping
         __props__.__dict__["intra_vap_privacy"] = intra_vap_privacy
         __props__.__dict__["ip"] = ip
+        __props__.__dict__["ips_sensor"] = ips_sensor
         __props__.__dict__["ipv6_rules"] = ipv6_rules
         __props__.__dict__["key"] = key
         __props__.__dict__["keyindex"] = keyindex
@@ -5072,13 +6378,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["local_bridging"] = local_bridging
         __props__.__dict__["local_lan"] = local_lan
         __props__.__dict__["local_standalone"] = local_standalone
+        __props__.__dict__["local_standalone_dns"] = local_standalone_dns
+        __props__.__dict__["local_standalone_dns_ip"] = local_standalone_dns_ip
         __props__.__dict__["local_standalone_nat"] = local_standalone_nat
         __props__.__dict__["mac_auth_bypass"] = mac_auth_bypass
+        __props__.__dict__["mac_called_station_delimiter"] = mac_called_station_delimiter
+        __props__.__dict__["mac_calling_station_delimiter"] = mac_calling_station_delimiter
+        __props__.__dict__["mac_case"] = mac_case
         __props__.__dict__["mac_filter"] = mac_filter
         __props__.__dict__["mac_filter_lists"] = mac_filter_lists
         __props__.__dict__["mac_filter_policy_other"] = mac_filter_policy_other
+        __props__.__dict__["mac_password_delimiter"] = mac_password_delimiter
+        __props__.__dict__["mac_username_delimiter"] = mac_username_delimiter
         __props__.__dict__["max_clients"] = max_clients
         __props__.__dict__["max_clients_ap"] = max_clients_ap
+        __props__.__dict__["mbo"] = mbo
+        __props__.__dict__["mbo_cell_data_conn_pref"] = mbo_cell_data_conn_pref
         __props__.__dict__["me_disable_thresh"] = me_disable_thresh
         __props__.__dict__["mesh_backhaul"] = mesh_backhaul
         __props__.__dict__["mpsk"] = mpsk
@@ -5088,8 +6403,12 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["mu_mimo"] = mu_mimo
         __props__.__dict__["multicast_enhance"] = multicast_enhance
         __props__.__dict__["multicast_rate"] = multicast_rate
+        __props__.__dict__["nac"] = nac
+        __props__.__dict__["nac_profile"] = nac_profile
         __props__.__dict__["name"] = name
+        __props__.__dict__["neighbor_report_dual_band"] = neighbor_report_dual_band
         __props__.__dict__["okc"] = okc
+        __props__.__dict__["osen"] = osen
         __props__.__dict__["owe_groups"] = owe_groups
         __props__.__dict__["owe_transition"] = owe_transition
         __props__.__dict__["owe_transition_ssid"] = owe_transition_ssid
@@ -5116,15 +6435,20 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["radius_mac_auth"] = radius_mac_auth
         __props__.__dict__["radius_mac_auth_server"] = radius_mac_auth_server
         __props__.__dict__["radius_mac_auth_usergroups"] = radius_mac_auth_usergroups
+        __props__.__dict__["radius_mac_mpsk_auth"] = radius_mac_mpsk_auth
+        __props__.__dict__["radius_mac_mpsk_timeout"] = radius_mac_mpsk_timeout
         __props__.__dict__["radius_server"] = radius_server
         __props__.__dict__["rates11a"] = rates11a
         __props__.__dict__["rates11ac_ss12"] = rates11ac_ss12
         __props__.__dict__["rates11ac_ss34"] = rates11ac_ss34
+        __props__.__dict__["rates11ax_ss12"] = rates11ax_ss12
+        __props__.__dict__["rates11ax_ss34"] = rates11ax_ss34
         __props__.__dict__["rates11bg"] = rates11bg
         __props__.__dict__["rates11n_ss12"] = rates11n_ss12
         __props__.__dict__["rates11n_ss34"] = rates11n_ss34
         __props__.__dict__["sae_groups"] = sae_groups
         __props__.__dict__["sae_password"] = sae_password
+        __props__.__dict__["scan_botnet_connections"] = scan_botnet_connections
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["secondary_wag_profile"] = secondary_wag_profile
         __props__.__dict__["security"] = security
@@ -5142,13 +6466,17 @@ class WirelessControllerVap(pulumi.CustomResource):
         __props__.__dict__["tunnel_echo_interval"] = tunnel_echo_interval
         __props__.__dict__["tunnel_fallback_interval"] = tunnel_fallback_interval
         __props__.__dict__["usergroups"] = usergroups
+        __props__.__dict__["utm_log"] = utm_log
         __props__.__dict__["utm_profile"] = utm_profile
+        __props__.__dict__["utm_status"] = utm_status
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["vlan_auto"] = vlan_auto
+        __props__.__dict__["vlan_names"] = vlan_names
         __props__.__dict__["vlan_pooling"] = vlan_pooling
         __props__.__dict__["vlan_pools"] = vlan_pools
         __props__.__dict__["vlanid"] = vlanid
         __props__.__dict__["voice_enterprise"] = voice_enterprise
+        __props__.__dict__["webfilter_profile"] = webfilter_profile
         return WirelessControllerVap(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -5192,6 +6520,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "alias")
 
     @property
+    @pulumi.getter(name="antivirusProfile")
+    def antivirus_profile(self) -> pulumi.Output[str]:
+        """
+        AntiVirus profile name.
+        """
+        return pulumi.get(self, "antivirus_profile")
+
+    @property
+    @pulumi.getter(name="applicationList")
+    def application_list(self) -> pulumi.Output[str]:
+        """
+        Application control list name.
+        """
+        return pulumi.get(self, "application_list")
+
+    @property
     @pulumi.getter(name="atfWeight")
     def atf_weight(self) -> pulumi.Output[int]:
         """
@@ -5206,6 +6550,30 @@ class WirelessControllerVap(pulumi.CustomResource):
         Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
         """
         return pulumi.get(self, "auth")
+
+    @property
+    @pulumi.getter(name="authCert")
+    def auth_cert(self) -> pulumi.Output[str]:
+        """
+        HTTPS server certificate.
+        """
+        return pulumi.get(self, "auth_cert")
+
+    @property
+    @pulumi.getter(name="authPortalAddr")
+    def auth_portal_addr(self) -> pulumi.Output[str]:
+        """
+        Address of captive portal.
+        """
+        return pulumi.get(self, "auth_portal_addr")
+
+    @property
+    @pulumi.getter(name="beaconAdvertising")
+    def beacon_advertising(self) -> pulumi.Output[str]:
+        """
+        Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+        """
+        return pulumi.get(self, "beacon_advertising")
 
     @property
     @pulumi.getter(name="broadcastSsid")
@@ -5230,6 +6598,30 @@ class WirelessControllerVap(pulumi.CustomResource):
         Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "bss_color_partial")
+
+    @property
+    @pulumi.getter(name="bstmDisassociationImminent")
+    def bstm_disassociation_imminent(self) -> pulumi.Output[str]:
+        """
+        Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "bstm_disassociation_imminent")
+
+    @property
+    @pulumi.getter(name="bstmLoadBalancingDisassocTimer")
+    def bstm_load_balancing_disassoc_timer(self) -> pulumi.Output[int]:
+        """
+        Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+        """
+        return pulumi.get(self, "bstm_load_balancing_disassoc_timer")
+
+    @property
+    @pulumi.getter(name="bstmRssiDisassocTimer")
+    def bstm_rssi_disassoc_timer(self) -> pulumi.Output[int]:
+        """
+        Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+        """
+        return pulumi.get(self, "bstm_rssi_disassoc_timer")
 
     @property
     @pulumi.getter(name="captivePortalAcName")
@@ -5286,6 +6678,14 @@ class WirelessControllerVap(pulumi.CustomResource):
         Session timeout interval (0 - 864000 sec, default = 0).
         """
         return pulumi.get(self, "captive_portal_session_timeout_interval")
+
+    @property
+    @pulumi.getter(name="dhcpAddressEnforcement")
+    def dhcp_address_enforcement(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_address_enforcement")
 
     @property
     @pulumi.getter(name="dhcpLeaseTime")
@@ -5448,6 +6848,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "ft_r0_key_lifetime")
 
     @property
+    @pulumi.getter(name="gasComebackDelay")
+    def gas_comeback_delay(self) -> pulumi.Output[int]:
+        """
+        GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+        """
+        return pulumi.get(self, "gas_comeback_delay")
+
+    @property
+    @pulumi.getter(name="gasFragmentationLimit")
+    def gas_fragmentation_limit(self) -> pulumi.Output[int]:
+        """
+        GAS fragmentation limit (512 - 4096, default = 1024).
+        """
+        return pulumi.get(self, "gas_fragmentation_limit")
+
+    @property
     @pulumi.getter(name="gtkRekey")
     def gtk_rekey(self) -> pulumi.Output[str]:
         """
@@ -5502,6 +6918,14 @@ class WirelessControllerVap(pulumi.CustomResource):
         IP address and subnet mask for the local standalone NAT subnet.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter(name="ipsSensor")
+    def ips_sensor(self) -> pulumi.Output[str]:
+        """
+        IPS sensor name.
+        """
+        return pulumi.get(self, "ips_sensor")
 
     @property
     @pulumi.getter(name="ipv6Rules")
@@ -5568,6 +6992,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "local_standalone")
 
     @property
+    @pulumi.getter(name="localStandaloneDns")
+    def local_standalone_dns(self) -> pulumi.Output[str]:
+        """
+        Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "local_standalone_dns")
+
+    @property
+    @pulumi.getter(name="localStandaloneDnsIp")
+    def local_standalone_dns_ip(self) -> pulumi.Output[str]:
+        """
+        IPv4 addresses for the local standalone DNS.
+        """
+        return pulumi.get(self, "local_standalone_dns_ip")
+
+    @property
     @pulumi.getter(name="localStandaloneNat")
     def local_standalone_nat(self) -> pulumi.Output[str]:
         """
@@ -5582,6 +7022,30 @@ class WirelessControllerVap(pulumi.CustomResource):
         Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "mac_auth_bypass")
+
+    @property
+    @pulumi.getter(name="macCalledStationDelimiter")
+    def mac_called_station_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_called_station_delimiter")
+
+    @property
+    @pulumi.getter(name="macCallingStationDelimiter")
+    def mac_calling_station_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_calling_station_delimiter")
+
+    @property
+    @pulumi.getter(name="macCase")
+    def mac_case(self) -> pulumi.Output[str]:
+        """
+        MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+        """
+        return pulumi.get(self, "mac_case")
 
     @property
     @pulumi.getter(name="macFilter")
@@ -5608,6 +7072,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "mac_filter_policy_other")
 
     @property
+    @pulumi.getter(name="macPasswordDelimiter")
+    def mac_password_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_password_delimiter")
+
+    @property
+    @pulumi.getter(name="macUsernameDelimiter")
+    def mac_username_delimiter(self) -> pulumi.Output[str]:
+        """
+        MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+        """
+        return pulumi.get(self, "mac_username_delimiter")
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> pulumi.Output[int]:
         """
@@ -5622,6 +7102,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
         """
         return pulumi.get(self, "max_clients_ap")
+
+    @property
+    @pulumi.getter
+    def mbo(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "mbo")
+
+    @property
+    @pulumi.getter(name="mboCellDataConnPref")
+    def mbo_cell_data_conn_pref(self) -> pulumi.Output[str]:
+        """
+        MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+        """
+        return pulumi.get(self, "mbo_cell_data_conn_pref")
 
     @property
     @pulumi.getter(name="meDisableThresh")
@@ -5697,11 +7193,35 @@ class WirelessControllerVap(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def nac(self) -> pulumi.Output[str]:
+        """
+        Enable/disable network access control. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nac")
+
+    @property
+    @pulumi.getter(name="nacProfile")
+    def nac_profile(self) -> pulumi.Output[str]:
+        """
+        NAC profile name.
+        """
+        return pulumi.get(self, "nac_profile")
+
+    @property
+    @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="neighborReportDualBand")
+    def neighbor_report_dual_band(self) -> pulumi.Output[str]:
+        """
+        Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "neighbor_report_dual_band")
 
     @property
     @pulumi.getter
@@ -5710,6 +7230,14 @@ class WirelessControllerVap(pulumi.CustomResource):
         Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "okc")
+
+    @property
+    @pulumi.getter
+    def osen(self) -> pulumi.Output[str]:
+        """
+        Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "osen")
 
     @property
     @pulumi.getter(name="oweGroups")
@@ -5920,6 +7448,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "radius_mac_auth_usergroups")
 
     @property
+    @pulumi.getter(name="radiusMacMpskAuth")
+    def radius_mac_mpsk_auth(self) -> pulumi.Output[str]:
+        """
+        Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "radius_mac_mpsk_auth")
+
+    @property
+    @pulumi.getter(name="radiusMacMpskTimeout")
+    def radius_mac_mpsk_timeout(self) -> pulumi.Output[int]:
+        """
+        RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+        """
+        return pulumi.get(self, "radius_mac_mpsk_timeout")
+
+    @property
     @pulumi.getter(name="radiusServer")
     def radius_server(self) -> pulumi.Output[str]:
         """
@@ -5950,6 +7494,22 @@ class WirelessControllerVap(pulumi.CustomResource):
         Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
         """
         return pulumi.get(self, "rates11ac_ss34")
+
+    @property
+    @pulumi.getter(name="rates11axSs12")
+    def rates11ax_ss12(self) -> pulumi.Output[str]:
+        """
+        Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+        """
+        return pulumi.get(self, "rates11ax_ss12")
+
+    @property
+    @pulumi.getter(name="rates11axSs34")
+    def rates11ax_ss34(self) -> pulumi.Output[str]:
+        """
+        Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+        """
+        return pulumi.get(self, "rates11ax_ss34")
 
     @property
     @pulumi.getter
@@ -5990,6 +7550,14 @@ class WirelessControllerVap(pulumi.CustomResource):
         WPA3 SAE password to be used to authenticate WiFi users.
         """
         return pulumi.get(self, "sae_password")
+
+    @property
+    @pulumi.getter(name="scanBotnetConnections")
+    def scan_botnet_connections(self) -> pulumi.Output[str]:
+        """
+        Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "scan_botnet_connections")
 
     @property
     @pulumi.getter
@@ -6128,12 +7696,28 @@ class WirelessControllerVap(pulumi.CustomResource):
         return pulumi.get(self, "usergroups")
 
     @property
+    @pulumi.getter(name="utmLog")
+    def utm_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable UTM logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_log")
+
+    @property
     @pulumi.getter(name="utmProfile")
     def utm_profile(self) -> pulumi.Output[str]:
         """
         UTM profile name.
         """
         return pulumi.get(self, "utm_profile")
+
+    @property
+    @pulumi.getter(name="utmStatus")
+    def utm_status(self) -> pulumi.Output[str]:
+        """
+        Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "utm_status")
 
     @property
     @pulumi.getter
@@ -6150,6 +7734,14 @@ class WirelessControllerVap(pulumi.CustomResource):
         Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "vlan_auto")
+
+    @property
+    @pulumi.getter(name="vlanNames")
+    def vlan_names(self) -> pulumi.Output[Optional[Sequence['outputs.WirelessControllerVapVlanName']]]:
+        """
+        Table for mapping VLAN name to VLAN ID. The structure of `vlan_name` block is documented below.
+        """
+        return pulumi.get(self, "vlan_names")
 
     @property
     @pulumi.getter(name="vlanPooling")
@@ -6182,4 +7774,12 @@ class WirelessControllerVap(pulumi.CustomResource):
         Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "voice_enterprise")
+
+    @property
+    @pulumi.getter(name="webfilterProfile")
+    def webfilter_profile(self) -> pulumi.Output[str]:
+        """
+        WebFilter profile name.
+        """
+        return pulumi.get(self, "webfilter_profile")
 

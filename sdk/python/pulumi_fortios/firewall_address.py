@@ -26,11 +26,13 @@ class FirewallAddressArgs:
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
                  epg_name: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressFssoGroupArgs']]]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_ip_only: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
@@ -46,6 +48,8 @@ class FirewallAddressArgs:
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tag_detection_level: Optional[pulumi.Input[str]] = None,
+                 tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressTaggingArgs']]]] = None,
                  tenant: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -67,11 +71,13 @@ class FirewallAddressArgs:
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address.
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
         :param pulumi.Input[str] epg_name: Endpoint group name.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressFssoGroupArgs']]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[str] node_ip_only: Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
@@ -87,6 +93,8 @@ class FirewallAddressArgs:
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
+        :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] tenant: Tenant.
         :param pulumi.Input[str] type: Type of address.
@@ -118,6 +126,8 @@ class FirewallAddressArgs:
             pulumi.set(__self__, "end_mac", end_mac)
         if epg_name is not None:
             pulumi.set(__self__, "epg_name", epg_name)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
         if fqdn is not None:
@@ -128,6 +138,8 @@ class FirewallAddressArgs:
             pulumi.set(__self__, "interface", interface)
         if lists is not None:
             pulumi.set(__self__, "lists", lists)
+        if macaddrs is not None:
+            pulumi.set(__self__, "macaddrs", macaddrs)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_ip_only is not None:
@@ -158,6 +170,10 @@ class FirewallAddressArgs:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if tag_detection_level is not None:
+            pulumi.set(__self__, "tag_detection_level", tag_detection_level)
+        if tag_type is not None:
+            pulumi.set(__self__, "tag_type", tag_type)
         if taggings is not None:
             pulumi.set(__self__, "taggings", taggings)
         if tenant is not None:
@@ -308,6 +324,18 @@ class FirewallAddressArgs:
         pulumi.set(self, "epg_name", value)
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
+
+    @property
     @pulumi.getter
     def filter(self) -> Optional[pulumi.Input[str]]:
         """
@@ -366,6 +394,18 @@ class FirewallAddressArgs:
     @lists.setter
     def lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]]]):
         pulumi.set(self, "lists", value)
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
+
+    @macaddrs.setter
+    def macaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]]):
+        pulumi.set(self, "macaddrs", value)
 
     @property
     @pulumi.getter
@@ -546,6 +586,30 @@ class FirewallAddressArgs:
     @subnet_name.setter
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
+
+    @property
+    @pulumi.getter(name="tagDetectionLevel")
+    def tag_detection_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag detection level of dynamic address object.
+        """
+        return pulumi.get(self, "tag_detection_level")
+
+    @tag_detection_level.setter
+    def tag_detection_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_detection_level", value)
+
+    @property
+    @pulumi.getter(name="tagType")
+    def tag_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag type of dynamic address object.
+        """
+        return pulumi.get(self, "tag_type")
+
+    @tag_type.setter
+    def tag_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_type", value)
 
     @property
     @pulumi.getter
@@ -658,11 +722,13 @@ class _FirewallAddressState:
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
                  epg_name: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressFssoGroupArgs']]]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_ip_only: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
@@ -678,6 +744,8 @@ class _FirewallAddressState:
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tag_detection_level: Optional[pulumi.Input[str]] = None,
+                 tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressTaggingArgs']]]] = None,
                  tenant: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -699,11 +767,13 @@ class _FirewallAddressState:
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address.
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
         :param pulumi.Input[str] epg_name: Endpoint group name.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressFssoGroupArgs']]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[str] node_ip_only: Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
@@ -719,6 +789,8 @@ class _FirewallAddressState:
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
+        :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddressTaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] tenant: Tenant.
         :param pulumi.Input[str] type: Type of address.
@@ -750,6 +822,8 @@ class _FirewallAddressState:
             pulumi.set(__self__, "end_mac", end_mac)
         if epg_name is not None:
             pulumi.set(__self__, "epg_name", epg_name)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if filter is not None:
             pulumi.set(__self__, "filter", filter)
         if fqdn is not None:
@@ -760,6 +834,8 @@ class _FirewallAddressState:
             pulumi.set(__self__, "interface", interface)
         if lists is not None:
             pulumi.set(__self__, "lists", lists)
+        if macaddrs is not None:
+            pulumi.set(__self__, "macaddrs", macaddrs)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if node_ip_only is not None:
@@ -790,6 +866,10 @@ class _FirewallAddressState:
             pulumi.set(__self__, "subnet", subnet)
         if subnet_name is not None:
             pulumi.set(__self__, "subnet_name", subnet_name)
+        if tag_detection_level is not None:
+            pulumi.set(__self__, "tag_detection_level", tag_detection_level)
+        if tag_type is not None:
+            pulumi.set(__self__, "tag_type", tag_type)
         if taggings is not None:
             pulumi.set(__self__, "taggings", taggings)
         if tenant is not None:
@@ -940,6 +1020,18 @@ class _FirewallAddressState:
         pulumi.set(self, "epg_name", value)
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
+
+    @property
     @pulumi.getter
     def filter(self) -> Optional[pulumi.Input[str]]:
         """
@@ -998,6 +1090,18 @@ class _FirewallAddressState:
     @lists.setter
     def lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressListArgs']]]]):
         pulumi.set(self, "lists", value)
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
+
+    @macaddrs.setter
+    def macaddrs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddressMacaddrArgs']]]]):
+        pulumi.set(self, "macaddrs", value)
 
     @property
     @pulumi.getter
@@ -1178,6 +1282,30 @@ class _FirewallAddressState:
     @subnet_name.setter
     def subnet_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "subnet_name", value)
+
+    @property
+    @pulumi.getter(name="tagDetectionLevel")
+    def tag_detection_level(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag detection level of dynamic address object.
+        """
+        return pulumi.get(self, "tag_detection_level")
+
+    @tag_detection_level.setter
+    def tag_detection_level(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_detection_level", value)
+
+    @property
+    @pulumi.getter(name="tagType")
+    def tag_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tag type of dynamic address object.
+        """
+        return pulumi.get(self, "tag_type")
+
+    @tag_type.setter
+    def tag_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tag_type", value)
 
     @property
     @pulumi.getter
@@ -1292,11 +1420,13 @@ class FirewallAddress(pulumi.CustomResource):
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
                  epg_name: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_ip_only: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
@@ -1312,6 +1442,8 @@ class FirewallAddress(pulumi.CustomResource):
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tag_detection_level: Optional[pulumi.Input[str]] = None,
+                 tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]]] = None,
                  tenant: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -1364,11 +1496,13 @@ class FirewallAddress(pulumi.CustomResource):
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address.
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
         :param pulumi.Input[str] epg_name: Endpoint group name.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[str] node_ip_only: Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
@@ -1384,6 +1518,8 @@ class FirewallAddress(pulumi.CustomResource):
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
+        :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] tenant: Tenant.
         :param pulumi.Input[str] type: Type of address.
@@ -1455,11 +1591,13 @@ class FirewallAddress(pulumi.CustomResource):
                  end_ip: Optional[pulumi.Input[str]] = None,
                  end_mac: Optional[pulumi.Input[str]] = None,
                  epg_name: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  filter: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
                  lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]]] = None,
+                 macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  node_ip_only: Optional[pulumi.Input[str]] = None,
                  obj_id: Optional[pulumi.Input[str]] = None,
@@ -1475,6 +1613,8 @@ class FirewallAddress(pulumi.CustomResource):
                  sub_type: Optional[pulumi.Input[str]] = None,
                  subnet: Optional[pulumi.Input[str]] = None,
                  subnet_name: Optional[pulumi.Input[str]] = None,
+                 tag_detection_level: Optional[pulumi.Input[str]] = None,
+                 tag_type: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]]] = None,
                  tenant: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
@@ -1490,6 +1630,8 @@ class FirewallAddress(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1506,11 +1648,13 @@ class FirewallAddress(pulumi.CustomResource):
             __props__.__dict__["end_ip"] = end_ip
             __props__.__dict__["end_mac"] = end_mac
             __props__.__dict__["epg_name"] = epg_name
+            __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["filter"] = filter
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["fsso_groups"] = fsso_groups
             __props__.__dict__["interface"] = interface
             __props__.__dict__["lists"] = lists
+            __props__.__dict__["macaddrs"] = macaddrs
             __props__.__dict__["name"] = name
             __props__.__dict__["node_ip_only"] = node_ip_only
             __props__.__dict__["obj_id"] = obj_id
@@ -1526,6 +1670,8 @@ class FirewallAddress(pulumi.CustomResource):
             __props__.__dict__["sub_type"] = sub_type
             __props__.__dict__["subnet"] = subnet
             __props__.__dict__["subnet_name"] = subnet_name
+            __props__.__dict__["tag_detection_level"] = tag_detection_level
+            __props__.__dict__["tag_type"] = tag_type
             __props__.__dict__["taggings"] = taggings
             __props__.__dict__["tenant"] = tenant
             __props__.__dict__["type"] = type
@@ -1555,11 +1701,13 @@ class FirewallAddress(pulumi.CustomResource):
             end_ip: Optional[pulumi.Input[str]] = None,
             end_mac: Optional[pulumi.Input[str]] = None,
             epg_name: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             filter: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
             fsso_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]]] = None,
             interface: Optional[pulumi.Input[str]] = None,
             lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]]] = None,
+            macaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             node_ip_only: Optional[pulumi.Input[str]] = None,
             obj_id: Optional[pulumi.Input[str]] = None,
@@ -1575,6 +1723,8 @@ class FirewallAddress(pulumi.CustomResource):
             sub_type: Optional[pulumi.Input[str]] = None,
             subnet: Optional[pulumi.Input[str]] = None,
             subnet_name: Optional[pulumi.Input[str]] = None,
+            tag_detection_level: Optional[pulumi.Input[str]] = None,
+            tag_type: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]]] = None,
             tenant: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
@@ -1601,11 +1751,13 @@ class FirewallAddress(pulumi.CustomResource):
         :param pulumi.Input[str] end_ip: Final IP address (inclusive) in the range for the address.
         :param pulumi.Input[str] end_mac: Last MAC address in the range.
         :param pulumi.Input[str] epg_name: Endpoint group name.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] filter: Match criteria filter.
         :param pulumi.Input[str] fqdn: Fully Qualified Domain Name address.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressFssoGroupArgs']]]] fsso_groups: FSSO group(s). The structure of `fsso_group` block is documented below.
         :param pulumi.Input[str] interface: Name of interface whose IP address is to be used.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressListArgs']]]] lists: IP address list. The structure of `list` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressMacaddrArgs']]]] macaddrs: MAC address ranges <start>[-<end>] separated by space.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[str] node_ip_only: Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] obj_id: Object ID for NSX.
@@ -1621,6 +1773,8 @@ class FirewallAddress(pulumi.CustomResource):
         :param pulumi.Input[str] sub_type: Sub-type of address.
         :param pulumi.Input[str] subnet: IP address and subnet mask of address.
         :param pulumi.Input[str] subnet_name: Subnet name.
+        :param pulumi.Input[str] tag_detection_level: Tag detection level of dynamic address object.
+        :param pulumi.Input[str] tag_type: Tag type of dynamic address object.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddressTaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] tenant: Tenant.
         :param pulumi.Input[str] type: Type of address.
@@ -1645,11 +1799,13 @@ class FirewallAddress(pulumi.CustomResource):
         __props__.__dict__["end_ip"] = end_ip
         __props__.__dict__["end_mac"] = end_mac
         __props__.__dict__["epg_name"] = epg_name
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["filter"] = filter
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["fsso_groups"] = fsso_groups
         __props__.__dict__["interface"] = interface
         __props__.__dict__["lists"] = lists
+        __props__.__dict__["macaddrs"] = macaddrs
         __props__.__dict__["name"] = name
         __props__.__dict__["node_ip_only"] = node_ip_only
         __props__.__dict__["obj_id"] = obj_id
@@ -1665,6 +1821,8 @@ class FirewallAddress(pulumi.CustomResource):
         __props__.__dict__["sub_type"] = sub_type
         __props__.__dict__["subnet"] = subnet
         __props__.__dict__["subnet_name"] = subnet_name
+        __props__.__dict__["tag_detection_level"] = tag_detection_level
+        __props__.__dict__["tag_type"] = tag_type
         __props__.__dict__["taggings"] = taggings
         __props__.__dict__["tenant"] = tenant
         __props__.__dict__["type"] = type
@@ -1764,6 +1922,14 @@ class FirewallAddress(pulumi.CustomResource):
         return pulumi.get(self, "epg_name")
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @property
     @pulumi.getter
     def filter(self) -> pulumi.Output[Optional[str]]:
         """
@@ -1802,6 +1968,14 @@ class FirewallAddress(pulumi.CustomResource):
         IP address list. The structure of `list` block is documented below.
         """
         return pulumi.get(self, "lists")
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallAddressMacaddr']]]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
 
     @property
     @pulumi.getter
@@ -1922,6 +2096,22 @@ class FirewallAddress(pulumi.CustomResource):
         Subnet name.
         """
         return pulumi.get(self, "subnet_name")
+
+    @property
+    @pulumi.getter(name="tagDetectionLevel")
+    def tag_detection_level(self) -> pulumi.Output[str]:
+        """
+        Tag detection level of dynamic address object.
+        """
+        return pulumi.get(self, "tag_detection_level")
+
+    @property
+    @pulumi.getter(name="tagType")
+    def tag_type(self) -> pulumi.Output[str]:
+        """
+        Tag type of dynamic address object.
+        """
+        return pulumi.get(self, "tag_type")
 
     @property
     @pulumi.getter

@@ -181,69 +181,67 @@ export class UserGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserGroupArgs | UserGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserGroupState | undefined;
-            inputs["authConcurrentOverride"] = state ? state.authConcurrentOverride : undefined;
-            inputs["authConcurrentValue"] = state ? state.authConcurrentValue : undefined;
-            inputs["authtimeout"] = state ? state.authtimeout : undefined;
-            inputs["company"] = state ? state.company : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["email"] = state ? state.email : undefined;
-            inputs["expire"] = state ? state.expire : undefined;
-            inputs["expireType"] = state ? state.expireType : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["groupType"] = state ? state.groupType : undefined;
-            inputs["guests"] = state ? state.guests : undefined;
-            inputs["httpDigestRealm"] = state ? state.httpDigestRealm : undefined;
-            inputs["matches"] = state ? state.matches : undefined;
-            inputs["maxAccounts"] = state ? state.maxAccounts : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["mobilePhone"] = state ? state.mobilePhone : undefined;
-            inputs["multipleGuestAdd"] = state ? state.multipleGuestAdd : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["smsCustomServer"] = state ? state.smsCustomServer : undefined;
-            inputs["smsServer"] = state ? state.smsServer : undefined;
-            inputs["sponsor"] = state ? state.sponsor : undefined;
-            inputs["ssoAttributeValue"] = state ? state.ssoAttributeValue : undefined;
-            inputs["userId"] = state ? state.userId : undefined;
-            inputs["userName"] = state ? state.userName : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authConcurrentOverride"] = state ? state.authConcurrentOverride : undefined;
+            resourceInputs["authConcurrentValue"] = state ? state.authConcurrentValue : undefined;
+            resourceInputs["authtimeout"] = state ? state.authtimeout : undefined;
+            resourceInputs["company"] = state ? state.company : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["email"] = state ? state.email : undefined;
+            resourceInputs["expire"] = state ? state.expire : undefined;
+            resourceInputs["expireType"] = state ? state.expireType : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["groupType"] = state ? state.groupType : undefined;
+            resourceInputs["guests"] = state ? state.guests : undefined;
+            resourceInputs["httpDigestRealm"] = state ? state.httpDigestRealm : undefined;
+            resourceInputs["matches"] = state ? state.matches : undefined;
+            resourceInputs["maxAccounts"] = state ? state.maxAccounts : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["mobilePhone"] = state ? state.mobilePhone : undefined;
+            resourceInputs["multipleGuestAdd"] = state ? state.multipleGuestAdd : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["smsCustomServer"] = state ? state.smsCustomServer : undefined;
+            resourceInputs["smsServer"] = state ? state.smsServer : undefined;
+            resourceInputs["sponsor"] = state ? state.sponsor : undefined;
+            resourceInputs["ssoAttributeValue"] = state ? state.ssoAttributeValue : undefined;
+            resourceInputs["userId"] = state ? state.userId : undefined;
+            resourceInputs["userName"] = state ? state.userName : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserGroupArgs | undefined;
-            inputs["authConcurrentOverride"] = args ? args.authConcurrentOverride : undefined;
-            inputs["authConcurrentValue"] = args ? args.authConcurrentValue : undefined;
-            inputs["authtimeout"] = args ? args.authtimeout : undefined;
-            inputs["company"] = args ? args.company : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["email"] = args ? args.email : undefined;
-            inputs["expire"] = args ? args.expire : undefined;
-            inputs["expireType"] = args ? args.expireType : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["groupType"] = args ? args.groupType : undefined;
-            inputs["guests"] = args ? args.guests : undefined;
-            inputs["httpDigestRealm"] = args ? args.httpDigestRealm : undefined;
-            inputs["matches"] = args ? args.matches : undefined;
-            inputs["maxAccounts"] = args ? args.maxAccounts : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["mobilePhone"] = args ? args.mobilePhone : undefined;
-            inputs["multipleGuestAdd"] = args ? args.multipleGuestAdd : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["smsCustomServer"] = args ? args.smsCustomServer : undefined;
-            inputs["smsServer"] = args ? args.smsServer : undefined;
-            inputs["sponsor"] = args ? args.sponsor : undefined;
-            inputs["ssoAttributeValue"] = args ? args.ssoAttributeValue : undefined;
-            inputs["userId"] = args ? args.userId : undefined;
-            inputs["userName"] = args ? args.userName : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authConcurrentOverride"] = args ? args.authConcurrentOverride : undefined;
+            resourceInputs["authConcurrentValue"] = args ? args.authConcurrentValue : undefined;
+            resourceInputs["authtimeout"] = args ? args.authtimeout : undefined;
+            resourceInputs["company"] = args ? args.company : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["email"] = args ? args.email : undefined;
+            resourceInputs["expire"] = args ? args.expire : undefined;
+            resourceInputs["expireType"] = args ? args.expireType : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["groupType"] = args ? args.groupType : undefined;
+            resourceInputs["guests"] = args ? args.guests : undefined;
+            resourceInputs["httpDigestRealm"] = args ? args.httpDigestRealm : undefined;
+            resourceInputs["matches"] = args ? args.matches : undefined;
+            resourceInputs["maxAccounts"] = args ? args.maxAccounts : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["mobilePhone"] = args ? args.mobilePhone : undefined;
+            resourceInputs["multipleGuestAdd"] = args ? args.multipleGuestAdd : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["smsCustomServer"] = args ? args.smsCustomServer : undefined;
+            resourceInputs["smsServer"] = args ? args.smsServer : undefined;
+            resourceInputs["sponsor"] = args ? args.sponsor : undefined;
+            resourceInputs["ssoAttributeValue"] = args ? args.ssoAttributeValue : undefined;
+            resourceInputs["userId"] = args ? args.userId : undefined;
+            resourceInputs["userName"] = args ? args.userName : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

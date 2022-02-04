@@ -132,47 +132,45 @@ export class FirewallShaperTrafficShaper extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallShaperTrafficShaperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallShaperTrafficShaperArgs | FirewallShaperTrafficShaperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallShaperTrafficShaperState | undefined;
-            inputs["bandwidthUnit"] = state ? state.bandwidthUnit : undefined;
-            inputs["diffserv"] = state ? state.diffserv : undefined;
-            inputs["diffservcode"] = state ? state.diffservcode : undefined;
-            inputs["dscpMarkingMethod"] = state ? state.dscpMarkingMethod : undefined;
-            inputs["exceedBandwidth"] = state ? state.exceedBandwidth : undefined;
-            inputs["exceedClassId"] = state ? state.exceedClassId : undefined;
-            inputs["exceedDscp"] = state ? state.exceedDscp : undefined;
-            inputs["guaranteedBandwidth"] = state ? state.guaranteedBandwidth : undefined;
-            inputs["maximumBandwidth"] = state ? state.maximumBandwidth : undefined;
-            inputs["maximumDscp"] = state ? state.maximumDscp : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["overhead"] = state ? state.overhead : undefined;
-            inputs["perPolicy"] = state ? state.perPolicy : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bandwidthUnit"] = state ? state.bandwidthUnit : undefined;
+            resourceInputs["diffserv"] = state ? state.diffserv : undefined;
+            resourceInputs["diffservcode"] = state ? state.diffservcode : undefined;
+            resourceInputs["dscpMarkingMethod"] = state ? state.dscpMarkingMethod : undefined;
+            resourceInputs["exceedBandwidth"] = state ? state.exceedBandwidth : undefined;
+            resourceInputs["exceedClassId"] = state ? state.exceedClassId : undefined;
+            resourceInputs["exceedDscp"] = state ? state.exceedDscp : undefined;
+            resourceInputs["guaranteedBandwidth"] = state ? state.guaranteedBandwidth : undefined;
+            resourceInputs["maximumBandwidth"] = state ? state.maximumBandwidth : undefined;
+            resourceInputs["maximumDscp"] = state ? state.maximumDscp : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overhead"] = state ? state.overhead : undefined;
+            resourceInputs["perPolicy"] = state ? state.perPolicy : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallShaperTrafficShaperArgs | undefined;
-            inputs["bandwidthUnit"] = args ? args.bandwidthUnit : undefined;
-            inputs["diffserv"] = args ? args.diffserv : undefined;
-            inputs["diffservcode"] = args ? args.diffservcode : undefined;
-            inputs["dscpMarkingMethod"] = args ? args.dscpMarkingMethod : undefined;
-            inputs["exceedBandwidth"] = args ? args.exceedBandwidth : undefined;
-            inputs["exceedClassId"] = args ? args.exceedClassId : undefined;
-            inputs["exceedDscp"] = args ? args.exceedDscp : undefined;
-            inputs["guaranteedBandwidth"] = args ? args.guaranteedBandwidth : undefined;
-            inputs["maximumBandwidth"] = args ? args.maximumBandwidth : undefined;
-            inputs["maximumDscp"] = args ? args.maximumDscp : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["overhead"] = args ? args.overhead : undefined;
-            inputs["perPolicy"] = args ? args.perPolicy : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bandwidthUnit"] = args ? args.bandwidthUnit : undefined;
+            resourceInputs["diffserv"] = args ? args.diffserv : undefined;
+            resourceInputs["diffservcode"] = args ? args.diffservcode : undefined;
+            resourceInputs["dscpMarkingMethod"] = args ? args.dscpMarkingMethod : undefined;
+            resourceInputs["exceedBandwidth"] = args ? args.exceedBandwidth : undefined;
+            resourceInputs["exceedClassId"] = args ? args.exceedClassId : undefined;
+            resourceInputs["exceedDscp"] = args ? args.exceedDscp : undefined;
+            resourceInputs["guaranteedBandwidth"] = args ? args.guaranteedBandwidth : undefined;
+            resourceInputs["maximumBandwidth"] = args ? args.maximumBandwidth : undefined;
+            resourceInputs["maximumDscp"] = args ? args.maximumDscp : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overhead"] = args ? args.overhead : undefined;
+            resourceInputs["perPolicy"] = args ? args.perPolicy : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallShaperTrafficShaper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallShaperTrafficShaper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

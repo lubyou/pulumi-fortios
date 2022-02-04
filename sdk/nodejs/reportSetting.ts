@@ -94,29 +94,27 @@ export class ReportSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ReportSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ReportSettingArgs | ReportSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportSettingState | undefined;
-            inputs["fortiview"] = state ? state.fortiview : undefined;
-            inputs["pdfReport"] = state ? state.pdfReport : undefined;
-            inputs["reportSource"] = state ? state.reportSource : undefined;
-            inputs["topN"] = state ? state.topN : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webBrowsingThreshold"] = state ? state.webBrowsingThreshold : undefined;
+            resourceInputs["fortiview"] = state ? state.fortiview : undefined;
+            resourceInputs["pdfReport"] = state ? state.pdfReport : undefined;
+            resourceInputs["reportSource"] = state ? state.reportSource : undefined;
+            resourceInputs["topN"] = state ? state.topN : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webBrowsingThreshold"] = state ? state.webBrowsingThreshold : undefined;
         } else {
             const args = argsOrState as ReportSettingArgs | undefined;
-            inputs["fortiview"] = args ? args.fortiview : undefined;
-            inputs["pdfReport"] = args ? args.pdfReport : undefined;
-            inputs["reportSource"] = args ? args.reportSource : undefined;
-            inputs["topN"] = args ? args.topN : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webBrowsingThreshold"] = args ? args.webBrowsingThreshold : undefined;
+            resourceInputs["fortiview"] = args ? args.fortiview : undefined;
+            resourceInputs["pdfReport"] = args ? args.pdfReport : undefined;
+            resourceInputs["reportSource"] = args ? args.reportSource : undefined;
+            resourceInputs["topN"] = args ? args.topN : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webBrowsingThreshold"] = args ? args.webBrowsingThreshold : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ReportSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ReportSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

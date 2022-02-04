@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -88,6 +88,7 @@ func NewWebProxyUrlMatch(ctx *pulumi.Context,
 	if args.UrlPattern == nil {
 		return nil, errors.New("invalid value for required argument 'UrlPattern'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebProxyUrlMatch
 	err := ctx.RegisterResource("fortios:index/webProxyUrlMatch:WebProxyUrlMatch", name, args, &resource, opts...)
 	if err != nil {
@@ -194,7 +195,7 @@ type WebProxyUrlMatchInput interface {
 }
 
 func (*WebProxyUrlMatch) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyUrlMatch)(nil))
+	return reflect.TypeOf((**WebProxyUrlMatch)(nil)).Elem()
 }
 
 func (i *WebProxyUrlMatch) ToWebProxyUrlMatchOutput() WebProxyUrlMatchOutput {
@@ -203,35 +204,6 @@ func (i *WebProxyUrlMatch) ToWebProxyUrlMatchOutput() WebProxyUrlMatchOutput {
 
 func (i *WebProxyUrlMatch) ToWebProxyUrlMatchOutputWithContext(ctx context.Context) WebProxyUrlMatchOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchOutput)
-}
-
-func (i *WebProxyUrlMatch) ToWebProxyUrlMatchPtrOutput() WebProxyUrlMatchPtrOutput {
-	return i.ToWebProxyUrlMatchPtrOutputWithContext(context.Background())
-}
-
-func (i *WebProxyUrlMatch) ToWebProxyUrlMatchPtrOutputWithContext(ctx context.Context) WebProxyUrlMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchPtrOutput)
-}
-
-type WebProxyUrlMatchPtrInput interface {
-	pulumi.Input
-
-	ToWebProxyUrlMatchPtrOutput() WebProxyUrlMatchPtrOutput
-	ToWebProxyUrlMatchPtrOutputWithContext(ctx context.Context) WebProxyUrlMatchPtrOutput
-}
-
-type webProxyUrlMatchPtrType WebProxyUrlMatchArgs
-
-func (*webProxyUrlMatchPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyUrlMatch)(nil))
-}
-
-func (i *webProxyUrlMatchPtrType) ToWebProxyUrlMatchPtrOutput() WebProxyUrlMatchPtrOutput {
-	return i.ToWebProxyUrlMatchPtrOutputWithContext(context.Background())
-}
-
-func (i *webProxyUrlMatchPtrType) ToWebProxyUrlMatchPtrOutputWithContext(ctx context.Context) WebProxyUrlMatchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchPtrOutput)
 }
 
 // WebProxyUrlMatchArrayInput is an input type that accepts WebProxyUrlMatchArray and WebProxyUrlMatchArrayOutput values.
@@ -248,7 +220,7 @@ type WebProxyUrlMatchArrayInput interface {
 type WebProxyUrlMatchArray []WebProxyUrlMatchInput
 
 func (WebProxyUrlMatchArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebProxyUrlMatch)(nil))
+	return reflect.TypeOf((*[]*WebProxyUrlMatch)(nil)).Elem()
 }
 
 func (i WebProxyUrlMatchArray) ToWebProxyUrlMatchArrayOutput() WebProxyUrlMatchArrayOutput {
@@ -273,7 +245,7 @@ type WebProxyUrlMatchMapInput interface {
 type WebProxyUrlMatchMap map[string]WebProxyUrlMatchInput
 
 func (WebProxyUrlMatchMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebProxyUrlMatch)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyUrlMatch)(nil)).Elem()
 }
 
 func (i WebProxyUrlMatchMap) ToWebProxyUrlMatchMapOutput() WebProxyUrlMatchMapOutput {
@@ -284,12 +256,10 @@ func (i WebProxyUrlMatchMap) ToWebProxyUrlMatchMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyUrlMatchMapOutput)
 }
 
-type WebProxyUrlMatchOutput struct {
-	*pulumi.OutputState
-}
+type WebProxyUrlMatchOutput struct{ *pulumi.OutputState }
 
 func (WebProxyUrlMatchOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyUrlMatch)(nil))
+	return reflect.TypeOf((**WebProxyUrlMatch)(nil)).Elem()
 }
 
 func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchOutput() WebProxyUrlMatchOutput {
@@ -300,36 +270,10 @@ func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchOutputWithContext(ctx context.
 	return o
 }
 
-func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchPtrOutput() WebProxyUrlMatchPtrOutput {
-	return o.ToWebProxyUrlMatchPtrOutputWithContext(context.Background())
-}
-
-func (o WebProxyUrlMatchOutput) ToWebProxyUrlMatchPtrOutputWithContext(ctx context.Context) WebProxyUrlMatchPtrOutput {
-	return o.ApplyT(func(v WebProxyUrlMatch) *WebProxyUrlMatch {
-		return &v
-	}).(WebProxyUrlMatchPtrOutput)
-}
-
-type WebProxyUrlMatchPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebProxyUrlMatchPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyUrlMatch)(nil))
-}
-
-func (o WebProxyUrlMatchPtrOutput) ToWebProxyUrlMatchPtrOutput() WebProxyUrlMatchPtrOutput {
-	return o
-}
-
-func (o WebProxyUrlMatchPtrOutput) ToWebProxyUrlMatchPtrOutputWithContext(ctx context.Context) WebProxyUrlMatchPtrOutput {
-	return o
-}
-
 type WebProxyUrlMatchArrayOutput struct{ *pulumi.OutputState }
 
 func (WebProxyUrlMatchArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebProxyUrlMatch)(nil))
+	return reflect.TypeOf((*[]*WebProxyUrlMatch)(nil)).Elem()
 }
 
 func (o WebProxyUrlMatchArrayOutput) ToWebProxyUrlMatchArrayOutput() WebProxyUrlMatchArrayOutput {
@@ -341,15 +285,15 @@ func (o WebProxyUrlMatchArrayOutput) ToWebProxyUrlMatchArrayOutputWithContext(ct
 }
 
 func (o WebProxyUrlMatchArrayOutput) Index(i pulumi.IntInput) WebProxyUrlMatchOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyUrlMatch {
-		return vs[0].([]WebProxyUrlMatch)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyUrlMatch {
+		return vs[0].([]*WebProxyUrlMatch)[vs[1].(int)]
 	}).(WebProxyUrlMatchOutput)
 }
 
 type WebProxyUrlMatchMapOutput struct{ *pulumi.OutputState }
 
 func (WebProxyUrlMatchMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebProxyUrlMatch)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyUrlMatch)(nil)).Elem()
 }
 
 func (o WebProxyUrlMatchMapOutput) ToWebProxyUrlMatchMapOutput() WebProxyUrlMatchMapOutput {
@@ -361,14 +305,16 @@ func (o WebProxyUrlMatchMapOutput) ToWebProxyUrlMatchMapOutputWithContext(ctx co
 }
 
 func (o WebProxyUrlMatchMapOutput) MapIndex(k pulumi.StringInput) WebProxyUrlMatchOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebProxyUrlMatch {
-		return vs[0].(map[string]WebProxyUrlMatch)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebProxyUrlMatch {
+		return vs[0].(map[string]*WebProxyUrlMatch)[vs[1].(string)]
 	}).(WebProxyUrlMatchOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyUrlMatchInput)(nil)).Elem(), &WebProxyUrlMatch{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyUrlMatchArrayInput)(nil)).Elem(), WebProxyUrlMatchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyUrlMatchMapInput)(nil)).Elem(), WebProxyUrlMatchMap{})
 	pulumi.RegisterOutputType(WebProxyUrlMatchOutput{})
-	pulumi.RegisterOutputType(WebProxyUrlMatchPtrOutput{})
 	pulumi.RegisterOutputType(WebProxyUrlMatchArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyUrlMatchMapOutput{})
 }

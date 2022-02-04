@@ -21,6 +21,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,32 +37,32 @@ import (
 // 			DefaultInformationOriginate:  pulumi.String("disable"),
 // 			DefaultMetric:                pulumi.Int(10),
 // 			LogNeighbourChanges:          pulumi.String("enable"),
-// 			Redistributes: fortios.RouterOspf6RedistributeArray{
-// 				&fortios.RouterOspf6RedistributeArgs{
+// 			Redistributes: RouterOspf6RedistributeArray{
+// 				&RouterOspf6RedistributeArgs{
 // 					Metric:     pulumi.Int(0),
 // 					MetricType: pulumi.String("2"),
 // 					Name:       pulumi.String("connected"),
 // 					Status:     pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterOspf6RedistributeArgs{
+// 				&RouterOspf6RedistributeArgs{
 // 					Metric:     pulumi.Int(0),
 // 					MetricType: pulumi.String("2"),
 // 					Name:       pulumi.String("static"),
 // 					Status:     pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterOspf6RedistributeArgs{
+// 				&RouterOspf6RedistributeArgs{
 // 					Metric:     pulumi.Int(0),
 // 					MetricType: pulumi.String("2"),
 // 					Name:       pulumi.String("rip"),
 // 					Status:     pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterOspf6RedistributeArgs{
+// 				&RouterOspf6RedistributeArgs{
 // 					Metric:     pulumi.Int(0),
 // 					MetricType: pulumi.String("2"),
 // 					Name:       pulumi.String("bgp"),
 // 					Status:     pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterOspf6RedistributeArgs{
+// 				&RouterOspf6RedistributeArgs{
 // 					Metric:     pulumi.Int(0),
 // 					MetricType: pulumi.String("2"),
 // 					Name:       pulumi.String("isis"),
@@ -114,7 +115,7 @@ type RouterOspf6 struct {
 	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
 	LogNeighbourChanges pulumi.StringOutput `pulumi:"logNeighbourChanges"`
 	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces RouterOspf6Ospf6InterfaceArrayOutput `pulumi:"ospf6Interfaces"`
+	Ospf6Interfaces RouterOspf6Ospf6InterfaceTypeArrayOutput `pulumi:"ospf6Interfaces"`
 	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
 	PassiveInterfaces RouterOspf6PassiveInterfaceArrayOutput `pulumi:"passiveInterfaces"`
 	// Redistribute configuration. The structure of `redistribute` block is documented below.
@@ -139,6 +140,7 @@ func NewRouterOspf6(ctx *pulumi.Context,
 	if args.RouterId == nil {
 		return nil, errors.New("invalid value for required argument 'RouterId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterOspf6
 	err := ctx.RegisterResource("fortios:index/routerOspf6:RouterOspf6", name, args, &resource, opts...)
 	if err != nil {
@@ -184,7 +186,7 @@ type routerOspf6State struct {
 	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
 	LogNeighbourChanges *string `pulumi:"logNeighbourChanges"`
 	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces []RouterOspf6Ospf6Interface `pulumi:"ospf6Interfaces"`
+	Ospf6Interfaces []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
 	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
 	PassiveInterfaces []RouterOspf6PassiveInterface `pulumi:"passiveInterfaces"`
 	// Redistribute configuration. The structure of `redistribute` block is documented below.
@@ -223,7 +225,7 @@ type RouterOspf6State struct {
 	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
 	LogNeighbourChanges pulumi.StringPtrInput
 	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces RouterOspf6Ospf6InterfaceArrayInput
+	Ospf6Interfaces RouterOspf6Ospf6InterfaceTypeArrayInput
 	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
 	PassiveInterfaces RouterOspf6PassiveInterfaceArrayInput
 	// Redistribute configuration. The structure of `redistribute` block is documented below.
@@ -266,7 +268,7 @@ type routerOspf6Args struct {
 	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
 	LogNeighbourChanges *string `pulumi:"logNeighbourChanges"`
 	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces []RouterOspf6Ospf6Interface `pulumi:"ospf6Interfaces"`
+	Ospf6Interfaces []RouterOspf6Ospf6InterfaceType `pulumi:"ospf6Interfaces"`
 	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
 	PassiveInterfaces []RouterOspf6PassiveInterface `pulumi:"passiveInterfaces"`
 	// Redistribute configuration. The structure of `redistribute` block is documented below.
@@ -306,7 +308,7 @@ type RouterOspf6Args struct {
 	// Enable logging of OSPFv3 neighbour's changes Valid values: `enable`, `disable`.
 	LogNeighbourChanges pulumi.StringPtrInput
 	// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
-	Ospf6Interfaces RouterOspf6Ospf6InterfaceArrayInput
+	Ospf6Interfaces RouterOspf6Ospf6InterfaceTypeArrayInput
 	// Passive interface configuration. The structure of `passiveInterface` block is documented below.
 	PassiveInterfaces RouterOspf6PassiveInterfaceArrayInput
 	// Redistribute configuration. The structure of `redistribute` block is documented below.
@@ -333,7 +335,7 @@ type RouterOspf6Input interface {
 }
 
 func (*RouterOspf6) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterOspf6)(nil))
+	return reflect.TypeOf((**RouterOspf6)(nil)).Elem()
 }
 
 func (i *RouterOspf6) ToRouterOspf6Output() RouterOspf6Output {
@@ -342,35 +344,6 @@ func (i *RouterOspf6) ToRouterOspf6Output() RouterOspf6Output {
 
 func (i *RouterOspf6) ToRouterOspf6OutputWithContext(ctx context.Context) RouterOspf6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterOspf6Output)
-}
-
-func (i *RouterOspf6) ToRouterOspf6PtrOutput() RouterOspf6PtrOutput {
-	return i.ToRouterOspf6PtrOutputWithContext(context.Background())
-}
-
-func (i *RouterOspf6) ToRouterOspf6PtrOutputWithContext(ctx context.Context) RouterOspf6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterOspf6PtrOutput)
-}
-
-type RouterOspf6PtrInput interface {
-	pulumi.Input
-
-	ToRouterOspf6PtrOutput() RouterOspf6PtrOutput
-	ToRouterOspf6PtrOutputWithContext(ctx context.Context) RouterOspf6PtrOutput
-}
-
-type routerOspf6PtrType RouterOspf6Args
-
-func (*routerOspf6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterOspf6)(nil))
-}
-
-func (i *routerOspf6PtrType) ToRouterOspf6PtrOutput() RouterOspf6PtrOutput {
-	return i.ToRouterOspf6PtrOutputWithContext(context.Background())
-}
-
-func (i *routerOspf6PtrType) ToRouterOspf6PtrOutputWithContext(ctx context.Context) RouterOspf6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterOspf6PtrOutput)
 }
 
 // RouterOspf6ArrayInput is an input type that accepts RouterOspf6Array and RouterOspf6ArrayOutput values.
@@ -387,7 +360,7 @@ type RouterOspf6ArrayInput interface {
 type RouterOspf6Array []RouterOspf6Input
 
 func (RouterOspf6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterOspf6)(nil))
+	return reflect.TypeOf((*[]*RouterOspf6)(nil)).Elem()
 }
 
 func (i RouterOspf6Array) ToRouterOspf6ArrayOutput() RouterOspf6ArrayOutput {
@@ -412,7 +385,7 @@ type RouterOspf6MapInput interface {
 type RouterOspf6Map map[string]RouterOspf6Input
 
 func (RouterOspf6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterOspf6)(nil))
+	return reflect.TypeOf((*map[string]*RouterOspf6)(nil)).Elem()
 }
 
 func (i RouterOspf6Map) ToRouterOspf6MapOutput() RouterOspf6MapOutput {
@@ -423,12 +396,10 @@ func (i RouterOspf6Map) ToRouterOspf6MapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RouterOspf6MapOutput)
 }
 
-type RouterOspf6Output struct {
-	*pulumi.OutputState
-}
+type RouterOspf6Output struct{ *pulumi.OutputState }
 
 func (RouterOspf6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterOspf6)(nil))
+	return reflect.TypeOf((**RouterOspf6)(nil)).Elem()
 }
 
 func (o RouterOspf6Output) ToRouterOspf6Output() RouterOspf6Output {
@@ -439,36 +410,10 @@ func (o RouterOspf6Output) ToRouterOspf6OutputWithContext(ctx context.Context) R
 	return o
 }
 
-func (o RouterOspf6Output) ToRouterOspf6PtrOutput() RouterOspf6PtrOutput {
-	return o.ToRouterOspf6PtrOutputWithContext(context.Background())
-}
-
-func (o RouterOspf6Output) ToRouterOspf6PtrOutputWithContext(ctx context.Context) RouterOspf6PtrOutput {
-	return o.ApplyT(func(v RouterOspf6) *RouterOspf6 {
-		return &v
-	}).(RouterOspf6PtrOutput)
-}
-
-type RouterOspf6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterOspf6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterOspf6)(nil))
-}
-
-func (o RouterOspf6PtrOutput) ToRouterOspf6PtrOutput() RouterOspf6PtrOutput {
-	return o
-}
-
-func (o RouterOspf6PtrOutput) ToRouterOspf6PtrOutputWithContext(ctx context.Context) RouterOspf6PtrOutput {
-	return o
-}
-
 type RouterOspf6ArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterOspf6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterOspf6)(nil))
+	return reflect.TypeOf((*[]*RouterOspf6)(nil)).Elem()
 }
 
 func (o RouterOspf6ArrayOutput) ToRouterOspf6ArrayOutput() RouterOspf6ArrayOutput {
@@ -480,15 +425,15 @@ func (o RouterOspf6ArrayOutput) ToRouterOspf6ArrayOutputWithContext(ctx context.
 }
 
 func (o RouterOspf6ArrayOutput) Index(i pulumi.IntInput) RouterOspf6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterOspf6 {
-		return vs[0].([]RouterOspf6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterOspf6 {
+		return vs[0].([]*RouterOspf6)[vs[1].(int)]
 	}).(RouterOspf6Output)
 }
 
 type RouterOspf6MapOutput struct{ *pulumi.OutputState }
 
 func (RouterOspf6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterOspf6)(nil))
+	return reflect.TypeOf((*map[string]*RouterOspf6)(nil)).Elem()
 }
 
 func (o RouterOspf6MapOutput) ToRouterOspf6MapOutput() RouterOspf6MapOutput {
@@ -500,14 +445,16 @@ func (o RouterOspf6MapOutput) ToRouterOspf6MapOutputWithContext(ctx context.Cont
 }
 
 func (o RouterOspf6MapOutput) MapIndex(k pulumi.StringInput) RouterOspf6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterOspf6 {
-		return vs[0].(map[string]RouterOspf6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterOspf6 {
+		return vs[0].(map[string]*RouterOspf6)[vs[1].(string)]
 	}).(RouterOspf6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterOspf6Input)(nil)).Elem(), &RouterOspf6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterOspf6ArrayInput)(nil)).Elem(), RouterOspf6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterOspf6MapInput)(nil)).Elem(), RouterOspf6Map{})
 	pulumi.RegisterOutputType(RouterOspf6Output{})
-	pulumi.RegisterOutputType(RouterOspf6PtrOutput{})
 	pulumi.RegisterOutputType(RouterOspf6ArrayOutput{})
 	pulumi.RegisterOutputType(RouterOspf6MapOutput{})
 }

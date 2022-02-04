@@ -128,43 +128,41 @@ export class WebfilterFortiguard extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebfilterFortiguardArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebfilterFortiguardArgs | WebfilterFortiguardState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebfilterFortiguardState | undefined;
-            inputs["cacheMemPercent"] = state ? state.cacheMemPercent : undefined;
-            inputs["cacheMode"] = state ? state.cacheMode : undefined;
-            inputs["cachePrefixMatch"] = state ? state.cachePrefixMatch : undefined;
-            inputs["closePorts"] = state ? state.closePorts : undefined;
-            inputs["ovrdAuthHttps"] = state ? state.ovrdAuthHttps : undefined;
-            inputs["ovrdAuthPort"] = state ? state.ovrdAuthPort : undefined;
-            inputs["ovrdAuthPortHttp"] = state ? state.ovrdAuthPortHttp : undefined;
-            inputs["ovrdAuthPortHttps"] = state ? state.ovrdAuthPortHttps : undefined;
-            inputs["ovrdAuthPortHttpsFlow"] = state ? state.ovrdAuthPortHttpsFlow : undefined;
-            inputs["ovrdAuthPortWarning"] = state ? state.ovrdAuthPortWarning : undefined;
-            inputs["requestPacketSizeLimit"] = state ? state.requestPacketSizeLimit : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["warnAuthHttps"] = state ? state.warnAuthHttps : undefined;
+            resourceInputs["cacheMemPercent"] = state ? state.cacheMemPercent : undefined;
+            resourceInputs["cacheMode"] = state ? state.cacheMode : undefined;
+            resourceInputs["cachePrefixMatch"] = state ? state.cachePrefixMatch : undefined;
+            resourceInputs["closePorts"] = state ? state.closePorts : undefined;
+            resourceInputs["ovrdAuthHttps"] = state ? state.ovrdAuthHttps : undefined;
+            resourceInputs["ovrdAuthPort"] = state ? state.ovrdAuthPort : undefined;
+            resourceInputs["ovrdAuthPortHttp"] = state ? state.ovrdAuthPortHttp : undefined;
+            resourceInputs["ovrdAuthPortHttps"] = state ? state.ovrdAuthPortHttps : undefined;
+            resourceInputs["ovrdAuthPortHttpsFlow"] = state ? state.ovrdAuthPortHttpsFlow : undefined;
+            resourceInputs["ovrdAuthPortWarning"] = state ? state.ovrdAuthPortWarning : undefined;
+            resourceInputs["requestPacketSizeLimit"] = state ? state.requestPacketSizeLimit : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["warnAuthHttps"] = state ? state.warnAuthHttps : undefined;
         } else {
             const args = argsOrState as WebfilterFortiguardArgs | undefined;
-            inputs["cacheMemPercent"] = args ? args.cacheMemPercent : undefined;
-            inputs["cacheMode"] = args ? args.cacheMode : undefined;
-            inputs["cachePrefixMatch"] = args ? args.cachePrefixMatch : undefined;
-            inputs["closePorts"] = args ? args.closePorts : undefined;
-            inputs["ovrdAuthHttps"] = args ? args.ovrdAuthHttps : undefined;
-            inputs["ovrdAuthPort"] = args ? args.ovrdAuthPort : undefined;
-            inputs["ovrdAuthPortHttp"] = args ? args.ovrdAuthPortHttp : undefined;
-            inputs["ovrdAuthPortHttps"] = args ? args.ovrdAuthPortHttps : undefined;
-            inputs["ovrdAuthPortHttpsFlow"] = args ? args.ovrdAuthPortHttpsFlow : undefined;
-            inputs["ovrdAuthPortWarning"] = args ? args.ovrdAuthPortWarning : undefined;
-            inputs["requestPacketSizeLimit"] = args ? args.requestPacketSizeLimit : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["warnAuthHttps"] = args ? args.warnAuthHttps : undefined;
+            resourceInputs["cacheMemPercent"] = args ? args.cacheMemPercent : undefined;
+            resourceInputs["cacheMode"] = args ? args.cacheMode : undefined;
+            resourceInputs["cachePrefixMatch"] = args ? args.cachePrefixMatch : undefined;
+            resourceInputs["closePorts"] = args ? args.closePorts : undefined;
+            resourceInputs["ovrdAuthHttps"] = args ? args.ovrdAuthHttps : undefined;
+            resourceInputs["ovrdAuthPort"] = args ? args.ovrdAuthPort : undefined;
+            resourceInputs["ovrdAuthPortHttp"] = args ? args.ovrdAuthPortHttp : undefined;
+            resourceInputs["ovrdAuthPortHttps"] = args ? args.ovrdAuthPortHttps : undefined;
+            resourceInputs["ovrdAuthPortHttpsFlow"] = args ? args.ovrdAuthPortHttpsFlow : undefined;
+            resourceInputs["ovrdAuthPortWarning"] = args ? args.ovrdAuthPortWarning : undefined;
+            resourceInputs["requestPacketSizeLimit"] = args ? args.requestPacketSizeLimit : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["warnAuthHttps"] = args ? args.warnAuthHttps : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebfilterFortiguard.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebfilterFortiguard.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -18,11 +18,17 @@ class UserSamlArgs:
                  idp_entity_id: pulumi.Input[str],
                  idp_single_sign_on_url: pulumi.Input[str],
                  single_sign_on_url: pulumi.Input[str],
+                 adfs_claim: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
+                 clock_tolerance: Optional[pulumi.Input[int]] = None,
+                 digest_method: Optional[pulumi.Input[str]] = None,
+                 group_claim_type: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
+                 limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
+                 user_claim_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
@@ -32,11 +38,17 @@ class UserSamlArgs:
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
+        :param pulumi.Input[str] adfs_claim: Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
+        :param pulumi.Input[int] clock_tolerance: Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        :param pulumi.Input[str] digest_method: Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+        :param pulumi.Input[str] group_claim_type: Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] group_name: Group name in assertion statement.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout url.
+        :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
+        :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] user_name: User name in assertion statement.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -45,16 +57,28 @@ class UserSamlArgs:
         pulumi.set(__self__, "idp_entity_id", idp_entity_id)
         pulumi.set(__self__, "idp_single_sign_on_url", idp_single_sign_on_url)
         pulumi.set(__self__, "single_sign_on_url", single_sign_on_url)
+        if adfs_claim is not None:
+            pulumi.set(__self__, "adfs_claim", adfs_claim)
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
+        if clock_tolerance is not None:
+            pulumi.set(__self__, "clock_tolerance", clock_tolerance)
+        if digest_method is not None:
+            pulumi.set(__self__, "digest_method", digest_method)
+        if group_claim_type is not None:
+            pulumi.set(__self__, "group_claim_type", group_claim_type)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if idp_single_logout_url is not None:
             pulumi.set(__self__, "idp_single_logout_url", idp_single_logout_url)
+        if limit_relaystate is not None:
+            pulumi.set(__self__, "limit_relaystate", limit_relaystate)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if single_logout_url is not None:
             pulumi.set(__self__, "single_logout_url", single_logout_url)
+        if user_claim_type is not None:
+            pulumi.set(__self__, "user_claim_type", user_claim_type)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
         if vdomparam is not None:
@@ -121,6 +145,18 @@ class UserSamlArgs:
         pulumi.set(self, "single_sign_on_url", value)
 
     @property
+    @pulumi.getter(name="adfsClaim")
+    def adfs_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "adfs_claim")
+
+    @adfs_claim.setter
+    def adfs_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "adfs_claim", value)
+
+    @property
     @pulumi.getter
     def cert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -131,6 +167,42 @@ class UserSamlArgs:
     @cert.setter
     def cert(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "cert", value)
+
+    @property
+    @pulumi.getter(name="clockTolerance")
+    def clock_tolerance(self) -> Optional[pulumi.Input[int]]:
+        """
+        Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        """
+        return pulumi.get(self, "clock_tolerance")
+
+    @clock_tolerance.setter
+    def clock_tolerance(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "clock_tolerance", value)
+
+    @property
+    @pulumi.getter(name="digestMethod")
+    def digest_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+        """
+        return pulumi.get(self, "digest_method")
+
+    @digest_method.setter
+    def digest_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "digest_method", value)
+
+    @property
+    @pulumi.getter(name="groupClaimType")
+    def group_claim_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+        """
+        return pulumi.get(self, "group_claim_type")
+
+    @group_claim_type.setter
+    def group_claim_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_claim_type", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -157,6 +229,18 @@ class UserSamlArgs:
         pulumi.set(self, "idp_single_logout_url", value)
 
     @property
+    @pulumi.getter(name="limitRelaystate")
+    def limit_relaystate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "limit_relaystate")
+
+    @limit_relaystate.setter
+    def limit_relaystate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "limit_relaystate", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -179,6 +263,18 @@ class UserSamlArgs:
     @single_logout_url.setter
     def single_logout_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "single_logout_url", value)
+
+    @property
+    @pulumi.getter(name="userClaimType")
+    def user_claim_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+        """
+        return pulumi.get(self, "user_claim_type")
+
+    @user_claim_type.setter
+    def user_claim_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_claim_type", value)
 
     @property
     @pulumi.getter(name="userName")
@@ -208,37 +304,57 @@ class UserSamlArgs:
 @pulumi.input_type
 class _UserSamlState:
     def __init__(__self__, *,
+                 adfs_claim: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
+                 clock_tolerance: Optional[pulumi.Input[int]] = None,
+                 digest_method: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 group_claim_type: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
+                 limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
+                 user_claim_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering UserSaml resources.
+        :param pulumi.Input[str] adfs_claim: Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
+        :param pulumi.Input[int] clock_tolerance: Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        :param pulumi.Input[str] digest_method: Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] group_claim_type: Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] group_name: Group name in assertion statement.
         :param pulumi.Input[str] idp_cert: IDP Certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout url.
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
+        :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
+        :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] user_name: User name in assertion statement.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if adfs_claim is not None:
+            pulumi.set(__self__, "adfs_claim", adfs_claim)
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
+        if clock_tolerance is not None:
+            pulumi.set(__self__, "clock_tolerance", clock_tolerance)
+        if digest_method is not None:
+            pulumi.set(__self__, "digest_method", digest_method)
         if entity_id is not None:
             pulumi.set(__self__, "entity_id", entity_id)
+        if group_claim_type is not None:
+            pulumi.set(__self__, "group_claim_type", group_claim_type)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if idp_cert is not None:
@@ -249,16 +365,32 @@ class _UserSamlState:
             pulumi.set(__self__, "idp_single_logout_url", idp_single_logout_url)
         if idp_single_sign_on_url is not None:
             pulumi.set(__self__, "idp_single_sign_on_url", idp_single_sign_on_url)
+        if limit_relaystate is not None:
+            pulumi.set(__self__, "limit_relaystate", limit_relaystate)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if single_logout_url is not None:
             pulumi.set(__self__, "single_logout_url", single_logout_url)
         if single_sign_on_url is not None:
             pulumi.set(__self__, "single_sign_on_url", single_sign_on_url)
+        if user_claim_type is not None:
+            pulumi.set(__self__, "user_claim_type", user_claim_type)
         if user_name is not None:
             pulumi.set(__self__, "user_name", user_name)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="adfsClaim")
+    def adfs_claim(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "adfs_claim")
+
+    @adfs_claim.setter
+    def adfs_claim(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "adfs_claim", value)
 
     @property
     @pulumi.getter
@@ -273,6 +405,30 @@ class _UserSamlState:
         pulumi.set(self, "cert", value)
 
     @property
+    @pulumi.getter(name="clockTolerance")
+    def clock_tolerance(self) -> Optional[pulumi.Input[int]]:
+        """
+        Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        """
+        return pulumi.get(self, "clock_tolerance")
+
+    @clock_tolerance.setter
+    def clock_tolerance(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "clock_tolerance", value)
+
+    @property
+    @pulumi.getter(name="digestMethod")
+    def digest_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+        """
+        return pulumi.get(self, "digest_method")
+
+    @digest_method.setter
+    def digest_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "digest_method", value)
+
+    @property
     @pulumi.getter(name="entityId")
     def entity_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -283,6 +439,18 @@ class _UserSamlState:
     @entity_id.setter
     def entity_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "entity_id", value)
+
+    @property
+    @pulumi.getter(name="groupClaimType")
+    def group_claim_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+        """
+        return pulumi.get(self, "group_claim_type")
+
+    @group_claim_type.setter
+    def group_claim_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "group_claim_type", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -345,6 +513,18 @@ class _UserSamlState:
         pulumi.set(self, "idp_single_sign_on_url", value)
 
     @property
+    @pulumi.getter(name="limitRelaystate")
+    def limit_relaystate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "limit_relaystate")
+
+    @limit_relaystate.setter
+    def limit_relaystate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "limit_relaystate", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -381,6 +561,18 @@ class _UserSamlState:
         pulumi.set(self, "single_sign_on_url", value)
 
     @property
+    @pulumi.getter(name="userClaimType")
+    def user_claim_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+        """
+        return pulumi.get(self, "user_claim_type")
+
+    @user_claim_type.setter
+    def user_claim_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "user_claim_type", value)
+
+    @property
     @pulumi.getter(name="userName")
     def user_name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -410,21 +602,27 @@ class UserSaml(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 adfs_claim: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
+                 clock_tolerance: Optional[pulumi.Input[int]] = None,
+                 digest_method: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 group_claim_type: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
+                 limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
+                 user_claim_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        SAML server entry configuration.
+        SAML server entry configuration. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -456,16 +654,22 @@ class UserSaml(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] adfs_claim: Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
+        :param pulumi.Input[int] clock_tolerance: Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        :param pulumi.Input[str] digest_method: Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] group_claim_type: Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] group_name: Group name in assertion statement.
         :param pulumi.Input[str] idp_cert: IDP Certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout url.
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
+        :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
+        :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] user_name: User name in assertion statement.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -476,7 +680,7 @@ class UserSaml(pulumi.CustomResource):
                  args: UserSamlArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        SAML server entry configuration.
+        SAML server entry configuration. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -521,16 +725,22 @@ class UserSaml(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 adfs_claim: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
+                 clock_tolerance: Optional[pulumi.Input[int]] = None,
+                 digest_method: Optional[pulumi.Input[str]] = None,
                  entity_id: Optional[pulumi.Input[str]] = None,
+                 group_claim_type: Optional[pulumi.Input[str]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  idp_cert: Optional[pulumi.Input[str]] = None,
                  idp_entity_id: Optional[pulumi.Input[str]] = None,
                  idp_single_logout_url: Optional[pulumi.Input[str]] = None,
                  idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
+                 limit_relaystate: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  single_logout_url: Optional[pulumi.Input[str]] = None,
                  single_sign_on_url: Optional[pulumi.Input[str]] = None,
+                 user_claim_type: Optional[pulumi.Input[str]] = None,
                  user_name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -540,15 +750,21 @@ class UserSaml(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = UserSamlArgs.__new__(UserSamlArgs)
 
+            __props__.__dict__["adfs_claim"] = adfs_claim
             __props__.__dict__["cert"] = cert
+            __props__.__dict__["clock_tolerance"] = clock_tolerance
+            __props__.__dict__["digest_method"] = digest_method
             if entity_id is None and not opts.urn:
                 raise TypeError("Missing required property 'entity_id'")
             __props__.__dict__["entity_id"] = entity_id
+            __props__.__dict__["group_claim_type"] = group_claim_type
             __props__.__dict__["group_name"] = group_name
             if idp_cert is None and not opts.urn:
                 raise TypeError("Missing required property 'idp_cert'")
@@ -560,11 +776,13 @@ class UserSaml(pulumi.CustomResource):
             if idp_single_sign_on_url is None and not opts.urn:
                 raise TypeError("Missing required property 'idp_single_sign_on_url'")
             __props__.__dict__["idp_single_sign_on_url"] = idp_single_sign_on_url
+            __props__.__dict__["limit_relaystate"] = limit_relaystate
             __props__.__dict__["name"] = name
             __props__.__dict__["single_logout_url"] = single_logout_url
             if single_sign_on_url is None and not opts.urn:
                 raise TypeError("Missing required property 'single_sign_on_url'")
             __props__.__dict__["single_sign_on_url"] = single_sign_on_url
+            __props__.__dict__["user_claim_type"] = user_claim_type
             __props__.__dict__["user_name"] = user_name
             __props__.__dict__["vdomparam"] = vdomparam
         super(UserSaml, __self__).__init__(
@@ -577,16 +795,22 @@ class UserSaml(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            adfs_claim: Optional[pulumi.Input[str]] = None,
             cert: Optional[pulumi.Input[str]] = None,
+            clock_tolerance: Optional[pulumi.Input[int]] = None,
+            digest_method: Optional[pulumi.Input[str]] = None,
             entity_id: Optional[pulumi.Input[str]] = None,
+            group_claim_type: Optional[pulumi.Input[str]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             idp_cert: Optional[pulumi.Input[str]] = None,
             idp_entity_id: Optional[pulumi.Input[str]] = None,
             idp_single_logout_url: Optional[pulumi.Input[str]] = None,
             idp_single_sign_on_url: Optional[pulumi.Input[str]] = None,
+            limit_relaystate: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             single_logout_url: Optional[pulumi.Input[str]] = None,
             single_sign_on_url: Optional[pulumi.Input[str]] = None,
+            user_claim_type: Optional[pulumi.Input[str]] = None,
             user_name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'UserSaml':
         """
@@ -596,16 +820,22 @@ class UserSaml(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] adfs_claim: Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
+        :param pulumi.Input[int] clock_tolerance: Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        :param pulumi.Input[str] digest_method: Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
         :param pulumi.Input[str] entity_id: SP entity ID.
+        :param pulumi.Input[str] group_claim_type: Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] group_name: Group name in assertion statement.
         :param pulumi.Input[str] idp_cert: IDP Certificate name.
         :param pulumi.Input[str] idp_entity_id: IDP entity ID.
         :param pulumi.Input[str] idp_single_logout_url: IDP single logout url.
         :param pulumi.Input[str] idp_single_sign_on_url: IDP single sign-on URL.
+        :param pulumi.Input[str] limit_relaystate: Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: SAML server entry name.
         :param pulumi.Input[str] single_logout_url: SP single logout URL.
         :param pulumi.Input[str] single_sign_on_url: SP single sign-on URL.
+        :param pulumi.Input[str] user_claim_type: User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
         :param pulumi.Input[str] user_name: User name in assertion statement.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -613,19 +843,33 @@ class UserSaml(pulumi.CustomResource):
 
         __props__ = _UserSamlState.__new__(_UserSamlState)
 
+        __props__.__dict__["adfs_claim"] = adfs_claim
         __props__.__dict__["cert"] = cert
+        __props__.__dict__["clock_tolerance"] = clock_tolerance
+        __props__.__dict__["digest_method"] = digest_method
         __props__.__dict__["entity_id"] = entity_id
+        __props__.__dict__["group_claim_type"] = group_claim_type
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["idp_cert"] = idp_cert
         __props__.__dict__["idp_entity_id"] = idp_entity_id
         __props__.__dict__["idp_single_logout_url"] = idp_single_logout_url
         __props__.__dict__["idp_single_sign_on_url"] = idp_single_sign_on_url
+        __props__.__dict__["limit_relaystate"] = limit_relaystate
         __props__.__dict__["name"] = name
         __props__.__dict__["single_logout_url"] = single_logout_url
         __props__.__dict__["single_sign_on_url"] = single_sign_on_url
+        __props__.__dict__["user_claim_type"] = user_claim_type
         __props__.__dict__["user_name"] = user_name
         __props__.__dict__["vdomparam"] = vdomparam
         return UserSaml(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="adfsClaim")
+    def adfs_claim(self) -> pulumi.Output[str]:
+        """
+        Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "adfs_claim")
 
     @property
     @pulumi.getter
@@ -636,12 +880,36 @@ class UserSaml(pulumi.CustomResource):
         return pulumi.get(self, "cert")
 
     @property
+    @pulumi.getter(name="clockTolerance")
+    def clock_tolerance(self) -> pulumi.Output[int]:
+        """
+        Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
+        """
+        return pulumi.get(self, "clock_tolerance")
+
+    @property
+    @pulumi.getter(name="digestMethod")
+    def digest_method(self) -> pulumi.Output[str]:
+        """
+        Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
+        """
+        return pulumi.get(self, "digest_method")
+
+    @property
     @pulumi.getter(name="entityId")
     def entity_id(self) -> pulumi.Output[str]:
         """
         SP entity ID.
         """
         return pulumi.get(self, "entity_id")
+
+    @property
+    @pulumi.getter(name="groupClaimType")
+    def group_claim_type(self) -> pulumi.Output[str]:
+        """
+        Group claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+        """
+        return pulumi.get(self, "group_claim_type")
 
     @property
     @pulumi.getter(name="groupName")
@@ -684,6 +952,14 @@ class UserSaml(pulumi.CustomResource):
         return pulumi.get(self, "idp_single_sign_on_url")
 
     @property
+    @pulumi.getter(name="limitRelaystate")
+    def limit_relaystate(self) -> pulumi.Output[str]:
+        """
+        Enable/disable limiting of relay-state parameter when it exceeds SAML 2.0 specification limits (80 bytes). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "limit_relaystate")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -706,6 +982,14 @@ class UserSaml(pulumi.CustomResource):
         SP single sign-on URL.
         """
         return pulumi.get(self, "single_sign_on_url")
+
+    @property
+    @pulumi.getter(name="userClaimType")
+    def user_claim_type(self) -> pulumi.Output[str]:
+        """
+        User name claim in assertion statement. Valid values: `email`, `given-name`, `name`, `upn`, `common-name`, `email-adfs-1x`, `group`, `upn-adfs-1x`, `role`, `sur-name`, `ppid`, `name-identifier`, `authentication-method`, `deny-only-group-sid`, `deny-only-primary-sid`, `deny-only-primary-group-sid`, `group-sid`, `primary-group-sid`, `primary-sid`, `windows-account-name`.
+        """
+        return pulumi.get(self, "user_claim_type")
 
     @property
     @pulumi.getter(name="userName")

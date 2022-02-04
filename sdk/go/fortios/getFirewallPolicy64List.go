@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallPolicy64`.
 func GetFirewallPolicy64List(ctx *pulumi.Context, args *GetFirewallPolicy64ListArgs, opts ...pulumi.InvokeOption) (*GetFirewallPolicy64ListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallPolicy64ListResult
 	err := ctx.Invoke("fortios:index/getFirewallPolicy64List:GetFirewallPolicy64List", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallPolicy64ListResult struct {
 	// A list of the `FirewallPolicy64`.
 	Policyidlists []int   `pulumi:"policyidlists"`
 	Vdomparam     *string `pulumi:"vdomparam"`
+}
+
+func GetFirewallPolicy64ListOutput(ctx *pulumi.Context, args GetFirewallPolicy64ListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallPolicy64ListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallPolicy64ListResult, error) {
+			args := v.(GetFirewallPolicy64ListArgs)
+			r, err := GetFirewallPolicy64List(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallPolicy64ListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallPolicy64List.
+type GetFirewallPolicy64ListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallPolicy64ListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallPolicy64ListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallPolicy64List.
+type GetFirewallPolicy64ListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallPolicy64ListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallPolicy64ListResult)(nil)).Elem()
+}
+
+func (o GetFirewallPolicy64ListResultOutput) ToGetFirewallPolicy64ListResultOutput() GetFirewallPolicy64ListResultOutput {
+	return o
+}
+
+func (o GetFirewallPolicy64ListResultOutput) ToGetFirewallPolicy64ListResultOutputWithContext(ctx context.Context) GetFirewallPolicy64ListResultOutput {
+	return o
+}
+
+func (o GetFirewallPolicy64ListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallPolicy64ListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallPolicy64ListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallPolicy64ListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallPolicy64`.
+func (o GetFirewallPolicy64ListResultOutput) Policyidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetFirewallPolicy64ListResult) []int { return v.Policyidlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetFirewallPolicy64ListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallPolicy64ListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallPolicy64ListResultOutput{})
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global DPDK options.
+// Configure global DPDK options. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -53,6 +53,7 @@ func NewDpdkGlobal(ctx *pulumi.Context,
 		args = &DpdkGlobalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DpdkGlobal
 	err := ctx.RegisterResource("fortios:index/dpdkGlobal:DpdkGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ type DpdkGlobalInput interface {
 }
 
 func (*DpdkGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*DpdkGlobal)(nil))
+	return reflect.TypeOf((**DpdkGlobal)(nil)).Elem()
 }
 
 func (i *DpdkGlobal) ToDpdkGlobalOutput() DpdkGlobalOutput {
@@ -192,35 +193,6 @@ func (i *DpdkGlobal) ToDpdkGlobalOutput() DpdkGlobalOutput {
 
 func (i *DpdkGlobal) ToDpdkGlobalOutputWithContext(ctx context.Context) DpdkGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalOutput)
-}
-
-func (i *DpdkGlobal) ToDpdkGlobalPtrOutput() DpdkGlobalPtrOutput {
-	return i.ToDpdkGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *DpdkGlobal) ToDpdkGlobalPtrOutputWithContext(ctx context.Context) DpdkGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalPtrOutput)
-}
-
-type DpdkGlobalPtrInput interface {
-	pulumi.Input
-
-	ToDpdkGlobalPtrOutput() DpdkGlobalPtrOutput
-	ToDpdkGlobalPtrOutputWithContext(ctx context.Context) DpdkGlobalPtrOutput
-}
-
-type dpdkGlobalPtrType DpdkGlobalArgs
-
-func (*dpdkGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DpdkGlobal)(nil))
-}
-
-func (i *dpdkGlobalPtrType) ToDpdkGlobalPtrOutput() DpdkGlobalPtrOutput {
-	return i.ToDpdkGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *dpdkGlobalPtrType) ToDpdkGlobalPtrOutputWithContext(ctx context.Context) DpdkGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalPtrOutput)
 }
 
 // DpdkGlobalArrayInput is an input type that accepts DpdkGlobalArray and DpdkGlobalArrayOutput values.
@@ -237,7 +209,7 @@ type DpdkGlobalArrayInput interface {
 type DpdkGlobalArray []DpdkGlobalInput
 
 func (DpdkGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DpdkGlobal)(nil))
+	return reflect.TypeOf((*[]*DpdkGlobal)(nil)).Elem()
 }
 
 func (i DpdkGlobalArray) ToDpdkGlobalArrayOutput() DpdkGlobalArrayOutput {
@@ -262,7 +234,7 @@ type DpdkGlobalMapInput interface {
 type DpdkGlobalMap map[string]DpdkGlobalInput
 
 func (DpdkGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DpdkGlobal)(nil))
+	return reflect.TypeOf((*map[string]*DpdkGlobal)(nil)).Elem()
 }
 
 func (i DpdkGlobalMap) ToDpdkGlobalMapOutput() DpdkGlobalMapOutput {
@@ -273,12 +245,10 @@ func (i DpdkGlobalMap) ToDpdkGlobalMapOutputWithContext(ctx context.Context) Dpd
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkGlobalMapOutput)
 }
 
-type DpdkGlobalOutput struct {
-	*pulumi.OutputState
-}
+type DpdkGlobalOutput struct{ *pulumi.OutputState }
 
 func (DpdkGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DpdkGlobal)(nil))
+	return reflect.TypeOf((**DpdkGlobal)(nil)).Elem()
 }
 
 func (o DpdkGlobalOutput) ToDpdkGlobalOutput() DpdkGlobalOutput {
@@ -289,36 +259,10 @@ func (o DpdkGlobalOutput) ToDpdkGlobalOutputWithContext(ctx context.Context) Dpd
 	return o
 }
 
-func (o DpdkGlobalOutput) ToDpdkGlobalPtrOutput() DpdkGlobalPtrOutput {
-	return o.ToDpdkGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o DpdkGlobalOutput) ToDpdkGlobalPtrOutputWithContext(ctx context.Context) DpdkGlobalPtrOutput {
-	return o.ApplyT(func(v DpdkGlobal) *DpdkGlobal {
-		return &v
-	}).(DpdkGlobalPtrOutput)
-}
-
-type DpdkGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DpdkGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DpdkGlobal)(nil))
-}
-
-func (o DpdkGlobalPtrOutput) ToDpdkGlobalPtrOutput() DpdkGlobalPtrOutput {
-	return o
-}
-
-func (o DpdkGlobalPtrOutput) ToDpdkGlobalPtrOutputWithContext(ctx context.Context) DpdkGlobalPtrOutput {
-	return o
-}
-
 type DpdkGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (DpdkGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DpdkGlobal)(nil))
+	return reflect.TypeOf((*[]*DpdkGlobal)(nil)).Elem()
 }
 
 func (o DpdkGlobalArrayOutput) ToDpdkGlobalArrayOutput() DpdkGlobalArrayOutput {
@@ -330,15 +274,15 @@ func (o DpdkGlobalArrayOutput) ToDpdkGlobalArrayOutputWithContext(ctx context.Co
 }
 
 func (o DpdkGlobalArrayOutput) Index(i pulumi.IntInput) DpdkGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DpdkGlobal {
-		return vs[0].([]DpdkGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DpdkGlobal {
+		return vs[0].([]*DpdkGlobal)[vs[1].(int)]
 	}).(DpdkGlobalOutput)
 }
 
 type DpdkGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (DpdkGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DpdkGlobal)(nil))
+	return reflect.TypeOf((*map[string]*DpdkGlobal)(nil)).Elem()
 }
 
 func (o DpdkGlobalMapOutput) ToDpdkGlobalMapOutput() DpdkGlobalMapOutput {
@@ -350,14 +294,16 @@ func (o DpdkGlobalMapOutput) ToDpdkGlobalMapOutputWithContext(ctx context.Contex
 }
 
 func (o DpdkGlobalMapOutput) MapIndex(k pulumi.StringInput) DpdkGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DpdkGlobal {
-		return vs[0].(map[string]DpdkGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DpdkGlobal {
+		return vs[0].(map[string]*DpdkGlobal)[vs[1].(string)]
 	}).(DpdkGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DpdkGlobalInput)(nil)).Elem(), &DpdkGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DpdkGlobalArrayInput)(nil)).Elem(), DpdkGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DpdkGlobalMapInput)(nil)).Elem(), DpdkGlobalMap{})
 	pulumi.RegisterOutputType(DpdkGlobalOutput{})
-	pulumi.RegisterOutputType(DpdkGlobalPtrOutput{})
 	pulumi.RegisterOutputType(DpdkGlobalArrayOutput{})
 	pulumi.RegisterOutputType(DpdkGlobalMapOutput{})
 }

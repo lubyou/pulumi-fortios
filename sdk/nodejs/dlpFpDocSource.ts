@@ -156,29 +156,29 @@ export class DlpFpDocSource extends pulumi.CustomResource {
      */
     constructor(name: string, args: DlpFpDocSourceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DlpFpDocSourceArgs | DlpFpDocSourceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DlpFpDocSourceState | undefined;
-            inputs["date"] = state ? state.date : undefined;
-            inputs["filePath"] = state ? state.filePath : undefined;
-            inputs["filePattern"] = state ? state.filePattern : undefined;
-            inputs["keepModified"] = state ? state.keepModified : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["removeDeleted"] = state ? state.removeDeleted : undefined;
-            inputs["scanOnCreation"] = state ? state.scanOnCreation : undefined;
-            inputs["scanSubdirectories"] = state ? state.scanSubdirectories : undefined;
-            inputs["sensitivity"] = state ? state.sensitivity : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["serverType"] = state ? state.serverType : undefined;
-            inputs["todHour"] = state ? state.todHour : undefined;
-            inputs["todMin"] = state ? state.todMin : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["weekday"] = state ? state.weekday : undefined;
+            resourceInputs["date"] = state ? state.date : undefined;
+            resourceInputs["filePath"] = state ? state.filePath : undefined;
+            resourceInputs["filePattern"] = state ? state.filePattern : undefined;
+            resourceInputs["keepModified"] = state ? state.keepModified : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["period"] = state ? state.period : undefined;
+            resourceInputs["removeDeleted"] = state ? state.removeDeleted : undefined;
+            resourceInputs["scanOnCreation"] = state ? state.scanOnCreation : undefined;
+            resourceInputs["scanSubdirectories"] = state ? state.scanSubdirectories : undefined;
+            resourceInputs["sensitivity"] = state ? state.sensitivity : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["todHour"] = state ? state.todHour : undefined;
+            resourceInputs["todMin"] = state ? state.todMin : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["weekday"] = state ? state.weekday : undefined;
         } else {
             const args = argsOrState as DlpFpDocSourceArgs | undefined;
             if ((!args || args.server === undefined) && !opts.urn) {
@@ -190,30 +190,28 @@ export class DlpFpDocSource extends pulumi.CustomResource {
             if ((!args || args.username === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'username'");
             }
-            inputs["date"] = args ? args.date : undefined;
-            inputs["filePath"] = args ? args.filePath : undefined;
-            inputs["filePattern"] = args ? args.filePattern : undefined;
-            inputs["keepModified"] = args ? args.keepModified : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["removeDeleted"] = args ? args.removeDeleted : undefined;
-            inputs["scanOnCreation"] = args ? args.scanOnCreation : undefined;
-            inputs["scanSubdirectories"] = args ? args.scanSubdirectories : undefined;
-            inputs["sensitivity"] = args ? args.sensitivity : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["serverType"] = args ? args.serverType : undefined;
-            inputs["todHour"] = args ? args.todHour : undefined;
-            inputs["todMin"] = args ? args.todMin : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["weekday"] = args ? args.weekday : undefined;
+            resourceInputs["date"] = args ? args.date : undefined;
+            resourceInputs["filePath"] = args ? args.filePath : undefined;
+            resourceInputs["filePattern"] = args ? args.filePattern : undefined;
+            resourceInputs["keepModified"] = args ? args.keepModified : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["removeDeleted"] = args ? args.removeDeleted : undefined;
+            resourceInputs["scanOnCreation"] = args ? args.scanOnCreation : undefined;
+            resourceInputs["scanSubdirectories"] = args ? args.scanSubdirectories : undefined;
+            resourceInputs["sensitivity"] = args ? args.sensitivity : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["todHour"] = args ? args.todHour : undefined;
+            resourceInputs["todMin"] = args ? args.todMin : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["weekday"] = args ? args.weekday : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DlpFpDocSource.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DlpFpDocSource.__pulumiType, name, resourceInputs, opts);
     }
 }
 

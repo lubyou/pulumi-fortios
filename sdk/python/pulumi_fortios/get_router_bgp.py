@@ -13,6 +13,7 @@ __all__ = [
     'GetRouterBgpResult',
     'AwaitableGetRouterBgpResult',
     'get_router_bgp',
+    'get_router_bgp_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetRouterBgpResult:
     """
     A collection of values returned by GetRouterBgp.
     """
-    def __init__(__self__, additional_path=None, additional_path6=None, additional_path_select=None, additional_path_select6=None, admin_distances=None, aggregate_address6s=None, aggregate_addresses=None, always_compare_med=None, as_=None, bestpath_as_path_ignore=None, bestpath_cmp_confed_aspath=None, bestpath_cmp_routerid=None, bestpath_med_confed=None, bestpath_med_missing_as_worst=None, client_to_client_reflection=None, cluster_id=None, confederation_identifier=None, confederation_peers=None, dampening=None, dampening_max_suppress_time=None, dampening_reachability_half_life=None, dampening_reuse=None, dampening_route_map=None, dampening_suppress=None, dampening_unreachability_half_life=None, default_local_preference=None, deterministic_med=None, distance_external=None, distance_internal=None, distance_local=None, ebgp_multipath=None, enforce_first_as=None, fast_external_failover=None, graceful_end_on_timer=None, graceful_restart=None, graceful_restart_time=None, graceful_stalepath_time=None, graceful_update_delay=None, holdtime_timer=None, ibgp_multipath=None, id=None, ignore_optional_capability=None, keepalive_timer=None, log_neighbour_changes=None, multipath_recursive_distance=None, neighbor_groups=None, neighbor_range6s=None, neighbor_ranges=None, neighbors=None, network6s=None, network_import_check=None, networks=None, recursive_next_hop=None, redistribute6s=None, redistributes=None, router_id=None, scan_time=None, synchronization=None, vdomparam=None, vrf_leaks=None):
+    def __init__(__self__, additional_path=None, additional_path6=None, additional_path_select=None, additional_path_select6=None, admin_distances=None, aggregate_address6s=None, aggregate_addresses=None, always_compare_med=None, as_=None, bestpath_as_path_ignore=None, bestpath_cmp_confed_aspath=None, bestpath_cmp_routerid=None, bestpath_med_confed=None, bestpath_med_missing_as_worst=None, client_to_client_reflection=None, cluster_id=None, confederation_identifier=None, confederation_peers=None, dampening=None, dampening_max_suppress_time=None, dampening_reachability_half_life=None, dampening_reuse=None, dampening_route_map=None, dampening_suppress=None, dampening_unreachability_half_life=None, default_local_preference=None, deterministic_med=None, distance_external=None, distance_internal=None, distance_local=None, ebgp_multipath=None, enforce_first_as=None, fast_external_failover=None, graceful_end_on_timer=None, graceful_restart=None, graceful_restart_time=None, graceful_stalepath_time=None, graceful_update_delay=None, holdtime_timer=None, ibgp_multipath=None, id=None, ignore_optional_capability=None, keepalive_timer=None, log_neighbour_changes=None, multipath_recursive_distance=None, neighbor_groups=None, neighbor_range6s=None, neighbor_ranges=None, neighbors=None, network6s=None, network_import_check=None, networks=None, recursive_next_hop=None, redistribute6s=None, redistributes=None, router_id=None, scan_time=None, synchronization=None, tag_resolve_mode=None, vdomparam=None, vrf_leak6s=None, vrf_leaks=None):
         if additional_path and not isinstance(additional_path, str):
             raise TypeError("Expected argument 'additional_path' to be a str")
         pulumi.set(__self__, "additional_path", additional_path)
@@ -195,9 +196,15 @@ class GetRouterBgpResult:
         if synchronization and not isinstance(synchronization, str):
             raise TypeError("Expected argument 'synchronization' to be a str")
         pulumi.set(__self__, "synchronization", synchronization)
+        if tag_resolve_mode and not isinstance(tag_resolve_mode, str):
+            raise TypeError("Expected argument 'tag_resolve_mode' to be a str")
+        pulumi.set(__self__, "tag_resolve_mode", tag_resolve_mode)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+        if vrf_leak6s and not isinstance(vrf_leak6s, list):
+            raise TypeError("Expected argument 'vrf_leak6s' to be a list")
+        pulumi.set(__self__, "vrf_leak6s", vrf_leak6s)
         if vrf_leaks and not isinstance(vrf_leaks, list):
             raise TypeError("Expected argument 'vrf_leaks' to be a list")
         pulumi.set(__self__, "vrf_leaks", vrf_leaks)
@@ -606,7 +613,7 @@ class GetRouterBgpResult:
     @pulumi.getter(name="networkImportCheck")
     def network_import_check(self) -> str:
         """
-        Enable/disable ensure BGP network route exists in IGP.
+        Configure insurance of BGP network route existence in IGP.
         """
         return pulumi.get(self, "network_import_check")
 
@@ -667,9 +674,25 @@ class GetRouterBgpResult:
         return pulumi.get(self, "synchronization")
 
     @property
+    @pulumi.getter(name="tagResolveMode")
+    def tag_resolve_mode(self) -> str:
+        """
+        Configure tag-match mode. Resolves BGP routes with other routes containing the same tag.
+        """
+        return pulumi.get(self, "tag_resolve_mode")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="vrfLeak6s")
+    def vrf_leak6s(self) -> Sequence['outputs.GetRouterBgpVrfLeak6Result']:
+        """
+        BGP IPv6 VRF leaking table. The structure of `vrf_leak6` block is documented below.
+        """
+        return pulumi.get(self, "vrf_leak6s")
 
     @property
     @pulumi.getter(name="vrfLeaks")
@@ -744,7 +767,9 @@ class AwaitableGetRouterBgpResult(GetRouterBgpResult):
             router_id=self.router_id,
             scan_time=self.scan_time,
             synchronization=self.synchronization,
+            tag_resolve_mode=self.tag_resolve_mode,
             vdomparam=self.vdomparam,
+            vrf_leak6s=self.vrf_leak6s,
             vrf_leaks=self.vrf_leaks)
 
 
@@ -772,6 +797,8 @@ def get_router_bgp(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterBgp:GetRouterBgp', __args__, opts=opts, typ=GetRouterBgpResult).value
 
     return AwaitableGetRouterBgpResult(
@@ -833,5 +860,29 @@ def get_router_bgp(vdomparam: Optional[str] = None,
         router_id=__ret__.router_id,
         scan_time=__ret__.scan_time,
         synchronization=__ret__.synchronization,
+        tag_resolve_mode=__ret__.tag_resolve_mode,
         vdomparam=__ret__.vdomparam,
+        vrf_leak6s=__ret__.vrf_leak6s,
         vrf_leaks=__ret__.vrf_leaks)
+
+
+@_utilities.lift_output_func(get_router_bgp)
+def get_router_bgp_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterBgpResult]:
+    """
+    Use this data source to get information on fortios router bgp
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_fortios as fortios
+
+    sample1 = fortios.get_router_bgp()
+    pulumi.export("output1", sample1.neighbors)
+    ```
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

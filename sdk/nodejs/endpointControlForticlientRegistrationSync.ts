@@ -79,26 +79,24 @@ export class EndpointControlForticlientRegistrationSync extends pulumi.CustomRes
      */
     constructor(name: string, args: EndpointControlForticlientRegistrationSyncArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointControlForticlientRegistrationSyncArgs | EndpointControlForticlientRegistrationSyncState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointControlForticlientRegistrationSyncState | undefined;
-            inputs["peerIp"] = state ? state.peerIp : undefined;
-            inputs["peerName"] = state ? state.peerName : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["peerIp"] = state ? state.peerIp : undefined;
+            resourceInputs["peerName"] = state ? state.peerName : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlForticlientRegistrationSyncArgs | undefined;
             if ((!args || args.peerIp === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'peerIp'");
             }
-            inputs["peerIp"] = args ? args.peerIp : undefined;
-            inputs["peerName"] = args ? args.peerName : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["peerIp"] = args ? args.peerIp : undefined;
+            resourceInputs["peerName"] = args ? args.peerName : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EndpointControlForticlientRegistrationSync.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EndpointControlForticlientRegistrationSync.__pulumiType, name, resourceInputs, opts);
     }
 }
 

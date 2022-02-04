@@ -129,57 +129,55 @@ export class ExtenderControllerDataplan extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ExtenderControllerDataplanArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExtenderControllerDataplanArgs | ExtenderControllerDataplanState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExtenderControllerDataplanState | undefined;
-            inputs["apn"] = state ? state.apn : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["billingDate"] = state ? state.billingDate : undefined;
-            inputs["capacity"] = state ? state.capacity : undefined;
-            inputs["carrier"] = state ? state.carrier : undefined;
-            inputs["iccid"] = state ? state.iccid : undefined;
-            inputs["modemId"] = state ? state.modemId : undefined;
-            inputs["monthlyFee"] = state ? state.monthlyFee : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["overage"] = state ? state.overage : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["pdn"] = state ? state.pdn : undefined;
-            inputs["preferredSubnet"] = state ? state.preferredSubnet : undefined;
-            inputs["privateNetwork"] = state ? state.privateNetwork : undefined;
-            inputs["signalPeriod"] = state ? state.signalPeriod : undefined;
-            inputs["signalThreshold"] = state ? state.signalThreshold : undefined;
-            inputs["slot"] = state ? state.slot : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["apn"] = state ? state.apn : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["billingDate"] = state ? state.billingDate : undefined;
+            resourceInputs["capacity"] = state ? state.capacity : undefined;
+            resourceInputs["carrier"] = state ? state.carrier : undefined;
+            resourceInputs["iccid"] = state ? state.iccid : undefined;
+            resourceInputs["modemId"] = state ? state.modemId : undefined;
+            resourceInputs["monthlyFee"] = state ? state.monthlyFee : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overage"] = state ? state.overage : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["pdn"] = state ? state.pdn : undefined;
+            resourceInputs["preferredSubnet"] = state ? state.preferredSubnet : undefined;
+            resourceInputs["privateNetwork"] = state ? state.privateNetwork : undefined;
+            resourceInputs["signalPeriod"] = state ? state.signalPeriod : undefined;
+            resourceInputs["signalThreshold"] = state ? state.signalThreshold : undefined;
+            resourceInputs["slot"] = state ? state.slot : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as ExtenderControllerDataplanArgs | undefined;
-            inputs["apn"] = args ? args.apn : undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["billingDate"] = args ? args.billingDate : undefined;
-            inputs["capacity"] = args ? args.capacity : undefined;
-            inputs["carrier"] = args ? args.carrier : undefined;
-            inputs["iccid"] = args ? args.iccid : undefined;
-            inputs["modemId"] = args ? args.modemId : undefined;
-            inputs["monthlyFee"] = args ? args.monthlyFee : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["overage"] = args ? args.overage : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["pdn"] = args ? args.pdn : undefined;
-            inputs["preferredSubnet"] = args ? args.preferredSubnet : undefined;
-            inputs["privateNetwork"] = args ? args.privateNetwork : undefined;
-            inputs["signalPeriod"] = args ? args.signalPeriod : undefined;
-            inputs["signalThreshold"] = args ? args.signalThreshold : undefined;
-            inputs["slot"] = args ? args.slot : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["apn"] = args ? args.apn : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["billingDate"] = args ? args.billingDate : undefined;
+            resourceInputs["capacity"] = args ? args.capacity : undefined;
+            resourceInputs["carrier"] = args ? args.carrier : undefined;
+            resourceInputs["iccid"] = args ? args.iccid : undefined;
+            resourceInputs["modemId"] = args ? args.modemId : undefined;
+            resourceInputs["monthlyFee"] = args ? args.monthlyFee : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overage"] = args ? args.overage : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["pdn"] = args ? args.pdn : undefined;
+            resourceInputs["preferredSubnet"] = args ? args.preferredSubnet : undefined;
+            resourceInputs["privateNetwork"] = args ? args.privateNetwork : undefined;
+            resourceInputs["signalPeriod"] = args ? args.signalPeriod : undefined;
+            resourceInputs["signalThreshold"] = args ? args.signalThreshold : undefined;
+            resourceInputs["slot"] = args ? args.slot : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ExtenderControllerDataplan.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ExtenderControllerDataplan.__pulumiType, name, resourceInputs, opts);
     }
 }
 

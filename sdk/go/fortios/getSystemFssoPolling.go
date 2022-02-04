@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system fssopolling
 func LookupSystemFssoPolling(ctx *pulumi.Context, args *LookupSystemFssoPollingArgs, opts ...pulumi.InvokeOption) (*LookupSystemFssoPollingResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFssoPollingResult
 	err := ctx.Invoke("fortios:index/getSystemFssoPolling:GetSystemFssoPolling", args, &rv, opts...)
 	if err != nil {
@@ -36,4 +40,71 @@ type LookupSystemFssoPollingResult struct {
 	// Enable/disable FSSO Polling Mode.
 	Status    string  `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemFssoPollingOutput(ctx *pulumi.Context, args LookupSystemFssoPollingOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFssoPollingResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemFssoPollingResult, error) {
+			args := v.(LookupSystemFssoPollingArgs)
+			r, err := LookupSystemFssoPolling(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemFssoPollingResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemFssoPolling.
+type LookupSystemFssoPollingOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemFssoPollingOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemFssoPollingArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemFssoPolling.
+type LookupSystemFssoPollingResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemFssoPollingResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemFssoPollingResult)(nil)).Elem()
+}
+
+func (o LookupSystemFssoPollingResultOutput) ToLookupSystemFssoPollingResultOutput() LookupSystemFssoPollingResultOutput {
+	return o
+}
+
+func (o LookupSystemFssoPollingResultOutput) ToLookupSystemFssoPollingResultOutputWithContext(ctx context.Context) LookupSystemFssoPollingResultOutput {
+	return o
+}
+
+// Password to connect to FSSO Agent.
+func (o LookupSystemFssoPollingResultOutput) AuthPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.AuthPassword }).(pulumi.StringOutput)
+}
+
+// Enable/disable FSSO Agent Authentication.
+func (o LookupSystemFssoPollingResultOutput) Authentication() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.Authentication }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemFssoPollingResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Listening port to accept clients (1 - 65535).
+func (o LookupSystemFssoPollingResultOutput) ListeningPort() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemFssoPollingResult) int { return v.ListeningPort }).(pulumi.IntOutput)
+}
+
+// Enable/disable FSSO Polling Mode.
+func (o LookupSystemFssoPollingResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFssoPollingResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemFssoPollingResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemFssoPollingResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemFssoPollingResultOutput{})
 }

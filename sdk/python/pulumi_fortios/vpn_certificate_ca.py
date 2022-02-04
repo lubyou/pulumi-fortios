@@ -16,6 +16,7 @@ class VpnCertificateCaArgs:
                  ca: pulumi.Input[str],
                  auto_update_days: Optional[pulumi.Input[int]] = None,
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
+                 ca_identifier: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  range: Optional[pulumi.Input[str]] = None,
@@ -30,6 +31,7 @@ class VpnCertificateCaArgs:
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
         :param pulumi.Input[int] auto_update_days: Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
+        :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] range: Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
@@ -45,6 +47,8 @@ class VpnCertificateCaArgs:
             pulumi.set(__self__, "auto_update_days", auto_update_days)
         if auto_update_days_warning is not None:
             pulumi.set(__self__, "auto_update_days_warning", auto_update_days_warning)
+        if ca_identifier is not None:
+            pulumi.set(__self__, "ca_identifier", ca_identifier)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -99,6 +103,18 @@ class VpnCertificateCaArgs:
     @auto_update_days_warning.setter
     def auto_update_days_warning(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "auto_update_days_warning", value)
+
+    @property
+    @pulumi.getter(name="caIdentifier")
+    def ca_identifier(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA identifier of the SCEP server.
+        """
+        return pulumi.get(self, "ca_identifier")
+
+    @ca_identifier.setter
+    def ca_identifier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_identifier", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -215,6 +231,7 @@ class _VpnCertificateCaState:
                  auto_update_days: Optional[pulumi.Input[int]] = None,
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
+                 ca_identifier: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  range: Optional[pulumi.Input[str]] = None,
@@ -229,6 +246,7 @@ class _VpnCertificateCaState:
         :param pulumi.Input[int] auto_update_days: Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
+        :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] range: Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
@@ -245,6 +263,8 @@ class _VpnCertificateCaState:
             pulumi.set(__self__, "auto_update_days_warning", auto_update_days_warning)
         if ca is not None:
             pulumi.set(__self__, "ca", ca)
+        if ca_identifier is not None:
+            pulumi.set(__self__, "ca_identifier", ca_identifier)
         if last_updated is not None:
             pulumi.set(__self__, "last_updated", last_updated)
         if name is not None:
@@ -299,6 +319,18 @@ class _VpnCertificateCaState:
     @ca.setter
     def ca(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ca", value)
+
+    @property
+    @pulumi.getter(name="caIdentifier")
+    def ca_identifier(self) -> Optional[pulumi.Input[str]]:
+        """
+        CA identifier of the SCEP server.
+        """
+        return pulumi.get(self, "ca_identifier")
+
+    @ca_identifier.setter
+    def ca_identifier(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ca_identifier", value)
 
     @property
     @pulumi.getter(name="lastUpdated")
@@ -417,6 +449,7 @@ class VpnCertificateCa(pulumi.CustomResource):
                  auto_update_days: Optional[pulumi.Input[int]] = None,
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
+                 ca_identifier: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  range: Optional[pulumi.Input[str]] = None,
@@ -445,6 +478,7 @@ class VpnCertificateCa(pulumi.CustomResource):
         :param pulumi.Input[int] auto_update_days: Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
+        :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] range: Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
@@ -492,6 +526,7 @@ class VpnCertificateCa(pulumi.CustomResource):
                  auto_update_days: Optional[pulumi.Input[int]] = None,
                  auto_update_days_warning: Optional[pulumi.Input[int]] = None,
                  ca: Optional[pulumi.Input[str]] = None,
+                 ca_identifier: Optional[pulumi.Input[str]] = None,
                  last_updated: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  range: Optional[pulumi.Input[str]] = None,
@@ -508,6 +543,8 @@ class VpnCertificateCa(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -518,6 +555,7 @@ class VpnCertificateCa(pulumi.CustomResource):
             if ca is None and not opts.urn:
                 raise TypeError("Missing required property 'ca'")
             __props__.__dict__["ca"] = ca
+            __props__.__dict__["ca_identifier"] = ca_identifier
             __props__.__dict__["last_updated"] = last_updated
             __props__.__dict__["name"] = name
             __props__.__dict__["range"] = range
@@ -540,6 +578,7 @@ class VpnCertificateCa(pulumi.CustomResource):
             auto_update_days: Optional[pulumi.Input[int]] = None,
             auto_update_days_warning: Optional[pulumi.Input[int]] = None,
             ca: Optional[pulumi.Input[str]] = None,
+            ca_identifier: Optional[pulumi.Input[str]] = None,
             last_updated: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             range: Optional[pulumi.Input[str]] = None,
@@ -559,6 +598,7 @@ class VpnCertificateCa(pulumi.CustomResource):
         :param pulumi.Input[int] auto_update_days: Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[int] auto_update_days_warning: Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
         :param pulumi.Input[str] ca: CA certificate as a PEM file.
+        :param pulumi.Input[str] ca_identifier: CA identifier of the SCEP server.
         :param pulumi.Input[int] last_updated: Time at which CA was last updated.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] range: Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
@@ -576,6 +616,7 @@ class VpnCertificateCa(pulumi.CustomResource):
         __props__.__dict__["auto_update_days"] = auto_update_days
         __props__.__dict__["auto_update_days_warning"] = auto_update_days_warning
         __props__.__dict__["ca"] = ca
+        __props__.__dict__["ca_identifier"] = ca_identifier
         __props__.__dict__["last_updated"] = last_updated
         __props__.__dict__["name"] = name
         __props__.__dict__["range"] = range
@@ -610,6 +651,14 @@ class VpnCertificateCa(pulumi.CustomResource):
         CA certificate as a PEM file.
         """
         return pulumi.get(self, "ca")
+
+    @property
+    @pulumi.getter(name="caIdentifier")
+    def ca_identifier(self) -> pulumi.Output[str]:
+        """
+        CA identifier of the SCEP server.
+        """
+        return pulumi.get(self, "ca_identifier")
 
     @property
     @pulumi.getter(name="lastUpdated")

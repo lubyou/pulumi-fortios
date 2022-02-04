@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall internetservicedefinition
 func LookupFirewallInternetServiceDefinition(ctx *pulumi.Context, args *LookupFirewallInternetServiceDefinitionArgs, opts ...pulumi.InvokeOption) (*LookupFirewallInternetServiceDefinitionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallInternetServiceDefinitionResult
 	err := ctx.Invoke("fortios:index/getFirewallInternetServiceDefinition:GetFirewallInternetServiceDefinition", args, &rv, opts...)
 	if err != nil {
@@ -34,4 +38,65 @@ type LookupFirewallInternetServiceDefinitionResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallInternetServiceDefinitionOutput(ctx *pulumi.Context, args LookupFirewallInternetServiceDefinitionOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallInternetServiceDefinitionResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallInternetServiceDefinitionResult, error) {
+			args := v.(LookupFirewallInternetServiceDefinitionArgs)
+			r, err := LookupFirewallInternetServiceDefinition(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallInternetServiceDefinitionResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallInternetServiceDefinition.
+type LookupFirewallInternetServiceDefinitionOutputArgs struct {
+	// Specify the fosid of the desired firewall internetservicedefinition.
+	Fosid pulumi.IntInput `pulumi:"fosid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallInternetServiceDefinitionOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallInternetServiceDefinitionArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallInternetServiceDefinition.
+type LookupFirewallInternetServiceDefinitionResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallInternetServiceDefinitionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallInternetServiceDefinitionResult)(nil)).Elem()
+}
+
+func (o LookupFirewallInternetServiceDefinitionResultOutput) ToLookupFirewallInternetServiceDefinitionResultOutput() LookupFirewallInternetServiceDefinitionResultOutput {
+	return o
+}
+
+func (o LookupFirewallInternetServiceDefinitionResultOutput) ToLookupFirewallInternetServiceDefinitionResultOutputWithContext(ctx context.Context) LookupFirewallInternetServiceDefinitionResultOutput {
+	return o
+}
+
+// Protocol and port information in an Internet Service entry. The structure of `entry` block is documented below.
+func (o LookupFirewallInternetServiceDefinitionResultOutput) Entries() GetFirewallInternetServiceDefinitionEntryArrayOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceDefinitionResult) []GetFirewallInternetServiceDefinitionEntry {
+		return v.Entries
+	}).(GetFirewallInternetServiceDefinitionEntryArrayOutput)
+}
+
+// Internet Service application list ID.
+func (o LookupFirewallInternetServiceDefinitionResultOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceDefinitionResult) int { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallInternetServiceDefinitionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceDefinitionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallInternetServiceDefinitionResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallInternetServiceDefinitionResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallInternetServiceDefinitionResultOutput{})
 }

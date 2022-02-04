@@ -47,6 +47,14 @@ export class SystemVdomDns extends pulumi.CustomResource {
     }
 
     /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    public readonly altPrimary!: pulumi.Output<string>;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    public readonly altSecondary!: pulumi.Output<string>;
+    /**
      * Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
      */
     public readonly dnsOverTls!: pulumi.Output<string>;
@@ -75,6 +83,10 @@ export class SystemVdomDns extends pulumi.CustomResource {
      */
     public readonly primary!: pulumi.Output<string>;
     /**
+     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    public readonly protocol!: pulumi.Output<string>;
+    /**
      * Secondary DNS server IP address for the VDOM.
      */
     public readonly secondary!: pulumi.Output<string>;
@@ -82,6 +94,10 @@ export class SystemVdomDns extends pulumi.CustomResource {
      * DNS server host name list. The structure of `serverHostname` block is documented below.
      */
     public readonly serverHostnames!: pulumi.Output<outputs.SystemVdomDnsServerHostname[] | undefined>;
+    /**
+     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+     */
+    public readonly serverSelectMethod!: pulumi.Output<string>;
     /**
      * Source IP for communications with the DNS server.
      */
@@ -108,43 +124,49 @@ export class SystemVdomDns extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVdomDnsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVdomDnsArgs | SystemVdomDnsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVdomDnsState | undefined;
-            inputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ip6Primary"] = state ? state.ip6Primary : undefined;
-            inputs["ip6Secondary"] = state ? state.ip6Secondary : undefined;
-            inputs["primary"] = state ? state.primary : undefined;
-            inputs["secondary"] = state ? state.secondary : undefined;
-            inputs["serverHostnames"] = state ? state.serverHostnames : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslCertificate"] = state ? state.sslCertificate : undefined;
-            inputs["vdomDns"] = state ? state.vdomDns : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["altPrimary"] = state ? state.altPrimary : undefined;
+            resourceInputs["altSecondary"] = state ? state.altSecondary : undefined;
+            resourceInputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ip6Primary"] = state ? state.ip6Primary : undefined;
+            resourceInputs["ip6Secondary"] = state ? state.ip6Secondary : undefined;
+            resourceInputs["primary"] = state ? state.primary : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["secondary"] = state ? state.secondary : undefined;
+            resourceInputs["serverHostnames"] = state ? state.serverHostnames : undefined;
+            resourceInputs["serverSelectMethod"] = state ? state.serverSelectMethod : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
+            resourceInputs["vdomDns"] = state ? state.vdomDns : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemVdomDnsArgs | undefined;
-            inputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ip6Primary"] = args ? args.ip6Primary : undefined;
-            inputs["ip6Secondary"] = args ? args.ip6Secondary : undefined;
-            inputs["primary"] = args ? args.primary : undefined;
-            inputs["secondary"] = args ? args.secondary : undefined;
-            inputs["serverHostnames"] = args ? args.serverHostnames : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslCertificate"] = args ? args.sslCertificate : undefined;
-            inputs["vdomDns"] = args ? args.vdomDns : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["altPrimary"] = args ? args.altPrimary : undefined;
+            resourceInputs["altSecondary"] = args ? args.altSecondary : undefined;
+            resourceInputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ip6Primary"] = args ? args.ip6Primary : undefined;
+            resourceInputs["ip6Secondary"] = args ? args.ip6Secondary : undefined;
+            resourceInputs["primary"] = args ? args.primary : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["secondary"] = args ? args.secondary : undefined;
+            resourceInputs["serverHostnames"] = args ? args.serverHostnames : undefined;
+            resourceInputs["serverSelectMethod"] = args ? args.serverSelectMethod : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
+            resourceInputs["vdomDns"] = args ? args.vdomDns : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVdomDns.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVdomDns.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -152,6 +174,14 @@ export class SystemVdomDns extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVdomDns resources.
  */
 export interface SystemVdomDnsState {
+    /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    altPrimary?: pulumi.Input<string>;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    altSecondary?: pulumi.Input<string>;
     /**
      * Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
      */
@@ -181,6 +211,10 @@ export interface SystemVdomDnsState {
      */
     primary?: pulumi.Input<string>;
     /**
+     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
      * Secondary DNS server IP address for the VDOM.
      */
     secondary?: pulumi.Input<string>;
@@ -188,6 +222,10 @@ export interface SystemVdomDnsState {
      * DNS server host name list. The structure of `serverHostname` block is documented below.
      */
     serverHostnames?: pulumi.Input<pulumi.Input<inputs.SystemVdomDnsServerHostname>[]>;
+    /**
+     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+     */
+    serverSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP for communications with the DNS server.
      */
@@ -211,6 +249,14 @@ export interface SystemVdomDnsState {
  */
 export interface SystemVdomDnsArgs {
     /**
+     * Alternate primary DNS server. (This is not used as a failover DNS server.)
+     */
+    altPrimary?: pulumi.Input<string>;
+    /**
+     * Alternate secondary DNS server. (This is not used as a failover DNS server.)
+     */
+    altSecondary?: pulumi.Input<string>;
+    /**
      * Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
      */
     dnsOverTls?: pulumi.Input<string>;
@@ -239,6 +285,10 @@ export interface SystemVdomDnsArgs {
      */
     primary?: pulumi.Input<string>;
     /**
+     * DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    protocol?: pulumi.Input<string>;
+    /**
      * Secondary DNS server IP address for the VDOM.
      */
     secondary?: pulumi.Input<string>;
@@ -246,6 +296,10 @@ export interface SystemVdomDnsArgs {
      * DNS server host name list. The structure of `serverHostname` block is documented below.
      */
     serverHostnames?: pulumi.Input<pulumi.Input<inputs.SystemVdomDnsServerHostname>[]>;
+    /**
+     * Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+     */
+    serverSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP for communications with the DNS server.
      */

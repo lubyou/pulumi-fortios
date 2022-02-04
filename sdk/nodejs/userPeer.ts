@@ -126,45 +126,43 @@ export class UserPeer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserPeerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserPeerArgs | UserPeerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserPeerState | undefined;
-            inputs["ca"] = state ? state.ca : undefined;
-            inputs["cn"] = state ? state.cn : undefined;
-            inputs["cnType"] = state ? state.cnType : undefined;
-            inputs["ldapMode"] = state ? state.ldapMode : undefined;
-            inputs["ldapPassword"] = state ? state.ldapPassword : undefined;
-            inputs["ldapServer"] = state ? state.ldapServer : undefined;
-            inputs["ldapUsername"] = state ? state.ldapUsername : undefined;
-            inputs["mandatoryCaVerify"] = state ? state.mandatoryCaVerify : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["ocspOverrideServer"] = state ? state.ocspOverrideServer : undefined;
-            inputs["passwd"] = state ? state.passwd : undefined;
-            inputs["subject"] = state ? state.subject : undefined;
-            inputs["twoFactor"] = state ? state.twoFactor : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ca"] = state ? state.ca : undefined;
+            resourceInputs["cn"] = state ? state.cn : undefined;
+            resourceInputs["cnType"] = state ? state.cnType : undefined;
+            resourceInputs["ldapMode"] = state ? state.ldapMode : undefined;
+            resourceInputs["ldapPassword"] = state ? state.ldapPassword : undefined;
+            resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
+            resourceInputs["ldapUsername"] = state ? state.ldapUsername : undefined;
+            resourceInputs["mandatoryCaVerify"] = state ? state.mandatoryCaVerify : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["ocspOverrideServer"] = state ? state.ocspOverrideServer : undefined;
+            resourceInputs["passwd"] = state ? state.passwd : undefined;
+            resourceInputs["subject"] = state ? state.subject : undefined;
+            resourceInputs["twoFactor"] = state ? state.twoFactor : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserPeerArgs | undefined;
-            inputs["ca"] = args ? args.ca : undefined;
-            inputs["cn"] = args ? args.cn : undefined;
-            inputs["cnType"] = args ? args.cnType : undefined;
-            inputs["ldapMode"] = args ? args.ldapMode : undefined;
-            inputs["ldapPassword"] = args ? args.ldapPassword : undefined;
-            inputs["ldapServer"] = args ? args.ldapServer : undefined;
-            inputs["ldapUsername"] = args ? args.ldapUsername : undefined;
-            inputs["mandatoryCaVerify"] = args ? args.mandatoryCaVerify : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["ocspOverrideServer"] = args ? args.ocspOverrideServer : undefined;
-            inputs["passwd"] = args ? args.passwd : undefined;
-            inputs["subject"] = args ? args.subject : undefined;
-            inputs["twoFactor"] = args ? args.twoFactor : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ca"] = args ? args.ca : undefined;
+            resourceInputs["cn"] = args ? args.cn : undefined;
+            resourceInputs["cnType"] = args ? args.cnType : undefined;
+            resourceInputs["ldapMode"] = args ? args.ldapMode : undefined;
+            resourceInputs["ldapPassword"] = args ? args.ldapPassword : undefined;
+            resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
+            resourceInputs["ldapUsername"] = args ? args.ldapUsername : undefined;
+            resourceInputs["mandatoryCaVerify"] = args ? args.mandatoryCaVerify : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ocspOverrideServer"] = args ? args.ocspOverrideServer : undefined;
+            resourceInputs["passwd"] = args ? args.passwd : undefined;
+            resourceInputs["subject"] = args ? args.subject : undefined;
+            resourceInputs["twoFactor"] = args ? args.twoFactor : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserPeer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserPeer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

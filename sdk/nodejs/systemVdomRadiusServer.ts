@@ -71,28 +71,26 @@ export class SystemVdomRadiusServer extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemVdomRadiusServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVdomRadiusServerArgs | SystemVdomRadiusServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVdomRadiusServerState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["radiusServerVdom"] = state ? state.radiusServerVdom : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["radiusServerVdom"] = state ? state.radiusServerVdom : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemVdomRadiusServerArgs | undefined;
             if ((!args || args.radiusServerVdom === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'radiusServerVdom'");
             }
-            inputs["name"] = args ? args.name : undefined;
-            inputs["radiusServerVdom"] = args ? args.radiusServerVdom : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["radiusServerVdom"] = args ? args.radiusServerVdom : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVdomRadiusServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVdomRadiusServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

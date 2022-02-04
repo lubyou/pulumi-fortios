@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiGuard - AntiSpam.
+ * Configure FortiGuard - AntiSpam. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -71,25 +71,23 @@ export class EmailfilterFortishield extends pulumi.CustomResource {
      */
     constructor(name: string, args?: EmailfilterFortishieldArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EmailfilterFortishieldArgs | EmailfilterFortishieldState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EmailfilterFortishieldState | undefined;
-            inputs["spamSubmitForce"] = state ? state.spamSubmitForce : undefined;
-            inputs["spamSubmitSrv"] = state ? state.spamSubmitSrv : undefined;
-            inputs["spamSubmitTxt2htm"] = state ? state.spamSubmitTxt2htm : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["spamSubmitForce"] = state ? state.spamSubmitForce : undefined;
+            resourceInputs["spamSubmitSrv"] = state ? state.spamSubmitSrv : undefined;
+            resourceInputs["spamSubmitTxt2htm"] = state ? state.spamSubmitTxt2htm : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EmailfilterFortishieldArgs | undefined;
-            inputs["spamSubmitForce"] = args ? args.spamSubmitForce : undefined;
-            inputs["spamSubmitSrv"] = args ? args.spamSubmitSrv : undefined;
-            inputs["spamSubmitTxt2htm"] = args ? args.spamSubmitTxt2htm : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["spamSubmitForce"] = args ? args.spamSubmitForce : undefined;
+            resourceInputs["spamSubmitSrv"] = args ? args.spamSubmitSrv : undefined;
+            resourceInputs["spamSubmitTxt2htm"] = args ? args.spamSubmitTxt2htm : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EmailfilterFortishield.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EmailfilterFortishield.__pulumiType, name, resourceInputs, opts);
     }
 }
 

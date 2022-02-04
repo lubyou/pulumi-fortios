@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallInternetServiceCustomGroup`.
 func GetFirewallInternetServiceCustomGroupList(ctx *pulumi.Context, args *GetFirewallInternetServiceCustomGroupListArgs, opts ...pulumi.InvokeOption) (*GetFirewallInternetServiceCustomGroupListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallInternetServiceCustomGroupListResult
 	err := ctx.Invoke("fortios:index/getFirewallInternetServiceCustomGroupList:GetFirewallInternetServiceCustomGroupList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallInternetServiceCustomGroupListResult struct {
 	// A list of the `FirewallInternetServiceCustomGroup`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallInternetServiceCustomGroupListOutput(ctx *pulumi.Context, args GetFirewallInternetServiceCustomGroupListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallInternetServiceCustomGroupListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallInternetServiceCustomGroupListResult, error) {
+			args := v.(GetFirewallInternetServiceCustomGroupListArgs)
+			r, err := GetFirewallInternetServiceCustomGroupList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallInternetServiceCustomGroupListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallInternetServiceCustomGroupList.
+type GetFirewallInternetServiceCustomGroupListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallInternetServiceCustomGroupListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallInternetServiceCustomGroupListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallInternetServiceCustomGroupList.
+type GetFirewallInternetServiceCustomGroupListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallInternetServiceCustomGroupListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallInternetServiceCustomGroupListResult)(nil)).Elem()
+}
+
+func (o GetFirewallInternetServiceCustomGroupListResultOutput) ToGetFirewallInternetServiceCustomGroupListResultOutput() GetFirewallInternetServiceCustomGroupListResultOutput {
+	return o
+}
+
+func (o GetFirewallInternetServiceCustomGroupListResultOutput) ToGetFirewallInternetServiceCustomGroupListResultOutputWithContext(ctx context.Context) GetFirewallInternetServiceCustomGroupListResultOutput {
+	return o
+}
+
+func (o GetFirewallInternetServiceCustomGroupListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceCustomGroupListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallInternetServiceCustomGroupListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceCustomGroupListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallInternetServiceCustomGroup`.
+func (o GetFirewallInternetServiceCustomGroupListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceCustomGroupListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallInternetServiceCustomGroupListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceCustomGroupListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallInternetServiceCustomGroupListResultOutput{})
 }

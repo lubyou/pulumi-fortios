@@ -102,33 +102,31 @@ export class WanoptCacheService extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WanoptCacheServiceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptCacheServiceArgs | WanoptCacheServiceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptCacheServiceState | undefined;
-            inputs["acceptableConnections"] = state ? state.acceptableConnections : undefined;
-            inputs["collaboration"] = state ? state.collaboration : undefined;
-            inputs["deviceId"] = state ? state.deviceId : undefined;
-            inputs["dstPeers"] = state ? state.dstPeers : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["preferScenario"] = state ? state.preferScenario : undefined;
-            inputs["srcPeers"] = state ? state.srcPeers : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["acceptableConnections"] = state ? state.acceptableConnections : undefined;
+            resourceInputs["collaboration"] = state ? state.collaboration : undefined;
+            resourceInputs["deviceId"] = state ? state.deviceId : undefined;
+            resourceInputs["dstPeers"] = state ? state.dstPeers : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["preferScenario"] = state ? state.preferScenario : undefined;
+            resourceInputs["srcPeers"] = state ? state.srcPeers : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptCacheServiceArgs | undefined;
-            inputs["acceptableConnections"] = args ? args.acceptableConnections : undefined;
-            inputs["collaboration"] = args ? args.collaboration : undefined;
-            inputs["deviceId"] = args ? args.deviceId : undefined;
-            inputs["dstPeers"] = args ? args.dstPeers : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["preferScenario"] = args ? args.preferScenario : undefined;
-            inputs["srcPeers"] = args ? args.srcPeers : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["acceptableConnections"] = args ? args.acceptableConnections : undefined;
+            resourceInputs["collaboration"] = args ? args.collaboration : undefined;
+            resourceInputs["deviceId"] = args ? args.deviceId : undefined;
+            resourceInputs["dstPeers"] = args ? args.dstPeers : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["preferScenario"] = args ? args.preferScenario : undefined;
+            resourceInputs["srcPeers"] = args ? args.srcPeers : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptCacheService.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptCacheService.__pulumiType, name, resourceInputs, opts);
     }
 }
 

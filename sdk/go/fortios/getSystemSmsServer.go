@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system smsserver
 func LookupSystemSmsServer(ctx *pulumi.Context, args *LookupSystemSmsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemSmsServerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemSmsServerResult
 	err := ctx.Invoke("fortios:index/getSystemSmsServer:GetSystemSmsServer", args, &rv, opts...)
 	if err != nil {
@@ -34,4 +38,63 @@ type LookupSystemSmsServerResult struct {
 	// Name of SMS server.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemSmsServerOutput(ctx *pulumi.Context, args LookupSystemSmsServerOutputArgs, opts ...pulumi.InvokeOption) LookupSystemSmsServerResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemSmsServerResult, error) {
+			args := v.(LookupSystemSmsServerArgs)
+			r, err := LookupSystemSmsServer(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemSmsServerResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSmsServer.
+type LookupSystemSmsServerOutputArgs struct {
+	// Specify the name of the desired system smsserver.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemSmsServerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSmsServerArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSmsServer.
+type LookupSystemSmsServerResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemSmsServerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemSmsServerResult)(nil)).Elem()
+}
+
+func (o LookupSystemSmsServerResultOutput) ToLookupSystemSmsServerResultOutput() LookupSystemSmsServerResultOutput {
+	return o
+}
+
+func (o LookupSystemSmsServerResultOutput) ToLookupSystemSmsServerResultOutputWithContext(ctx context.Context) LookupSystemSmsServerResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemSmsServerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSmsServerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Email-to-SMS server domain name.
+func (o LookupSystemSmsServerResultOutput) MailServer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSmsServerResult) string { return v.MailServer }).(pulumi.StringOutput)
+}
+
+// Name of SMS server.
+func (o LookupSystemSmsServerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemSmsServerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemSmsServerResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemSmsServerResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemSmsServerResultOutput{})
 }

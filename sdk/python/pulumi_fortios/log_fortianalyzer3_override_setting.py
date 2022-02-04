@@ -32,6 +32,7 @@ class LogFortianalyzer3OverrideSettingArgs:
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzer3OverrideSettingSerialArgs']]]] = None,
@@ -64,6 +65,7 @@ class LogFortianalyzer3OverrideSettingArgs:
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
         :param pulumi.Input[str] override: Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['LogFortianalyzer3OverrideSettingSerialArgs']]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
@@ -112,6 +114,8 @@ class LogFortianalyzer3OverrideSettingArgs:
             pulumi.set(__self__, "monitor_keepalive_period", monitor_keepalive_period)
         if override is not None:
             pulumi.set(__self__, "override", override)
+        if preshared_key is not None:
+            pulumi.set(__self__, "preshared_key", preshared_key)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if reliable is not None:
@@ -342,6 +346,18 @@ class LogFortianalyzer3OverrideSettingArgs:
     @override.setter
     def override(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "override", value)
+
+    @property
+    @pulumi.getter(name="presharedKey")
+    def preshared_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preshared-key used for auto-authorization on FortiAnalyzer.
+        """
+        return pulumi.get(self, "preshared_key")
+
+    @preshared_key.setter
+    def preshared_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preshared_key", value)
 
     @property
     @pulumi.getter
@@ -520,6 +536,7 @@ class _LogFortianalyzer3OverrideSettingState:
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzer3OverrideSettingSerialArgs']]]] = None,
@@ -552,6 +569,7 @@ class _LogFortianalyzer3OverrideSettingState:
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
         :param pulumi.Input[str] override: Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['LogFortianalyzer3OverrideSettingSerialArgs']]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
@@ -600,6 +618,8 @@ class _LogFortianalyzer3OverrideSettingState:
             pulumi.set(__self__, "monitor_keepalive_period", monitor_keepalive_period)
         if override is not None:
             pulumi.set(__self__, "override", override)
+        if preshared_key is not None:
+            pulumi.set(__self__, "preshared_key", preshared_key)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
         if reliable is not None:
@@ -830,6 +850,18 @@ class _LogFortianalyzer3OverrideSettingState:
     @override.setter
     def override(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "override", value)
+
+    @property
+    @pulumi.getter(name="presharedKey")
+    def preshared_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preshared-key used for auto-authorization on FortiAnalyzer.
+        """
+        return pulumi.get(self, "preshared_key")
+
+    @preshared_key.setter
+    def preshared_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preshared_key", value)
 
     @property
     @pulumi.getter
@@ -1010,6 +1042,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzer3OverrideSettingSerialArgs']]]]] = None,
@@ -1081,6 +1114,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
         :param pulumi.Input[str] override: Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzer3OverrideSettingSerialArgs']]]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
@@ -1171,6 +1205,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
                  override: Optional[pulumi.Input[str]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
                  reliable: Optional[pulumi.Input[str]] = None,
                  serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzer3OverrideSettingSerialArgs']]]]] = None,
@@ -1191,6 +1226,8 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1213,6 +1250,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
             __props__.__dict__["monitor_failure_retry_period"] = monitor_failure_retry_period
             __props__.__dict__["monitor_keepalive_period"] = monitor_keepalive_period
             __props__.__dict__["override"] = override
+            __props__.__dict__["preshared_key"] = preshared_key
             __props__.__dict__["priority"] = priority
             __props__.__dict__["reliable"] = reliable
             __props__.__dict__["serials"] = serials
@@ -1253,6 +1291,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
             monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
             monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
             override: Optional[pulumi.Input[str]] = None,
+            preshared_key: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[str]] = None,
             reliable: Optional[pulumi.Input[str]] = None,
             serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzer3OverrideSettingSerialArgs']]]]] = None,
@@ -1290,6 +1329,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
         :param pulumi.Input[str] override: Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
         :param pulumi.Input[str] reliable: Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzer3OverrideSettingSerialArgs']]]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
@@ -1325,6 +1365,7 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
         __props__.__dict__["monitor_failure_retry_period"] = monitor_failure_retry_period
         __props__.__dict__["monitor_keepalive_period"] = monitor_keepalive_period
         __props__.__dict__["override"] = override
+        __props__.__dict__["preshared_key"] = preshared_key
         __props__.__dict__["priority"] = priority
         __props__.__dict__["reliable"] = reliable
         __props__.__dict__["serials"] = serials
@@ -1475,6 +1516,14 @@ class LogFortianalyzer3OverrideSetting(pulumi.CustomResource):
         Enable/disable overriding FortiAnalyzer settings or use global settings. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "override")
+
+    @property
+    @pulumi.getter(name="presharedKey")
+    def preshared_key(self) -> pulumi.Output[str]:
+        """
+        Preshared-key used for auto-authorization on FortiAnalyzer.
+        """
+        return pulumi.get(self, "preshared_key")
 
     @property
     @pulumi.getter

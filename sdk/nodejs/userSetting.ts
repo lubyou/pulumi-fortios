@@ -124,9 +124,17 @@ export class UserSetting extends pulumi.CustomResource {
      */
     public readonly authSslAllowRenegotiation!: pulumi.Output<string>;
     /**
+     * Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+     */
+    public readonly authSslMaxProtoVersion!: pulumi.Output<string>;
+    /**
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
      */
     public readonly authSslMinProtoVersion!: pulumi.Output<string>;
+    /**
+     * Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+     */
+    public readonly authSslSigalgs!: pulumi.Output<string>;
     /**
      * Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
      */
@@ -165,59 +173,61 @@ export class UserSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserSettingArgs | UserSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserSettingState | undefined;
-            inputs["authBlackoutTime"] = state ? state.authBlackoutTime : undefined;
-            inputs["authCaCert"] = state ? state.authCaCert : undefined;
-            inputs["authCert"] = state ? state.authCert : undefined;
-            inputs["authHttpBasic"] = state ? state.authHttpBasic : undefined;
-            inputs["authInvalidMax"] = state ? state.authInvalidMax : undefined;
-            inputs["authLockoutDuration"] = state ? state.authLockoutDuration : undefined;
-            inputs["authLockoutThreshold"] = state ? state.authLockoutThreshold : undefined;
-            inputs["authOnDemand"] = state ? state.authOnDemand : undefined;
-            inputs["authPortalTimeout"] = state ? state.authPortalTimeout : undefined;
-            inputs["authPorts"] = state ? state.authPorts : undefined;
-            inputs["authSecureHttp"] = state ? state.authSecureHttp : undefined;
-            inputs["authSrcMac"] = state ? state.authSrcMac : undefined;
-            inputs["authSslAllowRenegotiation"] = state ? state.authSslAllowRenegotiation : undefined;
-            inputs["authSslMinProtoVersion"] = state ? state.authSslMinProtoVersion : undefined;
-            inputs["authTimeout"] = state ? state.authTimeout : undefined;
-            inputs["authTimeoutType"] = state ? state.authTimeoutType : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["perPolicyDisclaimer"] = state ? state.perPolicyDisclaimer : undefined;
-            inputs["radiusSesTimeoutAct"] = state ? state.radiusSesTimeoutAct : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authBlackoutTime"] = state ? state.authBlackoutTime : undefined;
+            resourceInputs["authCaCert"] = state ? state.authCaCert : undefined;
+            resourceInputs["authCert"] = state ? state.authCert : undefined;
+            resourceInputs["authHttpBasic"] = state ? state.authHttpBasic : undefined;
+            resourceInputs["authInvalidMax"] = state ? state.authInvalidMax : undefined;
+            resourceInputs["authLockoutDuration"] = state ? state.authLockoutDuration : undefined;
+            resourceInputs["authLockoutThreshold"] = state ? state.authLockoutThreshold : undefined;
+            resourceInputs["authOnDemand"] = state ? state.authOnDemand : undefined;
+            resourceInputs["authPortalTimeout"] = state ? state.authPortalTimeout : undefined;
+            resourceInputs["authPorts"] = state ? state.authPorts : undefined;
+            resourceInputs["authSecureHttp"] = state ? state.authSecureHttp : undefined;
+            resourceInputs["authSrcMac"] = state ? state.authSrcMac : undefined;
+            resourceInputs["authSslAllowRenegotiation"] = state ? state.authSslAllowRenegotiation : undefined;
+            resourceInputs["authSslMaxProtoVersion"] = state ? state.authSslMaxProtoVersion : undefined;
+            resourceInputs["authSslMinProtoVersion"] = state ? state.authSslMinProtoVersion : undefined;
+            resourceInputs["authSslSigalgs"] = state ? state.authSslSigalgs : undefined;
+            resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
+            resourceInputs["authTimeoutType"] = state ? state.authTimeoutType : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["perPolicyDisclaimer"] = state ? state.perPolicyDisclaimer : undefined;
+            resourceInputs["radiusSesTimeoutAct"] = state ? state.radiusSesTimeoutAct : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserSettingArgs | undefined;
-            inputs["authBlackoutTime"] = args ? args.authBlackoutTime : undefined;
-            inputs["authCaCert"] = args ? args.authCaCert : undefined;
-            inputs["authCert"] = args ? args.authCert : undefined;
-            inputs["authHttpBasic"] = args ? args.authHttpBasic : undefined;
-            inputs["authInvalidMax"] = args ? args.authInvalidMax : undefined;
-            inputs["authLockoutDuration"] = args ? args.authLockoutDuration : undefined;
-            inputs["authLockoutThreshold"] = args ? args.authLockoutThreshold : undefined;
-            inputs["authOnDemand"] = args ? args.authOnDemand : undefined;
-            inputs["authPortalTimeout"] = args ? args.authPortalTimeout : undefined;
-            inputs["authPorts"] = args ? args.authPorts : undefined;
-            inputs["authSecureHttp"] = args ? args.authSecureHttp : undefined;
-            inputs["authSrcMac"] = args ? args.authSrcMac : undefined;
-            inputs["authSslAllowRenegotiation"] = args ? args.authSslAllowRenegotiation : undefined;
-            inputs["authSslMinProtoVersion"] = args ? args.authSslMinProtoVersion : undefined;
-            inputs["authTimeout"] = args ? args.authTimeout : undefined;
-            inputs["authTimeoutType"] = args ? args.authTimeoutType : undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["perPolicyDisclaimer"] = args ? args.perPolicyDisclaimer : undefined;
-            inputs["radiusSesTimeoutAct"] = args ? args.radiusSesTimeoutAct : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authBlackoutTime"] = args ? args.authBlackoutTime : undefined;
+            resourceInputs["authCaCert"] = args ? args.authCaCert : undefined;
+            resourceInputs["authCert"] = args ? args.authCert : undefined;
+            resourceInputs["authHttpBasic"] = args ? args.authHttpBasic : undefined;
+            resourceInputs["authInvalidMax"] = args ? args.authInvalidMax : undefined;
+            resourceInputs["authLockoutDuration"] = args ? args.authLockoutDuration : undefined;
+            resourceInputs["authLockoutThreshold"] = args ? args.authLockoutThreshold : undefined;
+            resourceInputs["authOnDemand"] = args ? args.authOnDemand : undefined;
+            resourceInputs["authPortalTimeout"] = args ? args.authPortalTimeout : undefined;
+            resourceInputs["authPorts"] = args ? args.authPorts : undefined;
+            resourceInputs["authSecureHttp"] = args ? args.authSecureHttp : undefined;
+            resourceInputs["authSrcMac"] = args ? args.authSrcMac : undefined;
+            resourceInputs["authSslAllowRenegotiation"] = args ? args.authSslAllowRenegotiation : undefined;
+            resourceInputs["authSslMaxProtoVersion"] = args ? args.authSslMaxProtoVersion : undefined;
+            resourceInputs["authSslMinProtoVersion"] = args ? args.authSslMinProtoVersion : undefined;
+            resourceInputs["authSslSigalgs"] = args ? args.authSslSigalgs : undefined;
+            resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
+            resourceInputs["authTimeoutType"] = args ? args.authTimeoutType : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["perPolicyDisclaimer"] = args ? args.perPolicyDisclaimer : undefined;
+            resourceInputs["radiusSesTimeoutAct"] = args ? args.radiusSesTimeoutAct : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -278,9 +288,17 @@ export interface UserSettingState {
      */
     authSslAllowRenegotiation?: pulumi.Input<string>;
     /**
+     * Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+     */
+    authSslMaxProtoVersion?: pulumi.Input<string>;
+    /**
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
      */
     authSslMinProtoVersion?: pulumi.Input<string>;
+    /**
+     * Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+     */
+    authSslSigalgs?: pulumi.Input<string>;
     /**
      * Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
      */
@@ -368,9 +386,17 @@ export interface UserSettingArgs {
      */
     authSslAllowRenegotiation?: pulumi.Input<string>;
     /**
+     * Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+     */
+    authSslMaxProtoVersion?: pulumi.Input<string>;
+    /**
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
      */
     authSslMinProtoVersion?: pulumi.Input<string>;
+    /**
+     * Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+     */
+    authSslSigalgs?: pulumi.Input<string>;
     /**
      * Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
      */

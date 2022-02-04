@@ -234,55 +234,53 @@ export class FirewallProfileProtocolOptions extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallProfileProtocolOptionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallProfileProtocolOptionsArgs | FirewallProfileProtocolOptionsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallProfileProtocolOptionsState | undefined;
-            inputs["cifs"] = state ? state.cifs : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dns"] = state ? state.dns : undefined;
-            inputs["featureSet"] = state ? state.featureSet : undefined;
-            inputs["ftp"] = state ? state.ftp : undefined;
-            inputs["http"] = state ? state.http : undefined;
-            inputs["imap"] = state ? state.imap : undefined;
-            inputs["mailSignature"] = state ? state.mailSignature : undefined;
-            inputs["mapi"] = state ? state.mapi : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nntp"] = state ? state.nntp : undefined;
-            inputs["oversizeLog"] = state ? state.oversizeLog : undefined;
-            inputs["pop3"] = state ? state.pop3 : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["rpcOverHttp"] = state ? state.rpcOverHttp : undefined;
-            inputs["smtp"] = state ? state.smtp : undefined;
-            inputs["ssh"] = state ? state.ssh : undefined;
-            inputs["switchingProtocolsLog"] = state ? state.switchingProtocolsLog : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cifs"] = state ? state.cifs : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dns"] = state ? state.dns : undefined;
+            resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["ftp"] = state ? state.ftp : undefined;
+            resourceInputs["http"] = state ? state.http : undefined;
+            resourceInputs["imap"] = state ? state.imap : undefined;
+            resourceInputs["mailSignature"] = state ? state.mailSignature : undefined;
+            resourceInputs["mapi"] = state ? state.mapi : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nntp"] = state ? state.nntp : undefined;
+            resourceInputs["oversizeLog"] = state ? state.oversizeLog : undefined;
+            resourceInputs["pop3"] = state ? state.pop3 : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["rpcOverHttp"] = state ? state.rpcOverHttp : undefined;
+            resourceInputs["smtp"] = state ? state.smtp : undefined;
+            resourceInputs["ssh"] = state ? state.ssh : undefined;
+            resourceInputs["switchingProtocolsLog"] = state ? state.switchingProtocolsLog : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallProfileProtocolOptionsArgs | undefined;
-            inputs["cifs"] = args ? args.cifs : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dns"] = args ? args.dns : undefined;
-            inputs["featureSet"] = args ? args.featureSet : undefined;
-            inputs["ftp"] = args ? args.ftp : undefined;
-            inputs["http"] = args ? args.http : undefined;
-            inputs["imap"] = args ? args.imap : undefined;
-            inputs["mailSignature"] = args ? args.mailSignature : undefined;
-            inputs["mapi"] = args ? args.mapi : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nntp"] = args ? args.nntp : undefined;
-            inputs["oversizeLog"] = args ? args.oversizeLog : undefined;
-            inputs["pop3"] = args ? args.pop3 : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["rpcOverHttp"] = args ? args.rpcOverHttp : undefined;
-            inputs["smtp"] = args ? args.smtp : undefined;
-            inputs["ssh"] = args ? args.ssh : undefined;
-            inputs["switchingProtocolsLog"] = args ? args.switchingProtocolsLog : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cifs"] = args ? args.cifs : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dns"] = args ? args.dns : undefined;
+            resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["ftp"] = args ? args.ftp : undefined;
+            resourceInputs["http"] = args ? args.http : undefined;
+            resourceInputs["imap"] = args ? args.imap : undefined;
+            resourceInputs["mailSignature"] = args ? args.mailSignature : undefined;
+            resourceInputs["mapi"] = args ? args.mapi : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nntp"] = args ? args.nntp : undefined;
+            resourceInputs["oversizeLog"] = args ? args.oversizeLog : undefined;
+            resourceInputs["pop3"] = args ? args.pop3 : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["rpcOverHttp"] = args ? args.rpcOverHttp : undefined;
+            resourceInputs["smtp"] = args ? args.smtp : undefined;
+            resourceInputs["ssh"] = args ? args.ssh : undefined;
+            resourceInputs["switchingProtocolsLog"] = args ? args.switchingProtocolsLog : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallProfileProtocolOptions.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallProfileProtocolOptions.__pulumiType, name, resourceInputs, opts);
     }
 }
 

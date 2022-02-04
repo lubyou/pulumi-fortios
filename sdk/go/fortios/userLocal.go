@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -129,6 +129,8 @@ type UserLocal struct {
 	UsernameCaseInsensitivity pulumi.StringOutput `pulumi:"usernameCaseInsensitivity"`
 	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 	UsernameCaseSensitivity pulumi.StringOutput `pulumi:"usernameCaseSensitivity"`
+	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+	UsernameSensitivity pulumi.StringOutput `pulumi:"usernameSensitivity"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
@@ -148,6 +150,7 @@ func NewUserLocal(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserLocal
 	err := ctx.RegisterResource("fortios:index/userLocal:UserLocal", name, args, &resource, opts...)
 	if err != nil {
@@ -220,6 +223,8 @@ type userLocalState struct {
 	UsernameCaseInsensitivity *string `pulumi:"usernameCaseInsensitivity"`
 	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 	UsernameCaseSensitivity *string `pulumi:"usernameCaseSensitivity"`
+	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+	UsernameSensitivity *string `pulumi:"usernameSensitivity"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
@@ -277,6 +282,8 @@ type UserLocalState struct {
 	UsernameCaseInsensitivity pulumi.StringPtrInput
 	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 	UsernameCaseSensitivity pulumi.StringPtrInput
+	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+	UsernameSensitivity pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
@@ -338,6 +345,8 @@ type userLocalArgs struct {
 	UsernameCaseInsensitivity *string `pulumi:"usernameCaseInsensitivity"`
 	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 	UsernameCaseSensitivity *string `pulumi:"usernameCaseSensitivity"`
+	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+	UsernameSensitivity *string `pulumi:"usernameSensitivity"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
@@ -396,6 +405,8 @@ type UserLocalArgs struct {
 	UsernameCaseInsensitivity pulumi.StringPtrInput
 	// Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 	UsernameCaseSensitivity pulumi.StringPtrInput
+	// Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+	UsernameSensitivity pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
@@ -414,7 +425,7 @@ type UserLocalInput interface {
 }
 
 func (*UserLocal) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserLocal)(nil))
+	return reflect.TypeOf((**UserLocal)(nil)).Elem()
 }
 
 func (i *UserLocal) ToUserLocalOutput() UserLocalOutput {
@@ -423,35 +434,6 @@ func (i *UserLocal) ToUserLocalOutput() UserLocalOutput {
 
 func (i *UserLocal) ToUserLocalOutputWithContext(ctx context.Context) UserLocalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserLocalOutput)
-}
-
-func (i *UserLocal) ToUserLocalPtrOutput() UserLocalPtrOutput {
-	return i.ToUserLocalPtrOutputWithContext(context.Background())
-}
-
-func (i *UserLocal) ToUserLocalPtrOutputWithContext(ctx context.Context) UserLocalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserLocalPtrOutput)
-}
-
-type UserLocalPtrInput interface {
-	pulumi.Input
-
-	ToUserLocalPtrOutput() UserLocalPtrOutput
-	ToUserLocalPtrOutputWithContext(ctx context.Context) UserLocalPtrOutput
-}
-
-type userLocalPtrType UserLocalArgs
-
-func (*userLocalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserLocal)(nil))
-}
-
-func (i *userLocalPtrType) ToUserLocalPtrOutput() UserLocalPtrOutput {
-	return i.ToUserLocalPtrOutputWithContext(context.Background())
-}
-
-func (i *userLocalPtrType) ToUserLocalPtrOutputWithContext(ctx context.Context) UserLocalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserLocalPtrOutput)
 }
 
 // UserLocalArrayInput is an input type that accepts UserLocalArray and UserLocalArrayOutput values.
@@ -468,7 +450,7 @@ type UserLocalArrayInput interface {
 type UserLocalArray []UserLocalInput
 
 func (UserLocalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserLocal)(nil))
+	return reflect.TypeOf((*[]*UserLocal)(nil)).Elem()
 }
 
 func (i UserLocalArray) ToUserLocalArrayOutput() UserLocalArrayOutput {
@@ -493,7 +475,7 @@ type UserLocalMapInput interface {
 type UserLocalMap map[string]UserLocalInput
 
 func (UserLocalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserLocal)(nil))
+	return reflect.TypeOf((*map[string]*UserLocal)(nil)).Elem()
 }
 
 func (i UserLocalMap) ToUserLocalMapOutput() UserLocalMapOutput {
@@ -504,12 +486,10 @@ func (i UserLocalMap) ToUserLocalMapOutputWithContext(ctx context.Context) UserL
 	return pulumi.ToOutputWithContext(ctx, i).(UserLocalMapOutput)
 }
 
-type UserLocalOutput struct {
-	*pulumi.OutputState
-}
+type UserLocalOutput struct{ *pulumi.OutputState }
 
 func (UserLocalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserLocal)(nil))
+	return reflect.TypeOf((**UserLocal)(nil)).Elem()
 }
 
 func (o UserLocalOutput) ToUserLocalOutput() UserLocalOutput {
@@ -520,36 +500,10 @@ func (o UserLocalOutput) ToUserLocalOutputWithContext(ctx context.Context) UserL
 	return o
 }
 
-func (o UserLocalOutput) ToUserLocalPtrOutput() UserLocalPtrOutput {
-	return o.ToUserLocalPtrOutputWithContext(context.Background())
-}
-
-func (o UserLocalOutput) ToUserLocalPtrOutputWithContext(ctx context.Context) UserLocalPtrOutput {
-	return o.ApplyT(func(v UserLocal) *UserLocal {
-		return &v
-	}).(UserLocalPtrOutput)
-}
-
-type UserLocalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserLocalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserLocal)(nil))
-}
-
-func (o UserLocalPtrOutput) ToUserLocalPtrOutput() UserLocalPtrOutput {
-	return o
-}
-
-func (o UserLocalPtrOutput) ToUserLocalPtrOutputWithContext(ctx context.Context) UserLocalPtrOutput {
-	return o
-}
-
 type UserLocalArrayOutput struct{ *pulumi.OutputState }
 
 func (UserLocalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserLocal)(nil))
+	return reflect.TypeOf((*[]*UserLocal)(nil)).Elem()
 }
 
 func (o UserLocalArrayOutput) ToUserLocalArrayOutput() UserLocalArrayOutput {
@@ -561,15 +515,15 @@ func (o UserLocalArrayOutput) ToUserLocalArrayOutputWithContext(ctx context.Cont
 }
 
 func (o UserLocalArrayOutput) Index(i pulumi.IntInput) UserLocalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserLocal {
-		return vs[0].([]UserLocal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserLocal {
+		return vs[0].([]*UserLocal)[vs[1].(int)]
 	}).(UserLocalOutput)
 }
 
 type UserLocalMapOutput struct{ *pulumi.OutputState }
 
 func (UserLocalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserLocal)(nil))
+	return reflect.TypeOf((*map[string]*UserLocal)(nil)).Elem()
 }
 
 func (o UserLocalMapOutput) ToUserLocalMapOutput() UserLocalMapOutput {
@@ -581,14 +535,16 @@ func (o UserLocalMapOutput) ToUserLocalMapOutputWithContext(ctx context.Context)
 }
 
 func (o UserLocalMapOutput) MapIndex(k pulumi.StringInput) UserLocalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserLocal {
-		return vs[0].(map[string]UserLocal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserLocal {
+		return vs[0].(map[string]*UserLocal)[vs[1].(string)]
 	}).(UserLocalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserLocalInput)(nil)).Elem(), &UserLocal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserLocalArrayInput)(nil)).Elem(), UserLocalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserLocalMapInput)(nil)).Elem(), UserLocalMap{})
 	pulumi.RegisterOutputType(UserLocalOutput{})
-	pulumi.RegisterOutputType(UserLocalPtrOutput{})
 	pulumi.RegisterOutputType(UserLocalArrayOutput{})
 	pulumi.RegisterOutputType(UserLocalMapOutput{})
 }

@@ -14,9 +14,7 @@ export function getSystemNat64(args?: GetSystemNat64Args, opts?: pulumi.InvokeOp
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemNat64:GetSystemNat64", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -69,4 +67,18 @@ export interface GetSystemNat64Result {
      */
     readonly status: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemNat64Output(args?: GetSystemNat64OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemNat64Result> {
+    return pulumi.output(args).apply(a => getSystemNat64(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemNat64.
+ */
+export interface GetSystemNat64OutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

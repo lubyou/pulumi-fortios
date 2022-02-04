@@ -30,6 +30,8 @@ type FirewallVendorMac struct {
 	MacNumber pulumi.IntOutput `pulumi:"macNumber"`
 	// Vendor name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Indicates whether the Vendor ID can be used.
+	Obsolete pulumi.IntOutput `pulumi:"obsolete"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -41,6 +43,7 @@ func NewFirewallVendorMac(ctx *pulumi.Context,
 		args = &FirewallVendorMacArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallVendorMac
 	err := ctx.RegisterResource("fortios:index/firewallVendorMac:FirewallVendorMac", name, args, &resource, opts...)
 	if err != nil {
@@ -69,6 +72,8 @@ type firewallVendorMacState struct {
 	MacNumber *int `pulumi:"macNumber"`
 	// Vendor name.
 	Name *string `pulumi:"name"`
+	// Indicates whether the Vendor ID can be used.
+	Obsolete *int `pulumi:"obsolete"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -80,6 +85,8 @@ type FirewallVendorMacState struct {
 	MacNumber pulumi.IntPtrInput
 	// Vendor name.
 	Name pulumi.StringPtrInput
+	// Indicates whether the Vendor ID can be used.
+	Obsolete pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -95,6 +102,8 @@ type firewallVendorMacArgs struct {
 	MacNumber *int `pulumi:"macNumber"`
 	// Vendor name.
 	Name *string `pulumi:"name"`
+	// Indicates whether the Vendor ID can be used.
+	Obsolete *int `pulumi:"obsolete"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -107,6 +116,8 @@ type FirewallVendorMacArgs struct {
 	MacNumber pulumi.IntPtrInput
 	// Vendor name.
 	Name pulumi.StringPtrInput
+	// Indicates whether the Vendor ID can be used.
+	Obsolete pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -123,7 +134,7 @@ type FirewallVendorMacInput interface {
 }
 
 func (*FirewallVendorMac) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVendorMac)(nil))
+	return reflect.TypeOf((**FirewallVendorMac)(nil)).Elem()
 }
 
 func (i *FirewallVendorMac) ToFirewallVendorMacOutput() FirewallVendorMacOutput {
@@ -132,35 +143,6 @@ func (i *FirewallVendorMac) ToFirewallVendorMacOutput() FirewallVendorMacOutput 
 
 func (i *FirewallVendorMac) ToFirewallVendorMacOutputWithContext(ctx context.Context) FirewallVendorMacOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacOutput)
-}
-
-func (i *FirewallVendorMac) ToFirewallVendorMacPtrOutput() FirewallVendorMacPtrOutput {
-	return i.ToFirewallVendorMacPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallVendorMac) ToFirewallVendorMacPtrOutputWithContext(ctx context.Context) FirewallVendorMacPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacPtrOutput)
-}
-
-type FirewallVendorMacPtrInput interface {
-	pulumi.Input
-
-	ToFirewallVendorMacPtrOutput() FirewallVendorMacPtrOutput
-	ToFirewallVendorMacPtrOutputWithContext(ctx context.Context) FirewallVendorMacPtrOutput
-}
-
-type firewallVendorMacPtrType FirewallVendorMacArgs
-
-func (*firewallVendorMacPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVendorMac)(nil))
-}
-
-func (i *firewallVendorMacPtrType) ToFirewallVendorMacPtrOutput() FirewallVendorMacPtrOutput {
-	return i.ToFirewallVendorMacPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallVendorMacPtrType) ToFirewallVendorMacPtrOutputWithContext(ctx context.Context) FirewallVendorMacPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacPtrOutput)
 }
 
 // FirewallVendorMacArrayInput is an input type that accepts FirewallVendorMacArray and FirewallVendorMacArrayOutput values.
@@ -177,7 +159,7 @@ type FirewallVendorMacArrayInput interface {
 type FirewallVendorMacArray []FirewallVendorMacInput
 
 func (FirewallVendorMacArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallVendorMac)(nil))
+	return reflect.TypeOf((*[]*FirewallVendorMac)(nil)).Elem()
 }
 
 func (i FirewallVendorMacArray) ToFirewallVendorMacArrayOutput() FirewallVendorMacArrayOutput {
@@ -202,7 +184,7 @@ type FirewallVendorMacMapInput interface {
 type FirewallVendorMacMap map[string]FirewallVendorMacInput
 
 func (FirewallVendorMacMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallVendorMac)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVendorMac)(nil)).Elem()
 }
 
 func (i FirewallVendorMacMap) ToFirewallVendorMacMapOutput() FirewallVendorMacMapOutput {
@@ -213,12 +195,10 @@ func (i FirewallVendorMacMap) ToFirewallVendorMacMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVendorMacMapOutput)
 }
 
-type FirewallVendorMacOutput struct {
-	*pulumi.OutputState
-}
+type FirewallVendorMacOutput struct{ *pulumi.OutputState }
 
 func (FirewallVendorMacOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVendorMac)(nil))
+	return reflect.TypeOf((**FirewallVendorMac)(nil)).Elem()
 }
 
 func (o FirewallVendorMacOutput) ToFirewallVendorMacOutput() FirewallVendorMacOutput {
@@ -229,36 +209,10 @@ func (o FirewallVendorMacOutput) ToFirewallVendorMacOutputWithContext(ctx contex
 	return o
 }
 
-func (o FirewallVendorMacOutput) ToFirewallVendorMacPtrOutput() FirewallVendorMacPtrOutput {
-	return o.ToFirewallVendorMacPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallVendorMacOutput) ToFirewallVendorMacPtrOutputWithContext(ctx context.Context) FirewallVendorMacPtrOutput {
-	return o.ApplyT(func(v FirewallVendorMac) *FirewallVendorMac {
-		return &v
-	}).(FirewallVendorMacPtrOutput)
-}
-
-type FirewallVendorMacPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallVendorMacPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVendorMac)(nil))
-}
-
-func (o FirewallVendorMacPtrOutput) ToFirewallVendorMacPtrOutput() FirewallVendorMacPtrOutput {
-	return o
-}
-
-func (o FirewallVendorMacPtrOutput) ToFirewallVendorMacPtrOutputWithContext(ctx context.Context) FirewallVendorMacPtrOutput {
-	return o
-}
-
 type FirewallVendorMacArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallVendorMacArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallVendorMac)(nil))
+	return reflect.TypeOf((*[]*FirewallVendorMac)(nil)).Elem()
 }
 
 func (o FirewallVendorMacArrayOutput) ToFirewallVendorMacArrayOutput() FirewallVendorMacArrayOutput {
@@ -270,15 +224,15 @@ func (o FirewallVendorMacArrayOutput) ToFirewallVendorMacArrayOutputWithContext(
 }
 
 func (o FirewallVendorMacArrayOutput) Index(i pulumi.IntInput) FirewallVendorMacOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallVendorMac {
-		return vs[0].([]FirewallVendorMac)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVendorMac {
+		return vs[0].([]*FirewallVendorMac)[vs[1].(int)]
 	}).(FirewallVendorMacOutput)
 }
 
 type FirewallVendorMacMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallVendorMacMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallVendorMac)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVendorMac)(nil)).Elem()
 }
 
 func (o FirewallVendorMacMapOutput) ToFirewallVendorMacMapOutput() FirewallVendorMacMapOutput {
@@ -290,14 +244,16 @@ func (o FirewallVendorMacMapOutput) ToFirewallVendorMacMapOutputWithContext(ctx 
 }
 
 func (o FirewallVendorMacMapOutput) MapIndex(k pulumi.StringInput) FirewallVendorMacOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallVendorMac {
-		return vs[0].(map[string]FirewallVendorMac)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallVendorMac {
+		return vs[0].(map[string]*FirewallVendorMac)[vs[1].(string)]
 	}).(FirewallVendorMacOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVendorMacInput)(nil)).Elem(), &FirewallVendorMac{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVendorMacArrayInput)(nil)).Elem(), FirewallVendorMacArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVendorMacMapInput)(nil)).Elem(), FirewallVendorMacMap{})
 	pulumi.RegisterOutputType(FirewallVendorMacOutput{})
-	pulumi.RegisterOutputType(FirewallVendorMacPtrOutput{})
 	pulumi.RegisterOutputType(FirewallVendorMacArrayOutput{})
 	pulumi.RegisterOutputType(FirewallVendorMacMapOutput{})
 }

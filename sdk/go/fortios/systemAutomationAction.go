@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -100,6 +100,8 @@ type SystemAutomationAction struct {
 	AzureFunctionAuthorization pulumi.StringOutput `pulumi:"azureFunctionAuthorization"`
 	// Delay before execution (in seconds).
 	Delay pulumi.IntOutput `pulumi:"delay"`
+	// Description.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Email body.
@@ -110,6 +112,8 @@ type SystemAutomationAction struct {
 	EmailSubject pulumi.StringPtrOutput `pulumi:"emailSubject"`
 	// Email addresses. The structure of `emailTo` block is documented below.
 	EmailTos SystemAutomationActionEmailToArrayOutput `pulumi:"emailTos"`
+	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+	ExecuteSecurityFabric pulumi.StringOutput `pulumi:"executeSecurityFabric"`
 	// Google Cloud function name.
 	GcpFunction pulumi.StringOutput `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -124,6 +128,8 @@ type SystemAutomationAction struct {
 	HttpBody pulumi.StringPtrOutput `pulumi:"httpBody"`
 	// Message content.
 	Message pulumi.StringOutput `pulumi:"message"`
+	// Message type. Valid values: `text`, `json`.
+	MessageType pulumi.StringOutput `pulumi:"messageType"`
 	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
 	Method pulumi.StringOutput `pulumi:"method"`
 	// Limit execution to no more than once in this interval (in seconds).
@@ -136,6 +142,8 @@ type SystemAutomationAction struct {
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// Enable/disable replacement message. Valid values: `enable`, `disable`.
 	ReplacementMessage pulumi.StringOutput `pulumi:"replacementMessage"`
+	// Replacement message group.
+	ReplacemsgGroup pulumi.StringOutput `pulumi:"replacemsgGroup"`
 	// Required in action chain. Valid values: `enable`, `disable`.
 	Required pulumi.StringOutput `pulumi:"required"`
 	// CLI script.
@@ -150,6 +158,8 @@ type SystemAutomationAction struct {
 	Uri pulumi.StringPtrOutput `pulumi:"uri"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+	VerifyHostCert pulumi.StringOutput `pulumi:"verifyHostCert"`
 }
 
 // NewSystemAutomationAction registers a new resource with the given unique name, arguments, and options.
@@ -159,6 +169,7 @@ func NewSystemAutomationAction(ctx *pulumi.Context,
 		args = &SystemAutomationActionArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutomationAction
 	err := ctx.RegisterResource("fortios:index/systemAutomationAction:SystemAutomationAction", name, args, &resource, opts...)
 	if err != nil {
@@ -227,6 +238,8 @@ type systemAutomationActionState struct {
 	AzureFunctionAuthorization *string `pulumi:"azureFunctionAuthorization"`
 	// Delay before execution (in seconds).
 	Delay *int `pulumi:"delay"`
+	// Description.
+	Description *string `pulumi:"description"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Email body.
@@ -237,6 +250,8 @@ type systemAutomationActionState struct {
 	EmailSubject *string `pulumi:"emailSubject"`
 	// Email addresses. The structure of `emailTo` block is documented below.
 	EmailTos []SystemAutomationActionEmailTo `pulumi:"emailTos"`
+	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+	ExecuteSecurityFabric *string `pulumi:"executeSecurityFabric"`
 	// Google Cloud function name.
 	GcpFunction *string `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -251,6 +266,8 @@ type systemAutomationActionState struct {
 	HttpBody *string `pulumi:"httpBody"`
 	// Message content.
 	Message *string `pulumi:"message"`
+	// Message type. Valid values: `text`, `json`.
+	MessageType *string `pulumi:"messageType"`
 	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
 	Method *string `pulumi:"method"`
 	// Limit execution to no more than once in this interval (in seconds).
@@ -263,6 +280,8 @@ type systemAutomationActionState struct {
 	Protocol *string `pulumi:"protocol"`
 	// Enable/disable replacement message. Valid values: `enable`, `disable`.
 	ReplacementMessage *string `pulumi:"replacementMessage"`
+	// Replacement message group.
+	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
 	// Required in action chain. Valid values: `enable`, `disable`.
 	Required *string `pulumi:"required"`
 	// CLI script.
@@ -277,6 +296,8 @@ type systemAutomationActionState struct {
 	Uri *string `pulumi:"uri"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+	VerifyHostCert *string `pulumi:"verifyHostCert"`
 }
 
 type SystemAutomationActionState struct {
@@ -326,6 +347,8 @@ type SystemAutomationActionState struct {
 	AzureFunctionAuthorization pulumi.StringPtrInput
 	// Delay before execution (in seconds).
 	Delay pulumi.IntPtrInput
+	// Description.
+	Description pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Email body.
@@ -336,6 +359,8 @@ type SystemAutomationActionState struct {
 	EmailSubject pulumi.StringPtrInput
 	// Email addresses. The structure of `emailTo` block is documented below.
 	EmailTos SystemAutomationActionEmailToArrayInput
+	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+	ExecuteSecurityFabric pulumi.StringPtrInput
 	// Google Cloud function name.
 	GcpFunction pulumi.StringPtrInput
 	// Google Cloud function domain.
@@ -350,6 +375,8 @@ type SystemAutomationActionState struct {
 	HttpBody pulumi.StringPtrInput
 	// Message content.
 	Message pulumi.StringPtrInput
+	// Message type. Valid values: `text`, `json`.
+	MessageType pulumi.StringPtrInput
 	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
 	Method pulumi.StringPtrInput
 	// Limit execution to no more than once in this interval (in seconds).
@@ -362,6 +389,8 @@ type SystemAutomationActionState struct {
 	Protocol pulumi.StringPtrInput
 	// Enable/disable replacement message. Valid values: `enable`, `disable`.
 	ReplacementMessage pulumi.StringPtrInput
+	// Replacement message group.
+	ReplacemsgGroup pulumi.StringPtrInput
 	// Required in action chain. Valid values: `enable`, `disable`.
 	Required pulumi.StringPtrInput
 	// CLI script.
@@ -376,6 +405,8 @@ type SystemAutomationActionState struct {
 	Uri pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+	VerifyHostCert pulumi.StringPtrInput
 }
 
 func (SystemAutomationActionState) ElementType() reflect.Type {
@@ -429,6 +460,8 @@ type systemAutomationActionArgs struct {
 	AzureFunctionAuthorization *string `pulumi:"azureFunctionAuthorization"`
 	// Delay before execution (in seconds).
 	Delay *int `pulumi:"delay"`
+	// Description.
+	Description *string `pulumi:"description"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Email body.
@@ -439,6 +472,8 @@ type systemAutomationActionArgs struct {
 	EmailSubject *string `pulumi:"emailSubject"`
 	// Email addresses. The structure of `emailTo` block is documented below.
 	EmailTos []SystemAutomationActionEmailTo `pulumi:"emailTos"`
+	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+	ExecuteSecurityFabric *string `pulumi:"executeSecurityFabric"`
 	// Google Cloud function name.
 	GcpFunction *string `pulumi:"gcpFunction"`
 	// Google Cloud function domain.
@@ -453,6 +488,8 @@ type systemAutomationActionArgs struct {
 	HttpBody *string `pulumi:"httpBody"`
 	// Message content.
 	Message *string `pulumi:"message"`
+	// Message type. Valid values: `text`, `json`.
+	MessageType *string `pulumi:"messageType"`
 	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
 	Method *string `pulumi:"method"`
 	// Limit execution to no more than once in this interval (in seconds).
@@ -465,6 +502,8 @@ type systemAutomationActionArgs struct {
 	Protocol *string `pulumi:"protocol"`
 	// Enable/disable replacement message. Valid values: `enable`, `disable`.
 	ReplacementMessage *string `pulumi:"replacementMessage"`
+	// Replacement message group.
+	ReplacemsgGroup *string `pulumi:"replacemsgGroup"`
 	// Required in action chain. Valid values: `enable`, `disable`.
 	Required *string `pulumi:"required"`
 	// CLI script.
@@ -479,6 +518,8 @@ type systemAutomationActionArgs struct {
 	Uri *string `pulumi:"uri"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+	VerifyHostCert *string `pulumi:"verifyHostCert"`
 }
 
 // The set of arguments for constructing a SystemAutomationAction resource.
@@ -529,6 +570,8 @@ type SystemAutomationActionArgs struct {
 	AzureFunctionAuthorization pulumi.StringPtrInput
 	// Delay before execution (in seconds).
 	Delay pulumi.IntPtrInput
+	// Description.
+	Description pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Email body.
@@ -539,6 +582,8 @@ type SystemAutomationActionArgs struct {
 	EmailSubject pulumi.StringPtrInput
 	// Email addresses. The structure of `emailTo` block is documented below.
 	EmailTos SystemAutomationActionEmailToArrayInput
+	// Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric. Valid values: `enable`, `disable`.
+	ExecuteSecurityFabric pulumi.StringPtrInput
 	// Google Cloud function name.
 	GcpFunction pulumi.StringPtrInput
 	// Google Cloud function domain.
@@ -553,6 +598,8 @@ type SystemAutomationActionArgs struct {
 	HttpBody pulumi.StringPtrInput
 	// Message content.
 	Message pulumi.StringPtrInput
+	// Message type. Valid values: `text`, `json`.
+	MessageType pulumi.StringPtrInput
 	// Request method (POST, PUT, GET, PATCH or DELETE). Valid values: `post`, `put`, `get`, `patch`, `delete`.
 	Method pulumi.StringPtrInput
 	// Limit execution to no more than once in this interval (in seconds).
@@ -565,6 +612,8 @@ type SystemAutomationActionArgs struct {
 	Protocol pulumi.StringPtrInput
 	// Enable/disable replacement message. Valid values: `enable`, `disable`.
 	ReplacementMessage pulumi.StringPtrInput
+	// Replacement message group.
+	ReplacemsgGroup pulumi.StringPtrInput
 	// Required in action chain. Valid values: `enable`, `disable`.
 	Required pulumi.StringPtrInput
 	// CLI script.
@@ -579,6 +628,8 @@ type SystemAutomationActionArgs struct {
 	Uri pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable verification of the remote host certificate. Valid values: `enable`, `disable`.
+	VerifyHostCert pulumi.StringPtrInput
 }
 
 func (SystemAutomationActionArgs) ElementType() reflect.Type {
@@ -593,7 +644,7 @@ type SystemAutomationActionInput interface {
 }
 
 func (*SystemAutomationAction) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationAction)(nil))
+	return reflect.TypeOf((**SystemAutomationAction)(nil)).Elem()
 }
 
 func (i *SystemAutomationAction) ToSystemAutomationActionOutput() SystemAutomationActionOutput {
@@ -602,35 +653,6 @@ func (i *SystemAutomationAction) ToSystemAutomationActionOutput() SystemAutomati
 
 func (i *SystemAutomationAction) ToSystemAutomationActionOutputWithContext(ctx context.Context) SystemAutomationActionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionOutput)
-}
-
-func (i *SystemAutomationAction) ToSystemAutomationActionPtrOutput() SystemAutomationActionPtrOutput {
-	return i.ToSystemAutomationActionPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutomationAction) ToSystemAutomationActionPtrOutputWithContext(ctx context.Context) SystemAutomationActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionPtrOutput)
-}
-
-type SystemAutomationActionPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutomationActionPtrOutput() SystemAutomationActionPtrOutput
-	ToSystemAutomationActionPtrOutputWithContext(ctx context.Context) SystemAutomationActionPtrOutput
-}
-
-type systemAutomationActionPtrType SystemAutomationActionArgs
-
-func (*systemAutomationActionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationAction)(nil))
-}
-
-func (i *systemAutomationActionPtrType) ToSystemAutomationActionPtrOutput() SystemAutomationActionPtrOutput {
-	return i.ToSystemAutomationActionPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutomationActionPtrType) ToSystemAutomationActionPtrOutputWithContext(ctx context.Context) SystemAutomationActionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionPtrOutput)
 }
 
 // SystemAutomationActionArrayInput is an input type that accepts SystemAutomationActionArray and SystemAutomationActionArrayOutput values.
@@ -647,7 +669,7 @@ type SystemAutomationActionArrayInput interface {
 type SystemAutomationActionArray []SystemAutomationActionInput
 
 func (SystemAutomationActionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutomationAction)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationAction)(nil)).Elem()
 }
 
 func (i SystemAutomationActionArray) ToSystemAutomationActionArrayOutput() SystemAutomationActionArrayOutput {
@@ -672,7 +694,7 @@ type SystemAutomationActionMapInput interface {
 type SystemAutomationActionMap map[string]SystemAutomationActionInput
 
 func (SystemAutomationActionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutomationAction)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationAction)(nil)).Elem()
 }
 
 func (i SystemAutomationActionMap) ToSystemAutomationActionMapOutput() SystemAutomationActionMapOutput {
@@ -683,12 +705,10 @@ func (i SystemAutomationActionMap) ToSystemAutomationActionMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationActionMapOutput)
 }
 
-type SystemAutomationActionOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutomationActionOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationActionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationAction)(nil))
+	return reflect.TypeOf((**SystemAutomationAction)(nil)).Elem()
 }
 
 func (o SystemAutomationActionOutput) ToSystemAutomationActionOutput() SystemAutomationActionOutput {
@@ -699,36 +719,10 @@ func (o SystemAutomationActionOutput) ToSystemAutomationActionOutputWithContext(
 	return o
 }
 
-func (o SystemAutomationActionOutput) ToSystemAutomationActionPtrOutput() SystemAutomationActionPtrOutput {
-	return o.ToSystemAutomationActionPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutomationActionOutput) ToSystemAutomationActionPtrOutputWithContext(ctx context.Context) SystemAutomationActionPtrOutput {
-	return o.ApplyT(func(v SystemAutomationAction) *SystemAutomationAction {
-		return &v
-	}).(SystemAutomationActionPtrOutput)
-}
-
-type SystemAutomationActionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutomationActionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationAction)(nil))
-}
-
-func (o SystemAutomationActionPtrOutput) ToSystemAutomationActionPtrOutput() SystemAutomationActionPtrOutput {
-	return o
-}
-
-func (o SystemAutomationActionPtrOutput) ToSystemAutomationActionPtrOutputWithContext(ctx context.Context) SystemAutomationActionPtrOutput {
-	return o
-}
-
 type SystemAutomationActionArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationActionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutomationAction)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationAction)(nil)).Elem()
 }
 
 func (o SystemAutomationActionArrayOutput) ToSystemAutomationActionArrayOutput() SystemAutomationActionArrayOutput {
@@ -740,15 +734,15 @@ func (o SystemAutomationActionArrayOutput) ToSystemAutomationActionArrayOutputWi
 }
 
 func (o SystemAutomationActionArrayOutput) Index(i pulumi.IntInput) SystemAutomationActionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutomationAction {
-		return vs[0].([]SystemAutomationAction)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationAction {
+		return vs[0].([]*SystemAutomationAction)[vs[1].(int)]
 	}).(SystemAutomationActionOutput)
 }
 
 type SystemAutomationActionMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationActionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutomationAction)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationAction)(nil)).Elem()
 }
 
 func (o SystemAutomationActionMapOutput) ToSystemAutomationActionMapOutput() SystemAutomationActionMapOutput {
@@ -760,14 +754,16 @@ func (o SystemAutomationActionMapOutput) ToSystemAutomationActionMapOutputWithCo
 }
 
 func (o SystemAutomationActionMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationActionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutomationAction {
-		return vs[0].(map[string]SystemAutomationAction)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutomationAction {
+		return vs[0].(map[string]*SystemAutomationAction)[vs[1].(string)]
 	}).(SystemAutomationActionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationActionInput)(nil)).Elem(), &SystemAutomationAction{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationActionArrayInput)(nil)).Elem(), SystemAutomationActionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationActionMapInput)(nil)).Elem(), SystemAutomationActionMap{})
 	pulumi.RegisterOutputType(SystemAutomationActionOutput{})
-	pulumi.RegisterOutputType(SystemAutomationActionPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutomationActionArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutomationActionMapOutput{})
 }

@@ -116,39 +116,37 @@ export class FirewallShaperPerIpShaper extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallShaperPerIpShaperArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallShaperPerIpShaperArgs | FirewallShaperPerIpShaperState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallShaperPerIpShaperState | undefined;
-            inputs["bandwidthUnit"] = state ? state.bandwidthUnit : undefined;
-            inputs["diffservForward"] = state ? state.diffservForward : undefined;
-            inputs["diffservReverse"] = state ? state.diffservReverse : undefined;
-            inputs["diffservcodeForward"] = state ? state.diffservcodeForward : undefined;
-            inputs["diffservcodeRev"] = state ? state.diffservcodeRev : undefined;
-            inputs["maxBandwidth"] = state ? state.maxBandwidth : undefined;
-            inputs["maxConcurrentSession"] = state ? state.maxConcurrentSession : undefined;
-            inputs["maxConcurrentTcpSession"] = state ? state.maxConcurrentTcpSession : undefined;
-            inputs["maxConcurrentUdpSession"] = state ? state.maxConcurrentUdpSession : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bandwidthUnit"] = state ? state.bandwidthUnit : undefined;
+            resourceInputs["diffservForward"] = state ? state.diffservForward : undefined;
+            resourceInputs["diffservReverse"] = state ? state.diffservReverse : undefined;
+            resourceInputs["diffservcodeForward"] = state ? state.diffservcodeForward : undefined;
+            resourceInputs["diffservcodeRev"] = state ? state.diffservcodeRev : undefined;
+            resourceInputs["maxBandwidth"] = state ? state.maxBandwidth : undefined;
+            resourceInputs["maxConcurrentSession"] = state ? state.maxConcurrentSession : undefined;
+            resourceInputs["maxConcurrentTcpSession"] = state ? state.maxConcurrentTcpSession : undefined;
+            resourceInputs["maxConcurrentUdpSession"] = state ? state.maxConcurrentUdpSession : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallShaperPerIpShaperArgs | undefined;
-            inputs["bandwidthUnit"] = args ? args.bandwidthUnit : undefined;
-            inputs["diffservForward"] = args ? args.diffservForward : undefined;
-            inputs["diffservReverse"] = args ? args.diffservReverse : undefined;
-            inputs["diffservcodeForward"] = args ? args.diffservcodeForward : undefined;
-            inputs["diffservcodeRev"] = args ? args.diffservcodeRev : undefined;
-            inputs["maxBandwidth"] = args ? args.maxBandwidth : undefined;
-            inputs["maxConcurrentSession"] = args ? args.maxConcurrentSession : undefined;
-            inputs["maxConcurrentTcpSession"] = args ? args.maxConcurrentTcpSession : undefined;
-            inputs["maxConcurrentUdpSession"] = args ? args.maxConcurrentUdpSession : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bandwidthUnit"] = args ? args.bandwidthUnit : undefined;
+            resourceInputs["diffservForward"] = args ? args.diffservForward : undefined;
+            resourceInputs["diffservReverse"] = args ? args.diffservReverse : undefined;
+            resourceInputs["diffservcodeForward"] = args ? args.diffservcodeForward : undefined;
+            resourceInputs["diffservcodeRev"] = args ? args.diffservcodeRev : undefined;
+            resourceInputs["maxBandwidth"] = args ? args.maxBandwidth : undefined;
+            resourceInputs["maxConcurrentSession"] = args ? args.maxConcurrentSession : undefined;
+            resourceInputs["maxConcurrentTcpSession"] = args ? args.maxConcurrentTcpSession : undefined;
+            resourceInputs["maxConcurrentUdpSession"] = args ? args.maxConcurrentUdpSession : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallShaperPerIpShaper.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallShaperPerIpShaper.__pulumiType, name, resourceInputs, opts);
     }
 }
 

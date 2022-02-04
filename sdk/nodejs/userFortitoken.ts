@@ -95,37 +95,35 @@ export class UserFortitoken extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserFortitokenArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserFortitokenArgs | UserFortitokenState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserFortitokenState | undefined;
-            inputs["activationCode"] = state ? state.activationCode : undefined;
-            inputs["activationExpire"] = state ? state.activationExpire : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["license"] = state ? state.license : undefined;
-            inputs["osVer"] = state ? state.osVer : undefined;
-            inputs["regId"] = state ? state.regId : undefined;
-            inputs["seed"] = state ? state.seed : undefined;
-            inputs["serialNumber"] = state ? state.serialNumber : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["activationCode"] = state ? state.activationCode : undefined;
+            resourceInputs["activationExpire"] = state ? state.activationExpire : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["license"] = state ? state.license : undefined;
+            resourceInputs["osVer"] = state ? state.osVer : undefined;
+            resourceInputs["regId"] = state ? state.regId : undefined;
+            resourceInputs["seed"] = state ? state.seed : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserFortitokenArgs | undefined;
-            inputs["activationCode"] = args ? args.activationCode : undefined;
-            inputs["activationExpire"] = args ? args.activationExpire : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["license"] = args ? args.license : undefined;
-            inputs["osVer"] = args ? args.osVer : undefined;
-            inputs["regId"] = args ? args.regId : undefined;
-            inputs["seed"] = args ? args.seed : undefined;
-            inputs["serialNumber"] = args ? args.serialNumber : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["activationCode"] = args ? args.activationCode : undefined;
+            resourceInputs["activationExpire"] = args ? args.activationExpire : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["license"] = args ? args.license : undefined;
+            resourceInputs["osVer"] = args ? args.osVer : undefined;
+            resourceInputs["regId"] = args ? args.regId : undefined;
+            resourceInputs["seed"] = args ? args.seed : undefined;
+            resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserFortitoken.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserFortitoken.__pulumiType, name, resourceInputs, opts);
     }
 }
 

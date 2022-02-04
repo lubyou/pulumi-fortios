@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,7 @@ func NewSwitchControllerTrafficPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerTrafficPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerTrafficPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerTrafficPolicy:SwitchControllerTrafficPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -220,7 +221,7 @@ type SwitchControllerTrafficPolicyInput interface {
 }
 
 func (*SwitchControllerTrafficPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerTrafficPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerTrafficPolicy)(nil)).Elem()
 }
 
 func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyOutput() SwitchControllerTrafficPolicyOutput {
@@ -229,35 +230,6 @@ func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyOutput() 
 
 func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyOutput)
-}
-
-func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyPtrOutput() SwitchControllerTrafficPolicyPtrOutput {
-	return i.ToSwitchControllerTrafficPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerTrafficPolicy) ToSwitchControllerTrafficPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyPtrOutput)
-}
-
-type SwitchControllerTrafficPolicyPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerTrafficPolicyPtrOutput() SwitchControllerTrafficPolicyPtrOutput
-	ToSwitchControllerTrafficPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyPtrOutput
-}
-
-type switchControllerTrafficPolicyPtrType SwitchControllerTrafficPolicyArgs
-
-func (*switchControllerTrafficPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerTrafficPolicy)(nil))
-}
-
-func (i *switchControllerTrafficPolicyPtrType) ToSwitchControllerTrafficPolicyPtrOutput() SwitchControllerTrafficPolicyPtrOutput {
-	return i.ToSwitchControllerTrafficPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerTrafficPolicyPtrType) ToSwitchControllerTrafficPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyPtrOutput)
 }
 
 // SwitchControllerTrafficPolicyArrayInput is an input type that accepts SwitchControllerTrafficPolicyArray and SwitchControllerTrafficPolicyArrayOutput values.
@@ -274,7 +246,7 @@ type SwitchControllerTrafficPolicyArrayInput interface {
 type SwitchControllerTrafficPolicyArray []SwitchControllerTrafficPolicyInput
 
 func (SwitchControllerTrafficPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerTrafficPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerTrafficPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerTrafficPolicyArray) ToSwitchControllerTrafficPolicyArrayOutput() SwitchControllerTrafficPolicyArrayOutput {
@@ -299,7 +271,7 @@ type SwitchControllerTrafficPolicyMapInput interface {
 type SwitchControllerTrafficPolicyMap map[string]SwitchControllerTrafficPolicyInput
 
 func (SwitchControllerTrafficPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerTrafficPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerTrafficPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerTrafficPolicyMap) ToSwitchControllerTrafficPolicyMapOutput() SwitchControllerTrafficPolicyMapOutput {
@@ -310,12 +282,10 @@ func (i SwitchControllerTrafficPolicyMap) ToSwitchControllerTrafficPolicyMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerTrafficPolicyMapOutput)
 }
 
-type SwitchControllerTrafficPolicyOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerTrafficPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerTrafficPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerTrafficPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyOutput() SwitchControllerTrafficPolicyOutput {
@@ -326,36 +296,10 @@ func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyOutp
 	return o
 }
 
-func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyPtrOutput() SwitchControllerTrafficPolicyPtrOutput {
-	return o.ToSwitchControllerTrafficPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerTrafficPolicyOutput) ToSwitchControllerTrafficPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyPtrOutput {
-	return o.ApplyT(func(v SwitchControllerTrafficPolicy) *SwitchControllerTrafficPolicy {
-		return &v
-	}).(SwitchControllerTrafficPolicyPtrOutput)
-}
-
-type SwitchControllerTrafficPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerTrafficPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerTrafficPolicy)(nil))
-}
-
-func (o SwitchControllerTrafficPolicyPtrOutput) ToSwitchControllerTrafficPolicyPtrOutput() SwitchControllerTrafficPolicyPtrOutput {
-	return o
-}
-
-func (o SwitchControllerTrafficPolicyPtrOutput) ToSwitchControllerTrafficPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerTrafficPolicyPtrOutput {
-	return o
-}
-
 type SwitchControllerTrafficPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerTrafficPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerTrafficPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerTrafficPolicyArrayOutput) ToSwitchControllerTrafficPolicyArrayOutput() SwitchControllerTrafficPolicyArrayOutput {
@@ -367,15 +311,15 @@ func (o SwitchControllerTrafficPolicyArrayOutput) ToSwitchControllerTrafficPolic
 }
 
 func (o SwitchControllerTrafficPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerTrafficPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerTrafficPolicy {
-		return vs[0].([]SwitchControllerTrafficPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerTrafficPolicy {
+		return vs[0].([]*SwitchControllerTrafficPolicy)[vs[1].(int)]
 	}).(SwitchControllerTrafficPolicyOutput)
 }
 
 type SwitchControllerTrafficPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerTrafficPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerTrafficPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerTrafficPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerTrafficPolicyMapOutput) ToSwitchControllerTrafficPolicyMapOutput() SwitchControllerTrafficPolicyMapOutput {
@@ -387,14 +331,16 @@ func (o SwitchControllerTrafficPolicyMapOutput) ToSwitchControllerTrafficPolicyM
 }
 
 func (o SwitchControllerTrafficPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerTrafficPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerTrafficPolicy {
-		return vs[0].(map[string]SwitchControllerTrafficPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerTrafficPolicy {
+		return vs[0].(map[string]*SwitchControllerTrafficPolicy)[vs[1].(string)]
 	}).(SwitchControllerTrafficPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerTrafficPolicyInput)(nil)).Elem(), &SwitchControllerTrafficPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerTrafficPolicyArrayInput)(nil)).Elem(), SwitchControllerTrafficPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerTrafficPolicyMapInput)(nil)).Elem(), SwitchControllerTrafficPolicyMap{})
 	pulumi.RegisterOutputType(SwitchControllerTrafficPolicyOutput{})
-	pulumi.RegisterOutputType(SwitchControllerTrafficPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerTrafficPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerTrafficPolicyMapOutput{})
 }

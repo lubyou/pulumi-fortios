@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,6 +75,7 @@ func NewWanoptCacheService(ctx *pulumi.Context,
 		args = &WanoptCacheServiceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptCacheService
 	err := ctx.RegisterResource("fortios:index/wanoptCacheService:WanoptCacheService", name, args, &resource, opts...)
 	if err != nil {
@@ -189,7 +190,7 @@ type WanoptCacheServiceInput interface {
 }
 
 func (*WanoptCacheService) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptCacheService)(nil))
+	return reflect.TypeOf((**WanoptCacheService)(nil)).Elem()
 }
 
 func (i *WanoptCacheService) ToWanoptCacheServiceOutput() WanoptCacheServiceOutput {
@@ -198,35 +199,6 @@ func (i *WanoptCacheService) ToWanoptCacheServiceOutput() WanoptCacheServiceOutp
 
 func (i *WanoptCacheService) ToWanoptCacheServiceOutputWithContext(ctx context.Context) WanoptCacheServiceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServiceOutput)
-}
-
-func (i *WanoptCacheService) ToWanoptCacheServicePtrOutput() WanoptCacheServicePtrOutput {
-	return i.ToWanoptCacheServicePtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptCacheService) ToWanoptCacheServicePtrOutputWithContext(ctx context.Context) WanoptCacheServicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServicePtrOutput)
-}
-
-type WanoptCacheServicePtrInput interface {
-	pulumi.Input
-
-	ToWanoptCacheServicePtrOutput() WanoptCacheServicePtrOutput
-	ToWanoptCacheServicePtrOutputWithContext(ctx context.Context) WanoptCacheServicePtrOutput
-}
-
-type wanoptCacheServicePtrType WanoptCacheServiceArgs
-
-func (*wanoptCacheServicePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptCacheService)(nil))
-}
-
-func (i *wanoptCacheServicePtrType) ToWanoptCacheServicePtrOutput() WanoptCacheServicePtrOutput {
-	return i.ToWanoptCacheServicePtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptCacheServicePtrType) ToWanoptCacheServicePtrOutputWithContext(ctx context.Context) WanoptCacheServicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServicePtrOutput)
 }
 
 // WanoptCacheServiceArrayInput is an input type that accepts WanoptCacheServiceArray and WanoptCacheServiceArrayOutput values.
@@ -243,7 +215,7 @@ type WanoptCacheServiceArrayInput interface {
 type WanoptCacheServiceArray []WanoptCacheServiceInput
 
 func (WanoptCacheServiceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptCacheService)(nil))
+	return reflect.TypeOf((*[]*WanoptCacheService)(nil)).Elem()
 }
 
 func (i WanoptCacheServiceArray) ToWanoptCacheServiceArrayOutput() WanoptCacheServiceArrayOutput {
@@ -268,7 +240,7 @@ type WanoptCacheServiceMapInput interface {
 type WanoptCacheServiceMap map[string]WanoptCacheServiceInput
 
 func (WanoptCacheServiceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptCacheService)(nil))
+	return reflect.TypeOf((*map[string]*WanoptCacheService)(nil)).Elem()
 }
 
 func (i WanoptCacheServiceMap) ToWanoptCacheServiceMapOutput() WanoptCacheServiceMapOutput {
@@ -279,12 +251,10 @@ func (i WanoptCacheServiceMap) ToWanoptCacheServiceMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptCacheServiceMapOutput)
 }
 
-type WanoptCacheServiceOutput struct {
-	*pulumi.OutputState
-}
+type WanoptCacheServiceOutput struct{ *pulumi.OutputState }
 
 func (WanoptCacheServiceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptCacheService)(nil))
+	return reflect.TypeOf((**WanoptCacheService)(nil)).Elem()
 }
 
 func (o WanoptCacheServiceOutput) ToWanoptCacheServiceOutput() WanoptCacheServiceOutput {
@@ -295,36 +265,10 @@ func (o WanoptCacheServiceOutput) ToWanoptCacheServiceOutputWithContext(ctx cont
 	return o
 }
 
-func (o WanoptCacheServiceOutput) ToWanoptCacheServicePtrOutput() WanoptCacheServicePtrOutput {
-	return o.ToWanoptCacheServicePtrOutputWithContext(context.Background())
-}
-
-func (o WanoptCacheServiceOutput) ToWanoptCacheServicePtrOutputWithContext(ctx context.Context) WanoptCacheServicePtrOutput {
-	return o.ApplyT(func(v WanoptCacheService) *WanoptCacheService {
-		return &v
-	}).(WanoptCacheServicePtrOutput)
-}
-
-type WanoptCacheServicePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptCacheServicePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptCacheService)(nil))
-}
-
-func (o WanoptCacheServicePtrOutput) ToWanoptCacheServicePtrOutput() WanoptCacheServicePtrOutput {
-	return o
-}
-
-func (o WanoptCacheServicePtrOutput) ToWanoptCacheServicePtrOutputWithContext(ctx context.Context) WanoptCacheServicePtrOutput {
-	return o
-}
-
 type WanoptCacheServiceArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptCacheServiceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptCacheService)(nil))
+	return reflect.TypeOf((*[]*WanoptCacheService)(nil)).Elem()
 }
 
 func (o WanoptCacheServiceArrayOutput) ToWanoptCacheServiceArrayOutput() WanoptCacheServiceArrayOutput {
@@ -336,15 +280,15 @@ func (o WanoptCacheServiceArrayOutput) ToWanoptCacheServiceArrayOutputWithContex
 }
 
 func (o WanoptCacheServiceArrayOutput) Index(i pulumi.IntInput) WanoptCacheServiceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptCacheService {
-		return vs[0].([]WanoptCacheService)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptCacheService {
+		return vs[0].([]*WanoptCacheService)[vs[1].(int)]
 	}).(WanoptCacheServiceOutput)
 }
 
 type WanoptCacheServiceMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptCacheServiceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptCacheService)(nil))
+	return reflect.TypeOf((*map[string]*WanoptCacheService)(nil)).Elem()
 }
 
 func (o WanoptCacheServiceMapOutput) ToWanoptCacheServiceMapOutput() WanoptCacheServiceMapOutput {
@@ -356,14 +300,16 @@ func (o WanoptCacheServiceMapOutput) ToWanoptCacheServiceMapOutputWithContext(ct
 }
 
 func (o WanoptCacheServiceMapOutput) MapIndex(k pulumi.StringInput) WanoptCacheServiceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptCacheService {
-		return vs[0].(map[string]WanoptCacheService)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptCacheService {
+		return vs[0].(map[string]*WanoptCacheService)[vs[1].(string)]
 	}).(WanoptCacheServiceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptCacheServiceInput)(nil)).Elem(), &WanoptCacheService{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptCacheServiceArrayInput)(nil)).Elem(), WanoptCacheServiceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptCacheServiceMapInput)(nil)).Elem(), WanoptCacheServiceMap{})
 	pulumi.RegisterOutputType(WanoptCacheServiceOutput{})
-	pulumi.RegisterOutputType(WanoptCacheServicePtrOutput{})
 	pulumi.RegisterOutputType(WanoptCacheServiceArrayOutput{})
 	pulumi.RegisterOutputType(WanoptCacheServiceMapOutput{})
 }

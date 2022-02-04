@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemAutomationDestinationResult',
     'AwaitableGetSystemAutomationDestinationResult',
     'get_system_automation_destination',
+    'get_system_automation_destination_output',
 ]
 
 @pulumi.output_type
@@ -117,6 +118,8 @@ def get_system_automation_destination(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutomationDestination:GetSystemAutomationDestination', __args__, opts=opts, typ=GetSystemAutomationDestinationResult).value
 
     return AwaitableGetSystemAutomationDestinationResult(
@@ -126,3 +129,17 @@ def get_system_automation_destination(name: Optional[str] = None,
         name=__ret__.name,
         type=__ret__.type,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_automation_destination)
+def get_system_automation_destination_output(name: Optional[pulumi.Input[str]] = None,
+                                             vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                             opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemAutomationDestinationResult]:
+    """
+    Use this data source to get information on an fortios system automationdestination
+
+
+    :param str name: Specify the name of the desired system automationdestination.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

@@ -140,6 +140,10 @@ export class LogFortianalyzer3Filter extends pulumi.CustomResource {
      * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
      */
     public readonly voip!: pulumi.Output<string>;
+    /**
+     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+     */
+    public readonly ztnaTraffic!: pulumi.Output<string>;
 
     /**
      * Create a LogFortianalyzer3Filter resource with the given unique name, arguments, and options.
@@ -150,53 +154,53 @@ export class LogFortianalyzer3Filter extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogFortianalyzer3FilterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortianalyzer3FilterArgs | LogFortianalyzer3FilterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortianalyzer3FilterState | undefined;
-            inputs["anomaly"] = state ? state.anomaly : undefined;
-            inputs["dlpArchive"] = state ? state.dlpArchive : undefined;
-            inputs["dns"] = state ? state.dns : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["filter"] = state ? state.filter : undefined;
-            inputs["filterType"] = state ? state.filterType : undefined;
-            inputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
-            inputs["freeStyles"] = state ? state.freeStyles : undefined;
-            inputs["gtp"] = state ? state.gtp : undefined;
-            inputs["localTraffic"] = state ? state.localTraffic : undefined;
-            inputs["multicastTraffic"] = state ? state.multicastTraffic : undefined;
-            inputs["netscanDiscovery"] = state ? state.netscanDiscovery : undefined;
-            inputs["netscanVulnerability"] = state ? state.netscanVulnerability : undefined;
-            inputs["severity"] = state ? state.severity : undefined;
-            inputs["snifferTraffic"] = state ? state.snifferTraffic : undefined;
-            inputs["ssh"] = state ? state.ssh : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["voip"] = state ? state.voip : undefined;
+            resourceInputs["anomaly"] = state ? state.anomaly : undefined;
+            resourceInputs["dlpArchive"] = state ? state.dlpArchive : undefined;
+            resourceInputs["dns"] = state ? state.dns : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["filter"] = state ? state.filter : undefined;
+            resourceInputs["filterType"] = state ? state.filterType : undefined;
+            resourceInputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
+            resourceInputs["freeStyles"] = state ? state.freeStyles : undefined;
+            resourceInputs["gtp"] = state ? state.gtp : undefined;
+            resourceInputs["localTraffic"] = state ? state.localTraffic : undefined;
+            resourceInputs["multicastTraffic"] = state ? state.multicastTraffic : undefined;
+            resourceInputs["netscanDiscovery"] = state ? state.netscanDiscovery : undefined;
+            resourceInputs["netscanVulnerability"] = state ? state.netscanVulnerability : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
+            resourceInputs["snifferTraffic"] = state ? state.snifferTraffic : undefined;
+            resourceInputs["ssh"] = state ? state.ssh : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["voip"] = state ? state.voip : undefined;
+            resourceInputs["ztnaTraffic"] = state ? state.ztnaTraffic : undefined;
         } else {
             const args = argsOrState as LogFortianalyzer3FilterArgs | undefined;
-            inputs["anomaly"] = args ? args.anomaly : undefined;
-            inputs["dlpArchive"] = args ? args.dlpArchive : undefined;
-            inputs["dns"] = args ? args.dns : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["filter"] = args ? args.filter : undefined;
-            inputs["filterType"] = args ? args.filterType : undefined;
-            inputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
-            inputs["freeStyles"] = args ? args.freeStyles : undefined;
-            inputs["gtp"] = args ? args.gtp : undefined;
-            inputs["localTraffic"] = args ? args.localTraffic : undefined;
-            inputs["multicastTraffic"] = args ? args.multicastTraffic : undefined;
-            inputs["netscanDiscovery"] = args ? args.netscanDiscovery : undefined;
-            inputs["netscanVulnerability"] = args ? args.netscanVulnerability : undefined;
-            inputs["severity"] = args ? args.severity : undefined;
-            inputs["snifferTraffic"] = args ? args.snifferTraffic : undefined;
-            inputs["ssh"] = args ? args.ssh : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["voip"] = args ? args.voip : undefined;
+            resourceInputs["anomaly"] = args ? args.anomaly : undefined;
+            resourceInputs["dlpArchive"] = args ? args.dlpArchive : undefined;
+            resourceInputs["dns"] = args ? args.dns : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["filter"] = args ? args.filter : undefined;
+            resourceInputs["filterType"] = args ? args.filterType : undefined;
+            resourceInputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
+            resourceInputs["freeStyles"] = args ? args.freeStyles : undefined;
+            resourceInputs["gtp"] = args ? args.gtp : undefined;
+            resourceInputs["localTraffic"] = args ? args.localTraffic : undefined;
+            resourceInputs["multicastTraffic"] = args ? args.multicastTraffic : undefined;
+            resourceInputs["netscanDiscovery"] = args ? args.netscanDiscovery : undefined;
+            resourceInputs["netscanVulnerability"] = args ? args.netscanVulnerability : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
+            resourceInputs["snifferTraffic"] = args ? args.snifferTraffic : undefined;
+            resourceInputs["ssh"] = args ? args.ssh : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["voip"] = args ? args.voip : undefined;
+            resourceInputs["ztnaTraffic"] = args ? args.ztnaTraffic : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortianalyzer3Filter.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortianalyzer3Filter.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -276,6 +280,10 @@ export interface LogFortianalyzer3FilterState {
      * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
      */
     voip?: pulumi.Input<string>;
+    /**
+     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+     */
+    ztnaTraffic?: pulumi.Input<string>;
 }
 
 /**
@@ -354,4 +362,8 @@ export interface LogFortianalyzer3FilterArgs {
      * Enable/disable VoIP logging. Valid values: `enable`, `disable`.
      */
     voip?: pulumi.Input<string>;
+    /**
+     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+     */
+    ztnaTraffic?: pulumi.Input<string>;
 }

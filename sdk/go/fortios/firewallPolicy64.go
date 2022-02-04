@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 to IPv4 policies.
+// Configure IPv6 to IPv4 policies. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallPolicy64(ctx, "trname", &fortios.FirewallPolicy64Args{
 // 			Action: pulumi.String("accept"),
-// 			Dstaddrs: fortios.FirewallPolicy64DstaddrArray{
-// 				&fortios.FirewallPolicy64DstaddrArgs{
+// 			Dstaddrs: FirewallPolicy64DstaddrArray{
+// 				&FirewallPolicy64DstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -39,13 +40,13 @@ import (
 // 			PermitAnyHost: pulumi.String("disable"),
 // 			Policyid:      pulumi.Int(1),
 // 			Schedule:      pulumi.String("always"),
-// 			Services: fortios.FirewallPolicy64ServiceArray{
-// 				&fortios.FirewallPolicy64ServiceArgs{
+// 			Services: FirewallPolicy64ServiceArray{
+// 				&FirewallPolicy64ServiceArgs{
 // 					Name: pulumi.String("ALL"),
 // 				},
 // 			},
-// 			Srcaddrs: fortios.FirewallPolicy64SrcaddrArray{
-// 				&fortios.FirewallPolicy64SrcaddrArgs{
+// 			Srcaddrs: FirewallPolicy64SrcaddrArray{
+// 				&FirewallPolicy64SrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -148,6 +149,7 @@ func NewFirewallPolicy64(ctx *pulumi.Context,
 	if args.Srcintf == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintf'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallPolicy64
 	err := ctx.RegisterResource("fortios:index/firewallPolicy64:FirewallPolicy64", name, args, &resource, opts...)
 	if err != nil {
@@ -398,7 +400,7 @@ type FirewallPolicy64Input interface {
 }
 
 func (*FirewallPolicy64) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallPolicy64)(nil))
+	return reflect.TypeOf((**FirewallPolicy64)(nil)).Elem()
 }
 
 func (i *FirewallPolicy64) ToFirewallPolicy64Output() FirewallPolicy64Output {
@@ -407,35 +409,6 @@ func (i *FirewallPolicy64) ToFirewallPolicy64Output() FirewallPolicy64Output {
 
 func (i *FirewallPolicy64) ToFirewallPolicy64OutputWithContext(ctx context.Context) FirewallPolicy64Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicy64Output)
-}
-
-func (i *FirewallPolicy64) ToFirewallPolicy64PtrOutput() FirewallPolicy64PtrOutput {
-	return i.ToFirewallPolicy64PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallPolicy64) ToFirewallPolicy64PtrOutputWithContext(ctx context.Context) FirewallPolicy64PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicy64PtrOutput)
-}
-
-type FirewallPolicy64PtrInput interface {
-	pulumi.Input
-
-	ToFirewallPolicy64PtrOutput() FirewallPolicy64PtrOutput
-	ToFirewallPolicy64PtrOutputWithContext(ctx context.Context) FirewallPolicy64PtrOutput
-}
-
-type firewallPolicy64PtrType FirewallPolicy64Args
-
-func (*firewallPolicy64PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallPolicy64)(nil))
-}
-
-func (i *firewallPolicy64PtrType) ToFirewallPolicy64PtrOutput() FirewallPolicy64PtrOutput {
-	return i.ToFirewallPolicy64PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallPolicy64PtrType) ToFirewallPolicy64PtrOutputWithContext(ctx context.Context) FirewallPolicy64PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicy64PtrOutput)
 }
 
 // FirewallPolicy64ArrayInput is an input type that accepts FirewallPolicy64Array and FirewallPolicy64ArrayOutput values.
@@ -452,7 +425,7 @@ type FirewallPolicy64ArrayInput interface {
 type FirewallPolicy64Array []FirewallPolicy64Input
 
 func (FirewallPolicy64Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallPolicy64)(nil))
+	return reflect.TypeOf((*[]*FirewallPolicy64)(nil)).Elem()
 }
 
 func (i FirewallPolicy64Array) ToFirewallPolicy64ArrayOutput() FirewallPolicy64ArrayOutput {
@@ -477,7 +450,7 @@ type FirewallPolicy64MapInput interface {
 type FirewallPolicy64Map map[string]FirewallPolicy64Input
 
 func (FirewallPolicy64Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallPolicy64)(nil))
+	return reflect.TypeOf((*map[string]*FirewallPolicy64)(nil)).Elem()
 }
 
 func (i FirewallPolicy64Map) ToFirewallPolicy64MapOutput() FirewallPolicy64MapOutput {
@@ -488,12 +461,10 @@ func (i FirewallPolicy64Map) ToFirewallPolicy64MapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallPolicy64MapOutput)
 }
 
-type FirewallPolicy64Output struct {
-	*pulumi.OutputState
-}
+type FirewallPolicy64Output struct{ *pulumi.OutputState }
 
 func (FirewallPolicy64Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallPolicy64)(nil))
+	return reflect.TypeOf((**FirewallPolicy64)(nil)).Elem()
 }
 
 func (o FirewallPolicy64Output) ToFirewallPolicy64Output() FirewallPolicy64Output {
@@ -504,36 +475,10 @@ func (o FirewallPolicy64Output) ToFirewallPolicy64OutputWithContext(ctx context.
 	return o
 }
 
-func (o FirewallPolicy64Output) ToFirewallPolicy64PtrOutput() FirewallPolicy64PtrOutput {
-	return o.ToFirewallPolicy64PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallPolicy64Output) ToFirewallPolicy64PtrOutputWithContext(ctx context.Context) FirewallPolicy64PtrOutput {
-	return o.ApplyT(func(v FirewallPolicy64) *FirewallPolicy64 {
-		return &v
-	}).(FirewallPolicy64PtrOutput)
-}
-
-type FirewallPolicy64PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallPolicy64PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallPolicy64)(nil))
-}
-
-func (o FirewallPolicy64PtrOutput) ToFirewallPolicy64PtrOutput() FirewallPolicy64PtrOutput {
-	return o
-}
-
-func (o FirewallPolicy64PtrOutput) ToFirewallPolicy64PtrOutputWithContext(ctx context.Context) FirewallPolicy64PtrOutput {
-	return o
-}
-
 type FirewallPolicy64ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicy64ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallPolicy64)(nil))
+	return reflect.TypeOf((*[]*FirewallPolicy64)(nil)).Elem()
 }
 
 func (o FirewallPolicy64ArrayOutput) ToFirewallPolicy64ArrayOutput() FirewallPolicy64ArrayOutput {
@@ -545,15 +490,15 @@ func (o FirewallPolicy64ArrayOutput) ToFirewallPolicy64ArrayOutputWithContext(ct
 }
 
 func (o FirewallPolicy64ArrayOutput) Index(i pulumi.IntInput) FirewallPolicy64Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallPolicy64 {
-		return vs[0].([]FirewallPolicy64)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallPolicy64 {
+		return vs[0].([]*FirewallPolicy64)[vs[1].(int)]
 	}).(FirewallPolicy64Output)
 }
 
 type FirewallPolicy64MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallPolicy64MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallPolicy64)(nil))
+	return reflect.TypeOf((*map[string]*FirewallPolicy64)(nil)).Elem()
 }
 
 func (o FirewallPolicy64MapOutput) ToFirewallPolicy64MapOutput() FirewallPolicy64MapOutput {
@@ -565,14 +510,16 @@ func (o FirewallPolicy64MapOutput) ToFirewallPolicy64MapOutputWithContext(ctx co
 }
 
 func (o FirewallPolicy64MapOutput) MapIndex(k pulumi.StringInput) FirewallPolicy64Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallPolicy64 {
-		return vs[0].(map[string]FirewallPolicy64)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallPolicy64 {
+		return vs[0].(map[string]*FirewallPolicy64)[vs[1].(string)]
 	}).(FirewallPolicy64Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicy64Input)(nil)).Elem(), &FirewallPolicy64{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicy64ArrayInput)(nil)).Elem(), FirewallPolicy64Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallPolicy64MapInput)(nil)).Elem(), FirewallPolicy64Map{})
 	pulumi.RegisterOutputType(FirewallPolicy64Output{})
-	pulumi.RegisterOutputType(FirewallPolicy64PtrOutput{})
 	pulumi.RegisterOutputType(FirewallPolicy64ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallPolicy64MapOutput{})
 }

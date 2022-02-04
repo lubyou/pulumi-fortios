@@ -13,9 +13,7 @@ export function getRouterPrefixList(args: GetRouterPrefixListArgs, opts?: pulumi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterPrefixList:GetRouterPrefixList", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -57,4 +55,22 @@ export interface GetRouterPrefixListResult {
      */
     readonly rules: outputs.GetRouterPrefixListRule[];
     readonly vdomparam?: string;
+}
+
+export function getRouterPrefixListOutput(args: GetRouterPrefixListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterPrefixListResult> {
+    return pulumi.output(args).apply(a => getRouterPrefixList(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterPrefixList.
+ */
+export interface GetRouterPrefixListOutputArgs {
+    /**
+     * Specify the name of the desired router prefixlist.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

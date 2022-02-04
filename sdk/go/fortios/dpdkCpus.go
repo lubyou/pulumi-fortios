@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure CPUs enabled to run engines in each DPDK stage.
+// Configure CPUs enabled to run engines in each DPDK stage. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -26,6 +26,8 @@ type DpdkCpus struct {
 
 	// CPUs enabled to run DPDK IPS engines.
 	IpsCpus pulumi.StringOutput `pulumi:"ipsCpus"`
+	// CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+	IsolatedCpus pulumi.StringOutput `pulumi:"isolatedCpus"`
 	// CPUs enabled to run DPDK RX engines.
 	RxCpus pulumi.StringOutput `pulumi:"rxCpus"`
 	// CPUs enabled to run DPDK TX engines.
@@ -43,6 +45,7 @@ func NewDpdkCpus(ctx *pulumi.Context,
 		args = &DpdkCpusArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DpdkCpus
 	err := ctx.RegisterResource("fortios:index/dpdkCpus:DpdkCpus", name, args, &resource, opts...)
 	if err != nil {
@@ -67,6 +70,8 @@ func GetDpdkCpus(ctx *pulumi.Context,
 type dpdkCpusState struct {
 	// CPUs enabled to run DPDK IPS engines.
 	IpsCpus *string `pulumi:"ipsCpus"`
+	// CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+	IsolatedCpus *string `pulumi:"isolatedCpus"`
 	// CPUs enabled to run DPDK RX engines.
 	RxCpus *string `pulumi:"rxCpus"`
 	// CPUs enabled to run DPDK TX engines.
@@ -80,6 +85,8 @@ type dpdkCpusState struct {
 type DpdkCpusState struct {
 	// CPUs enabled to run DPDK IPS engines.
 	IpsCpus pulumi.StringPtrInput
+	// CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+	IsolatedCpus pulumi.StringPtrInput
 	// CPUs enabled to run DPDK RX engines.
 	RxCpus pulumi.StringPtrInput
 	// CPUs enabled to run DPDK TX engines.
@@ -97,6 +104,8 @@ func (DpdkCpusState) ElementType() reflect.Type {
 type dpdkCpusArgs struct {
 	// CPUs enabled to run DPDK IPS engines.
 	IpsCpus *string `pulumi:"ipsCpus"`
+	// CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+	IsolatedCpus *string `pulumi:"isolatedCpus"`
 	// CPUs enabled to run DPDK RX engines.
 	RxCpus *string `pulumi:"rxCpus"`
 	// CPUs enabled to run DPDK TX engines.
@@ -111,6 +120,8 @@ type dpdkCpusArgs struct {
 type DpdkCpusArgs struct {
 	// CPUs enabled to run DPDK IPS engines.
 	IpsCpus pulumi.StringPtrInput
+	// CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+	IsolatedCpus pulumi.StringPtrInput
 	// CPUs enabled to run DPDK RX engines.
 	RxCpus pulumi.StringPtrInput
 	// CPUs enabled to run DPDK TX engines.
@@ -133,7 +144,7 @@ type DpdkCpusInput interface {
 }
 
 func (*DpdkCpus) ElementType() reflect.Type {
-	return reflect.TypeOf((*DpdkCpus)(nil))
+	return reflect.TypeOf((**DpdkCpus)(nil)).Elem()
 }
 
 func (i *DpdkCpus) ToDpdkCpusOutput() DpdkCpusOutput {
@@ -142,35 +153,6 @@ func (i *DpdkCpus) ToDpdkCpusOutput() DpdkCpusOutput {
 
 func (i *DpdkCpus) ToDpdkCpusOutputWithContext(ctx context.Context) DpdkCpusOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusOutput)
-}
-
-func (i *DpdkCpus) ToDpdkCpusPtrOutput() DpdkCpusPtrOutput {
-	return i.ToDpdkCpusPtrOutputWithContext(context.Background())
-}
-
-func (i *DpdkCpus) ToDpdkCpusPtrOutputWithContext(ctx context.Context) DpdkCpusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusPtrOutput)
-}
-
-type DpdkCpusPtrInput interface {
-	pulumi.Input
-
-	ToDpdkCpusPtrOutput() DpdkCpusPtrOutput
-	ToDpdkCpusPtrOutputWithContext(ctx context.Context) DpdkCpusPtrOutput
-}
-
-type dpdkCpusPtrType DpdkCpusArgs
-
-func (*dpdkCpusPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DpdkCpus)(nil))
-}
-
-func (i *dpdkCpusPtrType) ToDpdkCpusPtrOutput() DpdkCpusPtrOutput {
-	return i.ToDpdkCpusPtrOutputWithContext(context.Background())
-}
-
-func (i *dpdkCpusPtrType) ToDpdkCpusPtrOutputWithContext(ctx context.Context) DpdkCpusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusPtrOutput)
 }
 
 // DpdkCpusArrayInput is an input type that accepts DpdkCpusArray and DpdkCpusArrayOutput values.
@@ -187,7 +169,7 @@ type DpdkCpusArrayInput interface {
 type DpdkCpusArray []DpdkCpusInput
 
 func (DpdkCpusArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DpdkCpus)(nil))
+	return reflect.TypeOf((*[]*DpdkCpus)(nil)).Elem()
 }
 
 func (i DpdkCpusArray) ToDpdkCpusArrayOutput() DpdkCpusArrayOutput {
@@ -212,7 +194,7 @@ type DpdkCpusMapInput interface {
 type DpdkCpusMap map[string]DpdkCpusInput
 
 func (DpdkCpusMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DpdkCpus)(nil))
+	return reflect.TypeOf((*map[string]*DpdkCpus)(nil)).Elem()
 }
 
 func (i DpdkCpusMap) ToDpdkCpusMapOutput() DpdkCpusMapOutput {
@@ -223,12 +205,10 @@ func (i DpdkCpusMap) ToDpdkCpusMapOutputWithContext(ctx context.Context) DpdkCpu
 	return pulumi.ToOutputWithContext(ctx, i).(DpdkCpusMapOutput)
 }
 
-type DpdkCpusOutput struct {
-	*pulumi.OutputState
-}
+type DpdkCpusOutput struct{ *pulumi.OutputState }
 
 func (DpdkCpusOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DpdkCpus)(nil))
+	return reflect.TypeOf((**DpdkCpus)(nil)).Elem()
 }
 
 func (o DpdkCpusOutput) ToDpdkCpusOutput() DpdkCpusOutput {
@@ -239,36 +219,10 @@ func (o DpdkCpusOutput) ToDpdkCpusOutputWithContext(ctx context.Context) DpdkCpu
 	return o
 }
 
-func (o DpdkCpusOutput) ToDpdkCpusPtrOutput() DpdkCpusPtrOutput {
-	return o.ToDpdkCpusPtrOutputWithContext(context.Background())
-}
-
-func (o DpdkCpusOutput) ToDpdkCpusPtrOutputWithContext(ctx context.Context) DpdkCpusPtrOutput {
-	return o.ApplyT(func(v DpdkCpus) *DpdkCpus {
-		return &v
-	}).(DpdkCpusPtrOutput)
-}
-
-type DpdkCpusPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DpdkCpusPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DpdkCpus)(nil))
-}
-
-func (o DpdkCpusPtrOutput) ToDpdkCpusPtrOutput() DpdkCpusPtrOutput {
-	return o
-}
-
-func (o DpdkCpusPtrOutput) ToDpdkCpusPtrOutputWithContext(ctx context.Context) DpdkCpusPtrOutput {
-	return o
-}
-
 type DpdkCpusArrayOutput struct{ *pulumi.OutputState }
 
 func (DpdkCpusArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DpdkCpus)(nil))
+	return reflect.TypeOf((*[]*DpdkCpus)(nil)).Elem()
 }
 
 func (o DpdkCpusArrayOutput) ToDpdkCpusArrayOutput() DpdkCpusArrayOutput {
@@ -280,15 +234,15 @@ func (o DpdkCpusArrayOutput) ToDpdkCpusArrayOutputWithContext(ctx context.Contex
 }
 
 func (o DpdkCpusArrayOutput) Index(i pulumi.IntInput) DpdkCpusOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DpdkCpus {
-		return vs[0].([]DpdkCpus)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DpdkCpus {
+		return vs[0].([]*DpdkCpus)[vs[1].(int)]
 	}).(DpdkCpusOutput)
 }
 
 type DpdkCpusMapOutput struct{ *pulumi.OutputState }
 
 func (DpdkCpusMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DpdkCpus)(nil))
+	return reflect.TypeOf((*map[string]*DpdkCpus)(nil)).Elem()
 }
 
 func (o DpdkCpusMapOutput) ToDpdkCpusMapOutput() DpdkCpusMapOutput {
@@ -300,14 +254,16 @@ func (o DpdkCpusMapOutput) ToDpdkCpusMapOutputWithContext(ctx context.Context) D
 }
 
 func (o DpdkCpusMapOutput) MapIndex(k pulumi.StringInput) DpdkCpusOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DpdkCpus {
-		return vs[0].(map[string]DpdkCpus)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DpdkCpus {
+		return vs[0].(map[string]*DpdkCpus)[vs[1].(string)]
 	}).(DpdkCpusOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DpdkCpusInput)(nil)).Elem(), &DpdkCpus{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DpdkCpusArrayInput)(nil)).Elem(), DpdkCpusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DpdkCpusMapInput)(nil)).Elem(), DpdkCpusMap{})
 	pulumi.RegisterOutputType(DpdkCpusOutput{})
-	pulumi.RegisterOutputType(DpdkCpusPtrOutput{})
 	pulumi.RegisterOutputType(DpdkCpusArrayOutput{})
 	pulumi.RegisterOutputType(DpdkCpusMapOutput{})
 }

@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure push updates.
+ * Configure push updates. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -89,15 +89,15 @@ export class SystemAutoupdatePushUpdate extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAutoupdatePushUpdateArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAutoupdatePushUpdateArgs | SystemAutoupdatePushUpdateState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAutoupdatePushUpdateState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["override"] = state ? state.override : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["override"] = state ? state.override : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAutoupdatePushUpdateArgs | undefined;
             if ((!args || args.address === undefined) && !opts.urn) {
@@ -112,16 +112,14 @@ export class SystemAutoupdatePushUpdate extends pulumi.CustomResource {
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["address"] = args ? args.address : undefined;
-            inputs["override"] = args ? args.override : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["override"] = args ? args.override : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAutoupdatePushUpdate.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAutoupdatePushUpdate.__pulumiType, name, resourceInputs, opts);
     }
 }
 

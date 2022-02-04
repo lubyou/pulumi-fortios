@@ -76,23 +76,21 @@ export class SystemAlias extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAliasArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAliasArgs | SystemAliasState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAliasState | undefined;
-            inputs["command"] = state ? state.command : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["command"] = state ? state.command : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAliasArgs | undefined;
-            inputs["command"] = args ? args.command : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["command"] = args ? args.command : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAlias.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAlias.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure global heuristic options.
+// Configure global heuristic options. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,6 +60,7 @@ func NewAntivirusHeuristic(ctx *pulumi.Context,
 		args = &AntivirusHeuristicArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AntivirusHeuristic
 	err := ctx.RegisterResource("fortios:index/antivirusHeuristic:AntivirusHeuristic", name, args, &resource, opts...)
 	if err != nil {
@@ -126,7 +127,7 @@ type AntivirusHeuristicInput interface {
 }
 
 func (*AntivirusHeuristic) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusHeuristic)(nil))
+	return reflect.TypeOf((**AntivirusHeuristic)(nil)).Elem()
 }
 
 func (i *AntivirusHeuristic) ToAntivirusHeuristicOutput() AntivirusHeuristicOutput {
@@ -135,35 +136,6 @@ func (i *AntivirusHeuristic) ToAntivirusHeuristicOutput() AntivirusHeuristicOutp
 
 func (i *AntivirusHeuristic) ToAntivirusHeuristicOutputWithContext(ctx context.Context) AntivirusHeuristicOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusHeuristicOutput)
-}
-
-func (i *AntivirusHeuristic) ToAntivirusHeuristicPtrOutput() AntivirusHeuristicPtrOutput {
-	return i.ToAntivirusHeuristicPtrOutputWithContext(context.Background())
-}
-
-func (i *AntivirusHeuristic) ToAntivirusHeuristicPtrOutputWithContext(ctx context.Context) AntivirusHeuristicPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusHeuristicPtrOutput)
-}
-
-type AntivirusHeuristicPtrInput interface {
-	pulumi.Input
-
-	ToAntivirusHeuristicPtrOutput() AntivirusHeuristicPtrOutput
-	ToAntivirusHeuristicPtrOutputWithContext(ctx context.Context) AntivirusHeuristicPtrOutput
-}
-
-type antivirusHeuristicPtrType AntivirusHeuristicArgs
-
-func (*antivirusHeuristicPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusHeuristic)(nil))
-}
-
-func (i *antivirusHeuristicPtrType) ToAntivirusHeuristicPtrOutput() AntivirusHeuristicPtrOutput {
-	return i.ToAntivirusHeuristicPtrOutputWithContext(context.Background())
-}
-
-func (i *antivirusHeuristicPtrType) ToAntivirusHeuristicPtrOutputWithContext(ctx context.Context) AntivirusHeuristicPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AntivirusHeuristicPtrOutput)
 }
 
 // AntivirusHeuristicArrayInput is an input type that accepts AntivirusHeuristicArray and AntivirusHeuristicArrayOutput values.
@@ -180,7 +152,7 @@ type AntivirusHeuristicArrayInput interface {
 type AntivirusHeuristicArray []AntivirusHeuristicInput
 
 func (AntivirusHeuristicArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AntivirusHeuristic)(nil))
+	return reflect.TypeOf((*[]*AntivirusHeuristic)(nil)).Elem()
 }
 
 func (i AntivirusHeuristicArray) ToAntivirusHeuristicArrayOutput() AntivirusHeuristicArrayOutput {
@@ -205,7 +177,7 @@ type AntivirusHeuristicMapInput interface {
 type AntivirusHeuristicMap map[string]AntivirusHeuristicInput
 
 func (AntivirusHeuristicMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AntivirusHeuristic)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusHeuristic)(nil)).Elem()
 }
 
 func (i AntivirusHeuristicMap) ToAntivirusHeuristicMapOutput() AntivirusHeuristicMapOutput {
@@ -216,12 +188,10 @@ func (i AntivirusHeuristicMap) ToAntivirusHeuristicMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AntivirusHeuristicMapOutput)
 }
 
-type AntivirusHeuristicOutput struct {
-	*pulumi.OutputState
-}
+type AntivirusHeuristicOutput struct{ *pulumi.OutputState }
 
 func (AntivirusHeuristicOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AntivirusHeuristic)(nil))
+	return reflect.TypeOf((**AntivirusHeuristic)(nil)).Elem()
 }
 
 func (o AntivirusHeuristicOutput) ToAntivirusHeuristicOutput() AntivirusHeuristicOutput {
@@ -232,36 +202,10 @@ func (o AntivirusHeuristicOutput) ToAntivirusHeuristicOutputWithContext(ctx cont
 	return o
 }
 
-func (o AntivirusHeuristicOutput) ToAntivirusHeuristicPtrOutput() AntivirusHeuristicPtrOutput {
-	return o.ToAntivirusHeuristicPtrOutputWithContext(context.Background())
-}
-
-func (o AntivirusHeuristicOutput) ToAntivirusHeuristicPtrOutputWithContext(ctx context.Context) AntivirusHeuristicPtrOutput {
-	return o.ApplyT(func(v AntivirusHeuristic) *AntivirusHeuristic {
-		return &v
-	}).(AntivirusHeuristicPtrOutput)
-}
-
-type AntivirusHeuristicPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AntivirusHeuristicPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AntivirusHeuristic)(nil))
-}
-
-func (o AntivirusHeuristicPtrOutput) ToAntivirusHeuristicPtrOutput() AntivirusHeuristicPtrOutput {
-	return o
-}
-
-func (o AntivirusHeuristicPtrOutput) ToAntivirusHeuristicPtrOutputWithContext(ctx context.Context) AntivirusHeuristicPtrOutput {
-	return o
-}
-
 type AntivirusHeuristicArrayOutput struct{ *pulumi.OutputState }
 
 func (AntivirusHeuristicArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AntivirusHeuristic)(nil))
+	return reflect.TypeOf((*[]*AntivirusHeuristic)(nil)).Elem()
 }
 
 func (o AntivirusHeuristicArrayOutput) ToAntivirusHeuristicArrayOutput() AntivirusHeuristicArrayOutput {
@@ -273,15 +217,15 @@ func (o AntivirusHeuristicArrayOutput) ToAntivirusHeuristicArrayOutputWithContex
 }
 
 func (o AntivirusHeuristicArrayOutput) Index(i pulumi.IntInput) AntivirusHeuristicOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AntivirusHeuristic {
-		return vs[0].([]AntivirusHeuristic)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AntivirusHeuristic {
+		return vs[0].([]*AntivirusHeuristic)[vs[1].(int)]
 	}).(AntivirusHeuristicOutput)
 }
 
 type AntivirusHeuristicMapOutput struct{ *pulumi.OutputState }
 
 func (AntivirusHeuristicMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AntivirusHeuristic)(nil))
+	return reflect.TypeOf((*map[string]*AntivirusHeuristic)(nil)).Elem()
 }
 
 func (o AntivirusHeuristicMapOutput) ToAntivirusHeuristicMapOutput() AntivirusHeuristicMapOutput {
@@ -293,14 +237,16 @@ func (o AntivirusHeuristicMapOutput) ToAntivirusHeuristicMapOutputWithContext(ct
 }
 
 func (o AntivirusHeuristicMapOutput) MapIndex(k pulumi.StringInput) AntivirusHeuristicOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AntivirusHeuristic {
-		return vs[0].(map[string]AntivirusHeuristic)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AntivirusHeuristic {
+		return vs[0].(map[string]*AntivirusHeuristic)[vs[1].(string)]
 	}).(AntivirusHeuristicOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusHeuristicInput)(nil)).Elem(), &AntivirusHeuristic{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusHeuristicArrayInput)(nil)).Elem(), AntivirusHeuristicArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AntivirusHeuristicMapInput)(nil)).Elem(), AntivirusHeuristicMap{})
 	pulumi.RegisterOutputType(AntivirusHeuristicOutput{})
-	pulumi.RegisterOutputType(AntivirusHeuristicPtrOutput{})
 	pulumi.RegisterOutputType(AntivirusHeuristicArrayOutput{})
 	pulumi.RegisterOutputType(AntivirusHeuristicMapOutput{})
 }

@@ -15,6 +15,7 @@ __all__ = ['SystemSamlArgs', 'SystemSaml']
 @pulumi.input_type
 class SystemSamlArgs:
     def __init__(__self__, *,
+                 binding_protocol: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
                  default_login_page: Optional[pulumi.Input[str]] = None,
                  default_profile: Optional[pulumi.Input[str]] = None,
@@ -36,6 +37,7 @@ class SystemSamlArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemSaml resource.
+        :param pulumi.Input[str] binding_protocol: IdP Binding protocol. Valid values: `post`, `redirect`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
         :param pulumi.Input[str] default_login_page: Choose default login page. Valid values: `normal`, `sso`.
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
@@ -56,6 +58,8 @@ class SystemSamlArgs:
         :param pulumi.Input[int] tolerance: Tolerance to the range of time when the assertion is valid (in minutes).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if binding_protocol is not None:
+            pulumi.set(__self__, "binding_protocol", binding_protocol)
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
         if default_login_page is not None:
@@ -94,6 +98,18 @@ class SystemSamlArgs:
             pulumi.set(__self__, "tolerance", tolerance)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="bindingProtocol")
+    def binding_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        IdP Binding protocol. Valid values: `post`, `redirect`.
+        """
+        return pulumi.get(self, "binding_protocol")
+
+    @binding_protocol.setter
+    def binding_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "binding_protocol", value)
 
     @property
     @pulumi.getter
@@ -327,6 +343,7 @@ class SystemSamlArgs:
 @pulumi.input_type
 class _SystemSamlState:
     def __init__(__self__, *,
+                 binding_protocol: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
                  default_login_page: Optional[pulumi.Input[str]] = None,
                  default_profile: Optional[pulumi.Input[str]] = None,
@@ -348,6 +365,7 @@ class _SystemSamlState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemSaml resources.
+        :param pulumi.Input[str] binding_protocol: IdP Binding protocol. Valid values: `post`, `redirect`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
         :param pulumi.Input[str] default_login_page: Choose default login page. Valid values: `normal`, `sso`.
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
@@ -368,6 +386,8 @@ class _SystemSamlState:
         :param pulumi.Input[int] tolerance: Tolerance to the range of time when the assertion is valid (in minutes).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if binding_protocol is not None:
+            pulumi.set(__self__, "binding_protocol", binding_protocol)
         if cert is not None:
             pulumi.set(__self__, "cert", cert)
         if default_login_page is not None:
@@ -406,6 +426,18 @@ class _SystemSamlState:
             pulumi.set(__self__, "tolerance", tolerance)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="bindingProtocol")
+    def binding_protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        IdP Binding protocol. Valid values: `post`, `redirect`.
+        """
+        return pulumi.get(self, "binding_protocol")
+
+    @binding_protocol.setter
+    def binding_protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "binding_protocol", value)
 
     @property
     @pulumi.getter
@@ -641,6 +673,7 @@ class SystemSaml(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 binding_protocol: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
                  default_login_page: Optional[pulumi.Input[str]] = None,
                  default_profile: Optional[pulumi.Input[str]] = None,
@@ -662,7 +695,7 @@ class SystemSaml(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Global settings for SAML authentication.
+        Global settings for SAML authentication. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -691,6 +724,7 @@ class SystemSaml(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] binding_protocol: IdP Binding protocol. Valid values: `post`, `redirect`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
         :param pulumi.Input[str] default_login_page: Choose default login page. Valid values: `normal`, `sso`.
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
@@ -718,7 +752,7 @@ class SystemSaml(pulumi.CustomResource):
                  args: Optional[SystemSamlArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Global settings for SAML authentication.
+        Global settings for SAML authentication. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Example Usage
 
@@ -760,6 +794,7 @@ class SystemSaml(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 binding_protocol: Optional[pulumi.Input[str]] = None,
                  cert: Optional[pulumi.Input[str]] = None,
                  default_login_page: Optional[pulumi.Input[str]] = None,
                  default_profile: Optional[pulumi.Input[str]] = None,
@@ -786,11 +821,14 @@ class SystemSaml(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemSamlArgs.__new__(SystemSamlArgs)
 
+            __props__.__dict__["binding_protocol"] = binding_protocol
             __props__.__dict__["cert"] = cert
             __props__.__dict__["default_login_page"] = default_login_page
             __props__.__dict__["default_profile"] = default_profile
@@ -820,6 +858,7 @@ class SystemSaml(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            binding_protocol: Optional[pulumi.Input[str]] = None,
             cert: Optional[pulumi.Input[str]] = None,
             default_login_page: Optional[pulumi.Input[str]] = None,
             default_profile: Optional[pulumi.Input[str]] = None,
@@ -846,6 +885,7 @@ class SystemSaml(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] binding_protocol: IdP Binding protocol. Valid values: `post`, `redirect`.
         :param pulumi.Input[str] cert: Certificate to sign SAML messages.
         :param pulumi.Input[str] default_login_page: Choose default login page. Valid values: `normal`, `sso`.
         :param pulumi.Input[str] default_profile: Default profile for new SSO admin.
@@ -870,6 +910,7 @@ class SystemSaml(pulumi.CustomResource):
 
         __props__ = _SystemSamlState.__new__(_SystemSamlState)
 
+        __props__.__dict__["binding_protocol"] = binding_protocol
         __props__.__dict__["cert"] = cert
         __props__.__dict__["default_login_page"] = default_login_page
         __props__.__dict__["default_profile"] = default_profile
@@ -890,6 +931,14 @@ class SystemSaml(pulumi.CustomResource):
         __props__.__dict__["tolerance"] = tolerance
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemSaml(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="bindingProtocol")
+    def binding_protocol(self) -> pulumi.Output[str]:
+        """
+        IdP Binding protocol. Valid values: `post`, `redirect`.
+        """
+        return pulumi.get(self, "binding_protocol")
 
     @property
     @pulumi.getter

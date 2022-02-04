@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,8 @@ type UserLdap struct {
 	AccountKeyFilter pulumi.StringOutput `pulumi:"accountKeyFilter"`
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringOutput `pulumi:"accountKeyProcessing"`
+	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+	Antiphish pulumi.StringOutput `pulumi:"antiphish"`
 	// CA certificate name.
 	CaCert pulumi.StringOutput `pulumi:"caCert"`
 	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
@@ -95,6 +97,8 @@ type UserLdap struct {
 	ObtainUserInfo pulumi.StringOutput `pulumi:"obtainUserInfo"`
 	// Password for initial binding.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// Name of attribute to get password hash.
+	PasswordAttr pulumi.StringOutput `pulumi:"passwordAttr"`
 	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
 	PasswordExpiryWarning pulumi.StringOutput `pulumi:"passwordExpiryWarning"`
 	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
@@ -113,6 +117,8 @@ type UserLdap struct {
 	ServerIdentityCheck pulumi.StringOutput `pulumi:"serverIdentityCheck"`
 	// Source IP for communications to LDAP server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
+	// Source port to be used for communication with the LDAP server.
+	SourcePort pulumi.IntOutput `pulumi:"sourcePort"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	SslMinProtoVersion pulumi.StringOutput `pulumi:"sslMinProtoVersion"`
 	// Tertiary LDAP server CN domain name or IP.
@@ -146,6 +152,7 @@ func NewUserLdap(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserLdap
 	err := ctx.RegisterResource("fortios:index/userLdap:UserLdap", name, args, &resource, opts...)
 	if err != nil {
@@ -172,6 +179,8 @@ type userLdapState struct {
 	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
+	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+	Antiphish *string `pulumi:"antiphish"`
 	// CA certificate name.
 	CaCert *string `pulumi:"caCert"`
 	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
@@ -198,6 +207,8 @@ type userLdapState struct {
 	ObtainUserInfo *string `pulumi:"obtainUserInfo"`
 	// Password for initial binding.
 	Password *string `pulumi:"password"`
+	// Name of attribute to get password hash.
+	PasswordAttr *string `pulumi:"passwordAttr"`
 	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
 	PasswordExpiryWarning *string `pulumi:"passwordExpiryWarning"`
 	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
@@ -216,6 +227,8 @@ type userLdapState struct {
 	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
 	// Source IP for communications to LDAP server.
 	SourceIp *string `pulumi:"sourceIp"`
+	// Source port to be used for communication with the LDAP server.
+	SourcePort *int `pulumi:"sourcePort"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Tertiary LDAP server CN domain name or IP.
@@ -241,6 +254,8 @@ type UserLdapState struct {
 	AccountKeyFilter pulumi.StringPtrInput
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringPtrInput
+	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+	Antiphish pulumi.StringPtrInput
 	// CA certificate name.
 	CaCert pulumi.StringPtrInput
 	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
@@ -267,6 +282,8 @@ type UserLdapState struct {
 	ObtainUserInfo pulumi.StringPtrInput
 	// Password for initial binding.
 	Password pulumi.StringPtrInput
+	// Name of attribute to get password hash.
+	PasswordAttr pulumi.StringPtrInput
 	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
 	PasswordExpiryWarning pulumi.StringPtrInput
 	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
@@ -285,6 +302,8 @@ type UserLdapState struct {
 	ServerIdentityCheck pulumi.StringPtrInput
 	// Source IP for communications to LDAP server.
 	SourceIp pulumi.StringPtrInput
+	// Source port to be used for communication with the LDAP server.
+	SourcePort pulumi.IntPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Tertiary LDAP server CN domain name or IP.
@@ -314,6 +333,8 @@ type userLdapArgs struct {
 	AccountKeyFilter *string `pulumi:"accountKeyFilter"`
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing *string `pulumi:"accountKeyProcessing"`
+	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+	Antiphish *string `pulumi:"antiphish"`
 	// CA certificate name.
 	CaCert *string `pulumi:"caCert"`
 	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
@@ -340,6 +361,8 @@ type userLdapArgs struct {
 	ObtainUserInfo *string `pulumi:"obtainUserInfo"`
 	// Password for initial binding.
 	Password *string `pulumi:"password"`
+	// Name of attribute to get password hash.
+	PasswordAttr *string `pulumi:"passwordAttr"`
 	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
 	PasswordExpiryWarning *string `pulumi:"passwordExpiryWarning"`
 	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
@@ -358,6 +381,8 @@ type userLdapArgs struct {
 	ServerIdentityCheck *string `pulumi:"serverIdentityCheck"`
 	// Source IP for communications to LDAP server.
 	SourceIp *string `pulumi:"sourceIp"`
+	// Source port to be used for communication with the LDAP server.
+	SourcePort *int `pulumi:"sourcePort"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	SslMinProtoVersion *string `pulumi:"sslMinProtoVersion"`
 	// Tertiary LDAP server CN domain name or IP.
@@ -384,6 +409,8 @@ type UserLdapArgs struct {
 	AccountKeyFilter pulumi.StringPtrInput
 	// Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 	AccountKeyProcessing pulumi.StringPtrInput
+	// Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+	Antiphish pulumi.StringPtrInput
 	// CA certificate name.
 	CaCert pulumi.StringPtrInput
 	// Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
@@ -410,6 +437,8 @@ type UserLdapArgs struct {
 	ObtainUserInfo pulumi.StringPtrInput
 	// Password for initial binding.
 	Password pulumi.StringPtrInput
+	// Name of attribute to get password hash.
+	PasswordAttr pulumi.StringPtrInput
 	// Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
 	PasswordExpiryWarning pulumi.StringPtrInput
 	// Enable/disable online password renewal. Valid values: `enable`, `disable`.
@@ -428,6 +457,8 @@ type UserLdapArgs struct {
 	ServerIdentityCheck pulumi.StringPtrInput
 	// Source IP for communications to LDAP server.
 	SourceIp pulumi.StringPtrInput
+	// Source port to be used for communication with the LDAP server.
+	SourcePort pulumi.IntPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
 	SslMinProtoVersion pulumi.StringPtrInput
 	// Tertiary LDAP server CN domain name or IP.
@@ -460,7 +491,7 @@ type UserLdapInput interface {
 }
 
 func (*UserLdap) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserLdap)(nil))
+	return reflect.TypeOf((**UserLdap)(nil)).Elem()
 }
 
 func (i *UserLdap) ToUserLdapOutput() UserLdapOutput {
@@ -469,35 +500,6 @@ func (i *UserLdap) ToUserLdapOutput() UserLdapOutput {
 
 func (i *UserLdap) ToUserLdapOutputWithContext(ctx context.Context) UserLdapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserLdapOutput)
-}
-
-func (i *UserLdap) ToUserLdapPtrOutput() UserLdapPtrOutput {
-	return i.ToUserLdapPtrOutputWithContext(context.Background())
-}
-
-func (i *UserLdap) ToUserLdapPtrOutputWithContext(ctx context.Context) UserLdapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserLdapPtrOutput)
-}
-
-type UserLdapPtrInput interface {
-	pulumi.Input
-
-	ToUserLdapPtrOutput() UserLdapPtrOutput
-	ToUserLdapPtrOutputWithContext(ctx context.Context) UserLdapPtrOutput
-}
-
-type userLdapPtrType UserLdapArgs
-
-func (*userLdapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserLdap)(nil))
-}
-
-func (i *userLdapPtrType) ToUserLdapPtrOutput() UserLdapPtrOutput {
-	return i.ToUserLdapPtrOutputWithContext(context.Background())
-}
-
-func (i *userLdapPtrType) ToUserLdapPtrOutputWithContext(ctx context.Context) UserLdapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserLdapPtrOutput)
 }
 
 // UserLdapArrayInput is an input type that accepts UserLdapArray and UserLdapArrayOutput values.
@@ -514,7 +516,7 @@ type UserLdapArrayInput interface {
 type UserLdapArray []UserLdapInput
 
 func (UserLdapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserLdap)(nil))
+	return reflect.TypeOf((*[]*UserLdap)(nil)).Elem()
 }
 
 func (i UserLdapArray) ToUserLdapArrayOutput() UserLdapArrayOutput {
@@ -539,7 +541,7 @@ type UserLdapMapInput interface {
 type UserLdapMap map[string]UserLdapInput
 
 func (UserLdapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserLdap)(nil))
+	return reflect.TypeOf((*map[string]*UserLdap)(nil)).Elem()
 }
 
 func (i UserLdapMap) ToUserLdapMapOutput() UserLdapMapOutput {
@@ -550,12 +552,10 @@ func (i UserLdapMap) ToUserLdapMapOutputWithContext(ctx context.Context) UserLda
 	return pulumi.ToOutputWithContext(ctx, i).(UserLdapMapOutput)
 }
 
-type UserLdapOutput struct {
-	*pulumi.OutputState
-}
+type UserLdapOutput struct{ *pulumi.OutputState }
 
 func (UserLdapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserLdap)(nil))
+	return reflect.TypeOf((**UserLdap)(nil)).Elem()
 }
 
 func (o UserLdapOutput) ToUserLdapOutput() UserLdapOutput {
@@ -566,36 +566,10 @@ func (o UserLdapOutput) ToUserLdapOutputWithContext(ctx context.Context) UserLda
 	return o
 }
 
-func (o UserLdapOutput) ToUserLdapPtrOutput() UserLdapPtrOutput {
-	return o.ToUserLdapPtrOutputWithContext(context.Background())
-}
-
-func (o UserLdapOutput) ToUserLdapPtrOutputWithContext(ctx context.Context) UserLdapPtrOutput {
-	return o.ApplyT(func(v UserLdap) *UserLdap {
-		return &v
-	}).(UserLdapPtrOutput)
-}
-
-type UserLdapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserLdapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserLdap)(nil))
-}
-
-func (o UserLdapPtrOutput) ToUserLdapPtrOutput() UserLdapPtrOutput {
-	return o
-}
-
-func (o UserLdapPtrOutput) ToUserLdapPtrOutputWithContext(ctx context.Context) UserLdapPtrOutput {
-	return o
-}
-
 type UserLdapArrayOutput struct{ *pulumi.OutputState }
 
 func (UserLdapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserLdap)(nil))
+	return reflect.TypeOf((*[]*UserLdap)(nil)).Elem()
 }
 
 func (o UserLdapArrayOutput) ToUserLdapArrayOutput() UserLdapArrayOutput {
@@ -607,15 +581,15 @@ func (o UserLdapArrayOutput) ToUserLdapArrayOutputWithContext(ctx context.Contex
 }
 
 func (o UserLdapArrayOutput) Index(i pulumi.IntInput) UserLdapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserLdap {
-		return vs[0].([]UserLdap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserLdap {
+		return vs[0].([]*UserLdap)[vs[1].(int)]
 	}).(UserLdapOutput)
 }
 
 type UserLdapMapOutput struct{ *pulumi.OutputState }
 
 func (UserLdapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserLdap)(nil))
+	return reflect.TypeOf((*map[string]*UserLdap)(nil)).Elem()
 }
 
 func (o UserLdapMapOutput) ToUserLdapMapOutput() UserLdapMapOutput {
@@ -627,14 +601,16 @@ func (o UserLdapMapOutput) ToUserLdapMapOutputWithContext(ctx context.Context) U
 }
 
 func (o UserLdapMapOutput) MapIndex(k pulumi.StringInput) UserLdapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserLdap {
-		return vs[0].(map[string]UserLdap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserLdap {
+		return vs[0].(map[string]*UserLdap)[vs[1].(string)]
 	}).(UserLdapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserLdapInput)(nil)).Elem(), &UserLdap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserLdapArrayInput)(nil)).Elem(), UserLdapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserLdapMapInput)(nil)).Elem(), UserLdapMap{})
 	pulumi.RegisterOutputType(UserLdapOutput{})
-	pulumi.RegisterOutputType(UserLdapPtrOutput{})
 	pulumi.RegisterOutputType(UserLdapArrayOutput{})
 	pulumi.RegisterOutputType(UserLdapMapOutput{})
 }

@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure virtual hardware switch interfaces.
+ * Configure virtual hardware switch interfaces. Applies to FortiOS Version `>= 7.0.4`.
  *
  * ## Import
  *
@@ -75,13 +75,17 @@ export class SystemVirtualSwitch extends pulumi.CustomResource {
      */
     public readonly spanDirection!: pulumi.Output<string>;
     /**
-     * SPAN source ports.
+     * SPAN source port.
      */
     public readonly spanSourcePort!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * VLAN.
+     */
+    public readonly vlan!: pulumi.Output<number>;
 
     /**
      * Create a SystemVirtualSwitch resource with the given unique name, arguments, and options.
@@ -92,35 +96,35 @@ export class SystemVirtualSwitch extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVirtualSwitchArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVirtualSwitchArgs | SystemVirtualSwitchState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVirtualSwitchState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["physicalSwitch"] = state ? state.physicalSwitch : undefined;
-            inputs["ports"] = state ? state.ports : undefined;
-            inputs["span"] = state ? state.span : undefined;
-            inputs["spanDestPort"] = state ? state.spanDestPort : undefined;
-            inputs["spanDirection"] = state ? state.spanDirection : undefined;
-            inputs["spanSourcePort"] = state ? state.spanSourcePort : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["physicalSwitch"] = state ? state.physicalSwitch : undefined;
+            resourceInputs["ports"] = state ? state.ports : undefined;
+            resourceInputs["span"] = state ? state.span : undefined;
+            resourceInputs["spanDestPort"] = state ? state.spanDestPort : undefined;
+            resourceInputs["spanDirection"] = state ? state.spanDirection : undefined;
+            resourceInputs["spanSourcePort"] = state ? state.spanSourcePort : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlan"] = state ? state.vlan : undefined;
         } else {
             const args = argsOrState as SystemVirtualSwitchArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["physicalSwitch"] = args ? args.physicalSwitch : undefined;
-            inputs["ports"] = args ? args.ports : undefined;
-            inputs["span"] = args ? args.span : undefined;
-            inputs["spanDestPort"] = args ? args.spanDestPort : undefined;
-            inputs["spanDirection"] = args ? args.spanDirection : undefined;
-            inputs["spanSourcePort"] = args ? args.spanSourcePort : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["physicalSwitch"] = args ? args.physicalSwitch : undefined;
+            resourceInputs["ports"] = args ? args.ports : undefined;
+            resourceInputs["span"] = args ? args.span : undefined;
+            resourceInputs["spanDestPort"] = args ? args.spanDestPort : undefined;
+            resourceInputs["spanDirection"] = args ? args.spanDirection : undefined;
+            resourceInputs["spanSourcePort"] = args ? args.spanSourcePort : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlan"] = args ? args.vlan : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVirtualSwitch.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVirtualSwitch.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -157,13 +161,17 @@ export interface SystemVirtualSwitchState {
      */
     spanDirection?: pulumi.Input<string>;
     /**
-     * SPAN source ports.
+     * SPAN source port.
      */
     spanSourcePort?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * VLAN.
+     */
+    vlan?: pulumi.Input<number>;
 }
 
 /**
@@ -199,11 +207,15 @@ export interface SystemVirtualSwitchArgs {
      */
     spanDirection?: pulumi.Input<string>;
     /**
-     * SPAN source ports.
+     * SPAN source port.
      */
     spanSourcePort?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * VLAN.
+     */
+    vlan?: pulumi.Input<number>;
 }

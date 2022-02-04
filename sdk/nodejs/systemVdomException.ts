@@ -98,34 +98,32 @@ export class SystemVdomException extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemVdomExceptionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVdomExceptionArgs | SystemVdomExceptionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVdomExceptionState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["object"] = state ? state.object : undefined;
-            inputs["oid"] = state ? state.oid : undefined;
-            inputs["scope"] = state ? state.scope : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vdoms"] = state ? state.vdoms : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["object"] = state ? state.object : undefined;
+            resourceInputs["oid"] = state ? state.oid : undefined;
+            resourceInputs["scope"] = state ? state.scope : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemVdomExceptionArgs | undefined;
             if ((!args || args.object === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'object'");
             }
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["object"] = args ? args.object : undefined;
-            inputs["oid"] = args ? args.oid : undefined;
-            inputs["scope"] = args ? args.scope : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vdoms"] = args ? args.vdoms : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["object"] = args ? args.object : undefined;
+            resourceInputs["oid"] = args ? args.oid : undefined;
+            resourceInputs["scope"] = args ? args.scope : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVdomException.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVdomException.__pulumiType, name, resourceInputs, opts);
     }
 }
 

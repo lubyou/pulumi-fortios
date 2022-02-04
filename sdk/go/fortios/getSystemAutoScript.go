@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system autoscript
 func LookupSystemAutoScript(ctx *pulumi.Context, args *LookupSystemAutoScriptArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoScriptResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoScriptResult
 	err := ctx.Invoke("fortios:index/getSystemAutoScript:GetSystemAutoScript", args, &rv, opts...)
 	if err != nil {
@@ -44,4 +48,88 @@ type LookupSystemAutoScriptResult struct {
 	// Maximum running time for this script in seconds (0 = no timeout).
 	Timeout   int     `pulumi:"timeout"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemAutoScriptOutput(ctx *pulumi.Context, args LookupSystemAutoScriptOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutoScriptResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemAutoScriptResult, error) {
+			args := v.(LookupSystemAutoScriptArgs)
+			r, err := LookupSystemAutoScript(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemAutoScriptResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutoScript.
+type LookupSystemAutoScriptOutputArgs struct {
+	// Specify the name of the desired system autoscript.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemAutoScriptOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoScriptArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutoScript.
+type LookupSystemAutoScriptResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemAutoScriptResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoScriptResult)(nil)).Elem()
+}
+
+func (o LookupSystemAutoScriptResultOutput) ToLookupSystemAutoScriptResultOutput() LookupSystemAutoScriptResultOutput {
+	return o
+}
+
+func (o LookupSystemAutoScriptResultOutput) ToLookupSystemAutoScriptResultOutputWithContext(ctx context.Context) LookupSystemAutoScriptResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemAutoScriptResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Repeat interval in seconds.
+func (o LookupSystemAutoScriptResultOutput) Interval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.Interval }).(pulumi.IntOutput)
+}
+
+// Auto script name.
+func (o LookupSystemAutoScriptResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Number of megabytes to limit script output to (10 - 1024, default = 10).
+func (o LookupSystemAutoScriptResultOutput) OutputSize() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.OutputSize }).(pulumi.IntOutput)
+}
+
+// Number of times to repeat this script (0 = infinite).
+func (o LookupSystemAutoScriptResultOutput) Repeat() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.Repeat }).(pulumi.IntOutput)
+}
+
+// List of FortiOS CLI commands to repeat.
+func (o LookupSystemAutoScriptResultOutput) Script() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Script }).(pulumi.StringOutput)
+}
+
+// Script starting mode.
+func (o LookupSystemAutoScriptResultOutput) Start() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) string { return v.Start }).(pulumi.StringOutput)
+}
+
+// Maximum running time for this script in seconds (0 = no timeout).
+func (o LookupSystemAutoScriptResultOutput) Timeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) int { return v.Timeout }).(pulumi.IntOutput)
+}
+
+func (o LookupSystemAutoScriptResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemAutoScriptResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemAutoScriptResultOutput{})
 }

@@ -13,9 +13,7 @@ export function getFirewallProxyAddress(args: GetFirewallProxyAddressArgs, opts?
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallProxyAddress:GetFirewallProxyAddress", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -121,4 +119,22 @@ export interface GetFirewallProxyAddressResult {
      * Enable/disable visibility of the object in the GUI.
      */
     readonly visibility: string;
+}
+
+export function getFirewallProxyAddressOutput(args: GetFirewallProxyAddressOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallProxyAddressResult> {
+    return pulumi.output(args).apply(a => getFirewallProxyAddress(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallProxyAddress.
+ */
+export interface GetFirewallProxyAddressOutputArgs {
+    /**
+     * Specify the name of the desired firewall proxyaddress.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

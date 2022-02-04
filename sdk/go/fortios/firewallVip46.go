@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv4 to IPv6 virtual IPs.
+// Configure IPv4 to IPv6 virtual IPs. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -115,6 +115,7 @@ func NewFirewallVip46(ctx *pulumi.Context,
 	if args.Mappedip == nil {
 		return nil, errors.New("invalid value for required argument 'Mappedip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallVip46
 	err := ctx.RegisterResource("fortios:index/firewallVip46:FirewallVip46", name, args, &resource, opts...)
 	if err != nil {
@@ -333,7 +334,7 @@ type FirewallVip46Input interface {
 }
 
 func (*FirewallVip46) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVip46)(nil))
+	return reflect.TypeOf((**FirewallVip46)(nil)).Elem()
 }
 
 func (i *FirewallVip46) ToFirewallVip46Output() FirewallVip46Output {
@@ -342,35 +343,6 @@ func (i *FirewallVip46) ToFirewallVip46Output() FirewallVip46Output {
 
 func (i *FirewallVip46) ToFirewallVip46OutputWithContext(ctx context.Context) FirewallVip46Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip46Output)
-}
-
-func (i *FirewallVip46) ToFirewallVip46PtrOutput() FirewallVip46PtrOutput {
-	return i.ToFirewallVip46PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallVip46) ToFirewallVip46PtrOutputWithContext(ctx context.Context) FirewallVip46PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip46PtrOutput)
-}
-
-type FirewallVip46PtrInput interface {
-	pulumi.Input
-
-	ToFirewallVip46PtrOutput() FirewallVip46PtrOutput
-	ToFirewallVip46PtrOutputWithContext(ctx context.Context) FirewallVip46PtrOutput
-}
-
-type firewallVip46PtrType FirewallVip46Args
-
-func (*firewallVip46PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVip46)(nil))
-}
-
-func (i *firewallVip46PtrType) ToFirewallVip46PtrOutput() FirewallVip46PtrOutput {
-	return i.ToFirewallVip46PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallVip46PtrType) ToFirewallVip46PtrOutputWithContext(ctx context.Context) FirewallVip46PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip46PtrOutput)
 }
 
 // FirewallVip46ArrayInput is an input type that accepts FirewallVip46Array and FirewallVip46ArrayOutput values.
@@ -387,7 +359,7 @@ type FirewallVip46ArrayInput interface {
 type FirewallVip46Array []FirewallVip46Input
 
 func (FirewallVip46Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallVip46)(nil))
+	return reflect.TypeOf((*[]*FirewallVip46)(nil)).Elem()
 }
 
 func (i FirewallVip46Array) ToFirewallVip46ArrayOutput() FirewallVip46ArrayOutput {
@@ -412,7 +384,7 @@ type FirewallVip46MapInput interface {
 type FirewallVip46Map map[string]FirewallVip46Input
 
 func (FirewallVip46Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallVip46)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVip46)(nil)).Elem()
 }
 
 func (i FirewallVip46Map) ToFirewallVip46MapOutput() FirewallVip46MapOutput {
@@ -423,12 +395,10 @@ func (i FirewallVip46Map) ToFirewallVip46MapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip46MapOutput)
 }
 
-type FirewallVip46Output struct {
-	*pulumi.OutputState
-}
+type FirewallVip46Output struct{ *pulumi.OutputState }
 
 func (FirewallVip46Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVip46)(nil))
+	return reflect.TypeOf((**FirewallVip46)(nil)).Elem()
 }
 
 func (o FirewallVip46Output) ToFirewallVip46Output() FirewallVip46Output {
@@ -439,36 +409,10 @@ func (o FirewallVip46Output) ToFirewallVip46OutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o FirewallVip46Output) ToFirewallVip46PtrOutput() FirewallVip46PtrOutput {
-	return o.ToFirewallVip46PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallVip46Output) ToFirewallVip46PtrOutputWithContext(ctx context.Context) FirewallVip46PtrOutput {
-	return o.ApplyT(func(v FirewallVip46) *FirewallVip46 {
-		return &v
-	}).(FirewallVip46PtrOutput)
-}
-
-type FirewallVip46PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallVip46PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVip46)(nil))
-}
-
-func (o FirewallVip46PtrOutput) ToFirewallVip46PtrOutput() FirewallVip46PtrOutput {
-	return o
-}
-
-func (o FirewallVip46PtrOutput) ToFirewallVip46PtrOutputWithContext(ctx context.Context) FirewallVip46PtrOutput {
-	return o
-}
-
 type FirewallVip46ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallVip46ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallVip46)(nil))
+	return reflect.TypeOf((*[]*FirewallVip46)(nil)).Elem()
 }
 
 func (o FirewallVip46ArrayOutput) ToFirewallVip46ArrayOutput() FirewallVip46ArrayOutput {
@@ -480,15 +424,15 @@ func (o FirewallVip46ArrayOutput) ToFirewallVip46ArrayOutputWithContext(ctx cont
 }
 
 func (o FirewallVip46ArrayOutput) Index(i pulumi.IntInput) FirewallVip46Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallVip46 {
-		return vs[0].([]FirewallVip46)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVip46 {
+		return vs[0].([]*FirewallVip46)[vs[1].(int)]
 	}).(FirewallVip46Output)
 }
 
 type FirewallVip46MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallVip46MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallVip46)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVip46)(nil)).Elem()
 }
 
 func (o FirewallVip46MapOutput) ToFirewallVip46MapOutput() FirewallVip46MapOutput {
@@ -500,14 +444,16 @@ func (o FirewallVip46MapOutput) ToFirewallVip46MapOutputWithContext(ctx context.
 }
 
 func (o FirewallVip46MapOutput) MapIndex(k pulumi.StringInput) FirewallVip46Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallVip46 {
-		return vs[0].(map[string]FirewallVip46)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallVip46 {
+		return vs[0].(map[string]*FirewallVip46)[vs[1].(string)]
 	}).(FirewallVip46Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVip46Input)(nil)).Elem(), &FirewallVip46{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVip46ArrayInput)(nil)).Elem(), FirewallVip46Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVip46MapInput)(nil)).Elem(), FirewallVip46Map{})
 	pulumi.RegisterOutputType(FirewallVip46Output{})
-	pulumi.RegisterOutputType(FirewallVip46PtrOutput{})
 	pulumi.RegisterOutputType(FirewallVip46ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallVip46MapOutput{})
 }

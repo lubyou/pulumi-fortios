@@ -66,32 +66,30 @@ export class SystemSettingGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemSettingGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSettingGlobalArgs | SystemSettingGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSettingGlobalState | undefined;
-            inputs["adminScp"] = state ? state.adminScp : undefined;
-            inputs["adminSport"] = state ? state.adminSport : undefined;
-            inputs["adminSshPort"] = state ? state.adminSshPort : undefined;
-            inputs["admintimeout"] = state ? state.admintimeout : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["timezone"] = state ? state.timezone : undefined;
+            resourceInputs["adminScp"] = state ? state.adminScp : undefined;
+            resourceInputs["adminSport"] = state ? state.adminSport : undefined;
+            resourceInputs["adminSshPort"] = state ? state.adminSshPort : undefined;
+            resourceInputs["admintimeout"] = state ? state.admintimeout : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["timezone"] = state ? state.timezone : undefined;
         } else {
             const args = argsOrState as SystemSettingGlobalArgs | undefined;
             if ((!args || args.hostname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'hostname'");
             }
-            inputs["adminScp"] = args ? args.adminScp : undefined;
-            inputs["adminSport"] = args ? args.adminSport : undefined;
-            inputs["adminSshPort"] = args ? args.adminSshPort : undefined;
-            inputs["admintimeout"] = args ? args.admintimeout : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["timezone"] = args ? args.timezone : undefined;
+            resourceInputs["adminScp"] = args ? args.adminScp : undefined;
+            resourceInputs["adminSport"] = args ? args.adminSport : undefined;
+            resourceInputs["adminSshPort"] = args ? args.adminSshPort : undefined;
+            resourceInputs["admintimeout"] = args ? args.admintimeout : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["timezone"] = args ? args.timezone : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSettingGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSettingGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 

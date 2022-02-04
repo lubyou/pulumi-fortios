@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -74,6 +74,7 @@ func NewSwitchControllerLldpSettings(ctx *pulumi.Context,
 		args = &SwitchControllerLldpSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerLldpSettings
 	err := ctx.RegisterResource("fortios:index/switchControllerLldpSettings:SwitchControllerLldpSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -180,7 +181,7 @@ type SwitchControllerLldpSettingsInput interface {
 }
 
 func (*SwitchControllerLldpSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerLldpSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerLldpSettings)(nil)).Elem()
 }
 
 func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsOutput() SwitchControllerLldpSettingsOutput {
@@ -189,35 +190,6 @@ func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsOutput() Sw
 
 func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsOutput)
-}
-
-func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsPtrOutput() SwitchControllerLldpSettingsPtrOutput {
-	return i.ToSwitchControllerLldpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerLldpSettings) ToSwitchControllerLldpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsPtrOutput)
-}
-
-type SwitchControllerLldpSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerLldpSettingsPtrOutput() SwitchControllerLldpSettingsPtrOutput
-	ToSwitchControllerLldpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsPtrOutput
-}
-
-type switchControllerLldpSettingsPtrType SwitchControllerLldpSettingsArgs
-
-func (*switchControllerLldpSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerLldpSettings)(nil))
-}
-
-func (i *switchControllerLldpSettingsPtrType) ToSwitchControllerLldpSettingsPtrOutput() SwitchControllerLldpSettingsPtrOutput {
-	return i.ToSwitchControllerLldpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerLldpSettingsPtrType) ToSwitchControllerLldpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsPtrOutput)
 }
 
 // SwitchControllerLldpSettingsArrayInput is an input type that accepts SwitchControllerLldpSettingsArray and SwitchControllerLldpSettingsArrayOutput values.
@@ -234,7 +206,7 @@ type SwitchControllerLldpSettingsArrayInput interface {
 type SwitchControllerLldpSettingsArray []SwitchControllerLldpSettingsInput
 
 func (SwitchControllerLldpSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerLldpSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerLldpSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerLldpSettingsArray) ToSwitchControllerLldpSettingsArrayOutput() SwitchControllerLldpSettingsArrayOutput {
@@ -259,7 +231,7 @@ type SwitchControllerLldpSettingsMapInput interface {
 type SwitchControllerLldpSettingsMap map[string]SwitchControllerLldpSettingsInput
 
 func (SwitchControllerLldpSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerLldpSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerLldpSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerLldpSettingsMap) ToSwitchControllerLldpSettingsMapOutput() SwitchControllerLldpSettingsMapOutput {
@@ -270,12 +242,10 @@ func (i SwitchControllerLldpSettingsMap) ToSwitchControllerLldpSettingsMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLldpSettingsMapOutput)
 }
 
-type SwitchControllerLldpSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerLldpSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerLldpSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerLldpSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsOutput() SwitchControllerLldpSettingsOutput {
@@ -286,36 +256,10 @@ func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsOutput
 	return o
 }
 
-func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsPtrOutput() SwitchControllerLldpSettingsPtrOutput {
-	return o.ToSwitchControllerLldpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerLldpSettingsOutput) ToSwitchControllerLldpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsPtrOutput {
-	return o.ApplyT(func(v SwitchControllerLldpSettings) *SwitchControllerLldpSettings {
-		return &v
-	}).(SwitchControllerLldpSettingsPtrOutput)
-}
-
-type SwitchControllerLldpSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerLldpSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerLldpSettings)(nil))
-}
-
-func (o SwitchControllerLldpSettingsPtrOutput) ToSwitchControllerLldpSettingsPtrOutput() SwitchControllerLldpSettingsPtrOutput {
-	return o
-}
-
-func (o SwitchControllerLldpSettingsPtrOutput) ToSwitchControllerLldpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerLldpSettingsPtrOutput {
-	return o
-}
-
 type SwitchControllerLldpSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerLldpSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerLldpSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerLldpSettingsArrayOutput) ToSwitchControllerLldpSettingsArrayOutput() SwitchControllerLldpSettingsArrayOutput {
@@ -327,15 +271,15 @@ func (o SwitchControllerLldpSettingsArrayOutput) ToSwitchControllerLldpSettingsA
 }
 
 func (o SwitchControllerLldpSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerLldpSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerLldpSettings {
-		return vs[0].([]SwitchControllerLldpSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLldpSettings {
+		return vs[0].([]*SwitchControllerLldpSettings)[vs[1].(int)]
 	}).(SwitchControllerLldpSettingsOutput)
 }
 
 type SwitchControllerLldpSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLldpSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerLldpSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerLldpSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerLldpSettingsMapOutput) ToSwitchControllerLldpSettingsMapOutput() SwitchControllerLldpSettingsMapOutput {
@@ -347,14 +291,16 @@ func (o SwitchControllerLldpSettingsMapOutput) ToSwitchControllerLldpSettingsMap
 }
 
 func (o SwitchControllerLldpSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLldpSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerLldpSettings {
-		return vs[0].(map[string]SwitchControllerLldpSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerLldpSettings {
+		return vs[0].(map[string]*SwitchControllerLldpSettings)[vs[1].(string)]
 	}).(SwitchControllerLldpSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLldpSettingsInput)(nil)).Elem(), &SwitchControllerLldpSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLldpSettingsArrayInput)(nil)).Elem(), SwitchControllerLldpSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLldpSettingsMapInput)(nil)).Elem(), SwitchControllerLldpSettingsMap{})
 	pulumi.RegisterOutputType(SwitchControllerLldpSettingsOutput{})
-	pulumi.RegisterOutputType(SwitchControllerLldpSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerLldpSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerLldpSettingsMapOutput{})
 }

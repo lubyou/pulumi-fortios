@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -49,6 +49,8 @@ import (
 type SystemFtmPush struct {
 	pulumi.CustomResourceState
 
+	// IPv4 address or domain name of FortiToken Mobile push services server.
+	Server pulumi.StringOutput `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
 	ServerCert pulumi.StringOutput `pulumi:"serverCert"`
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -68,6 +70,7 @@ func NewSystemFtmPush(ctx *pulumi.Context,
 		args = &SystemFtmPushArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFtmPush
 	err := ctx.RegisterResource("fortios:index/systemFtmPush:SystemFtmPush", name, args, &resource, opts...)
 	if err != nil {
@@ -90,6 +93,8 @@ func GetSystemFtmPush(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemFtmPush resources.
 type systemFtmPushState struct {
+	// IPv4 address or domain name of FortiToken Mobile push services server.
+	Server *string `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
 	ServerCert *string `pulumi:"serverCert"`
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -103,6 +108,8 @@ type systemFtmPushState struct {
 }
 
 type SystemFtmPushState struct {
+	// IPv4 address or domain name of FortiToken Mobile push services server.
+	Server pulumi.StringPtrInput
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
 	ServerCert pulumi.StringPtrInput
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -120,6 +127,8 @@ func (SystemFtmPushState) ElementType() reflect.Type {
 }
 
 type systemFtmPushArgs struct {
+	// IPv4 address or domain name of FortiToken Mobile push services server.
+	Server *string `pulumi:"server"`
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
 	ServerCert *string `pulumi:"serverCert"`
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -134,6 +143,8 @@ type systemFtmPushArgs struct {
 
 // The set of arguments for constructing a SystemFtmPush resource.
 type SystemFtmPushArgs struct {
+	// IPv4 address or domain name of FortiToken Mobile push services server.
+	Server pulumi.StringPtrInput
 	// Name of the server certificate to be used for SSL (default = Fortinet_Factory).
 	ServerCert pulumi.StringPtrInput
 	// IPv4 address of FortiToken Mobile push services server (format: xxx.xxx.xxx.xxx).
@@ -158,7 +169,7 @@ type SystemFtmPushInput interface {
 }
 
 func (*SystemFtmPush) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFtmPush)(nil))
+	return reflect.TypeOf((**SystemFtmPush)(nil)).Elem()
 }
 
 func (i *SystemFtmPush) ToSystemFtmPushOutput() SystemFtmPushOutput {
@@ -167,35 +178,6 @@ func (i *SystemFtmPush) ToSystemFtmPushOutput() SystemFtmPushOutput {
 
 func (i *SystemFtmPush) ToSystemFtmPushOutputWithContext(ctx context.Context) SystemFtmPushOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushOutput)
-}
-
-func (i *SystemFtmPush) ToSystemFtmPushPtrOutput() SystemFtmPushPtrOutput {
-	return i.ToSystemFtmPushPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFtmPush) ToSystemFtmPushPtrOutputWithContext(ctx context.Context) SystemFtmPushPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushPtrOutput)
-}
-
-type SystemFtmPushPtrInput interface {
-	pulumi.Input
-
-	ToSystemFtmPushPtrOutput() SystemFtmPushPtrOutput
-	ToSystemFtmPushPtrOutputWithContext(ctx context.Context) SystemFtmPushPtrOutput
-}
-
-type systemFtmPushPtrType SystemFtmPushArgs
-
-func (*systemFtmPushPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFtmPush)(nil))
-}
-
-func (i *systemFtmPushPtrType) ToSystemFtmPushPtrOutput() SystemFtmPushPtrOutput {
-	return i.ToSystemFtmPushPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFtmPushPtrType) ToSystemFtmPushPtrOutputWithContext(ctx context.Context) SystemFtmPushPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushPtrOutput)
 }
 
 // SystemFtmPushArrayInput is an input type that accepts SystemFtmPushArray and SystemFtmPushArrayOutput values.
@@ -212,7 +194,7 @@ type SystemFtmPushArrayInput interface {
 type SystemFtmPushArray []SystemFtmPushInput
 
 func (SystemFtmPushArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFtmPush)(nil))
+	return reflect.TypeOf((*[]*SystemFtmPush)(nil)).Elem()
 }
 
 func (i SystemFtmPushArray) ToSystemFtmPushArrayOutput() SystemFtmPushArrayOutput {
@@ -237,7 +219,7 @@ type SystemFtmPushMapInput interface {
 type SystemFtmPushMap map[string]SystemFtmPushInput
 
 func (SystemFtmPushMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFtmPush)(nil))
+	return reflect.TypeOf((*map[string]*SystemFtmPush)(nil)).Elem()
 }
 
 func (i SystemFtmPushMap) ToSystemFtmPushMapOutput() SystemFtmPushMapOutput {
@@ -248,12 +230,10 @@ func (i SystemFtmPushMap) ToSystemFtmPushMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFtmPushMapOutput)
 }
 
-type SystemFtmPushOutput struct {
-	*pulumi.OutputState
-}
+type SystemFtmPushOutput struct{ *pulumi.OutputState }
 
 func (SystemFtmPushOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFtmPush)(nil))
+	return reflect.TypeOf((**SystemFtmPush)(nil)).Elem()
 }
 
 func (o SystemFtmPushOutput) ToSystemFtmPushOutput() SystemFtmPushOutput {
@@ -264,36 +244,10 @@ func (o SystemFtmPushOutput) ToSystemFtmPushOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemFtmPushOutput) ToSystemFtmPushPtrOutput() SystemFtmPushPtrOutput {
-	return o.ToSystemFtmPushPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFtmPushOutput) ToSystemFtmPushPtrOutputWithContext(ctx context.Context) SystemFtmPushPtrOutput {
-	return o.ApplyT(func(v SystemFtmPush) *SystemFtmPush {
-		return &v
-	}).(SystemFtmPushPtrOutput)
-}
-
-type SystemFtmPushPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFtmPushPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFtmPush)(nil))
-}
-
-func (o SystemFtmPushPtrOutput) ToSystemFtmPushPtrOutput() SystemFtmPushPtrOutput {
-	return o
-}
-
-func (o SystemFtmPushPtrOutput) ToSystemFtmPushPtrOutputWithContext(ctx context.Context) SystemFtmPushPtrOutput {
-	return o
-}
-
 type SystemFtmPushArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFtmPushArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFtmPush)(nil))
+	return reflect.TypeOf((*[]*SystemFtmPush)(nil)).Elem()
 }
 
 func (o SystemFtmPushArrayOutput) ToSystemFtmPushArrayOutput() SystemFtmPushArrayOutput {
@@ -305,15 +259,15 @@ func (o SystemFtmPushArrayOutput) ToSystemFtmPushArrayOutputWithContext(ctx cont
 }
 
 func (o SystemFtmPushArrayOutput) Index(i pulumi.IntInput) SystemFtmPushOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFtmPush {
-		return vs[0].([]SystemFtmPush)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFtmPush {
+		return vs[0].([]*SystemFtmPush)[vs[1].(int)]
 	}).(SystemFtmPushOutput)
 }
 
 type SystemFtmPushMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFtmPushMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFtmPush)(nil))
+	return reflect.TypeOf((*map[string]*SystemFtmPush)(nil)).Elem()
 }
 
 func (o SystemFtmPushMapOutput) ToSystemFtmPushMapOutput() SystemFtmPushMapOutput {
@@ -325,14 +279,16 @@ func (o SystemFtmPushMapOutput) ToSystemFtmPushMapOutputWithContext(ctx context.
 }
 
 func (o SystemFtmPushMapOutput) MapIndex(k pulumi.StringInput) SystemFtmPushOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFtmPush {
-		return vs[0].(map[string]SystemFtmPush)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFtmPush {
+		return vs[0].(map[string]*SystemFtmPush)[vs[1].(string)]
 	}).(SystemFtmPushOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFtmPushInput)(nil)).Elem(), &SystemFtmPush{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFtmPushArrayInput)(nil)).Elem(), SystemFtmPushArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFtmPushMapInput)(nil)).Elem(), SystemFtmPushMap{})
 	pulumi.RegisterOutputType(SystemFtmPushOutput{})
-	pulumi.RegisterOutputType(SystemFtmPushPtrOutput{})
 	pulumi.RegisterOutputType(SystemFtmPushArrayOutput{})
 	pulumi.RegisterOutputType(SystemFtmPushMapOutput{})
 }

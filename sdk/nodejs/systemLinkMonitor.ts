@@ -83,9 +83,21 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
      */
     public readonly addrMode!: pulumi.Output<string>;
     /**
+     * Traffic class ID.
+     */
+    public readonly classId!: pulumi.Output<number>;
+    /**
+     * Differentiated services code point (DSCP) in the IP header of the probe packet.
+     */
+    public readonly diffservcode!: pulumi.Output<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Threshold weight to trigger link failure alert.
+     */
+    public readonly failWeight!: pulumi.Output<number>;
     /**
      * Number of retry attempts before the server is considered down (1 - 10, default = 5)
      */
@@ -143,7 +155,7 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
      */
     public readonly probeTimeout!: pulumi.Output<number>;
     /**
-     * Protocols used to monitor the server.
+     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
      */
     public readonly protocol!: pulumi.Output<string>;
     /**
@@ -151,13 +163,29 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
      */
     public readonly recoverytime!: pulumi.Output<number>;
     /**
+     * Subnet to monitor. The structure of `route` block is documented below.
+     */
+    public readonly routes!: pulumi.Output<outputs.SystemLinkMonitorRoute[] | undefined>;
+    /**
      * Twamp controller security mode. Valid values: `none`, `authentication`.
      */
     public readonly securityMode!: pulumi.Output<string>;
     /**
+     * Mode of server configuration. Valid values: `default`, `individual`.
+     */
+    public readonly serverConfig!: pulumi.Output<string>;
+    /**
+     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+     */
+    public readonly serverLists!: pulumi.Output<outputs.SystemLinkMonitorServerList[] | undefined>;
+    /**
      * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
      */
     public readonly servers!: pulumi.Output<outputs.SystemLinkMonitorServer[]>;
+    /**
+     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+     */
+    public readonly serviceDetection!: pulumi.Output<string>;
     /**
      * Source IP address used in packet to the server.
      */
@@ -179,6 +207,10 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
      */
     public readonly updateCascadeInterface!: pulumi.Output<string>;
     /**
+     * Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+     */
+    public readonly updatePolicyRoute!: pulumi.Output<string>;
+    /**
      * Enable/disable updating the static route. Valid values: `enable`, `disable`.
      */
     public readonly updateStaticRoute!: pulumi.Output<string>;
@@ -196,74 +228,88 @@ export class SystemLinkMonitor extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemLinkMonitorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemLinkMonitorArgs | SystemLinkMonitorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemLinkMonitorState | undefined;
-            inputs["addrMode"] = state ? state.addrMode : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["failtime"] = state ? state.failtime : undefined;
-            inputs["gatewayIp"] = state ? state.gatewayIp : undefined;
-            inputs["gatewayIp6"] = state ? state.gatewayIp6 : undefined;
-            inputs["haPriority"] = state ? state.haPriority : undefined;
-            inputs["httpAgent"] = state ? state.httpAgent : undefined;
-            inputs["httpGet"] = state ? state.httpGet : undefined;
-            inputs["httpMatch"] = state ? state.httpMatch : undefined;
-            inputs["interval"] = state ? state.interval : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["packetSize"] = state ? state.packetSize : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["probeCount"] = state ? state.probeCount : undefined;
-            inputs["probeTimeout"] = state ? state.probeTimeout : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["recoverytime"] = state ? state.recoverytime : undefined;
-            inputs["securityMode"] = state ? state.securityMode : undefined;
-            inputs["servers"] = state ? state.servers : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
-            inputs["srcintf"] = state ? state.srcintf : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["updateCascadeInterface"] = state ? state.updateCascadeInterface : undefined;
-            inputs["updateStaticRoute"] = state ? state.updateStaticRoute : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addrMode"] = state ? state.addrMode : undefined;
+            resourceInputs["classId"] = state ? state.classId : undefined;
+            resourceInputs["diffservcode"] = state ? state.diffservcode : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["failWeight"] = state ? state.failWeight : undefined;
+            resourceInputs["failtime"] = state ? state.failtime : undefined;
+            resourceInputs["gatewayIp"] = state ? state.gatewayIp : undefined;
+            resourceInputs["gatewayIp6"] = state ? state.gatewayIp6 : undefined;
+            resourceInputs["haPriority"] = state ? state.haPriority : undefined;
+            resourceInputs["httpAgent"] = state ? state.httpAgent : undefined;
+            resourceInputs["httpGet"] = state ? state.httpGet : undefined;
+            resourceInputs["httpMatch"] = state ? state.httpMatch : undefined;
+            resourceInputs["interval"] = state ? state.interval : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["packetSize"] = state ? state.packetSize : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["probeCount"] = state ? state.probeCount : undefined;
+            resourceInputs["probeTimeout"] = state ? state.probeTimeout : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["recoverytime"] = state ? state.recoverytime : undefined;
+            resourceInputs["routes"] = state ? state.routes : undefined;
+            resourceInputs["securityMode"] = state ? state.securityMode : undefined;
+            resourceInputs["serverConfig"] = state ? state.serverConfig : undefined;
+            resourceInputs["serverLists"] = state ? state.serverLists : undefined;
+            resourceInputs["servers"] = state ? state.servers : undefined;
+            resourceInputs["serviceDetection"] = state ? state.serviceDetection : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["srcintf"] = state ? state.srcintf : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updateCascadeInterface"] = state ? state.updateCascadeInterface : undefined;
+            resourceInputs["updatePolicyRoute"] = state ? state.updatePolicyRoute : undefined;
+            resourceInputs["updateStaticRoute"] = state ? state.updateStaticRoute : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemLinkMonitorArgs | undefined;
             if ((!args || args.servers === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'servers'");
             }
-            inputs["addrMode"] = args ? args.addrMode : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["failtime"] = args ? args.failtime : undefined;
-            inputs["gatewayIp"] = args ? args.gatewayIp : undefined;
-            inputs["gatewayIp6"] = args ? args.gatewayIp6 : undefined;
-            inputs["haPriority"] = args ? args.haPriority : undefined;
-            inputs["httpAgent"] = args ? args.httpAgent : undefined;
-            inputs["httpGet"] = args ? args.httpGet : undefined;
-            inputs["httpMatch"] = args ? args.httpMatch : undefined;
-            inputs["interval"] = args ? args.interval : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["packetSize"] = args ? args.packetSize : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["probeCount"] = args ? args.probeCount : undefined;
-            inputs["probeTimeout"] = args ? args.probeTimeout : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["recoverytime"] = args ? args.recoverytime : undefined;
-            inputs["securityMode"] = args ? args.securityMode : undefined;
-            inputs["servers"] = args ? args.servers : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
-            inputs["srcintf"] = args ? args.srcintf : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["updateCascadeInterface"] = args ? args.updateCascadeInterface : undefined;
-            inputs["updateStaticRoute"] = args ? args.updateStaticRoute : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addrMode"] = args ? args.addrMode : undefined;
+            resourceInputs["classId"] = args ? args.classId : undefined;
+            resourceInputs["diffservcode"] = args ? args.diffservcode : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["failWeight"] = args ? args.failWeight : undefined;
+            resourceInputs["failtime"] = args ? args.failtime : undefined;
+            resourceInputs["gatewayIp"] = args ? args.gatewayIp : undefined;
+            resourceInputs["gatewayIp6"] = args ? args.gatewayIp6 : undefined;
+            resourceInputs["haPriority"] = args ? args.haPriority : undefined;
+            resourceInputs["httpAgent"] = args ? args.httpAgent : undefined;
+            resourceInputs["httpGet"] = args ? args.httpGet : undefined;
+            resourceInputs["httpMatch"] = args ? args.httpMatch : undefined;
+            resourceInputs["interval"] = args ? args.interval : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["packetSize"] = args ? args.packetSize : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["probeCount"] = args ? args.probeCount : undefined;
+            resourceInputs["probeTimeout"] = args ? args.probeTimeout : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["recoverytime"] = args ? args.recoverytime : undefined;
+            resourceInputs["routes"] = args ? args.routes : undefined;
+            resourceInputs["securityMode"] = args ? args.securityMode : undefined;
+            resourceInputs["serverConfig"] = args ? args.serverConfig : undefined;
+            resourceInputs["serverLists"] = args ? args.serverLists : undefined;
+            resourceInputs["servers"] = args ? args.servers : undefined;
+            resourceInputs["serviceDetection"] = args ? args.serviceDetection : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["srcintf"] = args ? args.srcintf : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["updateCascadeInterface"] = args ? args.updateCascadeInterface : undefined;
+            resourceInputs["updatePolicyRoute"] = args ? args.updatePolicyRoute : undefined;
+            resourceInputs["updateStaticRoute"] = args ? args.updateStaticRoute : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemLinkMonitor.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemLinkMonitor.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -276,9 +322,21 @@ export interface SystemLinkMonitorState {
      */
     addrMode?: pulumi.Input<string>;
     /**
+     * Traffic class ID.
+     */
+    classId?: pulumi.Input<number>;
+    /**
+     * Differentiated services code point (DSCP) in the IP header of the probe packet.
+     */
+    diffservcode?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Threshold weight to trigger link failure alert.
+     */
+    failWeight?: pulumi.Input<number>;
     /**
      * Number of retry attempts before the server is considered down (1 - 10, default = 5)
      */
@@ -336,7 +394,7 @@ export interface SystemLinkMonitorState {
      */
     probeTimeout?: pulumi.Input<number>;
     /**
-     * Protocols used to monitor the server.
+     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
      */
     protocol?: pulumi.Input<string>;
     /**
@@ -344,13 +402,29 @@ export interface SystemLinkMonitorState {
      */
     recoverytime?: pulumi.Input<number>;
     /**
+     * Subnet to monitor. The structure of `route` block is documented below.
+     */
+    routes?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorRoute>[]>;
+    /**
      * Twamp controller security mode. Valid values: `none`, `authentication`.
      */
     securityMode?: pulumi.Input<string>;
     /**
+     * Mode of server configuration. Valid values: `default`, `individual`.
+     */
+    serverConfig?: pulumi.Input<string>;
+    /**
+     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+     */
+    serverLists?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServerList>[]>;
+    /**
      * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
      */
     servers?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServer>[]>;
+    /**
+     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+     */
+    serviceDetection?: pulumi.Input<string>;
     /**
      * Source IP address used in packet to the server.
      */
@@ -371,6 +445,10 @@ export interface SystemLinkMonitorState {
      * Enable/disable update cascade interface. Valid values: `enable`, `disable`.
      */
     updateCascadeInterface?: pulumi.Input<string>;
+    /**
+     * Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+     */
+    updatePolicyRoute?: pulumi.Input<string>;
     /**
      * Enable/disable updating the static route. Valid values: `enable`, `disable`.
      */
@@ -390,9 +468,21 @@ export interface SystemLinkMonitorArgs {
      */
     addrMode?: pulumi.Input<string>;
     /**
+     * Traffic class ID.
+     */
+    classId?: pulumi.Input<number>;
+    /**
+     * Differentiated services code point (DSCP) in the IP header of the probe packet.
+     */
+    diffservcode?: pulumi.Input<string>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Threshold weight to trigger link failure alert.
+     */
+    failWeight?: pulumi.Input<number>;
     /**
      * Number of retry attempts before the server is considered down (1 - 10, default = 5)
      */
@@ -450,7 +540,7 @@ export interface SystemLinkMonitorArgs {
      */
     probeTimeout?: pulumi.Input<number>;
     /**
-     * Protocols used to monitor the server.
+     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
      */
     protocol?: pulumi.Input<string>;
     /**
@@ -458,13 +548,29 @@ export interface SystemLinkMonitorArgs {
      */
     recoverytime?: pulumi.Input<number>;
     /**
+     * Subnet to monitor. The structure of `route` block is documented below.
+     */
+    routes?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorRoute>[]>;
+    /**
      * Twamp controller security mode. Valid values: `none`, `authentication`.
      */
     securityMode?: pulumi.Input<string>;
     /**
+     * Mode of server configuration. Valid values: `default`, `individual`.
+     */
+    serverConfig?: pulumi.Input<string>;
+    /**
+     * Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+     */
+    serverLists?: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServerList>[]>;
+    /**
      * IP address of the server(s) to be monitored. The structure of `server` block is documented below.
      */
     servers: pulumi.Input<pulumi.Input<inputs.SystemLinkMonitorServer>[]>;
+    /**
+     * Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+     */
+    serviceDetection?: pulumi.Input<string>;
     /**
      * Source IP address used in packet to the server.
      */
@@ -485,6 +591,10 @@ export interface SystemLinkMonitorArgs {
      * Enable/disable update cascade interface. Valid values: `enable`, `disable`.
      */
     updateCascadeInterface?: pulumi.Input<string>;
+    /**
+     * Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+     */
+    updatePolicyRoute?: pulumi.Input<string>;
     /**
      * Enable/disable updating the static route. Valid values: `enable`, `disable`.
      */

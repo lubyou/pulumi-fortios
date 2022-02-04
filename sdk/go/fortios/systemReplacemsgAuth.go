@@ -47,6 +47,7 @@ func NewSystemReplacemsgAuth(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgAuth
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgAuth:SystemReplacemsgAuth", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgAuthInput interface {
 }
 
 func (*SystemReplacemsgAuth) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAuth)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAuth)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgAuth) ToSystemReplacemsgAuthOutput() SystemReplacemsgAuthOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgAuth) ToSystemReplacemsgAuthOutput() SystemReplacemsgAu
 
 func (i *SystemReplacemsgAuth) ToSystemReplacemsgAuthOutputWithContext(ctx context.Context) SystemReplacemsgAuthOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthOutput)
-}
-
-func (i *SystemReplacemsgAuth) ToSystemReplacemsgAuthPtrOutput() SystemReplacemsgAuthPtrOutput {
-	return i.ToSystemReplacemsgAuthPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgAuth) ToSystemReplacemsgAuthPtrOutputWithContext(ctx context.Context) SystemReplacemsgAuthPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthPtrOutput)
-}
-
-type SystemReplacemsgAuthPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgAuthPtrOutput() SystemReplacemsgAuthPtrOutput
-	ToSystemReplacemsgAuthPtrOutputWithContext(ctx context.Context) SystemReplacemsgAuthPtrOutput
-}
-
-type systemReplacemsgAuthPtrType SystemReplacemsgAuthArgs
-
-func (*systemReplacemsgAuthPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAuth)(nil))
-}
-
-func (i *systemReplacemsgAuthPtrType) ToSystemReplacemsgAuthPtrOutput() SystemReplacemsgAuthPtrOutput {
-	return i.ToSystemReplacemsgAuthPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgAuthPtrType) ToSystemReplacemsgAuthPtrOutputWithContext(ctx context.Context) SystemReplacemsgAuthPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthPtrOutput)
 }
 
 // SystemReplacemsgAuthArrayInput is an input type that accepts SystemReplacemsgAuthArray and SystemReplacemsgAuthArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgAuthArrayInput interface {
 type SystemReplacemsgAuthArray []SystemReplacemsgAuthInput
 
 func (SystemReplacemsgAuthArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgAuth)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAuth)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAuthArray) ToSystemReplacemsgAuthArrayOutput() SystemReplacemsgAuthArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgAuthMapInput interface {
 type SystemReplacemsgAuthMap map[string]SystemReplacemsgAuthInput
 
 func (SystemReplacemsgAuthMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgAuth)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAuth)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAuthMap) ToSystemReplacemsgAuthMapOutput() SystemReplacemsgAuthMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgAuthMap) ToSystemReplacemsgAuthMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAuthMapOutput)
 }
 
-type SystemReplacemsgAuthOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgAuthOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAuthOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAuth)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAuth)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAuthOutput) ToSystemReplacemsgAuthOutput() SystemReplacemsgAuthOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgAuthOutput) ToSystemReplacemsgAuthOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemReplacemsgAuthOutput) ToSystemReplacemsgAuthPtrOutput() SystemReplacemsgAuthPtrOutput {
-	return o.ToSystemReplacemsgAuthPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgAuthOutput) ToSystemReplacemsgAuthPtrOutputWithContext(ctx context.Context) SystemReplacemsgAuthPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgAuth) *SystemReplacemsgAuth {
-		return &v
-	}).(SystemReplacemsgAuthPtrOutput)
-}
-
-type SystemReplacemsgAuthPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgAuthPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAuth)(nil))
-}
-
-func (o SystemReplacemsgAuthPtrOutput) ToSystemReplacemsgAuthPtrOutput() SystemReplacemsgAuthPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgAuthPtrOutput) ToSystemReplacemsgAuthPtrOutputWithContext(ctx context.Context) SystemReplacemsgAuthPtrOutput {
-	return o
-}
-
 type SystemReplacemsgAuthArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAuthArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgAuth)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAuth)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAuthArrayOutput) ToSystemReplacemsgAuthArrayOutput() SystemReplacemsgAuthArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgAuthArrayOutput) ToSystemReplacemsgAuthArrayOutputWithCo
 }
 
 func (o SystemReplacemsgAuthArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAuthOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgAuth {
-		return vs[0].([]SystemReplacemsgAuth)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAuth {
+		return vs[0].([]*SystemReplacemsgAuth)[vs[1].(int)]
 	}).(SystemReplacemsgAuthOutput)
 }
 
 type SystemReplacemsgAuthMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAuthMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgAuth)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAuth)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAuthMapOutput) ToSystemReplacemsgAuthMapOutput() SystemReplacemsgAuthMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgAuthMapOutput) ToSystemReplacemsgAuthMapOutputWithContex
 }
 
 func (o SystemReplacemsgAuthMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAuthOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgAuth {
-		return vs[0].(map[string]SystemReplacemsgAuth)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgAuth {
+		return vs[0].(map[string]*SystemReplacemsgAuth)[vs[1].(string)]
 	}).(SystemReplacemsgAuthOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAuthInput)(nil)).Elem(), &SystemReplacemsgAuth{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAuthArrayInput)(nil)).Elem(), SystemReplacemsgAuthArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAuthMapInput)(nil)).Elem(), SystemReplacemsgAuthMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgAuthOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgAuthPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAuthArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAuthMapOutput{})
 }

@@ -130,6 +130,10 @@ export class SystemFortiguard extends pulumi.CustomResource {
      */
     public readonly ddnsServerIp!: pulumi.Output<string>;
     /**
+     * IPv6 address of the FortiDDNS server.
+     */
+    public readonly ddnsServerIp6!: pulumi.Output<string>;
+    /**
      * Port used to communicate with FortiDDNS servers.
      */
     public readonly ddnsServerPort!: pulumi.Output<number>;
@@ -181,6 +185,10 @@ export class SystemFortiguard extends pulumi.CustomResource {
      * FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
      */
     public readonly outbreakPreventionTimeout!: pulumi.Output<number>;
+    /**
+     * Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+     */
+    public readonly persistentConnection!: pulumi.Output<string>;
     /**
      * Port used to communicate with the FortiGuard servers.
      */
@@ -234,13 +242,37 @@ export class SystemFortiguard extends pulumi.CustomResource {
      */
     public readonly sourceIp6!: pulumi.Output<string>;
     /**
-     * Signature update server location. Valid values: `usa`, `any`.
+     * Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+     */
+    public readonly updateBuildProxy!: pulumi.Output<string>;
+    /**
+     * Enable/disable external resource update. Valid values: `enable`, `disable`.
+     */
+    public readonly updateExtdb!: pulumi.Output<string>;
+    /**
+     * Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+     */
+    public readonly updateFfdb!: pulumi.Output<string>;
+    /**
+     * Signature update server location.
      */
     public readonly updateServerLocation!: pulumi.Output<string>;
+    /**
+     * Enable/disable allowlist update. Valid values: `enable`, `disable`.
+     */
+    public readonly updateUwdb!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Expiration date of the FortiGuard video filter contract.
+     */
+    public readonly videofilterExpiration!: pulumi.Output<number>;
+    /**
+     * Interval of time between license checks for the FortiGuard video filter contract.
+     */
+    public readonly videofilterLicense!: pulumi.Output<number>;
     /**
      * Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
      */
@@ -275,55 +307,63 @@ export class SystemFortiguard extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemFortiguardArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFortiguardArgs | SystemFortiguardState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFortiguardState | undefined;
-            inputs["antispamCache"] = state ? state.antispamCache : undefined;
-            inputs["antispamCacheMpercent"] = state ? state.antispamCacheMpercent : undefined;
-            inputs["antispamCacheTtl"] = state ? state.antispamCacheTtl : undefined;
-            inputs["antispamExpiration"] = state ? state.antispamExpiration : undefined;
-            inputs["antispamForceOff"] = state ? state.antispamForceOff : undefined;
-            inputs["antispamLicense"] = state ? state.antispamLicense : undefined;
-            inputs["antispamTimeout"] = state ? state.antispamTimeout : undefined;
-            inputs["anycastSdnsServerIp"] = state ? state.anycastSdnsServerIp : undefined;
-            inputs["anycastSdnsServerPort"] = state ? state.anycastSdnsServerPort : undefined;
-            inputs["autoJoinForticloud"] = state ? state.autoJoinForticloud : undefined;
-            inputs["ddnsServerIp"] = state ? state.ddnsServerIp : undefined;
-            inputs["ddnsServerPort"] = state ? state.ddnsServerPort : undefined;
-            inputs["fortiguardAnycast"] = state ? state.fortiguardAnycast : undefined;
-            inputs["fortiguardAnycastSource"] = state ? state.fortiguardAnycastSource : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["loadBalanceServers"] = state ? state.loadBalanceServers : undefined;
-            inputs["outbreakPreventionCache"] = state ? state.outbreakPreventionCache : undefined;
-            inputs["outbreakPreventionCacheMpercent"] = state ? state.outbreakPreventionCacheMpercent : undefined;
-            inputs["outbreakPreventionCacheTtl"] = state ? state.outbreakPreventionCacheTtl : undefined;
-            inputs["outbreakPreventionExpiration"] = state ? state.outbreakPreventionExpiration : undefined;
-            inputs["outbreakPreventionForceOff"] = state ? state.outbreakPreventionForceOff : undefined;
-            inputs["outbreakPreventionLicense"] = state ? state.outbreakPreventionLicense : undefined;
-            inputs["outbreakPreventionTimeout"] = state ? state.outbreakPreventionTimeout : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["proxyPassword"] = state ? state.proxyPassword : undefined;
-            inputs["proxyServerIp"] = state ? state.proxyServerIp : undefined;
-            inputs["proxyServerPort"] = state ? state.proxyServerPort : undefined;
-            inputs["proxyUsername"] = state ? state.proxyUsername : undefined;
-            inputs["sandboxRegion"] = state ? state.sandboxRegion : undefined;
-            inputs["sdnsOptions"] = state ? state.sdnsOptions : undefined;
-            inputs["sdnsServerIp"] = state ? state.sdnsServerIp : undefined;
-            inputs["sdnsServerPort"] = state ? state.sdnsServerPort : undefined;
-            inputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
-            inputs["updateServerLocation"] = state ? state.updateServerLocation : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webfilterCache"] = state ? state.webfilterCache : undefined;
-            inputs["webfilterCacheTtl"] = state ? state.webfilterCacheTtl : undefined;
-            inputs["webfilterExpiration"] = state ? state.webfilterExpiration : undefined;
-            inputs["webfilterForceOff"] = state ? state.webfilterForceOff : undefined;
-            inputs["webfilterLicense"] = state ? state.webfilterLicense : undefined;
-            inputs["webfilterTimeout"] = state ? state.webfilterTimeout : undefined;
+            resourceInputs["antispamCache"] = state ? state.antispamCache : undefined;
+            resourceInputs["antispamCacheMpercent"] = state ? state.antispamCacheMpercent : undefined;
+            resourceInputs["antispamCacheTtl"] = state ? state.antispamCacheTtl : undefined;
+            resourceInputs["antispamExpiration"] = state ? state.antispamExpiration : undefined;
+            resourceInputs["antispamForceOff"] = state ? state.antispamForceOff : undefined;
+            resourceInputs["antispamLicense"] = state ? state.antispamLicense : undefined;
+            resourceInputs["antispamTimeout"] = state ? state.antispamTimeout : undefined;
+            resourceInputs["anycastSdnsServerIp"] = state ? state.anycastSdnsServerIp : undefined;
+            resourceInputs["anycastSdnsServerPort"] = state ? state.anycastSdnsServerPort : undefined;
+            resourceInputs["autoJoinForticloud"] = state ? state.autoJoinForticloud : undefined;
+            resourceInputs["ddnsServerIp"] = state ? state.ddnsServerIp : undefined;
+            resourceInputs["ddnsServerIp6"] = state ? state.ddnsServerIp6 : undefined;
+            resourceInputs["ddnsServerPort"] = state ? state.ddnsServerPort : undefined;
+            resourceInputs["fortiguardAnycast"] = state ? state.fortiguardAnycast : undefined;
+            resourceInputs["fortiguardAnycastSource"] = state ? state.fortiguardAnycastSource : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["loadBalanceServers"] = state ? state.loadBalanceServers : undefined;
+            resourceInputs["outbreakPreventionCache"] = state ? state.outbreakPreventionCache : undefined;
+            resourceInputs["outbreakPreventionCacheMpercent"] = state ? state.outbreakPreventionCacheMpercent : undefined;
+            resourceInputs["outbreakPreventionCacheTtl"] = state ? state.outbreakPreventionCacheTtl : undefined;
+            resourceInputs["outbreakPreventionExpiration"] = state ? state.outbreakPreventionExpiration : undefined;
+            resourceInputs["outbreakPreventionForceOff"] = state ? state.outbreakPreventionForceOff : undefined;
+            resourceInputs["outbreakPreventionLicense"] = state ? state.outbreakPreventionLicense : undefined;
+            resourceInputs["outbreakPreventionTimeout"] = state ? state.outbreakPreventionTimeout : undefined;
+            resourceInputs["persistentConnection"] = state ? state.persistentConnection : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["proxyPassword"] = state ? state.proxyPassword : undefined;
+            resourceInputs["proxyServerIp"] = state ? state.proxyServerIp : undefined;
+            resourceInputs["proxyServerPort"] = state ? state.proxyServerPort : undefined;
+            resourceInputs["proxyUsername"] = state ? state.proxyUsername : undefined;
+            resourceInputs["sandboxRegion"] = state ? state.sandboxRegion : undefined;
+            resourceInputs["sdnsOptions"] = state ? state.sdnsOptions : undefined;
+            resourceInputs["sdnsServerIp"] = state ? state.sdnsServerIp : undefined;
+            resourceInputs["sdnsServerPort"] = state ? state.sdnsServerPort : undefined;
+            resourceInputs["serviceAccountId"] = state ? state.serviceAccountId : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["updateBuildProxy"] = state ? state.updateBuildProxy : undefined;
+            resourceInputs["updateExtdb"] = state ? state.updateExtdb : undefined;
+            resourceInputs["updateFfdb"] = state ? state.updateFfdb : undefined;
+            resourceInputs["updateServerLocation"] = state ? state.updateServerLocation : undefined;
+            resourceInputs["updateUwdb"] = state ? state.updateUwdb : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["videofilterExpiration"] = state ? state.videofilterExpiration : undefined;
+            resourceInputs["videofilterLicense"] = state ? state.videofilterLicense : undefined;
+            resourceInputs["webfilterCache"] = state ? state.webfilterCache : undefined;
+            resourceInputs["webfilterCacheTtl"] = state ? state.webfilterCacheTtl : undefined;
+            resourceInputs["webfilterExpiration"] = state ? state.webfilterExpiration : undefined;
+            resourceInputs["webfilterForceOff"] = state ? state.webfilterForceOff : undefined;
+            resourceInputs["webfilterLicense"] = state ? state.webfilterLicense : undefined;
+            resourceInputs["webfilterTimeout"] = state ? state.webfilterTimeout : undefined;
         } else {
             const args = argsOrState as SystemFortiguardArgs | undefined;
             if ((!args || args.antispamTimeout === undefined) && !opts.urn) {
@@ -335,56 +375,62 @@ export class SystemFortiguard extends pulumi.CustomResource {
             if ((!args || args.webfilterTimeout === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'webfilterTimeout'");
             }
-            inputs["antispamCache"] = args ? args.antispamCache : undefined;
-            inputs["antispamCacheMpercent"] = args ? args.antispamCacheMpercent : undefined;
-            inputs["antispamCacheTtl"] = args ? args.antispamCacheTtl : undefined;
-            inputs["antispamExpiration"] = args ? args.antispamExpiration : undefined;
-            inputs["antispamForceOff"] = args ? args.antispamForceOff : undefined;
-            inputs["antispamLicense"] = args ? args.antispamLicense : undefined;
-            inputs["antispamTimeout"] = args ? args.antispamTimeout : undefined;
-            inputs["anycastSdnsServerIp"] = args ? args.anycastSdnsServerIp : undefined;
-            inputs["anycastSdnsServerPort"] = args ? args.anycastSdnsServerPort : undefined;
-            inputs["autoJoinForticloud"] = args ? args.autoJoinForticloud : undefined;
-            inputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
-            inputs["ddnsServerPort"] = args ? args.ddnsServerPort : undefined;
-            inputs["fortiguardAnycast"] = args ? args.fortiguardAnycast : undefined;
-            inputs["fortiguardAnycastSource"] = args ? args.fortiguardAnycastSource : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["loadBalanceServers"] = args ? args.loadBalanceServers : undefined;
-            inputs["outbreakPreventionCache"] = args ? args.outbreakPreventionCache : undefined;
-            inputs["outbreakPreventionCacheMpercent"] = args ? args.outbreakPreventionCacheMpercent : undefined;
-            inputs["outbreakPreventionCacheTtl"] = args ? args.outbreakPreventionCacheTtl : undefined;
-            inputs["outbreakPreventionExpiration"] = args ? args.outbreakPreventionExpiration : undefined;
-            inputs["outbreakPreventionForceOff"] = args ? args.outbreakPreventionForceOff : undefined;
-            inputs["outbreakPreventionLicense"] = args ? args.outbreakPreventionLicense : undefined;
-            inputs["outbreakPreventionTimeout"] = args ? args.outbreakPreventionTimeout : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["proxyPassword"] = args ? args.proxyPassword : undefined;
-            inputs["proxyServerIp"] = args ? args.proxyServerIp : undefined;
-            inputs["proxyServerPort"] = args ? args.proxyServerPort : undefined;
-            inputs["proxyUsername"] = args ? args.proxyUsername : undefined;
-            inputs["sandboxRegion"] = args ? args.sandboxRegion : undefined;
-            inputs["sdnsOptions"] = args ? args.sdnsOptions : undefined;
-            inputs["sdnsServerIp"] = args ? args.sdnsServerIp : undefined;
-            inputs["sdnsServerPort"] = args ? args.sdnsServerPort : undefined;
-            inputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
-            inputs["updateServerLocation"] = args ? args.updateServerLocation : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webfilterCache"] = args ? args.webfilterCache : undefined;
-            inputs["webfilterCacheTtl"] = args ? args.webfilterCacheTtl : undefined;
-            inputs["webfilterExpiration"] = args ? args.webfilterExpiration : undefined;
-            inputs["webfilterForceOff"] = args ? args.webfilterForceOff : undefined;
-            inputs["webfilterLicense"] = args ? args.webfilterLicense : undefined;
-            inputs["webfilterTimeout"] = args ? args.webfilterTimeout : undefined;
+            resourceInputs["antispamCache"] = args ? args.antispamCache : undefined;
+            resourceInputs["antispamCacheMpercent"] = args ? args.antispamCacheMpercent : undefined;
+            resourceInputs["antispamCacheTtl"] = args ? args.antispamCacheTtl : undefined;
+            resourceInputs["antispamExpiration"] = args ? args.antispamExpiration : undefined;
+            resourceInputs["antispamForceOff"] = args ? args.antispamForceOff : undefined;
+            resourceInputs["antispamLicense"] = args ? args.antispamLicense : undefined;
+            resourceInputs["antispamTimeout"] = args ? args.antispamTimeout : undefined;
+            resourceInputs["anycastSdnsServerIp"] = args ? args.anycastSdnsServerIp : undefined;
+            resourceInputs["anycastSdnsServerPort"] = args ? args.anycastSdnsServerPort : undefined;
+            resourceInputs["autoJoinForticloud"] = args ? args.autoJoinForticloud : undefined;
+            resourceInputs["ddnsServerIp"] = args ? args.ddnsServerIp : undefined;
+            resourceInputs["ddnsServerIp6"] = args ? args.ddnsServerIp6 : undefined;
+            resourceInputs["ddnsServerPort"] = args ? args.ddnsServerPort : undefined;
+            resourceInputs["fortiguardAnycast"] = args ? args.fortiguardAnycast : undefined;
+            resourceInputs["fortiguardAnycastSource"] = args ? args.fortiguardAnycastSource : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["loadBalanceServers"] = args ? args.loadBalanceServers : undefined;
+            resourceInputs["outbreakPreventionCache"] = args ? args.outbreakPreventionCache : undefined;
+            resourceInputs["outbreakPreventionCacheMpercent"] = args ? args.outbreakPreventionCacheMpercent : undefined;
+            resourceInputs["outbreakPreventionCacheTtl"] = args ? args.outbreakPreventionCacheTtl : undefined;
+            resourceInputs["outbreakPreventionExpiration"] = args ? args.outbreakPreventionExpiration : undefined;
+            resourceInputs["outbreakPreventionForceOff"] = args ? args.outbreakPreventionForceOff : undefined;
+            resourceInputs["outbreakPreventionLicense"] = args ? args.outbreakPreventionLicense : undefined;
+            resourceInputs["outbreakPreventionTimeout"] = args ? args.outbreakPreventionTimeout : undefined;
+            resourceInputs["persistentConnection"] = args ? args.persistentConnection : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["proxyPassword"] = args ? args.proxyPassword : undefined;
+            resourceInputs["proxyServerIp"] = args ? args.proxyServerIp : undefined;
+            resourceInputs["proxyServerPort"] = args ? args.proxyServerPort : undefined;
+            resourceInputs["proxyUsername"] = args ? args.proxyUsername : undefined;
+            resourceInputs["sandboxRegion"] = args ? args.sandboxRegion : undefined;
+            resourceInputs["sdnsOptions"] = args ? args.sdnsOptions : undefined;
+            resourceInputs["sdnsServerIp"] = args ? args.sdnsServerIp : undefined;
+            resourceInputs["sdnsServerPort"] = args ? args.sdnsServerPort : undefined;
+            resourceInputs["serviceAccountId"] = args ? args.serviceAccountId : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["updateBuildProxy"] = args ? args.updateBuildProxy : undefined;
+            resourceInputs["updateExtdb"] = args ? args.updateExtdb : undefined;
+            resourceInputs["updateFfdb"] = args ? args.updateFfdb : undefined;
+            resourceInputs["updateServerLocation"] = args ? args.updateServerLocation : undefined;
+            resourceInputs["updateUwdb"] = args ? args.updateUwdb : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["videofilterExpiration"] = args ? args.videofilterExpiration : undefined;
+            resourceInputs["videofilterLicense"] = args ? args.videofilterLicense : undefined;
+            resourceInputs["webfilterCache"] = args ? args.webfilterCache : undefined;
+            resourceInputs["webfilterCacheTtl"] = args ? args.webfilterCacheTtl : undefined;
+            resourceInputs["webfilterExpiration"] = args ? args.webfilterExpiration : undefined;
+            resourceInputs["webfilterForceOff"] = args ? args.webfilterForceOff : undefined;
+            resourceInputs["webfilterLicense"] = args ? args.webfilterLicense : undefined;
+            resourceInputs["webfilterTimeout"] = args ? args.webfilterTimeout : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFortiguard.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFortiguard.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -436,6 +482,10 @@ export interface SystemFortiguardState {
      * IP address of the FortiDDNS server.
      */
     ddnsServerIp?: pulumi.Input<string>;
+    /**
+     * IPv6 address of the FortiDDNS server.
+     */
+    ddnsServerIp6?: pulumi.Input<string>;
     /**
      * Port used to communicate with FortiDDNS servers.
      */
@@ -489,6 +539,10 @@ export interface SystemFortiguardState {
      */
     outbreakPreventionTimeout?: pulumi.Input<number>;
     /**
+     * Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+     */
+    persistentConnection?: pulumi.Input<string>;
+    /**
      * Port used to communicate with the FortiGuard servers.
      */
     port?: pulumi.Input<string>;
@@ -541,13 +595,37 @@ export interface SystemFortiguardState {
      */
     sourceIp6?: pulumi.Input<string>;
     /**
-     * Signature update server location. Valid values: `usa`, `any`.
+     * Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+     */
+    updateBuildProxy?: pulumi.Input<string>;
+    /**
+     * Enable/disable external resource update. Valid values: `enable`, `disable`.
+     */
+    updateExtdb?: pulumi.Input<string>;
+    /**
+     * Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+     */
+    updateFfdb?: pulumi.Input<string>;
+    /**
+     * Signature update server location.
      */
     updateServerLocation?: pulumi.Input<string>;
+    /**
+     * Enable/disable allowlist update. Valid values: `enable`, `disable`.
+     */
+    updateUwdb?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Expiration date of the FortiGuard video filter contract.
+     */
+    videofilterExpiration?: pulumi.Input<number>;
+    /**
+     * Interval of time between license checks for the FortiGuard video filter contract.
+     */
+    videofilterLicense?: pulumi.Input<number>;
     /**
      * Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
      */
@@ -623,6 +701,10 @@ export interface SystemFortiguardArgs {
      */
     ddnsServerIp?: pulumi.Input<string>;
     /**
+     * IPv6 address of the FortiDDNS server.
+     */
+    ddnsServerIp6?: pulumi.Input<string>;
+    /**
      * Port used to communicate with FortiDDNS servers.
      */
     ddnsServerPort?: pulumi.Input<number>;
@@ -674,6 +756,10 @@ export interface SystemFortiguardArgs {
      * FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
      */
     outbreakPreventionTimeout: pulumi.Input<number>;
+    /**
+     * Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+     */
+    persistentConnection?: pulumi.Input<string>;
     /**
      * Port used to communicate with the FortiGuard servers.
      */
@@ -727,13 +813,37 @@ export interface SystemFortiguardArgs {
      */
     sourceIp6?: pulumi.Input<string>;
     /**
-     * Signature update server location. Valid values: `usa`, `any`.
+     * Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+     */
+    updateBuildProxy?: pulumi.Input<string>;
+    /**
+     * Enable/disable external resource update. Valid values: `enable`, `disable`.
+     */
+    updateExtdb?: pulumi.Input<string>;
+    /**
+     * Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+     */
+    updateFfdb?: pulumi.Input<string>;
+    /**
+     * Signature update server location.
      */
     updateServerLocation?: pulumi.Input<string>;
+    /**
+     * Enable/disable allowlist update. Valid values: `enable`, `disable`.
+     */
+    updateUwdb?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Expiration date of the FortiGuard video filter contract.
+     */
+    videofilterExpiration?: pulumi.Input<number>;
+    /**
+     * Interval of time between license checks for the FortiGuard video filter contract.
+     */
+    videofilterLicense?: pulumi.Input<number>;
     /**
      * Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
      */

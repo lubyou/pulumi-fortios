@@ -103,6 +103,10 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Configure DNS over TLS options. The structure of `dot` block is documented below.
+     */
+    public readonly dot!: pulumi.Output<outputs.FirewallSslSshProfileDot | undefined>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
@@ -159,6 +163,14 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
      */
     public readonly sslAnomaliesLog!: pulumi.Output<string>;
     /**
+     * Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+     */
+    public readonly sslAnomalyLog!: pulumi.Output<string>;
+    /**
+     * Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+     */
+    public readonly sslExemptionLog!: pulumi.Output<string>;
+    /**
      * Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
      */
     public readonly sslExemptionsLog!: pulumi.Output<string>;
@@ -167,9 +179,17 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
      */
     public readonly sslExempts!: pulumi.Output<outputs.FirewallSslSshProfileSslExempt[] | undefined>;
     /**
+     * Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+     */
+    public readonly sslHandshakeLog!: pulumi.Output<string>;
+    /**
      * Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
      */
     public readonly sslNegotiationLog!: pulumi.Output<string>;
+    /**
+     * Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+     */
+    public readonly sslServerCertLog!: pulumi.Output<string>;
     /**
      * SSL servers. The structure of `sslServer` block is documented below.
      */
@@ -204,73 +224,81 @@ export class FirewallSslSshProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallSslSshProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSslSshProfileArgs | FirewallSslSshProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSslSshProfileState | undefined;
-            inputs["allowlist"] = state ? state.allowlist : undefined;
-            inputs["blockBlacklistedCertificates"] = state ? state.blockBlacklistedCertificates : undefined;
-            inputs["blockBlocklistedCertificates"] = state ? state.blockBlocklistedCertificates : undefined;
-            inputs["caname"] = state ? state.caname : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ftps"] = state ? state.ftps : undefined;
-            inputs["https"] = state ? state.https : undefined;
-            inputs["imaps"] = state ? state.imaps : undefined;
-            inputs["mapiOverHttps"] = state ? state.mapiOverHttps : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pop3s"] = state ? state.pop3s : undefined;
-            inputs["rpcOverHttps"] = state ? state.rpcOverHttps : undefined;
-            inputs["serverCert"] = state ? state.serverCert : undefined;
-            inputs["serverCertMode"] = state ? state.serverCertMode : undefined;
-            inputs["smtps"] = state ? state.smtps : undefined;
-            inputs["ssh"] = state ? state.ssh : undefined;
-            inputs["ssl"] = state ? state.ssl : undefined;
-            inputs["sslAnomaliesLog"] = state ? state.sslAnomaliesLog : undefined;
-            inputs["sslExemptionsLog"] = state ? state.sslExemptionsLog : undefined;
-            inputs["sslExempts"] = state ? state.sslExempts : undefined;
-            inputs["sslNegotiationLog"] = state ? state.sslNegotiationLog : undefined;
-            inputs["sslServers"] = state ? state.sslServers : undefined;
-            inputs["supportedAlpn"] = state ? state.supportedAlpn : undefined;
-            inputs["untrustedCaname"] = state ? state.untrustedCaname : undefined;
-            inputs["useSslServer"] = state ? state.useSslServer : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["whitelist"] = state ? state.whitelist : undefined;
+            resourceInputs["allowlist"] = state ? state.allowlist : undefined;
+            resourceInputs["blockBlacklistedCertificates"] = state ? state.blockBlacklistedCertificates : undefined;
+            resourceInputs["blockBlocklistedCertificates"] = state ? state.blockBlocklistedCertificates : undefined;
+            resourceInputs["caname"] = state ? state.caname : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dot"] = state ? state.dot : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ftps"] = state ? state.ftps : undefined;
+            resourceInputs["https"] = state ? state.https : undefined;
+            resourceInputs["imaps"] = state ? state.imaps : undefined;
+            resourceInputs["mapiOverHttps"] = state ? state.mapiOverHttps : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pop3s"] = state ? state.pop3s : undefined;
+            resourceInputs["rpcOverHttps"] = state ? state.rpcOverHttps : undefined;
+            resourceInputs["serverCert"] = state ? state.serverCert : undefined;
+            resourceInputs["serverCertMode"] = state ? state.serverCertMode : undefined;
+            resourceInputs["smtps"] = state ? state.smtps : undefined;
+            resourceInputs["ssh"] = state ? state.ssh : undefined;
+            resourceInputs["ssl"] = state ? state.ssl : undefined;
+            resourceInputs["sslAnomaliesLog"] = state ? state.sslAnomaliesLog : undefined;
+            resourceInputs["sslAnomalyLog"] = state ? state.sslAnomalyLog : undefined;
+            resourceInputs["sslExemptionLog"] = state ? state.sslExemptionLog : undefined;
+            resourceInputs["sslExemptionsLog"] = state ? state.sslExemptionsLog : undefined;
+            resourceInputs["sslExempts"] = state ? state.sslExempts : undefined;
+            resourceInputs["sslHandshakeLog"] = state ? state.sslHandshakeLog : undefined;
+            resourceInputs["sslNegotiationLog"] = state ? state.sslNegotiationLog : undefined;
+            resourceInputs["sslServerCertLog"] = state ? state.sslServerCertLog : undefined;
+            resourceInputs["sslServers"] = state ? state.sslServers : undefined;
+            resourceInputs["supportedAlpn"] = state ? state.supportedAlpn : undefined;
+            resourceInputs["untrustedCaname"] = state ? state.untrustedCaname : undefined;
+            resourceInputs["useSslServer"] = state ? state.useSslServer : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["whitelist"] = state ? state.whitelist : undefined;
         } else {
             const args = argsOrState as FirewallSslSshProfileArgs | undefined;
-            inputs["allowlist"] = args ? args.allowlist : undefined;
-            inputs["blockBlacklistedCertificates"] = args ? args.blockBlacklistedCertificates : undefined;
-            inputs["blockBlocklistedCertificates"] = args ? args.blockBlocklistedCertificates : undefined;
-            inputs["caname"] = args ? args.caname : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ftps"] = args ? args.ftps : undefined;
-            inputs["https"] = args ? args.https : undefined;
-            inputs["imaps"] = args ? args.imaps : undefined;
-            inputs["mapiOverHttps"] = args ? args.mapiOverHttps : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pop3s"] = args ? args.pop3s : undefined;
-            inputs["rpcOverHttps"] = args ? args.rpcOverHttps : undefined;
-            inputs["serverCert"] = args ? args.serverCert : undefined;
-            inputs["serverCertMode"] = args ? args.serverCertMode : undefined;
-            inputs["smtps"] = args ? args.smtps : undefined;
-            inputs["ssh"] = args ? args.ssh : undefined;
-            inputs["ssl"] = args ? args.ssl : undefined;
-            inputs["sslAnomaliesLog"] = args ? args.sslAnomaliesLog : undefined;
-            inputs["sslExemptionsLog"] = args ? args.sslExemptionsLog : undefined;
-            inputs["sslExempts"] = args ? args.sslExempts : undefined;
-            inputs["sslNegotiationLog"] = args ? args.sslNegotiationLog : undefined;
-            inputs["sslServers"] = args ? args.sslServers : undefined;
-            inputs["supportedAlpn"] = args ? args.supportedAlpn : undefined;
-            inputs["untrustedCaname"] = args ? args.untrustedCaname : undefined;
-            inputs["useSslServer"] = args ? args.useSslServer : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["whitelist"] = args ? args.whitelist : undefined;
+            resourceInputs["allowlist"] = args ? args.allowlist : undefined;
+            resourceInputs["blockBlacklistedCertificates"] = args ? args.blockBlacklistedCertificates : undefined;
+            resourceInputs["blockBlocklistedCertificates"] = args ? args.blockBlocklistedCertificates : undefined;
+            resourceInputs["caname"] = args ? args.caname : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dot"] = args ? args.dot : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ftps"] = args ? args.ftps : undefined;
+            resourceInputs["https"] = args ? args.https : undefined;
+            resourceInputs["imaps"] = args ? args.imaps : undefined;
+            resourceInputs["mapiOverHttps"] = args ? args.mapiOverHttps : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pop3s"] = args ? args.pop3s : undefined;
+            resourceInputs["rpcOverHttps"] = args ? args.rpcOverHttps : undefined;
+            resourceInputs["serverCert"] = args ? args.serverCert : undefined;
+            resourceInputs["serverCertMode"] = args ? args.serverCertMode : undefined;
+            resourceInputs["smtps"] = args ? args.smtps : undefined;
+            resourceInputs["ssh"] = args ? args.ssh : undefined;
+            resourceInputs["ssl"] = args ? args.ssl : undefined;
+            resourceInputs["sslAnomaliesLog"] = args ? args.sslAnomaliesLog : undefined;
+            resourceInputs["sslAnomalyLog"] = args ? args.sslAnomalyLog : undefined;
+            resourceInputs["sslExemptionLog"] = args ? args.sslExemptionLog : undefined;
+            resourceInputs["sslExemptionsLog"] = args ? args.sslExemptionsLog : undefined;
+            resourceInputs["sslExempts"] = args ? args.sslExempts : undefined;
+            resourceInputs["sslHandshakeLog"] = args ? args.sslHandshakeLog : undefined;
+            resourceInputs["sslNegotiationLog"] = args ? args.sslNegotiationLog : undefined;
+            resourceInputs["sslServerCertLog"] = args ? args.sslServerCertLog : undefined;
+            resourceInputs["sslServers"] = args ? args.sslServers : undefined;
+            resourceInputs["supportedAlpn"] = args ? args.supportedAlpn : undefined;
+            resourceInputs["untrustedCaname"] = args ? args.untrustedCaname : undefined;
+            resourceInputs["useSslServer"] = args ? args.useSslServer : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["whitelist"] = args ? args.whitelist : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSslSshProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSslSshProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -298,6 +326,10 @@ export interface FirewallSslSshProfileState {
      * Optional comments.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Configure DNS over TLS options. The structure of `dot` block is documented below.
+     */
+    dot?: pulumi.Input<inputs.FirewallSslSshProfileDot>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -355,6 +387,14 @@ export interface FirewallSslSshProfileState {
      */
     sslAnomaliesLog?: pulumi.Input<string>;
     /**
+     * Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+     */
+    sslAnomalyLog?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+     */
+    sslExemptionLog?: pulumi.Input<string>;
+    /**
      * Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
      */
     sslExemptionsLog?: pulumi.Input<string>;
@@ -363,9 +403,17 @@ export interface FirewallSslSshProfileState {
      */
     sslExempts?: pulumi.Input<pulumi.Input<inputs.FirewallSslSshProfileSslExempt>[]>;
     /**
+     * Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+     */
+    sslHandshakeLog?: pulumi.Input<string>;
+    /**
      * Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
      */
     sslNegotiationLog?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+     */
+    sslServerCertLog?: pulumi.Input<string>;
     /**
      * SSL servers. The structure of `sslServer` block is documented below.
      */
@@ -417,6 +465,10 @@ export interface FirewallSslSshProfileArgs {
      */
     comment?: pulumi.Input<string>;
     /**
+     * Configure DNS over TLS options. The structure of `dot` block is documented below.
+     */
+    dot?: pulumi.Input<inputs.FirewallSslSshProfileDot>;
+    /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
@@ -473,6 +525,14 @@ export interface FirewallSslSshProfileArgs {
      */
     sslAnomaliesLog?: pulumi.Input<string>;
     /**
+     * Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+     */
+    sslAnomalyLog?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+     */
+    sslExemptionLog?: pulumi.Input<string>;
+    /**
      * Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
      */
     sslExemptionsLog?: pulumi.Input<string>;
@@ -481,9 +541,17 @@ export interface FirewallSslSshProfileArgs {
      */
     sslExempts?: pulumi.Input<pulumi.Input<inputs.FirewallSslSshProfileSslExempt>[]>;
     /**
+     * Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+     */
+    sslHandshakeLog?: pulumi.Input<string>;
+    /**
      * Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
      */
     sslNegotiationLog?: pulumi.Input<string>;
+    /**
+     * Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+     */
+    sslServerCertLog?: pulumi.Input<string>;
     /**
      * SSL servers. The structure of `sslServer` block is documented below.
      */

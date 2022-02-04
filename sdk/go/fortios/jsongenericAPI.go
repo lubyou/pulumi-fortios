@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -90,6 +90,7 @@ func NewJSONGenericAPI(ctx *pulumi.Context,
 	if args.Path == nil {
 		return nil, errors.New("invalid value for required argument 'Path'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource JSONGenericAPI
 	err := ctx.RegisterResource("fortios:index/jSONGenericAPI:JSONGenericAPI", name, args, &resource, opts...)
 	if err != nil {
@@ -188,7 +189,7 @@ type JSONGenericAPIInput interface {
 }
 
 func (*JSONGenericAPI) ElementType() reflect.Type {
-	return reflect.TypeOf((*JSONGenericAPI)(nil))
+	return reflect.TypeOf((**JSONGenericAPI)(nil)).Elem()
 }
 
 func (i *JSONGenericAPI) ToJSONGenericAPIOutput() JSONGenericAPIOutput {
@@ -197,35 +198,6 @@ func (i *JSONGenericAPI) ToJSONGenericAPIOutput() JSONGenericAPIOutput {
 
 func (i *JSONGenericAPI) ToJSONGenericAPIOutputWithContext(ctx context.Context) JSONGenericAPIOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIOutput)
-}
-
-func (i *JSONGenericAPI) ToJSONGenericAPIPtrOutput() JSONGenericAPIPtrOutput {
-	return i.ToJSONGenericAPIPtrOutputWithContext(context.Background())
-}
-
-func (i *JSONGenericAPI) ToJSONGenericAPIPtrOutputWithContext(ctx context.Context) JSONGenericAPIPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIPtrOutput)
-}
-
-type JSONGenericAPIPtrInput interface {
-	pulumi.Input
-
-	ToJSONGenericAPIPtrOutput() JSONGenericAPIPtrOutput
-	ToJSONGenericAPIPtrOutputWithContext(ctx context.Context) JSONGenericAPIPtrOutput
-}
-
-type jsongenericAPIPtrType JSONGenericAPIArgs
-
-func (*jsongenericAPIPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**JSONGenericAPI)(nil))
-}
-
-func (i *jsongenericAPIPtrType) ToJSONGenericAPIPtrOutput() JSONGenericAPIPtrOutput {
-	return i.ToJSONGenericAPIPtrOutputWithContext(context.Background())
-}
-
-func (i *jsongenericAPIPtrType) ToJSONGenericAPIPtrOutputWithContext(ctx context.Context) JSONGenericAPIPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIPtrOutput)
 }
 
 // JSONGenericAPIArrayInput is an input type that accepts JSONGenericAPIArray and JSONGenericAPIArrayOutput values.
@@ -242,7 +214,7 @@ type JSONGenericAPIArrayInput interface {
 type JSONGenericAPIArray []JSONGenericAPIInput
 
 func (JSONGenericAPIArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*JSONGenericAPI)(nil))
+	return reflect.TypeOf((*[]*JSONGenericAPI)(nil)).Elem()
 }
 
 func (i JSONGenericAPIArray) ToJSONGenericAPIArrayOutput() JSONGenericAPIArrayOutput {
@@ -267,7 +239,7 @@ type JSONGenericAPIMapInput interface {
 type JSONGenericAPIMap map[string]JSONGenericAPIInput
 
 func (JSONGenericAPIMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*JSONGenericAPI)(nil))
+	return reflect.TypeOf((*map[string]*JSONGenericAPI)(nil)).Elem()
 }
 
 func (i JSONGenericAPIMap) ToJSONGenericAPIMapOutput() JSONGenericAPIMapOutput {
@@ -278,12 +250,10 @@ func (i JSONGenericAPIMap) ToJSONGenericAPIMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(JSONGenericAPIMapOutput)
 }
 
-type JSONGenericAPIOutput struct {
-	*pulumi.OutputState
-}
+type JSONGenericAPIOutput struct{ *pulumi.OutputState }
 
 func (JSONGenericAPIOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*JSONGenericAPI)(nil))
+	return reflect.TypeOf((**JSONGenericAPI)(nil)).Elem()
 }
 
 func (o JSONGenericAPIOutput) ToJSONGenericAPIOutput() JSONGenericAPIOutput {
@@ -294,36 +264,10 @@ func (o JSONGenericAPIOutput) ToJSONGenericAPIOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o JSONGenericAPIOutput) ToJSONGenericAPIPtrOutput() JSONGenericAPIPtrOutput {
-	return o.ToJSONGenericAPIPtrOutputWithContext(context.Background())
-}
-
-func (o JSONGenericAPIOutput) ToJSONGenericAPIPtrOutputWithContext(ctx context.Context) JSONGenericAPIPtrOutput {
-	return o.ApplyT(func(v JSONGenericAPI) *JSONGenericAPI {
-		return &v
-	}).(JSONGenericAPIPtrOutput)
-}
-
-type JSONGenericAPIPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (JSONGenericAPIPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**JSONGenericAPI)(nil))
-}
-
-func (o JSONGenericAPIPtrOutput) ToJSONGenericAPIPtrOutput() JSONGenericAPIPtrOutput {
-	return o
-}
-
-func (o JSONGenericAPIPtrOutput) ToJSONGenericAPIPtrOutputWithContext(ctx context.Context) JSONGenericAPIPtrOutput {
-	return o
-}
-
 type JSONGenericAPIArrayOutput struct{ *pulumi.OutputState }
 
 func (JSONGenericAPIArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]JSONGenericAPI)(nil))
+	return reflect.TypeOf((*[]*JSONGenericAPI)(nil)).Elem()
 }
 
 func (o JSONGenericAPIArrayOutput) ToJSONGenericAPIArrayOutput() JSONGenericAPIArrayOutput {
@@ -335,15 +279,15 @@ func (o JSONGenericAPIArrayOutput) ToJSONGenericAPIArrayOutputWithContext(ctx co
 }
 
 func (o JSONGenericAPIArrayOutput) Index(i pulumi.IntInput) JSONGenericAPIOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JSONGenericAPI {
-		return vs[0].([]JSONGenericAPI)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *JSONGenericAPI {
+		return vs[0].([]*JSONGenericAPI)[vs[1].(int)]
 	}).(JSONGenericAPIOutput)
 }
 
 type JSONGenericAPIMapOutput struct{ *pulumi.OutputState }
 
 func (JSONGenericAPIMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]JSONGenericAPI)(nil))
+	return reflect.TypeOf((*map[string]*JSONGenericAPI)(nil)).Elem()
 }
 
 func (o JSONGenericAPIMapOutput) ToJSONGenericAPIMapOutput() JSONGenericAPIMapOutput {
@@ -355,14 +299,16 @@ func (o JSONGenericAPIMapOutput) ToJSONGenericAPIMapOutputWithContext(ctx contex
 }
 
 func (o JSONGenericAPIMapOutput) MapIndex(k pulumi.StringInput) JSONGenericAPIOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) JSONGenericAPI {
-		return vs[0].(map[string]JSONGenericAPI)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *JSONGenericAPI {
+		return vs[0].(map[string]*JSONGenericAPI)[vs[1].(string)]
 	}).(JSONGenericAPIOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*JSONGenericAPIInput)(nil)).Elem(), &JSONGenericAPI{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JSONGenericAPIArrayInput)(nil)).Elem(), JSONGenericAPIArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JSONGenericAPIMapInput)(nil)).Elem(), JSONGenericAPIMap{})
 	pulumi.RegisterOutputType(JSONGenericAPIOutput{})
-	pulumi.RegisterOutputType(JSONGenericAPIPtrOutput{})
 	pulumi.RegisterOutputType(JSONGenericAPIArrayOutput{})
 	pulumi.RegisterOutputType(JSONGenericAPIMapOutput{})
 }

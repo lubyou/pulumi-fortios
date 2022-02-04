@@ -127,29 +127,29 @@ export class VPNIPsecPhase1InterfaceLegacy extends pulumi.CustomResource {
      */
     constructor(name: string, args: VPNIPsecPhase1InterfaceLegacyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VPNIPsecPhase1InterfaceLegacyArgs | VPNIPsecPhase1InterfaceLegacyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VPNIPsecPhase1InterfaceLegacyState | undefined;
-            inputs["authmethod"] = state ? state.authmethod : undefined;
-            inputs["authmethodRemote"] = state ? state.authmethodRemote : undefined;
-            inputs["certificates"] = state ? state.certificates : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipv4SplitExclude"] = state ? state.ipv4SplitExclude : undefined;
-            inputs["ipv4SplitInclude"] = state ? state.ipv4SplitInclude : undefined;
-            inputs["modeCfg"] = state ? state.modeCfg : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["peer"] = state ? state.peer : undefined;
-            inputs["peergrp"] = state ? state.peergrp : undefined;
-            inputs["peerid"] = state ? state.peerid : undefined;
-            inputs["peertype"] = state ? state.peertype : undefined;
-            inputs["proposal"] = state ? state.proposal : undefined;
-            inputs["psksecret"] = state ? state.psksecret : undefined;
-            inputs["remoteGw"] = state ? state.remoteGw : undefined;
-            inputs["splitIncludeService"] = state ? state.splitIncludeService : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["wizardType"] = state ? state.wizardType : undefined;
+            resourceInputs["authmethod"] = state ? state.authmethod : undefined;
+            resourceInputs["authmethodRemote"] = state ? state.authmethodRemote : undefined;
+            resourceInputs["certificates"] = state ? state.certificates : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipv4SplitExclude"] = state ? state.ipv4SplitExclude : undefined;
+            resourceInputs["ipv4SplitInclude"] = state ? state.ipv4SplitInclude : undefined;
+            resourceInputs["modeCfg"] = state ? state.modeCfg : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["peer"] = state ? state.peer : undefined;
+            resourceInputs["peergrp"] = state ? state.peergrp : undefined;
+            resourceInputs["peerid"] = state ? state.peerid : undefined;
+            resourceInputs["peertype"] = state ? state.peertype : undefined;
+            resourceInputs["proposal"] = state ? state.proposal : undefined;
+            resourceInputs["psksecret"] = state ? state.psksecret : undefined;
+            resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["splitIncludeService"] = state ? state.splitIncludeService : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["wizardType"] = state ? state.wizardType : undefined;
         } else {
             const args = argsOrState as VPNIPsecPhase1InterfaceLegacyArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
@@ -164,30 +164,28 @@ export class VPNIPsecPhase1InterfaceLegacy extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["authmethod"] = args ? args.authmethod : undefined;
-            inputs["authmethodRemote"] = args ? args.authmethodRemote : undefined;
-            inputs["certificates"] = args ? args.certificates : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipv4SplitExclude"] = args ? args.ipv4SplitExclude : undefined;
-            inputs["ipv4SplitInclude"] = args ? args.ipv4SplitInclude : undefined;
-            inputs["modeCfg"] = args ? args.modeCfg : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["peer"] = args ? args.peer : undefined;
-            inputs["peergrp"] = args ? args.peergrp : undefined;
-            inputs["peerid"] = args ? args.peerid : undefined;
-            inputs["peertype"] = args ? args.peertype : undefined;
-            inputs["proposal"] = args ? args.proposal : undefined;
-            inputs["psksecret"] = args ? args.psksecret : undefined;
-            inputs["remoteGw"] = args ? args.remoteGw : undefined;
-            inputs["splitIncludeService"] = args ? args.splitIncludeService : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["wizardType"] = args ? args.wizardType : undefined;
+            resourceInputs["authmethod"] = args ? args.authmethod : undefined;
+            resourceInputs["authmethodRemote"] = args ? args.authmethodRemote : undefined;
+            resourceInputs["certificates"] = args ? args.certificates : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipv4SplitExclude"] = args ? args.ipv4SplitExclude : undefined;
+            resourceInputs["ipv4SplitInclude"] = args ? args.ipv4SplitInclude : undefined;
+            resourceInputs["modeCfg"] = args ? args.modeCfg : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["peer"] = args ? args.peer : undefined;
+            resourceInputs["peergrp"] = args ? args.peergrp : undefined;
+            resourceInputs["peerid"] = args ? args.peerid : undefined;
+            resourceInputs["peertype"] = args ? args.peertype : undefined;
+            resourceInputs["proposal"] = args ? args.proposal : undefined;
+            resourceInputs["psksecret"] = args ? args.psksecret : undefined;
+            resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["splitIncludeService"] = args ? args.splitIncludeService : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["wizardType"] = args ? args.wizardType : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VPNIPsecPhase1InterfaceLegacy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VPNIPsecPhase1InterfaceLegacy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

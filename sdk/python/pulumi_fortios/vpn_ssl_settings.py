@@ -22,6 +22,8 @@ class VpnSslSettingsArgs:
                  auto_tunnel_static_route: Optional[pulumi.Input[str]] = None,
                  banned_cipher: Optional[pulumi.Input[str]] = None,
                  check_referer: Optional[pulumi.Input[str]] = None,
+                 ciphersuite: Optional[pulumi.Input[str]] = None,
+                 client_sigalgs: Optional[pulumi.Input[str]] = None,
                  default_portal: Optional[pulumi.Input[str]] = None,
                  deflate_compression_level: Optional[pulumi.Input[int]] = None,
                  deflate_min_data_size: Optional[pulumi.Input[int]] = None,
@@ -32,6 +34,7 @@ class VpnSslSettingsArgs:
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_tunnel: Optional[pulumi.Input[str]] = None,
+                 dual_stack_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
@@ -55,6 +58,7 @@ class VpnSslSettingsArgs:
                  port_precedence: Optional[pulumi.Input[str]] = None,
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
+                 saml_redirect_port: Optional[pulumi.Input[int]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsSourceAddress6Args']]]] = None,
@@ -65,11 +69,13 @@ class VpnSslSettingsArgs:
                  ssl_insert_empty_fragment: Optional[pulumi.Input[str]] = None,
                  ssl_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_ver: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
                  tlsv10: Optional[pulumi.Input[str]] = None,
                  tlsv11: Optional[pulumi.Input[str]] = None,
                  tlsv12: Optional[pulumi.Input[str]] = None,
                  tlsv13: Optional[pulumi.Input[str]] = None,
                  transform_backward_slashes: Optional[pulumi.Input[str]] = None,
+                 tunnel_addr_assigned_method: Optional[pulumi.Input[str]] = None,
                  tunnel_connect_without_reauth: Optional[pulumi.Input[str]] = None,
                  tunnel_ip_pools: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpPoolArgs']]]] = None,
                  tunnel_ipv6_pools: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpv6PoolArgs']]]] = None,
@@ -90,6 +96,8 @@ class VpnSslSettingsArgs:
         :param pulumi.Input[str] auto_tunnel_static_route: Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] banned_cipher: Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
         :param pulumi.Input[str] check_referer: Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ciphersuite: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        :param pulumi.Input[str] client_sigalgs: Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[str] default_portal: Default SSL VPN portal.
         :param pulumi.Input[int] deflate_compression_level: Compression level (0~9).
         :param pulumi.Input[int] deflate_min_data_size: Minimum amount of data that triggers compression (200 - 65535 bytes).
@@ -100,6 +108,7 @@ class VpnSslSettingsArgs:
         :param pulumi.Input[str] dtls_max_proto_ver: DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_min_proto_ver: DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_tunnel: Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dual_stack_mode: Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] encode2f_sequence: Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
@@ -123,6 +132,7 @@ class VpnSslSettingsArgs:
         :param pulumi.Input[str] port_precedence: Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] reqclientcert: Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] route_source_interface: Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] saml_redirect_port: SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
         :param pulumi.Input[str] servercert: Name of the server certificate to be used for SSL-VPNs.
         :param pulumi.Input[str] source_address6_negate: Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsSourceAddress6Args']]] source_address6s: IPv6 source address of incoming traffic. The structure of `source_address6` block is documented below.
@@ -133,11 +143,13 @@ class VpnSslSettingsArgs:
         :param pulumi.Input[str] ssl_insert_empty_fragment: Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_max_proto_ver: SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
         :param pulumi.Input[str] ssl_min_proto_ver: SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
+        :param pulumi.Input[str] status: Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv10: Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv11: Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv12: Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv13: Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] transform_backward_slashes: Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tunnel_addr_assigned_method: Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpPoolArgs']]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpv6PoolArgs']]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
@@ -164,6 +176,10 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "banned_cipher", banned_cipher)
         if check_referer is not None:
             pulumi.set(__self__, "check_referer", check_referer)
+        if ciphersuite is not None:
+            pulumi.set(__self__, "ciphersuite", ciphersuite)
+        if client_sigalgs is not None:
+            pulumi.set(__self__, "client_sigalgs", client_sigalgs)
         if default_portal is not None:
             pulumi.set(__self__, "default_portal", default_portal)
         if deflate_compression_level is not None:
@@ -184,6 +200,8 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "dtls_min_proto_ver", dtls_min_proto_ver)
         if dtls_tunnel is not None:
             pulumi.set(__self__, "dtls_tunnel", dtls_tunnel)
+        if dual_stack_mode is not None:
+            pulumi.set(__self__, "dual_stack_mode", dual_stack_mode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encode2f_sequence is not None:
@@ -230,6 +248,8 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "reqclientcert", reqclientcert)
         if route_source_interface is not None:
             pulumi.set(__self__, "route_source_interface", route_source_interface)
+        if saml_redirect_port is not None:
+            pulumi.set(__self__, "saml_redirect_port", saml_redirect_port)
         if servercert is not None:
             pulumi.set(__self__, "servercert", servercert)
         if source_address6_negate is not None:
@@ -250,6 +270,8 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "ssl_max_proto_ver", ssl_max_proto_ver)
         if ssl_min_proto_ver is not None:
             pulumi.set(__self__, "ssl_min_proto_ver", ssl_min_proto_ver)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tlsv10 is not None:
             pulumi.set(__self__, "tlsv10", tlsv10)
         if tlsv11 is not None:
@@ -260,6 +282,8 @@ class VpnSslSettingsArgs:
             pulumi.set(__self__, "tlsv13", tlsv13)
         if transform_backward_slashes is not None:
             pulumi.set(__self__, "transform_backward_slashes", transform_backward_slashes)
+        if tunnel_addr_assigned_method is not None:
+            pulumi.set(__self__, "tunnel_addr_assigned_method", tunnel_addr_assigned_method)
         if tunnel_connect_without_reauth is not None:
             pulumi.set(__self__, "tunnel_connect_without_reauth", tunnel_connect_without_reauth)
         if tunnel_ip_pools is not None:
@@ -366,6 +390,30 @@ class VpnSslSettingsArgs:
     @check_referer.setter
     def check_referer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "check_referer", value)
+
+    @property
+    @pulumi.getter
+    def ciphersuite(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        """
+        return pulumi.get(self, "ciphersuite")
+
+    @ciphersuite.setter
+    def ciphersuite(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ciphersuite", value)
+
+    @property
+    @pulumi.getter(name="clientSigalgs")
+    def client_sigalgs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+        """
+        return pulumi.get(self, "client_sigalgs")
+
+    @client_sigalgs.setter
+    def client_sigalgs(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_sigalgs", value)
 
     @property
     @pulumi.getter(name="defaultPortal")
@@ -486,6 +534,18 @@ class VpnSslSettingsArgs:
     @dtls_tunnel.setter
     def dtls_tunnel(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dtls_tunnel", value)
+
+    @property
+    @pulumi.getter(name="dualStackMode")
+    def dual_stack_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dual_stack_mode")
+
+    @dual_stack_mode.setter
+    def dual_stack_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dual_stack_mode", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -764,6 +824,18 @@ class VpnSslSettingsArgs:
         pulumi.set(self, "route_source_interface", value)
 
     @property
+    @pulumi.getter(name="samlRedirectPort")
+    def saml_redirect_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+        """
+        return pulumi.get(self, "saml_redirect_port")
+
+    @saml_redirect_port.setter
+    def saml_redirect_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "saml_redirect_port", value)
+
+    @property
     @pulumi.getter
     def servercert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -885,6 +957,18 @@ class VpnSslSettingsArgs:
 
     @property
     @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
     def tlsv10(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
@@ -942,6 +1026,18 @@ class VpnSslSettingsArgs:
     @transform_backward_slashes.setter
     def transform_backward_slashes(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "transform_backward_slashes", value)
+
+    @property
+    @pulumi.getter(name="tunnelAddrAssignedMethod")
+    def tunnel_addr_assigned_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+        """
+        return pulumi.get(self, "tunnel_addr_assigned_method")
+
+    @tunnel_addr_assigned_method.setter
+    def tunnel_addr_assigned_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tunnel_addr_assigned_method", value)
 
     @property
     @pulumi.getter(name="tunnelConnectWithoutReauth")
@@ -1086,6 +1182,8 @@ class _VpnSslSettingsState:
                  auto_tunnel_static_route: Optional[pulumi.Input[str]] = None,
                  banned_cipher: Optional[pulumi.Input[str]] = None,
                  check_referer: Optional[pulumi.Input[str]] = None,
+                 ciphersuite: Optional[pulumi.Input[str]] = None,
+                 client_sigalgs: Optional[pulumi.Input[str]] = None,
                  default_portal: Optional[pulumi.Input[str]] = None,
                  deflate_compression_level: Optional[pulumi.Input[int]] = None,
                  deflate_min_data_size: Optional[pulumi.Input[int]] = None,
@@ -1096,6 +1194,7 @@ class _VpnSslSettingsState:
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_tunnel: Optional[pulumi.Input[str]] = None,
+                 dual_stack_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
@@ -1119,6 +1218,7 @@ class _VpnSslSettingsState:
                  port_precedence: Optional[pulumi.Input[str]] = None,
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
+                 saml_redirect_port: Optional[pulumi.Input[int]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsSourceAddress6Args']]]] = None,
@@ -1129,11 +1229,13 @@ class _VpnSslSettingsState:
                  ssl_insert_empty_fragment: Optional[pulumi.Input[str]] = None,
                  ssl_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_ver: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
                  tlsv10: Optional[pulumi.Input[str]] = None,
                  tlsv11: Optional[pulumi.Input[str]] = None,
                  tlsv12: Optional[pulumi.Input[str]] = None,
                  tlsv13: Optional[pulumi.Input[str]] = None,
                  transform_backward_slashes: Optional[pulumi.Input[str]] = None,
+                 tunnel_addr_assigned_method: Optional[pulumi.Input[str]] = None,
                  tunnel_connect_without_reauth: Optional[pulumi.Input[str]] = None,
                  tunnel_ip_pools: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpPoolArgs']]]] = None,
                  tunnel_ipv6_pools: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpv6PoolArgs']]]] = None,
@@ -1154,6 +1256,8 @@ class _VpnSslSettingsState:
         :param pulumi.Input[str] auto_tunnel_static_route: Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] banned_cipher: Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
         :param pulumi.Input[str] check_referer: Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ciphersuite: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        :param pulumi.Input[str] client_sigalgs: Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[str] default_portal: Default SSL VPN portal.
         :param pulumi.Input[int] deflate_compression_level: Compression level (0~9).
         :param pulumi.Input[int] deflate_min_data_size: Minimum amount of data that triggers compression (200 - 65535 bytes).
@@ -1164,6 +1268,7 @@ class _VpnSslSettingsState:
         :param pulumi.Input[str] dtls_max_proto_ver: DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_min_proto_ver: DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_tunnel: Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dual_stack_mode: Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] encode2f_sequence: Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
@@ -1187,6 +1292,7 @@ class _VpnSslSettingsState:
         :param pulumi.Input[str] port_precedence: Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] reqclientcert: Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] route_source_interface: Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] saml_redirect_port: SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
         :param pulumi.Input[str] servercert: Name of the server certificate to be used for SSL-VPNs.
         :param pulumi.Input[str] source_address6_negate: Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsSourceAddress6Args']]] source_address6s: IPv6 source address of incoming traffic. The structure of `source_address6` block is documented below.
@@ -1197,11 +1303,13 @@ class _VpnSslSettingsState:
         :param pulumi.Input[str] ssl_insert_empty_fragment: Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_max_proto_ver: SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
         :param pulumi.Input[str] ssl_min_proto_ver: SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
+        :param pulumi.Input[str] status: Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv10: Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv11: Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv12: Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv13: Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] transform_backward_slashes: Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tunnel_addr_assigned_method: Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpPoolArgs']]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslSettingsTunnelIpv6PoolArgs']]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
@@ -1228,6 +1336,10 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "banned_cipher", banned_cipher)
         if check_referer is not None:
             pulumi.set(__self__, "check_referer", check_referer)
+        if ciphersuite is not None:
+            pulumi.set(__self__, "ciphersuite", ciphersuite)
+        if client_sigalgs is not None:
+            pulumi.set(__self__, "client_sigalgs", client_sigalgs)
         if default_portal is not None:
             pulumi.set(__self__, "default_portal", default_portal)
         if deflate_compression_level is not None:
@@ -1248,6 +1360,8 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "dtls_min_proto_ver", dtls_min_proto_ver)
         if dtls_tunnel is not None:
             pulumi.set(__self__, "dtls_tunnel", dtls_tunnel)
+        if dual_stack_mode is not None:
+            pulumi.set(__self__, "dual_stack_mode", dual_stack_mode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if encode2f_sequence is not None:
@@ -1294,6 +1408,8 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "reqclientcert", reqclientcert)
         if route_source_interface is not None:
             pulumi.set(__self__, "route_source_interface", route_source_interface)
+        if saml_redirect_port is not None:
+            pulumi.set(__self__, "saml_redirect_port", saml_redirect_port)
         if servercert is not None:
             pulumi.set(__self__, "servercert", servercert)
         if source_address6_negate is not None:
@@ -1314,6 +1430,8 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "ssl_max_proto_ver", ssl_max_proto_ver)
         if ssl_min_proto_ver is not None:
             pulumi.set(__self__, "ssl_min_proto_ver", ssl_min_proto_ver)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
         if tlsv10 is not None:
             pulumi.set(__self__, "tlsv10", tlsv10)
         if tlsv11 is not None:
@@ -1324,6 +1442,8 @@ class _VpnSslSettingsState:
             pulumi.set(__self__, "tlsv13", tlsv13)
         if transform_backward_slashes is not None:
             pulumi.set(__self__, "transform_backward_slashes", transform_backward_slashes)
+        if tunnel_addr_assigned_method is not None:
+            pulumi.set(__self__, "tunnel_addr_assigned_method", tunnel_addr_assigned_method)
         if tunnel_connect_without_reauth is not None:
             pulumi.set(__self__, "tunnel_connect_without_reauth", tunnel_connect_without_reauth)
         if tunnel_ip_pools is not None:
@@ -1430,6 +1550,30 @@ class _VpnSslSettingsState:
     @check_referer.setter
     def check_referer(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "check_referer", value)
+
+    @property
+    @pulumi.getter
+    def ciphersuite(self) -> Optional[pulumi.Input[str]]:
+        """
+        Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        """
+        return pulumi.get(self, "ciphersuite")
+
+    @ciphersuite.setter
+    def ciphersuite(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ciphersuite", value)
+
+    @property
+    @pulumi.getter(name="clientSigalgs")
+    def client_sigalgs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+        """
+        return pulumi.get(self, "client_sigalgs")
+
+    @client_sigalgs.setter
+    def client_sigalgs(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "client_sigalgs", value)
 
     @property
     @pulumi.getter(name="defaultPortal")
@@ -1550,6 +1694,18 @@ class _VpnSslSettingsState:
     @dtls_tunnel.setter
     def dtls_tunnel(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dtls_tunnel", value)
+
+    @property
+    @pulumi.getter(name="dualStackMode")
+    def dual_stack_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dual_stack_mode")
+
+    @dual_stack_mode.setter
+    def dual_stack_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dual_stack_mode", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -1828,6 +1984,18 @@ class _VpnSslSettingsState:
         pulumi.set(self, "route_source_interface", value)
 
     @property
+    @pulumi.getter(name="samlRedirectPort")
+    def saml_redirect_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+        """
+        return pulumi.get(self, "saml_redirect_port")
+
+    @saml_redirect_port.setter
+    def saml_redirect_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "saml_redirect_port", value)
+
+    @property
     @pulumi.getter
     def servercert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1949,6 +2117,18 @@ class _VpnSslSettingsState:
 
     @property
     @pulumi.getter
+    def status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @status.setter
+    def status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
     def tlsv10(self) -> Optional[pulumi.Input[str]]:
         """
         Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
@@ -2006,6 +2186,18 @@ class _VpnSslSettingsState:
     @transform_backward_slashes.setter
     def transform_backward_slashes(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "transform_backward_slashes", value)
+
+    @property
+    @pulumi.getter(name="tunnelAddrAssignedMethod")
+    def tunnel_addr_assigned_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+        """
+        return pulumi.get(self, "tunnel_addr_assigned_method")
+
+    @tunnel_addr_assigned_method.setter
+    def tunnel_addr_assigned_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tunnel_addr_assigned_method", value)
 
     @property
     @pulumi.getter(name="tunnelConnectWithoutReauth")
@@ -2152,6 +2344,8 @@ class VpnSslSettings(pulumi.CustomResource):
                  auto_tunnel_static_route: Optional[pulumi.Input[str]] = None,
                  banned_cipher: Optional[pulumi.Input[str]] = None,
                  check_referer: Optional[pulumi.Input[str]] = None,
+                 ciphersuite: Optional[pulumi.Input[str]] = None,
+                 client_sigalgs: Optional[pulumi.Input[str]] = None,
                  default_portal: Optional[pulumi.Input[str]] = None,
                  deflate_compression_level: Optional[pulumi.Input[int]] = None,
                  deflate_min_data_size: Optional[pulumi.Input[int]] = None,
@@ -2162,6 +2356,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_tunnel: Optional[pulumi.Input[str]] = None,
+                 dual_stack_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
@@ -2185,6 +2380,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  port_precedence: Optional[pulumi.Input[str]] = None,
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
+                 saml_redirect_port: Optional[pulumi.Input[int]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]]] = None,
@@ -2195,11 +2391,13 @@ class VpnSslSettings(pulumi.CustomResource):
                  ssl_insert_empty_fragment: Optional[pulumi.Input[str]] = None,
                  ssl_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_ver: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
                  tlsv10: Optional[pulumi.Input[str]] = None,
                  tlsv11: Optional[pulumi.Input[str]] = None,
                  tlsv12: Optional[pulumi.Input[str]] = None,
                  tlsv13: Optional[pulumi.Input[str]] = None,
                  transform_backward_slashes: Optional[pulumi.Input[str]] = None,
+                 tunnel_addr_assigned_method: Optional[pulumi.Input[str]] = None,
                  tunnel_connect_without_reauth: Optional[pulumi.Input[str]] = None,
                  tunnel_ip_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpPoolArgs']]]]] = None,
                  tunnel_ipv6_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpv6PoolArgs']]]]] = None,
@@ -2248,6 +2446,8 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] auto_tunnel_static_route: Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] banned_cipher: Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
         :param pulumi.Input[str] check_referer: Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ciphersuite: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        :param pulumi.Input[str] client_sigalgs: Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[str] default_portal: Default SSL VPN portal.
         :param pulumi.Input[int] deflate_compression_level: Compression level (0~9).
         :param pulumi.Input[int] deflate_min_data_size: Minimum amount of data that triggers compression (200 - 65535 bytes).
@@ -2258,6 +2458,7 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] dtls_max_proto_ver: DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_min_proto_ver: DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_tunnel: Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dual_stack_mode: Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] encode2f_sequence: Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
@@ -2281,6 +2482,7 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] port_precedence: Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] reqclientcert: Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] route_source_interface: Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] saml_redirect_port: SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
         :param pulumi.Input[str] servercert: Name of the server certificate to be used for SSL-VPNs.
         :param pulumi.Input[str] source_address6_negate: Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]] source_address6s: IPv6 source address of incoming traffic. The structure of `source_address6` block is documented below.
@@ -2291,11 +2493,13 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_insert_empty_fragment: Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_max_proto_ver: SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
         :param pulumi.Input[str] ssl_min_proto_ver: SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
+        :param pulumi.Input[str] status: Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv10: Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv11: Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv12: Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv13: Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] transform_backward_slashes: Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tunnel_addr_assigned_method: Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpPoolArgs']]]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpv6PoolArgs']]]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
@@ -2363,6 +2567,8 @@ class VpnSslSettings(pulumi.CustomResource):
                  auto_tunnel_static_route: Optional[pulumi.Input[str]] = None,
                  banned_cipher: Optional[pulumi.Input[str]] = None,
                  check_referer: Optional[pulumi.Input[str]] = None,
+                 ciphersuite: Optional[pulumi.Input[str]] = None,
+                 client_sigalgs: Optional[pulumi.Input[str]] = None,
                  default_portal: Optional[pulumi.Input[str]] = None,
                  deflate_compression_level: Optional[pulumi.Input[int]] = None,
                  deflate_min_data_size: Optional[pulumi.Input[int]] = None,
@@ -2373,6 +2579,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
                  dtls_tunnel: Optional[pulumi.Input[str]] = None,
+                 dual_stack_mode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  encode2f_sequence: Optional[pulumi.Input[str]] = None,
                  encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
@@ -2396,6 +2603,7 @@ class VpnSslSettings(pulumi.CustomResource):
                  port_precedence: Optional[pulumi.Input[str]] = None,
                  reqclientcert: Optional[pulumi.Input[str]] = None,
                  route_source_interface: Optional[pulumi.Input[str]] = None,
+                 saml_redirect_port: Optional[pulumi.Input[int]] = None,
                  servercert: Optional[pulumi.Input[str]] = None,
                  source_address6_negate: Optional[pulumi.Input[str]] = None,
                  source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]]] = None,
@@ -2406,11 +2614,13 @@ class VpnSslSettings(pulumi.CustomResource):
                  ssl_insert_empty_fragment: Optional[pulumi.Input[str]] = None,
                  ssl_max_proto_ver: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_ver: Optional[pulumi.Input[str]] = None,
+                 status: Optional[pulumi.Input[str]] = None,
                  tlsv10: Optional[pulumi.Input[str]] = None,
                  tlsv11: Optional[pulumi.Input[str]] = None,
                  tlsv12: Optional[pulumi.Input[str]] = None,
                  tlsv13: Optional[pulumi.Input[str]] = None,
                  transform_backward_slashes: Optional[pulumi.Input[str]] = None,
+                 tunnel_addr_assigned_method: Optional[pulumi.Input[str]] = None,
                  tunnel_connect_without_reauth: Optional[pulumi.Input[str]] = None,
                  tunnel_ip_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpPoolArgs']]]]] = None,
                  tunnel_ipv6_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpv6PoolArgs']]]]] = None,
@@ -2429,6 +2639,8 @@ class VpnSslSettings(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -2441,6 +2653,8 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["auto_tunnel_static_route"] = auto_tunnel_static_route
             __props__.__dict__["banned_cipher"] = banned_cipher
             __props__.__dict__["check_referer"] = check_referer
+            __props__.__dict__["ciphersuite"] = ciphersuite
+            __props__.__dict__["client_sigalgs"] = client_sigalgs
             __props__.__dict__["default_portal"] = default_portal
             __props__.__dict__["deflate_compression_level"] = deflate_compression_level
             __props__.__dict__["deflate_min_data_size"] = deflate_min_data_size
@@ -2451,6 +2665,7 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["dtls_max_proto_ver"] = dtls_max_proto_ver
             __props__.__dict__["dtls_min_proto_ver"] = dtls_min_proto_ver
             __props__.__dict__["dtls_tunnel"] = dtls_tunnel
+            __props__.__dict__["dual_stack_mode"] = dual_stack_mode
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["encode2f_sequence"] = encode2f_sequence
             __props__.__dict__["encrypt_and_store_password"] = encrypt_and_store_password
@@ -2474,6 +2689,7 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["port_precedence"] = port_precedence
             __props__.__dict__["reqclientcert"] = reqclientcert
             __props__.__dict__["route_source_interface"] = route_source_interface
+            __props__.__dict__["saml_redirect_port"] = saml_redirect_port
             __props__.__dict__["servercert"] = servercert
             __props__.__dict__["source_address6_negate"] = source_address6_negate
             __props__.__dict__["source_address6s"] = source_address6s
@@ -2484,11 +2700,13 @@ class VpnSslSettings(pulumi.CustomResource):
             __props__.__dict__["ssl_insert_empty_fragment"] = ssl_insert_empty_fragment
             __props__.__dict__["ssl_max_proto_ver"] = ssl_max_proto_ver
             __props__.__dict__["ssl_min_proto_ver"] = ssl_min_proto_ver
+            __props__.__dict__["status"] = status
             __props__.__dict__["tlsv10"] = tlsv10
             __props__.__dict__["tlsv11"] = tlsv11
             __props__.__dict__["tlsv12"] = tlsv12
             __props__.__dict__["tlsv13"] = tlsv13
             __props__.__dict__["transform_backward_slashes"] = transform_backward_slashes
+            __props__.__dict__["tunnel_addr_assigned_method"] = tunnel_addr_assigned_method
             __props__.__dict__["tunnel_connect_without_reauth"] = tunnel_connect_without_reauth
             __props__.__dict__["tunnel_ip_pools"] = tunnel_ip_pools
             __props__.__dict__["tunnel_ipv6_pools"] = tunnel_ipv6_pools
@@ -2517,6 +2735,8 @@ class VpnSslSettings(pulumi.CustomResource):
             auto_tunnel_static_route: Optional[pulumi.Input[str]] = None,
             banned_cipher: Optional[pulumi.Input[str]] = None,
             check_referer: Optional[pulumi.Input[str]] = None,
+            ciphersuite: Optional[pulumi.Input[str]] = None,
+            client_sigalgs: Optional[pulumi.Input[str]] = None,
             default_portal: Optional[pulumi.Input[str]] = None,
             deflate_compression_level: Optional[pulumi.Input[int]] = None,
             deflate_min_data_size: Optional[pulumi.Input[int]] = None,
@@ -2527,6 +2747,7 @@ class VpnSslSettings(pulumi.CustomResource):
             dtls_max_proto_ver: Optional[pulumi.Input[str]] = None,
             dtls_min_proto_ver: Optional[pulumi.Input[str]] = None,
             dtls_tunnel: Optional[pulumi.Input[str]] = None,
+            dual_stack_mode: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             encode2f_sequence: Optional[pulumi.Input[str]] = None,
             encrypt_and_store_password: Optional[pulumi.Input[str]] = None,
@@ -2550,6 +2771,7 @@ class VpnSslSettings(pulumi.CustomResource):
             port_precedence: Optional[pulumi.Input[str]] = None,
             reqclientcert: Optional[pulumi.Input[str]] = None,
             route_source_interface: Optional[pulumi.Input[str]] = None,
+            saml_redirect_port: Optional[pulumi.Input[int]] = None,
             servercert: Optional[pulumi.Input[str]] = None,
             source_address6_negate: Optional[pulumi.Input[str]] = None,
             source_address6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]]] = None,
@@ -2560,11 +2782,13 @@ class VpnSslSettings(pulumi.CustomResource):
             ssl_insert_empty_fragment: Optional[pulumi.Input[str]] = None,
             ssl_max_proto_ver: Optional[pulumi.Input[str]] = None,
             ssl_min_proto_ver: Optional[pulumi.Input[str]] = None,
+            status: Optional[pulumi.Input[str]] = None,
             tlsv10: Optional[pulumi.Input[str]] = None,
             tlsv11: Optional[pulumi.Input[str]] = None,
             tlsv12: Optional[pulumi.Input[str]] = None,
             tlsv13: Optional[pulumi.Input[str]] = None,
             transform_backward_slashes: Optional[pulumi.Input[str]] = None,
+            tunnel_addr_assigned_method: Optional[pulumi.Input[str]] = None,
             tunnel_connect_without_reauth: Optional[pulumi.Input[str]] = None,
             tunnel_ip_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpPoolArgs']]]]] = None,
             tunnel_ipv6_pools: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpv6PoolArgs']]]]] = None,
@@ -2590,6 +2814,8 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] auto_tunnel_static_route: Enable to auto-create static routes for the SSL-VPN tunnel IP addresses. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] banned_cipher: Select one or more cipher technologies that cannot be used in SSL-VPN negotiations.
         :param pulumi.Input[str] check_referer: Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ciphersuite: Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        :param pulumi.Input[str] client_sigalgs: Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[str] default_portal: Default SSL VPN portal.
         :param pulumi.Input[int] deflate_compression_level: Compression level (0~9).
         :param pulumi.Input[int] deflate_min_data_size: Minimum amount of data that triggers compression (200 - 65535 bytes).
@@ -2600,6 +2826,7 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] dtls_max_proto_ver: DTLS maximum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_min_proto_ver: DTLS minimum protocol version. Valid values: `dtls1-0`, `dtls1-2`.
         :param pulumi.Input[str] dtls_tunnel: Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dual_stack_mode: Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] encode2f_sequence: Encode \2F sequence to forward slash in URLs. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] encrypt_and_store_password: Encrypt and store user passwords for SSL-VPN web sessions. Valid values: `enable`, `disable`.
@@ -2623,6 +2850,7 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] port_precedence: Enable means that if SSL-VPN connections are allowed on an interface admin GUI connections are blocked on that interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] reqclientcert: Enable to require client certificates for all SSL-VPN users. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] route_source_interface: Enable to allow SSL-VPN sessions to bypass routing and bind to the incoming interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] saml_redirect_port: SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
         :param pulumi.Input[str] servercert: Name of the server certificate to be used for SSL-VPNs.
         :param pulumi.Input[str] source_address6_negate: Enable/disable negated source IPv6 address match. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsSourceAddress6Args']]]] source_address6s: IPv6 source address of incoming traffic. The structure of `source_address6` block is documented below.
@@ -2633,11 +2861,13 @@ class VpnSslSettings(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_insert_empty_fragment: Enable/disable insertion of empty fragment. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_max_proto_ver: SSL maximum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
         :param pulumi.Input[str] ssl_min_proto_ver: SSL minimum protocol version. Valid values: `tls1-0`, `tls1-1`, `tls1-2`, `tls1-3`.
+        :param pulumi.Input[str] status: Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv10: Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv11: Enable/disable TLSv1.1. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv12: Enable/disable TLSv1.2. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] tlsv13: Enable/disable TLSv1.3. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] transform_backward_slashes: Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] tunnel_addr_assigned_method: Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
         :param pulumi.Input[str] tunnel_connect_without_reauth: Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpPoolArgs']]]] tunnel_ip_pools: Names of the IPv4 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ip_pools` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslSettingsTunnelIpv6PoolArgs']]]] tunnel_ipv6_pools: Names of the IPv6 IP Pool firewall objects that define the IP addresses reserved for remote clients. The structure of `tunnel_ipv6_pools` block is documented below.
@@ -2661,6 +2891,8 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["auto_tunnel_static_route"] = auto_tunnel_static_route
         __props__.__dict__["banned_cipher"] = banned_cipher
         __props__.__dict__["check_referer"] = check_referer
+        __props__.__dict__["ciphersuite"] = ciphersuite
+        __props__.__dict__["client_sigalgs"] = client_sigalgs
         __props__.__dict__["default_portal"] = default_portal
         __props__.__dict__["deflate_compression_level"] = deflate_compression_level
         __props__.__dict__["deflate_min_data_size"] = deflate_min_data_size
@@ -2671,6 +2903,7 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["dtls_max_proto_ver"] = dtls_max_proto_ver
         __props__.__dict__["dtls_min_proto_ver"] = dtls_min_proto_ver
         __props__.__dict__["dtls_tunnel"] = dtls_tunnel
+        __props__.__dict__["dual_stack_mode"] = dual_stack_mode
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["encode2f_sequence"] = encode2f_sequence
         __props__.__dict__["encrypt_and_store_password"] = encrypt_and_store_password
@@ -2694,6 +2927,7 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["port_precedence"] = port_precedence
         __props__.__dict__["reqclientcert"] = reqclientcert
         __props__.__dict__["route_source_interface"] = route_source_interface
+        __props__.__dict__["saml_redirect_port"] = saml_redirect_port
         __props__.__dict__["servercert"] = servercert
         __props__.__dict__["source_address6_negate"] = source_address6_negate
         __props__.__dict__["source_address6s"] = source_address6s
@@ -2704,11 +2938,13 @@ class VpnSslSettings(pulumi.CustomResource):
         __props__.__dict__["ssl_insert_empty_fragment"] = ssl_insert_empty_fragment
         __props__.__dict__["ssl_max_proto_ver"] = ssl_max_proto_ver
         __props__.__dict__["ssl_min_proto_ver"] = ssl_min_proto_ver
+        __props__.__dict__["status"] = status
         __props__.__dict__["tlsv10"] = tlsv10
         __props__.__dict__["tlsv11"] = tlsv11
         __props__.__dict__["tlsv12"] = tlsv12
         __props__.__dict__["tlsv13"] = tlsv13
         __props__.__dict__["transform_backward_slashes"] = transform_backward_slashes
+        __props__.__dict__["tunnel_addr_assigned_method"] = tunnel_addr_assigned_method
         __props__.__dict__["tunnel_connect_without_reauth"] = tunnel_connect_without_reauth
         __props__.__dict__["tunnel_ip_pools"] = tunnel_ip_pools
         __props__.__dict__["tunnel_ipv6_pools"] = tunnel_ipv6_pools
@@ -2777,6 +3013,22 @@ class VpnSslSettings(pulumi.CustomResource):
         Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "check_referer")
+
+    @property
+    @pulumi.getter
+    def ciphersuite(self) -> pulumi.Output[str]:
+        """
+        Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+        """
+        return pulumi.get(self, "ciphersuite")
+
+    @property
+    @pulumi.getter(name="clientSigalgs")
+    def client_sigalgs(self) -> pulumi.Output[str]:
+        """
+        Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+        """
+        return pulumi.get(self, "client_sigalgs")
 
     @property
     @pulumi.getter(name="defaultPortal")
@@ -2857,6 +3109,14 @@ class VpnSslSettings(pulumi.CustomResource):
         Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "dtls_tunnel")
+
+    @property
+    @pulumi.getter(name="dualStackMode")
+    def dual_stack_mode(self) -> pulumi.Output[str]:
+        """
+        Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dual_stack_mode")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -3043,6 +3303,14 @@ class VpnSslSettings(pulumi.CustomResource):
         return pulumi.get(self, "route_source_interface")
 
     @property
+    @pulumi.getter(name="samlRedirectPort")
+    def saml_redirect_port(self) -> pulumi.Output[int]:
+        """
+        SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+        """
+        return pulumi.get(self, "saml_redirect_port")
+
+    @property
     @pulumi.getter
     def servercert(self) -> pulumi.Output[str]:
         """
@@ -3124,6 +3392,14 @@ class VpnSslSettings(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
     def tlsv10(self) -> pulumi.Output[str]:
         """
         Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
@@ -3161,6 +3437,14 @@ class VpnSslSettings(pulumi.CustomResource):
         Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "transform_backward_slashes")
+
+    @property
+    @pulumi.getter(name="tunnelAddrAssignedMethod")
+    def tunnel_addr_assigned_method(self) -> pulumi.Output[str]:
+        """
+        Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+        """
+        return pulumi.get(self, "tunnel_addr_assigned_method")
 
     @property
     @pulumi.getter(name="tunnelConnectWithoutReauth")

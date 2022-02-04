@@ -79,23 +79,21 @@ export class WanoptPeer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WanoptPeerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptPeerArgs | WanoptPeerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptPeerState | undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["peerHostId"] = state ? state.peerHostId : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["peerHostId"] = state ? state.peerHostId : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptPeerArgs | undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["peerHostId"] = args ? args.peerHostId : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["peerHostId"] = args ? args.peerHostId : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptPeer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptPeer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -99,6 +99,14 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly arpforward!: pulumi.Output<string>;
     /**
+     * HTTPS server certificate.
+     */
+    public readonly authCert!: pulumi.Output<string>;
+    /**
+     * Address of captive portal.
+     */
+    public readonly authPortalAddr!: pulumi.Output<string>;
+    /**
      * PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
      */
     public readonly authType!: pulumi.Output<string>;
@@ -203,6 +211,10 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly devindex!: pulumi.Output<number>;
     /**
+     * Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+     */
+    public readonly dhcpClasslessRouteAddition!: pulumi.Output<string>;
+    /**
      * DHCP client identifier.
      */
     public readonly dhcpClientIdentifier!: pulumi.Output<string>;
@@ -223,6 +235,14 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly dhcpRelayIp!: pulumi.Output<string>;
     /**
+     * DHCP relay link selection.
+     */
+    public readonly dhcpRelayLinkSelection!: pulumi.Output<string>;
+    /**
+     * Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+     */
+    public readonly dhcpRelayRequestAllServer!: pulumi.Output<string>;
+    /**
      * Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
      */
     public readonly dhcpRelayService!: pulumi.Output<string>;
@@ -234,6 +254,10 @@ export class SystemInterface extends pulumi.CustomResource {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     public readonly dhcpRenewTime!: pulumi.Output<number>;
+    /**
+     * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+     */
+    public readonly dhcpSnoopingServerLists!: pulumi.Output<outputs.SystemInterfaceDhcpSnoopingServerList[] | undefined>;
     /**
      * Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
      */
@@ -250,6 +274,10 @@ export class SystemInterface extends pulumi.CustomResource {
      * Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
      */
     public readonly dnsServerOverride!: pulumi.Output<string>;
+    /**
+     * DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    public readonly dnsServerProtocol!: pulumi.Output<string>;
     /**
      * Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
      */
@@ -338,6 +366,10 @@ export class SystemInterface extends pulumi.CustomResource {
      * Transparent mode forward domain.
      */
     public readonly forwardDomain!: pulumi.Output<number>;
+    /**
+     * Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+     */
+    public readonly forwardErrorCorrection!: pulumi.Output<string>;
     /**
      * Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
      */
@@ -455,7 +487,7 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly managedDevices!: pulumi.Output<outputs.SystemInterfaceManagedDevice[] | undefined>;
     /**
-     * Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+     * Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
      */
     public readonly managedSubnetworkSize!: pulumi.Output<string>;
     /**
@@ -470,6 +502,10 @@ export class SystemInterface extends pulumi.CustomResource {
      * Measured upstream bandwidth (kbps).
      */
     public readonly measuredUpstreamBandwidth!: pulumi.Output<number>;
+    /**
+     * Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+     */
+    public readonly mediatype!: pulumi.Output<string>;
     /**
      * Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
      */
@@ -579,6 +615,10 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly proxyCaptivePortal!: pulumi.Output<string>;
     /**
+     * IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+     */
+    public readonly reachableTime!: pulumi.Output<number>;
+    /**
      * Redundant interface.
      */
     public readonly redundantInterface!: pulumi.Output<string>;
@@ -614,6 +654,9 @@ export class SystemInterface extends pulumi.CustomResource {
      * Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
      */
     public readonly scanBotnetConnections!: pulumi.Output<string>;
+    /**
+     * Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+     */
     public readonly secondaryIp!: pulumi.Output<string>;
     /**
      * Second IP address of interface. The structure of `secondaryip` block is documented below.
@@ -660,7 +703,7 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly snmpIndex!: pulumi.Output<number>;
     /**
-     * Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+     * Interface speed. The default setting and the options available depend on the interface hardware.
      */
     public readonly speed!: pulumi.Output<string>;
     /**
@@ -675,6 +718,14 @@ export class SystemInterface extends pulumi.CustomResource {
      * Enable/disable VRRP. Valid values: `enable`, `disable`.
      */
     public readonly status!: pulumi.Output<string>;
+    /**
+     * Enable/disable STP. Valid values: `disable`, `enable`.
+     */
+    public readonly stp!: pulumi.Output<string>;
+    /**
+     * Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+     */
+    public readonly stpHaSecondary!: pulumi.Output<string>;
     /**
      * Enable/disable STP forwarding. Valid values: `enable`, `disable`.
      */
@@ -724,7 +775,11 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly switchControllerDhcpSnoopingVerifyMac!: pulumi.Output<string>;
     /**
-     * Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+     * Integrated FortiLink settings for managed FortiSwitch.
+     */
+    public readonly switchControllerDynamic!: pulumi.Output<string>;
+    /**
+     * Interface's purpose when assigning traffic (read only).
      */
     public readonly switchControllerFeature!: pulumi.Output<string>;
     /**
@@ -768,6 +823,14 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     public readonly switchControllerTrafficPolicy!: pulumi.Output<string>;
     /**
+     * Define a system ID for the aggregate interface.
+     */
+    public readonly systemId!: pulumi.Output<string>;
+    /**
+     * Method in which system ID is generated. Valid values: `auto`, `user`.
+     */
+    public readonly systemIdType!: pulumi.Output<string>;
+    /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
     public readonly taggings!: pulumi.Output<outputs.SystemInterfaceTagging[] | undefined>;
@@ -775,6 +838,10 @@ export class SystemInterface extends pulumi.CustomResource {
      * TCP maximum segment size. 0 means do not change segment size.
      */
     public readonly tcpMss!: pulumi.Output<number>;
+    /**
+     * Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+     */
+    public readonly trunk!: pulumi.Output<string>;
     /**
      * Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
      */
@@ -865,414 +932,444 @@ export class SystemInterface extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemInterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemInterfaceArgs | SystemInterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemInterfaceState | undefined;
-            inputs["acName"] = state ? state.acName : undefined;
-            inputs["aggregate"] = state ? state.aggregate : undefined;
-            inputs["algorithm"] = state ? state.algorithm : undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["allowaccess"] = state ? state.allowaccess : undefined;
-            inputs["apDiscover"] = state ? state.apDiscover : undefined;
-            inputs["arpforward"] = state ? state.arpforward : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["autoAuthExtensionDevice"] = state ? state.autoAuthExtensionDevice : undefined;
-            inputs["autogenerated"] = state ? state.autogenerated : undefined;
-            inputs["bandwidthMeasureTime"] = state ? state.bandwidthMeasureTime : undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["bfdDesiredMinTx"] = state ? state.bfdDesiredMinTx : undefined;
-            inputs["bfdDetectMult"] = state ? state.bfdDetectMult : undefined;
-            inputs["bfdRequiredMinRx"] = state ? state.bfdRequiredMinRx : undefined;
-            inputs["broadcastForticlientDiscovery"] = state ? state.broadcastForticlientDiscovery : undefined;
-            inputs["broadcastForward"] = state ? state.broadcastForward : undefined;
-            inputs["captivePortal"] = state ? state.captivePortal : undefined;
-            inputs["cliConnStatus"] = state ? state.cliConnStatus : undefined;
-            inputs["clientOptions"] = state ? state.clientOptions : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["dedicatedTo"] = state ? state.dedicatedTo : undefined;
-            inputs["defaultgw"] = state ? state.defaultgw : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["detectedPeerMtu"] = state ? state.detectedPeerMtu : undefined;
-            inputs["detectprotocol"] = state ? state.detectprotocol : undefined;
-            inputs["detectserver"] = state ? state.detectserver : undefined;
-            inputs["deviceAccessList"] = state ? state.deviceAccessList : undefined;
-            inputs["deviceIdentification"] = state ? state.deviceIdentification : undefined;
-            inputs["deviceIdentificationActiveScan"] = state ? state.deviceIdentificationActiveScan : undefined;
-            inputs["deviceNetscan"] = state ? state.deviceNetscan : undefined;
-            inputs["deviceUserIdentification"] = state ? state.deviceUserIdentification : undefined;
-            inputs["devindex"] = state ? state.devindex : undefined;
-            inputs["dhcpClientIdentifier"] = state ? state.dhcpClientIdentifier : undefined;
-            inputs["dhcpRelayAgentOption"] = state ? state.dhcpRelayAgentOption : undefined;
-            inputs["dhcpRelayInterface"] = state ? state.dhcpRelayInterface : undefined;
-            inputs["dhcpRelayInterfaceSelectMethod"] = state ? state.dhcpRelayInterfaceSelectMethod : undefined;
-            inputs["dhcpRelayIp"] = state ? state.dhcpRelayIp : undefined;
-            inputs["dhcpRelayService"] = state ? state.dhcpRelayService : undefined;
-            inputs["dhcpRelayType"] = state ? state.dhcpRelayType : undefined;
-            inputs["dhcpRenewTime"] = state ? state.dhcpRenewTime : undefined;
-            inputs["discRetryTimeout"] = state ? state.discRetryTimeout : undefined;
-            inputs["disconnectThreshold"] = state ? state.disconnectThreshold : undefined;
-            inputs["distance"] = state ? state.distance : undefined;
-            inputs["dnsServerOverride"] = state ? state.dnsServerOverride : undefined;
-            inputs["dropFragment"] = state ? state.dropFragment : undefined;
-            inputs["dropOverlappedFragment"] = state ? state.dropOverlappedFragment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["egressShapingProfile"] = state ? state.egressShapingProfile : undefined;
-            inputs["endpointCompliance"] = state ? state.endpointCompliance : undefined;
-            inputs["estimatedDownstreamBandwidth"] = state ? state.estimatedDownstreamBandwidth : undefined;
-            inputs["estimatedUpstreamBandwidth"] = state ? state.estimatedUpstreamBandwidth : undefined;
-            inputs["explicitFtpProxy"] = state ? state.explicitFtpProxy : undefined;
-            inputs["explicitWebProxy"] = state ? state.explicitWebProxy : undefined;
-            inputs["external"] = state ? state.external : undefined;
-            inputs["failActionOnExtender"] = state ? state.failActionOnExtender : undefined;
-            inputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
-            inputs["failAlertMethod"] = state ? state.failAlertMethod : undefined;
-            inputs["failDetect"] = state ? state.failDetect : undefined;
-            inputs["failDetectOption"] = state ? state.failDetectOption : undefined;
-            inputs["fortiheartbeat"] = state ? state.fortiheartbeat : undefined;
-            inputs["fortilink"] = state ? state.fortilink : undefined;
-            inputs["fortilinkBackupLink"] = state ? state.fortilinkBackupLink : undefined;
-            inputs["fortilinkNeighborDetect"] = state ? state.fortilinkNeighborDetect : undefined;
-            inputs["fortilinkSplitInterface"] = state ? state.fortilinkSplitInterface : undefined;
-            inputs["fortilinkStacking"] = state ? state.fortilinkStacking : undefined;
-            inputs["forwardDomain"] = state ? state.forwardDomain : undefined;
-            inputs["gwdetect"] = state ? state.gwdetect : undefined;
-            inputs["haPriority"] = state ? state.haPriority : undefined;
-            inputs["icmpAcceptRedirect"] = state ? state.icmpAcceptRedirect : undefined;
-            inputs["icmpSendRedirect"] = state ? state.icmpSendRedirect : undefined;
-            inputs["identAccept"] = state ? state.identAccept : undefined;
-            inputs["idleTimeout"] = state ? state.idleTimeout : undefined;
-            inputs["inbandwidth"] = state ? state.inbandwidth : undefined;
-            inputs["ingressShapingProfile"] = state ? state.ingressShapingProfile : undefined;
-            inputs["ingressSpilloverThreshold"] = state ? state.ingressSpilloverThreshold : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["internal"] = state ? state.internal : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ipManagedByFortiipam"] = state ? state.ipManagedByFortiipam : undefined;
-            inputs["ipmac"] = state ? state.ipmac : undefined;
-            inputs["ipsSnifferMode"] = state ? state.ipsSnifferMode : undefined;
-            inputs["ipunnumbered"] = state ? state.ipunnumbered : undefined;
-            inputs["ipv6"] = state ? state.ipv6 : undefined;
-            inputs["l2forward"] = state ? state.l2forward : undefined;
-            inputs["lacpHaSlave"] = state ? state.lacpHaSlave : undefined;
-            inputs["lacpMode"] = state ? state.lacpMode : undefined;
-            inputs["lacpSpeed"] = state ? state.lacpSpeed : undefined;
-            inputs["lcpEchoInterval"] = state ? state.lcpEchoInterval : undefined;
-            inputs["lcpMaxEchoFails"] = state ? state.lcpMaxEchoFails : undefined;
-            inputs["linkUpDelay"] = state ? state.linkUpDelay : undefined;
-            inputs["lldpNetworkPolicy"] = state ? state.lldpNetworkPolicy : undefined;
-            inputs["lldpReception"] = state ? state.lldpReception : undefined;
-            inputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
-            inputs["macaddr"] = state ? state.macaddr : undefined;
-            inputs["managedDevices"] = state ? state.managedDevices : undefined;
-            inputs["managedSubnetworkSize"] = state ? state.managedSubnetworkSize : undefined;
-            inputs["managementIp"] = state ? state.managementIp : undefined;
-            inputs["measuredDownstreamBandwidth"] = state ? state.measuredDownstreamBandwidth : undefined;
-            inputs["measuredUpstreamBandwidth"] = state ? state.measuredUpstreamBandwidth : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["minLinks"] = state ? state.minLinks : undefined;
-            inputs["minLinksDown"] = state ? state.minLinksDown : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["monitorBandwidth"] = state ? state.monitorBandwidth : undefined;
-            inputs["mtu"] = state ? state.mtu : undefined;
-            inputs["mtuOverride"] = state ? state.mtuOverride : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["ndiscforward"] = state ? state.ndiscforward : undefined;
-            inputs["netbiosForward"] = state ? state.netbiosForward : undefined;
-            inputs["netflowSampler"] = state ? state.netflowSampler : undefined;
-            inputs["outbandwidth"] = state ? state.outbandwidth : undefined;
-            inputs["padtRetryTimeout"] = state ? state.padtRetryTimeout : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["pingServStatus"] = state ? state.pingServStatus : undefined;
-            inputs["pollingInterval"] = state ? state.pollingInterval : undefined;
-            inputs["pppoeUnnumberedNegotiate"] = state ? state.pppoeUnnumberedNegotiate : undefined;
-            inputs["pptpAuthType"] = state ? state.pptpAuthType : undefined;
-            inputs["pptpClient"] = state ? state.pptpClient : undefined;
-            inputs["pptpPassword"] = state ? state.pptpPassword : undefined;
-            inputs["pptpServerIp"] = state ? state.pptpServerIp : undefined;
-            inputs["pptpTimeout"] = state ? state.pptpTimeout : undefined;
-            inputs["pptpUser"] = state ? state.pptpUser : undefined;
-            inputs["preserveSessionRoute"] = state ? state.preserveSessionRoute : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["priorityOverride"] = state ? state.priorityOverride : undefined;
-            inputs["proxyCaptivePortal"] = state ? state.proxyCaptivePortal : undefined;
-            inputs["redundantInterface"] = state ? state.redundantInterface : undefined;
-            inputs["remoteIp"] = state ? state.remoteIp : undefined;
-            inputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
-            inputs["ringRx"] = state ? state.ringRx : undefined;
-            inputs["ringTx"] = state ? state.ringTx : undefined;
-            inputs["role"] = state ? state.role : undefined;
-            inputs["sampleDirection"] = state ? state.sampleDirection : undefined;
-            inputs["sampleRate"] = state ? state.sampleRate : undefined;
-            inputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
-            inputs["secondaryIp"] = state ? state.secondaryIp : undefined;
-            inputs["secondaryips"] = state ? state.secondaryips : undefined;
-            inputs["securityExemptList"] = state ? state.securityExemptList : undefined;
-            inputs["securityExternalLogout"] = state ? state.securityExternalLogout : undefined;
-            inputs["securityExternalWeb"] = state ? state.securityExternalWeb : undefined;
-            inputs["securityGroups"] = state ? state.securityGroups : undefined;
-            inputs["securityMacAuthBypass"] = state ? state.securityMacAuthBypass : undefined;
-            inputs["securityMode"] = state ? state.securityMode : undefined;
-            inputs["securityRedirectUrl"] = state ? state.securityRedirectUrl : undefined;
-            inputs["serviceName"] = state ? state.serviceName : undefined;
-            inputs["sflowSampler"] = state ? state.sflowSampler : undefined;
-            inputs["snmpIndex"] = state ? state.snmpIndex : undefined;
-            inputs["speed"] = state ? state.speed : undefined;
-            inputs["spilloverThreshold"] = state ? state.spilloverThreshold : undefined;
-            inputs["srcCheck"] = state ? state.srcCheck : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["stpforward"] = state ? state.stpforward : undefined;
-            inputs["stpforwardMode"] = state ? state.stpforwardMode : undefined;
-            inputs["subst"] = state ? state.subst : undefined;
-            inputs["substituteDstMac"] = state ? state.substituteDstMac : undefined;
-            inputs["swcFirstCreate"] = state ? state.swcFirstCreate : undefined;
-            inputs["swcVlan"] = state ? state.swcVlan : undefined;
-            inputs["switch"] = state ? state.switch : undefined;
-            inputs["switchControllerAccessVlan"] = state ? state.switchControllerAccessVlan : undefined;
-            inputs["switchControllerArpInspection"] = state ? state.switchControllerArpInspection : undefined;
-            inputs["switchControllerDhcpSnooping"] = state ? state.switchControllerDhcpSnooping : undefined;
-            inputs["switchControllerDhcpSnoopingOption82"] = state ? state.switchControllerDhcpSnoopingOption82 : undefined;
-            inputs["switchControllerDhcpSnoopingVerifyMac"] = state ? state.switchControllerDhcpSnoopingVerifyMac : undefined;
-            inputs["switchControllerFeature"] = state ? state.switchControllerFeature : undefined;
-            inputs["switchControllerIgmpSnooping"] = state ? state.switchControllerIgmpSnooping : undefined;
-            inputs["switchControllerIgmpSnoopingFastLeave"] = state ? state.switchControllerIgmpSnoopingFastLeave : undefined;
-            inputs["switchControllerIgmpSnoopingProxy"] = state ? state.switchControllerIgmpSnoopingProxy : undefined;
-            inputs["switchControllerIotScanning"] = state ? state.switchControllerIotScanning : undefined;
-            inputs["switchControllerLearningLimit"] = state ? state.switchControllerLearningLimit : undefined;
-            inputs["switchControllerMgmtVlan"] = state ? state.switchControllerMgmtVlan : undefined;
-            inputs["switchControllerNac"] = state ? state.switchControllerNac : undefined;
-            inputs["switchControllerRspanMode"] = state ? state.switchControllerRspanMode : undefined;
-            inputs["switchControllerSourceIp"] = state ? state.switchControllerSourceIp : undefined;
-            inputs["switchControllerTrafficPolicy"] = state ? state.switchControllerTrafficPolicy : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["tcpMss"] = state ? state.tcpMss : undefined;
-            inputs["trustIp1"] = state ? state.trustIp1 : undefined;
-            inputs["trustIp2"] = state ? state.trustIp2 : undefined;
-            inputs["trustIp3"] = state ? state.trustIp3 : undefined;
-            inputs["trustIp61"] = state ? state.trustIp61 : undefined;
-            inputs["trustIp62"] = state ? state.trustIp62 : undefined;
-            inputs["trustIp63"] = state ? state.trustIp63 : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vindex"] = state ? state.vindex : undefined;
-            inputs["vlanProtocol"] = state ? state.vlanProtocol : undefined;
-            inputs["vlanforward"] = state ? state.vlanforward : undefined;
-            inputs["vlanid"] = state ? state.vlanid : undefined;
-            inputs["vrf"] = state ? state.vrf : undefined;
-            inputs["vrrpVirtualMac"] = state ? state.vrrpVirtualMac : undefined;
-            inputs["vrrps"] = state ? state.vrrps : undefined;
-            inputs["wccp"] = state ? state.wccp : undefined;
-            inputs["weight"] = state ? state.weight : undefined;
-            inputs["winsIp"] = state ? state.winsIp : undefined;
+            resourceInputs["acName"] = state ? state.acName : undefined;
+            resourceInputs["aggregate"] = state ? state.aggregate : undefined;
+            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["allowaccess"] = state ? state.allowaccess : undefined;
+            resourceInputs["apDiscover"] = state ? state.apDiscover : undefined;
+            resourceInputs["arpforward"] = state ? state.arpforward : undefined;
+            resourceInputs["authCert"] = state ? state.authCert : undefined;
+            resourceInputs["authPortalAddr"] = state ? state.authPortalAddr : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["autoAuthExtensionDevice"] = state ? state.autoAuthExtensionDevice : undefined;
+            resourceInputs["autogenerated"] = state ? state.autogenerated : undefined;
+            resourceInputs["bandwidthMeasureTime"] = state ? state.bandwidthMeasureTime : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["bfdDesiredMinTx"] = state ? state.bfdDesiredMinTx : undefined;
+            resourceInputs["bfdDetectMult"] = state ? state.bfdDetectMult : undefined;
+            resourceInputs["bfdRequiredMinRx"] = state ? state.bfdRequiredMinRx : undefined;
+            resourceInputs["broadcastForticlientDiscovery"] = state ? state.broadcastForticlientDiscovery : undefined;
+            resourceInputs["broadcastForward"] = state ? state.broadcastForward : undefined;
+            resourceInputs["captivePortal"] = state ? state.captivePortal : undefined;
+            resourceInputs["cliConnStatus"] = state ? state.cliConnStatus : undefined;
+            resourceInputs["clientOptions"] = state ? state.clientOptions : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["dedicatedTo"] = state ? state.dedicatedTo : undefined;
+            resourceInputs["defaultgw"] = state ? state.defaultgw : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["detectedPeerMtu"] = state ? state.detectedPeerMtu : undefined;
+            resourceInputs["detectprotocol"] = state ? state.detectprotocol : undefined;
+            resourceInputs["detectserver"] = state ? state.detectserver : undefined;
+            resourceInputs["deviceAccessList"] = state ? state.deviceAccessList : undefined;
+            resourceInputs["deviceIdentification"] = state ? state.deviceIdentification : undefined;
+            resourceInputs["deviceIdentificationActiveScan"] = state ? state.deviceIdentificationActiveScan : undefined;
+            resourceInputs["deviceNetscan"] = state ? state.deviceNetscan : undefined;
+            resourceInputs["deviceUserIdentification"] = state ? state.deviceUserIdentification : undefined;
+            resourceInputs["devindex"] = state ? state.devindex : undefined;
+            resourceInputs["dhcpClasslessRouteAddition"] = state ? state.dhcpClasslessRouteAddition : undefined;
+            resourceInputs["dhcpClientIdentifier"] = state ? state.dhcpClientIdentifier : undefined;
+            resourceInputs["dhcpRelayAgentOption"] = state ? state.dhcpRelayAgentOption : undefined;
+            resourceInputs["dhcpRelayInterface"] = state ? state.dhcpRelayInterface : undefined;
+            resourceInputs["dhcpRelayInterfaceSelectMethod"] = state ? state.dhcpRelayInterfaceSelectMethod : undefined;
+            resourceInputs["dhcpRelayIp"] = state ? state.dhcpRelayIp : undefined;
+            resourceInputs["dhcpRelayLinkSelection"] = state ? state.dhcpRelayLinkSelection : undefined;
+            resourceInputs["dhcpRelayRequestAllServer"] = state ? state.dhcpRelayRequestAllServer : undefined;
+            resourceInputs["dhcpRelayService"] = state ? state.dhcpRelayService : undefined;
+            resourceInputs["dhcpRelayType"] = state ? state.dhcpRelayType : undefined;
+            resourceInputs["dhcpRenewTime"] = state ? state.dhcpRenewTime : undefined;
+            resourceInputs["dhcpSnoopingServerLists"] = state ? state.dhcpSnoopingServerLists : undefined;
+            resourceInputs["discRetryTimeout"] = state ? state.discRetryTimeout : undefined;
+            resourceInputs["disconnectThreshold"] = state ? state.disconnectThreshold : undefined;
+            resourceInputs["distance"] = state ? state.distance : undefined;
+            resourceInputs["dnsServerOverride"] = state ? state.dnsServerOverride : undefined;
+            resourceInputs["dnsServerProtocol"] = state ? state.dnsServerProtocol : undefined;
+            resourceInputs["dropFragment"] = state ? state.dropFragment : undefined;
+            resourceInputs["dropOverlappedFragment"] = state ? state.dropOverlappedFragment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["egressShapingProfile"] = state ? state.egressShapingProfile : undefined;
+            resourceInputs["endpointCompliance"] = state ? state.endpointCompliance : undefined;
+            resourceInputs["estimatedDownstreamBandwidth"] = state ? state.estimatedDownstreamBandwidth : undefined;
+            resourceInputs["estimatedUpstreamBandwidth"] = state ? state.estimatedUpstreamBandwidth : undefined;
+            resourceInputs["explicitFtpProxy"] = state ? state.explicitFtpProxy : undefined;
+            resourceInputs["explicitWebProxy"] = state ? state.explicitWebProxy : undefined;
+            resourceInputs["external"] = state ? state.external : undefined;
+            resourceInputs["failActionOnExtender"] = state ? state.failActionOnExtender : undefined;
+            resourceInputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
+            resourceInputs["failAlertMethod"] = state ? state.failAlertMethod : undefined;
+            resourceInputs["failDetect"] = state ? state.failDetect : undefined;
+            resourceInputs["failDetectOption"] = state ? state.failDetectOption : undefined;
+            resourceInputs["fortiheartbeat"] = state ? state.fortiheartbeat : undefined;
+            resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["fortilinkBackupLink"] = state ? state.fortilinkBackupLink : undefined;
+            resourceInputs["fortilinkNeighborDetect"] = state ? state.fortilinkNeighborDetect : undefined;
+            resourceInputs["fortilinkSplitInterface"] = state ? state.fortilinkSplitInterface : undefined;
+            resourceInputs["fortilinkStacking"] = state ? state.fortilinkStacking : undefined;
+            resourceInputs["forwardDomain"] = state ? state.forwardDomain : undefined;
+            resourceInputs["forwardErrorCorrection"] = state ? state.forwardErrorCorrection : undefined;
+            resourceInputs["gwdetect"] = state ? state.gwdetect : undefined;
+            resourceInputs["haPriority"] = state ? state.haPriority : undefined;
+            resourceInputs["icmpAcceptRedirect"] = state ? state.icmpAcceptRedirect : undefined;
+            resourceInputs["icmpSendRedirect"] = state ? state.icmpSendRedirect : undefined;
+            resourceInputs["identAccept"] = state ? state.identAccept : undefined;
+            resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
+            resourceInputs["inbandwidth"] = state ? state.inbandwidth : undefined;
+            resourceInputs["ingressShapingProfile"] = state ? state.ingressShapingProfile : undefined;
+            resourceInputs["ingressSpilloverThreshold"] = state ? state.ingressSpilloverThreshold : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["internal"] = state ? state.internal : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ipManagedByFortiipam"] = state ? state.ipManagedByFortiipam : undefined;
+            resourceInputs["ipmac"] = state ? state.ipmac : undefined;
+            resourceInputs["ipsSnifferMode"] = state ? state.ipsSnifferMode : undefined;
+            resourceInputs["ipunnumbered"] = state ? state.ipunnumbered : undefined;
+            resourceInputs["ipv6"] = state ? state.ipv6 : undefined;
+            resourceInputs["l2forward"] = state ? state.l2forward : undefined;
+            resourceInputs["lacpHaSlave"] = state ? state.lacpHaSlave : undefined;
+            resourceInputs["lacpMode"] = state ? state.lacpMode : undefined;
+            resourceInputs["lacpSpeed"] = state ? state.lacpSpeed : undefined;
+            resourceInputs["lcpEchoInterval"] = state ? state.lcpEchoInterval : undefined;
+            resourceInputs["lcpMaxEchoFails"] = state ? state.lcpMaxEchoFails : undefined;
+            resourceInputs["linkUpDelay"] = state ? state.linkUpDelay : undefined;
+            resourceInputs["lldpNetworkPolicy"] = state ? state.lldpNetworkPolicy : undefined;
+            resourceInputs["lldpReception"] = state ? state.lldpReception : undefined;
+            resourceInputs["lldpTransmission"] = state ? state.lldpTransmission : undefined;
+            resourceInputs["macaddr"] = state ? state.macaddr : undefined;
+            resourceInputs["managedDevices"] = state ? state.managedDevices : undefined;
+            resourceInputs["managedSubnetworkSize"] = state ? state.managedSubnetworkSize : undefined;
+            resourceInputs["managementIp"] = state ? state.managementIp : undefined;
+            resourceInputs["measuredDownstreamBandwidth"] = state ? state.measuredDownstreamBandwidth : undefined;
+            resourceInputs["measuredUpstreamBandwidth"] = state ? state.measuredUpstreamBandwidth : undefined;
+            resourceInputs["mediatype"] = state ? state.mediatype : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["minLinks"] = state ? state.minLinks : undefined;
+            resourceInputs["minLinksDown"] = state ? state.minLinksDown : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["monitorBandwidth"] = state ? state.monitorBandwidth : undefined;
+            resourceInputs["mtu"] = state ? state.mtu : undefined;
+            resourceInputs["mtuOverride"] = state ? state.mtuOverride : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["ndiscforward"] = state ? state.ndiscforward : undefined;
+            resourceInputs["netbiosForward"] = state ? state.netbiosForward : undefined;
+            resourceInputs["netflowSampler"] = state ? state.netflowSampler : undefined;
+            resourceInputs["outbandwidth"] = state ? state.outbandwidth : undefined;
+            resourceInputs["padtRetryTimeout"] = state ? state.padtRetryTimeout : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["pingServStatus"] = state ? state.pingServStatus : undefined;
+            resourceInputs["pollingInterval"] = state ? state.pollingInterval : undefined;
+            resourceInputs["pppoeUnnumberedNegotiate"] = state ? state.pppoeUnnumberedNegotiate : undefined;
+            resourceInputs["pptpAuthType"] = state ? state.pptpAuthType : undefined;
+            resourceInputs["pptpClient"] = state ? state.pptpClient : undefined;
+            resourceInputs["pptpPassword"] = state ? state.pptpPassword : undefined;
+            resourceInputs["pptpServerIp"] = state ? state.pptpServerIp : undefined;
+            resourceInputs["pptpTimeout"] = state ? state.pptpTimeout : undefined;
+            resourceInputs["pptpUser"] = state ? state.pptpUser : undefined;
+            resourceInputs["preserveSessionRoute"] = state ? state.preserveSessionRoute : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["priorityOverride"] = state ? state.priorityOverride : undefined;
+            resourceInputs["proxyCaptivePortal"] = state ? state.proxyCaptivePortal : undefined;
+            resourceInputs["reachableTime"] = state ? state.reachableTime : undefined;
+            resourceInputs["redundantInterface"] = state ? state.redundantInterface : undefined;
+            resourceInputs["remoteIp"] = state ? state.remoteIp : undefined;
+            resourceInputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
+            resourceInputs["ringRx"] = state ? state.ringRx : undefined;
+            resourceInputs["ringTx"] = state ? state.ringTx : undefined;
+            resourceInputs["role"] = state ? state.role : undefined;
+            resourceInputs["sampleDirection"] = state ? state.sampleDirection : undefined;
+            resourceInputs["sampleRate"] = state ? state.sampleRate : undefined;
+            resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
+            resourceInputs["secondaryIp"] = state ? state.secondaryIp : undefined;
+            resourceInputs["secondaryips"] = state ? state.secondaryips : undefined;
+            resourceInputs["securityExemptList"] = state ? state.securityExemptList : undefined;
+            resourceInputs["securityExternalLogout"] = state ? state.securityExternalLogout : undefined;
+            resourceInputs["securityExternalWeb"] = state ? state.securityExternalWeb : undefined;
+            resourceInputs["securityGroups"] = state ? state.securityGroups : undefined;
+            resourceInputs["securityMacAuthBypass"] = state ? state.securityMacAuthBypass : undefined;
+            resourceInputs["securityMode"] = state ? state.securityMode : undefined;
+            resourceInputs["securityRedirectUrl"] = state ? state.securityRedirectUrl : undefined;
+            resourceInputs["serviceName"] = state ? state.serviceName : undefined;
+            resourceInputs["sflowSampler"] = state ? state.sflowSampler : undefined;
+            resourceInputs["snmpIndex"] = state ? state.snmpIndex : undefined;
+            resourceInputs["speed"] = state ? state.speed : undefined;
+            resourceInputs["spilloverThreshold"] = state ? state.spilloverThreshold : undefined;
+            resourceInputs["srcCheck"] = state ? state.srcCheck : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["stp"] = state ? state.stp : undefined;
+            resourceInputs["stpHaSecondary"] = state ? state.stpHaSecondary : undefined;
+            resourceInputs["stpforward"] = state ? state.stpforward : undefined;
+            resourceInputs["stpforwardMode"] = state ? state.stpforwardMode : undefined;
+            resourceInputs["subst"] = state ? state.subst : undefined;
+            resourceInputs["substituteDstMac"] = state ? state.substituteDstMac : undefined;
+            resourceInputs["swcFirstCreate"] = state ? state.swcFirstCreate : undefined;
+            resourceInputs["swcVlan"] = state ? state.swcVlan : undefined;
+            resourceInputs["switch"] = state ? state.switch : undefined;
+            resourceInputs["switchControllerAccessVlan"] = state ? state.switchControllerAccessVlan : undefined;
+            resourceInputs["switchControllerArpInspection"] = state ? state.switchControllerArpInspection : undefined;
+            resourceInputs["switchControllerDhcpSnooping"] = state ? state.switchControllerDhcpSnooping : undefined;
+            resourceInputs["switchControllerDhcpSnoopingOption82"] = state ? state.switchControllerDhcpSnoopingOption82 : undefined;
+            resourceInputs["switchControllerDhcpSnoopingVerifyMac"] = state ? state.switchControllerDhcpSnoopingVerifyMac : undefined;
+            resourceInputs["switchControllerDynamic"] = state ? state.switchControllerDynamic : undefined;
+            resourceInputs["switchControllerFeature"] = state ? state.switchControllerFeature : undefined;
+            resourceInputs["switchControllerIgmpSnooping"] = state ? state.switchControllerIgmpSnooping : undefined;
+            resourceInputs["switchControllerIgmpSnoopingFastLeave"] = state ? state.switchControllerIgmpSnoopingFastLeave : undefined;
+            resourceInputs["switchControllerIgmpSnoopingProxy"] = state ? state.switchControllerIgmpSnoopingProxy : undefined;
+            resourceInputs["switchControllerIotScanning"] = state ? state.switchControllerIotScanning : undefined;
+            resourceInputs["switchControllerLearningLimit"] = state ? state.switchControllerLearningLimit : undefined;
+            resourceInputs["switchControllerMgmtVlan"] = state ? state.switchControllerMgmtVlan : undefined;
+            resourceInputs["switchControllerNac"] = state ? state.switchControllerNac : undefined;
+            resourceInputs["switchControllerRspanMode"] = state ? state.switchControllerRspanMode : undefined;
+            resourceInputs["switchControllerSourceIp"] = state ? state.switchControllerSourceIp : undefined;
+            resourceInputs["switchControllerTrafficPolicy"] = state ? state.switchControllerTrafficPolicy : undefined;
+            resourceInputs["systemId"] = state ? state.systemId : undefined;
+            resourceInputs["systemIdType"] = state ? state.systemIdType : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["tcpMss"] = state ? state.tcpMss : undefined;
+            resourceInputs["trunk"] = state ? state.trunk : undefined;
+            resourceInputs["trustIp1"] = state ? state.trustIp1 : undefined;
+            resourceInputs["trustIp2"] = state ? state.trustIp2 : undefined;
+            resourceInputs["trustIp3"] = state ? state.trustIp3 : undefined;
+            resourceInputs["trustIp61"] = state ? state.trustIp61 : undefined;
+            resourceInputs["trustIp62"] = state ? state.trustIp62 : undefined;
+            resourceInputs["trustIp63"] = state ? state.trustIp63 : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vindex"] = state ? state.vindex : undefined;
+            resourceInputs["vlanProtocol"] = state ? state.vlanProtocol : undefined;
+            resourceInputs["vlanforward"] = state ? state.vlanforward : undefined;
+            resourceInputs["vlanid"] = state ? state.vlanid : undefined;
+            resourceInputs["vrf"] = state ? state.vrf : undefined;
+            resourceInputs["vrrpVirtualMac"] = state ? state.vrrpVirtualMac : undefined;
+            resourceInputs["vrrps"] = state ? state.vrrps : undefined;
+            resourceInputs["wccp"] = state ? state.wccp : undefined;
+            resourceInputs["weight"] = state ? state.weight : undefined;
+            resourceInputs["winsIp"] = state ? state.winsIp : undefined;
         } else {
             const args = argsOrState as SystemInterfaceArgs | undefined;
             if ((!args || args.vdom === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vdom'");
             }
-            inputs["acName"] = args ? args.acName : undefined;
-            inputs["aggregate"] = args ? args.aggregate : undefined;
-            inputs["algorithm"] = args ? args.algorithm : undefined;
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["allowaccess"] = args ? args.allowaccess : undefined;
-            inputs["apDiscover"] = args ? args.apDiscover : undefined;
-            inputs["arpforward"] = args ? args.arpforward : undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["autoAuthExtensionDevice"] = args ? args.autoAuthExtensionDevice : undefined;
-            inputs["autogenerated"] = args ? args.autogenerated : undefined;
-            inputs["bandwidthMeasureTime"] = args ? args.bandwidthMeasureTime : undefined;
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["bfdDesiredMinTx"] = args ? args.bfdDesiredMinTx : undefined;
-            inputs["bfdDetectMult"] = args ? args.bfdDetectMult : undefined;
-            inputs["bfdRequiredMinRx"] = args ? args.bfdRequiredMinRx : undefined;
-            inputs["broadcastForticlientDiscovery"] = args ? args.broadcastForticlientDiscovery : undefined;
-            inputs["broadcastForward"] = args ? args.broadcastForward : undefined;
-            inputs["captivePortal"] = args ? args.captivePortal : undefined;
-            inputs["cliConnStatus"] = args ? args.cliConnStatus : undefined;
-            inputs["clientOptions"] = args ? args.clientOptions : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["dedicatedTo"] = args ? args.dedicatedTo : undefined;
-            inputs["defaultgw"] = args ? args.defaultgw : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["detectedPeerMtu"] = args ? args.detectedPeerMtu : undefined;
-            inputs["detectprotocol"] = args ? args.detectprotocol : undefined;
-            inputs["detectserver"] = args ? args.detectserver : undefined;
-            inputs["deviceAccessList"] = args ? args.deviceAccessList : undefined;
-            inputs["deviceIdentification"] = args ? args.deviceIdentification : undefined;
-            inputs["deviceIdentificationActiveScan"] = args ? args.deviceIdentificationActiveScan : undefined;
-            inputs["deviceNetscan"] = args ? args.deviceNetscan : undefined;
-            inputs["deviceUserIdentification"] = args ? args.deviceUserIdentification : undefined;
-            inputs["devindex"] = args ? args.devindex : undefined;
-            inputs["dhcpClientIdentifier"] = args ? args.dhcpClientIdentifier : undefined;
-            inputs["dhcpRelayAgentOption"] = args ? args.dhcpRelayAgentOption : undefined;
-            inputs["dhcpRelayInterface"] = args ? args.dhcpRelayInterface : undefined;
-            inputs["dhcpRelayInterfaceSelectMethod"] = args ? args.dhcpRelayInterfaceSelectMethod : undefined;
-            inputs["dhcpRelayIp"] = args ? args.dhcpRelayIp : undefined;
-            inputs["dhcpRelayService"] = args ? args.dhcpRelayService : undefined;
-            inputs["dhcpRelayType"] = args ? args.dhcpRelayType : undefined;
-            inputs["dhcpRenewTime"] = args ? args.dhcpRenewTime : undefined;
-            inputs["discRetryTimeout"] = args ? args.discRetryTimeout : undefined;
-            inputs["disconnectThreshold"] = args ? args.disconnectThreshold : undefined;
-            inputs["distance"] = args ? args.distance : undefined;
-            inputs["dnsServerOverride"] = args ? args.dnsServerOverride : undefined;
-            inputs["dropFragment"] = args ? args.dropFragment : undefined;
-            inputs["dropOverlappedFragment"] = args ? args.dropOverlappedFragment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["egressShapingProfile"] = args ? args.egressShapingProfile : undefined;
-            inputs["endpointCompliance"] = args ? args.endpointCompliance : undefined;
-            inputs["estimatedDownstreamBandwidth"] = args ? args.estimatedDownstreamBandwidth : undefined;
-            inputs["estimatedUpstreamBandwidth"] = args ? args.estimatedUpstreamBandwidth : undefined;
-            inputs["explicitFtpProxy"] = args ? args.explicitFtpProxy : undefined;
-            inputs["explicitWebProxy"] = args ? args.explicitWebProxy : undefined;
-            inputs["external"] = args ? args.external : undefined;
-            inputs["failActionOnExtender"] = args ? args.failActionOnExtender : undefined;
-            inputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
-            inputs["failAlertMethod"] = args ? args.failAlertMethod : undefined;
-            inputs["failDetect"] = args ? args.failDetect : undefined;
-            inputs["failDetectOption"] = args ? args.failDetectOption : undefined;
-            inputs["fortiheartbeat"] = args ? args.fortiheartbeat : undefined;
-            inputs["fortilink"] = args ? args.fortilink : undefined;
-            inputs["fortilinkBackupLink"] = args ? args.fortilinkBackupLink : undefined;
-            inputs["fortilinkNeighborDetect"] = args ? args.fortilinkNeighborDetect : undefined;
-            inputs["fortilinkSplitInterface"] = args ? args.fortilinkSplitInterface : undefined;
-            inputs["fortilinkStacking"] = args ? args.fortilinkStacking : undefined;
-            inputs["forwardDomain"] = args ? args.forwardDomain : undefined;
-            inputs["gwdetect"] = args ? args.gwdetect : undefined;
-            inputs["haPriority"] = args ? args.haPriority : undefined;
-            inputs["icmpAcceptRedirect"] = args ? args.icmpAcceptRedirect : undefined;
-            inputs["icmpSendRedirect"] = args ? args.icmpSendRedirect : undefined;
-            inputs["identAccept"] = args ? args.identAccept : undefined;
-            inputs["idleTimeout"] = args ? args.idleTimeout : undefined;
-            inputs["inbandwidth"] = args ? args.inbandwidth : undefined;
-            inputs["ingressShapingProfile"] = args ? args.ingressShapingProfile : undefined;
-            inputs["ingressSpilloverThreshold"] = args ? args.ingressSpilloverThreshold : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["internal"] = args ? args.internal : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ipManagedByFortiipam"] = args ? args.ipManagedByFortiipam : undefined;
-            inputs["ipmac"] = args ? args.ipmac : undefined;
-            inputs["ipsSnifferMode"] = args ? args.ipsSnifferMode : undefined;
-            inputs["ipunnumbered"] = args ? args.ipunnumbered : undefined;
-            inputs["ipv6"] = args ? args.ipv6 : undefined;
-            inputs["l2forward"] = args ? args.l2forward : undefined;
-            inputs["lacpHaSlave"] = args ? args.lacpHaSlave : undefined;
-            inputs["lacpMode"] = args ? args.lacpMode : undefined;
-            inputs["lacpSpeed"] = args ? args.lacpSpeed : undefined;
-            inputs["lcpEchoInterval"] = args ? args.lcpEchoInterval : undefined;
-            inputs["lcpMaxEchoFails"] = args ? args.lcpMaxEchoFails : undefined;
-            inputs["linkUpDelay"] = args ? args.linkUpDelay : undefined;
-            inputs["lldpNetworkPolicy"] = args ? args.lldpNetworkPolicy : undefined;
-            inputs["lldpReception"] = args ? args.lldpReception : undefined;
-            inputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
-            inputs["macaddr"] = args ? args.macaddr : undefined;
-            inputs["managedDevices"] = args ? args.managedDevices : undefined;
-            inputs["managedSubnetworkSize"] = args ? args.managedSubnetworkSize : undefined;
-            inputs["managementIp"] = args ? args.managementIp : undefined;
-            inputs["measuredDownstreamBandwidth"] = args ? args.measuredDownstreamBandwidth : undefined;
-            inputs["measuredUpstreamBandwidth"] = args ? args.measuredUpstreamBandwidth : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["minLinks"] = args ? args.minLinks : undefined;
-            inputs["minLinksDown"] = args ? args.minLinksDown : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["monitorBandwidth"] = args ? args.monitorBandwidth : undefined;
-            inputs["mtu"] = args ? args.mtu : undefined;
-            inputs["mtuOverride"] = args ? args.mtuOverride : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["ndiscforward"] = args ? args.ndiscforward : undefined;
-            inputs["netbiosForward"] = args ? args.netbiosForward : undefined;
-            inputs["netflowSampler"] = args ? args.netflowSampler : undefined;
-            inputs["outbandwidth"] = args ? args.outbandwidth : undefined;
-            inputs["padtRetryTimeout"] = args ? args.padtRetryTimeout : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["pingServStatus"] = args ? args.pingServStatus : undefined;
-            inputs["pollingInterval"] = args ? args.pollingInterval : undefined;
-            inputs["pppoeUnnumberedNegotiate"] = args ? args.pppoeUnnumberedNegotiate : undefined;
-            inputs["pptpAuthType"] = args ? args.pptpAuthType : undefined;
-            inputs["pptpClient"] = args ? args.pptpClient : undefined;
-            inputs["pptpPassword"] = args ? args.pptpPassword : undefined;
-            inputs["pptpServerIp"] = args ? args.pptpServerIp : undefined;
-            inputs["pptpTimeout"] = args ? args.pptpTimeout : undefined;
-            inputs["pptpUser"] = args ? args.pptpUser : undefined;
-            inputs["preserveSessionRoute"] = args ? args.preserveSessionRoute : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["priorityOverride"] = args ? args.priorityOverride : undefined;
-            inputs["proxyCaptivePortal"] = args ? args.proxyCaptivePortal : undefined;
-            inputs["redundantInterface"] = args ? args.redundantInterface : undefined;
-            inputs["remoteIp"] = args ? args.remoteIp : undefined;
-            inputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
-            inputs["ringRx"] = args ? args.ringRx : undefined;
-            inputs["ringTx"] = args ? args.ringTx : undefined;
-            inputs["role"] = args ? args.role : undefined;
-            inputs["sampleDirection"] = args ? args.sampleDirection : undefined;
-            inputs["sampleRate"] = args ? args.sampleRate : undefined;
-            inputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
-            inputs["secondaryIp"] = args ? args.secondaryIp : undefined;
-            inputs["secondaryips"] = args ? args.secondaryips : undefined;
-            inputs["securityExemptList"] = args ? args.securityExemptList : undefined;
-            inputs["securityExternalLogout"] = args ? args.securityExternalLogout : undefined;
-            inputs["securityExternalWeb"] = args ? args.securityExternalWeb : undefined;
-            inputs["securityGroups"] = args ? args.securityGroups : undefined;
-            inputs["securityMacAuthBypass"] = args ? args.securityMacAuthBypass : undefined;
-            inputs["securityMode"] = args ? args.securityMode : undefined;
-            inputs["securityRedirectUrl"] = args ? args.securityRedirectUrl : undefined;
-            inputs["serviceName"] = args ? args.serviceName : undefined;
-            inputs["sflowSampler"] = args ? args.sflowSampler : undefined;
-            inputs["snmpIndex"] = args ? args.snmpIndex : undefined;
-            inputs["speed"] = args ? args.speed : undefined;
-            inputs["spilloverThreshold"] = args ? args.spilloverThreshold : undefined;
-            inputs["srcCheck"] = args ? args.srcCheck : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["stpforward"] = args ? args.stpforward : undefined;
-            inputs["stpforwardMode"] = args ? args.stpforwardMode : undefined;
-            inputs["subst"] = args ? args.subst : undefined;
-            inputs["substituteDstMac"] = args ? args.substituteDstMac : undefined;
-            inputs["swcFirstCreate"] = args ? args.swcFirstCreate : undefined;
-            inputs["swcVlan"] = args ? args.swcVlan : undefined;
-            inputs["switch"] = args ? args.switch : undefined;
-            inputs["switchControllerAccessVlan"] = args ? args.switchControllerAccessVlan : undefined;
-            inputs["switchControllerArpInspection"] = args ? args.switchControllerArpInspection : undefined;
-            inputs["switchControllerDhcpSnooping"] = args ? args.switchControllerDhcpSnooping : undefined;
-            inputs["switchControllerDhcpSnoopingOption82"] = args ? args.switchControllerDhcpSnoopingOption82 : undefined;
-            inputs["switchControllerDhcpSnoopingVerifyMac"] = args ? args.switchControllerDhcpSnoopingVerifyMac : undefined;
-            inputs["switchControllerFeature"] = args ? args.switchControllerFeature : undefined;
-            inputs["switchControllerIgmpSnooping"] = args ? args.switchControllerIgmpSnooping : undefined;
-            inputs["switchControllerIgmpSnoopingFastLeave"] = args ? args.switchControllerIgmpSnoopingFastLeave : undefined;
-            inputs["switchControllerIgmpSnoopingProxy"] = args ? args.switchControllerIgmpSnoopingProxy : undefined;
-            inputs["switchControllerIotScanning"] = args ? args.switchControllerIotScanning : undefined;
-            inputs["switchControllerLearningLimit"] = args ? args.switchControllerLearningLimit : undefined;
-            inputs["switchControllerMgmtVlan"] = args ? args.switchControllerMgmtVlan : undefined;
-            inputs["switchControllerNac"] = args ? args.switchControllerNac : undefined;
-            inputs["switchControllerRspanMode"] = args ? args.switchControllerRspanMode : undefined;
-            inputs["switchControllerSourceIp"] = args ? args.switchControllerSourceIp : undefined;
-            inputs["switchControllerTrafficPolicy"] = args ? args.switchControllerTrafficPolicy : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["tcpMss"] = args ? args.tcpMss : undefined;
-            inputs["trustIp1"] = args ? args.trustIp1 : undefined;
-            inputs["trustIp2"] = args ? args.trustIp2 : undefined;
-            inputs["trustIp3"] = args ? args.trustIp3 : undefined;
-            inputs["trustIp61"] = args ? args.trustIp61 : undefined;
-            inputs["trustIp62"] = args ? args.trustIp62 : undefined;
-            inputs["trustIp63"] = args ? args.trustIp63 : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vindex"] = args ? args.vindex : undefined;
-            inputs["vlanProtocol"] = args ? args.vlanProtocol : undefined;
-            inputs["vlanforward"] = args ? args.vlanforward : undefined;
-            inputs["vlanid"] = args ? args.vlanid : undefined;
-            inputs["vrf"] = args ? args.vrf : undefined;
-            inputs["vrrpVirtualMac"] = args ? args.vrrpVirtualMac : undefined;
-            inputs["vrrps"] = args ? args.vrrps : undefined;
-            inputs["wccp"] = args ? args.wccp : undefined;
-            inputs["weight"] = args ? args.weight : undefined;
-            inputs["winsIp"] = args ? args.winsIp : undefined;
+            resourceInputs["acName"] = args ? args.acName : undefined;
+            resourceInputs["aggregate"] = args ? args.aggregate : undefined;
+            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["allowaccess"] = args ? args.allowaccess : undefined;
+            resourceInputs["apDiscover"] = args ? args.apDiscover : undefined;
+            resourceInputs["arpforward"] = args ? args.arpforward : undefined;
+            resourceInputs["authCert"] = args ? args.authCert : undefined;
+            resourceInputs["authPortalAddr"] = args ? args.authPortalAddr : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["autoAuthExtensionDevice"] = args ? args.autoAuthExtensionDevice : undefined;
+            resourceInputs["autogenerated"] = args ? args.autogenerated : undefined;
+            resourceInputs["bandwidthMeasureTime"] = args ? args.bandwidthMeasureTime : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["bfdDesiredMinTx"] = args ? args.bfdDesiredMinTx : undefined;
+            resourceInputs["bfdDetectMult"] = args ? args.bfdDetectMult : undefined;
+            resourceInputs["bfdRequiredMinRx"] = args ? args.bfdRequiredMinRx : undefined;
+            resourceInputs["broadcastForticlientDiscovery"] = args ? args.broadcastForticlientDiscovery : undefined;
+            resourceInputs["broadcastForward"] = args ? args.broadcastForward : undefined;
+            resourceInputs["captivePortal"] = args ? args.captivePortal : undefined;
+            resourceInputs["cliConnStatus"] = args ? args.cliConnStatus : undefined;
+            resourceInputs["clientOptions"] = args ? args.clientOptions : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["dedicatedTo"] = args ? args.dedicatedTo : undefined;
+            resourceInputs["defaultgw"] = args ? args.defaultgw : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["detectedPeerMtu"] = args ? args.detectedPeerMtu : undefined;
+            resourceInputs["detectprotocol"] = args ? args.detectprotocol : undefined;
+            resourceInputs["detectserver"] = args ? args.detectserver : undefined;
+            resourceInputs["deviceAccessList"] = args ? args.deviceAccessList : undefined;
+            resourceInputs["deviceIdentification"] = args ? args.deviceIdentification : undefined;
+            resourceInputs["deviceIdentificationActiveScan"] = args ? args.deviceIdentificationActiveScan : undefined;
+            resourceInputs["deviceNetscan"] = args ? args.deviceNetscan : undefined;
+            resourceInputs["deviceUserIdentification"] = args ? args.deviceUserIdentification : undefined;
+            resourceInputs["devindex"] = args ? args.devindex : undefined;
+            resourceInputs["dhcpClasslessRouteAddition"] = args ? args.dhcpClasslessRouteAddition : undefined;
+            resourceInputs["dhcpClientIdentifier"] = args ? args.dhcpClientIdentifier : undefined;
+            resourceInputs["dhcpRelayAgentOption"] = args ? args.dhcpRelayAgentOption : undefined;
+            resourceInputs["dhcpRelayInterface"] = args ? args.dhcpRelayInterface : undefined;
+            resourceInputs["dhcpRelayInterfaceSelectMethod"] = args ? args.dhcpRelayInterfaceSelectMethod : undefined;
+            resourceInputs["dhcpRelayIp"] = args ? args.dhcpRelayIp : undefined;
+            resourceInputs["dhcpRelayLinkSelection"] = args ? args.dhcpRelayLinkSelection : undefined;
+            resourceInputs["dhcpRelayRequestAllServer"] = args ? args.dhcpRelayRequestAllServer : undefined;
+            resourceInputs["dhcpRelayService"] = args ? args.dhcpRelayService : undefined;
+            resourceInputs["dhcpRelayType"] = args ? args.dhcpRelayType : undefined;
+            resourceInputs["dhcpRenewTime"] = args ? args.dhcpRenewTime : undefined;
+            resourceInputs["dhcpSnoopingServerLists"] = args ? args.dhcpSnoopingServerLists : undefined;
+            resourceInputs["discRetryTimeout"] = args ? args.discRetryTimeout : undefined;
+            resourceInputs["disconnectThreshold"] = args ? args.disconnectThreshold : undefined;
+            resourceInputs["distance"] = args ? args.distance : undefined;
+            resourceInputs["dnsServerOverride"] = args ? args.dnsServerOverride : undefined;
+            resourceInputs["dnsServerProtocol"] = args ? args.dnsServerProtocol : undefined;
+            resourceInputs["dropFragment"] = args ? args.dropFragment : undefined;
+            resourceInputs["dropOverlappedFragment"] = args ? args.dropOverlappedFragment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["egressShapingProfile"] = args ? args.egressShapingProfile : undefined;
+            resourceInputs["endpointCompliance"] = args ? args.endpointCompliance : undefined;
+            resourceInputs["estimatedDownstreamBandwidth"] = args ? args.estimatedDownstreamBandwidth : undefined;
+            resourceInputs["estimatedUpstreamBandwidth"] = args ? args.estimatedUpstreamBandwidth : undefined;
+            resourceInputs["explicitFtpProxy"] = args ? args.explicitFtpProxy : undefined;
+            resourceInputs["explicitWebProxy"] = args ? args.explicitWebProxy : undefined;
+            resourceInputs["external"] = args ? args.external : undefined;
+            resourceInputs["failActionOnExtender"] = args ? args.failActionOnExtender : undefined;
+            resourceInputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
+            resourceInputs["failAlertMethod"] = args ? args.failAlertMethod : undefined;
+            resourceInputs["failDetect"] = args ? args.failDetect : undefined;
+            resourceInputs["failDetectOption"] = args ? args.failDetectOption : undefined;
+            resourceInputs["fortiheartbeat"] = args ? args.fortiheartbeat : undefined;
+            resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["fortilinkBackupLink"] = args ? args.fortilinkBackupLink : undefined;
+            resourceInputs["fortilinkNeighborDetect"] = args ? args.fortilinkNeighborDetect : undefined;
+            resourceInputs["fortilinkSplitInterface"] = args ? args.fortilinkSplitInterface : undefined;
+            resourceInputs["fortilinkStacking"] = args ? args.fortilinkStacking : undefined;
+            resourceInputs["forwardDomain"] = args ? args.forwardDomain : undefined;
+            resourceInputs["forwardErrorCorrection"] = args ? args.forwardErrorCorrection : undefined;
+            resourceInputs["gwdetect"] = args ? args.gwdetect : undefined;
+            resourceInputs["haPriority"] = args ? args.haPriority : undefined;
+            resourceInputs["icmpAcceptRedirect"] = args ? args.icmpAcceptRedirect : undefined;
+            resourceInputs["icmpSendRedirect"] = args ? args.icmpSendRedirect : undefined;
+            resourceInputs["identAccept"] = args ? args.identAccept : undefined;
+            resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
+            resourceInputs["inbandwidth"] = args ? args.inbandwidth : undefined;
+            resourceInputs["ingressShapingProfile"] = args ? args.ingressShapingProfile : undefined;
+            resourceInputs["ingressSpilloverThreshold"] = args ? args.ingressSpilloverThreshold : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["internal"] = args ? args.internal : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ipManagedByFortiipam"] = args ? args.ipManagedByFortiipam : undefined;
+            resourceInputs["ipmac"] = args ? args.ipmac : undefined;
+            resourceInputs["ipsSnifferMode"] = args ? args.ipsSnifferMode : undefined;
+            resourceInputs["ipunnumbered"] = args ? args.ipunnumbered : undefined;
+            resourceInputs["ipv6"] = args ? args.ipv6 : undefined;
+            resourceInputs["l2forward"] = args ? args.l2forward : undefined;
+            resourceInputs["lacpHaSlave"] = args ? args.lacpHaSlave : undefined;
+            resourceInputs["lacpMode"] = args ? args.lacpMode : undefined;
+            resourceInputs["lacpSpeed"] = args ? args.lacpSpeed : undefined;
+            resourceInputs["lcpEchoInterval"] = args ? args.lcpEchoInterval : undefined;
+            resourceInputs["lcpMaxEchoFails"] = args ? args.lcpMaxEchoFails : undefined;
+            resourceInputs["linkUpDelay"] = args ? args.linkUpDelay : undefined;
+            resourceInputs["lldpNetworkPolicy"] = args ? args.lldpNetworkPolicy : undefined;
+            resourceInputs["lldpReception"] = args ? args.lldpReception : undefined;
+            resourceInputs["lldpTransmission"] = args ? args.lldpTransmission : undefined;
+            resourceInputs["macaddr"] = args ? args.macaddr : undefined;
+            resourceInputs["managedDevices"] = args ? args.managedDevices : undefined;
+            resourceInputs["managedSubnetworkSize"] = args ? args.managedSubnetworkSize : undefined;
+            resourceInputs["managementIp"] = args ? args.managementIp : undefined;
+            resourceInputs["measuredDownstreamBandwidth"] = args ? args.measuredDownstreamBandwidth : undefined;
+            resourceInputs["measuredUpstreamBandwidth"] = args ? args.measuredUpstreamBandwidth : undefined;
+            resourceInputs["mediatype"] = args ? args.mediatype : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["minLinks"] = args ? args.minLinks : undefined;
+            resourceInputs["minLinksDown"] = args ? args.minLinksDown : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["monitorBandwidth"] = args ? args.monitorBandwidth : undefined;
+            resourceInputs["mtu"] = args ? args.mtu : undefined;
+            resourceInputs["mtuOverride"] = args ? args.mtuOverride : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["ndiscforward"] = args ? args.ndiscforward : undefined;
+            resourceInputs["netbiosForward"] = args ? args.netbiosForward : undefined;
+            resourceInputs["netflowSampler"] = args ? args.netflowSampler : undefined;
+            resourceInputs["outbandwidth"] = args ? args.outbandwidth : undefined;
+            resourceInputs["padtRetryTimeout"] = args ? args.padtRetryTimeout : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["pingServStatus"] = args ? args.pingServStatus : undefined;
+            resourceInputs["pollingInterval"] = args ? args.pollingInterval : undefined;
+            resourceInputs["pppoeUnnumberedNegotiate"] = args ? args.pppoeUnnumberedNegotiate : undefined;
+            resourceInputs["pptpAuthType"] = args ? args.pptpAuthType : undefined;
+            resourceInputs["pptpClient"] = args ? args.pptpClient : undefined;
+            resourceInputs["pptpPassword"] = args ? args.pptpPassword : undefined;
+            resourceInputs["pptpServerIp"] = args ? args.pptpServerIp : undefined;
+            resourceInputs["pptpTimeout"] = args ? args.pptpTimeout : undefined;
+            resourceInputs["pptpUser"] = args ? args.pptpUser : undefined;
+            resourceInputs["preserveSessionRoute"] = args ? args.preserveSessionRoute : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["priorityOverride"] = args ? args.priorityOverride : undefined;
+            resourceInputs["proxyCaptivePortal"] = args ? args.proxyCaptivePortal : undefined;
+            resourceInputs["reachableTime"] = args ? args.reachableTime : undefined;
+            resourceInputs["redundantInterface"] = args ? args.redundantInterface : undefined;
+            resourceInputs["remoteIp"] = args ? args.remoteIp : undefined;
+            resourceInputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
+            resourceInputs["ringRx"] = args ? args.ringRx : undefined;
+            resourceInputs["ringTx"] = args ? args.ringTx : undefined;
+            resourceInputs["role"] = args ? args.role : undefined;
+            resourceInputs["sampleDirection"] = args ? args.sampleDirection : undefined;
+            resourceInputs["sampleRate"] = args ? args.sampleRate : undefined;
+            resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
+            resourceInputs["secondaryIp"] = args ? args.secondaryIp : undefined;
+            resourceInputs["secondaryips"] = args ? args.secondaryips : undefined;
+            resourceInputs["securityExemptList"] = args ? args.securityExemptList : undefined;
+            resourceInputs["securityExternalLogout"] = args ? args.securityExternalLogout : undefined;
+            resourceInputs["securityExternalWeb"] = args ? args.securityExternalWeb : undefined;
+            resourceInputs["securityGroups"] = args ? args.securityGroups : undefined;
+            resourceInputs["securityMacAuthBypass"] = args ? args.securityMacAuthBypass : undefined;
+            resourceInputs["securityMode"] = args ? args.securityMode : undefined;
+            resourceInputs["securityRedirectUrl"] = args ? args.securityRedirectUrl : undefined;
+            resourceInputs["serviceName"] = args ? args.serviceName : undefined;
+            resourceInputs["sflowSampler"] = args ? args.sflowSampler : undefined;
+            resourceInputs["snmpIndex"] = args ? args.snmpIndex : undefined;
+            resourceInputs["speed"] = args ? args.speed : undefined;
+            resourceInputs["spilloverThreshold"] = args ? args.spilloverThreshold : undefined;
+            resourceInputs["srcCheck"] = args ? args.srcCheck : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["stp"] = args ? args.stp : undefined;
+            resourceInputs["stpHaSecondary"] = args ? args.stpHaSecondary : undefined;
+            resourceInputs["stpforward"] = args ? args.stpforward : undefined;
+            resourceInputs["stpforwardMode"] = args ? args.stpforwardMode : undefined;
+            resourceInputs["subst"] = args ? args.subst : undefined;
+            resourceInputs["substituteDstMac"] = args ? args.substituteDstMac : undefined;
+            resourceInputs["swcFirstCreate"] = args ? args.swcFirstCreate : undefined;
+            resourceInputs["swcVlan"] = args ? args.swcVlan : undefined;
+            resourceInputs["switch"] = args ? args.switch : undefined;
+            resourceInputs["switchControllerAccessVlan"] = args ? args.switchControllerAccessVlan : undefined;
+            resourceInputs["switchControllerArpInspection"] = args ? args.switchControllerArpInspection : undefined;
+            resourceInputs["switchControllerDhcpSnooping"] = args ? args.switchControllerDhcpSnooping : undefined;
+            resourceInputs["switchControllerDhcpSnoopingOption82"] = args ? args.switchControllerDhcpSnoopingOption82 : undefined;
+            resourceInputs["switchControllerDhcpSnoopingVerifyMac"] = args ? args.switchControllerDhcpSnoopingVerifyMac : undefined;
+            resourceInputs["switchControllerDynamic"] = args ? args.switchControllerDynamic : undefined;
+            resourceInputs["switchControllerFeature"] = args ? args.switchControllerFeature : undefined;
+            resourceInputs["switchControllerIgmpSnooping"] = args ? args.switchControllerIgmpSnooping : undefined;
+            resourceInputs["switchControllerIgmpSnoopingFastLeave"] = args ? args.switchControllerIgmpSnoopingFastLeave : undefined;
+            resourceInputs["switchControllerIgmpSnoopingProxy"] = args ? args.switchControllerIgmpSnoopingProxy : undefined;
+            resourceInputs["switchControllerIotScanning"] = args ? args.switchControllerIotScanning : undefined;
+            resourceInputs["switchControllerLearningLimit"] = args ? args.switchControllerLearningLimit : undefined;
+            resourceInputs["switchControllerMgmtVlan"] = args ? args.switchControllerMgmtVlan : undefined;
+            resourceInputs["switchControllerNac"] = args ? args.switchControllerNac : undefined;
+            resourceInputs["switchControllerRspanMode"] = args ? args.switchControllerRspanMode : undefined;
+            resourceInputs["switchControllerSourceIp"] = args ? args.switchControllerSourceIp : undefined;
+            resourceInputs["switchControllerTrafficPolicy"] = args ? args.switchControllerTrafficPolicy : undefined;
+            resourceInputs["systemId"] = args ? args.systemId : undefined;
+            resourceInputs["systemIdType"] = args ? args.systemIdType : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["tcpMss"] = args ? args.tcpMss : undefined;
+            resourceInputs["trunk"] = args ? args.trunk : undefined;
+            resourceInputs["trustIp1"] = args ? args.trustIp1 : undefined;
+            resourceInputs["trustIp2"] = args ? args.trustIp2 : undefined;
+            resourceInputs["trustIp3"] = args ? args.trustIp3 : undefined;
+            resourceInputs["trustIp61"] = args ? args.trustIp61 : undefined;
+            resourceInputs["trustIp62"] = args ? args.trustIp62 : undefined;
+            resourceInputs["trustIp63"] = args ? args.trustIp63 : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vindex"] = args ? args.vindex : undefined;
+            resourceInputs["vlanProtocol"] = args ? args.vlanProtocol : undefined;
+            resourceInputs["vlanforward"] = args ? args.vlanforward : undefined;
+            resourceInputs["vlanid"] = args ? args.vlanid : undefined;
+            resourceInputs["vrf"] = args ? args.vrf : undefined;
+            resourceInputs["vrrpVirtualMac"] = args ? args.vrrpVirtualMac : undefined;
+            resourceInputs["vrrps"] = args ? args.vrrps : undefined;
+            resourceInputs["wccp"] = args ? args.wccp : undefined;
+            resourceInputs["weight"] = args ? args.weight : undefined;
+            resourceInputs["winsIp"] = args ? args.winsIp : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemInterface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemInterface.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -1308,6 +1405,14 @@ export interface SystemInterfaceState {
      * Enable/disable ARP forwarding. Valid values: `enable`, `disable`.
      */
     arpforward?: pulumi.Input<string>;
+    /**
+     * HTTPS server certificate.
+     */
+    authCert?: pulumi.Input<string>;
+    /**
+     * Address of captive portal.
+     */
+    authPortalAddr?: pulumi.Input<string>;
     /**
      * PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
      */
@@ -1413,6 +1518,10 @@ export interface SystemInterfaceState {
      */
     devindex?: pulumi.Input<number>;
     /**
+     * Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+     */
+    dhcpClasslessRouteAddition?: pulumi.Input<string>;
+    /**
      * DHCP client identifier.
      */
     dhcpClientIdentifier?: pulumi.Input<string>;
@@ -1433,6 +1542,14 @@ export interface SystemInterfaceState {
      */
     dhcpRelayIp?: pulumi.Input<string>;
     /**
+     * DHCP relay link selection.
+     */
+    dhcpRelayLinkSelection?: pulumi.Input<string>;
+    /**
+     * Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+     */
+    dhcpRelayRequestAllServer?: pulumi.Input<string>;
+    /**
      * Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
      */
     dhcpRelayService?: pulumi.Input<string>;
@@ -1444,6 +1561,10 @@ export interface SystemInterfaceState {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     dhcpRenewTime?: pulumi.Input<number>;
+    /**
+     * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+     */
+    dhcpSnoopingServerLists?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceDhcpSnoopingServerList>[]>;
     /**
      * Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
      */
@@ -1460,6 +1581,10 @@ export interface SystemInterfaceState {
      * Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
      */
     dnsServerOverride?: pulumi.Input<string>;
+    /**
+     * DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    dnsServerProtocol?: pulumi.Input<string>;
     /**
      * Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
      */
@@ -1548,6 +1673,10 @@ export interface SystemInterfaceState {
      * Transparent mode forward domain.
      */
     forwardDomain?: pulumi.Input<number>;
+    /**
+     * Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+     */
+    forwardErrorCorrection?: pulumi.Input<string>;
     /**
      * Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
      */
@@ -1665,7 +1794,7 @@ export interface SystemInterfaceState {
      */
     managedDevices?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceManagedDevice>[]>;
     /**
-     * Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+     * Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
      */
     managedSubnetworkSize?: pulumi.Input<string>;
     /**
@@ -1680,6 +1809,10 @@ export interface SystemInterfaceState {
      * Measured upstream bandwidth (kbps).
      */
     measuredUpstreamBandwidth?: pulumi.Input<number>;
+    /**
+     * Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+     */
+    mediatype?: pulumi.Input<string>;
     /**
      * Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
      */
@@ -1789,6 +1922,10 @@ export interface SystemInterfaceState {
      */
     proxyCaptivePortal?: pulumi.Input<string>;
     /**
+     * IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+     */
+    reachableTime?: pulumi.Input<number>;
+    /**
      * Redundant interface.
      */
     redundantInterface?: pulumi.Input<string>;
@@ -1824,6 +1961,9 @@ export interface SystemInterfaceState {
      * Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
      */
     scanBotnetConnections?: pulumi.Input<string>;
+    /**
+     * Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+     */
     secondaryIp?: pulumi.Input<string>;
     /**
      * Second IP address of interface. The structure of `secondaryip` block is documented below.
@@ -1870,7 +2010,7 @@ export interface SystemInterfaceState {
      */
     snmpIndex?: pulumi.Input<number>;
     /**
-     * Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+     * Interface speed. The default setting and the options available depend on the interface hardware.
      */
     speed?: pulumi.Input<string>;
     /**
@@ -1885,6 +2025,14 @@ export interface SystemInterfaceState {
      * Enable/disable VRRP. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Enable/disable STP. Valid values: `disable`, `enable`.
+     */
+    stp?: pulumi.Input<string>;
+    /**
+     * Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+     */
+    stpHaSecondary?: pulumi.Input<string>;
     /**
      * Enable/disable STP forwarding. Valid values: `enable`, `disable`.
      */
@@ -1934,7 +2082,11 @@ export interface SystemInterfaceState {
      */
     switchControllerDhcpSnoopingVerifyMac?: pulumi.Input<string>;
     /**
-     * Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+     * Integrated FortiLink settings for managed FortiSwitch.
+     */
+    switchControllerDynamic?: pulumi.Input<string>;
+    /**
+     * Interface's purpose when assigning traffic (read only).
      */
     switchControllerFeature?: pulumi.Input<string>;
     /**
@@ -1978,6 +2130,14 @@ export interface SystemInterfaceState {
      */
     switchControllerTrafficPolicy?: pulumi.Input<string>;
     /**
+     * Define a system ID for the aggregate interface.
+     */
+    systemId?: pulumi.Input<string>;
+    /**
+     * Method in which system ID is generated. Valid values: `auto`, `user`.
+     */
+    systemIdType?: pulumi.Input<string>;
+    /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
     taggings?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceTagging>[]>;
@@ -1985,6 +2145,10 @@ export interface SystemInterfaceState {
      * TCP maximum segment size. 0 means do not change segment size.
      */
     tcpMss?: pulumi.Input<number>;
+    /**
+     * Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+     */
+    trunk?: pulumi.Input<string>;
     /**
      * Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
      */
@@ -2100,6 +2264,14 @@ export interface SystemInterfaceArgs {
      */
     arpforward?: pulumi.Input<string>;
     /**
+     * HTTPS server certificate.
+     */
+    authCert?: pulumi.Input<string>;
+    /**
+     * Address of captive portal.
+     */
+    authPortalAddr?: pulumi.Input<string>;
+    /**
      * PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
      */
     authType?: pulumi.Input<string>;
@@ -2204,6 +2376,10 @@ export interface SystemInterfaceArgs {
      */
     devindex?: pulumi.Input<number>;
     /**
+     * Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `enable`, `disable`.
+     */
+    dhcpClasslessRouteAddition?: pulumi.Input<string>;
+    /**
      * DHCP client identifier.
      */
     dhcpClientIdentifier?: pulumi.Input<string>;
@@ -2224,6 +2400,14 @@ export interface SystemInterfaceArgs {
      */
     dhcpRelayIp?: pulumi.Input<string>;
     /**
+     * DHCP relay link selection.
+     */
+    dhcpRelayLinkSelection?: pulumi.Input<string>;
+    /**
+     * Enable/disable sending of DHCP requests to all servers. Valid values: `disable`, `enable`.
+     */
+    dhcpRelayRequestAllServer?: pulumi.Input<string>;
+    /**
      * Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
      */
     dhcpRelayService?: pulumi.Input<string>;
@@ -2235,6 +2419,10 @@ export interface SystemInterfaceArgs {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     dhcpRenewTime?: pulumi.Input<number>;
+    /**
+     * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+     */
+    dhcpSnoopingServerLists?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceDhcpSnoopingServerList>[]>;
     /**
      * Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
      */
@@ -2251,6 +2439,10 @@ export interface SystemInterfaceArgs {
      * Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `enable`, `disable`.
      */
     dnsServerOverride?: pulumi.Input<string>;
+    /**
+     * DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
+     */
+    dnsServerProtocol?: pulumi.Input<string>;
     /**
      * Enable/disable drop fragment packets. Valid values: `enable`, `disable`.
      */
@@ -2339,6 +2531,10 @@ export interface SystemInterfaceArgs {
      * Transparent mode forward domain.
      */
     forwardDomain?: pulumi.Input<number>;
+    /**
+     * Configure forward error correction (FEC). Valid values: `none`, `disable`, `cl91-rs-fec`, `cl74-fc-fec`.
+     */
+    forwardErrorCorrection?: pulumi.Input<string>;
     /**
      * Enable/disable detect gateway alive for first. Valid values: `enable`, `disable`.
      */
@@ -2456,7 +2652,7 @@ export interface SystemInterfaceArgs {
      */
     managedDevices?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceManagedDevice>[]>;
     /**
-     * Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings. Valid values: `256`, `512`, `1024`, `2048`, `4096`, `8192`, `16384`, `32768`, `65536`.
+     * Number of IP addresses to be allocated by FortiIPAM and used by this FortiGate unit's DHCP server settings.
      */
     managedSubnetworkSize?: pulumi.Input<string>;
     /**
@@ -2471,6 +2667,10 @@ export interface SystemInterfaceArgs {
      * Measured upstream bandwidth (kbps).
      */
     measuredUpstreamBandwidth?: pulumi.Input<number>;
+    /**
+     * Select SFP media interface type Valid values: `none`, `gmii`, `sgmii`, `sr`, `lr`, `cr`, `sr4`, `lr4`, `cr4`.
+     */
+    mediatype?: pulumi.Input<string>;
     /**
      * Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
      */
@@ -2580,6 +2780,10 @@ export interface SystemInterfaceArgs {
      */
     proxyCaptivePortal?: pulumi.Input<string>;
     /**
+     * IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+     */
+    reachableTime?: pulumi.Input<number>;
+    /**
      * Redundant interface.
      */
     redundantInterface?: pulumi.Input<string>;
@@ -2615,6 +2819,9 @@ export interface SystemInterfaceArgs {
      * Enable monitoring or blocking connections to Botnet servers through this interface. Valid values: `disable`, `block`, `monitor`.
      */
     scanBotnetConnections?: pulumi.Input<string>;
+    /**
+     * Enable/disable adding a secondary IP to this interface. Valid values: `enable`, `disable`.
+     */
     secondaryIp?: pulumi.Input<string>;
     /**
      * Second IP address of interface. The structure of `secondaryip` block is documented below.
@@ -2661,7 +2868,7 @@ export interface SystemInterfaceArgs {
      */
     snmpIndex?: pulumi.Input<number>;
     /**
-     * Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
+     * Interface speed. The default setting and the options available depend on the interface hardware.
      */
     speed?: pulumi.Input<string>;
     /**
@@ -2676,6 +2883,14 @@ export interface SystemInterfaceArgs {
      * Enable/disable VRRP. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Enable/disable STP. Valid values: `disable`, `enable`.
+     */
+    stp?: pulumi.Input<string>;
+    /**
+     * Control STP behaviour on HA secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+     */
+    stpHaSecondary?: pulumi.Input<string>;
     /**
      * Enable/disable STP forwarding. Valid values: `enable`, `disable`.
      */
@@ -2725,7 +2940,11 @@ export interface SystemInterfaceArgs {
      */
     switchControllerDhcpSnoopingVerifyMac?: pulumi.Input<string>;
     /**
-     * Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `rspan`, `voice`, `video`, `nac`.
+     * Integrated FortiLink settings for managed FortiSwitch.
+     */
+    switchControllerDynamic?: pulumi.Input<string>;
+    /**
+     * Interface's purpose when assigning traffic (read only).
      */
     switchControllerFeature?: pulumi.Input<string>;
     /**
@@ -2769,6 +2988,14 @@ export interface SystemInterfaceArgs {
      */
     switchControllerTrafficPolicy?: pulumi.Input<string>;
     /**
+     * Define a system ID for the aggregate interface.
+     */
+    systemId?: pulumi.Input<string>;
+    /**
+     * Method in which system ID is generated. Valid values: `auto`, `user`.
+     */
+    systemIdType?: pulumi.Input<string>;
+    /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
     taggings?: pulumi.Input<pulumi.Input<inputs.SystemInterfaceTagging>[]>;
@@ -2776,6 +3003,10 @@ export interface SystemInterfaceArgs {
      * TCP maximum segment size. 0 means do not change segment size.
      */
     tcpMss?: pulumi.Input<number>;
+    /**
+     * Enable/disable VLAN trunk. Valid values: `enable`, `disable`.
+     */
+    trunk?: pulumi.Input<string>;
     /**
      * Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
      */

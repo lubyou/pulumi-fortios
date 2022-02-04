@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewSystemAutoupdateTunneling(ctx *pulumi.Context,
 		args = &SystemAutoupdateTunnelingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutoupdateTunneling
 	err := ctx.RegisterResource("fortios:index/systemAutoupdateTunneling:SystemAutoupdateTunneling", name, args, &resource, opts...)
 	if err != nil {
@@ -167,7 +168,7 @@ type SystemAutoupdateTunnelingInput interface {
 }
 
 func (*SystemAutoupdateTunneling) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoupdateTunneling)(nil))
+	return reflect.TypeOf((**SystemAutoupdateTunneling)(nil)).Elem()
 }
 
 func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingOutput() SystemAutoupdateTunnelingOutput {
@@ -176,35 +177,6 @@ func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingOutput() SystemAu
 
 func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingOutput)
-}
-
-func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingPtrOutput() SystemAutoupdateTunnelingPtrOutput {
-	return i.ToSystemAutoupdateTunnelingPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutoupdateTunneling) ToSystemAutoupdateTunnelingPtrOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingPtrOutput)
-}
-
-type SystemAutoupdateTunnelingPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutoupdateTunnelingPtrOutput() SystemAutoupdateTunnelingPtrOutput
-	ToSystemAutoupdateTunnelingPtrOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingPtrOutput
-}
-
-type systemAutoupdateTunnelingPtrType SystemAutoupdateTunnelingArgs
-
-func (*systemAutoupdateTunnelingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoupdateTunneling)(nil))
-}
-
-func (i *systemAutoupdateTunnelingPtrType) ToSystemAutoupdateTunnelingPtrOutput() SystemAutoupdateTunnelingPtrOutput {
-	return i.ToSystemAutoupdateTunnelingPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutoupdateTunnelingPtrType) ToSystemAutoupdateTunnelingPtrOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingPtrOutput)
 }
 
 // SystemAutoupdateTunnelingArrayInput is an input type that accepts SystemAutoupdateTunnelingArray and SystemAutoupdateTunnelingArrayOutput values.
@@ -221,7 +193,7 @@ type SystemAutoupdateTunnelingArrayInput interface {
 type SystemAutoupdateTunnelingArray []SystemAutoupdateTunnelingInput
 
 func (SystemAutoupdateTunnelingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutoupdateTunneling)(nil))
+	return reflect.TypeOf((*[]*SystemAutoupdateTunneling)(nil)).Elem()
 }
 
 func (i SystemAutoupdateTunnelingArray) ToSystemAutoupdateTunnelingArrayOutput() SystemAutoupdateTunnelingArrayOutput {
@@ -246,7 +218,7 @@ type SystemAutoupdateTunnelingMapInput interface {
 type SystemAutoupdateTunnelingMap map[string]SystemAutoupdateTunnelingInput
 
 func (SystemAutoupdateTunnelingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutoupdateTunneling)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoupdateTunneling)(nil)).Elem()
 }
 
 func (i SystemAutoupdateTunnelingMap) ToSystemAutoupdateTunnelingMapOutput() SystemAutoupdateTunnelingMapOutput {
@@ -257,12 +229,10 @@ func (i SystemAutoupdateTunnelingMap) ToSystemAutoupdateTunnelingMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoupdateTunnelingMapOutput)
 }
 
-type SystemAutoupdateTunnelingOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutoupdateTunnelingOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateTunnelingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoupdateTunneling)(nil))
+	return reflect.TypeOf((**SystemAutoupdateTunneling)(nil)).Elem()
 }
 
 func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingOutput() SystemAutoupdateTunnelingOutput {
@@ -273,36 +243,10 @@ func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingOutputWithCo
 	return o
 }
 
-func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingPtrOutput() SystemAutoupdateTunnelingPtrOutput {
-	return o.ToSystemAutoupdateTunnelingPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutoupdateTunnelingOutput) ToSystemAutoupdateTunnelingPtrOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingPtrOutput {
-	return o.ApplyT(func(v SystemAutoupdateTunneling) *SystemAutoupdateTunneling {
-		return &v
-	}).(SystemAutoupdateTunnelingPtrOutput)
-}
-
-type SystemAutoupdateTunnelingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutoupdateTunnelingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoupdateTunneling)(nil))
-}
-
-func (o SystemAutoupdateTunnelingPtrOutput) ToSystemAutoupdateTunnelingPtrOutput() SystemAutoupdateTunnelingPtrOutput {
-	return o
-}
-
-func (o SystemAutoupdateTunnelingPtrOutput) ToSystemAutoupdateTunnelingPtrOutputWithContext(ctx context.Context) SystemAutoupdateTunnelingPtrOutput {
-	return o
-}
-
 type SystemAutoupdateTunnelingArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateTunnelingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutoupdateTunneling)(nil))
+	return reflect.TypeOf((*[]*SystemAutoupdateTunneling)(nil)).Elem()
 }
 
 func (o SystemAutoupdateTunnelingArrayOutput) ToSystemAutoupdateTunnelingArrayOutput() SystemAutoupdateTunnelingArrayOutput {
@@ -314,15 +258,15 @@ func (o SystemAutoupdateTunnelingArrayOutput) ToSystemAutoupdateTunnelingArrayOu
 }
 
 func (o SystemAutoupdateTunnelingArrayOutput) Index(i pulumi.IntInput) SystemAutoupdateTunnelingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutoupdateTunneling {
-		return vs[0].([]SystemAutoupdateTunneling)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoupdateTunneling {
+		return vs[0].([]*SystemAutoupdateTunneling)[vs[1].(int)]
 	}).(SystemAutoupdateTunnelingOutput)
 }
 
 type SystemAutoupdateTunnelingMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoupdateTunnelingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutoupdateTunneling)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoupdateTunneling)(nil)).Elem()
 }
 
 func (o SystemAutoupdateTunnelingMapOutput) ToSystemAutoupdateTunnelingMapOutput() SystemAutoupdateTunnelingMapOutput {
@@ -334,14 +278,16 @@ func (o SystemAutoupdateTunnelingMapOutput) ToSystemAutoupdateTunnelingMapOutput
 }
 
 func (o SystemAutoupdateTunnelingMapOutput) MapIndex(k pulumi.StringInput) SystemAutoupdateTunnelingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutoupdateTunneling {
-		return vs[0].(map[string]SystemAutoupdateTunneling)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutoupdateTunneling {
+		return vs[0].(map[string]*SystemAutoupdateTunneling)[vs[1].(string)]
 	}).(SystemAutoupdateTunnelingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdateTunnelingInput)(nil)).Elem(), &SystemAutoupdateTunneling{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdateTunnelingArrayInput)(nil)).Elem(), SystemAutoupdateTunnelingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoupdateTunnelingMapInput)(nil)).Elem(), SystemAutoupdateTunnelingMap{})
 	pulumi.RegisterOutputType(SystemAutoupdateTunnelingOutput{})
-	pulumi.RegisterOutputType(SystemAutoupdateTunnelingPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutoupdateTunnelingArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutoupdateTunnelingMapOutput{})
 }

@@ -14,18 +14,22 @@ __all__ = ['RouterospfNetworkArgs', 'RouterospfNetwork']
 class RouterospfNetworkArgs:
     def __init__(__self__, *,
                  area: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a RouterospfNetwork resource.
         :param pulumi.Input[str] area: Attach the network to area.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] fosid: Network entry ID.
         :param pulumi.Input[str] prefix: Prefix.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if area is not None:
             pulumi.set(__self__, "area", area)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if prefix is not None:
@@ -44,6 +48,18 @@ class RouterospfNetworkArgs:
     @area.setter
     def area(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "area", value)
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
+
+    @comments.setter
+    def comments(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comments", value)
 
     @property
     @pulumi.getter
@@ -86,18 +102,22 @@ class RouterospfNetworkArgs:
 class _RouterospfNetworkState:
     def __init__(__self__, *,
                  area: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering RouterospfNetwork resources.
         :param pulumi.Input[str] area: Attach the network to area.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] fosid: Network entry ID.
         :param pulumi.Input[str] prefix: Prefix.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if area is not None:
             pulumi.set(__self__, "area", area)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
         if prefix is not None:
@@ -116,6 +136,18 @@ class _RouterospfNetworkState:
     @area.setter
     def area(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "area", value)
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[pulumi.Input[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
+
+    @comments.setter
+    def comments(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "comments", value)
 
     @property
     @pulumi.getter
@@ -160,6 +192,7 @@ class RouterospfNetwork(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  area: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -182,6 +215,7 @@ class RouterospfNetwork(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] area: Attach the network to area.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] fosid: Network entry ID.
         :param pulumi.Input[str] prefix: Prefix.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -223,6 +257,7 @@ class RouterospfNetwork(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  area: Optional[pulumi.Input[str]] = None,
+                 comments: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  prefix: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -233,12 +268,15 @@ class RouterospfNetwork(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RouterospfNetworkArgs.__new__(RouterospfNetworkArgs)
 
             __props__.__dict__["area"] = area
+            __props__.__dict__["comments"] = comments
             __props__.__dict__["fosid"] = fosid
             __props__.__dict__["prefix"] = prefix
             __props__.__dict__["vdomparam"] = vdomparam
@@ -253,6 +291,7 @@ class RouterospfNetwork(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             area: Optional[pulumi.Input[str]] = None,
+            comments: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
             prefix: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'RouterospfNetwork':
@@ -264,6 +303,7 @@ class RouterospfNetwork(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] area: Attach the network to area.
+        :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[int] fosid: Network entry ID.
         :param pulumi.Input[str] prefix: Prefix.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -273,6 +313,7 @@ class RouterospfNetwork(pulumi.CustomResource):
         __props__ = _RouterospfNetworkState.__new__(_RouterospfNetworkState)
 
         __props__.__dict__["area"] = area
+        __props__.__dict__["comments"] = comments
         __props__.__dict__["fosid"] = fosid
         __props__.__dict__["prefix"] = prefix
         __props__.__dict__["vdomparam"] = vdomparam
@@ -285,6 +326,14 @@ class RouterospfNetwork(pulumi.CustomResource):
         Attach the network to area.
         """
         return pulumi.get(self, "area")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> pulumi.Output[Optional[str]]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter

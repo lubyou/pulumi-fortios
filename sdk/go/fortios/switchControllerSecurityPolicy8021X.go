@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -37,8 +38,8 @@ import (
 // 			PolicyType:             pulumi.String("802.1X"),
 // 			RadiusTimeoutOverwrite: pulumi.String("disable"),
 // 			SecurityMode:           pulumi.String("802.1X"),
-// 			UserGroups: fortios.SwitchControllerSecurityPolicy8021XUserGroupArray{
-// 				&fortios.SwitchControllerSecurityPolicy8021XUserGroupArgs{
+// 			UserGroups: SwitchControllerSecurityPolicy8021XUserGroupArray{
+// 				&SwitchControllerSecurityPolicy8021XUserGroupArgs{
 // 					Name: pulumi.String("Guest-group"),
 // 				},
 // 			},
@@ -116,6 +117,7 @@ func NewSwitchControllerSecurityPolicy8021X(ctx *pulumi.Context,
 		args = &SwitchControllerSecurityPolicy8021XArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSecurityPolicy8021X
 	err := ctx.RegisterResource("fortios:index/switchControllerSecurityPolicy8021X:SwitchControllerSecurityPolicy8021X", name, args, &resource, opts...)
 	if err != nil {
@@ -342,7 +344,7 @@ type SwitchControllerSecurityPolicy8021XInput interface {
 }
 
 func (*SwitchControllerSecurityPolicy8021X) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSecurityPolicy8021X)(nil))
+	return reflect.TypeOf((**SwitchControllerSecurityPolicy8021X)(nil)).Elem()
 }
 
 func (i *SwitchControllerSecurityPolicy8021X) ToSwitchControllerSecurityPolicy8021XOutput() SwitchControllerSecurityPolicy8021XOutput {
@@ -351,35 +353,6 @@ func (i *SwitchControllerSecurityPolicy8021X) ToSwitchControllerSecurityPolicy80
 
 func (i *SwitchControllerSecurityPolicy8021X) ToSwitchControllerSecurityPolicy8021XOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XOutput)
-}
-
-func (i *SwitchControllerSecurityPolicy8021X) ToSwitchControllerSecurityPolicy8021XPtrOutput() SwitchControllerSecurityPolicy8021XPtrOutput {
-	return i.ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSecurityPolicy8021X) ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XPtrOutput)
-}
-
-type SwitchControllerSecurityPolicy8021XPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSecurityPolicy8021XPtrOutput() SwitchControllerSecurityPolicy8021XPtrOutput
-	ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XPtrOutput
-}
-
-type switchControllerSecurityPolicy8021XPtrType SwitchControllerSecurityPolicy8021XArgs
-
-func (*switchControllerSecurityPolicy8021XPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSecurityPolicy8021X)(nil))
-}
-
-func (i *switchControllerSecurityPolicy8021XPtrType) ToSwitchControllerSecurityPolicy8021XPtrOutput() SwitchControllerSecurityPolicy8021XPtrOutput {
-	return i.ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSecurityPolicy8021XPtrType) ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XPtrOutput)
 }
 
 // SwitchControllerSecurityPolicy8021XArrayInput is an input type that accepts SwitchControllerSecurityPolicy8021XArray and SwitchControllerSecurityPolicy8021XArrayOutput values.
@@ -396,7 +369,7 @@ type SwitchControllerSecurityPolicy8021XArrayInput interface {
 type SwitchControllerSecurityPolicy8021XArray []SwitchControllerSecurityPolicy8021XInput
 
 func (SwitchControllerSecurityPolicy8021XArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSecurityPolicy8021X)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSecurityPolicy8021X)(nil)).Elem()
 }
 
 func (i SwitchControllerSecurityPolicy8021XArray) ToSwitchControllerSecurityPolicy8021XArrayOutput() SwitchControllerSecurityPolicy8021XArrayOutput {
@@ -421,7 +394,7 @@ type SwitchControllerSecurityPolicy8021XMapInput interface {
 type SwitchControllerSecurityPolicy8021XMap map[string]SwitchControllerSecurityPolicy8021XInput
 
 func (SwitchControllerSecurityPolicy8021XMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSecurityPolicy8021X)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSecurityPolicy8021X)(nil)).Elem()
 }
 
 func (i SwitchControllerSecurityPolicy8021XMap) ToSwitchControllerSecurityPolicy8021XMapOutput() SwitchControllerSecurityPolicy8021XMapOutput {
@@ -432,12 +405,10 @@ func (i SwitchControllerSecurityPolicy8021XMap) ToSwitchControllerSecurityPolicy
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicy8021XMapOutput)
 }
 
-type SwitchControllerSecurityPolicy8021XOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSecurityPolicy8021XOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicy8021XOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSecurityPolicy8021X)(nil))
+	return reflect.TypeOf((**SwitchControllerSecurityPolicy8021X)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicy8021XOutput) ToSwitchControllerSecurityPolicy8021XOutput() SwitchControllerSecurityPolicy8021XOutput {
@@ -448,36 +419,10 @@ func (o SwitchControllerSecurityPolicy8021XOutput) ToSwitchControllerSecurityPol
 	return o
 }
 
-func (o SwitchControllerSecurityPolicy8021XOutput) ToSwitchControllerSecurityPolicy8021XPtrOutput() SwitchControllerSecurityPolicy8021XPtrOutput {
-	return o.ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSecurityPolicy8021XOutput) ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSecurityPolicy8021X) *SwitchControllerSecurityPolicy8021X {
-		return &v
-	}).(SwitchControllerSecurityPolicy8021XPtrOutput)
-}
-
-type SwitchControllerSecurityPolicy8021XPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSecurityPolicy8021XPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSecurityPolicy8021X)(nil))
-}
-
-func (o SwitchControllerSecurityPolicy8021XPtrOutput) ToSwitchControllerSecurityPolicy8021XPtrOutput() SwitchControllerSecurityPolicy8021XPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSecurityPolicy8021XPtrOutput) ToSwitchControllerSecurityPolicy8021XPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicy8021XPtrOutput {
-	return o
-}
-
 type SwitchControllerSecurityPolicy8021XArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicy8021XArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSecurityPolicy8021X)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSecurityPolicy8021X)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicy8021XArrayOutput) ToSwitchControllerSecurityPolicy8021XArrayOutput() SwitchControllerSecurityPolicy8021XArrayOutput {
@@ -489,15 +434,15 @@ func (o SwitchControllerSecurityPolicy8021XArrayOutput) ToSwitchControllerSecuri
 }
 
 func (o SwitchControllerSecurityPolicy8021XArrayOutput) Index(i pulumi.IntInput) SwitchControllerSecurityPolicy8021XOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSecurityPolicy8021X {
-		return vs[0].([]SwitchControllerSecurityPolicy8021X)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicy8021X {
+		return vs[0].([]*SwitchControllerSecurityPolicy8021X)[vs[1].(int)]
 	}).(SwitchControllerSecurityPolicy8021XOutput)
 }
 
 type SwitchControllerSecurityPolicy8021XMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicy8021XMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSecurityPolicy8021X)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSecurityPolicy8021X)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicy8021XMapOutput) ToSwitchControllerSecurityPolicy8021XMapOutput() SwitchControllerSecurityPolicy8021XMapOutput {
@@ -509,14 +454,16 @@ func (o SwitchControllerSecurityPolicy8021XMapOutput) ToSwitchControllerSecurity
 }
 
 func (o SwitchControllerSecurityPolicy8021XMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSecurityPolicy8021XOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSecurityPolicy8021X {
-		return vs[0].(map[string]SwitchControllerSecurityPolicy8021X)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicy8021X {
+		return vs[0].(map[string]*SwitchControllerSecurityPolicy8021X)[vs[1].(string)]
 	}).(SwitchControllerSecurityPolicy8021XOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicy8021XInput)(nil)).Elem(), &SwitchControllerSecurityPolicy8021X{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicy8021XArrayInput)(nil)).Elem(), SwitchControllerSecurityPolicy8021XArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicy8021XMapInput)(nil)).Elem(), SwitchControllerSecurityPolicy8021XMap{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicy8021XOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSecurityPolicy8021XPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicy8021XArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicy8021XMapOutput{})
 }

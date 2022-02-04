@@ -132,7 +132,7 @@ class SystemGeoipCountry(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Define geoip country name-ID table.
+        Define geoip country name-ID table. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -157,7 +157,7 @@ class SystemGeoipCountry(pulumi.CustomResource):
                  args: Optional[SystemGeoipCountryArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Define geoip country name-ID table.
+        Define geoip country name-ID table. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -194,6 +194,8 @@ class SystemGeoipCountry(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

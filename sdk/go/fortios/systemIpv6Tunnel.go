@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -50,6 +50,8 @@ import (
 type SystemIpv6Tunnel struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
 	// Remote IPv6 address of the tunnel.
 	Destination pulumi.StringOutput `pulumi:"destination"`
 	// Interface name.
@@ -58,6 +60,8 @@ type SystemIpv6Tunnel struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Local IPv6 address of the tunnel.
 	Source pulumi.StringOutput `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -72,6 +76,7 @@ func NewSystemIpv6Tunnel(ctx *pulumi.Context,
 	if args.Destination == nil {
 		return nil, errors.New("invalid value for required argument 'Destination'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemIpv6Tunnel
 	err := ctx.RegisterResource("fortios:index/systemIpv6Tunnel:SystemIpv6Tunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -94,6 +99,8 @@ func GetSystemIpv6Tunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpv6Tunnel resources.
 type systemIpv6TunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// Remote IPv6 address of the tunnel.
 	Destination *string `pulumi:"destination"`
 	// Interface name.
@@ -102,11 +109,15 @@ type systemIpv6TunnelState struct {
 	Name *string `pulumi:"name"`
 	// Local IPv6 address of the tunnel.
 	Source *string `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemIpv6TunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// Remote IPv6 address of the tunnel.
 	Destination pulumi.StringPtrInput
 	// Interface name.
@@ -115,6 +126,8 @@ type SystemIpv6TunnelState struct {
 	Name pulumi.StringPtrInput
 	// Local IPv6 address of the tunnel.
 	Source pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -124,6 +137,8 @@ func (SystemIpv6TunnelState) ElementType() reflect.Type {
 }
 
 type systemIpv6TunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// Remote IPv6 address of the tunnel.
 	Destination string `pulumi:"destination"`
 	// Interface name.
@@ -132,12 +147,16 @@ type systemIpv6TunnelArgs struct {
 	Name *string `pulumi:"name"`
 	// Local IPv6 address of the tunnel.
 	Source *string `pulumi:"source"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpv6Tunnel resource.
 type SystemIpv6TunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// Remote IPv6 address of the tunnel.
 	Destination pulumi.StringInput
 	// Interface name.
@@ -146,6 +165,8 @@ type SystemIpv6TunnelArgs struct {
 	Name pulumi.StringPtrInput
 	// Local IPv6 address of the tunnel.
 	Source pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -162,7 +183,7 @@ type SystemIpv6TunnelInput interface {
 }
 
 func (*SystemIpv6Tunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpv6Tunnel)(nil))
+	return reflect.TypeOf((**SystemIpv6Tunnel)(nil)).Elem()
 }
 
 func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelOutput() SystemIpv6TunnelOutput {
@@ -171,35 +192,6 @@ func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelOutput() SystemIpv6TunnelOutput {
 
 func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelOutputWithContext(ctx context.Context) SystemIpv6TunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelOutput)
-}
-
-func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelPtrOutput() SystemIpv6TunnelPtrOutput {
-	return i.ToSystemIpv6TunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemIpv6Tunnel) ToSystemIpv6TunnelPtrOutputWithContext(ctx context.Context) SystemIpv6TunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelPtrOutput)
-}
-
-type SystemIpv6TunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemIpv6TunnelPtrOutput() SystemIpv6TunnelPtrOutput
-	ToSystemIpv6TunnelPtrOutputWithContext(ctx context.Context) SystemIpv6TunnelPtrOutput
-}
-
-type systemIpv6TunnelPtrType SystemIpv6TunnelArgs
-
-func (*systemIpv6TunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpv6Tunnel)(nil))
-}
-
-func (i *systemIpv6TunnelPtrType) ToSystemIpv6TunnelPtrOutput() SystemIpv6TunnelPtrOutput {
-	return i.ToSystemIpv6TunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemIpv6TunnelPtrType) ToSystemIpv6TunnelPtrOutputWithContext(ctx context.Context) SystemIpv6TunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelPtrOutput)
 }
 
 // SystemIpv6TunnelArrayInput is an input type that accepts SystemIpv6TunnelArray and SystemIpv6TunnelArrayOutput values.
@@ -216,7 +208,7 @@ type SystemIpv6TunnelArrayInput interface {
 type SystemIpv6TunnelArray []SystemIpv6TunnelInput
 
 func (SystemIpv6TunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemIpv6Tunnel)(nil))
+	return reflect.TypeOf((*[]*SystemIpv6Tunnel)(nil)).Elem()
 }
 
 func (i SystemIpv6TunnelArray) ToSystemIpv6TunnelArrayOutput() SystemIpv6TunnelArrayOutput {
@@ -241,7 +233,7 @@ type SystemIpv6TunnelMapInput interface {
 type SystemIpv6TunnelMap map[string]SystemIpv6TunnelInput
 
 func (SystemIpv6TunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemIpv6Tunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpv6Tunnel)(nil)).Elem()
 }
 
 func (i SystemIpv6TunnelMap) ToSystemIpv6TunnelMapOutput() SystemIpv6TunnelMapOutput {
@@ -252,12 +244,10 @@ func (i SystemIpv6TunnelMap) ToSystemIpv6TunnelMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpv6TunnelMapOutput)
 }
 
-type SystemIpv6TunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemIpv6TunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6TunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpv6Tunnel)(nil))
+	return reflect.TypeOf((**SystemIpv6Tunnel)(nil)).Elem()
 }
 
 func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelOutput() SystemIpv6TunnelOutput {
@@ -268,36 +258,10 @@ func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelPtrOutput() SystemIpv6TunnelPtrOutput {
-	return o.ToSystemIpv6TunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemIpv6TunnelOutput) ToSystemIpv6TunnelPtrOutputWithContext(ctx context.Context) SystemIpv6TunnelPtrOutput {
-	return o.ApplyT(func(v SystemIpv6Tunnel) *SystemIpv6Tunnel {
-		return &v
-	}).(SystemIpv6TunnelPtrOutput)
-}
-
-type SystemIpv6TunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemIpv6TunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpv6Tunnel)(nil))
-}
-
-func (o SystemIpv6TunnelPtrOutput) ToSystemIpv6TunnelPtrOutput() SystemIpv6TunnelPtrOutput {
-	return o
-}
-
-func (o SystemIpv6TunnelPtrOutput) ToSystemIpv6TunnelPtrOutputWithContext(ctx context.Context) SystemIpv6TunnelPtrOutput {
-	return o
-}
-
 type SystemIpv6TunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6TunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemIpv6Tunnel)(nil))
+	return reflect.TypeOf((*[]*SystemIpv6Tunnel)(nil)).Elem()
 }
 
 func (o SystemIpv6TunnelArrayOutput) ToSystemIpv6TunnelArrayOutput() SystemIpv6TunnelArrayOutput {
@@ -309,15 +273,15 @@ func (o SystemIpv6TunnelArrayOutput) ToSystemIpv6TunnelArrayOutputWithContext(ct
 }
 
 func (o SystemIpv6TunnelArrayOutput) Index(i pulumi.IntInput) SystemIpv6TunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemIpv6Tunnel {
-		return vs[0].([]SystemIpv6Tunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpv6Tunnel {
+		return vs[0].([]*SystemIpv6Tunnel)[vs[1].(int)]
 	}).(SystemIpv6TunnelOutput)
 }
 
 type SystemIpv6TunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemIpv6TunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemIpv6Tunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpv6Tunnel)(nil)).Elem()
 }
 
 func (o SystemIpv6TunnelMapOutput) ToSystemIpv6TunnelMapOutput() SystemIpv6TunnelMapOutput {
@@ -329,14 +293,16 @@ func (o SystemIpv6TunnelMapOutput) ToSystemIpv6TunnelMapOutputWithContext(ctx co
 }
 
 func (o SystemIpv6TunnelMapOutput) MapIndex(k pulumi.StringInput) SystemIpv6TunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemIpv6Tunnel {
-		return vs[0].(map[string]SystemIpv6Tunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemIpv6Tunnel {
+		return vs[0].(map[string]*SystemIpv6Tunnel)[vs[1].(string)]
 	}).(SystemIpv6TunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpv6TunnelInput)(nil)).Elem(), &SystemIpv6Tunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpv6TunnelArrayInput)(nil)).Elem(), SystemIpv6TunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpv6TunnelMapInput)(nil)).Elem(), SystemIpv6TunnelMap{})
 	pulumi.RegisterOutputType(SystemIpv6TunnelOutput{})
-	pulumi.RegisterOutputType(SystemIpv6TunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemIpv6TunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemIpv6TunnelMapOutput{})
 }

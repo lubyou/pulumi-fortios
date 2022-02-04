@@ -297,7 +297,7 @@ class SwitchControllerNacSettings(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `>= 6.4.0`.
+        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
 
         ## Import
 
@@ -327,7 +327,7 @@ class SwitchControllerNacSettings(pulumi.CustomResource):
                  args: Optional[SwitchControllerNacSettingsArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `>= 6.4.0`.
+        Configure integrated NAC settings for FortiSwitch. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
 
         ## Import
 
@@ -369,6 +369,8 @@ class SwitchControllerNacSettings(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

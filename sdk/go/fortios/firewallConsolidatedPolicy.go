@@ -217,6 +217,7 @@ func NewFirewallConsolidatedPolicy(ctx *pulumi.Context,
 		args = &FirewallConsolidatedPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallConsolidatedPolicy
 	err := ctx.RegisterResource("fortios:index/firewallConsolidatedPolicy:FirewallConsolidatedPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -1003,7 +1004,7 @@ type FirewallConsolidatedPolicyInput interface {
 }
 
 func (*FirewallConsolidatedPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallConsolidatedPolicy)(nil))
+	return reflect.TypeOf((**FirewallConsolidatedPolicy)(nil)).Elem()
 }
 
 func (i *FirewallConsolidatedPolicy) ToFirewallConsolidatedPolicyOutput() FirewallConsolidatedPolicyOutput {
@@ -1012,35 +1013,6 @@ func (i *FirewallConsolidatedPolicy) ToFirewallConsolidatedPolicyOutput() Firewa
 
 func (i *FirewallConsolidatedPolicy) ToFirewallConsolidatedPolicyOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyOutput)
-}
-
-func (i *FirewallConsolidatedPolicy) ToFirewallConsolidatedPolicyPtrOutput() FirewallConsolidatedPolicyPtrOutput {
-	return i.ToFirewallConsolidatedPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallConsolidatedPolicy) ToFirewallConsolidatedPolicyPtrOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyPtrOutput)
-}
-
-type FirewallConsolidatedPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallConsolidatedPolicyPtrOutput() FirewallConsolidatedPolicyPtrOutput
-	ToFirewallConsolidatedPolicyPtrOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyPtrOutput
-}
-
-type firewallConsolidatedPolicyPtrType FirewallConsolidatedPolicyArgs
-
-func (*firewallConsolidatedPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallConsolidatedPolicy)(nil))
-}
-
-func (i *firewallConsolidatedPolicyPtrType) ToFirewallConsolidatedPolicyPtrOutput() FirewallConsolidatedPolicyPtrOutput {
-	return i.ToFirewallConsolidatedPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallConsolidatedPolicyPtrType) ToFirewallConsolidatedPolicyPtrOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyPtrOutput)
 }
 
 // FirewallConsolidatedPolicyArrayInput is an input type that accepts FirewallConsolidatedPolicyArray and FirewallConsolidatedPolicyArrayOutput values.
@@ -1057,7 +1029,7 @@ type FirewallConsolidatedPolicyArrayInput interface {
 type FirewallConsolidatedPolicyArray []FirewallConsolidatedPolicyInput
 
 func (FirewallConsolidatedPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallConsolidatedPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallConsolidatedPolicy)(nil)).Elem()
 }
 
 func (i FirewallConsolidatedPolicyArray) ToFirewallConsolidatedPolicyArrayOutput() FirewallConsolidatedPolicyArrayOutput {
@@ -1082,7 +1054,7 @@ type FirewallConsolidatedPolicyMapInput interface {
 type FirewallConsolidatedPolicyMap map[string]FirewallConsolidatedPolicyInput
 
 func (FirewallConsolidatedPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallConsolidatedPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallConsolidatedPolicy)(nil)).Elem()
 }
 
 func (i FirewallConsolidatedPolicyMap) ToFirewallConsolidatedPolicyMapOutput() FirewallConsolidatedPolicyMapOutput {
@@ -1093,12 +1065,10 @@ func (i FirewallConsolidatedPolicyMap) ToFirewallConsolidatedPolicyMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallConsolidatedPolicyMapOutput)
 }
 
-type FirewallConsolidatedPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallConsolidatedPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallConsolidatedPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallConsolidatedPolicy)(nil))
+	return reflect.TypeOf((**FirewallConsolidatedPolicy)(nil)).Elem()
 }
 
 func (o FirewallConsolidatedPolicyOutput) ToFirewallConsolidatedPolicyOutput() FirewallConsolidatedPolicyOutput {
@@ -1109,36 +1079,10 @@ func (o FirewallConsolidatedPolicyOutput) ToFirewallConsolidatedPolicyOutputWith
 	return o
 }
 
-func (o FirewallConsolidatedPolicyOutput) ToFirewallConsolidatedPolicyPtrOutput() FirewallConsolidatedPolicyPtrOutput {
-	return o.ToFirewallConsolidatedPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallConsolidatedPolicyOutput) ToFirewallConsolidatedPolicyPtrOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallConsolidatedPolicy) *FirewallConsolidatedPolicy {
-		return &v
-	}).(FirewallConsolidatedPolicyPtrOutput)
-}
-
-type FirewallConsolidatedPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallConsolidatedPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallConsolidatedPolicy)(nil))
-}
-
-func (o FirewallConsolidatedPolicyPtrOutput) ToFirewallConsolidatedPolicyPtrOutput() FirewallConsolidatedPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallConsolidatedPolicyPtrOutput) ToFirewallConsolidatedPolicyPtrOutputWithContext(ctx context.Context) FirewallConsolidatedPolicyPtrOutput {
-	return o
-}
-
 type FirewallConsolidatedPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallConsolidatedPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallConsolidatedPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallConsolidatedPolicy)(nil)).Elem()
 }
 
 func (o FirewallConsolidatedPolicyArrayOutput) ToFirewallConsolidatedPolicyArrayOutput() FirewallConsolidatedPolicyArrayOutput {
@@ -1150,15 +1094,15 @@ func (o FirewallConsolidatedPolicyArrayOutput) ToFirewallConsolidatedPolicyArray
 }
 
 func (o FirewallConsolidatedPolicyArrayOutput) Index(i pulumi.IntInput) FirewallConsolidatedPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallConsolidatedPolicy {
-		return vs[0].([]FirewallConsolidatedPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallConsolidatedPolicy {
+		return vs[0].([]*FirewallConsolidatedPolicy)[vs[1].(int)]
 	}).(FirewallConsolidatedPolicyOutput)
 }
 
 type FirewallConsolidatedPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallConsolidatedPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallConsolidatedPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallConsolidatedPolicy)(nil)).Elem()
 }
 
 func (o FirewallConsolidatedPolicyMapOutput) ToFirewallConsolidatedPolicyMapOutput() FirewallConsolidatedPolicyMapOutput {
@@ -1170,14 +1114,16 @@ func (o FirewallConsolidatedPolicyMapOutput) ToFirewallConsolidatedPolicyMapOutp
 }
 
 func (o FirewallConsolidatedPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallConsolidatedPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallConsolidatedPolicy {
-		return vs[0].(map[string]FirewallConsolidatedPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallConsolidatedPolicy {
+		return vs[0].(map[string]*FirewallConsolidatedPolicy)[vs[1].(string)]
 	}).(FirewallConsolidatedPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallConsolidatedPolicyInput)(nil)).Elem(), &FirewallConsolidatedPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallConsolidatedPolicyArrayInput)(nil)).Elem(), FirewallConsolidatedPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallConsolidatedPolicyMapInput)(nil)).Elem(), FirewallConsolidatedPolicyMap{})
 	pulumi.RegisterOutputType(FirewallConsolidatedPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallConsolidatedPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallConsolidatedPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallConsolidatedPolicyMapOutput{})
 }

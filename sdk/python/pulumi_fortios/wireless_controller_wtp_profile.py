@@ -21,17 +21,20 @@ class WirelessControllerWtpProfileArgs:
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  deny_mac_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileDenyMacListArgs']]]] = None,
                  dtls_in_kernel: Optional[pulumi.Input[str]] = None,
                  dtls_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  energy_efficient_ethernet: Optional[pulumi.Input[str]] = None,
+                 esl_ses_dongle: Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
+                 indoor_outdoor_deployment: Optional[pulumi.Input[str]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
                  lan: Optional[pulumi.Input['WirelessControllerWtpProfileLanArgs']] = None,
                  lbs: Optional[pulumi.Input['WirelessControllerWtpProfileLbsArgs']] = None,
@@ -51,9 +54,14 @@ class WirelessControllerWtpProfileArgs:
                  split_tunneling_acl_local_ap_subnet: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acl_path: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acls: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]] = None,
+                 syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_password: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
                  wan_port_mode: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a WirelessControllerWtpProfile resource.
@@ -63,17 +71,20 @@ class WirelessControllerWtpProfileArgs:
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileDenyMacListArgs']]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
+        :param pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs'] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
+        :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
         :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input['WirelessControllerWtpProfileLanArgs'] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input['WirelessControllerWtpProfileLbsArgs'] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
@@ -93,9 +104,14 @@ class WirelessControllerWtpProfileArgs:
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileSplitTunnelingAclArgs']]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
+        :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
+        :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
         """
         if allowaccess is not None:
@@ -110,6 +126,8 @@ class WirelessControllerWtpProfileArgs:
             pulumi.set(__self__, "ble_profile", ble_profile)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if console_login is not None:
+            pulumi.set(__self__, "console_login", console_login)
         if control_message_offload is not None:
             pulumi.set(__self__, "control_message_offload", control_message_offload)
         if deny_mac_lists is not None:
@@ -122,6 +140,8 @@ class WirelessControllerWtpProfileArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if energy_efficient_ethernet is not None:
             pulumi.set(__self__, "energy_efficient_ethernet", energy_efficient_ethernet)
+        if esl_ses_dongle is not None:
+            pulumi.set(__self__, "esl_ses_dongle", esl_ses_dongle)
         if ext_info_enable is not None:
             pulumi.set(__self__, "ext_info_enable", ext_info_enable)
         if frequency_handoff is not None:
@@ -132,6 +152,8 @@ class WirelessControllerWtpProfileArgs:
             pulumi.set(__self__, "handoff_rssi", handoff_rssi)
         if handoff_sta_thresh is not None:
             pulumi.set(__self__, "handoff_sta_thresh", handoff_sta_thresh)
+        if indoor_outdoor_deployment is not None:
+            pulumi.set(__self__, "indoor_outdoor_deployment", indoor_outdoor_deployment)
         if ip_fragment_preventing is not None:
             pulumi.set(__self__, "ip_fragment_preventing", ip_fragment_preventing)
         if lan is not None:
@@ -170,12 +192,22 @@ class WirelessControllerWtpProfileArgs:
             pulumi.set(__self__, "split_tunneling_acl_path", split_tunneling_acl_path)
         if split_tunneling_acls is not None:
             pulumi.set(__self__, "split_tunneling_acls", split_tunneling_acls)
+        if syslog_profile is not None:
+            pulumi.set(__self__, "syslog_profile", syslog_profile)
         if tun_mtu_downlink is not None:
             pulumi.set(__self__, "tun_mtu_downlink", tun_mtu_downlink)
         if tun_mtu_uplink is not None:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wan_port_auth is not None:
+            pulumi.set(__self__, "wan_port_auth", wan_port_auth)
+        if wan_port_auth_methods is not None:
+            pulumi.set(__self__, "wan_port_auth_methods", wan_port_auth_methods)
+        if wan_port_auth_password is not None:
+            pulumi.set(__self__, "wan_port_auth_password", wan_port_auth_password)
+        if wan_port_auth_usrname is not None:
+            pulumi.set(__self__, "wan_port_auth_usrname", wan_port_auth_usrname)
         if wan_port_mode is not None:
             pulumi.set(__self__, "wan_port_mode", wan_port_mode)
 
@@ -252,6 +284,18 @@ class WirelessControllerWtpProfileArgs:
         pulumi.set(self, "comment", value)
 
     @property
+    @pulumi.getter(name="consoleLogin")
+    def console_login(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "console_login")
+
+    @console_login.setter
+    def console_login(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "console_login", value)
+
+    @property
     @pulumi.getter(name="controlMessageOffload")
     def control_message_offload(self) -> Optional[pulumi.Input[str]]:
         """
@@ -324,6 +368,18 @@ class WirelessControllerWtpProfileArgs:
         pulumi.set(self, "energy_efficient_ethernet", value)
 
     @property
+    @pulumi.getter(name="eslSesDongle")
+    def esl_ses_dongle(self) -> Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']]:
+        """
+        ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
+        """
+        return pulumi.get(self, "esl_ses_dongle")
+
+    @esl_ses_dongle.setter
+    def esl_ses_dongle(self, value: Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']]):
+        pulumi.set(self, "esl_ses_dongle", value)
+
+    @property
     @pulumi.getter(name="extInfoEnable")
     def ext_info_enable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -382,6 +438,18 @@ class WirelessControllerWtpProfileArgs:
     @handoff_sta_thresh.setter
     def handoff_sta_thresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "handoff_sta_thresh", value)
+
+    @property
+    @pulumi.getter(name="indoorOutdoorDeployment")
+    def indoor_outdoor_deployment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+        """
+        return pulumi.get(self, "indoor_outdoor_deployment")
+
+    @indoor_outdoor_deployment.setter
+    def indoor_outdoor_deployment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "indoor_outdoor_deployment", value)
 
     @property
     @pulumi.getter(name="ipFragmentPreventing")
@@ -612,6 +680,18 @@ class WirelessControllerWtpProfileArgs:
         pulumi.set(self, "split_tunneling_acls", value)
 
     @property
+    @pulumi.getter(name="syslogProfile")
+    def syslog_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        System log server configuration profile name.
+        """
+        return pulumi.get(self, "syslog_profile")
+
+    @syslog_profile.setter
+    def syslog_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "syslog_profile", value)
+
+    @property
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> Optional[pulumi.Input[int]]:
         """
@@ -646,6 +726,54 @@ class WirelessControllerWtpProfileArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuth")
+    def wan_port_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        """
+        return pulumi.get(self, "wan_port_auth")
+
+    @wan_port_auth.setter
+    def wan_port_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthMethods")
+    def wan_port_auth_methods(self) -> Optional[pulumi.Input[str]]:
+        """
+        WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        """
+        return pulumi.get(self, "wan_port_auth_methods")
+
+    @wan_port_auth_methods.setter
+    def wan_port_auth_methods(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_methods", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthPassword")
+    def wan_port_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set WAN port 802.1x supplicant password.
+        """
+        return pulumi.get(self, "wan_port_auth_password")
+
+    @wan_port_auth_password.setter
+    def wan_port_auth_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_password", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthUsrname")
+    def wan_port_auth_usrname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set WAN port 802.1x supplicant user name.
+        """
+        return pulumi.get(self, "wan_port_auth_usrname")
+
+    @wan_port_auth_usrname.setter
+    def wan_port_auth_usrname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_usrname", value)
 
     @property
     @pulumi.getter(name="wanPortMode")
@@ -669,17 +797,20 @@ class _WirelessControllerWtpProfileState:
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  deny_mac_lists: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileDenyMacListArgs']]]] = None,
                  dtls_in_kernel: Optional[pulumi.Input[str]] = None,
                  dtls_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  energy_efficient_ethernet: Optional[pulumi.Input[str]] = None,
+                 esl_ses_dongle: Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
+                 indoor_outdoor_deployment: Optional[pulumi.Input[str]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
                  lan: Optional[pulumi.Input['WirelessControllerWtpProfileLanArgs']] = None,
                  lbs: Optional[pulumi.Input['WirelessControllerWtpProfileLbsArgs']] = None,
@@ -699,9 +830,14 @@ class _WirelessControllerWtpProfileState:
                  split_tunneling_acl_local_ap_subnet: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acl_path: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acls: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]] = None,
+                 syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_password: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
                  wan_port_mode: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering WirelessControllerWtpProfile resources.
@@ -711,17 +847,20 @@ class _WirelessControllerWtpProfileState:
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileDenyMacListArgs']]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
+        :param pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs'] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
+        :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
         :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input['WirelessControllerWtpProfileLanArgs'] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input['WirelessControllerWtpProfileLbsArgs'] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
@@ -741,9 +880,14 @@ class _WirelessControllerWtpProfileState:
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerWtpProfileSplitTunnelingAclArgs']]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
+        :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
+        :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
         """
         if allowaccess is not None:
@@ -758,6 +902,8 @@ class _WirelessControllerWtpProfileState:
             pulumi.set(__self__, "ble_profile", ble_profile)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if console_login is not None:
+            pulumi.set(__self__, "console_login", console_login)
         if control_message_offload is not None:
             pulumi.set(__self__, "control_message_offload", control_message_offload)
         if deny_mac_lists is not None:
@@ -770,6 +916,8 @@ class _WirelessControllerWtpProfileState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if energy_efficient_ethernet is not None:
             pulumi.set(__self__, "energy_efficient_ethernet", energy_efficient_ethernet)
+        if esl_ses_dongle is not None:
+            pulumi.set(__self__, "esl_ses_dongle", esl_ses_dongle)
         if ext_info_enable is not None:
             pulumi.set(__self__, "ext_info_enable", ext_info_enable)
         if frequency_handoff is not None:
@@ -780,6 +928,8 @@ class _WirelessControllerWtpProfileState:
             pulumi.set(__self__, "handoff_rssi", handoff_rssi)
         if handoff_sta_thresh is not None:
             pulumi.set(__self__, "handoff_sta_thresh", handoff_sta_thresh)
+        if indoor_outdoor_deployment is not None:
+            pulumi.set(__self__, "indoor_outdoor_deployment", indoor_outdoor_deployment)
         if ip_fragment_preventing is not None:
             pulumi.set(__self__, "ip_fragment_preventing", ip_fragment_preventing)
         if lan is not None:
@@ -818,12 +968,22 @@ class _WirelessControllerWtpProfileState:
             pulumi.set(__self__, "split_tunneling_acl_path", split_tunneling_acl_path)
         if split_tunneling_acls is not None:
             pulumi.set(__self__, "split_tunneling_acls", split_tunneling_acls)
+        if syslog_profile is not None:
+            pulumi.set(__self__, "syslog_profile", syslog_profile)
         if tun_mtu_downlink is not None:
             pulumi.set(__self__, "tun_mtu_downlink", tun_mtu_downlink)
         if tun_mtu_uplink is not None:
             pulumi.set(__self__, "tun_mtu_uplink", tun_mtu_uplink)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if wan_port_auth is not None:
+            pulumi.set(__self__, "wan_port_auth", wan_port_auth)
+        if wan_port_auth_methods is not None:
+            pulumi.set(__self__, "wan_port_auth_methods", wan_port_auth_methods)
+        if wan_port_auth_password is not None:
+            pulumi.set(__self__, "wan_port_auth_password", wan_port_auth_password)
+        if wan_port_auth_usrname is not None:
+            pulumi.set(__self__, "wan_port_auth_usrname", wan_port_auth_usrname)
         if wan_port_mode is not None:
             pulumi.set(__self__, "wan_port_mode", wan_port_mode)
 
@@ -900,6 +1060,18 @@ class _WirelessControllerWtpProfileState:
         pulumi.set(self, "comment", value)
 
     @property
+    @pulumi.getter(name="consoleLogin")
+    def console_login(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "console_login")
+
+    @console_login.setter
+    def console_login(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "console_login", value)
+
+    @property
     @pulumi.getter(name="controlMessageOffload")
     def control_message_offload(self) -> Optional[pulumi.Input[str]]:
         """
@@ -972,6 +1144,18 @@ class _WirelessControllerWtpProfileState:
         pulumi.set(self, "energy_efficient_ethernet", value)
 
     @property
+    @pulumi.getter(name="eslSesDongle")
+    def esl_ses_dongle(self) -> Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']]:
+        """
+        ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
+        """
+        return pulumi.get(self, "esl_ses_dongle")
+
+    @esl_ses_dongle.setter
+    def esl_ses_dongle(self, value: Optional[pulumi.Input['WirelessControllerWtpProfileEslSesDongleArgs']]):
+        pulumi.set(self, "esl_ses_dongle", value)
+
+    @property
     @pulumi.getter(name="extInfoEnable")
     def ext_info_enable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1030,6 +1214,18 @@ class _WirelessControllerWtpProfileState:
     @handoff_sta_thresh.setter
     def handoff_sta_thresh(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "handoff_sta_thresh", value)
+
+    @property
+    @pulumi.getter(name="indoorOutdoorDeployment")
+    def indoor_outdoor_deployment(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+        """
+        return pulumi.get(self, "indoor_outdoor_deployment")
+
+    @indoor_outdoor_deployment.setter
+    def indoor_outdoor_deployment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "indoor_outdoor_deployment", value)
 
     @property
     @pulumi.getter(name="ipFragmentPreventing")
@@ -1260,6 +1456,18 @@ class _WirelessControllerWtpProfileState:
         pulumi.set(self, "split_tunneling_acls", value)
 
     @property
+    @pulumi.getter(name="syslogProfile")
+    def syslog_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        System log server configuration profile name.
+        """
+        return pulumi.get(self, "syslog_profile")
+
+    @syslog_profile.setter
+    def syslog_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "syslog_profile", value)
+
+    @property
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1294,6 +1502,54 @@ class _WirelessControllerWtpProfileState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuth")
+    def wan_port_auth(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        """
+        return pulumi.get(self, "wan_port_auth")
+
+    @wan_port_auth.setter
+    def wan_port_auth(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthMethods")
+    def wan_port_auth_methods(self) -> Optional[pulumi.Input[str]]:
+        """
+        WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        """
+        return pulumi.get(self, "wan_port_auth_methods")
+
+    @wan_port_auth_methods.setter
+    def wan_port_auth_methods(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_methods", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthPassword")
+    def wan_port_auth_password(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set WAN port 802.1x supplicant password.
+        """
+        return pulumi.get(self, "wan_port_auth_password")
+
+    @wan_port_auth_password.setter
+    def wan_port_auth_password(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_password", value)
+
+    @property
+    @pulumi.getter(name="wanPortAuthUsrname")
+    def wan_port_auth_usrname(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set WAN port 802.1x supplicant user name.
+        """
+        return pulumi.get(self, "wan_port_auth_usrname")
+
+    @wan_port_auth_usrname.setter
+    def wan_port_auth_usrname(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "wan_port_auth_usrname", value)
 
     @property
     @pulumi.getter(name="wanPortMode")
@@ -1319,17 +1575,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  deny_mac_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileDenyMacListArgs']]]]] = None,
                  dtls_in_kernel: Optional[pulumi.Input[str]] = None,
                  dtls_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  energy_efficient_ethernet: Optional[pulumi.Input[str]] = None,
+                 esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']]] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
+                 indoor_outdoor_deployment: Optional[pulumi.Input[str]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
                  lan: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLanArgs']]] = None,
                  lbs: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLbsArgs']]] = None,
@@ -1349,9 +1608,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  split_tunneling_acl_local_ap_subnet: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acl_path: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]]] = None,
+                 syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_password: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
                  wan_port_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1375,17 +1639,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileDenyMacListArgs']]]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
+        :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
         :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLanArgs']] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLbsArgs']] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
@@ -1405,9 +1672,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
+        :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
+        :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
         """
         ...
@@ -1450,17 +1722,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  apcfg_profile: Optional[pulumi.Input[str]] = None,
                  ble_profile: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 console_login: Optional[pulumi.Input[str]] = None,
                  control_message_offload: Optional[pulumi.Input[str]] = None,
                  deny_mac_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileDenyMacListArgs']]]]] = None,
                  dtls_in_kernel: Optional[pulumi.Input[str]] = None,
                  dtls_policy: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  energy_efficient_ethernet: Optional[pulumi.Input[str]] = None,
+                 esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']]] = None,
                  ext_info_enable: Optional[pulumi.Input[str]] = None,
                  frequency_handoff: Optional[pulumi.Input[str]] = None,
                  handoff_roaming: Optional[pulumi.Input[str]] = None,
                  handoff_rssi: Optional[pulumi.Input[int]] = None,
                  handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
+                 indoor_outdoor_deployment: Optional[pulumi.Input[str]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
                  lan: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLanArgs']]] = None,
                  lbs: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLbsArgs']]] = None,
@@ -1480,9 +1755,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
                  split_tunneling_acl_local_ap_subnet: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acl_path: Optional[pulumi.Input[str]] = None,
                  split_tunneling_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]]] = None,
+                 syslog_profile: Optional[pulumi.Input[str]] = None,
                  tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
                  tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_password: Optional[pulumi.Input[str]] = None,
+                 wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
                  wan_port_mode: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -1491,6 +1771,8 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1502,17 +1784,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             __props__.__dict__["apcfg_profile"] = apcfg_profile
             __props__.__dict__["ble_profile"] = ble_profile
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["console_login"] = console_login
             __props__.__dict__["control_message_offload"] = control_message_offload
             __props__.__dict__["deny_mac_lists"] = deny_mac_lists
             __props__.__dict__["dtls_in_kernel"] = dtls_in_kernel
             __props__.__dict__["dtls_policy"] = dtls_policy
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["energy_efficient_ethernet"] = energy_efficient_ethernet
+            __props__.__dict__["esl_ses_dongle"] = esl_ses_dongle
             __props__.__dict__["ext_info_enable"] = ext_info_enable
             __props__.__dict__["frequency_handoff"] = frequency_handoff
             __props__.__dict__["handoff_roaming"] = handoff_roaming
             __props__.__dict__["handoff_rssi"] = handoff_rssi
             __props__.__dict__["handoff_sta_thresh"] = handoff_sta_thresh
+            __props__.__dict__["indoor_outdoor_deployment"] = indoor_outdoor_deployment
             __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
             __props__.__dict__["lan"] = lan
             __props__.__dict__["lbs"] = lbs
@@ -1532,9 +1817,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             __props__.__dict__["split_tunneling_acl_local_ap_subnet"] = split_tunneling_acl_local_ap_subnet
             __props__.__dict__["split_tunneling_acl_path"] = split_tunneling_acl_path
             __props__.__dict__["split_tunneling_acls"] = split_tunneling_acls
+            __props__.__dict__["syslog_profile"] = syslog_profile
             __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
             __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["wan_port_auth"] = wan_port_auth
+            __props__.__dict__["wan_port_auth_methods"] = wan_port_auth_methods
+            __props__.__dict__["wan_port_auth_password"] = wan_port_auth_password
+            __props__.__dict__["wan_port_auth_usrname"] = wan_port_auth_usrname
             __props__.__dict__["wan_port_mode"] = wan_port_mode
         super(WirelessControllerWtpProfile, __self__).__init__(
             'fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile',
@@ -1552,17 +1842,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             apcfg_profile: Optional[pulumi.Input[str]] = None,
             ble_profile: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            console_login: Optional[pulumi.Input[str]] = None,
             control_message_offload: Optional[pulumi.Input[str]] = None,
             deny_mac_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileDenyMacListArgs']]]]] = None,
             dtls_in_kernel: Optional[pulumi.Input[str]] = None,
             dtls_policy: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             energy_efficient_ethernet: Optional[pulumi.Input[str]] = None,
+            esl_ses_dongle: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']]] = None,
             ext_info_enable: Optional[pulumi.Input[str]] = None,
             frequency_handoff: Optional[pulumi.Input[str]] = None,
             handoff_roaming: Optional[pulumi.Input[str]] = None,
             handoff_rssi: Optional[pulumi.Input[int]] = None,
             handoff_sta_thresh: Optional[pulumi.Input[int]] = None,
+            indoor_outdoor_deployment: Optional[pulumi.Input[str]] = None,
             ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
             lan: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLanArgs']]] = None,
             lbs: Optional[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLbsArgs']]] = None,
@@ -1582,9 +1875,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
             split_tunneling_acl_local_ap_subnet: Optional[pulumi.Input[str]] = None,
             split_tunneling_acl_path: Optional[pulumi.Input[str]] = None,
             split_tunneling_acls: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]]] = None,
+            syslog_profile: Optional[pulumi.Input[str]] = None,
             tun_mtu_downlink: Optional[pulumi.Input[int]] = None,
             tun_mtu_uplink: Optional[pulumi.Input[int]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            wan_port_auth: Optional[pulumi.Input[str]] = None,
+            wan_port_auth_methods: Optional[pulumi.Input[str]] = None,
+            wan_port_auth_password: Optional[pulumi.Input[str]] = None,
+            wan_port_auth_usrname: Optional[pulumi.Input[str]] = None,
             wan_port_mode: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerWtpProfile':
         """
         Get an existing WirelessControllerWtpProfile resource's state with the given name, id, and optional extra
@@ -1599,17 +1897,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         :param pulumi.Input[str] apcfg_profile: AP local configuration profile name.
         :param pulumi.Input[str] ble_profile: Bluetooth Low Energy profile name.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] console_login: Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] control_message_offload: Enable/disable CAPWAP control message data channel offload.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileDenyMacListArgs']]]] deny_mac_lists: List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `deny_mac_list` block is documented below.
         :param pulumi.Input[str] dtls_in_kernel: Enable/disable data channel DTLS in kernel. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dtls_policy: WTP data channel DTLS policy (default = clear-text). Valid values: `clear-text`, `dtls-enabled`, `ipsec-vpn`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] energy_efficient_ethernet: Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
+        :param pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileEslSesDongleArgs']] esl_ses_dongle: ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
         :param pulumi.Input[str] ext_info_enable: Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] handoff_roaming: Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] handoff_rssi: Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
         :param pulumi.Input[int] handoff_sta_thresh: Threshold value for AP handoff.
+        :param pulumi.Input[str] indoor_outdoor_deployment: Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
         :param pulumi.Input[str] ip_fragment_preventing: Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
         :param pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLanArgs']] lan: WTP LAN port mapping. The structure of `lan` block is documented below.
         :param pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileLbsArgs']] lbs: Set various location based service (LBS) options. The structure of `lbs` block is documented below.
@@ -1629,9 +1930,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         :param pulumi.Input[str] split_tunneling_acl_local_ap_subnet: Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] split_tunneling_acl_path: Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerWtpProfileSplitTunnelingAclArgs']]]] split_tunneling_acls: Split tunneling ACL filter list. The structure of `split_tunneling_acl` block is documented below.
+        :param pulumi.Input[str] syslog_profile: System log server configuration profile name.
         :param pulumi.Input[int] tun_mtu_downlink: Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[int] tun_mtu_uplink: Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] wan_port_auth: Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        :param pulumi.Input[str] wan_port_auth_methods: WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        :param pulumi.Input[str] wan_port_auth_password: Set WAN port 802.1x supplicant password.
+        :param pulumi.Input[str] wan_port_auth_usrname: Set WAN port 802.1x supplicant user name.
         :param pulumi.Input[str] wan_port_mode: Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1644,17 +1950,20 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         __props__.__dict__["apcfg_profile"] = apcfg_profile
         __props__.__dict__["ble_profile"] = ble_profile
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["console_login"] = console_login
         __props__.__dict__["control_message_offload"] = control_message_offload
         __props__.__dict__["deny_mac_lists"] = deny_mac_lists
         __props__.__dict__["dtls_in_kernel"] = dtls_in_kernel
         __props__.__dict__["dtls_policy"] = dtls_policy
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["energy_efficient_ethernet"] = energy_efficient_ethernet
+        __props__.__dict__["esl_ses_dongle"] = esl_ses_dongle
         __props__.__dict__["ext_info_enable"] = ext_info_enable
         __props__.__dict__["frequency_handoff"] = frequency_handoff
         __props__.__dict__["handoff_roaming"] = handoff_roaming
         __props__.__dict__["handoff_rssi"] = handoff_rssi
         __props__.__dict__["handoff_sta_thresh"] = handoff_sta_thresh
+        __props__.__dict__["indoor_outdoor_deployment"] = indoor_outdoor_deployment
         __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
         __props__.__dict__["lan"] = lan
         __props__.__dict__["lbs"] = lbs
@@ -1674,9 +1983,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         __props__.__dict__["split_tunneling_acl_local_ap_subnet"] = split_tunneling_acl_local_ap_subnet
         __props__.__dict__["split_tunneling_acl_path"] = split_tunneling_acl_path
         __props__.__dict__["split_tunneling_acls"] = split_tunneling_acls
+        __props__.__dict__["syslog_profile"] = syslog_profile
         __props__.__dict__["tun_mtu_downlink"] = tun_mtu_downlink
         __props__.__dict__["tun_mtu_uplink"] = tun_mtu_uplink
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["wan_port_auth"] = wan_port_auth
+        __props__.__dict__["wan_port_auth_methods"] = wan_port_auth_methods
+        __props__.__dict__["wan_port_auth_password"] = wan_port_auth_password
+        __props__.__dict__["wan_port_auth_usrname"] = wan_port_auth_usrname
         __props__.__dict__["wan_port_mode"] = wan_port_mode
         return WirelessControllerWtpProfile(resource_name, opts=opts, __props__=__props__)
 
@@ -1729,6 +2043,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         return pulumi.get(self, "comment")
 
     @property
+    @pulumi.getter(name="consoleLogin")
+    def console_login(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "console_login")
+
+    @property
     @pulumi.getter(name="controlMessageOffload")
     def control_message_offload(self) -> pulumi.Output[str]:
         """
@@ -1777,6 +2099,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         return pulumi.get(self, "energy_efficient_ethernet")
 
     @property
+    @pulumi.getter(name="eslSesDongle")
+    def esl_ses_dongle(self) -> pulumi.Output[Optional['outputs.WirelessControllerWtpProfileEslSesDongle']]:
+        """
+        ESL SES-imagotag dongle configuration. The structure of `esl_ses_dongle` block is documented below.
+        """
+        return pulumi.get(self, "esl_ses_dongle")
+
+    @property
     @pulumi.getter(name="extInfoEnable")
     def ext_info_enable(self) -> pulumi.Output[str]:
         """
@@ -1815,6 +2145,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         Threshold value for AP handoff.
         """
         return pulumi.get(self, "handoff_sta_thresh")
+
+    @property
+    @pulumi.getter(name="indoorOutdoorDeployment")
+    def indoor_outdoor_deployment(self) -> pulumi.Output[str]:
+        """
+        Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+        """
+        return pulumi.get(self, "indoor_outdoor_deployment")
 
     @property
     @pulumi.getter(name="ipFragmentPreventing")
@@ -1969,6 +2307,14 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         return pulumi.get(self, "split_tunneling_acls")
 
     @property
+    @pulumi.getter(name="syslogProfile")
+    def syslog_profile(self) -> pulumi.Output[str]:
+        """
+        System log server configuration profile name.
+        """
+        return pulumi.get(self, "syslog_profile")
+
+    @property
     @pulumi.getter(name="tunMtuDownlink")
     def tun_mtu_downlink(self) -> pulumi.Output[int]:
         """
@@ -1991,6 +2337,38 @@ class WirelessControllerWtpProfile(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="wanPortAuth")
+    def wan_port_auth(self) -> pulumi.Output[str]:
+        """
+        Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+        """
+        return pulumi.get(self, "wan_port_auth")
+
+    @property
+    @pulumi.getter(name="wanPortAuthMethods")
+    def wan_port_auth_methods(self) -> pulumi.Output[str]:
+        """
+        WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+        """
+        return pulumi.get(self, "wan_port_auth_methods")
+
+    @property
+    @pulumi.getter(name="wanPortAuthPassword")
+    def wan_port_auth_password(self) -> pulumi.Output[Optional[str]]:
+        """
+        Set WAN port 802.1x supplicant password.
+        """
+        return pulumi.get(self, "wan_port_auth_password")
+
+    @property
+    @pulumi.getter(name="wanPortAuthUsrname")
+    def wan_port_auth_usrname(self) -> pulumi.Output[str]:
+        """
+        Set WAN port 802.1x supplicant user name.
+        """
+        return pulumi.get(self, "wan_port_auth_usrname")
 
     @property
     @pulumi.getter(name="wanPortMode")

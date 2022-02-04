@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemClusterSyncResult',
     'AwaitableGetSystemClusterSyncResult',
     'get_system_cluster_sync',
+    'get_system_cluster_sync_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetSystemClusterSyncResult:
     """
     A collection of values returned by GetSystemClusterSync.
     """
-    def __init__(__self__, down_intfs_before_sess_syncs=None, hb_interval=None, hb_lost_threshold=None, id=None, ipsec_tunnel_sync=None, peerip=None, peervd=None, session_sync_filter=None, slave_add_ike_routes=None, sync_id=None, syncvds=None, vdomparam=None):
+    def __init__(__self__, down_intfs_before_sess_syncs=None, hb_interval=None, hb_lost_threshold=None, id=None, ike_heartbeat_interval=None, ike_monitor=None, ike_monitor_interval=None, ipsec_tunnel_sync=None, peerip=None, peervd=None, secondary_add_ipsec_routes=None, session_sync_filter=None, slave_add_ike_routes=None, sync_id=None, syncvds=None, vdomparam=None):
         if down_intfs_before_sess_syncs and not isinstance(down_intfs_before_sess_syncs, list):
             raise TypeError("Expected argument 'down_intfs_before_sess_syncs' to be a list")
         pulumi.set(__self__, "down_intfs_before_sess_syncs", down_intfs_before_sess_syncs)
@@ -33,6 +34,15 @@ class GetSystemClusterSyncResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if ike_heartbeat_interval and not isinstance(ike_heartbeat_interval, int):
+            raise TypeError("Expected argument 'ike_heartbeat_interval' to be a int")
+        pulumi.set(__self__, "ike_heartbeat_interval", ike_heartbeat_interval)
+        if ike_monitor and not isinstance(ike_monitor, str):
+            raise TypeError("Expected argument 'ike_monitor' to be a str")
+        pulumi.set(__self__, "ike_monitor", ike_monitor)
+        if ike_monitor_interval and not isinstance(ike_monitor_interval, int):
+            raise TypeError("Expected argument 'ike_monitor_interval' to be a int")
+        pulumi.set(__self__, "ike_monitor_interval", ike_monitor_interval)
         if ipsec_tunnel_sync and not isinstance(ipsec_tunnel_sync, str):
             raise TypeError("Expected argument 'ipsec_tunnel_sync' to be a str")
         pulumi.set(__self__, "ipsec_tunnel_sync", ipsec_tunnel_sync)
@@ -42,6 +52,9 @@ class GetSystemClusterSyncResult:
         if peervd and not isinstance(peervd, str):
             raise TypeError("Expected argument 'peervd' to be a str")
         pulumi.set(__self__, "peervd", peervd)
+        if secondary_add_ipsec_routes and not isinstance(secondary_add_ipsec_routes, str):
+            raise TypeError("Expected argument 'secondary_add_ipsec_routes' to be a str")
+        pulumi.set(__self__, "secondary_add_ipsec_routes", secondary_add_ipsec_routes)
         if session_sync_filter and not isinstance(session_sync_filter, dict):
             raise TypeError("Expected argument 'session_sync_filter' to be a dict")
         pulumi.set(__self__, "session_sync_filter", session_sync_filter)
@@ -91,6 +104,30 @@ class GetSystemClusterSyncResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter(name="ikeHeartbeatInterval")
+    def ike_heartbeat_interval(self) -> int:
+        """
+        IKE heartbeat interval (1 - 60 secs).
+        """
+        return pulumi.get(self, "ike_heartbeat_interval")
+
+    @property
+    @pulumi.getter(name="ikeMonitor")
+    def ike_monitor(self) -> str:
+        """
+        Enable/disable IKE HA monitor.
+        """
+        return pulumi.get(self, "ike_monitor")
+
+    @property
+    @pulumi.getter(name="ikeMonitorInterval")
+    def ike_monitor_interval(self) -> int:
+        """
+        IKE HA monitor interval (10 - 300 secs).
+        """
+        return pulumi.get(self, "ike_monitor_interval")
+
+    @property
     @pulumi.getter(name="ipsecTunnelSync")
     def ipsec_tunnel_sync(self) -> str:
         """
@@ -113,6 +150,14 @@ class GetSystemClusterSyncResult:
         VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
         """
         return pulumi.get(self, "peervd")
+
+    @property
+    @pulumi.getter(name="secondaryAddIpsecRoutes")
+    def secondary_add_ipsec_routes(self) -> str:
+        """
+        Enable/disable IKE route announcement on the backup unit.
+        """
+        return pulumi.get(self, "secondary_add_ipsec_routes")
 
     @property
     @pulumi.getter(name="sessionSyncFilter")
@@ -162,9 +207,13 @@ class AwaitableGetSystemClusterSyncResult(GetSystemClusterSyncResult):
             hb_interval=self.hb_interval,
             hb_lost_threshold=self.hb_lost_threshold,
             id=self.id,
+            ike_heartbeat_interval=self.ike_heartbeat_interval,
+            ike_monitor=self.ike_monitor,
+            ike_monitor_interval=self.ike_monitor_interval,
             ipsec_tunnel_sync=self.ipsec_tunnel_sync,
             peerip=self.peerip,
             peervd=self.peervd,
+            secondary_add_ipsec_routes=self.secondary_add_ipsec_routes,
             session_sync_filter=self.session_sync_filter,
             slave_add_ike_routes=self.slave_add_ike_routes,
             sync_id=self.sync_id,
@@ -189,6 +238,8 @@ def get_system_cluster_sync(sync_id: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemClusterSync:GetSystemClusterSync', __args__, opts=opts, typ=GetSystemClusterSyncResult).value
 
     return AwaitableGetSystemClusterSyncResult(
@@ -196,11 +247,29 @@ def get_system_cluster_sync(sync_id: Optional[int] = None,
         hb_interval=__ret__.hb_interval,
         hb_lost_threshold=__ret__.hb_lost_threshold,
         id=__ret__.id,
+        ike_heartbeat_interval=__ret__.ike_heartbeat_interval,
+        ike_monitor=__ret__.ike_monitor,
+        ike_monitor_interval=__ret__.ike_monitor_interval,
         ipsec_tunnel_sync=__ret__.ipsec_tunnel_sync,
         peerip=__ret__.peerip,
         peervd=__ret__.peervd,
+        secondary_add_ipsec_routes=__ret__.secondary_add_ipsec_routes,
         session_sync_filter=__ret__.session_sync_filter,
         slave_add_ike_routes=__ret__.slave_add_ike_routes,
         sync_id=__ret__.sync_id,
         syncvds=__ret__.syncvds,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_cluster_sync)
+def get_system_cluster_sync_output(sync_id: Optional[pulumi.Input[int]] = None,
+                                   vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemClusterSyncResult]:
+    """
+    Use this data source to get information on an fortios system clustersync
+
+
+    :param int sync_id: Specify the sync_id of the desired system clustersync.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

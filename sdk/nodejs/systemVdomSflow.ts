@@ -68,6 +68,14 @@ export class SystemVdomSflow extends pulumi.CustomResource {
      */
     public readonly collectorPort!: pulumi.Output<number>;
     /**
+     * Specify outgoing interface to reach server.
+     */
+    public readonly interface!: pulumi.Output<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    public readonly interfaceSelectMethod!: pulumi.Output<string>;
+    /**
      * Source IP address for sFlow agent.
      */
     public readonly sourceIp!: pulumi.Output<string>;
@@ -89,27 +97,29 @@ export class SystemVdomSflow extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVdomSflowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVdomSflowArgs | SystemVdomSflowState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVdomSflowState | undefined;
-            inputs["collectorIp"] = state ? state.collectorIp : undefined;
-            inputs["collectorPort"] = state ? state.collectorPort : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["vdomSflow"] = state ? state.vdomSflow : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
+            resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["vdomSflow"] = state ? state.vdomSflow : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemVdomSflowArgs | undefined;
-            inputs["collectorIp"] = args ? args.collectorIp : undefined;
-            inputs["collectorPort"] = args ? args.collectorPort : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["vdomSflow"] = args ? args.vdomSflow : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
+            resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["vdomSflow"] = args ? args.vdomSflow : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVdomSflow.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVdomSflow.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -125,6 +135,14 @@ export interface SystemVdomSflowState {
      * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
      */
     collectorPort?: pulumi.Input<number>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP address for sFlow agent.
      */
@@ -151,6 +169,14 @@ export interface SystemVdomSflowArgs {
      * UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
      */
     collectorPort?: pulumi.Input<number>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP address for sFlow agent.
      */

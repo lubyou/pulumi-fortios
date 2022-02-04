@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,9 +13,7 @@ export function getSystemPasswordPolicy(args?: GetSystemPasswordPolicyArgs, opts
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemPasswordPolicy:GetSystemPasswordPolicy", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -57,6 +54,10 @@ export interface GetSystemPasswordPolicyResult {
      */
     readonly id: string;
     /**
+     * Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+     */
+    readonly minChangeCharacters: number;
+    /**
      * Minimum number of lowercase characters in password (0 - 128, default = 0).
      */
     readonly minLowerCaseLetter: number;
@@ -85,4 +86,18 @@ export interface GetSystemPasswordPolicyResult {
      */
     readonly status: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemPasswordPolicyOutput(args?: GetSystemPasswordPolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemPasswordPolicyResult> {
+    return pulumi.output(args).apply(a => getSystemPasswordPolicy(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemPasswordPolicy.
+ */
+export interface GetSystemPasswordPolicyOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

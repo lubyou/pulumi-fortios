@@ -100,33 +100,31 @@ export class VpnSslWebHostCheckSoftware extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnSslWebHostCheckSoftwareArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnSslWebHostCheckSoftwareArgs | VpnSslWebHostCheckSoftwareState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnSslWebHostCheckSoftwareState | undefined;
-            inputs["checkItemLists"] = state ? state.checkItemLists : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["guid"] = state ? state.guid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["osType"] = state ? state.osType : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["version"] = state ? state.version : undefined;
+            resourceInputs["checkItemLists"] = state ? state.checkItemLists : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["guid"] = state ? state.guid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["osType"] = state ? state.osType : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["version"] = state ? state.version : undefined;
         } else {
             const args = argsOrState as VpnSslWebHostCheckSoftwareArgs | undefined;
-            inputs["checkItemLists"] = args ? args.checkItemLists : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["guid"] = args ? args.guid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["osType"] = args ? args.osType : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["version"] = args ? args.version : undefined;
+            resourceInputs["checkItemLists"] = args ? args.checkItemLists : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["guid"] = args ? args.guid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["osType"] = args ? args.osType : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["version"] = args ? args.version : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnSslWebHostCheckSoftware.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnSslWebHostCheckSoftware.__pulumiType, name, resourceInputs, opts);
     }
 }
 

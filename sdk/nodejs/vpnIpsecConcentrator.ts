@@ -62,6 +62,10 @@ export class VpnIpsecConcentrator extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Concentrator ID. (1-65535)
+     */
+    public readonly fosid!: pulumi.Output<number>;
+    /**
      * Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
      */
     public readonly members!: pulumi.Output<outputs.VpnIpsecConcentratorMember[] | undefined>;
@@ -87,27 +91,27 @@ export class VpnIpsecConcentrator extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnIpsecConcentratorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnIpsecConcentratorArgs | VpnIpsecConcentratorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnIpsecConcentratorState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["srcCheck"] = state ? state.srcCheck : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["srcCheck"] = state ? state.srcCheck : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnIpsecConcentratorArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["srcCheck"] = args ? args.srcCheck : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["srcCheck"] = args ? args.srcCheck : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnIpsecConcentrator.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnIpsecConcentrator.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -119,6 +123,10 @@ export interface VpnIpsecConcentratorState {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Concentrator ID. (1-65535)
+     */
+    fosid?: pulumi.Input<number>;
     /**
      * Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
      */
@@ -145,6 +153,10 @@ export interface VpnIpsecConcentratorArgs {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Concentrator ID. (1-65535)
+     */
+    fosid?: pulumi.Input<number>;
     /**
      * Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
      */

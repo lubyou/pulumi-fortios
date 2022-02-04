@@ -36,6 +36,8 @@ type WirelessControllerWtpProfile struct {
 	BleProfile pulumi.StringOutput `pulumi:"bleProfile"`
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+	ConsoleLogin pulumi.StringOutput `pulumi:"consoleLogin"`
 	// Enable/disable CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringOutput `pulumi:"controlMessageOffload"`
 	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
@@ -48,6 +50,8 @@ type WirelessControllerWtpProfile struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
 	EnergyEfficientEthernet pulumi.StringOutput `pulumi:"energyEfficientEthernet"`
+	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+	EslSesDongle WirelessControllerWtpProfileEslSesDonglePtrOutput `pulumi:"eslSesDongle"`
 	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
 	ExtInfoEnable pulumi.StringOutput `pulumi:"extInfoEnable"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
@@ -58,6 +62,8 @@ type WirelessControllerWtpProfile struct {
 	HandoffRssi pulumi.IntOutput `pulumi:"handoffRssi"`
 	// Threshold value for AP handoff.
 	HandoffStaThresh pulumi.IntOutput `pulumi:"handoffStaThresh"`
+	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+	IndoorOutdoorDeployment pulumi.StringOutput `pulumi:"indoorOutdoorDeployment"`
 	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing pulumi.StringOutput `pulumi:"ipFragmentPreventing"`
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
@@ -96,12 +102,22 @@ type WirelessControllerWtpProfile struct {
 	SplitTunnelingAclPath pulumi.StringOutput `pulumi:"splitTunnelingAclPath"`
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls WirelessControllerWtpProfileSplitTunnelingAclArrayOutput `pulumi:"splitTunnelingAcls"`
+	// System log server configuration profile name.
+	SyslogProfile pulumi.StringOutput `pulumi:"syslogProfile"`
 	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuDownlink pulumi.IntOutput `pulumi:"tunMtuDownlink"`
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink pulumi.IntOutput `pulumi:"tunMtuUplink"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+	WanPortAuth pulumi.StringOutput `pulumi:"wanPortAuth"`
+	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+	WanPortAuthMethods pulumi.StringOutput `pulumi:"wanPortAuthMethods"`
+	// Set WAN port 802.1x supplicant password.
+	WanPortAuthPassword pulumi.StringPtrOutput `pulumi:"wanPortAuthPassword"`
+	// Set WAN port 802.1x supplicant user name.
+	WanPortAuthUsrname pulumi.StringOutput `pulumi:"wanPortAuthUsrname"`
 	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 	WanPortMode pulumi.StringOutput `pulumi:"wanPortMode"`
 }
@@ -113,6 +129,7 @@ func NewWirelessControllerWtpProfile(ctx *pulumi.Context,
 		args = &WirelessControllerWtpProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtpProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtpProfile:WirelessControllerWtpProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -147,6 +164,8 @@ type wirelessControllerWtpProfileState struct {
 	BleProfile *string `pulumi:"bleProfile"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+	ConsoleLogin *string `pulumi:"consoleLogin"`
 	// Enable/disable CAPWAP control message data channel offload.
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
 	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
@@ -159,6 +178,8 @@ type wirelessControllerWtpProfileState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
 	EnergyEfficientEthernet *string `pulumi:"energyEfficientEthernet"`
+	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+	EslSesDongle *WirelessControllerWtpProfileEslSesDongle `pulumi:"eslSesDongle"`
 	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
 	ExtInfoEnable *string `pulumi:"extInfoEnable"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
@@ -169,6 +190,8 @@ type wirelessControllerWtpProfileState struct {
 	HandoffRssi *int `pulumi:"handoffRssi"`
 	// Threshold value for AP handoff.
 	HandoffStaThresh *int `pulumi:"handoffStaThresh"`
+	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+	IndoorOutdoorDeployment *string `pulumi:"indoorOutdoorDeployment"`
 	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing *string `pulumi:"ipFragmentPreventing"`
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
@@ -207,12 +230,22 @@ type wirelessControllerWtpProfileState struct {
 	SplitTunnelingAclPath *string `pulumi:"splitTunnelingAclPath"`
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls []WirelessControllerWtpProfileSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
+	// System log server configuration profile name.
+	SyslogProfile *string `pulumi:"syslogProfile"`
 	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink *int `pulumi:"tunMtuUplink"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+	WanPortAuth *string `pulumi:"wanPortAuth"`
+	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+	WanPortAuthMethods *string `pulumi:"wanPortAuthMethods"`
+	// Set WAN port 802.1x supplicant password.
+	WanPortAuthPassword *string `pulumi:"wanPortAuthPassword"`
+	// Set WAN port 802.1x supplicant user name.
+	WanPortAuthUsrname *string `pulumi:"wanPortAuthUsrname"`
 	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 	WanPortMode *string `pulumi:"wanPortMode"`
 }
@@ -230,6 +263,8 @@ type WirelessControllerWtpProfileState struct {
 	BleProfile pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+	ConsoleLogin pulumi.StringPtrInput
 	// Enable/disable CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringPtrInput
 	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
@@ -242,6 +277,8 @@ type WirelessControllerWtpProfileState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
 	EnergyEfficientEthernet pulumi.StringPtrInput
+	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+	EslSesDongle WirelessControllerWtpProfileEslSesDonglePtrInput
 	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
 	ExtInfoEnable pulumi.StringPtrInput
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
@@ -252,6 +289,8 @@ type WirelessControllerWtpProfileState struct {
 	HandoffRssi pulumi.IntPtrInput
 	// Threshold value for AP handoff.
 	HandoffStaThresh pulumi.IntPtrInput
+	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+	IndoorOutdoorDeployment pulumi.StringPtrInput
 	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing pulumi.StringPtrInput
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
@@ -290,12 +329,22 @@ type WirelessControllerWtpProfileState struct {
 	SplitTunnelingAclPath pulumi.StringPtrInput
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls WirelessControllerWtpProfileSplitTunnelingAclArrayInput
+	// System log server configuration profile name.
+	SyslogProfile pulumi.StringPtrInput
 	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuDownlink pulumi.IntPtrInput
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+	WanPortAuth pulumi.StringPtrInput
+	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+	WanPortAuthMethods pulumi.StringPtrInput
+	// Set WAN port 802.1x supplicant password.
+	WanPortAuthPassword pulumi.StringPtrInput
+	// Set WAN port 802.1x supplicant user name.
+	WanPortAuthUsrname pulumi.StringPtrInput
 	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 	WanPortMode pulumi.StringPtrInput
 }
@@ -317,6 +366,8 @@ type wirelessControllerWtpProfileArgs struct {
 	BleProfile *string `pulumi:"bleProfile"`
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+	ConsoleLogin *string `pulumi:"consoleLogin"`
 	// Enable/disable CAPWAP control message data channel offload.
 	ControlMessageOffload *string `pulumi:"controlMessageOffload"`
 	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
@@ -329,6 +380,8 @@ type wirelessControllerWtpProfileArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
 	EnergyEfficientEthernet *string `pulumi:"energyEfficientEthernet"`
+	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+	EslSesDongle *WirelessControllerWtpProfileEslSesDongle `pulumi:"eslSesDongle"`
 	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
 	ExtInfoEnable *string `pulumi:"extInfoEnable"`
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
@@ -339,6 +392,8 @@ type wirelessControllerWtpProfileArgs struct {
 	HandoffRssi *int `pulumi:"handoffRssi"`
 	// Threshold value for AP handoff.
 	HandoffStaThresh *int `pulumi:"handoffStaThresh"`
+	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+	IndoorOutdoorDeployment *string `pulumi:"indoorOutdoorDeployment"`
 	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing *string `pulumi:"ipFragmentPreventing"`
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
@@ -377,12 +432,22 @@ type wirelessControllerWtpProfileArgs struct {
 	SplitTunnelingAclPath *string `pulumi:"splitTunnelingAclPath"`
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls []WirelessControllerWtpProfileSplitTunnelingAcl `pulumi:"splitTunnelingAcls"`
+	// System log server configuration profile name.
+	SyslogProfile *string `pulumi:"syslogProfile"`
 	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuDownlink *int `pulumi:"tunMtuDownlink"`
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink *int `pulumi:"tunMtuUplink"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+	WanPortAuth *string `pulumi:"wanPortAuth"`
+	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+	WanPortAuthMethods *string `pulumi:"wanPortAuthMethods"`
+	// Set WAN port 802.1x supplicant password.
+	WanPortAuthPassword *string `pulumi:"wanPortAuthPassword"`
+	// Set WAN port 802.1x supplicant user name.
+	WanPortAuthUsrname *string `pulumi:"wanPortAuthUsrname"`
 	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 	WanPortMode *string `pulumi:"wanPortMode"`
 }
@@ -401,6 +466,8 @@ type WirelessControllerWtpProfileArgs struct {
 	BleProfile pulumi.StringPtrInput
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Enable/disable FAP console login access (default = enable). Valid values: `enable`, `disable`.
+	ConsoleLogin pulumi.StringPtrInput
 	// Enable/disable CAPWAP control message data channel offload.
 	ControlMessageOffload pulumi.StringPtrInput
 	// List of MAC addresses that are denied access to this WTP, FortiAP, or AP. The structure of `denyMacList` block is documented below.
@@ -413,6 +480,8 @@ type WirelessControllerWtpProfileArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Enable/disable use of energy efficient Ethernet on WTP. Valid values: `enable`, `disable`.
 	EnergyEfficientEthernet pulumi.StringPtrInput
+	// ESL SES-imagotag dongle configuration. The structure of `eslSesDongle` block is documented below.
+	EslSesDongle WirelessControllerWtpProfileEslSesDonglePtrInput
 	// Enable/disable station/VAP/radio extension information. Valid values: `enable`, `disable`.
 	ExtInfoEnable pulumi.StringPtrInput
 	// Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
@@ -423,6 +492,8 @@ type WirelessControllerWtpProfileArgs struct {
 	HandoffRssi pulumi.IntPtrInput
 	// Threshold value for AP handoff.
 	HandoffStaThresh pulumi.IntPtrInput
+	// Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+	IndoorOutdoorDeployment pulumi.StringPtrInput
 	// Select how to prevent IP fragmentation for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 	IpFragmentPreventing pulumi.StringPtrInput
 	// WTP LAN port mapping. The structure of `lan` block is documented below.
@@ -461,12 +532,22 @@ type WirelessControllerWtpProfileArgs struct {
 	SplitTunnelingAclPath pulumi.StringPtrInput
 	// Split tunneling ACL filter list. The structure of `splitTunnelingAcl` block is documented below.
 	SplitTunnelingAcls WirelessControllerWtpProfileSplitTunnelingAclArrayInput
+	// System log server configuration profile name.
+	SyslogProfile pulumi.StringPtrInput
 	// Downlink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuDownlink pulumi.IntPtrInput
 	// Uplink CAPWAP tunnel MTU (0, 576, or 1500 bytes, default = 0).
 	TunMtuUplink pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+	WanPortAuth pulumi.StringPtrInput
+	// WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+	WanPortAuthMethods pulumi.StringPtrInput
+	// Set WAN port 802.1x supplicant password.
+	WanPortAuthPassword pulumi.StringPtrInput
+	// Set WAN port 802.1x supplicant user name.
+	WanPortAuthUsrname pulumi.StringPtrInput
 	// Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 	WanPortMode pulumi.StringPtrInput
 }
@@ -483,7 +564,7 @@ type WirelessControllerWtpProfileInput interface {
 }
 
 func (*WirelessControllerWtpProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWtpProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerWtpProfile)(nil)).Elem()
 }
 
 func (i *WirelessControllerWtpProfile) ToWirelessControllerWtpProfileOutput() WirelessControllerWtpProfileOutput {
@@ -492,35 +573,6 @@ func (i *WirelessControllerWtpProfile) ToWirelessControllerWtpProfileOutput() Wi
 
 func (i *WirelessControllerWtpProfile) ToWirelessControllerWtpProfileOutputWithContext(ctx context.Context) WirelessControllerWtpProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileOutput)
-}
-
-func (i *WirelessControllerWtpProfile) ToWirelessControllerWtpProfilePtrOutput() WirelessControllerWtpProfilePtrOutput {
-	return i.ToWirelessControllerWtpProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerWtpProfile) ToWirelessControllerWtpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfilePtrOutput)
-}
-
-type WirelessControllerWtpProfilePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerWtpProfilePtrOutput() WirelessControllerWtpProfilePtrOutput
-	ToWirelessControllerWtpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfilePtrOutput
-}
-
-type wirelessControllerWtpProfilePtrType WirelessControllerWtpProfileArgs
-
-func (*wirelessControllerWtpProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWtpProfile)(nil))
-}
-
-func (i *wirelessControllerWtpProfilePtrType) ToWirelessControllerWtpProfilePtrOutput() WirelessControllerWtpProfilePtrOutput {
-	return i.ToWirelessControllerWtpProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerWtpProfilePtrType) ToWirelessControllerWtpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfilePtrOutput)
 }
 
 // WirelessControllerWtpProfileArrayInput is an input type that accepts WirelessControllerWtpProfileArray and WirelessControllerWtpProfileArrayOutput values.
@@ -537,7 +589,7 @@ type WirelessControllerWtpProfileArrayInput interface {
 type WirelessControllerWtpProfileArray []WirelessControllerWtpProfileInput
 
 func (WirelessControllerWtpProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerWtpProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWtpProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerWtpProfileArray) ToWirelessControllerWtpProfileArrayOutput() WirelessControllerWtpProfileArrayOutput {
@@ -562,7 +614,7 @@ type WirelessControllerWtpProfileMapInput interface {
 type WirelessControllerWtpProfileMap map[string]WirelessControllerWtpProfileInput
 
 func (WirelessControllerWtpProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerWtpProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWtpProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerWtpProfileMap) ToWirelessControllerWtpProfileMapOutput() WirelessControllerWtpProfileMapOutput {
@@ -573,12 +625,10 @@ func (i WirelessControllerWtpProfileMap) ToWirelessControllerWtpProfileMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpProfileMapOutput)
 }
 
-type WirelessControllerWtpProfileOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerWtpProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWtpProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerWtpProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpProfileOutput) ToWirelessControllerWtpProfileOutput() WirelessControllerWtpProfileOutput {
@@ -589,36 +639,10 @@ func (o WirelessControllerWtpProfileOutput) ToWirelessControllerWtpProfileOutput
 	return o
 }
 
-func (o WirelessControllerWtpProfileOutput) ToWirelessControllerWtpProfilePtrOutput() WirelessControllerWtpProfilePtrOutput {
-	return o.ToWirelessControllerWtpProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerWtpProfileOutput) ToWirelessControllerWtpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfilePtrOutput {
-	return o.ApplyT(func(v WirelessControllerWtpProfile) *WirelessControllerWtpProfile {
-		return &v
-	}).(WirelessControllerWtpProfilePtrOutput)
-}
-
-type WirelessControllerWtpProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerWtpProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWtpProfile)(nil))
-}
-
-func (o WirelessControllerWtpProfilePtrOutput) ToWirelessControllerWtpProfilePtrOutput() WirelessControllerWtpProfilePtrOutput {
-	return o
-}
-
-func (o WirelessControllerWtpProfilePtrOutput) ToWirelessControllerWtpProfilePtrOutputWithContext(ctx context.Context) WirelessControllerWtpProfilePtrOutput {
-	return o
-}
-
 type WirelessControllerWtpProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerWtpProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWtpProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpProfileArrayOutput) ToWirelessControllerWtpProfileArrayOutput() WirelessControllerWtpProfileArrayOutput {
@@ -630,15 +654,15 @@ func (o WirelessControllerWtpProfileArrayOutput) ToWirelessControllerWtpProfileA
 }
 
 func (o WirelessControllerWtpProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWtpProfile {
-		return vs[0].([]WirelessControllerWtpProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWtpProfile {
+		return vs[0].([]*WirelessControllerWtpProfile)[vs[1].(int)]
 	}).(WirelessControllerWtpProfileOutput)
 }
 
 type WirelessControllerWtpProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerWtpProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWtpProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpProfileMapOutput) ToWirelessControllerWtpProfileMapOutput() WirelessControllerWtpProfileMapOutput {
@@ -650,14 +674,16 @@ func (o WirelessControllerWtpProfileMapOutput) ToWirelessControllerWtpProfileMap
 }
 
 func (o WirelessControllerWtpProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWtpProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerWtpProfile {
-		return vs[0].(map[string]WirelessControllerWtpProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerWtpProfile {
+		return vs[0].(map[string]*WirelessControllerWtpProfile)[vs[1].(string)]
 	}).(WirelessControllerWtpProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpProfileInput)(nil)).Elem(), &WirelessControllerWtpProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpProfileArrayInput)(nil)).Elem(), WirelessControllerWtpProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpProfileMapInput)(nil)).Elem(), WirelessControllerWtpProfileMap{})
 	pulumi.RegisterOutputType(WirelessControllerWtpProfileOutput{})
-	pulumi.RegisterOutputType(WirelessControllerWtpProfilePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpProfileArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpProfileMapOutput{})
 }

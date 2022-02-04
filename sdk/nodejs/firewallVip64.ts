@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure IPv6 to IPv4 virtual IPs.
+ * Configure IPv6 to IPv4 virtual IPs. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -157,30 +157,30 @@ export class FirewallVip64 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallVip64Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallVip64Args | FirewallVip64State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallVip64State | undefined;
-            inputs["arpReply"] = state ? state.arpReply : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["extip"] = state ? state.extip : undefined;
-            inputs["extport"] = state ? state.extport : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["ldbMethod"] = state ? state.ldbMethod : undefined;
-            inputs["mappedip"] = state ? state.mappedip : undefined;
-            inputs["mappedport"] = state ? state.mappedport : undefined;
-            inputs["monitors"] = state ? state.monitors : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["portforward"] = state ? state.portforward : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["realservers"] = state ? state.realservers : undefined;
-            inputs["serverType"] = state ? state.serverType : undefined;
-            inputs["srcFilters"] = state ? state.srcFilters : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["arpReply"] = state ? state.arpReply : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["extip"] = state ? state.extip : undefined;
+            resourceInputs["extport"] = state ? state.extport : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["ldbMethod"] = state ? state.ldbMethod : undefined;
+            resourceInputs["mappedip"] = state ? state.mappedip : undefined;
+            resourceInputs["mappedport"] = state ? state.mappedport : undefined;
+            resourceInputs["monitors"] = state ? state.monitors : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["portforward"] = state ? state.portforward : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["realservers"] = state ? state.realservers : undefined;
+            resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["srcFilters"] = state ? state.srcFilters : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallVip64Args | undefined;
             if ((!args || args.extip === undefined) && !opts.urn) {
@@ -189,31 +189,29 @@ export class FirewallVip64 extends pulumi.CustomResource {
             if ((!args || args.mappedip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mappedip'");
             }
-            inputs["arpReply"] = args ? args.arpReply : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["extip"] = args ? args.extip : undefined;
-            inputs["extport"] = args ? args.extport : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["ldbMethod"] = args ? args.ldbMethod : undefined;
-            inputs["mappedip"] = args ? args.mappedip : undefined;
-            inputs["mappedport"] = args ? args.mappedport : undefined;
-            inputs["monitors"] = args ? args.monitors : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["portforward"] = args ? args.portforward : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["realservers"] = args ? args.realservers : undefined;
-            inputs["serverType"] = args ? args.serverType : undefined;
-            inputs["srcFilters"] = args ? args.srcFilters : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["arpReply"] = args ? args.arpReply : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["extip"] = args ? args.extip : undefined;
+            resourceInputs["extport"] = args ? args.extport : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["ldbMethod"] = args ? args.ldbMethod : undefined;
+            resourceInputs["mappedip"] = args ? args.mappedip : undefined;
+            resourceInputs["mappedport"] = args ? args.mappedport : undefined;
+            resourceInputs["monitors"] = args ? args.monitors : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["portforward"] = args ? args.portforward : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["realservers"] = args ? args.realservers : undefined;
+            resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["srcFilters"] = args ? args.srcFilters : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallVip64.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallVip64.__pulumiType, name, resourceInputs, opts);
     }
 }
 

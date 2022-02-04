@@ -83,25 +83,23 @@ export class SystemReplacemsgImage extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemReplacemsgImageArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemReplacemsgImageArgs | SystemReplacemsgImageState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemReplacemsgImageState | undefined;
-            inputs["imageBase64"] = state ? state.imageBase64 : undefined;
-            inputs["imageType"] = state ? state.imageType : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["imageBase64"] = state ? state.imageBase64 : undefined;
+            resourceInputs["imageType"] = state ? state.imageType : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemReplacemsgImageArgs | undefined;
-            inputs["imageBase64"] = args ? args.imageBase64 : undefined;
-            inputs["imageType"] = args ? args.imageType : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["imageBase64"] = args ? args.imageBase64 : undefined;
+            resourceInputs["imageType"] = args ? args.imageType : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemReplacemsgImage.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemReplacemsgImage.__pulumiType, name, resourceInputs, opts);
     }
 }
 

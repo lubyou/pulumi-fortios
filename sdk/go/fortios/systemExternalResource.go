@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -97,6 +97,7 @@ func NewSystemExternalResource(ctx *pulumi.Context,
 	if args.Resource == nil {
 		return nil, errors.New("invalid value for required argument 'Resource'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemExternalResource
 	err := ctx.RegisterResource("fortios:index/systemExternalResource:SystemExternalResource", name, args, &resource, opts...)
 	if err != nil {
@@ -267,7 +268,7 @@ type SystemExternalResourceInput interface {
 }
 
 func (*SystemExternalResource) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemExternalResource)(nil))
+	return reflect.TypeOf((**SystemExternalResource)(nil)).Elem()
 }
 
 func (i *SystemExternalResource) ToSystemExternalResourceOutput() SystemExternalResourceOutput {
@@ -276,35 +277,6 @@ func (i *SystemExternalResource) ToSystemExternalResourceOutput() SystemExternal
 
 func (i *SystemExternalResource) ToSystemExternalResourceOutputWithContext(ctx context.Context) SystemExternalResourceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourceOutput)
-}
-
-func (i *SystemExternalResource) ToSystemExternalResourcePtrOutput() SystemExternalResourcePtrOutput {
-	return i.ToSystemExternalResourcePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemExternalResource) ToSystemExternalResourcePtrOutputWithContext(ctx context.Context) SystemExternalResourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourcePtrOutput)
-}
-
-type SystemExternalResourcePtrInput interface {
-	pulumi.Input
-
-	ToSystemExternalResourcePtrOutput() SystemExternalResourcePtrOutput
-	ToSystemExternalResourcePtrOutputWithContext(ctx context.Context) SystemExternalResourcePtrOutput
-}
-
-type systemExternalResourcePtrType SystemExternalResourceArgs
-
-func (*systemExternalResourcePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemExternalResource)(nil))
-}
-
-func (i *systemExternalResourcePtrType) ToSystemExternalResourcePtrOutput() SystemExternalResourcePtrOutput {
-	return i.ToSystemExternalResourcePtrOutputWithContext(context.Background())
-}
-
-func (i *systemExternalResourcePtrType) ToSystemExternalResourcePtrOutputWithContext(ctx context.Context) SystemExternalResourcePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourcePtrOutput)
 }
 
 // SystemExternalResourceArrayInput is an input type that accepts SystemExternalResourceArray and SystemExternalResourceArrayOutput values.
@@ -321,7 +293,7 @@ type SystemExternalResourceArrayInput interface {
 type SystemExternalResourceArray []SystemExternalResourceInput
 
 func (SystemExternalResourceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemExternalResource)(nil))
+	return reflect.TypeOf((*[]*SystemExternalResource)(nil)).Elem()
 }
 
 func (i SystemExternalResourceArray) ToSystemExternalResourceArrayOutput() SystemExternalResourceArrayOutput {
@@ -346,7 +318,7 @@ type SystemExternalResourceMapInput interface {
 type SystemExternalResourceMap map[string]SystemExternalResourceInput
 
 func (SystemExternalResourceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemExternalResource)(nil))
+	return reflect.TypeOf((*map[string]*SystemExternalResource)(nil)).Elem()
 }
 
 func (i SystemExternalResourceMap) ToSystemExternalResourceMapOutput() SystemExternalResourceMapOutput {
@@ -357,12 +329,10 @@ func (i SystemExternalResourceMap) ToSystemExternalResourceMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemExternalResourceMapOutput)
 }
 
-type SystemExternalResourceOutput struct {
-	*pulumi.OutputState
-}
+type SystemExternalResourceOutput struct{ *pulumi.OutputState }
 
 func (SystemExternalResourceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemExternalResource)(nil))
+	return reflect.TypeOf((**SystemExternalResource)(nil)).Elem()
 }
 
 func (o SystemExternalResourceOutput) ToSystemExternalResourceOutput() SystemExternalResourceOutput {
@@ -373,36 +343,10 @@ func (o SystemExternalResourceOutput) ToSystemExternalResourceOutputWithContext(
 	return o
 }
 
-func (o SystemExternalResourceOutput) ToSystemExternalResourcePtrOutput() SystemExternalResourcePtrOutput {
-	return o.ToSystemExternalResourcePtrOutputWithContext(context.Background())
-}
-
-func (o SystemExternalResourceOutput) ToSystemExternalResourcePtrOutputWithContext(ctx context.Context) SystemExternalResourcePtrOutput {
-	return o.ApplyT(func(v SystemExternalResource) *SystemExternalResource {
-		return &v
-	}).(SystemExternalResourcePtrOutput)
-}
-
-type SystemExternalResourcePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemExternalResourcePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemExternalResource)(nil))
-}
-
-func (o SystemExternalResourcePtrOutput) ToSystemExternalResourcePtrOutput() SystemExternalResourcePtrOutput {
-	return o
-}
-
-func (o SystemExternalResourcePtrOutput) ToSystemExternalResourcePtrOutputWithContext(ctx context.Context) SystemExternalResourcePtrOutput {
-	return o
-}
-
 type SystemExternalResourceArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemExternalResourceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemExternalResource)(nil))
+	return reflect.TypeOf((*[]*SystemExternalResource)(nil)).Elem()
 }
 
 func (o SystemExternalResourceArrayOutput) ToSystemExternalResourceArrayOutput() SystemExternalResourceArrayOutput {
@@ -414,15 +358,15 @@ func (o SystemExternalResourceArrayOutput) ToSystemExternalResourceArrayOutputWi
 }
 
 func (o SystemExternalResourceArrayOutput) Index(i pulumi.IntInput) SystemExternalResourceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemExternalResource {
-		return vs[0].([]SystemExternalResource)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemExternalResource {
+		return vs[0].([]*SystemExternalResource)[vs[1].(int)]
 	}).(SystemExternalResourceOutput)
 }
 
 type SystemExternalResourceMapOutput struct{ *pulumi.OutputState }
 
 func (SystemExternalResourceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemExternalResource)(nil))
+	return reflect.TypeOf((*map[string]*SystemExternalResource)(nil)).Elem()
 }
 
 func (o SystemExternalResourceMapOutput) ToSystemExternalResourceMapOutput() SystemExternalResourceMapOutput {
@@ -434,14 +378,16 @@ func (o SystemExternalResourceMapOutput) ToSystemExternalResourceMapOutputWithCo
 }
 
 func (o SystemExternalResourceMapOutput) MapIndex(k pulumi.StringInput) SystemExternalResourceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemExternalResource {
-		return vs[0].(map[string]SystemExternalResource)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemExternalResource {
+		return vs[0].(map[string]*SystemExternalResource)[vs[1].(string)]
 	}).(SystemExternalResourceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemExternalResourceInput)(nil)).Elem(), &SystemExternalResource{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemExternalResourceArrayInput)(nil)).Elem(), SystemExternalResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemExternalResourceMapInput)(nil)).Elem(), SystemExternalResourceMap{})
 	pulumi.RegisterOutputType(SystemExternalResourceOutput{})
-	pulumi.RegisterOutputType(SystemExternalResourcePtrOutput{})
 	pulumi.RegisterOutputType(SystemExternalResourceArrayOutput{})
 	pulumi.RegisterOutputType(SystemExternalResourceMapOutput{})
 }

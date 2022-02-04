@@ -4,6 +4,9 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,15 +18,15 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "seq_num>1"
-// 		sample1, err := fortios.GetRouterStaticList(ctx, &fortios.GetRouterStaticListArgs{
-// 			Filter: &opt0,
+// 		sample1, err := fortios.GetRouterStaticList(ctx, &GetRouterStaticListArgs{
+// 			Filter: pulumi.StringRef("seq_num>1"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -34,6 +37,7 @@ import (
 // }
 // ```
 func GetRouterStaticList(ctx *pulumi.Context, args *GetRouterStaticListArgs, opts ...pulumi.InvokeOption) (*GetRouterStaticListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterStaticListResult
 	err := ctx.Invoke("fortios:index/getRouterStaticList:GetRouterStaticList", args, &rv, opts...)
 	if err != nil {
@@ -57,4 +61,61 @@ type GetRouterStaticListResult struct {
 	// A list of the `RouterStatic`.
 	SeqNumlists []int   `pulumi:"seqNumlists"`
 	Vdomparam   *string `pulumi:"vdomparam"`
+}
+
+func GetRouterStaticListOutput(ctx *pulumi.Context, args GetRouterStaticListOutputArgs, opts ...pulumi.InvokeOption) GetRouterStaticListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterStaticListResult, error) {
+			args := v.(GetRouterStaticListArgs)
+			r, err := GetRouterStaticList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterStaticListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterStaticList.
+type GetRouterStaticListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterStaticListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterStaticListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterStaticList.
+type GetRouterStaticListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterStaticListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterStaticListResult)(nil)).Elem()
+}
+
+func (o GetRouterStaticListResultOutput) ToGetRouterStaticListResultOutput() GetRouterStaticListResultOutput {
+	return o
+}
+
+func (o GetRouterStaticListResultOutput) ToGetRouterStaticListResultOutputWithContext(ctx context.Context) GetRouterStaticListResultOutput {
+	return o
+}
+
+func (o GetRouterStaticListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterStaticListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterStaticListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterStaticListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterStatic`.
+func (o GetRouterStaticListResultOutput) SeqNumlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetRouterStaticListResult) []int { return v.SeqNumlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetRouterStaticListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterStaticListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterStaticListResultOutput{})
 }

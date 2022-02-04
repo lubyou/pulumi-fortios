@@ -84,25 +84,23 @@ export class SystemDscpBasedPriority extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemDscpBasedPriorityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDscpBasedPriorityArgs | SystemDscpBasedPriorityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDscpBasedPriorityState | undefined;
-            inputs["ds"] = state ? state.ds : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ds"] = state ? state.ds : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemDscpBasedPriorityArgs | undefined;
-            inputs["ds"] = args ? args.ds : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ds"] = args ? args.ds : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDscpBasedPriority.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDscpBasedPriority.__pulumiType, name, resourceInputs, opts);
     }
 }
 

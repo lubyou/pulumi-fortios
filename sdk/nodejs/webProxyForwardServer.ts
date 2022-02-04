@@ -119,41 +119,39 @@ export class WebProxyForwardServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebProxyForwardServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyForwardServerArgs | WebProxyForwardServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyForwardServerState | undefined;
-            inputs["addrType"] = state ? state.addrType : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["healthcheck"] = state ? state.healthcheck : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["monitor"] = state ? state.monitor : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["serverDownOption"] = state ? state.serverDownOption : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addrType"] = state ? state.addrType : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["healthcheck"] = state ? state.healthcheck : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["monitor"] = state ? state.monitor : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["serverDownOption"] = state ? state.serverDownOption : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebProxyForwardServerArgs | undefined;
-            inputs["addrType"] = args ? args.addrType : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["healthcheck"] = args ? args.healthcheck : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["monitor"] = args ? args.monitor : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["serverDownOption"] = args ? args.serverDownOption : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addrType"] = args ? args.addrType : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["healthcheck"] = args ? args.healthcheck : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["monitor"] = args ? args.monitor : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["serverDownOption"] = args ? args.serverDownOption : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyForwardServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyForwardServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

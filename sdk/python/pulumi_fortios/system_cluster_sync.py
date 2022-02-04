@@ -19,9 +19,13 @@ class SystemClusterSyncArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
+                 ike_heartbeat_interval: Optional[pulumi.Input[int]] = None,
+                 ike_monitor: Optional[pulumi.Input[str]] = None,
+                 ike_monitor_interval: Optional[pulumi.Input[int]] = None,
                  ipsec_tunnel_sync: Optional[pulumi.Input[str]] = None,
                  peerip: Optional[pulumi.Input[str]] = None,
                  peervd: Optional[pulumi.Input[str]] = None,
+                 secondary_add_ipsec_routes: Optional[pulumi.Input[str]] = None,
                  session_sync_filter: Optional[pulumi.Input['SystemClusterSyncSessionSyncFilterArgs']] = None,
                  slave_add_ike_routes: Optional[pulumi.Input[str]] = None,
                  sync_id: Optional[pulumi.Input[int]] = None,
@@ -33,9 +37,13 @@ class SystemClusterSyncArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
         :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
+        :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
         :param pulumi.Input[str] ipsec_tunnel_sync: Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peerip: IP address of the interface on the peer unit that is used for the session synchronization link.
         :param pulumi.Input[str] peervd: VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
+        :param pulumi.Input[str] secondary_add_ipsec_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input['SystemClusterSyncSessionSyncFilterArgs'] session_sync_filter: Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `session_sync_filter` block is documented below.
         :param pulumi.Input[str] slave_add_ike_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] sync_id: Sync ID.
@@ -50,12 +58,20 @@ class SystemClusterSyncArgs:
             pulumi.set(__self__, "hb_interval", hb_interval)
         if hb_lost_threshold is not None:
             pulumi.set(__self__, "hb_lost_threshold", hb_lost_threshold)
+        if ike_heartbeat_interval is not None:
+            pulumi.set(__self__, "ike_heartbeat_interval", ike_heartbeat_interval)
+        if ike_monitor is not None:
+            pulumi.set(__self__, "ike_monitor", ike_monitor)
+        if ike_monitor_interval is not None:
+            pulumi.set(__self__, "ike_monitor_interval", ike_monitor_interval)
         if ipsec_tunnel_sync is not None:
             pulumi.set(__self__, "ipsec_tunnel_sync", ipsec_tunnel_sync)
         if peerip is not None:
             pulumi.set(__self__, "peerip", peerip)
         if peervd is not None:
             pulumi.set(__self__, "peervd", peervd)
+        if secondary_add_ipsec_routes is not None:
+            pulumi.set(__self__, "secondary_add_ipsec_routes", secondary_add_ipsec_routes)
         if session_sync_filter is not None:
             pulumi.set(__self__, "session_sync_filter", session_sync_filter)
         if slave_add_ike_routes is not None:
@@ -116,6 +132,42 @@ class SystemClusterSyncArgs:
         pulumi.set(self, "hb_lost_threshold", value)
 
     @property
+    @pulumi.getter(name="ikeHeartbeatInterval")
+    def ike_heartbeat_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        IKE heartbeat interval (1 - 60 secs).
+        """
+        return pulumi.get(self, "ike_heartbeat_interval")
+
+    @ike_heartbeat_interval.setter
+    def ike_heartbeat_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ike_heartbeat_interval", value)
+
+    @property
+    @pulumi.getter(name="ikeMonitor")
+    def ike_monitor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ike_monitor")
+
+    @ike_monitor.setter
+    def ike_monitor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ike_monitor", value)
+
+    @property
+    @pulumi.getter(name="ikeMonitorInterval")
+    def ike_monitor_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        IKE HA monitor interval (10 - 300 secs).
+        """
+        return pulumi.get(self, "ike_monitor_interval")
+
+    @ike_monitor_interval.setter
+    def ike_monitor_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ike_monitor_interval", value)
+
+    @property
     @pulumi.getter(name="ipsecTunnelSync")
     def ipsec_tunnel_sync(self) -> Optional[pulumi.Input[str]]:
         """
@@ -150,6 +202,18 @@ class SystemClusterSyncArgs:
     @peervd.setter
     def peervd(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "peervd", value)
+
+    @property
+    @pulumi.getter(name="secondaryAddIpsecRoutes")
+    def secondary_add_ipsec_routes(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "secondary_add_ipsec_routes")
+
+    @secondary_add_ipsec_routes.setter
+    def secondary_add_ipsec_routes(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secondary_add_ipsec_routes", value)
 
     @property
     @pulumi.getter(name="sessionSyncFilter")
@@ -219,9 +283,13 @@ class _SystemClusterSyncState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
+                 ike_heartbeat_interval: Optional[pulumi.Input[int]] = None,
+                 ike_monitor: Optional[pulumi.Input[str]] = None,
+                 ike_monitor_interval: Optional[pulumi.Input[int]] = None,
                  ipsec_tunnel_sync: Optional[pulumi.Input[str]] = None,
                  peerip: Optional[pulumi.Input[str]] = None,
                  peervd: Optional[pulumi.Input[str]] = None,
+                 secondary_add_ipsec_routes: Optional[pulumi.Input[str]] = None,
                  session_sync_filter: Optional[pulumi.Input['SystemClusterSyncSessionSyncFilterArgs']] = None,
                  slave_add_ike_routes: Optional[pulumi.Input[str]] = None,
                  sync_id: Optional[pulumi.Input[int]] = None,
@@ -233,9 +301,13 @@ class _SystemClusterSyncState:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
         :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
+        :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
         :param pulumi.Input[str] ipsec_tunnel_sync: Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peerip: IP address of the interface on the peer unit that is used for the session synchronization link.
         :param pulumi.Input[str] peervd: VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
+        :param pulumi.Input[str] secondary_add_ipsec_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input['SystemClusterSyncSessionSyncFilterArgs'] session_sync_filter: Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `session_sync_filter` block is documented below.
         :param pulumi.Input[str] slave_add_ike_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] sync_id: Sync ID.
@@ -250,12 +322,20 @@ class _SystemClusterSyncState:
             pulumi.set(__self__, "hb_interval", hb_interval)
         if hb_lost_threshold is not None:
             pulumi.set(__self__, "hb_lost_threshold", hb_lost_threshold)
+        if ike_heartbeat_interval is not None:
+            pulumi.set(__self__, "ike_heartbeat_interval", ike_heartbeat_interval)
+        if ike_monitor is not None:
+            pulumi.set(__self__, "ike_monitor", ike_monitor)
+        if ike_monitor_interval is not None:
+            pulumi.set(__self__, "ike_monitor_interval", ike_monitor_interval)
         if ipsec_tunnel_sync is not None:
             pulumi.set(__self__, "ipsec_tunnel_sync", ipsec_tunnel_sync)
         if peerip is not None:
             pulumi.set(__self__, "peerip", peerip)
         if peervd is not None:
             pulumi.set(__self__, "peervd", peervd)
+        if secondary_add_ipsec_routes is not None:
+            pulumi.set(__self__, "secondary_add_ipsec_routes", secondary_add_ipsec_routes)
         if session_sync_filter is not None:
             pulumi.set(__self__, "session_sync_filter", session_sync_filter)
         if slave_add_ike_routes is not None:
@@ -316,6 +396,42 @@ class _SystemClusterSyncState:
         pulumi.set(self, "hb_lost_threshold", value)
 
     @property
+    @pulumi.getter(name="ikeHeartbeatInterval")
+    def ike_heartbeat_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        IKE heartbeat interval (1 - 60 secs).
+        """
+        return pulumi.get(self, "ike_heartbeat_interval")
+
+    @ike_heartbeat_interval.setter
+    def ike_heartbeat_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ike_heartbeat_interval", value)
+
+    @property
+    @pulumi.getter(name="ikeMonitor")
+    def ike_monitor(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ike_monitor")
+
+    @ike_monitor.setter
+    def ike_monitor(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ike_monitor", value)
+
+    @property
+    @pulumi.getter(name="ikeMonitorInterval")
+    def ike_monitor_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        IKE HA monitor interval (10 - 300 secs).
+        """
+        return pulumi.get(self, "ike_monitor_interval")
+
+    @ike_monitor_interval.setter
+    def ike_monitor_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ike_monitor_interval", value)
+
+    @property
     @pulumi.getter(name="ipsecTunnelSync")
     def ipsec_tunnel_sync(self) -> Optional[pulumi.Input[str]]:
         """
@@ -350,6 +466,18 @@ class _SystemClusterSyncState:
     @peervd.setter
     def peervd(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "peervd", value)
+
+    @property
+    @pulumi.getter(name="secondaryAddIpsecRoutes")
+    def secondary_add_ipsec_routes(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "secondary_add_ipsec_routes")
+
+    @secondary_add_ipsec_routes.setter
+    def secondary_add_ipsec_routes(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "secondary_add_ipsec_routes", value)
 
     @property
     @pulumi.getter(name="sessionSyncFilter")
@@ -421,9 +549,13 @@ class SystemClusterSync(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
+                 ike_heartbeat_interval: Optional[pulumi.Input[int]] = None,
+                 ike_monitor: Optional[pulumi.Input[str]] = None,
+                 ike_monitor_interval: Optional[pulumi.Input[int]] = None,
                  ipsec_tunnel_sync: Optional[pulumi.Input[str]] = None,
                  peerip: Optional[pulumi.Input[str]] = None,
                  peervd: Optional[pulumi.Input[str]] = None,
+                 secondary_add_ipsec_routes: Optional[pulumi.Input[str]] = None,
                  session_sync_filter: Optional[pulumi.Input[pulumi.InputType['SystemClusterSyncSessionSyncFilterArgs']]] = None,
                  slave_add_ike_routes: Optional[pulumi.Input[str]] = None,
                  sync_id: Optional[pulumi.Input[int]] = None,
@@ -464,9 +596,13 @@ class SystemClusterSync(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
         :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
+        :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
         :param pulumi.Input[str] ipsec_tunnel_sync: Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peerip: IP address of the interface on the peer unit that is used for the session synchronization link.
         :param pulumi.Input[str] peervd: VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
+        :param pulumi.Input[str] secondary_add_ipsec_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input[pulumi.InputType['SystemClusterSyncSessionSyncFilterArgs']] session_sync_filter: Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `session_sync_filter` block is documented below.
         :param pulumi.Input[str] slave_add_ike_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] sync_id: Sync ID.
@@ -526,9 +662,13 @@ class SystemClusterSync(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  hb_interval: Optional[pulumi.Input[int]] = None,
                  hb_lost_threshold: Optional[pulumi.Input[int]] = None,
+                 ike_heartbeat_interval: Optional[pulumi.Input[int]] = None,
+                 ike_monitor: Optional[pulumi.Input[str]] = None,
+                 ike_monitor_interval: Optional[pulumi.Input[int]] = None,
                  ipsec_tunnel_sync: Optional[pulumi.Input[str]] = None,
                  peerip: Optional[pulumi.Input[str]] = None,
                  peervd: Optional[pulumi.Input[str]] = None,
+                 secondary_add_ipsec_routes: Optional[pulumi.Input[str]] = None,
                  session_sync_filter: Optional[pulumi.Input[pulumi.InputType['SystemClusterSyncSessionSyncFilterArgs']]] = None,
                  slave_add_ike_routes: Optional[pulumi.Input[str]] = None,
                  sync_id: Optional[pulumi.Input[int]] = None,
@@ -541,6 +681,8 @@ class SystemClusterSync(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -550,9 +692,13 @@ class SystemClusterSync(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["hb_interval"] = hb_interval
             __props__.__dict__["hb_lost_threshold"] = hb_lost_threshold
+            __props__.__dict__["ike_heartbeat_interval"] = ike_heartbeat_interval
+            __props__.__dict__["ike_monitor"] = ike_monitor
+            __props__.__dict__["ike_monitor_interval"] = ike_monitor_interval
             __props__.__dict__["ipsec_tunnel_sync"] = ipsec_tunnel_sync
             __props__.__dict__["peerip"] = peerip
             __props__.__dict__["peervd"] = peervd
+            __props__.__dict__["secondary_add_ipsec_routes"] = secondary_add_ipsec_routes
             __props__.__dict__["session_sync_filter"] = session_sync_filter
             __props__.__dict__["slave_add_ike_routes"] = slave_add_ike_routes
             __props__.__dict__["sync_id"] = sync_id
@@ -572,9 +718,13 @@ class SystemClusterSync(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             hb_interval: Optional[pulumi.Input[int]] = None,
             hb_lost_threshold: Optional[pulumi.Input[int]] = None,
+            ike_heartbeat_interval: Optional[pulumi.Input[int]] = None,
+            ike_monitor: Optional[pulumi.Input[str]] = None,
+            ike_monitor_interval: Optional[pulumi.Input[int]] = None,
             ipsec_tunnel_sync: Optional[pulumi.Input[str]] = None,
             peerip: Optional[pulumi.Input[str]] = None,
             peervd: Optional[pulumi.Input[str]] = None,
+            secondary_add_ipsec_routes: Optional[pulumi.Input[str]] = None,
             session_sync_filter: Optional[pulumi.Input[pulumi.InputType['SystemClusterSyncSessionSyncFilterArgs']]] = None,
             slave_add_ike_routes: Optional[pulumi.Input[str]] = None,
             sync_id: Optional[pulumi.Input[int]] = None,
@@ -591,9 +741,13 @@ class SystemClusterSync(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] hb_interval: Heartbeat interval (1 - 10 sec).
         :param pulumi.Input[int] hb_lost_threshold: Lost heartbeat threshold (1 - 10).
+        :param pulumi.Input[int] ike_heartbeat_interval: IKE heartbeat interval (1 - 60 secs).
+        :param pulumi.Input[str] ike_monitor: Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] ike_monitor_interval: IKE HA monitor interval (10 - 300 secs).
         :param pulumi.Input[str] ipsec_tunnel_sync: Enable/disable IPsec tunnel synchronization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peerip: IP address of the interface on the peer unit that is used for the session synchronization link.
         :param pulumi.Input[str] peervd: VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
+        :param pulumi.Input[str] secondary_add_ipsec_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input[pulumi.InputType['SystemClusterSyncSessionSyncFilterArgs']] session_sync_filter: Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `session_sync_filter` block is documented below.
         :param pulumi.Input[str] slave_add_ike_routes: Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] sync_id: Sync ID.
@@ -608,9 +762,13 @@ class SystemClusterSync(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["hb_interval"] = hb_interval
         __props__.__dict__["hb_lost_threshold"] = hb_lost_threshold
+        __props__.__dict__["ike_heartbeat_interval"] = ike_heartbeat_interval
+        __props__.__dict__["ike_monitor"] = ike_monitor
+        __props__.__dict__["ike_monitor_interval"] = ike_monitor_interval
         __props__.__dict__["ipsec_tunnel_sync"] = ipsec_tunnel_sync
         __props__.__dict__["peerip"] = peerip
         __props__.__dict__["peervd"] = peervd
+        __props__.__dict__["secondary_add_ipsec_routes"] = secondary_add_ipsec_routes
         __props__.__dict__["session_sync_filter"] = session_sync_filter
         __props__.__dict__["slave_add_ike_routes"] = slave_add_ike_routes
         __props__.__dict__["sync_id"] = sync_id
@@ -651,6 +809,30 @@ class SystemClusterSync(pulumi.CustomResource):
         return pulumi.get(self, "hb_lost_threshold")
 
     @property
+    @pulumi.getter(name="ikeHeartbeatInterval")
+    def ike_heartbeat_interval(self) -> pulumi.Output[int]:
+        """
+        IKE heartbeat interval (1 - 60 secs).
+        """
+        return pulumi.get(self, "ike_heartbeat_interval")
+
+    @property
+    @pulumi.getter(name="ikeMonitor")
+    def ike_monitor(self) -> pulumi.Output[str]:
+        """
+        Enable/disable IKE HA monitor. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ike_monitor")
+
+    @property
+    @pulumi.getter(name="ikeMonitorInterval")
+    def ike_monitor_interval(self) -> pulumi.Output[int]:
+        """
+        IKE HA monitor interval (10 - 300 secs).
+        """
+        return pulumi.get(self, "ike_monitor_interval")
+
+    @property
     @pulumi.getter(name="ipsecTunnelSync")
     def ipsec_tunnel_sync(self) -> pulumi.Output[str]:
         """
@@ -673,6 +855,14 @@ class SystemClusterSync(pulumi.CustomResource):
         VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
         """
         return pulumi.get(self, "peervd")
+
+    @property
+    @pulumi.getter(name="secondaryAddIpsecRoutes")
+    def secondary_add_ipsec_routes(self) -> pulumi.Output[str]:
+        """
+        Enable/disable IKE route announcement on the backup unit. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "secondary_add_ipsec_routes")
 
     @property
     @pulumi.getter(name="sessionSyncFilter")

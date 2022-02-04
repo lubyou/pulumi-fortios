@@ -71,25 +71,23 @@ export class SystemIpsUrlfilterDns extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemIpsUrlfilterDnsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemIpsUrlfilterDnsArgs | SystemIpsUrlfilterDnsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpsUrlfilterDnsState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["ipv6Capability"] = state ? state.ipv6Capability : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["ipv6Capability"] = state ? state.ipv6Capability : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpsUrlfilterDnsArgs | undefined;
-            inputs["address"] = args ? args.address : undefined;
-            inputs["ipv6Capability"] = args ? args.ipv6Capability : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["ipv6Capability"] = args ? args.ipv6Capability : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemIpsUrlfilterDns.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemIpsUrlfilterDns.__pulumiType, name, resourceInputs, opts);
     }
 }
 

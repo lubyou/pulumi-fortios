@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -51,6 +51,8 @@ import (
 type LogFortiguardOverrideSetting struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
 	// FortiCloud maximum log rate in MBps (0 = unlimited).
 	MaxLogRate pulumi.IntOutput `pulumi:"maxLogRate"`
 	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
@@ -78,6 +80,7 @@ func NewLogFortiguardOverrideSetting(ctx *pulumi.Context,
 		args = &LogFortiguardOverrideSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortiguardOverrideSetting
 	err := ctx.RegisterResource("fortios:index/logFortiguardOverrideSetting:LogFortiguardOverrideSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +103,8 @@ func GetLogFortiguardOverrideSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortiguardOverrideSetting resources.
 type logFortiguardOverrideSettingState struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig *string `pulumi:"accessConfig"`
 	// FortiCloud maximum log rate in MBps (0 = unlimited).
 	MaxLogRate *int `pulumi:"maxLogRate"`
 	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
@@ -121,6 +126,8 @@ type logFortiguardOverrideSettingState struct {
 }
 
 type LogFortiguardOverrideSettingState struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig pulumi.StringPtrInput
 	// FortiCloud maximum log rate in MBps (0 = unlimited).
 	MaxLogRate pulumi.IntPtrInput
 	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
@@ -146,6 +153,8 @@ func (LogFortiguardOverrideSettingState) ElementType() reflect.Type {
 }
 
 type logFortiguardOverrideSettingArgs struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig *string `pulumi:"accessConfig"`
 	// FortiCloud maximum log rate in MBps (0 = unlimited).
 	MaxLogRate *int `pulumi:"maxLogRate"`
 	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
@@ -168,6 +177,8 @@ type logFortiguardOverrideSettingArgs struct {
 
 // The set of arguments for constructing a LogFortiguardOverrideSetting resource.
 type LogFortiguardOverrideSettingArgs struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig pulumi.StringPtrInput
 	// FortiCloud maximum log rate in MBps (0 = unlimited).
 	MaxLogRate pulumi.IntPtrInput
 	// Overriding FortiCloud settings for this VDOM or use global settings. Valid values: `enable`, `disable`.
@@ -200,7 +211,7 @@ type LogFortiguardOverrideSettingInput interface {
 }
 
 func (*LogFortiguardOverrideSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardOverrideSetting)(nil))
+	return reflect.TypeOf((**LogFortiguardOverrideSetting)(nil)).Elem()
 }
 
 func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingOutput() LogFortiguardOverrideSettingOutput {
@@ -209,35 +220,6 @@ func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingOutput() Lo
 
 func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingOutput)
-}
-
-func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingPtrOutput() LogFortiguardOverrideSettingPtrOutput {
-	return i.ToLogFortiguardOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortiguardOverrideSetting) ToLogFortiguardOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingPtrOutput)
-}
-
-type LogFortiguardOverrideSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogFortiguardOverrideSettingPtrOutput() LogFortiguardOverrideSettingPtrOutput
-	ToLogFortiguardOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingPtrOutput
-}
-
-type logFortiguardOverrideSettingPtrType LogFortiguardOverrideSettingArgs
-
-func (*logFortiguardOverrideSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardOverrideSetting)(nil))
-}
-
-func (i *logFortiguardOverrideSettingPtrType) ToLogFortiguardOverrideSettingPtrOutput() LogFortiguardOverrideSettingPtrOutput {
-	return i.ToLogFortiguardOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortiguardOverrideSettingPtrType) ToLogFortiguardOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingPtrOutput)
 }
 
 // LogFortiguardOverrideSettingArrayInput is an input type that accepts LogFortiguardOverrideSettingArray and LogFortiguardOverrideSettingArrayOutput values.
@@ -254,7 +236,7 @@ type LogFortiguardOverrideSettingArrayInput interface {
 type LogFortiguardOverrideSettingArray []LogFortiguardOverrideSettingInput
 
 func (LogFortiguardOverrideSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortiguardOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardOverrideSetting)(nil)).Elem()
 }
 
 func (i LogFortiguardOverrideSettingArray) ToLogFortiguardOverrideSettingArrayOutput() LogFortiguardOverrideSettingArrayOutput {
@@ -279,7 +261,7 @@ type LogFortiguardOverrideSettingMapInput interface {
 type LogFortiguardOverrideSettingMap map[string]LogFortiguardOverrideSettingInput
 
 func (LogFortiguardOverrideSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortiguardOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardOverrideSetting)(nil)).Elem()
 }
 
 func (i LogFortiguardOverrideSettingMap) ToLogFortiguardOverrideSettingMapOutput() LogFortiguardOverrideSettingMapOutput {
@@ -290,12 +272,10 @@ func (i LogFortiguardOverrideSettingMap) ToLogFortiguardOverrideSettingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardOverrideSettingMapOutput)
 }
 
-type LogFortiguardOverrideSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogFortiguardOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardOverrideSetting)(nil))
+	return reflect.TypeOf((**LogFortiguardOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingOutput() LogFortiguardOverrideSettingOutput {
@@ -306,36 +286,10 @@ func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingOutput
 	return o
 }
 
-func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingPtrOutput() LogFortiguardOverrideSettingPtrOutput {
-	return o.ToLogFortiguardOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortiguardOverrideSettingOutput) ToLogFortiguardOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingPtrOutput {
-	return o.ApplyT(func(v LogFortiguardOverrideSetting) *LogFortiguardOverrideSetting {
-		return &v
-	}).(LogFortiguardOverrideSettingPtrOutput)
-}
-
-type LogFortiguardOverrideSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortiguardOverrideSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardOverrideSetting)(nil))
-}
-
-func (o LogFortiguardOverrideSettingPtrOutput) ToLogFortiguardOverrideSettingPtrOutput() LogFortiguardOverrideSettingPtrOutput {
-	return o
-}
-
-func (o LogFortiguardOverrideSettingPtrOutput) ToLogFortiguardOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortiguardOverrideSettingPtrOutput {
-	return o
-}
-
 type LogFortiguardOverrideSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortiguardOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortiguardOverrideSettingArrayOutput) ToLogFortiguardOverrideSettingArrayOutput() LogFortiguardOverrideSettingArrayOutput {
@@ -347,15 +301,15 @@ func (o LogFortiguardOverrideSettingArrayOutput) ToLogFortiguardOverrideSettingA
 }
 
 func (o LogFortiguardOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortiguardOverrideSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortiguardOverrideSetting {
-		return vs[0].([]LogFortiguardOverrideSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardOverrideSetting {
+		return vs[0].([]*LogFortiguardOverrideSetting)[vs[1].(int)]
 	}).(LogFortiguardOverrideSettingOutput)
 }
 
 type LogFortiguardOverrideSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardOverrideSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortiguardOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortiguardOverrideSettingMapOutput) ToLogFortiguardOverrideSettingMapOutput() LogFortiguardOverrideSettingMapOutput {
@@ -367,14 +321,16 @@ func (o LogFortiguardOverrideSettingMapOutput) ToLogFortiguardOverrideSettingMap
 }
 
 func (o LogFortiguardOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardOverrideSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortiguardOverrideSetting {
-		return vs[0].(map[string]LogFortiguardOverrideSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortiguardOverrideSetting {
+		return vs[0].(map[string]*LogFortiguardOverrideSetting)[vs[1].(string)]
 	}).(LogFortiguardOverrideSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardOverrideSettingInput)(nil)).Elem(), &LogFortiguardOverrideSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardOverrideSettingArrayInput)(nil)).Elem(), LogFortiguardOverrideSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardOverrideSettingMapInput)(nil)).Elem(), LogFortiguardOverrideSettingMap{})
 	pulumi.RegisterOutputType(LogFortiguardOverrideSettingOutput{})
-	pulumi.RegisterOutputType(LogFortiguardOverrideSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogFortiguardOverrideSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogFortiguardOverrideSettingMapOutput{})
 }

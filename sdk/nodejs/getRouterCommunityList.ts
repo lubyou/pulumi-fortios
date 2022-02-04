@@ -13,9 +13,7 @@ export function getRouterCommunityList(args: GetRouterCommunityListArgs, opts?: 
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterCommunityList:GetRouterCommunityList", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -57,4 +55,22 @@ export interface GetRouterCommunityListResult {
      */
     readonly type: string;
     readonly vdomparam?: string;
+}
+
+export function getRouterCommunityListOutput(args: GetRouterCommunityListOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterCommunityListResult> {
+    return pulumi.output(args).apply(a => getRouterCommunityList(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterCommunityList.
+ */
+export interface GetRouterCommunityListOutputArgs {
+    /**
+     * Specify the name of the desired router communitylist.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

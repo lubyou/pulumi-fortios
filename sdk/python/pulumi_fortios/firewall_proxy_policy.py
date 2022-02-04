@@ -18,12 +18,16 @@ class FirewallProxyPolicyArgs:
                  dstintfs: pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyDstintfArgs']]],
                  proxy: pulumi.Input[str],
                  schedule: pulumi.Input[str],
+                 access_proxies: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]]] = None,
+                 access_proxy6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]]] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 block_notification: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyDstaddr6Args']]]] = None,
@@ -56,6 +60,7 @@ class FirewallProxyPolicyArgs:
                  redirect_url: Optional[pulumi.Input[str]] = None,
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyServiceArgs']]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
@@ -73,23 +78,31 @@ class FirewallProxyPolicyArgs:
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
                  webcache_https: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
-                 webproxy_profile: Optional[pulumi.Input[str]] = None):
+                 webproxy_profile: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallProxyPolicy resource.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyDstintfArgs']]] dstintfs: Destination interface names. The structure of `dstintf` block is documented below.
-        :param pulumi.Input[str] proxy: Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        :param pulumi.Input[str] proxy: Type of explicit proxy.
         :param pulumi.Input[str] schedule: Name of schedule object.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]] access_proxies: IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]] access_proxy6s: IPv6 access proxy. The structure of `access_proxy6` block is documented below.
         :param pulumi.Input[str] action: Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyDstaddr6Args']]] dstaddr6s: IPv6 destination address objects. The structure of `dstaddr6` block is documented below.
@@ -122,6 +135,7 @@ class FirewallProxyPolicyArgs:
         :param pulumi.Input[str] redirect_url: Redirect URL for further explicit web proxy processing.
         :param pulumi.Input[str] replacemsg_override_group: Authentication replacement message override group.
         :param pulumi.Input[str] scan_botnet_connections: Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] service_negate: When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyServiceArgs']]] services: Name of service objects. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
@@ -139,28 +153,40 @@ class FirewallProxyPolicyArgs:
         :param pulumi.Input[str] utm_status: Enable the use of UTM profiles/sensors/lists. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] webcache_https: Enable/disable web caching for HTTPS (Requires deep-inspection enabled in ssl-ssh-profile). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Name of web proxy profile.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]] ztna_ems_tags: ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         pulumi.set(__self__, "dstintfs", dstintfs)
         pulumi.set(__self__, "proxy", proxy)
         pulumi.set(__self__, "schedule", schedule)
+        if access_proxies is not None:
+            pulumi.set(__self__, "access_proxies", access_proxies)
+        if access_proxy6s is not None:
+            pulumi.set(__self__, "access_proxy6s", access_proxy6s)
         if action is not None:
             pulumi.set(__self__, "action", action)
         if application_list is not None:
             pulumi.set(__self__, "application_list", application_list)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if block_notification is not None:
+            pulumi.set(__self__, "block_notification", block_notification)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if decrypted_traffic_mirror is not None:
             pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if device_ownership is not None:
+            pulumi.set(__self__, "device_ownership", device_ownership)
         if disclaimer is not None:
             pulumi.set(__self__, "disclaimer", disclaimer)
         if dlp_sensor is not None:
@@ -225,6 +251,8 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "replacemsg_override_group", replacemsg_override_group)
         if scan_botnet_connections is not None:
             pulumi.set(__self__, "scan_botnet_connections", scan_botnet_connections)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if service_negate is not None:
             pulumi.set(__self__, "service_negate", service_negate)
         if services is not None:
@@ -259,6 +287,10 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if voip_profile is not None:
+            pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
             pulumi.set(__self__, "waf_profile", waf_profile)
         if webcache is not None:
@@ -271,6 +303,10 @@ class FirewallProxyPolicyArgs:
             pulumi.set(__self__, "webproxy_forward_server", webproxy_forward_server)
         if webproxy_profile is not None:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
+        if ztna_ems_tags is not None:
+            pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
+        if ztna_tags_match_logic is not None:
+            pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
 
     @property
     @pulumi.getter
@@ -288,7 +324,7 @@ class FirewallProxyPolicyArgs:
     @pulumi.getter
     def proxy(self) -> pulumi.Input[str]:
         """
-        Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        Type of explicit proxy.
         """
         return pulumi.get(self, "proxy")
 
@@ -307,6 +343,30 @@ class FirewallProxyPolicyArgs:
     @schedule.setter
     def schedule(self, value: pulumi.Input[str]):
         pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter(name="accessProxies")
+    def access_proxies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]]]:
+        """
+        IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        """
+        return pulumi.get(self, "access_proxies")
+
+    @access_proxies.setter
+    def access_proxies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]]]):
+        pulumi.set(self, "access_proxies", value)
+
+    @property
+    @pulumi.getter(name="accessProxy6s")
+    def access_proxy6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]]]:
+        """
+        IPv6 access proxy. The structure of `access_proxy6` block is documented below.
+        """
+        return pulumi.get(self, "access_proxy6s")
+
+    @access_proxy6s.setter
+    def access_proxy6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]]]):
+        pulumi.set(self, "access_proxy6s", value)
 
     @property
     @pulumi.getter
@@ -345,6 +405,18 @@ class FirewallProxyPolicyArgs:
         pulumi.set(self, "av_profile", value)
 
     @property
+    @pulumi.getter(name="blockNotification")
+    def block_notification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable block notification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "block_notification")
+
+    @block_notification.setter
+    def block_notification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "block_notification", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -379,6 +451,18 @@ class FirewallProxyPolicyArgs:
     @decrypted_traffic_mirror.setter
     def decrypted_traffic_mirror(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "decrypted_traffic_mirror", value)
+
+    @property
+    @pulumi.getter(name="deviceOwnership")
+    def device_ownership(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "device_ownership")
+
+    @device_ownership.setter
+    def device_ownership(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "device_ownership", value)
 
     @property
     @pulumi.getter
@@ -765,6 +849,18 @@ class FirewallProxyPolicyArgs:
         pulumi.set(self, "scan_botnet_connections", value)
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
+
+    @property
     @pulumi.getter(name="serviceNegate")
     def service_negate(self) -> Optional[pulumi.Input[str]]:
         """
@@ -969,6 +1065,30 @@ class FirewallProxyPolicyArgs:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
+
+    @property
+    @pulumi.getter(name="voipProfile")
+    def voip_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP profile.
+        """
+        return pulumi.get(self, "voip_profile")
+
+    @voip_profile.setter
+    def voip_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "voip_profile", value)
+
+    @property
     @pulumi.getter(name="wafProfile")
     def waf_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1040,16 +1160,44 @@ class FirewallProxyPolicyArgs:
     def webproxy_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "webproxy_profile", value)
 
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]]]:
+        """
+        ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @ztna_ems_tags.setter
+    def ztna_ems_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]]]):
+        pulumi.set(self, "ztna_ems_tags", value)
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> Optional[pulumi.Input[str]]:
+        """
+        ZTNA tag matching logic. Valid values: `or`, `and`.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
+
+    @ztna_tags_match_logic.setter
+    def ztna_tags_match_logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_tags_match_logic", value)
+
 
 @pulumi.input_type
 class _FirewallProxyPolicyState:
     def __init__(__self__, *,
+                 access_proxies: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]]] = None,
+                 access_proxy6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]]] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 block_notification: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyDstaddr6Args']]]] = None,
@@ -1085,6 +1233,7 @@ class _FirewallProxyPolicyState:
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyServiceArgs']]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
@@ -1102,20 +1251,28 @@ class _FirewallProxyPolicyState:
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
                  webcache_https: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
-                 webproxy_profile: Optional[pulumi.Input[str]] = None):
+                 webproxy_profile: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallProxyPolicy resources.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]] access_proxies: IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]] access_proxy6s: IPv6 access proxy. The structure of `access_proxy6` block is documented below.
         :param pulumi.Input[str] action: Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyDstaddr6Args']]] dstaddr6s: IPv6 destination address objects. The structure of `dstaddr6` block is documented below.
@@ -1146,11 +1303,12 @@ class _FirewallProxyPolicyState:
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-        :param pulumi.Input[str] proxy: Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        :param pulumi.Input[str] proxy: Type of explicit proxy.
         :param pulumi.Input[str] redirect_url: Redirect URL for further explicit web proxy processing.
         :param pulumi.Input[str] replacemsg_override_group: Authentication replacement message override group.
         :param pulumi.Input[str] scan_botnet_connections: Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Name of schedule object.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] service_negate: When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyServiceArgs']]] services: Name of service objects. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
@@ -1168,25 +1326,37 @@ class _FirewallProxyPolicyState:
         :param pulumi.Input[str] utm_status: Enable the use of UTM profiles/sensors/lists. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] webcache_https: Enable/disable web caching for HTTPS (Requires deep-inspection enabled in ssl-ssh-profile). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Name of web proxy profile.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]] ztna_ems_tags: ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
+        if access_proxies is not None:
+            pulumi.set(__self__, "access_proxies", access_proxies)
+        if access_proxy6s is not None:
+            pulumi.set(__self__, "access_proxy6s", access_proxy6s)
         if action is not None:
             pulumi.set(__self__, "action", action)
         if application_list is not None:
             pulumi.set(__self__, "application_list", application_list)
         if av_profile is not None:
             pulumi.set(__self__, "av_profile", av_profile)
+        if block_notification is not None:
+            pulumi.set(__self__, "block_notification", block_notification)
         if cifs_profile is not None:
             pulumi.set(__self__, "cifs_profile", cifs_profile)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if decrypted_traffic_mirror is not None:
             pulumi.set(__self__, "decrypted_traffic_mirror", decrypted_traffic_mirror)
+        if device_ownership is not None:
+            pulumi.set(__self__, "device_ownership", device_ownership)
         if disclaimer is not None:
             pulumi.set(__self__, "disclaimer", disclaimer)
         if dlp_sensor is not None:
@@ -1257,6 +1427,8 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "scan_botnet_connections", scan_botnet_connections)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if service_negate is not None:
             pulumi.set(__self__, "service_negate", service_negate)
         if services is not None:
@@ -1291,6 +1463,10 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
+        if voip_profile is not None:
+            pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
             pulumi.set(__self__, "waf_profile", waf_profile)
         if webcache is not None:
@@ -1303,6 +1479,34 @@ class _FirewallProxyPolicyState:
             pulumi.set(__self__, "webproxy_forward_server", webproxy_forward_server)
         if webproxy_profile is not None:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
+        if ztna_ems_tags is not None:
+            pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
+        if ztna_tags_match_logic is not None:
+            pulumi.set(__self__, "ztna_tags_match_logic", ztna_tags_match_logic)
+
+    @property
+    @pulumi.getter(name="accessProxies")
+    def access_proxies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]]]:
+        """
+        IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        """
+        return pulumi.get(self, "access_proxies")
+
+    @access_proxies.setter
+    def access_proxies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxyArgs']]]]):
+        pulumi.set(self, "access_proxies", value)
+
+    @property
+    @pulumi.getter(name="accessProxy6s")
+    def access_proxy6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]]]:
+        """
+        IPv6 access proxy. The structure of `access_proxy6` block is documented below.
+        """
+        return pulumi.get(self, "access_proxy6s")
+
+    @access_proxy6s.setter
+    def access_proxy6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyAccessProxy6Args']]]]):
+        pulumi.set(self, "access_proxy6s", value)
 
     @property
     @pulumi.getter
@@ -1341,6 +1545,18 @@ class _FirewallProxyPolicyState:
         pulumi.set(self, "av_profile", value)
 
     @property
+    @pulumi.getter(name="blockNotification")
+    def block_notification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable block notification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "block_notification")
+
+    @block_notification.setter
+    def block_notification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "block_notification", value)
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1375,6 +1591,18 @@ class _FirewallProxyPolicyState:
     @decrypted_traffic_mirror.setter
     def decrypted_traffic_mirror(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "decrypted_traffic_mirror", value)
+
+    @property
+    @pulumi.getter(name="deviceOwnership")
+    def device_ownership(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "device_ownership")
+
+    @device_ownership.setter
+    def device_ownership(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "device_ownership", value)
 
     @property
     @pulumi.getter
@@ -1740,7 +1968,7 @@ class _FirewallProxyPolicyState:
     @pulumi.getter
     def proxy(self) -> Optional[pulumi.Input[str]]:
         """
-        Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        Type of explicit proxy.
         """
         return pulumi.get(self, "proxy")
 
@@ -1795,6 +2023,18 @@ class _FirewallProxyPolicyState:
     @schedule.setter
     def schedule(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "schedule", value)
+
+    @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
 
     @property
     @pulumi.getter(name="serviceNegate")
@@ -2001,6 +2241,30 @@ class _FirewallProxyPolicyState:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
+
+    @property
+    @pulumi.getter(name="voipProfile")
+    def voip_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VoIP profile.
+        """
+        return pulumi.get(self, "voip_profile")
+
+    @voip_profile.setter
+    def voip_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "voip_profile", value)
+
+    @property
     @pulumi.getter(name="wafProfile")
     def waf_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2072,18 +2336,46 @@ class _FirewallProxyPolicyState:
     def webproxy_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "webproxy_profile", value)
 
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]]]:
+        """
+        ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @ztna_ems_tags.setter
+    def ztna_ems_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallProxyPolicyZtnaEmsTagArgs']]]]):
+        pulumi.set(self, "ztna_ems_tags", value)
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> Optional[pulumi.Input[str]]:
+        """
+        ZTNA tag matching logic. Valid values: `or`, `and`.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
+
+    @ztna_tags_match_logic.setter
+    def ztna_tags_match_logic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_tags_match_logic", value)
+
 
 class FirewallProxyPolicy(pulumi.CustomResource):
     @overload
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_proxies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxyArgs']]]]] = None,
+                 access_proxy6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxy6Args']]]]] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 block_notification: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyDstaddr6Args']]]]] = None,
@@ -2119,6 +2411,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyServiceArgs']]]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
@@ -2136,12 +2429,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
                  webcache_https: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyZtnaEmsTagArgs']]]]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure proxy policies.
@@ -2203,12 +2500,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxyArgs']]]] access_proxies: IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxy6Args']]]] access_proxy6s: IPv6 access proxy. The structure of `access_proxy6` block is documented below.
         :param pulumi.Input[str] action: Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyDstaddr6Args']]]] dstaddr6s: IPv6 destination address objects. The structure of `dstaddr6` block is documented below.
@@ -2239,11 +2540,12 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-        :param pulumi.Input[str] proxy: Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        :param pulumi.Input[str] proxy: Type of explicit proxy.
         :param pulumi.Input[str] redirect_url: Redirect URL for further explicit web proxy processing.
         :param pulumi.Input[str] replacemsg_override_group: Authentication replacement message override group.
         :param pulumi.Input[str] scan_botnet_connections: Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Name of schedule object.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] service_negate: When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyServiceArgs']]]] services: Name of service objects. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
@@ -2261,12 +2563,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] utm_status: Enable the use of UTM profiles/sensors/lists. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] webcache_https: Enable/disable web caching for HTTPS (Requires deep-inspection enabled in ssl-ssh-profile). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Name of web proxy profile.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyZtnaEmsTagArgs']]]] ztna_ems_tags: ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         ...
     @overload
@@ -2347,12 +2653,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 access_proxies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxyArgs']]]]] = None,
+                 access_proxy6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxy6Args']]]]] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  application_list: Optional[pulumi.Input[str]] = None,
                  av_profile: Optional[pulumi.Input[str]] = None,
+                 block_notification: Optional[pulumi.Input[str]] = None,
                  cifs_profile: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+                 device_ownership: Optional[pulumi.Input[str]] = None,
                  disclaimer: Optional[pulumi.Input[str]] = None,
                  dlp_sensor: Optional[pulumi.Input[str]] = None,
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyDstaddr6Args']]]]] = None,
@@ -2388,6 +2698,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  replacemsg_override_group: Optional[pulumi.Input[str]] = None,
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyServiceArgs']]]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
@@ -2405,12 +2716,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
+                 voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webcache: Optional[pulumi.Input[str]] = None,
                  webcache_https: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyZtnaEmsTagArgs']]]]] = None,
+                 ztna_tags_match_logic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -2418,17 +2733,23 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallProxyPolicyArgs.__new__(FirewallProxyPolicyArgs)
 
+            __props__.__dict__["access_proxies"] = access_proxies
+            __props__.__dict__["access_proxy6s"] = access_proxy6s
             __props__.__dict__["action"] = action
             __props__.__dict__["application_list"] = application_list
             __props__.__dict__["av_profile"] = av_profile
+            __props__.__dict__["block_notification"] = block_notification
             __props__.__dict__["cifs_profile"] = cifs_profile
             __props__.__dict__["comments"] = comments
             __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
+            __props__.__dict__["device_ownership"] = device_ownership
             __props__.__dict__["disclaimer"] = disclaimer
             __props__.__dict__["dlp_sensor"] = dlp_sensor
             __props__.__dict__["dstaddr6s"] = dstaddr6s
@@ -2470,6 +2791,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
+            __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
             __props__.__dict__["service_negate"] = service_negate
             __props__.__dict__["services"] = services
             __props__.__dict__["session_ttl"] = session_ttl
@@ -2487,12 +2809,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             __props__.__dict__["utm_status"] = utm_status
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["videofilter_profile"] = videofilter_profile
+            __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["waf_profile"] = waf_profile
             __props__.__dict__["webcache"] = webcache
             __props__.__dict__["webcache_https"] = webcache_https
             __props__.__dict__["webfilter_profile"] = webfilter_profile
             __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
             __props__.__dict__["webproxy_profile"] = webproxy_profile
+            __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
+            __props__.__dict__["ztna_tags_match_logic"] = ztna_tags_match_logic
         super(FirewallProxyPolicy, __self__).__init__(
             'fortios:index/firewallProxyPolicy:FirewallProxyPolicy',
             resource_name,
@@ -2503,12 +2829,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            access_proxies: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxyArgs']]]]] = None,
+            access_proxy6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxy6Args']]]]] = None,
             action: Optional[pulumi.Input[str]] = None,
             application_list: Optional[pulumi.Input[str]] = None,
             av_profile: Optional[pulumi.Input[str]] = None,
+            block_notification: Optional[pulumi.Input[str]] = None,
             cifs_profile: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             decrypted_traffic_mirror: Optional[pulumi.Input[str]] = None,
+            device_ownership: Optional[pulumi.Input[str]] = None,
             disclaimer: Optional[pulumi.Input[str]] = None,
             dlp_sensor: Optional[pulumi.Input[str]] = None,
             dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyDstaddr6Args']]]]] = None,
@@ -2544,6 +2874,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             replacemsg_override_group: Optional[pulumi.Input[str]] = None,
             scan_botnet_connections: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
+            sctp_filter_profile: Optional[pulumi.Input[str]] = None,
             service_negate: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyServiceArgs']]]]] = None,
             session_ttl: Optional[pulumi.Input[int]] = None,
@@ -2561,12 +2892,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
             utm_status: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            videofilter_profile: Optional[pulumi.Input[str]] = None,
+            voip_profile: Optional[pulumi.Input[str]] = None,
             waf_profile: Optional[pulumi.Input[str]] = None,
             webcache: Optional[pulumi.Input[str]] = None,
             webcache_https: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None,
             webproxy_forward_server: Optional[pulumi.Input[str]] = None,
-            webproxy_profile: Optional[pulumi.Input[str]] = None) -> 'FirewallProxyPolicy':
+            webproxy_profile: Optional[pulumi.Input[str]] = None,
+            ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyZtnaEmsTagArgs']]]]] = None,
+            ztna_tags_match_logic: Optional[pulumi.Input[str]] = None) -> 'FirewallProxyPolicy':
         """
         Get an existing FirewallProxyPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -2574,12 +2909,16 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxyArgs']]]] access_proxies: IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyAccessProxy6Args']]]] access_proxy6s: IPv6 access proxy. The structure of `access_proxy6` block is documented below.
         :param pulumi.Input[str] action: Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
         :param pulumi.Input[str] application_list: Name of an existing Application list.
         :param pulumi.Input[str] av_profile: Name of an existing Antivirus profile.
+        :param pulumi.Input[str] block_notification: Enable/disable block notification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] cifs_profile: Name of an existing CIFS profile.
         :param pulumi.Input[str] comments: Optional comments.
         :param pulumi.Input[str] decrypted_traffic_mirror: Decrypted traffic mirror.
+        :param pulumi.Input[str] device_ownership: When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] disclaimer: Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
         :param pulumi.Input[str] dlp_sensor: Name of an existing DLP sensor.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyDstaddr6Args']]]] dstaddr6s: IPv6 destination address objects. The structure of `dstaddr6` block is documented below.
@@ -2610,11 +2949,12 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] profile_group: Name of profile group.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
         :param pulumi.Input[str] profile_type: Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
-        :param pulumi.Input[str] proxy: Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        :param pulumi.Input[str] proxy: Type of explicit proxy.
         :param pulumi.Input[str] redirect_url: Redirect URL for further explicit web proxy processing.
         :param pulumi.Input[str] replacemsg_override_group: Authentication replacement message override group.
         :param pulumi.Input[str] scan_botnet_connections: Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Name of schedule object.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] service_negate: When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyServiceArgs']]]] services: Name of service objects. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
@@ -2632,23 +2972,31 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] utm_status: Enable the use of UTM profiles/sensors/lists. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
+        :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webcache: Enable/disable web caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] webcache_https: Enable/disable web caching for HTTPS (Requires deep-inspection enabled in ssl-ssh-profile). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Name of web proxy profile.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallProxyPolicyZtnaEmsTagArgs']]]] ztna_ems_tags: ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[str] ztna_tags_match_logic: ZTNA tag matching logic. Valid values: `or`, `and`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _FirewallProxyPolicyState.__new__(_FirewallProxyPolicyState)
 
+        __props__.__dict__["access_proxies"] = access_proxies
+        __props__.__dict__["access_proxy6s"] = access_proxy6s
         __props__.__dict__["action"] = action
         __props__.__dict__["application_list"] = application_list
         __props__.__dict__["av_profile"] = av_profile
+        __props__.__dict__["block_notification"] = block_notification
         __props__.__dict__["cifs_profile"] = cifs_profile
         __props__.__dict__["comments"] = comments
         __props__.__dict__["decrypted_traffic_mirror"] = decrypted_traffic_mirror
+        __props__.__dict__["device_ownership"] = device_ownership
         __props__.__dict__["disclaimer"] = disclaimer
         __props__.__dict__["dlp_sensor"] = dlp_sensor
         __props__.__dict__["dstaddr6s"] = dstaddr6s
@@ -2684,6 +3032,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         __props__.__dict__["replacemsg_override_group"] = replacemsg_override_group
         __props__.__dict__["scan_botnet_connections"] = scan_botnet_connections
         __props__.__dict__["schedule"] = schedule
+        __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
         __props__.__dict__["service_negate"] = service_negate
         __props__.__dict__["services"] = services
         __props__.__dict__["session_ttl"] = session_ttl
@@ -2701,13 +3050,33 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         __props__.__dict__["utm_status"] = utm_status
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["videofilter_profile"] = videofilter_profile
+        __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["waf_profile"] = waf_profile
         __props__.__dict__["webcache"] = webcache
         __props__.__dict__["webcache_https"] = webcache_https
         __props__.__dict__["webfilter_profile"] = webfilter_profile
         __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
         __props__.__dict__["webproxy_profile"] = webproxy_profile
+        __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
+        __props__.__dict__["ztna_tags_match_logic"] = ztna_tags_match_logic
         return FirewallProxyPolicy(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="accessProxies")
+    def access_proxies(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyAccessProxy']]]:
+        """
+        IPv4 access proxy. The structure of `access_proxy` block is documented below.
+        """
+        return pulumi.get(self, "access_proxies")
+
+    @property
+    @pulumi.getter(name="accessProxy6s")
+    def access_proxy6s(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyAccessProxy6']]]:
+        """
+        IPv6 access proxy. The structure of `access_proxy6` block is documented below.
+        """
+        return pulumi.get(self, "access_proxy6s")
 
     @property
     @pulumi.getter
@@ -2734,6 +3103,14 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         return pulumi.get(self, "av_profile")
 
     @property
+    @pulumi.getter(name="blockNotification")
+    def block_notification(self) -> pulumi.Output[str]:
+        """
+        Enable/disable block notification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "block_notification")
+
+    @property
     @pulumi.getter(name="cifsProfile")
     def cifs_profile(self) -> pulumi.Output[str]:
         """
@@ -2756,6 +3133,14 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         Decrypted traffic mirror.
         """
         return pulumi.get(self, "decrypted_traffic_mirror")
+
+    @property
+    @pulumi.getter(name="deviceOwnership")
+    def device_ownership(self) -> pulumi.Output[str]:
+        """
+        When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "device_ownership")
 
     @property
     @pulumi.getter
@@ -3001,7 +3386,7 @@ class FirewallProxyPolicy(pulumi.CustomResource):
     @pulumi.getter
     def proxy(self) -> pulumi.Output[str]:
         """
-        Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+        Type of explicit proxy.
         """
         return pulumi.get(self, "proxy")
 
@@ -3036,6 +3421,14 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         Name of schedule object.
         """
         return pulumi.get(self, "schedule")
+
+    @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
 
     @property
     @pulumi.getter(name="serviceNegate")
@@ -3174,6 +3567,22 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         return pulumi.get(self, "vdomparam")
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @property
+    @pulumi.getter(name="voipProfile")
+    def voip_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VoIP profile.
+        """
+        return pulumi.get(self, "voip_profile")
+
+    @property
     @pulumi.getter(name="wafProfile")
     def waf_profile(self) -> pulumi.Output[str]:
         """
@@ -3220,4 +3629,20 @@ class FirewallProxyPolicy(pulumi.CustomResource):
         Name of web proxy profile.
         """
         return pulumi.get(self, "webproxy_profile")
+
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallProxyPolicyZtnaEmsTag']]]:
+        """
+        ZTNA EMS Tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @property
+    @pulumi.getter(name="ztnaTagsMatchLogic")
+    def ztna_tags_match_logic(self) -> pulumi.Output[str]:
+        """
+        ZTNA tag matching logic. Valid values: `or`, `and`.
+        """
+        return pulumi.get(self, "ztna_tags_match_logic")
 

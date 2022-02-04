@@ -17,6 +17,7 @@ class UserLdapArgs:
                  server: pulumi.Input[str],
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cnid: Optional[pulumi.Input[str]] = None,
                  group_filter: Optional[pulumi.Input[str]] = None,
@@ -29,6 +30,7 @@ class UserLdapArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  obtain_user_info: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_attr: Optional[pulumi.Input[str]] = None,
                  password_expiry_warning: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -37,6 +39,7 @@ class UserLdapArgs:
                  secure: Optional[pulumi.Input[str]] = None,
                  server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
@@ -52,6 +55,7 @@ class UserLdapArgs:
         :param pulumi.Input[str] server: LDAP server CN domain name or IP.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] cnid: Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
         :param pulumi.Input[str] group_filter: Filter used for group matching.
@@ -64,6 +68,7 @@ class UserLdapArgs:
         :param pulumi.Input[str] name: LDAP server entry name.
         :param pulumi.Input[str] obtain_user_info: Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password: Password for initial binding.
+        :param pulumi.Input[str] password_attr: Name of attribute to get password hash.
         :param pulumi.Input[str] password_expiry_warning: Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password_renewal: Enable/disable online password renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] port: Port to be used for communication with the LDAP server (default = 389).
@@ -72,6 +77,7 @@ class UserLdapArgs:
         :param pulumi.Input[str] secure: Port to be used for authentication. Valid values: `disable`, `starttls`, `ldaps`.
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
+        :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -88,6 +94,8 @@ class UserLdapArgs:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
             pulumi.set(__self__, "account_key_processing", account_key_processing)
+        if antiphish is not None:
+            pulumi.set(__self__, "antiphish", antiphish)
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
         if cnid is not None:
@@ -112,6 +120,8 @@ class UserLdapArgs:
             pulumi.set(__self__, "obtain_user_info", obtain_user_info)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_attr is not None:
+            pulumi.set(__self__, "password_attr", password_attr)
         if password_expiry_warning is not None:
             pulumi.set(__self__, "password_expiry_warning", password_expiry_warning)
         if password_renewal is not None:
@@ -128,6 +138,8 @@ class UserLdapArgs:
             pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if source_port is not None:
+            pulumi.set(__self__, "source_port", source_port)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
         if tertiary_server is not None:
@@ -194,6 +206,18 @@ class UserLdapArgs:
     @account_key_processing.setter
     def account_key_processing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_key_processing", value)
+
+    @property
+    @pulumi.getter
+    def antiphish(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "antiphish")
+
+    @antiphish.setter
+    def antiphish(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "antiphish", value)
 
     @property
     @pulumi.getter(name="caCert")
@@ -340,6 +364,18 @@ class UserLdapArgs:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="passwordAttr")
+    def password_attr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of attribute to get password hash.
+        """
+        return pulumi.get(self, "password_attr")
+
+    @password_attr.setter
+    def password_attr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_attr", value)
+
+    @property
     @pulumi.getter(name="passwordExpiryWarning")
     def password_expiry_warning(self) -> Optional[pulumi.Input[str]]:
         """
@@ -434,6 +470,18 @@ class UserLdapArgs:
     @source_ip.setter
     def source_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="sourcePort")
+    def source_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Source port to be used for communication with the LDAP server.
+        """
+        return pulumi.get(self, "source_port")
+
+    @source_port.setter
+    def source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "source_port", value)
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")
@@ -549,6 +597,7 @@ class _UserLdapState:
     def __init__(__self__, *,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cnid: Optional[pulumi.Input[str]] = None,
                  dn: Optional[pulumi.Input[str]] = None,
@@ -562,6 +611,7 @@ class _UserLdapState:
                  name: Optional[pulumi.Input[str]] = None,
                  obtain_user_info: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_attr: Optional[pulumi.Input[str]] = None,
                  password_expiry_warning: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -571,6 +621,7 @@ class _UserLdapState:
                  server: Optional[pulumi.Input[str]] = None,
                  server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
@@ -584,6 +635,7 @@ class _UserLdapState:
         Input properties used for looking up and filtering UserLdap resources.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] cnid: Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
         :param pulumi.Input[str] dn: Distinguished name used to look up entries on the LDAP server.
@@ -597,6 +649,7 @@ class _UserLdapState:
         :param pulumi.Input[str] name: LDAP server entry name.
         :param pulumi.Input[str] obtain_user_info: Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password: Password for initial binding.
+        :param pulumi.Input[str] password_attr: Name of attribute to get password hash.
         :param pulumi.Input[str] password_expiry_warning: Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password_renewal: Enable/disable online password renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] port: Port to be used for communication with the LDAP server (default = 389).
@@ -606,6 +659,7 @@ class _UserLdapState:
         :param pulumi.Input[str] server: LDAP server CN domain name or IP.
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
+        :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -620,6 +674,8 @@ class _UserLdapState:
             pulumi.set(__self__, "account_key_filter", account_key_filter)
         if account_key_processing is not None:
             pulumi.set(__self__, "account_key_processing", account_key_processing)
+        if antiphish is not None:
+            pulumi.set(__self__, "antiphish", antiphish)
         if ca_cert is not None:
             pulumi.set(__self__, "ca_cert", ca_cert)
         if cnid is not None:
@@ -646,6 +702,8 @@ class _UserLdapState:
             pulumi.set(__self__, "obtain_user_info", obtain_user_info)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_attr is not None:
+            pulumi.set(__self__, "password_attr", password_attr)
         if password_expiry_warning is not None:
             pulumi.set(__self__, "password_expiry_warning", password_expiry_warning)
         if password_renewal is not None:
@@ -664,6 +722,8 @@ class _UserLdapState:
             pulumi.set(__self__, "server_identity_check", server_identity_check)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
+        if source_port is not None:
+            pulumi.set(__self__, "source_port", source_port)
         if ssl_min_proto_version is not None:
             pulumi.set(__self__, "ssl_min_proto_version", ssl_min_proto_version)
         if tertiary_server is not None:
@@ -706,6 +766,18 @@ class _UserLdapState:
     @account_key_processing.setter
     def account_key_processing(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "account_key_processing", value)
+
+    @property
+    @pulumi.getter
+    def antiphish(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "antiphish")
+
+    @antiphish.setter
+    def antiphish(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "antiphish", value)
 
     @property
     @pulumi.getter(name="caCert")
@@ -864,6 +936,18 @@ class _UserLdapState:
         pulumi.set(self, "password", value)
 
     @property
+    @pulumi.getter(name="passwordAttr")
+    def password_attr(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of attribute to get password hash.
+        """
+        return pulumi.get(self, "password_attr")
+
+    @password_attr.setter
+    def password_attr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "password_attr", value)
+
+    @property
     @pulumi.getter(name="passwordExpiryWarning")
     def password_expiry_warning(self) -> Optional[pulumi.Input[str]]:
         """
@@ -970,6 +1054,18 @@ class _UserLdapState:
     @source_ip.setter
     def source_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "source_ip", value)
+
+    @property
+    @pulumi.getter(name="sourcePort")
+    def source_port(self) -> Optional[pulumi.Input[int]]:
+        """
+        Source port to be used for communication with the LDAP server.
+        """
+        return pulumi.get(self, "source_port")
+
+    @source_port.setter
+    def source_port(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "source_port", value)
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")
@@ -1087,6 +1183,7 @@ class UserLdap(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cnid: Optional[pulumi.Input[str]] = None,
                  dn: Optional[pulumi.Input[str]] = None,
@@ -1100,6 +1197,7 @@ class UserLdap(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  obtain_user_info: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_attr: Optional[pulumi.Input[str]] = None,
                  password_expiry_warning: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -1109,6 +1207,7 @@ class UserLdap(pulumi.CustomResource):
                  server: Optional[pulumi.Input[str]] = None,
                  server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
@@ -1161,6 +1260,7 @@ class UserLdap(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] cnid: Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
         :param pulumi.Input[str] dn: Distinguished name used to look up entries on the LDAP server.
@@ -1174,6 +1274,7 @@ class UserLdap(pulumi.CustomResource):
         :param pulumi.Input[str] name: LDAP server entry name.
         :param pulumi.Input[str] obtain_user_info: Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password: Password for initial binding.
+        :param pulumi.Input[str] password_attr: Name of attribute to get password hash.
         :param pulumi.Input[str] password_expiry_warning: Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password_renewal: Enable/disable online password renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] port: Port to be used for communication with the LDAP server (default = 389).
@@ -1183,6 +1284,7 @@ class UserLdap(pulumi.CustomResource):
         :param pulumi.Input[str] server: LDAP server CN domain name or IP.
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
+        :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -1254,6 +1356,7 @@ class UserLdap(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  account_key_filter: Optional[pulumi.Input[str]] = None,
                  account_key_processing: Optional[pulumi.Input[str]] = None,
+                 antiphish: Optional[pulumi.Input[str]] = None,
                  ca_cert: Optional[pulumi.Input[str]] = None,
                  cnid: Optional[pulumi.Input[str]] = None,
                  dn: Optional[pulumi.Input[str]] = None,
@@ -1267,6 +1370,7 @@ class UserLdap(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  obtain_user_info: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
+                 password_attr: Optional[pulumi.Input[str]] = None,
                  password_expiry_warning: Optional[pulumi.Input[str]] = None,
                  password_renewal: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
@@ -1276,6 +1380,7 @@ class UserLdap(pulumi.CustomResource):
                  server: Optional[pulumi.Input[str]] = None,
                  server_identity_check: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
+                 source_port: Optional[pulumi.Input[int]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  tertiary_server: Optional[pulumi.Input[str]] = None,
                  two_factor: Optional[pulumi.Input[str]] = None,
@@ -1292,6 +1397,8 @@ class UserLdap(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1299,6 +1406,7 @@ class UserLdap(pulumi.CustomResource):
 
             __props__.__dict__["account_key_filter"] = account_key_filter
             __props__.__dict__["account_key_processing"] = account_key_processing
+            __props__.__dict__["antiphish"] = antiphish
             __props__.__dict__["ca_cert"] = ca_cert
             __props__.__dict__["cnid"] = cnid
             if dn is None and not opts.urn:
@@ -1314,6 +1422,7 @@ class UserLdap(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["obtain_user_info"] = obtain_user_info
             __props__.__dict__["password"] = password
+            __props__.__dict__["password_attr"] = password_attr
             __props__.__dict__["password_expiry_warning"] = password_expiry_warning
             __props__.__dict__["password_renewal"] = password_renewal
             __props__.__dict__["port"] = port
@@ -1325,6 +1434,7 @@ class UserLdap(pulumi.CustomResource):
             __props__.__dict__["server"] = server
             __props__.__dict__["server_identity_check"] = server_identity_check
             __props__.__dict__["source_ip"] = source_ip
+            __props__.__dict__["source_port"] = source_port
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
             __props__.__dict__["tertiary_server"] = tertiary_server
             __props__.__dict__["two_factor"] = two_factor
@@ -1346,6 +1456,7 @@ class UserLdap(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             account_key_filter: Optional[pulumi.Input[str]] = None,
             account_key_processing: Optional[pulumi.Input[str]] = None,
+            antiphish: Optional[pulumi.Input[str]] = None,
             ca_cert: Optional[pulumi.Input[str]] = None,
             cnid: Optional[pulumi.Input[str]] = None,
             dn: Optional[pulumi.Input[str]] = None,
@@ -1359,6 +1470,7 @@ class UserLdap(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             obtain_user_info: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
+            password_attr: Optional[pulumi.Input[str]] = None,
             password_expiry_warning: Optional[pulumi.Input[str]] = None,
             password_renewal: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
@@ -1368,6 +1480,7 @@ class UserLdap(pulumi.CustomResource):
             server: Optional[pulumi.Input[str]] = None,
             server_identity_check: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
+            source_port: Optional[pulumi.Input[int]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
             tertiary_server: Optional[pulumi.Input[str]] = None,
             two_factor: Optional[pulumi.Input[str]] = None,
@@ -1386,6 +1499,7 @@ class UserLdap(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] account_key_filter: Account key filter, using the UPN as the search filter.
         :param pulumi.Input[str] account_key_processing: Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+        :param pulumi.Input[str] antiphish: Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ca_cert: CA certificate name.
         :param pulumi.Input[str] cnid: Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
         :param pulumi.Input[str] dn: Distinguished name used to look up entries on the LDAP server.
@@ -1399,6 +1513,7 @@ class UserLdap(pulumi.CustomResource):
         :param pulumi.Input[str] name: LDAP server entry name.
         :param pulumi.Input[str] obtain_user_info: Enable/disable obtaining of user information. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password: Password for initial binding.
+        :param pulumi.Input[str] password_attr: Name of attribute to get password hash.
         :param pulumi.Input[str] password_expiry_warning: Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] password_renewal: Enable/disable online password renewal. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] port: Port to be used for communication with the LDAP server (default = 389).
@@ -1408,6 +1523,7 @@ class UserLdap(pulumi.CustomResource):
         :param pulumi.Input[str] server: LDAP server CN domain name or IP.
         :param pulumi.Input[str] server_identity_check: Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP for communications to LDAP server.
+        :param pulumi.Input[int] source_port: Source port to be used for communication with the LDAP server.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] tertiary_server: Tertiary LDAP server CN domain name or IP.
         :param pulumi.Input[str] two_factor: Enable/disable two-factor authentication. Valid values: `disable`, `fortitoken-cloud`.
@@ -1424,6 +1540,7 @@ class UserLdap(pulumi.CustomResource):
 
         __props__.__dict__["account_key_filter"] = account_key_filter
         __props__.__dict__["account_key_processing"] = account_key_processing
+        __props__.__dict__["antiphish"] = antiphish
         __props__.__dict__["ca_cert"] = ca_cert
         __props__.__dict__["cnid"] = cnid
         __props__.__dict__["dn"] = dn
@@ -1437,6 +1554,7 @@ class UserLdap(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["obtain_user_info"] = obtain_user_info
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_attr"] = password_attr
         __props__.__dict__["password_expiry_warning"] = password_expiry_warning
         __props__.__dict__["password_renewal"] = password_renewal
         __props__.__dict__["port"] = port
@@ -1446,6 +1564,7 @@ class UserLdap(pulumi.CustomResource):
         __props__.__dict__["server"] = server
         __props__.__dict__["server_identity_check"] = server_identity_check
         __props__.__dict__["source_ip"] = source_ip
+        __props__.__dict__["source_port"] = source_port
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
         __props__.__dict__["tertiary_server"] = tertiary_server
         __props__.__dict__["two_factor"] = two_factor
@@ -1472,6 +1591,14 @@ class UserLdap(pulumi.CustomResource):
         Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
         """
         return pulumi.get(self, "account_key_processing")
+
+    @property
+    @pulumi.getter
+    def antiphish(self) -> pulumi.Output[str]:
+        """
+        Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "antiphish")
 
     @property
     @pulumi.getter(name="caCert")
@@ -1578,6 +1705,14 @@ class UserLdap(pulumi.CustomResource):
         return pulumi.get(self, "password")
 
     @property
+    @pulumi.getter(name="passwordAttr")
+    def password_attr(self) -> pulumi.Output[str]:
+        """
+        Name of attribute to get password hash.
+        """
+        return pulumi.get(self, "password_attr")
+
+    @property
     @pulumi.getter(name="passwordExpiryWarning")
     def password_expiry_warning(self) -> pulumi.Output[str]:
         """
@@ -1648,6 +1783,14 @@ class UserLdap(pulumi.CustomResource):
         Source IP for communications to LDAP server.
         """
         return pulumi.get(self, "source_ip")
+
+    @property
+    @pulumi.getter(name="sourcePort")
+    def source_port(self) -> pulumi.Output[int]:
+        """
+        Source port to be used for communication with the LDAP server.
+        """
+        return pulumi.get(self, "source_port")
 
     @property
     @pulumi.getter(name="sslMinProtoVersion")

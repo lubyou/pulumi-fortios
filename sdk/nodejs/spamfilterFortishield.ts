@@ -84,25 +84,23 @@ export class SpamfilterFortishield extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SpamfilterFortishieldArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SpamfilterFortishieldArgs | SpamfilterFortishieldState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SpamfilterFortishieldState | undefined;
-            inputs["spamSubmitForce"] = state ? state.spamSubmitForce : undefined;
-            inputs["spamSubmitSrv"] = state ? state.spamSubmitSrv : undefined;
-            inputs["spamSubmitTxt2htm"] = state ? state.spamSubmitTxt2htm : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["spamSubmitForce"] = state ? state.spamSubmitForce : undefined;
+            resourceInputs["spamSubmitSrv"] = state ? state.spamSubmitSrv : undefined;
+            resourceInputs["spamSubmitTxt2htm"] = state ? state.spamSubmitTxt2htm : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SpamfilterFortishieldArgs | undefined;
-            inputs["spamSubmitForce"] = args ? args.spamSubmitForce : undefined;
-            inputs["spamSubmitSrv"] = args ? args.spamSubmitSrv : undefined;
-            inputs["spamSubmitTxt2htm"] = args ? args.spamSubmitTxt2htm : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["spamSubmitForce"] = args ? args.spamSubmitForce : undefined;
+            resourceInputs["spamSubmitSrv"] = args ? args.spamSubmitSrv : undefined;
+            resourceInputs["spamSubmitTxt2htm"] = args ? args.spamSubmitTxt2htm : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SpamfilterFortishield.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SpamfilterFortishield.__pulumiType, name, resourceInputs, opts);
     }
 }
 

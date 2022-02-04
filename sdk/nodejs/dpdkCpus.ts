@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure CPUs enabled to run engines in each DPDK stage.
+ * Configure CPUs enabled to run engines in each DPDK stage. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -50,6 +50,10 @@ export class DpdkCpus extends pulumi.CustomResource {
      */
     public readonly ipsCpus!: pulumi.Output<string>;
     /**
+     * CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+     */
+    public readonly isolatedCpus!: pulumi.Output<string>;
+    /**
      * CPUs enabled to run DPDK RX engines.
      */
     public readonly rxCpus!: pulumi.Output<string>;
@@ -75,27 +79,27 @@ export class DpdkCpus extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DpdkCpusArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DpdkCpusArgs | DpdkCpusState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DpdkCpusState | undefined;
-            inputs["ipsCpus"] = state ? state.ipsCpus : undefined;
-            inputs["rxCpus"] = state ? state.rxCpus : undefined;
-            inputs["txCpus"] = state ? state.txCpus : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vnpCpus"] = state ? state.vnpCpus : undefined;
+            resourceInputs["ipsCpus"] = state ? state.ipsCpus : undefined;
+            resourceInputs["isolatedCpus"] = state ? state.isolatedCpus : undefined;
+            resourceInputs["rxCpus"] = state ? state.rxCpus : undefined;
+            resourceInputs["txCpus"] = state ? state.txCpus : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vnpCpus"] = state ? state.vnpCpus : undefined;
         } else {
             const args = argsOrState as DpdkCpusArgs | undefined;
-            inputs["ipsCpus"] = args ? args.ipsCpus : undefined;
-            inputs["rxCpus"] = args ? args.rxCpus : undefined;
-            inputs["txCpus"] = args ? args.txCpus : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vnpCpus"] = args ? args.vnpCpus : undefined;
+            resourceInputs["ipsCpus"] = args ? args.ipsCpus : undefined;
+            resourceInputs["isolatedCpus"] = args ? args.isolatedCpus : undefined;
+            resourceInputs["rxCpus"] = args ? args.rxCpus : undefined;
+            resourceInputs["txCpus"] = args ? args.txCpus : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vnpCpus"] = args ? args.vnpCpus : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DpdkCpus.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DpdkCpus.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -107,6 +111,10 @@ export interface DpdkCpusState {
      * CPUs enabled to run DPDK IPS engines.
      */
     ipsCpus?: pulumi.Input<string>;
+    /**
+     * CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+     */
+    isolatedCpus?: pulumi.Input<string>;
     /**
      * CPUs enabled to run DPDK RX engines.
      */
@@ -133,6 +141,10 @@ export interface DpdkCpusArgs {
      * CPUs enabled to run DPDK IPS engines.
      */
     ipsCpus?: pulumi.Input<string>;
+    /**
+     * CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+     */
+    isolatedCpus?: pulumi.Input<string>;
     /**
      * CPUs enabled to run DPDK RX engines.
      */

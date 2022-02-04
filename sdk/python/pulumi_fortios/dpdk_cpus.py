@@ -14,6 +14,7 @@ __all__ = ['DpdkCpusArgs', 'DpdkCpus']
 class DpdkCpusArgs:
     def __init__(__self__, *,
                  ips_cpus: Optional[pulumi.Input[str]] = None,
+                 isolated_cpus: Optional[pulumi.Input[str]] = None,
                  rx_cpus: Optional[pulumi.Input[str]] = None,
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -21,6 +22,7 @@ class DpdkCpusArgs:
         """
         The set of arguments for constructing a DpdkCpus resource.
         :param pulumi.Input[str] ips_cpus: CPUs enabled to run DPDK IPS engines.
+        :param pulumi.Input[str] isolated_cpus: CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
         :param pulumi.Input[str] rx_cpus: CPUs enabled to run DPDK RX engines.
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -28,6 +30,8 @@ class DpdkCpusArgs:
         """
         if ips_cpus is not None:
             pulumi.set(__self__, "ips_cpus", ips_cpus)
+        if isolated_cpus is not None:
+            pulumi.set(__self__, "isolated_cpus", isolated_cpus)
         if rx_cpus is not None:
             pulumi.set(__self__, "rx_cpus", rx_cpus)
         if tx_cpus is not None:
@@ -48,6 +52,18 @@ class DpdkCpusArgs:
     @ips_cpus.setter
     def ips_cpus(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_cpus", value)
+
+    @property
+    @pulumi.getter(name="isolatedCpus")
+    def isolated_cpus(self) -> Optional[pulumi.Input[str]]:
+        """
+        CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+        """
+        return pulumi.get(self, "isolated_cpus")
+
+    @isolated_cpus.setter
+    def isolated_cpus(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "isolated_cpus", value)
 
     @property
     @pulumi.getter(name="rxCpus")
@@ -102,6 +118,7 @@ class DpdkCpusArgs:
 class _DpdkCpusState:
     def __init__(__self__, *,
                  ips_cpus: Optional[pulumi.Input[str]] = None,
+                 isolated_cpus: Optional[pulumi.Input[str]] = None,
                  rx_cpus: Optional[pulumi.Input[str]] = None,
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -109,6 +126,7 @@ class _DpdkCpusState:
         """
         Input properties used for looking up and filtering DpdkCpus resources.
         :param pulumi.Input[str] ips_cpus: CPUs enabled to run DPDK IPS engines.
+        :param pulumi.Input[str] isolated_cpus: CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
         :param pulumi.Input[str] rx_cpus: CPUs enabled to run DPDK RX engines.
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -116,6 +134,8 @@ class _DpdkCpusState:
         """
         if ips_cpus is not None:
             pulumi.set(__self__, "ips_cpus", ips_cpus)
+        if isolated_cpus is not None:
+            pulumi.set(__self__, "isolated_cpus", isolated_cpus)
         if rx_cpus is not None:
             pulumi.set(__self__, "rx_cpus", rx_cpus)
         if tx_cpus is not None:
@@ -136,6 +156,18 @@ class _DpdkCpusState:
     @ips_cpus.setter
     def ips_cpus(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ips_cpus", value)
+
+    @property
+    @pulumi.getter(name="isolatedCpus")
+    def isolated_cpus(self) -> Optional[pulumi.Input[str]]:
+        """
+        CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+        """
+        return pulumi.get(self, "isolated_cpus")
+
+    @isolated_cpus.setter
+    def isolated_cpus(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "isolated_cpus", value)
 
     @property
     @pulumi.getter(name="rxCpus")
@@ -192,13 +224,14 @@ class DpdkCpus(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ips_cpus: Optional[pulumi.Input[str]] = None,
+                 isolated_cpus: Optional[pulumi.Input[str]] = None,
                  rx_cpus: Optional[pulumi.Input[str]] = None,
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  vnp_cpus: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure CPUs enabled to run engines in each DPDK stage.
+        Configure CPUs enabled to run engines in each DPDK stage. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -213,6 +246,7 @@ class DpdkCpus(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ips_cpus: CPUs enabled to run DPDK IPS engines.
+        :param pulumi.Input[str] isolated_cpus: CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
         :param pulumi.Input[str] rx_cpus: CPUs enabled to run DPDK RX engines.
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -225,7 +259,7 @@ class DpdkCpus(pulumi.CustomResource):
                  args: Optional[DpdkCpusArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure CPUs enabled to run engines in each DPDK stage.
+        Configure CPUs enabled to run engines in each DPDK stage. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -253,6 +287,7 @@ class DpdkCpus(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  ips_cpus: Optional[pulumi.Input[str]] = None,
+                 isolated_cpus: Optional[pulumi.Input[str]] = None,
                  rx_cpus: Optional[pulumi.Input[str]] = None,
                  tx_cpus: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -264,12 +299,15 @@ class DpdkCpus(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DpdkCpusArgs.__new__(DpdkCpusArgs)
 
             __props__.__dict__["ips_cpus"] = ips_cpus
+            __props__.__dict__["isolated_cpus"] = isolated_cpus
             __props__.__dict__["rx_cpus"] = rx_cpus
             __props__.__dict__["tx_cpus"] = tx_cpus
             __props__.__dict__["vdomparam"] = vdomparam
@@ -285,6 +323,7 @@ class DpdkCpus(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             ips_cpus: Optional[pulumi.Input[str]] = None,
+            isolated_cpus: Optional[pulumi.Input[str]] = None,
             rx_cpus: Optional[pulumi.Input[str]] = None,
             tx_cpus: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -297,6 +336,7 @@ class DpdkCpus(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ips_cpus: CPUs enabled to run DPDK IPS engines.
+        :param pulumi.Input[str] isolated_cpus: CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
         :param pulumi.Input[str] rx_cpus: CPUs enabled to run DPDK RX engines.
         :param pulumi.Input[str] tx_cpus: CPUs enabled to run DPDK TX engines.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -307,6 +347,7 @@ class DpdkCpus(pulumi.CustomResource):
         __props__ = _DpdkCpusState.__new__(_DpdkCpusState)
 
         __props__.__dict__["ips_cpus"] = ips_cpus
+        __props__.__dict__["isolated_cpus"] = isolated_cpus
         __props__.__dict__["rx_cpus"] = rx_cpus
         __props__.__dict__["tx_cpus"] = tx_cpus
         __props__.__dict__["vdomparam"] = vdomparam
@@ -320,6 +361,14 @@ class DpdkCpus(pulumi.CustomResource):
         CPUs enabled to run DPDK IPS engines.
         """
         return pulumi.get(self, "ips_cpus")
+
+    @property
+    @pulumi.getter(name="isolatedCpus")
+    def isolated_cpus(self) -> pulumi.Output[str]:
+        """
+        CPUs isolated to run only the DPDK engines with the exception of processes that have affinity explicitly set by either a user configuration or by their implementation.
+        """
+        return pulumi.get(self, "isolated_cpus")
 
     @property
     @pulumi.getter(name="rxCpus")

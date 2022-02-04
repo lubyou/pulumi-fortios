@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -31,8 +32,8 @@ import (
 // 			AvProfileStatus:       pulumi.String("disable"),
 // 			DlpSensorStatus:       pulumi.String("disable"),
 // 			Dsri:                  pulumi.String("disable"),
-// 			Dstaddr6s: fortios.FirewallInterfacePolicy6Dstaddr6Array{
-// 				&fortios.FirewallInterfacePolicy6Dstaddr6Args{
+// 			Dstaddr6s: FirewallInterfacePolicy6Dstaddr6Array{
+// 				&FirewallInterfacePolicy6Dstaddr6Args{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -41,14 +42,14 @@ import (
 // 			Logtraffic:            pulumi.String("all"),
 // 			Policyid:              pulumi.Int(1),
 // 			ScanBotnetConnections: pulumi.String("block"),
-// 			Service6s: fortios.FirewallInterfacePolicy6Service6Array{
-// 				&fortios.FirewallInterfacePolicy6Service6Args{
+// 			Service6s: FirewallInterfacePolicy6Service6Array{
+// 				&FirewallInterfacePolicy6Service6Args{
 // 					Name: pulumi.String("ALL"),
 // 				},
 // 			},
 // 			SpamfilterProfileStatus: pulumi.String("disable"),
-// 			Srcaddr6s: fortios.FirewallInterfacePolicy6Srcaddr6Array{
-// 				&fortios.FirewallInterfacePolicy6Srcaddr6Args{
+// 			Srcaddr6s: FirewallInterfacePolicy6Srcaddr6Array{
+// 				&FirewallInterfacePolicy6Srcaddr6Args{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -149,6 +150,7 @@ func NewFirewallInterfacePolicy6(ctx *pulumi.Context,
 	if args.Srcaddr6s == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddr6s'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInterfacePolicy6
 	err := ctx.RegisterResource("fortios:index/firewallInterfacePolicy6:FirewallInterfacePolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -423,7 +425,7 @@ type FirewallInterfacePolicy6Input interface {
 }
 
 func (*FirewallInterfacePolicy6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInterfacePolicy6)(nil))
+	return reflect.TypeOf((**FirewallInterfacePolicy6)(nil)).Elem()
 }
 
 func (i *FirewallInterfacePolicy6) ToFirewallInterfacePolicy6Output() FirewallInterfacePolicy6Output {
@@ -432,35 +434,6 @@ func (i *FirewallInterfacePolicy6) ToFirewallInterfacePolicy6Output() FirewallIn
 
 func (i *FirewallInterfacePolicy6) ToFirewallInterfacePolicy6OutputWithContext(ctx context.Context) FirewallInterfacePolicy6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6Output)
-}
-
-func (i *FirewallInterfacePolicy6) ToFirewallInterfacePolicy6PtrOutput() FirewallInterfacePolicy6PtrOutput {
-	return i.ToFirewallInterfacePolicy6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInterfacePolicy6) ToFirewallInterfacePolicy6PtrOutputWithContext(ctx context.Context) FirewallInterfacePolicy6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6PtrOutput)
-}
-
-type FirewallInterfacePolicy6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallInterfacePolicy6PtrOutput() FirewallInterfacePolicy6PtrOutput
-	ToFirewallInterfacePolicy6PtrOutputWithContext(ctx context.Context) FirewallInterfacePolicy6PtrOutput
-}
-
-type firewallInterfacePolicy6PtrType FirewallInterfacePolicy6Args
-
-func (*firewallInterfacePolicy6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInterfacePolicy6)(nil))
-}
-
-func (i *firewallInterfacePolicy6PtrType) ToFirewallInterfacePolicy6PtrOutput() FirewallInterfacePolicy6PtrOutput {
-	return i.ToFirewallInterfacePolicy6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInterfacePolicy6PtrType) ToFirewallInterfacePolicy6PtrOutputWithContext(ctx context.Context) FirewallInterfacePolicy6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6PtrOutput)
 }
 
 // FirewallInterfacePolicy6ArrayInput is an input type that accepts FirewallInterfacePolicy6Array and FirewallInterfacePolicy6ArrayOutput values.
@@ -477,7 +450,7 @@ type FirewallInterfacePolicy6ArrayInput interface {
 type FirewallInterfacePolicy6Array []FirewallInterfacePolicy6Input
 
 func (FirewallInterfacePolicy6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInterfacePolicy6)(nil))
+	return reflect.TypeOf((*[]*FirewallInterfacePolicy6)(nil)).Elem()
 }
 
 func (i FirewallInterfacePolicy6Array) ToFirewallInterfacePolicy6ArrayOutput() FirewallInterfacePolicy6ArrayOutput {
@@ -502,7 +475,7 @@ type FirewallInterfacePolicy6MapInput interface {
 type FirewallInterfacePolicy6Map map[string]FirewallInterfacePolicy6Input
 
 func (FirewallInterfacePolicy6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInterfacePolicy6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInterfacePolicy6)(nil)).Elem()
 }
 
 func (i FirewallInterfacePolicy6Map) ToFirewallInterfacePolicy6MapOutput() FirewallInterfacePolicy6MapOutput {
@@ -513,12 +486,10 @@ func (i FirewallInterfacePolicy6Map) ToFirewallInterfacePolicy6MapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInterfacePolicy6MapOutput)
 }
 
-type FirewallInterfacePolicy6Output struct {
-	*pulumi.OutputState
-}
+type FirewallInterfacePolicy6Output struct{ *pulumi.OutputState }
 
 func (FirewallInterfacePolicy6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInterfacePolicy6)(nil))
+	return reflect.TypeOf((**FirewallInterfacePolicy6)(nil)).Elem()
 }
 
 func (o FirewallInterfacePolicy6Output) ToFirewallInterfacePolicy6Output() FirewallInterfacePolicy6Output {
@@ -529,36 +500,10 @@ func (o FirewallInterfacePolicy6Output) ToFirewallInterfacePolicy6OutputWithCont
 	return o
 }
 
-func (o FirewallInterfacePolicy6Output) ToFirewallInterfacePolicy6PtrOutput() FirewallInterfacePolicy6PtrOutput {
-	return o.ToFirewallInterfacePolicy6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInterfacePolicy6Output) ToFirewallInterfacePolicy6PtrOutputWithContext(ctx context.Context) FirewallInterfacePolicy6PtrOutput {
-	return o.ApplyT(func(v FirewallInterfacePolicy6) *FirewallInterfacePolicy6 {
-		return &v
-	}).(FirewallInterfacePolicy6PtrOutput)
-}
-
-type FirewallInterfacePolicy6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInterfacePolicy6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInterfacePolicy6)(nil))
-}
-
-func (o FirewallInterfacePolicy6PtrOutput) ToFirewallInterfacePolicy6PtrOutput() FirewallInterfacePolicy6PtrOutput {
-	return o
-}
-
-func (o FirewallInterfacePolicy6PtrOutput) ToFirewallInterfacePolicy6PtrOutputWithContext(ctx context.Context) FirewallInterfacePolicy6PtrOutput {
-	return o
-}
-
 type FirewallInterfacePolicy6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInterfacePolicy6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInterfacePolicy6)(nil))
+	return reflect.TypeOf((*[]*FirewallInterfacePolicy6)(nil)).Elem()
 }
 
 func (o FirewallInterfacePolicy6ArrayOutput) ToFirewallInterfacePolicy6ArrayOutput() FirewallInterfacePolicy6ArrayOutput {
@@ -570,15 +515,15 @@ func (o FirewallInterfacePolicy6ArrayOutput) ToFirewallInterfacePolicy6ArrayOutp
 }
 
 func (o FirewallInterfacePolicy6ArrayOutput) Index(i pulumi.IntInput) FirewallInterfacePolicy6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInterfacePolicy6 {
-		return vs[0].([]FirewallInterfacePolicy6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInterfacePolicy6 {
+		return vs[0].([]*FirewallInterfacePolicy6)[vs[1].(int)]
 	}).(FirewallInterfacePolicy6Output)
 }
 
 type FirewallInterfacePolicy6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInterfacePolicy6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInterfacePolicy6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInterfacePolicy6)(nil)).Elem()
 }
 
 func (o FirewallInterfacePolicy6MapOutput) ToFirewallInterfacePolicy6MapOutput() FirewallInterfacePolicy6MapOutput {
@@ -590,14 +535,16 @@ func (o FirewallInterfacePolicy6MapOutput) ToFirewallInterfacePolicy6MapOutputWi
 }
 
 func (o FirewallInterfacePolicy6MapOutput) MapIndex(k pulumi.StringInput) FirewallInterfacePolicy6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInterfacePolicy6 {
-		return vs[0].(map[string]FirewallInterfacePolicy6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInterfacePolicy6 {
+		return vs[0].(map[string]*FirewallInterfacePolicy6)[vs[1].(string)]
 	}).(FirewallInterfacePolicy6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInterfacePolicy6Input)(nil)).Elem(), &FirewallInterfacePolicy6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInterfacePolicy6ArrayInput)(nil)).Elem(), FirewallInterfacePolicy6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInterfacePolicy6MapInput)(nil)).Elem(), FirewallInterfacePolicy6Map{})
 	pulumi.RegisterOutputType(FirewallInterfacePolicy6Output{})
-	pulumi.RegisterOutputType(FirewallInterfacePolicy6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallInterfacePolicy6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInterfacePolicy6MapOutput{})
 }

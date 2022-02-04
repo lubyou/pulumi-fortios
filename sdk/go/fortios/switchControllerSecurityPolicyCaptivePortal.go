@@ -41,6 +41,7 @@ func NewSwitchControllerSecurityPolicyCaptivePortal(ctx *pulumi.Context,
 		args = &SwitchControllerSecurityPolicyCaptivePortalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSecurityPolicyCaptivePortal
 	err := ctx.RegisterResource("fortios:index/switchControllerSecurityPolicyCaptivePortal:SwitchControllerSecurityPolicyCaptivePortal", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SwitchControllerSecurityPolicyCaptivePortalInput interface {
 }
 
 func (*SwitchControllerSecurityPolicyCaptivePortal) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSecurityPolicyCaptivePortal)(nil))
+	return reflect.TypeOf((**SwitchControllerSecurityPolicyCaptivePortal)(nil)).Elem()
 }
 
 func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurityPolicyCaptivePortalOutput() SwitchControllerSecurityPolicyCaptivePortalOutput {
@@ -132,35 +133,6 @@ func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurity
 
 func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurityPolicyCaptivePortalOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalOutput)
-}
-
-func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutput() SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return i.ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSecurityPolicyCaptivePortal) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalPtrOutput)
-}
-
-type SwitchControllerSecurityPolicyCaptivePortalPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSecurityPolicyCaptivePortalPtrOutput() SwitchControllerSecurityPolicyCaptivePortalPtrOutput
-	ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalPtrOutput
-}
-
-type switchControllerSecurityPolicyCaptivePortalPtrType SwitchControllerSecurityPolicyCaptivePortalArgs
-
-func (*switchControllerSecurityPolicyCaptivePortalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSecurityPolicyCaptivePortal)(nil))
-}
-
-func (i *switchControllerSecurityPolicyCaptivePortalPtrType) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutput() SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return i.ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSecurityPolicyCaptivePortalPtrType) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalPtrOutput)
 }
 
 // SwitchControllerSecurityPolicyCaptivePortalArrayInput is an input type that accepts SwitchControllerSecurityPolicyCaptivePortalArray and SwitchControllerSecurityPolicyCaptivePortalArrayOutput values.
@@ -177,7 +149,7 @@ type SwitchControllerSecurityPolicyCaptivePortalArrayInput interface {
 type SwitchControllerSecurityPolicyCaptivePortalArray []SwitchControllerSecurityPolicyCaptivePortalInput
 
 func (SwitchControllerSecurityPolicyCaptivePortalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSecurityPolicyCaptivePortal)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSecurityPolicyCaptivePortal)(nil)).Elem()
 }
 
 func (i SwitchControllerSecurityPolicyCaptivePortalArray) ToSwitchControllerSecurityPolicyCaptivePortalArrayOutput() SwitchControllerSecurityPolicyCaptivePortalArrayOutput {
@@ -202,7 +174,7 @@ type SwitchControllerSecurityPolicyCaptivePortalMapInput interface {
 type SwitchControllerSecurityPolicyCaptivePortalMap map[string]SwitchControllerSecurityPolicyCaptivePortalInput
 
 func (SwitchControllerSecurityPolicyCaptivePortalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSecurityPolicyCaptivePortal)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSecurityPolicyCaptivePortal)(nil)).Elem()
 }
 
 func (i SwitchControllerSecurityPolicyCaptivePortalMap) ToSwitchControllerSecurityPolicyCaptivePortalMapOutput() SwitchControllerSecurityPolicyCaptivePortalMapOutput {
@@ -213,12 +185,10 @@ func (i SwitchControllerSecurityPolicyCaptivePortalMap) ToSwitchControllerSecuri
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSecurityPolicyCaptivePortalMapOutput)
 }
 
-type SwitchControllerSecurityPolicyCaptivePortalOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSecurityPolicyCaptivePortalOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyCaptivePortalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSecurityPolicyCaptivePortal)(nil))
+	return reflect.TypeOf((**SwitchControllerSecurityPolicyCaptivePortal)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSecurityPolicyCaptivePortalOutput() SwitchControllerSecurityPolicyCaptivePortalOutput {
@@ -229,36 +199,10 @@ func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSec
 	return o
 }
 
-func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutput() SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return o.ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSecurityPolicyCaptivePortalOutput) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSecurityPolicyCaptivePortal) *SwitchControllerSecurityPolicyCaptivePortal {
-		return &v
-	}).(SwitchControllerSecurityPolicyCaptivePortalPtrOutput)
-}
-
-type SwitchControllerSecurityPolicyCaptivePortalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSecurityPolicyCaptivePortalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSecurityPolicyCaptivePortal)(nil))
-}
-
-func (o SwitchControllerSecurityPolicyCaptivePortalPtrOutput) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutput() SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSecurityPolicyCaptivePortalPtrOutput) ToSwitchControllerSecurityPolicyCaptivePortalPtrOutputWithContext(ctx context.Context) SwitchControllerSecurityPolicyCaptivePortalPtrOutput {
-	return o
-}
-
 type SwitchControllerSecurityPolicyCaptivePortalArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyCaptivePortalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSecurityPolicyCaptivePortal)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSecurityPolicyCaptivePortal)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalArrayOutput) ToSwitchControllerSecurityPolicyCaptivePortalArrayOutput() SwitchControllerSecurityPolicyCaptivePortalArrayOutput {
@@ -270,15 +214,15 @@ func (o SwitchControllerSecurityPolicyCaptivePortalArrayOutput) ToSwitchControll
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalArrayOutput) Index(i pulumi.IntInput) SwitchControllerSecurityPolicyCaptivePortalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSecurityPolicyCaptivePortal {
-		return vs[0].([]SwitchControllerSecurityPolicyCaptivePortal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicyCaptivePortal {
+		return vs[0].([]*SwitchControllerSecurityPolicyCaptivePortal)[vs[1].(int)]
 	}).(SwitchControllerSecurityPolicyCaptivePortalOutput)
 }
 
 type SwitchControllerSecurityPolicyCaptivePortalMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSecurityPolicyCaptivePortalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSecurityPolicyCaptivePortal)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSecurityPolicyCaptivePortal)(nil)).Elem()
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) ToSwitchControllerSecurityPolicyCaptivePortalMapOutput() SwitchControllerSecurityPolicyCaptivePortalMapOutput {
@@ -290,14 +234,16 @@ func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) ToSwitchController
 }
 
 func (o SwitchControllerSecurityPolicyCaptivePortalMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSecurityPolicyCaptivePortalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSecurityPolicyCaptivePortal {
-		return vs[0].(map[string]SwitchControllerSecurityPolicyCaptivePortal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSecurityPolicyCaptivePortal {
+		return vs[0].(map[string]*SwitchControllerSecurityPolicyCaptivePortal)[vs[1].(string)]
 	}).(SwitchControllerSecurityPolicyCaptivePortalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicyCaptivePortalInput)(nil)).Elem(), &SwitchControllerSecurityPolicyCaptivePortal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicyCaptivePortalArrayInput)(nil)).Elem(), SwitchControllerSecurityPolicyCaptivePortalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSecurityPolicyCaptivePortalMapInput)(nil)).Elem(), SwitchControllerSecurityPolicyCaptivePortalMap{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyCaptivePortalOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyCaptivePortalPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyCaptivePortalArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSecurityPolicyCaptivePortalMapOutput{})
 }

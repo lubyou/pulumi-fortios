@@ -47,6 +47,7 @@ func NewSwitchControllerInitialConfigTemplate(ctx *pulumi.Context,
 		args = &SwitchControllerInitialConfigTemplateArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerInitialConfigTemplate
 	err := ctx.RegisterResource("fortios:index/switchControllerInitialConfigTemplate:SwitchControllerInitialConfigTemplate", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type SwitchControllerInitialConfigTemplateInput interface {
 }
 
 func (*SwitchControllerInitialConfigTemplate) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerInitialConfigTemplate)(nil))
+	return reflect.TypeOf((**SwitchControllerInitialConfigTemplate)(nil)).Elem()
 }
 
 func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigTemplateOutput() SwitchControllerInitialConfigTemplateOutput {
@@ -162,35 +163,6 @@ func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigT
 
 func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigTemplateOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplateOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplateOutput)
-}
-
-func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigTemplatePtrOutput() SwitchControllerInitialConfigTemplatePtrOutput {
-	return i.ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerInitialConfigTemplate) ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplatePtrOutput)
-}
-
-type SwitchControllerInitialConfigTemplatePtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerInitialConfigTemplatePtrOutput() SwitchControllerInitialConfigTemplatePtrOutput
-	ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplatePtrOutput
-}
-
-type switchControllerInitialConfigTemplatePtrType SwitchControllerInitialConfigTemplateArgs
-
-func (*switchControllerInitialConfigTemplatePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerInitialConfigTemplate)(nil))
-}
-
-func (i *switchControllerInitialConfigTemplatePtrType) ToSwitchControllerInitialConfigTemplatePtrOutput() SwitchControllerInitialConfigTemplatePtrOutput {
-	return i.ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerInitialConfigTemplatePtrType) ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplatePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplatePtrOutput)
 }
 
 // SwitchControllerInitialConfigTemplateArrayInput is an input type that accepts SwitchControllerInitialConfigTemplateArray and SwitchControllerInitialConfigTemplateArrayOutput values.
@@ -207,7 +179,7 @@ type SwitchControllerInitialConfigTemplateArrayInput interface {
 type SwitchControllerInitialConfigTemplateArray []SwitchControllerInitialConfigTemplateInput
 
 func (SwitchControllerInitialConfigTemplateArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerInitialConfigTemplate)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerInitialConfigTemplate)(nil)).Elem()
 }
 
 func (i SwitchControllerInitialConfigTemplateArray) ToSwitchControllerInitialConfigTemplateArrayOutput() SwitchControllerInitialConfigTemplateArrayOutput {
@@ -232,7 +204,7 @@ type SwitchControllerInitialConfigTemplateMapInput interface {
 type SwitchControllerInitialConfigTemplateMap map[string]SwitchControllerInitialConfigTemplateInput
 
 func (SwitchControllerInitialConfigTemplateMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerInitialConfigTemplate)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerInitialConfigTemplate)(nil)).Elem()
 }
 
 func (i SwitchControllerInitialConfigTemplateMap) ToSwitchControllerInitialConfigTemplateMapOutput() SwitchControllerInitialConfigTemplateMapOutput {
@@ -243,12 +215,10 @@ func (i SwitchControllerInitialConfigTemplateMap) ToSwitchControllerInitialConfi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerInitialConfigTemplateMapOutput)
 }
 
-type SwitchControllerInitialConfigTemplateOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerInitialConfigTemplateOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigTemplateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerInitialConfigTemplate)(nil))
+	return reflect.TypeOf((**SwitchControllerInitialConfigTemplate)(nil)).Elem()
 }
 
 func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialConfigTemplateOutput() SwitchControllerInitialConfigTemplateOutput {
@@ -259,36 +229,10 @@ func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialCo
 	return o
 }
 
-func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialConfigTemplatePtrOutput() SwitchControllerInitialConfigTemplatePtrOutput {
-	return o.ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerInitialConfigTemplateOutput) ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplatePtrOutput {
-	return o.ApplyT(func(v SwitchControllerInitialConfigTemplate) *SwitchControllerInitialConfigTemplate {
-		return &v
-	}).(SwitchControllerInitialConfigTemplatePtrOutput)
-}
-
-type SwitchControllerInitialConfigTemplatePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerInitialConfigTemplatePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerInitialConfigTemplate)(nil))
-}
-
-func (o SwitchControllerInitialConfigTemplatePtrOutput) ToSwitchControllerInitialConfigTemplatePtrOutput() SwitchControllerInitialConfigTemplatePtrOutput {
-	return o
-}
-
-func (o SwitchControllerInitialConfigTemplatePtrOutput) ToSwitchControllerInitialConfigTemplatePtrOutputWithContext(ctx context.Context) SwitchControllerInitialConfigTemplatePtrOutput {
-	return o
-}
-
 type SwitchControllerInitialConfigTemplateArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigTemplateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerInitialConfigTemplate)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerInitialConfigTemplate)(nil)).Elem()
 }
 
 func (o SwitchControllerInitialConfigTemplateArrayOutput) ToSwitchControllerInitialConfigTemplateArrayOutput() SwitchControllerInitialConfigTemplateArrayOutput {
@@ -300,15 +244,15 @@ func (o SwitchControllerInitialConfigTemplateArrayOutput) ToSwitchControllerInit
 }
 
 func (o SwitchControllerInitialConfigTemplateArrayOutput) Index(i pulumi.IntInput) SwitchControllerInitialConfigTemplateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerInitialConfigTemplate {
-		return vs[0].([]SwitchControllerInitialConfigTemplate)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerInitialConfigTemplate {
+		return vs[0].([]*SwitchControllerInitialConfigTemplate)[vs[1].(int)]
 	}).(SwitchControllerInitialConfigTemplateOutput)
 }
 
 type SwitchControllerInitialConfigTemplateMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerInitialConfigTemplateMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerInitialConfigTemplate)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerInitialConfigTemplate)(nil)).Elem()
 }
 
 func (o SwitchControllerInitialConfigTemplateMapOutput) ToSwitchControllerInitialConfigTemplateMapOutput() SwitchControllerInitialConfigTemplateMapOutput {
@@ -320,14 +264,16 @@ func (o SwitchControllerInitialConfigTemplateMapOutput) ToSwitchControllerInitia
 }
 
 func (o SwitchControllerInitialConfigTemplateMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerInitialConfigTemplateOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerInitialConfigTemplate {
-		return vs[0].(map[string]SwitchControllerInitialConfigTemplate)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerInitialConfigTemplate {
+		return vs[0].(map[string]*SwitchControllerInitialConfigTemplate)[vs[1].(string)]
 	}).(SwitchControllerInitialConfigTemplateOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerInitialConfigTemplateInput)(nil)).Elem(), &SwitchControllerInitialConfigTemplate{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerInitialConfigTemplateArrayInput)(nil)).Elem(), SwitchControllerInitialConfigTemplateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerInitialConfigTemplateMapInput)(nil)).Elem(), SwitchControllerInitialConfigTemplateMap{})
 	pulumi.RegisterOutputType(SwitchControllerInitialConfigTemplateOutput{})
-	pulumi.RegisterOutputType(SwitchControllerInitialConfigTemplatePtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerInitialConfigTemplateArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerInitialConfigTemplateMapOutput{})
 }

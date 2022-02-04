@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -53,6 +53,8 @@ import (
 type SystemDhcp6Server struct {
 	pulumi.CustomResourceState
 
+	// IAID of obtained delegated-prefix from the upstream interface.
+	DelegatedPrefixIaid pulumi.IntOutput `pulumi:"delegatedPrefixIaid"`
 	// DNS search list options. Valid values: `delegated`, `specify`.
 	DnsSearchList pulumi.StringOutput `pulumi:"dnsSearchList"`
 	// DNS server 1.
@@ -117,6 +119,7 @@ func NewSystemDhcp6Server(ctx *pulumi.Context,
 	if args.Subnet == nil {
 		return nil, errors.New("invalid value for required argument 'Subnet'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDhcp6Server
 	err := ctx.RegisterResource("fortios:index/systemDhcp6Server:SystemDhcp6Server", name, args, &resource, opts...)
 	if err != nil {
@@ -139,6 +142,8 @@ func GetSystemDhcp6Server(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDhcp6Server resources.
 type systemDhcp6ServerState struct {
+	// IAID of obtained delegated-prefix from the upstream interface.
+	DelegatedPrefixIaid *int `pulumi:"delegatedPrefixIaid"`
 	// DNS search list options. Valid values: `delegated`, `specify`.
 	DnsSearchList *string `pulumi:"dnsSearchList"`
 	// DNS server 1.
@@ -188,6 +193,8 @@ type systemDhcp6ServerState struct {
 }
 
 type SystemDhcp6ServerState struct {
+	// IAID of obtained delegated-prefix from the upstream interface.
+	DelegatedPrefixIaid pulumi.IntPtrInput
 	// DNS search list options. Valid values: `delegated`, `specify`.
 	DnsSearchList pulumi.StringPtrInput
 	// DNS server 1.
@@ -241,6 +248,8 @@ func (SystemDhcp6ServerState) ElementType() reflect.Type {
 }
 
 type systemDhcp6ServerArgs struct {
+	// IAID of obtained delegated-prefix from the upstream interface.
+	DelegatedPrefixIaid *int `pulumi:"delegatedPrefixIaid"`
 	// DNS search list options. Valid values: `delegated`, `specify`.
 	DnsSearchList *string `pulumi:"dnsSearchList"`
 	// DNS server 1.
@@ -291,6 +300,8 @@ type systemDhcp6ServerArgs struct {
 
 // The set of arguments for constructing a SystemDhcp6Server resource.
 type SystemDhcp6ServerArgs struct {
+	// IAID of obtained delegated-prefix from the upstream interface.
+	DelegatedPrefixIaid pulumi.IntPtrInput
 	// DNS search list options. Valid values: `delegated`, `specify`.
 	DnsSearchList pulumi.StringPtrInput
 	// DNS server 1.
@@ -351,7 +362,7 @@ type SystemDhcp6ServerInput interface {
 }
 
 func (*SystemDhcp6Server) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDhcp6Server)(nil))
+	return reflect.TypeOf((**SystemDhcp6Server)(nil)).Elem()
 }
 
 func (i *SystemDhcp6Server) ToSystemDhcp6ServerOutput() SystemDhcp6ServerOutput {
@@ -360,35 +371,6 @@ func (i *SystemDhcp6Server) ToSystemDhcp6ServerOutput() SystemDhcp6ServerOutput 
 
 func (i *SystemDhcp6Server) ToSystemDhcp6ServerOutputWithContext(ctx context.Context) SystemDhcp6ServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerOutput)
-}
-
-func (i *SystemDhcp6Server) ToSystemDhcp6ServerPtrOutput() SystemDhcp6ServerPtrOutput {
-	return i.ToSystemDhcp6ServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDhcp6Server) ToSystemDhcp6ServerPtrOutputWithContext(ctx context.Context) SystemDhcp6ServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerPtrOutput)
-}
-
-type SystemDhcp6ServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemDhcp6ServerPtrOutput() SystemDhcp6ServerPtrOutput
-	ToSystemDhcp6ServerPtrOutputWithContext(ctx context.Context) SystemDhcp6ServerPtrOutput
-}
-
-type systemDhcp6ServerPtrType SystemDhcp6ServerArgs
-
-func (*systemDhcp6ServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDhcp6Server)(nil))
-}
-
-func (i *systemDhcp6ServerPtrType) ToSystemDhcp6ServerPtrOutput() SystemDhcp6ServerPtrOutput {
-	return i.ToSystemDhcp6ServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDhcp6ServerPtrType) ToSystemDhcp6ServerPtrOutputWithContext(ctx context.Context) SystemDhcp6ServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerPtrOutput)
 }
 
 // SystemDhcp6ServerArrayInput is an input type that accepts SystemDhcp6ServerArray and SystemDhcp6ServerArrayOutput values.
@@ -405,7 +387,7 @@ type SystemDhcp6ServerArrayInput interface {
 type SystemDhcp6ServerArray []SystemDhcp6ServerInput
 
 func (SystemDhcp6ServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDhcp6Server)(nil))
+	return reflect.TypeOf((*[]*SystemDhcp6Server)(nil)).Elem()
 }
 
 func (i SystemDhcp6ServerArray) ToSystemDhcp6ServerArrayOutput() SystemDhcp6ServerArrayOutput {
@@ -430,7 +412,7 @@ type SystemDhcp6ServerMapInput interface {
 type SystemDhcp6ServerMap map[string]SystemDhcp6ServerInput
 
 func (SystemDhcp6ServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDhcp6Server)(nil))
+	return reflect.TypeOf((*map[string]*SystemDhcp6Server)(nil)).Elem()
 }
 
 func (i SystemDhcp6ServerMap) ToSystemDhcp6ServerMapOutput() SystemDhcp6ServerMapOutput {
@@ -441,12 +423,10 @@ func (i SystemDhcp6ServerMap) ToSystemDhcp6ServerMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDhcp6ServerMapOutput)
 }
 
-type SystemDhcp6ServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemDhcp6ServerOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcp6ServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDhcp6Server)(nil))
+	return reflect.TypeOf((**SystemDhcp6Server)(nil)).Elem()
 }
 
 func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerOutput() SystemDhcp6ServerOutput {
@@ -457,36 +437,10 @@ func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerPtrOutput() SystemDhcp6ServerPtrOutput {
-	return o.ToSystemDhcp6ServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDhcp6ServerOutput) ToSystemDhcp6ServerPtrOutputWithContext(ctx context.Context) SystemDhcp6ServerPtrOutput {
-	return o.ApplyT(func(v SystemDhcp6Server) *SystemDhcp6Server {
-		return &v
-	}).(SystemDhcp6ServerPtrOutput)
-}
-
-type SystemDhcp6ServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDhcp6ServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDhcp6Server)(nil))
-}
-
-func (o SystemDhcp6ServerPtrOutput) ToSystemDhcp6ServerPtrOutput() SystemDhcp6ServerPtrOutput {
-	return o
-}
-
-func (o SystemDhcp6ServerPtrOutput) ToSystemDhcp6ServerPtrOutputWithContext(ctx context.Context) SystemDhcp6ServerPtrOutput {
-	return o
-}
-
 type SystemDhcp6ServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcp6ServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDhcp6Server)(nil))
+	return reflect.TypeOf((*[]*SystemDhcp6Server)(nil)).Elem()
 }
 
 func (o SystemDhcp6ServerArrayOutput) ToSystemDhcp6ServerArrayOutput() SystemDhcp6ServerArrayOutput {
@@ -498,15 +452,15 @@ func (o SystemDhcp6ServerArrayOutput) ToSystemDhcp6ServerArrayOutputWithContext(
 }
 
 func (o SystemDhcp6ServerArrayOutput) Index(i pulumi.IntInput) SystemDhcp6ServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDhcp6Server {
-		return vs[0].([]SystemDhcp6Server)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDhcp6Server {
+		return vs[0].([]*SystemDhcp6Server)[vs[1].(int)]
 	}).(SystemDhcp6ServerOutput)
 }
 
 type SystemDhcp6ServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDhcp6ServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDhcp6Server)(nil))
+	return reflect.TypeOf((*map[string]*SystemDhcp6Server)(nil)).Elem()
 }
 
 func (o SystemDhcp6ServerMapOutput) ToSystemDhcp6ServerMapOutput() SystemDhcp6ServerMapOutput {
@@ -518,14 +472,16 @@ func (o SystemDhcp6ServerMapOutput) ToSystemDhcp6ServerMapOutputWithContext(ctx 
 }
 
 func (o SystemDhcp6ServerMapOutput) MapIndex(k pulumi.StringInput) SystemDhcp6ServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDhcp6Server {
-		return vs[0].(map[string]SystemDhcp6Server)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDhcp6Server {
+		return vs[0].(map[string]*SystemDhcp6Server)[vs[1].(string)]
 	}).(SystemDhcp6ServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDhcp6ServerInput)(nil)).Elem(), &SystemDhcp6Server{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDhcp6ServerArrayInput)(nil)).Elem(), SystemDhcp6ServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDhcp6ServerMapInput)(nil)).Elem(), SystemDhcp6ServerMap{})
 	pulumi.RegisterOutputType(SystemDhcp6ServerOutput{})
-	pulumi.RegisterOutputType(SystemDhcp6ServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemDhcp6ServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemDhcp6ServerMapOutput{})
 }

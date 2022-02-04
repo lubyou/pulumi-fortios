@@ -20,6 +20,7 @@ import (
 // import (
 // 	"fmt"
 //
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewIcapProfile(ctx, "trname", &fortios.IcapProfileArgs{
-// 			IcapHeaders: fortios.IcapProfileIcapHeaderArray{
-// 				&fortios.IcapProfileIcapHeaderArgs{
+// 			IcapHeaders: IcapProfileIcapHeaderArray{
+// 				&IcapProfileIcapHeaderArgs{
 // 					Base64Encoding: pulumi.String("disable"),
 // 					Content:        pulumi.String(fmt.Sprintf("%v%v", "$", "user")),
 // 					Name:           pulumi.String("X-Authenticated-User"),
@@ -62,8 +63,14 @@ import (
 type IcapProfile struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+	ChunkEncap pulumi.StringOutput `pulumi:"chunkEncap"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
+	ExtensionFeature pulumi.StringOutput `pulumi:"extensionFeature"`
+	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+	IcapBlockLog pulumi.StringOutput `pulumi:"icapBlockLog"`
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
 	IcapHeaders IcapProfileIcapHeaderArrayOutput `pulumi:"icapHeaders"`
 	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
@@ -98,6 +105,8 @@ type IcapProfile struct {
 	ResponseReqHdr pulumi.StringOutput `pulumi:"responseReqHdr"`
 	// ICAP server to use for an HTTP response.
 	ResponseServer pulumi.StringOutput `pulumi:"responseServer"`
+	// Scan progress interval value.
+	ScanProgressInterval pulumi.IntOutput `pulumi:"scanProgressInterval"`
 	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 	StreamingContentBypass pulumi.StringOutput `pulumi:"streamingContentBypass"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -111,6 +120,7 @@ func NewIcapProfile(ctx *pulumi.Context,
 		args = &IcapProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IcapProfile
 	err := ctx.RegisterResource("fortios:index/icapProfile:IcapProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -133,8 +143,14 @@ func GetIcapProfile(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering IcapProfile resources.
 type icapProfileState struct {
+	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+	ChunkEncap *string `pulumi:"chunkEncap"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
+	ExtensionFeature *string `pulumi:"extensionFeature"`
+	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+	IcapBlockLog *string `pulumi:"icapBlockLog"`
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
 	IcapHeaders []IcapProfileIcapHeader `pulumi:"icapHeaders"`
 	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
@@ -169,6 +185,8 @@ type icapProfileState struct {
 	ResponseReqHdr *string `pulumi:"responseReqHdr"`
 	// ICAP server to use for an HTTP response.
 	ResponseServer *string `pulumi:"responseServer"`
+	// Scan progress interval value.
+	ScanProgressInterval *int `pulumi:"scanProgressInterval"`
 	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 	StreamingContentBypass *string `pulumi:"streamingContentBypass"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -176,8 +194,14 @@ type icapProfileState struct {
 }
 
 type IcapProfileState struct {
+	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+	ChunkEncap pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
+	ExtensionFeature pulumi.StringPtrInput
+	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+	IcapBlockLog pulumi.StringPtrInput
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
 	IcapHeaders IcapProfileIcapHeaderArrayInput
 	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
@@ -212,6 +236,8 @@ type IcapProfileState struct {
 	ResponseReqHdr pulumi.StringPtrInput
 	// ICAP server to use for an HTTP response.
 	ResponseServer pulumi.StringPtrInput
+	// Scan progress interval value.
+	ScanProgressInterval pulumi.IntPtrInput
 	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 	StreamingContentBypass pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -223,8 +249,14 @@ func (IcapProfileState) ElementType() reflect.Type {
 }
 
 type icapProfileArgs struct {
+	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+	ChunkEncap *string `pulumi:"chunkEncap"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
+	ExtensionFeature *string `pulumi:"extensionFeature"`
+	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+	IcapBlockLog *string `pulumi:"icapBlockLog"`
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
 	IcapHeaders []IcapProfileIcapHeader `pulumi:"icapHeaders"`
 	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
@@ -259,6 +291,8 @@ type icapProfileArgs struct {
 	ResponseReqHdr *string `pulumi:"responseReqHdr"`
 	// ICAP server to use for an HTTP response.
 	ResponseServer *string `pulumi:"responseServer"`
+	// Scan progress interval value.
+	ScanProgressInterval *int `pulumi:"scanProgressInterval"`
 	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 	StreamingContentBypass *string `pulumi:"streamingContentBypass"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -267,8 +301,14 @@ type icapProfileArgs struct {
 
 // The set of arguments for constructing a IcapProfile resource.
 type IcapProfileArgs struct {
+	// Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
+	ChunkEncap pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable ICAP extension features. Valid values: `scan-progress`.
+	ExtensionFeature pulumi.StringPtrInput
+	// Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
+	IcapBlockLog pulumi.StringPtrInput
 	// Configure ICAP forwarded request headers. The structure of `icapHeaders` block is documented below.
 	IcapHeaders IcapProfileIcapHeaderArrayInput
 	// The allowed HTTP methods that will be sent to ICAP server for further processing. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `other`.
@@ -303,6 +343,8 @@ type IcapProfileArgs struct {
 	ResponseReqHdr pulumi.StringPtrInput
 	// ICAP server to use for an HTTP response.
 	ResponseServer pulumi.StringPtrInput
+	// Scan progress interval value.
+	ScanProgressInterval pulumi.IntPtrInput
 	// Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 	StreamingContentBypass pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -321,7 +363,7 @@ type IcapProfileInput interface {
 }
 
 func (*IcapProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*IcapProfile)(nil))
+	return reflect.TypeOf((**IcapProfile)(nil)).Elem()
 }
 
 func (i *IcapProfile) ToIcapProfileOutput() IcapProfileOutput {
@@ -330,35 +372,6 @@ func (i *IcapProfile) ToIcapProfileOutput() IcapProfileOutput {
 
 func (i *IcapProfile) ToIcapProfileOutputWithContext(ctx context.Context) IcapProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IcapProfileOutput)
-}
-
-func (i *IcapProfile) ToIcapProfilePtrOutput() IcapProfilePtrOutput {
-	return i.ToIcapProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *IcapProfile) ToIcapProfilePtrOutputWithContext(ctx context.Context) IcapProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IcapProfilePtrOutput)
-}
-
-type IcapProfilePtrInput interface {
-	pulumi.Input
-
-	ToIcapProfilePtrOutput() IcapProfilePtrOutput
-	ToIcapProfilePtrOutputWithContext(ctx context.Context) IcapProfilePtrOutput
-}
-
-type icapProfilePtrType IcapProfileArgs
-
-func (*icapProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IcapProfile)(nil))
-}
-
-func (i *icapProfilePtrType) ToIcapProfilePtrOutput() IcapProfilePtrOutput {
-	return i.ToIcapProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *icapProfilePtrType) ToIcapProfilePtrOutputWithContext(ctx context.Context) IcapProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IcapProfilePtrOutput)
 }
 
 // IcapProfileArrayInput is an input type that accepts IcapProfileArray and IcapProfileArrayOutput values.
@@ -375,7 +388,7 @@ type IcapProfileArrayInput interface {
 type IcapProfileArray []IcapProfileInput
 
 func (IcapProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IcapProfile)(nil))
+	return reflect.TypeOf((*[]*IcapProfile)(nil)).Elem()
 }
 
 func (i IcapProfileArray) ToIcapProfileArrayOutput() IcapProfileArrayOutput {
@@ -400,7 +413,7 @@ type IcapProfileMapInput interface {
 type IcapProfileMap map[string]IcapProfileInput
 
 func (IcapProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IcapProfile)(nil))
+	return reflect.TypeOf((*map[string]*IcapProfile)(nil)).Elem()
 }
 
 func (i IcapProfileMap) ToIcapProfileMapOutput() IcapProfileMapOutput {
@@ -411,12 +424,10 @@ func (i IcapProfileMap) ToIcapProfileMapOutputWithContext(ctx context.Context) I
 	return pulumi.ToOutputWithContext(ctx, i).(IcapProfileMapOutput)
 }
 
-type IcapProfileOutput struct {
-	*pulumi.OutputState
-}
+type IcapProfileOutput struct{ *pulumi.OutputState }
 
 func (IcapProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IcapProfile)(nil))
+	return reflect.TypeOf((**IcapProfile)(nil)).Elem()
 }
 
 func (o IcapProfileOutput) ToIcapProfileOutput() IcapProfileOutput {
@@ -427,36 +438,10 @@ func (o IcapProfileOutput) ToIcapProfileOutputWithContext(ctx context.Context) I
 	return o
 }
 
-func (o IcapProfileOutput) ToIcapProfilePtrOutput() IcapProfilePtrOutput {
-	return o.ToIcapProfilePtrOutputWithContext(context.Background())
-}
-
-func (o IcapProfileOutput) ToIcapProfilePtrOutputWithContext(ctx context.Context) IcapProfilePtrOutput {
-	return o.ApplyT(func(v IcapProfile) *IcapProfile {
-		return &v
-	}).(IcapProfilePtrOutput)
-}
-
-type IcapProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IcapProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IcapProfile)(nil))
-}
-
-func (o IcapProfilePtrOutput) ToIcapProfilePtrOutput() IcapProfilePtrOutput {
-	return o
-}
-
-func (o IcapProfilePtrOutput) ToIcapProfilePtrOutputWithContext(ctx context.Context) IcapProfilePtrOutput {
-	return o
-}
-
 type IcapProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (IcapProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IcapProfile)(nil))
+	return reflect.TypeOf((*[]*IcapProfile)(nil)).Elem()
 }
 
 func (o IcapProfileArrayOutput) ToIcapProfileArrayOutput() IcapProfileArrayOutput {
@@ -468,15 +453,15 @@ func (o IcapProfileArrayOutput) ToIcapProfileArrayOutputWithContext(ctx context.
 }
 
 func (o IcapProfileArrayOutput) Index(i pulumi.IntInput) IcapProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IcapProfile {
-		return vs[0].([]IcapProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IcapProfile {
+		return vs[0].([]*IcapProfile)[vs[1].(int)]
 	}).(IcapProfileOutput)
 }
 
 type IcapProfileMapOutput struct{ *pulumi.OutputState }
 
 func (IcapProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IcapProfile)(nil))
+	return reflect.TypeOf((*map[string]*IcapProfile)(nil)).Elem()
 }
 
 func (o IcapProfileMapOutput) ToIcapProfileMapOutput() IcapProfileMapOutput {
@@ -488,14 +473,16 @@ func (o IcapProfileMapOutput) ToIcapProfileMapOutputWithContext(ctx context.Cont
 }
 
 func (o IcapProfileMapOutput) MapIndex(k pulumi.StringInput) IcapProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IcapProfile {
-		return vs[0].(map[string]IcapProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IcapProfile {
+		return vs[0].(map[string]*IcapProfile)[vs[1].(string)]
 	}).(IcapProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IcapProfileInput)(nil)).Elem(), &IcapProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IcapProfileArrayInput)(nil)).Elem(), IcapProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IcapProfileMapInput)(nil)).Elem(), IcapProfileMap{})
 	pulumi.RegisterOutputType(IcapProfileOutput{})
-	pulumi.RegisterOutputType(IcapProfilePtrOutput{})
 	pulumi.RegisterOutputType(IcapProfileArrayOutput{})
 	pulumi.RegisterOutputType(IcapProfileMapOutput{})
 }

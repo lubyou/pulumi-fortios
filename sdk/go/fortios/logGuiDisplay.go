@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewLogGuiDisplay(ctx *pulumi.Context,
 		args = &LogGuiDisplayArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogGuiDisplay
 	err := ctx.RegisterResource("fortios:index/logGuiDisplay:LogGuiDisplay", name, args, &resource, opts...)
 	if err != nil {
@@ -148,7 +149,7 @@ type LogGuiDisplayInput interface {
 }
 
 func (*LogGuiDisplay) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogGuiDisplay)(nil))
+	return reflect.TypeOf((**LogGuiDisplay)(nil)).Elem()
 }
 
 func (i *LogGuiDisplay) ToLogGuiDisplayOutput() LogGuiDisplayOutput {
@@ -157,35 +158,6 @@ func (i *LogGuiDisplay) ToLogGuiDisplayOutput() LogGuiDisplayOutput {
 
 func (i *LogGuiDisplay) ToLogGuiDisplayOutputWithContext(ctx context.Context) LogGuiDisplayOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayOutput)
-}
-
-func (i *LogGuiDisplay) ToLogGuiDisplayPtrOutput() LogGuiDisplayPtrOutput {
-	return i.ToLogGuiDisplayPtrOutputWithContext(context.Background())
-}
-
-func (i *LogGuiDisplay) ToLogGuiDisplayPtrOutputWithContext(ctx context.Context) LogGuiDisplayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayPtrOutput)
-}
-
-type LogGuiDisplayPtrInput interface {
-	pulumi.Input
-
-	ToLogGuiDisplayPtrOutput() LogGuiDisplayPtrOutput
-	ToLogGuiDisplayPtrOutputWithContext(ctx context.Context) LogGuiDisplayPtrOutput
-}
-
-type logGuiDisplayPtrType LogGuiDisplayArgs
-
-func (*logGuiDisplayPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogGuiDisplay)(nil))
-}
-
-func (i *logGuiDisplayPtrType) ToLogGuiDisplayPtrOutput() LogGuiDisplayPtrOutput {
-	return i.ToLogGuiDisplayPtrOutputWithContext(context.Background())
-}
-
-func (i *logGuiDisplayPtrType) ToLogGuiDisplayPtrOutputWithContext(ctx context.Context) LogGuiDisplayPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayPtrOutput)
 }
 
 // LogGuiDisplayArrayInput is an input type that accepts LogGuiDisplayArray and LogGuiDisplayArrayOutput values.
@@ -202,7 +174,7 @@ type LogGuiDisplayArrayInput interface {
 type LogGuiDisplayArray []LogGuiDisplayInput
 
 func (LogGuiDisplayArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogGuiDisplay)(nil))
+	return reflect.TypeOf((*[]*LogGuiDisplay)(nil)).Elem()
 }
 
 func (i LogGuiDisplayArray) ToLogGuiDisplayArrayOutput() LogGuiDisplayArrayOutput {
@@ -227,7 +199,7 @@ type LogGuiDisplayMapInput interface {
 type LogGuiDisplayMap map[string]LogGuiDisplayInput
 
 func (LogGuiDisplayMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogGuiDisplay)(nil))
+	return reflect.TypeOf((*map[string]*LogGuiDisplay)(nil)).Elem()
 }
 
 func (i LogGuiDisplayMap) ToLogGuiDisplayMapOutput() LogGuiDisplayMapOutput {
@@ -238,12 +210,10 @@ func (i LogGuiDisplayMap) ToLogGuiDisplayMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(LogGuiDisplayMapOutput)
 }
 
-type LogGuiDisplayOutput struct {
-	*pulumi.OutputState
-}
+type LogGuiDisplayOutput struct{ *pulumi.OutputState }
 
 func (LogGuiDisplayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogGuiDisplay)(nil))
+	return reflect.TypeOf((**LogGuiDisplay)(nil)).Elem()
 }
 
 func (o LogGuiDisplayOutput) ToLogGuiDisplayOutput() LogGuiDisplayOutput {
@@ -254,36 +224,10 @@ func (o LogGuiDisplayOutput) ToLogGuiDisplayOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o LogGuiDisplayOutput) ToLogGuiDisplayPtrOutput() LogGuiDisplayPtrOutput {
-	return o.ToLogGuiDisplayPtrOutputWithContext(context.Background())
-}
-
-func (o LogGuiDisplayOutput) ToLogGuiDisplayPtrOutputWithContext(ctx context.Context) LogGuiDisplayPtrOutput {
-	return o.ApplyT(func(v LogGuiDisplay) *LogGuiDisplay {
-		return &v
-	}).(LogGuiDisplayPtrOutput)
-}
-
-type LogGuiDisplayPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogGuiDisplayPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogGuiDisplay)(nil))
-}
-
-func (o LogGuiDisplayPtrOutput) ToLogGuiDisplayPtrOutput() LogGuiDisplayPtrOutput {
-	return o
-}
-
-func (o LogGuiDisplayPtrOutput) ToLogGuiDisplayPtrOutputWithContext(ctx context.Context) LogGuiDisplayPtrOutput {
-	return o
-}
-
 type LogGuiDisplayArrayOutput struct{ *pulumi.OutputState }
 
 func (LogGuiDisplayArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogGuiDisplay)(nil))
+	return reflect.TypeOf((*[]*LogGuiDisplay)(nil)).Elem()
 }
 
 func (o LogGuiDisplayArrayOutput) ToLogGuiDisplayArrayOutput() LogGuiDisplayArrayOutput {
@@ -295,15 +239,15 @@ func (o LogGuiDisplayArrayOutput) ToLogGuiDisplayArrayOutputWithContext(ctx cont
 }
 
 func (o LogGuiDisplayArrayOutput) Index(i pulumi.IntInput) LogGuiDisplayOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogGuiDisplay {
-		return vs[0].([]LogGuiDisplay)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogGuiDisplay {
+		return vs[0].([]*LogGuiDisplay)[vs[1].(int)]
 	}).(LogGuiDisplayOutput)
 }
 
 type LogGuiDisplayMapOutput struct{ *pulumi.OutputState }
 
 func (LogGuiDisplayMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogGuiDisplay)(nil))
+	return reflect.TypeOf((*map[string]*LogGuiDisplay)(nil)).Elem()
 }
 
 func (o LogGuiDisplayMapOutput) ToLogGuiDisplayMapOutput() LogGuiDisplayMapOutput {
@@ -315,14 +259,16 @@ func (o LogGuiDisplayMapOutput) ToLogGuiDisplayMapOutputWithContext(ctx context.
 }
 
 func (o LogGuiDisplayMapOutput) MapIndex(k pulumi.StringInput) LogGuiDisplayOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogGuiDisplay {
-		return vs[0].(map[string]LogGuiDisplay)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogGuiDisplay {
+		return vs[0].(map[string]*LogGuiDisplay)[vs[1].(string)]
 	}).(LogGuiDisplayOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogGuiDisplayInput)(nil)).Elem(), &LogGuiDisplay{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogGuiDisplayArrayInput)(nil)).Elem(), LogGuiDisplayArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogGuiDisplayMapInput)(nil)).Elem(), LogGuiDisplayMap{})
 	pulumi.RegisterOutputType(LogGuiDisplayOutput{})
-	pulumi.RegisterOutputType(LogGuiDisplayPtrOutput{})
 	pulumi.RegisterOutputType(LogGuiDisplayArrayOutput{})
 	pulumi.RegisterOutputType(LogGuiDisplayMapOutput{})
 }

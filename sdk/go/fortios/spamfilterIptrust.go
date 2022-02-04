@@ -49,6 +49,7 @@ func NewSpamfilterIptrust(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SpamfilterIptrust
 	err := ctx.RegisterResource("fortios:index/spamfilterIptrust:SpamfilterIptrust", name, args, &resource, opts...)
 	if err != nil {
@@ -147,7 +148,7 @@ type SpamfilterIptrustInput interface {
 }
 
 func (*SpamfilterIptrust) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterIptrust)(nil))
+	return reflect.TypeOf((**SpamfilterIptrust)(nil)).Elem()
 }
 
 func (i *SpamfilterIptrust) ToSpamfilterIptrustOutput() SpamfilterIptrustOutput {
@@ -156,35 +157,6 @@ func (i *SpamfilterIptrust) ToSpamfilterIptrustOutput() SpamfilterIptrustOutput 
 
 func (i *SpamfilterIptrust) ToSpamfilterIptrustOutputWithContext(ctx context.Context) SpamfilterIptrustOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterIptrustOutput)
-}
-
-func (i *SpamfilterIptrust) ToSpamfilterIptrustPtrOutput() SpamfilterIptrustPtrOutput {
-	return i.ToSpamfilterIptrustPtrOutputWithContext(context.Background())
-}
-
-func (i *SpamfilterIptrust) ToSpamfilterIptrustPtrOutputWithContext(ctx context.Context) SpamfilterIptrustPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterIptrustPtrOutput)
-}
-
-type SpamfilterIptrustPtrInput interface {
-	pulumi.Input
-
-	ToSpamfilterIptrustPtrOutput() SpamfilterIptrustPtrOutput
-	ToSpamfilterIptrustPtrOutputWithContext(ctx context.Context) SpamfilterIptrustPtrOutput
-}
-
-type spamfilterIptrustPtrType SpamfilterIptrustArgs
-
-func (*spamfilterIptrustPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterIptrust)(nil))
-}
-
-func (i *spamfilterIptrustPtrType) ToSpamfilterIptrustPtrOutput() SpamfilterIptrustPtrOutput {
-	return i.ToSpamfilterIptrustPtrOutputWithContext(context.Background())
-}
-
-func (i *spamfilterIptrustPtrType) ToSpamfilterIptrustPtrOutputWithContext(ctx context.Context) SpamfilterIptrustPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterIptrustPtrOutput)
 }
 
 // SpamfilterIptrustArrayInput is an input type that accepts SpamfilterIptrustArray and SpamfilterIptrustArrayOutput values.
@@ -201,7 +173,7 @@ type SpamfilterIptrustArrayInput interface {
 type SpamfilterIptrustArray []SpamfilterIptrustInput
 
 func (SpamfilterIptrustArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SpamfilterIptrust)(nil))
+	return reflect.TypeOf((*[]*SpamfilterIptrust)(nil)).Elem()
 }
 
 func (i SpamfilterIptrustArray) ToSpamfilterIptrustArrayOutput() SpamfilterIptrustArrayOutput {
@@ -226,7 +198,7 @@ type SpamfilterIptrustMapInput interface {
 type SpamfilterIptrustMap map[string]SpamfilterIptrustInput
 
 func (SpamfilterIptrustMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SpamfilterIptrust)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterIptrust)(nil)).Elem()
 }
 
 func (i SpamfilterIptrustMap) ToSpamfilterIptrustMapOutput() SpamfilterIptrustMapOutput {
@@ -237,12 +209,10 @@ func (i SpamfilterIptrustMap) ToSpamfilterIptrustMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterIptrustMapOutput)
 }
 
-type SpamfilterIptrustOutput struct {
-	*pulumi.OutputState
-}
+type SpamfilterIptrustOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterIptrustOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterIptrust)(nil))
+	return reflect.TypeOf((**SpamfilterIptrust)(nil)).Elem()
 }
 
 func (o SpamfilterIptrustOutput) ToSpamfilterIptrustOutput() SpamfilterIptrustOutput {
@@ -253,36 +223,10 @@ func (o SpamfilterIptrustOutput) ToSpamfilterIptrustOutputWithContext(ctx contex
 	return o
 }
 
-func (o SpamfilterIptrustOutput) ToSpamfilterIptrustPtrOutput() SpamfilterIptrustPtrOutput {
-	return o.ToSpamfilterIptrustPtrOutputWithContext(context.Background())
-}
-
-func (o SpamfilterIptrustOutput) ToSpamfilterIptrustPtrOutputWithContext(ctx context.Context) SpamfilterIptrustPtrOutput {
-	return o.ApplyT(func(v SpamfilterIptrust) *SpamfilterIptrust {
-		return &v
-	}).(SpamfilterIptrustPtrOutput)
-}
-
-type SpamfilterIptrustPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SpamfilterIptrustPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterIptrust)(nil))
-}
-
-func (o SpamfilterIptrustPtrOutput) ToSpamfilterIptrustPtrOutput() SpamfilterIptrustPtrOutput {
-	return o
-}
-
-func (o SpamfilterIptrustPtrOutput) ToSpamfilterIptrustPtrOutputWithContext(ctx context.Context) SpamfilterIptrustPtrOutput {
-	return o
-}
-
 type SpamfilterIptrustArrayOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterIptrustArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SpamfilterIptrust)(nil))
+	return reflect.TypeOf((*[]*SpamfilterIptrust)(nil)).Elem()
 }
 
 func (o SpamfilterIptrustArrayOutput) ToSpamfilterIptrustArrayOutput() SpamfilterIptrustArrayOutput {
@@ -294,15 +238,15 @@ func (o SpamfilterIptrustArrayOutput) ToSpamfilterIptrustArrayOutputWithContext(
 }
 
 func (o SpamfilterIptrustArrayOutput) Index(i pulumi.IntInput) SpamfilterIptrustOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SpamfilterIptrust {
-		return vs[0].([]SpamfilterIptrust)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterIptrust {
+		return vs[0].([]*SpamfilterIptrust)[vs[1].(int)]
 	}).(SpamfilterIptrustOutput)
 }
 
 type SpamfilterIptrustMapOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterIptrustMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SpamfilterIptrust)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterIptrust)(nil)).Elem()
 }
 
 func (o SpamfilterIptrustMapOutput) ToSpamfilterIptrustMapOutput() SpamfilterIptrustMapOutput {
@@ -314,14 +258,16 @@ func (o SpamfilterIptrustMapOutput) ToSpamfilterIptrustMapOutputWithContext(ctx 
 }
 
 func (o SpamfilterIptrustMapOutput) MapIndex(k pulumi.StringInput) SpamfilterIptrustOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SpamfilterIptrust {
-		return vs[0].(map[string]SpamfilterIptrust)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SpamfilterIptrust {
+		return vs[0].(map[string]*SpamfilterIptrust)[vs[1].(string)]
 	}).(SpamfilterIptrustOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterIptrustInput)(nil)).Elem(), &SpamfilterIptrust{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterIptrustArrayInput)(nil)).Elem(), SpamfilterIptrustArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterIptrustMapInput)(nil)).Elem(), SpamfilterIptrustMap{})
 	pulumi.RegisterOutputType(SpamfilterIptrustOutput{})
-	pulumi.RegisterOutputType(SpamfilterIptrustPtrOutput{})
 	pulumi.RegisterOutputType(SpamfilterIptrustArrayOutput{})
 	pulumi.RegisterOutputType(SpamfilterIptrustMapOutput{})
 }

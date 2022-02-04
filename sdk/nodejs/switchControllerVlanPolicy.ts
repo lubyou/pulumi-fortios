@@ -96,37 +96,35 @@ export class SwitchControllerVlanPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerVlanPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerVlanPolicyArgs | SwitchControllerVlanPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerVlanPolicyState | undefined;
-            inputs["allowedVlans"] = state ? state.allowedVlans : undefined;
-            inputs["allowedVlansAll"] = state ? state.allowedVlansAll : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["discardMode"] = state ? state.discardMode : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fortilink"] = state ? state.fortilink : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["untaggedVlans"] = state ? state.untaggedVlans : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlan"] = state ? state.vlan : undefined;
+            resourceInputs["allowedVlans"] = state ? state.allowedVlans : undefined;
+            resourceInputs["allowedVlansAll"] = state ? state.allowedVlansAll : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["discardMode"] = state ? state.discardMode : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fortilink"] = state ? state.fortilink : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["untaggedVlans"] = state ? state.untaggedVlans : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlan"] = state ? state.vlan : undefined;
         } else {
             const args = argsOrState as SwitchControllerVlanPolicyArgs | undefined;
-            inputs["allowedVlans"] = args ? args.allowedVlans : undefined;
-            inputs["allowedVlansAll"] = args ? args.allowedVlansAll : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["discardMode"] = args ? args.discardMode : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fortilink"] = args ? args.fortilink : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["untaggedVlans"] = args ? args.untaggedVlans : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlan"] = args ? args.vlan : undefined;
+            resourceInputs["allowedVlans"] = args ? args.allowedVlans : undefined;
+            resourceInputs["allowedVlansAll"] = args ? args.allowedVlansAll : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["discardMode"] = args ? args.discardMode : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fortilink"] = args ? args.fortilink : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["untaggedVlans"] = args ? args.untaggedVlans : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlan"] = args ? args.vlan : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerVlanPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerVlanPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

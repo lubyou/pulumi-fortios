@@ -66,6 +66,10 @@ export class FirewallIppool extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+     */
+    public readonly addNat64Route!: pulumi.Output<string>;
+    /**
      * Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
      */
     public readonly arpIntf!: pulumi.Output<string>;
@@ -97,6 +101,10 @@ export class FirewallIppool extends pulumi.CustomResource {
      * IP pool name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `disable`, `enable`.
+     */
+    public readonly nat64!: pulumi.Output<string>;
     /**
      * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
      */
@@ -147,28 +155,30 @@ export class FirewallIppool extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallIppoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallIppoolArgs | FirewallIppoolState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallIppoolState | undefined;
-            inputs["arpIntf"] = state ? state.arpIntf : undefined;
-            inputs["arpReply"] = state ? state.arpReply : undefined;
-            inputs["associatedInterface"] = state ? state.associatedInterface : undefined;
-            inputs["blockSize"] = state ? state.blockSize : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["endip"] = state ? state.endip : undefined;
-            inputs["endport"] = state ? state.endport : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["numBlocksPerUser"] = state ? state.numBlocksPerUser : undefined;
-            inputs["pbaTimeout"] = state ? state.pbaTimeout : undefined;
-            inputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
-            inputs["portPerUser"] = state ? state.portPerUser : undefined;
-            inputs["sourceEndip"] = state ? state.sourceEndip : undefined;
-            inputs["sourceStartip"] = state ? state.sourceStartip : undefined;
-            inputs["startip"] = state ? state.startip : undefined;
-            inputs["startport"] = state ? state.startport : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addNat64Route"] = state ? state.addNat64Route : undefined;
+            resourceInputs["arpIntf"] = state ? state.arpIntf : undefined;
+            resourceInputs["arpReply"] = state ? state.arpReply : undefined;
+            resourceInputs["associatedInterface"] = state ? state.associatedInterface : undefined;
+            resourceInputs["blockSize"] = state ? state.blockSize : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["endip"] = state ? state.endip : undefined;
+            resourceInputs["endport"] = state ? state.endport : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nat64"] = state ? state.nat64 : undefined;
+            resourceInputs["numBlocksPerUser"] = state ? state.numBlocksPerUser : undefined;
+            resourceInputs["pbaTimeout"] = state ? state.pbaTimeout : undefined;
+            resourceInputs["permitAnyHost"] = state ? state.permitAnyHost : undefined;
+            resourceInputs["portPerUser"] = state ? state.portPerUser : undefined;
+            resourceInputs["sourceEndip"] = state ? state.sourceEndip : undefined;
+            resourceInputs["sourceStartip"] = state ? state.sourceStartip : undefined;
+            resourceInputs["startip"] = state ? state.startip : undefined;
+            resourceInputs["startport"] = state ? state.startport : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallIppoolArgs | undefined;
             if ((!args || args.endip === undefined) && !opts.urn) {
@@ -177,29 +187,29 @@ export class FirewallIppool extends pulumi.CustomResource {
             if ((!args || args.startip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startip'");
             }
-            inputs["arpIntf"] = args ? args.arpIntf : undefined;
-            inputs["arpReply"] = args ? args.arpReply : undefined;
-            inputs["associatedInterface"] = args ? args.associatedInterface : undefined;
-            inputs["blockSize"] = args ? args.blockSize : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["endip"] = args ? args.endip : undefined;
-            inputs["endport"] = args ? args.endport : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["numBlocksPerUser"] = args ? args.numBlocksPerUser : undefined;
-            inputs["pbaTimeout"] = args ? args.pbaTimeout : undefined;
-            inputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
-            inputs["portPerUser"] = args ? args.portPerUser : undefined;
-            inputs["sourceEndip"] = args ? args.sourceEndip : undefined;
-            inputs["sourceStartip"] = args ? args.sourceStartip : undefined;
-            inputs["startip"] = args ? args.startip : undefined;
-            inputs["startport"] = args ? args.startport : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addNat64Route"] = args ? args.addNat64Route : undefined;
+            resourceInputs["arpIntf"] = args ? args.arpIntf : undefined;
+            resourceInputs["arpReply"] = args ? args.arpReply : undefined;
+            resourceInputs["associatedInterface"] = args ? args.associatedInterface : undefined;
+            resourceInputs["blockSize"] = args ? args.blockSize : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["endip"] = args ? args.endip : undefined;
+            resourceInputs["endport"] = args ? args.endport : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nat64"] = args ? args.nat64 : undefined;
+            resourceInputs["numBlocksPerUser"] = args ? args.numBlocksPerUser : undefined;
+            resourceInputs["pbaTimeout"] = args ? args.pbaTimeout : undefined;
+            resourceInputs["permitAnyHost"] = args ? args.permitAnyHost : undefined;
+            resourceInputs["portPerUser"] = args ? args.portPerUser : undefined;
+            resourceInputs["sourceEndip"] = args ? args.sourceEndip : undefined;
+            resourceInputs["sourceStartip"] = args ? args.sourceStartip : undefined;
+            resourceInputs["startip"] = args ? args.startip : undefined;
+            resourceInputs["startport"] = args ? args.startport : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallIppool.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallIppool.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -207,6 +217,10 @@ export class FirewallIppool extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallIppool resources.
  */
 export interface FirewallIppoolState {
+    /**
+     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+     */
+    addNat64Route?: pulumi.Input<string>;
     /**
      * Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
      */
@@ -239,6 +253,10 @@ export interface FirewallIppoolState {
      * IP pool name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `disable`, `enable`.
+     */
+    nat64?: pulumi.Input<string>;
     /**
      * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
      */
@@ -286,6 +304,10 @@ export interface FirewallIppoolState {
  */
 export interface FirewallIppoolArgs {
     /**
+     * Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+     */
+    addNat64Route?: pulumi.Input<string>;
+    /**
      * Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
      */
     arpIntf?: pulumi.Input<string>;
@@ -317,6 +339,10 @@ export interface FirewallIppoolArgs {
      * IP pool name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `disable`, `enable`.
+     */
+    nat64?: pulumi.Input<string>;
     /**
      * Number of addresses blocks that can be used by a user (1 to 128, default = 8).
      */

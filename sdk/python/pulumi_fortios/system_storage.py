@@ -32,7 +32,7 @@ class SystemStorageArgs:
         :param pulumi.Input[str] partition: Label of underlying partition.
         :param pulumi.Input[int] size: Partition size.
         :param pulumi.Input[str] status: Enable/disable storage. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wanopt_mode: WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
         """
@@ -145,7 +145,7 @@ class SystemStorageArgs:
     @pulumi.getter
     def usage(self) -> Optional[pulumi.Input[str]]:
         """
-        Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        Use hard disk for logging or WAN Optimization (default = log).
         """
         return pulumi.get(self, "usage")
 
@@ -200,7 +200,7 @@ class _SystemStorageState:
         :param pulumi.Input[str] partition: Label of underlying partition.
         :param pulumi.Input[int] size: Partition size.
         :param pulumi.Input[str] status: Enable/disable storage. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wanopt_mode: WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
         """
@@ -313,7 +313,7 @@ class _SystemStorageState:
     @pulumi.getter
     def usage(self) -> Optional[pulumi.Input[str]]:
         """
-        Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        Use hard disk for logging or WAN Optimization (default = log).
         """
         return pulumi.get(self, "usage")
 
@@ -384,7 +384,7 @@ class SystemStorage(pulumi.CustomResource):
         :param pulumi.Input[str] partition: Label of underlying partition.
         :param pulumi.Input[int] size: Partition size.
         :param pulumi.Input[str] status: Enable/disable storage. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wanopt_mode: WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
         """
@@ -439,6 +439,8 @@ class SystemStorage(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -488,7 +490,7 @@ class SystemStorage(pulumi.CustomResource):
         :param pulumi.Input[str] partition: Label of underlying partition.
         :param pulumi.Input[int] size: Partition size.
         :param pulumi.Input[str] status: Enable/disable storage. Valid values: `enable`, `disable`.
-        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        :param pulumi.Input[str] usage: Use hard disk for logging or WAN Optimization (default = log).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wanopt_mode: WAN Optimization mode (default = mix). Valid values: `mix`, `wanopt`, `webcache`.
         """
@@ -568,7 +570,7 @@ class SystemStorage(pulumi.CustomResource):
     @pulumi.getter
     def usage(self) -> pulumi.Output[str]:
         """
-        Use hard disk for logging or WAN Optimization (default = log). Valid values: `log`, `wanopt`.
+        Use hard disk for logging or WAN Optimization (default = log).
         """
         return pulumi.get(self, "usage")
 

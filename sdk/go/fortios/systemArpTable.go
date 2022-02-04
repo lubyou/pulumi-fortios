@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,7 @@ func NewSystemArpTable(ctx *pulumi.Context,
 	if args.Mac == nil {
 		return nil, errors.New("invalid value for required argument 'Mac'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemArpTable
 	err := ctx.RegisterResource("fortios:index/systemArpTable:SystemArpTable", name, args, &resource, opts...)
 	if err != nil {
@@ -172,7 +173,7 @@ type SystemArpTableInput interface {
 }
 
 func (*SystemArpTable) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemArpTable)(nil))
+	return reflect.TypeOf((**SystemArpTable)(nil)).Elem()
 }
 
 func (i *SystemArpTable) ToSystemArpTableOutput() SystemArpTableOutput {
@@ -181,35 +182,6 @@ func (i *SystemArpTable) ToSystemArpTableOutput() SystemArpTableOutput {
 
 func (i *SystemArpTable) ToSystemArpTableOutputWithContext(ctx context.Context) SystemArpTableOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTableOutput)
-}
-
-func (i *SystemArpTable) ToSystemArpTablePtrOutput() SystemArpTablePtrOutput {
-	return i.ToSystemArpTablePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemArpTable) ToSystemArpTablePtrOutputWithContext(ctx context.Context) SystemArpTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTablePtrOutput)
-}
-
-type SystemArpTablePtrInput interface {
-	pulumi.Input
-
-	ToSystemArpTablePtrOutput() SystemArpTablePtrOutput
-	ToSystemArpTablePtrOutputWithContext(ctx context.Context) SystemArpTablePtrOutput
-}
-
-type systemArpTablePtrType SystemArpTableArgs
-
-func (*systemArpTablePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemArpTable)(nil))
-}
-
-func (i *systemArpTablePtrType) ToSystemArpTablePtrOutput() SystemArpTablePtrOutput {
-	return i.ToSystemArpTablePtrOutputWithContext(context.Background())
-}
-
-func (i *systemArpTablePtrType) ToSystemArpTablePtrOutputWithContext(ctx context.Context) SystemArpTablePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTablePtrOutput)
 }
 
 // SystemArpTableArrayInput is an input type that accepts SystemArpTableArray and SystemArpTableArrayOutput values.
@@ -226,7 +198,7 @@ type SystemArpTableArrayInput interface {
 type SystemArpTableArray []SystemArpTableInput
 
 func (SystemArpTableArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemArpTable)(nil))
+	return reflect.TypeOf((*[]*SystemArpTable)(nil)).Elem()
 }
 
 func (i SystemArpTableArray) ToSystemArpTableArrayOutput() SystemArpTableArrayOutput {
@@ -251,7 +223,7 @@ type SystemArpTableMapInput interface {
 type SystemArpTableMap map[string]SystemArpTableInput
 
 func (SystemArpTableMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemArpTable)(nil))
+	return reflect.TypeOf((*map[string]*SystemArpTable)(nil)).Elem()
 }
 
 func (i SystemArpTableMap) ToSystemArpTableMapOutput() SystemArpTableMapOutput {
@@ -262,12 +234,10 @@ func (i SystemArpTableMap) ToSystemArpTableMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemArpTableMapOutput)
 }
 
-type SystemArpTableOutput struct {
-	*pulumi.OutputState
-}
+type SystemArpTableOutput struct{ *pulumi.OutputState }
 
 func (SystemArpTableOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemArpTable)(nil))
+	return reflect.TypeOf((**SystemArpTable)(nil)).Elem()
 }
 
 func (o SystemArpTableOutput) ToSystemArpTableOutput() SystemArpTableOutput {
@@ -278,36 +248,10 @@ func (o SystemArpTableOutput) ToSystemArpTableOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemArpTableOutput) ToSystemArpTablePtrOutput() SystemArpTablePtrOutput {
-	return o.ToSystemArpTablePtrOutputWithContext(context.Background())
-}
-
-func (o SystemArpTableOutput) ToSystemArpTablePtrOutputWithContext(ctx context.Context) SystemArpTablePtrOutput {
-	return o.ApplyT(func(v SystemArpTable) *SystemArpTable {
-		return &v
-	}).(SystemArpTablePtrOutput)
-}
-
-type SystemArpTablePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemArpTablePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemArpTable)(nil))
-}
-
-func (o SystemArpTablePtrOutput) ToSystemArpTablePtrOutput() SystemArpTablePtrOutput {
-	return o
-}
-
-func (o SystemArpTablePtrOutput) ToSystemArpTablePtrOutputWithContext(ctx context.Context) SystemArpTablePtrOutput {
-	return o
-}
-
 type SystemArpTableArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemArpTableArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemArpTable)(nil))
+	return reflect.TypeOf((*[]*SystemArpTable)(nil)).Elem()
 }
 
 func (o SystemArpTableArrayOutput) ToSystemArpTableArrayOutput() SystemArpTableArrayOutput {
@@ -319,15 +263,15 @@ func (o SystemArpTableArrayOutput) ToSystemArpTableArrayOutputWithContext(ctx co
 }
 
 func (o SystemArpTableArrayOutput) Index(i pulumi.IntInput) SystemArpTableOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemArpTable {
-		return vs[0].([]SystemArpTable)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemArpTable {
+		return vs[0].([]*SystemArpTable)[vs[1].(int)]
 	}).(SystemArpTableOutput)
 }
 
 type SystemArpTableMapOutput struct{ *pulumi.OutputState }
 
 func (SystemArpTableMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemArpTable)(nil))
+	return reflect.TypeOf((*map[string]*SystemArpTable)(nil)).Elem()
 }
 
 func (o SystemArpTableMapOutput) ToSystemArpTableMapOutput() SystemArpTableMapOutput {
@@ -339,14 +283,16 @@ func (o SystemArpTableMapOutput) ToSystemArpTableMapOutputWithContext(ctx contex
 }
 
 func (o SystemArpTableMapOutput) MapIndex(k pulumi.StringInput) SystemArpTableOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemArpTable {
-		return vs[0].(map[string]SystemArpTable)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemArpTable {
+		return vs[0].(map[string]*SystemArpTable)[vs[1].(string)]
 	}).(SystemArpTableOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemArpTableInput)(nil)).Elem(), &SystemArpTable{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemArpTableArrayInput)(nil)).Elem(), SystemArpTableArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemArpTableMapInput)(nil)).Elem(), SystemArpTableMap{})
 	pulumi.RegisterOutputType(SystemArpTableOutput{})
-	pulumi.RegisterOutputType(SystemArpTablePtrOutput{})
 	pulumi.RegisterOutputType(SystemArpTableArrayOutput{})
 	pulumi.RegisterOutputType(SystemArpTableMapOutput{})
 }

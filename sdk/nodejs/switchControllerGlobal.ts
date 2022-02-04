@@ -79,6 +79,10 @@ export class SwitchControllerGlobal extends pulumi.CustomResource {
      */
     public readonly defaultVirtualSwitchVlan!: pulumi.Output<string>;
     /**
+     * Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+     */
+    public readonly dhcpServerAccessList!: pulumi.Output<string>;
+    /**
      * Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
      */
     public readonly disableDiscoveries!: pulumi.Output<outputs.SwitchControllerGlobalDisableDiscovery[] | undefined>;
@@ -86,6 +90,14 @@ export class SwitchControllerGlobal extends pulumi.CustomResource {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
+     * Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+     */
+    public readonly fipsEnforce!: pulumi.Output<string>;
+    /**
+     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+     */
+    public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
     /**
      * Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
      */
@@ -144,53 +156,57 @@ export class SwitchControllerGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerGlobalArgs | SwitchControllerGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerGlobalState | undefined;
-            inputs["allowMultipleInterfaces"] = state ? state.allowMultipleInterfaces : undefined;
-            inputs["bounceQuarantinedLink"] = state ? state.bounceQuarantinedLink : undefined;
-            inputs["customCommands"] = state ? state.customCommands : undefined;
-            inputs["defaultVirtualSwitchVlan"] = state ? state.defaultVirtualSwitchVlan : undefined;
-            inputs["disableDiscoveries"] = state ? state.disableDiscoveries : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["httpsImagePush"] = state ? state.httpsImagePush : undefined;
-            inputs["logMacLimitViolations"] = state ? state.logMacLimitViolations : undefined;
-            inputs["macAgingInterval"] = state ? state.macAgingInterval : undefined;
-            inputs["macEventLogging"] = state ? state.macEventLogging : undefined;
-            inputs["macRetentionPeriod"] = state ? state.macRetentionPeriod : undefined;
-            inputs["macViolationTimer"] = state ? state.macViolationTimer : undefined;
-            inputs["quarantineMode"] = state ? state.quarantineMode : undefined;
-            inputs["snDnsResolution"] = state ? state.snDnsResolution : undefined;
-            inputs["updateUserDevice"] = state ? state.updateUserDevice : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanAllMode"] = state ? state.vlanAllMode : undefined;
-            inputs["vlanOptimization"] = state ? state.vlanOptimization : undefined;
+            resourceInputs["allowMultipleInterfaces"] = state ? state.allowMultipleInterfaces : undefined;
+            resourceInputs["bounceQuarantinedLink"] = state ? state.bounceQuarantinedLink : undefined;
+            resourceInputs["customCommands"] = state ? state.customCommands : undefined;
+            resourceInputs["defaultVirtualSwitchVlan"] = state ? state.defaultVirtualSwitchVlan : undefined;
+            resourceInputs["dhcpServerAccessList"] = state ? state.dhcpServerAccessList : undefined;
+            resourceInputs["disableDiscoveries"] = state ? state.disableDiscoveries : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fipsEnforce"] = state ? state.fipsEnforce : undefined;
+            resourceInputs["firmwareProvisionOnAuthorization"] = state ? state.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["httpsImagePush"] = state ? state.httpsImagePush : undefined;
+            resourceInputs["logMacLimitViolations"] = state ? state.logMacLimitViolations : undefined;
+            resourceInputs["macAgingInterval"] = state ? state.macAgingInterval : undefined;
+            resourceInputs["macEventLogging"] = state ? state.macEventLogging : undefined;
+            resourceInputs["macRetentionPeriod"] = state ? state.macRetentionPeriod : undefined;
+            resourceInputs["macViolationTimer"] = state ? state.macViolationTimer : undefined;
+            resourceInputs["quarantineMode"] = state ? state.quarantineMode : undefined;
+            resourceInputs["snDnsResolution"] = state ? state.snDnsResolution : undefined;
+            resourceInputs["updateUserDevice"] = state ? state.updateUserDevice : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanAllMode"] = state ? state.vlanAllMode : undefined;
+            resourceInputs["vlanOptimization"] = state ? state.vlanOptimization : undefined;
         } else {
             const args = argsOrState as SwitchControllerGlobalArgs | undefined;
-            inputs["allowMultipleInterfaces"] = args ? args.allowMultipleInterfaces : undefined;
-            inputs["bounceQuarantinedLink"] = args ? args.bounceQuarantinedLink : undefined;
-            inputs["customCommands"] = args ? args.customCommands : undefined;
-            inputs["defaultVirtualSwitchVlan"] = args ? args.defaultVirtualSwitchVlan : undefined;
-            inputs["disableDiscoveries"] = args ? args.disableDiscoveries : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["httpsImagePush"] = args ? args.httpsImagePush : undefined;
-            inputs["logMacLimitViolations"] = args ? args.logMacLimitViolations : undefined;
-            inputs["macAgingInterval"] = args ? args.macAgingInterval : undefined;
-            inputs["macEventLogging"] = args ? args.macEventLogging : undefined;
-            inputs["macRetentionPeriod"] = args ? args.macRetentionPeriod : undefined;
-            inputs["macViolationTimer"] = args ? args.macViolationTimer : undefined;
-            inputs["quarantineMode"] = args ? args.quarantineMode : undefined;
-            inputs["snDnsResolution"] = args ? args.snDnsResolution : undefined;
-            inputs["updateUserDevice"] = args ? args.updateUserDevice : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanAllMode"] = args ? args.vlanAllMode : undefined;
-            inputs["vlanOptimization"] = args ? args.vlanOptimization : undefined;
+            resourceInputs["allowMultipleInterfaces"] = args ? args.allowMultipleInterfaces : undefined;
+            resourceInputs["bounceQuarantinedLink"] = args ? args.bounceQuarantinedLink : undefined;
+            resourceInputs["customCommands"] = args ? args.customCommands : undefined;
+            resourceInputs["defaultVirtualSwitchVlan"] = args ? args.defaultVirtualSwitchVlan : undefined;
+            resourceInputs["dhcpServerAccessList"] = args ? args.dhcpServerAccessList : undefined;
+            resourceInputs["disableDiscoveries"] = args ? args.disableDiscoveries : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fipsEnforce"] = args ? args.fipsEnforce : undefined;
+            resourceInputs["firmwareProvisionOnAuthorization"] = args ? args.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["httpsImagePush"] = args ? args.httpsImagePush : undefined;
+            resourceInputs["logMacLimitViolations"] = args ? args.logMacLimitViolations : undefined;
+            resourceInputs["macAgingInterval"] = args ? args.macAgingInterval : undefined;
+            resourceInputs["macEventLogging"] = args ? args.macEventLogging : undefined;
+            resourceInputs["macRetentionPeriod"] = args ? args.macRetentionPeriod : undefined;
+            resourceInputs["macViolationTimer"] = args ? args.macViolationTimer : undefined;
+            resourceInputs["quarantineMode"] = args ? args.quarantineMode : undefined;
+            resourceInputs["snDnsResolution"] = args ? args.snDnsResolution : undefined;
+            resourceInputs["updateUserDevice"] = args ? args.updateUserDevice : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanAllMode"] = args ? args.vlanAllMode : undefined;
+            resourceInputs["vlanOptimization"] = args ? args.vlanOptimization : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -215,6 +231,10 @@ export interface SwitchControllerGlobalState {
      */
     defaultVirtualSwitchVlan?: pulumi.Input<string>;
     /**
+     * Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+     */
+    dhcpServerAccessList?: pulumi.Input<string>;
+    /**
      * Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
      */
     disableDiscoveries?: pulumi.Input<pulumi.Input<inputs.SwitchControllerGlobalDisableDiscovery>[]>;
@@ -222,6 +242,14 @@ export interface SwitchControllerGlobalState {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+     */
+    fipsEnforce?: pulumi.Input<string>;
+    /**
+     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+     */
+    firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
      * Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
      */
@@ -293,6 +321,10 @@ export interface SwitchControllerGlobalArgs {
      */
     defaultVirtualSwitchVlan?: pulumi.Input<string>;
     /**
+     * Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+     */
+    dhcpServerAccessList?: pulumi.Input<string>;
+    /**
      * Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
      */
     disableDiscoveries?: pulumi.Input<pulumi.Input<inputs.SwitchControllerGlobalDisableDiscovery>[]>;
@@ -300,6 +332,14 @@ export interface SwitchControllerGlobalArgs {
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
     dynamicSortSubtable?: pulumi.Input<string>;
+    /**
+     * Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+     */
+    fipsEnforce?: pulumi.Input<string>;
+    /**
+     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+     */
+    firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
      * Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
      */

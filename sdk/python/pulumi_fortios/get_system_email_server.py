@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemEmailServerResult',
     'AwaitableGetSystemEmailServerResult',
     'get_system_email_server',
+    'get_system_email_server_output',
 ]
 
 @pulumi.output_type
@@ -19,13 +20,19 @@ class GetSystemEmailServerResult:
     """
     A collection of values returned by GetSystemEmailServer.
     """
-    def __init__(__self__, authenticate=None, id=None, password=None, port=None, reply_to=None, security=None, server=None, source_ip=None, source_ip6=None, ssl_min_proto_version=None, type=None, username=None, validate_server=None, vdomparam=None):
+    def __init__(__self__, authenticate=None, id=None, interface=None, interface_select_method=None, password=None, port=None, reply_to=None, security=None, server=None, source_ip=None, source_ip6=None, ssl_min_proto_version=None, type=None, username=None, validate_server=None, vdomparam=None):
         if authenticate and not isinstance(authenticate, str):
             raise TypeError("Expected argument 'authenticate' to be a str")
         pulumi.set(__self__, "authenticate", authenticate)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if interface and not isinstance(interface, str):
+            raise TypeError("Expected argument 'interface' to be a str")
+        pulumi.set(__self__, "interface", interface)
+        if interface_select_method and not isinstance(interface_select_method, str):
+            raise TypeError("Expected argument 'interface_select_method' to be a str")
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
         if password and not isinstance(password, str):
             raise TypeError("Expected argument 'password' to be a str")
         pulumi.set(__self__, "password", password)
@@ -78,6 +85,22 @@ class GetSystemEmailServerResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
 
     @property
     @pulumi.getter
@@ -181,6 +204,8 @@ class AwaitableGetSystemEmailServerResult(GetSystemEmailServerResult):
         return GetSystemEmailServerResult(
             authenticate=self.authenticate,
             id=self.id,
+            interface=self.interface,
+            interface_select_method=self.interface_select_method,
             password=self.password,
             port=self.port,
             reply_to=self.reply_to,
@@ -209,11 +234,15 @@ def get_system_email_server(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemEmailServer:GetSystemEmailServer', __args__, opts=opts, typ=GetSystemEmailServerResult).value
 
     return AwaitableGetSystemEmailServerResult(
         authenticate=__ret__.authenticate,
         id=__ret__.id,
+        interface=__ret__.interface,
+        interface_select_method=__ret__.interface_select_method,
         password=__ret__.password,
         port=__ret__.port,
         reply_to=__ret__.reply_to,
@@ -226,3 +255,15 @@ def get_system_email_server(vdomparam: Optional[str] = None,
         username=__ret__.username,
         validate_server=__ret__.validate_server,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_email_server)
+def get_system_email_server_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemEmailServerResult]:
+    """
+    Use this data source to get information on fortios system emailserver
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

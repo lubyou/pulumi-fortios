@@ -109,6 +109,10 @@ export class FirewallAddress extends pulumi.CustomResource {
      */
     public readonly epgName!: pulumi.Output<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Match criteria filter.
      */
     public readonly filter!: pulumi.Output<string | undefined>;
@@ -128,6 +132,10 @@ export class FirewallAddress extends pulumi.CustomResource {
      * IP address list. The structure of `list` block is documented below.
      */
     public readonly lists!: pulumi.Output<outputs.FirewallAddressList[] | undefined>;
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    public readonly macaddrs!: pulumi.Output<outputs.FirewallAddressMacaddr[] | undefined>;
     /**
      * Tag name.
      */
@@ -189,6 +197,14 @@ export class FirewallAddress extends pulumi.CustomResource {
      */
     public readonly subnetName!: pulumi.Output<string>;
     /**
+     * Tag detection level of dynamic address object.
+     */
+    public readonly tagDetectionLevel!: pulumi.Output<string>;
+    /**
+     * Tag type of dynamic address object.
+     */
+    public readonly tagType!: pulumi.Output<string>;
+    /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
     public readonly taggings!: pulumi.Output<outputs.FirewallAddressTagging[] | undefined>;
@@ -230,95 +246,101 @@ export class FirewallAddress extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallAddressArgs | FirewallAddressState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallAddressState | undefined;
-            inputs["allowRouting"] = state ? state.allowRouting : undefined;
-            inputs["associatedInterface"] = state ? state.associatedInterface : undefined;
-            inputs["cacheTtl"] = state ? state.cacheTtl : undefined;
-            inputs["clearpassSpt"] = state ? state.clearpassSpt : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["country"] = state ? state.country : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["endIp"] = state ? state.endIp : undefined;
-            inputs["endMac"] = state ? state.endMac : undefined;
-            inputs["epgName"] = state ? state.epgName : undefined;
-            inputs["filter"] = state ? state.filter : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["fssoGroups"] = state ? state.fssoGroups : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["lists"] = state ? state.lists : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nodeIpOnly"] = state ? state.nodeIpOnly : undefined;
-            inputs["objId"] = state ? state.objId : undefined;
-            inputs["objTag"] = state ? state.objTag : undefined;
-            inputs["objType"] = state ? state.objType : undefined;
-            inputs["organization"] = state ? state.organization : undefined;
-            inputs["policyGroup"] = state ? state.policyGroup : undefined;
-            inputs["sdn"] = state ? state.sdn : undefined;
-            inputs["sdnAddrType"] = state ? state.sdnAddrType : undefined;
-            inputs["sdnTag"] = state ? state.sdnTag : undefined;
-            inputs["startIp"] = state ? state.startIp : undefined;
-            inputs["startMac"] = state ? state.startMac : undefined;
-            inputs["subType"] = state ? state.subType : undefined;
-            inputs["subnet"] = state ? state.subnet : undefined;
-            inputs["subnetName"] = state ? state.subnetName : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["tenant"] = state ? state.tenant : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
-            inputs["wildcard"] = state ? state.wildcard : undefined;
-            inputs["wildcardFqdn"] = state ? state.wildcardFqdn : undefined;
+            resourceInputs["allowRouting"] = state ? state.allowRouting : undefined;
+            resourceInputs["associatedInterface"] = state ? state.associatedInterface : undefined;
+            resourceInputs["cacheTtl"] = state ? state.cacheTtl : undefined;
+            resourceInputs["clearpassSpt"] = state ? state.clearpassSpt : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["country"] = state ? state.country : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["endMac"] = state ? state.endMac : undefined;
+            resourceInputs["epgName"] = state ? state.epgName : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["filter"] = state ? state.filter : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["lists"] = state ? state.lists : undefined;
+            resourceInputs["macaddrs"] = state ? state.macaddrs : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nodeIpOnly"] = state ? state.nodeIpOnly : undefined;
+            resourceInputs["objId"] = state ? state.objId : undefined;
+            resourceInputs["objTag"] = state ? state.objTag : undefined;
+            resourceInputs["objType"] = state ? state.objType : undefined;
+            resourceInputs["organization"] = state ? state.organization : undefined;
+            resourceInputs["policyGroup"] = state ? state.policyGroup : undefined;
+            resourceInputs["sdn"] = state ? state.sdn : undefined;
+            resourceInputs["sdnAddrType"] = state ? state.sdnAddrType : undefined;
+            resourceInputs["sdnTag"] = state ? state.sdnTag : undefined;
+            resourceInputs["startIp"] = state ? state.startIp : undefined;
+            resourceInputs["startMac"] = state ? state.startMac : undefined;
+            resourceInputs["subType"] = state ? state.subType : undefined;
+            resourceInputs["subnet"] = state ? state.subnet : undefined;
+            resourceInputs["subnetName"] = state ? state.subnetName : undefined;
+            resourceInputs["tagDetectionLevel"] = state ? state.tagDetectionLevel : undefined;
+            resourceInputs["tagType"] = state ? state.tagType : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["tenant"] = state ? state.tenant : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["wildcard"] = state ? state.wildcard : undefined;
+            resourceInputs["wildcardFqdn"] = state ? state.wildcardFqdn : undefined;
         } else {
             const args = argsOrState as FirewallAddressArgs | undefined;
-            inputs["allowRouting"] = args ? args.allowRouting : undefined;
-            inputs["associatedInterface"] = args ? args.associatedInterface : undefined;
-            inputs["cacheTtl"] = args ? args.cacheTtl : undefined;
-            inputs["clearpassSpt"] = args ? args.clearpassSpt : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["country"] = args ? args.country : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["endIp"] = args ? args.endIp : undefined;
-            inputs["endMac"] = args ? args.endMac : undefined;
-            inputs["epgName"] = args ? args.epgName : undefined;
-            inputs["filter"] = args ? args.filter : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["fssoGroups"] = args ? args.fssoGroups : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["lists"] = args ? args.lists : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nodeIpOnly"] = args ? args.nodeIpOnly : undefined;
-            inputs["objId"] = args ? args.objId : undefined;
-            inputs["objTag"] = args ? args.objTag : undefined;
-            inputs["objType"] = args ? args.objType : undefined;
-            inputs["organization"] = args ? args.organization : undefined;
-            inputs["policyGroup"] = args ? args.policyGroup : undefined;
-            inputs["sdn"] = args ? args.sdn : undefined;
-            inputs["sdnAddrType"] = args ? args.sdnAddrType : undefined;
-            inputs["sdnTag"] = args ? args.sdnTag : undefined;
-            inputs["startIp"] = args ? args.startIp : undefined;
-            inputs["startMac"] = args ? args.startMac : undefined;
-            inputs["subType"] = args ? args.subType : undefined;
-            inputs["subnet"] = args ? args.subnet : undefined;
-            inputs["subnetName"] = args ? args.subnetName : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["tenant"] = args ? args.tenant : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
-            inputs["wildcard"] = args ? args.wildcard : undefined;
-            inputs["wildcardFqdn"] = args ? args.wildcardFqdn : undefined;
+            resourceInputs["allowRouting"] = args ? args.allowRouting : undefined;
+            resourceInputs["associatedInterface"] = args ? args.associatedInterface : undefined;
+            resourceInputs["cacheTtl"] = args ? args.cacheTtl : undefined;
+            resourceInputs["clearpassSpt"] = args ? args.clearpassSpt : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["country"] = args ? args.country : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["endMac"] = args ? args.endMac : undefined;
+            resourceInputs["epgName"] = args ? args.epgName : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["filter"] = args ? args.filter : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["lists"] = args ? args.lists : undefined;
+            resourceInputs["macaddrs"] = args ? args.macaddrs : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nodeIpOnly"] = args ? args.nodeIpOnly : undefined;
+            resourceInputs["objId"] = args ? args.objId : undefined;
+            resourceInputs["objTag"] = args ? args.objTag : undefined;
+            resourceInputs["objType"] = args ? args.objType : undefined;
+            resourceInputs["organization"] = args ? args.organization : undefined;
+            resourceInputs["policyGroup"] = args ? args.policyGroup : undefined;
+            resourceInputs["sdn"] = args ? args.sdn : undefined;
+            resourceInputs["sdnAddrType"] = args ? args.sdnAddrType : undefined;
+            resourceInputs["sdnTag"] = args ? args.sdnTag : undefined;
+            resourceInputs["startIp"] = args ? args.startIp : undefined;
+            resourceInputs["startMac"] = args ? args.startMac : undefined;
+            resourceInputs["subType"] = args ? args.subType : undefined;
+            resourceInputs["subnet"] = args ? args.subnet : undefined;
+            resourceInputs["subnetName"] = args ? args.subnetName : undefined;
+            resourceInputs["tagDetectionLevel"] = args ? args.tagDetectionLevel : undefined;
+            resourceInputs["tagType"] = args ? args.tagType : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["tenant"] = args ? args.tenant : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["wildcard"] = args ? args.wildcard : undefined;
+            resourceInputs["wildcardFqdn"] = args ? args.wildcardFqdn : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallAddress.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallAddress.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -371,6 +393,10 @@ export interface FirewallAddressState {
      */
     epgName?: pulumi.Input<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
+    /**
      * Match criteria filter.
      */
     filter?: pulumi.Input<string>;
@@ -390,6 +416,10 @@ export interface FirewallAddressState {
      * IP address list. The structure of `list` block is documented below.
      */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddressList>[]>;
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddressMacaddr>[]>;
     /**
      * Tag name.
      */
@@ -450,6 +480,14 @@ export interface FirewallAddressState {
      * Subnet name.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * Tag detection level of dynamic address object.
+     */
+    tagDetectionLevel?: pulumi.Input<string>;
+    /**
+     * Tag type of dynamic address object.
+     */
+    tagType?: pulumi.Input<string>;
     /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
@@ -533,6 +571,10 @@ export interface FirewallAddressArgs {
      */
     epgName?: pulumi.Input<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
+    /**
      * Match criteria filter.
      */
     filter?: pulumi.Input<string>;
@@ -552,6 +594,10 @@ export interface FirewallAddressArgs {
      * IP address list. The structure of `list` block is documented below.
      */
     lists?: pulumi.Input<pulumi.Input<inputs.FirewallAddressList>[]>;
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddrs?: pulumi.Input<pulumi.Input<inputs.FirewallAddressMacaddr>[]>;
     /**
      * Tag name.
      */
@@ -612,6 +658,14 @@ export interface FirewallAddressArgs {
      * Subnet name.
      */
     subnetName?: pulumi.Input<string>;
+    /**
+     * Tag detection level of dynamic address object.
+     */
+    tagDetectionLevel?: pulumi.Input<string>;
+    /**
+     * Tag type of dynamic address object.
+     */
+    tagType?: pulumi.Input<string>;
     /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */

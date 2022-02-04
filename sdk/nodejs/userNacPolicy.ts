@@ -67,6 +67,10 @@ export class UserNacPolicy extends pulumi.CustomResource {
      */
     public readonly family!: pulumi.Output<string>;
     /**
+     * Dynamic firewall address to associate MAC which match this policy.
+     */
+    public readonly firewallAddress!: pulumi.Output<string>;
+    /**
      * NAC policy matching host.
      */
     public readonly host!: pulumi.Output<string>;
@@ -83,7 +87,7 @@ export class UserNacPolicy extends pulumi.CustomResource {
      */
     public readonly mac!: pulumi.Output<string>;
     /**
-     * NAC policy name.
+     * Managed FortiSwitch group name from available options.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -94,6 +98,10 @@ export class UserNacPolicy extends pulumi.CustomResource {
      * NAC policy matching source.
      */
     public readonly src!: pulumi.Output<string>;
+    /**
+     * SSID policy to be applied on the matched NAC policy.
+     */
+    public readonly ssidPolicy!: pulumi.Output<string>;
     /**
      * Enable/disable NAC policy. Valid values: `enable`, `disable`.
      */
@@ -110,6 +118,10 @@ export class UserNacPolicy extends pulumi.CustomResource {
      * FortiLink interface for which this NAC policy belongs to.
      */
     public readonly switchFortilink!: pulumi.Output<string>;
+    /**
+     * List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+     */
+    public readonly switchGroups!: pulumi.Output<outputs.UserNacPolicySwitchGroup[] | undefined>;
     /**
      * switch-mac-policy to be applied on the matched NAC policy.
      */
@@ -148,63 +160,67 @@ export class UserNacPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserNacPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserNacPolicyArgs | UserNacPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserNacPolicyState | undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["emsTag"] = state ? state.emsTag : undefined;
-            inputs["family"] = state ? state.family : undefined;
-            inputs["host"] = state ? state.host : undefined;
-            inputs["hwVendor"] = state ? state.hwVendor : undefined;
-            inputs["hwVersion"] = state ? state.hwVersion : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["os"] = state ? state.os : undefined;
-            inputs["src"] = state ? state.src : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["swVersion"] = state ? state.swVersion : undefined;
-            inputs["switchAutoAuth"] = state ? state.switchAutoAuth : undefined;
-            inputs["switchFortilink"] = state ? state.switchFortilink : undefined;
-            inputs["switchMacPolicy"] = state ? state.switchMacPolicy : undefined;
-            inputs["switchPortPolicy"] = state ? state.switchPortPolicy : undefined;
-            inputs["switchScopes"] = state ? state.switchScopes : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["userGroup"] = state ? state.userGroup : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emsTag"] = state ? state.emsTag : undefined;
+            resourceInputs["family"] = state ? state.family : undefined;
+            resourceInputs["firewallAddress"] = state ? state.firewallAddress : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
+            resourceInputs["hwVendor"] = state ? state.hwVendor : undefined;
+            resourceInputs["hwVersion"] = state ? state.hwVersion : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["os"] = state ? state.os : undefined;
+            resourceInputs["src"] = state ? state.src : undefined;
+            resourceInputs["ssidPolicy"] = state ? state.ssidPolicy : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["swVersion"] = state ? state.swVersion : undefined;
+            resourceInputs["switchAutoAuth"] = state ? state.switchAutoAuth : undefined;
+            resourceInputs["switchFortilink"] = state ? state.switchFortilink : undefined;
+            resourceInputs["switchGroups"] = state ? state.switchGroups : undefined;
+            resourceInputs["switchMacPolicy"] = state ? state.switchMacPolicy : undefined;
+            resourceInputs["switchPortPolicy"] = state ? state.switchPortPolicy : undefined;
+            resourceInputs["switchScopes"] = state ? state.switchScopes : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["userGroup"] = state ? state.userGroup : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserNacPolicyArgs | undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["emsTag"] = args ? args.emsTag : undefined;
-            inputs["family"] = args ? args.family : undefined;
-            inputs["host"] = args ? args.host : undefined;
-            inputs["hwVendor"] = args ? args.hwVendor : undefined;
-            inputs["hwVersion"] = args ? args.hwVersion : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["os"] = args ? args.os : undefined;
-            inputs["src"] = args ? args.src : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["swVersion"] = args ? args.swVersion : undefined;
-            inputs["switchAutoAuth"] = args ? args.switchAutoAuth : undefined;
-            inputs["switchFortilink"] = args ? args.switchFortilink : undefined;
-            inputs["switchMacPolicy"] = args ? args.switchMacPolicy : undefined;
-            inputs["switchPortPolicy"] = args ? args.switchPortPolicy : undefined;
-            inputs["switchScopes"] = args ? args.switchScopes : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["userGroup"] = args ? args.userGroup : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emsTag"] = args ? args.emsTag : undefined;
+            resourceInputs["family"] = args ? args.family : undefined;
+            resourceInputs["firewallAddress"] = args ? args.firewallAddress : undefined;
+            resourceInputs["host"] = args ? args.host : undefined;
+            resourceInputs["hwVendor"] = args ? args.hwVendor : undefined;
+            resourceInputs["hwVersion"] = args ? args.hwVersion : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["src"] = args ? args.src : undefined;
+            resourceInputs["ssidPolicy"] = args ? args.ssidPolicy : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["swVersion"] = args ? args.swVersion : undefined;
+            resourceInputs["switchAutoAuth"] = args ? args.switchAutoAuth : undefined;
+            resourceInputs["switchFortilink"] = args ? args.switchFortilink : undefined;
+            resourceInputs["switchGroups"] = args ? args.switchGroups : undefined;
+            resourceInputs["switchMacPolicy"] = args ? args.switchMacPolicy : undefined;
+            resourceInputs["switchPortPolicy"] = args ? args.switchPortPolicy : undefined;
+            resourceInputs["switchScopes"] = args ? args.switchScopes : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["userGroup"] = args ? args.userGroup : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserNacPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserNacPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -233,6 +249,10 @@ export interface UserNacPolicyState {
      */
     family?: pulumi.Input<string>;
     /**
+     * Dynamic firewall address to associate MAC which match this policy.
+     */
+    firewallAddress?: pulumi.Input<string>;
+    /**
      * NAC policy matching host.
      */
     host?: pulumi.Input<string>;
@@ -249,7 +269,7 @@ export interface UserNacPolicyState {
      */
     mac?: pulumi.Input<string>;
     /**
-     * NAC policy name.
+     * Managed FortiSwitch group name from available options.
      */
     name?: pulumi.Input<string>;
     /**
@@ -260,6 +280,10 @@ export interface UserNacPolicyState {
      * NAC policy matching source.
      */
     src?: pulumi.Input<string>;
+    /**
+     * SSID policy to be applied on the matched NAC policy.
+     */
+    ssidPolicy?: pulumi.Input<string>;
     /**
      * Enable/disable NAC policy. Valid values: `enable`, `disable`.
      */
@@ -276,6 +300,10 @@ export interface UserNacPolicyState {
      * FortiLink interface for which this NAC policy belongs to.
      */
     switchFortilink?: pulumi.Input<string>;
+    /**
+     * List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+     */
+    switchGroups?: pulumi.Input<pulumi.Input<inputs.UserNacPolicySwitchGroup>[]>;
     /**
      * switch-mac-policy to be applied on the matched NAC policy.
      */
@@ -331,6 +359,10 @@ export interface UserNacPolicyArgs {
      */
     family?: pulumi.Input<string>;
     /**
+     * Dynamic firewall address to associate MAC which match this policy.
+     */
+    firewallAddress?: pulumi.Input<string>;
+    /**
      * NAC policy matching host.
      */
     host?: pulumi.Input<string>;
@@ -347,7 +379,7 @@ export interface UserNacPolicyArgs {
      */
     mac?: pulumi.Input<string>;
     /**
-     * NAC policy name.
+     * Managed FortiSwitch group name from available options.
      */
     name?: pulumi.Input<string>;
     /**
@@ -358,6 +390,10 @@ export interface UserNacPolicyArgs {
      * NAC policy matching source.
      */
     src?: pulumi.Input<string>;
+    /**
+     * SSID policy to be applied on the matched NAC policy.
+     */
+    ssidPolicy?: pulumi.Input<string>;
     /**
      * Enable/disable NAC policy. Valid values: `enable`, `disable`.
      */
@@ -374,6 +410,10 @@ export interface UserNacPolicyArgs {
      * FortiLink interface for which this NAC policy belongs to.
      */
     switchFortilink?: pulumi.Input<string>;
+    /**
+     * List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+     */
+    switchGroups?: pulumi.Input<pulumi.Input<inputs.UserNacPolicySwitchGroup>[]>;
     /**
      * switch-mac-policy to be applied on the matched NAC policy.
      */

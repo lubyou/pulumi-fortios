@@ -31,6 +31,8 @@ type VpnL2Tp struct {
 	Eip pulumi.StringOutput `pulumi:"eip"`
 	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
 	EnforceIpsec pulumi.StringOutput `pulumi:"enforceIpsec"`
+	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+	HelloInterval pulumi.IntOutput `pulumi:"helloInterval"`
 	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval pulumi.IntOutput `pulumi:"lcpEchoInterval"`
 	// Maximum number of missed LCP echo messages before disconnect.
@@ -55,6 +57,7 @@ func NewVpnL2Tp(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnL2Tp
 	err := ctx.RegisterResource("fortios:index/vpnL2Tp:VpnL2Tp", name, args, &resource, opts...)
 	if err != nil {
@@ -83,6 +86,8 @@ type vpnL2TpState struct {
 	Eip *string `pulumi:"eip"`
 	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
 	EnforceIpsec *string `pulumi:"enforceIpsec"`
+	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+	HelloInterval *int `pulumi:"helloInterval"`
 	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
 	// Maximum number of missed LCP echo messages before disconnect.
@@ -104,6 +109,8 @@ type VpnL2TpState struct {
 	Eip pulumi.StringPtrInput
 	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
 	EnforceIpsec pulumi.StringPtrInput
+	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+	HelloInterval pulumi.IntPtrInput
 	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval pulumi.IntPtrInput
 	// Maximum number of missed LCP echo messages before disconnect.
@@ -129,6 +136,8 @@ type vpnL2TpArgs struct {
 	Eip *string `pulumi:"eip"`
 	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
 	EnforceIpsec *string `pulumi:"enforceIpsec"`
+	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+	HelloInterval *int `pulumi:"helloInterval"`
 	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval *int `pulumi:"lcpEchoInterval"`
 	// Maximum number of missed LCP echo messages before disconnect.
@@ -151,6 +160,8 @@ type VpnL2TpArgs struct {
 	Eip pulumi.StringPtrInput
 	// Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
 	EnforceIpsec pulumi.StringPtrInput
+	// L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+	HelloInterval pulumi.IntPtrInput
 	// Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 	LcpEchoInterval pulumi.IntPtrInput
 	// Maximum number of missed LCP echo messages before disconnect.
@@ -177,7 +188,7 @@ type VpnL2TpInput interface {
 }
 
 func (*VpnL2Tp) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnL2Tp)(nil))
+	return reflect.TypeOf((**VpnL2Tp)(nil)).Elem()
 }
 
 func (i *VpnL2Tp) ToVpnL2TpOutput() VpnL2TpOutput {
@@ -186,35 +197,6 @@ func (i *VpnL2Tp) ToVpnL2TpOutput() VpnL2TpOutput {
 
 func (i *VpnL2Tp) ToVpnL2TpOutputWithContext(ctx context.Context) VpnL2TpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpOutput)
-}
-
-func (i *VpnL2Tp) ToVpnL2TpPtrOutput() VpnL2TpPtrOutput {
-	return i.ToVpnL2TpPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnL2Tp) ToVpnL2TpPtrOutputWithContext(ctx context.Context) VpnL2TpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpPtrOutput)
-}
-
-type VpnL2TpPtrInput interface {
-	pulumi.Input
-
-	ToVpnL2TpPtrOutput() VpnL2TpPtrOutput
-	ToVpnL2TpPtrOutputWithContext(ctx context.Context) VpnL2TpPtrOutput
-}
-
-type vpnL2TpPtrType VpnL2TpArgs
-
-func (*vpnL2TpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnL2Tp)(nil))
-}
-
-func (i *vpnL2TpPtrType) ToVpnL2TpPtrOutput() VpnL2TpPtrOutput {
-	return i.ToVpnL2TpPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnL2TpPtrType) ToVpnL2TpPtrOutputWithContext(ctx context.Context) VpnL2TpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpPtrOutput)
 }
 
 // VpnL2TpArrayInput is an input type that accepts VpnL2TpArray and VpnL2TpArrayOutput values.
@@ -231,7 +213,7 @@ type VpnL2TpArrayInput interface {
 type VpnL2TpArray []VpnL2TpInput
 
 func (VpnL2TpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnL2Tp)(nil))
+	return reflect.TypeOf((*[]*VpnL2Tp)(nil)).Elem()
 }
 
 func (i VpnL2TpArray) ToVpnL2TpArrayOutput() VpnL2TpArrayOutput {
@@ -256,7 +238,7 @@ type VpnL2TpMapInput interface {
 type VpnL2TpMap map[string]VpnL2TpInput
 
 func (VpnL2TpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnL2Tp)(nil))
+	return reflect.TypeOf((*map[string]*VpnL2Tp)(nil)).Elem()
 }
 
 func (i VpnL2TpMap) ToVpnL2TpMapOutput() VpnL2TpMapOutput {
@@ -267,12 +249,10 @@ func (i VpnL2TpMap) ToVpnL2TpMapOutputWithContext(ctx context.Context) VpnL2TpMa
 	return pulumi.ToOutputWithContext(ctx, i).(VpnL2TpMapOutput)
 }
 
-type VpnL2TpOutput struct {
-	*pulumi.OutputState
-}
+type VpnL2TpOutput struct{ *pulumi.OutputState }
 
 func (VpnL2TpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnL2Tp)(nil))
+	return reflect.TypeOf((**VpnL2Tp)(nil)).Elem()
 }
 
 func (o VpnL2TpOutput) ToVpnL2TpOutput() VpnL2TpOutput {
@@ -283,36 +263,10 @@ func (o VpnL2TpOutput) ToVpnL2TpOutputWithContext(ctx context.Context) VpnL2TpOu
 	return o
 }
 
-func (o VpnL2TpOutput) ToVpnL2TpPtrOutput() VpnL2TpPtrOutput {
-	return o.ToVpnL2TpPtrOutputWithContext(context.Background())
-}
-
-func (o VpnL2TpOutput) ToVpnL2TpPtrOutputWithContext(ctx context.Context) VpnL2TpPtrOutput {
-	return o.ApplyT(func(v VpnL2Tp) *VpnL2Tp {
-		return &v
-	}).(VpnL2TpPtrOutput)
-}
-
-type VpnL2TpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnL2TpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnL2Tp)(nil))
-}
-
-func (o VpnL2TpPtrOutput) ToVpnL2TpPtrOutput() VpnL2TpPtrOutput {
-	return o
-}
-
-func (o VpnL2TpPtrOutput) ToVpnL2TpPtrOutputWithContext(ctx context.Context) VpnL2TpPtrOutput {
-	return o
-}
-
 type VpnL2TpArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnL2TpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnL2Tp)(nil))
+	return reflect.TypeOf((*[]*VpnL2Tp)(nil)).Elem()
 }
 
 func (o VpnL2TpArrayOutput) ToVpnL2TpArrayOutput() VpnL2TpArrayOutput {
@@ -324,15 +278,15 @@ func (o VpnL2TpArrayOutput) ToVpnL2TpArrayOutputWithContext(ctx context.Context)
 }
 
 func (o VpnL2TpArrayOutput) Index(i pulumi.IntInput) VpnL2TpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnL2Tp {
-		return vs[0].([]VpnL2Tp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnL2Tp {
+		return vs[0].([]*VpnL2Tp)[vs[1].(int)]
 	}).(VpnL2TpOutput)
 }
 
 type VpnL2TpMapOutput struct{ *pulumi.OutputState }
 
 func (VpnL2TpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnL2Tp)(nil))
+	return reflect.TypeOf((*map[string]*VpnL2Tp)(nil)).Elem()
 }
 
 func (o VpnL2TpMapOutput) ToVpnL2TpMapOutput() VpnL2TpMapOutput {
@@ -344,14 +298,16 @@ func (o VpnL2TpMapOutput) ToVpnL2TpMapOutputWithContext(ctx context.Context) Vpn
 }
 
 func (o VpnL2TpMapOutput) MapIndex(k pulumi.StringInput) VpnL2TpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnL2Tp {
-		return vs[0].(map[string]VpnL2Tp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnL2Tp {
+		return vs[0].(map[string]*VpnL2Tp)[vs[1].(string)]
 	}).(VpnL2TpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnL2TpInput)(nil)).Elem(), &VpnL2Tp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnL2TpArrayInput)(nil)).Elem(), VpnL2TpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnL2TpMapInput)(nil)).Elem(), VpnL2TpMap{})
 	pulumi.RegisterOutputType(VpnL2TpOutput{})
-	pulumi.RegisterOutputType(VpnL2TpPtrOutput{})
 	pulumi.RegisterOutputType(VpnL2TpArrayOutput{})
 	pulumi.RegisterOutputType(VpnL2TpMapOutput{})
 }

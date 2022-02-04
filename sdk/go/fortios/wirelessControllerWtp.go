@@ -41,6 +41,8 @@ type WirelessControllerWtp struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvision pulumi.StringOutput `pulumi:"firmwareProvision"`
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest pulumi.StringOutput `pulumi:"firmwareProvisionLatest"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringOutput `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
@@ -123,6 +125,7 @@ func NewWirelessControllerWtp(ctx *pulumi.Context,
 	if args.WtpProfile == nil {
 		return nil, errors.New("invalid value for required argument 'WtpProfile'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerWtp
 	err := ctx.RegisterResource("fortios:index/wirelessControllerWtp:WirelessControllerWtp", name, args, &resource, opts...)
 	if err != nil {
@@ -161,6 +164,8 @@ type wirelessControllerWtpState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload *string `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
@@ -250,6 +255,8 @@ type WirelessControllerWtpState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvision pulumi.StringPtrInput
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest pulumi.StringPtrInput
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringPtrInput
 	// Index (0 - 4294967295).
@@ -343,6 +350,8 @@ type wirelessControllerWtpArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvision *string `pulumi:"firmwareProvision"`
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest *string `pulumi:"firmwareProvisionLatest"`
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload *string `pulumi:"imageDownload"`
 	// Index (0 - 4294967295).
@@ -433,6 +442,8 @@ type WirelessControllerWtpArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
 	FirmwareProvision pulumi.StringPtrInput
+	// Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+	FirmwareProvisionLatest pulumi.StringPtrInput
 	// Enable/disable WTP image download. Valid values: `enable`, `disable`.
 	ImageDownload pulumi.StringPtrInput
 	// Index (0 - 4294967295).
@@ -517,7 +528,7 @@ type WirelessControllerWtpInput interface {
 }
 
 func (*WirelessControllerWtp) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWtp)(nil))
+	return reflect.TypeOf((**WirelessControllerWtp)(nil)).Elem()
 }
 
 func (i *WirelessControllerWtp) ToWirelessControllerWtpOutput() WirelessControllerWtpOutput {
@@ -526,35 +537,6 @@ func (i *WirelessControllerWtp) ToWirelessControllerWtpOutput() WirelessControll
 
 func (i *WirelessControllerWtp) ToWirelessControllerWtpOutputWithContext(ctx context.Context) WirelessControllerWtpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpOutput)
-}
-
-func (i *WirelessControllerWtp) ToWirelessControllerWtpPtrOutput() WirelessControllerWtpPtrOutput {
-	return i.ToWirelessControllerWtpPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerWtp) ToWirelessControllerWtpPtrOutputWithContext(ctx context.Context) WirelessControllerWtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpPtrOutput)
-}
-
-type WirelessControllerWtpPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerWtpPtrOutput() WirelessControllerWtpPtrOutput
-	ToWirelessControllerWtpPtrOutputWithContext(ctx context.Context) WirelessControllerWtpPtrOutput
-}
-
-type wirelessControllerWtpPtrType WirelessControllerWtpArgs
-
-func (*wirelessControllerWtpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWtp)(nil))
-}
-
-func (i *wirelessControllerWtpPtrType) ToWirelessControllerWtpPtrOutput() WirelessControllerWtpPtrOutput {
-	return i.ToWirelessControllerWtpPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerWtpPtrType) ToWirelessControllerWtpPtrOutputWithContext(ctx context.Context) WirelessControllerWtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpPtrOutput)
 }
 
 // WirelessControllerWtpArrayInput is an input type that accepts WirelessControllerWtpArray and WirelessControllerWtpArrayOutput values.
@@ -571,7 +553,7 @@ type WirelessControllerWtpArrayInput interface {
 type WirelessControllerWtpArray []WirelessControllerWtpInput
 
 func (WirelessControllerWtpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerWtp)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWtp)(nil)).Elem()
 }
 
 func (i WirelessControllerWtpArray) ToWirelessControllerWtpArrayOutput() WirelessControllerWtpArrayOutput {
@@ -596,7 +578,7 @@ type WirelessControllerWtpMapInput interface {
 type WirelessControllerWtpMap map[string]WirelessControllerWtpInput
 
 func (WirelessControllerWtpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerWtp)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWtp)(nil)).Elem()
 }
 
 func (i WirelessControllerWtpMap) ToWirelessControllerWtpMapOutput() WirelessControllerWtpMapOutput {
@@ -607,12 +589,10 @@ func (i WirelessControllerWtpMap) ToWirelessControllerWtpMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerWtpMapOutput)
 }
 
-type WirelessControllerWtpOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerWtpOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerWtp)(nil))
+	return reflect.TypeOf((**WirelessControllerWtp)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpOutput) ToWirelessControllerWtpOutput() WirelessControllerWtpOutput {
@@ -623,36 +603,10 @@ func (o WirelessControllerWtpOutput) ToWirelessControllerWtpOutputWithContext(ct
 	return o
 }
 
-func (o WirelessControllerWtpOutput) ToWirelessControllerWtpPtrOutput() WirelessControllerWtpPtrOutput {
-	return o.ToWirelessControllerWtpPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerWtpOutput) ToWirelessControllerWtpPtrOutputWithContext(ctx context.Context) WirelessControllerWtpPtrOutput {
-	return o.ApplyT(func(v WirelessControllerWtp) *WirelessControllerWtp {
-		return &v
-	}).(WirelessControllerWtpPtrOutput)
-}
-
-type WirelessControllerWtpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerWtpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerWtp)(nil))
-}
-
-func (o WirelessControllerWtpPtrOutput) ToWirelessControllerWtpPtrOutput() WirelessControllerWtpPtrOutput {
-	return o
-}
-
-func (o WirelessControllerWtpPtrOutput) ToWirelessControllerWtpPtrOutputWithContext(ctx context.Context) WirelessControllerWtpPtrOutput {
-	return o
-}
-
 type WirelessControllerWtpArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerWtp)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerWtp)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpArrayOutput) ToWirelessControllerWtpArrayOutput() WirelessControllerWtpArrayOutput {
@@ -664,15 +618,15 @@ func (o WirelessControllerWtpArrayOutput) ToWirelessControllerWtpArrayOutputWith
 }
 
 func (o WirelessControllerWtpArrayOutput) Index(i pulumi.IntInput) WirelessControllerWtpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerWtp {
-		return vs[0].([]WirelessControllerWtp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerWtp {
+		return vs[0].([]*WirelessControllerWtp)[vs[1].(int)]
 	}).(WirelessControllerWtpOutput)
 }
 
 type WirelessControllerWtpMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerWtpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerWtp)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerWtp)(nil)).Elem()
 }
 
 func (o WirelessControllerWtpMapOutput) ToWirelessControllerWtpMapOutput() WirelessControllerWtpMapOutput {
@@ -684,14 +638,16 @@ func (o WirelessControllerWtpMapOutput) ToWirelessControllerWtpMapOutputWithCont
 }
 
 func (o WirelessControllerWtpMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerWtpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerWtp {
-		return vs[0].(map[string]WirelessControllerWtp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerWtp {
+		return vs[0].(map[string]*WirelessControllerWtp)[vs[1].(string)]
 	}).(WirelessControllerWtpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpInput)(nil)).Elem(), &WirelessControllerWtp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpArrayInput)(nil)).Elem(), WirelessControllerWtpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerWtpMapInput)(nil)).Elem(), WirelessControllerWtpMap{})
 	pulumi.RegisterOutputType(WirelessControllerWtpOutput{})
-	pulumi.RegisterOutputType(WirelessControllerWtpPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerWtpMapOutput{})
 }

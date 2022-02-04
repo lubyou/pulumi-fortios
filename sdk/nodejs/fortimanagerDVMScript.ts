@@ -84,30 +84,28 @@ export class FortimanagerDVMScript extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerDVMScriptArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerDVMScriptArgs | FortimanagerDVMScriptState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerDVMScriptState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["content"] = state ? state.content : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["target"] = state ? state.target : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["content"] = state ? state.content : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["target"] = state ? state.target : undefined;
         } else {
             const args = argsOrState as FortimanagerDVMScriptArgs | undefined;
             if ((!args || args.content === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'content'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["content"] = args ? args.content : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["target"] = args ? args.target : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["content"] = args ? args.content : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["target"] = args ? args.target : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerDVMScript.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerDVMScript.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -44,8 +45,8 @@ import (
 // 			Color:        pulumi.Int(0),
 // 			Exclude:      pulumi.String("disable"),
 // 			Visibility:   pulumi.String("enable"),
-// 			Members: fortios.FirewallAddrgrpMemberArray{
-// 				&fortios.FirewallAddrgrpMemberArgs{
+// 			Members: FirewallAddrgrpMemberArray{
+// 				&FirewallAddrgrpMemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -72,6 +73,8 @@ type FirewallAddrgrp struct {
 
 	// Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
 	AllowRouting pulumi.StringOutput `pulumi:"allowRouting"`
+	// Tag category.
+	Category pulumi.StringOutput `pulumi:"category"`
 	// Color of icon on the GUI.
 	Color pulumi.IntOutput `pulumi:"color"`
 	// Comment.
@@ -82,6 +85,8 @@ type FirewallAddrgrp struct {
 	Exclude pulumi.StringOutput `pulumi:"exclude"`
 	// Address exclusion member. The structure of `excludeMember` block is documented below.
 	ExcludeMembers FirewallAddrgrpExcludeMemberArrayOutput `pulumi:"excludeMembers"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallAddrgrpMemberArrayOutput `pulumi:"members"`
 	// Tag name.
@@ -108,6 +113,7 @@ func NewFirewallAddrgrp(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallAddrgrp
 	err := ctx.RegisterResource("fortios:index/firewallAddrgrp:FirewallAddrgrp", name, args, &resource, opts...)
 	if err != nil {
@@ -132,6 +138,8 @@ func GetFirewallAddrgrp(ctx *pulumi.Context,
 type firewallAddrgrpState struct {
 	// Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
 	AllowRouting *string `pulumi:"allowRouting"`
+	// Tag category.
+	Category *string `pulumi:"category"`
 	// Color of icon on the GUI.
 	Color *int `pulumi:"color"`
 	// Comment.
@@ -142,6 +150,8 @@ type firewallAddrgrpState struct {
 	Exclude *string `pulumi:"exclude"`
 	// Address exclusion member. The structure of `excludeMember` block is documented below.
 	ExcludeMembers []FirewallAddrgrpExcludeMember `pulumi:"excludeMembers"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []FirewallAddrgrpMember `pulumi:"members"`
 	// Tag name.
@@ -161,6 +171,8 @@ type firewallAddrgrpState struct {
 type FirewallAddrgrpState struct {
 	// Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
 	AllowRouting pulumi.StringPtrInput
+	// Tag category.
+	Category pulumi.StringPtrInput
 	// Color of icon on the GUI.
 	Color pulumi.IntPtrInput
 	// Comment.
@@ -171,6 +183,8 @@ type FirewallAddrgrpState struct {
 	Exclude pulumi.StringPtrInput
 	// Address exclusion member. The structure of `excludeMember` block is documented below.
 	ExcludeMembers FirewallAddrgrpExcludeMemberArrayInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallAddrgrpMemberArrayInput
 	// Tag name.
@@ -194,6 +208,8 @@ func (FirewallAddrgrpState) ElementType() reflect.Type {
 type firewallAddrgrpArgs struct {
 	// Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
 	AllowRouting *string `pulumi:"allowRouting"`
+	// Tag category.
+	Category *string `pulumi:"category"`
 	// Color of icon on the GUI.
 	Color *int `pulumi:"color"`
 	// Comment.
@@ -204,6 +220,8 @@ type firewallAddrgrpArgs struct {
 	Exclude *string `pulumi:"exclude"`
 	// Address exclusion member. The structure of `excludeMember` block is documented below.
 	ExcludeMembers []FirewallAddrgrpExcludeMember `pulumi:"excludeMembers"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []FirewallAddrgrpMember `pulumi:"members"`
 	// Tag name.
@@ -224,6 +242,8 @@ type firewallAddrgrpArgs struct {
 type FirewallAddrgrpArgs struct {
 	// Enable/disable use of this group in the static route configuration. Valid values: `enable`, `disable`.
 	AllowRouting pulumi.StringPtrInput
+	// Tag category.
+	Category pulumi.StringPtrInput
 	// Color of icon on the GUI.
 	Color pulumi.IntPtrInput
 	// Comment.
@@ -234,6 +254,8 @@ type FirewallAddrgrpArgs struct {
 	Exclude pulumi.StringPtrInput
 	// Address exclusion member. The structure of `excludeMember` block is documented below.
 	ExcludeMembers FirewallAddrgrpExcludeMemberArrayInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallAddrgrpMemberArrayInput
 	// Tag name.
@@ -262,7 +284,7 @@ type FirewallAddrgrpInput interface {
 }
 
 func (*FirewallAddrgrp) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddrgrp)(nil))
+	return reflect.TypeOf((**FirewallAddrgrp)(nil)).Elem()
 }
 
 func (i *FirewallAddrgrp) ToFirewallAddrgrpOutput() FirewallAddrgrpOutput {
@@ -271,35 +293,6 @@ func (i *FirewallAddrgrp) ToFirewallAddrgrpOutput() FirewallAddrgrpOutput {
 
 func (i *FirewallAddrgrp) ToFirewallAddrgrpOutputWithContext(ctx context.Context) FirewallAddrgrpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrpOutput)
-}
-
-func (i *FirewallAddrgrp) ToFirewallAddrgrpPtrOutput() FirewallAddrgrpPtrOutput {
-	return i.ToFirewallAddrgrpPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallAddrgrp) ToFirewallAddrgrpPtrOutputWithContext(ctx context.Context) FirewallAddrgrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrpPtrOutput)
-}
-
-type FirewallAddrgrpPtrInput interface {
-	pulumi.Input
-
-	ToFirewallAddrgrpPtrOutput() FirewallAddrgrpPtrOutput
-	ToFirewallAddrgrpPtrOutputWithContext(ctx context.Context) FirewallAddrgrpPtrOutput
-}
-
-type firewallAddrgrpPtrType FirewallAddrgrpArgs
-
-func (*firewallAddrgrpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddrgrp)(nil))
-}
-
-func (i *firewallAddrgrpPtrType) ToFirewallAddrgrpPtrOutput() FirewallAddrgrpPtrOutput {
-	return i.ToFirewallAddrgrpPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallAddrgrpPtrType) ToFirewallAddrgrpPtrOutputWithContext(ctx context.Context) FirewallAddrgrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrpPtrOutput)
 }
 
 // FirewallAddrgrpArrayInput is an input type that accepts FirewallAddrgrpArray and FirewallAddrgrpArrayOutput values.
@@ -316,7 +309,7 @@ type FirewallAddrgrpArrayInput interface {
 type FirewallAddrgrpArray []FirewallAddrgrpInput
 
 func (FirewallAddrgrpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallAddrgrp)(nil))
+	return reflect.TypeOf((*[]*FirewallAddrgrp)(nil)).Elem()
 }
 
 func (i FirewallAddrgrpArray) ToFirewallAddrgrpArrayOutput() FirewallAddrgrpArrayOutput {
@@ -341,7 +334,7 @@ type FirewallAddrgrpMapInput interface {
 type FirewallAddrgrpMap map[string]FirewallAddrgrpInput
 
 func (FirewallAddrgrpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallAddrgrp)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddrgrp)(nil)).Elem()
 }
 
 func (i FirewallAddrgrpMap) ToFirewallAddrgrpMapOutput() FirewallAddrgrpMapOutput {
@@ -352,12 +345,10 @@ func (i FirewallAddrgrpMap) ToFirewallAddrgrpMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrpMapOutput)
 }
 
-type FirewallAddrgrpOutput struct {
-	*pulumi.OutputState
-}
+type FirewallAddrgrpOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddrgrpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddrgrp)(nil))
+	return reflect.TypeOf((**FirewallAddrgrp)(nil)).Elem()
 }
 
 func (o FirewallAddrgrpOutput) ToFirewallAddrgrpOutput() FirewallAddrgrpOutput {
@@ -368,36 +359,10 @@ func (o FirewallAddrgrpOutput) ToFirewallAddrgrpOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FirewallAddrgrpOutput) ToFirewallAddrgrpPtrOutput() FirewallAddrgrpPtrOutput {
-	return o.ToFirewallAddrgrpPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallAddrgrpOutput) ToFirewallAddrgrpPtrOutputWithContext(ctx context.Context) FirewallAddrgrpPtrOutput {
-	return o.ApplyT(func(v FirewallAddrgrp) *FirewallAddrgrp {
-		return &v
-	}).(FirewallAddrgrpPtrOutput)
-}
-
-type FirewallAddrgrpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallAddrgrpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddrgrp)(nil))
-}
-
-func (o FirewallAddrgrpPtrOutput) ToFirewallAddrgrpPtrOutput() FirewallAddrgrpPtrOutput {
-	return o
-}
-
-func (o FirewallAddrgrpPtrOutput) ToFirewallAddrgrpPtrOutputWithContext(ctx context.Context) FirewallAddrgrpPtrOutput {
-	return o
-}
-
 type FirewallAddrgrpArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddrgrpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallAddrgrp)(nil))
+	return reflect.TypeOf((*[]*FirewallAddrgrp)(nil)).Elem()
 }
 
 func (o FirewallAddrgrpArrayOutput) ToFirewallAddrgrpArrayOutput() FirewallAddrgrpArrayOutput {
@@ -409,15 +374,15 @@ func (o FirewallAddrgrpArrayOutput) ToFirewallAddrgrpArrayOutputWithContext(ctx 
 }
 
 func (o FirewallAddrgrpArrayOutput) Index(i pulumi.IntInput) FirewallAddrgrpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddrgrp {
-		return vs[0].([]FirewallAddrgrp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAddrgrp {
+		return vs[0].([]*FirewallAddrgrp)[vs[1].(int)]
 	}).(FirewallAddrgrpOutput)
 }
 
 type FirewallAddrgrpMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddrgrpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallAddrgrp)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddrgrp)(nil)).Elem()
 }
 
 func (o FirewallAddrgrpMapOutput) ToFirewallAddrgrpMapOutput() FirewallAddrgrpMapOutput {
@@ -429,14 +394,16 @@ func (o FirewallAddrgrpMapOutput) ToFirewallAddrgrpMapOutputWithContext(ctx cont
 }
 
 func (o FirewallAddrgrpMapOutput) MapIndex(k pulumi.StringInput) FirewallAddrgrpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallAddrgrp {
-		return vs[0].(map[string]FirewallAddrgrp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallAddrgrp {
+		return vs[0].(map[string]*FirewallAddrgrp)[vs[1].(string)]
 	}).(FirewallAddrgrpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrpInput)(nil)).Elem(), &FirewallAddrgrp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrpArrayInput)(nil)).Elem(), FirewallAddrgrpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrpMapInput)(nil)).Elem(), FirewallAddrgrpMap{})
 	pulumi.RegisterOutputType(FirewallAddrgrpOutput{})
-	pulumi.RegisterOutputType(FirewallAddrgrpPtrOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrpArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrpMapOutput{})
 }

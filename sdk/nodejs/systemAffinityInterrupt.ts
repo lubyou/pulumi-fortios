@@ -71,14 +71,14 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAffinityInterruptArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAffinityInterruptArgs | SystemAffinityInterruptState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAffinityInterruptState | undefined;
-            inputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["interrupt"] = state ? state.interrupt : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["affinityCpumask"] = state ? state.affinityCpumask : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["interrupt"] = state ? state.interrupt : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemAffinityInterruptArgs | undefined;
             if ((!args || args.affinityCpumask === undefined) && !opts.urn) {
@@ -90,15 +90,13 @@ export class SystemAffinityInterrupt extends pulumi.CustomResource {
             if ((!args || args.interrupt === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'interrupt'");
             }
-            inputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["interrupt"] = args ? args.interrupt : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["affinityCpumask"] = args ? args.affinityCpumask : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["interrupt"] = args ? args.interrupt : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAffinityInterrupt.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAffinityInterrupt.__pulumiType, name, resourceInputs, opts);
     }
 }
 

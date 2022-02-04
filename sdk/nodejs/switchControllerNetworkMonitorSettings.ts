@@ -74,21 +74,19 @@ export class SwitchControllerNetworkMonitorSettings extends pulumi.CustomResourc
      */
     constructor(name: string, args?: SwitchControllerNetworkMonitorSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerNetworkMonitorSettingsArgs | SwitchControllerNetworkMonitorSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerNetworkMonitorSettingsState | undefined;
-            inputs["networkMonitoring"] = state ? state.networkMonitoring : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["networkMonitoring"] = state ? state.networkMonitoring : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerNetworkMonitorSettingsArgs | undefined;
-            inputs["networkMonitoring"] = args ? args.networkMonitoring : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["networkMonitoring"] = args ? args.networkMonitoring : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerNetworkMonitorSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerNetworkMonitorSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -43,6 +43,7 @@ func NewWirelessControllerBonjourProfile(ctx *pulumi.Context,
 		args = &WirelessControllerBonjourProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerBonjourProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerBonjourProfile:WirelessControllerBonjourProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type WirelessControllerBonjourProfileInput interface {
 }
 
 func (*WirelessControllerBonjourProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerBonjourProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerBonjourProfile)(nil)).Elem()
 }
 
 func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfileOutput() WirelessControllerBonjourProfileOutput {
@@ -142,35 +143,6 @@ func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfileOut
 
 func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfileOutputWithContext(ctx context.Context) WirelessControllerBonjourProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfileOutput)
-}
-
-func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfilePtrOutput() WirelessControllerBonjourProfilePtrOutput {
-	return i.ToWirelessControllerBonjourProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerBonjourProfile) ToWirelessControllerBonjourProfilePtrOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfilePtrOutput)
-}
-
-type WirelessControllerBonjourProfilePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerBonjourProfilePtrOutput() WirelessControllerBonjourProfilePtrOutput
-	ToWirelessControllerBonjourProfilePtrOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePtrOutput
-}
-
-type wirelessControllerBonjourProfilePtrType WirelessControllerBonjourProfileArgs
-
-func (*wirelessControllerBonjourProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerBonjourProfile)(nil))
-}
-
-func (i *wirelessControllerBonjourProfilePtrType) ToWirelessControllerBonjourProfilePtrOutput() WirelessControllerBonjourProfilePtrOutput {
-	return i.ToWirelessControllerBonjourProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerBonjourProfilePtrType) ToWirelessControllerBonjourProfilePtrOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfilePtrOutput)
 }
 
 // WirelessControllerBonjourProfileArrayInput is an input type that accepts WirelessControllerBonjourProfileArray and WirelessControllerBonjourProfileArrayOutput values.
@@ -187,7 +159,7 @@ type WirelessControllerBonjourProfileArrayInput interface {
 type WirelessControllerBonjourProfileArray []WirelessControllerBonjourProfileInput
 
 func (WirelessControllerBonjourProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerBonjourProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerBonjourProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerBonjourProfileArray) ToWirelessControllerBonjourProfileArrayOutput() WirelessControllerBonjourProfileArrayOutput {
@@ -212,7 +184,7 @@ type WirelessControllerBonjourProfileMapInput interface {
 type WirelessControllerBonjourProfileMap map[string]WirelessControllerBonjourProfileInput
 
 func (WirelessControllerBonjourProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerBonjourProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerBonjourProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerBonjourProfileMap) ToWirelessControllerBonjourProfileMapOutput() WirelessControllerBonjourProfileMapOutput {
@@ -223,12 +195,10 @@ func (i WirelessControllerBonjourProfileMap) ToWirelessControllerBonjourProfileM
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerBonjourProfileMapOutput)
 }
 
-type WirelessControllerBonjourProfileOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerBonjourProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerBonjourProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerBonjourProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerBonjourProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfileOutput() WirelessControllerBonjourProfileOutput {
@@ -239,36 +209,10 @@ func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfi
 	return o
 }
 
-func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfilePtrOutput() WirelessControllerBonjourProfilePtrOutput {
-	return o.ToWirelessControllerBonjourProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerBonjourProfileOutput) ToWirelessControllerBonjourProfilePtrOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePtrOutput {
-	return o.ApplyT(func(v WirelessControllerBonjourProfile) *WirelessControllerBonjourProfile {
-		return &v
-	}).(WirelessControllerBonjourProfilePtrOutput)
-}
-
-type WirelessControllerBonjourProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerBonjourProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerBonjourProfile)(nil))
-}
-
-func (o WirelessControllerBonjourProfilePtrOutput) ToWirelessControllerBonjourProfilePtrOutput() WirelessControllerBonjourProfilePtrOutput {
-	return o
-}
-
-func (o WirelessControllerBonjourProfilePtrOutput) ToWirelessControllerBonjourProfilePtrOutputWithContext(ctx context.Context) WirelessControllerBonjourProfilePtrOutput {
-	return o
-}
-
 type WirelessControllerBonjourProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerBonjourProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerBonjourProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerBonjourProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerBonjourProfileArrayOutput) ToWirelessControllerBonjourProfileArrayOutput() WirelessControllerBonjourProfileArrayOutput {
@@ -280,15 +224,15 @@ func (o WirelessControllerBonjourProfileArrayOutput) ToWirelessControllerBonjour
 }
 
 func (o WirelessControllerBonjourProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerBonjourProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerBonjourProfile {
-		return vs[0].([]WirelessControllerBonjourProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerBonjourProfile {
+		return vs[0].([]*WirelessControllerBonjourProfile)[vs[1].(int)]
 	}).(WirelessControllerBonjourProfileOutput)
 }
 
 type WirelessControllerBonjourProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerBonjourProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerBonjourProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerBonjourProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerBonjourProfileMapOutput) ToWirelessControllerBonjourProfileMapOutput() WirelessControllerBonjourProfileMapOutput {
@@ -300,14 +244,16 @@ func (o WirelessControllerBonjourProfileMapOutput) ToWirelessControllerBonjourPr
 }
 
 func (o WirelessControllerBonjourProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerBonjourProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerBonjourProfile {
-		return vs[0].(map[string]WirelessControllerBonjourProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerBonjourProfile {
+		return vs[0].(map[string]*WirelessControllerBonjourProfile)[vs[1].(string)]
 	}).(WirelessControllerBonjourProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerBonjourProfileInput)(nil)).Elem(), &WirelessControllerBonjourProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerBonjourProfileArrayInput)(nil)).Elem(), WirelessControllerBonjourProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerBonjourProfileMapInput)(nil)).Elem(), WirelessControllerBonjourProfileMap{})
 	pulumi.RegisterOutputType(WirelessControllerBonjourProfileOutput{})
-	pulumi.RegisterOutputType(WirelessControllerBonjourProfilePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerBonjourProfileArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerBonjourProfileMapOutput{})
 }

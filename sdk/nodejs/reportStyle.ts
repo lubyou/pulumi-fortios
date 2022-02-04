@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Report style configuration.
+ * Report style configuration. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -181,71 +181,69 @@ export class ReportStyle extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ReportStyleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ReportStyleArgs | ReportStyleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportStyleState | undefined;
-            inputs["align"] = state ? state.align : undefined;
-            inputs["bgColor"] = state ? state.bgColor : undefined;
-            inputs["borderBottom"] = state ? state.borderBottom : undefined;
-            inputs["borderLeft"] = state ? state.borderLeft : undefined;
-            inputs["borderRight"] = state ? state.borderRight : undefined;
-            inputs["borderTop"] = state ? state.borderTop : undefined;
-            inputs["columnGap"] = state ? state.columnGap : undefined;
-            inputs["columnSpan"] = state ? state.columnSpan : undefined;
-            inputs["fgColor"] = state ? state.fgColor : undefined;
-            inputs["fontFamily"] = state ? state.fontFamily : undefined;
-            inputs["fontSize"] = state ? state.fontSize : undefined;
-            inputs["fontStyle"] = state ? state.fontStyle : undefined;
-            inputs["fontWeight"] = state ? state.fontWeight : undefined;
-            inputs["height"] = state ? state.height : undefined;
-            inputs["lineHeight"] = state ? state.lineHeight : undefined;
-            inputs["marginBottom"] = state ? state.marginBottom : undefined;
-            inputs["marginLeft"] = state ? state.marginLeft : undefined;
-            inputs["marginRight"] = state ? state.marginRight : undefined;
-            inputs["marginTop"] = state ? state.marginTop : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["options"] = state ? state.options : undefined;
-            inputs["paddingBottom"] = state ? state.paddingBottom : undefined;
-            inputs["paddingLeft"] = state ? state.paddingLeft : undefined;
-            inputs["paddingRight"] = state ? state.paddingRight : undefined;
-            inputs["paddingTop"] = state ? state.paddingTop : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["width"] = state ? state.width : undefined;
+            resourceInputs["align"] = state ? state.align : undefined;
+            resourceInputs["bgColor"] = state ? state.bgColor : undefined;
+            resourceInputs["borderBottom"] = state ? state.borderBottom : undefined;
+            resourceInputs["borderLeft"] = state ? state.borderLeft : undefined;
+            resourceInputs["borderRight"] = state ? state.borderRight : undefined;
+            resourceInputs["borderTop"] = state ? state.borderTop : undefined;
+            resourceInputs["columnGap"] = state ? state.columnGap : undefined;
+            resourceInputs["columnSpan"] = state ? state.columnSpan : undefined;
+            resourceInputs["fgColor"] = state ? state.fgColor : undefined;
+            resourceInputs["fontFamily"] = state ? state.fontFamily : undefined;
+            resourceInputs["fontSize"] = state ? state.fontSize : undefined;
+            resourceInputs["fontStyle"] = state ? state.fontStyle : undefined;
+            resourceInputs["fontWeight"] = state ? state.fontWeight : undefined;
+            resourceInputs["height"] = state ? state.height : undefined;
+            resourceInputs["lineHeight"] = state ? state.lineHeight : undefined;
+            resourceInputs["marginBottom"] = state ? state.marginBottom : undefined;
+            resourceInputs["marginLeft"] = state ? state.marginLeft : undefined;
+            resourceInputs["marginRight"] = state ? state.marginRight : undefined;
+            resourceInputs["marginTop"] = state ? state.marginTop : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["options"] = state ? state.options : undefined;
+            resourceInputs["paddingBottom"] = state ? state.paddingBottom : undefined;
+            resourceInputs["paddingLeft"] = state ? state.paddingLeft : undefined;
+            resourceInputs["paddingRight"] = state ? state.paddingRight : undefined;
+            resourceInputs["paddingTop"] = state ? state.paddingTop : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["width"] = state ? state.width : undefined;
         } else {
             const args = argsOrState as ReportStyleArgs | undefined;
-            inputs["align"] = args ? args.align : undefined;
-            inputs["bgColor"] = args ? args.bgColor : undefined;
-            inputs["borderBottom"] = args ? args.borderBottom : undefined;
-            inputs["borderLeft"] = args ? args.borderLeft : undefined;
-            inputs["borderRight"] = args ? args.borderRight : undefined;
-            inputs["borderTop"] = args ? args.borderTop : undefined;
-            inputs["columnGap"] = args ? args.columnGap : undefined;
-            inputs["columnSpan"] = args ? args.columnSpan : undefined;
-            inputs["fgColor"] = args ? args.fgColor : undefined;
-            inputs["fontFamily"] = args ? args.fontFamily : undefined;
-            inputs["fontSize"] = args ? args.fontSize : undefined;
-            inputs["fontStyle"] = args ? args.fontStyle : undefined;
-            inputs["fontWeight"] = args ? args.fontWeight : undefined;
-            inputs["height"] = args ? args.height : undefined;
-            inputs["lineHeight"] = args ? args.lineHeight : undefined;
-            inputs["marginBottom"] = args ? args.marginBottom : undefined;
-            inputs["marginLeft"] = args ? args.marginLeft : undefined;
-            inputs["marginRight"] = args ? args.marginRight : undefined;
-            inputs["marginTop"] = args ? args.marginTop : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["options"] = args ? args.options : undefined;
-            inputs["paddingBottom"] = args ? args.paddingBottom : undefined;
-            inputs["paddingLeft"] = args ? args.paddingLeft : undefined;
-            inputs["paddingRight"] = args ? args.paddingRight : undefined;
-            inputs["paddingTop"] = args ? args.paddingTop : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["width"] = args ? args.width : undefined;
+            resourceInputs["align"] = args ? args.align : undefined;
+            resourceInputs["bgColor"] = args ? args.bgColor : undefined;
+            resourceInputs["borderBottom"] = args ? args.borderBottom : undefined;
+            resourceInputs["borderLeft"] = args ? args.borderLeft : undefined;
+            resourceInputs["borderRight"] = args ? args.borderRight : undefined;
+            resourceInputs["borderTop"] = args ? args.borderTop : undefined;
+            resourceInputs["columnGap"] = args ? args.columnGap : undefined;
+            resourceInputs["columnSpan"] = args ? args.columnSpan : undefined;
+            resourceInputs["fgColor"] = args ? args.fgColor : undefined;
+            resourceInputs["fontFamily"] = args ? args.fontFamily : undefined;
+            resourceInputs["fontSize"] = args ? args.fontSize : undefined;
+            resourceInputs["fontStyle"] = args ? args.fontStyle : undefined;
+            resourceInputs["fontWeight"] = args ? args.fontWeight : undefined;
+            resourceInputs["height"] = args ? args.height : undefined;
+            resourceInputs["lineHeight"] = args ? args.lineHeight : undefined;
+            resourceInputs["marginBottom"] = args ? args.marginBottom : undefined;
+            resourceInputs["marginLeft"] = args ? args.marginLeft : undefined;
+            resourceInputs["marginRight"] = args ? args.marginRight : undefined;
+            resourceInputs["marginTop"] = args ? args.marginTop : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["options"] = args ? args.options : undefined;
+            resourceInputs["paddingBottom"] = args ? args.paddingBottom : undefined;
+            resourceInputs["paddingLeft"] = args ? args.paddingLeft : undefined;
+            resourceInputs["paddingRight"] = args ? args.paddingRight : undefined;
+            resourceInputs["paddingTop"] = args ? args.paddingTop : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["width"] = args ? args.width : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ReportStyle.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ReportStyle.__pulumiType, name, resourceInputs, opts);
     }
 }
 

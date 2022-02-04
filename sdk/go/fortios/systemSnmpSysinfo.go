@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -56,6 +56,8 @@ type SystemSnmpSysinfo struct {
 	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Local SNMP engineID string (maximum 24 characters).
 	EngineId pulumi.StringOutput `pulumi:"engineId"`
+	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+	EngineIdType pulumi.StringOutput `pulumi:"engineIdType"`
 	// System location.
 	Location pulumi.StringPtrOutput `pulumi:"location"`
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -77,6 +79,7 @@ func NewSystemSnmpSysinfo(ctx *pulumi.Context,
 		args = &SystemSnmpSysinfoArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSnmpSysinfo
 	err := ctx.RegisterResource("fortios:index/systemSnmpSysinfo:SystemSnmpSysinfo", name, args, &resource, opts...)
 	if err != nil {
@@ -105,6 +108,8 @@ type systemSnmpSysinfoState struct {
 	Description *string `pulumi:"description"`
 	// Local SNMP engineID string (maximum 24 characters).
 	EngineId *string `pulumi:"engineId"`
+	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+	EngineIdType *string `pulumi:"engineIdType"`
 	// System location.
 	Location *string `pulumi:"location"`
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -126,6 +131,8 @@ type SystemSnmpSysinfoState struct {
 	Description pulumi.StringPtrInput
 	// Local SNMP engineID string (maximum 24 characters).
 	EngineId pulumi.StringPtrInput
+	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+	EngineIdType pulumi.StringPtrInput
 	// System location.
 	Location pulumi.StringPtrInput
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -151,6 +158,8 @@ type systemSnmpSysinfoArgs struct {
 	Description *string `pulumi:"description"`
 	// Local SNMP engineID string (maximum 24 characters).
 	EngineId *string `pulumi:"engineId"`
+	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+	EngineIdType *string `pulumi:"engineIdType"`
 	// System location.
 	Location *string `pulumi:"location"`
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -173,6 +182,8 @@ type SystemSnmpSysinfoArgs struct {
 	Description pulumi.StringPtrInput
 	// Local SNMP engineID string (maximum 24 characters).
 	EngineId pulumi.StringPtrInput
+	// Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+	EngineIdType pulumi.StringPtrInput
 	// System location.
 	Location pulumi.StringPtrInput
 	// Enable/disable SNMP. Valid values: `enable`, `disable`.
@@ -199,7 +210,7 @@ type SystemSnmpSysinfoInput interface {
 }
 
 func (*SystemSnmpSysinfo) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSnmpSysinfo)(nil))
+	return reflect.TypeOf((**SystemSnmpSysinfo)(nil)).Elem()
 }
 
 func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoOutput() SystemSnmpSysinfoOutput {
@@ -208,35 +219,6 @@ func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoOutput() SystemSnmpSysinfoOutput 
 
 func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoOutputWithContext(ctx context.Context) SystemSnmpSysinfoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoOutput)
-}
-
-func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoPtrOutput() SystemSnmpSysinfoPtrOutput {
-	return i.ToSystemSnmpSysinfoPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSnmpSysinfo) ToSystemSnmpSysinfoPtrOutputWithContext(ctx context.Context) SystemSnmpSysinfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoPtrOutput)
-}
-
-type SystemSnmpSysinfoPtrInput interface {
-	pulumi.Input
-
-	ToSystemSnmpSysinfoPtrOutput() SystemSnmpSysinfoPtrOutput
-	ToSystemSnmpSysinfoPtrOutputWithContext(ctx context.Context) SystemSnmpSysinfoPtrOutput
-}
-
-type systemSnmpSysinfoPtrType SystemSnmpSysinfoArgs
-
-func (*systemSnmpSysinfoPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSnmpSysinfo)(nil))
-}
-
-func (i *systemSnmpSysinfoPtrType) ToSystemSnmpSysinfoPtrOutput() SystemSnmpSysinfoPtrOutput {
-	return i.ToSystemSnmpSysinfoPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSnmpSysinfoPtrType) ToSystemSnmpSysinfoPtrOutputWithContext(ctx context.Context) SystemSnmpSysinfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoPtrOutput)
 }
 
 // SystemSnmpSysinfoArrayInput is an input type that accepts SystemSnmpSysinfoArray and SystemSnmpSysinfoArrayOutput values.
@@ -253,7 +235,7 @@ type SystemSnmpSysinfoArrayInput interface {
 type SystemSnmpSysinfoArray []SystemSnmpSysinfoInput
 
 func (SystemSnmpSysinfoArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSnmpSysinfo)(nil))
+	return reflect.TypeOf((*[]*SystemSnmpSysinfo)(nil)).Elem()
 }
 
 func (i SystemSnmpSysinfoArray) ToSystemSnmpSysinfoArrayOutput() SystemSnmpSysinfoArrayOutput {
@@ -278,7 +260,7 @@ type SystemSnmpSysinfoMapInput interface {
 type SystemSnmpSysinfoMap map[string]SystemSnmpSysinfoInput
 
 func (SystemSnmpSysinfoMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSnmpSysinfo)(nil))
+	return reflect.TypeOf((*map[string]*SystemSnmpSysinfo)(nil)).Elem()
 }
 
 func (i SystemSnmpSysinfoMap) ToSystemSnmpSysinfoMapOutput() SystemSnmpSysinfoMapOutput {
@@ -289,12 +271,10 @@ func (i SystemSnmpSysinfoMap) ToSystemSnmpSysinfoMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpSysinfoMapOutput)
 }
 
-type SystemSnmpSysinfoOutput struct {
-	*pulumi.OutputState
-}
+type SystemSnmpSysinfoOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpSysinfoOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSnmpSysinfo)(nil))
+	return reflect.TypeOf((**SystemSnmpSysinfo)(nil)).Elem()
 }
 
 func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoOutput() SystemSnmpSysinfoOutput {
@@ -305,36 +285,10 @@ func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoPtrOutput() SystemSnmpSysinfoPtrOutput {
-	return o.ToSystemSnmpSysinfoPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSnmpSysinfoOutput) ToSystemSnmpSysinfoPtrOutputWithContext(ctx context.Context) SystemSnmpSysinfoPtrOutput {
-	return o.ApplyT(func(v SystemSnmpSysinfo) *SystemSnmpSysinfo {
-		return &v
-	}).(SystemSnmpSysinfoPtrOutput)
-}
-
-type SystemSnmpSysinfoPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSnmpSysinfoPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSnmpSysinfo)(nil))
-}
-
-func (o SystemSnmpSysinfoPtrOutput) ToSystemSnmpSysinfoPtrOutput() SystemSnmpSysinfoPtrOutput {
-	return o
-}
-
-func (o SystemSnmpSysinfoPtrOutput) ToSystemSnmpSysinfoPtrOutputWithContext(ctx context.Context) SystemSnmpSysinfoPtrOutput {
-	return o
-}
-
 type SystemSnmpSysinfoArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpSysinfoArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSnmpSysinfo)(nil))
+	return reflect.TypeOf((*[]*SystemSnmpSysinfo)(nil)).Elem()
 }
 
 func (o SystemSnmpSysinfoArrayOutput) ToSystemSnmpSysinfoArrayOutput() SystemSnmpSysinfoArrayOutput {
@@ -346,15 +300,15 @@ func (o SystemSnmpSysinfoArrayOutput) ToSystemSnmpSysinfoArrayOutputWithContext(
 }
 
 func (o SystemSnmpSysinfoArrayOutput) Index(i pulumi.IntInput) SystemSnmpSysinfoOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSnmpSysinfo {
-		return vs[0].([]SystemSnmpSysinfo)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpSysinfo {
+		return vs[0].([]*SystemSnmpSysinfo)[vs[1].(int)]
 	}).(SystemSnmpSysinfoOutput)
 }
 
 type SystemSnmpSysinfoMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpSysinfoMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSnmpSysinfo)(nil))
+	return reflect.TypeOf((*map[string]*SystemSnmpSysinfo)(nil)).Elem()
 }
 
 func (o SystemSnmpSysinfoMapOutput) ToSystemSnmpSysinfoMapOutput() SystemSnmpSysinfoMapOutput {
@@ -366,14 +320,16 @@ func (o SystemSnmpSysinfoMapOutput) ToSystemSnmpSysinfoMapOutputWithContext(ctx 
 }
 
 func (o SystemSnmpSysinfoMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpSysinfoOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSnmpSysinfo {
-		return vs[0].(map[string]SystemSnmpSysinfo)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSnmpSysinfo {
+		return vs[0].(map[string]*SystemSnmpSysinfo)[vs[1].(string)]
 	}).(SystemSnmpSysinfoOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpSysinfoInput)(nil)).Elem(), &SystemSnmpSysinfo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpSysinfoArrayInput)(nil)).Elem(), SystemSnmpSysinfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpSysinfoMapInput)(nil)).Elem(), SystemSnmpSysinfoMap{})
 	pulumi.RegisterOutputType(SystemSnmpSysinfoOutput{})
-	pulumi.RegisterOutputType(SystemSnmpSysinfoPtrOutput{})
 	pulumi.RegisterOutputType(SystemSnmpSysinfoArrayOutput{})
 	pulumi.RegisterOutputType(SystemSnmpSysinfoMapOutput{})
 }

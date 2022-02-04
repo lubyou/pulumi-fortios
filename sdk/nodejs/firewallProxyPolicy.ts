@@ -93,6 +93,14 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
     }
 
     /**
+     * IPv4 access proxy. The structure of `accessProxy` block is documented below.
+     */
+    public readonly accessProxies!: pulumi.Output<outputs.FirewallProxyPolicyAccessProxy[] | undefined>;
+    /**
+     * IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+     */
+    public readonly accessProxy6s!: pulumi.Output<outputs.FirewallProxyPolicyAccessProxy6[] | undefined>;
+    /**
      * Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
      */
     public readonly action!: pulumi.Output<string>;
@@ -105,6 +113,10 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      */
     public readonly avProfile!: pulumi.Output<string>;
     /**
+     * Enable/disable block notification. Valid values: `enable`, `disable`.
+     */
+    public readonly blockNotification!: pulumi.Output<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     public readonly cifsProfile!: pulumi.Output<string>;
@@ -116,6 +128,10 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      * Decrypted traffic mirror.
      */
     public readonly decryptedTrafficMirror!: pulumi.Output<string>;
+    /**
+     * When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+     */
+    public readonly deviceOwnership!: pulumi.Output<string>;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
      */
@@ -237,7 +253,7 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      */
     public readonly profileType!: pulumi.Output<string>;
     /**
-     * Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+     * Type of explicit proxy.
      */
     public readonly proxy!: pulumi.Output<string>;
     /**
@@ -256,6 +272,10 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      * Name of schedule object.
      */
     public readonly schedule!: pulumi.Output<string>;
+    /**
+     * Name of an existing SCTP filter profile.
+     */
+    public readonly sctpFilterProfile!: pulumi.Output<string>;
     /**
      * When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
      */
@@ -325,6 +345,14 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     /**
+     * Name of an existing VideoFilter profile.
+     */
+    public readonly videofilterProfile!: pulumi.Output<string>;
+    /**
+     * Name of an existing VoIP profile.
+     */
+    public readonly voipProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing Web application firewall profile.
      */
     public readonly wafProfile!: pulumi.Output<string>;
@@ -348,6 +376,14 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      * Name of web proxy profile.
      */
     public readonly webproxyProfile!: pulumi.Output<string>;
+    /**
+     * ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+     */
+    public readonly ztnaEmsTags!: pulumi.Output<outputs.FirewallProxyPolicyZtnaEmsTag[] | undefined>;
+    /**
+     * ZTNA tag matching logic. Valid values: `or`, `and`.
+     */
+    public readonly ztnaTagsMatchLogic!: pulumi.Output<string>;
 
     /**
      * Create a FirewallProxyPolicy resource with the given unique name, arguments, and options.
@@ -358,74 +394,83 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallProxyPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallProxyPolicyArgs | FirewallProxyPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallProxyPolicyState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["applicationList"] = state ? state.applicationList : undefined;
-            inputs["avProfile"] = state ? state.avProfile : undefined;
-            inputs["cifsProfile"] = state ? state.cifsProfile : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["decryptedTrafficMirror"] = state ? state.decryptedTrafficMirror : undefined;
-            inputs["disclaimer"] = state ? state.disclaimer : undefined;
-            inputs["dlpSensor"] = state ? state.dlpSensor : undefined;
-            inputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
-            inputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dstintfs"] = state ? state.dstintfs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
-            inputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
-            inputs["globalLabel"] = state ? state.globalLabel : undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["httpTunnelAuth"] = state ? state.httpTunnelAuth : undefined;
-            inputs["icapProfile"] = state ? state.icapProfile : undefined;
-            inputs["internetService"] = state ? state.internetService : undefined;
-            inputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
-            inputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
-            inputs["internetServiceGroups"] = state ? state.internetServiceGroups : undefined;
-            inputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
-            inputs["internetServiceNames"] = state ? state.internetServiceNames : undefined;
-            inputs["internetServiceNegate"] = state ? state.internetServiceNegate : undefined;
-            inputs["ipsSensor"] = state ? state.ipsSensor : undefined;
-            inputs["label"] = state ? state.label : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policyid"] = state ? state.policyid : undefined;
-            inputs["poolnames"] = state ? state.poolnames : undefined;
-            inputs["profileGroup"] = state ? state.profileGroup : undefined;
-            inputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
-            inputs["profileType"] = state ? state.profileType : undefined;
-            inputs["proxy"] = state ? state.proxy : undefined;
-            inputs["redirectUrl"] = state ? state.redirectUrl : undefined;
-            inputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
-            inputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["serviceNegate"] = state ? state.serviceNegate : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["sessionTtl"] = state ? state.sessionTtl : undefined;
-            inputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
-            inputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
-            inputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintfs"] = state ? state.srcintfs : undefined;
-            inputs["sshFilterProfile"] = state ? state.sshFilterProfile : undefined;
-            inputs["sshPolicyRedirect"] = state ? state.sshPolicyRedirect : undefined;
-            inputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["transparent"] = state ? state.transparent : undefined;
-            inputs["users"] = state ? state.users : undefined;
-            inputs["utmStatus"] = state ? state.utmStatus : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wafProfile"] = state ? state.wafProfile : undefined;
-            inputs["webcache"] = state ? state.webcache : undefined;
-            inputs["webcacheHttps"] = state ? state.webcacheHttps : undefined;
-            inputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
-            inputs["webproxyForwardServer"] = state ? state.webproxyForwardServer : undefined;
-            inputs["webproxyProfile"] = state ? state.webproxyProfile : undefined;
+            resourceInputs["accessProxies"] = state ? state.accessProxies : undefined;
+            resourceInputs["accessProxy6s"] = state ? state.accessProxy6s : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["blockNotification"] = state ? state.blockNotification : undefined;
+            resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["decryptedTrafficMirror"] = state ? state.decryptedTrafficMirror : undefined;
+            resourceInputs["deviceOwnership"] = state ? state.deviceOwnership : undefined;
+            resourceInputs["disclaimer"] = state ? state.disclaimer : undefined;
+            resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
+            resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
+            resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
+            resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
+            resourceInputs["globalLabel"] = state ? state.globalLabel : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["httpTunnelAuth"] = state ? state.httpTunnelAuth : undefined;
+            resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
+            resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
+            resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceGroups"] = state ? state.internetServiceGroups : undefined;
+            resourceInputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
+            resourceInputs["internetServiceNames"] = state ? state.internetServiceNames : undefined;
+            resourceInputs["internetServiceNegate"] = state ? state.internetServiceNegate : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["label"] = state ? state.label : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["poolnames"] = state ? state.poolnames : undefined;
+            resourceInputs["profileGroup"] = state ? state.profileGroup : undefined;
+            resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
+            resourceInputs["profileType"] = state ? state.profileType : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
+            resourceInputs["redirectUrl"] = state ? state.redirectUrl : undefined;
+            resourceInputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
+            resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["sctpFilterProfile"] = state ? state.sctpFilterProfile : undefined;
+            resourceInputs["serviceNegate"] = state ? state.serviceNegate : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["sessionTtl"] = state ? state.sessionTtl : undefined;
+            resourceInputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
+            resourceInputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
+            resourceInputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = state ? state.srcintfs : undefined;
+            resourceInputs["sshFilterProfile"] = state ? state.sshFilterProfile : undefined;
+            resourceInputs["sshPolicyRedirect"] = state ? state.sshPolicyRedirect : undefined;
+            resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["transparent"] = state ? state.transparent : undefined;
+            resourceInputs["users"] = state ? state.users : undefined;
+            resourceInputs["utmStatus"] = state ? state.utmStatus : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
+            resourceInputs["wafProfile"] = state ? state.wafProfile : undefined;
+            resourceInputs["webcache"] = state ? state.webcache : undefined;
+            resourceInputs["webcacheHttps"] = state ? state.webcacheHttps : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
+            resourceInputs["webproxyForwardServer"] = state ? state.webproxyForwardServer : undefined;
+            resourceInputs["webproxyProfile"] = state ? state.webproxyProfile : undefined;
+            resourceInputs["ztnaEmsTags"] = state ? state.ztnaEmsTags : undefined;
+            resourceInputs["ztnaTagsMatchLogic"] = state ? state.ztnaTagsMatchLogic : undefined;
         } else {
             const args = argsOrState as FirewallProxyPolicyArgs | undefined;
             if ((!args || args.dstintfs === undefined) && !opts.urn) {
@@ -437,75 +482,82 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
             if ((!args || args.schedule === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'schedule'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["applicationList"] = args ? args.applicationList : undefined;
-            inputs["avProfile"] = args ? args.avProfile : undefined;
-            inputs["cifsProfile"] = args ? args.cifsProfile : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["decryptedTrafficMirror"] = args ? args.decryptedTrafficMirror : undefined;
-            inputs["disclaimer"] = args ? args.disclaimer : undefined;
-            inputs["dlpSensor"] = args ? args.dlpSensor : undefined;
-            inputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
-            inputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dstintfs"] = args ? args.dstintfs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
-            inputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
-            inputs["globalLabel"] = args ? args.globalLabel : undefined;
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["httpTunnelAuth"] = args ? args.httpTunnelAuth : undefined;
-            inputs["icapProfile"] = args ? args.icapProfile : undefined;
-            inputs["internetService"] = args ? args.internetService : undefined;
-            inputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
-            inputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
-            inputs["internetServiceGroups"] = args ? args.internetServiceGroups : undefined;
-            inputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
-            inputs["internetServiceNames"] = args ? args.internetServiceNames : undefined;
-            inputs["internetServiceNegate"] = args ? args.internetServiceNegate : undefined;
-            inputs["ipsSensor"] = args ? args.ipsSensor : undefined;
-            inputs["label"] = args ? args.label : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policyid"] = args ? args.policyid : undefined;
-            inputs["poolnames"] = args ? args.poolnames : undefined;
-            inputs["profileGroup"] = args ? args.profileGroup : undefined;
-            inputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
-            inputs["profileType"] = args ? args.profileType : undefined;
-            inputs["proxy"] = args ? args.proxy : undefined;
-            inputs["redirectUrl"] = args ? args.redirectUrl : undefined;
-            inputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
-            inputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["serviceNegate"] = args ? args.serviceNegate : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["sessionTtl"] = args ? args.sessionTtl : undefined;
-            inputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
-            inputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
-            inputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintfs"] = args ? args.srcintfs : undefined;
-            inputs["sshFilterProfile"] = args ? args.sshFilterProfile : undefined;
-            inputs["sshPolicyRedirect"] = args ? args.sshPolicyRedirect : undefined;
-            inputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["transparent"] = args ? args.transparent : undefined;
-            inputs["users"] = args ? args.users : undefined;
-            inputs["utmStatus"] = args ? args.utmStatus : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wafProfile"] = args ? args.wafProfile : undefined;
-            inputs["webcache"] = args ? args.webcache : undefined;
-            inputs["webcacheHttps"] = args ? args.webcacheHttps : undefined;
-            inputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
-            inputs["webproxyForwardServer"] = args ? args.webproxyForwardServer : undefined;
-            inputs["webproxyProfile"] = args ? args.webproxyProfile : undefined;
+            resourceInputs["accessProxies"] = args ? args.accessProxies : undefined;
+            resourceInputs["accessProxy6s"] = args ? args.accessProxy6s : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["blockNotification"] = args ? args.blockNotification : undefined;
+            resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["decryptedTrafficMirror"] = args ? args.decryptedTrafficMirror : undefined;
+            resourceInputs["deviceOwnership"] = args ? args.deviceOwnership : undefined;
+            resourceInputs["disclaimer"] = args ? args.disclaimer : undefined;
+            resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
+            resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
+            resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
+            resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
+            resourceInputs["globalLabel"] = args ? args.globalLabel : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["httpTunnelAuth"] = args ? args.httpTunnelAuth : undefined;
+            resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
+            resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
+            resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceGroups"] = args ? args.internetServiceGroups : undefined;
+            resourceInputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
+            resourceInputs["internetServiceNames"] = args ? args.internetServiceNames : undefined;
+            resourceInputs["internetServiceNegate"] = args ? args.internetServiceNegate : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["label"] = args ? args.label : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["poolnames"] = args ? args.poolnames : undefined;
+            resourceInputs["profileGroup"] = args ? args.profileGroup : undefined;
+            resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
+            resourceInputs["profileType"] = args ? args.profileType : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["redirectUrl"] = args ? args.redirectUrl : undefined;
+            resourceInputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
+            resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["sctpFilterProfile"] = args ? args.sctpFilterProfile : undefined;
+            resourceInputs["serviceNegate"] = args ? args.serviceNegate : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["sessionTtl"] = args ? args.sessionTtl : undefined;
+            resourceInputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
+            resourceInputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
+            resourceInputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = args ? args.srcintfs : undefined;
+            resourceInputs["sshFilterProfile"] = args ? args.sshFilterProfile : undefined;
+            resourceInputs["sshPolicyRedirect"] = args ? args.sshPolicyRedirect : undefined;
+            resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["transparent"] = args ? args.transparent : undefined;
+            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["utmStatus"] = args ? args.utmStatus : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
+            resourceInputs["wafProfile"] = args ? args.wafProfile : undefined;
+            resourceInputs["webcache"] = args ? args.webcache : undefined;
+            resourceInputs["webcacheHttps"] = args ? args.webcacheHttps : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
+            resourceInputs["webproxyForwardServer"] = args ? args.webproxyForwardServer : undefined;
+            resourceInputs["webproxyProfile"] = args ? args.webproxyProfile : undefined;
+            resourceInputs["ztnaEmsTags"] = args ? args.ztnaEmsTags : undefined;
+            resourceInputs["ztnaTagsMatchLogic"] = args ? args.ztnaTagsMatchLogic : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallProxyPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallProxyPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -513,6 +565,14 @@ export class FirewallProxyPolicy extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallProxyPolicy resources.
  */
 export interface FirewallProxyPolicyState {
+    /**
+     * IPv4 access proxy. The structure of `accessProxy` block is documented below.
+     */
+    accessProxies?: pulumi.Input<pulumi.Input<inputs.FirewallProxyPolicyAccessProxy>[]>;
+    /**
+     * IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+     */
+    accessProxy6s?: pulumi.Input<pulumi.Input<inputs.FirewallProxyPolicyAccessProxy6>[]>;
     /**
      * Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
      */
@@ -526,6 +586,10 @@ export interface FirewallProxyPolicyState {
      */
     avProfile?: pulumi.Input<string>;
     /**
+     * Enable/disable block notification. Valid values: `enable`, `disable`.
+     */
+    blockNotification?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -537,6 +601,10 @@ export interface FirewallProxyPolicyState {
      * Decrypted traffic mirror.
      */
     decryptedTrafficMirror?: pulumi.Input<string>;
+    /**
+     * When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+     */
+    deviceOwnership?: pulumi.Input<string>;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
      */
@@ -658,7 +726,7 @@ export interface FirewallProxyPolicyState {
      */
     profileType?: pulumi.Input<string>;
     /**
-     * Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+     * Type of explicit proxy.
      */
     proxy?: pulumi.Input<string>;
     /**
@@ -677,6 +745,10 @@ export interface FirewallProxyPolicyState {
      * Name of schedule object.
      */
     schedule?: pulumi.Input<string>;
+    /**
+     * Name of an existing SCTP filter profile.
+     */
+    sctpFilterProfile?: pulumi.Input<string>;
     /**
      * When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
      */
@@ -746,6 +818,14 @@ export interface FirewallProxyPolicyState {
      */
     vdomparam?: pulumi.Input<string>;
     /**
+     * Name of an existing VideoFilter profile.
+     */
+    videofilterProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP profile.
+     */
+    voipProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing Web application firewall profile.
      */
     wafProfile?: pulumi.Input<string>;
@@ -769,12 +849,28 @@ export interface FirewallProxyPolicyState {
      * Name of web proxy profile.
      */
     webproxyProfile?: pulumi.Input<string>;
+    /**
+     * ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+     */
+    ztnaEmsTags?: pulumi.Input<pulumi.Input<inputs.FirewallProxyPolicyZtnaEmsTag>[]>;
+    /**
+     * ZTNA tag matching logic. Valid values: `or`, `and`.
+     */
+    ztnaTagsMatchLogic?: pulumi.Input<string>;
 }
 
 /**
  * The set of arguments for constructing a FirewallProxyPolicy resource.
  */
 export interface FirewallProxyPolicyArgs {
+    /**
+     * IPv4 access proxy. The structure of `accessProxy` block is documented below.
+     */
+    accessProxies?: pulumi.Input<pulumi.Input<inputs.FirewallProxyPolicyAccessProxy>[]>;
+    /**
+     * IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+     */
+    accessProxy6s?: pulumi.Input<pulumi.Input<inputs.FirewallProxyPolicyAccessProxy6>[]>;
     /**
      * Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
      */
@@ -788,6 +884,10 @@ export interface FirewallProxyPolicyArgs {
      */
     avProfile?: pulumi.Input<string>;
     /**
+     * Enable/disable block notification. Valid values: `enable`, `disable`.
+     */
+    blockNotification?: pulumi.Input<string>;
+    /**
      * Name of an existing CIFS profile.
      */
     cifsProfile?: pulumi.Input<string>;
@@ -799,6 +899,10 @@ export interface FirewallProxyPolicyArgs {
      * Decrypted traffic mirror.
      */
     decryptedTrafficMirror?: pulumi.Input<string>;
+    /**
+     * When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+     */
+    deviceOwnership?: pulumi.Input<string>;
     /**
      * Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
      */
@@ -920,7 +1024,7 @@ export interface FirewallProxyPolicyArgs {
      */
     profileType?: pulumi.Input<string>;
     /**
-     * Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+     * Type of explicit proxy.
      */
     proxy: pulumi.Input<string>;
     /**
@@ -939,6 +1043,10 @@ export interface FirewallProxyPolicyArgs {
      * Name of schedule object.
      */
     schedule: pulumi.Input<string>;
+    /**
+     * Name of an existing SCTP filter profile.
+     */
+    sctpFilterProfile?: pulumi.Input<string>;
     /**
      * When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
      */
@@ -1008,6 +1116,14 @@ export interface FirewallProxyPolicyArgs {
      */
     vdomparam?: pulumi.Input<string>;
     /**
+     * Name of an existing VideoFilter profile.
+     */
+    videofilterProfile?: pulumi.Input<string>;
+    /**
+     * Name of an existing VoIP profile.
+     */
+    voipProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing Web application firewall profile.
      */
     wafProfile?: pulumi.Input<string>;
@@ -1031,4 +1147,12 @@ export interface FirewallProxyPolicyArgs {
      * Name of web proxy profile.
      */
     webproxyProfile?: pulumi.Input<string>;
+    /**
+     * ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+     */
+    ztnaEmsTags?: pulumi.Input<pulumi.Input<inputs.FirewallProxyPolicyZtnaEmsTag>[]>;
+    /**
+     * ZTNA tag matching logic. Valid values: `or`, `and`.
+     */
+    ztnaTagsMatchLogic?: pulumi.Input<string>;
 }

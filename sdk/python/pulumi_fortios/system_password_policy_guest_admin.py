@@ -17,6 +17,7 @@ class SystemPasswordPolicyGuestAdminArgs:
                  change4_characters: Optional[pulumi.Input[str]] = None,
                  expire_day: Optional[pulumi.Input[int]] = None,
                  expire_status: Optional[pulumi.Input[str]] = None,
+                 min_change_characters: Optional[pulumi.Input[int]] = None,
                  min_lower_case_letter: Optional[pulumi.Input[int]] = None,
                  min_non_alphanumeric: Optional[pulumi.Input[int]] = None,
                  min_number: Optional[pulumi.Input[int]] = None,
@@ -31,6 +32,7 @@ class SystemPasswordPolicyGuestAdminArgs:
         :param pulumi.Input[str] change4_characters: Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] expire_day: Number of days after which passwords expire (1 - 999 days, default = 90).
         :param pulumi.Input[str] expire_status: Enable/disable password expiration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] min_change_characters: Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
         :param pulumi.Input[int] min_lower_case_letter: Minimum number of lowercase characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_non_alphanumeric: Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_number: Minimum number of numeric characters in password (0 - 128, default = 0).
@@ -48,6 +50,8 @@ class SystemPasswordPolicyGuestAdminArgs:
             pulumi.set(__self__, "expire_day", expire_day)
         if expire_status is not None:
             pulumi.set(__self__, "expire_status", expire_status)
+        if min_change_characters is not None:
+            pulumi.set(__self__, "min_change_characters", min_change_characters)
         if min_lower_case_letter is not None:
             pulumi.set(__self__, "min_lower_case_letter", min_lower_case_letter)
         if min_non_alphanumeric is not None:
@@ -112,6 +116,18 @@ class SystemPasswordPolicyGuestAdminArgs:
     @expire_status.setter
     def expire_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expire_status", value)
+
+    @property
+    @pulumi.getter(name="minChangeCharacters")
+    def min_change_characters(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        """
+        return pulumi.get(self, "min_change_characters")
+
+    @min_change_characters.setter
+    def min_change_characters(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_change_characters", value)
 
     @property
     @pulumi.getter(name="minLowerCaseLetter")
@@ -217,6 +233,7 @@ class _SystemPasswordPolicyGuestAdminState:
                  change4_characters: Optional[pulumi.Input[str]] = None,
                  expire_day: Optional[pulumi.Input[int]] = None,
                  expire_status: Optional[pulumi.Input[str]] = None,
+                 min_change_characters: Optional[pulumi.Input[int]] = None,
                  min_lower_case_letter: Optional[pulumi.Input[int]] = None,
                  min_non_alphanumeric: Optional[pulumi.Input[int]] = None,
                  min_number: Optional[pulumi.Input[int]] = None,
@@ -231,6 +248,7 @@ class _SystemPasswordPolicyGuestAdminState:
         :param pulumi.Input[str] change4_characters: Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] expire_day: Number of days after which passwords expire (1 - 999 days, default = 90).
         :param pulumi.Input[str] expire_status: Enable/disable password expiration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] min_change_characters: Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
         :param pulumi.Input[int] min_lower_case_letter: Minimum number of lowercase characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_non_alphanumeric: Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_number: Minimum number of numeric characters in password (0 - 128, default = 0).
@@ -248,6 +266,8 @@ class _SystemPasswordPolicyGuestAdminState:
             pulumi.set(__self__, "expire_day", expire_day)
         if expire_status is not None:
             pulumi.set(__self__, "expire_status", expire_status)
+        if min_change_characters is not None:
+            pulumi.set(__self__, "min_change_characters", min_change_characters)
         if min_lower_case_letter is not None:
             pulumi.set(__self__, "min_lower_case_letter", min_lower_case_letter)
         if min_non_alphanumeric is not None:
@@ -312,6 +332,18 @@ class _SystemPasswordPolicyGuestAdminState:
     @expire_status.setter
     def expire_status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "expire_status", value)
+
+    @property
+    @pulumi.getter(name="minChangeCharacters")
+    def min_change_characters(self) -> Optional[pulumi.Input[int]]:
+        """
+        Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        """
+        return pulumi.get(self, "min_change_characters")
+
+    @min_change_characters.setter
+    def min_change_characters(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "min_change_characters", value)
 
     @property
     @pulumi.getter(name="minLowerCaseLetter")
@@ -419,6 +451,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
                  change4_characters: Optional[pulumi.Input[str]] = None,
                  expire_day: Optional[pulumi.Input[int]] = None,
                  expire_status: Optional[pulumi.Input[str]] = None,
+                 min_change_characters: Optional[pulumi.Input[int]] = None,
                  min_lower_case_letter: Optional[pulumi.Input[int]] = None,
                  min_non_alphanumeric: Optional[pulumi.Input[int]] = None,
                  min_number: Optional[pulumi.Input[int]] = None,
@@ -467,6 +500,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
         :param pulumi.Input[str] change4_characters: Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] expire_day: Number of days after which passwords expire (1 - 999 days, default = 90).
         :param pulumi.Input[str] expire_status: Enable/disable password expiration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] min_change_characters: Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
         :param pulumi.Input[int] min_lower_case_letter: Minimum number of lowercase characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_non_alphanumeric: Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_number: Minimum number of numeric characters in password (0 - 128, default = 0).
@@ -534,6 +568,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
                  change4_characters: Optional[pulumi.Input[str]] = None,
                  expire_day: Optional[pulumi.Input[int]] = None,
                  expire_status: Optional[pulumi.Input[str]] = None,
+                 min_change_characters: Optional[pulumi.Input[int]] = None,
                  min_lower_case_letter: Optional[pulumi.Input[int]] = None,
                  min_non_alphanumeric: Optional[pulumi.Input[int]] = None,
                  min_number: Optional[pulumi.Input[int]] = None,
@@ -549,6 +584,8 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -558,6 +595,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
             __props__.__dict__["change4_characters"] = change4_characters
             __props__.__dict__["expire_day"] = expire_day
             __props__.__dict__["expire_status"] = expire_status
+            __props__.__dict__["min_change_characters"] = min_change_characters
             __props__.__dict__["min_lower_case_letter"] = min_lower_case_letter
             __props__.__dict__["min_non_alphanumeric"] = min_non_alphanumeric
             __props__.__dict__["min_number"] = min_number
@@ -580,6 +618,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
             change4_characters: Optional[pulumi.Input[str]] = None,
             expire_day: Optional[pulumi.Input[int]] = None,
             expire_status: Optional[pulumi.Input[str]] = None,
+            min_change_characters: Optional[pulumi.Input[int]] = None,
             min_lower_case_letter: Optional[pulumi.Input[int]] = None,
             min_non_alphanumeric: Optional[pulumi.Input[int]] = None,
             min_number: Optional[pulumi.Input[int]] = None,
@@ -599,6 +638,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
         :param pulumi.Input[str] change4_characters: Enable/disable changing at least 4 characters for a new password (This attribute overrides reuse-password if both are enabled). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] expire_day: Number of days after which passwords expire (1 - 999 days, default = 90).
         :param pulumi.Input[str] expire_status: Enable/disable password expiration. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] min_change_characters: Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
         :param pulumi.Input[int] min_lower_case_letter: Minimum number of lowercase characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_non_alphanumeric: Minimum number of non-alphanumeric characters in password (0 - 128, default = 0).
         :param pulumi.Input[int] min_number: Minimum number of numeric characters in password (0 - 128, default = 0).
@@ -616,6 +656,7 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
         __props__.__dict__["change4_characters"] = change4_characters
         __props__.__dict__["expire_day"] = expire_day
         __props__.__dict__["expire_status"] = expire_status
+        __props__.__dict__["min_change_characters"] = min_change_characters
         __props__.__dict__["min_lower_case_letter"] = min_lower_case_letter
         __props__.__dict__["min_non_alphanumeric"] = min_non_alphanumeric
         __props__.__dict__["min_number"] = min_number
@@ -657,6 +698,14 @@ class SystemPasswordPolicyGuestAdmin(pulumi.CustomResource):
         Enable/disable password expiration. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "expire_status")
+
+    @property
+    @pulumi.getter(name="minChangeCharacters")
+    def min_change_characters(self) -> pulumi.Output[int]:
+        """
+        Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        """
+        return pulumi.get(self, "min_change_characters")
 
     @property
     @pulumi.getter(name="minLowerCaseLetter")

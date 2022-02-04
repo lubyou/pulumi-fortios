@@ -13,9 +13,7 @@ export function getFirewallMulticastAddress6(args: GetFirewallMulticastAddress6A
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallMulticastAddress6:GetFirewallMulticastAddress6", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -69,4 +67,22 @@ export interface GetFirewallMulticastAddress6Result {
      * Enable/disable visibility of the IPv6 multicast address on the GUI.
      */
     readonly visibility: string;
+}
+
+export function getFirewallMulticastAddress6Output(args: GetFirewallMulticastAddress6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallMulticastAddress6Result> {
+    return pulumi.output(args).apply(a => getFirewallMulticastAddress6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallMulticastAddress6.
+ */
+export interface GetFirewallMulticastAddress6OutputArgs {
+    /**
+     * Specify the name of the desired firewall multicastaddress6.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

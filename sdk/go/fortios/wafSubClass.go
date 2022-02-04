@@ -39,6 +39,7 @@ func NewWafSubClass(ctx *pulumi.Context,
 		args = &WafSubClassArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WafSubClass
 	err := ctx.RegisterResource("fortios:index/wafSubClass:WafSubClass", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type WafSubClassInput interface {
 }
 
 func (*WafSubClass) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafSubClass)(nil))
+	return reflect.TypeOf((**WafSubClass)(nil)).Elem()
 }
 
 func (i *WafSubClass) ToWafSubClassOutput() WafSubClassOutput {
@@ -122,35 +123,6 @@ func (i *WafSubClass) ToWafSubClassOutput() WafSubClassOutput {
 
 func (i *WafSubClass) ToWafSubClassOutputWithContext(ctx context.Context) WafSubClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassOutput)
-}
-
-func (i *WafSubClass) ToWafSubClassPtrOutput() WafSubClassPtrOutput {
-	return i.ToWafSubClassPtrOutputWithContext(context.Background())
-}
-
-func (i *WafSubClass) ToWafSubClassPtrOutputWithContext(ctx context.Context) WafSubClassPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassPtrOutput)
-}
-
-type WafSubClassPtrInput interface {
-	pulumi.Input
-
-	ToWafSubClassPtrOutput() WafSubClassPtrOutput
-	ToWafSubClassPtrOutputWithContext(ctx context.Context) WafSubClassPtrOutput
-}
-
-type wafSubClassPtrType WafSubClassArgs
-
-func (*wafSubClassPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafSubClass)(nil))
-}
-
-func (i *wafSubClassPtrType) ToWafSubClassPtrOutput() WafSubClassPtrOutput {
-	return i.ToWafSubClassPtrOutputWithContext(context.Background())
-}
-
-func (i *wafSubClassPtrType) ToWafSubClassPtrOutputWithContext(ctx context.Context) WafSubClassPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassPtrOutput)
 }
 
 // WafSubClassArrayInput is an input type that accepts WafSubClassArray and WafSubClassArrayOutput values.
@@ -167,7 +139,7 @@ type WafSubClassArrayInput interface {
 type WafSubClassArray []WafSubClassInput
 
 func (WafSubClassArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WafSubClass)(nil))
+	return reflect.TypeOf((*[]*WafSubClass)(nil)).Elem()
 }
 
 func (i WafSubClassArray) ToWafSubClassArrayOutput() WafSubClassArrayOutput {
@@ -192,7 +164,7 @@ type WafSubClassMapInput interface {
 type WafSubClassMap map[string]WafSubClassInput
 
 func (WafSubClassMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WafSubClass)(nil))
+	return reflect.TypeOf((*map[string]*WafSubClass)(nil)).Elem()
 }
 
 func (i WafSubClassMap) ToWafSubClassMapOutput() WafSubClassMapOutput {
@@ -203,12 +175,10 @@ func (i WafSubClassMap) ToWafSubClassMapOutputWithContext(ctx context.Context) W
 	return pulumi.ToOutputWithContext(ctx, i).(WafSubClassMapOutput)
 }
 
-type WafSubClassOutput struct {
-	*pulumi.OutputState
-}
+type WafSubClassOutput struct{ *pulumi.OutputState }
 
 func (WafSubClassOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafSubClass)(nil))
+	return reflect.TypeOf((**WafSubClass)(nil)).Elem()
 }
 
 func (o WafSubClassOutput) ToWafSubClassOutput() WafSubClassOutput {
@@ -219,36 +189,10 @@ func (o WafSubClassOutput) ToWafSubClassOutputWithContext(ctx context.Context) W
 	return o
 }
 
-func (o WafSubClassOutput) ToWafSubClassPtrOutput() WafSubClassPtrOutput {
-	return o.ToWafSubClassPtrOutputWithContext(context.Background())
-}
-
-func (o WafSubClassOutput) ToWafSubClassPtrOutputWithContext(ctx context.Context) WafSubClassPtrOutput {
-	return o.ApplyT(func(v WafSubClass) *WafSubClass {
-		return &v
-	}).(WafSubClassPtrOutput)
-}
-
-type WafSubClassPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WafSubClassPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafSubClass)(nil))
-}
-
-func (o WafSubClassPtrOutput) ToWafSubClassPtrOutput() WafSubClassPtrOutput {
-	return o
-}
-
-func (o WafSubClassPtrOutput) ToWafSubClassPtrOutputWithContext(ctx context.Context) WafSubClassPtrOutput {
-	return o
-}
-
 type WafSubClassArrayOutput struct{ *pulumi.OutputState }
 
 func (WafSubClassArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WafSubClass)(nil))
+	return reflect.TypeOf((*[]*WafSubClass)(nil)).Elem()
 }
 
 func (o WafSubClassArrayOutput) ToWafSubClassArrayOutput() WafSubClassArrayOutput {
@@ -260,15 +204,15 @@ func (o WafSubClassArrayOutput) ToWafSubClassArrayOutputWithContext(ctx context.
 }
 
 func (o WafSubClassArrayOutput) Index(i pulumi.IntInput) WafSubClassOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafSubClass {
-		return vs[0].([]WafSubClass)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafSubClass {
+		return vs[0].([]*WafSubClass)[vs[1].(int)]
 	}).(WafSubClassOutput)
 }
 
 type WafSubClassMapOutput struct{ *pulumi.OutputState }
 
 func (WafSubClassMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WafSubClass)(nil))
+	return reflect.TypeOf((*map[string]*WafSubClass)(nil)).Elem()
 }
 
 func (o WafSubClassMapOutput) ToWafSubClassMapOutput() WafSubClassMapOutput {
@@ -280,14 +224,16 @@ func (o WafSubClassMapOutput) ToWafSubClassMapOutputWithContext(ctx context.Cont
 }
 
 func (o WafSubClassMapOutput) MapIndex(k pulumi.StringInput) WafSubClassOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WafSubClass {
-		return vs[0].(map[string]WafSubClass)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WafSubClass {
+		return vs[0].(map[string]*WafSubClass)[vs[1].(string)]
 	}).(WafSubClassOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WafSubClassInput)(nil)).Elem(), &WafSubClass{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafSubClassArrayInput)(nil)).Elem(), WafSubClassArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafSubClassMapInput)(nil)).Elem(), WafSubClassMap{})
 	pulumi.RegisterOutputType(WafSubClassOutput{})
-	pulumi.RegisterOutputType(WafSubClassPtrOutput{})
 	pulumi.RegisterOutputType(WafSubClassArrayOutput{})
 	pulumi.RegisterOutputType(WafSubClassMapOutput{})
 }

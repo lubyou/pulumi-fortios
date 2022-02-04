@@ -47,6 +47,7 @@ func NewSystemReplacemsgSslvpn(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgSslvpn
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgSslvpn:SystemReplacemsgSslvpn", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgSslvpnInput interface {
 }
 
 func (*SystemReplacemsgSslvpn) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgSslvpn)(nil))
+	return reflect.TypeOf((**SystemReplacemsgSslvpn)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnOutput() SystemReplacemsgSslvpnOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnOutput() SystemReplacem
 
 func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnOutput)
-}
-
-func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnPtrOutput() SystemReplacemsgSslvpnPtrOutput {
-	return i.ToSystemReplacemsgSslvpnPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgSslvpn) ToSystemReplacemsgSslvpnPtrOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnPtrOutput)
-}
-
-type SystemReplacemsgSslvpnPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgSslvpnPtrOutput() SystemReplacemsgSslvpnPtrOutput
-	ToSystemReplacemsgSslvpnPtrOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnPtrOutput
-}
-
-type systemReplacemsgSslvpnPtrType SystemReplacemsgSslvpnArgs
-
-func (*systemReplacemsgSslvpnPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgSslvpn)(nil))
-}
-
-func (i *systemReplacemsgSslvpnPtrType) ToSystemReplacemsgSslvpnPtrOutput() SystemReplacemsgSslvpnPtrOutput {
-	return i.ToSystemReplacemsgSslvpnPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgSslvpnPtrType) ToSystemReplacemsgSslvpnPtrOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnPtrOutput)
 }
 
 // SystemReplacemsgSslvpnArrayInput is an input type that accepts SystemReplacemsgSslvpnArray and SystemReplacemsgSslvpnArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgSslvpnArrayInput interface {
 type SystemReplacemsgSslvpnArray []SystemReplacemsgSslvpnInput
 
 func (SystemReplacemsgSslvpnArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgSslvpn)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgSslvpn)(nil)).Elem()
 }
 
 func (i SystemReplacemsgSslvpnArray) ToSystemReplacemsgSslvpnArrayOutput() SystemReplacemsgSslvpnArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgSslvpnMapInput interface {
 type SystemReplacemsgSslvpnMap map[string]SystemReplacemsgSslvpnInput
 
 func (SystemReplacemsgSslvpnMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgSslvpn)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgSslvpn)(nil)).Elem()
 }
 
 func (i SystemReplacemsgSslvpnMap) ToSystemReplacemsgSslvpnMapOutput() SystemReplacemsgSslvpnMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgSslvpnMap) ToSystemReplacemsgSslvpnMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgSslvpnMapOutput)
 }
 
-type SystemReplacemsgSslvpnOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgSslvpnOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgSslvpnOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgSslvpn)(nil))
+	return reflect.TypeOf((**SystemReplacemsgSslvpn)(nil)).Elem()
 }
 
 func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnOutput() SystemReplacemsgSslvpnOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnOutputWithContext(
 	return o
 }
 
-func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnPtrOutput() SystemReplacemsgSslvpnPtrOutput {
-	return o.ToSystemReplacemsgSslvpnPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgSslvpnOutput) ToSystemReplacemsgSslvpnPtrOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgSslvpn) *SystemReplacemsgSslvpn {
-		return &v
-	}).(SystemReplacemsgSslvpnPtrOutput)
-}
-
-type SystemReplacemsgSslvpnPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgSslvpnPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgSslvpn)(nil))
-}
-
-func (o SystemReplacemsgSslvpnPtrOutput) ToSystemReplacemsgSslvpnPtrOutput() SystemReplacemsgSslvpnPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgSslvpnPtrOutput) ToSystemReplacemsgSslvpnPtrOutputWithContext(ctx context.Context) SystemReplacemsgSslvpnPtrOutput {
-	return o
-}
-
 type SystemReplacemsgSslvpnArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgSslvpnArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgSslvpn)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgSslvpn)(nil)).Elem()
 }
 
 func (o SystemReplacemsgSslvpnArrayOutput) ToSystemReplacemsgSslvpnArrayOutput() SystemReplacemsgSslvpnArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgSslvpnArrayOutput) ToSystemReplacemsgSslvpnArrayOutputWi
 }
 
 func (o SystemReplacemsgSslvpnArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgSslvpnOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgSslvpn {
-		return vs[0].([]SystemReplacemsgSslvpn)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgSslvpn {
+		return vs[0].([]*SystemReplacemsgSslvpn)[vs[1].(int)]
 	}).(SystemReplacemsgSslvpnOutput)
 }
 
 type SystemReplacemsgSslvpnMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgSslvpnMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgSslvpn)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgSslvpn)(nil)).Elem()
 }
 
 func (o SystemReplacemsgSslvpnMapOutput) ToSystemReplacemsgSslvpnMapOutput() SystemReplacemsgSslvpnMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgSslvpnMapOutput) ToSystemReplacemsgSslvpnMapOutputWithCo
 }
 
 func (o SystemReplacemsgSslvpnMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgSslvpnOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgSslvpn {
-		return vs[0].(map[string]SystemReplacemsgSslvpn)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgSslvpn {
+		return vs[0].(map[string]*SystemReplacemsgSslvpn)[vs[1].(string)]
 	}).(SystemReplacemsgSslvpnOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgSslvpnInput)(nil)).Elem(), &SystemReplacemsgSslvpn{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgSslvpnArrayInput)(nil)).Elem(), SystemReplacemsgSslvpnArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgSslvpnMapInput)(nil)).Elem(), SystemReplacemsgSslvpnMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgSslvpnOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgSslvpnPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgSslvpnArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgSslvpnMapOutput{})
 }

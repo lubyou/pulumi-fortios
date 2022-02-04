@@ -27,8 +27,10 @@ class WirelessControllerGlobalArgs:
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
+                 nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None):
         """
@@ -37,6 +39,7 @@ class WirelessControllerGlobalArgs:
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -46,8 +49,10 @@ class WirelessControllerGlobalArgs:
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
+        :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
@@ -79,10 +84,14 @@ class WirelessControllerGlobalArgs:
             pulumi.set(__self__, "max_retransmit", max_retransmit)
         if mesh_eth_type is not None:
             pulumi.set(__self__, "mesh_eth_type", mesh_eth_type)
+        if nac_interval is not None:
+            pulumi.set(__self__, "nac_interval", nac_interval)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if rogue_scan_mac_adjacency is not None:
             pulumi.set(__self__, "rogue_scan_mac_adjacency", rogue_scan_mac_adjacency)
+        if tunnel_mode is not None:
+            pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wtp_share is not None:
@@ -139,6 +148,9 @@ class WirelessControllerGlobalArgs:
     @property
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "data_ethernet_ii")
 
     @data_ethernet_ii.setter
@@ -254,6 +266,18 @@ class WirelessControllerGlobalArgs:
         pulumi.set(self, "mesh_eth_type", value)
 
     @property
+    @pulumi.getter(name="nacInterval")
+    def nac_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+        """
+        return pulumi.get(self, "nac_interval")
+
+    @nac_interval.setter
+    def nac_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "nac_interval", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -276,6 +300,18 @@ class WirelessControllerGlobalArgs:
     @rogue_scan_mac_adjacency.setter
     def rogue_scan_mac_adjacency(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "rogue_scan_mac_adjacency", value)
+
+    @property
+    @pulumi.getter(name="tunnelMode")
+    def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        """
+        return pulumi.get(self, "tunnel_mode")
+
+    @tunnel_mode.setter
+    def tunnel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tunnel_mode", value)
 
     @property
     @pulumi.getter
@@ -319,8 +355,10 @@ class _WirelessControllerGlobalState:
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
+                 nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None):
         """
@@ -329,6 +367,7 @@ class _WirelessControllerGlobalState:
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -338,8 +377,10 @@ class _WirelessControllerGlobalState:
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
+        :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
@@ -371,10 +412,14 @@ class _WirelessControllerGlobalState:
             pulumi.set(__self__, "max_retransmit", max_retransmit)
         if mesh_eth_type is not None:
             pulumi.set(__self__, "mesh_eth_type", mesh_eth_type)
+        if nac_interval is not None:
+            pulumi.set(__self__, "nac_interval", nac_interval)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if rogue_scan_mac_adjacency is not None:
             pulumi.set(__self__, "rogue_scan_mac_adjacency", rogue_scan_mac_adjacency)
+        if tunnel_mode is not None:
+            pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if wtp_share is not None:
@@ -431,6 +476,9 @@ class _WirelessControllerGlobalState:
     @property
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "data_ethernet_ii")
 
     @data_ethernet_ii.setter
@@ -546,6 +594,18 @@ class _WirelessControllerGlobalState:
         pulumi.set(self, "mesh_eth_type", value)
 
     @property
+    @pulumi.getter(name="nacInterval")
+    def nac_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+        """
+        return pulumi.get(self, "nac_interval")
+
+    @nac_interval.setter
+    def nac_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "nac_interval", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -568,6 +628,18 @@ class _WirelessControllerGlobalState:
     @rogue_scan_mac_adjacency.setter
     def rogue_scan_mac_adjacency(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "rogue_scan_mac_adjacency", value)
+
+    @property
+    @pulumi.getter(name="tunnelMode")
+    def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        """
+        return pulumi.get(self, "tunnel_mode")
+
+    @tunnel_mode.setter
+    def tunnel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tunnel_mode", value)
 
     @property
     @pulumi.getter
@@ -613,8 +685,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
+                 nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -661,6 +735,7 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -670,8 +745,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
+        :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
@@ -747,8 +824,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
                  max_clients: Optional[pulumi.Input[int]] = None,
                  max_retransmit: Optional[pulumi.Input[int]] = None,
                  mesh_eth_type: Optional[pulumi.Input[int]] = None,
+                 nac_interval: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  wtp_share: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -758,6 +837,8 @@ class WirelessControllerGlobal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -777,8 +858,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
             __props__.__dict__["max_clients"] = max_clients
             __props__.__dict__["max_retransmit"] = max_retransmit
             __props__.__dict__["mesh_eth_type"] = mesh_eth_type
+            __props__.__dict__["nac_interval"] = nac_interval
             __props__.__dict__["name"] = name
             __props__.__dict__["rogue_scan_mac_adjacency"] = rogue_scan_mac_adjacency
+            __props__.__dict__["tunnel_mode"] = tunnel_mode
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["wtp_share"] = wtp_share
         super(WirelessControllerGlobal, __self__).__init__(
@@ -805,8 +888,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
             max_clients: Optional[pulumi.Input[int]] = None,
             max_retransmit: Optional[pulumi.Input[int]] = None,
             mesh_eth_type: Optional[pulumi.Input[int]] = None,
+            nac_interval: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             rogue_scan_mac_adjacency: Optional[pulumi.Input[int]] = None,
+            tunnel_mode: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             wtp_share: Optional[pulumi.Input[str]] = None) -> 'WirelessControllerGlobal':
         """
@@ -820,6 +905,7 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] ap_log_server_ip: IP address that APs or FortiAPs send log messages to.
         :param pulumi.Input[int] ap_log_server_port: Port that APs or FortiAPs send log messages to.
         :param pulumi.Input[str] control_message_offload: Configure CAPWAP control message data channel offload.
+        :param pulumi.Input[str] data_ethernet_ii: Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] discovery_mc_addr: Multicast IP address for AP discovery (default = 244.0.1.140).
         :param pulumi.Input[int] fiapp_eth_type: Ethernet type for Fortinet Inter-Access Point Protocol (IAPP), or IEEE 802.11f, packets (0 - 65535, default = 5252).
         :param pulumi.Input[str] image_download: Enable/disable WTP image download at join time. Valid values: `enable`, `disable`.
@@ -829,8 +915,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] max_clients: Maximum number of clients that can connect simultaneously (default = 0, meaning no limitation).
         :param pulumi.Input[int] max_retransmit: Maximum number of tunnel packet retransmissions (0 - 64, default = 3).
         :param pulumi.Input[int] mesh_eth_type: Mesh Ethernet identifier included in backhaul packets (0 - 65535, default = 8755).
+        :param pulumi.Input[int] nac_interval: Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
         :param pulumi.Input[str] name: Name of the wireless controller.
         :param pulumi.Input[int] rogue_scan_mac_adjacency: Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] wtp_share: Enable/disable sharing of WTPs between VDOMs. Valid values: `enable`, `disable`.
         """
@@ -852,8 +940,10 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         __props__.__dict__["max_clients"] = max_clients
         __props__.__dict__["max_retransmit"] = max_retransmit
         __props__.__dict__["mesh_eth_type"] = mesh_eth_type
+        __props__.__dict__["nac_interval"] = nac_interval
         __props__.__dict__["name"] = name
         __props__.__dict__["rogue_scan_mac_adjacency"] = rogue_scan_mac_adjacency
+        __props__.__dict__["tunnel_mode"] = tunnel_mode
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["wtp_share"] = wtp_share
         return WirelessControllerGlobal(resource_name, opts=opts, __props__=__props__)
@@ -893,6 +983,9 @@ class WirelessControllerGlobal(pulumi.CustomResource):
     @property
     @pulumi.getter(name="dataEthernetIi")
     def data_ethernet_ii(self) -> pulumi.Output[str]:
+        """
+        Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+        """
         return pulumi.get(self, "data_ethernet_ii")
 
     @property
@@ -968,6 +1061,14 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         return pulumi.get(self, "mesh_eth_type")
 
     @property
+    @pulumi.getter(name="nacInterval")
+    def nac_interval(self) -> pulumi.Output[int]:
+        """
+        Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+        """
+        return pulumi.get(self, "nac_interval")
+
+    @property
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
@@ -982,6 +1083,14 @@ class WirelessControllerGlobal(pulumi.CustomResource):
         Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
         """
         return pulumi.get(self, "rogue_scan_mac_adjacency")
+
+    @property
+    @pulumi.getter(name="tunnelMode")
+    def tunnel_mode(self) -> pulumi.Output[str]:
+        """
+        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        """
+        return pulumi.get(self, "tunnel_mode")
 
     @property
     @pulumi.getter

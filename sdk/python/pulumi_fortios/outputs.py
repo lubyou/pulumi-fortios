@@ -12,6 +12,7 @@ from . import outputs
 __all__ = [
     'AntivirusProfileCifs',
     'AntivirusProfileContentDisarm',
+    'AntivirusProfileExternalBlocklist',
     'AntivirusProfileFtp',
     'AntivirusProfileHttp',
     'AntivirusProfileImap',
@@ -37,11 +38,14 @@ __all__ = [
     'ApplicationListEntrySubCategory',
     'ApplicationNameMetadata',
     'ApplicationNameParameter',
+    'AuthenticationRuleDstaddr6',
     'AuthenticationRuleDstaddr',
     'AuthenticationRuleSrcaddr6',
     'AuthenticationRuleSrcaddr',
     'AuthenticationRuleSrcintf',
     'AuthenticationSchemeUserDatabase',
+    'AuthenticationSettingDevRange',
+    'AuthenticationSettingUserCertCa',
     'CifsProfileFileFilter',
     'CifsProfileFileFilterEntry',
     'CifsProfileFileFilterEntryFileType',
@@ -94,9 +98,45 @@ __all__ = [
     'ExtenderControllerExtender1Modem1AutoSwitch',
     'ExtenderControllerExtender1Modem2',
     'ExtenderControllerExtender1Modem2AutoSwitch',
+    'ExtenderControllerExtenderControllerReport',
+    'ExtenderControllerExtenderModem1',
+    'ExtenderControllerExtenderModem1AutoSwitch',
+    'ExtenderControllerExtenderModem2',
+    'ExtenderControllerExtenderModem2AutoSwitch',
+    'ExtenderControllerExtenderProfileCellular',
+    'ExtenderControllerExtenderProfileCellularControllerReport',
+    'ExtenderControllerExtenderProfileCellularDataplan',
+    'ExtenderControllerExtenderProfileCellularModem1',
+    'ExtenderControllerExtenderProfileCellularModem1AutoSwitch',
+    'ExtenderControllerExtenderProfileCellularModem2',
+    'ExtenderControllerExtenderProfileCellularModem2AutoSwitch',
+    'ExtenderControllerExtenderProfileCellularSmsNotification',
+    'ExtenderControllerExtenderProfileCellularSmsNotificationAlert',
+    'ExtenderControllerExtenderProfileCellularSmsNotificationReceiver',
+    'ExtenderControllerExtenderProfileLanExtension',
+    'ExtenderControllerExtenderProfileLanExtensionBackhaul',
+    'ExtenderControllerExtenderWanExtension',
     'FileFilterProfileRule',
     'FileFilterProfileRuleFileType',
+    'FirewallAccessProxy6ApiGateway6',
+    'FirewallAccessProxy6ApiGateway6Realserver',
+    'FirewallAccessProxy6ApiGateway6RealserverSshHostKey',
+    'FirewallAccessProxy6ApiGateway6SslCipherSuite',
+    'FirewallAccessProxy6ApiGateway',
+    'FirewallAccessProxy6ApiGatewayRealserver',
+    'FirewallAccessProxy6ApiGatewayRealserverSshHostKey',
+    'FirewallAccessProxy6ApiGatewaySslCipherSuite',
+    'FirewallAccessProxyApiGateway6',
+    'FirewallAccessProxyApiGateway6Realserver',
+    'FirewallAccessProxyApiGateway6RealserverSshHostKey',
+    'FirewallAccessProxyApiGateway6SslCipherSuite',
+    'FirewallAccessProxyApiGateway',
+    'FirewallAccessProxyApiGatewayRealserver',
+    'FirewallAccessProxyApiGatewayRealserverSshHostKey',
+    'FirewallAccessProxyApiGatewaySslCipherSuite',
+    'FirewallAccessProxySshClientCertCertExtension',
     'FirewallAddress6List',
+    'FirewallAddress6Macaddr',
     'FirewallAddress6SubnetSegment',
     'FirewallAddress6Tagging',
     'FirewallAddress6TaggingTag',
@@ -104,6 +144,7 @@ __all__ = [
     'FirewallAddress6TemplateSubnetSegmentValue',
     'FirewallAddressFssoGroup',
     'FirewallAddressList',
+    'FirewallAddressMacaddr',
     'FirewallAddressTagging',
     'FirewallAddressTaggingTag',
     'FirewallAddrgrp6Member',
@@ -244,6 +285,7 @@ __all__ = [
     'FirewallPolicyPoolname',
     'FirewallPolicyRtpAddr',
     'FirewallPolicyService',
+    'FirewallPolicySgt',
     'FirewallPolicySrcVendorMac',
     'FirewallPolicySrcaddr6',
     'FirewallPolicySrcaddr',
@@ -251,6 +293,8 @@ __all__ = [
     'FirewallPolicySslMirrorIntf',
     'FirewallPolicyUrlCategory',
     'FirewallPolicyUser',
+    'FirewallPolicyZtnaEmsTag',
+    'FirewallPolicyZtnaGeoTag',
     'FirewallProfileProtocolOptionsCifs',
     'FirewallProfileProtocolOptionsCifsServerKeytab',
     'FirewallProfileProtocolOptionsDns',
@@ -270,6 +314,8 @@ __all__ = [
     'FirewallProxyAddrgrpMember',
     'FirewallProxyAddrgrpTagging',
     'FirewallProxyAddrgrpTaggingTag',
+    'FirewallProxyPolicyAccessProxy6',
+    'FirewallProxyPolicyAccessProxy',
     'FirewallProxyPolicyDstaddr6',
     'FirewallProxyPolicyDstaddr',
     'FirewallProxyPolicyDstintf',
@@ -285,6 +331,7 @@ __all__ = [
     'FirewallProxyPolicySrcaddr',
     'FirewallProxyPolicySrcintf',
     'FirewallProxyPolicyUser',
+    'FirewallProxyPolicyZtnaEmsTag',
     'FirewallRegionCity',
     'FirewallScheduleGroupMember',
     'FirewallSecurityPolicyAppCategory',
@@ -344,6 +391,7 @@ __all__ = [
     'FirewallShapingProfileShapingEntry',
     'FirewallSnifferAnomaly',
     'FirewallSnifferIpThreatfeed',
+    'FirewallSslSshProfileDot',
     'FirewallSslSshProfileFtps',
     'FirewallSslSshProfileHttps',
     'FirewallSslSshProfileImaps',
@@ -382,6 +430,7 @@ __all__ = [
     'FirewallVipgrpMember',
     'FirewallWildcardFqdnGroupMember',
     'GetFirewallAddress6ListResult',
+    'GetFirewallAddress6MacaddrResult',
     'GetFirewallAddress6SubnetSegmentResult',
     'GetFirewallAddress6TaggingResult',
     'GetFirewallAddress6TaggingTagResult',
@@ -389,6 +438,7 @@ __all__ = [
     'GetFirewallAddress6TemplateSubnetSegmentValueResult',
     'GetFirewallAddressFssoGroupResult',
     'GetFirewallAddressListResult',
+    'GetFirewallAddressMacaddrResult',
     'GetFirewallAddressTaggingResult',
     'GetFirewallAddressTaggingTagResult',
     'GetFirewallAddrgrp6MemberResult',
@@ -506,6 +556,7 @@ __all__ = [
     'GetFirewallPolicyPoolnameResult',
     'GetFirewallPolicyRtpAddrResult',
     'GetFirewallPolicyServiceResult',
+    'GetFirewallPolicySgtResult',
     'GetFirewallPolicySrcVendorMacResult',
     'GetFirewallPolicySrcaddr6Result',
     'GetFirewallPolicySrcaddrResult',
@@ -513,6 +564,8 @@ __all__ = [
     'GetFirewallPolicySslMirrorIntfResult',
     'GetFirewallPolicyUrlCategoryResult',
     'GetFirewallPolicyUserResult',
+    'GetFirewallPolicyZtnaEmsTagResult',
+    'GetFirewallPolicyZtnaGeoTagResult',
     'GetFirewallProfileProtocolOptionsCifsResult',
     'GetFirewallProfileProtocolOptionsCifsServerKeytabResult',
     'GetFirewallProfileProtocolOptionsDnsResult',
@@ -532,6 +585,8 @@ __all__ = [
     'GetFirewallProxyAddrgrpMemberResult',
     'GetFirewallProxyAddrgrpTaggingResult',
     'GetFirewallProxyAddrgrpTaggingTagResult',
+    'GetFirewallProxyPolicyAccessProxy6Result',
+    'GetFirewallProxyPolicyAccessProxyResult',
     'GetFirewallProxyPolicyDstaddr6Result',
     'GetFirewallProxyPolicyDstaddrResult',
     'GetFirewallProxyPolicyDstintfResult',
@@ -547,6 +602,7 @@ __all__ = [
     'GetFirewallProxyPolicySrcaddrResult',
     'GetFirewallProxyPolicySrcintfResult',
     'GetFirewallProxyPolicyUserResult',
+    'GetFirewallProxyPolicyZtnaEmsTagResult',
     'GetFirewallScheduleGroupMemberResult',
     'GetFirewallServiceCustomAppCategoryResult',
     'GetFirewallServiceCustomApplicationResult',
@@ -562,6 +618,7 @@ __all__ = [
     'GetRouterBgpAggregateAddressResult',
     'GetRouterBgpConfederationPeerResult',
     'GetRouterBgpNeighborResult',
+    'GetRouterBgpNeighborConditionalAdvertise6Result',
     'GetRouterBgpNeighborConditionalAdvertiseResult',
     'GetRouterBgpNeighborGroupResult',
     'GetRouterBgpNeighborRange6Result',
@@ -570,6 +627,8 @@ __all__ = [
     'GetRouterBgpNetworkResult',
     'GetRouterBgpRedistribute6Result',
     'GetRouterBgpRedistributeResult',
+    'GetRouterBgpVrfLeak6Result',
+    'GetRouterBgpVrfLeak6TargetResult',
     'GetRouterBgpVrfLeakResult',
     'GetRouterBgpVrfLeakTargetResult',
     'GetRouterCommunityListRuleResult',
@@ -644,6 +703,9 @@ __all__ = [
     'GetRouterRouteMapRuleSetCommunityResult',
     'GetRouterRouteMapRuleSetExtcommunityRtResult',
     'GetRouterRouteMapRuleSetExtcommunitySooResult',
+    'GetRouterStatic6SdwanZoneResult',
+    'GetRouterStaticSdwanZoneResult',
+    'GetRouterbgpNeighborConditionalAdvertise6Result',
     'GetRouterbgpNeighborConditionalAdvertiseResult',
     'GetSystemAccprofileFwgrpPermissionResult',
     'GetSystemAccprofileLoggrpPermissionResult',
@@ -671,8 +733,10 @@ __all__ = [
     'GetSystemClusterSyncSessionSyncFilterResult',
     'GetSystemClusterSyncSessionSyncFilterCustomServiceResult',
     'GetSystemClusterSyncSyncvdResult',
+    'GetSystemCsfFabricConnectorResult',
     'GetSystemCsfFabricDeviceResult',
     'GetSystemCsfTrustedListResult',
+    'GetSystemDdnsDdnsServerAddrResult',
     'GetSystemDdnsMonitorInterfaceResult',
     'GetSystemDhcpServerExcludeRangeResult',
     'GetSystemDhcpServerIpRangeResult',
@@ -685,9 +749,12 @@ __all__ = [
     'GetSystemDnsServerHostnameResult',
     'GetSystemHaHaMgmtInterfaceResult',
     'GetSystemHaSecondaryVclusterResult',
+    'GetSystemHaUnicastPeerResult',
     'GetSystemInterfaceClientOptionResult',
+    'GetSystemInterfaceDhcpSnoopingServerListResult',
     'GetSystemInterfaceFailAlertInterfaceResult',
     'GetSystemInterfaceIpv6Result',
+    'GetSystemInterfaceIpv6Dhcp6IapdListResult',
     'GetSystemInterfaceIpv6Ip6DelegatedPrefixListResult',
     'GetSystemInterfaceIpv6Ip6ExtraAddrResult',
     'GetSystemInterfaceIpv6Ip6PrefixListResult',
@@ -701,7 +768,9 @@ __all__ = [
     'GetSystemInterfaceTaggingTagResult',
     'GetSystemInterfaceVrrpResult',
     'GetSystemInterfaceVrrpProxyArpResult',
+    'GetSystemLinkMonitorRouteResult',
     'GetSystemLinkMonitorServerResult',
+    'GetSystemLinkMonitorServerListResult',
     'GetSystemLldpNetworkPolicyGuestResult',
     'GetSystemLldpNetworkPolicyGuestVoiceSignalingResult',
     'GetSystemLldpNetworkPolicySoftphoneResult',
@@ -735,12 +804,18 @@ __all__ = [
     'GetSystemReplacemsgGroupTrafficQuotaResult',
     'GetSystemReplacemsgGroupUtmResult',
     'GetSystemReplacemsgGroupWebproxyResult',
+    'GetSystemSdnConnectorExternalAccountListResult',
+    'GetSystemSdnConnectorExternalAccountListRegionListResult',
     'GetSystemSdnConnectorExternalIpResult',
+    'GetSystemSdnConnectorForwardingRuleResult',
+    'GetSystemSdnConnectorGcpProjectListResult',
+    'GetSystemSdnConnectorGcpProjectListGcpZoneListResult',
     'GetSystemSdnConnectorNicResult',
     'GetSystemSdnConnectorNicIpResult',
     'GetSystemSdnConnectorRouteResult',
     'GetSystemSdnConnectorRouteTableResult',
     'GetSystemSdnConnectorRouteTableRouteResult',
+    'GetSystemSdnConnectorServerListResult',
     'GetSystemSessionTtlPortResult',
     'GetSystemSnmpCommunityHostResult',
     'GetSystemSnmpCommunityHosts6Result',
@@ -801,6 +876,7 @@ __all__ = [
     'LogFortianalyzer3SettingSerial',
     'LogFortianalyzerCloudFilterFreeStyle',
     'LogFortianalyzerCloudOverrideFilterFreeStyle',
+    'LogFortianalyzerCloudSettingSerial',
     'LogFortianalyzerFilterFreeStyle',
     'LogFortianalyzerOverrideFilterFreeStyle',
     'LogFortianalyzerOverrideSettingSerial',
@@ -861,6 +937,7 @@ __all__ = [
     'RouterBgpAggregateAddress',
     'RouterBgpConfederationPeer',
     'RouterBgpNeighbor',
+    'RouterBgpNeighborConditionalAdvertise6',
     'RouterBgpNeighborConditionalAdvertise',
     'RouterBgpNeighborGroup',
     'RouterBgpNeighborRange6',
@@ -869,6 +946,8 @@ __all__ = [
     'RouterBgpNetwork',
     'RouterBgpRedistribute6',
     'RouterBgpRedistribute',
+    'RouterBgpVrfLeak6',
+    'RouterBgpVrfLeak6Target',
     'RouterBgpVrfLeak',
     'RouterBgpVrfLeakTarget',
     'RouterCommunityListRule',
@@ -943,10 +1022,14 @@ __all__ = [
     'RouterRouteMapRuleSetCommunity',
     'RouterRouteMapRuleSetExtcommunityRt',
     'RouterRouteMapRuleSetExtcommunitySoo',
+    'RouterStatic6SdwanZone',
+    'RouterStaticSdwanZone',
+    'RouterbgpNeighborConditionalAdvertise6',
     'RouterbgpNeighborConditionalAdvertise',
     'Routerospf6Ospf6InterfaceIpsecKey',
     'Routerospf6Ospf6InterfaceNeighbor',
     'RouterospfOspfInterfaceMd5Key',
+    'SctpFilterProfilePpidFilter',
     'SpamfilterBwlEntry',
     'SpamfilterBwordEntry',
     'SpamfilterDnsblEntry',
@@ -964,7 +1047,11 @@ __all__ = [
     'SshFilterProfileFileFilterEntryFileType',
     'SshFilterProfileShellCommand',
     'SwitchControllerAutoConfigCustomSwitchBinding',
+    'SwitchControllerDynamicPortPolicyPolicy',
+    'SwitchControllerDynamicPortPolicyPolicyInterfaceTag',
     'SwitchControllerFlowTrackingAggregate',
+    'SwitchControllerFortilinkSettingsNacPorts',
+    'SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan',
     'SwitchControllerGlobalCustomCommand',
     'SwitchControllerGlobalDisableDiscovery',
     'SwitchControllerLldpProfileCustomTlv',
@@ -975,6 +1062,7 @@ __all__ = [
     'SwitchControllerLocationElinNumber',
     'SwitchControllerManagedSwitchCustomCommand',
     'SwitchControllerManagedSwitchIgmpSnooping',
+    'SwitchControllerManagedSwitchIgmpSnoopingVlan',
     'SwitchControllerManagedSwitchIpSourceGuard',
     'SwitchControllerManagedSwitchIpSourceGuardBindingEntry',
     'SwitchControllerManagedSwitchMirror',
@@ -984,6 +1072,7 @@ __all__ = [
     'SwitchControllerManagedSwitchPort',
     'SwitchControllerManagedSwitchPortAllowedVlan',
     'SwitchControllerManagedSwitchPortExportTag',
+    'SwitchControllerManagedSwitchPortInterfaceTag',
     'SwitchControllerManagedSwitchPortMember',
     'SwitchControllerManagedSwitchPortUntaggedVlan',
     'SwitchControllerManagedSwitchRemoteLog',
@@ -1021,6 +1110,8 @@ __all__ = [
     'SystemAccprofileNetgrpPermission',
     'SystemAccprofileSysgrpPermission',
     'SystemAccprofileUtmgrpPermission',
+    'SystemAcmeAccount',
+    'SystemAcmeInterface',
     'SystemAdminGuestUsergroup',
     'SystemAdminGuiDashboard',
     'SystemAdminGuiDashboardWidget',
@@ -1046,8 +1137,10 @@ __all__ = [
     'SystemClusterSyncSessionSyncFilter',
     'SystemClusterSyncSessionSyncFilterCustomService',
     'SystemClusterSyncSyncvd',
+    'SystemCsfFabricConnector',
     'SystemCsfFabricDevice',
     'SystemCsfTrustedList',
+    'SystemDdnsDdnsServerAddr',
     'SystemDdnsMonitorInterface',
     'SystemDhcp6ServerIpRange',
     'SystemDhcp6ServerPrefixRange',
@@ -1065,9 +1158,29 @@ __all__ = [
     'SystemGeoipOverrideIpRange',
     'SystemHaHaMgmtInterface',
     'SystemHaSecondaryVcluster',
+    'SystemHaUnicastPeer',
+    'SystemIkeDhGroup14',
+    'SystemIkeDhGroup15',
+    'SystemIkeDhGroup16',
+    'SystemIkeDhGroup17',
+    'SystemIkeDhGroup18',
+    'SystemIkeDhGroup19',
+    'SystemIkeDhGroup1',
+    'SystemIkeDhGroup20',
+    'SystemIkeDhGroup21',
+    'SystemIkeDhGroup27',
+    'SystemIkeDhGroup28',
+    'SystemIkeDhGroup29',
+    'SystemIkeDhGroup2',
+    'SystemIkeDhGroup30',
+    'SystemIkeDhGroup31',
+    'SystemIkeDhGroup32',
+    'SystemIkeDhGroup5',
     'SystemInterfaceClientOption',
+    'SystemInterfaceDhcpSnoopingServerList',
     'SystemInterfaceFailAlertInterface',
     'SystemInterfaceIpv6',
+    'SystemInterfaceIpv6Dhcp6IapdList',
     'SystemInterfaceIpv6Ip6DelegatedPrefixList',
     'SystemInterfaceIpv6Ip6ExtraAddr',
     'SystemInterfaceIpv6Ip6PrefixList',
@@ -1082,7 +1195,9 @@ __all__ = [
     'SystemInterfaceVrrp',
     'SystemInterfaceVrrpProxyArp',
     'SystemIpsecAggregateMember',
+    'SystemLinkMonitorRoute',
     'SystemLinkMonitorServer',
+    'SystemLinkMonitorServerList',
     'SystemLldpNetworkPolicyGuest',
     'SystemLldpNetworkPolicyGuestVoiceSignaling',
     'SystemLldpNetworkPolicySoftphone',
@@ -1094,9 +1209,11 @@ __all__ = [
     'SystemMobileTunnelNetwork',
     'SystemNat64SecondaryPrefix',
     'SystemNdProxyMember',
+    'SystemNpuPriorityProtocol',
     'SystemNtpInterface',
     'SystemNtpNtpserver',
     'SystemObjectTaggingTag',
+    'SystemPtpServerInterface',
     'SystemReplacemsgGroupAdmin',
     'SystemReplacemsgGroupAlertmail',
     'SystemReplacemsgGroupAuth',
@@ -1118,12 +1235,18 @@ __all__ = [
     'SystemReplacemsgGroupWebproxy',
     'SystemSamlServiceProvider',
     'SystemSamlServiceProviderAssertionAttribute',
+    'SystemSdnConnectorExternalAccountList',
+    'SystemSdnConnectorExternalAccountListRegionList',
     'SystemSdnConnectorExternalIp',
+    'SystemSdnConnectorForwardingRule',
+    'SystemSdnConnectorGcpProjectList',
+    'SystemSdnConnectorGcpProjectListGcpZoneList',
     'SystemSdnConnectorNic',
     'SystemSdnConnectorNicIp',
     'SystemSdnConnectorRoute',
     'SystemSdnConnectorRouteTable',
     'SystemSdnConnectorRouteTableRoute',
+    'SystemSdnConnectorServerList',
     'SystemSdwanDuplication',
     'SystemSdwanDuplicationDstaddr6',
     'SystemSdwanDuplicationDstaddr',
@@ -1152,6 +1275,7 @@ __all__ = [
     'SystemSdwanServiceInternetServiceGroup',
     'SystemSdwanServiceInternetServiceName',
     'SystemSdwanServicePriorityMember',
+    'SystemSdwanServicePriorityZone',
     'SystemSdwanServiceSla',
     'SystemSdwanServiceSrc6',
     'SystemSdwanServiceSrc',
@@ -1164,6 +1288,7 @@ __all__ = [
     'SystemSpeedTestScheduleSchedule',
     'SystemSpeedTestServerHost',
     'SystemSsoAdminVdom',
+    'SystemSsoForticloudAdminVdom',
     'SystemSwitchInterfaceMember',
     'SystemSwitchInterfaceSpanSourcePort',
     'SystemVdomDnsServerHostname',
@@ -1213,6 +1338,7 @@ __all__ = [
     'UserGroupGuest',
     'UserGroupMatch',
     'UserGroupMember',
+    'UserNacPolicySwitchGroup',
     'UserNacPolicySwitchScope',
     'UserPeergrpMember',
     'UserQuarantineTarget',
@@ -1225,9 +1351,15 @@ __all__ = [
     'UserSecurityExemptListRuleService',
     'UserSecurityExemptListRuleSrcaddr',
     'UserSettingAuthPort',
+    'VideofilterProfileFortiguardCategory',
+    'VideofilterProfileFortiguardCategoryFilter',
+    'VideofilterYoutubeChannelFilterEntry',
+    'VoipProfileMsrp',
     'VoipProfileSccp',
     'VoipProfileSip',
+    'VpnCertificateSettingCrlVerification',
     'VpnIpsecConcentratorMember',
+    'VpnIpsecFecMapping',
     'VpnIpsecPhase1BackupGateway',
     'VpnIpsecPhase1Certificate',
     'VpnIpsecPhase1InterfaceBackupGateway',
@@ -1346,6 +1478,7 @@ __all__ = [
     'WirelessControllerAccessControlListLayer3Ipv6Rule',
     'WirelessControllerAddrgrpAddress',
     'WirelessControllerApcfgProfileCommandList',
+    'WirelessControllerArrpProfileDarrpOptimizeSchedule',
     'WirelessControllerBonjourProfilePolicyList',
     'WirelessControllerHotspot20Anqp3GppCellularMccMncList',
     'WirelessControllerHotspot20AnqpNaiRealmNaiList',
@@ -1353,8 +1486,12 @@ __all__ = [
     'WirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam',
     'WirelessControllerHotspot20AnqpRoamingConsortiumOiList',
     'WirelessControllerHotspot20AnqpVenueNameValueList',
+    'WirelessControllerHotspot20AnqpVenueUrlValueList',
+    'WirelessControllerHotspot20H2QpAdviceOfChargeAocList',
+    'WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo',
     'WirelessControllerHotspot20H2QpOperatorNameValueList',
     'WirelessControllerHotspot20H2QpOsuProviderFriendlyName',
+    'WirelessControllerHotspot20H2QpOsuProviderNaiNaiList',
     'WirelessControllerHotspot20H2QpOsuProviderServiceDescription',
     'WirelessControllerHotspot20HsProfileOsuProvider',
     'WirelessControllerHotspot20IconIconList',
@@ -1382,11 +1519,13 @@ __all__ = [
     'WirelessControllerVapRadiusMacAuthUsergroup',
     'WirelessControllerVapSelectedUsergroup',
     'WirelessControllerVapUsergroup',
+    'WirelessControllerVapVlanName',
     'WirelessControllerVapVlanPool',
     'WirelessControllerWidsProfileApBgscanDisableSchedule',
     'WirelessControllerWtpGroupWtp',
     'WirelessControllerWtpLan',
     'WirelessControllerWtpProfileDenyMacList',
+    'WirelessControllerWtpProfileEslSesDongle',
     'WirelessControllerWtpProfileLan',
     'WirelessControllerWtpProfileLbs',
     'WirelessControllerWtpProfileLedSchedule',
@@ -1428,6 +1567,10 @@ class AntivirusProfileCifs(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -1445,26 +1588,42 @@ class AntivirusProfileCifs(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  emulator: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -1483,12 +1642,36 @@ class AntivirusProfileCifs(dict):
         return pulumi.get(self, "archive_log")
 
     @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
+
+    @property
     @pulumi.getter
     def emulator(self) -> Optional[str]:
         """
         Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emulator")
+
+    @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter
@@ -1505,6 +1688,14 @@ class AntivirusProfileCifs(dict):
         Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
         """
         return pulumi.get(self, "outbreak_prevention")
+
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
 
 
 @pulumi.output_type
@@ -1796,6 +1987,25 @@ class AntivirusProfileContentDisarm(dict):
 
 
 @pulumi.output_type
+class AntivirusProfileExternalBlocklist(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: External blocklist.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        External blocklist.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class AntivirusProfileFtp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -1804,6 +2014,10 @@ class AntivirusProfileFtp(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -1821,26 +2035,42 @@ class AntivirusProfileFtp(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  emulator: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -1859,12 +2089,36 @@ class AntivirusProfileFtp(dict):
         return pulumi.get(self, "archive_log")
 
     @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
+
+    @property
     @pulumi.getter
     def emulator(self) -> Optional[str]:
         """
         Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emulator")
+
+    @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter
@@ -1882,6 +2136,14 @@ class AntivirusProfileFtp(dict):
         """
         return pulumi.get(self, "outbreak_prevention")
 
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
+
 
 @pulumi.output_type
 class AntivirusProfileHttp(dict):
@@ -1892,8 +2154,12 @@ class AntivirusProfileHttp(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
         elif key == "contentDisarm":
             suggest = "content_disarm"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -1911,30 +2177,46 @@ class AntivirusProfileHttp(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  content_disarm: Optional[str] = None,
                  emulator: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -1953,6 +2235,14 @@ class AntivirusProfileHttp(dict):
         return pulumi.get(self, "archive_log")
 
     @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
+
+    @property
     @pulumi.getter(name="contentDisarm")
     def content_disarm(self) -> Optional[str]:
         """
@@ -1967,6 +2257,22 @@ class AntivirusProfileHttp(dict):
         Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emulator")
+
+    @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter
@@ -1984,6 +2290,14 @@ class AntivirusProfileHttp(dict):
         """
         return pulumi.get(self, "outbreak_prevention")
 
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
+
 
 @pulumi.output_type
 class AntivirusProfileImap(dict):
@@ -1994,8 +2308,12 @@ class AntivirusProfileImap(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
         elif key == "contentDisarm":
             suggest = "content_disarm"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -2013,34 +2331,50 @@ class AntivirusProfileImap(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  content_disarm: Optional[str] = None,
                  emulator: Optional[str] = None,
                  executables: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
         if executables is not None:
             pulumi.set(__self__, "executables", executables)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -2057,6 +2391,14 @@ class AntivirusProfileImap(dict):
         Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         """
         return pulumi.get(self, "archive_log")
+
+    @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
 
     @property
     @pulumi.getter(name="contentDisarm")
@@ -2083,6 +2425,22 @@ class AntivirusProfileImap(dict):
         return pulumi.get(self, "executables")
 
     @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
+
+    @property
     @pulumi.getter
     def options(self) -> Optional[str]:
         """
@@ -2098,6 +2456,14 @@ class AntivirusProfileImap(dict):
         """
         return pulumi.get(self, "outbreak_prevention")
 
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
+
 
 @pulumi.output_type
 class AntivirusProfileMapi(dict):
@@ -2108,6 +2474,10 @@ class AntivirusProfileMapi(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -2125,30 +2495,46 @@ class AntivirusProfileMapi(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  emulator: Optional[str] = None,
                  executables: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
         if executables is not None:
             pulumi.set(__self__, "executables", executables)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -2167,6 +2553,14 @@ class AntivirusProfileMapi(dict):
         return pulumi.get(self, "archive_log")
 
     @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
+
+    @property
     @pulumi.getter
     def emulator(self) -> Optional[str]:
         """
@@ -2183,6 +2577,22 @@ class AntivirusProfileMapi(dict):
         return pulumi.get(self, "executables")
 
     @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
+
+    @property
     @pulumi.getter
     def options(self) -> Optional[str]:
         """
@@ -2197,6 +2607,14 @@ class AntivirusProfileMapi(dict):
         Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
         """
         return pulumi.get(self, "outbreak_prevention")
+
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
 
 
 @pulumi.output_type
@@ -2251,6 +2669,10 @@ class AntivirusProfileNntp(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -2268,26 +2690,42 @@ class AntivirusProfileNntp(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  emulator: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -2306,12 +2744,36 @@ class AntivirusProfileNntp(dict):
         return pulumi.get(self, "archive_log")
 
     @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
+
+    @property
     @pulumi.getter
     def emulator(self) -> Optional[str]:
         """
         Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emulator")
+
+    @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter
@@ -2328,6 +2790,14 @@ class AntivirusProfileNntp(dict):
         Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
         """
         return pulumi.get(self, "outbreak_prevention")
+
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
 
 
 @pulumi.output_type
@@ -2389,8 +2859,12 @@ class AntivirusProfilePop3(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
         elif key == "contentDisarm":
             suggest = "content_disarm"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -2408,34 +2882,50 @@ class AntivirusProfilePop3(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  content_disarm: Optional[str] = None,
                  emulator: Optional[str] = None,
                  executables: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
         if executables is not None:
             pulumi.set(__self__, "executables", executables)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -2452,6 +2942,14 @@ class AntivirusProfilePop3(dict):
         Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         """
         return pulumi.get(self, "archive_log")
+
+    @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
 
     @property
     @pulumi.getter(name="contentDisarm")
@@ -2478,6 +2976,22 @@ class AntivirusProfilePop3(dict):
         return pulumi.get(self, "executables")
 
     @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
+
+    @property
     @pulumi.getter
     def options(self) -> Optional[str]:
         """
@@ -2492,6 +3006,14 @@ class AntivirusProfilePop3(dict):
         Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
         """
         return pulumi.get(self, "outbreak_prevention")
+
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
 
 
 @pulumi.output_type
@@ -2591,8 +3113,12 @@ class AntivirusProfileSmtp(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
         elif key == "contentDisarm":
             suggest = "content_disarm"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -2610,34 +3136,50 @@ class AntivirusProfileSmtp(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  content_disarm: Optional[str] = None,
                  emulator: Optional[str] = None,
                  executables: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         :param str executables: Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
         if executables is not None:
             pulumi.set(__self__, "executables", executables)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -2654,6 +3196,14 @@ class AntivirusProfileSmtp(dict):
         Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         """
         return pulumi.get(self, "archive_log")
+
+    @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
 
     @property
     @pulumi.getter(name="contentDisarm")
@@ -2680,6 +3230,22 @@ class AntivirusProfileSmtp(dict):
         return pulumi.get(self, "executables")
 
     @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
+
+    @property
     @pulumi.getter
     def options(self) -> Optional[str]:
         """
@@ -2695,6 +3261,14 @@ class AntivirusProfileSmtp(dict):
         """
         return pulumi.get(self, "outbreak_prevention")
 
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
+
 
 @pulumi.output_type
 class AntivirusProfileSsh(dict):
@@ -2705,6 +3279,10 @@ class AntivirusProfileSsh(dict):
             suggest = "archive_block"
         elif key == "archiveLog":
             suggest = "archive_log"
+        elif key == "avScan":
+            suggest = "av_scan"
+        elif key == "externalBlocklist":
+            suggest = "external_blocklist"
         elif key == "outbreakPrevention":
             suggest = "outbreak_prevention"
 
@@ -2722,26 +3300,42 @@ class AntivirusProfileSsh(dict):
     def __init__(__self__, *,
                  archive_block: Optional[str] = None,
                  archive_log: Optional[str] = None,
+                 av_scan: Optional[str] = None,
                  emulator: Optional[str] = None,
+                 external_blocklist: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  options: Optional[str] = None,
-                 outbreak_prevention: Optional[str] = None):
+                 outbreak_prevention: Optional[str] = None,
+                 quarantine: Optional[str] = None):
         """
         :param str archive_block: Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
         :param str archive_log: Select the archive types to log. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
+        :param str av_scan: Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
         :param str emulator: Enable/disable the virus emulator. Valid values: `enable`, `disable`.
+        :param str external_blocklist: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        :param str fortiai: Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
         :param str options: Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
         :param str outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param str quarantine: Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
         """
         if archive_block is not None:
             pulumi.set(__self__, "archive_block", archive_block)
         if archive_log is not None:
             pulumi.set(__self__, "archive_log", archive_log)
+        if av_scan is not None:
+            pulumi.set(__self__, "av_scan", av_scan)
         if emulator is not None:
             pulumi.set(__self__, "emulator", emulator)
+        if external_blocklist is not None:
+            pulumi.set(__self__, "external_blocklist", external_blocklist)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if options is not None:
             pulumi.set(__self__, "options", options)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if quarantine is not None:
+            pulumi.set(__self__, "quarantine", quarantine)
 
     @property
     @pulumi.getter(name="archiveBlock")
@@ -2760,12 +3354,36 @@ class AntivirusProfileSsh(dict):
         return pulumi.get(self, "archive_log")
 
     @property
+    @pulumi.getter(name="avScan")
+    def av_scan(self) -> Optional[str]:
+        """
+        Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "av_scan")
+
+    @property
     @pulumi.getter
     def emulator(self) -> Optional[str]:
         """
         Enable/disable the virus emulator. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "emulator")
+
+    @property
+    @pulumi.getter(name="externalBlocklist")
+    def external_blocklist(self) -> Optional[str]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+        """
+        return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter
@@ -2782,6 +3400,14 @@ class AntivirusProfileSsh(dict):
         Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
         """
         return pulumi.get(self, "outbreak_prevention")
+
+    @property
+    @pulumi.getter
+    def quarantine(self) -> Optional[str]:
+        """
+        Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "quarantine")
 
 
 @pulumi.output_type
@@ -3513,6 +4139,25 @@ class ApplicationNameParameter(dict):
 
 
 @pulumi.output_type
+class AuthenticationRuleDstaddr6(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Address name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Address name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class AuthenticationRuleDstaddr(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -3603,6 +4248,44 @@ class AuthenticationSchemeUserDatabase(dict):
     def name(self) -> Optional[str]:
         """
         Authentication server name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AuthenticationSettingDevRange(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Address name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Address name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class AuthenticationSettingUserCertCa(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Address name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Address name.
         """
         return pulumi.get(self, "name")
 
@@ -3899,7 +4582,7 @@ class DlpSensorFilter(dict):
         :param str expiry: Quarantine duration in days, hours, minutes format (dddhhmm).
         :param int file_size: Match files this size or larger (0 - 4294967295 kbytes).
         :param int file_type: Select the number of a DLP file pattern table to match.
-        :param str filter_by: Select the type of content to match. Valid values: `credit-card`, `ssn`, `regexp`, `file-type`, `file-size`, `fingerprint`, `watermark`, `encrypted`.
+        :param str filter_by: Select the type of content to match.
         :param Sequence['DlpSensorFilterFpSensitivityArgs'] fp_sensitivities: Select a DLP file pattern sensitivity to match. The structure of `fp_sensitivity` block is documented below.
         :param int id: ID.
         :param int match_percentage: Percentage of fingerprints in the fingerprint databases designated with the selected fp-sensitivity to match.
@@ -3995,7 +4678,7 @@ class DlpSensorFilter(dict):
     @pulumi.getter(name="filterBy")
     def filter_by(self) -> Optional[str]:
         """
-        Select the type of content to match. Valid values: `credit-card`, `ssn`, `regexp`, `file-type`, `file-size`, `fingerprint`, `watermark`, `encrypted`.
+        Select the type of content to match.
         """
         return pulumi.get(self, "filter_by")
 
@@ -7974,6 +8657,1893 @@ class ExtenderControllerExtender1Modem2AutoSwitch(dict):
 
 
 @pulumi.output_type
+class ExtenderControllerExtenderControllerReport(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "signalThreshold":
+            suggest = "signal_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderControllerReport. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderControllerReport.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderControllerReport.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interval: Optional[int] = None,
+                 signal_threshold: Optional[int] = None,
+                 status: Optional[str] = None):
+        """
+        :param int interval: Controller report interval.
+        :param int signal_threshold: Controller report signal threshold.
+        :param str status: FortiExtender controller report status. Valid values: `disable`, `enable`.
+        """
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if signal_threshold is not None:
+            pulumi.set(__self__, "signal_threshold", signal_threshold)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def interval(self) -> Optional[int]:
+        """
+        Controller report interval.
+        """
+        return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="signalThreshold")
+    def signal_threshold(self) -> Optional[int]:
+        """
+        Controller report signal threshold.
+        """
+        return pulumi.get(self, "signal_threshold")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        FortiExtender controller report status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderModem1(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoSwitch":
+            suggest = "auto_switch"
+        elif key == "connStatus":
+            suggest = "conn_status"
+        elif key == "defaultSim":
+            suggest = "default_sim"
+        elif key == "preferredCarrier":
+            suggest = "preferred_carrier"
+        elif key == "redundantIntf":
+            suggest = "redundant_intf"
+        elif key == "redundantMode":
+            suggest = "redundant_mode"
+        elif key == "sim1Pin":
+            suggest = "sim1_pin"
+        elif key == "sim1PinCode":
+            suggest = "sim1_pin_code"
+        elif key == "sim2Pin":
+            suggest = "sim2_pin"
+        elif key == "sim2PinCode":
+            suggest = "sim2_pin_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderModem1. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderModem1.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderModem1.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_switch: Optional['outputs.ExtenderControllerExtenderModem1AutoSwitch'] = None,
+                 conn_status: Optional[int] = None,
+                 default_sim: Optional[str] = None,
+                 gps: Optional[str] = None,
+                 ifname: Optional[str] = None,
+                 preferred_carrier: Optional[str] = None,
+                 redundant_intf: Optional[str] = None,
+                 redundant_mode: Optional[str] = None,
+                 sim1_pin: Optional[str] = None,
+                 sim1_pin_code: Optional[str] = None,
+                 sim2_pin: Optional[str] = None,
+                 sim2_pin_code: Optional[str] = None):
+        """
+        :param 'ExtenderControllerExtenderModem1AutoSwitchArgs' auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        :param int conn_status: Connection status.
+        :param str default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        :param str gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        :param str ifname: FortiExtender interface name.
+        :param str preferred_carrier: Preferred carrier.
+        :param str redundant_intf: Redundant interface.
+        :param str redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
+        :param str sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
+        :param str sim1_pin_code: SIM #1 PIN password.
+        :param str sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
+        :param str sim2_pin_code: SIM #2 PIN password.
+        """
+        if auto_switch is not None:
+            pulumi.set(__self__, "auto_switch", auto_switch)
+        if conn_status is not None:
+            pulumi.set(__self__, "conn_status", conn_status)
+        if default_sim is not None:
+            pulumi.set(__self__, "default_sim", default_sim)
+        if gps is not None:
+            pulumi.set(__self__, "gps", gps)
+        if ifname is not None:
+            pulumi.set(__self__, "ifname", ifname)
+        if preferred_carrier is not None:
+            pulumi.set(__self__, "preferred_carrier", preferred_carrier)
+        if redundant_intf is not None:
+            pulumi.set(__self__, "redundant_intf", redundant_intf)
+        if redundant_mode is not None:
+            pulumi.set(__self__, "redundant_mode", redundant_mode)
+        if sim1_pin is not None:
+            pulumi.set(__self__, "sim1_pin", sim1_pin)
+        if sim1_pin_code is not None:
+            pulumi.set(__self__, "sim1_pin_code", sim1_pin_code)
+        if sim2_pin is not None:
+            pulumi.set(__self__, "sim2_pin", sim2_pin)
+        if sim2_pin_code is not None:
+            pulumi.set(__self__, "sim2_pin_code", sim2_pin_code)
+
+    @property
+    @pulumi.getter(name="autoSwitch")
+    def auto_switch(self) -> Optional['outputs.ExtenderControllerExtenderModem1AutoSwitch']:
+        """
+        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        """
+        return pulumi.get(self, "auto_switch")
+
+    @property
+    @pulumi.getter(name="connStatus")
+    def conn_status(self) -> Optional[int]:
+        """
+        Connection status.
+        """
+        return pulumi.get(self, "conn_status")
+
+    @property
+    @pulumi.getter(name="defaultSim")
+    def default_sim(self) -> Optional[str]:
+        """
+        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        """
+        return pulumi.get(self, "default_sim")
+
+    @property
+    @pulumi.getter
+    def gps(self) -> Optional[str]:
+        """
+        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "gps")
+
+    @property
+    @pulumi.getter
+    def ifname(self) -> Optional[str]:
+        """
+        FortiExtender interface name.
+        """
+        return pulumi.get(self, "ifname")
+
+    @property
+    @pulumi.getter(name="preferredCarrier")
+    def preferred_carrier(self) -> Optional[str]:
+        """
+        Preferred carrier.
+        """
+        return pulumi.get(self, "preferred_carrier")
+
+    @property
+    @pulumi.getter(name="redundantIntf")
+    def redundant_intf(self) -> Optional[str]:
+        """
+        Redundant interface.
+        """
+        return pulumi.get(self, "redundant_intf")
+
+    @property
+    @pulumi.getter(name="redundantMode")
+    def redundant_mode(self) -> Optional[str]:
+        """
+        FortiExtender mode. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "redundant_mode")
+
+    @property
+    @pulumi.getter(name="sim1Pin")
+    def sim1_pin(self) -> Optional[str]:
+        """
+        SIM #1 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim1_pin")
+
+    @property
+    @pulumi.getter(name="sim1PinCode")
+    def sim1_pin_code(self) -> Optional[str]:
+        """
+        SIM #1 PIN password.
+        """
+        return pulumi.get(self, "sim1_pin_code")
+
+    @property
+    @pulumi.getter(name="sim2Pin")
+    def sim2_pin(self) -> Optional[str]:
+        """
+        SIM #2 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim2_pin")
+
+    @property
+    @pulumi.getter(name="sim2PinCode")
+    def sim2_pin_code(self) -> Optional[str]:
+        """
+        SIM #2 PIN password.
+        """
+        return pulumi.get(self, "sim2_pin_code")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderModem1AutoSwitch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disconnectPeriod":
+            suggest = "disconnect_period"
+        elif key == "disconnectThreshold":
+            suggest = "disconnect_threshold"
+        elif key == "switchBack":
+            suggest = "switch_back"
+        elif key == "switchBackTime":
+            suggest = "switch_back_time"
+        elif key == "switchBackTimer":
+            suggest = "switch_back_timer"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderModem1AutoSwitch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderModem1AutoSwitch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderModem1AutoSwitch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataplan: Optional[str] = None,
+                 disconnect: Optional[str] = None,
+                 disconnect_period: Optional[int] = None,
+                 disconnect_threshold: Optional[int] = None,
+                 signal: Optional[str] = None,
+                 switch_back: Optional[str] = None,
+                 switch_back_time: Optional[str] = None,
+                 switch_back_timer: Optional[int] = None):
+        """
+        :param str dataplan: Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        :param str disconnect: Auto switch by disconnect. Valid values: `disable`, `enable`.
+        :param int disconnect_period: Automatically switch based on disconnect period.
+        :param int disconnect_threshold: Automatically switch based on disconnect threshold.
+        :param str signal: Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        :param str switch_back: Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        :param str switch_back_time: Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        :param int switch_back_timer: Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        if dataplan is not None:
+            pulumi.set(__self__, "dataplan", dataplan)
+        if disconnect is not None:
+            pulumi.set(__self__, "disconnect", disconnect)
+        if disconnect_period is not None:
+            pulumi.set(__self__, "disconnect_period", disconnect_period)
+        if disconnect_threshold is not None:
+            pulumi.set(__self__, "disconnect_threshold", disconnect_threshold)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+        if switch_back is not None:
+            pulumi.set(__self__, "switch_back", switch_back)
+        if switch_back_time is not None:
+            pulumi.set(__self__, "switch_back_time", switch_back_time)
+        if switch_back_timer is not None:
+            pulumi.set(__self__, "switch_back_timer", switch_back_timer)
+
+    @property
+    @pulumi.getter
+    def dataplan(self) -> Optional[str]:
+        """
+        Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dataplan")
+
+    @property
+    @pulumi.getter
+    def disconnect(self) -> Optional[str]:
+        """
+        Auto switch by disconnect. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "disconnect")
+
+    @property
+    @pulumi.getter(name="disconnectPeriod")
+    def disconnect_period(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect period.
+        """
+        return pulumi.get(self, "disconnect_period")
+
+    @property
+    @pulumi.getter(name="disconnectThreshold")
+    def disconnect_threshold(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect threshold.
+        """
+        return pulumi.get(self, "disconnect_threshold")
+
+    @property
+    @pulumi.getter
+    def signal(self) -> Optional[str]:
+        """
+        Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "signal")
+
+    @property
+    @pulumi.getter(name="switchBack")
+    def switch_back(self) -> Optional[str]:
+        """
+        Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        """
+        return pulumi.get(self, "switch_back")
+
+    @property
+    @pulumi.getter(name="switchBackTime")
+    def switch_back_time(self) -> Optional[str]:
+        """
+        Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        """
+        return pulumi.get(self, "switch_back_time")
+
+    @property
+    @pulumi.getter(name="switchBackTimer")
+    def switch_back_timer(self) -> Optional[int]:
+        """
+        Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        return pulumi.get(self, "switch_back_timer")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderModem2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoSwitch":
+            suggest = "auto_switch"
+        elif key == "connStatus":
+            suggest = "conn_status"
+        elif key == "defaultSim":
+            suggest = "default_sim"
+        elif key == "preferredCarrier":
+            suggest = "preferred_carrier"
+        elif key == "redundantIntf":
+            suggest = "redundant_intf"
+        elif key == "redundantMode":
+            suggest = "redundant_mode"
+        elif key == "sim1Pin":
+            suggest = "sim1_pin"
+        elif key == "sim1PinCode":
+            suggest = "sim1_pin_code"
+        elif key == "sim2Pin":
+            suggest = "sim2_pin"
+        elif key == "sim2PinCode":
+            suggest = "sim2_pin_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderModem2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderModem2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderModem2.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_switch: Optional['outputs.ExtenderControllerExtenderModem2AutoSwitch'] = None,
+                 conn_status: Optional[int] = None,
+                 default_sim: Optional[str] = None,
+                 gps: Optional[str] = None,
+                 ifname: Optional[str] = None,
+                 preferred_carrier: Optional[str] = None,
+                 redundant_intf: Optional[str] = None,
+                 redundant_mode: Optional[str] = None,
+                 sim1_pin: Optional[str] = None,
+                 sim1_pin_code: Optional[str] = None,
+                 sim2_pin: Optional[str] = None,
+                 sim2_pin_code: Optional[str] = None):
+        """
+        :param 'ExtenderControllerExtenderModem2AutoSwitchArgs' auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        :param int conn_status: Connection status.
+        :param str default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        :param str gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        :param str ifname: FortiExtender interface name.
+        :param str preferred_carrier: Preferred carrier.
+        :param str redundant_intf: Redundant interface.
+        :param str redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
+        :param str sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
+        :param str sim1_pin_code: SIM #1 PIN password.
+        :param str sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
+        :param str sim2_pin_code: SIM #2 PIN password.
+        """
+        if auto_switch is not None:
+            pulumi.set(__self__, "auto_switch", auto_switch)
+        if conn_status is not None:
+            pulumi.set(__self__, "conn_status", conn_status)
+        if default_sim is not None:
+            pulumi.set(__self__, "default_sim", default_sim)
+        if gps is not None:
+            pulumi.set(__self__, "gps", gps)
+        if ifname is not None:
+            pulumi.set(__self__, "ifname", ifname)
+        if preferred_carrier is not None:
+            pulumi.set(__self__, "preferred_carrier", preferred_carrier)
+        if redundant_intf is not None:
+            pulumi.set(__self__, "redundant_intf", redundant_intf)
+        if redundant_mode is not None:
+            pulumi.set(__self__, "redundant_mode", redundant_mode)
+        if sim1_pin is not None:
+            pulumi.set(__self__, "sim1_pin", sim1_pin)
+        if sim1_pin_code is not None:
+            pulumi.set(__self__, "sim1_pin_code", sim1_pin_code)
+        if sim2_pin is not None:
+            pulumi.set(__self__, "sim2_pin", sim2_pin)
+        if sim2_pin_code is not None:
+            pulumi.set(__self__, "sim2_pin_code", sim2_pin_code)
+
+    @property
+    @pulumi.getter(name="autoSwitch")
+    def auto_switch(self) -> Optional['outputs.ExtenderControllerExtenderModem2AutoSwitch']:
+        """
+        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        """
+        return pulumi.get(self, "auto_switch")
+
+    @property
+    @pulumi.getter(name="connStatus")
+    def conn_status(self) -> Optional[int]:
+        """
+        Connection status.
+        """
+        return pulumi.get(self, "conn_status")
+
+    @property
+    @pulumi.getter(name="defaultSim")
+    def default_sim(self) -> Optional[str]:
+        """
+        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        """
+        return pulumi.get(self, "default_sim")
+
+    @property
+    @pulumi.getter
+    def gps(self) -> Optional[str]:
+        """
+        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "gps")
+
+    @property
+    @pulumi.getter
+    def ifname(self) -> Optional[str]:
+        """
+        FortiExtender interface name.
+        """
+        return pulumi.get(self, "ifname")
+
+    @property
+    @pulumi.getter(name="preferredCarrier")
+    def preferred_carrier(self) -> Optional[str]:
+        """
+        Preferred carrier.
+        """
+        return pulumi.get(self, "preferred_carrier")
+
+    @property
+    @pulumi.getter(name="redundantIntf")
+    def redundant_intf(self) -> Optional[str]:
+        """
+        Redundant interface.
+        """
+        return pulumi.get(self, "redundant_intf")
+
+    @property
+    @pulumi.getter(name="redundantMode")
+    def redundant_mode(self) -> Optional[str]:
+        """
+        FortiExtender mode. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "redundant_mode")
+
+    @property
+    @pulumi.getter(name="sim1Pin")
+    def sim1_pin(self) -> Optional[str]:
+        """
+        SIM #1 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim1_pin")
+
+    @property
+    @pulumi.getter(name="sim1PinCode")
+    def sim1_pin_code(self) -> Optional[str]:
+        """
+        SIM #1 PIN password.
+        """
+        return pulumi.get(self, "sim1_pin_code")
+
+    @property
+    @pulumi.getter(name="sim2Pin")
+    def sim2_pin(self) -> Optional[str]:
+        """
+        SIM #2 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim2_pin")
+
+    @property
+    @pulumi.getter(name="sim2PinCode")
+    def sim2_pin_code(self) -> Optional[str]:
+        """
+        SIM #2 PIN password.
+        """
+        return pulumi.get(self, "sim2_pin_code")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderModem2AutoSwitch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disconnectPeriod":
+            suggest = "disconnect_period"
+        elif key == "disconnectThreshold":
+            suggest = "disconnect_threshold"
+        elif key == "switchBack":
+            suggest = "switch_back"
+        elif key == "switchBackTime":
+            suggest = "switch_back_time"
+        elif key == "switchBackTimer":
+            suggest = "switch_back_timer"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderModem2AutoSwitch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderModem2AutoSwitch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderModem2AutoSwitch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataplan: Optional[str] = None,
+                 disconnect: Optional[str] = None,
+                 disconnect_period: Optional[int] = None,
+                 disconnect_threshold: Optional[int] = None,
+                 signal: Optional[str] = None,
+                 switch_back: Optional[str] = None,
+                 switch_back_time: Optional[str] = None,
+                 switch_back_timer: Optional[int] = None):
+        """
+        :param str dataplan: Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        :param str disconnect: Auto switch by disconnect. Valid values: `disable`, `enable`.
+        :param int disconnect_period: Automatically switch based on disconnect period.
+        :param int disconnect_threshold: Automatically switch based on disconnect threshold.
+        :param str signal: Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        :param str switch_back: Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        :param str switch_back_time: Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        :param int switch_back_timer: Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        if dataplan is not None:
+            pulumi.set(__self__, "dataplan", dataplan)
+        if disconnect is not None:
+            pulumi.set(__self__, "disconnect", disconnect)
+        if disconnect_period is not None:
+            pulumi.set(__self__, "disconnect_period", disconnect_period)
+        if disconnect_threshold is not None:
+            pulumi.set(__self__, "disconnect_threshold", disconnect_threshold)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+        if switch_back is not None:
+            pulumi.set(__self__, "switch_back", switch_back)
+        if switch_back_time is not None:
+            pulumi.set(__self__, "switch_back_time", switch_back_time)
+        if switch_back_timer is not None:
+            pulumi.set(__self__, "switch_back_timer", switch_back_timer)
+
+    @property
+    @pulumi.getter
+    def dataplan(self) -> Optional[str]:
+        """
+        Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dataplan")
+
+    @property
+    @pulumi.getter
+    def disconnect(self) -> Optional[str]:
+        """
+        Auto switch by disconnect. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "disconnect")
+
+    @property
+    @pulumi.getter(name="disconnectPeriod")
+    def disconnect_period(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect period.
+        """
+        return pulumi.get(self, "disconnect_period")
+
+    @property
+    @pulumi.getter(name="disconnectThreshold")
+    def disconnect_threshold(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect threshold.
+        """
+        return pulumi.get(self, "disconnect_threshold")
+
+    @property
+    @pulumi.getter
+    def signal(self) -> Optional[str]:
+        """
+        Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "signal")
+
+    @property
+    @pulumi.getter(name="switchBack")
+    def switch_back(self) -> Optional[str]:
+        """
+        Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        """
+        return pulumi.get(self, "switch_back")
+
+    @property
+    @pulumi.getter(name="switchBackTime")
+    def switch_back_time(self) -> Optional[str]:
+        """
+        Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        """
+        return pulumi.get(self, "switch_back_time")
+
+    @property
+    @pulumi.getter(name="switchBackTimer")
+    def switch_back_timer(self) -> Optional[int]:
+        """
+        Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        return pulumi.get(self, "switch_back_timer")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellular(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "controllerReport":
+            suggest = "controller_report"
+        elif key == "smsNotification":
+            suggest = "sms_notification"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellular. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellular.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellular.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 controller_report: Optional['outputs.ExtenderControllerExtenderProfileCellularControllerReport'] = None,
+                 dataplans: Optional[Sequence['outputs.ExtenderControllerExtenderProfileCellularDataplan']] = None,
+                 modem1: Optional['outputs.ExtenderControllerExtenderProfileCellularModem1'] = None,
+                 modem2: Optional['outputs.ExtenderControllerExtenderProfileCellularModem2'] = None,
+                 sms_notification: Optional['outputs.ExtenderControllerExtenderProfileCellularSmsNotification'] = None):
+        """
+        :param 'ExtenderControllerExtenderProfileCellularControllerReportArgs' controller_report: FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
+        :param Sequence['ExtenderControllerExtenderProfileCellularDataplanArgs'] dataplans: Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        :param 'ExtenderControllerExtenderProfileCellularModem1Args' modem1: Configuration options for modem 1. The structure of `modem1` block is documented below.
+        :param 'ExtenderControllerExtenderProfileCellularModem2Args' modem2: Configuration options for modem 2. The structure of `modem2` block is documented below.
+        :param 'ExtenderControllerExtenderProfileCellularSmsNotificationArgs' sms_notification: FortiExtender cellular SMS notification configuration. The structure of `sms_notification` block is documented below.
+        """
+        if controller_report is not None:
+            pulumi.set(__self__, "controller_report", controller_report)
+        if dataplans is not None:
+            pulumi.set(__self__, "dataplans", dataplans)
+        if modem1 is not None:
+            pulumi.set(__self__, "modem1", modem1)
+        if modem2 is not None:
+            pulumi.set(__self__, "modem2", modem2)
+        if sms_notification is not None:
+            pulumi.set(__self__, "sms_notification", sms_notification)
+
+    @property
+    @pulumi.getter(name="controllerReport")
+    def controller_report(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularControllerReport']:
+        """
+        FortiExtender controller report configuration. The structure of `controller_report` block is documented below.
+        """
+        return pulumi.get(self, "controller_report")
+
+    @property
+    @pulumi.getter
+    def dataplans(self) -> Optional[Sequence['outputs.ExtenderControllerExtenderProfileCellularDataplan']]:
+        """
+        Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dataplans")
+
+    @property
+    @pulumi.getter
+    def modem1(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularModem1']:
+        """
+        Configuration options for modem 1. The structure of `modem1` block is documented below.
+        """
+        return pulumi.get(self, "modem1")
+
+    @property
+    @pulumi.getter
+    def modem2(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularModem2']:
+        """
+        Configuration options for modem 2. The structure of `modem2` block is documented below.
+        """
+        return pulumi.get(self, "modem2")
+
+    @property
+    @pulumi.getter(name="smsNotification")
+    def sms_notification(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularSmsNotification']:
+        """
+        FortiExtender cellular SMS notification configuration. The structure of `sms_notification` block is documented below.
+        """
+        return pulumi.get(self, "sms_notification")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularControllerReport(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "signalThreshold":
+            suggest = "signal_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularControllerReport. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularControllerReport.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularControllerReport.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interval: Optional[int] = None,
+                 signal_threshold: Optional[int] = None,
+                 status: Optional[str] = None):
+        """
+        :param int interval: Controller report interval.
+        :param int signal_threshold: Controller report signal threshold.
+        :param str status: SMS notification receiver status. Valid values: `disable`, `enable`.
+        """
+        if interval is not None:
+            pulumi.set(__self__, "interval", interval)
+        if signal_threshold is not None:
+            pulumi.set(__self__, "signal_threshold", signal_threshold)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def interval(self) -> Optional[int]:
+        """
+        Controller report interval.
+        """
+        return pulumi.get(self, "interval")
+
+    @property
+    @pulumi.getter(name="signalThreshold")
+    def signal_threshold(self) -> Optional[int]:
+        """
+        Controller report signal threshold.
+        """
+        return pulumi.get(self, "signal_threshold")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        SMS notification receiver status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularDataplan(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: FortiExtender LAN extension backhaul name
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        FortiExtender LAN extension backhaul name
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularModem1(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoSwitch":
+            suggest = "auto_switch"
+        elif key == "connStatus":
+            suggest = "conn_status"
+        elif key == "defaultSim":
+            suggest = "default_sim"
+        elif key == "preferredCarrier":
+            suggest = "preferred_carrier"
+        elif key == "redundantIntf":
+            suggest = "redundant_intf"
+        elif key == "redundantMode":
+            suggest = "redundant_mode"
+        elif key == "sim1Pin":
+            suggest = "sim1_pin"
+        elif key == "sim1PinCode":
+            suggest = "sim1_pin_code"
+        elif key == "sim2Pin":
+            suggest = "sim2_pin"
+        elif key == "sim2PinCode":
+            suggest = "sim2_pin_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularModem1. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularModem1.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularModem1.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_switch: Optional['outputs.ExtenderControllerExtenderProfileCellularModem1AutoSwitch'] = None,
+                 conn_status: Optional[int] = None,
+                 default_sim: Optional[str] = None,
+                 gps: Optional[str] = None,
+                 preferred_carrier: Optional[str] = None,
+                 redundant_intf: Optional[str] = None,
+                 redundant_mode: Optional[str] = None,
+                 sim1_pin: Optional[str] = None,
+                 sim1_pin_code: Optional[str] = None,
+                 sim2_pin: Optional[str] = None,
+                 sim2_pin_code: Optional[str] = None):
+        """
+        :param 'ExtenderControllerExtenderProfileCellularModem1AutoSwitchArgs' auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        :param int conn_status: Connection status.
+        :param str default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        :param str gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        :param str preferred_carrier: Preferred carrier.
+        :param str redundant_intf: Redundant interface.
+        :param str redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
+        :param str sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
+        :param str sim1_pin_code: SIM #1 PIN password.
+        :param str sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
+        :param str sim2_pin_code: SIM #2 PIN password.
+        """
+        if auto_switch is not None:
+            pulumi.set(__self__, "auto_switch", auto_switch)
+        if conn_status is not None:
+            pulumi.set(__self__, "conn_status", conn_status)
+        if default_sim is not None:
+            pulumi.set(__self__, "default_sim", default_sim)
+        if gps is not None:
+            pulumi.set(__self__, "gps", gps)
+        if preferred_carrier is not None:
+            pulumi.set(__self__, "preferred_carrier", preferred_carrier)
+        if redundant_intf is not None:
+            pulumi.set(__self__, "redundant_intf", redundant_intf)
+        if redundant_mode is not None:
+            pulumi.set(__self__, "redundant_mode", redundant_mode)
+        if sim1_pin is not None:
+            pulumi.set(__self__, "sim1_pin", sim1_pin)
+        if sim1_pin_code is not None:
+            pulumi.set(__self__, "sim1_pin_code", sim1_pin_code)
+        if sim2_pin is not None:
+            pulumi.set(__self__, "sim2_pin", sim2_pin)
+        if sim2_pin_code is not None:
+            pulumi.set(__self__, "sim2_pin_code", sim2_pin_code)
+
+    @property
+    @pulumi.getter(name="autoSwitch")
+    def auto_switch(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularModem1AutoSwitch']:
+        """
+        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        """
+        return pulumi.get(self, "auto_switch")
+
+    @property
+    @pulumi.getter(name="connStatus")
+    def conn_status(self) -> Optional[int]:
+        """
+        Connection status.
+        """
+        return pulumi.get(self, "conn_status")
+
+    @property
+    @pulumi.getter(name="defaultSim")
+    def default_sim(self) -> Optional[str]:
+        """
+        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        """
+        return pulumi.get(self, "default_sim")
+
+    @property
+    @pulumi.getter
+    def gps(self) -> Optional[str]:
+        """
+        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "gps")
+
+    @property
+    @pulumi.getter(name="preferredCarrier")
+    def preferred_carrier(self) -> Optional[str]:
+        """
+        Preferred carrier.
+        """
+        return pulumi.get(self, "preferred_carrier")
+
+    @property
+    @pulumi.getter(name="redundantIntf")
+    def redundant_intf(self) -> Optional[str]:
+        """
+        Redundant interface.
+        """
+        return pulumi.get(self, "redundant_intf")
+
+    @property
+    @pulumi.getter(name="redundantMode")
+    def redundant_mode(self) -> Optional[str]:
+        """
+        FortiExtender mode. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "redundant_mode")
+
+    @property
+    @pulumi.getter(name="sim1Pin")
+    def sim1_pin(self) -> Optional[str]:
+        """
+        SIM #1 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim1_pin")
+
+    @property
+    @pulumi.getter(name="sim1PinCode")
+    def sim1_pin_code(self) -> Optional[str]:
+        """
+        SIM #1 PIN password.
+        """
+        return pulumi.get(self, "sim1_pin_code")
+
+    @property
+    @pulumi.getter(name="sim2Pin")
+    def sim2_pin(self) -> Optional[str]:
+        """
+        SIM #2 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim2_pin")
+
+    @property
+    @pulumi.getter(name="sim2PinCode")
+    def sim2_pin_code(self) -> Optional[str]:
+        """
+        SIM #2 PIN password.
+        """
+        return pulumi.get(self, "sim2_pin_code")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularModem1AutoSwitch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disconnectPeriod":
+            suggest = "disconnect_period"
+        elif key == "disconnectThreshold":
+            suggest = "disconnect_threshold"
+        elif key == "switchBack":
+            suggest = "switch_back"
+        elif key == "switchBackTime":
+            suggest = "switch_back_time"
+        elif key == "switchBackTimer":
+            suggest = "switch_back_timer"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularModem1AutoSwitch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularModem1AutoSwitch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularModem1AutoSwitch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataplan: Optional[str] = None,
+                 disconnect: Optional[str] = None,
+                 disconnect_period: Optional[int] = None,
+                 disconnect_threshold: Optional[int] = None,
+                 signal: Optional[str] = None,
+                 switch_back: Optional[str] = None,
+                 switch_back_time: Optional[str] = None,
+                 switch_back_timer: Optional[int] = None):
+        """
+        :param str dataplan: Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        :param str disconnect: Auto switch by disconnect. Valid values: `disable`, `enable`.
+        :param int disconnect_period: Automatically switch based on disconnect period.
+        :param int disconnect_threshold: Automatically switch based on disconnect threshold.
+        :param str signal: Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        :param str switch_back: Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        :param str switch_back_time: Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        :param int switch_back_timer: Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        if dataplan is not None:
+            pulumi.set(__self__, "dataplan", dataplan)
+        if disconnect is not None:
+            pulumi.set(__self__, "disconnect", disconnect)
+        if disconnect_period is not None:
+            pulumi.set(__self__, "disconnect_period", disconnect_period)
+        if disconnect_threshold is not None:
+            pulumi.set(__self__, "disconnect_threshold", disconnect_threshold)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+        if switch_back is not None:
+            pulumi.set(__self__, "switch_back", switch_back)
+        if switch_back_time is not None:
+            pulumi.set(__self__, "switch_back_time", switch_back_time)
+        if switch_back_timer is not None:
+            pulumi.set(__self__, "switch_back_timer", switch_back_timer)
+
+    @property
+    @pulumi.getter
+    def dataplan(self) -> Optional[str]:
+        """
+        Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dataplan")
+
+    @property
+    @pulumi.getter
+    def disconnect(self) -> Optional[str]:
+        """
+        Auto switch by disconnect. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "disconnect")
+
+    @property
+    @pulumi.getter(name="disconnectPeriod")
+    def disconnect_period(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect period.
+        """
+        return pulumi.get(self, "disconnect_period")
+
+    @property
+    @pulumi.getter(name="disconnectThreshold")
+    def disconnect_threshold(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect threshold.
+        """
+        return pulumi.get(self, "disconnect_threshold")
+
+    @property
+    @pulumi.getter
+    def signal(self) -> Optional[str]:
+        """
+        Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "signal")
+
+    @property
+    @pulumi.getter(name="switchBack")
+    def switch_back(self) -> Optional[str]:
+        """
+        Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        """
+        return pulumi.get(self, "switch_back")
+
+    @property
+    @pulumi.getter(name="switchBackTime")
+    def switch_back_time(self) -> Optional[str]:
+        """
+        Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        """
+        return pulumi.get(self, "switch_back_time")
+
+    @property
+    @pulumi.getter(name="switchBackTimer")
+    def switch_back_timer(self) -> Optional[int]:
+        """
+        Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        return pulumi.get(self, "switch_back_timer")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularModem2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "autoSwitch":
+            suggest = "auto_switch"
+        elif key == "connStatus":
+            suggest = "conn_status"
+        elif key == "defaultSim":
+            suggest = "default_sim"
+        elif key == "preferredCarrier":
+            suggest = "preferred_carrier"
+        elif key == "redundantIntf":
+            suggest = "redundant_intf"
+        elif key == "redundantMode":
+            suggest = "redundant_mode"
+        elif key == "sim1Pin":
+            suggest = "sim1_pin"
+        elif key == "sim1PinCode":
+            suggest = "sim1_pin_code"
+        elif key == "sim2Pin":
+            suggest = "sim2_pin"
+        elif key == "sim2PinCode":
+            suggest = "sim2_pin_code"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularModem2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularModem2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularModem2.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 auto_switch: Optional['outputs.ExtenderControllerExtenderProfileCellularModem2AutoSwitch'] = None,
+                 conn_status: Optional[int] = None,
+                 default_sim: Optional[str] = None,
+                 gps: Optional[str] = None,
+                 preferred_carrier: Optional[str] = None,
+                 redundant_intf: Optional[str] = None,
+                 redundant_mode: Optional[str] = None,
+                 sim1_pin: Optional[str] = None,
+                 sim1_pin_code: Optional[str] = None,
+                 sim2_pin: Optional[str] = None,
+                 sim2_pin_code: Optional[str] = None):
+        """
+        :param 'ExtenderControllerExtenderProfileCellularModem2AutoSwitchArgs' auto_switch: FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        :param int conn_status: Connection status.
+        :param str default_sim: Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        :param str gps: FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        :param str preferred_carrier: Preferred carrier.
+        :param str redundant_intf: Redundant interface.
+        :param str redundant_mode: FortiExtender mode. Valid values: `disable`, `enable`.
+        :param str sim1_pin: SIM #1 PIN status. Valid values: `disable`, `enable`.
+        :param str sim1_pin_code: SIM #1 PIN password.
+        :param str sim2_pin: SIM #2 PIN status. Valid values: `disable`, `enable`.
+        :param str sim2_pin_code: SIM #2 PIN password.
+        """
+        if auto_switch is not None:
+            pulumi.set(__self__, "auto_switch", auto_switch)
+        if conn_status is not None:
+            pulumi.set(__self__, "conn_status", conn_status)
+        if default_sim is not None:
+            pulumi.set(__self__, "default_sim", default_sim)
+        if gps is not None:
+            pulumi.set(__self__, "gps", gps)
+        if preferred_carrier is not None:
+            pulumi.set(__self__, "preferred_carrier", preferred_carrier)
+        if redundant_intf is not None:
+            pulumi.set(__self__, "redundant_intf", redundant_intf)
+        if redundant_mode is not None:
+            pulumi.set(__self__, "redundant_mode", redundant_mode)
+        if sim1_pin is not None:
+            pulumi.set(__self__, "sim1_pin", sim1_pin)
+        if sim1_pin_code is not None:
+            pulumi.set(__self__, "sim1_pin_code", sim1_pin_code)
+        if sim2_pin is not None:
+            pulumi.set(__self__, "sim2_pin", sim2_pin)
+        if sim2_pin_code is not None:
+            pulumi.set(__self__, "sim2_pin_code", sim2_pin_code)
+
+    @property
+    @pulumi.getter(name="autoSwitch")
+    def auto_switch(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularModem2AutoSwitch']:
+        """
+        FortiExtender auto switch configuration. The structure of `auto_switch` block is documented below.
+        """
+        return pulumi.get(self, "auto_switch")
+
+    @property
+    @pulumi.getter(name="connStatus")
+    def conn_status(self) -> Optional[int]:
+        """
+        Connection status.
+        """
+        return pulumi.get(self, "conn_status")
+
+    @property
+    @pulumi.getter(name="defaultSim")
+    def default_sim(self) -> Optional[str]:
+        """
+        Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+        """
+        return pulumi.get(self, "default_sim")
+
+    @property
+    @pulumi.getter
+    def gps(self) -> Optional[str]:
+        """
+        FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "gps")
+
+    @property
+    @pulumi.getter(name="preferredCarrier")
+    def preferred_carrier(self) -> Optional[str]:
+        """
+        Preferred carrier.
+        """
+        return pulumi.get(self, "preferred_carrier")
+
+    @property
+    @pulumi.getter(name="redundantIntf")
+    def redundant_intf(self) -> Optional[str]:
+        """
+        Redundant interface.
+        """
+        return pulumi.get(self, "redundant_intf")
+
+    @property
+    @pulumi.getter(name="redundantMode")
+    def redundant_mode(self) -> Optional[str]:
+        """
+        FortiExtender mode. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "redundant_mode")
+
+    @property
+    @pulumi.getter(name="sim1Pin")
+    def sim1_pin(self) -> Optional[str]:
+        """
+        SIM #1 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim1_pin")
+
+    @property
+    @pulumi.getter(name="sim1PinCode")
+    def sim1_pin_code(self) -> Optional[str]:
+        """
+        SIM #1 PIN password.
+        """
+        return pulumi.get(self, "sim1_pin_code")
+
+    @property
+    @pulumi.getter(name="sim2Pin")
+    def sim2_pin(self) -> Optional[str]:
+        """
+        SIM #2 PIN status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "sim2_pin")
+
+    @property
+    @pulumi.getter(name="sim2PinCode")
+    def sim2_pin_code(self) -> Optional[str]:
+        """
+        SIM #2 PIN password.
+        """
+        return pulumi.get(self, "sim2_pin_code")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularModem2AutoSwitch(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "disconnectPeriod":
+            suggest = "disconnect_period"
+        elif key == "disconnectThreshold":
+            suggest = "disconnect_threshold"
+        elif key == "switchBack":
+            suggest = "switch_back"
+        elif key == "switchBackTime":
+            suggest = "switch_back_time"
+        elif key == "switchBackTimer":
+            suggest = "switch_back_timer"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularModem2AutoSwitch. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularModem2AutoSwitch.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularModem2AutoSwitch.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 dataplan: Optional[str] = None,
+                 disconnect: Optional[str] = None,
+                 disconnect_period: Optional[int] = None,
+                 disconnect_threshold: Optional[int] = None,
+                 signal: Optional[str] = None,
+                 switch_back: Optional[str] = None,
+                 switch_back_time: Optional[str] = None,
+                 switch_back_timer: Optional[int] = None):
+        """
+        :param str dataplan: Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        :param str disconnect: Auto switch by disconnect. Valid values: `disable`, `enable`.
+        :param int disconnect_period: Automatically switch based on disconnect period.
+        :param int disconnect_threshold: Automatically switch based on disconnect threshold.
+        :param str signal: Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        :param str switch_back: Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        :param str switch_back_time: Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        :param int switch_back_timer: Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        if dataplan is not None:
+            pulumi.set(__self__, "dataplan", dataplan)
+        if disconnect is not None:
+            pulumi.set(__self__, "disconnect", disconnect)
+        if disconnect_period is not None:
+            pulumi.set(__self__, "disconnect_period", disconnect_period)
+        if disconnect_threshold is not None:
+            pulumi.set(__self__, "disconnect_threshold", disconnect_threshold)
+        if signal is not None:
+            pulumi.set(__self__, "signal", signal)
+        if switch_back is not None:
+            pulumi.set(__self__, "switch_back", switch_back)
+        if switch_back_time is not None:
+            pulumi.set(__self__, "switch_back_time", switch_back_time)
+        if switch_back_timer is not None:
+            pulumi.set(__self__, "switch_back_timer", switch_back_timer)
+
+    @property
+    @pulumi.getter
+    def dataplan(self) -> Optional[str]:
+        """
+        Automatically switch based on data usage. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "dataplan")
+
+    @property
+    @pulumi.getter
+    def disconnect(self) -> Optional[str]:
+        """
+        Auto switch by disconnect. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "disconnect")
+
+    @property
+    @pulumi.getter(name="disconnectPeriod")
+    def disconnect_period(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect period.
+        """
+        return pulumi.get(self, "disconnect_period")
+
+    @property
+    @pulumi.getter(name="disconnectThreshold")
+    def disconnect_threshold(self) -> Optional[int]:
+        """
+        Automatically switch based on disconnect threshold.
+        """
+        return pulumi.get(self, "disconnect_threshold")
+
+    @property
+    @pulumi.getter
+    def signal(self) -> Optional[str]:
+        """
+        Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "signal")
+
+    @property
+    @pulumi.getter(name="switchBack")
+    def switch_back(self) -> Optional[str]:
+        """
+        Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+        """
+        return pulumi.get(self, "switch_back")
+
+    @property
+    @pulumi.getter(name="switchBackTime")
+    def switch_back_time(self) -> Optional[str]:
+        """
+        Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+        """
+        return pulumi.get(self, "switch_back_time")
+
+    @property
+    @pulumi.getter(name="switchBackTimer")
+    def switch_back_timer(self) -> Optional[int]:
+        """
+        Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+        """
+        return pulumi.get(self, "switch_back_timer")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularSmsNotification(dict):
+    def __init__(__self__, *,
+                 alert: Optional['outputs.ExtenderControllerExtenderProfileCellularSmsNotificationAlert'] = None,
+                 receivers: Optional[Sequence['outputs.ExtenderControllerExtenderProfileCellularSmsNotificationReceiver']] = None,
+                 status: Optional[str] = None):
+        """
+        :param 'ExtenderControllerExtenderProfileCellularSmsNotificationAlertArgs' alert: Alert multi-options. Valid values: `system-reboot`, `data-exhausted`, `session-disconnect`, `low-signal-strength`, `mode-switch`, `os-image-fallback`, `fgt-backup-mode-switch`.
+        :param Sequence['ExtenderControllerExtenderProfileCellularSmsNotificationReceiverArgs'] receivers: SMS notification receiver list. The structure of `receiver` block is documented below.
+        :param str status: SMS notification receiver status. Valid values: `disable`, `enable`.
+        """
+        if alert is not None:
+            pulumi.set(__self__, "alert", alert)
+        if receivers is not None:
+            pulumi.set(__self__, "receivers", receivers)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def alert(self) -> Optional['outputs.ExtenderControllerExtenderProfileCellularSmsNotificationAlert']:
+        """
+        Alert multi-options. Valid values: `system-reboot`, `data-exhausted`, `session-disconnect`, `low-signal-strength`, `mode-switch`, `os-image-fallback`, `fgt-backup-mode-switch`.
+        """
+        return pulumi.get(self, "alert")
+
+    @property
+    @pulumi.getter
+    def receivers(self) -> Optional[Sequence['outputs.ExtenderControllerExtenderProfileCellularSmsNotificationReceiver']]:
+        """
+        SMS notification receiver list. The structure of `receiver` block is documented below.
+        """
+        return pulumi.get(self, "receivers")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        SMS notification receiver status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularSmsNotificationAlert(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "dataExhausted":
+            suggest = "data_exhausted"
+        elif key == "fgtBackupModeSwitch":
+            suggest = "fgt_backup_mode_switch"
+        elif key == "lowSignalStrength":
+            suggest = "low_signal_strength"
+        elif key == "modeSwitch":
+            suggest = "mode_switch"
+        elif key == "osImageFallback":
+            suggest = "os_image_fallback"
+        elif key == "sessionDisconnect":
+            suggest = "session_disconnect"
+        elif key == "systemReboot":
+            suggest = "system_reboot"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularSmsNotificationAlert. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularSmsNotificationAlert.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularSmsNotificationAlert.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 data_exhausted: Optional[str] = None,
+                 fgt_backup_mode_switch: Optional[str] = None,
+                 low_signal_strength: Optional[str] = None,
+                 mode_switch: Optional[str] = None,
+                 os_image_fallback: Optional[str] = None,
+                 session_disconnect: Optional[str] = None,
+                 system_reboot: Optional[str] = None):
+        """
+        :param str data_exhausted: Display string when data exhausted.
+        :param str fgt_backup_mode_switch: Display string when FortiGate backup mode switched.
+        :param str low_signal_strength: Display string when signal strength is low.
+        :param str mode_switch: Display string when mode is switched.
+        :param str os_image_fallback: Display string when falling back to a previous OS image.
+        :param str session_disconnect: Display string when session disconnected.
+        :param str system_reboot: Display string when system rebooted.
+        """
+        if data_exhausted is not None:
+            pulumi.set(__self__, "data_exhausted", data_exhausted)
+        if fgt_backup_mode_switch is not None:
+            pulumi.set(__self__, "fgt_backup_mode_switch", fgt_backup_mode_switch)
+        if low_signal_strength is not None:
+            pulumi.set(__self__, "low_signal_strength", low_signal_strength)
+        if mode_switch is not None:
+            pulumi.set(__self__, "mode_switch", mode_switch)
+        if os_image_fallback is not None:
+            pulumi.set(__self__, "os_image_fallback", os_image_fallback)
+        if session_disconnect is not None:
+            pulumi.set(__self__, "session_disconnect", session_disconnect)
+        if system_reboot is not None:
+            pulumi.set(__self__, "system_reboot", system_reboot)
+
+    @property
+    @pulumi.getter(name="dataExhausted")
+    def data_exhausted(self) -> Optional[str]:
+        """
+        Display string when data exhausted.
+        """
+        return pulumi.get(self, "data_exhausted")
+
+    @property
+    @pulumi.getter(name="fgtBackupModeSwitch")
+    def fgt_backup_mode_switch(self) -> Optional[str]:
+        """
+        Display string when FortiGate backup mode switched.
+        """
+        return pulumi.get(self, "fgt_backup_mode_switch")
+
+    @property
+    @pulumi.getter(name="lowSignalStrength")
+    def low_signal_strength(self) -> Optional[str]:
+        """
+        Display string when signal strength is low.
+        """
+        return pulumi.get(self, "low_signal_strength")
+
+    @property
+    @pulumi.getter(name="modeSwitch")
+    def mode_switch(self) -> Optional[str]:
+        """
+        Display string when mode is switched.
+        """
+        return pulumi.get(self, "mode_switch")
+
+    @property
+    @pulumi.getter(name="osImageFallback")
+    def os_image_fallback(self) -> Optional[str]:
+        """
+        Display string when falling back to a previous OS image.
+        """
+        return pulumi.get(self, "os_image_fallback")
+
+    @property
+    @pulumi.getter(name="sessionDisconnect")
+    def session_disconnect(self) -> Optional[str]:
+        """
+        Display string when session disconnected.
+        """
+        return pulumi.get(self, "session_disconnect")
+
+    @property
+    @pulumi.getter(name="systemReboot")
+    def system_reboot(self) -> Optional[str]:
+        """
+        Display string when system rebooted.
+        """
+        return pulumi.get(self, "system_reboot")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileCellularSmsNotificationReceiver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "phoneNumber":
+            suggest = "phone_number"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileCellularSmsNotificationReceiver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileCellularSmsNotificationReceiver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileCellularSmsNotificationReceiver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 alert: Optional[str] = None,
+                 name: Optional[str] = None,
+                 phone_number: Optional[str] = None,
+                 status: Optional[str] = None):
+        """
+        :param str alert: Alert multi-options. Valid values: `system-reboot`, `data-exhausted`, `session-disconnect`, `low-signal-strength`, `mode-switch`, `os-image-fallback`, `fgt-backup-mode-switch`.
+        :param str name: FortiExtender LAN extension backhaul name
+        :param str phone_number: Receiver phone number.  Format: [+][country code][area code][local phone number].  For example: +16501234567.
+        :param str status: SMS notification receiver status. Valid values: `disable`, `enable`.
+        """
+        if alert is not None:
+            pulumi.set(__self__, "alert", alert)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if phone_number is not None:
+            pulumi.set(__self__, "phone_number", phone_number)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def alert(self) -> Optional[str]:
+        """
+        Alert multi-options. Valid values: `system-reboot`, `data-exhausted`, `session-disconnect`, `low-signal-strength`, `mode-switch`, `os-image-fallback`, `fgt-backup-mode-switch`.
+        """
+        return pulumi.get(self, "alert")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        FortiExtender LAN extension backhaul name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="phoneNumber")
+    def phone_number(self) -> Optional[str]:
+        """
+        Receiver phone number.  Format: [+][country code][area code][local phone number].  For example: +16501234567.
+        """
+        return pulumi.get(self, "phone_number")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        SMS notification receiver status. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileLanExtension(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "backhaulInterface":
+            suggest = "backhaul_interface"
+        elif key == "backhaulIp":
+            suggest = "backhaul_ip"
+        elif key == "ipsecTunnel":
+            suggest = "ipsec_tunnel"
+        elif key == "linkLoadbalance":
+            suggest = "link_loadbalance"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderProfileLanExtension. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderProfileLanExtension.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderProfileLanExtension.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 backhaul_interface: Optional[str] = None,
+                 backhaul_ip: Optional[str] = None,
+                 backhauls: Optional[Sequence['outputs.ExtenderControllerExtenderProfileLanExtensionBackhaul']] = None,
+                 ipsec_tunnel: Optional[str] = None,
+                 link_loadbalance: Optional[str] = None):
+        """
+        :param str backhaul_interface: IPsec phase1 interface.
+        :param str backhaul_ip: IPsec phase1 IPv4/FQDN. Used to specify the external IP/FQDN when the FortiGate unit is behind a NAT device.
+        :param Sequence['ExtenderControllerExtenderProfileLanExtensionBackhaulArgs'] backhauls: LAN extension backhaul tunnel configuration. The structure of `backhaul` block is documented below.
+        :param str ipsec_tunnel: IPsec tunnel name.
+        :param str link_loadbalance: LAN extension link load balance strategy. Valid values: `activebackup`, `loadbalance`.
+        """
+        if backhaul_interface is not None:
+            pulumi.set(__self__, "backhaul_interface", backhaul_interface)
+        if backhaul_ip is not None:
+            pulumi.set(__self__, "backhaul_ip", backhaul_ip)
+        if backhauls is not None:
+            pulumi.set(__self__, "backhauls", backhauls)
+        if ipsec_tunnel is not None:
+            pulumi.set(__self__, "ipsec_tunnel", ipsec_tunnel)
+        if link_loadbalance is not None:
+            pulumi.set(__self__, "link_loadbalance", link_loadbalance)
+
+    @property
+    @pulumi.getter(name="backhaulInterface")
+    def backhaul_interface(self) -> Optional[str]:
+        """
+        IPsec phase1 interface.
+        """
+        return pulumi.get(self, "backhaul_interface")
+
+    @property
+    @pulumi.getter(name="backhaulIp")
+    def backhaul_ip(self) -> Optional[str]:
+        """
+        IPsec phase1 IPv4/FQDN. Used to specify the external IP/FQDN when the FortiGate unit is behind a NAT device.
+        """
+        return pulumi.get(self, "backhaul_ip")
+
+    @property
+    @pulumi.getter
+    def backhauls(self) -> Optional[Sequence['outputs.ExtenderControllerExtenderProfileLanExtensionBackhaul']]:
+        """
+        LAN extension backhaul tunnel configuration. The structure of `backhaul` block is documented below.
+        """
+        return pulumi.get(self, "backhauls")
+
+    @property
+    @pulumi.getter(name="ipsecTunnel")
+    def ipsec_tunnel(self) -> Optional[str]:
+        """
+        IPsec tunnel name.
+        """
+        return pulumi.get(self, "ipsec_tunnel")
+
+    @property
+    @pulumi.getter(name="linkLoadbalance")
+    def link_loadbalance(self) -> Optional[str]:
+        """
+        LAN extension link load balance strategy. Valid values: `activebackup`, `loadbalance`.
+        """
+        return pulumi.get(self, "link_loadbalance")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderProfileLanExtensionBackhaul(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 port: Optional[str] = None,
+                 role: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str name: FortiExtender LAN extension backhaul name
+        :param str port: FortiExtender uplink port. Valid values: `wan`, `lte1`, `lte2`, `port1`, `port2`, `port3`, `port4`, `port5`, `sfp`.
+        :param str role: FortiExtender uplink port. Valid values: `primary`, `secondary`.
+        :param int weight: WRR weight parameter
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        FortiExtender LAN extension backhaul name
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[str]:
+        """
+        FortiExtender uplink port. Valid values: `wan`, `lte1`, `lte2`, `port1`, `port2`, `port3`, `port4`, `port5`, `sfp`.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def role(self) -> Optional[str]:
+        """
+        FortiExtender uplink port. Valid values: `primary`, `secondary`.
+        """
+        return pulumi.get(self, "role")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        WRR weight parameter
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class ExtenderControllerExtenderWanExtension(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "modem1Extension":
+            suggest = "modem1_extension"
+        elif key == "modem2Extension":
+            suggest = "modem2_extension"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ExtenderControllerExtenderWanExtension. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ExtenderControllerExtenderWanExtension.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ExtenderControllerExtenderWanExtension.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 modem1_extension: Optional[str] = None,
+                 modem2_extension: Optional[str] = None):
+        """
+        :param str modem1_extension: FortiExtender interface name.
+        :param str modem2_extension: FortiExtender interface name.
+        """
+        if modem1_extension is not None:
+            pulumi.set(__self__, "modem1_extension", modem1_extension)
+        if modem2_extension is not None:
+            pulumi.set(__self__, "modem2_extension", modem2_extension)
+
+    @property
+    @pulumi.getter(name="modem1Extension")
+    def modem1_extension(self) -> Optional[str]:
+        """
+        FortiExtender interface name.
+        """
+        return pulumi.get(self, "modem1_extension")
+
+    @property
+    @pulumi.getter(name="modem2Extension")
+    def modem2_extension(self) -> Optional[str]:
+        """
+        FortiExtender interface name.
+        """
+        return pulumi.get(self, "modem2_extension")
+
+
+@pulumi.output_type
 class FileFilterProfileRule(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8103,6 +10673,2621 @@ class FileFilterProfileRuleFileType(dict):
 
 
 @pulumi.output_type
+class FirewallAccessProxy6ApiGateway6(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpCookieAge":
+            suggest = "http_cookie_age"
+        elif key == "httpCookieDomain":
+            suggest = "http_cookie_domain"
+        elif key == "httpCookieDomainFromHost":
+            suggest = "http_cookie_domain_from_host"
+        elif key == "httpCookieGeneration":
+            suggest = "http_cookie_generation"
+        elif key == "httpCookiePath":
+            suggest = "http_cookie_path"
+        elif key == "httpCookieShare":
+            suggest = "http_cookie_share"
+        elif key == "httpsCookieSecure":
+            suggest = "https_cookie_secure"
+        elif key == "ldbMethod":
+            suggest = "ldb_method"
+        elif key == "samlRedirect":
+            suggest = "saml_redirect"
+        elif key == "samlServer":
+            suggest = "saml_server"
+        elif key == "sslAlgorithm":
+            suggest = "ssl_algorithm"
+        elif key == "sslCipherSuites":
+            suggest = "ssl_cipher_suites"
+        elif key == "sslDhBits":
+            suggest = "ssl_dh_bits"
+        elif key == "sslMaxVersion":
+            suggest = "ssl_max_version"
+        elif key == "sslMinVersion":
+            suggest = "ssl_min_version"
+        elif key == "sslVpnWebPortal":
+            suggest = "ssl_vpn_web_portal"
+        elif key == "urlMap":
+            suggest = "url_map"
+        elif key == "urlMapType":
+            suggest = "url_map_type"
+        elif key == "virtualHost":
+            suggest = "virtual_host"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxy6ApiGateway6. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxy6ApiGateway6.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxy6ApiGateway6.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 http_cookie_age: Optional[int] = None,
+                 http_cookie_domain: Optional[str] = None,
+                 http_cookie_domain_from_host: Optional[str] = None,
+                 http_cookie_generation: Optional[int] = None,
+                 http_cookie_path: Optional[str] = None,
+                 http_cookie_share: Optional[str] = None,
+                 https_cookie_secure: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ldb_method: Optional[str] = None,
+                 persistence: Optional[str] = None,
+                 realservers: Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6Realserver']] = None,
+                 saml_redirect: Optional[str] = None,
+                 saml_server: Optional[str] = None,
+                 service: Optional[str] = None,
+                 ssl_algorithm: Optional[str] = None,
+                 ssl_cipher_suites: Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6SslCipherSuite']] = None,
+                 ssl_dh_bits: Optional[str] = None,
+                 ssl_max_version: Optional[str] = None,
+                 ssl_min_version: Optional[str] = None,
+                 ssl_vpn_web_portal: Optional[str] = None,
+                 url_map: Optional[str] = None,
+                 url_map_type: Optional[str] = None,
+                 virtual_host: Optional[str] = None):
+        """
+        :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
+        :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        :param int http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        :param str http_cookie_path: Limit HTTP cookie persistence to the specified path.
+        :param str http_cookie_share: Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        :param str https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param int id: Real server ID.
+        :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param Sequence['FirewallAccessProxy6ApiGateway6RealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        :param str saml_server: SAML service provider configuration for VIP authentication.
+        :param str service: Service.
+        :param str ssl_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        :param Sequence['FirewallAccessProxy6ApiGateway6SslCipherSuiteArgs'] ssl_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_vpn_web_portal: SSL-VPN web portal.
+        :param str url_map: URL pattern to match.
+        :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        :param str virtual_host: Virtual host.
+        """
+        if http_cookie_age is not None:
+            pulumi.set(__self__, "http_cookie_age", http_cookie_age)
+        if http_cookie_domain is not None:
+            pulumi.set(__self__, "http_cookie_domain", http_cookie_domain)
+        if http_cookie_domain_from_host is not None:
+            pulumi.set(__self__, "http_cookie_domain_from_host", http_cookie_domain_from_host)
+        if http_cookie_generation is not None:
+            pulumi.set(__self__, "http_cookie_generation", http_cookie_generation)
+        if http_cookie_path is not None:
+            pulumi.set(__self__, "http_cookie_path", http_cookie_path)
+        if http_cookie_share is not None:
+            pulumi.set(__self__, "http_cookie_share", http_cookie_share)
+        if https_cookie_secure is not None:
+            pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ldb_method is not None:
+            pulumi.set(__self__, "ldb_method", ldb_method)
+        if persistence is not None:
+            pulumi.set(__self__, "persistence", persistence)
+        if realservers is not None:
+            pulumi.set(__self__, "realservers", realservers)
+        if saml_redirect is not None:
+            pulumi.set(__self__, "saml_redirect", saml_redirect)
+        if saml_server is not None:
+            pulumi.set(__self__, "saml_server", saml_server)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if ssl_algorithm is not None:
+            pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_cipher_suites is not None:
+            pulumi.set(__self__, "ssl_cipher_suites", ssl_cipher_suites)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
+        if ssl_max_version is not None:
+            pulumi.set(__self__, "ssl_max_version", ssl_max_version)
+        if ssl_min_version is not None:
+            pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_vpn_web_portal is not None:
+            pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
+        if url_map is not None:
+            pulumi.set(__self__, "url_map", url_map)
+        if url_map_type is not None:
+            pulumi.set(__self__, "url_map_type", url_map_type)
+        if virtual_host is not None:
+            pulumi.set(__self__, "virtual_host", virtual_host)
+
+    @property
+    @pulumi.getter(name="httpCookieAge")
+    def http_cookie_age(self) -> Optional[int]:
+        """
+        Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        """
+        return pulumi.get(self, "http_cookie_age")
+
+    @property
+    @pulumi.getter(name="httpCookieDomain")
+    def http_cookie_domain(self) -> Optional[str]:
+        """
+        Domain that HTTP cookie persistence should apply to.
+        """
+        return pulumi.get(self, "http_cookie_domain")
+
+    @property
+    @pulumi.getter(name="httpCookieDomainFromHost")
+    def http_cookie_domain_from_host(self) -> Optional[str]:
+        """
+        Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "http_cookie_domain_from_host")
+
+    @property
+    @pulumi.getter(name="httpCookieGeneration")
+    def http_cookie_generation(self) -> Optional[int]:
+        """
+        Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        """
+        return pulumi.get(self, "http_cookie_generation")
+
+    @property
+    @pulumi.getter(name="httpCookiePath")
+    def http_cookie_path(self) -> Optional[str]:
+        """
+        Limit HTTP cookie persistence to the specified path.
+        """
+        return pulumi.get(self, "http_cookie_path")
+
+    @property
+    @pulumi.getter(name="httpCookieShare")
+    def http_cookie_share(self) -> Optional[str]:
+        """
+        Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        """
+        return pulumi.get(self, "http_cookie_share")
+
+    @property
+    @pulumi.getter(name="httpsCookieSecure")
+    def https_cookie_secure(self) -> Optional[str]:
+        """
+        Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "https_cookie_secure")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ldbMethod")
+    def ldb_method(self) -> Optional[str]:
+        """
+        Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        """
+        return pulumi.get(self, "ldb_method")
+
+    @property
+    @pulumi.getter
+    def persistence(self) -> Optional[str]:
+        """
+        Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        """
+        return pulumi.get(self, "persistence")
+
+    @property
+    @pulumi.getter
+    def realservers(self) -> Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6Realserver']]:
+        """
+        Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        """
+        return pulumi.get(self, "realservers")
+
+    @property
+    @pulumi.getter(name="samlRedirect")
+    def saml_redirect(self) -> Optional[str]:
+        """
+        Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "saml_redirect")
+
+    @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> Optional[str]:
+        """
+        SAML service provider configuration for VIP authentication.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[str]:
+        """
+        Service.
+        """
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="sslAlgorithm")
+    def ssl_algorithm(self) -> Optional[str]:
+        """
+        Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        """
+        return pulumi.get(self, "ssl_algorithm")
+
+    @property
+    @pulumi.getter(name="sslCipherSuites")
+    def ssl_cipher_suites(self) -> Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6SslCipherSuite']]:
+        """
+        SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        """
+        return pulumi.get(self, "ssl_cipher_suites")
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[str]:
+        """
+        Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @property
+    @pulumi.getter(name="sslMaxVersion")
+    def ssl_max_version(self) -> Optional[str]:
+        """
+        Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_max_version")
+
+    @property
+    @pulumi.getter(name="sslMinVersion")
+    def ssl_min_version(self) -> Optional[str]:
+        """
+        Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_min_version")
+
+    @property
+    @pulumi.getter(name="sslVpnWebPortal")
+    def ssl_vpn_web_portal(self) -> Optional[str]:
+        """
+        SSL-VPN web portal.
+        """
+        return pulumi.get(self, "ssl_vpn_web_portal")
+
+    @property
+    @pulumi.getter(name="urlMap")
+    def url_map(self) -> Optional[str]:
+        """
+        URL pattern to match.
+        """
+        return pulumi.get(self, "url_map")
+
+    @property
+    @pulumi.getter(name="urlMapType")
+    def url_map_type(self) -> Optional[str]:
+        """
+        Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        """
+        return pulumi.get(self, "url_map_type")
+
+    @property
+    @pulumi.getter(name="virtualHost")
+    def virtual_host(self) -> Optional[str]:
+        """
+        Virtual host.
+        """
+        return pulumi.get(self, "virtual_host")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGateway6Realserver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addrType":
+            suggest = "addr_type"
+        elif key == "healthCheck":
+            suggest = "health_check"
+        elif key == "healthCheckProto":
+            suggest = "health_check_proto"
+        elif key == "holddownInterval":
+            suggest = "holddown_interval"
+        elif key == "httpHost":
+            suggest = "http_host"
+        elif key == "sshClientCert":
+            suggest = "ssh_client_cert"
+        elif key == "sshHostKeyValidation":
+            suggest = "ssh_host_key_validation"
+        elif key == "sshHostKeys":
+            suggest = "ssh_host_keys"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxy6ApiGateway6Realserver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxy6ApiGateway6Realserver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxy6ApiGateway6Realserver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addr_type: Optional[str] = None,
+                 address: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 health_check: Optional[str] = None,
+                 health_check_proto: Optional[str] = None,
+                 holddown_interval: Optional[str] = None,
+                 http_host: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ip: Optional[str] = None,
+                 mappedport: Optional[str] = None,
+                 port: Optional[int] = None,
+                 ssh_client_cert: Optional[str] = None,
+                 ssh_host_key_validation: Optional[str] = None,
+                 ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6RealserverSshHostKey']] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
+        :param str address: Address or address group of the real server.
+        :param str domain: Wildcard domain name of the real server.
+        :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        :param str http_host: HTTP server domain name in HTTP header.
+        :param int id: Real server ID.
+        :param str ip: IPv6 address of the real server.
+        :param str mappedport: Port for communicating with the real server.
+        :param int port: Port for communicating with the real server.
+        :param str ssh_client_cert: Set access-proxy SSH client certificate profile.
+        :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        :param Sequence['FirewallAccessProxy6ApiGateway6RealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
+        :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        if addr_type is not None:
+            pulumi.set(__self__, "addr_type", addr_type)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if health_check_proto is not None:
+            pulumi.set(__self__, "health_check_proto", health_check_proto)
+        if holddown_interval is not None:
+            pulumi.set(__self__, "holddown_interval", holddown_interval)
+        if http_host is not None:
+            pulumi.set(__self__, "http_host", http_host)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if mappedport is not None:
+            pulumi.set(__self__, "mappedport", mappedport)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssh_client_cert is not None:
+            pulumi.set(__self__, "ssh_client_cert", ssh_client_cert)
+        if ssh_host_key_validation is not None:
+            pulumi.set(__self__, "ssh_host_key_validation", ssh_host_key_validation)
+        if ssh_host_keys is not None:
+            pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> Optional[str]:
+        """
+        Type of address. Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        Address or address group of the real server.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        Wildcard domain name of the real server.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[str]:
+        """
+        Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @property
+    @pulumi.getter(name="healthCheckProto")
+    def health_check_proto(self) -> Optional[str]:
+        """
+        Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        """
+        return pulumi.get(self, "health_check_proto")
+
+    @property
+    @pulumi.getter(name="holddownInterval")
+    def holddown_interval(self) -> Optional[str]:
+        """
+        Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "holddown_interval")
+
+    @property
+    @pulumi.getter(name="httpHost")
+    def http_host(self) -> Optional[str]:
+        """
+        HTTP server domain name in HTTP header.
+        """
+        return pulumi.get(self, "http_host")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        IPv6 address of the real server.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def mappedport(self) -> Optional[str]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "mappedport")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sshClientCert")
+    def ssh_client_cert(self) -> Optional[str]:
+        """
+        Set access-proxy SSH client certificate profile.
+        """
+        return pulumi.get(self, "ssh_client_cert")
+
+    @property
+    @pulumi.getter(name="sshHostKeyValidation")
+    def ssh_host_key_validation(self) -> Optional[str]:
+        """
+        Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssh_host_key_validation")
+
+    @property
+    @pulumi.getter(name="sshHostKeys")
+    def ssh_host_keys(self) -> Optional[Sequence['outputs.FirewallAccessProxy6ApiGateway6RealserverSshHostKey']]:
+        """
+        One or more server host key. The structure of `ssh_host_key` block is documented below.
+        """
+        return pulumi.get(self, "ssh_host_keys")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGateway6RealserverSshHostKey(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Server host key name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Server host key name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGateway6SslCipherSuite(dict):
+    def __init__(__self__, *,
+                 cipher: Optional[str] = None,
+                 priority: Optional[int] = None,
+                 versions: Optional[str] = None):
+        """
+        :param str cipher: Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        :param int priority: SSL/TLS cipher suites priority.
+        :param str versions: SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        if cipher is not None:
+            pulumi.set(__self__, "cipher", cipher)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if versions is not None:
+            pulumi.set(__self__, "versions", versions)
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> Optional[str]:
+        """
+        Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        """
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        SSL/TLS cipher suites priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> Optional[str]:
+        """
+        SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "versions")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGateway(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpCookieAge":
+            suggest = "http_cookie_age"
+        elif key == "httpCookieDomain":
+            suggest = "http_cookie_domain"
+        elif key == "httpCookieDomainFromHost":
+            suggest = "http_cookie_domain_from_host"
+        elif key == "httpCookieGeneration":
+            suggest = "http_cookie_generation"
+        elif key == "httpCookiePath":
+            suggest = "http_cookie_path"
+        elif key == "httpCookieShare":
+            suggest = "http_cookie_share"
+        elif key == "httpsCookieSecure":
+            suggest = "https_cookie_secure"
+        elif key == "ldbMethod":
+            suggest = "ldb_method"
+        elif key == "samlRedirect":
+            suggest = "saml_redirect"
+        elif key == "samlServer":
+            suggest = "saml_server"
+        elif key == "sslAlgorithm":
+            suggest = "ssl_algorithm"
+        elif key == "sslCipherSuites":
+            suggest = "ssl_cipher_suites"
+        elif key == "sslDhBits":
+            suggest = "ssl_dh_bits"
+        elif key == "sslMaxVersion":
+            suggest = "ssl_max_version"
+        elif key == "sslMinVersion":
+            suggest = "ssl_min_version"
+        elif key == "sslVpnWebPortal":
+            suggest = "ssl_vpn_web_portal"
+        elif key == "urlMap":
+            suggest = "url_map"
+        elif key == "urlMapType":
+            suggest = "url_map_type"
+        elif key == "virtualHost":
+            suggest = "virtual_host"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxy6ApiGateway. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxy6ApiGateway.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxy6ApiGateway.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 http_cookie_age: Optional[int] = None,
+                 http_cookie_domain: Optional[str] = None,
+                 http_cookie_domain_from_host: Optional[str] = None,
+                 http_cookie_generation: Optional[int] = None,
+                 http_cookie_path: Optional[str] = None,
+                 http_cookie_share: Optional[str] = None,
+                 https_cookie_secure: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ldb_method: Optional[str] = None,
+                 persistence: Optional[str] = None,
+                 realservers: Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewayRealserver']] = None,
+                 saml_redirect: Optional[str] = None,
+                 saml_server: Optional[str] = None,
+                 service: Optional[str] = None,
+                 ssl_algorithm: Optional[str] = None,
+                 ssl_cipher_suites: Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewaySslCipherSuite']] = None,
+                 ssl_dh_bits: Optional[str] = None,
+                 ssl_max_version: Optional[str] = None,
+                 ssl_min_version: Optional[str] = None,
+                 ssl_vpn_web_portal: Optional[str] = None,
+                 url_map: Optional[str] = None,
+                 url_map_type: Optional[str] = None,
+                 virtual_host: Optional[str] = None):
+        """
+        :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
+        :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        :param int http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        :param str http_cookie_path: Limit HTTP cookie persistence to the specified path.
+        :param str http_cookie_share: Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        :param str https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param int id: Real server ID.
+        :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param Sequence['FirewallAccessProxy6ApiGatewayRealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        :param str saml_server: SAML service provider configuration for VIP authentication.
+        :param str service: Service.
+        :param str ssl_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        :param Sequence['FirewallAccessProxy6ApiGatewaySslCipherSuiteArgs'] ssl_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_vpn_web_portal: SSL-VPN web portal.
+        :param str url_map: URL pattern to match.
+        :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        :param str virtual_host: Virtual host.
+        """
+        if http_cookie_age is not None:
+            pulumi.set(__self__, "http_cookie_age", http_cookie_age)
+        if http_cookie_domain is not None:
+            pulumi.set(__self__, "http_cookie_domain", http_cookie_domain)
+        if http_cookie_domain_from_host is not None:
+            pulumi.set(__self__, "http_cookie_domain_from_host", http_cookie_domain_from_host)
+        if http_cookie_generation is not None:
+            pulumi.set(__self__, "http_cookie_generation", http_cookie_generation)
+        if http_cookie_path is not None:
+            pulumi.set(__self__, "http_cookie_path", http_cookie_path)
+        if http_cookie_share is not None:
+            pulumi.set(__self__, "http_cookie_share", http_cookie_share)
+        if https_cookie_secure is not None:
+            pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ldb_method is not None:
+            pulumi.set(__self__, "ldb_method", ldb_method)
+        if persistence is not None:
+            pulumi.set(__self__, "persistence", persistence)
+        if realservers is not None:
+            pulumi.set(__self__, "realservers", realservers)
+        if saml_redirect is not None:
+            pulumi.set(__self__, "saml_redirect", saml_redirect)
+        if saml_server is not None:
+            pulumi.set(__self__, "saml_server", saml_server)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if ssl_algorithm is not None:
+            pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_cipher_suites is not None:
+            pulumi.set(__self__, "ssl_cipher_suites", ssl_cipher_suites)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
+        if ssl_max_version is not None:
+            pulumi.set(__self__, "ssl_max_version", ssl_max_version)
+        if ssl_min_version is not None:
+            pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_vpn_web_portal is not None:
+            pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
+        if url_map is not None:
+            pulumi.set(__self__, "url_map", url_map)
+        if url_map_type is not None:
+            pulumi.set(__self__, "url_map_type", url_map_type)
+        if virtual_host is not None:
+            pulumi.set(__self__, "virtual_host", virtual_host)
+
+    @property
+    @pulumi.getter(name="httpCookieAge")
+    def http_cookie_age(self) -> Optional[int]:
+        """
+        Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        """
+        return pulumi.get(self, "http_cookie_age")
+
+    @property
+    @pulumi.getter(name="httpCookieDomain")
+    def http_cookie_domain(self) -> Optional[str]:
+        """
+        Domain that HTTP cookie persistence should apply to.
+        """
+        return pulumi.get(self, "http_cookie_domain")
+
+    @property
+    @pulumi.getter(name="httpCookieDomainFromHost")
+    def http_cookie_domain_from_host(self) -> Optional[str]:
+        """
+        Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "http_cookie_domain_from_host")
+
+    @property
+    @pulumi.getter(name="httpCookieGeneration")
+    def http_cookie_generation(self) -> Optional[int]:
+        """
+        Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        """
+        return pulumi.get(self, "http_cookie_generation")
+
+    @property
+    @pulumi.getter(name="httpCookiePath")
+    def http_cookie_path(self) -> Optional[str]:
+        """
+        Limit HTTP cookie persistence to the specified path.
+        """
+        return pulumi.get(self, "http_cookie_path")
+
+    @property
+    @pulumi.getter(name="httpCookieShare")
+    def http_cookie_share(self) -> Optional[str]:
+        """
+        Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        """
+        return pulumi.get(self, "http_cookie_share")
+
+    @property
+    @pulumi.getter(name="httpsCookieSecure")
+    def https_cookie_secure(self) -> Optional[str]:
+        """
+        Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "https_cookie_secure")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ldbMethod")
+    def ldb_method(self) -> Optional[str]:
+        """
+        Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        """
+        return pulumi.get(self, "ldb_method")
+
+    @property
+    @pulumi.getter
+    def persistence(self) -> Optional[str]:
+        """
+        Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        """
+        return pulumi.get(self, "persistence")
+
+    @property
+    @pulumi.getter
+    def realservers(self) -> Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewayRealserver']]:
+        """
+        Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        """
+        return pulumi.get(self, "realservers")
+
+    @property
+    @pulumi.getter(name="samlRedirect")
+    def saml_redirect(self) -> Optional[str]:
+        """
+        Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "saml_redirect")
+
+    @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> Optional[str]:
+        """
+        SAML service provider configuration for VIP authentication.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[str]:
+        """
+        Service.
+        """
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="sslAlgorithm")
+    def ssl_algorithm(self) -> Optional[str]:
+        """
+        Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        """
+        return pulumi.get(self, "ssl_algorithm")
+
+    @property
+    @pulumi.getter(name="sslCipherSuites")
+    def ssl_cipher_suites(self) -> Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewaySslCipherSuite']]:
+        """
+        SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        """
+        return pulumi.get(self, "ssl_cipher_suites")
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[str]:
+        """
+        Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @property
+    @pulumi.getter(name="sslMaxVersion")
+    def ssl_max_version(self) -> Optional[str]:
+        """
+        Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_max_version")
+
+    @property
+    @pulumi.getter(name="sslMinVersion")
+    def ssl_min_version(self) -> Optional[str]:
+        """
+        Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_min_version")
+
+    @property
+    @pulumi.getter(name="sslVpnWebPortal")
+    def ssl_vpn_web_portal(self) -> Optional[str]:
+        """
+        SSL-VPN web portal.
+        """
+        return pulumi.get(self, "ssl_vpn_web_portal")
+
+    @property
+    @pulumi.getter(name="urlMap")
+    def url_map(self) -> Optional[str]:
+        """
+        URL pattern to match.
+        """
+        return pulumi.get(self, "url_map")
+
+    @property
+    @pulumi.getter(name="urlMapType")
+    def url_map_type(self) -> Optional[str]:
+        """
+        Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        """
+        return pulumi.get(self, "url_map_type")
+
+    @property
+    @pulumi.getter(name="virtualHost")
+    def virtual_host(self) -> Optional[str]:
+        """
+        Virtual host.
+        """
+        return pulumi.get(self, "virtual_host")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGatewayRealserver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addrType":
+            suggest = "addr_type"
+        elif key == "healthCheck":
+            suggest = "health_check"
+        elif key == "healthCheckProto":
+            suggest = "health_check_proto"
+        elif key == "holddownInterval":
+            suggest = "holddown_interval"
+        elif key == "httpHost":
+            suggest = "http_host"
+        elif key == "sshClientCert":
+            suggest = "ssh_client_cert"
+        elif key == "sshHostKeyValidation":
+            suggest = "ssh_host_key_validation"
+        elif key == "sshHostKeys":
+            suggest = "ssh_host_keys"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxy6ApiGatewayRealserver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxy6ApiGatewayRealserver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxy6ApiGatewayRealserver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addr_type: Optional[str] = None,
+                 address: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 health_check: Optional[str] = None,
+                 health_check_proto: Optional[str] = None,
+                 holddown_interval: Optional[str] = None,
+                 http_host: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ip: Optional[str] = None,
+                 mappedport: Optional[str] = None,
+                 port: Optional[int] = None,
+                 ssh_client_cert: Optional[str] = None,
+                 ssh_host_key_validation: Optional[str] = None,
+                 ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewayRealserverSshHostKey']] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
+        :param str address: Address or address group of the real server.
+        :param str domain: Wildcard domain name of the real server.
+        :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        :param str http_host: HTTP server domain name in HTTP header.
+        :param int id: Real server ID.
+        :param str ip: IPv6 address of the real server.
+        :param str mappedport: Port for communicating with the real server.
+        :param int port: Port for communicating with the real server.
+        :param str ssh_client_cert: Set access-proxy SSH client certificate profile.
+        :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        :param Sequence['FirewallAccessProxy6ApiGatewayRealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
+        :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        if addr_type is not None:
+            pulumi.set(__self__, "addr_type", addr_type)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if health_check_proto is not None:
+            pulumi.set(__self__, "health_check_proto", health_check_proto)
+        if holddown_interval is not None:
+            pulumi.set(__self__, "holddown_interval", holddown_interval)
+        if http_host is not None:
+            pulumi.set(__self__, "http_host", http_host)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if mappedport is not None:
+            pulumi.set(__self__, "mappedport", mappedport)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssh_client_cert is not None:
+            pulumi.set(__self__, "ssh_client_cert", ssh_client_cert)
+        if ssh_host_key_validation is not None:
+            pulumi.set(__self__, "ssh_host_key_validation", ssh_host_key_validation)
+        if ssh_host_keys is not None:
+            pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> Optional[str]:
+        """
+        Type of address. Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        Address or address group of the real server.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        Wildcard domain name of the real server.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[str]:
+        """
+        Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @property
+    @pulumi.getter(name="healthCheckProto")
+    def health_check_proto(self) -> Optional[str]:
+        """
+        Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        """
+        return pulumi.get(self, "health_check_proto")
+
+    @property
+    @pulumi.getter(name="holddownInterval")
+    def holddown_interval(self) -> Optional[str]:
+        """
+        Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "holddown_interval")
+
+    @property
+    @pulumi.getter(name="httpHost")
+    def http_host(self) -> Optional[str]:
+        """
+        HTTP server domain name in HTTP header.
+        """
+        return pulumi.get(self, "http_host")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        IPv6 address of the real server.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def mappedport(self) -> Optional[str]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "mappedport")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sshClientCert")
+    def ssh_client_cert(self) -> Optional[str]:
+        """
+        Set access-proxy SSH client certificate profile.
+        """
+        return pulumi.get(self, "ssh_client_cert")
+
+    @property
+    @pulumi.getter(name="sshHostKeyValidation")
+    def ssh_host_key_validation(self) -> Optional[str]:
+        """
+        Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssh_host_key_validation")
+
+    @property
+    @pulumi.getter(name="sshHostKeys")
+    def ssh_host_keys(self) -> Optional[Sequence['outputs.FirewallAccessProxy6ApiGatewayRealserverSshHostKey']]:
+        """
+        One or more server host key. The structure of `ssh_host_key` block is documented below.
+        """
+        return pulumi.get(self, "ssh_host_keys")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGatewayRealserverSshHostKey(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Server host key name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Server host key name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallAccessProxy6ApiGatewaySslCipherSuite(dict):
+    def __init__(__self__, *,
+                 cipher: Optional[str] = None,
+                 priority: Optional[int] = None,
+                 versions: Optional[str] = None):
+        """
+        :param str cipher: Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        :param int priority: SSL/TLS cipher suites priority.
+        :param str versions: SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        if cipher is not None:
+            pulumi.set(__self__, "cipher", cipher)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if versions is not None:
+            pulumi.set(__self__, "versions", versions)
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> Optional[str]:
+        """
+        Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        """
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        SSL/TLS cipher suites priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> Optional[str]:
+        """
+        SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "versions")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGateway6(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpCookieAge":
+            suggest = "http_cookie_age"
+        elif key == "httpCookieDomain":
+            suggest = "http_cookie_domain"
+        elif key == "httpCookieDomainFromHost":
+            suggest = "http_cookie_domain_from_host"
+        elif key == "httpCookieGeneration":
+            suggest = "http_cookie_generation"
+        elif key == "httpCookiePath":
+            suggest = "http_cookie_path"
+        elif key == "httpCookieShare":
+            suggest = "http_cookie_share"
+        elif key == "httpsCookieSecure":
+            suggest = "https_cookie_secure"
+        elif key == "ldbMethod":
+            suggest = "ldb_method"
+        elif key == "samlRedirect":
+            suggest = "saml_redirect"
+        elif key == "samlServer":
+            suggest = "saml_server"
+        elif key == "sslAlgorithm":
+            suggest = "ssl_algorithm"
+        elif key == "sslCipherSuites":
+            suggest = "ssl_cipher_suites"
+        elif key == "sslDhBits":
+            suggest = "ssl_dh_bits"
+        elif key == "sslMaxVersion":
+            suggest = "ssl_max_version"
+        elif key == "sslMinVersion":
+            suggest = "ssl_min_version"
+        elif key == "sslVpnWebPortal":
+            suggest = "ssl_vpn_web_portal"
+        elif key == "urlMap":
+            suggest = "url_map"
+        elif key == "urlMapType":
+            suggest = "url_map_type"
+        elif key == "virtualHost":
+            suggest = "virtual_host"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxyApiGateway6. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxyApiGateway6.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxyApiGateway6.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 http_cookie_age: Optional[int] = None,
+                 http_cookie_domain: Optional[str] = None,
+                 http_cookie_domain_from_host: Optional[str] = None,
+                 http_cookie_generation: Optional[int] = None,
+                 http_cookie_path: Optional[str] = None,
+                 http_cookie_share: Optional[str] = None,
+                 https_cookie_secure: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ldb_method: Optional[str] = None,
+                 persistence: Optional[str] = None,
+                 realservers: Optional[Sequence['outputs.FirewallAccessProxyApiGateway6Realserver']] = None,
+                 saml_redirect: Optional[str] = None,
+                 saml_server: Optional[str] = None,
+                 service: Optional[str] = None,
+                 ssl_algorithm: Optional[str] = None,
+                 ssl_cipher_suites: Optional[Sequence['outputs.FirewallAccessProxyApiGateway6SslCipherSuite']] = None,
+                 ssl_dh_bits: Optional[str] = None,
+                 ssl_max_version: Optional[str] = None,
+                 ssl_min_version: Optional[str] = None,
+                 ssl_vpn_web_portal: Optional[str] = None,
+                 url_map: Optional[str] = None,
+                 url_map_type: Optional[str] = None,
+                 virtual_host: Optional[str] = None):
+        """
+        :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
+        :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        :param int http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        :param str http_cookie_path: Limit HTTP cookie persistence to the specified path.
+        :param str http_cookie_share: Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        :param str https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param int id: Real server ID.
+        :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param Sequence['FirewallAccessProxyApiGateway6RealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        :param str saml_server: SAML service provider configuration for VIP authentication.
+        :param str service: Service.
+        :param str ssl_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        :param Sequence['FirewallAccessProxyApiGateway6SslCipherSuiteArgs'] ssl_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_vpn_web_portal: SSL-VPN web portal.
+        :param str url_map: URL pattern to match.
+        :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        :param str virtual_host: Virtual host.
+        """
+        if http_cookie_age is not None:
+            pulumi.set(__self__, "http_cookie_age", http_cookie_age)
+        if http_cookie_domain is not None:
+            pulumi.set(__self__, "http_cookie_domain", http_cookie_domain)
+        if http_cookie_domain_from_host is not None:
+            pulumi.set(__self__, "http_cookie_domain_from_host", http_cookie_domain_from_host)
+        if http_cookie_generation is not None:
+            pulumi.set(__self__, "http_cookie_generation", http_cookie_generation)
+        if http_cookie_path is not None:
+            pulumi.set(__self__, "http_cookie_path", http_cookie_path)
+        if http_cookie_share is not None:
+            pulumi.set(__self__, "http_cookie_share", http_cookie_share)
+        if https_cookie_secure is not None:
+            pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ldb_method is not None:
+            pulumi.set(__self__, "ldb_method", ldb_method)
+        if persistence is not None:
+            pulumi.set(__self__, "persistence", persistence)
+        if realservers is not None:
+            pulumi.set(__self__, "realservers", realservers)
+        if saml_redirect is not None:
+            pulumi.set(__self__, "saml_redirect", saml_redirect)
+        if saml_server is not None:
+            pulumi.set(__self__, "saml_server", saml_server)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if ssl_algorithm is not None:
+            pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_cipher_suites is not None:
+            pulumi.set(__self__, "ssl_cipher_suites", ssl_cipher_suites)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
+        if ssl_max_version is not None:
+            pulumi.set(__self__, "ssl_max_version", ssl_max_version)
+        if ssl_min_version is not None:
+            pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_vpn_web_portal is not None:
+            pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
+        if url_map is not None:
+            pulumi.set(__self__, "url_map", url_map)
+        if url_map_type is not None:
+            pulumi.set(__self__, "url_map_type", url_map_type)
+        if virtual_host is not None:
+            pulumi.set(__self__, "virtual_host", virtual_host)
+
+    @property
+    @pulumi.getter(name="httpCookieAge")
+    def http_cookie_age(self) -> Optional[int]:
+        """
+        Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        """
+        return pulumi.get(self, "http_cookie_age")
+
+    @property
+    @pulumi.getter(name="httpCookieDomain")
+    def http_cookie_domain(self) -> Optional[str]:
+        """
+        Domain that HTTP cookie persistence should apply to.
+        """
+        return pulumi.get(self, "http_cookie_domain")
+
+    @property
+    @pulumi.getter(name="httpCookieDomainFromHost")
+    def http_cookie_domain_from_host(self) -> Optional[str]:
+        """
+        Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "http_cookie_domain_from_host")
+
+    @property
+    @pulumi.getter(name="httpCookieGeneration")
+    def http_cookie_generation(self) -> Optional[int]:
+        """
+        Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        """
+        return pulumi.get(self, "http_cookie_generation")
+
+    @property
+    @pulumi.getter(name="httpCookiePath")
+    def http_cookie_path(self) -> Optional[str]:
+        """
+        Limit HTTP cookie persistence to the specified path.
+        """
+        return pulumi.get(self, "http_cookie_path")
+
+    @property
+    @pulumi.getter(name="httpCookieShare")
+    def http_cookie_share(self) -> Optional[str]:
+        """
+        Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        """
+        return pulumi.get(self, "http_cookie_share")
+
+    @property
+    @pulumi.getter(name="httpsCookieSecure")
+    def https_cookie_secure(self) -> Optional[str]:
+        """
+        Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "https_cookie_secure")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ldbMethod")
+    def ldb_method(self) -> Optional[str]:
+        """
+        Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        """
+        return pulumi.get(self, "ldb_method")
+
+    @property
+    @pulumi.getter
+    def persistence(self) -> Optional[str]:
+        """
+        Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        """
+        return pulumi.get(self, "persistence")
+
+    @property
+    @pulumi.getter
+    def realservers(self) -> Optional[Sequence['outputs.FirewallAccessProxyApiGateway6Realserver']]:
+        """
+        Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        """
+        return pulumi.get(self, "realservers")
+
+    @property
+    @pulumi.getter(name="samlRedirect")
+    def saml_redirect(self) -> Optional[str]:
+        """
+        Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "saml_redirect")
+
+    @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> Optional[str]:
+        """
+        SAML service provider configuration for VIP authentication.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[str]:
+        """
+        Service.
+        """
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="sslAlgorithm")
+    def ssl_algorithm(self) -> Optional[str]:
+        """
+        Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        """
+        return pulumi.get(self, "ssl_algorithm")
+
+    @property
+    @pulumi.getter(name="sslCipherSuites")
+    def ssl_cipher_suites(self) -> Optional[Sequence['outputs.FirewallAccessProxyApiGateway6SslCipherSuite']]:
+        """
+        SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        """
+        return pulumi.get(self, "ssl_cipher_suites")
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[str]:
+        """
+        Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @property
+    @pulumi.getter(name="sslMaxVersion")
+    def ssl_max_version(self) -> Optional[str]:
+        """
+        Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_max_version")
+
+    @property
+    @pulumi.getter(name="sslMinVersion")
+    def ssl_min_version(self) -> Optional[str]:
+        """
+        Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_min_version")
+
+    @property
+    @pulumi.getter(name="sslVpnWebPortal")
+    def ssl_vpn_web_portal(self) -> Optional[str]:
+        """
+        SSL-VPN web portal.
+        """
+        return pulumi.get(self, "ssl_vpn_web_portal")
+
+    @property
+    @pulumi.getter(name="urlMap")
+    def url_map(self) -> Optional[str]:
+        """
+        URL pattern to match.
+        """
+        return pulumi.get(self, "url_map")
+
+    @property
+    @pulumi.getter(name="urlMapType")
+    def url_map_type(self) -> Optional[str]:
+        """
+        Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        """
+        return pulumi.get(self, "url_map_type")
+
+    @property
+    @pulumi.getter(name="virtualHost")
+    def virtual_host(self) -> Optional[str]:
+        """
+        Virtual host.
+        """
+        return pulumi.get(self, "virtual_host")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGateway6Realserver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addrType":
+            suggest = "addr_type"
+        elif key == "healthCheck":
+            suggest = "health_check"
+        elif key == "healthCheckProto":
+            suggest = "health_check_proto"
+        elif key == "holddownInterval":
+            suggest = "holddown_interval"
+        elif key == "httpHost":
+            suggest = "http_host"
+        elif key == "sshClientCert":
+            suggest = "ssh_client_cert"
+        elif key == "sshHostKeyValidation":
+            suggest = "ssh_host_key_validation"
+        elif key == "sshHostKeys":
+            suggest = "ssh_host_keys"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxyApiGateway6Realserver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxyApiGateway6Realserver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxyApiGateway6Realserver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addr_type: Optional[str] = None,
+                 address: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 health_check: Optional[str] = None,
+                 health_check_proto: Optional[str] = None,
+                 holddown_interval: Optional[str] = None,
+                 http_host: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ip: Optional[str] = None,
+                 mappedport: Optional[str] = None,
+                 port: Optional[int] = None,
+                 ssh_client_cert: Optional[str] = None,
+                 ssh_host_key_validation: Optional[str] = None,
+                 ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxyApiGateway6RealserverSshHostKey']] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
+        :param str address: Address or address group of the real server.
+        :param str domain: Wildcard domain name of the real server.
+        :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        :param str http_host: HTTP server domain name in HTTP header.
+        :param int id: Real server ID.
+        :param str ip: IPv6 address of the real server.
+        :param str mappedport: Port for communicating with the real server.
+        :param int port: Port for communicating with the real server.
+        :param str ssh_client_cert: Set access-proxy SSH client certificate profile.
+        :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        :param Sequence['FirewallAccessProxyApiGateway6RealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
+        :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        if addr_type is not None:
+            pulumi.set(__self__, "addr_type", addr_type)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if health_check_proto is not None:
+            pulumi.set(__self__, "health_check_proto", health_check_proto)
+        if holddown_interval is not None:
+            pulumi.set(__self__, "holddown_interval", holddown_interval)
+        if http_host is not None:
+            pulumi.set(__self__, "http_host", http_host)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if mappedport is not None:
+            pulumi.set(__self__, "mappedport", mappedport)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssh_client_cert is not None:
+            pulumi.set(__self__, "ssh_client_cert", ssh_client_cert)
+        if ssh_host_key_validation is not None:
+            pulumi.set(__self__, "ssh_host_key_validation", ssh_host_key_validation)
+        if ssh_host_keys is not None:
+            pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> Optional[str]:
+        """
+        Type of address. Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        Address or address group of the real server.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        Wildcard domain name of the real server.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[str]:
+        """
+        Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @property
+    @pulumi.getter(name="healthCheckProto")
+    def health_check_proto(self) -> Optional[str]:
+        """
+        Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        """
+        return pulumi.get(self, "health_check_proto")
+
+    @property
+    @pulumi.getter(name="holddownInterval")
+    def holddown_interval(self) -> Optional[str]:
+        """
+        Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "holddown_interval")
+
+    @property
+    @pulumi.getter(name="httpHost")
+    def http_host(self) -> Optional[str]:
+        """
+        HTTP server domain name in HTTP header.
+        """
+        return pulumi.get(self, "http_host")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        IPv6 address of the real server.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def mappedport(self) -> Optional[str]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "mappedport")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sshClientCert")
+    def ssh_client_cert(self) -> Optional[str]:
+        """
+        Set access-proxy SSH client certificate profile.
+        """
+        return pulumi.get(self, "ssh_client_cert")
+
+    @property
+    @pulumi.getter(name="sshHostKeyValidation")
+    def ssh_host_key_validation(self) -> Optional[str]:
+        """
+        Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssh_host_key_validation")
+
+    @property
+    @pulumi.getter(name="sshHostKeys")
+    def ssh_host_keys(self) -> Optional[Sequence['outputs.FirewallAccessProxyApiGateway6RealserverSshHostKey']]:
+        """
+        One or more server host key. The structure of `ssh_host_key` block is documented below.
+        """
+        return pulumi.get(self, "ssh_host_keys")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGateway6RealserverSshHostKey(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Server host key name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Server host key name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGateway6SslCipherSuite(dict):
+    def __init__(__self__, *,
+                 cipher: Optional[str] = None,
+                 priority: Optional[int] = None,
+                 versions: Optional[str] = None):
+        """
+        :param str cipher: Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        :param int priority: SSL/TLS cipher suites priority.
+        :param str versions: SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        if cipher is not None:
+            pulumi.set(__self__, "cipher", cipher)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if versions is not None:
+            pulumi.set(__self__, "versions", versions)
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> Optional[str]:
+        """
+        Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        """
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        SSL/TLS cipher suites priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> Optional[str]:
+        """
+        SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "versions")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGateway(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "httpCookieAge":
+            suggest = "http_cookie_age"
+        elif key == "httpCookieDomain":
+            suggest = "http_cookie_domain"
+        elif key == "httpCookieDomainFromHost":
+            suggest = "http_cookie_domain_from_host"
+        elif key == "httpCookieGeneration":
+            suggest = "http_cookie_generation"
+        elif key == "httpCookiePath":
+            suggest = "http_cookie_path"
+        elif key == "httpCookieShare":
+            suggest = "http_cookie_share"
+        elif key == "httpsCookieSecure":
+            suggest = "https_cookie_secure"
+        elif key == "ldbMethod":
+            suggest = "ldb_method"
+        elif key == "samlRedirect":
+            suggest = "saml_redirect"
+        elif key == "samlServer":
+            suggest = "saml_server"
+        elif key == "sslAlgorithm":
+            suggest = "ssl_algorithm"
+        elif key == "sslCipherSuites":
+            suggest = "ssl_cipher_suites"
+        elif key == "sslDhBits":
+            suggest = "ssl_dh_bits"
+        elif key == "sslMaxVersion":
+            suggest = "ssl_max_version"
+        elif key == "sslMinVersion":
+            suggest = "ssl_min_version"
+        elif key == "sslVpnWebPortal":
+            suggest = "ssl_vpn_web_portal"
+        elif key == "urlMap":
+            suggest = "url_map"
+        elif key == "urlMapType":
+            suggest = "url_map_type"
+        elif key == "virtualHost":
+            suggest = "virtual_host"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxyApiGateway. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxyApiGateway.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxyApiGateway.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 http_cookie_age: Optional[int] = None,
+                 http_cookie_domain: Optional[str] = None,
+                 http_cookie_domain_from_host: Optional[str] = None,
+                 http_cookie_generation: Optional[int] = None,
+                 http_cookie_path: Optional[str] = None,
+                 http_cookie_share: Optional[str] = None,
+                 https_cookie_secure: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ldb_method: Optional[str] = None,
+                 persistence: Optional[str] = None,
+                 realservers: Optional[Sequence['outputs.FirewallAccessProxyApiGatewayRealserver']] = None,
+                 saml_redirect: Optional[str] = None,
+                 saml_server: Optional[str] = None,
+                 service: Optional[str] = None,
+                 ssl_algorithm: Optional[str] = None,
+                 ssl_cipher_suites: Optional[Sequence['outputs.FirewallAccessProxyApiGatewaySslCipherSuite']] = None,
+                 ssl_dh_bits: Optional[str] = None,
+                 ssl_max_version: Optional[str] = None,
+                 ssl_min_version: Optional[str] = None,
+                 ssl_vpn_web_portal: Optional[str] = None,
+                 url_map: Optional[str] = None,
+                 url_map_type: Optional[str] = None,
+                 virtual_host: Optional[str] = None):
+        """
+        :param int http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        :param str http_cookie_domain: Domain that HTTP cookie persistence should apply to.
+        :param str http_cookie_domain_from_host: Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        :param int http_cookie_generation: Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        :param str http_cookie_path: Limit HTTP cookie persistence to the specified path.
+        :param str http_cookie_share: Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        :param str https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param int id: Real server ID.
+        :param str ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        :param str persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        :param Sequence['FirewallAccessProxyApiGatewayRealserverArgs'] realservers: Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        :param str saml_redirect: Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        :param str saml_server: SAML service provider configuration for VIP authentication.
+        :param str service: Service.
+        :param str ssl_algorithm: Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        :param Sequence['FirewallAccessProxyApiGatewaySslCipherSuiteArgs'] ssl_cipher_suites: SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        :param str ssl_dh_bits: Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        :param str ssl_max_version: Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_min_version: Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        :param str ssl_vpn_web_portal: SSL-VPN web portal.
+        :param str url_map: URL pattern to match.
+        :param str url_map_type: Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        :param str virtual_host: Virtual host.
+        """
+        if http_cookie_age is not None:
+            pulumi.set(__self__, "http_cookie_age", http_cookie_age)
+        if http_cookie_domain is not None:
+            pulumi.set(__self__, "http_cookie_domain", http_cookie_domain)
+        if http_cookie_domain_from_host is not None:
+            pulumi.set(__self__, "http_cookie_domain_from_host", http_cookie_domain_from_host)
+        if http_cookie_generation is not None:
+            pulumi.set(__self__, "http_cookie_generation", http_cookie_generation)
+        if http_cookie_path is not None:
+            pulumi.set(__self__, "http_cookie_path", http_cookie_path)
+        if http_cookie_share is not None:
+            pulumi.set(__self__, "http_cookie_share", http_cookie_share)
+        if https_cookie_secure is not None:
+            pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ldb_method is not None:
+            pulumi.set(__self__, "ldb_method", ldb_method)
+        if persistence is not None:
+            pulumi.set(__self__, "persistence", persistence)
+        if realservers is not None:
+            pulumi.set(__self__, "realservers", realservers)
+        if saml_redirect is not None:
+            pulumi.set(__self__, "saml_redirect", saml_redirect)
+        if saml_server is not None:
+            pulumi.set(__self__, "saml_server", saml_server)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if ssl_algorithm is not None:
+            pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
+        if ssl_cipher_suites is not None:
+            pulumi.set(__self__, "ssl_cipher_suites", ssl_cipher_suites)
+        if ssl_dh_bits is not None:
+            pulumi.set(__self__, "ssl_dh_bits", ssl_dh_bits)
+        if ssl_max_version is not None:
+            pulumi.set(__self__, "ssl_max_version", ssl_max_version)
+        if ssl_min_version is not None:
+            pulumi.set(__self__, "ssl_min_version", ssl_min_version)
+        if ssl_vpn_web_portal is not None:
+            pulumi.set(__self__, "ssl_vpn_web_portal", ssl_vpn_web_portal)
+        if url_map is not None:
+            pulumi.set(__self__, "url_map", url_map)
+        if url_map_type is not None:
+            pulumi.set(__self__, "url_map_type", url_map_type)
+        if virtual_host is not None:
+            pulumi.set(__self__, "virtual_host", virtual_host)
+
+    @property
+    @pulumi.getter(name="httpCookieAge")
+    def http_cookie_age(self) -> Optional[int]:
+        """
+        Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+        """
+        return pulumi.get(self, "http_cookie_age")
+
+    @property
+    @pulumi.getter(name="httpCookieDomain")
+    def http_cookie_domain(self) -> Optional[str]:
+        """
+        Domain that HTTP cookie persistence should apply to.
+        """
+        return pulumi.get(self, "http_cookie_domain")
+
+    @property
+    @pulumi.getter(name="httpCookieDomainFromHost")
+    def http_cookie_domain_from_host(self) -> Optional[str]:
+        """
+        Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "http_cookie_domain_from_host")
+
+    @property
+    @pulumi.getter(name="httpCookieGeneration")
+    def http_cookie_generation(self) -> Optional[int]:
+        """
+        Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+        """
+        return pulumi.get(self, "http_cookie_generation")
+
+    @property
+    @pulumi.getter(name="httpCookiePath")
+    def http_cookie_path(self) -> Optional[str]:
+        """
+        Limit HTTP cookie persistence to the specified path.
+        """
+        return pulumi.get(self, "http_cookie_path")
+
+    @property
+    @pulumi.getter(name="httpCookieShare")
+    def http_cookie_share(self) -> Optional[str]:
+        """
+        Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+        """
+        return pulumi.get(self, "http_cookie_share")
+
+    @property
+    @pulumi.getter(name="httpsCookieSecure")
+    def https_cookie_secure(self) -> Optional[str]:
+        """
+        Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "https_cookie_secure")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="ldbMethod")
+    def ldb_method(self) -> Optional[str]:
+        """
+        Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+        """
+        return pulumi.get(self, "ldb_method")
+
+    @property
+    @pulumi.getter
+    def persistence(self) -> Optional[str]:
+        """
+        Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+        """
+        return pulumi.get(self, "persistence")
+
+    @property
+    @pulumi.getter
+    def realservers(self) -> Optional[Sequence['outputs.FirewallAccessProxyApiGatewayRealserver']]:
+        """
+        Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+        """
+        return pulumi.get(self, "realservers")
+
+    @property
+    @pulumi.getter(name="samlRedirect")
+    def saml_redirect(self) -> Optional[str]:
+        """
+        Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "saml_redirect")
+
+    @property
+    @pulumi.getter(name="samlServer")
+    def saml_server(self) -> Optional[str]:
+        """
+        SAML service provider configuration for VIP authentication.
+        """
+        return pulumi.get(self, "saml_server")
+
+    @property
+    @pulumi.getter
+    def service(self) -> Optional[str]:
+        """
+        Service.
+        """
+        return pulumi.get(self, "service")
+
+    @property
+    @pulumi.getter(name="sslAlgorithm")
+    def ssl_algorithm(self) -> Optional[str]:
+        """
+        Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+        """
+        return pulumi.get(self, "ssl_algorithm")
+
+    @property
+    @pulumi.getter(name="sslCipherSuites")
+    def ssl_cipher_suites(self) -> Optional[Sequence['outputs.FirewallAccessProxyApiGatewaySslCipherSuite']]:
+        """
+        SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
+        """
+        return pulumi.get(self, "ssl_cipher_suites")
+
+    @property
+    @pulumi.getter(name="sslDhBits")
+    def ssl_dh_bits(self) -> Optional[str]:
+        """
+        Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+        """
+        return pulumi.get(self, "ssl_dh_bits")
+
+    @property
+    @pulumi.getter(name="sslMaxVersion")
+    def ssl_max_version(self) -> Optional[str]:
+        """
+        Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_max_version")
+
+    @property
+    @pulumi.getter(name="sslMinVersion")
+    def ssl_min_version(self) -> Optional[str]:
+        """
+        Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "ssl_min_version")
+
+    @property
+    @pulumi.getter(name="sslVpnWebPortal")
+    def ssl_vpn_web_portal(self) -> Optional[str]:
+        """
+        SSL-VPN web portal.
+        """
+        return pulumi.get(self, "ssl_vpn_web_portal")
+
+    @property
+    @pulumi.getter(name="urlMap")
+    def url_map(self) -> Optional[str]:
+        """
+        URL pattern to match.
+        """
+        return pulumi.get(self, "url_map")
+
+    @property
+    @pulumi.getter(name="urlMapType")
+    def url_map_type(self) -> Optional[str]:
+        """
+        Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+        """
+        return pulumi.get(self, "url_map_type")
+
+    @property
+    @pulumi.getter(name="virtualHost")
+    def virtual_host(self) -> Optional[str]:
+        """
+        Virtual host.
+        """
+        return pulumi.get(self, "virtual_host")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGatewayRealserver(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "addrType":
+            suggest = "addr_type"
+        elif key == "healthCheck":
+            suggest = "health_check"
+        elif key == "healthCheckProto":
+            suggest = "health_check_proto"
+        elif key == "holddownInterval":
+            suggest = "holddown_interval"
+        elif key == "httpHost":
+            suggest = "http_host"
+        elif key == "sshClientCert":
+            suggest = "ssh_client_cert"
+        elif key == "sshHostKeyValidation":
+            suggest = "ssh_host_key_validation"
+        elif key == "sshHostKeys":
+            suggest = "ssh_host_keys"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallAccessProxyApiGatewayRealserver. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallAccessProxyApiGatewayRealserver.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallAccessProxyApiGatewayRealserver.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 addr_type: Optional[str] = None,
+                 address: Optional[str] = None,
+                 domain: Optional[str] = None,
+                 health_check: Optional[str] = None,
+                 health_check_proto: Optional[str] = None,
+                 holddown_interval: Optional[str] = None,
+                 http_host: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ip: Optional[str] = None,
+                 mappedport: Optional[str] = None,
+                 port: Optional[int] = None,
+                 ssh_client_cert: Optional[str] = None,
+                 ssh_host_key_validation: Optional[str] = None,
+                 ssh_host_keys: Optional[Sequence['outputs.FirewallAccessProxyApiGatewayRealserverSshHostKey']] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str addr_type: Type of address. Valid values: `ip`, `fqdn`.
+        :param str address: Address or address group of the real server.
+        :param str domain: Wildcard domain name of the real server.
+        :param str health_check: Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        :param str health_check_proto: Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        :param str holddown_interval: Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        :param str http_host: HTTP server domain name in HTTP header.
+        :param int id: Real server ID.
+        :param str ip: IPv6 address of the real server.
+        :param str mappedport: Port for communicating with the real server.
+        :param int port: Port for communicating with the real server.
+        :param str ssh_client_cert: Set access-proxy SSH client certificate profile.
+        :param str ssh_host_key_validation: Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        :param Sequence['FirewallAccessProxyApiGatewayRealserverSshHostKeyArgs'] ssh_host_keys: One or more server host key. The structure of `ssh_host_key` block is documented below.
+        :param str status: Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        :param str type: TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        :param int weight: Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        if addr_type is not None:
+            pulumi.set(__self__, "addr_type", addr_type)
+        if address is not None:
+            pulumi.set(__self__, "address", address)
+        if domain is not None:
+            pulumi.set(__self__, "domain", domain)
+        if health_check is not None:
+            pulumi.set(__self__, "health_check", health_check)
+        if health_check_proto is not None:
+            pulumi.set(__self__, "health_check_proto", health_check_proto)
+        if holddown_interval is not None:
+            pulumi.set(__self__, "holddown_interval", holddown_interval)
+        if http_host is not None:
+            pulumi.set(__self__, "http_host", http_host)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+        if mappedport is not None:
+            pulumi.set(__self__, "mappedport", mappedport)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if ssh_client_cert is not None:
+            pulumi.set(__self__, "ssh_client_cert", ssh_client_cert)
+        if ssh_host_key_validation is not None:
+            pulumi.set(__self__, "ssh_host_key_validation", ssh_host_key_validation)
+        if ssh_host_keys is not None:
+            pulumi.set(__self__, "ssh_host_keys", ssh_host_keys)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter(name="addrType")
+    def addr_type(self) -> Optional[str]:
+        """
+        Type of address. Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "addr_type")
+
+    @property
+    @pulumi.getter
+    def address(self) -> Optional[str]:
+        """
+        Address or address group of the real server.
+        """
+        return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def domain(self) -> Optional[str]:
+        """
+        Wildcard domain name of the real server.
+        """
+        return pulumi.get(self, "domain")
+
+    @property
+    @pulumi.getter(name="healthCheck")
+    def health_check(self) -> Optional[str]:
+        """
+        Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "health_check")
+
+    @property
+    @pulumi.getter(name="healthCheckProto")
+    def health_check_proto(self) -> Optional[str]:
+        """
+        Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+        """
+        return pulumi.get(self, "health_check_proto")
+
+    @property
+    @pulumi.getter(name="holddownInterval")
+    def holddown_interval(self) -> Optional[str]:
+        """
+        Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "holddown_interval")
+
+    @property
+    @pulumi.getter(name="httpHost")
+    def http_host(self) -> Optional[str]:
+        """
+        HTTP server domain name in HTTP header.
+        """
+        return pulumi.get(self, "http_host")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Real server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        IPv6 address of the real server.
+        """
+        return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def mappedport(self) -> Optional[str]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "mappedport")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port for communicating with the real server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sshClientCert")
+    def ssh_client_cert(self) -> Optional[str]:
+        """
+        Set access-proxy SSH client certificate profile.
+        """
+        return pulumi.get(self, "ssh_client_cert")
+
+    @property
+    @pulumi.getter(name="sshHostKeyValidation")
+    def ssh_host_key_validation(self) -> Optional[str]:
+        """
+        Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssh_host_key_validation")
+
+    @property
+    @pulumi.getter(name="sshHostKeys")
+    def ssh_host_keys(self) -> Optional[Sequence['outputs.FirewallAccessProxyApiGatewayRealserverSshHostKey']]:
+        """
+        One or more server host key. The structure of `ssh_host_key` block is documented below.
+        """
+        return pulumi.get(self, "ssh_host_keys")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+        """
+        return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGatewayRealserverSshHostKey(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Server host key name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Server host key name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallAccessProxyApiGatewaySslCipherSuite(dict):
+    def __init__(__self__, *,
+                 cipher: Optional[str] = None,
+                 priority: Optional[int] = None,
+                 versions: Optional[str] = None):
+        """
+        :param str cipher: Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        :param int priority: SSL/TLS cipher suites priority.
+        :param str versions: SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        if cipher is not None:
+            pulumi.set(__self__, "cipher", cipher)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+        if versions is not None:
+            pulumi.set(__self__, "versions", versions)
+
+    @property
+    @pulumi.getter
+    def cipher(self) -> Optional[str]:
+        """
+        Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+        """
+        return pulumi.get(self, "cipher")
+
+    @property
+    @pulumi.getter
+    def priority(self) -> Optional[int]:
+        """
+        SSL/TLS cipher suites priority.
+        """
+        return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def versions(self) -> Optional[str]:
+        """
+        SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "versions")
+
+
+@pulumi.output_type
+class FirewallAccessProxySshClientCertCertExtension(dict):
+    def __init__(__self__, *,
+                 critical: Optional[str] = None,
+                 data: Optional[str] = None,
+                 name: Optional[str] = None,
+                 type: Optional[str] = None):
+        """
+        :param str critical: Critical option. Valid values: `no`, `yes`.
+        :param str data: Data of certificate extension.
+        :param str name: Name of certificate extension.
+        :param str type: Type of certificate extension. Valid values: `fixed`, `user`.
+        """
+        if critical is not None:
+            pulumi.set(__self__, "critical", critical)
+        if data is not None:
+            pulumi.set(__self__, "data", data)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def critical(self) -> Optional[str]:
+        """
+        Critical option. Valid values: `no`, `yes`.
+        """
+        return pulumi.get(self, "critical")
+
+    @property
+    @pulumi.getter
+    def data(self) -> Optional[str]:
+        """
+        Data of certificate extension.
+        """
+        return pulumi.get(self, "data")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Name of certificate extension.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Type of certificate extension. Valid values: `fixed`, `user`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
 class FirewallAddress6List(dict):
     def __init__(__self__, *,
                  ip: Optional[str] = None):
@@ -8119,6 +13304,25 @@ class FirewallAddress6List(dict):
         IP.
         """
         return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class FirewallAddress6Macaddr(dict):
+    def __init__(__self__, *,
+                 macaddr: Optional[str] = None):
+        """
+        :param str macaddr: MAC address ranges <start>[-<end>] separated by space.
+        """
+        if macaddr is not None:
+            pulumi.set(__self__, "macaddr", macaddr)
+
+    @property
+    @pulumi.getter
+    def macaddr(self) -> Optional[str]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddr")
 
 
 @pulumi.output_type
@@ -8360,6 +13564,25 @@ class FirewallAddressList(dict):
         IP.
         """
         return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class FirewallAddressMacaddr(dict):
+    def __init__(__self__, *,
+                 macaddr: Optional[str] = None):
+        """
+        :param str macaddr: MAC address ranges <start>[-<end>] separated by space.
+        """
+        if macaddr is not None:
+            pulumi.set(__self__, "macaddr", macaddr)
+
+    @property
+    @pulumi.getter
+    def macaddr(self) -> Optional[str]:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddr")
 
 
 @pulumi.output_type
@@ -9340,7 +14563,7 @@ class FirewallDosPolicy6Anomaly(dict):
                  threshold: Optional[int] = None,
                  thresholddefault: Optional[int] = None):
         """
-        :param str action: Action taken when the threshold is reached. Valid values: `pass`, `block`.
+        :param str action: Action taken when the threshold is reached.
         :param str log: Enable/disable anomaly logging. Valid values: `enable`, `disable`.
         :param str name: Anomaly name.
         :param str quarantine: Quarantine method. Valid values: `none`, `attacker`.
@@ -9373,7 +14596,7 @@ class FirewallDosPolicy6Anomaly(dict):
     @pulumi.getter
     def action(self) -> Optional[str]:
         """
-        Action taken when the threshold is reached. Valid values: `pass`, `block`.
+        Action taken when the threshold is reached.
         """
         return pulumi.get(self, "action")
 
@@ -9531,7 +14754,7 @@ class FirewallDosPolicyAnomaly(dict):
                  threshold: Optional[int] = None,
                  thresholddefault: Optional[int] = None):
         """
-        :param str action: Action taken when the threshold is reached. Valid values: `pass`, `block`.
+        :param str action: Action taken when the threshold is reached.
         :param str log: Enable/disable anomaly logging. Valid values: `enable`, `disable`.
         :param str name: Anomaly name.
         :param str quarantine: Quarantine method. Valid values: `none`, `attacker`.
@@ -9564,7 +14787,7 @@ class FirewallDosPolicyAnomaly(dict):
     @pulumi.getter
     def action(self) -> Optional[str]:
         """
-        Action taken when the threshold is reached. Valid values: `pass`, `block`.
+        Action taken when the threshold is reached.
         """
         return pulumi.get(self, "action")
 
@@ -11520,7 +16743,7 @@ class FirewallPolicyAppCategory(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -11529,7 +16752,7 @@ class FirewallPolicyAppCategory(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -11558,7 +16781,7 @@ class FirewallPolicyApplication(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -11567,7 +16790,7 @@ class FirewallPolicyApplication(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -11784,7 +17007,7 @@ class FirewallPolicyInternetServiceId(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -11793,7 +17016,7 @@ class FirewallPolicyInternetServiceId(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -11879,7 +17102,7 @@ class FirewallPolicyInternetServiceSrcId(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -11888,7 +17111,7 @@ class FirewallPolicyInternetServiceSrcId(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -12025,11 +17248,11 @@ class FirewallPolicyService(dict):
 
 
 @pulumi.output_type
-class FirewallPolicySrcVendorMac(dict):
+class FirewallPolicySgt(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -12038,7 +17261,26 @@ class FirewallPolicySrcVendorMac(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        URL category ID.
+        Security group tag.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class FirewallPolicySrcVendorMac(dict):
+    def __init__(__self__, *,
+                 id: Optional[int] = None):
+        """
+        :param int id: Security group tag.
+        """
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -12124,7 +17366,7 @@ class FirewallPolicyUrlCategory(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -12133,13 +17375,51 @@ class FirewallPolicyUrlCategory(dict):
     @pulumi.getter
     def id(self) -> Optional[int]:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
 
 @pulumi.output_type
 class FirewallPolicyUser(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Mirror Interface name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Mirror Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallPolicyZtnaEmsTag(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Mirror Interface name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Mirror Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallPolicyZtnaGeoTag(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
@@ -12223,7 +17503,7 @@ class FirewallProfileProtocolOptionsCifs(dict):
         :param int tcp_window_maximum: Maximum dynamic TCP window size (default = 8MB).
         :param int tcp_window_minimum: Minimum dynamic TCP window size (default = 128KB).
         :param int tcp_window_size: Set TCP static window size (default = 256KB).
-        :param str tcp_window_type: Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        :param str tcp_window_type: Specify type of TCP window to use for this protocol.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
         :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
         """
@@ -12348,7 +17628,7 @@ class FirewallProfileProtocolOptionsCifs(dict):
     @pulumi.getter(name="tcpWindowType")
     def tcp_window_type(self) -> Optional[str]:
         """
-        Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        Specify type of TCP window to use for this protocol.
         """
         return pulumi.get(self, "tcp_window_type")
 
@@ -12505,7 +17785,7 @@ class FirewallProfileProtocolOptionsFtp(dict):
         :param int tcp_window_maximum: Maximum dynamic TCP window size (default = 8MB).
         :param int tcp_window_minimum: Minimum dynamic TCP window size (default = 128KB).
         :param int tcp_window_size: Set TCP static window size (default = 256KB).
-        :param str tcp_window_type: Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        :param str tcp_window_type: Specify type of TCP window to use for this protocol.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
         :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
         """
@@ -12650,7 +17930,7 @@ class FirewallProfileProtocolOptionsFtp(dict):
     @pulumi.getter(name="tcpWindowType")
     def tcp_window_type(self) -> Optional[str]:
         """
-        Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        Specify type of TCP window to use for this protocol.
         """
         return pulumi.get(self, "tcp_window_type")
 
@@ -12795,7 +18075,7 @@ class FirewallProfileProtocolOptionsHttp(dict):
         :param int tcp_window_maximum: Maximum dynamic TCP window size (default = 8MB).
         :param int tcp_window_minimum: Minimum dynamic TCP window size (default = 128KB).
         :param int tcp_window_size: Set TCP static window size (default = 256KB).
-        :param str tcp_window_type: Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        :param str tcp_window_type: Specify type of TCP window to use for this protocol.
         :param str tunnel_non_http: Configure how to process non-HTTP traffic when a profile configured for HTTP traffic accepts a non-HTTP session. Can occur if an application sends non-HTTP traffic using an HTTP destination port. Valid values: `enable`, `disable`.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
         :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
@@ -13056,7 +18336,7 @@ class FirewallProfileProtocolOptionsHttp(dict):
     @pulumi.getter(name="tcpWindowType")
     def tcp_window_type(self) -> Optional[str]:
         """
-        Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        Specify type of TCP window to use for this protocol.
         """
         return pulumi.get(self, "tcp_window_type")
 
@@ -13928,7 +19208,7 @@ class FirewallProfileProtocolOptionsSsh(dict):
         :param int tcp_window_maximum: Maximum dynamic TCP window size (default = 8MB).
         :param int tcp_window_minimum: Minimum dynamic TCP window size (default = 128KB).
         :param int tcp_window_size: Set TCP static window size (default = 256KB).
-        :param str tcp_window_type: Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        :param str tcp_window_type: Specify type of TCP window to use for this protocol.
         :param int uncompressed_nest_limit: Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
         :param int uncompressed_oversize_limit: Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
         """
@@ -14043,7 +19323,7 @@ class FirewallProfileProtocolOptionsSsh(dict):
     @pulumi.getter(name="tcpWindowType")
     def tcp_window_type(self) -> Optional[str]:
         """
-        Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+        Specify type of TCP window to use for this protocol.
         """
         return pulumi.get(self, "tcp_window_type")
 
@@ -14296,6 +19576,44 @@ class FirewallProxyAddrgrpTaggingTag(dict):
     def name(self) -> Optional[str]:
         """
         Tag name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyAccessProxy6(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyAccessProxy(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Group name.
         """
         return pulumi.get(self, "name")
 
@@ -14568,6 +19886,25 @@ class FirewallProxyPolicySrcintf(dict):
 
 @pulumi.output_type
 class FirewallProxyPolicyUser(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class FirewallProxyPolicyZtnaEmsTag(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
@@ -15867,7 +21204,7 @@ class FirewallSnifferAnomaly(dict):
                  threshold: Optional[int] = None,
                  thresholddefault: Optional[int] = None):
         """
-        :param str action: Action taken when the threshold is reached. Valid values: `pass`, `block`.
+        :param str action: Action taken when the threshold is reached.
         :param str log: Enable/disable anomaly logging. Valid values: `enable`, `disable`.
         :param str name: Anomaly name.
         :param str quarantine: Quarantine method. Valid values: `none`, `attacker`.
@@ -15900,7 +21237,7 @@ class FirewallSnifferAnomaly(dict):
     @pulumi.getter
     def action(self) -> Optional[str]:
         """
-        Action taken when the threshold is reached. Valid values: `pass`, `block`.
+        Action taken when the threshold is reached.
         """
         return pulumi.get(self, "action")
 
@@ -15989,6 +21326,194 @@ class FirewallSnifferIpThreatfeed(dict):
 
 
 @pulumi.output_type
+class FirewallSslSshProfileDot(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "certValidationFailure":
+            suggest = "cert_validation_failure"
+        elif key == "certValidationTimeout":
+            suggest = "cert_validation_timeout"
+        elif key == "clientCertificate":
+            suggest = "client_certificate"
+        elif key == "expiredServerCert":
+            suggest = "expired_server_cert"
+        elif key == "proxyAfterTcpHandshake":
+            suggest = "proxy_after_tcp_handshake"
+        elif key == "revokedServerCert":
+            suggest = "revoked_server_cert"
+        elif key == "sniServerCertCheck":
+            suggest = "sni_server_cert_check"
+        elif key == "unsupportedSslCipher":
+            suggest = "unsupported_ssl_cipher"
+        elif key == "unsupportedSslNegotiation":
+            suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
+        elif key == "untrustedServerCert":
+            suggest = "untrusted_server_cert"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in FirewallSslSshProfileDot. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        FirewallSslSshProfileDot.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        FirewallSslSshProfileDot.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cert_validation_failure: Optional[str] = None,
+                 cert_validation_timeout: Optional[str] = None,
+                 client_certificate: Optional[str] = None,
+                 expired_server_cert: Optional[str] = None,
+                 proxy_after_tcp_handshake: Optional[str] = None,
+                 revoked_server_cert: Optional[str] = None,
+                 sni_server_cert_check: Optional[str] = None,
+                 status: Optional[str] = None,
+                 unsupported_ssl_cipher: Optional[str] = None,
+                 unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
+                 untrusted_server_cert: Optional[str] = None):
+        """
+        :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
+        :param str cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
+        :param str client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+        :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+        :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
+        :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
+        :param str sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
+        :param str status: Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
+        :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
+        :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
+        """
+        if cert_validation_failure is not None:
+            pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
+        if cert_validation_timeout is not None:
+            pulumi.set(__self__, "cert_validation_timeout", cert_validation_timeout)
+        if client_certificate is not None:
+            pulumi.set(__self__, "client_certificate", client_certificate)
+        if expired_server_cert is not None:
+            pulumi.set(__self__, "expired_server_cert", expired_server_cert)
+        if proxy_after_tcp_handshake is not None:
+            pulumi.set(__self__, "proxy_after_tcp_handshake", proxy_after_tcp_handshake)
+        if revoked_server_cert is not None:
+            pulumi.set(__self__, "revoked_server_cert", revoked_server_cert)
+        if sni_server_cert_check is not None:
+            pulumi.set(__self__, "sni_server_cert_check", sni_server_cert_check)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if unsupported_ssl_cipher is not None:
+            pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
+        if unsupported_ssl_negotiation is not None:
+            pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
+        if untrusted_server_cert is not None:
+            pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
+
+    @property
+    @pulumi.getter(name="certValidationFailure")
+    def cert_validation_failure(self) -> Optional[str]:
+        """
+        Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "cert_validation_failure")
+
+    @property
+    @pulumi.getter(name="certValidationTimeout")
+    def cert_validation_timeout(self) -> Optional[str]:
+        """
+        Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "cert_validation_timeout")
+
+    @property
+    @pulumi.getter(name="clientCertificate")
+    def client_certificate(self) -> Optional[str]:
+        """
+        Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+        """
+        return pulumi.get(self, "client_certificate")
+
+    @property
+    @pulumi.getter(name="expiredServerCert")
+    def expired_server_cert(self) -> Optional[str]:
+        """
+        Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "expired_server_cert")
+
+    @property
+    @pulumi.getter(name="proxyAfterTcpHandshake")
+    def proxy_after_tcp_handshake(self) -> Optional[str]:
+        """
+        Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "proxy_after_tcp_handshake")
+
+    @property
+    @pulumi.getter(name="revokedServerCert")
+    def revoked_server_cert(self) -> Optional[str]:
+        """
+        Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "revoked_server_cert")
+
+    @property
+    @pulumi.getter(name="sniServerCertCheck")
+    def sni_server_cert_check(self) -> Optional[str]:
+        """
+        Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
+        """
+        return pulumi.get(self, "sni_server_cert_check")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="unsupportedSslCipher")
+    def unsupported_ssl_cipher(self) -> Optional[str]:
+        """
+        Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "unsupported_ssl_cipher")
+
+    @property
+    @pulumi.getter(name="unsupportedSslNegotiation")
+    def unsupported_ssl_negotiation(self) -> Optional[str]:
+        """
+        Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "unsupported_ssl_negotiation")
+
+    @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
+    @pulumi.getter(name="untrustedServerCert")
+    def untrusted_server_cert(self) -> Optional[str]:
+        """
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "untrusted_server_cert")
+
+
+@pulumi.output_type
 class FirewallSslSshProfileFtps(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -16005,6 +21530,8 @@ class FirewallSslSshProfileFtps(dict):
             suggest = "expired_server_cert"
         elif key == "invalidServerCert":
             suggest = "invalid_server_cert"
+        elif key == "minAllowedSslVersion":
+            suggest = "min_allowed_ssl_version"
         elif key == "revokedServerCert":
             suggest = "revoked_server_cert"
         elif key == "sniServerCertCheck":
@@ -16015,6 +21542,8 @@ class FirewallSslSshProfileFtps(dict):
             suggest = "unsupported_ssl_cipher"
         elif key == "unsupportedSslNegotiation":
             suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
         elif key == "untrustedServerCert":
             suggest = "untrusted_server_cert"
 
@@ -16036,6 +21565,7 @@ class FirewallSslSshProfileFtps(dict):
                  client_certificate: Optional[str] = None,
                  expired_server_cert: Optional[str] = None,
                  invalid_server_cert: Optional[str] = None,
+                 min_allowed_ssl_version: Optional[str] = None,
                  ports: Optional[str] = None,
                  revoked_server_cert: Optional[str] = None,
                  sni_server_cert_check: Optional[str] = None,
@@ -16043,6 +21573,7 @@ class FirewallSslSshProfileFtps(dict):
                  unsupported_ssl: Optional[str] = None,
                  unsupported_ssl_cipher: Optional[str] = None,
                  unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
                  untrusted_server_cert: Optional[str] = None):
         """
         :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
@@ -16051,6 +21582,7 @@ class FirewallSslSshProfileFtps(dict):
         :param str client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
         :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param str invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+        :param str min_allowed_ssl_version: Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ports: Ports to use for scanning (1 - 65535, default = 443).
         :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         :param str sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
@@ -16058,7 +21590,8 @@ class FirewallSslSshProfileFtps(dict):
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
@@ -16072,6 +21605,8 @@ class FirewallSslSshProfileFtps(dict):
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if invalid_server_cert is not None:
             pulumi.set(__self__, "invalid_server_cert", invalid_server_cert)
+        if min_allowed_ssl_version is not None:
+            pulumi.set(__self__, "min_allowed_ssl_version", min_allowed_ssl_version)
         if ports is not None:
             pulumi.set(__self__, "ports", ports)
         if revoked_server_cert is not None:
@@ -16086,6 +21621,8 @@ class FirewallSslSshProfileFtps(dict):
             pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
         if unsupported_ssl_negotiation is not None:
             pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
         if untrusted_server_cert is not None:
             pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
 
@@ -16136,6 +21673,14 @@ class FirewallSslSshProfileFtps(dict):
         Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
         """
         return pulumi.get(self, "invalid_server_cert")
+
+    @property
+    @pulumi.getter(name="minAllowedSslVersion")
+    def min_allowed_ssl_version(self) -> Optional[str]:
+        """
+        Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "min_allowed_ssl_version")
 
     @property
     @pulumi.getter
@@ -16194,10 +21739,18 @@ class FirewallSslSshProfileFtps(dict):
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 
@@ -16207,7 +21760,9 @@ class FirewallSslSshProfileHttps(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "certValidationFailure":
+        if key == "certProbeFailure":
+            suggest = "cert_probe_failure"
+        elif key == "certValidationFailure":
             suggest = "cert_validation_failure"
         elif key == "certValidationTimeout":
             suggest = "cert_validation_timeout"
@@ -16219,6 +21774,8 @@ class FirewallSslSshProfileHttps(dict):
             suggest = "expired_server_cert"
         elif key == "invalidServerCert":
             suggest = "invalid_server_cert"
+        elif key == "minAllowedSslVersion":
+            suggest = "min_allowed_ssl_version"
         elif key == "proxyAfterTcpHandshake":
             suggest = "proxy_after_tcp_handshake"
         elif key == "revokedServerCert":
@@ -16231,6 +21788,8 @@ class FirewallSslSshProfileHttps(dict):
             suggest = "unsupported_ssl_cipher"
         elif key == "unsupportedSslNegotiation":
             suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
         elif key == "untrustedServerCert":
             suggest = "untrusted_server_cert"
 
@@ -16246,12 +21805,14 @@ class FirewallSslSshProfileHttps(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 cert_probe_failure: Optional[str] = None,
                  cert_validation_failure: Optional[str] = None,
                  cert_validation_timeout: Optional[str] = None,
                  client_cert_request: Optional[str] = None,
                  client_certificate: Optional[str] = None,
                  expired_server_cert: Optional[str] = None,
                  invalid_server_cert: Optional[str] = None,
+                 min_allowed_ssl_version: Optional[str] = None,
                  ports: Optional[str] = None,
                  proxy_after_tcp_handshake: Optional[str] = None,
                  revoked_server_cert: Optional[str] = None,
@@ -16260,14 +21821,17 @@ class FirewallSslSshProfileHttps(dict):
                  unsupported_ssl: Optional[str] = None,
                  unsupported_ssl_cipher: Optional[str] = None,
                  unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
                  untrusted_server_cert: Optional[str] = None):
         """
+        :param str cert_probe_failure: Action based on certificate probe failure. Valid values: `allow`, `block`.
         :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
         :param str cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
         :param str client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
         :param str client_certificate: Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
         :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param str invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+        :param str min_allowed_ssl_version: Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str ports: Ports to use for scanning (1 - 65535, default = 443).
         :param str proxy_after_tcp_handshake: Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
         :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
@@ -16276,8 +21840,11 @@ class FirewallSslSshProfileHttps(dict):
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
+        if cert_probe_failure is not None:
+            pulumi.set(__self__, "cert_probe_failure", cert_probe_failure)
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
         if cert_validation_timeout is not None:
@@ -16290,6 +21857,8 @@ class FirewallSslSshProfileHttps(dict):
             pulumi.set(__self__, "expired_server_cert", expired_server_cert)
         if invalid_server_cert is not None:
             pulumi.set(__self__, "invalid_server_cert", invalid_server_cert)
+        if min_allowed_ssl_version is not None:
+            pulumi.set(__self__, "min_allowed_ssl_version", min_allowed_ssl_version)
         if ports is not None:
             pulumi.set(__self__, "ports", ports)
         if proxy_after_tcp_handshake is not None:
@@ -16306,8 +21875,18 @@ class FirewallSslSshProfileHttps(dict):
             pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
         if unsupported_ssl_negotiation is not None:
             pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
         if untrusted_server_cert is not None:
             pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
+
+    @property
+    @pulumi.getter(name="certProbeFailure")
+    def cert_probe_failure(self) -> Optional[str]:
+        """
+        Action based on certificate probe failure. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "cert_probe_failure")
 
     @property
     @pulumi.getter(name="certValidationFailure")
@@ -16356,6 +21935,14 @@ class FirewallSslSshProfileHttps(dict):
         Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
         """
         return pulumi.get(self, "invalid_server_cert")
+
+    @property
+    @pulumi.getter(name="minAllowedSslVersion")
+    def min_allowed_ssl_version(self) -> Optional[str]:
+        """
+        Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "min_allowed_ssl_version")
 
     @property
     @pulumi.getter
@@ -16422,10 +22009,18 @@ class FirewallSslSshProfileHttps(dict):
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 
@@ -16459,6 +22054,8 @@ class FirewallSslSshProfileImaps(dict):
             suggest = "unsupported_ssl_cipher"
         elif key == "unsupportedSslNegotiation":
             suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
         elif key == "untrustedServerCert":
             suggest = "untrusted_server_cert"
 
@@ -16488,6 +22085,7 @@ class FirewallSslSshProfileImaps(dict):
                  unsupported_ssl: Optional[str] = None,
                  unsupported_ssl_cipher: Optional[str] = None,
                  unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
                  untrusted_server_cert: Optional[str] = None):
         """
         :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
@@ -16504,7 +22102,8 @@ class FirewallSslSshProfileImaps(dict):
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
@@ -16534,6 +22133,8 @@ class FirewallSslSshProfileImaps(dict):
             pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
         if unsupported_ssl_negotiation is not None:
             pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
         if untrusted_server_cert is not None:
             pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
 
@@ -16650,10 +22251,18 @@ class FirewallSslSshProfileImaps(dict):
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 
@@ -16687,6 +22296,8 @@ class FirewallSslSshProfilePop3s(dict):
             suggest = "unsupported_ssl_cipher"
         elif key == "unsupportedSslNegotiation":
             suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
         elif key == "untrustedServerCert":
             suggest = "untrusted_server_cert"
 
@@ -16716,6 +22327,7 @@ class FirewallSslSshProfilePop3s(dict):
                  unsupported_ssl: Optional[str] = None,
                  unsupported_ssl_cipher: Optional[str] = None,
                  unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
                  untrusted_server_cert: Optional[str] = None):
         """
         :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
@@ -16732,7 +22344,8 @@ class FirewallSslSshProfilePop3s(dict):
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
@@ -16762,6 +22375,8 @@ class FirewallSslSshProfilePop3s(dict):
             pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
         if unsupported_ssl_negotiation is not None:
             pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
         if untrusted_server_cert is not None:
             pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
 
@@ -16878,10 +22493,18 @@ class FirewallSslSshProfilePop3s(dict):
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 
@@ -16915,6 +22538,8 @@ class FirewallSslSshProfileSmtps(dict):
             suggest = "unsupported_ssl_cipher"
         elif key == "unsupportedSslNegotiation":
             suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
         elif key == "untrustedServerCert":
             suggest = "untrusted_server_cert"
 
@@ -16944,6 +22569,7 @@ class FirewallSslSshProfileSmtps(dict):
                  unsupported_ssl: Optional[str] = None,
                  unsupported_ssl_cipher: Optional[str] = None,
                  unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
                  untrusted_server_cert: Optional[str] = None):
         """
         :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
@@ -16960,7 +22586,8 @@ class FirewallSslSshProfileSmtps(dict):
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
@@ -16990,6 +22617,8 @@ class FirewallSslSshProfileSmtps(dict):
             pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
         if unsupported_ssl_negotiation is not None:
             pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
         if untrusted_server_cert is not None:
             pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
 
@@ -17106,10 +22735,18 @@ class FirewallSslSshProfileSmtps(dict):
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 
@@ -17249,7 +22886,9 @@ class FirewallSslSshProfileSsl(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "certValidationFailure":
+        if key == "certProbeFailure":
+            suggest = "cert_probe_failure"
+        elif key == "certValidationFailure":
             suggest = "cert_validation_failure"
         elif key == "certValidationTimeout":
             suggest = "cert_validation_timeout"
@@ -17263,6 +22902,8 @@ class FirewallSslSshProfileSsl(dict):
             suggest = "inspect_all"
         elif key == "invalidServerCert":
             suggest = "invalid_server_cert"
+        elif key == "minAllowedSslVersion":
+            suggest = "min_allowed_ssl_version"
         elif key == "revokedServerCert":
             suggest = "revoked_server_cert"
         elif key == "sniServerCertCheck":
@@ -17273,6 +22914,8 @@ class FirewallSslSshProfileSsl(dict):
             suggest = "unsupported_ssl_cipher"
         elif key == "unsupportedSslNegotiation":
             suggest = "unsupported_ssl_negotiation"
+        elif key == "unsupportedSslVersion":
+            suggest = "unsupported_ssl_version"
         elif key == "untrustedServerCert":
             suggest = "untrusted_server_cert"
 
@@ -17288,6 +22931,7 @@ class FirewallSslSshProfileSsl(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 cert_probe_failure: Optional[str] = None,
                  cert_validation_failure: Optional[str] = None,
                  cert_validation_timeout: Optional[str] = None,
                  client_cert_request: Optional[str] = None,
@@ -17295,13 +22939,16 @@ class FirewallSslSshProfileSsl(dict):
                  expired_server_cert: Optional[str] = None,
                  inspect_all: Optional[str] = None,
                  invalid_server_cert: Optional[str] = None,
+                 min_allowed_ssl_version: Optional[str] = None,
                  revoked_server_cert: Optional[str] = None,
                  sni_server_cert_check: Optional[str] = None,
                  unsupported_ssl: Optional[str] = None,
                  unsupported_ssl_cipher: Optional[str] = None,
                  unsupported_ssl_negotiation: Optional[str] = None,
+                 unsupported_ssl_version: Optional[str] = None,
                  untrusted_server_cert: Optional[str] = None):
         """
+        :param str cert_probe_failure: Action based on certificate probe failure. Valid values: `allow`, `block`.
         :param str cert_validation_failure: Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
         :param str cert_validation_timeout: Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
         :param str client_cert_request: Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
@@ -17309,13 +22956,17 @@ class FirewallSslSshProfileSsl(dict):
         :param str expired_server_cert: Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
         :param str inspect_all: Level of SSL inspection. Valid values: `disable`, `deep-inspection`.
         :param str invalid_server_cert: Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+        :param str min_allowed_ssl_version: Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
         :param str revoked_server_cert: Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
         :param str sni_server_cert_check: Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
         :param str unsupported_ssl: Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
         :param str unsupported_ssl_cipher: Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
         :param str unsupported_ssl_negotiation: Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
-        :param str untrusted_server_cert: Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        :param str unsupported_ssl_version: Action based on the SSL version used being unsupported.
+        :param str untrusted_server_cert: Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
+        if cert_probe_failure is not None:
+            pulumi.set(__self__, "cert_probe_failure", cert_probe_failure)
         if cert_validation_failure is not None:
             pulumi.set(__self__, "cert_validation_failure", cert_validation_failure)
         if cert_validation_timeout is not None:
@@ -17330,6 +22981,8 @@ class FirewallSslSshProfileSsl(dict):
             pulumi.set(__self__, "inspect_all", inspect_all)
         if invalid_server_cert is not None:
             pulumi.set(__self__, "invalid_server_cert", invalid_server_cert)
+        if min_allowed_ssl_version is not None:
+            pulumi.set(__self__, "min_allowed_ssl_version", min_allowed_ssl_version)
         if revoked_server_cert is not None:
             pulumi.set(__self__, "revoked_server_cert", revoked_server_cert)
         if sni_server_cert_check is not None:
@@ -17340,8 +22993,18 @@ class FirewallSslSshProfileSsl(dict):
             pulumi.set(__self__, "unsupported_ssl_cipher", unsupported_ssl_cipher)
         if unsupported_ssl_negotiation is not None:
             pulumi.set(__self__, "unsupported_ssl_negotiation", unsupported_ssl_negotiation)
+        if unsupported_ssl_version is not None:
+            pulumi.set(__self__, "unsupported_ssl_version", unsupported_ssl_version)
         if untrusted_server_cert is not None:
             pulumi.set(__self__, "untrusted_server_cert", untrusted_server_cert)
+
+    @property
+    @pulumi.getter(name="certProbeFailure")
+    def cert_probe_failure(self) -> Optional[str]:
+        """
+        Action based on certificate probe failure. Valid values: `allow`, `block`.
+        """
+        return pulumi.get(self, "cert_probe_failure")
 
     @property
     @pulumi.getter(name="certValidationFailure")
@@ -17400,6 +23063,14 @@ class FirewallSslSshProfileSsl(dict):
         return pulumi.get(self, "invalid_server_cert")
 
     @property
+    @pulumi.getter(name="minAllowedSslVersion")
+    def min_allowed_ssl_version(self) -> Optional[str]:
+        """
+        Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+        """
+        return pulumi.get(self, "min_allowed_ssl_version")
+
+    @property
     @pulumi.getter(name="revokedServerCert")
     def revoked_server_cert(self) -> Optional[str]:
         """
@@ -17440,10 +23111,18 @@ class FirewallSslSshProfileSsl(dict):
         return pulumi.get(self, "unsupported_ssl_negotiation")
 
     @property
+    @pulumi.getter(name="unsupportedSslVersion")
+    def unsupported_ssl_version(self) -> Optional[str]:
+        """
+        Action based on the SSL version used being unsupported.
+        """
+        return pulumi.get(self, "unsupported_ssl_version")
+
+    @property
     @pulumi.getter(name="untrustedServerCert")
     def untrusted_server_cert(self) -> Optional[str]:
         """
-        Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+        Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
         """
         return pulumi.get(self, "untrusted_server_cert")
 
@@ -19021,6 +24700,24 @@ class GetFirewallAddress6ListResult(dict):
 
 
 @pulumi.output_type
+class GetFirewallAddress6MacaddrResult(dict):
+    def __init__(__self__, *,
+                 macaddr: str):
+        """
+        :param str macaddr: MAC address ranges <start>[-<end>] separated by space.
+        """
+        pulumi.set(__self__, "macaddr", macaddr)
+
+    @property
+    @pulumi.getter
+    def macaddr(self) -> str:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddr")
+
+
+@pulumi.output_type
 class GetFirewallAddress6SubnetSegmentResult(dict):
     def __init__(__self__, *,
                  name: str,
@@ -19243,6 +24940,24 @@ class GetFirewallAddressListResult(dict):
         IP.
         """
         return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class GetFirewallAddressMacaddrResult(dict):
+    def __init__(__self__, *,
+                 macaddr: str):
+        """
+        :param str macaddr: MAC address ranges <start>[-<end>] separated by space.
+        """
+        pulumi.set(__self__, "macaddr", macaddr)
+
+    @property
+    @pulumi.getter
+    def macaddr(self) -> str:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddr")
 
 
 @pulumi.output_type
@@ -21478,7 +27193,7 @@ class GetFirewallPolicyAppCategoryResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         pulumi.set(__self__, "id", id)
 
@@ -21486,7 +27201,7 @@ class GetFirewallPolicyAppCategoryResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -21514,7 +27229,7 @@ class GetFirewallPolicyApplicationResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         pulumi.set(__self__, "id", id)
 
@@ -21522,7 +27237,7 @@ class GetFirewallPolicyApplicationResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -21712,7 +27427,7 @@ class GetFirewallPolicyInternetServiceIdResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         pulumi.set(__self__, "id", id)
 
@@ -21720,7 +27435,7 @@ class GetFirewallPolicyInternetServiceIdResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -21802,7 +27517,7 @@ class GetFirewallPolicyInternetServiceSrcIdResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         pulumi.set(__self__, "id", id)
 
@@ -21810,7 +27525,7 @@ class GetFirewallPolicyInternetServiceSrcIdResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -21924,11 +27639,11 @@ class GetFirewallPolicyServiceResult(dict):
 
 
 @pulumi.output_type
-class GetFirewallPolicySrcVendorMacResult(dict):
+class GetFirewallPolicySgtResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         pulumi.set(__self__, "id", id)
 
@@ -21936,7 +27651,25 @@ class GetFirewallPolicySrcVendorMacResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        URL category ID.
+        Security group tag.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetFirewallPolicySrcVendorMacResult(dict):
+    def __init__(__self__, *,
+                 id: int):
+        """
+        :param int id: Security group tag.
+        """
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
@@ -22018,7 +27751,7 @@ class GetFirewallPolicyUrlCategoryResult(dict):
     def __init__(__self__, *,
                  id: int):
         """
-        :param int id: URL category ID.
+        :param int id: Security group tag.
         """
         pulumi.set(__self__, "id", id)
 
@@ -22026,13 +27759,49 @@ class GetFirewallPolicyUrlCategoryResult(dict):
     @pulumi.getter
     def id(self) -> int:
         """
-        URL category ID.
+        Security group tag.
         """
         return pulumi.get(self, "id")
 
 
 @pulumi.output_type
 class GetFirewallPolicyUserResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Mirror Interface name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Mirror Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallPolicyZtnaEmsTagResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Mirror Interface name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Mirror Interface name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallPolicyZtnaGeoTagResult(dict):
     def __init__(__self__, *,
                  name: str):
         """
@@ -23712,6 +29481,42 @@ class GetFirewallProxyAddrgrpTaggingTagResult(dict):
 
 
 @pulumi.output_type
+class GetFirewallProxyPolicyAccessProxy6Result(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallProxyPolicyAccessProxyResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class GetFirewallProxyPolicyDstaddr6Result(dict):
     def __init__(__self__, *,
                  name: str):
@@ -23965,6 +29770,24 @@ class GetFirewallProxyPolicySrcintfResult(dict):
 
 @pulumi.output_type
 class GetFirewallProxyPolicyUserResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Group name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Group name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetFirewallProxyPolicyZtnaEmsTagResult(dict):
     def __init__(__self__, *,
                  name: str):
         """
@@ -24502,6 +30325,7 @@ class GetRouterBgpNeighborResult(dict):
                  capability_orf: str,
                  capability_orf6: str,
                  capability_route_refresh: str,
+                 conditional_advertise6s: Sequence['outputs.GetRouterBgpNeighborConditionalAdvertise6Result'],
                  conditional_advertises: Sequence['outputs.GetRouterBgpNeighborConditionalAdvertiseResult'],
                  connect_timer: int,
                  default_originate_routemap: str,
@@ -24594,6 +30418,7 @@ class GetRouterBgpNeighborResult(dict):
         :param str capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor.
         :param str capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor.
         :param str capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor.
+        :param Sequence['GetRouterBgpNeighborConditionalAdvertise6Args'] conditional_advertise6s: IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
         :param Sequence['GetRouterBgpNeighborConditionalAdvertiseArgs'] conditional_advertises: Conditional advertisement. The structure of `conditional_advertise` block is documented below.
         :param int connect_timer: Interval (sec) for connect timer.
         :param str default_originate_routemap: Route map to specify criteria to originate IPv4 default.
@@ -24686,6 +30511,7 @@ class GetRouterBgpNeighborResult(dict):
         pulumi.set(__self__, "capability_orf", capability_orf)
         pulumi.set(__self__, "capability_orf6", capability_orf6)
         pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
+        pulumi.set(__self__, "conditional_advertise6s", conditional_advertise6s)
         pulumi.set(__self__, "conditional_advertises", conditional_advertises)
         pulumi.set(__self__, "connect_timer", connect_timer)
         pulumi.set(__self__, "default_originate_routemap", default_originate_routemap)
@@ -24945,6 +30771,14 @@ class GetRouterBgpNeighborResult(dict):
         Enable/disable advertise route refresh capability to this neighbor.
         """
         return pulumi.get(self, "capability_route_refresh")
+
+    @property
+    @pulumi.getter(name="conditionalAdvertise6s")
+    def conditional_advertise6s(self) -> Sequence['outputs.GetRouterBgpNeighborConditionalAdvertise6Result']:
+        """
+        IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
+        """
+        return pulumi.get(self, "conditional_advertise6s")
 
     @property
     @pulumi.getter(name="conditionalAdvertises")
@@ -25481,6 +31315,46 @@ class GetRouterBgpNeighborResult(dict):
         Neighbor weight.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class GetRouterBgpNeighborConditionalAdvertise6Result(dict):
+    def __init__(__self__, *,
+                 advertise_routemap: str,
+                 condition_routemap: str,
+                 condition_type: str):
+        """
+        :param str advertise_routemap: Name of advertising route map.
+        :param str condition_routemap: Name of condition route map.
+        :param str condition_type: Type of condition.
+        """
+        pulumi.set(__self__, "advertise_routemap", advertise_routemap)
+        pulumi.set(__self__, "condition_routemap", condition_routemap)
+        pulumi.set(__self__, "condition_type", condition_type)
+
+    @property
+    @pulumi.getter(name="advertiseRoutemap")
+    def advertise_routemap(self) -> str:
+        """
+        Name of advertising route map.
+        """
+        return pulumi.get(self, "advertise_routemap")
+
+    @property
+    @pulumi.getter(name="conditionRoutemap")
+    def condition_routemap(self) -> str:
+        """
+        Name of condition route map.
+        """
+        return pulumi.get(self, "condition_routemap")
+
+    @property
+    @pulumi.getter(name="conditionType")
+    def condition_type(self) -> str:
+        """
+        Type of condition.
+        """
+        return pulumi.get(self, "condition_type")
 
 
 @pulumi.output_type
@@ -26616,16 +32490,19 @@ class GetRouterBgpNetwork6Result(dict):
     def __init__(__self__, *,
                  backdoor: str,
                  id: int,
+                 network_import_check: str,
                  prefix6: str,
                  route_map: str):
         """
         :param str backdoor: Enable/disable route as backdoor.
         :param int id: ID.
+        :param str network_import_check: Configure insurance of BGP network route existence in IGP.
         :param str prefix6: Network IPv6 prefix.
         :param str route_map: Route map of VRF leaking.
         """
         pulumi.set(__self__, "backdoor", backdoor)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "network_import_check", network_import_check)
         pulumi.set(__self__, "prefix6", prefix6)
         pulumi.set(__self__, "route_map", route_map)
 
@@ -26644,6 +32521,14 @@ class GetRouterBgpNetwork6Result(dict):
         ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> str:
+        """
+        Configure insurance of BGP network route existence in IGP.
+        """
+        return pulumi.get(self, "network_import_check")
 
     @property
     @pulumi.getter
@@ -26667,16 +32552,19 @@ class GetRouterBgpNetworkResult(dict):
     def __init__(__self__, *,
                  backdoor: str,
                  id: int,
+                 network_import_check: str,
                  prefix: str,
                  route_map: str):
         """
         :param str backdoor: Enable/disable route as backdoor.
         :param int id: ID.
+        :param str network_import_check: Configure insurance of BGP network route existence in IGP.
         :param str prefix: Network prefix.
         :param str route_map: Route map of VRF leaking.
         """
         pulumi.set(__self__, "backdoor", backdoor)
         pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "network_import_check", network_import_check)
         pulumi.set(__self__, "prefix", prefix)
         pulumi.set(__self__, "route_map", route_map)
 
@@ -26695,6 +32583,14 @@ class GetRouterBgpNetworkResult(dict):
         ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> str:
+        """
+        Configure insurance of BGP network route existence in IGP.
+        """
+        return pulumi.get(self, "network_import_check")
 
     @property
     @pulumi.getter
@@ -26791,6 +32687,75 @@ class GetRouterBgpRedistributeResult(dict):
         Status
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetRouterBgpVrfLeak6Result(dict):
+    def __init__(__self__, *,
+                 targets: Sequence['outputs.GetRouterBgpVrfLeak6TargetResult'],
+                 vrf: str):
+        """
+        :param Sequence['GetRouterBgpVrfLeak6TargetArgs'] targets: Target VRF table. The structure of `target` block is documented below.
+        :param str vrf: Target VRF ID <0 - 31>.
+        """
+        pulumi.set(__self__, "targets", targets)
+        pulumi.set(__self__, "vrf", vrf)
+
+    @property
+    @pulumi.getter
+    def targets(self) -> Sequence['outputs.GetRouterBgpVrfLeak6TargetResult']:
+        """
+        Target VRF table. The structure of `target` block is documented below.
+        """
+        return pulumi.get(self, "targets")
+
+    @property
+    @pulumi.getter
+    def vrf(self) -> str:
+        """
+        Target VRF ID <0 - 31>.
+        """
+        return pulumi.get(self, "vrf")
+
+
+@pulumi.output_type
+class GetRouterBgpVrfLeak6TargetResult(dict):
+    def __init__(__self__, *,
+                 interface: str,
+                 route_map: str,
+                 vrf: str):
+        """
+        :param str interface: Interface which is used to leak routes to target VRF.
+        :param str route_map: Route map of VRF leaking.
+        :param str vrf: Target VRF ID <0 - 31>.
+        """
+        pulumi.set(__self__, "interface", interface)
+        pulumi.set(__self__, "route_map", route_map)
+        pulumi.set(__self__, "vrf", vrf)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Interface which is used to leak routes to target VRF.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="routeMap")
+    def route_map(self) -> str:
+        """
+        Route map of VRF leaking.
+        """
+        return pulumi.get(self, "route_map")
+
+    @property
+    @pulumi.getter
+    def vrf(self) -> str:
+        """
+        Target VRF ID <0 - 31>.
+        """
+        return pulumi.get(self, "vrf")
 
 
 @pulumi.output_type
@@ -27509,16 +33474,19 @@ class GetRouterIsisSummaryAddressResult(dict):
 class GetRouterKeyChainKeyResult(dict):
     def __init__(__self__, *,
                  accept_lifetime: str,
+                 algorithm: str,
                  id: int,
                  key_string: str,
                  send_lifetime: str):
         """
         :param str accept_lifetime: Lifetime of received authentication key (format: hh:mm:ss day month year).
+        :param str algorithm: Cryptographic algorithm.
         :param int id: Key ID (0 - 2147483647).
         :param str key_string: Password for the key (max. = 35 characters).
         :param str send_lifetime: Lifetime of sent authentication key (format: hh:mm:ss day month year).
         """
         pulumi.set(__self__, "accept_lifetime", accept_lifetime)
+        pulumi.set(__self__, "algorithm", algorithm)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "key_string", key_string)
         pulumi.set(__self__, "send_lifetime", send_lifetime)
@@ -27530,6 +33498,14 @@ class GetRouterKeyChainKeyResult(dict):
         Lifetime of received authentication key (format: hh:mm:ss day month year).
         """
         return pulumi.get(self, "accept_lifetime")
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> str:
+        """
+        Cryptographic algorithm.
+        """
+        return pulumi.get(self, "algorithm")
 
     @property
     @pulumi.getter
@@ -29284,6 +35260,7 @@ class GetRouterOspf6SummaryAddressResult(dict):
 class GetRouterOspfAreaResult(dict):
     def __init__(__self__, *,
                  authentication: str,
+                 comments: str,
                  default_cost: int,
                  filter_lists: Sequence['outputs.GetRouterOspfAreaFilterListResult'],
                  id: str,
@@ -29299,6 +35276,7 @@ class GetRouterOspfAreaResult(dict):
                  virtual_links: Sequence['outputs.GetRouterOspfAreaVirtualLinkResult']):
         """
         :param str authentication: Authentication type.
+        :param str comments: Comment.
         :param int default_cost: Summary default cost of stub or NSSA area.
         :param Sequence['GetRouterOspfAreaFilterListArgs'] filter_lists: OSPF area filter-list configuration. The structure of `filter_list` block is documented below.
         :param str id: Distribute list entry ID.
@@ -29314,6 +35292,7 @@ class GetRouterOspfAreaResult(dict):
         :param Sequence['GetRouterOspfAreaVirtualLinkArgs'] virtual_links: OSPF virtual link configuration. The structure of `virtual_link` block is documented below.
         """
         pulumi.set(__self__, "authentication", authentication)
+        pulumi.set(__self__, "comments", comments)
         pulumi.set(__self__, "default_cost", default_cost)
         pulumi.set(__self__, "filter_lists", filter_lists)
         pulumi.set(__self__, "id", id)
@@ -29335,6 +35314,14 @@ class GetRouterOspfAreaResult(dict):
         Authentication type.
         """
         return pulumi.get(self, "authentication")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> str:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter(name="defaultCost")
@@ -29550,6 +35537,7 @@ class GetRouterOspfAreaVirtualLinkResult(dict):
                  authentication_key: str,
                  dead_interval: int,
                  hello_interval: int,
+                 keychain: str,
                  md5_key: str,
                  md5_keychain: str,
                  md5_keys: Sequence['outputs.GetRouterOspfAreaVirtualLinkMd5KeyResult'],
@@ -29562,6 +35550,7 @@ class GetRouterOspfAreaVirtualLinkResult(dict):
         :param str authentication_key: Authentication key.
         :param int dead_interval: Dead interval.
         :param int hello_interval: Hello interval.
+        :param str keychain: Message-digest key-chain name.
         :param str md5_key: MD5 key.
         :param str md5_keychain: Authentication MD5 key-chain name.
         :param Sequence['GetRouterOspfAreaVirtualLinkMd5KeyArgs'] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -29574,6 +35563,7 @@ class GetRouterOspfAreaVirtualLinkResult(dict):
         pulumi.set(__self__, "authentication_key", authentication_key)
         pulumi.set(__self__, "dead_interval", dead_interval)
         pulumi.set(__self__, "hello_interval", hello_interval)
+        pulumi.set(__self__, "keychain", keychain)
         pulumi.set(__self__, "md5_key", md5_key)
         pulumi.set(__self__, "md5_keychain", md5_keychain)
         pulumi.set(__self__, "md5_keys", md5_keys)
@@ -29613,6 +35603,14 @@ class GetRouterOspfAreaVirtualLinkResult(dict):
         Hello interval.
         """
         return pulumi.get(self, "hello_interval")
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> str:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
 
     @property
     @pulumi.getter(name="md5Key")
@@ -29806,14 +35804,17 @@ class GetRouterOspfNeighborResult(dict):
 class GetRouterOspfNetworkResult(dict):
     def __init__(__self__, *,
                  area: str,
+                 comments: str,
                  id: int,
                  prefix: str):
         """
         :param str area: Attach the network to area.
+        :param str comments: Comment.
         :param int id: Distribute list entry ID.
         :param str prefix: Prefix.
         """
         pulumi.set(__self__, "area", area)
+        pulumi.set(__self__, "comments", comments)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "prefix", prefix)
 
@@ -29824,6 +35825,14 @@ class GetRouterOspfNetworkResult(dict):
         Attach the network to area.
         """
         return pulumi.get(self, "area")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> str:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter
@@ -29848,6 +35857,7 @@ class GetRouterOspfOspfInterfaceResult(dict):
                  authentication: str,
                  authentication_key: str,
                  bfd: str,
+                 comments: str,
                  cost: int,
                  database_filter_out: str,
                  dead_interval: int,
@@ -29855,6 +35865,7 @@ class GetRouterOspfOspfInterfaceResult(dict):
                  hello_multiplier: int,
                  interface: str,
                  ip: str,
+                 keychain: str,
                  md5_key: str,
                  md5_keychain: str,
                  md5_keys: Sequence['outputs.GetRouterOspfOspfInterfaceMd5KeyResult'],
@@ -29872,6 +35883,7 @@ class GetRouterOspfOspfInterfaceResult(dict):
         :param str authentication: Authentication type.
         :param str authentication_key: Authentication key.
         :param str bfd: Bidirectional Forwarding Detection (BFD).
+        :param str comments: Comment.
         :param int cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
         :param str database_filter_out: Enable/disable control of flooding out LSAs.
         :param int dead_interval: Dead interval.
@@ -29879,6 +35891,7 @@ class GetRouterOspfOspfInterfaceResult(dict):
         :param int hello_multiplier: Number of hello packets within dead interval.
         :param str interface: Configuration interface name.
         :param str ip: Interface IP address of the neighbor.
+        :param str keychain: Message-digest key-chain name.
         :param str md5_key: MD5 key.
         :param str md5_keychain: Authentication MD5 key-chain name.
         :param Sequence['GetRouterOspfOspfInterfaceMd5KeyArgs'] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -29896,6 +35909,7 @@ class GetRouterOspfOspfInterfaceResult(dict):
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "authentication_key", authentication_key)
         pulumi.set(__self__, "bfd", bfd)
+        pulumi.set(__self__, "comments", comments)
         pulumi.set(__self__, "cost", cost)
         pulumi.set(__self__, "database_filter_out", database_filter_out)
         pulumi.set(__self__, "dead_interval", dead_interval)
@@ -29903,6 +35917,7 @@ class GetRouterOspfOspfInterfaceResult(dict):
         pulumi.set(__self__, "hello_multiplier", hello_multiplier)
         pulumi.set(__self__, "interface", interface)
         pulumi.set(__self__, "ip", ip)
+        pulumi.set(__self__, "keychain", keychain)
         pulumi.set(__self__, "md5_key", md5_key)
         pulumi.set(__self__, "md5_keychain", md5_keychain)
         pulumi.set(__self__, "md5_keys", md5_keys)
@@ -29940,6 +35955,14 @@ class GetRouterOspfOspfInterfaceResult(dict):
         Bidirectional Forwarding Detection (BFD).
         """
         return pulumi.get(self, "bfd")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> str:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter
@@ -29996,6 +36019,14 @@ class GetRouterOspfOspfInterfaceResult(dict):
         Interface IP address of the neighbor.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> str:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
 
     @property
     @pulumi.getter(name="md5Key")
@@ -31932,6 +37963,82 @@ class GetRouterRouteMapRuleSetExtcommunitySooResult(dict):
 
 
 @pulumi.output_type
+class GetRouterStatic6SdwanZoneResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: SD-WAN zone name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        SD-WAN zone name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetRouterStaticSdwanZoneResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: SD-WAN zone name.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        SD-WAN zone name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetRouterbgpNeighborConditionalAdvertise6Result(dict):
+    def __init__(__self__, *,
+                 advertise_routemap: str,
+                 condition_routemap: str,
+                 condition_type: str):
+        """
+        :param str advertise_routemap: Name of advertising route map.
+        :param str condition_routemap: Name of condition route map.
+        :param str condition_type: Type of condition.
+        """
+        pulumi.set(__self__, "advertise_routemap", advertise_routemap)
+        pulumi.set(__self__, "condition_routemap", condition_routemap)
+        pulumi.set(__self__, "condition_type", condition_type)
+
+    @property
+    @pulumi.getter(name="advertiseRoutemap")
+    def advertise_routemap(self) -> str:
+        """
+        Name of advertising route map.
+        """
+        return pulumi.get(self, "advertise_routemap")
+
+    @property
+    @pulumi.getter(name="conditionRoutemap")
+    def condition_routemap(self) -> str:
+        """
+        Name of condition route map.
+        """
+        return pulumi.get(self, "condition_routemap")
+
+    @property
+    @pulumi.getter(name="conditionType")
+    def condition_type(self) -> str:
+        """
+        Type of condition.
+        """
+        return pulumi.get(self, "condition_type")
+
+
+@pulumi.output_type
 class GetRouterbgpNeighborConditionalAdvertiseResult(dict):
     def __init__(__self__, *,
                  advertise_routemap: str,
@@ -31975,16 +38082,19 @@ class GetRouterbgpNeighborConditionalAdvertiseResult(dict):
 class GetSystemAccprofileFwgrpPermissionResult(dict):
     def __init__(__self__, *,
                  address: str,
+                 others: str,
                  policy: str,
                  schedule: str,
                  service: str):
         """
         :param str address: Address Configuration.
+        :param str others: Other Firewall Configuration.
         :param str policy: Policy Configuration.
         :param str schedule: Schedule Configuration.
         :param str service: Service Configuration.
         """
         pulumi.set(__self__, "address", address)
+        pulumi.set(__self__, "others", others)
         pulumi.set(__self__, "policy", policy)
         pulumi.set(__self__, "schedule", schedule)
         pulumi.set(__self__, "service", service)
@@ -31996,6 +38106,14 @@ class GetSystemAccprofileFwgrpPermissionResult(dict):
         Address Configuration.
         """
         return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def others(self) -> str:
+        """
+        Other Firewall Configuration.
+        """
+        return pulumi.get(self, "others")
 
     @property
     @pulumi.getter
@@ -33155,6 +39273,46 @@ class GetSystemClusterSyncSyncvdResult(dict):
 
 
 @pulumi.output_type
+class GetSystemCsfFabricConnectorResult(dict):
+    def __init__(__self__, *,
+                 accprofile: str,
+                 configuration_write_access: str,
+                 serial: str):
+        """
+        :param str accprofile: Override access profile.
+        :param str configuration_write_access: Enable/disable downstream device write access to configuration.
+        :param str serial: Serial.
+        """
+        pulumi.set(__self__, "accprofile", accprofile)
+        pulumi.set(__self__, "configuration_write_access", configuration_write_access)
+        pulumi.set(__self__, "serial", serial)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> str:
+        """
+        Override access profile.
+        """
+        return pulumi.get(self, "accprofile")
+
+    @property
+    @pulumi.getter(name="configurationWriteAccess")
+    def configuration_write_access(self) -> str:
+        """
+        Enable/disable downstream device write access to configuration.
+        """
+        return pulumi.get(self, "configuration_write_access")
+
+    @property
+    @pulumi.getter
+    def serial(self) -> str:
+        """
+        Serial.
+        """
+        return pulumi.get(self, "serial")
+
+
+@pulumi.output_type
 class GetSystemCsfFabricDeviceResult(dict):
     def __init__(__self__, *,
                  access_token: str,
@@ -33320,6 +39478,24 @@ class GetSystemCsfTrustedListResult(dict):
         Serial.
         """
         return pulumi.get(self, "serial")
+
+
+@pulumi.output_type
+class GetSystemDdnsDdnsServerAddrResult(dict):
+    def __init__(__self__, *,
+                 addr: str):
+        """
+        :param str addr: IP address or FQDN of the server.
+        """
+        pulumi.set(__self__, "addr", addr)
+
+    @property
+    @pulumi.getter
+    def addr(self) -> str:
+        """
+        IP address or FQDN of the server.
+        """
+        return pulumi.get(self, "addr")
 
 
 @pulumi.output_type
@@ -33957,6 +40133,35 @@ class GetSystemHaSecondaryVclusterResult(dict):
 
 
 @pulumi.output_type
+class GetSystemHaUnicastPeerResult(dict):
+    def __init__(__self__, *,
+                 id: int,
+                 peer_ip: str):
+        """
+        :param int id: Table ID.
+        :param str peer_ip: Unicast peer IP.
+        """
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "peer_ip", peer_ip)
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Table ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="peerIp")
+    def peer_ip(self) -> str:
+        """
+        Unicast peer IP.
+        """
+        return pulumi.get(self, "peer_ip")
+
+
+@pulumi.output_type
 class GetSystemInterfaceClientOptionResult(dict):
     def __init__(__self__, *,
                  code: int,
@@ -34019,6 +40224,35 @@ class GetSystemInterfaceClientOptionResult(dict):
 
 
 @pulumi.output_type
+class GetSystemInterfaceDhcpSnoopingServerListResult(dict):
+    def __init__(__self__, *,
+                 name: str,
+                 server_ip: str):
+        """
+        :param str name: Specify the name of the desired system interface.
+        :param str server_ip: IP address for DHCP server.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "server_ip", server_ip)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Specify the name of the desired system interface.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="serverIp")
+    def server_ip(self) -> str:
+        """
+        IP address for DHCP server.
+        """
+        return pulumi.get(self, "server_ip")
+
+
+@pulumi.output_type
 class GetSystemInterfaceFailAlertInterfaceResult(dict):
     def __init__(__self__, *,
                  name: str):
@@ -34042,6 +40276,7 @@ class GetSystemInterfaceIpv6Result(dict):
                  autoconf: str,
                  cli_conn6_status: int,
                  dhcp6_client_options: str,
+                 dhcp6_iapd_lists: Sequence['outputs.GetSystemInterfaceIpv6Dhcp6IapdListResult'],
                  dhcp6_information_request: str,
                  dhcp6_prefix_delegation: str,
                  dhcp6_prefix_hint: str,
@@ -34055,6 +40290,7 @@ class GetSystemInterfaceIpv6Result(dict):
                  ip6_address: str,
                  ip6_allowaccess: str,
                  ip6_default_life: int,
+                 ip6_delegated_prefix_iaid: int,
                  ip6_delegated_prefix_lists: Sequence['outputs.GetSystemInterfaceIpv6Ip6DelegatedPrefixListResult'],
                  ip6_dns_server_override: str,
                  ip6_extra_addrs: Sequence['outputs.GetSystemInterfaceIpv6Ip6ExtraAddrResult'],
@@ -34078,6 +40314,7 @@ class GetSystemInterfaceIpv6Result(dict):
                  nd_security_level: int,
                  nd_timestamp_delta: int,
                  nd_timestamp_fuzz: int,
+                 ra_send_mtu: str,
                  unique_autoconf_addr: str,
                  vrip6_link_local: str,
                  vrrp6s: Sequence['outputs.GetSystemInterfaceIpv6Vrrp6Result'],
@@ -34086,6 +40323,7 @@ class GetSystemInterfaceIpv6Result(dict):
         :param str autoconf: Enable/disable address auto config.
         :param int cli_conn6_status: CLI IPv6 connection status.
         :param str dhcp6_client_options: DHCPv6 client options.
+        :param Sequence['GetSystemInterfaceIpv6Dhcp6IapdListArgs'] dhcp6_iapd_lists: DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
         :param str dhcp6_information_request: Enable/disable DHCPv6 information request.
         :param str dhcp6_prefix_delegation: Enable/disable DHCPv6 prefix delegation.
         :param str dhcp6_prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
@@ -34099,6 +40337,7 @@ class GetSystemInterfaceIpv6Result(dict):
         :param str ip6_address: Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
         :param str ip6_allowaccess: Allow management access to the interface.
         :param int ip6_default_life: Default life (sec).
+        :param int ip6_delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param Sequence['GetSystemInterfaceIpv6Ip6DelegatedPrefixListArgs'] ip6_delegated_prefix_lists: Advertised IPv6 delegated prefix list. The structure of `ip6_delegated_prefix_list` block is documented below.
         :param str ip6_dns_server_override: Enable/disable using the DNS server acquired by DHCP.
         :param Sequence['GetSystemInterfaceIpv6Ip6ExtraAddrArgs'] ip6_extra_addrs: Extra IPv6 address prefixes of interface. The structure of `ip6_extra_addr` block is documented below.
@@ -34122,6 +40361,7 @@ class GetSystemInterfaceIpv6Result(dict):
         :param int nd_security_level: Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
         :param int nd_timestamp_delta: Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
         :param int nd_timestamp_fuzz: Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
+        :param str ra_send_mtu: Enable/disable sending link MTU in RA packet.
         :param str unique_autoconf_addr: Enable/disable unique auto config address.
         :param str vrip6_link_local: Link-local IPv6 address of virtual router.
         :param Sequence['GetSystemInterfaceIpv6Vrrp6Args'] vrrp6s: IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
@@ -34130,6 +40370,7 @@ class GetSystemInterfaceIpv6Result(dict):
         pulumi.set(__self__, "autoconf", autoconf)
         pulumi.set(__self__, "cli_conn6_status", cli_conn6_status)
         pulumi.set(__self__, "dhcp6_client_options", dhcp6_client_options)
+        pulumi.set(__self__, "dhcp6_iapd_lists", dhcp6_iapd_lists)
         pulumi.set(__self__, "dhcp6_information_request", dhcp6_information_request)
         pulumi.set(__self__, "dhcp6_prefix_delegation", dhcp6_prefix_delegation)
         pulumi.set(__self__, "dhcp6_prefix_hint", dhcp6_prefix_hint)
@@ -34143,6 +40384,7 @@ class GetSystemInterfaceIpv6Result(dict):
         pulumi.set(__self__, "ip6_address", ip6_address)
         pulumi.set(__self__, "ip6_allowaccess", ip6_allowaccess)
         pulumi.set(__self__, "ip6_default_life", ip6_default_life)
+        pulumi.set(__self__, "ip6_delegated_prefix_iaid", ip6_delegated_prefix_iaid)
         pulumi.set(__self__, "ip6_delegated_prefix_lists", ip6_delegated_prefix_lists)
         pulumi.set(__self__, "ip6_dns_server_override", ip6_dns_server_override)
         pulumi.set(__self__, "ip6_extra_addrs", ip6_extra_addrs)
@@ -34166,6 +40408,7 @@ class GetSystemInterfaceIpv6Result(dict):
         pulumi.set(__self__, "nd_security_level", nd_security_level)
         pulumi.set(__self__, "nd_timestamp_delta", nd_timestamp_delta)
         pulumi.set(__self__, "nd_timestamp_fuzz", nd_timestamp_fuzz)
+        pulumi.set(__self__, "ra_send_mtu", ra_send_mtu)
         pulumi.set(__self__, "unique_autoconf_addr", unique_autoconf_addr)
         pulumi.set(__self__, "vrip6_link_local", vrip6_link_local)
         pulumi.set(__self__, "vrrp6s", vrrp6s)
@@ -34194,6 +40437,14 @@ class GetSystemInterfaceIpv6Result(dict):
         DHCPv6 client options.
         """
         return pulumi.get(self, "dhcp6_client_options")
+
+    @property
+    @pulumi.getter(name="dhcp6IapdLists")
+    def dhcp6_iapd_lists(self) -> Sequence['outputs.GetSystemInterfaceIpv6Dhcp6IapdListResult']:
+        """
+        DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
+        """
+        return pulumi.get(self, "dhcp6_iapd_lists")
 
     @property
     @pulumi.getter(name="dhcp6InformationRequest")
@@ -34298,6 +40549,14 @@ class GetSystemInterfaceIpv6Result(dict):
         Default life (sec).
         """
         return pulumi.get(self, "ip6_default_life")
+
+    @property
+    @pulumi.getter(name="ip6DelegatedPrefixIaid")
+    def ip6_delegated_prefix_iaid(self) -> int:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "ip6_delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="ip6DelegatedPrefixLists")
@@ -34484,6 +40743,14 @@ class GetSystemInterfaceIpv6Result(dict):
         return pulumi.get(self, "nd_timestamp_fuzz")
 
     @property
+    @pulumi.getter(name="raSendMtu")
+    def ra_send_mtu(self) -> str:
+        """
+        Enable/disable sending link MTU in RA packet.
+        """
+        return pulumi.get(self, "ra_send_mtu")
+
+    @property
     @pulumi.getter(name="uniqueAutoconfAddr")
     def unique_autoconf_addr(self) -> str:
         """
@@ -34517,9 +40784,61 @@ class GetSystemInterfaceIpv6Result(dict):
 
 
 @pulumi.output_type
+class GetSystemInterfaceIpv6Dhcp6IapdListResult(dict):
+    def __init__(__self__, *,
+                 iaid: int,
+                 prefix_hint: str,
+                 prefix_hint_plt: int,
+                 prefix_hint_vlt: int):
+        """
+        :param int iaid: Identity association identifier.
+        :param str prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
+        :param int prefix_hint_plt: DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
+        :param int prefix_hint_vlt: DHCPv6 prefix hint valid life time (sec).
+        """
+        pulumi.set(__self__, "iaid", iaid)
+        pulumi.set(__self__, "prefix_hint", prefix_hint)
+        pulumi.set(__self__, "prefix_hint_plt", prefix_hint_plt)
+        pulumi.set(__self__, "prefix_hint_vlt", prefix_hint_vlt)
+
+    @property
+    @pulumi.getter
+    def iaid(self) -> int:
+        """
+        Identity association identifier.
+        """
+        return pulumi.get(self, "iaid")
+
+    @property
+    @pulumi.getter(name="prefixHint")
+    def prefix_hint(self) -> str:
+        """
+        DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
+        """
+        return pulumi.get(self, "prefix_hint")
+
+    @property
+    @pulumi.getter(name="prefixHintPlt")
+    def prefix_hint_plt(self) -> int:
+        """
+        DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
+        """
+        return pulumi.get(self, "prefix_hint_plt")
+
+    @property
+    @pulumi.getter(name="prefixHintVlt")
+    def prefix_hint_vlt(self) -> int:
+        """
+        DHCPv6 prefix hint valid life time (sec).
+        """
+        return pulumi.get(self, "prefix_hint_vlt")
+
+
+@pulumi.output_type
 class GetSystemInterfaceIpv6Ip6DelegatedPrefixListResult(dict):
     def __init__(__self__, *,
                  autonomous_flag: str,
+                 delegated_prefix_iaid: int,
                  onlink_flag: str,
                  prefix_id: int,
                  rdnss: str,
@@ -34528,6 +40847,7 @@ class GetSystemInterfaceIpv6Ip6DelegatedPrefixListResult(dict):
                  upstream_interface: str):
         """
         :param str autonomous_flag: Enable/disable the autonomous flag.
+        :param int delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param str onlink_flag: Enable/disable the onlink flag.
         :param int prefix_id: Prefix ID.
         :param str rdnss: Recursive DNS server option.
@@ -34536,6 +40856,7 @@ class GetSystemInterfaceIpv6Ip6DelegatedPrefixListResult(dict):
         :param str upstream_interface: Name of the interface that provides delegated information.
         """
         pulumi.set(__self__, "autonomous_flag", autonomous_flag)
+        pulumi.set(__self__, "delegated_prefix_iaid", delegated_prefix_iaid)
         pulumi.set(__self__, "onlink_flag", onlink_flag)
         pulumi.set(__self__, "prefix_id", prefix_id)
         pulumi.set(__self__, "rdnss", rdnss)
@@ -34550,6 +40871,14 @@ class GetSystemInterfaceIpv6Ip6DelegatedPrefixListResult(dict):
         Enable/disable the autonomous flag.
         """
         return pulumi.get(self, "autonomous_flag")
+
+    @property
+    @pulumi.getter(name="delegatedPrefixIaid")
+    def delegated_prefix_iaid(self) -> int:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="onlinkFlag")
@@ -35235,6 +41564,24 @@ class GetSystemInterfaceVrrpProxyArpResult(dict):
 
 
 @pulumi.output_type
+class GetSystemLinkMonitorRouteResult(dict):
+    def __init__(__self__, *,
+                 subnet: str):
+        """
+        :param str subnet: IP and netmask (x.x.x.x/y).
+        """
+        pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> str:
+        """
+        IP and netmask (x.x.x.x/y).
+        """
+        return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
 class GetSystemLinkMonitorServerResult(dict):
     def __init__(__self__, *,
                  address: str):
@@ -35250,6 +41597,68 @@ class GetSystemLinkMonitorServerResult(dict):
         Server address.
         """
         return pulumi.get(self, "address")
+
+
+@pulumi.output_type
+class GetSystemLinkMonitorServerListResult(dict):
+    def __init__(__self__, *,
+                 dst: str,
+                 id: int,
+                 port: int,
+                 protocol: str,
+                 weight: int):
+        """
+        :param str dst: IP address of the server to be monitored.
+        :param int id: Server ID.
+        :param int port: Port number of the traffic to be used to monitor the server.
+        :param str protocol: Protocols used to monitor the server.
+        :param int weight: Weight of the monitor to this dst (0 - 255).
+        """
+        pulumi.set(__self__, "dst", dst)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "port", port)
+        pulumi.set(__self__, "protocol", protocol)
+        pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def dst(self) -> str:
+        """
+        IP address of the server to be monitored.
+        """
+        return pulumi.get(self, "dst")
+
+    @property
+    @pulumi.getter
+    def id(self) -> int:
+        """
+        Server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> int:
+        """
+        Port number of the traffic to be used to monitor the server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        Protocols used to monitor the server.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> int:
+        """
+        Weight of the monitor to this dst (0 - 255).
+        """
+        return pulumi.get(self, "weight")
 
 
 @pulumi.output_type
@@ -36936,7 +43345,130 @@ class GetSystemReplacemsgGroupWebproxyResult(dict):
 
 
 @pulumi.output_type
+class GetSystemSdnConnectorExternalAccountListResult(dict):
+    def __init__(__self__, *,
+                 region_lists: Sequence['outputs.GetSystemSdnConnectorExternalAccountListRegionListResult'],
+                 role_arn: str):
+        """
+        :param Sequence['GetSystemSdnConnectorExternalAccountListRegionListArgs'] region_lists: AWS region name list. The structure of `region_list` block is documented below.
+        :param str role_arn: AWS role ARN to assume.
+        """
+        pulumi.set(__self__, "region_lists", region_lists)
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @property
+    @pulumi.getter(name="regionLists")
+    def region_lists(self) -> Sequence['outputs.GetSystemSdnConnectorExternalAccountListRegionListResult']:
+        """
+        AWS region name list. The structure of `region_list` block is documented below.
+        """
+        return pulumi.get(self, "region_lists")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> str:
+        """
+        AWS role ARN to assume.
+        """
+        return pulumi.get(self, "role_arn")
+
+
+@pulumi.output_type
+class GetSystemSdnConnectorExternalAccountListRegionListResult(dict):
+    def __init__(__self__, *,
+                 region: str):
+        """
+        :param str region: AWS region name.
+        """
+        pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def region(self) -> str:
+        """
+        AWS region name.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class GetSystemSdnConnectorExternalIpResult(dict):
+    def __init__(__self__, *,
+                 name: str):
+        """
+        :param str name: Specify the name of the desired system sdnconnector.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Specify the name of the desired system sdnconnector.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetSystemSdnConnectorForwardingRuleResult(dict):
+    def __init__(__self__, *,
+                 rule_name: str,
+                 target: str):
+        """
+        :param str rule_name: Forwarding rule name.
+        :param str target: Target instance name.
+        """
+        pulumi.set(__self__, "rule_name", rule_name)
+        pulumi.set(__self__, "target", target)
+
+    @property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> str:
+        """
+        Forwarding rule name.
+        """
+        return pulumi.get(self, "rule_name")
+
+    @property
+    @pulumi.getter
+    def target(self) -> str:
+        """
+        Target instance name.
+        """
+        return pulumi.get(self, "target")
+
+
+@pulumi.output_type
+class GetSystemSdnConnectorGcpProjectListResult(dict):
+    def __init__(__self__, *,
+                 gcp_zone_lists: Sequence['outputs.GetSystemSdnConnectorGcpProjectListGcpZoneListResult'],
+                 id: str):
+        """
+        :param Sequence['GetSystemSdnConnectorGcpProjectListGcpZoneListArgs'] gcp_zone_lists: Configure GCP zone list. The structure of `gcp_zone_list` block is documented below.
+        :param str id: GCP project ID.
+        """
+        pulumi.set(__self__, "gcp_zone_lists", gcp_zone_lists)
+        pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="gcpZoneLists")
+    def gcp_zone_lists(self) -> Sequence['outputs.GetSystemSdnConnectorGcpProjectListGcpZoneListResult']:
+        """
+        Configure GCP zone list. The structure of `gcp_zone_list` block is documented below.
+        """
+        return pulumi.get(self, "gcp_zone_lists")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        GCP project ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class GetSystemSdnConnectorGcpProjectListGcpZoneListResult(dict):
     def __init__(__self__, *,
                  name: str):
         """
@@ -37118,6 +43650,24 @@ class GetSystemSdnConnectorRouteTableRouteResult(dict):
         Next hop address.
         """
         return pulumi.get(self, "next_hop")
+
+
+@pulumi.output_type
+class GetSystemSdnConnectorServerListResult(dict):
+    def __init__(__self__, *,
+                 ip: str):
+        """
+        :param str ip: Configure IP configuration. The structure of `ip` block is documented below.
+        """
+        pulumi.set(__self__, "ip", ip)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> str:
+        """
+        Configure IP configuration. The structure of `ip` block is documented below.
+        """
+        return pulumi.get(self, "ip")
 
 
 @pulumi.output_type
@@ -40292,7 +46842,7 @@ class LogDiskFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40310,7 +46860,7 @@ class LogDiskFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40364,7 +46914,7 @@ class LogFortianalyzer2FilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40382,7 +46932,7 @@ class LogFortianalyzer2FilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40436,7 +46986,7 @@ class LogFortianalyzer2OverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40454,7 +47004,7 @@ class LogFortianalyzer2OverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40546,7 +47096,7 @@ class LogFortianalyzer3FilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40564,7 +47114,7 @@ class LogFortianalyzer3FilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40618,7 +47168,7 @@ class LogFortianalyzer3OverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40636,7 +47186,7 @@ class LogFortianalyzer3OverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40728,7 +47278,7 @@ class LogFortianalyzerCloudFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40746,7 +47296,7 @@ class LogFortianalyzerCloudFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40800,7 +47350,7 @@ class LogFortianalyzerCloudOverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40818,7 +47368,7 @@ class LogFortianalyzerCloudOverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40848,6 +47398,25 @@ class LogFortianalyzerCloudOverrideFilterFreeStyle(dict):
 
 
 @pulumi.output_type
+class LogFortianalyzerCloudSettingSerial(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Serial Number.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Serial Number.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class LogFortianalyzerFilterFreeStyle(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -40872,7 +47441,7 @@ class LogFortianalyzerFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40890,7 +47459,7 @@ class LogFortianalyzerFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -40944,7 +47513,7 @@ class LogFortianalyzerOverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -40962,7 +47531,7 @@ class LogFortianalyzerOverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41054,7 +47623,7 @@ class LogFortiguardFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41072,7 +47641,7 @@ class LogFortiguardFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41126,7 +47695,7 @@ class LogFortiguardOverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41144,7 +47713,7 @@ class LogFortiguardOverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41198,7 +47767,7 @@ class LogMemoryFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41216,7 +47785,7 @@ class LogMemoryFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41270,7 +47839,7 @@ class LogNullDeviceFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41288,7 +47857,7 @@ class LogNullDeviceFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41378,7 +47947,7 @@ class LogSyslogd2FilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41396,7 +47965,7 @@ class LogSyslogd2FilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41450,7 +48019,7 @@ class LogSyslogd2OverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41468,7 +48037,7 @@ class LogSyslogd2OverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41608,7 +48177,7 @@ class LogSyslogd3FilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41626,7 +48195,7 @@ class LogSyslogd3FilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41680,7 +48249,7 @@ class LogSyslogd3OverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41698,7 +48267,7 @@ class LogSyslogd3OverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41838,7 +48407,7 @@ class LogSyslogd4FilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41856,7 +48425,7 @@ class LogSyslogd4FilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -41910,7 +48479,7 @@ class LogSyslogd4OverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -41928,7 +48497,7 @@ class LogSyslogd4OverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -42068,7 +48637,7 @@ class LogSyslogdFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -42086,7 +48655,7 @@ class LogSyslogdFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -42140,7 +48709,7 @@ class LogSyslogdOverrideFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -42158,7 +48727,7 @@ class LogSyslogdOverrideFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -42517,6 +49086,8 @@ class LogThreatWeightMalware(dict):
             suggest = "command_blocked"
         elif key == "contentDisarm":
             suggest = "content_disarm"
+        elif key == "emsThreatFeed":
+            suggest = "ems_threat_feed"
         elif key == "fileBlocked":
             suggest = "file_blocked"
         elif key == "fsaHighRisk":
@@ -42553,7 +49124,9 @@ class LogThreatWeightMalware(dict):
                  botnet_connection: Optional[str] = None,
                  command_blocked: Optional[str] = None,
                  content_disarm: Optional[str] = None,
+                 ems_threat_feed: Optional[str] = None,
                  file_blocked: Optional[str] = None,
+                 fortiai: Optional[str] = None,
                  fsa_high_risk: Optional[str] = None,
                  fsa_malicious: Optional[str] = None,
                  fsa_medium_risk: Optional[str] = None,
@@ -42569,7 +49142,9 @@ class LogThreatWeightMalware(dict):
         :param str botnet_connection: Threat weight score for detected botnet connections. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str command_blocked: Threat weight score for blocked command detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str content_disarm: Threat weight score for virus (content disarm) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        :param str ems_threat_feed: Threat weight score for virus (EMS threat feed) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str file_blocked: Threat weight score for blocked file detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        :param str fortiai: Threat weight score for FortiAI-detected virus. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str fsa_high_risk: Threat weight score for FortiSandbox high risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str fsa_malicious: Threat weight score for FortiSandbox malicious malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         :param str fsa_medium_risk: Threat weight score for FortiSandbox medium risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
@@ -42588,8 +49163,12 @@ class LogThreatWeightMalware(dict):
             pulumi.set(__self__, "command_blocked", command_blocked)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
+        if ems_threat_feed is not None:
+            pulumi.set(__self__, "ems_threat_feed", ems_threat_feed)
         if file_blocked is not None:
             pulumi.set(__self__, "file_blocked", file_blocked)
+        if fortiai is not None:
+            pulumi.set(__self__, "fortiai", fortiai)
         if fsa_high_risk is not None:
             pulumi.set(__self__, "fsa_high_risk", fsa_high_risk)
         if fsa_malicious is not None:
@@ -42638,12 +49217,28 @@ class LogThreatWeightMalware(dict):
         return pulumi.get(self, "content_disarm")
 
     @property
+    @pulumi.getter(name="emsThreatFeed")
+    def ems_threat_feed(self) -> Optional[str]:
+        """
+        Threat weight score for virus (EMS threat feed) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        """
+        return pulumi.get(self, "ems_threat_feed")
+
+    @property
     @pulumi.getter(name="fileBlocked")
     def file_blocked(self) -> Optional[str]:
         """
         Threat weight score for blocked file detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
         """
         return pulumi.get(self, "file_blocked")
+
+    @property
+    @pulumi.getter
+    def fortiai(self) -> Optional[str]:
+        """
+        Threat weight score for FortiAI-detected virus. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+        """
+        return pulumi.get(self, "fortiai")
 
     @property
     @pulumi.getter(name="fsaHighRisk")
@@ -42802,7 +49397,7 @@ class LogWebtrendsFilterFreeStyle(dict):
                  filter_type: Optional[str] = None,
                  id: Optional[int] = None):
         """
-        :param str category: Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        :param str category: Log category.
         :param str filter: Free style filter string.
         :param str filter_type: Include/exclude logs that match the filter. Valid values: `include`, `exclude`.
         :param int id: Entry ID.
@@ -42820,7 +49415,7 @@ class LogWebtrendsFilterFreeStyle(dict):
     @pulumi.getter
     def category(self) -> Optional[str]:
         """
-        Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+        Log category.
         """
         return pulumi.get(self, "category")
 
@@ -45113,6 +51708,8 @@ class RouterBgpNeighbor(dict):
             suggest = "capability_orf6"
         elif key == "capabilityRouteRefresh":
             suggest = "capability_route_refresh"
+        elif key == "conditionalAdvertise6s":
+            suggest = "conditional_advertise6s"
         elif key == "conditionalAdvertises":
             suggest = "conditional_advertises"
         elif key == "connectTimer":
@@ -45270,6 +51867,7 @@ class RouterBgpNeighbor(dict):
                  capability_orf: Optional[str] = None,
                  capability_orf6: Optional[str] = None,
                  capability_route_refresh: Optional[str] = None,
+                 conditional_advertise6s: Optional[Sequence['outputs.RouterBgpNeighborConditionalAdvertise6']] = None,
                  conditional_advertises: Optional[Sequence['outputs.RouterBgpNeighborConditionalAdvertise']] = None,
                  connect_timer: Optional[int] = None,
                  default_originate_routemap: Optional[str] = None,
@@ -45362,6 +51960,7 @@ class RouterBgpNeighbor(dict):
         :param str capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param str capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param str capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
+        :param Sequence['RouterBgpNeighborConditionalAdvertise6Args'] conditional_advertise6s: IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
         :param Sequence['RouterBgpNeighborConditionalAdvertiseArgs'] conditional_advertises: Conditional advertisement. The structure of `conditional_advertise` block is documented below.
         :param int connect_timer: Interval (sec) for connect timer.
         :param str default_originate_routemap: Route map to specify criteria to originate IPv4 default.
@@ -45478,6 +52077,8 @@ class RouterBgpNeighbor(dict):
             pulumi.set(__self__, "capability_orf6", capability_orf6)
         if capability_route_refresh is not None:
             pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
+        if conditional_advertise6s is not None:
+            pulumi.set(__self__, "conditional_advertise6s", conditional_advertise6s)
         if conditional_advertises is not None:
             pulumi.set(__self__, "conditional_advertises", conditional_advertises)
         if connect_timer is not None:
@@ -45804,6 +52405,14 @@ class RouterBgpNeighbor(dict):
         Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "capability_route_refresh")
+
+    @property
+    @pulumi.getter(name="conditionalAdvertise6s")
+    def conditional_advertise6s(self) -> Optional[Sequence['outputs.RouterBgpNeighborConditionalAdvertise6']]:
+        """
+        IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
+        """
+        return pulumi.get(self, "conditional_advertise6s")
 
     @property
     @pulumi.getter(name="conditionalAdvertises")
@@ -46340,6 +52949,70 @@ class RouterBgpNeighbor(dict):
         Neighbor weight.
         """
         return pulumi.get(self, "weight")
+
+
+@pulumi.output_type
+class RouterBgpNeighborConditionalAdvertise6(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "advertiseRoutemap":
+            suggest = "advertise_routemap"
+        elif key == "conditionRoutemap":
+            suggest = "condition_routemap"
+        elif key == "conditionType":
+            suggest = "condition_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RouterBgpNeighborConditionalAdvertise6. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RouterBgpNeighborConditionalAdvertise6.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RouterBgpNeighborConditionalAdvertise6.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 advertise_routemap: Optional[str] = None,
+                 condition_routemap: Optional[str] = None,
+                 condition_type: Optional[str] = None):
+        """
+        :param str advertise_routemap: Name of advertising route map.
+        :param str condition_routemap: Name of condition route map.
+        :param str condition_type: Type of condition. Valid values: `exist`, `non-exist`.
+        """
+        if advertise_routemap is not None:
+            pulumi.set(__self__, "advertise_routemap", advertise_routemap)
+        if condition_routemap is not None:
+            pulumi.set(__self__, "condition_routemap", condition_routemap)
+        if condition_type is not None:
+            pulumi.set(__self__, "condition_type", condition_type)
+
+    @property
+    @pulumi.getter(name="advertiseRoutemap")
+    def advertise_routemap(self) -> Optional[str]:
+        """
+        Name of advertising route map.
+        """
+        return pulumi.get(self, "advertise_routemap")
+
+    @property
+    @pulumi.getter(name="conditionRoutemap")
+    def condition_routemap(self) -> Optional[str]:
+        """
+        Name of condition route map.
+        """
+        return pulumi.get(self, "condition_routemap")
+
+    @property
+    @pulumi.getter(name="conditionType")
+    def condition_type(self) -> Optional[str]:
+        """
+        Type of condition. Valid values: `exist`, `non-exist`.
+        """
+        return pulumi.get(self, "condition_type")
 
 
 @pulumi.output_type
@@ -47809,7 +54482,9 @@ class RouterBgpNetwork6(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "routeMap":
+        if key == "networkImportCheck":
+            suggest = "network_import_check"
+        elif key == "routeMap":
             suggest = "route_map"
 
         if suggest:
@@ -47826,11 +54501,13 @@ class RouterBgpNetwork6(dict):
     def __init__(__self__, *,
                  backdoor: Optional[str] = None,
                  id: Optional[int] = None,
+                 network_import_check: Optional[str] = None,
                  prefix6: Optional[str] = None,
                  route_map: Optional[str] = None):
         """
         :param str backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
         :param int id: ID.
+        :param str network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param str prefix6: Network IPv6 prefix.
         :param str route_map: Route map of VRF leaking.
         """
@@ -47838,6 +54515,8 @@ class RouterBgpNetwork6(dict):
             pulumi.set(__self__, "backdoor", backdoor)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if network_import_check is not None:
+            pulumi.set(__self__, "network_import_check", network_import_check)
         if prefix6 is not None:
             pulumi.set(__self__, "prefix6", prefix6)
         if route_map is not None:
@@ -47858,6 +54537,14 @@ class RouterBgpNetwork6(dict):
         ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> Optional[str]:
+        """
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "network_import_check")
 
     @property
     @pulumi.getter
@@ -47881,7 +54568,9 @@ class RouterBgpNetwork(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "routeMap":
+        if key == "networkImportCheck":
+            suggest = "network_import_check"
+        elif key == "routeMap":
             suggest = "route_map"
 
         if suggest:
@@ -47898,11 +54587,13 @@ class RouterBgpNetwork(dict):
     def __init__(__self__, *,
                  backdoor: Optional[str] = None,
                  id: Optional[int] = None,
+                 network_import_check: Optional[str] = None,
                  prefix: Optional[str] = None,
                  route_map: Optional[str] = None):
         """
         :param str backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
         :param int id: ID.
+        :param str network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param str prefix: Network prefix.
         :param str route_map: Route map of VRF leaking.
         """
@@ -47910,6 +54601,8 @@ class RouterBgpNetwork(dict):
             pulumi.set(__self__, "backdoor", backdoor)
         if id is not None:
             pulumi.set(__self__, "id", id)
+        if network_import_check is not None:
+            pulumi.set(__self__, "network_import_check", network_import_check)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
         if route_map is not None:
@@ -47930,6 +54623,14 @@ class RouterBgpNetwork(dict):
         ID.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> Optional[str]:
+        """
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "network_import_check")
 
     @property
     @pulumi.getter
@@ -48066,6 +54767,97 @@ class RouterBgpRedistribute(dict):
         Status Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class RouterBgpVrfLeak6(dict):
+    def __init__(__self__, *,
+                 targets: Optional[Sequence['outputs.RouterBgpVrfLeak6Target']] = None,
+                 vrf: Optional[str] = None):
+        """
+        :param Sequence['RouterBgpVrfLeak6TargetArgs'] targets: Target VRF table. The structure of `target` block is documented below.
+        :param str vrf: Target VRF ID <0 - 31>.
+        """
+        if targets is not None:
+            pulumi.set(__self__, "targets", targets)
+        if vrf is not None:
+            pulumi.set(__self__, "vrf", vrf)
+
+    @property
+    @pulumi.getter
+    def targets(self) -> Optional[Sequence['outputs.RouterBgpVrfLeak6Target']]:
+        """
+        Target VRF table. The structure of `target` block is documented below.
+        """
+        return pulumi.get(self, "targets")
+
+    @property
+    @pulumi.getter
+    def vrf(self) -> Optional[str]:
+        """
+        Target VRF ID <0 - 31>.
+        """
+        return pulumi.get(self, "vrf")
+
+
+@pulumi.output_type
+class RouterBgpVrfLeak6Target(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "routeMap":
+            suggest = "route_map"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RouterBgpVrfLeak6Target. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RouterBgpVrfLeak6Target.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RouterBgpVrfLeak6Target.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interface: Optional[str] = None,
+                 route_map: Optional[str] = None,
+                 vrf: Optional[str] = None):
+        """
+        :param str interface: Interface which is used to leak routes to target VRF.
+        :param str route_map: Route map of VRF leaking.
+        :param str vrf: Target VRF ID <0 - 31>.
+        """
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if route_map is not None:
+            pulumi.set(__self__, "route_map", route_map)
+        if vrf is not None:
+            pulumi.set(__self__, "vrf", vrf)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[str]:
+        """
+        Interface which is used to leak routes to target VRF.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="routeMap")
+    def route_map(self) -> Optional[str]:
+        """
+        Route map of VRF leaking.
+        """
+        return pulumi.get(self, "route_map")
+
+    @property
+    @pulumi.getter
+    def vrf(self) -> Optional[str]:
+        """
+        Target VRF ID <0 - 31>.
+        """
+        return pulumi.get(self, "vrf")
 
 
 @pulumi.output_type
@@ -48984,17 +55776,21 @@ class RouterKeyChainKey(dict):
 
     def __init__(__self__, *,
                  accept_lifetime: Optional[str] = None,
+                 algorithm: Optional[str] = None,
                  id: Optional[int] = None,
                  key_string: Optional[str] = None,
                  send_lifetime: Optional[str] = None):
         """
         :param str accept_lifetime: Lifetime of received authentication key (format: hh:mm:ss day month year).
+        :param str algorithm: Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
         :param int id: Key ID (0 - 2147483647).
         :param str key_string: Password for the key (max. = 35 characters).
         :param str send_lifetime: Lifetime of sent authentication key (format: hh:mm:ss day month year).
         """
         if accept_lifetime is not None:
             pulumi.set(__self__, "accept_lifetime", accept_lifetime)
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if key_string is not None:
@@ -49009,6 +55805,14 @@ class RouterKeyChainKey(dict):
         Lifetime of received authentication key (format: hh:mm:ss day month year).
         """
         return pulumi.get(self, "accept_lifetime")
+
+    @property
+    @pulumi.getter
+    def algorithm(self) -> Optional[str]:
+        """
+        Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+        """
+        return pulumi.get(self, "algorithm")
 
     @property
     @pulumi.getter
@@ -51376,6 +58180,7 @@ class RouterOspfArea(dict):
 
     def __init__(__self__, *,
                  authentication: Optional[str] = None,
+                 comments: Optional[str] = None,
                  default_cost: Optional[int] = None,
                  filter_lists: Optional[Sequence['outputs.RouterOspfAreaFilterList']] = None,
                  id: Optional[str] = None,
@@ -51390,7 +58195,8 @@ class RouterOspfArea(dict):
                  type: Optional[str] = None,
                  virtual_links: Optional[Sequence['outputs.RouterOspfAreaVirtualLink']] = None):
         """
-        :param str authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param str authentication: Authentication type.
+        :param str comments: Comment.
         :param int default_cost: Summary default cost of stub or NSSA area.
         :param Sequence['RouterOspfAreaFilterListArgs'] filter_lists: OSPF area filter-list configuration. The structure of `filter_list` block is documented below.
         :param str id: Distribute list entry ID.
@@ -51407,6 +58213,8 @@ class RouterOspfArea(dict):
         """
         if authentication is not None:
             pulumi.set(__self__, "authentication", authentication)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if default_cost is not None:
             pulumi.set(__self__, "default_cost", default_cost)
         if filter_lists is not None:
@@ -51438,9 +58246,17 @@ class RouterOspfArea(dict):
     @pulumi.getter
     def authentication(self) -> Optional[str]:
         """
-        Authentication type. Valid values: `none`, `text`, `md5`.
+        Authentication type.
         """
         return pulumi.get(self, "authentication")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter(name="defaultCost")
@@ -51712,6 +58528,7 @@ class RouterOspfAreaVirtualLink(dict):
                  authentication_key: Optional[str] = None,
                  dead_interval: Optional[int] = None,
                  hello_interval: Optional[int] = None,
+                 keychain: Optional[str] = None,
                  md5_key: Optional[str] = None,
                  md5_keychain: Optional[str] = None,
                  md5_keys: Optional[Sequence['outputs.RouterOspfAreaVirtualLinkMd5Key']] = None,
@@ -51720,10 +58537,11 @@ class RouterOspfAreaVirtualLink(dict):
                  retransmit_interval: Optional[int] = None,
                  transmit_delay: Optional[int] = None):
         """
-        :param str authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param str authentication: Authentication type.
         :param str authentication_key: Authentication key.
         :param int dead_interval: Dead interval.
         :param int hello_interval: Hello interval.
+        :param str keychain: Message-digest key-chain name.
         :param str md5_key: MD5 key.
         :param str md5_keychain: Authentication MD5 key-chain name.
         :param Sequence['RouterOspfAreaVirtualLinkMd5KeyArgs'] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -51740,6 +58558,8 @@ class RouterOspfAreaVirtualLink(dict):
             pulumi.set(__self__, "dead_interval", dead_interval)
         if hello_interval is not None:
             pulumi.set(__self__, "hello_interval", hello_interval)
+        if keychain is not None:
+            pulumi.set(__self__, "keychain", keychain)
         if md5_key is not None:
             pulumi.set(__self__, "md5_key", md5_key)
         if md5_keychain is not None:
@@ -51759,7 +58579,7 @@ class RouterOspfAreaVirtualLink(dict):
     @pulumi.getter
     def authentication(self) -> Optional[str]:
         """
-        Authentication type. Valid values: `none`, `text`, `md5`.
+        Authentication type.
         """
         return pulumi.get(self, "authentication")
 
@@ -51786,6 +58606,14 @@ class RouterOspfAreaVirtualLink(dict):
         Hello interval.
         """
         return pulumi.get(self, "hello_interval")
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> Optional[str]:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
 
     @property
     @pulumi.getter(name="md5Key")
@@ -52040,15 +58868,19 @@ class RouterOspfNeighbor(dict):
 class RouterOspfNetwork(dict):
     def __init__(__self__, *,
                  area: Optional[str] = None,
+                 comments: Optional[str] = None,
                  id: Optional[int] = None,
                  prefix: Optional[str] = None):
         """
         :param str area: Attach the network to area.
+        :param str comments: Comment.
         :param int id: Distribute list entry ID.
         :param str prefix: Prefix.
         """
         if area is not None:
             pulumi.set(__self__, "area", area)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if id is not None:
             pulumi.set(__self__, "id", id)
         if prefix is not None:
@@ -52061,6 +58893,14 @@ class RouterOspfNetwork(dict):
         Attach the network to area.
         """
         return pulumi.get(self, "area")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter
@@ -52128,6 +58968,7 @@ class RouterOspfOspfInterface(dict):
                  authentication: Optional[str] = None,
                  authentication_key: Optional[str] = None,
                  bfd: Optional[str] = None,
+                 comments: Optional[str] = None,
                  cost: Optional[int] = None,
                  database_filter_out: Optional[str] = None,
                  dead_interval: Optional[int] = None,
@@ -52135,6 +58976,7 @@ class RouterOspfOspfInterface(dict):
                  hello_multiplier: Optional[int] = None,
                  interface: Optional[str] = None,
                  ip: Optional[str] = None,
+                 keychain: Optional[str] = None,
                  md5_key: Optional[str] = None,
                  md5_keychain: Optional[str] = None,
                  md5_keys: Optional[Sequence['outputs.RouterOspfOspfInterfaceMd5Key']] = None,
@@ -52149,9 +58991,10 @@ class RouterOspfOspfInterface(dict):
                  status: Optional[str] = None,
                  transmit_delay: Optional[int] = None):
         """
-        :param str authentication: Authentication type. Valid values: `none`, `text`, `md5`.
+        :param str authentication: Authentication type.
         :param str authentication_key: Authentication key.
         :param str bfd: Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
+        :param str comments: Comment.
         :param int cost: Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
         :param str database_filter_out: Enable/disable control of flooding out LSAs. Valid values: `enable`, `disable`.
         :param int dead_interval: Dead interval.
@@ -52159,6 +59002,7 @@ class RouterOspfOspfInterface(dict):
         :param int hello_multiplier: Number of hello packets within dead interval.
         :param str interface: Configuration interface name.
         :param str ip: Interface IP address of the neighbor.
+        :param str keychain: Message-digest key-chain name.
         :param str md5_key: MD5 key.
         :param str md5_keychain: Authentication MD5 key-chain name.
         :param Sequence['RouterOspfOspfInterfaceMd5KeyArgs'] md5_keys: MD5 key. The structure of `md5_keys` block is documented below.
@@ -52179,6 +59023,8 @@ class RouterOspfOspfInterface(dict):
             pulumi.set(__self__, "authentication_key", authentication_key)
         if bfd is not None:
             pulumi.set(__self__, "bfd", bfd)
+        if comments is not None:
+            pulumi.set(__self__, "comments", comments)
         if cost is not None:
             pulumi.set(__self__, "cost", cost)
         if database_filter_out is not None:
@@ -52193,6 +59039,8 @@ class RouterOspfOspfInterface(dict):
             pulumi.set(__self__, "interface", interface)
         if ip is not None:
             pulumi.set(__self__, "ip", ip)
+        if keychain is not None:
+            pulumi.set(__self__, "keychain", keychain)
         if md5_key is not None:
             pulumi.set(__self__, "md5_key", md5_key)
         if md5_keychain is not None:
@@ -52224,7 +59072,7 @@ class RouterOspfOspfInterface(dict):
     @pulumi.getter
     def authentication(self) -> Optional[str]:
         """
-        Authentication type. Valid values: `none`, `text`, `md5`.
+        Authentication type.
         """
         return pulumi.get(self, "authentication")
 
@@ -52243,6 +59091,14 @@ class RouterOspfOspfInterface(dict):
         Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
         """
         return pulumi.get(self, "bfd")
+
+    @property
+    @pulumi.getter
+    def comments(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comments")
 
     @property
     @pulumi.getter
@@ -52299,6 +59155,14 @@ class RouterOspfOspfInterface(dict):
         Interface IP address of the neighbor.
         """
         return pulumi.get(self, "ip")
+
+    @property
+    @pulumi.getter
+    def keychain(self) -> Optional[str]:
+        """
+        Message-digest key-chain name.
+        """
+        return pulumi.get(self, "keychain")
 
     @property
     @pulumi.getter(name="md5Key")
@@ -54088,7 +60952,7 @@ class RouterRouteMapRule(dict):
         :param str match_ip_nexthop: Match next hop IP address passed by access-list or prefix-list.
         :param int match_metric: Match metric for redistribute routes.
         :param str match_origin: Match BGP origin code. Valid values: `none`, `egp`, `igp`, `incomplete`.
-        :param str match_route_type: Match route type. Valid values: `1`, `2`, `none`.
+        :param str match_route_type: Match route type.
         :param int match_tag: Match tag.
         :param int match_vrf: Match VRF ID.
         :param int set_aggregator_as: BGP aggregator AS.
@@ -54112,7 +60976,7 @@ class RouterRouteMapRule(dict):
         :param str set_ip_nexthop: IP address of next hop.
         :param int set_local_preference: BGP local preference path attribute.
         :param int set_metric: Metric value.
-        :param str set_metric_type: Metric type. Valid values: `1`, `2`, `none`.
+        :param str set_metric_type: Metric type.
         :param str set_origin: BGP origin code. Valid values: `none`, `egp`, `igp`, `incomplete`.
         :param str set_originator_id: BGP originator ID attribute.
         :param int set_route_tag: Route tag for routing table.
@@ -54314,7 +61178,7 @@ class RouterRouteMapRule(dict):
     @pulumi.getter(name="matchRouteType")
     def match_route_type(self) -> Optional[str]:
         """
-        Match route type. Valid values: `1`, `2`, `none`.
+        Match route type.
         """
         return pulumi.get(self, "match_route_type")
 
@@ -54506,7 +61370,7 @@ class RouterRouteMapRule(dict):
     @pulumi.getter(name="setMetricType")
     def set_metric_type(self) -> Optional[str]:
         """
-        Metric type. Valid values: `1`, `2`, `none`.
+        Metric type.
         """
         return pulumi.get(self, "set_metric_type")
 
@@ -54642,6 +61506,108 @@ class RouterRouteMapRuleSetExtcommunitySoo(dict):
         AA:NN
         """
         return pulumi.get(self, "community")
+
+
+@pulumi.output_type
+class RouterStatic6SdwanZone(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: SD-WAN zone name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        SD-WAN zone name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class RouterStaticSdwanZone(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: SD-WAN zone name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        SD-WAN zone name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class RouterbgpNeighborConditionalAdvertise6(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "advertiseRoutemap":
+            suggest = "advertise_routemap"
+        elif key == "conditionRoutemap":
+            suggest = "condition_routemap"
+        elif key == "conditionType":
+            suggest = "condition_type"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RouterbgpNeighborConditionalAdvertise6. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RouterbgpNeighborConditionalAdvertise6.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RouterbgpNeighborConditionalAdvertise6.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 advertise_routemap: Optional[str] = None,
+                 condition_routemap: Optional[str] = None,
+                 condition_type: Optional[str] = None):
+        """
+        :param str advertise_routemap: Name of advertising route map.
+        :param str condition_routemap: Name of condition route map.
+        :param str condition_type: Type of condition. Valid values: `exist`, `non-exist`.
+        """
+        if advertise_routemap is not None:
+            pulumi.set(__self__, "advertise_routemap", advertise_routemap)
+        if condition_routemap is not None:
+            pulumi.set(__self__, "condition_routemap", condition_routemap)
+        if condition_type is not None:
+            pulumi.set(__self__, "condition_type", condition_type)
+
+    @property
+    @pulumi.getter(name="advertiseRoutemap")
+    def advertise_routemap(self) -> Optional[str]:
+        """
+        Name of advertising route map.
+        """
+        return pulumi.get(self, "advertise_routemap")
+
+    @property
+    @pulumi.getter(name="conditionRoutemap")
+    def condition_routemap(self) -> Optional[str]:
+        """
+        Name of condition route map.
+        """
+        return pulumi.get(self, "condition_routemap")
+
+    @property
+    @pulumi.getter(name="conditionType")
+    def condition_type(self) -> Optional[str]:
+        """
+        Type of condition. Valid values: `exist`, `non-exist`.
+        """
+        return pulumi.get(self, "condition_type")
 
 
 @pulumi.output_type
@@ -54888,6 +61854,61 @@ class RouterospfOspfInterfaceMd5Key(dict):
         Password for the key.
         """
         return pulumi.get(self, "key_string")
+
+
+@pulumi.output_type
+class SctpFilterProfilePpidFilter(dict):
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 comment: Optional[str] = None,
+                 id: Optional[int] = None,
+                 ppid: Optional[int] = None):
+        """
+        :param str action: Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
+        :param str comment: Comment.
+        :param int id: ID.
+        :param int ppid: Payload protocol identifier.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if ppid is not None:
+            pulumi.set(__self__, "ppid", ppid)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def ppid(self) -> Optional[int]:
+        """
+        Payload protocol identifier.
+        """
+        return pulumi.get(self, "ppid")
 
 
 @pulumi.output_type
@@ -56054,6 +63075,256 @@ class SwitchControllerAutoConfigCustomSwitchBinding(dict):
 
 
 @pulumi.output_type
+class SwitchControllerDynamicPortPolicyPolicy(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bouncePortLink":
+            suggest = "bounce_port_link"
+        elif key == "hwVendor":
+            suggest = "hw_vendor"
+        elif key == "interfaceTags":
+            suggest = "interface_tags"
+        elif key == "lldpProfile":
+            suggest = "lldp_profile"
+        elif key == "qosPolicy":
+            suggest = "qos_policy"
+        elif key == "vlanPolicy":
+            suggest = "vlan_policy"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerDynamicPortPolicyPolicy. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerDynamicPortPolicyPolicy.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerDynamicPortPolicyPolicy.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bounce_port_link: Optional[str] = None,
+                 category: Optional[str] = None,
+                 description: Optional[str] = None,
+                 family: Optional[str] = None,
+                 host: Optional[str] = None,
+                 hw_vendor: Optional[str] = None,
+                 interface_tags: Optional[Sequence['outputs.SwitchControllerDynamicPortPolicyPolicyInterfaceTag']] = None,
+                 lldp_profile: Optional[str] = None,
+                 mac: Optional[str] = None,
+                 n8021x: Optional[str] = None,
+                 name: Optional[str] = None,
+                 qos_policy: Optional[str] = None,
+                 status: Optional[str] = None,
+                 type: Optional[str] = None,
+                 vlan_policy: Optional[str] = None):
+        """
+        :param str bounce_port_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where this policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
+        :param str category: Category of Dynamic port policy. Valid values: `device`, `interface-tag`.
+        :param str description: Description for the policy.
+        :param str family: Policy matching family.
+        :param str host: Policy matching host.
+        :param str hw_vendor: Match policy based on hardware vendor.
+        :param Sequence['SwitchControllerDynamicPortPolicyPolicyInterfaceTagArgs'] interface_tags: Policy matching the FortiSwitch interface object tags. The structure of `interface_tags` block is documented below.
+        :param str lldp_profile: LLDP profile to be applied when using this policy.
+        :param str mac: Policy matching MAC address.
+        :param str n8021x: 802.1x security policy to be applied when using this policy.
+        :param str name: Policy name.
+        :param str qos_policy: QoS policy to be applied when using this policy.
+        :param str status: Enable/disable policy. Valid values: `enable`, `disable`.
+        :param str type: Policy matching type.
+        :param str vlan_policy: VLAN policy to be applied when using this policy.
+        """
+        if bounce_port_link is not None:
+            pulumi.set(__self__, "bounce_port_link", bounce_port_link)
+        if category is not None:
+            pulumi.set(__self__, "category", category)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if family is not None:
+            pulumi.set(__self__, "family", family)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+        if hw_vendor is not None:
+            pulumi.set(__self__, "hw_vendor", hw_vendor)
+        if interface_tags is not None:
+            pulumi.set(__self__, "interface_tags", interface_tags)
+        if lldp_profile is not None:
+            pulumi.set(__self__, "lldp_profile", lldp_profile)
+        if mac is not None:
+            pulumi.set(__self__, "mac", mac)
+        if n8021x is not None:
+            pulumi.set(__self__, "n8021x", n8021x)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if qos_policy is not None:
+            pulumi.set(__self__, "qos_policy", qos_policy)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+        if vlan_policy is not None:
+            pulumi.set(__self__, "vlan_policy", vlan_policy)
+
+    @property
+    @pulumi.getter(name="bouncePortLink")
+    def bounce_port_link(self) -> Optional[str]:
+        """
+        Enable/disable bouncing (administratively bring the link down, up) of a switch port where this policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "bounce_port_link")
+
+    @property
+    @pulumi.getter
+    def category(self) -> Optional[str]:
+        """
+        Category of Dynamic port policy. Valid values: `device`, `interface-tag`.
+        """
+        return pulumi.get(self, "category")
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[str]:
+        """
+        Description for the policy.
+        """
+        return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter
+    def family(self) -> Optional[str]:
+        """
+        Policy matching family.
+        """
+        return pulumi.get(self, "family")
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        Policy matching host.
+        """
+        return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="hwVendor")
+    def hw_vendor(self) -> Optional[str]:
+        """
+        Match policy based on hardware vendor.
+        """
+        return pulumi.get(self, "hw_vendor")
+
+    @property
+    @pulumi.getter(name="interfaceTags")
+    def interface_tags(self) -> Optional[Sequence['outputs.SwitchControllerDynamicPortPolicyPolicyInterfaceTag']]:
+        """
+        Policy matching the FortiSwitch interface object tags. The structure of `interface_tags` block is documented below.
+        """
+        return pulumi.get(self, "interface_tags")
+
+    @property
+    @pulumi.getter(name="lldpProfile")
+    def lldp_profile(self) -> Optional[str]:
+        """
+        LLDP profile to be applied when using this policy.
+        """
+        return pulumi.get(self, "lldp_profile")
+
+    @property
+    @pulumi.getter
+    def mac(self) -> Optional[str]:
+        """
+        Policy matching MAC address.
+        """
+        return pulumi.get(self, "mac")
+
+    @property
+    @pulumi.getter
+    def n8021x(self) -> Optional[str]:
+        """
+        802.1x security policy to be applied when using this policy.
+        """
+        return pulumi.get(self, "n8021x")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Policy name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="qosPolicy")
+    def qos_policy(self) -> Optional[str]:
+        """
+        QoS policy to be applied when using this policy.
+        """
+        return pulumi.get(self, "qos_policy")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Enable/disable policy. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Policy matching type.
+        """
+        return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter(name="vlanPolicy")
+    def vlan_policy(self) -> Optional[str]:
+        """
+        VLAN policy to be applied when using this policy.
+        """
+        return pulumi.get(self, "vlan_policy")
+
+
+@pulumi.output_type
+class SwitchControllerDynamicPortPolicyPolicyInterfaceTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tagName":
+            suggest = "tag_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerDynamicPortPolicyPolicyInterfaceTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerDynamicPortPolicyPolicyInterfaceTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerDynamicPortPolicyPolicyInterfaceTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 tag_name: Optional[str] = None):
+        """
+        :param str tag_name: FortiSwitch port tag name.
+        """
+        if tag_name is not None:
+            pulumi.set(__self__, "tag_name", tag_name)
+
+    @property
+    @pulumi.getter(name="tagName")
+    def tag_name(self) -> Optional[str]:
+        """
+        FortiSwitch port tag name.
+        """
+        return pulumi.get(self, "tag_name")
+
+
+@pulumi.output_type
 class SwitchControllerFlowTrackingAggregate(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None,
@@ -56082,6 +63353,162 @@ class SwitchControllerFlowTrackingAggregate(dict):
         IP address to group all matching traffic sessions to a flow.
         """
         return pulumi.get(self, "ip")
+
+
+@pulumi.output_type
+class SwitchControllerFortilinkSettingsNacPorts(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bounceNacPort":
+            suggest = "bounce_nac_port"
+        elif key == "lanSegment":
+            suggest = "lan_segment"
+        elif key == "memberChange":
+            suggest = "member_change"
+        elif key == "nacLanInterface":
+            suggest = "nac_lan_interface"
+        elif key == "nacSegmentVlans":
+            suggest = "nac_segment_vlans"
+        elif key == "onboardingVlan":
+            suggest = "onboarding_vlan"
+        elif key == "parentKey":
+            suggest = "parent_key"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerFortilinkSettingsNacPorts. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerFortilinkSettingsNacPorts.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerFortilinkSettingsNacPorts.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bounce_nac_port: Optional[str] = None,
+                 lan_segment: Optional[str] = None,
+                 member_change: Optional[int] = None,
+                 nac_lan_interface: Optional[str] = None,
+                 nac_segment_vlans: Optional[Sequence['outputs.SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan']] = None,
+                 onboarding_vlan: Optional[str] = None,
+                 parent_key: Optional[str] = None):
+        """
+        :param str bounce_nac_port: Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
+        :param str lan_segment: Enable/disable LAN segment feature on the FortiLink interface. Valid values: `enabled`, `disabled`.
+        :param int member_change: Member change flag.
+        :param str nac_lan_interface: Configure NAC LAN interface.
+        :param Sequence['SwitchControllerFortilinkSettingsNacPortsNacSegmentVlanArgs'] nac_segment_vlans: Configure NAC segment VLANs. The structure of `nac_segment_vlans` block is documented below.
+        :param str onboarding_vlan: Default NAC Onboarding VLAN when NAC devices are discovered.
+        :param str parent_key: Parent key name.
+        """
+        if bounce_nac_port is not None:
+            pulumi.set(__self__, "bounce_nac_port", bounce_nac_port)
+        if lan_segment is not None:
+            pulumi.set(__self__, "lan_segment", lan_segment)
+        if member_change is not None:
+            pulumi.set(__self__, "member_change", member_change)
+        if nac_lan_interface is not None:
+            pulumi.set(__self__, "nac_lan_interface", nac_lan_interface)
+        if nac_segment_vlans is not None:
+            pulumi.set(__self__, "nac_segment_vlans", nac_segment_vlans)
+        if onboarding_vlan is not None:
+            pulumi.set(__self__, "onboarding_vlan", onboarding_vlan)
+        if parent_key is not None:
+            pulumi.set(__self__, "parent_key", parent_key)
+
+    @property
+    @pulumi.getter(name="bounceNacPort")
+    def bounce_nac_port(self) -> Optional[str]:
+        """
+        Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "bounce_nac_port")
+
+    @property
+    @pulumi.getter(name="lanSegment")
+    def lan_segment(self) -> Optional[str]:
+        """
+        Enable/disable LAN segment feature on the FortiLink interface. Valid values: `enabled`, `disabled`.
+        """
+        return pulumi.get(self, "lan_segment")
+
+    @property
+    @pulumi.getter(name="memberChange")
+    def member_change(self) -> Optional[int]:
+        """
+        Member change flag.
+        """
+        return pulumi.get(self, "member_change")
+
+    @property
+    @pulumi.getter(name="nacLanInterface")
+    def nac_lan_interface(self) -> Optional[str]:
+        """
+        Configure NAC LAN interface.
+        """
+        return pulumi.get(self, "nac_lan_interface")
+
+    @property
+    @pulumi.getter(name="nacSegmentVlans")
+    def nac_segment_vlans(self) -> Optional[Sequence['outputs.SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan']]:
+        """
+        Configure NAC segment VLANs. The structure of `nac_segment_vlans` block is documented below.
+        """
+        return pulumi.get(self, "nac_segment_vlans")
+
+    @property
+    @pulumi.getter(name="onboardingVlan")
+    def onboarding_vlan(self) -> Optional[str]:
+        """
+        Default NAC Onboarding VLAN when NAC devices are discovered.
+        """
+        return pulumi.get(self, "onboarding_vlan")
+
+    @property
+    @pulumi.getter(name="parentKey")
+    def parent_key(self) -> Optional[str]:
+        """
+        Parent key name.
+        """
+        return pulumi.get(self, "parent_key")
+
+
+@pulumi.output_type
+class SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "vlanName":
+            suggest = "vlan_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 vlan_name: Optional[str] = None):
+        """
+        :param str vlan_name: VLAN interface name.
+        """
+        if vlan_name is not None:
+            pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter(name="vlanName")
+    def vlan_name(self) -> Optional[str]:
+        """
+        VLAN interface name.
+        """
+        return pulumi.get(self, "vlan_name")
 
 
 @pulumi.output_type
@@ -57081,11 +64508,13 @@ class SwitchControllerManagedSwitchIgmpSnooping(dict):
     def __init__(__self__, *,
                  aging_time: Optional[int] = None,
                  flood_unknown_multicast: Optional[str] = None,
-                 local_override: Optional[str] = None):
+                 local_override: Optional[str] = None,
+                 vlans: Optional[Sequence['outputs.SwitchControllerManagedSwitchIgmpSnoopingVlan']] = None):
         """
         :param int aging_time: Maximum time to retain a multicast snooping entry for which no packets have been seen (15 - 3600 sec, default = 300).
         :param str flood_unknown_multicast: Enable/disable unknown multicast flooding. Valid values: `enable`, `disable`.
         :param str local_override: Enable to override global 802.1X settings on individual FortiSwitches. Valid values: `enable`, `disable`.
+        :param Sequence['SwitchControllerManagedSwitchIgmpSnoopingVlanArgs'] vlans: Configure IGMP snooping VLAN. The structure of `vlans` block is documented below.
         """
         if aging_time is not None:
             pulumi.set(__self__, "aging_time", aging_time)
@@ -57093,6 +64522,8 @@ class SwitchControllerManagedSwitchIgmpSnooping(dict):
             pulumi.set(__self__, "flood_unknown_multicast", flood_unknown_multicast)
         if local_override is not None:
             pulumi.set(__self__, "local_override", local_override)
+        if vlans is not None:
+            pulumi.set(__self__, "vlans", vlans)
 
     @property
     @pulumi.getter(name="agingTime")
@@ -57117,6 +64548,100 @@ class SwitchControllerManagedSwitchIgmpSnooping(dict):
         Enable to override global 802.1X settings on individual FortiSwitches. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "local_override")
+
+    @property
+    @pulumi.getter
+    def vlans(self) -> Optional[Sequence['outputs.SwitchControllerManagedSwitchIgmpSnoopingVlan']]:
+        """
+        Configure IGMP snooping VLAN. The structure of `vlans` block is documented below.
+        """
+        return pulumi.get(self, "vlans")
+
+
+@pulumi.output_type
+class SwitchControllerManagedSwitchIgmpSnoopingVlan(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "querierAddr":
+            suggest = "querier_addr"
+        elif key == "vlanName":
+            suggest = "vlan_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerManagedSwitchIgmpSnoopingVlan. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerManagedSwitchIgmpSnoopingVlan.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerManagedSwitchIgmpSnoopingVlan.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 proxy: Optional[str] = None,
+                 querier: Optional[str] = None,
+                 querier_addr: Optional[str] = None,
+                 version: Optional[int] = None,
+                 vlan_name: Optional[str] = None):
+        """
+        :param str proxy: IGMP snooping proxy for the VLAN interface. Valid values: `disable`, `enable`, `global`.
+        :param str querier: Enable/disable IGMP snooping querier for the VLAN interface. Valid values: `disable`, `enable`.
+        :param str querier_addr: IGMP snooping querier address.
+        :param int version: IGMP snooping querier version.
+        :param str vlan_name: List of FortiSwitch VLANs.
+        """
+        if proxy is not None:
+            pulumi.set(__self__, "proxy", proxy)
+        if querier is not None:
+            pulumi.set(__self__, "querier", querier)
+        if querier_addr is not None:
+            pulumi.set(__self__, "querier_addr", querier_addr)
+        if version is not None:
+            pulumi.set(__self__, "version", version)
+        if vlan_name is not None:
+            pulumi.set(__self__, "vlan_name", vlan_name)
+
+    @property
+    @pulumi.getter
+    def proxy(self) -> Optional[str]:
+        """
+        IGMP snooping proxy for the VLAN interface. Valid values: `disable`, `enable`, `global`.
+        """
+        return pulumi.get(self, "proxy")
+
+    @property
+    @pulumi.getter
+    def querier(self) -> Optional[str]:
+        """
+        Enable/disable IGMP snooping querier for the VLAN interface. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "querier")
+
+    @property
+    @pulumi.getter(name="querierAddr")
+    def querier_addr(self) -> Optional[str]:
+        """
+        IGMP snooping querier address.
+        """
+        return pulumi.get(self, "querier_addr")
+
+    @property
+    @pulumi.getter
+    def version(self) -> Optional[int]:
+        """
+        IGMP snooping querier version.
+        """
+        return pulumi.get(self, "version")
+
+    @property
+    @pulumi.getter(name="vlanName")
+    def vlan_name(self) -> Optional[str]:
+        """
+        List of FortiSwitch VLANs.
+        """
+        return pulumi.get(self, "vlan_name")
 
 
 @pulumi.output_type
@@ -57520,6 +65045,8 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "igmps_flood_reports"
         elif key == "igmpsFloodTraffic":
             suggest = "igmps_flood_traffic"
+        elif key == "interfaceTags":
+            suggest = "interface_tags"
         elif key == "ipSourceGuard":
             suggest = "ip_source_guard"
         elif key == "islLocalTrunkName":
@@ -57542,6 +65069,10 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "loop_guard_timeout"
         elif key == "macAddr":
             suggest = "mac_addr"
+        elif key == "matchedDppIntfTags":
+            suggest = "matched_dpp_intf_tags"
+        elif key == "matchedDppPolicy":
+            suggest = "matched_dpp_policy"
         elif key == "maxBundle":
             suggest = "max_bundle"
         elif key == "mclagIclPort":
@@ -57564,8 +65095,12 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "pause_meter_resume"
         elif key == "poeCapable":
             suggest = "poe_capable"
+        elif key == "poeMaxPower":
+            suggest = "poe_max_power"
         elif key == "poePreStandardDetection":
             suggest = "poe_pre_standard_detection"
+        elif key == "poeStandard":
+            suggest = "poe_standard"
         elif key == "poeStatus":
             suggest = "poe_status"
         elif key == "portName":
@@ -57574,6 +65109,8 @@ class SwitchControllerManagedSwitchPort(dict):
             suggest = "port_number"
         elif key == "portOwner":
             suggest = "port_owner"
+        elif key == "portPolicy":
+            suggest = "port_policy"
         elif key == "portPrefixType":
             suggest = "port_prefix_type"
         elif key == "portSecurityPolicy":
@@ -57655,6 +65192,7 @@ class SwitchControllerManagedSwitchPort(dict):
                  igmp_snooping: Optional[str] = None,
                  igmps_flood_reports: Optional[str] = None,
                  igmps_flood_traffic: Optional[str] = None,
+                 interface_tags: Optional[Sequence['outputs.SwitchControllerManagedSwitchPortInterfaceTag']] = None,
                  ip_source_guard: Optional[str] = None,
                  isl_local_trunk_name: Optional[str] = None,
                  isl_peer_device_name: Optional[str] = None,
@@ -57666,6 +65204,8 @@ class SwitchControllerManagedSwitchPort(dict):
                  loop_guard: Optional[str] = None,
                  loop_guard_timeout: Optional[int] = None,
                  mac_addr: Optional[str] = None,
+                 matched_dpp_intf_tags: Optional[str] = None,
+                 matched_dpp_policy: Optional[str] = None,
                  max_bundle: Optional[int] = None,
                  mclag: Optional[str] = None,
                  mclag_icl_port: Optional[int] = None,
@@ -57680,11 +65220,14 @@ class SwitchControllerManagedSwitchPort(dict):
                  pause_meter: Optional[int] = None,
                  pause_meter_resume: Optional[str] = None,
                  poe_capable: Optional[int] = None,
+                 poe_max_power: Optional[str] = None,
                  poe_pre_standard_detection: Optional[str] = None,
+                 poe_standard: Optional[str] = None,
                  poe_status: Optional[str] = None,
                  port_name: Optional[str] = None,
                  port_number: Optional[int] = None,
                  port_owner: Optional[str] = None,
+                 port_policy: Optional[str] = None,
                  port_prefix_type: Optional[int] = None,
                  port_security_policy: Optional[str] = None,
                  port_selection_criteria: Optional[str] = None,
@@ -57711,7 +65254,7 @@ class SwitchControllerManagedSwitchPort(dict):
                  virtual_port: Optional[int] = None,
                  vlan: Optional[str] = None):
         """
-        :param str access_mode: Access mode of the port. Valid values: `normal`, `nac`.
+        :param str access_mode: Access mode of the port.
         :param str aggregator_mode: LACP member select mode. Valid values: `bandwidth`, `count`.
         :param Sequence['SwitchControllerManagedSwitchPortAllowedVlanArgs'] allowed_vlans: Configure switch port tagged vlans The structure of `allowed_vlans` block is documented below.
         :param str allowed_vlans_all: Enable/disable all defined vlans on this port. Valid values: `enable`, `disable`.
@@ -57737,6 +65280,7 @@ class SwitchControllerManagedSwitchPort(dict):
         :param str igmp_snooping: Set IGMP snooping mode for the physical port interface. Valid values: `enable`, `disable`.
         :param str igmps_flood_reports: Enable/disable flooding of IGMP reports to this interface when igmp-snooping enabled. Valid values: `enable`, `disable`.
         :param str igmps_flood_traffic: Enable/disable flooding of IGMP snooping traffic to this interface. Valid values: `enable`, `disable`.
+        :param Sequence['SwitchControllerManagedSwitchPortInterfaceTagArgs'] interface_tags: Tag(s) associated with the interface for various features including virtual port pool, dynamic port policy. The structure of `interface_tags` block is documented below.
         :param str ip_source_guard: Enable/disable IP source guard. Valid values: `disable`, `enable`.
         :param str isl_local_trunk_name: ISL local trunk name.
         :param str isl_peer_device_name: ISL peer device name.
@@ -57748,6 +65292,8 @@ class SwitchControllerManagedSwitchPort(dict):
         :param str loop_guard: Enable/disable loop-guard on this interface, an STP optimization used to prevent network loops. Valid values: `enabled`, `disabled`.
         :param int loop_guard_timeout: Loop-guard timeout (0 - 120 min, default = 45).
         :param str mac_addr: Port/Trunk MAC.
+        :param str matched_dpp_intf_tags: Matched interface tags in the dynamic port policy.
+        :param str matched_dpp_policy: Matched child policy in the dynamic port policy.
         :param int max_bundle: Maximum size of LAG bundle (1 - 24, default = 24)
         :param str mclag: Enable/disable multi-chassis link aggregation (MCLAG). Valid values: `enable`, `disable`.
         :param int mclag_icl_port: MCLAG-ICL port.
@@ -57762,11 +65308,14 @@ class SwitchControllerManagedSwitchPort(dict):
         :param int pause_meter: Configure ingress pause metering rate, in kbps (default = 0, disabled).
         :param str pause_meter_resume: Resume threshold for resuming traffic on ingress port. Valid values: `75%`, `50%`, `25%`.
         :param int poe_capable: PoE capable.
+        :param str poe_max_power: PoE maximum power.
         :param str poe_pre_standard_detection: Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
+        :param str poe_standard: PoE standard supported.
         :param str poe_status: Enable/disable PoE status. Valid values: `enable`, `disable`.
         :param str port_name: Switch port name.
         :param int port_number: Port number.
         :param str port_owner: Switch port name.
+        :param str port_policy: Switch controller dynamic port policy from available options.
         :param int port_prefix_type: Port prefix type.
         :param str port_security_policy: Switch controller authentication policy to apply to this managed switch from available options.
         :param str port_selection_criteria: Algorithm for aggregate port selection. Valid values: `src-mac`, `dst-mac`, `src-dst-mac`, `src-ip`, `dst-ip`, `src-dst-ip`.
@@ -57845,6 +65394,8 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "igmps_flood_reports", igmps_flood_reports)
         if igmps_flood_traffic is not None:
             pulumi.set(__self__, "igmps_flood_traffic", igmps_flood_traffic)
+        if interface_tags is not None:
+            pulumi.set(__self__, "interface_tags", interface_tags)
         if ip_source_guard is not None:
             pulumi.set(__self__, "ip_source_guard", ip_source_guard)
         if isl_local_trunk_name is not None:
@@ -57867,6 +65418,10 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "loop_guard_timeout", loop_guard_timeout)
         if mac_addr is not None:
             pulumi.set(__self__, "mac_addr", mac_addr)
+        if matched_dpp_intf_tags is not None:
+            pulumi.set(__self__, "matched_dpp_intf_tags", matched_dpp_intf_tags)
+        if matched_dpp_policy is not None:
+            pulumi.set(__self__, "matched_dpp_policy", matched_dpp_policy)
         if max_bundle is not None:
             pulumi.set(__self__, "max_bundle", max_bundle)
         if mclag is not None:
@@ -57895,8 +65450,12 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "pause_meter_resume", pause_meter_resume)
         if poe_capable is not None:
             pulumi.set(__self__, "poe_capable", poe_capable)
+        if poe_max_power is not None:
+            pulumi.set(__self__, "poe_max_power", poe_max_power)
         if poe_pre_standard_detection is not None:
             pulumi.set(__self__, "poe_pre_standard_detection", poe_pre_standard_detection)
+        if poe_standard is not None:
+            pulumi.set(__self__, "poe_standard", poe_standard)
         if poe_status is not None:
             pulumi.set(__self__, "poe_status", poe_status)
         if port_name is not None:
@@ -57905,6 +65464,8 @@ class SwitchControllerManagedSwitchPort(dict):
             pulumi.set(__self__, "port_number", port_number)
         if port_owner is not None:
             pulumi.set(__self__, "port_owner", port_owner)
+        if port_policy is not None:
+            pulumi.set(__self__, "port_policy", port_policy)
         if port_prefix_type is not None:
             pulumi.set(__self__, "port_prefix_type", port_prefix_type)
         if port_security_policy is not None:
@@ -57960,7 +65521,7 @@ class SwitchControllerManagedSwitchPort(dict):
     @pulumi.getter(name="accessMode")
     def access_mode(self) -> Optional[str]:
         """
-        Access mode of the port. Valid values: `normal`, `nac`.
+        Access mode of the port.
         """
         return pulumi.get(self, "access_mode")
 
@@ -58165,6 +65726,14 @@ class SwitchControllerManagedSwitchPort(dict):
         return pulumi.get(self, "igmps_flood_traffic")
 
     @property
+    @pulumi.getter(name="interfaceTags")
+    def interface_tags(self) -> Optional[Sequence['outputs.SwitchControllerManagedSwitchPortInterfaceTag']]:
+        """
+        Tag(s) associated with the interface for various features including virtual port pool, dynamic port policy. The structure of `interface_tags` block is documented below.
+        """
+        return pulumi.get(self, "interface_tags")
+
+    @property
     @pulumi.getter(name="ipSourceGuard")
     def ip_source_guard(self) -> Optional[str]:
         """
@@ -58251,6 +65820,22 @@ class SwitchControllerManagedSwitchPort(dict):
         Port/Trunk MAC.
         """
         return pulumi.get(self, "mac_addr")
+
+    @property
+    @pulumi.getter(name="matchedDppIntfTags")
+    def matched_dpp_intf_tags(self) -> Optional[str]:
+        """
+        Matched interface tags in the dynamic port policy.
+        """
+        return pulumi.get(self, "matched_dpp_intf_tags")
+
+    @property
+    @pulumi.getter(name="matchedDppPolicy")
+    def matched_dpp_policy(self) -> Optional[str]:
+        """
+        Matched child policy in the dynamic port policy.
+        """
+        return pulumi.get(self, "matched_dpp_policy")
 
     @property
     @pulumi.getter(name="maxBundle")
@@ -58365,12 +65950,28 @@ class SwitchControllerManagedSwitchPort(dict):
         return pulumi.get(self, "poe_capable")
 
     @property
+    @pulumi.getter(name="poeMaxPower")
+    def poe_max_power(self) -> Optional[str]:
+        """
+        PoE maximum power.
+        """
+        return pulumi.get(self, "poe_max_power")
+
+    @property
     @pulumi.getter(name="poePreStandardDetection")
     def poe_pre_standard_detection(self) -> Optional[str]:
         """
         Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "poe_pre_standard_detection")
+
+    @property
+    @pulumi.getter(name="poeStandard")
+    def poe_standard(self) -> Optional[str]:
+        """
+        PoE standard supported.
+        """
+        return pulumi.get(self, "poe_standard")
 
     @property
     @pulumi.getter(name="poeStatus")
@@ -58403,6 +66004,14 @@ class SwitchControllerManagedSwitchPort(dict):
         Switch port name.
         """
         return pulumi.get(self, "port_owner")
+
+    @property
+    @pulumi.getter(name="portPolicy")
+    def port_policy(self) -> Optional[str]:
+        """
+        Switch controller dynamic port policy from available options.
+        """
+        return pulumi.get(self, "port_policy")
 
     @property
     @pulumi.getter(name="portPrefixType")
@@ -58627,7 +66236,7 @@ class SwitchControllerManagedSwitchPortAllowedVlan(dict):
     def __init__(__self__, *,
                  vlan_name: Optional[str] = None):
         """
-        :param str vlan_name: VLAN name.
+        :param str vlan_name: List of FortiSwitch VLANs.
         """
         if vlan_name is not None:
             pulumi.set(__self__, "vlan_name", vlan_name)
@@ -58636,7 +66245,7 @@ class SwitchControllerManagedSwitchPortAllowedVlan(dict):
     @pulumi.getter(name="vlanName")
     def vlan_name(self) -> Optional[str]:
         """
-        VLAN name.
+        List of FortiSwitch VLANs.
         """
         return pulumi.get(self, "vlan_name")
 
@@ -58658,6 +66267,42 @@ class SwitchControllerManagedSwitchPortExportTag(dict):
 
     def get(self, key: str, default = None) -> Any:
         SwitchControllerManagedSwitchPortExportTag.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 tag_name: Optional[str] = None):
+        """
+        :param str tag_name: Switch tag name.
+        """
+        if tag_name is not None:
+            pulumi.set(__self__, "tag_name", tag_name)
+
+    @property
+    @pulumi.getter(name="tagName")
+    def tag_name(self) -> Optional[str]:
+        """
+        Switch tag name.
+        """
+        return pulumi.get(self, "tag_name")
+
+
+@pulumi.output_type
+class SwitchControllerManagedSwitchPortInterfaceTag(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "tagName":
+            suggest = "tag_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SwitchControllerManagedSwitchPortInterfaceTag. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SwitchControllerManagedSwitchPortInterfaceTag.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SwitchControllerManagedSwitchPortInterfaceTag.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -58735,7 +66380,7 @@ class SwitchControllerManagedSwitchPortUntaggedVlan(dict):
     def __init__(__self__, *,
                  vlan_name: Optional[str] = None):
         """
-        :param str vlan_name: VLAN name.
+        :param str vlan_name: List of FortiSwitch VLANs.
         """
         if vlan_name is not None:
             pulumi.set(__self__, "vlan_name", vlan_name)
@@ -58744,7 +66389,7 @@ class SwitchControllerManagedSwitchPortUntaggedVlan(dict):
     @pulumi.getter(name="vlanName")
     def vlan_name(self) -> Optional[str]:
         """
-        VLAN name.
+        List of FortiSwitch VLANs.
         """
         return pulumi.get(self, "vlan_name")
 
@@ -59282,10 +66927,10 @@ class SwitchControllerManagedSwitchSnmpUser(dict):
                  query_port: Optional[int] = None,
                  security_level: Optional[str] = None):
         """
-        :param str auth_proto: Authentication protocol. Valid values: `md5`, `sha`.
+        :param str auth_proto: Authentication protocol.
         :param str auth_pwd: Password for authentication protocol.
         :param str name: Interface name.
-        :param str priv_proto: Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        :param str priv_proto: Privacy (encryption) protocol.
         :param str priv_pwd: Password for privacy (encryption) protocol.
         :param str queries: Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
         :param int query_port: SNMPv3 query port (default = 161).
@@ -59312,7 +66957,7 @@ class SwitchControllerManagedSwitchSnmpUser(dict):
     @pulumi.getter(name="authProto")
     def auth_proto(self) -> Optional[str]:
         """
-        Authentication protocol. Valid values: `md5`, `sha`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth_proto")
 
@@ -59336,7 +66981,7 @@ class SwitchControllerManagedSwitchSnmpUser(dict):
     @pulumi.getter(name="privProto")
     def priv_proto(self) -> Optional[str]:
         """
-        Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        Privacy (encryption) protocol.
         """
         return pulumi.get(self, "priv_proto")
 
@@ -60628,17 +68273,21 @@ class SystemAPIUserSettingTrusthost(dict):
 class SystemAccprofileFwgrpPermission(dict):
     def __init__(__self__, *,
                  address: Optional[str] = None,
+                 others: Optional[str] = None,
                  policy: Optional[str] = None,
                  schedule: Optional[str] = None,
                  service: Optional[str] = None):
         """
         :param str address: Address Configuration. Valid values: `none`, `read`, `read-write`.
+        :param str others: Other Firewall Configuration. Valid values: `none`, `read`, `read-write`.
         :param str policy: Policy Configuration. Valid values: `none`, `read`, `read-write`.
         :param str schedule: Schedule Configuration. Valid values: `none`, `read`, `read-write`.
         :param str service: Service Configuration. Valid values: `none`, `read`, `read-write`.
         """
         if address is not None:
             pulumi.set(__self__, "address", address)
+        if others is not None:
+            pulumi.set(__self__, "others", others)
         if policy is not None:
             pulumi.set(__self__, "policy", policy)
         if schedule is not None:
@@ -60653,6 +68302,14 @@ class SystemAccprofileFwgrpPermission(dict):
         Address Configuration. Valid values: `none`, `read`, `read-write`.
         """
         return pulumi.get(self, "address")
+
+    @property
+    @pulumi.getter
+    def others(self) -> Optional[str]:
+        """
+        Other Firewall Configuration. Valid values: `none`, `read`, `read-write`.
+        """
+        return pulumi.get(self, "others")
 
     @property
     @pulumi.getter
@@ -61056,6 +68713,138 @@ class SystemAccprofileUtmgrpPermission(dict):
         Web Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
         """
         return pulumi.get(self, "webfilter")
+
+
+@pulumi.output_type
+class SystemAcmeAccount(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "caUrl":
+            suggest = "ca_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemAcmeAccount. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemAcmeAccount.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemAcmeAccount.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 ca_url: Optional[str] = None,
+                 email: Optional[str] = None,
+                 id: Optional[str] = None,
+                 privatekey: Optional[str] = None,
+                 status: Optional[str] = None,
+                 url: Optional[str] = None):
+        """
+        :param str ca_url: Account ca_url.
+        :param str email: Account email.
+        :param str id: Account id.
+        :param str privatekey: Account Private Key.
+        :param str status: Account status.
+        :param str url: Account url.
+        """
+        if ca_url is not None:
+            pulumi.set(__self__, "ca_url", ca_url)
+        if email is not None:
+            pulumi.set(__self__, "email", email)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if privatekey is not None:
+            pulumi.set(__self__, "privatekey", privatekey)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @property
+    @pulumi.getter(name="caUrl")
+    def ca_url(self) -> Optional[str]:
+        """
+        Account ca_url.
+        """
+        return pulumi.get(self, "ca_url")
+
+    @property
+    @pulumi.getter
+    def email(self) -> Optional[str]:
+        """
+        Account email.
+        """
+        return pulumi.get(self, "email")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        Account id.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def privatekey(self) -> Optional[str]:
+        """
+        Account Private Key.
+        """
+        return pulumi.get(self, "privatekey")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Account status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def url(self) -> Optional[str]:
+        """
+        Account url.
+        """
+        return pulumi.get(self, "url")
+
+
+@pulumi.output_type
+class SystemAcmeInterface(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "interfaceName":
+            suggest = "interface_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemAcmeInterface. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemAcmeInterface.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemAcmeInterface.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 interface_name: Optional[str] = None):
+        """
+        :param str interface_name: Interface name.
+        """
+        if interface_name is not None:
+            pulumi.set(__self__, "interface_name", interface_name)
+
+    @property
+    @pulumi.getter(name="interfaceName")
+    def interface_name(self) -> Optional[str]:
+        """
+        Interface name.
+        """
+        return pulumi.get(self, "interface_name")
 
 
 @pulumi.output_type
@@ -62068,20 +69857,56 @@ class SystemAutomationDestinationDestination(dict):
 @pulumi.output_type
 class SystemAutomationStitchAction(dict):
     def __init__(__self__, *,
-                 name: Optional[str] = None):
+                 action: Optional[str] = None,
+                 delay: Optional[int] = None,
+                 id: Optional[int] = None,
+                 required: Optional[str] = None):
         """
-        :param str name: Destination name.
+        :param str action: Action name.
+        :param int delay: Delay before execution (in seconds).
+        :param int id: Entry ID.
+        :param str required: Required in action chain. Valid values: `enable`, `disable`.
         """
-        if name is not None:
-            pulumi.set(__self__, "name", name)
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if delay is not None:
+            pulumi.set(__self__, "delay", delay)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if required is not None:
+            pulumi.set(__self__, "required", required)
 
     @property
     @pulumi.getter
-    def name(self) -> Optional[str]:
+    def action(self) -> Optional[str]:
         """
-        Destination name.
+        Action name.
         """
-        return pulumi.get(self, "name")
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter
+    def delay(self) -> Optional[int]:
+        """
+        Delay before execution (in seconds).
+        """
+        return pulumi.get(self, "delay")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Entry ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def required(self) -> Optional[str]:
+        """
+        Required in action chain. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "required")
 
 
 @pulumi.output_type
@@ -62457,6 +70282,66 @@ class SystemClusterSyncSyncvd(dict):
 
 
 @pulumi.output_type
+class SystemCsfFabricConnector(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "configurationWriteAccess":
+            suggest = "configuration_write_access"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemCsfFabricConnector. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemCsfFabricConnector.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemCsfFabricConnector.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 accprofile: Optional[str] = None,
+                 configuration_write_access: Optional[str] = None,
+                 serial: Optional[str] = None):
+        """
+        :param str accprofile: Override access profile.
+        :param str configuration_write_access: Enable/disable downstream device write access to configuration. Valid values: `enable`, `disable`.
+        :param str serial: Serial.
+        """
+        if accprofile is not None:
+            pulumi.set(__self__, "accprofile", accprofile)
+        if configuration_write_access is not None:
+            pulumi.set(__self__, "configuration_write_access", configuration_write_access)
+        if serial is not None:
+            pulumi.set(__self__, "serial", serial)
+
+    @property
+    @pulumi.getter
+    def accprofile(self) -> Optional[str]:
+        """
+        Override access profile.
+        """
+        return pulumi.get(self, "accprofile")
+
+    @property
+    @pulumi.getter(name="configurationWriteAccess")
+    def configuration_write_access(self) -> Optional[str]:
+        """
+        Enable/disable downstream device write access to configuration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "configuration_write_access")
+
+    @property
+    @pulumi.getter
+    def serial(self) -> Optional[str]:
+        """
+        Serial.
+        """
+        return pulumi.get(self, "serial")
+
+
+@pulumi.output_type
 class SystemCsfFabricDevice(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -62680,6 +70565,25 @@ class SystemCsfTrustedList(dict):
         Serial.
         """
         return pulumi.get(self, "serial")
+
+
+@pulumi.output_type
+class SystemDdnsDdnsServerAddr(dict):
+    def __init__(__self__, *,
+                 addr: Optional[str] = None):
+        """
+        :param str addr: IP address or FQDN of the server.
+        """
+        if addr is not None:
+            pulumi.set(__self__, "addr", addr)
+
+    @property
+    @pulumi.getter
+    def addr(self) -> Optional[str]:
+        """
+        IP address or FQDN of the server.
+        """
+        return pulumi.get(self, "addr")
 
 
 @pulumi.output_type
@@ -63444,7 +71348,11 @@ class SystemFederatedUpgradeNodeList(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
-        if key == "setupTime":
+        if key == "coordinatingFortigate":
+            suggest = "coordinating_fortigate"
+        elif key == "deviceType":
+            suggest = "device_type"
+        elif key == "setupTime":
             suggest = "setup_time"
         elif key == "upgradePath":
             suggest = "upgrade_path"
@@ -63461,18 +71369,26 @@ class SystemFederatedUpgradeNodeList(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 coordinating_fortigate: Optional[str] = None,
+                 device_type: Optional[str] = None,
                  serial: Optional[str] = None,
                  setup_time: Optional[str] = None,
                  time: Optional[str] = None,
                  timing: Optional[str] = None,
                  upgrade_path: Optional[str] = None):
         """
+        :param str coordinating_fortigate: The serial of the FortiGate that controls this device
+        :param str device_type: What type of device this node represents. Valid values: `fortigate`, `fortiswitch`, `fortiap`.
         :param str serial: Serial number of the node to include.
         :param str setup_time: When the upgrade was configured. Format hh:mm yyyy/mm/dd UTC.
         :param str time: Scheduled time for the upgrade. Format hh:mm yyyy/mm/dd UTC.
         :param str timing: Whether the upgrade should be run immediately, or at a scheduled time. Valid values: `immediate`, `scheduled`.
         :param str upgrade_path: Image IDs to upgrade through.
         """
+        if coordinating_fortigate is not None:
+            pulumi.set(__self__, "coordinating_fortigate", coordinating_fortigate)
+        if device_type is not None:
+            pulumi.set(__self__, "device_type", device_type)
         if serial is not None:
             pulumi.set(__self__, "serial", serial)
         if setup_time is not None:
@@ -63483,6 +71399,22 @@ class SystemFederatedUpgradeNodeList(dict):
             pulumi.set(__self__, "timing", timing)
         if upgrade_path is not None:
             pulumi.set(__self__, "upgrade_path", upgrade_path)
+
+    @property
+    @pulumi.getter(name="coordinatingFortigate")
+    def coordinating_fortigate(self) -> Optional[str]:
+        """
+        The serial of the FortiGate that controls this device
+        """
+        return pulumi.get(self, "coordinating_fortigate")
+
+    @property
+    @pulumi.getter(name="deviceType")
+    def device_type(self) -> Optional[str]:
+        """
+        What type of device this node represents. Valid values: `fortigate`, `fortiswitch`, `fortiap`.
+        """
+        return pulumi.get(self, "device_type")
 
     @property
     @pulumi.getter
@@ -63807,6 +71739,1098 @@ class SystemHaSecondaryVcluster(dict):
 
 
 @pulumi.output_type
+class SystemHaUnicastPeer(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "peerIp":
+            suggest = "peer_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemHaUnicastPeer. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemHaUnicastPeer.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemHaUnicastPeer.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 id: Optional[int] = None,
+                 peer_ip: Optional[str] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if peer_ip is not None:
+            pulumi.set(__self__, "peer_ip", peer_ip)
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="peerIp")
+    def peer_ip(self) -> Optional[str]:
+        return pulumi.get(self, "peer_ip")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup14(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup14. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup14.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup14.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup15(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup15. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup15.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup15.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup16(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup16. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup16.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup16.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup17(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup17. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup17.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup17.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup18(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup18. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup18.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup18.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup19(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup19. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup19.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup19.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup1(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup1. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup1.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup1.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup20(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup20. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup20.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup20.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup21(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup21. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup21.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup21.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup27(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup27. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup27.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup27.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup28(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup28. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup28.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup28.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup29(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup29. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup29.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup29.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup2(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup2. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup2.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup2.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup30(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup30. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup30.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup30.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup31(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup31. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup31.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup31.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup32(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup32. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup32.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup32.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
+class SystemIkeDhGroup5(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "keypairCache":
+            suggest = "keypair_cache"
+        elif key == "keypairCount":
+            suggest = "keypair_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemIkeDhGroup5. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemIkeDhGroup5.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemIkeDhGroup5.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 keypair_cache: Optional[str] = None,
+                 keypair_count: Optional[int] = None,
+                 mode: Optional[str] = None):
+        """
+        :param str keypair_cache: Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        :param int keypair_count: Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        :param str mode: Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        if keypair_cache is not None:
+            pulumi.set(__self__, "keypair_cache", keypair_cache)
+        if keypair_count is not None:
+            pulumi.set(__self__, "keypair_count", keypair_count)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @property
+    @pulumi.getter(name="keypairCache")
+    def keypair_cache(self) -> Optional[str]:
+        """
+        Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+        """
+        return pulumi.get(self, "keypair_cache")
+
+    @property
+    @pulumi.getter(name="keypairCount")
+    def keypair_count(self) -> Optional[int]:
+        """
+        Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+        """
+        return pulumi.get(self, "keypair_count")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+        """
+        return pulumi.get(self, "mode")
+
+
+@pulumi.output_type
 class SystemInterfaceClientOption(dict):
     def __init__(__self__, *,
                  code: Optional[int] = None,
@@ -63874,6 +72898,54 @@ class SystemInterfaceClientOption(dict):
 
 
 @pulumi.output_type
+class SystemInterfaceDhcpSnoopingServerList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "serverIp":
+            suggest = "server_ip"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemInterfaceDhcpSnoopingServerList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemInterfaceDhcpSnoopingServerList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemInterfaceDhcpSnoopingServerList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 server_ip: Optional[str] = None):
+        """
+        :param str name: Tag name.
+        :param str server_ip: IP address for DHCP server.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if server_ip is not None:
+            pulumi.set(__self__, "server_ip", server_ip)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Tag name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="serverIp")
+    def server_ip(self) -> Optional[str]:
+        """
+        IP address for DHCP server.
+        """
+        return pulumi.get(self, "server_ip")
+
+
+@pulumi.output_type
 class SystemInterfaceFailAlertInterface(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
@@ -63901,6 +72973,8 @@ class SystemInterfaceIpv6(dict):
             suggest = "cli_conn6_status"
         elif key == "dhcp6ClientOptions":
             suggest = "dhcp6_client_options"
+        elif key == "dhcp6IapdLists":
+            suggest = "dhcp6_iapd_lists"
         elif key == "dhcp6InformationRequest":
             suggest = "dhcp6_information_request"
         elif key == "dhcp6PrefixDelegation":
@@ -63927,6 +73001,8 @@ class SystemInterfaceIpv6(dict):
             suggest = "ip6_allowaccess"
         elif key == "ip6DefaultLife":
             suggest = "ip6_default_life"
+        elif key == "ip6DelegatedPrefixIaid":
+            suggest = "ip6_delegated_prefix_iaid"
         elif key == "ip6DelegatedPrefixLists":
             suggest = "ip6_delegated_prefix_lists"
         elif key == "ip6DnsServerOverride":
@@ -63973,6 +73049,8 @@ class SystemInterfaceIpv6(dict):
             suggest = "nd_timestamp_delta"
         elif key == "ndTimestampFuzz":
             suggest = "nd_timestamp_fuzz"
+        elif key == "raSendMtu":
+            suggest = "ra_send_mtu"
         elif key == "uniqueAutoconfAddr":
             suggest = "unique_autoconf_addr"
         elif key == "vrip6LinkLocal":
@@ -63995,6 +73073,7 @@ class SystemInterfaceIpv6(dict):
                  autoconf: Optional[str] = None,
                  cli_conn6_status: Optional[int] = None,
                  dhcp6_client_options: Optional[str] = None,
+                 dhcp6_iapd_lists: Optional[Sequence['outputs.SystemInterfaceIpv6Dhcp6IapdList']] = None,
                  dhcp6_information_request: Optional[str] = None,
                  dhcp6_prefix_delegation: Optional[str] = None,
                  dhcp6_prefix_hint: Optional[str] = None,
@@ -64008,6 +73087,7 @@ class SystemInterfaceIpv6(dict):
                  ip6_address: Optional[str] = None,
                  ip6_allowaccess: Optional[str] = None,
                  ip6_default_life: Optional[int] = None,
+                 ip6_delegated_prefix_iaid: Optional[int] = None,
                  ip6_delegated_prefix_lists: Optional[Sequence['outputs.SystemInterfaceIpv6Ip6DelegatedPrefixList']] = None,
                  ip6_dns_server_override: Optional[str] = None,
                  ip6_extra_addrs: Optional[Sequence['outputs.SystemInterfaceIpv6Ip6ExtraAddr']] = None,
@@ -64031,6 +73111,7 @@ class SystemInterfaceIpv6(dict):
                  nd_security_level: Optional[int] = None,
                  nd_timestamp_delta: Optional[int] = None,
                  nd_timestamp_fuzz: Optional[int] = None,
+                 ra_send_mtu: Optional[str] = None,
                  unique_autoconf_addr: Optional[str] = None,
                  vrip6_link_local: Optional[str] = None,
                  vrrp6s: Optional[Sequence['outputs.SystemInterfaceIpv6Vrrp6']] = None,
@@ -64039,6 +73120,7 @@ class SystemInterfaceIpv6(dict):
         :param str autoconf: Enable/disable address auto config. Valid values: `enable`, `disable`.
         :param int cli_conn6_status: CLI IPv6 connection status.
         :param str dhcp6_client_options: DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
+        :param Sequence['SystemInterfaceIpv6Dhcp6IapdListArgs'] dhcp6_iapd_lists: DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
         :param str dhcp6_information_request: Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
         :param str dhcp6_prefix_delegation: Enable/disable DHCPv6 prefix delegation. Valid values: `enable`, `disable`.
         :param str dhcp6_prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
@@ -64052,6 +73134,7 @@ class SystemInterfaceIpv6(dict):
         :param str ip6_address: Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
         :param str ip6_allowaccess: Allow management access to the interface.
         :param int ip6_default_life: Default life (sec).
+        :param int ip6_delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param Sequence['SystemInterfaceIpv6Ip6DelegatedPrefixListArgs'] ip6_delegated_prefix_lists: Advertised IPv6 delegated prefix list. The structure of `ip6_delegated_prefix_list` block is documented below.
         :param str ip6_dns_server_override: Enable/disable using the DNS server acquired by DHCP. Valid values: `enable`, `disable`.
         :param Sequence['SystemInterfaceIpv6Ip6ExtraAddrArgs'] ip6_extra_addrs: Extra IPv6 address prefixes of interface. The structure of `ip6_extra_addr` block is documented below.
@@ -64075,6 +73158,7 @@ class SystemInterfaceIpv6(dict):
         :param int nd_security_level: Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
         :param int nd_timestamp_delta: Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
         :param int nd_timestamp_fuzz: Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
+        :param str ra_send_mtu: Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
         :param str unique_autoconf_addr: Enable/disable unique auto config address. Valid values: `enable`, `disable`.
         :param str vrip6_link_local: Link-local IPv6 address of virtual router.
         :param Sequence['SystemInterfaceIpv6Vrrp6Args'] vrrp6s: IPv6 VRRP configuration. The structure of `vrrp6` block is documented below.
@@ -64086,6 +73170,8 @@ class SystemInterfaceIpv6(dict):
             pulumi.set(__self__, "cli_conn6_status", cli_conn6_status)
         if dhcp6_client_options is not None:
             pulumi.set(__self__, "dhcp6_client_options", dhcp6_client_options)
+        if dhcp6_iapd_lists is not None:
+            pulumi.set(__self__, "dhcp6_iapd_lists", dhcp6_iapd_lists)
         if dhcp6_information_request is not None:
             pulumi.set(__self__, "dhcp6_information_request", dhcp6_information_request)
         if dhcp6_prefix_delegation is not None:
@@ -64112,6 +73198,8 @@ class SystemInterfaceIpv6(dict):
             pulumi.set(__self__, "ip6_allowaccess", ip6_allowaccess)
         if ip6_default_life is not None:
             pulumi.set(__self__, "ip6_default_life", ip6_default_life)
+        if ip6_delegated_prefix_iaid is not None:
+            pulumi.set(__self__, "ip6_delegated_prefix_iaid", ip6_delegated_prefix_iaid)
         if ip6_delegated_prefix_lists is not None:
             pulumi.set(__self__, "ip6_delegated_prefix_lists", ip6_delegated_prefix_lists)
         if ip6_dns_server_override is not None:
@@ -64158,6 +73246,8 @@ class SystemInterfaceIpv6(dict):
             pulumi.set(__self__, "nd_timestamp_delta", nd_timestamp_delta)
         if nd_timestamp_fuzz is not None:
             pulumi.set(__self__, "nd_timestamp_fuzz", nd_timestamp_fuzz)
+        if ra_send_mtu is not None:
+            pulumi.set(__self__, "ra_send_mtu", ra_send_mtu)
         if unique_autoconf_addr is not None:
             pulumi.set(__self__, "unique_autoconf_addr", unique_autoconf_addr)
         if vrip6_link_local is not None:
@@ -64190,6 +73280,14 @@ class SystemInterfaceIpv6(dict):
         DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
         """
         return pulumi.get(self, "dhcp6_client_options")
+
+    @property
+    @pulumi.getter(name="dhcp6IapdLists")
+    def dhcp6_iapd_lists(self) -> Optional[Sequence['outputs.SystemInterfaceIpv6Dhcp6IapdList']]:
+        """
+        DHCPv6 IA-PD list The structure of `dhcp6_iapd_list` block is documented below.
+        """
+        return pulumi.get(self, "dhcp6_iapd_lists")
 
     @property
     @pulumi.getter(name="dhcp6InformationRequest")
@@ -64294,6 +73392,14 @@ class SystemInterfaceIpv6(dict):
         Default life (sec).
         """
         return pulumi.get(self, "ip6_default_life")
+
+    @property
+    @pulumi.getter(name="ip6DelegatedPrefixIaid")
+    def ip6_delegated_prefix_iaid(self) -> Optional[int]:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "ip6_delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="ip6DelegatedPrefixLists")
@@ -64480,6 +73586,14 @@ class SystemInterfaceIpv6(dict):
         return pulumi.get(self, "nd_timestamp_fuzz")
 
     @property
+    @pulumi.getter(name="raSendMtu")
+    def ra_send_mtu(self) -> Optional[str]:
+        """
+        Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ra_send_mtu")
+
+    @property
     @pulumi.getter(name="uniqueAutoconfAddr")
     def unique_autoconf_addr(self) -> Optional[str]:
         """
@@ -64513,12 +73627,90 @@ class SystemInterfaceIpv6(dict):
 
 
 @pulumi.output_type
+class SystemInterfaceIpv6Dhcp6IapdList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "prefixHint":
+            suggest = "prefix_hint"
+        elif key == "prefixHintPlt":
+            suggest = "prefix_hint_plt"
+        elif key == "prefixHintVlt":
+            suggest = "prefix_hint_vlt"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemInterfaceIpv6Dhcp6IapdList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemInterfaceIpv6Dhcp6IapdList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemInterfaceIpv6Dhcp6IapdList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 iaid: Optional[int] = None,
+                 prefix_hint: Optional[str] = None,
+                 prefix_hint_plt: Optional[int] = None,
+                 prefix_hint_vlt: Optional[int] = None):
+        """
+        :param int iaid: Identity association identifier.
+        :param str prefix_hint: DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
+        :param int prefix_hint_plt: DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
+        :param int prefix_hint_vlt: DHCPv6 prefix hint valid life time (sec).
+        """
+        if iaid is not None:
+            pulumi.set(__self__, "iaid", iaid)
+        if prefix_hint is not None:
+            pulumi.set(__self__, "prefix_hint", prefix_hint)
+        if prefix_hint_plt is not None:
+            pulumi.set(__self__, "prefix_hint_plt", prefix_hint_plt)
+        if prefix_hint_vlt is not None:
+            pulumi.set(__self__, "prefix_hint_vlt", prefix_hint_vlt)
+
+    @property
+    @pulumi.getter
+    def iaid(self) -> Optional[int]:
+        """
+        Identity association identifier.
+        """
+        return pulumi.get(self, "iaid")
+
+    @property
+    @pulumi.getter(name="prefixHint")
+    def prefix_hint(self) -> Optional[str]:
+        """
+        DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
+        """
+        return pulumi.get(self, "prefix_hint")
+
+    @property
+    @pulumi.getter(name="prefixHintPlt")
+    def prefix_hint_plt(self) -> Optional[int]:
+        """
+        DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
+        """
+        return pulumi.get(self, "prefix_hint_plt")
+
+    @property
+    @pulumi.getter(name="prefixHintVlt")
+    def prefix_hint_vlt(self) -> Optional[int]:
+        """
+        DHCPv6 prefix hint valid life time (sec).
+        """
+        return pulumi.get(self, "prefix_hint_vlt")
+
+
+@pulumi.output_type
 class SystemInterfaceIpv6Ip6DelegatedPrefixList(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
         if key == "autonomousFlag":
             suggest = "autonomous_flag"
+        elif key == "delegatedPrefixIaid":
+            suggest = "delegated_prefix_iaid"
         elif key == "onlinkFlag":
             suggest = "onlink_flag"
         elif key == "prefixId":
@@ -64541,6 +73733,7 @@ class SystemInterfaceIpv6Ip6DelegatedPrefixList(dict):
 
     def __init__(__self__, *,
                  autonomous_flag: Optional[str] = None,
+                 delegated_prefix_iaid: Optional[int] = None,
                  onlink_flag: Optional[str] = None,
                  prefix_id: Optional[int] = None,
                  rdnss: Optional[str] = None,
@@ -64549,6 +73742,7 @@ class SystemInterfaceIpv6Ip6DelegatedPrefixList(dict):
                  upstream_interface: Optional[str] = None):
         """
         :param str autonomous_flag: Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
+        :param int delegated_prefix_iaid: IAID of obtained delegated-prefix from the upstream interface.
         :param str onlink_flag: Enable/disable the onlink flag. Valid values: `enable`, `disable`.
         :param int prefix_id: Prefix ID.
         :param str rdnss: Recursive DNS server option.
@@ -64558,6 +73752,8 @@ class SystemInterfaceIpv6Ip6DelegatedPrefixList(dict):
         """
         if autonomous_flag is not None:
             pulumi.set(__self__, "autonomous_flag", autonomous_flag)
+        if delegated_prefix_iaid is not None:
+            pulumi.set(__self__, "delegated_prefix_iaid", delegated_prefix_iaid)
         if onlink_flag is not None:
             pulumi.set(__self__, "onlink_flag", onlink_flag)
         if prefix_id is not None:
@@ -64578,6 +73774,14 @@ class SystemInterfaceIpv6Ip6DelegatedPrefixList(dict):
         Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "autonomous_flag")
+
+    @property
+    @pulumi.getter(name="delegatedPrefixIaid")
+    def delegated_prefix_iaid(self) -> Optional[int]:
+        """
+        IAID of obtained delegated-prefix from the upstream interface.
+        """
+        return pulumi.get(self, "delegated_prefix_iaid")
 
     @property
     @pulumi.getter(name="onlinkFlag")
@@ -65456,6 +74660,25 @@ class SystemIpsecAggregateMember(dict):
 
 
 @pulumi.output_type
+class SystemLinkMonitorRoute(dict):
+    def __init__(__self__, *,
+                 subnet: Optional[str] = None):
+        """
+        :param str subnet: IP and netmask (x.x.x.x/y).
+        """
+        if subnet is not None:
+            pulumi.set(__self__, "subnet", subnet)
+
+    @property
+    @pulumi.getter
+    def subnet(self) -> Optional[str]:
+        """
+        IP and netmask (x.x.x.x/y).
+        """
+        return pulumi.get(self, "subnet")
+
+
+@pulumi.output_type
 class SystemLinkMonitorServer(dict):
     def __init__(__self__, *,
                  address: Optional[str] = None):
@@ -65472,6 +74695,73 @@ class SystemLinkMonitorServer(dict):
         Server address.
         """
         return pulumi.get(self, "address")
+
+
+@pulumi.output_type
+class SystemLinkMonitorServerList(dict):
+    def __init__(__self__, *,
+                 dst: Optional[str] = None,
+                 id: Optional[int] = None,
+                 port: Optional[int] = None,
+                 protocol: Optional[str] = None,
+                 weight: Optional[int] = None):
+        """
+        :param str dst: IP address of the server to be monitored.
+        :param int id: Server ID.
+        :param int port: Port number of the traffic to be used to monitor the server.
+        :param str protocol: Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+        :param int weight: Weight of the monitor to this dst (0 - 255).
+        """
+        if dst is not None:
+            pulumi.set(__self__, "dst", dst)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if port is not None:
+            pulumi.set(__self__, "port", port)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if weight is not None:
+            pulumi.set(__self__, "weight", weight)
+
+    @property
+    @pulumi.getter
+    def dst(self) -> Optional[str]:
+        """
+        IP address of the server to be monitored.
+        """
+        return pulumi.get(self, "dst")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        Server ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def port(self) -> Optional[int]:
+        """
+        Port number of the traffic to be used to monitor the server.
+        """
+        return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> Optional[str]:
+        """
+        Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
+    def weight(self) -> Optional[int]:
+        """
+        Weight of the monitor to this dst (0 - 255).
+        """
+        return pulumi.get(self, "weight")
 
 
 @pulumi.output_type
@@ -66138,6 +75428,49 @@ class SystemNdProxyMember(dict):
 
 
 @pulumi.output_type
+class SystemNpuPriorityProtocol(dict):
+    def __init__(__self__, *,
+                 bfd: Optional[str] = None,
+                 bgp: Optional[str] = None,
+                 slbc: Optional[str] = None):
+        """
+        :param str bfd: Enable/disable NPU BFD priority protocol. Valid values: `enable`, `disable`.
+        :param str bgp: Enable/disable NPU BGP priority protocol. Valid values: `enable`, `disable`.
+        :param str slbc: Enable/disable NPU SLBC priority protocol. Valid values: `enable`, `disable`.
+        """
+        if bfd is not None:
+            pulumi.set(__self__, "bfd", bfd)
+        if bgp is not None:
+            pulumi.set(__self__, "bgp", bgp)
+        if slbc is not None:
+            pulumi.set(__self__, "slbc", slbc)
+
+    @property
+    @pulumi.getter
+    def bfd(self) -> Optional[str]:
+        """
+        Enable/disable NPU BFD priority protocol. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "bfd")
+
+    @property
+    @pulumi.getter
+    def bgp(self) -> Optional[str]:
+        """
+        Enable/disable NPU BGP priority protocol. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "bgp")
+
+    @property
+    @pulumi.getter
+    def slbc(self) -> Optional[str]:
+        """
+        Enable/disable NPU SLBC priority protocol. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "slbc")
+
+
+@pulumi.output_type
 class SystemNtpInterface(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -66312,6 +75645,68 @@ class SystemObjectTaggingTag(dict):
         Tag name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class SystemPtpServerInterface(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "delayMechanism":
+            suggest = "delay_mechanism"
+        elif key == "serverInterfaceName":
+            suggest = "server_interface_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemPtpServerInterface. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemPtpServerInterface.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemPtpServerInterface.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 delay_mechanism: Optional[str] = None,
+                 id: Optional[int] = None,
+                 server_interface_name: Optional[str] = None):
+        """
+        :param str delay_mechanism: End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
+        :param int id: ID.
+        :param str server_interface_name: Interface name.
+        """
+        if delay_mechanism is not None:
+            pulumi.set(__self__, "delay_mechanism", delay_mechanism)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if server_interface_name is not None:
+            pulumi.set(__self__, "server_interface_name", server_interface_name)
+
+    @property
+    @pulumi.getter(name="delayMechanism")
+    def delay_mechanism(self) -> Optional[str]:
+        """
+        End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
+        """
+        return pulumi.get(self, "delay_mechanism")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="serverInterfaceName")
+    def server_interface_name(self) -> Optional[str]:
+        """
+        Interface name.
+        """
+        return pulumi.get(self, "server_interface_name")
 
 
 @pulumi.output_type
@@ -67695,6 +77090,8 @@ class SystemSamlServiceProvider(dict):
             suggest = "idp_single_logout_url"
         elif key == "idpSingleSignOnUrl":
             suggest = "idp_single_sign_on_url"
+        elif key == "spBindingProtocol":
+            suggest = "sp_binding_protocol"
         elif key == "spCert":
             suggest = "sp_cert"
         elif key == "spEntityId":
@@ -67724,6 +77121,7 @@ class SystemSamlServiceProvider(dict):
                  idp_single_sign_on_url: Optional[str] = None,
                  name: Optional[str] = None,
                  prefix: Optional[str] = None,
+                 sp_binding_protocol: Optional[str] = None,
                  sp_cert: Optional[str] = None,
                  sp_entity_id: Optional[str] = None,
                  sp_portal_url: Optional[str] = None,
@@ -67736,6 +77134,7 @@ class SystemSamlServiceProvider(dict):
         :param str idp_single_sign_on_url: IDP single sign-on URL.
         :param str name: Name.
         :param str prefix: Prefix.
+        :param str sp_binding_protocol: SP binding protocol. Valid values: `post`, `redirect`.
         :param str sp_cert: SP certificate name.
         :param str sp_entity_id: SP entity ID.
         :param str sp_portal_url: SP portal URL.
@@ -67754,6 +77153,8 @@ class SystemSamlServiceProvider(dict):
             pulumi.set(__self__, "name", name)
         if prefix is not None:
             pulumi.set(__self__, "prefix", prefix)
+        if sp_binding_protocol is not None:
+            pulumi.set(__self__, "sp_binding_protocol", sp_binding_protocol)
         if sp_cert is not None:
             pulumi.set(__self__, "sp_cert", sp_cert)
         if sp_entity_id is not None:
@@ -67812,6 +77213,14 @@ class SystemSamlServiceProvider(dict):
         Prefix.
         """
         return pulumi.get(self, "prefix")
+
+    @property
+    @pulumi.getter(name="spBindingProtocol")
+    def sp_binding_protocol(self) -> Optional[str]:
+        """
+        SP binding protocol. Valid values: `post`, `redirect`.
+        """
+        return pulumi.get(self, "sp_binding_protocol")
 
     @property
     @pulumi.getter(name="spCert")
@@ -67886,11 +77295,80 @@ class SystemSamlServiceProviderAssertionAttribute(dict):
 
 
 @pulumi.output_type
+class SystemSdnConnectorExternalAccountList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "regionLists":
+            suggest = "region_lists"
+        elif key == "roleArn":
+            suggest = "role_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemSdnConnectorExternalAccountList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemSdnConnectorExternalAccountList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemSdnConnectorExternalAccountList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 region_lists: Optional[Sequence['outputs.SystemSdnConnectorExternalAccountListRegionList']] = None,
+                 role_arn: Optional[str] = None):
+        """
+        :param Sequence['SystemSdnConnectorExternalAccountListRegionListArgs'] region_lists: AWS region name list. The structure of `region_list` block is documented below.
+        :param str role_arn: AWS role ARN to assume.
+        """
+        if region_lists is not None:
+            pulumi.set(__self__, "region_lists", region_lists)
+        if role_arn is not None:
+            pulumi.set(__self__, "role_arn", role_arn)
+
+    @property
+    @pulumi.getter(name="regionLists")
+    def region_lists(self) -> Optional[Sequence['outputs.SystemSdnConnectorExternalAccountListRegionList']]:
+        """
+        AWS region name list. The structure of `region_list` block is documented below.
+        """
+        return pulumi.get(self, "region_lists")
+
+    @property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> Optional[str]:
+        """
+        AWS role ARN to assume.
+        """
+        return pulumi.get(self, "role_arn")
+
+
+@pulumi.output_type
+class SystemSdnConnectorExternalAccountListRegionList(dict):
+    def __init__(__self__, *,
+                 region: Optional[str] = None):
+        """
+        :param str region: AWS region name.
+        """
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+
+    @property
+    @pulumi.getter
+    def region(self) -> Optional[str]:
+        """
+        AWS region name.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class SystemSdnConnectorExternalIp(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Route name.
+        :param str name: GCP zone name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -67899,7 +77377,122 @@ class SystemSdnConnectorExternalIp(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Route name.
+        GCP zone name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class SystemSdnConnectorForwardingRule(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "ruleName":
+            suggest = "rule_name"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemSdnConnectorForwardingRule. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemSdnConnectorForwardingRule.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemSdnConnectorForwardingRule.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 rule_name: Optional[str] = None,
+                 target: Optional[str] = None):
+        """
+        :param str rule_name: Forwarding rule name.
+        :param str target: Target instance name.
+        """
+        if rule_name is not None:
+            pulumi.set(__self__, "rule_name", rule_name)
+        if target is not None:
+            pulumi.set(__self__, "target", target)
+
+    @property
+    @pulumi.getter(name="ruleName")
+    def rule_name(self) -> Optional[str]:
+        """
+        Forwarding rule name.
+        """
+        return pulumi.get(self, "rule_name")
+
+    @property
+    @pulumi.getter
+    def target(self) -> Optional[str]:
+        """
+        Target instance name.
+        """
+        return pulumi.get(self, "target")
+
+
+@pulumi.output_type
+class SystemSdnConnectorGcpProjectList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "gcpZoneLists":
+            suggest = "gcp_zone_lists"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in SystemSdnConnectorGcpProjectList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        SystemSdnConnectorGcpProjectList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        SystemSdnConnectorGcpProjectList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 gcp_zone_lists: Optional[Sequence['outputs.SystemSdnConnectorGcpProjectListGcpZoneList']] = None,
+                 id: Optional[str] = None):
+        """
+        :param Sequence['SystemSdnConnectorGcpProjectListGcpZoneListArgs'] gcp_zone_lists: Configure GCP zone list. The structure of `gcp_zone_list` block is documented below.
+        :param str id: GCP project ID.
+        """
+        if gcp_zone_lists is not None:
+            pulumi.set(__self__, "gcp_zone_lists", gcp_zone_lists)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter(name="gcpZoneLists")
+    def gcp_zone_lists(self) -> Optional[Sequence['outputs.SystemSdnConnectorGcpProjectListGcpZoneList']]:
+        """
+        Configure GCP zone list. The structure of `gcp_zone_list` block is documented below.
+        """
+        return pulumi.get(self, "gcp_zone_lists")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[str]:
+        """
+        GCP project ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class SystemSdnConnectorGcpProjectListGcpZoneList(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: GCP zone name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -67911,7 +77504,7 @@ class SystemSdnConnectorNic(dict):
                  name: Optional[str] = None):
         """
         :param Sequence['SystemSdnConnectorNicIpArgs'] ips: Configure IP configuration. The structure of `ip` block is documented below.
-        :param str name: Route name.
+        :param str name: GCP zone name.
         """
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
@@ -67930,7 +77523,7 @@ class SystemSdnConnectorNic(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -67961,7 +77554,7 @@ class SystemSdnConnectorNicIp(dict):
                  public_ip: Optional[str] = None,
                  resource_group: Optional[str] = None):
         """
-        :param str name: Route name.
+        :param str name: GCP zone name.
         :param str public_ip: Public IP name.
         :param str resource_group: Resource group of Azure route table.
         """
@@ -67976,7 +77569,7 @@ class SystemSdnConnectorNicIp(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -68002,7 +77595,7 @@ class SystemSdnConnectorRoute(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Route name.
+        :param str name: GCP zone name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -68011,7 +77604,7 @@ class SystemSdnConnectorRoute(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -68043,7 +77636,7 @@ class SystemSdnConnectorRouteTable(dict):
                  routes: Optional[Sequence['outputs.SystemSdnConnectorRouteTableRoute']] = None,
                  subscription_id: Optional[str] = None):
         """
-        :param str name: Route name.
+        :param str name: GCP zone name.
         :param str resource_group: Resource group of Azure route table.
         :param Sequence['SystemSdnConnectorRouteTableRouteArgs'] routes: Configure Azure route. The structure of `route` block is documented below.
         :param str subscription_id: Subscription ID of Azure route table.
@@ -68061,7 +77654,7 @@ class SystemSdnConnectorRouteTable(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -68113,7 +77706,7 @@ class SystemSdnConnectorRouteTableRoute(dict):
                  name: Optional[str] = None,
                  next_hop: Optional[str] = None):
         """
-        :param str name: Route name.
+        :param str name: GCP zone name.
         :param str next_hop: Next hop address.
         """
         if name is not None:
@@ -68125,7 +77718,7 @@ class SystemSdnConnectorRouteTableRoute(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -68136,6 +77729,25 @@ class SystemSdnConnectorRouteTableRoute(dict):
         Next hop address.
         """
         return pulumi.get(self, "next_hop")
+
+
+@pulumi.output_type
+class SystemSdnConnectorServerList(dict):
+    def __init__(__self__, *,
+                 ip: Optional[str] = None):
+        """
+        :param str ip: Configure IP configuration. The structure of `ip` block is documented below.
+        """
+        if ip is not None:
+            pulumi.set(__self__, "ip", ip)
+
+    @property
+    @pulumi.getter
+    def ip(self) -> Optional[str]:
+        """
+        Configure IP configuration. The structure of `ip` block is documented below.
+        """
+        return pulumi.get(self, "ip")
 
 
 @pulumi.output_type
@@ -68476,6 +78088,8 @@ class SystemSdwanHealthCheck(dict):
         suggest = None
         if key == "addrMode":
             suggest = "addr_mode"
+        elif key == "detectMode":
+            suggest = "detect_mode"
         elif key == "dnsMatchIp":
             suggest = "dns_match_ip"
         elif key == "dnsRequestDomain":
@@ -68540,6 +78154,7 @@ class SystemSdwanHealthCheck(dict):
 
     def __init__(__self__, *,
                  addr_mode: Optional[str] = None,
+                 detect_mode: Optional[str] = None,
                  diffservcode: Optional[str] = None,
                  dns_match_ip: Optional[str] = None,
                  dns_request_domain: Optional[str] = None,
@@ -68579,6 +78194,7 @@ class SystemSdwanHealthCheck(dict):
                  user: Optional[str] = None):
         """
         :param str addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param str detect_mode: The mode determining how to detect the server. Valid values: `active`, `passive`, `prefer-passive`.
         :param str diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet.
         :param str dns_match_ip: Response IP expected from DNS server if the protocol is DNS.
         :param str dns_request_domain: Fully qualified domain name to resolve for the DNS probe.
@@ -68619,6 +78235,8 @@ class SystemSdwanHealthCheck(dict):
         """
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if detect_mode is not None:
+            pulumi.set(__self__, "detect_mode", detect_mode)
         if diffservcode is not None:
             pulumi.set(__self__, "diffservcode", diffservcode)
         if dns_match_ip is not None:
@@ -68701,6 +78319,14 @@ class SystemSdwanHealthCheck(dict):
         Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
         """
         return pulumi.get(self, "addr_mode")
+
+    @property
+    @pulumi.getter(name="detectMode")
+    def detect_mode(self) -> Optional[str]:
+        """
+        The mode determining how to detect the server. Valid values: `active`, `passive`, `prefer-passive`.
+        """
+        return pulumi.get(self, "detect_mode")
 
     @property
     @pulumi.getter
@@ -69372,12 +78998,14 @@ class SystemSdwanNeighbor(dict):
                  health_check: Optional[str] = None,
                  ip: Optional[str] = None,
                  member: Optional[int] = None,
+                 mode: Optional[str] = None,
                  role: Optional[str] = None,
                  sla_id: Optional[int] = None):
         """
         :param str health_check: SD-WAN health-check.
         :param str ip: IP/IPv6 address of neighbor.
         :param int member: Member sequence number.
+        :param str mode: Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
         :param str role: Service role to work with neighbor. Valid values: `standalone`, `primary`, `secondary`.
         :param int sla_id: SLA ID.
         """
@@ -69387,6 +79015,8 @@ class SystemSdwanNeighbor(dict):
             pulumi.set(__self__, "ip", ip)
         if member is not None:
             pulumi.set(__self__, "member", member)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
         if role is not None:
             pulumi.set(__self__, "role", role)
         if sla_id is not None:
@@ -69415,6 +79045,14 @@ class SystemSdwanNeighbor(dict):
         Member sequence number.
         """
         return pulumi.get(self, "member")
+
+    @property
+    @pulumi.getter
+    def mode(self) -> Optional[str]:
+        """
+        Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+        """
+        return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
@@ -69490,8 +79128,12 @@ class SystemSdwanService(dict):
             suggest = "minimum_sla_meet_members"
         elif key == "packetLossWeight":
             suggest = "packet_loss_weight"
+        elif key == "passiveMeasurement":
+            suggest = "passive_measurement"
         elif key == "priorityMembers":
             suggest = "priority_members"
+        elif key == "priorityZones":
+            suggest = "priority_zones"
         elif key == "qualityLink":
             suggest = "quality_link"
         elif key == "routeTag":
@@ -69557,7 +79199,9 @@ class SystemSdwanService(dict):
                  mode: Optional[str] = None,
                  name: Optional[str] = None,
                  packet_loss_weight: Optional[int] = None,
+                 passive_measurement: Optional[str] = None,
                  priority_members: Optional[Sequence['outputs.SystemSdwanServicePriorityMember']] = None,
+                 priority_zones: Optional[Sequence['outputs.SystemSdwanServicePriorityZone']] = None,
                  protocol: Optional[int] = None,
                  quality_link: Optional[int] = None,
                  role: Optional[str] = None,
@@ -69610,7 +79254,9 @@ class SystemSdwanService(dict):
         :param str mode: Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
         :param str name: Service and service group name.
         :param int packet_loss_weight: Coefficient of packet-loss in the formula of custom-profile-1.
+        :param str passive_measurement: Enable/disable passive measurement based on the service criteria. Valid values: `enable`, `disable`.
         :param Sequence['SystemSdwanServicePriorityMemberArgs'] priority_members: Member sequence number list. The structure of `priority_members` block is documented below.
+        :param Sequence['SystemSdwanServicePriorityZoneArgs'] priority_zones: Priority zone name list. The structure of `priority_zone` block is documented below.
         :param int protocol: Protocol number.
         :param int quality_link: Quality grade.
         :param str role: Service role to work with neighbor. Valid values: `standalone`, `primary`, `secondary`.
@@ -69697,8 +79343,12 @@ class SystemSdwanService(dict):
             pulumi.set(__self__, "name", name)
         if packet_loss_weight is not None:
             pulumi.set(__self__, "packet_loss_weight", packet_loss_weight)
+        if passive_measurement is not None:
+            pulumi.set(__self__, "passive_measurement", passive_measurement)
         if priority_members is not None:
             pulumi.set(__self__, "priority_members", priority_members)
+        if priority_zones is not None:
+            pulumi.set(__self__, "priority_zones", priority_zones)
         if protocol is not None:
             pulumi.set(__self__, "protocol", protocol)
         if quality_link is not None:
@@ -70007,12 +79657,28 @@ class SystemSdwanService(dict):
         return pulumi.get(self, "packet_loss_weight")
 
     @property
+    @pulumi.getter(name="passiveMeasurement")
+    def passive_measurement(self) -> Optional[str]:
+        """
+        Enable/disable passive measurement based on the service criteria. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "passive_measurement")
+
+    @property
     @pulumi.getter(name="priorityMembers")
     def priority_members(self) -> Optional[Sequence['outputs.SystemSdwanServicePriorityMember']]:
         """
         Member sequence number list. The structure of `priority_members` block is documented below.
         """
         return pulumi.get(self, "priority_members")
+
+    @property
+    @pulumi.getter(name="priorityZones")
+    def priority_zones(self) -> Optional[Sequence['outputs.SystemSdwanServicePriorityZone']]:
+        """
+        Priority zone name list. The structure of `priority_zone` block is documented below.
+        """
+        return pulumi.get(self, "priority_zones")
 
     @property
     @pulumi.getter
@@ -70394,6 +80060,25 @@ class SystemSdwanServicePriorityMember(dict):
         Member sequence number.
         """
         return pulumi.get(self, "seq_num")
+
+
+@pulumi.output_type
+class SystemSdwanServicePriorityZone(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Service and service group name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Service and service group name.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -70936,6 +80621,25 @@ class SystemSsoAdminVdom(dict):
 
 
 @pulumi.output_type
+class SystemSsoForticloudAdminVdom(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Virtual domain name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Virtual domain name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class SystemSwitchInterfaceMember(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -71049,23 +80753,15 @@ class SystemVdomExceptionVdom(dict):
 class SystemVirtualSwitchPort(dict):
     def __init__(__self__, *,
                  alias: Optional[str] = None,
-                 name: Optional[str] = None,
-                 speed: Optional[str] = None,
-                 status: Optional[str] = None):
+                 name: Optional[str] = None):
         """
         :param str alias: Alias.
         :param str name: Physical interface name.
-        :param str speed: Interface speed. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
-        :param str status: Interface status. Valid values: `up`, `down`.
         """
         if alias is not None:
             pulumi.set(__self__, "alias", alias)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if speed is not None:
-            pulumi.set(__self__, "speed", speed)
-        if status is not None:
-            pulumi.set(__self__, "status", status)
 
     @property
     @pulumi.getter
@@ -71082,22 +80778,6 @@ class SystemVirtualSwitchPort(dict):
         Physical interface name.
         """
         return pulumi.get(self, "name")
-
-    @property
-    @pulumi.getter
-    def speed(self) -> Optional[str]:
-        """
-        Interface speed. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
-        """
-        return pulumi.get(self, "speed")
-
-    @property
-    @pulumi.getter
-    def status(self) -> Optional[str]:
-        """
-        Interface status. Valid values: `up`, `down`.
-        """
-        return pulumi.get(self, "status")
 
 
 @pulumi.output_type
@@ -73479,6 +83159,10 @@ class UserDomainControllerExtraServer(dict):
         suggest = None
         if key == "ipAddress":
             suggest = "ip_address"
+        elif key == "sourceIpAddress":
+            suggest = "source_ip_address"
+        elif key == "sourcePort":
+            suggest = "source_port"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in UserDomainControllerExtraServer. Access the value via the '{suggest}' property getter instead.")
@@ -73494,11 +83178,15 @@ class UserDomainControllerExtraServer(dict):
     def __init__(__self__, *,
                  id: Optional[int] = None,
                  ip_address: Optional[str] = None,
-                 port: Optional[int] = None):
+                 port: Optional[int] = None,
+                 source_ip_address: Optional[str] = None,
+                 source_port: Optional[int] = None):
         """
         :param int id: Server ID.
         :param str ip_address: Domain controller IP address.
         :param int port: Port to be used for communication with the domain controller (default = 445).
+        :param str source_ip_address: FortiGate IPv4 address to be used for communication with the domain controller.
+        :param int source_port: Source port to be used for communication with the domain controller.
         """
         if id is not None:
             pulumi.set(__self__, "id", id)
@@ -73506,6 +83194,10 @@ class UserDomainControllerExtraServer(dict):
             pulumi.set(__self__, "ip_address", ip_address)
         if port is not None:
             pulumi.set(__self__, "port", port)
+        if source_ip_address is not None:
+            pulumi.set(__self__, "source_ip_address", source_ip_address)
+        if source_port is not None:
+            pulumi.set(__self__, "source_port", source_port)
 
     @property
     @pulumi.getter
@@ -73530,6 +83222,22 @@ class UserDomainControllerExtraServer(dict):
         Port to be used for communication with the domain controller (default = 445).
         """
         return pulumi.get(self, "port")
+
+    @property
+    @pulumi.getter(name="sourceIpAddress")
+    def source_ip_address(self) -> Optional[str]:
+        """
+        FortiGate IPv4 address to be used for communication with the domain controller.
+        """
+        return pulumi.get(self, "source_ip_address")
+
+    @property
+    @pulumi.getter(name="sourcePort")
+    def source_port(self) -> Optional[int]:
+        """
+        Source port to be used for communication with the domain controller.
+        """
+        return pulumi.get(self, "source_port")
 
 
 @pulumi.output_type
@@ -73793,6 +83501,25 @@ class UserGroupMember(dict):
     def name(self) -> Optional[str]:
         """
         Guest name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class UserNacPolicySwitchGroup(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Managed FortiSwitch group name from available options.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Managed FortiSwitch group name from available options.
         """
         return pulumi.get(self, "name")
 
@@ -74307,6 +84034,245 @@ class UserSettingAuthPort(dict):
 
 
 @pulumi.output_type
+class VideofilterProfileFortiguardCategory(dict):
+    def __init__(__self__, *,
+                 filters: Optional[Sequence['outputs.VideofilterProfileFortiguardCategoryFilter']] = None):
+        """
+        :param Sequence['VideofilterProfileFortiguardCategoryFilterArgs'] filters: Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
+        """
+        if filters is not None:
+            pulumi.set(__self__, "filters", filters)
+
+    @property
+    @pulumi.getter
+    def filters(self) -> Optional[Sequence['outputs.VideofilterProfileFortiguardCategoryFilter']]:
+        """
+        Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
+        """
+        return pulumi.get(self, "filters")
+
+
+@pulumi.output_type
+class VideofilterProfileFortiguardCategoryFilter(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "categoryId":
+            suggest = "category_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VideofilterProfileFortiguardCategoryFilter. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VideofilterProfileFortiguardCategoryFilter.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VideofilterProfileFortiguardCategoryFilter.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 category_id: Optional[int] = None,
+                 id: Optional[int] = None,
+                 log: Optional[str] = None):
+        """
+        :param str action: VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+        :param int category_id: Category ID.
+        :param int id: ID.
+        :param str log: Enable/disable logging. Valid values: `enable`, `disable`.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if category_id is not None:
+            pulumi.set(__self__, "category_id", category_id)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if log is not None:
+            pulumi.set(__self__, "log", log)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter(name="categoryId")
+    def category_id(self) -> Optional[int]:
+        """
+        Category ID.
+        """
+        return pulumi.get(self, "category_id")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter
+    def log(self) -> Optional[str]:
+        """
+        Enable/disable logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "log")
+
+
+@pulumi.output_type
+class VideofilterYoutubeChannelFilterEntry(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "channelId":
+            suggest = "channel_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VideofilterYoutubeChannelFilterEntry. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VideofilterYoutubeChannelFilterEntry.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VideofilterYoutubeChannelFilterEntry.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 action: Optional[str] = None,
+                 channel_id: Optional[str] = None,
+                 comment: Optional[str] = None,
+                 id: Optional[int] = None):
+        """
+        :param str action: YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
+        :param str channel_id: Channel ID.
+        :param str comment: Comment.
+        :param int id: ID.
+        """
+        if action is not None:
+            pulumi.set(__self__, "action", action)
+        if channel_id is not None:
+            pulumi.set(__self__, "channel_id", channel_id)
+        if comment is not None:
+            pulumi.set(__self__, "comment", comment)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+
+    @property
+    @pulumi.getter
+    def action(self) -> Optional[str]:
+        """
+        YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
+        """
+        return pulumi.get(self, "action")
+
+    @property
+    @pulumi.getter(name="channelId")
+    def channel_id(self) -> Optional[str]:
+        """
+        Channel ID.
+        """
+        return pulumi.get(self, "channel_id")
+
+    @property
+    @pulumi.getter
+    def comment(self) -> Optional[str]:
+        """
+        Comment.
+        """
+        return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def id(self) -> Optional[int]:
+        """
+        ID.
+        """
+        return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class VoipProfileMsrp(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "logViolations":
+            suggest = "log_violations"
+        elif key == "maxMsgSize":
+            suggest = "max_msg_size"
+        elif key == "maxMsgSizeAction":
+            suggest = "max_msg_size_action"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VoipProfileMsrp. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VoipProfileMsrp.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VoipProfileMsrp.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 log_violations: Optional[str] = None,
+                 max_msg_size: Optional[int] = None,
+                 max_msg_size_action: Optional[str] = None,
+                 status: Optional[str] = None):
+        """
+        :param str log_violations: Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
+        :param int max_msg_size: Maximum allowable MSRP message size (1-65535).
+        :param str max_msg_size_action: Action for violation of max-msg-size. Valid values: `pass`, `block`, `reset`, `monitor`.
+        :param str status: Enable/disable MSRP. Valid values: `disable`, `enable`.
+        """
+        if log_violations is not None:
+            pulumi.set(__self__, "log_violations", log_violations)
+        if max_msg_size is not None:
+            pulumi.set(__self__, "max_msg_size", max_msg_size)
+        if max_msg_size_action is not None:
+            pulumi.set(__self__, "max_msg_size_action", max_msg_size_action)
+        if status is not None:
+            pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter(name="logViolations")
+    def log_violations(self) -> Optional[str]:
+        """
+        Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "log_violations")
+
+    @property
+    @pulumi.getter(name="maxMsgSize")
+    def max_msg_size(self) -> Optional[int]:
+        """
+        Maximum allowable MSRP message size (1-65535).
+        """
+        return pulumi.get(self, "max_msg_size")
+
+    @property
+    @pulumi.getter(name="maxMsgSizeAction")
+    def max_msg_size_action(self) -> Optional[str]:
+        """
+        Action for violation of max-msg-size. Valid values: `pass`, `block`, `reset`, `monitor`.
+        """
+        return pulumi.get(self, "max_msg_size_action")
+
+    @property
+    @pulumi.getter
+    def status(self) -> Optional[str]:
+        """
+        Enable/disable MSRP. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
 class VoipProfileSccp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -74343,9 +84309,9 @@ class VoipProfileSccp(dict):
         """
         :param str block_mcast: Enable/disable block multicast RTP connections. Valid values: `disable`, `enable`.
         :param str log_call_summary: Enable/disable log summary of SCCP calls. Valid values: `disable`, `enable`.
-        :param str log_violations: Enable/disable logging of SCCP violations. Valid values: `disable`, `enable`.
+        :param str log_violations: Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
         :param int max_calls: Maximum calls per minute per SCCP client (max 65535).
-        :param str status: Enable/disable SCCP. Valid values: `disable`, `enable`.
+        :param str status: Enable/disable MSRP. Valid values: `disable`, `enable`.
         :param str verify_header: Enable/disable verify SCCP header content. Valid values: `disable`, `enable`.
         """
         if block_mcast is not None:
@@ -74381,7 +84347,7 @@ class VoipProfileSccp(dict):
     @pulumi.getter(name="logViolations")
     def log_violations(self) -> Optional[str]:
         """
-        Enable/disable logging of SCCP violations. Valid values: `disable`, `enable`.
+        Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "log_violations")
 
@@ -74397,7 +84363,7 @@ class VoipProfileSccp(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
-        Enable/disable SCCP. Valid values: `disable`, `enable`.
+        Enable/disable MSRP. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "status")
 
@@ -74417,6 +84383,8 @@ class VoipProfileSip(dict):
         suggest = None
         if key == "ackRate":
             suggest = "ack_rate"
+        elif key == "ackRateTrack":
+            suggest = "ack_rate_track"
         elif key == "blockAck":
             suggest = "block_ack"
         elif key == "blockBye":
@@ -74453,10 +84421,14 @@ class VoipProfileSip(dict):
             suggest = "block_update"
         elif key == "byeRate":
             suggest = "bye_rate"
+        elif key == "byeRateTrack":
+            suggest = "bye_rate_track"
         elif key == "callKeepalive":
             suggest = "call_keepalive"
         elif key == "cancelRate":
             suggest = "cancel_rate"
+        elif key == "cancelRateTrack":
+            suggest = "cancel_rate_track"
         elif key == "contactFixup":
             suggest = "contact_fixup"
         elif key == "hntRestrictSourceIp":
@@ -74465,8 +84437,12 @@ class VoipProfileSip(dict):
             suggest = "hosted_nat_traversal"
         elif key == "infoRate":
             suggest = "info_rate"
+        elif key == "infoRateTrack":
+            suggest = "info_rate_track"
         elif key == "inviteRate":
             suggest = "invite_rate"
+        elif key == "inviteRateTrack":
+            suggest = "invite_rate_track"
         elif key == "ipsRtp":
             suggest = "ips_rtp"
         elif key == "logCallSummary":
@@ -74491,6 +84467,10 @@ class VoipProfileSip(dict):
             suggest = "malformed_header_from"
         elif key == "malformedHeaderMaxForwards":
             suggest = "malformed_header_max_forwards"
+        elif key == "malformedHeaderNoProxyRequire":
+            suggest = "malformed_header_no_proxy_require"
+        elif key == "malformedHeaderNoRequire":
+            suggest = "malformed_header_no_require"
         elif key == "malformedHeaderPAssertedIdentity":
             suggest = "malformed_header_passerted_identity"
         elif key == "malformedHeaderRack":
@@ -74541,6 +84521,8 @@ class VoipProfileSip(dict):
             suggest = "max_line_length"
         elif key == "messageRate":
             suggest = "message_rate"
+        elif key == "messageRateTrack":
+            suggest = "message_rate_track"
         elif key == "natPortRange":
             suggest = "nat_port_range"
         elif key == "natTrace":
@@ -74549,6 +84531,8 @@ class VoipProfileSip(dict):
             suggest = "no_sdp_fixup"
         elif key == "notifyRate":
             suggest = "notify_rate"
+        elif key == "notifyRateTrack":
+            suggest = "notify_rate_track"
         elif key == "openContactPinhole":
             suggest = "open_contact_pinhole"
         elif key == "openRecordRoutePinhole":
@@ -74559,20 +84543,30 @@ class VoipProfileSip(dict):
             suggest = "open_via_pinhole"
         elif key == "optionsRate":
             suggest = "options_rate"
+        elif key == "optionsRateTrack":
+            suggest = "options_rate_track"
         elif key == "prackRate":
             suggest = "prack_rate"
+        elif key == "prackRateTrack":
+            suggest = "prack_rate_track"
         elif key == "preserveOverride":
             suggest = "preserve_override"
         elif key == "provisionalInviteExpiryTime":
             suggest = "provisional_invite_expiry_time"
         elif key == "publishRate":
             suggest = "publish_rate"
+        elif key == "publishRateTrack":
+            suggest = "publish_rate_track"
         elif key == "referRate":
             suggest = "refer_rate"
+        elif key == "referRateTrack":
+            suggest = "refer_rate_track"
         elif key == "registerContactTrace":
             suggest = "register_contact_trace"
         elif key == "registerRate":
             suggest = "register_rate"
+        elif key == "registerRateTrack":
+            suggest = "register_rate_track"
         elif key == "rfc2543Branch":
             suggest = "rfc2543_branch"
         elif key == "sslAlgorithm":
@@ -74601,10 +84595,14 @@ class VoipProfileSip(dict):
             suggest = "strict_register"
         elif key == "subscribeRate":
             suggest = "subscribe_rate"
+        elif key == "subscribeRateTrack":
+            suggest = "subscribe_rate_track"
         elif key == "unknownHeader":
             suggest = "unknown_header"
         elif key == "updateRate":
             suggest = "update_rate"
+        elif key == "updateRateTrack":
+            suggest = "update_rate_track"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in VoipProfileSip. Access the value via the '{suggest}' property getter instead.")
@@ -74619,6 +84617,7 @@ class VoipProfileSip(dict):
 
     def __init__(__self__, *,
                  ack_rate: Optional[int] = None,
+                 ack_rate_track: Optional[str] = None,
                  block_ack: Optional[str] = None,
                  block_bye: Optional[str] = None,
                  block_cancel: Optional[str] = None,
@@ -74637,13 +84636,17 @@ class VoipProfileSip(dict):
                  block_unknown: Optional[str] = None,
                  block_update: Optional[str] = None,
                  bye_rate: Optional[int] = None,
+                 bye_rate_track: Optional[str] = None,
                  call_keepalive: Optional[int] = None,
                  cancel_rate: Optional[int] = None,
+                 cancel_rate_track: Optional[str] = None,
                  contact_fixup: Optional[str] = None,
                  hnt_restrict_source_ip: Optional[str] = None,
                  hosted_nat_traversal: Optional[str] = None,
                  info_rate: Optional[int] = None,
+                 info_rate_track: Optional[str] = None,
                  invite_rate: Optional[int] = None,
+                 invite_rate_track: Optional[str] = None,
                  ips_rtp: Optional[str] = None,
                  log_call_summary: Optional[str] = None,
                  log_violations: Optional[str] = None,
@@ -74656,6 +84659,8 @@ class VoipProfileSip(dict):
                  malformed_header_expires: Optional[str] = None,
                  malformed_header_from: Optional[str] = None,
                  malformed_header_max_forwards: Optional[str] = None,
+                 malformed_header_no_proxy_require: Optional[str] = None,
+                 malformed_header_no_require: Optional[str] = None,
                  malformed_header_passerted_identity: Optional[str] = None,
                  malformed_header_rack: Optional[str] = None,
                  malformed_header_record_route: Optional[str] = None,
@@ -74681,22 +84686,29 @@ class VoipProfileSip(dict):
                  max_idle_dialogs: Optional[int] = None,
                  max_line_length: Optional[int] = None,
                  message_rate: Optional[int] = None,
+                 message_rate_track: Optional[str] = None,
                  nat_port_range: Optional[str] = None,
                  nat_trace: Optional[str] = None,
                  no_sdp_fixup: Optional[str] = None,
                  notify_rate: Optional[int] = None,
+                 notify_rate_track: Optional[str] = None,
                  open_contact_pinhole: Optional[str] = None,
                  open_record_route_pinhole: Optional[str] = None,
                  open_register_pinhole: Optional[str] = None,
                  open_via_pinhole: Optional[str] = None,
                  options_rate: Optional[int] = None,
+                 options_rate_track: Optional[str] = None,
                  prack_rate: Optional[int] = None,
+                 prack_rate_track: Optional[str] = None,
                  preserve_override: Optional[str] = None,
                  provisional_invite_expiry_time: Optional[int] = None,
                  publish_rate: Optional[int] = None,
+                 publish_rate_track: Optional[str] = None,
                  refer_rate: Optional[int] = None,
+                 refer_rate_track: Optional[str] = None,
                  register_contact_trace: Optional[str] = None,
                  register_rate: Optional[int] = None,
+                 register_rate_track: Optional[str] = None,
                  rfc2543_branch: Optional[str] = None,
                  rtp: Optional[str] = None,
                  ssl_algorithm: Optional[str] = None,
@@ -74713,10 +84725,13 @@ class VoipProfileSip(dict):
                  status: Optional[str] = None,
                  strict_register: Optional[str] = None,
                  subscribe_rate: Optional[int] = None,
+                 subscribe_rate_track: Optional[str] = None,
                  unknown_header: Optional[str] = None,
-                 update_rate: Optional[int] = None):
+                 update_rate: Optional[int] = None,
+                 update_rate_track: Optional[str] = None):
         """
         :param int ack_rate: ACK request rate limit (per second, per policy).
+        :param str ack_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str block_ack: Enable/disable block ACK requests. Valid values: `disable`, `enable`.
         :param str block_bye: Enable/disable block BYE requests. Valid values: `disable`, `enable`.
         :param str block_cancel: Enable/disable block CANCEL requests. Valid values: `disable`, `enable`.
@@ -74735,16 +84750,20 @@ class VoipProfileSip(dict):
         :param str block_unknown: Block unrecognized SIP requests (enabled by default). Valid values: `disable`, `enable`.
         :param str block_update: Enable/disable block UPDATE requests. Valid values: `disable`, `enable`.
         :param int bye_rate: BYE request rate limit (per second, per policy).
+        :param str bye_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param int call_keepalive: Continue tracking calls with no RTP for this many minutes.
         :param int cancel_rate: CANCEL request rate limit (per second, per policy).
+        :param str cancel_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str contact_fixup: Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
         :param str hnt_restrict_source_ip: Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
         :param str hosted_nat_traversal: Hosted NAT Traversal (HNT). Valid values: `disable`, `enable`.
         :param int info_rate: INFO request rate limit (per second, per policy).
+        :param str info_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param int invite_rate: INVITE request rate limit (per second, per policy).
+        :param str invite_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str ips_rtp: Enable/disable allow IPS on RTP. Valid values: `disable`, `enable`.
         :param str log_call_summary: Enable/disable log summary of SCCP calls. Valid values: `disable`, `enable`.
-        :param str log_violations: Enable/disable logging of SCCP violations. Valid values: `disable`, `enable`.
+        :param str log_violations: Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
         :param str malformed_header_allow: Action for malformed Allow header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_call_id: Action for malformed Call-ID header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_contact: Action for malformed Contact header. Valid values: `discard`, `pass`, `respond`.
@@ -74754,6 +84773,8 @@ class VoipProfileSip(dict):
         :param str malformed_header_expires: Action for malformed Expires header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_from: Action for malformed From header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_max_forwards: Action for malformed Max-Forwards header. Valid values: `discard`, `pass`, `respond`.
+        :param str malformed_header_no_proxy_require: Action for malformed SIP messages without Proxy-Require header. Valid values: `discard`, `pass`, `respond`.
+        :param str malformed_header_no_require: Action for malformed SIP messages without Require header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_passerted_identity: Action for malformed P-Asserted-Identity header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_rack: Action for malformed RAck header. Valid values: `discard`, `pass`, `respond`.
         :param str malformed_header_record_route: Action for malformed Record-Route header. Valid values: `discard`, `pass`, `respond`.
@@ -74779,22 +84800,29 @@ class VoipProfileSip(dict):
         :param int max_idle_dialogs: Maximum number established but idle dialogs to retain (per policy).
         :param int max_line_length: Maximum SIP header line length (78-4096).
         :param int message_rate: MESSAGE request rate limit (per second, per policy).
+        :param str message_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str nat_port_range: RTP NAT port range.
         :param str nat_trace: Enable/disable preservation of original IP in SDP i line. Valid values: `disable`, `enable`.
         :param str no_sdp_fixup: Enable/disable no SDP fix-up. Valid values: `disable`, `enable`.
         :param int notify_rate: NOTIFY request rate limit (per second, per policy).
+        :param str notify_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str open_contact_pinhole: Enable/disable open pinhole for non-REGISTER Contact port. Valid values: `disable`, `enable`.
         :param str open_record_route_pinhole: Enable/disable open pinhole for Record-Route port. Valid values: `disable`, `enable`.
         :param str open_register_pinhole: Enable/disable open pinhole for REGISTER Contact port. Valid values: `disable`, `enable`.
         :param str open_via_pinhole: Enable/disable open pinhole for Via port. Valid values: `disable`, `enable`.
         :param int options_rate: OPTIONS request rate limit (per second, per policy).
+        :param str options_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param int prack_rate: PRACK request rate limit (per second, per policy).
+        :param str prack_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str preserve_override: Override i line to preserve original IPS (default: append). Valid values: `disable`, `enable`.
         :param int provisional_invite_expiry_time: Expiry time for provisional INVITE (10 - 3600 sec).
         :param int publish_rate: PUBLISH request rate limit (per second, per policy).
+        :param str publish_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param int refer_rate: REFER request rate limit (per second, per policy).
+        :param str refer_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str register_contact_trace: Enable/disable trace original IP/port within the contact header of REGISTER requests. Valid values: `disable`, `enable`.
         :param int register_rate: REGISTER request rate limit (per second, per policy).
+        :param str register_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str rfc2543_branch: Enable/disable support via branch compliant with RFC 2543. Valid values: `disable`, `enable`.
         :param str rtp: Enable/disable create pinholes for RTP traffic to traverse firewall. Valid values: `disable`, `enable`.
         :param str ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
@@ -74808,14 +84836,18 @@ class VoipProfileSip(dict):
         :param str ssl_pfs: SSL Perfect Forward Secrecy. Valid values: `require`, `deny`, `allow`.
         :param str ssl_send_empty_frags: Send empty fragments to avoid attack on CBC IV (SSL 3.0 & TLS 1.0 only). Valid values: `enable`, `disable`.
         :param str ssl_server_certificate: Name of Certificate return to the client in every SSL connection.
-        :param str status: Enable/disable SCCP. Valid values: `disable`, `enable`.
+        :param str status: Enable/disable MSRP. Valid values: `disable`, `enable`.
         :param str strict_register: Enable/disable only allow the registrar to connect. Valid values: `disable`, `enable`.
         :param int subscribe_rate: SUBSCRIBE request rate limit (per second, per policy).
+        :param str subscribe_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         :param str unknown_header: Action for unknown SIP header. Valid values: `discard`, `pass`, `respond`.
         :param int update_rate: UPDATE request rate limit (per second, per policy).
+        :param str update_rate_track: Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
         """
         if ack_rate is not None:
             pulumi.set(__self__, "ack_rate", ack_rate)
+        if ack_rate_track is not None:
+            pulumi.set(__self__, "ack_rate_track", ack_rate_track)
         if block_ack is not None:
             pulumi.set(__self__, "block_ack", block_ack)
         if block_bye is not None:
@@ -74852,10 +84884,14 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "block_update", block_update)
         if bye_rate is not None:
             pulumi.set(__self__, "bye_rate", bye_rate)
+        if bye_rate_track is not None:
+            pulumi.set(__self__, "bye_rate_track", bye_rate_track)
         if call_keepalive is not None:
             pulumi.set(__self__, "call_keepalive", call_keepalive)
         if cancel_rate is not None:
             pulumi.set(__self__, "cancel_rate", cancel_rate)
+        if cancel_rate_track is not None:
+            pulumi.set(__self__, "cancel_rate_track", cancel_rate_track)
         if contact_fixup is not None:
             pulumi.set(__self__, "contact_fixup", contact_fixup)
         if hnt_restrict_source_ip is not None:
@@ -74864,8 +84900,12 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "hosted_nat_traversal", hosted_nat_traversal)
         if info_rate is not None:
             pulumi.set(__self__, "info_rate", info_rate)
+        if info_rate_track is not None:
+            pulumi.set(__self__, "info_rate_track", info_rate_track)
         if invite_rate is not None:
             pulumi.set(__self__, "invite_rate", invite_rate)
+        if invite_rate_track is not None:
+            pulumi.set(__self__, "invite_rate_track", invite_rate_track)
         if ips_rtp is not None:
             pulumi.set(__self__, "ips_rtp", ips_rtp)
         if log_call_summary is not None:
@@ -74890,6 +84930,10 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "malformed_header_from", malformed_header_from)
         if malformed_header_max_forwards is not None:
             pulumi.set(__self__, "malformed_header_max_forwards", malformed_header_max_forwards)
+        if malformed_header_no_proxy_require is not None:
+            pulumi.set(__self__, "malformed_header_no_proxy_require", malformed_header_no_proxy_require)
+        if malformed_header_no_require is not None:
+            pulumi.set(__self__, "malformed_header_no_require", malformed_header_no_require)
         if malformed_header_passerted_identity is not None:
             pulumi.set(__self__, "malformed_header_passerted_identity", malformed_header_passerted_identity)
         if malformed_header_rack is not None:
@@ -74940,6 +84984,8 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "max_line_length", max_line_length)
         if message_rate is not None:
             pulumi.set(__self__, "message_rate", message_rate)
+        if message_rate_track is not None:
+            pulumi.set(__self__, "message_rate_track", message_rate_track)
         if nat_port_range is not None:
             pulumi.set(__self__, "nat_port_range", nat_port_range)
         if nat_trace is not None:
@@ -74948,6 +84994,8 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "no_sdp_fixup", no_sdp_fixup)
         if notify_rate is not None:
             pulumi.set(__self__, "notify_rate", notify_rate)
+        if notify_rate_track is not None:
+            pulumi.set(__self__, "notify_rate_track", notify_rate_track)
         if open_contact_pinhole is not None:
             pulumi.set(__self__, "open_contact_pinhole", open_contact_pinhole)
         if open_record_route_pinhole is not None:
@@ -74958,20 +85006,30 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "open_via_pinhole", open_via_pinhole)
         if options_rate is not None:
             pulumi.set(__self__, "options_rate", options_rate)
+        if options_rate_track is not None:
+            pulumi.set(__self__, "options_rate_track", options_rate_track)
         if prack_rate is not None:
             pulumi.set(__self__, "prack_rate", prack_rate)
+        if prack_rate_track is not None:
+            pulumi.set(__self__, "prack_rate_track", prack_rate_track)
         if preserve_override is not None:
             pulumi.set(__self__, "preserve_override", preserve_override)
         if provisional_invite_expiry_time is not None:
             pulumi.set(__self__, "provisional_invite_expiry_time", provisional_invite_expiry_time)
         if publish_rate is not None:
             pulumi.set(__self__, "publish_rate", publish_rate)
+        if publish_rate_track is not None:
+            pulumi.set(__self__, "publish_rate_track", publish_rate_track)
         if refer_rate is not None:
             pulumi.set(__self__, "refer_rate", refer_rate)
+        if refer_rate_track is not None:
+            pulumi.set(__self__, "refer_rate_track", refer_rate_track)
         if register_contact_trace is not None:
             pulumi.set(__self__, "register_contact_trace", register_contact_trace)
         if register_rate is not None:
             pulumi.set(__self__, "register_rate", register_rate)
+        if register_rate_track is not None:
+            pulumi.set(__self__, "register_rate_track", register_rate_track)
         if rfc2543_branch is not None:
             pulumi.set(__self__, "rfc2543_branch", rfc2543_branch)
         if rtp is not None:
@@ -75004,10 +85062,14 @@ class VoipProfileSip(dict):
             pulumi.set(__self__, "strict_register", strict_register)
         if subscribe_rate is not None:
             pulumi.set(__self__, "subscribe_rate", subscribe_rate)
+        if subscribe_rate_track is not None:
+            pulumi.set(__self__, "subscribe_rate_track", subscribe_rate_track)
         if unknown_header is not None:
             pulumi.set(__self__, "unknown_header", unknown_header)
         if update_rate is not None:
             pulumi.set(__self__, "update_rate", update_rate)
+        if update_rate_track is not None:
+            pulumi.set(__self__, "update_rate_track", update_rate_track)
 
     @property
     @pulumi.getter(name="ackRate")
@@ -75016,6 +85078,14 @@ class VoipProfileSip(dict):
         ACK request rate limit (per second, per policy).
         """
         return pulumi.get(self, "ack_rate")
+
+    @property
+    @pulumi.getter(name="ackRateTrack")
+    def ack_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "ack_rate_track")
 
     @property
     @pulumi.getter(name="blockAck")
@@ -75162,6 +85232,14 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "bye_rate")
 
     @property
+    @pulumi.getter(name="byeRateTrack")
+    def bye_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "bye_rate_track")
+
+    @property
     @pulumi.getter(name="callKeepalive")
     def call_keepalive(self) -> Optional[int]:
         """
@@ -75176,6 +85254,14 @@ class VoipProfileSip(dict):
         CANCEL request rate limit (per second, per policy).
         """
         return pulumi.get(self, "cancel_rate")
+
+    @property
+    @pulumi.getter(name="cancelRateTrack")
+    def cancel_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "cancel_rate_track")
 
     @property
     @pulumi.getter(name="contactFixup")
@@ -75210,12 +85296,28 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "info_rate")
 
     @property
+    @pulumi.getter(name="infoRateTrack")
+    def info_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "info_rate_track")
+
+    @property
     @pulumi.getter(name="inviteRate")
     def invite_rate(self) -> Optional[int]:
         """
         INVITE request rate limit (per second, per policy).
         """
         return pulumi.get(self, "invite_rate")
+
+    @property
+    @pulumi.getter(name="inviteRateTrack")
+    def invite_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "invite_rate_track")
 
     @property
     @pulumi.getter(name="ipsRtp")
@@ -75237,7 +85339,7 @@ class VoipProfileSip(dict):
     @pulumi.getter(name="logViolations")
     def log_violations(self) -> Optional[str]:
         """
-        Enable/disable logging of SCCP violations. Valid values: `disable`, `enable`.
+        Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "log_violations")
 
@@ -75312,6 +85414,22 @@ class VoipProfileSip(dict):
         Action for malformed Max-Forwards header. Valid values: `discard`, `pass`, `respond`.
         """
         return pulumi.get(self, "malformed_header_max_forwards")
+
+    @property
+    @pulumi.getter(name="malformedHeaderNoProxyRequire")
+    def malformed_header_no_proxy_require(self) -> Optional[str]:
+        """
+        Action for malformed SIP messages without Proxy-Require header. Valid values: `discard`, `pass`, `respond`.
+        """
+        return pulumi.get(self, "malformed_header_no_proxy_require")
+
+    @property
+    @pulumi.getter(name="malformedHeaderNoRequire")
+    def malformed_header_no_require(self) -> Optional[str]:
+        """
+        Action for malformed SIP messages without Require header. Valid values: `discard`, `pass`, `respond`.
+        """
+        return pulumi.get(self, "malformed_header_no_require")
 
     @property
     @pulumi.getter(name="malformedHeaderPAssertedIdentity")
@@ -75514,6 +85632,14 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "message_rate")
 
     @property
+    @pulumi.getter(name="messageRateTrack")
+    def message_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "message_rate_track")
+
+    @property
     @pulumi.getter(name="natPortRange")
     def nat_port_range(self) -> Optional[str]:
         """
@@ -75544,6 +85670,14 @@ class VoipProfileSip(dict):
         NOTIFY request rate limit (per second, per policy).
         """
         return pulumi.get(self, "notify_rate")
+
+    @property
+    @pulumi.getter(name="notifyRateTrack")
+    def notify_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "notify_rate_track")
 
     @property
     @pulumi.getter(name="openContactPinhole")
@@ -75586,12 +85720,28 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "options_rate")
 
     @property
+    @pulumi.getter(name="optionsRateTrack")
+    def options_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "options_rate_track")
+
+    @property
     @pulumi.getter(name="prackRate")
     def prack_rate(self) -> Optional[int]:
         """
         PRACK request rate limit (per second, per policy).
         """
         return pulumi.get(self, "prack_rate")
+
+    @property
+    @pulumi.getter(name="prackRateTrack")
+    def prack_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "prack_rate_track")
 
     @property
     @pulumi.getter(name="preserveOverride")
@@ -75618,12 +85768,28 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "publish_rate")
 
     @property
+    @pulumi.getter(name="publishRateTrack")
+    def publish_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "publish_rate_track")
+
+    @property
     @pulumi.getter(name="referRate")
     def refer_rate(self) -> Optional[int]:
         """
         REFER request rate limit (per second, per policy).
         """
         return pulumi.get(self, "refer_rate")
+
+    @property
+    @pulumi.getter(name="referRateTrack")
+    def refer_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "refer_rate_track")
 
     @property
     @pulumi.getter(name="registerContactTrace")
@@ -75640,6 +85806,14 @@ class VoipProfileSip(dict):
         REGISTER request rate limit (per second, per policy).
         """
         return pulumi.get(self, "register_rate")
+
+    @property
+    @pulumi.getter(name="registerRateTrack")
+    def register_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "register_rate_track")
 
     @property
     @pulumi.getter(name="rfc2543Branch")
@@ -75749,7 +85923,7 @@ class VoipProfileSip(dict):
     @pulumi.getter
     def status(self) -> Optional[str]:
         """
-        Enable/disable SCCP. Valid values: `disable`, `enable`.
+        Enable/disable MSRP. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "status")
 
@@ -75770,6 +85944,14 @@ class VoipProfileSip(dict):
         return pulumi.get(self, "subscribe_rate")
 
     @property
+    @pulumi.getter(name="subscribeRateTrack")
+    def subscribe_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "subscribe_rate_track")
+
+    @property
     @pulumi.getter(name="unknownHeader")
     def unknown_header(self) -> Optional[str]:
         """
@@ -75784,6 +85966,76 @@ class VoipProfileSip(dict):
         UPDATE request rate limit (per second, per policy).
         """
         return pulumi.get(self, "update_rate")
+
+    @property
+    @pulumi.getter(name="updateRateTrack")
+    def update_rate_track(self) -> Optional[str]:
+        """
+        Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+        """
+        return pulumi.get(self, "update_rate_track")
+
+
+@pulumi.output_type
+class VpnCertificateSettingCrlVerification(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "chainCrlAbsence":
+            suggest = "chain_crl_absence"
+        elif key == "leafCrlAbsence":
+            suggest = "leaf_crl_absence"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VpnCertificateSettingCrlVerification. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VpnCertificateSettingCrlVerification.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VpnCertificateSettingCrlVerification.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 chain_crl_absence: Optional[str] = None,
+                 expiry: Optional[str] = None,
+                 leaf_crl_absence: Optional[str] = None):
+        """
+        :param str chain_crl_absence: CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
+        :param str expiry: CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
+        :param str leaf_crl_absence: CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
+        """
+        if chain_crl_absence is not None:
+            pulumi.set(__self__, "chain_crl_absence", chain_crl_absence)
+        if expiry is not None:
+            pulumi.set(__self__, "expiry", expiry)
+        if leaf_crl_absence is not None:
+            pulumi.set(__self__, "leaf_crl_absence", leaf_crl_absence)
+
+    @property
+    @pulumi.getter(name="chainCrlAbsence")
+    def chain_crl_absence(self) -> Optional[str]:
+        """
+        CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
+        """
+        return pulumi.get(self, "chain_crl_absence")
+
+    @property
+    @pulumi.getter
+    def expiry(self) -> Optional[str]:
+        """
+        CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
+        """
+        return pulumi.get(self, "expiry")
+
+    @property
+    @pulumi.getter(name="leafCrlAbsence")
+    def leaf_crl_absence(self) -> Optional[str]:
+        """
+        CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
+        """
+        return pulumi.get(self, "leaf_crl_absence")
 
 
 @pulumi.output_type
@@ -75803,6 +86055,134 @@ class VpnIpsecConcentratorMember(dict):
         Member name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class VpnIpsecFecMapping(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "bandwidthBiThreshold":
+            suggest = "bandwidth_bi_threshold"
+        elif key == "bandwidthDownThreshold":
+            suggest = "bandwidth_down_threshold"
+        elif key == "bandwidthUpThreshold":
+            suggest = "bandwidth_up_threshold"
+        elif key == "latencyThreshold":
+            suggest = "latency_threshold"
+        elif key == "packetLossThreshold":
+            suggest = "packet_loss_threshold"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in VpnIpsecFecMapping. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        VpnIpsecFecMapping.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        VpnIpsecFecMapping.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 bandwidth_bi_threshold: Optional[int] = None,
+                 bandwidth_down_threshold: Optional[int] = None,
+                 bandwidth_up_threshold: Optional[int] = None,
+                 base: Optional[int] = None,
+                 latency_threshold: Optional[int] = None,
+                 packet_loss_threshold: Optional[int] = None,
+                 redundant: Optional[int] = None,
+                 seqno: Optional[int] = None):
+        """
+        :param int bandwidth_bi_threshold: Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
+        :param int bandwidth_down_threshold: Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
+        :param int bandwidth_up_threshold: Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
+        :param int base: Number of base FEC packets (1 - 20).
+        :param int latency_threshold: Apply FEC parameters when latency is <= threshold (0 means no threshold).
+        :param int packet_loss_threshold: Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
+        :param int redundant: Number of redundant FEC packets (1 - 5).
+        :param int seqno: Sequence number (1 - 64).
+        """
+        if bandwidth_bi_threshold is not None:
+            pulumi.set(__self__, "bandwidth_bi_threshold", bandwidth_bi_threshold)
+        if bandwidth_down_threshold is not None:
+            pulumi.set(__self__, "bandwidth_down_threshold", bandwidth_down_threshold)
+        if bandwidth_up_threshold is not None:
+            pulumi.set(__self__, "bandwidth_up_threshold", bandwidth_up_threshold)
+        if base is not None:
+            pulumi.set(__self__, "base", base)
+        if latency_threshold is not None:
+            pulumi.set(__self__, "latency_threshold", latency_threshold)
+        if packet_loss_threshold is not None:
+            pulumi.set(__self__, "packet_loss_threshold", packet_loss_threshold)
+        if redundant is not None:
+            pulumi.set(__self__, "redundant", redundant)
+        if seqno is not None:
+            pulumi.set(__self__, "seqno", seqno)
+
+    @property
+    @pulumi.getter(name="bandwidthBiThreshold")
+    def bandwidth_bi_threshold(self) -> Optional[int]:
+        """
+        Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
+        """
+        return pulumi.get(self, "bandwidth_bi_threshold")
+
+    @property
+    @pulumi.getter(name="bandwidthDownThreshold")
+    def bandwidth_down_threshold(self) -> Optional[int]:
+        """
+        Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
+        """
+        return pulumi.get(self, "bandwidth_down_threshold")
+
+    @property
+    @pulumi.getter(name="bandwidthUpThreshold")
+    def bandwidth_up_threshold(self) -> Optional[int]:
+        """
+        Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
+        """
+        return pulumi.get(self, "bandwidth_up_threshold")
+
+    @property
+    @pulumi.getter
+    def base(self) -> Optional[int]:
+        """
+        Number of base FEC packets (1 - 20).
+        """
+        return pulumi.get(self, "base")
+
+    @property
+    @pulumi.getter(name="latencyThreshold")
+    def latency_threshold(self) -> Optional[int]:
+        """
+        Apply FEC parameters when latency is <= threshold (0 means no threshold).
+        """
+        return pulumi.get(self, "latency_threshold")
+
+    @property
+    @pulumi.getter(name="packetLossThreshold")
+    def packet_loss_threshold(self) -> Optional[int]:
+        """
+        Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
+        """
+        return pulumi.get(self, "packet_loss_threshold")
+
+    @property
+    @pulumi.getter
+    def redundant(self) -> Optional[int]:
+        """
+        Number of redundant FEC packets (1 - 5).
+        """
+        return pulumi.get(self, "redundant")
+
+    @property
+    @pulumi.getter
+    def seqno(self) -> Optional[int]:
+        """
+        Sequence number (1 - 64).
+        """
+        return pulumi.get(self, "seqno")
 
 
 @pulumi.output_type
@@ -76534,7 +86914,7 @@ class VpnSslSettingsAuthenticationRule(dict):
                  user_peer: Optional[str] = None,
                  users: Optional[Sequence['outputs.VpnSslSettingsAuthenticationRuleUser']] = None):
         """
-        :param str auth: SSL VPN authentication method restriction. Valid values: `any`, `local`, `radius`, `tacacs+`, `ldap`.
+        :param str auth: SSL VPN authentication method restriction.
         :param str cipher: SSL VPN cipher strength. Valid values: `any`, `high`, `medium`.
         :param str client_cert: Enable/disable SSL VPN client certificate restrictive. Valid values: `enable`, `disable`.
         :param Sequence['VpnSslSettingsAuthenticationRuleGroupArgs'] groups: User groups. The structure of `groups` block is documented below.
@@ -76582,7 +86962,7 @@ class VpnSslSettingsAuthenticationRule(dict):
     @pulumi.getter
     def auth(self) -> Optional[str]:
         """
-        SSL VPN authentication method restriction. Valid values: `any`, `local`, `radius`, `tacacs+`, `ldap`.
+        SSL VPN authentication method restriction.
         """
         return pulumi.get(self, "auth")
 
@@ -77017,8 +87397,12 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         suggest = None
         if key == "additionalParams":
             suggest = "additional_params"
+        elif key == "colorDepth":
+            suggest = "color_depth"
         elif key == "formDatas":
             suggest = "form_datas"
+        elif key == "keyboardLayout":
+            suggest = "keyboard_layout"
         elif key == "listeningPort":
             suggest = "listening_port"
         elif key == "loadBalancingInfo":
@@ -77033,6 +87417,10 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
             suggest = "preconnection_id"
         elif key == "remotePort":
             suggest = "remote_port"
+        elif key == "restrictedAdmin":
+            suggest = "restricted_admin"
+        elif key == "sendPreconnectionId":
+            suggest = "send_preconnection_id"
         elif key == "serverLayout":
             suggest = "server_layout"
         elif key == "showStatusWindow":
@@ -77060,11 +87448,14 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
     def __init__(__self__, *,
                  additional_params: Optional[str] = None,
                  apptype: Optional[str] = None,
+                 color_depth: Optional[str] = None,
                  description: Optional[str] = None,
                  domain: Optional[str] = None,
                  folder: Optional[str] = None,
                  form_datas: Optional[Sequence['outputs.VpnSslWebPortalBookmarkGroupBookmarkFormData']] = None,
+                 height: Optional[int] = None,
                  host: Optional[str] = None,
+                 keyboard_layout: Optional[str] = None,
                  listening_port: Optional[int] = None,
                  load_balancing_info: Optional[str] = None,
                  logon_password: Optional[str] = None,
@@ -77074,7 +87465,9 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
                  preconnection_blob: Optional[str] = None,
                  preconnection_id: Optional[int] = None,
                  remote_port: Optional[int] = None,
+                 restricted_admin: Optional[str] = None,
                  security: Optional[str] = None,
+                 send_preconnection_id: Optional[str] = None,
                  server_layout: Optional[str] = None,
                  show_status_window: Optional[str] = None,
                  sso: Optional[str] = None,
@@ -77082,15 +87475,19 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
                  sso_credential_sent_once: Optional[str] = None,
                  sso_password: Optional[str] = None,
                  sso_username: Optional[str] = None,
-                 url: Optional[str] = None):
+                 url: Optional[str] = None,
+                 width: Optional[int] = None):
         """
         :param str additional_params: Additional parameters.
         :param str apptype: Application type.
+        :param str color_depth: Color depth per pixel. Valid values: `32`, `16`, `8`.
         :param str description: Description.
         :param str domain: Login domain.
         :param str folder: Network shared file folder parameter.
         :param Sequence['VpnSslWebPortalBookmarkGroupBookmarkFormDataArgs'] form_datas: Form data. The structure of `form_data` block is documented below.
+        :param int height: Screen height (range from 480 - 65535, default = 768).
         :param str host: Host name/IP parameter.
+        :param str keyboard_layout: Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
         :param int listening_port: Listening port (0 - 65535).
         :param str load_balancing_info: The load balancing information or cookie which should be provided to the connection broker.
         :param str logon_password: Logon password.
@@ -77100,7 +87497,9 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         :param str preconnection_blob: An arbitrary string which identifies the RDP source.
         :param int preconnection_id: The numeric ID of the RDP source (0-2147483648).
         :param int remote_port: Remote port (0 - 65535).
+        :param str restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
         :param str security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param str send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param str server_layout: Server side keyboard layout.
         :param str show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
         :param str sso: Single Sign-On. Valid values: `disable`, `static`, `auto`.
@@ -77109,11 +87508,14 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         :param str sso_password: SSO password.
         :param str sso_username: SSO user name.
         :param str url: URL parameter.
+        :param int width: Screen width (range from 640 - 65535, default = 1024).
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
         if apptype is not None:
             pulumi.set(__self__, "apptype", apptype)
+        if color_depth is not None:
+            pulumi.set(__self__, "color_depth", color_depth)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
@@ -77122,8 +87524,12 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
             pulumi.set(__self__, "folder", folder)
         if form_datas is not None:
             pulumi.set(__self__, "form_datas", form_datas)
+        if height is not None:
+            pulumi.set(__self__, "height", height)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if keyboard_layout is not None:
+            pulumi.set(__self__, "keyboard_layout", keyboard_layout)
         if listening_port is not None:
             pulumi.set(__self__, "listening_port", listening_port)
         if load_balancing_info is not None:
@@ -77142,8 +87548,12 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
             pulumi.set(__self__, "preconnection_id", preconnection_id)
         if remote_port is not None:
             pulumi.set(__self__, "remote_port", remote_port)
+        if restricted_admin is not None:
+            pulumi.set(__self__, "restricted_admin", restricted_admin)
         if security is not None:
             pulumi.set(__self__, "security", security)
+        if send_preconnection_id is not None:
+            pulumi.set(__self__, "send_preconnection_id", send_preconnection_id)
         if server_layout is not None:
             pulumi.set(__self__, "server_layout", server_layout)
         if show_status_window is not None:
@@ -77160,6 +87570,8 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if width is not None:
+            pulumi.set(__self__, "width", width)
 
     @property
     @pulumi.getter(name="additionalParams")
@@ -77176,6 +87588,14 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         Application type.
         """
         return pulumi.get(self, "apptype")
+
+    @property
+    @pulumi.getter(name="colorDepth")
+    def color_depth(self) -> Optional[str]:
+        """
+        Color depth per pixel. Valid values: `32`, `16`, `8`.
+        """
+        return pulumi.get(self, "color_depth")
 
     @property
     @pulumi.getter
@@ -77211,11 +87631,27 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
 
     @property
     @pulumi.getter
+    def height(self) -> Optional[int]:
+        """
+        Screen height (range from 480 - 65535, default = 768).
+        """
+        return pulumi.get(self, "height")
+
+    @property
+    @pulumi.getter
     def host(self) -> Optional[str]:
         """
         Host name/IP parameter.
         """
         return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="keyboardLayout")
+    def keyboard_layout(self) -> Optional[str]:
+        """
+        Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+        """
+        return pulumi.get(self, "keyboard_layout")
 
     @property
     @pulumi.getter(name="listeningPort")
@@ -77290,12 +87726,28 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         return pulumi.get(self, "remote_port")
 
     @property
+    @pulumi.getter(name="restrictedAdmin")
+    def restricted_admin(self) -> Optional[str]:
+        """
+        Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "restricted_admin")
+
+    @property
     @pulumi.getter
     def security(self) -> Optional[str]:
         """
         Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
+
+    @property
+    @pulumi.getter(name="sendPreconnectionId")
+    def send_preconnection_id(self) -> Optional[str]:
+        """
+        Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "send_preconnection_id")
 
     @property
     @pulumi.getter(name="serverLayout")
@@ -77360,6 +87812,14 @@ class VpnSslWebPortalBookmarkGroupBookmark(dict):
         URL parameter.
         """
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def width(self) -> Optional[int]:
+        """
+        Screen width (range from 640 - 65535, default = 1024).
+        """
+        return pulumi.get(self, "width")
 
 
 @pulumi.output_type
@@ -77750,8 +88210,12 @@ class VpnSslWebUserBookmarkBookmark(dict):
         suggest = None
         if key == "additionalParams":
             suggest = "additional_params"
+        elif key == "colorDepth":
+            suggest = "color_depth"
         elif key == "formDatas":
             suggest = "form_datas"
+        elif key == "keyboardLayout":
+            suggest = "keyboard_layout"
         elif key == "listeningPort":
             suggest = "listening_port"
         elif key == "loadBalancingInfo":
@@ -77766,6 +88230,10 @@ class VpnSslWebUserBookmarkBookmark(dict):
             suggest = "preconnection_id"
         elif key == "remotePort":
             suggest = "remote_port"
+        elif key == "restrictedAdmin":
+            suggest = "restricted_admin"
+        elif key == "sendPreconnectionId":
+            suggest = "send_preconnection_id"
         elif key == "serverLayout":
             suggest = "server_layout"
         elif key == "showStatusWindow":
@@ -77793,11 +88261,14 @@ class VpnSslWebUserBookmarkBookmark(dict):
     def __init__(__self__, *,
                  additional_params: Optional[str] = None,
                  apptype: Optional[str] = None,
+                 color_depth: Optional[str] = None,
                  description: Optional[str] = None,
                  domain: Optional[str] = None,
                  folder: Optional[str] = None,
                  form_datas: Optional[Sequence['outputs.VpnSslWebUserBookmarkBookmarkFormData']] = None,
+                 height: Optional[int] = None,
                  host: Optional[str] = None,
+                 keyboard_layout: Optional[str] = None,
                  listening_port: Optional[int] = None,
                  load_balancing_info: Optional[str] = None,
                  logon_password: Optional[str] = None,
@@ -77807,7 +88278,9 @@ class VpnSslWebUserBookmarkBookmark(dict):
                  preconnection_blob: Optional[str] = None,
                  preconnection_id: Optional[int] = None,
                  remote_port: Optional[int] = None,
+                 restricted_admin: Optional[str] = None,
                  security: Optional[str] = None,
+                 send_preconnection_id: Optional[str] = None,
                  server_layout: Optional[str] = None,
                  show_status_window: Optional[str] = None,
                  sso: Optional[str] = None,
@@ -77815,15 +88288,19 @@ class VpnSslWebUserBookmarkBookmark(dict):
                  sso_credential_sent_once: Optional[str] = None,
                  sso_password: Optional[str] = None,
                  sso_username: Optional[str] = None,
-                 url: Optional[str] = None):
+                 url: Optional[str] = None,
+                 width: Optional[int] = None):
         """
         :param str additional_params: Additional parameters.
         :param str apptype: Application type.
+        :param str color_depth: Color depth per pixel. Valid values: `32`, `16`, `8`.
         :param str description: Description.
         :param str domain: Login domain.
         :param str folder: Network shared file folder parameter.
         :param Sequence['VpnSslWebUserBookmarkBookmarkFormDataArgs'] form_datas: Form data. The structure of `form_data` block is documented below.
+        :param int height: Screen height (range from 480 - 65535, default = 768).
         :param str host: Host name/IP parameter.
+        :param str keyboard_layout: Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
         :param int listening_port: Listening port (0 - 65535).
         :param str load_balancing_info: The load balancing information or cookie which should be provided to the connection broker.
         :param str logon_password: Logon password.
@@ -77833,7 +88310,9 @@ class VpnSslWebUserBookmarkBookmark(dict):
         :param str preconnection_blob: An arbitrary string which identifies the RDP source.
         :param int preconnection_id: The numeric ID of the RDP source (0-2147483648).
         :param int remote_port: Remote port (0 - 65535).
+        :param str restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
         :param str security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param str send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param str server_layout: Server side keyboard layout.
         :param str show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
         :param str sso: Single Sign-On. Valid values: `disable`, `static`, `auto`.
@@ -77842,11 +88321,14 @@ class VpnSslWebUserBookmarkBookmark(dict):
         :param str sso_password: SSO password.
         :param str sso_username: SSO user name.
         :param str url: URL parameter.
+        :param int width: Screen width (range from 640 - 65535, default = 1024).
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
         if apptype is not None:
             pulumi.set(__self__, "apptype", apptype)
+        if color_depth is not None:
+            pulumi.set(__self__, "color_depth", color_depth)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
@@ -77855,8 +88337,12 @@ class VpnSslWebUserBookmarkBookmark(dict):
             pulumi.set(__self__, "folder", folder)
         if form_datas is not None:
             pulumi.set(__self__, "form_datas", form_datas)
+        if height is not None:
+            pulumi.set(__self__, "height", height)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if keyboard_layout is not None:
+            pulumi.set(__self__, "keyboard_layout", keyboard_layout)
         if listening_port is not None:
             pulumi.set(__self__, "listening_port", listening_port)
         if load_balancing_info is not None:
@@ -77875,8 +88361,12 @@ class VpnSslWebUserBookmarkBookmark(dict):
             pulumi.set(__self__, "preconnection_id", preconnection_id)
         if remote_port is not None:
             pulumi.set(__self__, "remote_port", remote_port)
+        if restricted_admin is not None:
+            pulumi.set(__self__, "restricted_admin", restricted_admin)
         if security is not None:
             pulumi.set(__self__, "security", security)
+        if send_preconnection_id is not None:
+            pulumi.set(__self__, "send_preconnection_id", send_preconnection_id)
         if server_layout is not None:
             pulumi.set(__self__, "server_layout", server_layout)
         if show_status_window is not None:
@@ -77893,6 +88383,8 @@ class VpnSslWebUserBookmarkBookmark(dict):
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if width is not None:
+            pulumi.set(__self__, "width", width)
 
     @property
     @pulumi.getter(name="additionalParams")
@@ -77909,6 +88401,14 @@ class VpnSslWebUserBookmarkBookmark(dict):
         Application type.
         """
         return pulumi.get(self, "apptype")
+
+    @property
+    @pulumi.getter(name="colorDepth")
+    def color_depth(self) -> Optional[str]:
+        """
+        Color depth per pixel. Valid values: `32`, `16`, `8`.
+        """
+        return pulumi.get(self, "color_depth")
 
     @property
     @pulumi.getter
@@ -77944,11 +88444,27 @@ class VpnSslWebUserBookmarkBookmark(dict):
 
     @property
     @pulumi.getter
+    def height(self) -> Optional[int]:
+        """
+        Screen height (range from 480 - 65535, default = 768).
+        """
+        return pulumi.get(self, "height")
+
+    @property
+    @pulumi.getter
     def host(self) -> Optional[str]:
         """
         Host name/IP parameter.
         """
         return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="keyboardLayout")
+    def keyboard_layout(self) -> Optional[str]:
+        """
+        Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+        """
+        return pulumi.get(self, "keyboard_layout")
 
     @property
     @pulumi.getter(name="listeningPort")
@@ -78023,12 +88539,28 @@ class VpnSslWebUserBookmarkBookmark(dict):
         return pulumi.get(self, "remote_port")
 
     @property
+    @pulumi.getter(name="restrictedAdmin")
+    def restricted_admin(self) -> Optional[str]:
+        """
+        Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "restricted_admin")
+
+    @property
     @pulumi.getter
     def security(self) -> Optional[str]:
         """
         Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
+
+    @property
+    @pulumi.getter(name="sendPreconnectionId")
+    def send_preconnection_id(self) -> Optional[str]:
+        """
+        Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "send_preconnection_id")
 
     @property
     @pulumi.getter(name="serverLayout")
@@ -78093,6 +88625,14 @@ class VpnSslWebUserBookmarkBookmark(dict):
         URL parameter.
         """
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def width(self) -> Optional[int]:
+        """
+        Screen width (range from 640 - 65535, default = 1024).
+        """
+        return pulumi.get(self, "width")
 
 
 @pulumi.output_type
@@ -78133,8 +88673,12 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
         suggest = None
         if key == "additionalParams":
             suggest = "additional_params"
+        elif key == "colorDepth":
+            suggest = "color_depth"
         elif key == "formDatas":
             suggest = "form_datas"
+        elif key == "keyboardLayout":
+            suggest = "keyboard_layout"
         elif key == "listeningPort":
             suggest = "listening_port"
         elif key == "loadBalancingInfo":
@@ -78149,6 +88693,10 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
             suggest = "preconnection_id"
         elif key == "remotePort":
             suggest = "remote_port"
+        elif key == "restrictedAdmin":
+            suggest = "restricted_admin"
+        elif key == "sendPreconnectionId":
+            suggest = "send_preconnection_id"
         elif key == "serverLayout":
             suggest = "server_layout"
         elif key == "showStatusWindow":
@@ -78176,11 +88724,14 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
     def __init__(__self__, *,
                  additional_params: Optional[str] = None,
                  apptype: Optional[str] = None,
+                 color_depth: Optional[str] = None,
                  description: Optional[str] = None,
                  domain: Optional[str] = None,
                  folder: Optional[str] = None,
                  form_datas: Optional[Sequence['outputs.VpnSslWebUserGroupBookmarkBookmarkFormData']] = None,
+                 height: Optional[int] = None,
                  host: Optional[str] = None,
+                 keyboard_layout: Optional[str] = None,
                  listening_port: Optional[int] = None,
                  load_balancing_info: Optional[str] = None,
                  logon_password: Optional[str] = None,
@@ -78190,7 +88741,9 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
                  preconnection_blob: Optional[str] = None,
                  preconnection_id: Optional[int] = None,
                  remote_port: Optional[int] = None,
+                 restricted_admin: Optional[str] = None,
                  security: Optional[str] = None,
+                 send_preconnection_id: Optional[str] = None,
                  server_layout: Optional[str] = None,
                  show_status_window: Optional[str] = None,
                  sso: Optional[str] = None,
@@ -78198,15 +88751,19 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
                  sso_credential_sent_once: Optional[str] = None,
                  sso_password: Optional[str] = None,
                  sso_username: Optional[str] = None,
-                 url: Optional[str] = None):
+                 url: Optional[str] = None,
+                 width: Optional[int] = None):
         """
         :param str additional_params: Additional parameters.
         :param str apptype: Application type.
+        :param str color_depth: Color depth per pixel. Valid values: `32`, `16`, `8`.
         :param str description: Description.
         :param str domain: Login domain.
         :param str folder: Network shared file folder parameter.
         :param Sequence['VpnSslWebUserGroupBookmarkBookmarkFormDataArgs'] form_datas: Form data. The structure of `form_data` block is documented below.
+        :param int height: Screen height (range from 480 - 65535, default = 768).
         :param str host: Host name/IP parameter.
+        :param str keyboard_layout: Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
         :param int listening_port: Listening port (0 - 65535).
         :param str load_balancing_info: The load balancing information or cookie which should be provided to the connection broker.
         :param str logon_password: Logon password.
@@ -78216,7 +88773,9 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
         :param str preconnection_blob: An arbitrary string which identifies the RDP source.
         :param int preconnection_id: The numeric ID of the RDP source (0-2147483648).
         :param int remote_port: Remote port (0 - 65535).
+        :param str restricted_admin: Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
         :param str security: Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+        :param str send_preconnection_id: Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
         :param str server_layout: Server side keyboard layout.
         :param str show_status_window: Enable/disable showing of status window. Valid values: `enable`, `disable`.
         :param str sso: Single Sign-On. Valid values: `disable`, `static`, `auto`.
@@ -78225,11 +88784,14 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
         :param str sso_password: SSO password.
         :param str sso_username: SSO user name.
         :param str url: URL parameter.
+        :param int width: Screen width (range from 640 - 65535, default = 1024).
         """
         if additional_params is not None:
             pulumi.set(__self__, "additional_params", additional_params)
         if apptype is not None:
             pulumi.set(__self__, "apptype", apptype)
+        if color_depth is not None:
+            pulumi.set(__self__, "color_depth", color_depth)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if domain is not None:
@@ -78238,8 +88800,12 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
             pulumi.set(__self__, "folder", folder)
         if form_datas is not None:
             pulumi.set(__self__, "form_datas", form_datas)
+        if height is not None:
+            pulumi.set(__self__, "height", height)
         if host is not None:
             pulumi.set(__self__, "host", host)
+        if keyboard_layout is not None:
+            pulumi.set(__self__, "keyboard_layout", keyboard_layout)
         if listening_port is not None:
             pulumi.set(__self__, "listening_port", listening_port)
         if load_balancing_info is not None:
@@ -78258,8 +88824,12 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
             pulumi.set(__self__, "preconnection_id", preconnection_id)
         if remote_port is not None:
             pulumi.set(__self__, "remote_port", remote_port)
+        if restricted_admin is not None:
+            pulumi.set(__self__, "restricted_admin", restricted_admin)
         if security is not None:
             pulumi.set(__self__, "security", security)
+        if send_preconnection_id is not None:
+            pulumi.set(__self__, "send_preconnection_id", send_preconnection_id)
         if server_layout is not None:
             pulumi.set(__self__, "server_layout", server_layout)
         if show_status_window is not None:
@@ -78276,6 +88846,8 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
             pulumi.set(__self__, "sso_username", sso_username)
         if url is not None:
             pulumi.set(__self__, "url", url)
+        if width is not None:
+            pulumi.set(__self__, "width", width)
 
     @property
     @pulumi.getter(name="additionalParams")
@@ -78292,6 +88864,14 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
         Application type.
         """
         return pulumi.get(self, "apptype")
+
+    @property
+    @pulumi.getter(name="colorDepth")
+    def color_depth(self) -> Optional[str]:
+        """
+        Color depth per pixel. Valid values: `32`, `16`, `8`.
+        """
+        return pulumi.get(self, "color_depth")
 
     @property
     @pulumi.getter
@@ -78327,11 +88907,27 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
 
     @property
     @pulumi.getter
+    def height(self) -> Optional[int]:
+        """
+        Screen height (range from 480 - 65535, default = 768).
+        """
+        return pulumi.get(self, "height")
+
+    @property
+    @pulumi.getter
     def host(self) -> Optional[str]:
         """
         Host name/IP parameter.
         """
         return pulumi.get(self, "host")
+
+    @property
+    @pulumi.getter(name="keyboardLayout")
+    def keyboard_layout(self) -> Optional[str]:
+        """
+        Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+        """
+        return pulumi.get(self, "keyboard_layout")
 
     @property
     @pulumi.getter(name="listeningPort")
@@ -78406,12 +89002,28 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
         return pulumi.get(self, "remote_port")
 
     @property
+    @pulumi.getter(name="restrictedAdmin")
+    def restricted_admin(self) -> Optional[str]:
+        """
+        Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "restricted_admin")
+
+    @property
     @pulumi.getter
     def security(self) -> Optional[str]:
         """
         Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
         """
         return pulumi.get(self, "security")
+
+    @property
+    @pulumi.getter(name="sendPreconnectionId")
+    def send_preconnection_id(self) -> Optional[str]:
+        """
+        Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "send_preconnection_id")
 
     @property
     @pulumi.getter(name="serverLayout")
@@ -78476,6 +89088,14 @@ class VpnSslWebUserGroupBookmarkBookmark(dict):
         URL parameter.
         """
         return pulumi.get(self, "url")
+
+    @property
+    @pulumi.getter
+    def width(self) -> Optional[int]:
+        """
+        Screen width (range from 640 - 65535, default = 1024).
+        """
+        return pulumi.get(self, "width")
 
 
 @pulumi.output_type
@@ -82463,6 +93083,8 @@ class WebfilterProfileAntiphish(dict):
             suggest = "check_basic_auth"
         elif key == "checkUri":
             suggest = "check_uri"
+        elif key == "checkUsernameOnly":
+            suggest = "check_username_only"
         elif key == "customPatterns":
             suggest = "custom_patterns"
         elif key == "defaultAction":
@@ -82486,28 +93108,38 @@ class WebfilterProfileAntiphish(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 authentication: Optional[str] = None,
                  check_basic_auth: Optional[str] = None,
                  check_uri: Optional[str] = None,
+                 check_username_only: Optional[str] = None,
                  custom_patterns: Optional[Sequence['outputs.WebfilterProfileAntiphishCustomPattern']] = None,
                  default_action: Optional[str] = None,
                  domain_controller: Optional[str] = None,
                  inspection_entries: Optional[Sequence['outputs.WebfilterProfileAntiphishInspectionEntry']] = None,
+                 ldap: Optional[str] = None,
                  max_body_len: Optional[int] = None,
                  status: Optional[str] = None):
         """
+        :param str authentication: Authentication methods. Valid values: `domain-controller`, `ldap`.
         :param str check_basic_auth: Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `enable`, `disable`.
         :param str check_uri: Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
+        :param str check_username_only: Enable/disable username only matching of credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
         :param Sequence['WebfilterProfileAntiphishCustomPatternArgs'] custom_patterns: Custom username and password regex patterns. The structure of `custom_patterns` block is documented below.
         :param str default_action: Action to be taken when there is no matching rule. Valid values: `exempt`, `log`, `block`.
         :param str domain_controller: Domain for which to verify received credentials against.
         :param Sequence['WebfilterProfileAntiphishInspectionEntryArgs'] inspection_entries: AntiPhishing entries. The structure of `inspection_entries` block is documented below.
+        :param str ldap: LDAP server for which to verify received credentials against.
         :param int max_body_len: Maximum size of a POST body to check for credentials.
         :param str status: Toggle AntiPhishing functionality. Valid values: `enable`, `disable`.
         """
+        if authentication is not None:
+            pulumi.set(__self__, "authentication", authentication)
         if check_basic_auth is not None:
             pulumi.set(__self__, "check_basic_auth", check_basic_auth)
         if check_uri is not None:
             pulumi.set(__self__, "check_uri", check_uri)
+        if check_username_only is not None:
+            pulumi.set(__self__, "check_username_only", check_username_only)
         if custom_patterns is not None:
             pulumi.set(__self__, "custom_patterns", custom_patterns)
         if default_action is not None:
@@ -82516,10 +93148,20 @@ class WebfilterProfileAntiphish(dict):
             pulumi.set(__self__, "domain_controller", domain_controller)
         if inspection_entries is not None:
             pulumi.set(__self__, "inspection_entries", inspection_entries)
+        if ldap is not None:
+            pulumi.set(__self__, "ldap", ldap)
         if max_body_len is not None:
             pulumi.set(__self__, "max_body_len", max_body_len)
         if status is not None:
             pulumi.set(__self__, "status", status)
+
+    @property
+    @pulumi.getter
+    def authentication(self) -> Optional[str]:
+        """
+        Authentication methods. Valid values: `domain-controller`, `ldap`.
+        """
+        return pulumi.get(self, "authentication")
 
     @property
     @pulumi.getter(name="checkBasicAuth")
@@ -82536,6 +93178,14 @@ class WebfilterProfileAntiphish(dict):
         Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "check_uri")
+
+    @property
+    @pulumi.getter(name="checkUsernameOnly")
+    def check_username_only(self) -> Optional[str]:
+        """
+        Enable/disable username only matching of credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "check_username_only")
 
     @property
     @pulumi.getter(name="customPatterns")
@@ -82570,6 +93220,14 @@ class WebfilterProfileAntiphish(dict):
         return pulumi.get(self, "inspection_entries")
 
     @property
+    @pulumi.getter
+    def ldap(self) -> Optional[str]:
+        """
+        LDAP server for which to verify received credentials against.
+        """
+        return pulumi.get(self, "ldap")
+
+    @property
     @pulumi.getter(name="maxBodyLen")
     def max_body_len(self) -> Optional[int]:
         """
@@ -82590,15 +93248,19 @@ class WebfilterProfileAntiphish(dict):
 class WebfilterProfileAntiphishCustomPattern(dict):
     def __init__(__self__, *,
                  category: Optional[str] = None,
-                 pattern: Optional[str] = None):
+                 pattern: Optional[str] = None,
+                 type: Optional[str] = None):
         """
         :param str category: Category that the pattern matches. Valid values: `username`, `password`.
         :param str pattern: Target pattern.
+        :param str type: Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
         """
         if category is not None:
             pulumi.set(__self__, "category", category)
         if pattern is not None:
             pulumi.set(__self__, "pattern", pattern)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
 
     @property
     @pulumi.getter
@@ -82615,6 +93277,14 @@ class WebfilterProfileAntiphishCustomPattern(dict):
         Target pattern.
         """
         return pulumi.get(self, "pattern")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type
@@ -83223,7 +93893,7 @@ class WebfilterProfileFtgdWfQuota(dict):
         :param str duration: Duration of quota.
         :param int id: ID number.
         :param str override_replacemsg: Override replacement message.
-        :param str type: Quota type. Valid values: `time`, `traffic`.
+        :param str type: Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
         :param str unit: Traffic quota unit of measurement. Valid values: `B`, `KB`, `MB`, `GB`.
         :param int value: Traffic quota value.
         """
@@ -83278,7 +93948,7 @@ class WebfilterProfileFtgdWfQuota(dict):
     @pulumi.getter
     def type(self) -> Optional[str]:
         """
-        Quota type. Valid values: `time`, `traffic`.
+        Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
         """
         return pulumi.get(self, "type")
 
@@ -83488,6 +94158,8 @@ class WebfilterProfileWeb(dict):
             suggest = "safe_search"
         elif key == "urlfilterTable":
             suggest = "urlfilter_table"
+        elif key == "vimeoRestrict":
+            suggest = "vimeo_restrict"
         elif key == "youtubeRestrict":
             suggest = "youtube_restrict"
 
@@ -83513,6 +94185,7 @@ class WebfilterProfileWeb(dict):
                  log_search: Optional[str] = None,
                  safe_search: Optional[str] = None,
                  urlfilter_table: Optional[int] = None,
+                 vimeo_restrict: Optional[str] = None,
                  whitelist: Optional[str] = None,
                  youtube_restrict: Optional[str] = None):
         """
@@ -83526,6 +94199,7 @@ class WebfilterProfileWeb(dict):
         :param str log_search: Enable/disable logging all search phrases. Valid values: `enable`, `disable`.
         :param str safe_search: Safe search type. Valid values: `url`, `header`.
         :param int urlfilter_table: URL filter table ID.
+        :param str vimeo_restrict: Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "content_rating".
         :param str whitelist: FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
         :param str youtube_restrict: YouTube EDU filter level. Valid values: `none`, `strict`, `moderate`.
         """
@@ -83549,6 +94223,8 @@ class WebfilterProfileWeb(dict):
             pulumi.set(__self__, "safe_search", safe_search)
         if urlfilter_table is not None:
             pulumi.set(__self__, "urlfilter_table", urlfilter_table)
+        if vimeo_restrict is not None:
+            pulumi.set(__self__, "vimeo_restrict", vimeo_restrict)
         if whitelist is not None:
             pulumi.set(__self__, "whitelist", whitelist)
         if youtube_restrict is not None:
@@ -83633,6 +94309,14 @@ class WebfilterProfileWeb(dict):
         URL filter table ID.
         """
         return pulumi.get(self, "urlfilter_table")
+
+    @property
+    @pulumi.getter(name="vimeoRestrict")
+    def vimeo_restrict(self) -> Optional[str]:
+        """
+        Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "content_rating".
+        """
+        return pulumi.get(self, "vimeo_restrict")
 
     @property
     @pulumi.getter
@@ -84243,6 +94927,25 @@ class WirelessControllerApcfgProfileCommandList(dict):
 
 
 @pulumi.output_type
+class WirelessControllerArrpProfileDarrpOptimizeSchedule(dict):
+    def __init__(__self__, *,
+                 name: Optional[str] = None):
+        """
+        :param str name: Schedule name.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Schedule name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class WirelessControllerBonjourProfilePolicyList(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -84637,6 +95340,209 @@ class WirelessControllerHotspot20AnqpVenueNameValueList(dict):
 
 
 @pulumi.output_type
+class WirelessControllerHotspot20AnqpVenueUrlValueList(dict):
+    def __init__(__self__, *,
+                 index: Optional[int] = None,
+                 number: Optional[int] = None,
+                 value: Optional[str] = None):
+        """
+        :param int index: URL index.
+        :param int number: Venue number.
+        :param str value: Venue URL value.
+        """
+        if index is not None:
+            pulumi.set(__self__, "index", index)
+        if number is not None:
+            pulumi.set(__self__, "number", number)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @property
+    @pulumi.getter
+    def index(self) -> Optional[int]:
+        """
+        URL index.
+        """
+        return pulumi.get(self, "index")
+
+    @property
+    @pulumi.getter
+    def number(self) -> Optional[int]:
+        """
+        Venue number.
+        """
+        return pulumi.get(self, "number")
+
+    @property
+    @pulumi.getter
+    def value(self) -> Optional[str]:
+        """
+        Venue URL value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class WirelessControllerHotspot20H2QpAdviceOfChargeAocList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "naiRealm":
+            suggest = "nai_realm"
+        elif key == "naiRealmEncoding":
+            suggest = "nai_realm_encoding"
+        elif key == "planInfos":
+            suggest = "plan_infos"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WirelessControllerHotspot20H2QpAdviceOfChargeAocList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WirelessControllerHotspot20H2QpAdviceOfChargeAocList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WirelessControllerHotspot20H2QpAdviceOfChargeAocList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 nai_realm: Optional[str] = None,
+                 nai_realm_encoding: Optional[str] = None,
+                 name: Optional[str] = None,
+                 plan_infos: Optional[Sequence['outputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo']] = None,
+                 type: Optional[str] = None):
+        """
+        :param str nai_realm: NAI realm list name.
+        :param str nai_realm_encoding: NAI realm encoding.
+        :param str name: Plan name.
+        :param Sequence['WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoArgs'] plan_infos: Plan info. The structure of `plan_info` block is documented below.
+        :param str type: Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
+        """
+        if nai_realm is not None:
+            pulumi.set(__self__, "nai_realm", nai_realm)
+        if nai_realm_encoding is not None:
+            pulumi.set(__self__, "nai_realm_encoding", nai_realm_encoding)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if plan_infos is not None:
+            pulumi.set(__self__, "plan_infos", plan_infos)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter(name="naiRealm")
+    def nai_realm(self) -> Optional[str]:
+        """
+        NAI realm list name.
+        """
+        return pulumi.get(self, "nai_realm")
+
+    @property
+    @pulumi.getter(name="naiRealmEncoding")
+    def nai_realm_encoding(self) -> Optional[str]:
+        """
+        NAI realm encoding.
+        """
+        return pulumi.get(self, "nai_realm_encoding")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Plan name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="planInfos")
+    def plan_infos(self) -> Optional[Sequence['outputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo']]:
+        """
+        Plan info. The structure of `plan_info` block is documented below.
+        """
+        return pulumi.get(self, "plan_infos")
+
+    @property
+    @pulumi.getter
+    def type(self) -> Optional[str]:
+        """
+        Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "infoFile":
+            suggest = "info_file"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 currency: Optional[str] = None,
+                 info_file: Optional[str] = None,
+                 lang: Optional[str] = None,
+                 name: Optional[str] = None):
+        """
+        :param str currency: Currency code.
+        :param str info_file: Info file.
+        :param str lang: Languague code.
+        :param str name: Plan name.
+        """
+        if currency is not None:
+            pulumi.set(__self__, "currency", currency)
+        if info_file is not None:
+            pulumi.set(__self__, "info_file", info_file)
+        if lang is not None:
+            pulumi.set(__self__, "lang", lang)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @property
+    @pulumi.getter
+    def currency(self) -> Optional[str]:
+        """
+        Currency code.
+        """
+        return pulumi.get(self, "currency")
+
+    @property
+    @pulumi.getter(name="infoFile")
+    def info_file(self) -> Optional[str]:
+        """
+        Info file.
+        """
+        return pulumi.get(self, "info_file")
+
+    @property
+    @pulumi.getter
+    def lang(self) -> Optional[str]:
+        """
+        Languague code.
+        """
+        return pulumi.get(self, "lang")
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        Plan name.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
 class WirelessControllerHotspot20H2QpOperatorNameValueList(dict):
     def __init__(__self__, *,
                  index: Optional[int] = None,
@@ -84737,6 +95643,54 @@ class WirelessControllerHotspot20H2QpOsuProviderFriendlyName(dict):
         Language code.
         """
         return pulumi.get(self, "lang")
+
+
+@pulumi.output_type
+class WirelessControllerHotspot20H2QpOsuProviderNaiNaiList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "osuNai":
+            suggest = "osu_nai"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WirelessControllerHotspot20H2QpOsuProviderNaiNaiList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WirelessControllerHotspot20H2QpOsuProviderNaiNaiList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WirelessControllerHotspot20H2QpOsuProviderNaiNaiList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 osu_nai: Optional[str] = None):
+        """
+        :param str name: OSU NAI ID.
+        :param str osu_nai: OSU NAI.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if osu_nai is not None:
+            pulumi.set(__self__, "osu_nai", osu_nai)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        OSU NAI ID.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="osuNai")
+    def osu_nai(self) -> Optional[str]:
+        """
+        OSU NAI.
+        """
+        return pulumi.get(self, "osu_nai")
 
 
 @pulumi.output_type
@@ -85939,7 +96893,7 @@ class WirelessControllerVapMpskKeyMpskSchedule(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Schedule name.
+        :param str name: VLAN name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -85948,7 +96902,7 @@ class WirelessControllerVapMpskKeyMpskSchedule(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
 
@@ -86036,7 +96990,7 @@ class WirelessControllerVapRadiusMacAuthUsergroup(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Schedule name.
+        :param str name: VLAN name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -86045,7 +96999,7 @@ class WirelessControllerVapRadiusMacAuthUsergroup(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
 
@@ -86055,7 +97009,7 @@ class WirelessControllerVapSelectedUsergroup(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Schedule name.
+        :param str name: VLAN name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -86064,7 +97018,7 @@ class WirelessControllerVapSelectedUsergroup(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
 
@@ -86074,7 +97028,7 @@ class WirelessControllerVapUsergroup(dict):
     def __init__(__self__, *,
                  name: Optional[str] = None):
         """
-        :param str name: Schedule name.
+        :param str name: VLAN name.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -86083,9 +97037,57 @@ class WirelessControllerVapUsergroup(dict):
     @pulumi.getter
     def name(self) -> Optional[str]:
         """
-        Schedule name.
+        VLAN name.
         """
         return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class WirelessControllerVapVlanName(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "vlanId":
+            suggest = "vlan_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WirelessControllerVapVlanName. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WirelessControllerVapVlanName.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WirelessControllerVapVlanName.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 name: Optional[str] = None,
+                 vlan_id: Optional[int] = None):
+        """
+        :param str name: VLAN name.
+        :param int vlan_id: VLAN ID.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if vlan_id is not None:
+            pulumi.set(__self__, "vlan_id", vlan_id)
+
+    @property
+    @pulumi.getter
+    def name(self) -> Optional[str]:
+        """
+        VLAN name.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="vlanId")
+    def vlan_id(self) -> Optional[int]:
+        """
+        VLAN ID.
+        """
+        return pulumi.get(self, "vlan_id")
 
 
 @pulumi.output_type
@@ -86525,6 +97527,182 @@ class WirelessControllerWtpProfileDenyMacList(dict):
 
 
 @pulumi.output_type
+class WirelessControllerWtpProfileEslSesDongle(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "apcAddrType":
+            suggest = "apc_addr_type"
+        elif key == "apcFqdn":
+            suggest = "apc_fqdn"
+        elif key == "apcIp":
+            suggest = "apc_ip"
+        elif key == "apcPort":
+            suggest = "apc_port"
+        elif key == "coexLevel":
+            suggest = "coex_level"
+        elif key == "complianceLevel":
+            suggest = "compliance_level"
+        elif key == "eslChannel":
+            suggest = "esl_channel"
+        elif key == "outputPower":
+            suggest = "output_power"
+        elif key == "scdEnable":
+            suggest = "scd_enable"
+        elif key == "tlsCertVerification":
+            suggest = "tls_cert_verification"
+        elif key == "tlsFqdnVerification":
+            suggest = "tls_fqdn_verification"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in WirelessControllerWtpProfileEslSesDongle. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        WirelessControllerWtpProfileEslSesDongle.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        WirelessControllerWtpProfileEslSesDongle.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 apc_addr_type: Optional[str] = None,
+                 apc_fqdn: Optional[str] = None,
+                 apc_ip: Optional[str] = None,
+                 apc_port: Optional[int] = None,
+                 coex_level: Optional[str] = None,
+                 compliance_level: Optional[str] = None,
+                 esl_channel: Optional[str] = None,
+                 output_power: Optional[str] = None,
+                 scd_enable: Optional[str] = None,
+                 tls_cert_verification: Optional[str] = None,
+                 tls_fqdn_verification: Optional[str] = None):
+        """
+        :param str apc_addr_type: ESL SES-imagotag APC address type (default = fqdn). Valid values: `fqdn`, `ip`.
+        :param str apc_fqdn: FQDN of ESL SES-imagotag Access Point Controller (APC).
+        :param str apc_ip: IP address of ESL SES-imagotag Access Point Controller (APC).
+        :param int apc_port: Port of ESL SES-imagotag Access Point Controller (APC).
+        :param str coex_level: ESL SES-imagotag dongle coexistence level (default = none). Valid values: `none`.
+        :param str compliance_level: Compliance levels for the ESL solution integration (default = compliance-level-2). Valid values: `compliance-level-2`.
+        :param str esl_channel: ESL SES-imagotag dongle channel (default = 127). Valid values: `-1`, `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `127`.
+        :param str output_power: ESL SES-imagotag dongle output power (default = A). Valid values: `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`.
+        :param str scd_enable: Enable/disable ESL SES-imagotag Serial Communication Daemon (SCD) (default = disable). Valid values: `enable`, `disable`.
+        :param str tls_cert_verification: Enable/disable TLS Certificate verification. (default = enable). Valid values: `enable`, `disable`.
+        :param str tls_fqdn_verification: Enable/disable TLS Certificate verification. (default = disable). Valid values: `enable`, `disable`.
+        """
+        if apc_addr_type is not None:
+            pulumi.set(__self__, "apc_addr_type", apc_addr_type)
+        if apc_fqdn is not None:
+            pulumi.set(__self__, "apc_fqdn", apc_fqdn)
+        if apc_ip is not None:
+            pulumi.set(__self__, "apc_ip", apc_ip)
+        if apc_port is not None:
+            pulumi.set(__self__, "apc_port", apc_port)
+        if coex_level is not None:
+            pulumi.set(__self__, "coex_level", coex_level)
+        if compliance_level is not None:
+            pulumi.set(__self__, "compliance_level", compliance_level)
+        if esl_channel is not None:
+            pulumi.set(__self__, "esl_channel", esl_channel)
+        if output_power is not None:
+            pulumi.set(__self__, "output_power", output_power)
+        if scd_enable is not None:
+            pulumi.set(__self__, "scd_enable", scd_enable)
+        if tls_cert_verification is not None:
+            pulumi.set(__self__, "tls_cert_verification", tls_cert_verification)
+        if tls_fqdn_verification is not None:
+            pulumi.set(__self__, "tls_fqdn_verification", tls_fqdn_verification)
+
+    @property
+    @pulumi.getter(name="apcAddrType")
+    def apc_addr_type(self) -> Optional[str]:
+        """
+        ESL SES-imagotag APC address type (default = fqdn). Valid values: `fqdn`, `ip`.
+        """
+        return pulumi.get(self, "apc_addr_type")
+
+    @property
+    @pulumi.getter(name="apcFqdn")
+    def apc_fqdn(self) -> Optional[str]:
+        """
+        FQDN of ESL SES-imagotag Access Point Controller (APC).
+        """
+        return pulumi.get(self, "apc_fqdn")
+
+    @property
+    @pulumi.getter(name="apcIp")
+    def apc_ip(self) -> Optional[str]:
+        """
+        IP address of ESL SES-imagotag Access Point Controller (APC).
+        """
+        return pulumi.get(self, "apc_ip")
+
+    @property
+    @pulumi.getter(name="apcPort")
+    def apc_port(self) -> Optional[int]:
+        """
+        Port of ESL SES-imagotag Access Point Controller (APC).
+        """
+        return pulumi.get(self, "apc_port")
+
+    @property
+    @pulumi.getter(name="coexLevel")
+    def coex_level(self) -> Optional[str]:
+        """
+        ESL SES-imagotag dongle coexistence level (default = none). Valid values: `none`.
+        """
+        return pulumi.get(self, "coex_level")
+
+    @property
+    @pulumi.getter(name="complianceLevel")
+    def compliance_level(self) -> Optional[str]:
+        """
+        Compliance levels for the ESL solution integration (default = compliance-level-2). Valid values: `compliance-level-2`.
+        """
+        return pulumi.get(self, "compliance_level")
+
+    @property
+    @pulumi.getter(name="eslChannel")
+    def esl_channel(self) -> Optional[str]:
+        """
+        ESL SES-imagotag dongle channel (default = 127). Valid values: `-1`, `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `127`.
+        """
+        return pulumi.get(self, "esl_channel")
+
+    @property
+    @pulumi.getter(name="outputPower")
+    def output_power(self) -> Optional[str]:
+        """
+        ESL SES-imagotag dongle output power (default = A). Valid values: `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`.
+        """
+        return pulumi.get(self, "output_power")
+
+    @property
+    @pulumi.getter(name="scdEnable")
+    def scd_enable(self) -> Optional[str]:
+        """
+        Enable/disable ESL SES-imagotag Serial Communication Daemon (SCD) (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "scd_enable")
+
+    @property
+    @pulumi.getter(name="tlsCertVerification")
+    def tls_cert_verification(self) -> Optional[str]:
+        """
+        Enable/disable TLS Certificate verification. (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "tls_cert_verification")
+
+    @property
+    @pulumi.getter(name="tlsFqdnVerification")
+    def tls_fqdn_verification(self) -> Optional[str]:
+        """
+        Enable/disable TLS Certificate verification. (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "tls_fqdn_verification")
+
+
+@pulumi.output_type
 class WirelessControllerWtpProfileLan(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -86867,6 +98045,10 @@ class WirelessControllerWtpProfileLbs(dict):
             suggest = "fortipresence_secret"
         elif key == "fortipresenceServer":
             suggest = "fortipresence_server"
+        elif key == "fortipresenceServerAddrType":
+            suggest = "fortipresence_server_addr_type"
+        elif key == "fortipresenceServerFqdn":
+            suggest = "fortipresence_server_fqdn"
         elif key == "fortipresenceUnassoc":
             suggest = "fortipresence_unassoc"
         elif key == "stationLocate":
@@ -86904,6 +98086,8 @@ class WirelessControllerWtpProfileLbs(dict):
                  fortipresence_rogue: Optional[str] = None,
                  fortipresence_secret: Optional[str] = None,
                  fortipresence_server: Optional[str] = None,
+                 fortipresence_server_addr_type: Optional[str] = None,
+                 fortipresence_server_fqdn: Optional[str] = None,
                  fortipresence_unassoc: Optional[str] = None,
                  station_locate: Optional[str] = None):
         """
@@ -86927,6 +98111,8 @@ class WirelessControllerWtpProfileLbs(dict):
         :param str fortipresence_rogue: Enable/disable FortiPresence finding and reporting rogue APs. Valid values: `enable`, `disable`.
         :param str fortipresence_secret: FortiPresence secret password (max. 16 characters).
         :param str fortipresence_server: FortiPresence server IP address.
+        :param str fortipresence_server_addr_type: FortiPresence server address type (default = ipv4). Valid values: `ipv4`, `fqdn`.
+        :param str fortipresence_server_fqdn: FQDN of FortiPresence server.
         :param str fortipresence_unassoc: Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `enable`, `disable`.
         :param str station_locate: Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `enable`, `disable`.
         """
@@ -86970,6 +98156,10 @@ class WirelessControllerWtpProfileLbs(dict):
             pulumi.set(__self__, "fortipresence_secret", fortipresence_secret)
         if fortipresence_server is not None:
             pulumi.set(__self__, "fortipresence_server", fortipresence_server)
+        if fortipresence_server_addr_type is not None:
+            pulumi.set(__self__, "fortipresence_server_addr_type", fortipresence_server_addr_type)
+        if fortipresence_server_fqdn is not None:
+            pulumi.set(__self__, "fortipresence_server_fqdn", fortipresence_server_fqdn)
         if fortipresence_unassoc is not None:
             pulumi.set(__self__, "fortipresence_unassoc", fortipresence_unassoc)
         if station_locate is not None:
@@ -87136,6 +98326,22 @@ class WirelessControllerWtpProfileLbs(dict):
         return pulumi.get(self, "fortipresence_server")
 
     @property
+    @pulumi.getter(name="fortipresenceServerAddrType")
+    def fortipresence_server_addr_type(self) -> Optional[str]:
+        """
+        FortiPresence server address type (default = ipv4). Valid values: `ipv4`, `fqdn`.
+        """
+        return pulumi.get(self, "fortipresence_server_addr_type")
+
+    @property
+    @pulumi.getter(name="fortipresenceServerFqdn")
+    def fortipresence_server_fqdn(self) -> Optional[str]:
+        """
+        FQDN of FortiPresence server.
+        """
+        return pulumi.get(self, "fortipresence_server_fqdn")
+
+    @property
     @pulumi.getter(name="fortipresenceUnassoc")
     def fortipresence_unassoc(self) -> Optional[str]:
         """
@@ -87179,7 +98385,7 @@ class WirelessControllerWtpProfilePlatform(dict):
                  type: Optional[str] = None):
         """
         :param str ddscan: Enable/disable use of one radio for dedicated dual-band scanning to detect RF characterization and wireless threat management. Valid values: `enable`, `disable`.
-        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param str type: WTP, FortiAP or AP platform type. There are built-in WTP profiles for all supported FortiAP models. You can select a built-in profile and customize it or create a new profile.
         """
         if ddscan is not None:
@@ -87201,7 +98407,7 @@ class WirelessControllerWtpProfilePlatform(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -87239,6 +98445,8 @@ class WirelessControllerWtpProfileRadio1(dict):
             suggest = "ap_sniffer_mgmt_other"
         elif key == "apSnifferMgmtProbe":
             suggest = "ap_sniffer_mgmt_probe"
+        elif key == "arrpProfile":
+            suggest = "arrp_profile"
         elif key == "autoPowerHigh":
             suggest = "auto_power_high"
         elif key == "autoPowerLevel":
@@ -87257,6 +98465,8 @@ class WirelessControllerWtpProfileRadio1(dict):
             suggest = "beacon_interval"
         elif key == "bssColor":
             suggest = "bss_color"
+        elif key == "bssColorMode":
+            suggest = "bss_color_mode"
         elif key == "callAdmissionControl":
             suggest = "call_admission_control"
         elif key == "callCapacity":
@@ -87271,12 +98481,20 @@ class WirelessControllerWtpProfileRadio1(dict):
             suggest = "frag_threshold"
         elif key == "frequencyHandoff":
             suggest = "frequency_handoff"
+        elif key == "iperfProtocol":
+            suggest = "iperf_protocol"
+        elif key == "iperfServerPort":
+            suggest = "iperf_server_port"
         elif key == "maxClients":
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "powersaveOptimize":
             suggest = "powersave_optimize"
         elif key == "protectionMode":
@@ -87285,6 +98503,40 @@ class WirelessControllerWtpProfileRadio1(dict):
             suggest = "radio_id"
         elif key == "rtsThreshold":
             suggest = "rts_threshold"
+        elif key == "samBssid":
+            suggest = "sam_bssid"
+        elif key == "samCaptivePortal":
+            suggest = "sam_captive_portal"
+        elif key == "samCwpFailureString":
+            suggest = "sam_cwp_failure_string"
+        elif key == "samCwpMatchString":
+            suggest = "sam_cwp_match_string"
+        elif key == "samCwpPassword":
+            suggest = "sam_cwp_password"
+        elif key == "samCwpSuccessString":
+            suggest = "sam_cwp_success_string"
+        elif key == "samCwpTestUrl":
+            suggest = "sam_cwp_test_url"
+        elif key == "samCwpUsername":
+            suggest = "sam_cwp_username"
+        elif key == "samPassword":
+            suggest = "sam_password"
+        elif key == "samReportIntv":
+            suggest = "sam_report_intv"
+        elif key == "samSecurityType":
+            suggest = "sam_security_type"
+        elif key == "samServerFqdn":
+            suggest = "sam_server_fqdn"
+        elif key == "samServerIp":
+            suggest = "sam_server_ip"
+        elif key == "samServerType":
+            suggest = "sam_server_type"
+        elif key == "samSsid":
+            suggest = "sam_ssid"
+        elif key == "samTest":
+            suggest = "sam_test"
+        elif key == "samUsername":
+            suggest = "sam_username"
         elif key == "shortGuardInterval":
             suggest = "short_guard_interval"
         elif key == "spectrumAnalysis":
@@ -87321,6 +98573,7 @@ class WirelessControllerWtpProfileRadio1(dict):
                  ap_sniffer_mgmt_beacon: Optional[str] = None,
                  ap_sniffer_mgmt_other: Optional[str] = None,
                  ap_sniffer_mgmt_probe: Optional[str] = None,
+                 arrp_profile: Optional[str] = None,
                  auto_power_high: Optional[int] = None,
                  auto_power_level: Optional[str] = None,
                  auto_power_low: Optional[int] = None,
@@ -87331,6 +98584,7 @@ class WirelessControllerWtpProfileRadio1(dict):
                  bandwidth_capacity: Optional[int] = None,
                  beacon_interval: Optional[int] = None,
                  bss_color: Optional[int] = None,
+                 bss_color_mode: Optional[str] = None,
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
@@ -87343,14 +98597,35 @@ class WirelessControllerWtpProfileRadio1(dict):
                  dtim: Optional[int] = None,
                  frag_threshold: Optional[int] = None,
                  frequency_handoff: Optional[str] = None,
+                 iperf_protocol: Optional[str] = None,
+                 iperf_server_port: Optional[int] = None,
                  max_clients: Optional[int] = None,
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  powersave_optimize: Optional[str] = None,
                  protection_mode: Optional[str] = None,
                  radio_id: Optional[int] = None,
                  rts_threshold: Optional[int] = None,
+                 sam_bssid: Optional[str] = None,
+                 sam_captive_portal: Optional[str] = None,
+                 sam_cwp_failure_string: Optional[str] = None,
+                 sam_cwp_match_string: Optional[str] = None,
+                 sam_cwp_password: Optional[str] = None,
+                 sam_cwp_success_string: Optional[str] = None,
+                 sam_cwp_test_url: Optional[str] = None,
+                 sam_cwp_username: Optional[str] = None,
+                 sam_password: Optional[str] = None,
+                 sam_report_intv: Optional[int] = None,
+                 sam_security_type: Optional[str] = None,
+                 sam_server_fqdn: Optional[str] = None,
+                 sam_server_ip: Optional[str] = None,
+                 sam_server_type: Optional[str] = None,
+                 sam_ssid: Optional[str] = None,
+                 sam_test: Optional[str] = None,
+                 sam_username: Optional[str] = None,
                  short_guard_interval: Optional[str] = None,
                  spectrum_analysis: Optional[str] = None,
                  transmit_optimize: Optional[str] = None,
@@ -87370,6 +98645,7 @@ class WirelessControllerWtpProfileRadio1(dict):
         :param str ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
+        :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
         :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
@@ -87380,6 +98656,7 @@ class WirelessControllerWtpProfileRadio1(dict):
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
         :param int beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
         :param int bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+        :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
         :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
@@ -87392,14 +98669,35 @@ class WirelessControllerWtpProfileRadio1(dict):
         :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param str powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
         :param str protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
         :param int radio_id: radio-id
         :param int rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+        :param str sam_bssid: BSSID for WiFi network.
+        :param str sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param str sam_cwp_failure_string: Failure identification on the page after an incorrect login.
+        :param str sam_cwp_match_string: Identification string from the captive portal login form.
+        :param str sam_cwp_password: Password for captive portal authentication.
+        :param str sam_cwp_success_string: Success identification on the page after a successful login.
+        :param str sam_cwp_test_url: Website the client is trying to access.
+        :param str sam_cwp_username: Username for captive portal authentication.
+        :param str sam_password: Passphrase for WiFi network connection.
+        :param int sam_report_intv: SAM report interval (sec), 0 for a one-time report.
+        :param str sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param str sam_server_fqdn: SAM test server domain name.
+        :param str sam_server_ip: SAM test server IP address.
+        :param str sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        :param str sam_ssid: SSID for WiFi network.
+        :param str sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        :param str sam_username: Username for WiFi network connection.
         :param str short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
@@ -87430,6 +98728,8 @@ class WirelessControllerWtpProfileRadio1(dict):
             pulumi.set(__self__, "ap_sniffer_mgmt_other", ap_sniffer_mgmt_other)
         if ap_sniffer_mgmt_probe is not None:
             pulumi.set(__self__, "ap_sniffer_mgmt_probe", ap_sniffer_mgmt_probe)
+        if arrp_profile is not None:
+            pulumi.set(__self__, "arrp_profile", arrp_profile)
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -87450,6 +98750,8 @@ class WirelessControllerWtpProfileRadio1(dict):
             pulumi.set(__self__, "beacon_interval", beacon_interval)
         if bss_color is not None:
             pulumi.set(__self__, "bss_color", bss_color)
+        if bss_color_mode is not None:
+            pulumi.set(__self__, "bss_color_mode", bss_color_mode)
         if call_admission_control is not None:
             pulumi.set(__self__, "call_admission_control", call_admission_control)
         if call_capacity is not None:
@@ -87474,6 +98776,10 @@ class WirelessControllerWtpProfileRadio1(dict):
             pulumi.set(__self__, "frag_threshold", frag_threshold)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if iperf_protocol is not None:
+            pulumi.set(__self__, "iperf_protocol", iperf_protocol)
+        if iperf_server_port is not None:
+            pulumi.set(__self__, "iperf_server_port", iperf_server_port)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
@@ -87482,6 +98788,10 @@ class WirelessControllerWtpProfileRadio1(dict):
             pulumi.set(__self__, "mode", mode)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if powersave_optimize is not None:
             pulumi.set(__self__, "powersave_optimize", powersave_optimize)
         if protection_mode is not None:
@@ -87490,6 +98800,40 @@ class WirelessControllerWtpProfileRadio1(dict):
             pulumi.set(__self__, "radio_id", radio_id)
         if rts_threshold is not None:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
+        if sam_bssid is not None:
+            pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_captive_portal is not None:
+            pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_cwp_failure_string is not None:
+            pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
+        if sam_cwp_match_string is not None:
+            pulumi.set(__self__, "sam_cwp_match_string", sam_cwp_match_string)
+        if sam_cwp_password is not None:
+            pulumi.set(__self__, "sam_cwp_password", sam_cwp_password)
+        if sam_cwp_success_string is not None:
+            pulumi.set(__self__, "sam_cwp_success_string", sam_cwp_success_string)
+        if sam_cwp_test_url is not None:
+            pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
+        if sam_cwp_username is not None:
+            pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_password is not None:
+            pulumi.set(__self__, "sam_password", sam_password)
+        if sam_report_intv is not None:
+            pulumi.set(__self__, "sam_report_intv", sam_report_intv)
+        if sam_security_type is not None:
+            pulumi.set(__self__, "sam_security_type", sam_security_type)
+        if sam_server_fqdn is not None:
+            pulumi.set(__self__, "sam_server_fqdn", sam_server_fqdn)
+        if sam_server_ip is not None:
+            pulumi.set(__self__, "sam_server_ip", sam_server_ip)
+        if sam_server_type is not None:
+            pulumi.set(__self__, "sam_server_type", sam_server_type)
+        if sam_ssid is not None:
+            pulumi.set(__self__, "sam_ssid", sam_ssid)
+        if sam_test is not None:
+            pulumi.set(__self__, "sam_test", sam_test)
+        if sam_username is not None:
+            pulumi.set(__self__, "sam_username", sam_username)
         if short_guard_interval is not None:
             pulumi.set(__self__, "short_guard_interval", short_guard_interval)
         if spectrum_analysis is not None:
@@ -87594,6 +98938,14 @@ class WirelessControllerWtpProfileRadio1(dict):
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @property
+    @pulumi.getter(name="arrpProfile")
+    def arrp_profile(self) -> Optional[str]:
+        """
+        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+        """
+        return pulumi.get(self, "arrp_profile")
+
+    @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
@@ -87672,6 +99024,14 @@ class WirelessControllerWtpProfileRadio1(dict):
         BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
         """
         return pulumi.get(self, "bss_color")
+
+    @property
+    @pulumi.getter(name="bssColorMode")
+    def bss_color_mode(self) -> Optional[str]:
+        """
+        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+        """
+        return pulumi.get(self, "bss_color_mode")
 
     @property
     @pulumi.getter(name="callAdmissionControl")
@@ -87770,6 +99130,22 @@ class WirelessControllerWtpProfileRadio1(dict):
         return pulumi.get(self, "frequency_handoff")
 
     @property
+    @pulumi.getter(name="iperfProtocol")
+    def iperf_protocol(self) -> Optional[str]:
+        """
+        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "iperf_protocol")
+
+    @property
+    @pulumi.getter(name="iperfServerPort")
+    def iperf_server_port(self) -> Optional[int]:
+        """
+        Iperf service port number.
+        """
+        return pulumi.get(self, "iperf_server_port")
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[int]:
         """
@@ -87789,7 +99165,7 @@ class WirelessControllerWtpProfileRadio1(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -87800,6 +99176,22 @@ class WirelessControllerWtpProfileRadio1(dict):
         Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         """
         return pulumi.get(self, "power_level")
+
+    @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
 
     @property
     @pulumi.getter(name="powersaveOptimize")
@@ -87832,6 +99224,142 @@ class WirelessControllerWtpProfileRadio1(dict):
         Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         """
         return pulumi.get(self, "rts_threshold")
+
+    @property
+    @pulumi.getter(name="samBssid")
+    def sam_bssid(self) -> Optional[str]:
+        """
+        BSSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_bssid")
+
+    @property
+    @pulumi.getter(name="samCaptivePortal")
+    def sam_captive_portal(self) -> Optional[str]:
+        """
+        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sam_captive_portal")
+
+    @property
+    @pulumi.getter(name="samCwpFailureString")
+    def sam_cwp_failure_string(self) -> Optional[str]:
+        """
+        Failure identification on the page after an incorrect login.
+        """
+        return pulumi.get(self, "sam_cwp_failure_string")
+
+    @property
+    @pulumi.getter(name="samCwpMatchString")
+    def sam_cwp_match_string(self) -> Optional[str]:
+        """
+        Identification string from the captive portal login form.
+        """
+        return pulumi.get(self, "sam_cwp_match_string")
+
+    @property
+    @pulumi.getter(name="samCwpPassword")
+    def sam_cwp_password(self) -> Optional[str]:
+        """
+        Password for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_password")
+
+    @property
+    @pulumi.getter(name="samCwpSuccessString")
+    def sam_cwp_success_string(self) -> Optional[str]:
+        """
+        Success identification on the page after a successful login.
+        """
+        return pulumi.get(self, "sam_cwp_success_string")
+
+    @property
+    @pulumi.getter(name="samCwpTestUrl")
+    def sam_cwp_test_url(self) -> Optional[str]:
+        """
+        Website the client is trying to access.
+        """
+        return pulumi.get(self, "sam_cwp_test_url")
+
+    @property
+    @pulumi.getter(name="samCwpUsername")
+    def sam_cwp_username(self) -> Optional[str]:
+        """
+        Username for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_username")
+
+    @property
+    @pulumi.getter(name="samPassword")
+    def sam_password(self) -> Optional[str]:
+        """
+        Passphrase for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_password")
+
+    @property
+    @pulumi.getter(name="samReportIntv")
+    def sam_report_intv(self) -> Optional[int]:
+        """
+        SAM report interval (sec), 0 for a one-time report.
+        """
+        return pulumi.get(self, "sam_report_intv")
+
+    @property
+    @pulumi.getter(name="samSecurityType")
+    def sam_security_type(self) -> Optional[str]:
+        """
+        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        """
+        return pulumi.get(self, "sam_security_type")
+
+    @property
+    @pulumi.getter(name="samServerFqdn")
+    def sam_server_fqdn(self) -> Optional[str]:
+        """
+        SAM test server domain name.
+        """
+        return pulumi.get(self, "sam_server_fqdn")
+
+    @property
+    @pulumi.getter(name="samServerIp")
+    def sam_server_ip(self) -> Optional[str]:
+        """
+        SAM test server IP address.
+        """
+        return pulumi.get(self, "sam_server_ip")
+
+    @property
+    @pulumi.getter(name="samServerType")
+    def sam_server_type(self) -> Optional[str]:
+        """
+        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "sam_server_type")
+
+    @property
+    @pulumi.getter(name="samSsid")
+    def sam_ssid(self) -> Optional[str]:
+        """
+        SSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_ssid")
+
+    @property
+    @pulumi.getter(name="samTest")
+    def sam_test(self) -> Optional[str]:
+        """
+        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        """
+        return pulumi.get(self, "sam_test")
+
+    @property
+    @pulumi.getter(name="samUsername")
+    def sam_username(self) -> Optional[str]:
+        """
+        Username for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_username")
 
     @property
     @pulumi.getter(name="shortGuardInterval")
@@ -87953,6 +99481,8 @@ class WirelessControllerWtpProfileRadio2(dict):
             suggest = "ap_sniffer_mgmt_other"
         elif key == "apSnifferMgmtProbe":
             suggest = "ap_sniffer_mgmt_probe"
+        elif key == "arrpProfile":
+            suggest = "arrp_profile"
         elif key == "autoPowerHigh":
             suggest = "auto_power_high"
         elif key == "autoPowerLevel":
@@ -87971,6 +99501,8 @@ class WirelessControllerWtpProfileRadio2(dict):
             suggest = "beacon_interval"
         elif key == "bssColor":
             suggest = "bss_color"
+        elif key == "bssColorMode":
+            suggest = "bss_color_mode"
         elif key == "callAdmissionControl":
             suggest = "call_admission_control"
         elif key == "callCapacity":
@@ -87985,12 +99517,20 @@ class WirelessControllerWtpProfileRadio2(dict):
             suggest = "frag_threshold"
         elif key == "frequencyHandoff":
             suggest = "frequency_handoff"
+        elif key == "iperfProtocol":
+            suggest = "iperf_protocol"
+        elif key == "iperfServerPort":
+            suggest = "iperf_server_port"
         elif key == "maxClients":
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "powersaveOptimize":
             suggest = "powersave_optimize"
         elif key == "protectionMode":
@@ -87999,6 +99539,40 @@ class WirelessControllerWtpProfileRadio2(dict):
             suggest = "radio_id"
         elif key == "rtsThreshold":
             suggest = "rts_threshold"
+        elif key == "samBssid":
+            suggest = "sam_bssid"
+        elif key == "samCaptivePortal":
+            suggest = "sam_captive_portal"
+        elif key == "samCwpFailureString":
+            suggest = "sam_cwp_failure_string"
+        elif key == "samCwpMatchString":
+            suggest = "sam_cwp_match_string"
+        elif key == "samCwpPassword":
+            suggest = "sam_cwp_password"
+        elif key == "samCwpSuccessString":
+            suggest = "sam_cwp_success_string"
+        elif key == "samCwpTestUrl":
+            suggest = "sam_cwp_test_url"
+        elif key == "samCwpUsername":
+            suggest = "sam_cwp_username"
+        elif key == "samPassword":
+            suggest = "sam_password"
+        elif key == "samReportIntv":
+            suggest = "sam_report_intv"
+        elif key == "samSecurityType":
+            suggest = "sam_security_type"
+        elif key == "samServerFqdn":
+            suggest = "sam_server_fqdn"
+        elif key == "samServerIp":
+            suggest = "sam_server_ip"
+        elif key == "samServerType":
+            suggest = "sam_server_type"
+        elif key == "samSsid":
+            suggest = "sam_ssid"
+        elif key == "samTest":
+            suggest = "sam_test"
+        elif key == "samUsername":
+            suggest = "sam_username"
         elif key == "shortGuardInterval":
             suggest = "short_guard_interval"
         elif key == "spectrumAnalysis":
@@ -88035,6 +99609,7 @@ class WirelessControllerWtpProfileRadio2(dict):
                  ap_sniffer_mgmt_beacon: Optional[str] = None,
                  ap_sniffer_mgmt_other: Optional[str] = None,
                  ap_sniffer_mgmt_probe: Optional[str] = None,
+                 arrp_profile: Optional[str] = None,
                  auto_power_high: Optional[int] = None,
                  auto_power_level: Optional[str] = None,
                  auto_power_low: Optional[int] = None,
@@ -88045,6 +99620,7 @@ class WirelessControllerWtpProfileRadio2(dict):
                  bandwidth_capacity: Optional[int] = None,
                  beacon_interval: Optional[int] = None,
                  bss_color: Optional[int] = None,
+                 bss_color_mode: Optional[str] = None,
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
@@ -88057,14 +99633,35 @@ class WirelessControllerWtpProfileRadio2(dict):
                  dtim: Optional[int] = None,
                  frag_threshold: Optional[int] = None,
                  frequency_handoff: Optional[str] = None,
+                 iperf_protocol: Optional[str] = None,
+                 iperf_server_port: Optional[int] = None,
                  max_clients: Optional[int] = None,
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  powersave_optimize: Optional[str] = None,
                  protection_mode: Optional[str] = None,
                  radio_id: Optional[int] = None,
                  rts_threshold: Optional[int] = None,
+                 sam_bssid: Optional[str] = None,
+                 sam_captive_portal: Optional[str] = None,
+                 sam_cwp_failure_string: Optional[str] = None,
+                 sam_cwp_match_string: Optional[str] = None,
+                 sam_cwp_password: Optional[str] = None,
+                 sam_cwp_success_string: Optional[str] = None,
+                 sam_cwp_test_url: Optional[str] = None,
+                 sam_cwp_username: Optional[str] = None,
+                 sam_password: Optional[str] = None,
+                 sam_report_intv: Optional[int] = None,
+                 sam_security_type: Optional[str] = None,
+                 sam_server_fqdn: Optional[str] = None,
+                 sam_server_ip: Optional[str] = None,
+                 sam_server_type: Optional[str] = None,
+                 sam_ssid: Optional[str] = None,
+                 sam_test: Optional[str] = None,
+                 sam_username: Optional[str] = None,
                  short_guard_interval: Optional[str] = None,
                  spectrum_analysis: Optional[str] = None,
                  transmit_optimize: Optional[str] = None,
@@ -88084,6 +99681,7 @@ class WirelessControllerWtpProfileRadio2(dict):
         :param str ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
+        :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
         :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
@@ -88094,6 +99692,7 @@ class WirelessControllerWtpProfileRadio2(dict):
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
         :param int beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
         :param int bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+        :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
         :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
@@ -88106,14 +99705,35 @@ class WirelessControllerWtpProfileRadio2(dict):
         :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param str powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
         :param str protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
         :param int radio_id: radio-id
         :param int rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+        :param str sam_bssid: BSSID for WiFi network.
+        :param str sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param str sam_cwp_failure_string: Failure identification on the page after an incorrect login.
+        :param str sam_cwp_match_string: Identification string from the captive portal login form.
+        :param str sam_cwp_password: Password for captive portal authentication.
+        :param str sam_cwp_success_string: Success identification on the page after a successful login.
+        :param str sam_cwp_test_url: Website the client is trying to access.
+        :param str sam_cwp_username: Username for captive portal authentication.
+        :param str sam_password: Passphrase for WiFi network connection.
+        :param int sam_report_intv: SAM report interval (sec), 0 for a one-time report.
+        :param str sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param str sam_server_fqdn: SAM test server domain name.
+        :param str sam_server_ip: SAM test server IP address.
+        :param str sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        :param str sam_ssid: SSID for WiFi network.
+        :param str sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        :param str sam_username: Username for WiFi network connection.
         :param str short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
@@ -88144,6 +99764,8 @@ class WirelessControllerWtpProfileRadio2(dict):
             pulumi.set(__self__, "ap_sniffer_mgmt_other", ap_sniffer_mgmt_other)
         if ap_sniffer_mgmt_probe is not None:
             pulumi.set(__self__, "ap_sniffer_mgmt_probe", ap_sniffer_mgmt_probe)
+        if arrp_profile is not None:
+            pulumi.set(__self__, "arrp_profile", arrp_profile)
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -88164,6 +99786,8 @@ class WirelessControllerWtpProfileRadio2(dict):
             pulumi.set(__self__, "beacon_interval", beacon_interval)
         if bss_color is not None:
             pulumi.set(__self__, "bss_color", bss_color)
+        if bss_color_mode is not None:
+            pulumi.set(__self__, "bss_color_mode", bss_color_mode)
         if call_admission_control is not None:
             pulumi.set(__self__, "call_admission_control", call_admission_control)
         if call_capacity is not None:
@@ -88188,6 +99812,10 @@ class WirelessControllerWtpProfileRadio2(dict):
             pulumi.set(__self__, "frag_threshold", frag_threshold)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if iperf_protocol is not None:
+            pulumi.set(__self__, "iperf_protocol", iperf_protocol)
+        if iperf_server_port is not None:
+            pulumi.set(__self__, "iperf_server_port", iperf_server_port)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
@@ -88196,6 +99824,10 @@ class WirelessControllerWtpProfileRadio2(dict):
             pulumi.set(__self__, "mode", mode)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if powersave_optimize is not None:
             pulumi.set(__self__, "powersave_optimize", powersave_optimize)
         if protection_mode is not None:
@@ -88204,6 +99836,40 @@ class WirelessControllerWtpProfileRadio2(dict):
             pulumi.set(__self__, "radio_id", radio_id)
         if rts_threshold is not None:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
+        if sam_bssid is not None:
+            pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_captive_portal is not None:
+            pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_cwp_failure_string is not None:
+            pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
+        if sam_cwp_match_string is not None:
+            pulumi.set(__self__, "sam_cwp_match_string", sam_cwp_match_string)
+        if sam_cwp_password is not None:
+            pulumi.set(__self__, "sam_cwp_password", sam_cwp_password)
+        if sam_cwp_success_string is not None:
+            pulumi.set(__self__, "sam_cwp_success_string", sam_cwp_success_string)
+        if sam_cwp_test_url is not None:
+            pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
+        if sam_cwp_username is not None:
+            pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_password is not None:
+            pulumi.set(__self__, "sam_password", sam_password)
+        if sam_report_intv is not None:
+            pulumi.set(__self__, "sam_report_intv", sam_report_intv)
+        if sam_security_type is not None:
+            pulumi.set(__self__, "sam_security_type", sam_security_type)
+        if sam_server_fqdn is not None:
+            pulumi.set(__self__, "sam_server_fqdn", sam_server_fqdn)
+        if sam_server_ip is not None:
+            pulumi.set(__self__, "sam_server_ip", sam_server_ip)
+        if sam_server_type is not None:
+            pulumi.set(__self__, "sam_server_type", sam_server_type)
+        if sam_ssid is not None:
+            pulumi.set(__self__, "sam_ssid", sam_ssid)
+        if sam_test is not None:
+            pulumi.set(__self__, "sam_test", sam_test)
+        if sam_username is not None:
+            pulumi.set(__self__, "sam_username", sam_username)
         if short_guard_interval is not None:
             pulumi.set(__self__, "short_guard_interval", short_guard_interval)
         if spectrum_analysis is not None:
@@ -88308,6 +99974,14 @@ class WirelessControllerWtpProfileRadio2(dict):
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @property
+    @pulumi.getter(name="arrpProfile")
+    def arrp_profile(self) -> Optional[str]:
+        """
+        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+        """
+        return pulumi.get(self, "arrp_profile")
+
+    @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
@@ -88386,6 +100060,14 @@ class WirelessControllerWtpProfileRadio2(dict):
         BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
         """
         return pulumi.get(self, "bss_color")
+
+    @property
+    @pulumi.getter(name="bssColorMode")
+    def bss_color_mode(self) -> Optional[str]:
+        """
+        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+        """
+        return pulumi.get(self, "bss_color_mode")
 
     @property
     @pulumi.getter(name="callAdmissionControl")
@@ -88484,6 +100166,22 @@ class WirelessControllerWtpProfileRadio2(dict):
         return pulumi.get(self, "frequency_handoff")
 
     @property
+    @pulumi.getter(name="iperfProtocol")
+    def iperf_protocol(self) -> Optional[str]:
+        """
+        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "iperf_protocol")
+
+    @property
+    @pulumi.getter(name="iperfServerPort")
+    def iperf_server_port(self) -> Optional[int]:
+        """
+        Iperf service port number.
+        """
+        return pulumi.get(self, "iperf_server_port")
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[int]:
         """
@@ -88503,7 +100201,7 @@ class WirelessControllerWtpProfileRadio2(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -88514,6 +100212,22 @@ class WirelessControllerWtpProfileRadio2(dict):
         Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         """
         return pulumi.get(self, "power_level")
+
+    @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
 
     @property
     @pulumi.getter(name="powersaveOptimize")
@@ -88546,6 +100260,142 @@ class WirelessControllerWtpProfileRadio2(dict):
         Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         """
         return pulumi.get(self, "rts_threshold")
+
+    @property
+    @pulumi.getter(name="samBssid")
+    def sam_bssid(self) -> Optional[str]:
+        """
+        BSSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_bssid")
+
+    @property
+    @pulumi.getter(name="samCaptivePortal")
+    def sam_captive_portal(self) -> Optional[str]:
+        """
+        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sam_captive_portal")
+
+    @property
+    @pulumi.getter(name="samCwpFailureString")
+    def sam_cwp_failure_string(self) -> Optional[str]:
+        """
+        Failure identification on the page after an incorrect login.
+        """
+        return pulumi.get(self, "sam_cwp_failure_string")
+
+    @property
+    @pulumi.getter(name="samCwpMatchString")
+    def sam_cwp_match_string(self) -> Optional[str]:
+        """
+        Identification string from the captive portal login form.
+        """
+        return pulumi.get(self, "sam_cwp_match_string")
+
+    @property
+    @pulumi.getter(name="samCwpPassword")
+    def sam_cwp_password(self) -> Optional[str]:
+        """
+        Password for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_password")
+
+    @property
+    @pulumi.getter(name="samCwpSuccessString")
+    def sam_cwp_success_string(self) -> Optional[str]:
+        """
+        Success identification on the page after a successful login.
+        """
+        return pulumi.get(self, "sam_cwp_success_string")
+
+    @property
+    @pulumi.getter(name="samCwpTestUrl")
+    def sam_cwp_test_url(self) -> Optional[str]:
+        """
+        Website the client is trying to access.
+        """
+        return pulumi.get(self, "sam_cwp_test_url")
+
+    @property
+    @pulumi.getter(name="samCwpUsername")
+    def sam_cwp_username(self) -> Optional[str]:
+        """
+        Username for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_username")
+
+    @property
+    @pulumi.getter(name="samPassword")
+    def sam_password(self) -> Optional[str]:
+        """
+        Passphrase for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_password")
+
+    @property
+    @pulumi.getter(name="samReportIntv")
+    def sam_report_intv(self) -> Optional[int]:
+        """
+        SAM report interval (sec), 0 for a one-time report.
+        """
+        return pulumi.get(self, "sam_report_intv")
+
+    @property
+    @pulumi.getter(name="samSecurityType")
+    def sam_security_type(self) -> Optional[str]:
+        """
+        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        """
+        return pulumi.get(self, "sam_security_type")
+
+    @property
+    @pulumi.getter(name="samServerFqdn")
+    def sam_server_fqdn(self) -> Optional[str]:
+        """
+        SAM test server domain name.
+        """
+        return pulumi.get(self, "sam_server_fqdn")
+
+    @property
+    @pulumi.getter(name="samServerIp")
+    def sam_server_ip(self) -> Optional[str]:
+        """
+        SAM test server IP address.
+        """
+        return pulumi.get(self, "sam_server_ip")
+
+    @property
+    @pulumi.getter(name="samServerType")
+    def sam_server_type(self) -> Optional[str]:
+        """
+        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "sam_server_type")
+
+    @property
+    @pulumi.getter(name="samSsid")
+    def sam_ssid(self) -> Optional[str]:
+        """
+        SSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_ssid")
+
+    @property
+    @pulumi.getter(name="samTest")
+    def sam_test(self) -> Optional[str]:
+        """
+        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        """
+        return pulumi.get(self, "sam_test")
+
+    @property
+    @pulumi.getter(name="samUsername")
+    def sam_username(self) -> Optional[str]:
+        """
+        Username for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_username")
 
     @property
     @pulumi.getter(name="shortGuardInterval")
@@ -88667,6 +100517,8 @@ class WirelessControllerWtpProfileRadio3(dict):
             suggest = "ap_sniffer_mgmt_other"
         elif key == "apSnifferMgmtProbe":
             suggest = "ap_sniffer_mgmt_probe"
+        elif key == "arrpProfile":
+            suggest = "arrp_profile"
         elif key == "autoPowerHigh":
             suggest = "auto_power_high"
         elif key == "autoPowerLevel":
@@ -88685,6 +100537,8 @@ class WirelessControllerWtpProfileRadio3(dict):
             suggest = "beacon_interval"
         elif key == "bssColor":
             suggest = "bss_color"
+        elif key == "bssColorMode":
+            suggest = "bss_color_mode"
         elif key == "callAdmissionControl":
             suggest = "call_admission_control"
         elif key == "callCapacity":
@@ -88699,18 +100553,60 @@ class WirelessControllerWtpProfileRadio3(dict):
             suggest = "frag_threshold"
         elif key == "frequencyHandoff":
             suggest = "frequency_handoff"
+        elif key == "iperfProtocol":
+            suggest = "iperf_protocol"
+        elif key == "iperfServerPort":
+            suggest = "iperf_server_port"
         elif key == "maxClients":
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "powersaveOptimize":
             suggest = "powersave_optimize"
         elif key == "protectionMode":
             suggest = "protection_mode"
         elif key == "rtsThreshold":
             suggest = "rts_threshold"
+        elif key == "samBssid":
+            suggest = "sam_bssid"
+        elif key == "samCaptivePortal":
+            suggest = "sam_captive_portal"
+        elif key == "samCwpFailureString":
+            suggest = "sam_cwp_failure_string"
+        elif key == "samCwpMatchString":
+            suggest = "sam_cwp_match_string"
+        elif key == "samCwpPassword":
+            suggest = "sam_cwp_password"
+        elif key == "samCwpSuccessString":
+            suggest = "sam_cwp_success_string"
+        elif key == "samCwpTestUrl":
+            suggest = "sam_cwp_test_url"
+        elif key == "samCwpUsername":
+            suggest = "sam_cwp_username"
+        elif key == "samPassword":
+            suggest = "sam_password"
+        elif key == "samReportIntv":
+            suggest = "sam_report_intv"
+        elif key == "samSecurityType":
+            suggest = "sam_security_type"
+        elif key == "samServerFqdn":
+            suggest = "sam_server_fqdn"
+        elif key == "samServerIp":
+            suggest = "sam_server_ip"
+        elif key == "samServerType":
+            suggest = "sam_server_type"
+        elif key == "samSsid":
+            suggest = "sam_ssid"
+        elif key == "samTest":
+            suggest = "sam_test"
+        elif key == "samUsername":
+            suggest = "sam_username"
         elif key == "shortGuardInterval":
             suggest = "short_guard_interval"
         elif key == "spectrumAnalysis":
@@ -88747,6 +100643,7 @@ class WirelessControllerWtpProfileRadio3(dict):
                  ap_sniffer_mgmt_beacon: Optional[str] = None,
                  ap_sniffer_mgmt_other: Optional[str] = None,
                  ap_sniffer_mgmt_probe: Optional[str] = None,
+                 arrp_profile: Optional[str] = None,
                  auto_power_high: Optional[int] = None,
                  auto_power_level: Optional[str] = None,
                  auto_power_low: Optional[int] = None,
@@ -88757,6 +100654,7 @@ class WirelessControllerWtpProfileRadio3(dict):
                  bandwidth_capacity: Optional[int] = None,
                  beacon_interval: Optional[int] = None,
                  bss_color: Optional[int] = None,
+                 bss_color_mode: Optional[str] = None,
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
@@ -88769,13 +100667,34 @@ class WirelessControllerWtpProfileRadio3(dict):
                  dtim: Optional[int] = None,
                  frag_threshold: Optional[int] = None,
                  frequency_handoff: Optional[str] = None,
+                 iperf_protocol: Optional[str] = None,
+                 iperf_server_port: Optional[int] = None,
                  max_clients: Optional[int] = None,
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  powersave_optimize: Optional[str] = None,
                  protection_mode: Optional[str] = None,
                  rts_threshold: Optional[int] = None,
+                 sam_bssid: Optional[str] = None,
+                 sam_captive_portal: Optional[str] = None,
+                 sam_cwp_failure_string: Optional[str] = None,
+                 sam_cwp_match_string: Optional[str] = None,
+                 sam_cwp_password: Optional[str] = None,
+                 sam_cwp_success_string: Optional[str] = None,
+                 sam_cwp_test_url: Optional[str] = None,
+                 sam_cwp_username: Optional[str] = None,
+                 sam_password: Optional[str] = None,
+                 sam_report_intv: Optional[int] = None,
+                 sam_security_type: Optional[str] = None,
+                 sam_server_fqdn: Optional[str] = None,
+                 sam_server_ip: Optional[str] = None,
+                 sam_server_type: Optional[str] = None,
+                 sam_ssid: Optional[str] = None,
+                 sam_test: Optional[str] = None,
+                 sam_username: Optional[str] = None,
                  short_guard_interval: Optional[str] = None,
                  spectrum_analysis: Optional[str] = None,
                  transmit_optimize: Optional[str] = None,
@@ -88795,6 +100714,7 @@ class WirelessControllerWtpProfileRadio3(dict):
         :param str ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
+        :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
         :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
@@ -88805,6 +100725,7 @@ class WirelessControllerWtpProfileRadio3(dict):
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
         :param int beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
         :param int bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+        :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
         :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
@@ -88817,13 +100738,34 @@ class WirelessControllerWtpProfileRadio3(dict):
         :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param str powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
         :param str protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
         :param int rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+        :param str sam_bssid: BSSID for WiFi network.
+        :param str sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param str sam_cwp_failure_string: Failure identification on the page after an incorrect login.
+        :param str sam_cwp_match_string: Identification string from the captive portal login form.
+        :param str sam_cwp_password: Password for captive portal authentication.
+        :param str sam_cwp_success_string: Success identification on the page after a successful login.
+        :param str sam_cwp_test_url: Website the client is trying to access.
+        :param str sam_cwp_username: Username for captive portal authentication.
+        :param str sam_password: Passphrase for WiFi network connection.
+        :param int sam_report_intv: SAM report interval (sec), 0 for a one-time report.
+        :param str sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param str sam_server_fqdn: SAM test server domain name.
+        :param str sam_server_ip: SAM test server IP address.
+        :param str sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        :param str sam_ssid: SSID for WiFi network.
+        :param str sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        :param str sam_username: Username for WiFi network connection.
         :param str short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
@@ -88854,6 +100796,8 @@ class WirelessControllerWtpProfileRadio3(dict):
             pulumi.set(__self__, "ap_sniffer_mgmt_other", ap_sniffer_mgmt_other)
         if ap_sniffer_mgmt_probe is not None:
             pulumi.set(__self__, "ap_sniffer_mgmt_probe", ap_sniffer_mgmt_probe)
+        if arrp_profile is not None:
+            pulumi.set(__self__, "arrp_profile", arrp_profile)
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -88874,6 +100818,8 @@ class WirelessControllerWtpProfileRadio3(dict):
             pulumi.set(__self__, "beacon_interval", beacon_interval)
         if bss_color is not None:
             pulumi.set(__self__, "bss_color", bss_color)
+        if bss_color_mode is not None:
+            pulumi.set(__self__, "bss_color_mode", bss_color_mode)
         if call_admission_control is not None:
             pulumi.set(__self__, "call_admission_control", call_admission_control)
         if call_capacity is not None:
@@ -88898,6 +100844,10 @@ class WirelessControllerWtpProfileRadio3(dict):
             pulumi.set(__self__, "frag_threshold", frag_threshold)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if iperf_protocol is not None:
+            pulumi.set(__self__, "iperf_protocol", iperf_protocol)
+        if iperf_server_port is not None:
+            pulumi.set(__self__, "iperf_server_port", iperf_server_port)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
@@ -88906,12 +100856,50 @@ class WirelessControllerWtpProfileRadio3(dict):
             pulumi.set(__self__, "mode", mode)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if powersave_optimize is not None:
             pulumi.set(__self__, "powersave_optimize", powersave_optimize)
         if protection_mode is not None:
             pulumi.set(__self__, "protection_mode", protection_mode)
         if rts_threshold is not None:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
+        if sam_bssid is not None:
+            pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_captive_portal is not None:
+            pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_cwp_failure_string is not None:
+            pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
+        if sam_cwp_match_string is not None:
+            pulumi.set(__self__, "sam_cwp_match_string", sam_cwp_match_string)
+        if sam_cwp_password is not None:
+            pulumi.set(__self__, "sam_cwp_password", sam_cwp_password)
+        if sam_cwp_success_string is not None:
+            pulumi.set(__self__, "sam_cwp_success_string", sam_cwp_success_string)
+        if sam_cwp_test_url is not None:
+            pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
+        if sam_cwp_username is not None:
+            pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_password is not None:
+            pulumi.set(__self__, "sam_password", sam_password)
+        if sam_report_intv is not None:
+            pulumi.set(__self__, "sam_report_intv", sam_report_intv)
+        if sam_security_type is not None:
+            pulumi.set(__self__, "sam_security_type", sam_security_type)
+        if sam_server_fqdn is not None:
+            pulumi.set(__self__, "sam_server_fqdn", sam_server_fqdn)
+        if sam_server_ip is not None:
+            pulumi.set(__self__, "sam_server_ip", sam_server_ip)
+        if sam_server_type is not None:
+            pulumi.set(__self__, "sam_server_type", sam_server_type)
+        if sam_ssid is not None:
+            pulumi.set(__self__, "sam_ssid", sam_ssid)
+        if sam_test is not None:
+            pulumi.set(__self__, "sam_test", sam_test)
+        if sam_username is not None:
+            pulumi.set(__self__, "sam_username", sam_username)
         if short_guard_interval is not None:
             pulumi.set(__self__, "short_guard_interval", short_guard_interval)
         if spectrum_analysis is not None:
@@ -89016,6 +101004,14 @@ class WirelessControllerWtpProfileRadio3(dict):
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @property
+    @pulumi.getter(name="arrpProfile")
+    def arrp_profile(self) -> Optional[str]:
+        """
+        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+        """
+        return pulumi.get(self, "arrp_profile")
+
+    @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
@@ -89094,6 +101090,14 @@ class WirelessControllerWtpProfileRadio3(dict):
         BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
         """
         return pulumi.get(self, "bss_color")
+
+    @property
+    @pulumi.getter(name="bssColorMode")
+    def bss_color_mode(self) -> Optional[str]:
+        """
+        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+        """
+        return pulumi.get(self, "bss_color_mode")
 
     @property
     @pulumi.getter(name="callAdmissionControl")
@@ -89192,6 +101196,22 @@ class WirelessControllerWtpProfileRadio3(dict):
         return pulumi.get(self, "frequency_handoff")
 
     @property
+    @pulumi.getter(name="iperfProtocol")
+    def iperf_protocol(self) -> Optional[str]:
+        """
+        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "iperf_protocol")
+
+    @property
+    @pulumi.getter(name="iperfServerPort")
+    def iperf_server_port(self) -> Optional[int]:
+        """
+        Iperf service port number.
+        """
+        return pulumi.get(self, "iperf_server_port")
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[int]:
         """
@@ -89211,7 +101231,7 @@ class WirelessControllerWtpProfileRadio3(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -89222,6 +101242,22 @@ class WirelessControllerWtpProfileRadio3(dict):
         Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         """
         return pulumi.get(self, "power_level")
+
+    @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
 
     @property
     @pulumi.getter(name="powersaveOptimize")
@@ -89246,6 +101282,142 @@ class WirelessControllerWtpProfileRadio3(dict):
         Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         """
         return pulumi.get(self, "rts_threshold")
+
+    @property
+    @pulumi.getter(name="samBssid")
+    def sam_bssid(self) -> Optional[str]:
+        """
+        BSSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_bssid")
+
+    @property
+    @pulumi.getter(name="samCaptivePortal")
+    def sam_captive_portal(self) -> Optional[str]:
+        """
+        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sam_captive_portal")
+
+    @property
+    @pulumi.getter(name="samCwpFailureString")
+    def sam_cwp_failure_string(self) -> Optional[str]:
+        """
+        Failure identification on the page after an incorrect login.
+        """
+        return pulumi.get(self, "sam_cwp_failure_string")
+
+    @property
+    @pulumi.getter(name="samCwpMatchString")
+    def sam_cwp_match_string(self) -> Optional[str]:
+        """
+        Identification string from the captive portal login form.
+        """
+        return pulumi.get(self, "sam_cwp_match_string")
+
+    @property
+    @pulumi.getter(name="samCwpPassword")
+    def sam_cwp_password(self) -> Optional[str]:
+        """
+        Password for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_password")
+
+    @property
+    @pulumi.getter(name="samCwpSuccessString")
+    def sam_cwp_success_string(self) -> Optional[str]:
+        """
+        Success identification on the page after a successful login.
+        """
+        return pulumi.get(self, "sam_cwp_success_string")
+
+    @property
+    @pulumi.getter(name="samCwpTestUrl")
+    def sam_cwp_test_url(self) -> Optional[str]:
+        """
+        Website the client is trying to access.
+        """
+        return pulumi.get(self, "sam_cwp_test_url")
+
+    @property
+    @pulumi.getter(name="samCwpUsername")
+    def sam_cwp_username(self) -> Optional[str]:
+        """
+        Username for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_username")
+
+    @property
+    @pulumi.getter(name="samPassword")
+    def sam_password(self) -> Optional[str]:
+        """
+        Passphrase for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_password")
+
+    @property
+    @pulumi.getter(name="samReportIntv")
+    def sam_report_intv(self) -> Optional[int]:
+        """
+        SAM report interval (sec), 0 for a one-time report.
+        """
+        return pulumi.get(self, "sam_report_intv")
+
+    @property
+    @pulumi.getter(name="samSecurityType")
+    def sam_security_type(self) -> Optional[str]:
+        """
+        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        """
+        return pulumi.get(self, "sam_security_type")
+
+    @property
+    @pulumi.getter(name="samServerFqdn")
+    def sam_server_fqdn(self) -> Optional[str]:
+        """
+        SAM test server domain name.
+        """
+        return pulumi.get(self, "sam_server_fqdn")
+
+    @property
+    @pulumi.getter(name="samServerIp")
+    def sam_server_ip(self) -> Optional[str]:
+        """
+        SAM test server IP address.
+        """
+        return pulumi.get(self, "sam_server_ip")
+
+    @property
+    @pulumi.getter(name="samServerType")
+    def sam_server_type(self) -> Optional[str]:
+        """
+        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "sam_server_type")
+
+    @property
+    @pulumi.getter(name="samSsid")
+    def sam_ssid(self) -> Optional[str]:
+        """
+        SSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_ssid")
+
+    @property
+    @pulumi.getter(name="samTest")
+    def sam_test(self) -> Optional[str]:
+        """
+        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        """
+        return pulumi.get(self, "sam_test")
+
+    @property
+    @pulumi.getter(name="samUsername")
+    def sam_username(self) -> Optional[str]:
+        """
+        Username for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_username")
 
     @property
     @pulumi.getter(name="shortGuardInterval")
@@ -89367,6 +101539,8 @@ class WirelessControllerWtpProfileRadio4(dict):
             suggest = "ap_sniffer_mgmt_other"
         elif key == "apSnifferMgmtProbe":
             suggest = "ap_sniffer_mgmt_probe"
+        elif key == "arrpProfile":
+            suggest = "arrp_profile"
         elif key == "autoPowerHigh":
             suggest = "auto_power_high"
         elif key == "autoPowerLevel":
@@ -89385,6 +101559,8 @@ class WirelessControllerWtpProfileRadio4(dict):
             suggest = "beacon_interval"
         elif key == "bssColor":
             suggest = "bss_color"
+        elif key == "bssColorMode":
+            suggest = "bss_color_mode"
         elif key == "callAdmissionControl":
             suggest = "call_admission_control"
         elif key == "callCapacity":
@@ -89399,18 +101575,60 @@ class WirelessControllerWtpProfileRadio4(dict):
             suggest = "frag_threshold"
         elif key == "frequencyHandoff":
             suggest = "frequency_handoff"
+        elif key == "iperfProtocol":
+            suggest = "iperf_protocol"
+        elif key == "iperfServerPort":
+            suggest = "iperf_server_port"
         elif key == "maxClients":
             suggest = "max_clients"
         elif key == "maxDistance":
             suggest = "max_distance"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "powersaveOptimize":
             suggest = "powersave_optimize"
         elif key == "protectionMode":
             suggest = "protection_mode"
         elif key == "rtsThreshold":
             suggest = "rts_threshold"
+        elif key == "samBssid":
+            suggest = "sam_bssid"
+        elif key == "samCaptivePortal":
+            suggest = "sam_captive_portal"
+        elif key == "samCwpFailureString":
+            suggest = "sam_cwp_failure_string"
+        elif key == "samCwpMatchString":
+            suggest = "sam_cwp_match_string"
+        elif key == "samCwpPassword":
+            suggest = "sam_cwp_password"
+        elif key == "samCwpSuccessString":
+            suggest = "sam_cwp_success_string"
+        elif key == "samCwpTestUrl":
+            suggest = "sam_cwp_test_url"
+        elif key == "samCwpUsername":
+            suggest = "sam_cwp_username"
+        elif key == "samPassword":
+            suggest = "sam_password"
+        elif key == "samReportIntv":
+            suggest = "sam_report_intv"
+        elif key == "samSecurityType":
+            suggest = "sam_security_type"
+        elif key == "samServerFqdn":
+            suggest = "sam_server_fqdn"
+        elif key == "samServerIp":
+            suggest = "sam_server_ip"
+        elif key == "samServerType":
+            suggest = "sam_server_type"
+        elif key == "samSsid":
+            suggest = "sam_ssid"
+        elif key == "samTest":
+            suggest = "sam_test"
+        elif key == "samUsername":
+            suggest = "sam_username"
         elif key == "shortGuardInterval":
             suggest = "short_guard_interval"
         elif key == "spectrumAnalysis":
@@ -89447,6 +101665,7 @@ class WirelessControllerWtpProfileRadio4(dict):
                  ap_sniffer_mgmt_beacon: Optional[str] = None,
                  ap_sniffer_mgmt_other: Optional[str] = None,
                  ap_sniffer_mgmt_probe: Optional[str] = None,
+                 arrp_profile: Optional[str] = None,
                  auto_power_high: Optional[int] = None,
                  auto_power_level: Optional[str] = None,
                  auto_power_low: Optional[int] = None,
@@ -89457,6 +101676,7 @@ class WirelessControllerWtpProfileRadio4(dict):
                  bandwidth_capacity: Optional[int] = None,
                  beacon_interval: Optional[int] = None,
                  bss_color: Optional[int] = None,
+                 bss_color_mode: Optional[str] = None,
                  call_admission_control: Optional[str] = None,
                  call_capacity: Optional[int] = None,
                  channel_bonding: Optional[str] = None,
@@ -89469,13 +101689,34 @@ class WirelessControllerWtpProfileRadio4(dict):
                  dtim: Optional[int] = None,
                  frag_threshold: Optional[int] = None,
                  frequency_handoff: Optional[str] = None,
+                 iperf_protocol: Optional[str] = None,
+                 iperf_server_port: Optional[int] = None,
                  max_clients: Optional[int] = None,
                  max_distance: Optional[int] = None,
                  mode: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  powersave_optimize: Optional[str] = None,
                  protection_mode: Optional[str] = None,
                  rts_threshold: Optional[int] = None,
+                 sam_bssid: Optional[str] = None,
+                 sam_captive_portal: Optional[str] = None,
+                 sam_cwp_failure_string: Optional[str] = None,
+                 sam_cwp_match_string: Optional[str] = None,
+                 sam_cwp_password: Optional[str] = None,
+                 sam_cwp_success_string: Optional[str] = None,
+                 sam_cwp_test_url: Optional[str] = None,
+                 sam_cwp_username: Optional[str] = None,
+                 sam_password: Optional[str] = None,
+                 sam_report_intv: Optional[int] = None,
+                 sam_security_type: Optional[str] = None,
+                 sam_server_fqdn: Optional[str] = None,
+                 sam_server_ip: Optional[str] = None,
+                 sam_server_type: Optional[str] = None,
+                 sam_ssid: Optional[str] = None,
+                 sam_test: Optional[str] = None,
+                 sam_username: Optional[str] = None,
                  short_guard_interval: Optional[str] = None,
                  spectrum_analysis: Optional[str] = None,
                  transmit_optimize: Optional[str] = None,
@@ -89495,6 +101736,7 @@ class WirelessControllerWtpProfileRadio4(dict):
         :param str ap_sniffer_mgmt_beacon: Enable/disable sniffer on WiFi management Beacon frames (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_other: Enable/disable sniffer on WiFi management other frames  (default = enable). Valid values: `enable`, `disable`.
         :param str ap_sniffer_mgmt_probe: Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `enable`, `disable`.
+        :param str arrp_profile: Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
         :param int auto_power_high: The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
         :param str auto_power_level: Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `enable`, `disable`.
         :param int auto_power_low: The lower bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
@@ -89505,6 +101747,7 @@ class WirelessControllerWtpProfileRadio4(dict):
         :param int bandwidth_capacity: Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
         :param int beacon_interval: Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
         :param int bss_color: BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+        :param str bss_color_mode: BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
         :param str call_admission_control: Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
         :param int call_capacity: Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
         :param str channel_bonding: Channel bandwidth: 160,80, 40, or 20MHz. Channels may use both 20 and 40 by enabling coexistence. Valid values: `160MHz`, `80MHz`, `40MHz`, `20MHz`.
@@ -89517,13 +101760,34 @@ class WirelessControllerWtpProfileRadio4(dict):
         :param int dtim: Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
         :param int frag_threshold: Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
         :param str frequency_handoff: Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `enable`, `disable`.
+        :param str iperf_protocol: Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        :param int iperf_server_port: Iperf service port number.
         :param int max_clients: Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
         :param int max_distance: Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        :param str mode: Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param str powersave_optimize: Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
         :param str protection_mode: Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
         :param int rts_threshold: Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+        :param str sam_bssid: BSSID for WiFi network.
+        :param str sam_captive_portal: Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        :param str sam_cwp_failure_string: Failure identification on the page after an incorrect login.
+        :param str sam_cwp_match_string: Identification string from the captive portal login form.
+        :param str sam_cwp_password: Password for captive portal authentication.
+        :param str sam_cwp_success_string: Success identification on the page after a successful login.
+        :param str sam_cwp_test_url: Website the client is trying to access.
+        :param str sam_cwp_username: Username for captive portal authentication.
+        :param str sam_password: Passphrase for WiFi network connection.
+        :param int sam_report_intv: SAM report interval (sec), 0 for a one-time report.
+        :param str sam_security_type: Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        :param str sam_server_fqdn: SAM test server domain name.
+        :param str sam_server_ip: SAM test server IP address.
+        :param str sam_server_type: Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        :param str sam_ssid: SSID for WiFi network.
+        :param str sam_test: Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        :param str sam_username: Username for WiFi network connection.
         :param str short_guard_interval: Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str transmit_optimize: Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
@@ -89554,6 +101818,8 @@ class WirelessControllerWtpProfileRadio4(dict):
             pulumi.set(__self__, "ap_sniffer_mgmt_other", ap_sniffer_mgmt_other)
         if ap_sniffer_mgmt_probe is not None:
             pulumi.set(__self__, "ap_sniffer_mgmt_probe", ap_sniffer_mgmt_probe)
+        if arrp_profile is not None:
+            pulumi.set(__self__, "arrp_profile", arrp_profile)
         if auto_power_high is not None:
             pulumi.set(__self__, "auto_power_high", auto_power_high)
         if auto_power_level is not None:
@@ -89574,6 +101840,8 @@ class WirelessControllerWtpProfileRadio4(dict):
             pulumi.set(__self__, "beacon_interval", beacon_interval)
         if bss_color is not None:
             pulumi.set(__self__, "bss_color", bss_color)
+        if bss_color_mode is not None:
+            pulumi.set(__self__, "bss_color_mode", bss_color_mode)
         if call_admission_control is not None:
             pulumi.set(__self__, "call_admission_control", call_admission_control)
         if call_capacity is not None:
@@ -89598,6 +101866,10 @@ class WirelessControllerWtpProfileRadio4(dict):
             pulumi.set(__self__, "frag_threshold", frag_threshold)
         if frequency_handoff is not None:
             pulumi.set(__self__, "frequency_handoff", frequency_handoff)
+        if iperf_protocol is not None:
+            pulumi.set(__self__, "iperf_protocol", iperf_protocol)
+        if iperf_server_port is not None:
+            pulumi.set(__self__, "iperf_server_port", iperf_server_port)
         if max_clients is not None:
             pulumi.set(__self__, "max_clients", max_clients)
         if max_distance is not None:
@@ -89606,12 +101878,50 @@ class WirelessControllerWtpProfileRadio4(dict):
             pulumi.set(__self__, "mode", mode)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if powersave_optimize is not None:
             pulumi.set(__self__, "powersave_optimize", powersave_optimize)
         if protection_mode is not None:
             pulumi.set(__self__, "protection_mode", protection_mode)
         if rts_threshold is not None:
             pulumi.set(__self__, "rts_threshold", rts_threshold)
+        if sam_bssid is not None:
+            pulumi.set(__self__, "sam_bssid", sam_bssid)
+        if sam_captive_portal is not None:
+            pulumi.set(__self__, "sam_captive_portal", sam_captive_portal)
+        if sam_cwp_failure_string is not None:
+            pulumi.set(__self__, "sam_cwp_failure_string", sam_cwp_failure_string)
+        if sam_cwp_match_string is not None:
+            pulumi.set(__self__, "sam_cwp_match_string", sam_cwp_match_string)
+        if sam_cwp_password is not None:
+            pulumi.set(__self__, "sam_cwp_password", sam_cwp_password)
+        if sam_cwp_success_string is not None:
+            pulumi.set(__self__, "sam_cwp_success_string", sam_cwp_success_string)
+        if sam_cwp_test_url is not None:
+            pulumi.set(__self__, "sam_cwp_test_url", sam_cwp_test_url)
+        if sam_cwp_username is not None:
+            pulumi.set(__self__, "sam_cwp_username", sam_cwp_username)
+        if sam_password is not None:
+            pulumi.set(__self__, "sam_password", sam_password)
+        if sam_report_intv is not None:
+            pulumi.set(__self__, "sam_report_intv", sam_report_intv)
+        if sam_security_type is not None:
+            pulumi.set(__self__, "sam_security_type", sam_security_type)
+        if sam_server_fqdn is not None:
+            pulumi.set(__self__, "sam_server_fqdn", sam_server_fqdn)
+        if sam_server_ip is not None:
+            pulumi.set(__self__, "sam_server_ip", sam_server_ip)
+        if sam_server_type is not None:
+            pulumi.set(__self__, "sam_server_type", sam_server_type)
+        if sam_ssid is not None:
+            pulumi.set(__self__, "sam_ssid", sam_ssid)
+        if sam_test is not None:
+            pulumi.set(__self__, "sam_test", sam_test)
+        if sam_username is not None:
+            pulumi.set(__self__, "sam_username", sam_username)
         if short_guard_interval is not None:
             pulumi.set(__self__, "short_guard_interval", short_guard_interval)
         if spectrum_analysis is not None:
@@ -89716,6 +102026,14 @@ class WirelessControllerWtpProfileRadio4(dict):
         return pulumi.get(self, "ap_sniffer_mgmt_probe")
 
     @property
+    @pulumi.getter(name="arrpProfile")
+    def arrp_profile(self) -> Optional[str]:
+        """
+        Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+        """
+        return pulumi.get(self, "arrp_profile")
+
+    @property
     @pulumi.getter(name="autoPowerHigh")
     def auto_power_high(self) -> Optional[int]:
         """
@@ -89794,6 +102112,14 @@ class WirelessControllerWtpProfileRadio4(dict):
         BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
         """
         return pulumi.get(self, "bss_color")
+
+    @property
+    @pulumi.getter(name="bssColorMode")
+    def bss_color_mode(self) -> Optional[str]:
+        """
+        BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+        """
+        return pulumi.get(self, "bss_color_mode")
 
     @property
     @pulumi.getter(name="callAdmissionControl")
@@ -89892,6 +102218,22 @@ class WirelessControllerWtpProfileRadio4(dict):
         return pulumi.get(self, "frequency_handoff")
 
     @property
+    @pulumi.getter(name="iperfProtocol")
+    def iperf_protocol(self) -> Optional[str]:
+        """
+        Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+        """
+        return pulumi.get(self, "iperf_protocol")
+
+    @property
+    @pulumi.getter(name="iperfServerPort")
+    def iperf_server_port(self) -> Optional[int]:
+        """
+        Iperf service port number.
+        """
+        return pulumi.get(self, "iperf_server_port")
+
+    @property
     @pulumi.getter(name="maxClients")
     def max_clients(self) -> Optional[int]:
         """
@@ -89911,7 +102253,7 @@ class WirelessControllerWtpProfileRadio4(dict):
     @pulumi.getter
     def mode(self) -> Optional[str]:
         """
-        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+        Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
         """
         return pulumi.get(self, "mode")
 
@@ -89922,6 +102264,22 @@ class WirelessControllerWtpProfileRadio4(dict):
         Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         """
         return pulumi.get(self, "power_level")
+
+    @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
 
     @property
     @pulumi.getter(name="powersaveOptimize")
@@ -89946,6 +102304,142 @@ class WirelessControllerWtpProfileRadio4(dict):
         Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
         """
         return pulumi.get(self, "rts_threshold")
+
+    @property
+    @pulumi.getter(name="samBssid")
+    def sam_bssid(self) -> Optional[str]:
+        """
+        BSSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_bssid")
+
+    @property
+    @pulumi.getter(name="samCaptivePortal")
+    def sam_captive_portal(self) -> Optional[str]:
+        """
+        Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sam_captive_portal")
+
+    @property
+    @pulumi.getter(name="samCwpFailureString")
+    def sam_cwp_failure_string(self) -> Optional[str]:
+        """
+        Failure identification on the page after an incorrect login.
+        """
+        return pulumi.get(self, "sam_cwp_failure_string")
+
+    @property
+    @pulumi.getter(name="samCwpMatchString")
+    def sam_cwp_match_string(self) -> Optional[str]:
+        """
+        Identification string from the captive portal login form.
+        """
+        return pulumi.get(self, "sam_cwp_match_string")
+
+    @property
+    @pulumi.getter(name="samCwpPassword")
+    def sam_cwp_password(self) -> Optional[str]:
+        """
+        Password for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_password")
+
+    @property
+    @pulumi.getter(name="samCwpSuccessString")
+    def sam_cwp_success_string(self) -> Optional[str]:
+        """
+        Success identification on the page after a successful login.
+        """
+        return pulumi.get(self, "sam_cwp_success_string")
+
+    @property
+    @pulumi.getter(name="samCwpTestUrl")
+    def sam_cwp_test_url(self) -> Optional[str]:
+        """
+        Website the client is trying to access.
+        """
+        return pulumi.get(self, "sam_cwp_test_url")
+
+    @property
+    @pulumi.getter(name="samCwpUsername")
+    def sam_cwp_username(self) -> Optional[str]:
+        """
+        Username for captive portal authentication.
+        """
+        return pulumi.get(self, "sam_cwp_username")
+
+    @property
+    @pulumi.getter(name="samPassword")
+    def sam_password(self) -> Optional[str]:
+        """
+        Passphrase for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_password")
+
+    @property
+    @pulumi.getter(name="samReportIntv")
+    def sam_report_intv(self) -> Optional[int]:
+        """
+        SAM report interval (sec), 0 for a one-time report.
+        """
+        return pulumi.get(self, "sam_report_intv")
+
+    @property
+    @pulumi.getter(name="samSecurityType")
+    def sam_security_type(self) -> Optional[str]:
+        """
+        Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+        """
+        return pulumi.get(self, "sam_security_type")
+
+    @property
+    @pulumi.getter(name="samServerFqdn")
+    def sam_server_fqdn(self) -> Optional[str]:
+        """
+        SAM test server domain name.
+        """
+        return pulumi.get(self, "sam_server_fqdn")
+
+    @property
+    @pulumi.getter(name="samServerIp")
+    def sam_server_ip(self) -> Optional[str]:
+        """
+        SAM test server IP address.
+        """
+        return pulumi.get(self, "sam_server_ip")
+
+    @property
+    @pulumi.getter(name="samServerType")
+    def sam_server_type(self) -> Optional[str]:
+        """
+        Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+        """
+        return pulumi.get(self, "sam_server_type")
+
+    @property
+    @pulumi.getter(name="samSsid")
+    def sam_ssid(self) -> Optional[str]:
+        """
+        SSID for WiFi network.
+        """
+        return pulumi.get(self, "sam_ssid")
+
+    @property
+    @pulumi.getter(name="samTest")
+    def sam_test(self) -> Optional[str]:
+        """
+        Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+        """
+        return pulumi.get(self, "sam_test")
+
+    @property
+    @pulumi.getter(name="samUsername")
+    def sam_username(self) -> Optional[str]:
+        """
+        Username for WiFi network connection.
+        """
+        return pulumi.get(self, "sam_username")
 
     @property
     @pulumi.getter(name="shortGuardInterval")
@@ -90117,6 +102611,10 @@ class WirelessControllerWtpRadio1(dict):
             suggest = "override_vaps"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "radioId":
             suggest = "radio_id"
         elif key == "spectrumAnalysis":
@@ -90149,6 +102647,8 @@ class WirelessControllerWtpRadio1(dict):
                  override_txpower: Optional[str] = None,
                  override_vaps: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  radio_id: Optional[int] = None,
                  spectrum_analysis: Optional[str] = None,
                  vap_all: Optional[str] = None,
@@ -90167,6 +102667,8 @@ class WirelessControllerWtpRadio1(dict):
         :param str override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
         :param str override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param int radio_id: radio-id
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
@@ -90198,6 +102700,10 @@ class WirelessControllerWtpRadio1(dict):
             pulumi.set(__self__, "override_vaps", override_vaps)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if radio_id is not None:
             pulumi.set(__self__, "radio_id", radio_id)
         if spectrum_analysis is not None:
@@ -90312,6 +102818,22 @@ class WirelessControllerWtpRadio1(dict):
         return pulumi.get(self, "power_level")
 
     @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
+
+    @property
     @pulumi.getter(name="radioId")
     def radio_id(self) -> Optional[int]:
         """
@@ -90409,6 +102931,10 @@ class WirelessControllerWtpRadio2(dict):
             suggest = "override_vaps"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "radioId":
             suggest = "radio_id"
         elif key == "spectrumAnalysis":
@@ -90441,6 +102967,8 @@ class WirelessControllerWtpRadio2(dict):
                  override_txpower: Optional[str] = None,
                  override_vaps: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  radio_id: Optional[int] = None,
                  spectrum_analysis: Optional[str] = None,
                  vap_all: Optional[str] = None,
@@ -90459,6 +102987,8 @@ class WirelessControllerWtpRadio2(dict):
         :param str override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
         :param str override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param int radio_id: radio-id
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
@@ -90490,6 +103020,10 @@ class WirelessControllerWtpRadio2(dict):
             pulumi.set(__self__, "override_vaps", override_vaps)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if radio_id is not None:
             pulumi.set(__self__, "radio_id", radio_id)
         if spectrum_analysis is not None:
@@ -90604,6 +103138,22 @@ class WirelessControllerWtpRadio2(dict):
         return pulumi.get(self, "power_level")
 
     @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
+
+    @property
     @pulumi.getter(name="radioId")
     def radio_id(self) -> Optional[int]:
         """
@@ -90701,6 +103251,10 @@ class WirelessControllerWtpRadio3(dict):
             suggest = "override_vaps"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "spectrumAnalysis":
             suggest = "spectrum_analysis"
         elif key == "vapAll":
@@ -90731,6 +103285,8 @@ class WirelessControllerWtpRadio3(dict):
                  override_txpower: Optional[str] = None,
                  override_vaps: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  spectrum_analysis: Optional[str] = None,
                  vap_all: Optional[str] = None,
                  vaps: Optional[Sequence['outputs.WirelessControllerWtpRadio3Vap']] = None):
@@ -90748,6 +103304,8 @@ class WirelessControllerWtpRadio3(dict):
         :param str override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
         :param str override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
         :param Sequence['WirelessControllerWtpRadio3VapArgs'] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
@@ -90778,6 +103336,10 @@ class WirelessControllerWtpRadio3(dict):
             pulumi.set(__self__, "override_vaps", override_vaps)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if spectrum_analysis is not None:
             pulumi.set(__self__, "spectrum_analysis", spectrum_analysis)
         if vap_all is not None:
@@ -90890,6 +103452,22 @@ class WirelessControllerWtpRadio3(dict):
         return pulumi.get(self, "power_level")
 
     @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
+
+    @property
     @pulumi.getter(name="spectrumAnalysis")
     def spectrum_analysis(self) -> Optional[str]:
         """
@@ -90979,6 +103557,10 @@ class WirelessControllerWtpRadio4(dict):
             suggest = "override_vaps"
         elif key == "powerLevel":
             suggest = "power_level"
+        elif key == "powerMode":
+            suggest = "power_mode"
+        elif key == "powerValue":
+            suggest = "power_value"
         elif key == "spectrumAnalysis":
             suggest = "spectrum_analysis"
         elif key == "vapAll":
@@ -91009,6 +103591,8 @@ class WirelessControllerWtpRadio4(dict):
                  override_txpower: Optional[str] = None,
                  override_vaps: Optional[str] = None,
                  power_level: Optional[int] = None,
+                 power_mode: Optional[str] = None,
+                 power_value: Optional[int] = None,
                  spectrum_analysis: Optional[str] = None,
                  vap_all: Optional[str] = None,
                  vaps: Optional[Sequence['outputs.WirelessControllerWtpRadio4Vap']] = None):
@@ -91026,6 +103610,8 @@ class WirelessControllerWtpRadio4(dict):
         :param str override_txpower: Enable to override the WTP profile power level configuration. Valid values: `enable`, `disable`.
         :param str override_vaps: Enable to override WTP profile Virtual Access Point (VAP) settings. Valid values: `enable`, `disable`.
         :param int power_level: Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+        :param str power_mode: Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        :param int power_value: Radio EIRP power in dBm (1 - 33, default = 27).
         :param str spectrum_analysis: Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
         :param str vap_all: Enable/disable the automatic inheritance of all Virtual Access Points (VAPs) (default = enable).
         :param Sequence['WirelessControllerWtpRadio4VapArgs'] vaps: Manually selected list of Virtual Access Points (VAPs). The structure of `vaps` block is documented below.
@@ -91056,6 +103642,10 @@ class WirelessControllerWtpRadio4(dict):
             pulumi.set(__self__, "override_vaps", override_vaps)
         if power_level is not None:
             pulumi.set(__self__, "power_level", power_level)
+        if power_mode is not None:
+            pulumi.set(__self__, "power_mode", power_mode)
+        if power_value is not None:
+            pulumi.set(__self__, "power_value", power_value)
         if spectrum_analysis is not None:
             pulumi.set(__self__, "spectrum_analysis", spectrum_analysis)
         if vap_all is not None:
@@ -91166,6 +103756,22 @@ class WirelessControllerWtpRadio4(dict):
         Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
         """
         return pulumi.get(self, "power_level")
+
+    @property
+    @pulumi.getter(name="powerMode")
+    def power_mode(self) -> Optional[str]:
+        """
+        Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+        """
+        return pulumi.get(self, "power_mode")
+
+    @property
+    @pulumi.getter(name="powerValue")
+    def power_value(self) -> Optional[int]:
+        """
+        Radio EIRP power in dBm (1 - 33, default = 27).
+        """
+        return pulumi.get(self, "power_value")
 
     @property
     @pulumi.getter(name="spectrumAnalysis")

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP system information globally.
+// Configure FortiSwitch SNMP system information globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -45,6 +45,7 @@ func NewSwitchControllerSnmpSysinfo(ctx *pulumi.Context,
 		args = &SwitchControllerSnmpSysinfoArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpSysinfo
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpSysinfo:SwitchControllerSnmpSysinfo", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type SwitchControllerSnmpSysinfoInput interface {
 }
 
 func (*SwitchControllerSnmpSysinfo) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpSysinfo)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpSysinfo)(nil)).Elem()
 }
 
 func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoOutput() SwitchControllerSnmpSysinfoOutput {
@@ -152,35 +153,6 @@ func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoOutput() Swit
 
 func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoOutput)
-}
-
-func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoPtrOutput() SwitchControllerSnmpSysinfoPtrOutput {
-	return i.ToSwitchControllerSnmpSysinfoPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSnmpSysinfo) ToSwitchControllerSnmpSysinfoPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoPtrOutput)
-}
-
-type SwitchControllerSnmpSysinfoPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSnmpSysinfoPtrOutput() SwitchControllerSnmpSysinfoPtrOutput
-	ToSwitchControllerSnmpSysinfoPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoPtrOutput
-}
-
-type switchControllerSnmpSysinfoPtrType SwitchControllerSnmpSysinfoArgs
-
-func (*switchControllerSnmpSysinfoPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpSysinfo)(nil))
-}
-
-func (i *switchControllerSnmpSysinfoPtrType) ToSwitchControllerSnmpSysinfoPtrOutput() SwitchControllerSnmpSysinfoPtrOutput {
-	return i.ToSwitchControllerSnmpSysinfoPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSnmpSysinfoPtrType) ToSwitchControllerSnmpSysinfoPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoPtrOutput)
 }
 
 // SwitchControllerSnmpSysinfoArrayInput is an input type that accepts SwitchControllerSnmpSysinfoArray and SwitchControllerSnmpSysinfoArrayOutput values.
@@ -197,7 +169,7 @@ type SwitchControllerSnmpSysinfoArrayInput interface {
 type SwitchControllerSnmpSysinfoArray []SwitchControllerSnmpSysinfoInput
 
 func (SwitchControllerSnmpSysinfoArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSnmpSysinfo)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpSysinfo)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpSysinfoArray) ToSwitchControllerSnmpSysinfoArrayOutput() SwitchControllerSnmpSysinfoArrayOutput {
@@ -222,7 +194,7 @@ type SwitchControllerSnmpSysinfoMapInput interface {
 type SwitchControllerSnmpSysinfoMap map[string]SwitchControllerSnmpSysinfoInput
 
 func (SwitchControllerSnmpSysinfoMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSnmpSysinfo)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpSysinfo)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpSysinfoMap) ToSwitchControllerSnmpSysinfoMapOutput() SwitchControllerSnmpSysinfoMapOutput {
@@ -233,12 +205,10 @@ func (i SwitchControllerSnmpSysinfoMap) ToSwitchControllerSnmpSysinfoMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpSysinfoMapOutput)
 }
 
-type SwitchControllerSnmpSysinfoOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSnmpSysinfoOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpSysinfoOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpSysinfo)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpSysinfo)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoOutput() SwitchControllerSnmpSysinfoOutput {
@@ -249,36 +219,10 @@ func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoOutputWi
 	return o
 }
 
-func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoPtrOutput() SwitchControllerSnmpSysinfoPtrOutput {
-	return o.ToSwitchControllerSnmpSysinfoPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSnmpSysinfoOutput) ToSwitchControllerSnmpSysinfoPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSnmpSysinfo) *SwitchControllerSnmpSysinfo {
-		return &v
-	}).(SwitchControllerSnmpSysinfoPtrOutput)
-}
-
-type SwitchControllerSnmpSysinfoPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSnmpSysinfoPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpSysinfo)(nil))
-}
-
-func (o SwitchControllerSnmpSysinfoPtrOutput) ToSwitchControllerSnmpSysinfoPtrOutput() SwitchControllerSnmpSysinfoPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSnmpSysinfoPtrOutput) ToSwitchControllerSnmpSysinfoPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpSysinfoPtrOutput {
-	return o
-}
-
 type SwitchControllerSnmpSysinfoArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpSysinfoArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSnmpSysinfo)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpSysinfo)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpSysinfoArrayOutput) ToSwitchControllerSnmpSysinfoArrayOutput() SwitchControllerSnmpSysinfoArrayOutput {
@@ -290,15 +234,15 @@ func (o SwitchControllerSnmpSysinfoArrayOutput) ToSwitchControllerSnmpSysinfoArr
 }
 
 func (o SwitchControllerSnmpSysinfoArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpSysinfoOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSnmpSysinfo {
-		return vs[0].([]SwitchControllerSnmpSysinfo)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpSysinfo {
+		return vs[0].([]*SwitchControllerSnmpSysinfo)[vs[1].(int)]
 	}).(SwitchControllerSnmpSysinfoOutput)
 }
 
 type SwitchControllerSnmpSysinfoMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpSysinfoMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSnmpSysinfo)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpSysinfo)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpSysinfoMapOutput) ToSwitchControllerSnmpSysinfoMapOutput() SwitchControllerSnmpSysinfoMapOutput {
@@ -310,14 +254,16 @@ func (o SwitchControllerSnmpSysinfoMapOutput) ToSwitchControllerSnmpSysinfoMapOu
 }
 
 func (o SwitchControllerSnmpSysinfoMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpSysinfoOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSnmpSysinfo {
-		return vs[0].(map[string]SwitchControllerSnmpSysinfo)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSnmpSysinfo {
+		return vs[0].(map[string]*SwitchControllerSnmpSysinfo)[vs[1].(string)]
 	}).(SwitchControllerSnmpSysinfoOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpSysinfoInput)(nil)).Elem(), &SwitchControllerSnmpSysinfo{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpSysinfoArrayInput)(nil)).Elem(), SwitchControllerSnmpSysinfoArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpSysinfoMapInput)(nil)).Elem(), SwitchControllerSnmpSysinfoMap{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpSysinfoOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSnmpSysinfoPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpSysinfoArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpSysinfoMapOutput{})
 }

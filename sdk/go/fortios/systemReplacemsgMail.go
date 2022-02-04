@@ -47,6 +47,7 @@ func NewSystemReplacemsgMail(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgMail
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgMail:SystemReplacemsgMail", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgMailInput interface {
 }
 
 func (*SystemReplacemsgMail) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgMail)(nil))
+	return reflect.TypeOf((**SystemReplacemsgMail)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgMail) ToSystemReplacemsgMailOutput() SystemReplacemsgMailOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgMail) ToSystemReplacemsgMailOutput() SystemReplacemsgMa
 
 func (i *SystemReplacemsgMail) ToSystemReplacemsgMailOutputWithContext(ctx context.Context) SystemReplacemsgMailOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailOutput)
-}
-
-func (i *SystemReplacemsgMail) ToSystemReplacemsgMailPtrOutput() SystemReplacemsgMailPtrOutput {
-	return i.ToSystemReplacemsgMailPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgMail) ToSystemReplacemsgMailPtrOutputWithContext(ctx context.Context) SystemReplacemsgMailPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailPtrOutput)
-}
-
-type SystemReplacemsgMailPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgMailPtrOutput() SystemReplacemsgMailPtrOutput
-	ToSystemReplacemsgMailPtrOutputWithContext(ctx context.Context) SystemReplacemsgMailPtrOutput
-}
-
-type systemReplacemsgMailPtrType SystemReplacemsgMailArgs
-
-func (*systemReplacemsgMailPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgMail)(nil))
-}
-
-func (i *systemReplacemsgMailPtrType) ToSystemReplacemsgMailPtrOutput() SystemReplacemsgMailPtrOutput {
-	return i.ToSystemReplacemsgMailPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgMailPtrType) ToSystemReplacemsgMailPtrOutputWithContext(ctx context.Context) SystemReplacemsgMailPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailPtrOutput)
 }
 
 // SystemReplacemsgMailArrayInput is an input type that accepts SystemReplacemsgMailArray and SystemReplacemsgMailArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgMailArrayInput interface {
 type SystemReplacemsgMailArray []SystemReplacemsgMailInput
 
 func (SystemReplacemsgMailArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgMail)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgMail)(nil)).Elem()
 }
 
 func (i SystemReplacemsgMailArray) ToSystemReplacemsgMailArrayOutput() SystemReplacemsgMailArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgMailMapInput interface {
 type SystemReplacemsgMailMap map[string]SystemReplacemsgMailInput
 
 func (SystemReplacemsgMailMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgMail)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgMail)(nil)).Elem()
 }
 
 func (i SystemReplacemsgMailMap) ToSystemReplacemsgMailMapOutput() SystemReplacemsgMailMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgMailMap) ToSystemReplacemsgMailMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgMailMapOutput)
 }
 
-type SystemReplacemsgMailOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgMailOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgMailOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgMail)(nil))
+	return reflect.TypeOf((**SystemReplacemsgMail)(nil)).Elem()
 }
 
 func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailOutput() SystemReplacemsgMailOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailPtrOutput() SystemReplacemsgMailPtrOutput {
-	return o.ToSystemReplacemsgMailPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgMailOutput) ToSystemReplacemsgMailPtrOutputWithContext(ctx context.Context) SystemReplacemsgMailPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgMail) *SystemReplacemsgMail {
-		return &v
-	}).(SystemReplacemsgMailPtrOutput)
-}
-
-type SystemReplacemsgMailPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgMailPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgMail)(nil))
-}
-
-func (o SystemReplacemsgMailPtrOutput) ToSystemReplacemsgMailPtrOutput() SystemReplacemsgMailPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgMailPtrOutput) ToSystemReplacemsgMailPtrOutputWithContext(ctx context.Context) SystemReplacemsgMailPtrOutput {
-	return o
-}
-
 type SystemReplacemsgMailArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgMailArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgMail)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgMail)(nil)).Elem()
 }
 
 func (o SystemReplacemsgMailArrayOutput) ToSystemReplacemsgMailArrayOutput() SystemReplacemsgMailArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgMailArrayOutput) ToSystemReplacemsgMailArrayOutputWithCo
 }
 
 func (o SystemReplacemsgMailArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgMailOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgMail {
-		return vs[0].([]SystemReplacemsgMail)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgMail {
+		return vs[0].([]*SystemReplacemsgMail)[vs[1].(int)]
 	}).(SystemReplacemsgMailOutput)
 }
 
 type SystemReplacemsgMailMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgMailMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgMail)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgMail)(nil)).Elem()
 }
 
 func (o SystemReplacemsgMailMapOutput) ToSystemReplacemsgMailMapOutput() SystemReplacemsgMailMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgMailMapOutput) ToSystemReplacemsgMailMapOutputWithContex
 }
 
 func (o SystemReplacemsgMailMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgMailOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgMail {
-		return vs[0].(map[string]SystemReplacemsgMail)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgMail {
+		return vs[0].(map[string]*SystemReplacemsgMail)[vs[1].(string)]
 	}).(SystemReplacemsgMailOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgMailInput)(nil)).Elem(), &SystemReplacemsgMail{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgMailArrayInput)(nil)).Elem(), SystemReplacemsgMailArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgMailMapInput)(nil)).Elem(), SystemReplacemsgMailMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgMailOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgMailPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgMailArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgMailMapOutput{})
 }

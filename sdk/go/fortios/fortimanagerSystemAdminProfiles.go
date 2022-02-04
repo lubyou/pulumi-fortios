@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -142,6 +142,7 @@ func NewFortimanagerSystemAdminProfiles(ctx *pulumi.Context,
 	if args.Profileid == nil {
 		return nil, errors.New("invalid value for required argument 'Profileid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemAdminProfiles
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemAdminProfiles:FortimanagerSystemAdminProfiles", name, args, &resource, opts...)
 	if err != nil {
@@ -440,7 +441,7 @@ type FortimanagerSystemAdminProfilesInput interface {
 }
 
 func (*FortimanagerSystemAdminProfiles) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemAdminProfiles)(nil))
+	return reflect.TypeOf((**FortimanagerSystemAdminProfiles)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesOutput() FortimanagerSystemAdminProfilesOutput {
@@ -449,35 +450,6 @@ func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesOutpu
 
 func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesOutput)
-}
-
-func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesPtrOutput() FortimanagerSystemAdminProfilesPtrOutput {
-	return i.ToFortimanagerSystemAdminProfilesPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemAdminProfiles) ToFortimanagerSystemAdminProfilesPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesPtrOutput)
-}
-
-type FortimanagerSystemAdminProfilesPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemAdminProfilesPtrOutput() FortimanagerSystemAdminProfilesPtrOutput
-	ToFortimanagerSystemAdminProfilesPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesPtrOutput
-}
-
-type fortimanagerSystemAdminProfilesPtrType FortimanagerSystemAdminProfilesArgs
-
-func (*fortimanagerSystemAdminProfilesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemAdminProfiles)(nil))
-}
-
-func (i *fortimanagerSystemAdminProfilesPtrType) ToFortimanagerSystemAdminProfilesPtrOutput() FortimanagerSystemAdminProfilesPtrOutput {
-	return i.ToFortimanagerSystemAdminProfilesPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemAdminProfilesPtrType) ToFortimanagerSystemAdminProfilesPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesPtrOutput)
 }
 
 // FortimanagerSystemAdminProfilesArrayInput is an input type that accepts FortimanagerSystemAdminProfilesArray and FortimanagerSystemAdminProfilesArrayOutput values.
@@ -494,7 +466,7 @@ type FortimanagerSystemAdminProfilesArrayInput interface {
 type FortimanagerSystemAdminProfilesArray []FortimanagerSystemAdminProfilesInput
 
 func (FortimanagerSystemAdminProfilesArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemAdminProfiles)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemAdminProfiles)(nil)).Elem()
 }
 
 func (i FortimanagerSystemAdminProfilesArray) ToFortimanagerSystemAdminProfilesArrayOutput() FortimanagerSystemAdminProfilesArrayOutput {
@@ -519,7 +491,7 @@ type FortimanagerSystemAdminProfilesMapInput interface {
 type FortimanagerSystemAdminProfilesMap map[string]FortimanagerSystemAdminProfilesInput
 
 func (FortimanagerSystemAdminProfilesMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemAdminProfiles)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemAdminProfiles)(nil)).Elem()
 }
 
 func (i FortimanagerSystemAdminProfilesMap) ToFortimanagerSystemAdminProfilesMapOutput() FortimanagerSystemAdminProfilesMapOutput {
@@ -530,12 +502,10 @@ func (i FortimanagerSystemAdminProfilesMap) ToFortimanagerSystemAdminProfilesMap
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemAdminProfilesMapOutput)
 }
 
-type FortimanagerSystemAdminProfilesOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemAdminProfilesOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdminProfilesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemAdminProfiles)(nil))
+	return reflect.TypeOf((**FortimanagerSystemAdminProfiles)(nil)).Elem()
 }
 
 func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfilesOutput() FortimanagerSystemAdminProfilesOutput {
@@ -546,36 +516,10 @@ func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfiles
 	return o
 }
 
-func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfilesPtrOutput() FortimanagerSystemAdminProfilesPtrOutput {
-	return o.ToFortimanagerSystemAdminProfilesPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemAdminProfilesOutput) ToFortimanagerSystemAdminProfilesPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesPtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemAdminProfiles) *FortimanagerSystemAdminProfiles {
-		return &v
-	}).(FortimanagerSystemAdminProfilesPtrOutput)
-}
-
-type FortimanagerSystemAdminProfilesPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemAdminProfilesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemAdminProfiles)(nil))
-}
-
-func (o FortimanagerSystemAdminProfilesPtrOutput) ToFortimanagerSystemAdminProfilesPtrOutput() FortimanagerSystemAdminProfilesPtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemAdminProfilesPtrOutput) ToFortimanagerSystemAdminProfilesPtrOutputWithContext(ctx context.Context) FortimanagerSystemAdminProfilesPtrOutput {
-	return o
-}
-
 type FortimanagerSystemAdminProfilesArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdminProfilesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemAdminProfiles)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemAdminProfiles)(nil)).Elem()
 }
 
 func (o FortimanagerSystemAdminProfilesArrayOutput) ToFortimanagerSystemAdminProfilesArrayOutput() FortimanagerSystemAdminProfilesArrayOutput {
@@ -587,15 +531,15 @@ func (o FortimanagerSystemAdminProfilesArrayOutput) ToFortimanagerSystemAdminPro
 }
 
 func (o FortimanagerSystemAdminProfilesArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemAdminProfilesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemAdminProfiles {
-		return vs[0].([]FortimanagerSystemAdminProfiles)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemAdminProfiles {
+		return vs[0].([]*FortimanagerSystemAdminProfiles)[vs[1].(int)]
 	}).(FortimanagerSystemAdminProfilesOutput)
 }
 
 type FortimanagerSystemAdminProfilesMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemAdminProfilesMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemAdminProfiles)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemAdminProfiles)(nil)).Elem()
 }
 
 func (o FortimanagerSystemAdminProfilesMapOutput) ToFortimanagerSystemAdminProfilesMapOutput() FortimanagerSystemAdminProfilesMapOutput {
@@ -607,14 +551,16 @@ func (o FortimanagerSystemAdminProfilesMapOutput) ToFortimanagerSystemAdminProfi
 }
 
 func (o FortimanagerSystemAdminProfilesMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemAdminProfilesOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemAdminProfiles {
-		return vs[0].(map[string]FortimanagerSystemAdminProfiles)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemAdminProfiles {
+		return vs[0].(map[string]*FortimanagerSystemAdminProfiles)[vs[1].(string)]
 	}).(FortimanagerSystemAdminProfilesOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemAdminProfilesInput)(nil)).Elem(), &FortimanagerSystemAdminProfiles{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemAdminProfilesArrayInput)(nil)).Elem(), FortimanagerSystemAdminProfilesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemAdminProfilesMapInput)(nil)).Elem(), FortimanagerSystemAdminProfilesMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemAdminProfilesOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemAdminProfilesPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemAdminProfilesArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemAdminProfilesMapOutput{})
 }

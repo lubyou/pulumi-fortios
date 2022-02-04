@@ -41,6 +41,7 @@ func NewSystemVdomLink(ctx *pulumi.Context,
 		args = &SystemVdomLinkArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomLink
 	err := ctx.RegisterResource("fortios:index/systemVdomLink:SystemVdomLink", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SystemVdomLinkInput interface {
 }
 
 func (*SystemVdomLink) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomLink)(nil))
+	return reflect.TypeOf((**SystemVdomLink)(nil)).Elem()
 }
 
 func (i *SystemVdomLink) ToSystemVdomLinkOutput() SystemVdomLinkOutput {
@@ -132,35 +133,6 @@ func (i *SystemVdomLink) ToSystemVdomLinkOutput() SystemVdomLinkOutput {
 
 func (i *SystemVdomLink) ToSystemVdomLinkOutputWithContext(ctx context.Context) SystemVdomLinkOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkOutput)
-}
-
-func (i *SystemVdomLink) ToSystemVdomLinkPtrOutput() SystemVdomLinkPtrOutput {
-	return i.ToSystemVdomLinkPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomLink) ToSystemVdomLinkPtrOutputWithContext(ctx context.Context) SystemVdomLinkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkPtrOutput)
-}
-
-type SystemVdomLinkPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomLinkPtrOutput() SystemVdomLinkPtrOutput
-	ToSystemVdomLinkPtrOutputWithContext(ctx context.Context) SystemVdomLinkPtrOutput
-}
-
-type systemVdomLinkPtrType SystemVdomLinkArgs
-
-func (*systemVdomLinkPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomLink)(nil))
-}
-
-func (i *systemVdomLinkPtrType) ToSystemVdomLinkPtrOutput() SystemVdomLinkPtrOutput {
-	return i.ToSystemVdomLinkPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomLinkPtrType) ToSystemVdomLinkPtrOutputWithContext(ctx context.Context) SystemVdomLinkPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkPtrOutput)
 }
 
 // SystemVdomLinkArrayInput is an input type that accepts SystemVdomLinkArray and SystemVdomLinkArrayOutput values.
@@ -177,7 +149,7 @@ type SystemVdomLinkArrayInput interface {
 type SystemVdomLinkArray []SystemVdomLinkInput
 
 func (SystemVdomLinkArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomLink)(nil))
+	return reflect.TypeOf((*[]*SystemVdomLink)(nil)).Elem()
 }
 
 func (i SystemVdomLinkArray) ToSystemVdomLinkArrayOutput() SystemVdomLinkArrayOutput {
@@ -202,7 +174,7 @@ type SystemVdomLinkMapInput interface {
 type SystemVdomLinkMap map[string]SystemVdomLinkInput
 
 func (SystemVdomLinkMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomLink)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomLink)(nil)).Elem()
 }
 
 func (i SystemVdomLinkMap) ToSystemVdomLinkMapOutput() SystemVdomLinkMapOutput {
@@ -213,12 +185,10 @@ func (i SystemVdomLinkMap) ToSystemVdomLinkMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomLinkMapOutput)
 }
 
-type SystemVdomLinkOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomLinkOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomLinkOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomLink)(nil))
+	return reflect.TypeOf((**SystemVdomLink)(nil)).Elem()
 }
 
 func (o SystemVdomLinkOutput) ToSystemVdomLinkOutput() SystemVdomLinkOutput {
@@ -229,36 +199,10 @@ func (o SystemVdomLinkOutput) ToSystemVdomLinkOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemVdomLinkOutput) ToSystemVdomLinkPtrOutput() SystemVdomLinkPtrOutput {
-	return o.ToSystemVdomLinkPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomLinkOutput) ToSystemVdomLinkPtrOutputWithContext(ctx context.Context) SystemVdomLinkPtrOutput {
-	return o.ApplyT(func(v SystemVdomLink) *SystemVdomLink {
-		return &v
-	}).(SystemVdomLinkPtrOutput)
-}
-
-type SystemVdomLinkPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomLinkPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomLink)(nil))
-}
-
-func (o SystemVdomLinkPtrOutput) ToSystemVdomLinkPtrOutput() SystemVdomLinkPtrOutput {
-	return o
-}
-
-func (o SystemVdomLinkPtrOutput) ToSystemVdomLinkPtrOutputWithContext(ctx context.Context) SystemVdomLinkPtrOutput {
-	return o
-}
-
 type SystemVdomLinkArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomLinkArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomLink)(nil))
+	return reflect.TypeOf((*[]*SystemVdomLink)(nil)).Elem()
 }
 
 func (o SystemVdomLinkArrayOutput) ToSystemVdomLinkArrayOutput() SystemVdomLinkArrayOutput {
@@ -270,15 +214,15 @@ func (o SystemVdomLinkArrayOutput) ToSystemVdomLinkArrayOutputWithContext(ctx co
 }
 
 func (o SystemVdomLinkArrayOutput) Index(i pulumi.IntInput) SystemVdomLinkOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomLink {
-		return vs[0].([]SystemVdomLink)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomLink {
+		return vs[0].([]*SystemVdomLink)[vs[1].(int)]
 	}).(SystemVdomLinkOutput)
 }
 
 type SystemVdomLinkMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomLinkMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomLink)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomLink)(nil)).Elem()
 }
 
 func (o SystemVdomLinkMapOutput) ToSystemVdomLinkMapOutput() SystemVdomLinkMapOutput {
@@ -290,14 +234,16 @@ func (o SystemVdomLinkMapOutput) ToSystemVdomLinkMapOutputWithContext(ctx contex
 }
 
 func (o SystemVdomLinkMapOutput) MapIndex(k pulumi.StringInput) SystemVdomLinkOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomLink {
-		return vs[0].(map[string]SystemVdomLink)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomLink {
+		return vs[0].(map[string]*SystemVdomLink)[vs[1].(string)]
 	}).(SystemVdomLinkOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomLinkInput)(nil)).Elem(), &SystemVdomLink{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomLinkArrayInput)(nil)).Elem(), SystemVdomLinkArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomLinkMapInput)(nil)).Elem(), SystemVdomLinkMap{})
 	pulumi.RegisterOutputType(SystemVdomLinkOutput{})
-	pulumi.RegisterOutputType(SystemVdomLinkPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomLinkArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomLinkMapOutput{})
 }

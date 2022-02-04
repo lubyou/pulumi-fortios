@@ -39,6 +39,7 @@ func NewFirewallInternetServiceBotnet(ctx *pulumi.Context,
 		args = &FirewallInternetServiceBotnetArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceBotnet
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceBotnet:FirewallInternetServiceBotnet", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallInternetServiceBotnetInput interface {
 }
 
 func (*FirewallInternetServiceBotnet) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceBotnet)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceBotnet)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetOutput() FirewallInternetServiceBotnetOutput {
@@ -122,35 +123,6 @@ func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetOutput() 
 
 func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetOutput)
-}
-
-func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetPtrOutput() FirewallInternetServiceBotnetPtrOutput {
-	return i.ToFirewallInternetServiceBotnetPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceBotnet) ToFirewallInternetServiceBotnetPtrOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetPtrOutput)
-}
-
-type FirewallInternetServiceBotnetPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceBotnetPtrOutput() FirewallInternetServiceBotnetPtrOutput
-	ToFirewallInternetServiceBotnetPtrOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetPtrOutput
-}
-
-type firewallInternetServiceBotnetPtrType FirewallInternetServiceBotnetArgs
-
-func (*firewallInternetServiceBotnetPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceBotnet)(nil))
-}
-
-func (i *firewallInternetServiceBotnetPtrType) ToFirewallInternetServiceBotnetPtrOutput() FirewallInternetServiceBotnetPtrOutput {
-	return i.ToFirewallInternetServiceBotnetPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceBotnetPtrType) ToFirewallInternetServiceBotnetPtrOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetPtrOutput)
 }
 
 // FirewallInternetServiceBotnetArrayInput is an input type that accepts FirewallInternetServiceBotnetArray and FirewallInternetServiceBotnetArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallInternetServiceBotnetArrayInput interface {
 type FirewallInternetServiceBotnetArray []FirewallInternetServiceBotnetInput
 
 func (FirewallInternetServiceBotnetArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceBotnet)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceBotnet)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceBotnetArray) ToFirewallInternetServiceBotnetArrayOutput() FirewallInternetServiceBotnetArrayOutput {
@@ -192,7 +164,7 @@ type FirewallInternetServiceBotnetMapInput interface {
 type FirewallInternetServiceBotnetMap map[string]FirewallInternetServiceBotnetInput
 
 func (FirewallInternetServiceBotnetMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceBotnet)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceBotnet)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceBotnetMap) ToFirewallInternetServiceBotnetMapOutput() FirewallInternetServiceBotnetMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallInternetServiceBotnetMap) ToFirewallInternetServiceBotnetMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceBotnetMapOutput)
 }
 
-type FirewallInternetServiceBotnetOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceBotnetOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceBotnetOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceBotnet)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceBotnet)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetOutput() FirewallInternetServiceBotnetOutput {
@@ -219,36 +189,10 @@ func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetOutp
 	return o
 }
 
-func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetPtrOutput() FirewallInternetServiceBotnetPtrOutput {
-	return o.ToFirewallInternetServiceBotnetPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceBotnetOutput) ToFirewallInternetServiceBotnetPtrOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceBotnet) *FirewallInternetServiceBotnet {
-		return &v
-	}).(FirewallInternetServiceBotnetPtrOutput)
-}
-
-type FirewallInternetServiceBotnetPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceBotnetPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceBotnet)(nil))
-}
-
-func (o FirewallInternetServiceBotnetPtrOutput) ToFirewallInternetServiceBotnetPtrOutput() FirewallInternetServiceBotnetPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceBotnetPtrOutput) ToFirewallInternetServiceBotnetPtrOutputWithContext(ctx context.Context) FirewallInternetServiceBotnetPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceBotnetArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceBotnetArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceBotnet)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceBotnet)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceBotnetArrayOutput) ToFirewallInternetServiceBotnetArrayOutput() FirewallInternetServiceBotnetArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallInternetServiceBotnetArrayOutput) ToFirewallInternetServiceBotne
 }
 
 func (o FirewallInternetServiceBotnetArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceBotnetOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceBotnet {
-		return vs[0].([]FirewallInternetServiceBotnet)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceBotnet {
+		return vs[0].([]*FirewallInternetServiceBotnet)[vs[1].(int)]
 	}).(FirewallInternetServiceBotnetOutput)
 }
 
 type FirewallInternetServiceBotnetMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceBotnetMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceBotnet)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceBotnet)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceBotnetMapOutput) ToFirewallInternetServiceBotnetMapOutput() FirewallInternetServiceBotnetMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallInternetServiceBotnetMapOutput) ToFirewallInternetServiceBotnetM
 }
 
 func (o FirewallInternetServiceBotnetMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceBotnetOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceBotnet {
-		return vs[0].(map[string]FirewallInternetServiceBotnet)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceBotnet {
+		return vs[0].(map[string]*FirewallInternetServiceBotnet)[vs[1].(string)]
 	}).(FirewallInternetServiceBotnetOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceBotnetInput)(nil)).Elem(), &FirewallInternetServiceBotnet{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceBotnetArrayInput)(nil)).Elem(), FirewallInternetServiceBotnetArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceBotnetMapInput)(nil)).Elem(), FirewallInternetServiceBotnetMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceBotnetOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceBotnetPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceBotnetArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceBotnetMapOutput{})
 }

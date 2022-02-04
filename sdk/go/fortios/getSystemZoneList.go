@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemZone`.
 func GetSystemZoneList(ctx *pulumi.Context, args *GetSystemZoneListArgs, opts ...pulumi.InvokeOption) (*GetSystemZoneListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemZoneListResult
 	err := ctx.Invoke("fortios:index/getSystemZoneList:GetSystemZoneList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemZoneListResult struct {
 	// A list of the `SystemZone`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemZoneListOutput(ctx *pulumi.Context, args GetSystemZoneListOutputArgs, opts ...pulumi.InvokeOption) GetSystemZoneListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemZoneListResult, error) {
+			args := v.(GetSystemZoneListArgs)
+			r, err := GetSystemZoneList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemZoneListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemZoneList.
+type GetSystemZoneListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemZoneListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemZoneListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemZoneList.
+type GetSystemZoneListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemZoneListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemZoneListResult)(nil)).Elem()
+}
+
+func (o GetSystemZoneListResultOutput) ToGetSystemZoneListResultOutput() GetSystemZoneListResultOutput {
+	return o
+}
+
+func (o GetSystemZoneListResultOutput) ToGetSystemZoneListResultOutputWithContext(ctx context.Context) GetSystemZoneListResultOutput {
+	return o
+}
+
+func (o GetSystemZoneListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemZoneListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemZoneListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemZoneListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemZone`.
+func (o GetSystemZoneListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemZoneListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemZoneListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemZoneListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemZoneListResultOutput{})
 }

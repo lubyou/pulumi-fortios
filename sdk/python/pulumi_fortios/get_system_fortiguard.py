@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemFortiguardResult',
     'AwaitableGetSystemFortiguardResult',
     'get_system_fortiguard',
+    'get_system_fortiguard_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetSystemFortiguardResult:
     """
     A collection of values returned by GetSystemFortiguard.
     """
-    def __init__(__self__, antispam_cache=None, antispam_cache_mpercent=None, antispam_cache_ttl=None, antispam_expiration=None, antispam_force_off=None, antispam_license=None, antispam_timeout=None, anycast_sdns_server_ip=None, anycast_sdns_server_port=None, auto_join_forticloud=None, ddns_server_ip=None, ddns_server_port=None, fortiguard_anycast=None, fortiguard_anycast_source=None, id=None, interface=None, interface_select_method=None, load_balance_servers=None, outbreak_prevention_cache=None, outbreak_prevention_cache_mpercent=None, outbreak_prevention_cache_ttl=None, outbreak_prevention_expiration=None, outbreak_prevention_force_off=None, outbreak_prevention_license=None, outbreak_prevention_timeout=None, port=None, protocol=None, proxy_password=None, proxy_server_ip=None, proxy_server_port=None, proxy_username=None, sandbox_region=None, sdns_options=None, sdns_server_ip=None, sdns_server_port=None, service_account_id=None, source_ip=None, source_ip6=None, update_server_location=None, vdomparam=None, webfilter_cache=None, webfilter_cache_ttl=None, webfilter_expiration=None, webfilter_force_off=None, webfilter_license=None, webfilter_timeout=None):
+    def __init__(__self__, antispam_cache=None, antispam_cache_mpercent=None, antispam_cache_ttl=None, antispam_expiration=None, antispam_force_off=None, antispam_license=None, antispam_timeout=None, anycast_sdns_server_ip=None, anycast_sdns_server_port=None, auto_join_forticloud=None, ddns_server_ip=None, ddns_server_ip6=None, ddns_server_port=None, fortiguard_anycast=None, fortiguard_anycast_source=None, id=None, interface=None, interface_select_method=None, load_balance_servers=None, outbreak_prevention_cache=None, outbreak_prevention_cache_mpercent=None, outbreak_prevention_cache_ttl=None, outbreak_prevention_expiration=None, outbreak_prevention_force_off=None, outbreak_prevention_license=None, outbreak_prevention_timeout=None, persistent_connection=None, port=None, protocol=None, proxy_password=None, proxy_server_ip=None, proxy_server_port=None, proxy_username=None, sandbox_region=None, sdns_options=None, sdns_server_ip=None, sdns_server_port=None, service_account_id=None, source_ip=None, source_ip6=None, update_build_proxy=None, update_extdb=None, update_ffdb=None, update_server_location=None, update_uwdb=None, vdomparam=None, videofilter_expiration=None, videofilter_license=None, webfilter_cache=None, webfilter_cache_ttl=None, webfilter_expiration=None, webfilter_force_off=None, webfilter_license=None, webfilter_timeout=None):
         if antispam_cache and not isinstance(antispam_cache, str):
             raise TypeError("Expected argument 'antispam_cache' to be a str")
         pulumi.set(__self__, "antispam_cache", antispam_cache)
@@ -53,6 +54,9 @@ class GetSystemFortiguardResult:
         if ddns_server_ip and not isinstance(ddns_server_ip, str):
             raise TypeError("Expected argument 'ddns_server_ip' to be a str")
         pulumi.set(__self__, "ddns_server_ip", ddns_server_ip)
+        if ddns_server_ip6 and not isinstance(ddns_server_ip6, str):
+            raise TypeError("Expected argument 'ddns_server_ip6' to be a str")
+        pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port and not isinstance(ddns_server_port, int):
             raise TypeError("Expected argument 'ddns_server_port' to be a int")
         pulumi.set(__self__, "ddns_server_port", ddns_server_port)
@@ -95,6 +99,9 @@ class GetSystemFortiguardResult:
         if outbreak_prevention_timeout and not isinstance(outbreak_prevention_timeout, int):
             raise TypeError("Expected argument 'outbreak_prevention_timeout' to be a int")
         pulumi.set(__self__, "outbreak_prevention_timeout", outbreak_prevention_timeout)
+        if persistent_connection and not isinstance(persistent_connection, str):
+            raise TypeError("Expected argument 'persistent_connection' to be a str")
+        pulumi.set(__self__, "persistent_connection", persistent_connection)
         if port and not isinstance(port, str):
             raise TypeError("Expected argument 'port' to be a str")
         pulumi.set(__self__, "port", port)
@@ -134,12 +141,30 @@ class GetSystemFortiguardResult:
         if source_ip6 and not isinstance(source_ip6, str):
             raise TypeError("Expected argument 'source_ip6' to be a str")
         pulumi.set(__self__, "source_ip6", source_ip6)
+        if update_build_proxy and not isinstance(update_build_proxy, str):
+            raise TypeError("Expected argument 'update_build_proxy' to be a str")
+        pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_extdb and not isinstance(update_extdb, str):
+            raise TypeError("Expected argument 'update_extdb' to be a str")
+        pulumi.set(__self__, "update_extdb", update_extdb)
+        if update_ffdb and not isinstance(update_ffdb, str):
+            raise TypeError("Expected argument 'update_ffdb' to be a str")
+        pulumi.set(__self__, "update_ffdb", update_ffdb)
         if update_server_location and not isinstance(update_server_location, str):
             raise TypeError("Expected argument 'update_server_location' to be a str")
         pulumi.set(__self__, "update_server_location", update_server_location)
+        if update_uwdb and not isinstance(update_uwdb, str):
+            raise TypeError("Expected argument 'update_uwdb' to be a str")
+        pulumi.set(__self__, "update_uwdb", update_uwdb)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_expiration and not isinstance(videofilter_expiration, int):
+            raise TypeError("Expected argument 'videofilter_expiration' to be a int")
+        pulumi.set(__self__, "videofilter_expiration", videofilter_expiration)
+        if videofilter_license and not isinstance(videofilter_license, int):
+            raise TypeError("Expected argument 'videofilter_license' to be a int")
+        pulumi.set(__self__, "videofilter_license", videofilter_license)
         if webfilter_cache and not isinstance(webfilter_cache, str):
             raise TypeError("Expected argument 'webfilter_cache' to be a str")
         pulumi.set(__self__, "webfilter_cache", webfilter_cache)
@@ -246,6 +271,14 @@ class GetSystemFortiguardResult:
         IP address of the FortiDDNS server.
         """
         return pulumi.get(self, "ddns_server_ip")
+
+    @property
+    @pulumi.getter(name="ddnsServerIp6")
+    def ddns_server_ip6(self) -> str:
+        """
+        IPv6 address of the FortiDDNS server.
+        """
+        return pulumi.get(self, "ddns_server_ip6")
 
     @property
     @pulumi.getter(name="ddnsServerPort")
@@ -360,6 +393,14 @@ class GetSystemFortiguardResult:
         return pulumi.get(self, "outbreak_prevention_timeout")
 
     @property
+    @pulumi.getter(name="persistentConnection")
+    def persistent_connection(self) -> str:
+        """
+        Enable/disable use of persistent connection to receive update notification from FortiGuard.
+        """
+        return pulumi.get(self, "persistent_connection")
+
+    @property
     @pulumi.getter
     def port(self) -> str:
         """
@@ -464,6 +505,30 @@ class GetSystemFortiguardResult:
         return pulumi.get(self, "source_ip6")
 
     @property
+    @pulumi.getter(name="updateBuildProxy")
+    def update_build_proxy(self) -> str:
+        """
+        Enable/disable proxy dictionary rebuild.
+        """
+        return pulumi.get(self, "update_build_proxy")
+
+    @property
+    @pulumi.getter(name="updateExtdb")
+    def update_extdb(self) -> str:
+        """
+        Enable/disable external resource update.
+        """
+        return pulumi.get(self, "update_extdb")
+
+    @property
+    @pulumi.getter(name="updateFfdb")
+    def update_ffdb(self) -> str:
+        """
+        Enable/disable Internet Service Database update.
+        """
+        return pulumi.get(self, "update_ffdb")
+
+    @property
     @pulumi.getter(name="updateServerLocation")
     def update_server_location(self) -> str:
         """
@@ -472,9 +537,33 @@ class GetSystemFortiguardResult:
         return pulumi.get(self, "update_server_location")
 
     @property
+    @pulumi.getter(name="updateUwdb")
+    def update_uwdb(self) -> str:
+        """
+        Enable/disable allowlist update.
+        """
+        return pulumi.get(self, "update_uwdb")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="videofilterExpiration")
+    def videofilter_expiration(self) -> int:
+        """
+        Expiration date of the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_expiration")
+
+    @property
+    @pulumi.getter(name="videofilterLicense")
+    def videofilter_license(self) -> int:
+        """
+        Interval of time between license checks for the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_license")
 
     @property
     @pulumi.getter(name="webfilterCache")
@@ -542,6 +631,7 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             anycast_sdns_server_port=self.anycast_sdns_server_port,
             auto_join_forticloud=self.auto_join_forticloud,
             ddns_server_ip=self.ddns_server_ip,
+            ddns_server_ip6=self.ddns_server_ip6,
             ddns_server_port=self.ddns_server_port,
             fortiguard_anycast=self.fortiguard_anycast,
             fortiguard_anycast_source=self.fortiguard_anycast_source,
@@ -556,6 +646,7 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             outbreak_prevention_force_off=self.outbreak_prevention_force_off,
             outbreak_prevention_license=self.outbreak_prevention_license,
             outbreak_prevention_timeout=self.outbreak_prevention_timeout,
+            persistent_connection=self.persistent_connection,
             port=self.port,
             protocol=self.protocol,
             proxy_password=self.proxy_password,
@@ -569,8 +660,14 @@ class AwaitableGetSystemFortiguardResult(GetSystemFortiguardResult):
             service_account_id=self.service_account_id,
             source_ip=self.source_ip,
             source_ip6=self.source_ip6,
+            update_build_proxy=self.update_build_proxy,
+            update_extdb=self.update_extdb,
+            update_ffdb=self.update_ffdb,
             update_server_location=self.update_server_location,
+            update_uwdb=self.update_uwdb,
             vdomparam=self.vdomparam,
+            videofilter_expiration=self.videofilter_expiration,
+            videofilter_license=self.videofilter_license,
             webfilter_cache=self.webfilter_cache,
             webfilter_cache_ttl=self.webfilter_cache_ttl,
             webfilter_expiration=self.webfilter_expiration,
@@ -593,6 +690,8 @@ def get_system_fortiguard(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFortiguard:GetSystemFortiguard', __args__, opts=opts, typ=GetSystemFortiguardResult).value
 
     return AwaitableGetSystemFortiguardResult(
@@ -607,6 +706,7 @@ def get_system_fortiguard(vdomparam: Optional[str] = None,
         anycast_sdns_server_port=__ret__.anycast_sdns_server_port,
         auto_join_forticloud=__ret__.auto_join_forticloud,
         ddns_server_ip=__ret__.ddns_server_ip,
+        ddns_server_ip6=__ret__.ddns_server_ip6,
         ddns_server_port=__ret__.ddns_server_port,
         fortiguard_anycast=__ret__.fortiguard_anycast,
         fortiguard_anycast_source=__ret__.fortiguard_anycast_source,
@@ -621,6 +721,7 @@ def get_system_fortiguard(vdomparam: Optional[str] = None,
         outbreak_prevention_force_off=__ret__.outbreak_prevention_force_off,
         outbreak_prevention_license=__ret__.outbreak_prevention_license,
         outbreak_prevention_timeout=__ret__.outbreak_prevention_timeout,
+        persistent_connection=__ret__.persistent_connection,
         port=__ret__.port,
         protocol=__ret__.protocol,
         proxy_password=__ret__.proxy_password,
@@ -634,11 +735,29 @@ def get_system_fortiguard(vdomparam: Optional[str] = None,
         service_account_id=__ret__.service_account_id,
         source_ip=__ret__.source_ip,
         source_ip6=__ret__.source_ip6,
+        update_build_proxy=__ret__.update_build_proxy,
+        update_extdb=__ret__.update_extdb,
+        update_ffdb=__ret__.update_ffdb,
         update_server_location=__ret__.update_server_location,
+        update_uwdb=__ret__.update_uwdb,
         vdomparam=__ret__.vdomparam,
+        videofilter_expiration=__ret__.videofilter_expiration,
+        videofilter_license=__ret__.videofilter_license,
         webfilter_cache=__ret__.webfilter_cache,
         webfilter_cache_ttl=__ret__.webfilter_cache_ttl,
         webfilter_expiration=__ret__.webfilter_expiration,
         webfilter_force_off=__ret__.webfilter_force_off,
         webfilter_license=__ret__.webfilter_license,
         webfilter_timeout=__ret__.webfilter_timeout)
+
+
+@_utilities.lift_output_func(get_system_fortiguard)
+def get_system_fortiguard_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemFortiguardResult]:
+    """
+    Use this data source to get information on fortios system fortiguard
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

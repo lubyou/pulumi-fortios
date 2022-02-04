@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewSpamfilterFortishield(ctx *pulumi.Context,
 		args = &SpamfilterFortishieldArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SpamfilterFortishield
 	err := ctx.RegisterResource("fortios:index/spamfilterFortishield:SpamfilterFortishield", name, args, &resource, opts...)
 	if err != nil {
@@ -148,7 +149,7 @@ type SpamfilterFortishieldInput interface {
 }
 
 func (*SpamfilterFortishield) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterFortishield)(nil))
+	return reflect.TypeOf((**SpamfilterFortishield)(nil)).Elem()
 }
 
 func (i *SpamfilterFortishield) ToSpamfilterFortishieldOutput() SpamfilterFortishieldOutput {
@@ -157,35 +158,6 @@ func (i *SpamfilterFortishield) ToSpamfilterFortishieldOutput() SpamfilterFortis
 
 func (i *SpamfilterFortishield) ToSpamfilterFortishieldOutputWithContext(ctx context.Context) SpamfilterFortishieldOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterFortishieldOutput)
-}
-
-func (i *SpamfilterFortishield) ToSpamfilterFortishieldPtrOutput() SpamfilterFortishieldPtrOutput {
-	return i.ToSpamfilterFortishieldPtrOutputWithContext(context.Background())
-}
-
-func (i *SpamfilterFortishield) ToSpamfilterFortishieldPtrOutputWithContext(ctx context.Context) SpamfilterFortishieldPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterFortishieldPtrOutput)
-}
-
-type SpamfilterFortishieldPtrInput interface {
-	pulumi.Input
-
-	ToSpamfilterFortishieldPtrOutput() SpamfilterFortishieldPtrOutput
-	ToSpamfilterFortishieldPtrOutputWithContext(ctx context.Context) SpamfilterFortishieldPtrOutput
-}
-
-type spamfilterFortishieldPtrType SpamfilterFortishieldArgs
-
-func (*spamfilterFortishieldPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterFortishield)(nil))
-}
-
-func (i *spamfilterFortishieldPtrType) ToSpamfilterFortishieldPtrOutput() SpamfilterFortishieldPtrOutput {
-	return i.ToSpamfilterFortishieldPtrOutputWithContext(context.Background())
-}
-
-func (i *spamfilterFortishieldPtrType) ToSpamfilterFortishieldPtrOutputWithContext(ctx context.Context) SpamfilterFortishieldPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterFortishieldPtrOutput)
 }
 
 // SpamfilterFortishieldArrayInput is an input type that accepts SpamfilterFortishieldArray and SpamfilterFortishieldArrayOutput values.
@@ -202,7 +174,7 @@ type SpamfilterFortishieldArrayInput interface {
 type SpamfilterFortishieldArray []SpamfilterFortishieldInput
 
 func (SpamfilterFortishieldArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SpamfilterFortishield)(nil))
+	return reflect.TypeOf((*[]*SpamfilterFortishield)(nil)).Elem()
 }
 
 func (i SpamfilterFortishieldArray) ToSpamfilterFortishieldArrayOutput() SpamfilterFortishieldArrayOutput {
@@ -227,7 +199,7 @@ type SpamfilterFortishieldMapInput interface {
 type SpamfilterFortishieldMap map[string]SpamfilterFortishieldInput
 
 func (SpamfilterFortishieldMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SpamfilterFortishield)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterFortishield)(nil)).Elem()
 }
 
 func (i SpamfilterFortishieldMap) ToSpamfilterFortishieldMapOutput() SpamfilterFortishieldMapOutput {
@@ -238,12 +210,10 @@ func (i SpamfilterFortishieldMap) ToSpamfilterFortishieldMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterFortishieldMapOutput)
 }
 
-type SpamfilterFortishieldOutput struct {
-	*pulumi.OutputState
-}
+type SpamfilterFortishieldOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterFortishieldOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterFortishield)(nil))
+	return reflect.TypeOf((**SpamfilterFortishield)(nil)).Elem()
 }
 
 func (o SpamfilterFortishieldOutput) ToSpamfilterFortishieldOutput() SpamfilterFortishieldOutput {
@@ -254,36 +224,10 @@ func (o SpamfilterFortishieldOutput) ToSpamfilterFortishieldOutputWithContext(ct
 	return o
 }
 
-func (o SpamfilterFortishieldOutput) ToSpamfilterFortishieldPtrOutput() SpamfilterFortishieldPtrOutput {
-	return o.ToSpamfilterFortishieldPtrOutputWithContext(context.Background())
-}
-
-func (o SpamfilterFortishieldOutput) ToSpamfilterFortishieldPtrOutputWithContext(ctx context.Context) SpamfilterFortishieldPtrOutput {
-	return o.ApplyT(func(v SpamfilterFortishield) *SpamfilterFortishield {
-		return &v
-	}).(SpamfilterFortishieldPtrOutput)
-}
-
-type SpamfilterFortishieldPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SpamfilterFortishieldPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterFortishield)(nil))
-}
-
-func (o SpamfilterFortishieldPtrOutput) ToSpamfilterFortishieldPtrOutput() SpamfilterFortishieldPtrOutput {
-	return o
-}
-
-func (o SpamfilterFortishieldPtrOutput) ToSpamfilterFortishieldPtrOutputWithContext(ctx context.Context) SpamfilterFortishieldPtrOutput {
-	return o
-}
-
 type SpamfilterFortishieldArrayOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterFortishieldArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SpamfilterFortishield)(nil))
+	return reflect.TypeOf((*[]*SpamfilterFortishield)(nil)).Elem()
 }
 
 func (o SpamfilterFortishieldArrayOutput) ToSpamfilterFortishieldArrayOutput() SpamfilterFortishieldArrayOutput {
@@ -295,15 +239,15 @@ func (o SpamfilterFortishieldArrayOutput) ToSpamfilterFortishieldArrayOutputWith
 }
 
 func (o SpamfilterFortishieldArrayOutput) Index(i pulumi.IntInput) SpamfilterFortishieldOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SpamfilterFortishield {
-		return vs[0].([]SpamfilterFortishield)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterFortishield {
+		return vs[0].([]*SpamfilterFortishield)[vs[1].(int)]
 	}).(SpamfilterFortishieldOutput)
 }
 
 type SpamfilterFortishieldMapOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterFortishieldMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SpamfilterFortishield)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterFortishield)(nil)).Elem()
 }
 
 func (o SpamfilterFortishieldMapOutput) ToSpamfilterFortishieldMapOutput() SpamfilterFortishieldMapOutput {
@@ -315,14 +259,16 @@ func (o SpamfilterFortishieldMapOutput) ToSpamfilterFortishieldMapOutputWithCont
 }
 
 func (o SpamfilterFortishieldMapOutput) MapIndex(k pulumi.StringInput) SpamfilterFortishieldOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SpamfilterFortishield {
-		return vs[0].(map[string]SpamfilterFortishield)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SpamfilterFortishield {
+		return vs[0].(map[string]*SpamfilterFortishield)[vs[1].(string)]
 	}).(SpamfilterFortishieldOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterFortishieldInput)(nil)).Elem(), &SpamfilterFortishield{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterFortishieldArrayInput)(nil)).Elem(), SpamfilterFortishieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterFortishieldMapInput)(nil)).Elem(), SpamfilterFortishieldMap{})
 	pulumi.RegisterOutputType(SpamfilterFortishieldOutput{})
-	pulumi.RegisterOutputType(SpamfilterFortishieldPtrOutput{})
 	pulumi.RegisterOutputType(SpamfilterFortishieldArrayOutput{})
 	pulumi.RegisterOutputType(SpamfilterFortishieldMapOutput{})
 }

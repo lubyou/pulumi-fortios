@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -91,6 +91,7 @@ func NewSystemAdminProfiles(ctx *pulumi.Context,
 		args = &SystemAdminProfilesArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAdminProfiles
 	err := ctx.RegisterResource("fortios:index/systemAdminProfiles:SystemAdminProfiles", name, args, &resource, opts...)
 	if err != nil {
@@ -261,7 +262,7 @@ type SystemAdminProfilesInput interface {
 }
 
 func (*SystemAdminProfiles) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAdminProfiles)(nil))
+	return reflect.TypeOf((**SystemAdminProfiles)(nil)).Elem()
 }
 
 func (i *SystemAdminProfiles) ToSystemAdminProfilesOutput() SystemAdminProfilesOutput {
@@ -270,35 +271,6 @@ func (i *SystemAdminProfiles) ToSystemAdminProfilesOutput() SystemAdminProfilesO
 
 func (i *SystemAdminProfiles) ToSystemAdminProfilesOutputWithContext(ctx context.Context) SystemAdminProfilesOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesOutput)
-}
-
-func (i *SystemAdminProfiles) ToSystemAdminProfilesPtrOutput() SystemAdminProfilesPtrOutput {
-	return i.ToSystemAdminProfilesPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAdminProfiles) ToSystemAdminProfilesPtrOutputWithContext(ctx context.Context) SystemAdminProfilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesPtrOutput)
-}
-
-type SystemAdminProfilesPtrInput interface {
-	pulumi.Input
-
-	ToSystemAdminProfilesPtrOutput() SystemAdminProfilesPtrOutput
-	ToSystemAdminProfilesPtrOutputWithContext(ctx context.Context) SystemAdminProfilesPtrOutput
-}
-
-type systemAdminProfilesPtrType SystemAdminProfilesArgs
-
-func (*systemAdminProfilesPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAdminProfiles)(nil))
-}
-
-func (i *systemAdminProfilesPtrType) ToSystemAdminProfilesPtrOutput() SystemAdminProfilesPtrOutput {
-	return i.ToSystemAdminProfilesPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAdminProfilesPtrType) ToSystemAdminProfilesPtrOutputWithContext(ctx context.Context) SystemAdminProfilesPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesPtrOutput)
 }
 
 // SystemAdminProfilesArrayInput is an input type that accepts SystemAdminProfilesArray and SystemAdminProfilesArrayOutput values.
@@ -315,7 +287,7 @@ type SystemAdminProfilesArrayInput interface {
 type SystemAdminProfilesArray []SystemAdminProfilesInput
 
 func (SystemAdminProfilesArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAdminProfiles)(nil))
+	return reflect.TypeOf((*[]*SystemAdminProfiles)(nil)).Elem()
 }
 
 func (i SystemAdminProfilesArray) ToSystemAdminProfilesArrayOutput() SystemAdminProfilesArrayOutput {
@@ -340,7 +312,7 @@ type SystemAdminProfilesMapInput interface {
 type SystemAdminProfilesMap map[string]SystemAdminProfilesInput
 
 func (SystemAdminProfilesMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAdminProfiles)(nil))
+	return reflect.TypeOf((*map[string]*SystemAdminProfiles)(nil)).Elem()
 }
 
 func (i SystemAdminProfilesMap) ToSystemAdminProfilesMapOutput() SystemAdminProfilesMapOutput {
@@ -351,12 +323,10 @@ func (i SystemAdminProfilesMap) ToSystemAdminProfilesMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAdminProfilesMapOutput)
 }
 
-type SystemAdminProfilesOutput struct {
-	*pulumi.OutputState
-}
+type SystemAdminProfilesOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminProfilesOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAdminProfiles)(nil))
+	return reflect.TypeOf((**SystemAdminProfiles)(nil)).Elem()
 }
 
 func (o SystemAdminProfilesOutput) ToSystemAdminProfilesOutput() SystemAdminProfilesOutput {
@@ -367,36 +337,10 @@ func (o SystemAdminProfilesOutput) ToSystemAdminProfilesOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemAdminProfilesOutput) ToSystemAdminProfilesPtrOutput() SystemAdminProfilesPtrOutput {
-	return o.ToSystemAdminProfilesPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAdminProfilesOutput) ToSystemAdminProfilesPtrOutputWithContext(ctx context.Context) SystemAdminProfilesPtrOutput {
-	return o.ApplyT(func(v SystemAdminProfiles) *SystemAdminProfiles {
-		return &v
-	}).(SystemAdminProfilesPtrOutput)
-}
-
-type SystemAdminProfilesPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAdminProfilesPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAdminProfiles)(nil))
-}
-
-func (o SystemAdminProfilesPtrOutput) ToSystemAdminProfilesPtrOutput() SystemAdminProfilesPtrOutput {
-	return o
-}
-
-func (o SystemAdminProfilesPtrOutput) ToSystemAdminProfilesPtrOutputWithContext(ctx context.Context) SystemAdminProfilesPtrOutput {
-	return o
-}
-
 type SystemAdminProfilesArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminProfilesArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAdminProfiles)(nil))
+	return reflect.TypeOf((*[]*SystemAdminProfiles)(nil)).Elem()
 }
 
 func (o SystemAdminProfilesArrayOutput) ToSystemAdminProfilesArrayOutput() SystemAdminProfilesArrayOutput {
@@ -408,15 +352,15 @@ func (o SystemAdminProfilesArrayOutput) ToSystemAdminProfilesArrayOutputWithCont
 }
 
 func (o SystemAdminProfilesArrayOutput) Index(i pulumi.IntInput) SystemAdminProfilesOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAdminProfiles {
-		return vs[0].([]SystemAdminProfiles)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAdminProfiles {
+		return vs[0].([]*SystemAdminProfiles)[vs[1].(int)]
 	}).(SystemAdminProfilesOutput)
 }
 
 type SystemAdminProfilesMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAdminProfilesMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAdminProfiles)(nil))
+	return reflect.TypeOf((*map[string]*SystemAdminProfiles)(nil)).Elem()
 }
 
 func (o SystemAdminProfilesMapOutput) ToSystemAdminProfilesMapOutput() SystemAdminProfilesMapOutput {
@@ -428,14 +372,16 @@ func (o SystemAdminProfilesMapOutput) ToSystemAdminProfilesMapOutputWithContext(
 }
 
 func (o SystemAdminProfilesMapOutput) MapIndex(k pulumi.StringInput) SystemAdminProfilesOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAdminProfiles {
-		return vs[0].(map[string]SystemAdminProfiles)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAdminProfiles {
+		return vs[0].(map[string]*SystemAdminProfiles)[vs[1].(string)]
 	}).(SystemAdminProfilesOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminProfilesInput)(nil)).Elem(), &SystemAdminProfiles{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminProfilesArrayInput)(nil)).Elem(), SystemAdminProfilesArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAdminProfilesMapInput)(nil)).Elem(), SystemAdminProfilesMap{})
 	pulumi.RegisterOutputType(SystemAdminProfilesOutput{})
-	pulumi.RegisterOutputType(SystemAdminProfilesPtrOutput{})
 	pulumi.RegisterOutputType(SystemAdminProfilesArrayOutput{})
 	pulumi.RegisterOutputType(SystemAdminProfilesMapOutput{})
 }

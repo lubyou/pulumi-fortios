@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,6 +75,7 @@ func NewVpnCertificateOcspServer(ctx *pulumi.Context,
 		args = &VpnCertificateOcspServerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnCertificateOcspServer
 	err := ctx.RegisterResource("fortios:index/vpnCertificateOcspServer:VpnCertificateOcspServer", name, args, &resource, opts...)
 	if err != nil {
@@ -189,7 +190,7 @@ type VpnCertificateOcspServerInput interface {
 }
 
 func (*VpnCertificateOcspServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateOcspServer)(nil))
+	return reflect.TypeOf((**VpnCertificateOcspServer)(nil)).Elem()
 }
 
 func (i *VpnCertificateOcspServer) ToVpnCertificateOcspServerOutput() VpnCertificateOcspServerOutput {
@@ -198,35 +199,6 @@ func (i *VpnCertificateOcspServer) ToVpnCertificateOcspServerOutput() VpnCertifi
 
 func (i *VpnCertificateOcspServer) ToVpnCertificateOcspServerOutputWithContext(ctx context.Context) VpnCertificateOcspServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateOcspServerOutput)
-}
-
-func (i *VpnCertificateOcspServer) ToVpnCertificateOcspServerPtrOutput() VpnCertificateOcspServerPtrOutput {
-	return i.ToVpnCertificateOcspServerPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnCertificateOcspServer) ToVpnCertificateOcspServerPtrOutputWithContext(ctx context.Context) VpnCertificateOcspServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateOcspServerPtrOutput)
-}
-
-type VpnCertificateOcspServerPtrInput interface {
-	pulumi.Input
-
-	ToVpnCertificateOcspServerPtrOutput() VpnCertificateOcspServerPtrOutput
-	ToVpnCertificateOcspServerPtrOutputWithContext(ctx context.Context) VpnCertificateOcspServerPtrOutput
-}
-
-type vpnCertificateOcspServerPtrType VpnCertificateOcspServerArgs
-
-func (*vpnCertificateOcspServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateOcspServer)(nil))
-}
-
-func (i *vpnCertificateOcspServerPtrType) ToVpnCertificateOcspServerPtrOutput() VpnCertificateOcspServerPtrOutput {
-	return i.ToVpnCertificateOcspServerPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnCertificateOcspServerPtrType) ToVpnCertificateOcspServerPtrOutputWithContext(ctx context.Context) VpnCertificateOcspServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateOcspServerPtrOutput)
 }
 
 // VpnCertificateOcspServerArrayInput is an input type that accepts VpnCertificateOcspServerArray and VpnCertificateOcspServerArrayOutput values.
@@ -243,7 +215,7 @@ type VpnCertificateOcspServerArrayInput interface {
 type VpnCertificateOcspServerArray []VpnCertificateOcspServerInput
 
 func (VpnCertificateOcspServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnCertificateOcspServer)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateOcspServer)(nil)).Elem()
 }
 
 func (i VpnCertificateOcspServerArray) ToVpnCertificateOcspServerArrayOutput() VpnCertificateOcspServerArrayOutput {
@@ -268,7 +240,7 @@ type VpnCertificateOcspServerMapInput interface {
 type VpnCertificateOcspServerMap map[string]VpnCertificateOcspServerInput
 
 func (VpnCertificateOcspServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnCertificateOcspServer)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateOcspServer)(nil)).Elem()
 }
 
 func (i VpnCertificateOcspServerMap) ToVpnCertificateOcspServerMapOutput() VpnCertificateOcspServerMapOutput {
@@ -279,12 +251,10 @@ func (i VpnCertificateOcspServerMap) ToVpnCertificateOcspServerMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateOcspServerMapOutput)
 }
 
-type VpnCertificateOcspServerOutput struct {
-	*pulumi.OutputState
-}
+type VpnCertificateOcspServerOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateOcspServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateOcspServer)(nil))
+	return reflect.TypeOf((**VpnCertificateOcspServer)(nil)).Elem()
 }
 
 func (o VpnCertificateOcspServerOutput) ToVpnCertificateOcspServerOutput() VpnCertificateOcspServerOutput {
@@ -295,36 +265,10 @@ func (o VpnCertificateOcspServerOutput) ToVpnCertificateOcspServerOutputWithCont
 	return o
 }
 
-func (o VpnCertificateOcspServerOutput) ToVpnCertificateOcspServerPtrOutput() VpnCertificateOcspServerPtrOutput {
-	return o.ToVpnCertificateOcspServerPtrOutputWithContext(context.Background())
-}
-
-func (o VpnCertificateOcspServerOutput) ToVpnCertificateOcspServerPtrOutputWithContext(ctx context.Context) VpnCertificateOcspServerPtrOutput {
-	return o.ApplyT(func(v VpnCertificateOcspServer) *VpnCertificateOcspServer {
-		return &v
-	}).(VpnCertificateOcspServerPtrOutput)
-}
-
-type VpnCertificateOcspServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnCertificateOcspServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateOcspServer)(nil))
-}
-
-func (o VpnCertificateOcspServerPtrOutput) ToVpnCertificateOcspServerPtrOutput() VpnCertificateOcspServerPtrOutput {
-	return o
-}
-
-func (o VpnCertificateOcspServerPtrOutput) ToVpnCertificateOcspServerPtrOutputWithContext(ctx context.Context) VpnCertificateOcspServerPtrOutput {
-	return o
-}
-
 type VpnCertificateOcspServerArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateOcspServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnCertificateOcspServer)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateOcspServer)(nil)).Elem()
 }
 
 func (o VpnCertificateOcspServerArrayOutput) ToVpnCertificateOcspServerArrayOutput() VpnCertificateOcspServerArrayOutput {
@@ -336,15 +280,15 @@ func (o VpnCertificateOcspServerArrayOutput) ToVpnCertificateOcspServerArrayOutp
 }
 
 func (o VpnCertificateOcspServerArrayOutput) Index(i pulumi.IntInput) VpnCertificateOcspServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnCertificateOcspServer {
-		return vs[0].([]VpnCertificateOcspServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateOcspServer {
+		return vs[0].([]*VpnCertificateOcspServer)[vs[1].(int)]
 	}).(VpnCertificateOcspServerOutput)
 }
 
 type VpnCertificateOcspServerMapOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateOcspServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnCertificateOcspServer)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateOcspServer)(nil)).Elem()
 }
 
 func (o VpnCertificateOcspServerMapOutput) ToVpnCertificateOcspServerMapOutput() VpnCertificateOcspServerMapOutput {
@@ -356,14 +300,16 @@ func (o VpnCertificateOcspServerMapOutput) ToVpnCertificateOcspServerMapOutputWi
 }
 
 func (o VpnCertificateOcspServerMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateOcspServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnCertificateOcspServer {
-		return vs[0].(map[string]VpnCertificateOcspServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnCertificateOcspServer {
+		return vs[0].(map[string]*VpnCertificateOcspServer)[vs[1].(string)]
 	}).(VpnCertificateOcspServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateOcspServerInput)(nil)).Elem(), &VpnCertificateOcspServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateOcspServerArrayInput)(nil)).Elem(), VpnCertificateOcspServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateOcspServerMapInput)(nil)).Elem(), VpnCertificateOcspServerMap{})
 	pulumi.RegisterOutputType(VpnCertificateOcspServerOutput{})
-	pulumi.RegisterOutputType(VpnCertificateOcspServerPtrOutput{})
 	pulumi.RegisterOutputType(VpnCertificateOcspServerArrayOutput{})
 	pulumi.RegisterOutputType(VpnCertificateOcspServerMapOutput{})
 }

@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,7 @@ func NewLogFortiAnalyzerSettingLegacy(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortiAnalyzerSettingLegacy
 	err := ctx.RegisterResource("fortios:index/logFortiAnalyzerSettingLegacy:LogFortiAnalyzerSettingLegacy", name, args, &resource, opts...)
 	if err != nil {
@@ -178,7 +179,7 @@ type LogFortiAnalyzerSettingLegacyInput interface {
 }
 
 func (*LogFortiAnalyzerSettingLegacy) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiAnalyzerSettingLegacy)(nil))
+	return reflect.TypeOf((**LogFortiAnalyzerSettingLegacy)(nil)).Elem()
 }
 
 func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyOutput() LogFortiAnalyzerSettingLegacyOutput {
@@ -187,35 +188,6 @@ func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyOutput() 
 
 func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyOutput)
-}
-
-func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyPtrOutput() LogFortiAnalyzerSettingLegacyPtrOutput {
-	return i.ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortiAnalyzerSettingLegacy) ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyPtrOutput)
-}
-
-type LogFortiAnalyzerSettingLegacyPtrInput interface {
-	pulumi.Input
-
-	ToLogFortiAnalyzerSettingLegacyPtrOutput() LogFortiAnalyzerSettingLegacyPtrOutput
-	ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyPtrOutput
-}
-
-type logFortiAnalyzerSettingLegacyPtrType LogFortiAnalyzerSettingLegacyArgs
-
-func (*logFortiAnalyzerSettingLegacyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiAnalyzerSettingLegacy)(nil))
-}
-
-func (i *logFortiAnalyzerSettingLegacyPtrType) ToLogFortiAnalyzerSettingLegacyPtrOutput() LogFortiAnalyzerSettingLegacyPtrOutput {
-	return i.ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortiAnalyzerSettingLegacyPtrType) ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyPtrOutput)
 }
 
 // LogFortiAnalyzerSettingLegacyArrayInput is an input type that accepts LogFortiAnalyzerSettingLegacyArray and LogFortiAnalyzerSettingLegacyArrayOutput values.
@@ -232,7 +204,7 @@ type LogFortiAnalyzerSettingLegacyArrayInput interface {
 type LogFortiAnalyzerSettingLegacyArray []LogFortiAnalyzerSettingLegacyInput
 
 func (LogFortiAnalyzerSettingLegacyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortiAnalyzerSettingLegacy)(nil))
+	return reflect.TypeOf((*[]*LogFortiAnalyzerSettingLegacy)(nil)).Elem()
 }
 
 func (i LogFortiAnalyzerSettingLegacyArray) ToLogFortiAnalyzerSettingLegacyArrayOutput() LogFortiAnalyzerSettingLegacyArrayOutput {
@@ -257,7 +229,7 @@ type LogFortiAnalyzerSettingLegacyMapInput interface {
 type LogFortiAnalyzerSettingLegacyMap map[string]LogFortiAnalyzerSettingLegacyInput
 
 func (LogFortiAnalyzerSettingLegacyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortiAnalyzerSettingLegacy)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiAnalyzerSettingLegacy)(nil)).Elem()
 }
 
 func (i LogFortiAnalyzerSettingLegacyMap) ToLogFortiAnalyzerSettingLegacyMapOutput() LogFortiAnalyzerSettingLegacyMapOutput {
@@ -268,12 +240,10 @@ func (i LogFortiAnalyzerSettingLegacyMap) ToLogFortiAnalyzerSettingLegacyMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiAnalyzerSettingLegacyMapOutput)
 }
 
-type LogFortiAnalyzerSettingLegacyOutput struct {
-	*pulumi.OutputState
-}
+type LogFortiAnalyzerSettingLegacyOutput struct{ *pulumi.OutputState }
 
 func (LogFortiAnalyzerSettingLegacyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiAnalyzerSettingLegacy)(nil))
+	return reflect.TypeOf((**LogFortiAnalyzerSettingLegacy)(nil)).Elem()
 }
 
 func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyOutput() LogFortiAnalyzerSettingLegacyOutput {
@@ -284,36 +254,10 @@ func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyOutp
 	return o
 }
 
-func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyPtrOutput() LogFortiAnalyzerSettingLegacyPtrOutput {
-	return o.ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortiAnalyzerSettingLegacyOutput) ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyPtrOutput {
-	return o.ApplyT(func(v LogFortiAnalyzerSettingLegacy) *LogFortiAnalyzerSettingLegacy {
-		return &v
-	}).(LogFortiAnalyzerSettingLegacyPtrOutput)
-}
-
-type LogFortiAnalyzerSettingLegacyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortiAnalyzerSettingLegacyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiAnalyzerSettingLegacy)(nil))
-}
-
-func (o LogFortiAnalyzerSettingLegacyPtrOutput) ToLogFortiAnalyzerSettingLegacyPtrOutput() LogFortiAnalyzerSettingLegacyPtrOutput {
-	return o
-}
-
-func (o LogFortiAnalyzerSettingLegacyPtrOutput) ToLogFortiAnalyzerSettingLegacyPtrOutputWithContext(ctx context.Context) LogFortiAnalyzerSettingLegacyPtrOutput {
-	return o
-}
-
 type LogFortiAnalyzerSettingLegacyArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortiAnalyzerSettingLegacyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortiAnalyzerSettingLegacy)(nil))
+	return reflect.TypeOf((*[]*LogFortiAnalyzerSettingLegacy)(nil)).Elem()
 }
 
 func (o LogFortiAnalyzerSettingLegacyArrayOutput) ToLogFortiAnalyzerSettingLegacyArrayOutput() LogFortiAnalyzerSettingLegacyArrayOutput {
@@ -325,15 +269,15 @@ func (o LogFortiAnalyzerSettingLegacyArrayOutput) ToLogFortiAnalyzerSettingLegac
 }
 
 func (o LogFortiAnalyzerSettingLegacyArrayOutput) Index(i pulumi.IntInput) LogFortiAnalyzerSettingLegacyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortiAnalyzerSettingLegacy {
-		return vs[0].([]LogFortiAnalyzerSettingLegacy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiAnalyzerSettingLegacy {
+		return vs[0].([]*LogFortiAnalyzerSettingLegacy)[vs[1].(int)]
 	}).(LogFortiAnalyzerSettingLegacyOutput)
 }
 
 type LogFortiAnalyzerSettingLegacyMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortiAnalyzerSettingLegacyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortiAnalyzerSettingLegacy)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiAnalyzerSettingLegacy)(nil)).Elem()
 }
 
 func (o LogFortiAnalyzerSettingLegacyMapOutput) ToLogFortiAnalyzerSettingLegacyMapOutput() LogFortiAnalyzerSettingLegacyMapOutput {
@@ -345,14 +289,16 @@ func (o LogFortiAnalyzerSettingLegacyMapOutput) ToLogFortiAnalyzerSettingLegacyM
 }
 
 func (o LogFortiAnalyzerSettingLegacyMapOutput) MapIndex(k pulumi.StringInput) LogFortiAnalyzerSettingLegacyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortiAnalyzerSettingLegacy {
-		return vs[0].(map[string]LogFortiAnalyzerSettingLegacy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortiAnalyzerSettingLegacy {
+		return vs[0].(map[string]*LogFortiAnalyzerSettingLegacy)[vs[1].(string)]
 	}).(LogFortiAnalyzerSettingLegacyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiAnalyzerSettingLegacyInput)(nil)).Elem(), &LogFortiAnalyzerSettingLegacy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiAnalyzerSettingLegacyArrayInput)(nil)).Elem(), LogFortiAnalyzerSettingLegacyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiAnalyzerSettingLegacyMapInput)(nil)).Elem(), LogFortiAnalyzerSettingLegacyMap{})
 	pulumi.RegisterOutputType(LogFortiAnalyzerSettingLegacyOutput{})
-	pulumi.RegisterOutputType(LogFortiAnalyzerSettingLegacyPtrOutput{})
 	pulumi.RegisterOutputType(LogFortiAnalyzerSettingLegacyArrayOutput{})
 	pulumi.RegisterOutputType(LogFortiAnalyzerSettingLegacyMapOutput{})
 }

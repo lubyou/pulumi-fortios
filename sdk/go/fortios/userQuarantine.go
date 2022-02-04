@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -68,6 +68,7 @@ func NewUserQuarantine(ctx *pulumi.Context,
 		args = &UserQuarantineArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserQuarantine
 	err := ctx.RegisterResource("fortios:index/userQuarantine:UserQuarantine", name, args, &resource, opts...)
 	if err != nil {
@@ -166,7 +167,7 @@ type UserQuarantineInput interface {
 }
 
 func (*UserQuarantine) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserQuarantine)(nil))
+	return reflect.TypeOf((**UserQuarantine)(nil)).Elem()
 }
 
 func (i *UserQuarantine) ToUserQuarantineOutput() UserQuarantineOutput {
@@ -175,35 +176,6 @@ func (i *UserQuarantine) ToUserQuarantineOutput() UserQuarantineOutput {
 
 func (i *UserQuarantine) ToUserQuarantineOutputWithContext(ctx context.Context) UserQuarantineOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineOutput)
-}
-
-func (i *UserQuarantine) ToUserQuarantinePtrOutput() UserQuarantinePtrOutput {
-	return i.ToUserQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (i *UserQuarantine) ToUserQuarantinePtrOutputWithContext(ctx context.Context) UserQuarantinePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantinePtrOutput)
-}
-
-type UserQuarantinePtrInput interface {
-	pulumi.Input
-
-	ToUserQuarantinePtrOutput() UserQuarantinePtrOutput
-	ToUserQuarantinePtrOutputWithContext(ctx context.Context) UserQuarantinePtrOutput
-}
-
-type userQuarantinePtrType UserQuarantineArgs
-
-func (*userQuarantinePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserQuarantine)(nil))
-}
-
-func (i *userQuarantinePtrType) ToUserQuarantinePtrOutput() UserQuarantinePtrOutput {
-	return i.ToUserQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (i *userQuarantinePtrType) ToUserQuarantinePtrOutputWithContext(ctx context.Context) UserQuarantinePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantinePtrOutput)
 }
 
 // UserQuarantineArrayInput is an input type that accepts UserQuarantineArray and UserQuarantineArrayOutput values.
@@ -220,7 +192,7 @@ type UserQuarantineArrayInput interface {
 type UserQuarantineArray []UserQuarantineInput
 
 func (UserQuarantineArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserQuarantine)(nil))
+	return reflect.TypeOf((*[]*UserQuarantine)(nil)).Elem()
 }
 
 func (i UserQuarantineArray) ToUserQuarantineArrayOutput() UserQuarantineArrayOutput {
@@ -245,7 +217,7 @@ type UserQuarantineMapInput interface {
 type UserQuarantineMap map[string]UserQuarantineInput
 
 func (UserQuarantineMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserQuarantine)(nil))
+	return reflect.TypeOf((*map[string]*UserQuarantine)(nil)).Elem()
 }
 
 func (i UserQuarantineMap) ToUserQuarantineMapOutput() UserQuarantineMapOutput {
@@ -256,12 +228,10 @@ func (i UserQuarantineMap) ToUserQuarantineMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserQuarantineMapOutput)
 }
 
-type UserQuarantineOutput struct {
-	*pulumi.OutputState
-}
+type UserQuarantineOutput struct{ *pulumi.OutputState }
 
 func (UserQuarantineOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserQuarantine)(nil))
+	return reflect.TypeOf((**UserQuarantine)(nil)).Elem()
 }
 
 func (o UserQuarantineOutput) ToUserQuarantineOutput() UserQuarantineOutput {
@@ -272,36 +242,10 @@ func (o UserQuarantineOutput) ToUserQuarantineOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o UserQuarantineOutput) ToUserQuarantinePtrOutput() UserQuarantinePtrOutput {
-	return o.ToUserQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (o UserQuarantineOutput) ToUserQuarantinePtrOutputWithContext(ctx context.Context) UserQuarantinePtrOutput {
-	return o.ApplyT(func(v UserQuarantine) *UserQuarantine {
-		return &v
-	}).(UserQuarantinePtrOutput)
-}
-
-type UserQuarantinePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserQuarantinePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserQuarantine)(nil))
-}
-
-func (o UserQuarantinePtrOutput) ToUserQuarantinePtrOutput() UserQuarantinePtrOutput {
-	return o
-}
-
-func (o UserQuarantinePtrOutput) ToUserQuarantinePtrOutputWithContext(ctx context.Context) UserQuarantinePtrOutput {
-	return o
-}
-
 type UserQuarantineArrayOutput struct{ *pulumi.OutputState }
 
 func (UserQuarantineArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserQuarantine)(nil))
+	return reflect.TypeOf((*[]*UserQuarantine)(nil)).Elem()
 }
 
 func (o UserQuarantineArrayOutput) ToUserQuarantineArrayOutput() UserQuarantineArrayOutput {
@@ -313,15 +257,15 @@ func (o UserQuarantineArrayOutput) ToUserQuarantineArrayOutputWithContext(ctx co
 }
 
 func (o UserQuarantineArrayOutput) Index(i pulumi.IntInput) UserQuarantineOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserQuarantine {
-		return vs[0].([]UserQuarantine)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserQuarantine {
+		return vs[0].([]*UserQuarantine)[vs[1].(int)]
 	}).(UserQuarantineOutput)
 }
 
 type UserQuarantineMapOutput struct{ *pulumi.OutputState }
 
 func (UserQuarantineMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserQuarantine)(nil))
+	return reflect.TypeOf((*map[string]*UserQuarantine)(nil)).Elem()
 }
 
 func (o UserQuarantineMapOutput) ToUserQuarantineMapOutput() UserQuarantineMapOutput {
@@ -333,14 +277,16 @@ func (o UserQuarantineMapOutput) ToUserQuarantineMapOutputWithContext(ctx contex
 }
 
 func (o UserQuarantineMapOutput) MapIndex(k pulumi.StringInput) UserQuarantineOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserQuarantine {
-		return vs[0].(map[string]UserQuarantine)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserQuarantine {
+		return vs[0].(map[string]*UserQuarantine)[vs[1].(string)]
 	}).(UserQuarantineOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineInput)(nil)).Elem(), &UserQuarantine{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineArrayInput)(nil)).Elem(), UserQuarantineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserQuarantineMapInput)(nil)).Elem(), UserQuarantineMap{})
 	pulumi.RegisterOutputType(UserQuarantineOutput{})
-	pulumi.RegisterOutputType(UserQuarantinePtrOutput{})
 	pulumi.RegisterOutputType(UserQuarantineArrayOutput{})
 	pulumi.RegisterOutputType(UserQuarantineMapOutput{})
 }

@@ -84,25 +84,23 @@ export class WebfilterFtgdLocalCat extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebfilterFtgdLocalCatArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebfilterFtgdLocalCatArgs | WebfilterFtgdLocalCatState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebfilterFtgdLocalCatState | undefined;
-            inputs["desc"] = state ? state.desc : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["desc"] = state ? state.desc : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebfilterFtgdLocalCatArgs | undefined;
-            inputs["desc"] = args ? args.desc : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["desc"] = args ? args.desc : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebfilterFtgdLocalCat.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebfilterFtgdLocalCat.__pulumiType, name, resourceInputs, opts);
     }
 }
 

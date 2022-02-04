@@ -124,22 +124,22 @@ export class FirewallSslSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallSslSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSslSettingArgs | FirewallSslSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSslSettingState | undefined;
-            inputs["abbreviateHandshake"] = state ? state.abbreviateHandshake : undefined;
-            inputs["certCacheCapacity"] = state ? state.certCacheCapacity : undefined;
-            inputs["certCacheTimeout"] = state ? state.certCacheTimeout : undefined;
-            inputs["kxpQueueThreshold"] = state ? state.kxpQueueThreshold : undefined;
-            inputs["noMatchingCipherAction"] = state ? state.noMatchingCipherAction : undefined;
-            inputs["proxyConnectTimeout"] = state ? state.proxyConnectTimeout : undefined;
-            inputs["sessionCacheCapacity"] = state ? state.sessionCacheCapacity : undefined;
-            inputs["sessionCacheTimeout"] = state ? state.sessionCacheTimeout : undefined;
-            inputs["sslDhBits"] = state ? state.sslDhBits : undefined;
-            inputs["sslQueueThreshold"] = state ? state.sslQueueThreshold : undefined;
-            inputs["sslSendEmptyFrags"] = state ? state.sslSendEmptyFrags : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["abbreviateHandshake"] = state ? state.abbreviateHandshake : undefined;
+            resourceInputs["certCacheCapacity"] = state ? state.certCacheCapacity : undefined;
+            resourceInputs["certCacheTimeout"] = state ? state.certCacheTimeout : undefined;
+            resourceInputs["kxpQueueThreshold"] = state ? state.kxpQueueThreshold : undefined;
+            resourceInputs["noMatchingCipherAction"] = state ? state.noMatchingCipherAction : undefined;
+            resourceInputs["proxyConnectTimeout"] = state ? state.proxyConnectTimeout : undefined;
+            resourceInputs["sessionCacheCapacity"] = state ? state.sessionCacheCapacity : undefined;
+            resourceInputs["sessionCacheTimeout"] = state ? state.sessionCacheTimeout : undefined;
+            resourceInputs["sslDhBits"] = state ? state.sslDhBits : undefined;
+            resourceInputs["sslQueueThreshold"] = state ? state.sslQueueThreshold : undefined;
+            resourceInputs["sslSendEmptyFrags"] = state ? state.sslSendEmptyFrags : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallSslSettingArgs | undefined;
             if ((!args || args.certCacheCapacity === undefined) && !opts.urn) {
@@ -166,23 +166,21 @@ export class FirewallSslSetting extends pulumi.CustomResource {
             if ((!args || args.sslSendEmptyFrags === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sslSendEmptyFrags'");
             }
-            inputs["abbreviateHandshake"] = args ? args.abbreviateHandshake : undefined;
-            inputs["certCacheCapacity"] = args ? args.certCacheCapacity : undefined;
-            inputs["certCacheTimeout"] = args ? args.certCacheTimeout : undefined;
-            inputs["kxpQueueThreshold"] = args ? args.kxpQueueThreshold : undefined;
-            inputs["noMatchingCipherAction"] = args ? args.noMatchingCipherAction : undefined;
-            inputs["proxyConnectTimeout"] = args ? args.proxyConnectTimeout : undefined;
-            inputs["sessionCacheCapacity"] = args ? args.sessionCacheCapacity : undefined;
-            inputs["sessionCacheTimeout"] = args ? args.sessionCacheTimeout : undefined;
-            inputs["sslDhBits"] = args ? args.sslDhBits : undefined;
-            inputs["sslQueueThreshold"] = args ? args.sslQueueThreshold : undefined;
-            inputs["sslSendEmptyFrags"] = args ? args.sslSendEmptyFrags : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["abbreviateHandshake"] = args ? args.abbreviateHandshake : undefined;
+            resourceInputs["certCacheCapacity"] = args ? args.certCacheCapacity : undefined;
+            resourceInputs["certCacheTimeout"] = args ? args.certCacheTimeout : undefined;
+            resourceInputs["kxpQueueThreshold"] = args ? args.kxpQueueThreshold : undefined;
+            resourceInputs["noMatchingCipherAction"] = args ? args.noMatchingCipherAction : undefined;
+            resourceInputs["proxyConnectTimeout"] = args ? args.proxyConnectTimeout : undefined;
+            resourceInputs["sessionCacheCapacity"] = args ? args.sessionCacheCapacity : undefined;
+            resourceInputs["sessionCacheTimeout"] = args ? args.sessionCacheTimeout : undefined;
+            resourceInputs["sslDhBits"] = args ? args.sslDhBits : undefined;
+            resourceInputs["sslQueueThreshold"] = args ? args.sslQueueThreshold : undefined;
+            resourceInputs["sslSendEmptyFrags"] = args ? args.sslSendEmptyFrags : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSslSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSslSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

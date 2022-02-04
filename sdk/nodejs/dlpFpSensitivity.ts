@@ -72,21 +72,19 @@ export class DlpFpSensitivity extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DlpFpSensitivityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DlpFpSensitivityArgs | DlpFpSensitivityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DlpFpSensitivityState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as DlpFpSensitivityArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DlpFpSensitivity.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DlpFpSensitivity.__pulumiType, name, resourceInputs, opts);
     }
 }
 

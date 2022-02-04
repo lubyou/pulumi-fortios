@@ -82,32 +82,30 @@ export class FortimanagerDVMScriptExecute extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerDVMScriptExecuteArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerDVMScriptExecuteArgs | FortimanagerDVMScriptExecuteState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerDVMScriptExecuteState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["package"] = state ? state.package : undefined;
-            inputs["scriptName"] = state ? state.scriptName : undefined;
-            inputs["targetDevname"] = state ? state.targetDevname : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["package"] = state ? state.package : undefined;
+            resourceInputs["scriptName"] = state ? state.scriptName : undefined;
+            resourceInputs["targetDevname"] = state ? state.targetDevname : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
         } else {
             const args = argsOrState as FortimanagerDVMScriptExecuteArgs | undefined;
             if ((!args || args.scriptName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'scriptName'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["package"] = args ? args.package : undefined;
-            inputs["scriptName"] = args ? args.scriptName : undefined;
-            inputs["targetDevname"] = args ? args.targetDevname : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["package"] = args ? args.package : undefined;
+            resourceInputs["scriptName"] = args ? args.scriptName : undefined;
+            resourceInputs["targetDevname"] = args ? args.targetDevname : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerDVMScriptExecute.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerDVMScriptExecute.__pulumiType, name, resourceInputs, opts);
     }
 }
 

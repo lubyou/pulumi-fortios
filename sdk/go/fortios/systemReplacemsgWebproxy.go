@@ -47,6 +47,7 @@ func NewSystemReplacemsgWebproxy(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgWebproxy
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgWebproxy:SystemReplacemsgWebproxy", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgWebproxyInput interface {
 }
 
 func (*SystemReplacemsgWebproxy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgWebproxy)(nil))
+	return reflect.TypeOf((**SystemReplacemsgWebproxy)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgWebproxy) ToSystemReplacemsgWebproxyOutput() SystemReplacemsgWebproxyOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgWebproxy) ToSystemReplacemsgWebproxyOutput() SystemRepl
 
 func (i *SystemReplacemsgWebproxy) ToSystemReplacemsgWebproxyOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyOutput)
-}
-
-func (i *SystemReplacemsgWebproxy) ToSystemReplacemsgWebproxyPtrOutput() SystemReplacemsgWebproxyPtrOutput {
-	return i.ToSystemReplacemsgWebproxyPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgWebproxy) ToSystemReplacemsgWebproxyPtrOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyPtrOutput)
-}
-
-type SystemReplacemsgWebproxyPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgWebproxyPtrOutput() SystemReplacemsgWebproxyPtrOutput
-	ToSystemReplacemsgWebproxyPtrOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyPtrOutput
-}
-
-type systemReplacemsgWebproxyPtrType SystemReplacemsgWebproxyArgs
-
-func (*systemReplacemsgWebproxyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgWebproxy)(nil))
-}
-
-func (i *systemReplacemsgWebproxyPtrType) ToSystemReplacemsgWebproxyPtrOutput() SystemReplacemsgWebproxyPtrOutput {
-	return i.ToSystemReplacemsgWebproxyPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgWebproxyPtrType) ToSystemReplacemsgWebproxyPtrOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyPtrOutput)
 }
 
 // SystemReplacemsgWebproxyArrayInput is an input type that accepts SystemReplacemsgWebproxyArray and SystemReplacemsgWebproxyArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgWebproxyArrayInput interface {
 type SystemReplacemsgWebproxyArray []SystemReplacemsgWebproxyInput
 
 func (SystemReplacemsgWebproxyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgWebproxy)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgWebproxy)(nil)).Elem()
 }
 
 func (i SystemReplacemsgWebproxyArray) ToSystemReplacemsgWebproxyArrayOutput() SystemReplacemsgWebproxyArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgWebproxyMapInput interface {
 type SystemReplacemsgWebproxyMap map[string]SystemReplacemsgWebproxyInput
 
 func (SystemReplacemsgWebproxyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgWebproxy)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgWebproxy)(nil)).Elem()
 }
 
 func (i SystemReplacemsgWebproxyMap) ToSystemReplacemsgWebproxyMapOutput() SystemReplacemsgWebproxyMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgWebproxyMap) ToSystemReplacemsgWebproxyMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgWebproxyMapOutput)
 }
 
-type SystemReplacemsgWebproxyOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgWebproxyOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgWebproxyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgWebproxy)(nil))
+	return reflect.TypeOf((**SystemReplacemsgWebproxy)(nil)).Elem()
 }
 
 func (o SystemReplacemsgWebproxyOutput) ToSystemReplacemsgWebproxyOutput() SystemReplacemsgWebproxyOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgWebproxyOutput) ToSystemReplacemsgWebproxyOutputWithCont
 	return o
 }
 
-func (o SystemReplacemsgWebproxyOutput) ToSystemReplacemsgWebproxyPtrOutput() SystemReplacemsgWebproxyPtrOutput {
-	return o.ToSystemReplacemsgWebproxyPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgWebproxyOutput) ToSystemReplacemsgWebproxyPtrOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgWebproxy) *SystemReplacemsgWebproxy {
-		return &v
-	}).(SystemReplacemsgWebproxyPtrOutput)
-}
-
-type SystemReplacemsgWebproxyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgWebproxyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgWebproxy)(nil))
-}
-
-func (o SystemReplacemsgWebproxyPtrOutput) ToSystemReplacemsgWebproxyPtrOutput() SystemReplacemsgWebproxyPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgWebproxyPtrOutput) ToSystemReplacemsgWebproxyPtrOutputWithContext(ctx context.Context) SystemReplacemsgWebproxyPtrOutput {
-	return o
-}
-
 type SystemReplacemsgWebproxyArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgWebproxyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgWebproxy)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgWebproxy)(nil)).Elem()
 }
 
 func (o SystemReplacemsgWebproxyArrayOutput) ToSystemReplacemsgWebproxyArrayOutput() SystemReplacemsgWebproxyArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgWebproxyArrayOutput) ToSystemReplacemsgWebproxyArrayOutp
 }
 
 func (o SystemReplacemsgWebproxyArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgWebproxyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgWebproxy {
-		return vs[0].([]SystemReplacemsgWebproxy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgWebproxy {
+		return vs[0].([]*SystemReplacemsgWebproxy)[vs[1].(int)]
 	}).(SystemReplacemsgWebproxyOutput)
 }
 
 type SystemReplacemsgWebproxyMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgWebproxyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgWebproxy)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgWebproxy)(nil)).Elem()
 }
 
 func (o SystemReplacemsgWebproxyMapOutput) ToSystemReplacemsgWebproxyMapOutput() SystemReplacemsgWebproxyMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgWebproxyMapOutput) ToSystemReplacemsgWebproxyMapOutputWi
 }
 
 func (o SystemReplacemsgWebproxyMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgWebproxyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgWebproxy {
-		return vs[0].(map[string]SystemReplacemsgWebproxy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgWebproxy {
+		return vs[0].(map[string]*SystemReplacemsgWebproxy)[vs[1].(string)]
 	}).(SystemReplacemsgWebproxyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgWebproxyInput)(nil)).Elem(), &SystemReplacemsgWebproxy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgWebproxyArrayInput)(nil)).Elem(), SystemReplacemsgWebproxyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgWebproxyMapInput)(nil)).Elem(), SystemReplacemsgWebproxyMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgWebproxyOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgWebproxyPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgWebproxyArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgWebproxyMapOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewFirewallIdentityBasedRoute(ctx *pulumi.Context,
 		args = &FirewallIdentityBasedRouteArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallIdentityBasedRoute
 	err := ctx.RegisterResource("fortios:index/firewallIdentityBasedRoute:FirewallIdentityBasedRoute", name, args, &resource, opts...)
 	if err != nil {
@@ -156,7 +157,7 @@ type FirewallIdentityBasedRouteInput interface {
 }
 
 func (*FirewallIdentityBasedRoute) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIdentityBasedRoute)(nil))
+	return reflect.TypeOf((**FirewallIdentityBasedRoute)(nil)).Elem()
 }
 
 func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRouteOutput() FirewallIdentityBasedRouteOutput {
@@ -165,35 +166,6 @@ func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRouteOutput() Firewa
 
 func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRouteOutputWithContext(ctx context.Context) FirewallIdentityBasedRouteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRouteOutput)
-}
-
-func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRoutePtrOutput() FirewallIdentityBasedRoutePtrOutput {
-	return i.ToFirewallIdentityBasedRoutePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallIdentityBasedRoute) ToFirewallIdentityBasedRoutePtrOutputWithContext(ctx context.Context) FirewallIdentityBasedRoutePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRoutePtrOutput)
-}
-
-type FirewallIdentityBasedRoutePtrInput interface {
-	pulumi.Input
-
-	ToFirewallIdentityBasedRoutePtrOutput() FirewallIdentityBasedRoutePtrOutput
-	ToFirewallIdentityBasedRoutePtrOutputWithContext(ctx context.Context) FirewallIdentityBasedRoutePtrOutput
-}
-
-type firewallIdentityBasedRoutePtrType FirewallIdentityBasedRouteArgs
-
-func (*firewallIdentityBasedRoutePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIdentityBasedRoute)(nil))
-}
-
-func (i *firewallIdentityBasedRoutePtrType) ToFirewallIdentityBasedRoutePtrOutput() FirewallIdentityBasedRoutePtrOutput {
-	return i.ToFirewallIdentityBasedRoutePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallIdentityBasedRoutePtrType) ToFirewallIdentityBasedRoutePtrOutputWithContext(ctx context.Context) FirewallIdentityBasedRoutePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRoutePtrOutput)
 }
 
 // FirewallIdentityBasedRouteArrayInput is an input type that accepts FirewallIdentityBasedRouteArray and FirewallIdentityBasedRouteArrayOutput values.
@@ -210,7 +182,7 @@ type FirewallIdentityBasedRouteArrayInput interface {
 type FirewallIdentityBasedRouteArray []FirewallIdentityBasedRouteInput
 
 func (FirewallIdentityBasedRouteArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallIdentityBasedRoute)(nil))
+	return reflect.TypeOf((*[]*FirewallIdentityBasedRoute)(nil)).Elem()
 }
 
 func (i FirewallIdentityBasedRouteArray) ToFirewallIdentityBasedRouteArrayOutput() FirewallIdentityBasedRouteArrayOutput {
@@ -235,7 +207,7 @@ type FirewallIdentityBasedRouteMapInput interface {
 type FirewallIdentityBasedRouteMap map[string]FirewallIdentityBasedRouteInput
 
 func (FirewallIdentityBasedRouteMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallIdentityBasedRoute)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIdentityBasedRoute)(nil)).Elem()
 }
 
 func (i FirewallIdentityBasedRouteMap) ToFirewallIdentityBasedRouteMapOutput() FirewallIdentityBasedRouteMapOutput {
@@ -246,12 +218,10 @@ func (i FirewallIdentityBasedRouteMap) ToFirewallIdentityBasedRouteMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIdentityBasedRouteMapOutput)
 }
 
-type FirewallIdentityBasedRouteOutput struct {
-	*pulumi.OutputState
-}
+type FirewallIdentityBasedRouteOutput struct{ *pulumi.OutputState }
 
 func (FirewallIdentityBasedRouteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIdentityBasedRoute)(nil))
+	return reflect.TypeOf((**FirewallIdentityBasedRoute)(nil)).Elem()
 }
 
 func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRouteOutput() FirewallIdentityBasedRouteOutput {
@@ -262,36 +232,10 @@ func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRouteOutputWith
 	return o
 }
 
-func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRoutePtrOutput() FirewallIdentityBasedRoutePtrOutput {
-	return o.ToFirewallIdentityBasedRoutePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallIdentityBasedRouteOutput) ToFirewallIdentityBasedRoutePtrOutputWithContext(ctx context.Context) FirewallIdentityBasedRoutePtrOutput {
-	return o.ApplyT(func(v FirewallIdentityBasedRoute) *FirewallIdentityBasedRoute {
-		return &v
-	}).(FirewallIdentityBasedRoutePtrOutput)
-}
-
-type FirewallIdentityBasedRoutePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallIdentityBasedRoutePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIdentityBasedRoute)(nil))
-}
-
-func (o FirewallIdentityBasedRoutePtrOutput) ToFirewallIdentityBasedRoutePtrOutput() FirewallIdentityBasedRoutePtrOutput {
-	return o
-}
-
-func (o FirewallIdentityBasedRoutePtrOutput) ToFirewallIdentityBasedRoutePtrOutputWithContext(ctx context.Context) FirewallIdentityBasedRoutePtrOutput {
-	return o
-}
-
 type FirewallIdentityBasedRouteArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallIdentityBasedRouteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallIdentityBasedRoute)(nil))
+	return reflect.TypeOf((*[]*FirewallIdentityBasedRoute)(nil)).Elem()
 }
 
 func (o FirewallIdentityBasedRouteArrayOutput) ToFirewallIdentityBasedRouteArrayOutput() FirewallIdentityBasedRouteArrayOutput {
@@ -303,15 +247,15 @@ func (o FirewallIdentityBasedRouteArrayOutput) ToFirewallIdentityBasedRouteArray
 }
 
 func (o FirewallIdentityBasedRouteArrayOutput) Index(i pulumi.IntInput) FirewallIdentityBasedRouteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIdentityBasedRoute {
-		return vs[0].([]FirewallIdentityBasedRoute)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIdentityBasedRoute {
+		return vs[0].([]*FirewallIdentityBasedRoute)[vs[1].(int)]
 	}).(FirewallIdentityBasedRouteOutput)
 }
 
 type FirewallIdentityBasedRouteMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallIdentityBasedRouteMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallIdentityBasedRoute)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIdentityBasedRoute)(nil)).Elem()
 }
 
 func (o FirewallIdentityBasedRouteMapOutput) ToFirewallIdentityBasedRouteMapOutput() FirewallIdentityBasedRouteMapOutput {
@@ -323,14 +267,16 @@ func (o FirewallIdentityBasedRouteMapOutput) ToFirewallIdentityBasedRouteMapOutp
 }
 
 func (o FirewallIdentityBasedRouteMapOutput) MapIndex(k pulumi.StringInput) FirewallIdentityBasedRouteOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallIdentityBasedRoute {
-		return vs[0].(map[string]FirewallIdentityBasedRoute)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallIdentityBasedRoute {
+		return vs[0].(map[string]*FirewallIdentityBasedRoute)[vs[1].(string)]
 	}).(FirewallIdentityBasedRouteOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIdentityBasedRouteInput)(nil)).Elem(), &FirewallIdentityBasedRoute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIdentityBasedRouteArrayInput)(nil)).Elem(), FirewallIdentityBasedRouteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIdentityBasedRouteMapInput)(nil)).Elem(), FirewallIdentityBasedRouteMap{})
 	pulumi.RegisterOutputType(FirewallIdentityBasedRouteOutput{})
-	pulumi.RegisterOutputType(FirewallIdentityBasedRoutePtrOutput{})
 	pulumi.RegisterOutputType(FirewallIdentityBasedRouteArrayOutput{})
 	pulumi.RegisterOutputType(FirewallIdentityBasedRouteMapOutput{})
 }

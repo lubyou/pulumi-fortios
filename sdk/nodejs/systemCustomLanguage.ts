@@ -82,28 +82,26 @@ export class SystemCustomLanguage extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemCustomLanguageArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemCustomLanguageArgs | SystemCustomLanguageState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemCustomLanguageState | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["filename"] = state ? state.filename : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["filename"] = state ? state.filename : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemCustomLanguageArgs | undefined;
             if ((!args || args.filename === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'filename'");
             }
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["filename"] = args ? args.filename : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["filename"] = args ? args.filename : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemCustomLanguage.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemCustomLanguage.__pulumiType, name, resourceInputs, opts);
     }
 }
 

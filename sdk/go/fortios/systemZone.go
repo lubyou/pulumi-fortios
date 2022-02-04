@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -70,6 +70,7 @@ func NewSystemZone(ctx *pulumi.Context,
 		args = &SystemZoneArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemZone
 	err := ctx.RegisterResource("fortios:index/systemZone:SystemZone", name, args, &resource, opts...)
 	if err != nil {
@@ -176,7 +177,7 @@ type SystemZoneInput interface {
 }
 
 func (*SystemZone) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemZone)(nil))
+	return reflect.TypeOf((**SystemZone)(nil)).Elem()
 }
 
 func (i *SystemZone) ToSystemZoneOutput() SystemZoneOutput {
@@ -185,35 +186,6 @@ func (i *SystemZone) ToSystemZoneOutput() SystemZoneOutput {
 
 func (i *SystemZone) ToSystemZoneOutputWithContext(ctx context.Context) SystemZoneOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneOutput)
-}
-
-func (i *SystemZone) ToSystemZonePtrOutput() SystemZonePtrOutput {
-	return i.ToSystemZonePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemZone) ToSystemZonePtrOutputWithContext(ctx context.Context) SystemZonePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemZonePtrOutput)
-}
-
-type SystemZonePtrInput interface {
-	pulumi.Input
-
-	ToSystemZonePtrOutput() SystemZonePtrOutput
-	ToSystemZonePtrOutputWithContext(ctx context.Context) SystemZonePtrOutput
-}
-
-type systemZonePtrType SystemZoneArgs
-
-func (*systemZonePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemZone)(nil))
-}
-
-func (i *systemZonePtrType) ToSystemZonePtrOutput() SystemZonePtrOutput {
-	return i.ToSystemZonePtrOutputWithContext(context.Background())
-}
-
-func (i *systemZonePtrType) ToSystemZonePtrOutputWithContext(ctx context.Context) SystemZonePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemZonePtrOutput)
 }
 
 // SystemZoneArrayInput is an input type that accepts SystemZoneArray and SystemZoneArrayOutput values.
@@ -230,7 +202,7 @@ type SystemZoneArrayInput interface {
 type SystemZoneArray []SystemZoneInput
 
 func (SystemZoneArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemZone)(nil))
+	return reflect.TypeOf((*[]*SystemZone)(nil)).Elem()
 }
 
 func (i SystemZoneArray) ToSystemZoneArrayOutput() SystemZoneArrayOutput {
@@ -255,7 +227,7 @@ type SystemZoneMapInput interface {
 type SystemZoneMap map[string]SystemZoneInput
 
 func (SystemZoneMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemZone)(nil))
+	return reflect.TypeOf((*map[string]*SystemZone)(nil)).Elem()
 }
 
 func (i SystemZoneMap) ToSystemZoneMapOutput() SystemZoneMapOutput {
@@ -266,12 +238,10 @@ func (i SystemZoneMap) ToSystemZoneMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemZoneMapOutput)
 }
 
-type SystemZoneOutput struct {
-	*pulumi.OutputState
-}
+type SystemZoneOutput struct{ *pulumi.OutputState }
 
 func (SystemZoneOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemZone)(nil))
+	return reflect.TypeOf((**SystemZone)(nil)).Elem()
 }
 
 func (o SystemZoneOutput) ToSystemZoneOutput() SystemZoneOutput {
@@ -282,36 +252,10 @@ func (o SystemZoneOutput) ToSystemZoneOutputWithContext(ctx context.Context) Sys
 	return o
 }
 
-func (o SystemZoneOutput) ToSystemZonePtrOutput() SystemZonePtrOutput {
-	return o.ToSystemZonePtrOutputWithContext(context.Background())
-}
-
-func (o SystemZoneOutput) ToSystemZonePtrOutputWithContext(ctx context.Context) SystemZonePtrOutput {
-	return o.ApplyT(func(v SystemZone) *SystemZone {
-		return &v
-	}).(SystemZonePtrOutput)
-}
-
-type SystemZonePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemZonePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemZone)(nil))
-}
-
-func (o SystemZonePtrOutput) ToSystemZonePtrOutput() SystemZonePtrOutput {
-	return o
-}
-
-func (o SystemZonePtrOutput) ToSystemZonePtrOutputWithContext(ctx context.Context) SystemZonePtrOutput {
-	return o
-}
-
 type SystemZoneArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemZoneArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemZone)(nil))
+	return reflect.TypeOf((*[]*SystemZone)(nil)).Elem()
 }
 
 func (o SystemZoneArrayOutput) ToSystemZoneArrayOutput() SystemZoneArrayOutput {
@@ -323,15 +267,15 @@ func (o SystemZoneArrayOutput) ToSystemZoneArrayOutputWithContext(ctx context.Co
 }
 
 func (o SystemZoneArrayOutput) Index(i pulumi.IntInput) SystemZoneOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemZone {
-		return vs[0].([]SystemZone)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemZone {
+		return vs[0].([]*SystemZone)[vs[1].(int)]
 	}).(SystemZoneOutput)
 }
 
 type SystemZoneMapOutput struct{ *pulumi.OutputState }
 
 func (SystemZoneMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemZone)(nil))
+	return reflect.TypeOf((*map[string]*SystemZone)(nil)).Elem()
 }
 
 func (o SystemZoneMapOutput) ToSystemZoneMapOutput() SystemZoneMapOutput {
@@ -343,14 +287,16 @@ func (o SystemZoneMapOutput) ToSystemZoneMapOutputWithContext(ctx context.Contex
 }
 
 func (o SystemZoneMapOutput) MapIndex(k pulumi.StringInput) SystemZoneOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemZone {
-		return vs[0].(map[string]SystemZone)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemZone {
+		return vs[0].(map[string]*SystemZone)[vs[1].(string)]
 	}).(SystemZoneOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneInput)(nil)).Elem(), &SystemZone{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneArrayInput)(nil)).Elem(), SystemZoneArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemZoneMapInput)(nil)).Elem(), SystemZoneMap{})
 	pulumi.RegisterOutputType(SystemZoneOutput{})
-	pulumi.RegisterOutputType(SystemZonePtrOutput{})
 	pulumi.RegisterOutputType(SystemZoneArrayOutput{})
 	pulumi.RegisterOutputType(SystemZoneMapOutput{})
 }

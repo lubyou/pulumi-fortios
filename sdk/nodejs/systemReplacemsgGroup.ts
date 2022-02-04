@@ -164,68 +164,66 @@ export class SystemReplacemsgGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemReplacemsgGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemReplacemsgGroupArgs | SystemReplacemsgGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemReplacemsgGroupState | undefined;
-            inputs["admins"] = state ? state.admins : undefined;
-            inputs["alertmails"] = state ? state.alertmails : undefined;
-            inputs["auths"] = state ? state.auths : undefined;
-            inputs["automations"] = state ? state.automations : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["customMessages"] = state ? state.customMessages : undefined;
-            inputs["deviceDetectionPortals"] = state ? state.deviceDetectionPortals : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ecs"] = state ? state.ecs : undefined;
-            inputs["fortiguardWfs"] = state ? state.fortiguardWfs : undefined;
-            inputs["ftps"] = state ? state.ftps : undefined;
-            inputs["groupType"] = state ? state.groupType : undefined;
-            inputs["https"] = state ? state.https : undefined;
-            inputs["icaps"] = state ? state.icaps : undefined;
-            inputs["mails"] = state ? state.mails : undefined;
-            inputs["nacQuars"] = state ? state.nacQuars : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nntps"] = state ? state.nntps : undefined;
-            inputs["spams"] = state ? state.spams : undefined;
-            inputs["sslvpns"] = state ? state.sslvpns : undefined;
-            inputs["trafficQuotas"] = state ? state.trafficQuotas : undefined;
-            inputs["utms"] = state ? state.utms : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webproxies"] = state ? state.webproxies : undefined;
+            resourceInputs["admins"] = state ? state.admins : undefined;
+            resourceInputs["alertmails"] = state ? state.alertmails : undefined;
+            resourceInputs["auths"] = state ? state.auths : undefined;
+            resourceInputs["automations"] = state ? state.automations : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["customMessages"] = state ? state.customMessages : undefined;
+            resourceInputs["deviceDetectionPortals"] = state ? state.deviceDetectionPortals : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ecs"] = state ? state.ecs : undefined;
+            resourceInputs["fortiguardWfs"] = state ? state.fortiguardWfs : undefined;
+            resourceInputs["ftps"] = state ? state.ftps : undefined;
+            resourceInputs["groupType"] = state ? state.groupType : undefined;
+            resourceInputs["https"] = state ? state.https : undefined;
+            resourceInputs["icaps"] = state ? state.icaps : undefined;
+            resourceInputs["mails"] = state ? state.mails : undefined;
+            resourceInputs["nacQuars"] = state ? state.nacQuars : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nntps"] = state ? state.nntps : undefined;
+            resourceInputs["spams"] = state ? state.spams : undefined;
+            resourceInputs["sslvpns"] = state ? state.sslvpns : undefined;
+            resourceInputs["trafficQuotas"] = state ? state.trafficQuotas : undefined;
+            resourceInputs["utms"] = state ? state.utms : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webproxies"] = state ? state.webproxies : undefined;
         } else {
             const args = argsOrState as SystemReplacemsgGroupArgs | undefined;
             if ((!args || args.groupType === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'groupType'");
             }
-            inputs["admins"] = args ? args.admins : undefined;
-            inputs["alertmails"] = args ? args.alertmails : undefined;
-            inputs["auths"] = args ? args.auths : undefined;
-            inputs["automations"] = args ? args.automations : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["customMessages"] = args ? args.customMessages : undefined;
-            inputs["deviceDetectionPortals"] = args ? args.deviceDetectionPortals : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ecs"] = args ? args.ecs : undefined;
-            inputs["fortiguardWfs"] = args ? args.fortiguardWfs : undefined;
-            inputs["ftps"] = args ? args.ftps : undefined;
-            inputs["groupType"] = args ? args.groupType : undefined;
-            inputs["https"] = args ? args.https : undefined;
-            inputs["icaps"] = args ? args.icaps : undefined;
-            inputs["mails"] = args ? args.mails : undefined;
-            inputs["nacQuars"] = args ? args.nacQuars : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nntps"] = args ? args.nntps : undefined;
-            inputs["spams"] = args ? args.spams : undefined;
-            inputs["sslvpns"] = args ? args.sslvpns : undefined;
-            inputs["trafficQuotas"] = args ? args.trafficQuotas : undefined;
-            inputs["utms"] = args ? args.utms : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webproxies"] = args ? args.webproxies : undefined;
+            resourceInputs["admins"] = args ? args.admins : undefined;
+            resourceInputs["alertmails"] = args ? args.alertmails : undefined;
+            resourceInputs["auths"] = args ? args.auths : undefined;
+            resourceInputs["automations"] = args ? args.automations : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["customMessages"] = args ? args.customMessages : undefined;
+            resourceInputs["deviceDetectionPortals"] = args ? args.deviceDetectionPortals : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ecs"] = args ? args.ecs : undefined;
+            resourceInputs["fortiguardWfs"] = args ? args.fortiguardWfs : undefined;
+            resourceInputs["ftps"] = args ? args.ftps : undefined;
+            resourceInputs["groupType"] = args ? args.groupType : undefined;
+            resourceInputs["https"] = args ? args.https : undefined;
+            resourceInputs["icaps"] = args ? args.icaps : undefined;
+            resourceInputs["mails"] = args ? args.mails : undefined;
+            resourceInputs["nacQuars"] = args ? args.nacQuars : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nntps"] = args ? args.nntps : undefined;
+            resourceInputs["spams"] = args ? args.spams : undefined;
+            resourceInputs["sslvpns"] = args ? args.sslvpns : undefined;
+            resourceInputs["trafficQuotas"] = args ? args.trafficQuotas : undefined;
+            resourceInputs["utms"] = args ? args.utms : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webproxies"] = args ? args.webproxies : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemReplacemsgGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemReplacemsgGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

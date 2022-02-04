@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -76,6 +76,7 @@ func NewSwitchControllerQosQueuePolicy(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosQueuePolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerQosQueuePolicy:SwitchControllerQosQueuePolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -174,7 +175,7 @@ type SwitchControllerQosQueuePolicyInput interface {
 }
 
 func (*SwitchControllerQosQueuePolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosQueuePolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerQosQueuePolicy)(nil)).Elem()
 }
 
 func (i *SwitchControllerQosQueuePolicy) ToSwitchControllerQosQueuePolicyOutput() SwitchControllerQosQueuePolicyOutput {
@@ -183,35 +184,6 @@ func (i *SwitchControllerQosQueuePolicy) ToSwitchControllerQosQueuePolicyOutput(
 
 func (i *SwitchControllerQosQueuePolicy) ToSwitchControllerQosQueuePolicyOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyOutput)
-}
-
-func (i *SwitchControllerQosQueuePolicy) ToSwitchControllerQosQueuePolicyPtrOutput() SwitchControllerQosQueuePolicyPtrOutput {
-	return i.ToSwitchControllerQosQueuePolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerQosQueuePolicy) ToSwitchControllerQosQueuePolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyPtrOutput)
-}
-
-type SwitchControllerQosQueuePolicyPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerQosQueuePolicyPtrOutput() SwitchControllerQosQueuePolicyPtrOutput
-	ToSwitchControllerQosQueuePolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyPtrOutput
-}
-
-type switchControllerQosQueuePolicyPtrType SwitchControllerQosQueuePolicyArgs
-
-func (*switchControllerQosQueuePolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosQueuePolicy)(nil))
-}
-
-func (i *switchControllerQosQueuePolicyPtrType) ToSwitchControllerQosQueuePolicyPtrOutput() SwitchControllerQosQueuePolicyPtrOutput {
-	return i.ToSwitchControllerQosQueuePolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerQosQueuePolicyPtrType) ToSwitchControllerQosQueuePolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyPtrOutput)
 }
 
 // SwitchControllerQosQueuePolicyArrayInput is an input type that accepts SwitchControllerQosQueuePolicyArray and SwitchControllerQosQueuePolicyArrayOutput values.
@@ -228,7 +200,7 @@ type SwitchControllerQosQueuePolicyArrayInput interface {
 type SwitchControllerQosQueuePolicyArray []SwitchControllerQosQueuePolicyInput
 
 func (SwitchControllerQosQueuePolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerQosQueuePolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosQueuePolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerQosQueuePolicyArray) ToSwitchControllerQosQueuePolicyArrayOutput() SwitchControllerQosQueuePolicyArrayOutput {
@@ -253,7 +225,7 @@ type SwitchControllerQosQueuePolicyMapInput interface {
 type SwitchControllerQosQueuePolicyMap map[string]SwitchControllerQosQueuePolicyInput
 
 func (SwitchControllerQosQueuePolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerQosQueuePolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosQueuePolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerQosQueuePolicyMap) ToSwitchControllerQosQueuePolicyMapOutput() SwitchControllerQosQueuePolicyMapOutput {
@@ -264,12 +236,10 @@ func (i SwitchControllerQosQueuePolicyMap) ToSwitchControllerQosQueuePolicyMapOu
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQueuePolicyMapOutput)
 }
 
-type SwitchControllerQosQueuePolicyOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerQosQueuePolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQueuePolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosQueuePolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerQosQueuePolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerQosQueuePolicyOutput) ToSwitchControllerQosQueuePolicyOutput() SwitchControllerQosQueuePolicyOutput {
@@ -280,36 +250,10 @@ func (o SwitchControllerQosQueuePolicyOutput) ToSwitchControllerQosQueuePolicyOu
 	return o
 }
 
-func (o SwitchControllerQosQueuePolicyOutput) ToSwitchControllerQosQueuePolicyPtrOutput() SwitchControllerQosQueuePolicyPtrOutput {
-	return o.ToSwitchControllerQosQueuePolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerQosQueuePolicyOutput) ToSwitchControllerQosQueuePolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyPtrOutput {
-	return o.ApplyT(func(v SwitchControllerQosQueuePolicy) *SwitchControllerQosQueuePolicy {
-		return &v
-	}).(SwitchControllerQosQueuePolicyPtrOutput)
-}
-
-type SwitchControllerQosQueuePolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerQosQueuePolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosQueuePolicy)(nil))
-}
-
-func (o SwitchControllerQosQueuePolicyPtrOutput) ToSwitchControllerQosQueuePolicyPtrOutput() SwitchControllerQosQueuePolicyPtrOutput {
-	return o
-}
-
-func (o SwitchControllerQosQueuePolicyPtrOutput) ToSwitchControllerQosQueuePolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQueuePolicyPtrOutput {
-	return o
-}
-
 type SwitchControllerQosQueuePolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQueuePolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerQosQueuePolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosQueuePolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerQosQueuePolicyArrayOutput) ToSwitchControllerQosQueuePolicyArrayOutput() SwitchControllerQosQueuePolicyArrayOutput {
@@ -321,15 +265,15 @@ func (o SwitchControllerQosQueuePolicyArrayOutput) ToSwitchControllerQosQueuePol
 }
 
 func (o SwitchControllerQosQueuePolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosQueuePolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerQosQueuePolicy {
-		return vs[0].([]SwitchControllerQosQueuePolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosQueuePolicy {
+		return vs[0].([]*SwitchControllerQosQueuePolicy)[vs[1].(int)]
 	}).(SwitchControllerQosQueuePolicyOutput)
 }
 
 type SwitchControllerQosQueuePolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQueuePolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerQosQueuePolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosQueuePolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerQosQueuePolicyMapOutput) ToSwitchControllerQosQueuePolicyMapOutput() SwitchControllerQosQueuePolicyMapOutput {
@@ -341,14 +285,16 @@ func (o SwitchControllerQosQueuePolicyMapOutput) ToSwitchControllerQosQueuePolic
 }
 
 func (o SwitchControllerQosQueuePolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosQueuePolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerQosQueuePolicy {
-		return vs[0].(map[string]SwitchControllerQosQueuePolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerQosQueuePolicy {
+		return vs[0].(map[string]*SwitchControllerQosQueuePolicy)[vs[1].(string)]
 	}).(SwitchControllerQosQueuePolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosQueuePolicyInput)(nil)).Elem(), &SwitchControllerQosQueuePolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosQueuePolicyArrayInput)(nil)).Elem(), SwitchControllerQosQueuePolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosQueuePolicyMapInput)(nil)).Elem(), SwitchControllerQosQueuePolicyMap{})
 	pulumi.RegisterOutputType(SwitchControllerQosQueuePolicyOutput{})
-	pulumi.RegisterOutputType(SwitchControllerQosQueuePolicyPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosQueuePolicyArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosQueuePolicyMapOutput{})
 }

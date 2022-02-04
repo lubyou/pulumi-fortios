@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -74,20 +74,52 @@ import (
 type UserDomainController struct {
 	pulumi.CustomResourceState
 
+	// Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
+	AdMode pulumi.StringOutput `pulumi:"adMode"`
+	// AD LDS distinguished name.
+	AdldsDn pulumi.StringOutput `pulumi:"adldsDn"`
+	// AD LDS IPv6 address.
+	AdldsIp6 pulumi.StringOutput `pulumi:"adldsIp6"`
+	// AD LDS IPv4 address.
+	AdldsIpAddress pulumi.StringOutput `pulumi:"adldsIpAddress"`
+	// Port number of AD LDS service (default = 389).
+	AdldsPort pulumi.IntOutput `pulumi:"adldsPort"`
+	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
+	DnsSrvLookup pulumi.StringOutput `pulumi:"dnsSrvLookup"`
 	// Domain DNS name.
 	DomainName pulumi.StringOutput `pulumi:"domainName"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers UserDomainControllerExtraServerArrayOutput `pulumi:"extraServers"`
+	// Hostname of the server to connect to.
+	Hostname pulumi.StringOutput `pulumi:"hostname"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
+	// Domain controller IPv6 address.
+	Ip6 pulumi.StringOutput `pulumi:"ip6"`
 	// Domain controller IP address.
 	IpAddress pulumi.StringOutput `pulumi:"ipAddress"`
 	// LDAP server name.
 	LdapServer pulumi.StringOutput `pulumi:"ldapServer"`
 	// Domain controller entry name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Password for specified username.
+	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// Port to be used for communication with the domain controller (default = 445).
 	Port pulumi.IntOutput `pulumi:"port"`
+	// Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
+	ReplicationPort pulumi.IntOutput `pulumi:"replicationPort"`
+	// FortiGate IPv6 address to be used for communication with the domain controller.
+	SourceIp6 pulumi.StringOutput `pulumi:"sourceIp6"`
+	// FortiGate IPv4 address to be used for communication with the domain controller.
+	SourceIpAddress pulumi.StringOutput `pulumi:"sourceIpAddress"`
+	// Source port to be used for communication with the domain controller.
+	SourcePort pulumi.IntOutput `pulumi:"sourcePort"`
+	// User name to sign in with. Must have proper permissions for service.
+	Username pulumi.StringOutput `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -105,6 +137,7 @@ func NewUserDomainController(ctx *pulumi.Context,
 	if args.LdapServer == nil {
 		return nil, errors.New("invalid value for required argument 'LdapServer'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserDomainController
 	err := ctx.RegisterResource("fortios:index/userDomainController:UserDomainController", name, args, &resource, opts...)
 	if err != nil {
@@ -127,39 +160,103 @@ func GetUserDomainController(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering UserDomainController resources.
 type userDomainControllerState struct {
+	// Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
+	AdMode *string `pulumi:"adMode"`
+	// AD LDS distinguished name.
+	AdldsDn *string `pulumi:"adldsDn"`
+	// AD LDS IPv6 address.
+	AdldsIp6 *string `pulumi:"adldsIp6"`
+	// AD LDS IPv4 address.
+	AdldsIpAddress *string `pulumi:"adldsIpAddress"`
+	// Port number of AD LDS service (default = 389).
+	AdldsPort *int `pulumi:"adldsPort"`
+	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
+	DnsSrvLookup *string `pulumi:"dnsSrvLookup"`
 	// Domain DNS name.
 	DomainName *string `pulumi:"domainName"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers []UserDomainControllerExtraServer `pulumi:"extraServers"`
+	// Hostname of the server to connect to.
+	Hostname *string `pulumi:"hostname"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Domain controller IPv6 address.
+	Ip6 *string `pulumi:"ip6"`
 	// Domain controller IP address.
 	IpAddress *string `pulumi:"ipAddress"`
 	// LDAP server name.
 	LdapServer *string `pulumi:"ldapServer"`
 	// Domain controller entry name.
 	Name *string `pulumi:"name"`
+	// Password for specified username.
+	Password *string `pulumi:"password"`
 	// Port to be used for communication with the domain controller (default = 445).
 	Port *int `pulumi:"port"`
+	// Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
+	ReplicationPort *int `pulumi:"replicationPort"`
+	// FortiGate IPv6 address to be used for communication with the domain controller.
+	SourceIp6 *string `pulumi:"sourceIp6"`
+	// FortiGate IPv4 address to be used for communication with the domain controller.
+	SourceIpAddress *string `pulumi:"sourceIpAddress"`
+	// Source port to be used for communication with the domain controller.
+	SourcePort *int `pulumi:"sourcePort"`
+	// User name to sign in with. Must have proper permissions for service.
+	Username *string `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type UserDomainControllerState struct {
+	// Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
+	AdMode pulumi.StringPtrInput
+	// AD LDS distinguished name.
+	AdldsDn pulumi.StringPtrInput
+	// AD LDS IPv6 address.
+	AdldsIp6 pulumi.StringPtrInput
+	// AD LDS IPv4 address.
+	AdldsIpAddress pulumi.StringPtrInput
+	// Port number of AD LDS service (default = 389).
+	AdldsPort pulumi.IntPtrInput
+	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
+	DnsSrvLookup pulumi.StringPtrInput
 	// Domain DNS name.
 	DomainName pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers UserDomainControllerExtraServerArrayInput
+	// Hostname of the server to connect to.
+	Hostname pulumi.StringPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
+	// Domain controller IPv6 address.
+	Ip6 pulumi.StringPtrInput
 	// Domain controller IP address.
 	IpAddress pulumi.StringPtrInput
 	// LDAP server name.
 	LdapServer pulumi.StringPtrInput
 	// Domain controller entry name.
 	Name pulumi.StringPtrInput
+	// Password for specified username.
+	Password pulumi.StringPtrInput
 	// Port to be used for communication with the domain controller (default = 445).
 	Port pulumi.IntPtrInput
+	// Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
+	ReplicationPort pulumi.IntPtrInput
+	// FortiGate IPv6 address to be used for communication with the domain controller.
+	SourceIp6 pulumi.StringPtrInput
+	// FortiGate IPv4 address to be used for communication with the domain controller.
+	SourceIpAddress pulumi.StringPtrInput
+	// Source port to be used for communication with the domain controller.
+	SourcePort pulumi.IntPtrInput
+	// User name to sign in with. Must have proper permissions for service.
+	Username pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -169,40 +266,104 @@ func (UserDomainControllerState) ElementType() reflect.Type {
 }
 
 type userDomainControllerArgs struct {
+	// Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
+	AdMode *string `pulumi:"adMode"`
+	// AD LDS distinguished name.
+	AdldsDn *string `pulumi:"adldsDn"`
+	// AD LDS IPv6 address.
+	AdldsIp6 *string `pulumi:"adldsIp6"`
+	// AD LDS IPv4 address.
+	AdldsIpAddress *string `pulumi:"adldsIpAddress"`
+	// Port number of AD LDS service (default = 389).
+	AdldsPort *int `pulumi:"adldsPort"`
+	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
+	DnsSrvLookup *string `pulumi:"dnsSrvLookup"`
 	// Domain DNS name.
 	DomainName *string `pulumi:"domainName"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers []UserDomainControllerExtraServer `pulumi:"extraServers"`
+	// Hostname of the server to connect to.
+	Hostname *string `pulumi:"hostname"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
+	// Domain controller IPv6 address.
+	Ip6 *string `pulumi:"ip6"`
 	// Domain controller IP address.
 	IpAddress string `pulumi:"ipAddress"`
 	// LDAP server name.
 	LdapServer string `pulumi:"ldapServer"`
 	// Domain controller entry name.
 	Name *string `pulumi:"name"`
+	// Password for specified username.
+	Password *string `pulumi:"password"`
 	// Port to be used for communication with the domain controller (default = 445).
 	Port *int `pulumi:"port"`
+	// Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
+	ReplicationPort *int `pulumi:"replicationPort"`
+	// FortiGate IPv6 address to be used for communication with the domain controller.
+	SourceIp6 *string `pulumi:"sourceIp6"`
+	// FortiGate IPv4 address to be used for communication with the domain controller.
+	SourceIpAddress *string `pulumi:"sourceIpAddress"`
+	// Source port to be used for communication with the domain controller.
+	SourcePort *int `pulumi:"sourcePort"`
+	// User name to sign in with. Must have proper permissions for service.
+	Username *string `pulumi:"username"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a UserDomainController resource.
 type UserDomainControllerArgs struct {
+	// Set Active Directory mode. Valid values: `none`, `ds`, `lds`.
+	AdMode pulumi.StringPtrInput
+	// AD LDS distinguished name.
+	AdldsDn pulumi.StringPtrInput
+	// AD LDS IPv6 address.
+	AdldsIp6 pulumi.StringPtrInput
+	// AD LDS IPv4 address.
+	AdldsIpAddress pulumi.StringPtrInput
+	// Port number of AD LDS service (default = 389).
+	AdldsPort pulumi.IntPtrInput
+	// Enable/disable DNS service lookup. Valid values: `enable`, `disable`.
+	DnsSrvLookup pulumi.StringPtrInput
 	// Domain DNS name.
 	DomainName pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// extra servers. The structure of `extraServer` block is documented below.
 	ExtraServers UserDomainControllerExtraServerArrayInput
+	// Hostname of the server to connect to.
+	Hostname pulumi.StringPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
+	// Domain controller IPv6 address.
+	Ip6 pulumi.StringPtrInput
 	// Domain controller IP address.
 	IpAddress pulumi.StringInput
 	// LDAP server name.
 	LdapServer pulumi.StringInput
 	// Domain controller entry name.
 	Name pulumi.StringPtrInput
+	// Password for specified username.
+	Password pulumi.StringPtrInput
 	// Port to be used for communication with the domain controller (default = 445).
 	Port pulumi.IntPtrInput
+	// Port to be used for communication with the domain controller for replication service. Port number 0 indicates automatic discovery.
+	ReplicationPort pulumi.IntPtrInput
+	// FortiGate IPv6 address to be used for communication with the domain controller.
+	SourceIp6 pulumi.StringPtrInput
+	// FortiGate IPv4 address to be used for communication with the domain controller.
+	SourceIpAddress pulumi.StringPtrInput
+	// Source port to be used for communication with the domain controller.
+	SourcePort pulumi.IntPtrInput
+	// User name to sign in with. Must have proper permissions for service.
+	Username pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -219,7 +380,7 @@ type UserDomainControllerInput interface {
 }
 
 func (*UserDomainController) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDomainController)(nil))
+	return reflect.TypeOf((**UserDomainController)(nil)).Elem()
 }
 
 func (i *UserDomainController) ToUserDomainControllerOutput() UserDomainControllerOutput {
@@ -228,35 +389,6 @@ func (i *UserDomainController) ToUserDomainControllerOutput() UserDomainControll
 
 func (i *UserDomainController) ToUserDomainControllerOutputWithContext(ctx context.Context) UserDomainControllerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerOutput)
-}
-
-func (i *UserDomainController) ToUserDomainControllerPtrOutput() UserDomainControllerPtrOutput {
-	return i.ToUserDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *UserDomainController) ToUserDomainControllerPtrOutputWithContext(ctx context.Context) UserDomainControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerPtrOutput)
-}
-
-type UserDomainControllerPtrInput interface {
-	pulumi.Input
-
-	ToUserDomainControllerPtrOutput() UserDomainControllerPtrOutput
-	ToUserDomainControllerPtrOutputWithContext(ctx context.Context) UserDomainControllerPtrOutput
-}
-
-type userDomainControllerPtrType UserDomainControllerArgs
-
-func (*userDomainControllerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDomainController)(nil))
-}
-
-func (i *userDomainControllerPtrType) ToUserDomainControllerPtrOutput() UserDomainControllerPtrOutput {
-	return i.ToUserDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *userDomainControllerPtrType) ToUserDomainControllerPtrOutputWithContext(ctx context.Context) UserDomainControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerPtrOutput)
 }
 
 // UserDomainControllerArrayInput is an input type that accepts UserDomainControllerArray and UserDomainControllerArrayOutput values.
@@ -273,7 +405,7 @@ type UserDomainControllerArrayInput interface {
 type UserDomainControllerArray []UserDomainControllerInput
 
 func (UserDomainControllerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserDomainController)(nil))
+	return reflect.TypeOf((*[]*UserDomainController)(nil)).Elem()
 }
 
 func (i UserDomainControllerArray) ToUserDomainControllerArrayOutput() UserDomainControllerArrayOutput {
@@ -298,7 +430,7 @@ type UserDomainControllerMapInput interface {
 type UserDomainControllerMap map[string]UserDomainControllerInput
 
 func (UserDomainControllerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserDomainController)(nil))
+	return reflect.TypeOf((*map[string]*UserDomainController)(nil)).Elem()
 }
 
 func (i UserDomainControllerMap) ToUserDomainControllerMapOutput() UserDomainControllerMapOutput {
@@ -309,12 +441,10 @@ func (i UserDomainControllerMap) ToUserDomainControllerMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(UserDomainControllerMapOutput)
 }
 
-type UserDomainControllerOutput struct {
-	*pulumi.OutputState
-}
+type UserDomainControllerOutput struct{ *pulumi.OutputState }
 
 func (UserDomainControllerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDomainController)(nil))
+	return reflect.TypeOf((**UserDomainController)(nil)).Elem()
 }
 
 func (o UserDomainControllerOutput) ToUserDomainControllerOutput() UserDomainControllerOutput {
@@ -325,36 +455,10 @@ func (o UserDomainControllerOutput) ToUserDomainControllerOutputWithContext(ctx 
 	return o
 }
 
-func (o UserDomainControllerOutput) ToUserDomainControllerPtrOutput() UserDomainControllerPtrOutput {
-	return o.ToUserDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (o UserDomainControllerOutput) ToUserDomainControllerPtrOutputWithContext(ctx context.Context) UserDomainControllerPtrOutput {
-	return o.ApplyT(func(v UserDomainController) *UserDomainController {
-		return &v
-	}).(UserDomainControllerPtrOutput)
-}
-
-type UserDomainControllerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserDomainControllerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDomainController)(nil))
-}
-
-func (o UserDomainControllerPtrOutput) ToUserDomainControllerPtrOutput() UserDomainControllerPtrOutput {
-	return o
-}
-
-func (o UserDomainControllerPtrOutput) ToUserDomainControllerPtrOutputWithContext(ctx context.Context) UserDomainControllerPtrOutput {
-	return o
-}
-
 type UserDomainControllerArrayOutput struct{ *pulumi.OutputState }
 
 func (UserDomainControllerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserDomainController)(nil))
+	return reflect.TypeOf((*[]*UserDomainController)(nil)).Elem()
 }
 
 func (o UserDomainControllerArrayOutput) ToUserDomainControllerArrayOutput() UserDomainControllerArrayOutput {
@@ -366,15 +470,15 @@ func (o UserDomainControllerArrayOutput) ToUserDomainControllerArrayOutputWithCo
 }
 
 func (o UserDomainControllerArrayOutput) Index(i pulumi.IntInput) UserDomainControllerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDomainController {
-		return vs[0].([]UserDomainController)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDomainController {
+		return vs[0].([]*UserDomainController)[vs[1].(int)]
 	}).(UserDomainControllerOutput)
 }
 
 type UserDomainControllerMapOutput struct{ *pulumi.OutputState }
 
 func (UserDomainControllerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserDomainController)(nil))
+	return reflect.TypeOf((*map[string]*UserDomainController)(nil)).Elem()
 }
 
 func (o UserDomainControllerMapOutput) ToUserDomainControllerMapOutput() UserDomainControllerMapOutput {
@@ -386,14 +490,16 @@ func (o UserDomainControllerMapOutput) ToUserDomainControllerMapOutputWithContex
 }
 
 func (o UserDomainControllerMapOutput) MapIndex(k pulumi.StringInput) UserDomainControllerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserDomainController {
-		return vs[0].(map[string]UserDomainController)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserDomainController {
+		return vs[0].(map[string]*UserDomainController)[vs[1].(string)]
 	}).(UserDomainControllerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDomainControllerInput)(nil)).Elem(), &UserDomainController{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDomainControllerArrayInput)(nil)).Elem(), UserDomainControllerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDomainControllerMapInput)(nil)).Elem(), UserDomainControllerMap{})
 	pulumi.RegisterOutputType(UserDomainControllerOutput{})
-	pulumi.RegisterOutputType(UserDomainControllerPtrOutput{})
 	pulumi.RegisterOutputType(UserDomainControllerArrayOutput{})
 	pulumi.RegisterOutputType(UserDomainControllerMapOutput{})
 }

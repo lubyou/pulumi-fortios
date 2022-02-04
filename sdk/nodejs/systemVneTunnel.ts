@@ -46,6 +46,10 @@ export class SystemVneTunnel extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    public readonly autoAsicOffload!: pulumi.Output<string>;
+    /**
      * BMR hostname.
      */
     public readonly bmrHostname!: pulumi.Output<string | undefined>;
@@ -91,35 +95,35 @@ export class SystemVneTunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVneTunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVneTunnelArgs | SystemVneTunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVneTunnelState | undefined;
-            inputs["bmrHostname"] = state ? state.bmrHostname : undefined;
-            inputs["br"] = state ? state.br : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipv4Address"] = state ? state.ipv4Address : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["sslCertificate"] = state ? state.sslCertificate : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["updateUrl"] = state ? state.updateUrl : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
+            resourceInputs["bmrHostname"] = state ? state.bmrHostname : undefined;
+            resourceInputs["br"] = state ? state.br : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipv4Address"] = state ? state.ipv4Address : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["sslCertificate"] = state ? state.sslCertificate : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["updateUrl"] = state ? state.updateUrl : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemVneTunnelArgs | undefined;
-            inputs["bmrHostname"] = args ? args.bmrHostname : undefined;
-            inputs["br"] = args ? args.br : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipv4Address"] = args ? args.ipv4Address : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["sslCertificate"] = args ? args.sslCertificate : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["updateUrl"] = args ? args.updateUrl : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
+            resourceInputs["bmrHostname"] = args ? args.bmrHostname : undefined;
+            resourceInputs["br"] = args ? args.br : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipv4Address"] = args ? args.ipv4Address : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["sslCertificate"] = args ? args.sslCertificate : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["updateUrl"] = args ? args.updateUrl : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVneTunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVneTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -127,6 +131,10 @@ export class SystemVneTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemVneTunnel resources.
  */
 export interface SystemVneTunnelState {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * BMR hostname.
      */
@@ -169,6 +177,10 @@ export interface SystemVneTunnelState {
  * The set of arguments for constructing a SystemVneTunnel resource.
  */
 export interface SystemVneTunnelArgs {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * BMR hostname.
      */

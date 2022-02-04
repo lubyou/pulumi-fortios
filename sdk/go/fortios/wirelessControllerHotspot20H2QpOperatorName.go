@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -62,6 +62,7 @@ func NewWirelessControllerHotspot20H2QpOperatorName(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20H2QpOperatorNameArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20H2QpOperatorName
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName", name, args, &resource, opts...)
 	if err != nil {
@@ -144,7 +145,7 @@ type WirelessControllerHotspot20H2QpOperatorNameInput interface {
 }
 
 func (*WirelessControllerHotspot20H2QpOperatorName) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20H2QpOperatorName)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20H2QpOperatorName)(nil)).Elem()
 }
 
 func (i *WirelessControllerHotspot20H2QpOperatorName) ToWirelessControllerHotspot20H2QpOperatorNameOutput() WirelessControllerHotspot20H2QpOperatorNameOutput {
@@ -153,35 +154,6 @@ func (i *WirelessControllerHotspot20H2QpOperatorName) ToWirelessControllerHotspo
 
 func (i *WirelessControllerHotspot20H2QpOperatorName) ToWirelessControllerHotspot20H2QpOperatorNameOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNameOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOperatorNameOutput)
-}
-
-func (i *WirelessControllerHotspot20H2QpOperatorName) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutput() WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return i.ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerHotspot20H2QpOperatorName) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOperatorNamePtrOutput)
-}
-
-type WirelessControllerHotspot20H2QpOperatorNamePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerHotspot20H2QpOperatorNamePtrOutput() WirelessControllerHotspot20H2QpOperatorNamePtrOutput
-	ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNamePtrOutput
-}
-
-type wirelessControllerHotspot20H2QpOperatorNamePtrType WirelessControllerHotspot20H2QpOperatorNameArgs
-
-func (*wirelessControllerHotspot20H2QpOperatorNamePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20H2QpOperatorName)(nil))
-}
-
-func (i *wirelessControllerHotspot20H2QpOperatorNamePtrType) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutput() WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return i.ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerHotspot20H2QpOperatorNamePtrType) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOperatorNamePtrOutput)
 }
 
 // WirelessControllerHotspot20H2QpOperatorNameArrayInput is an input type that accepts WirelessControllerHotspot20H2QpOperatorNameArray and WirelessControllerHotspot20H2QpOperatorNameArrayOutput values.
@@ -198,7 +170,7 @@ type WirelessControllerHotspot20H2QpOperatorNameArrayInput interface {
 type WirelessControllerHotspot20H2QpOperatorNameArray []WirelessControllerHotspot20H2QpOperatorNameInput
 
 func (WirelessControllerHotspot20H2QpOperatorNameArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerHotspot20H2QpOperatorName)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20H2QpOperatorName)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20H2QpOperatorNameArray) ToWirelessControllerHotspot20H2QpOperatorNameArrayOutput() WirelessControllerHotspot20H2QpOperatorNameArrayOutput {
@@ -223,7 +195,7 @@ type WirelessControllerHotspot20H2QpOperatorNameMapInput interface {
 type WirelessControllerHotspot20H2QpOperatorNameMap map[string]WirelessControllerHotspot20H2QpOperatorNameInput
 
 func (WirelessControllerHotspot20H2QpOperatorNameMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerHotspot20H2QpOperatorName)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20H2QpOperatorName)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20H2QpOperatorNameMap) ToWirelessControllerHotspot20H2QpOperatorNameMapOutput() WirelessControllerHotspot20H2QpOperatorNameMapOutput {
@@ -234,12 +206,10 @@ func (i WirelessControllerHotspot20H2QpOperatorNameMap) ToWirelessControllerHots
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20H2QpOperatorNameMapOutput)
 }
 
-type WirelessControllerHotspot20H2QpOperatorNameOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerHotspot20H2QpOperatorNameOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOperatorNameOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20H2QpOperatorName)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20H2QpOperatorName)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ToWirelessControllerHotspot20H2QpOperatorNameOutput() WirelessControllerHotspot20H2QpOperatorNameOutput {
@@ -250,36 +220,10 @@ func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ToWirelessControllerH
 	return o
 }
 
-func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutput() WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return o.ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerHotspot20H2QpOperatorNameOutput) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return o.ApplyT(func(v WirelessControllerHotspot20H2QpOperatorName) *WirelessControllerHotspot20H2QpOperatorName {
-		return &v
-	}).(WirelessControllerHotspot20H2QpOperatorNamePtrOutput)
-}
-
-type WirelessControllerHotspot20H2QpOperatorNamePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerHotspot20H2QpOperatorNamePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20H2QpOperatorName)(nil))
-}
-
-func (o WirelessControllerHotspot20H2QpOperatorNamePtrOutput) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutput() WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return o
-}
-
-func (o WirelessControllerHotspot20H2QpOperatorNamePtrOutput) ToWirelessControllerHotspot20H2QpOperatorNamePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20H2QpOperatorNamePtrOutput {
-	return o
-}
-
 type WirelessControllerHotspot20H2QpOperatorNameArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOperatorNameArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerHotspot20H2QpOperatorName)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20H2QpOperatorName)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameArrayOutput) ToWirelessControllerHotspot20H2QpOperatorNameArrayOutput() WirelessControllerHotspot20H2QpOperatorNameArrayOutput {
@@ -291,15 +235,15 @@ func (o WirelessControllerHotspot20H2QpOperatorNameArrayOutput) ToWirelessContro
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20H2QpOperatorNameOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerHotspot20H2QpOperatorName {
-		return vs[0].([]WirelessControllerHotspot20H2QpOperatorName)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20H2QpOperatorName {
+		return vs[0].([]*WirelessControllerHotspot20H2QpOperatorName)[vs[1].(int)]
 	}).(WirelessControllerHotspot20H2QpOperatorNameOutput)
 }
 
 type WirelessControllerHotspot20H2QpOperatorNameMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20H2QpOperatorNameMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerHotspot20H2QpOperatorName)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20H2QpOperatorName)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameMapOutput) ToWirelessControllerHotspot20H2QpOperatorNameMapOutput() WirelessControllerHotspot20H2QpOperatorNameMapOutput {
@@ -311,14 +255,16 @@ func (o WirelessControllerHotspot20H2QpOperatorNameMapOutput) ToWirelessControll
 }
 
 func (o WirelessControllerHotspot20H2QpOperatorNameMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20H2QpOperatorNameOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerHotspot20H2QpOperatorName {
-		return vs[0].(map[string]WirelessControllerHotspot20H2QpOperatorName)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20H2QpOperatorName {
+		return vs[0].(map[string]*WirelessControllerHotspot20H2QpOperatorName)[vs[1].(string)]
 	}).(WirelessControllerHotspot20H2QpOperatorNameOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20H2QpOperatorNameInput)(nil)).Elem(), &WirelessControllerHotspot20H2QpOperatorName{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20H2QpOperatorNameArrayInput)(nil)).Elem(), WirelessControllerHotspot20H2QpOperatorNameArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20H2QpOperatorNameMapInput)(nil)).Elem(), WirelessControllerHotspot20H2QpOperatorNameMap{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20H2QpOperatorNameOutput{})
-	pulumi.RegisterOutputType(WirelessControllerHotspot20H2QpOperatorNamePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20H2QpOperatorNameArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20H2QpOperatorNameMapOutput{})
 }

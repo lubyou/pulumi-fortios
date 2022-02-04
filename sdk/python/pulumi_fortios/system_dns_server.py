@@ -14,18 +14,22 @@ __all__ = ['SystemDnsServerArgs', 'SystemDnsServer']
 class SystemDnsServerArgs:
     def __init__(__self__, *,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
+                 doh: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemDnsServer resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
+        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dnsfilter_profile is not None:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
+        if doh is not None:
+            pulumi.set(__self__, "doh", doh)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
@@ -44,6 +48,18 @@ class SystemDnsServerArgs:
     @dnsfilter_profile.setter
     def dnsfilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dnsfilter_profile", value)
+
+    @property
+    @pulumi.getter
+    def doh(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS over HTTPS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doh")
+
+    @doh.setter
+    def doh(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doh", value)
 
     @property
     @pulumi.getter
@@ -86,18 +102,22 @@ class SystemDnsServerArgs:
 class _SystemDnsServerState:
     def __init__(__self__, *,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
+                 doh: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemDnsServer resources.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
+        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if dnsfilter_profile is not None:
             pulumi.set(__self__, "dnsfilter_profile", dnsfilter_profile)
+        if doh is not None:
+            pulumi.set(__self__, "doh", doh)
         if mode is not None:
             pulumi.set(__self__, "mode", mode)
         if name is not None:
@@ -116,6 +136,18 @@ class _SystemDnsServerState:
     @dnsfilter_profile.setter
     def dnsfilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dnsfilter_profile", value)
+
+    @property
+    @pulumi.getter
+    def doh(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS over HTTPS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doh")
+
+    @doh.setter
+    def doh(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "doh", value)
 
     @property
     @pulumi.getter
@@ -160,6 +192,7 @@ class SystemDnsServer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
+                 doh: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -191,6 +224,7 @@ class SystemDnsServer(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
+        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -241,6 +275,7 @@ class SystemDnsServer(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dnsfilter_profile: Optional[pulumi.Input[str]] = None,
+                 doh: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -251,12 +286,15 @@ class SystemDnsServer(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemDnsServerArgs.__new__(SystemDnsServerArgs)
 
             __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
+            __props__.__dict__["doh"] = doh
             __props__.__dict__["mode"] = mode
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
@@ -271,6 +309,7 @@ class SystemDnsServer(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dnsfilter_profile: Optional[pulumi.Input[str]] = None,
+            doh: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemDnsServer':
@@ -282,6 +321,7 @@ class SystemDnsServer(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dnsfilter_profile: DNS filter profile.
+        :param pulumi.Input[str] doh: DNS over HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mode: DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
         :param pulumi.Input[str] name: DNS server name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -291,6 +331,7 @@ class SystemDnsServer(pulumi.CustomResource):
         __props__ = _SystemDnsServerState.__new__(_SystemDnsServerState)
 
         __props__.__dict__["dnsfilter_profile"] = dnsfilter_profile
+        __props__.__dict__["doh"] = doh
         __props__.__dict__["mode"] = mode
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
@@ -303,6 +344,14 @@ class SystemDnsServer(pulumi.CustomResource):
         DNS filter profile.
         """
         return pulumi.get(self, "dnsfilter_profile")
+
+    @property
+    @pulumi.getter
+    def doh(self) -> pulumi.Output[str]:
+        """
+        DNS over HTTPS. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "doh")
 
     @property
     @pulumi.getter

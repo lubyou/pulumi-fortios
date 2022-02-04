@@ -65,21 +65,19 @@ export class FortimanagerSystemDNS extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerSystemDNSArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemDNSArgs | FortimanagerSystemDNSState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemDNSState | undefined;
-            inputs["primary"] = state ? state.primary : undefined;
-            inputs["secondary"] = state ? state.secondary : undefined;
+            resourceInputs["primary"] = state ? state.primary : undefined;
+            resourceInputs["secondary"] = state ? state.secondary : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemDNSArgs | undefined;
-            inputs["primary"] = args ? args.primary : undefined;
-            inputs["secondary"] = args ? args.secondary : undefined;
+            resourceInputs["primary"] = args ? args.primary : undefined;
+            resourceInputs["secondary"] = args ? args.secondary : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemDNS.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemDNS.__pulumiType, name, resourceInputs, opts);
     }
 }
 

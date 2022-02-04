@@ -91,6 +91,7 @@ func NewWebProxyExplicit(ctx *pulumi.Context,
 		args = &WebProxyExplicitArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebProxyExplicit
 	err := ctx.RegisterResource("fortios:index/webProxyExplicit:WebProxyExplicit", name, args, &resource, opts...)
 	if err != nil {
@@ -373,7 +374,7 @@ type WebProxyExplicitInput interface {
 }
 
 func (*WebProxyExplicit) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyExplicit)(nil))
+	return reflect.TypeOf((**WebProxyExplicit)(nil)).Elem()
 }
 
 func (i *WebProxyExplicit) ToWebProxyExplicitOutput() WebProxyExplicitOutput {
@@ -382,35 +383,6 @@ func (i *WebProxyExplicit) ToWebProxyExplicitOutput() WebProxyExplicitOutput {
 
 func (i *WebProxyExplicit) ToWebProxyExplicitOutputWithContext(ctx context.Context) WebProxyExplicitOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitOutput)
-}
-
-func (i *WebProxyExplicit) ToWebProxyExplicitPtrOutput() WebProxyExplicitPtrOutput {
-	return i.ToWebProxyExplicitPtrOutputWithContext(context.Background())
-}
-
-func (i *WebProxyExplicit) ToWebProxyExplicitPtrOutputWithContext(ctx context.Context) WebProxyExplicitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPtrOutput)
-}
-
-type WebProxyExplicitPtrInput interface {
-	pulumi.Input
-
-	ToWebProxyExplicitPtrOutput() WebProxyExplicitPtrOutput
-	ToWebProxyExplicitPtrOutputWithContext(ctx context.Context) WebProxyExplicitPtrOutput
-}
-
-type webProxyExplicitPtrType WebProxyExplicitArgs
-
-func (*webProxyExplicitPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyExplicit)(nil))
-}
-
-func (i *webProxyExplicitPtrType) ToWebProxyExplicitPtrOutput() WebProxyExplicitPtrOutput {
-	return i.ToWebProxyExplicitPtrOutputWithContext(context.Background())
-}
-
-func (i *webProxyExplicitPtrType) ToWebProxyExplicitPtrOutputWithContext(ctx context.Context) WebProxyExplicitPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitPtrOutput)
 }
 
 // WebProxyExplicitArrayInput is an input type that accepts WebProxyExplicitArray and WebProxyExplicitArrayOutput values.
@@ -427,7 +399,7 @@ type WebProxyExplicitArrayInput interface {
 type WebProxyExplicitArray []WebProxyExplicitInput
 
 func (WebProxyExplicitArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebProxyExplicit)(nil))
+	return reflect.TypeOf((*[]*WebProxyExplicit)(nil)).Elem()
 }
 
 func (i WebProxyExplicitArray) ToWebProxyExplicitArrayOutput() WebProxyExplicitArrayOutput {
@@ -452,7 +424,7 @@ type WebProxyExplicitMapInput interface {
 type WebProxyExplicitMap map[string]WebProxyExplicitInput
 
 func (WebProxyExplicitMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebProxyExplicit)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyExplicit)(nil)).Elem()
 }
 
 func (i WebProxyExplicitMap) ToWebProxyExplicitMapOutput() WebProxyExplicitMapOutput {
@@ -463,12 +435,10 @@ func (i WebProxyExplicitMap) ToWebProxyExplicitMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyExplicitMapOutput)
 }
 
-type WebProxyExplicitOutput struct {
-	*pulumi.OutputState
-}
+type WebProxyExplicitOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyExplicit)(nil))
+	return reflect.TypeOf((**WebProxyExplicit)(nil)).Elem()
 }
 
 func (o WebProxyExplicitOutput) ToWebProxyExplicitOutput() WebProxyExplicitOutput {
@@ -479,36 +449,10 @@ func (o WebProxyExplicitOutput) ToWebProxyExplicitOutputWithContext(ctx context.
 	return o
 }
 
-func (o WebProxyExplicitOutput) ToWebProxyExplicitPtrOutput() WebProxyExplicitPtrOutput {
-	return o.ToWebProxyExplicitPtrOutputWithContext(context.Background())
-}
-
-func (o WebProxyExplicitOutput) ToWebProxyExplicitPtrOutputWithContext(ctx context.Context) WebProxyExplicitPtrOutput {
-	return o.ApplyT(func(v WebProxyExplicit) *WebProxyExplicit {
-		return &v
-	}).(WebProxyExplicitPtrOutput)
-}
-
-type WebProxyExplicitPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebProxyExplicitPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyExplicit)(nil))
-}
-
-func (o WebProxyExplicitPtrOutput) ToWebProxyExplicitPtrOutput() WebProxyExplicitPtrOutput {
-	return o
-}
-
-func (o WebProxyExplicitPtrOutput) ToWebProxyExplicitPtrOutputWithContext(ctx context.Context) WebProxyExplicitPtrOutput {
-	return o
-}
-
 type WebProxyExplicitArrayOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebProxyExplicit)(nil))
+	return reflect.TypeOf((*[]*WebProxyExplicit)(nil)).Elem()
 }
 
 func (o WebProxyExplicitArrayOutput) ToWebProxyExplicitArrayOutput() WebProxyExplicitArrayOutput {
@@ -520,15 +464,15 @@ func (o WebProxyExplicitArrayOutput) ToWebProxyExplicitArrayOutputWithContext(ct
 }
 
 func (o WebProxyExplicitArrayOutput) Index(i pulumi.IntInput) WebProxyExplicitOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyExplicit {
-		return vs[0].([]WebProxyExplicit)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyExplicit {
+		return vs[0].([]*WebProxyExplicit)[vs[1].(int)]
 	}).(WebProxyExplicitOutput)
 }
 
 type WebProxyExplicitMapOutput struct{ *pulumi.OutputState }
 
 func (WebProxyExplicitMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebProxyExplicit)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyExplicit)(nil)).Elem()
 }
 
 func (o WebProxyExplicitMapOutput) ToWebProxyExplicitMapOutput() WebProxyExplicitMapOutput {
@@ -540,14 +484,16 @@ func (o WebProxyExplicitMapOutput) ToWebProxyExplicitMapOutputWithContext(ctx co
 }
 
 func (o WebProxyExplicitMapOutput) MapIndex(k pulumi.StringInput) WebProxyExplicitOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebProxyExplicit {
-		return vs[0].(map[string]WebProxyExplicit)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebProxyExplicit {
+		return vs[0].(map[string]*WebProxyExplicit)[vs[1].(string)]
 	}).(WebProxyExplicitOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitInput)(nil)).Elem(), &WebProxyExplicit{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitArrayInput)(nil)).Elem(), WebProxyExplicitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyExplicitMapInput)(nil)).Elem(), WebProxyExplicitMap{})
 	pulumi.RegisterOutputType(WebProxyExplicitOutput{})
-	pulumi.RegisterOutputType(WebProxyExplicitPtrOutput{})
 	pulumi.RegisterOutputType(WebProxyExplicitArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyExplicitMapOutput{})
 }

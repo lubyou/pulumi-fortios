@@ -49,7 +49,7 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
     }
 
     /**
-     * Authentication type. Valid values: `none`, `text`, `md5`.
+     * Authentication type.
      */
     public readonly authentication!: pulumi.Output<string>;
     /**
@@ -60,6 +60,10 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
      * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
      */
     public readonly bfd!: pulumi.Output<string>;
+    /**
+     * Comment.
+     */
+    public readonly comments!: pulumi.Output<string | undefined>;
     /**
      * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
      */
@@ -92,6 +96,10 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
      * IP address.
      */
     public readonly ip!: pulumi.Output<string>;
+    /**
+     * Message-digest key-chain name.
+     */
+    public readonly keychain!: pulumi.Output<string>;
     /**
      * MD5 key.
      */
@@ -158,67 +166,69 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterospfOspfInterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterospfOspfInterfaceArgs | RouterospfOspfInterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterospfOspfInterfaceState | undefined;
-            inputs["authentication"] = state ? state.authentication : undefined;
-            inputs["authenticationKey"] = state ? state.authenticationKey : undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["cost"] = state ? state.cost : undefined;
-            inputs["databaseFilterOut"] = state ? state.databaseFilterOut : undefined;
-            inputs["deadInterval"] = state ? state.deadInterval : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["helloInterval"] = state ? state.helloInterval : undefined;
-            inputs["helloMultiplier"] = state ? state.helloMultiplier : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["md5Key"] = state ? state.md5Key : undefined;
-            inputs["md5Keychain"] = state ? state.md5Keychain : undefined;
-            inputs["md5Keys"] = state ? state.md5Keys : undefined;
-            inputs["mtu"] = state ? state.mtu : undefined;
-            inputs["mtuIgnore"] = state ? state.mtuIgnore : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["networkType"] = state ? state.networkType : undefined;
-            inputs["prefixLength"] = state ? state.prefixLength : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["resyncTimeout"] = state ? state.resyncTimeout : undefined;
-            inputs["retransmitInterval"] = state ? state.retransmitInterval : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["transmitDelay"] = state ? state.transmitDelay : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["authenticationKey"] = state ? state.authenticationKey : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["cost"] = state ? state.cost : undefined;
+            resourceInputs["databaseFilterOut"] = state ? state.databaseFilterOut : undefined;
+            resourceInputs["deadInterval"] = state ? state.deadInterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["helloInterval"] = state ? state.helloInterval : undefined;
+            resourceInputs["helloMultiplier"] = state ? state.helloMultiplier : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["keychain"] = state ? state.keychain : undefined;
+            resourceInputs["md5Key"] = state ? state.md5Key : undefined;
+            resourceInputs["md5Keychain"] = state ? state.md5Keychain : undefined;
+            resourceInputs["md5Keys"] = state ? state.md5Keys : undefined;
+            resourceInputs["mtu"] = state ? state.mtu : undefined;
+            resourceInputs["mtuIgnore"] = state ? state.mtuIgnore : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["networkType"] = state ? state.networkType : undefined;
+            resourceInputs["prefixLength"] = state ? state.prefixLength : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["resyncTimeout"] = state ? state.resyncTimeout : undefined;
+            resourceInputs["retransmitInterval"] = state ? state.retransmitInterval : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["transmitDelay"] = state ? state.transmitDelay : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterospfOspfInterfaceArgs | undefined;
-            inputs["authentication"] = args ? args.authentication : undefined;
-            inputs["authenticationKey"] = args ? args.authenticationKey : undefined;
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["cost"] = args ? args.cost : undefined;
-            inputs["databaseFilterOut"] = args ? args.databaseFilterOut : undefined;
-            inputs["deadInterval"] = args ? args.deadInterval : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["helloInterval"] = args ? args.helloInterval : undefined;
-            inputs["helloMultiplier"] = args ? args.helloMultiplier : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["md5Key"] = args ? args.md5Key : undefined;
-            inputs["md5Keychain"] = args ? args.md5Keychain : undefined;
-            inputs["md5Keys"] = args ? args.md5Keys : undefined;
-            inputs["mtu"] = args ? args.mtu : undefined;
-            inputs["mtuIgnore"] = args ? args.mtuIgnore : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["networkType"] = args ? args.networkType : undefined;
-            inputs["prefixLength"] = args ? args.prefixLength : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["resyncTimeout"] = args ? args.resyncTimeout : undefined;
-            inputs["retransmitInterval"] = args ? args.retransmitInterval : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["transmitDelay"] = args ? args.transmitDelay : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["authenticationKey"] = args ? args.authenticationKey : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["cost"] = args ? args.cost : undefined;
+            resourceInputs["databaseFilterOut"] = args ? args.databaseFilterOut : undefined;
+            resourceInputs["deadInterval"] = args ? args.deadInterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["helloInterval"] = args ? args.helloInterval : undefined;
+            resourceInputs["helloMultiplier"] = args ? args.helloMultiplier : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["keychain"] = args ? args.keychain : undefined;
+            resourceInputs["md5Key"] = args ? args.md5Key : undefined;
+            resourceInputs["md5Keychain"] = args ? args.md5Keychain : undefined;
+            resourceInputs["md5Keys"] = args ? args.md5Keys : undefined;
+            resourceInputs["mtu"] = args ? args.mtu : undefined;
+            resourceInputs["mtuIgnore"] = args ? args.mtuIgnore : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["networkType"] = args ? args.networkType : undefined;
+            resourceInputs["prefixLength"] = args ? args.prefixLength : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["resyncTimeout"] = args ? args.resyncTimeout : undefined;
+            resourceInputs["retransmitInterval"] = args ? args.retransmitInterval : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["transmitDelay"] = args ? args.transmitDelay : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterospfOspfInterface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterospfOspfInterface.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -227,7 +237,7 @@ export class RouterospfOspfInterface extends pulumi.CustomResource {
  */
 export interface RouterospfOspfInterfaceState {
     /**
-     * Authentication type. Valid values: `none`, `text`, `md5`.
+     * Authentication type.
      */
     authentication?: pulumi.Input<string>;
     /**
@@ -238,6 +248,10 @@ export interface RouterospfOspfInterfaceState {
      * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
      */
     bfd?: pulumi.Input<string>;
+    /**
+     * Comment.
+     */
+    comments?: pulumi.Input<string>;
     /**
      * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
      */
@@ -270,6 +284,10 @@ export interface RouterospfOspfInterfaceState {
      * IP address.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * Message-digest key-chain name.
+     */
+    keychain?: pulumi.Input<string>;
     /**
      * MD5 key.
      */
@@ -333,7 +351,7 @@ export interface RouterospfOspfInterfaceState {
  */
 export interface RouterospfOspfInterfaceArgs {
     /**
-     * Authentication type. Valid values: `none`, `text`, `md5`.
+     * Authentication type.
      */
     authentication?: pulumi.Input<string>;
     /**
@@ -344,6 +362,10 @@ export interface RouterospfOspfInterfaceArgs {
      * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
      */
     bfd?: pulumi.Input<string>;
+    /**
+     * Comment.
+     */
+    comments?: pulumi.Input<string>;
     /**
      * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
      */
@@ -376,6 +398,10 @@ export interface RouterospfOspfInterfaceArgs {
      * IP address.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * Message-digest key-chain name.
+     */
+    keychain?: pulumi.Input<string>;
     /**
      * MD5 key.
      */

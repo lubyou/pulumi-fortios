@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system mobiletunnel
 func LookupSystemMobileTunnel(ctx *pulumi.Context, args *LookupSystemMobileTunnelArgs, opts ...pulumi.InvokeOption) (*LookupSystemMobileTunnelResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemMobileTunnelResult
 	err := ctx.Invoke("fortios:index/getSystemMobileTunnel:GetSystemMobileTunnel", args, &rv, opts...)
 	if err != nil {
@@ -60,4 +64,128 @@ type LookupSystemMobileTunnelResult struct {
 	// NEMO tunnnel mode (GRE tunnel).
 	TunnelMode string  `pulumi:"tunnelMode"`
 	Vdomparam  *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemMobileTunnelOutput(ctx *pulumi.Context, args LookupSystemMobileTunnelOutputArgs, opts ...pulumi.InvokeOption) LookupSystemMobileTunnelResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemMobileTunnelResult, error) {
+			args := v.(LookupSystemMobileTunnelArgs)
+			r, err := LookupSystemMobileTunnel(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemMobileTunnelResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemMobileTunnel.
+type LookupSystemMobileTunnelOutputArgs struct {
+	// Specify the name of the desired system mobiletunnel.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemMobileTunnelOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemMobileTunnelArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemMobileTunnel.
+type LookupSystemMobileTunnelResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemMobileTunnelResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemMobileTunnelResult)(nil)).Elem()
+}
+
+func (o LookupSystemMobileTunnelResultOutput) ToLookupSystemMobileTunnelResultOutput() LookupSystemMobileTunnelResultOutput {
+	return o
+}
+
+func (o LookupSystemMobileTunnelResultOutput) ToLookupSystemMobileTunnelResultOutputWithContext(ctx context.Context) LookupSystemMobileTunnelResultOutput {
+	return o
+}
+
+// Hash Algorithm (Keyed MD5).
+func (o LookupSystemMobileTunnelResultOutput) HashAlgorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.HashAlgorithm }).(pulumi.StringOutput)
+}
+
+// Home IP address (Format: xxx.xxx.xxx.xxx).
+func (o LookupSystemMobileTunnelResultOutput) HomeAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.HomeAddress }).(pulumi.StringOutput)
+}
+
+// IPv4 address of the NEMO HA (Format: xxx.xxx.xxx.xxx).
+func (o LookupSystemMobileTunnelResultOutput) HomeAgent() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.HomeAgent }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemMobileTunnelResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// NMMO HA registration request lifetime (180 - 65535 sec, default = 65535).
+func (o LookupSystemMobileTunnelResultOutput) Lifetime() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.Lifetime }).(pulumi.IntOutput)
+}
+
+// NEMO authentication key.
+func (o LookupSystemMobileTunnelResultOutput) NMhaeKey() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.NMhaeKey }).(pulumi.StringOutput)
+}
+
+// NEMO authentication key type (ascii or base64).
+func (o LookupSystemMobileTunnelResultOutput) NMhaeKeyType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.NMhaeKeyType }).(pulumi.StringOutput)
+}
+
+// NEMO authentication SPI (default: 256).
+func (o LookupSystemMobileTunnelResultOutput) NMhaeSpi() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.NMhaeSpi }).(pulumi.IntOutput)
+}
+
+// Tunnel name.
+func (o LookupSystemMobileTunnelResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// NEMO network configuration. The structure of `network` block is documented below.
+func (o LookupSystemMobileTunnelResultOutput) Networks() GetSystemMobileTunnelNetworkArrayOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) []GetSystemMobileTunnelNetwork { return v.Networks }).(GetSystemMobileTunnelNetworkArrayOutput)
+}
+
+// NMMO HA registration interval (5 - 300, default = 5).
+func (o LookupSystemMobileTunnelResultOutput) RegInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.RegInterval }).(pulumi.IntOutput)
+}
+
+// Maximum number of NMMO HA registration retries (1 to 30, default = 3).
+func (o LookupSystemMobileTunnelResultOutput) RegRetry() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.RegRetry }).(pulumi.IntOutput)
+}
+
+// Time before lifetime expiraton to send NMMO HA re-registration (5 - 60, default = 60).
+func (o LookupSystemMobileTunnelResultOutput) RenewInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) int { return v.RenewInterval }).(pulumi.IntOutput)
+}
+
+// Select the associated interface name from available options.
+func (o LookupSystemMobileTunnelResultOutput) RoamingInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.RoamingInterface }).(pulumi.StringOutput)
+}
+
+// Enable/disable this mobile tunnel.
+func (o LookupSystemMobileTunnelResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// NEMO tunnnel mode (GRE tunnel).
+func (o LookupSystemMobileTunnelResultOutput) TunnelMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) string { return v.TunnelMode }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemMobileTunnelResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemMobileTunnelResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemMobileTunnelResultOutput{})
 }

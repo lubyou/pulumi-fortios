@@ -21,11 +21,13 @@ class SwitchControllerManagedSwitchArgs:
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchCustomCommandArgs']]]] = None,
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  dynamically_discovered: Optional[pulumi.Input[int]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  firmware_provision_version: Optional[pulumi.Input[str]] = None,
                  flow_identity: Optional[pulumi.Input[str]] = None,
                  fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
@@ -78,11 +80,13 @@ class SwitchControllerManagedSwitchArgs:
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchCustomCommandArgs']]] custom_commands: Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `custom_command` block is documented below.
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] dynamically_discovered: Dynamically discovered FortiSwitch.
         :param pulumi.Input[str] firmware_provision: Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] firmware_provision_version: Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] flow_identity: Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
         :param pulumi.Input[str] fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
@@ -94,6 +98,7 @@ class SwitchControllerManagedSwitchArgs:
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchMirrorArgs']]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
+        :param pulumi.Input['SwitchControllerManagedSwitchN8021xSettingsArgs'] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Interface name.
         :param pulumi.Input[str] override_snmp_community: Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_snmp_sysinfo: Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
@@ -125,7 +130,7 @@ class SwitchControllerManagedSwitchArgs:
         :param pulumi.Input[str] tdr_supported: TDR supported.
         :param pulumi.Input[str] type: Type. Valid values: `static`, `sticky`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[int] version: IGMP snooping querier version.
         """
         pulumi.set(__self__, "fsw_wan1_peer", fsw_wan1_peer)
         pulumi.set(__self__, "switch_id", switch_id)
@@ -137,6 +142,8 @@ class SwitchControllerManagedSwitchArgs:
             pulumi.set(__self__, "delayed_restart_trigger", delayed_restart_trigger)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if dhcp_server_access_list is not None:
+            pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
         if directly_connected is not None:
             pulumi.set(__self__, "directly_connected", directly_connected)
         if dynamic_capability is not None:
@@ -147,6 +154,8 @@ class SwitchControllerManagedSwitchArgs:
             pulumi.set(__self__, "dynamically_discovered", dynamically_discovered)
         if firmware_provision is not None:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
+        if firmware_provision_latest is not None:
+            pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if firmware_provision_version is not None:
             pulumi.set(__self__, "firmware_provision_version", firmware_provision_version)
         if flow_identity is not None:
@@ -309,6 +318,18 @@ class SwitchControllerManagedSwitchArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="dhcpServerAccessList")
+    def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_server_access_list")
+
+    @dhcp_server_access_list.setter
+    def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
     @pulumi.getter(name="directlyConnected")
     def directly_connected(self) -> Optional[pulumi.Input[int]]:
         """
@@ -367,6 +388,18 @@ class SwitchControllerManagedSwitchArgs:
     @firmware_provision.setter
     def firmware_provision(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionLatest")
+    def firmware_provision_latest(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        """
+        return pulumi.get(self, "firmware_provision_latest")
+
+    @firmware_provision_latest.setter
+    def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_latest", value)
 
     @property
     @pulumi.getter(name="firmwareProvisionVersion")
@@ -503,6 +536,9 @@ class SwitchControllerManagedSwitchArgs:
     @property
     @pulumi.getter(name="n8021xSettings")
     def n8021x_settings(self) -> Optional[pulumi.Input['SwitchControllerManagedSwitchN8021xSettingsArgs']]:
+        """
+        Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
+        """
         return pulumi.get(self, "n8021x_settings")
 
     @n8021x_settings.setter
@@ -885,7 +921,7 @@ class SwitchControllerManagedSwitchArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[int]]:
         """
-        FortiSwitch version.
+        IGMP snooping querier version.
         """
         return pulumi.get(self, "version")
 
@@ -901,11 +937,13 @@ class _SwitchControllerManagedSwitchState:
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchCustomCommandArgs']]]] = None,
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  dynamically_discovered: Optional[pulumi.Input[int]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  firmware_provision_version: Optional[pulumi.Input[str]] = None,
                  flow_identity: Optional[pulumi.Input[str]] = None,
                  fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
@@ -958,11 +996,13 @@ class _SwitchControllerManagedSwitchState:
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchCustomCommandArgs']]] custom_commands: Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `custom_command` block is documented below.
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] dynamically_discovered: Dynamically discovered FortiSwitch.
         :param pulumi.Input[str] firmware_provision: Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] firmware_provision_version: Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] flow_identity: Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
         :param pulumi.Input[str] fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
@@ -975,6 +1015,7 @@ class _SwitchControllerManagedSwitchState:
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerManagedSwitchMirrorArgs']]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
+        :param pulumi.Input['SwitchControllerManagedSwitchN8021xSettingsArgs'] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Interface name.
         :param pulumi.Input[str] override_snmp_community: Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_snmp_sysinfo: Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
@@ -1007,7 +1048,7 @@ class _SwitchControllerManagedSwitchState:
         :param pulumi.Input[str] tdr_supported: TDR supported.
         :param pulumi.Input[str] type: Type. Valid values: `static`, `sticky`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[int] version: IGMP snooping querier version.
         """
         if access_profile is not None:
             pulumi.set(__self__, "access_profile", access_profile)
@@ -1017,6 +1058,8 @@ class _SwitchControllerManagedSwitchState:
             pulumi.set(__self__, "delayed_restart_trigger", delayed_restart_trigger)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if dhcp_server_access_list is not None:
+            pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
         if directly_connected is not None:
             pulumi.set(__self__, "directly_connected", directly_connected)
         if dynamic_capability is not None:
@@ -1027,6 +1070,8 @@ class _SwitchControllerManagedSwitchState:
             pulumi.set(__self__, "dynamically_discovered", dynamically_discovered)
         if firmware_provision is not None:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
+        if firmware_provision_latest is not None:
+            pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if firmware_provision_version is not None:
             pulumi.set(__self__, "firmware_provision_version", firmware_provision_version)
         if flow_identity is not None:
@@ -1169,6 +1214,18 @@ class _SwitchControllerManagedSwitchState:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="dhcpServerAccessList")
+    def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_server_access_list")
+
+    @dhcp_server_access_list.setter
+    def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
     @pulumi.getter(name="directlyConnected")
     def directly_connected(self) -> Optional[pulumi.Input[int]]:
         """
@@ -1227,6 +1284,18 @@ class _SwitchControllerManagedSwitchState:
     @firmware_provision.setter
     def firmware_provision(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionLatest")
+    def firmware_provision_latest(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        """
+        return pulumi.get(self, "firmware_provision_latest")
+
+    @firmware_provision_latest.setter
+    def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_latest", value)
 
     @property
     @pulumi.getter(name="firmwareProvisionVersion")
@@ -1375,6 +1444,9 @@ class _SwitchControllerManagedSwitchState:
     @property
     @pulumi.getter(name="n8021xSettings")
     def n8021x_settings(self) -> Optional[pulumi.Input['SwitchControllerManagedSwitchN8021xSettingsArgs']]:
+        """
+        Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
+        """
         return pulumi.get(self, "n8021x_settings")
 
     @n8021x_settings.setter
@@ -1769,7 +1841,7 @@ class _SwitchControllerManagedSwitchState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[int]]:
         """
-        FortiSwitch version.
+        IGMP snooping querier version.
         """
         return pulumi.get(self, "version")
 
@@ -1787,11 +1859,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchCustomCommandArgs']]]]] = None,
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  dynamically_discovered: Optional[pulumi.Input[int]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  firmware_provision_version: Optional[pulumi.Input[str]] = None,
                  flow_identity: Optional[pulumi.Input[str]] = None,
                  fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
@@ -1858,11 +1932,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchCustomCommandArgs']]]] custom_commands: Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `custom_command` block is documented below.
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] dynamically_discovered: Dynamically discovered FortiSwitch.
         :param pulumi.Input[str] firmware_provision: Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] firmware_provision_version: Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] flow_identity: Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
         :param pulumi.Input[str] fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
@@ -1875,6 +1951,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchMirrorArgs']]]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
+        :param pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchN8021xSettingsArgs']] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Interface name.
         :param pulumi.Input[str] override_snmp_community: Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_snmp_sysinfo: Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
@@ -1907,7 +1984,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         :param pulumi.Input[str] tdr_supported: TDR supported.
         :param pulumi.Input[str] type: Type. Valid values: `static`, `sticky`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[int] version: IGMP snooping querier version.
         """
         ...
     @overload
@@ -1947,11 +2024,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchCustomCommandArgs']]]]] = None,
                  delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  directly_connected: Optional[pulumi.Input[int]] = None,
                  dynamic_capability: Optional[pulumi.Input[int]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  dynamically_discovered: Optional[pulumi.Input[int]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  firmware_provision_version: Optional[pulumi.Input[str]] = None,
                  flow_identity: Optional[pulumi.Input[str]] = None,
                  fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
@@ -2005,6 +2084,8 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -2014,11 +2095,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             __props__.__dict__["custom_commands"] = custom_commands
             __props__.__dict__["delayed_restart_trigger"] = delayed_restart_trigger
             __props__.__dict__["description"] = description
+            __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
             __props__.__dict__["directly_connected"] = directly_connected
             __props__.__dict__["dynamic_capability"] = dynamic_capability
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["dynamically_discovered"] = dynamically_discovered
             __props__.__dict__["firmware_provision"] = firmware_provision
+            __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
             __props__.__dict__["firmware_provision_version"] = firmware_provision_version
             __props__.__dict__["flow_identity"] = flow_identity
             __props__.__dict__["fsw_wan1_admin"] = fsw_wan1_admin
@@ -2083,11 +2166,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
             custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchCustomCommandArgs']]]]] = None,
             delayed_restart_trigger: Optional[pulumi.Input[int]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
             directly_connected: Optional[pulumi.Input[int]] = None,
             dynamic_capability: Optional[pulumi.Input[int]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             dynamically_discovered: Optional[pulumi.Input[int]] = None,
             firmware_provision: Optional[pulumi.Input[str]] = None,
+            firmware_provision_latest: Optional[pulumi.Input[str]] = None,
             firmware_provision_version: Optional[pulumi.Input[str]] = None,
             flow_identity: Optional[pulumi.Input[str]] = None,
             fsw_wan1_admin: Optional[pulumi.Input[str]] = None,
@@ -2145,11 +2230,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchCustomCommandArgs']]]] custom_commands: Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch. The structure of `custom_command` block is documented below.
         :param pulumi.Input[int] delayed_restart_trigger: Delayed restart triggered for this FortiSwitch.
         :param pulumi.Input[str] description: Description.
+        :param pulumi.Input[str] dhcp_server_access_list: DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[int] directly_connected: Directly connected FortiSwitch.
         :param pulumi.Input[int] dynamic_capability: List of features this FortiSwitch supports (not configurable) that is sent to the FortiGate device for subsequent configuration initiated by the FortiGate device.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] dynamically_discovered: Dynamically discovered FortiSwitch.
         :param pulumi.Input[str] firmware_provision: Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] firmware_provision_version: Firmware version to provision to this FortiSwitch on bootup (major.minor.build, i.e. 6.2.1234).
         :param pulumi.Input[str] flow_identity: Flow-tracking netflow ipfix switch identity in hex format(00000000-FFFFFFFF default=0).
         :param pulumi.Input[str] fsw_wan1_admin: FortiSwitch WAN1 admin status; enable to authorize the FortiSwitch as a managed switch. Valid values: `discovered`, `disable`, `enable`.
@@ -2162,6 +2249,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         :param pulumi.Input[int] max_allowed_trunk_members: FortiSwitch maximum allowed trunk members.
         :param pulumi.Input[str] mclag_igmp_snooping_aware: Enable/disable MCLAG IGMP-snooping awareness. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchMirrorArgs']]]] mirrors: Configuration method to edit FortiSwitch packet mirror. The structure of `mirror` block is documented below.
+        :param pulumi.Input[pulumi.InputType['SwitchControllerManagedSwitchN8021xSettingsArgs']] n8021x_settings: Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
         :param pulumi.Input[str] name: Interface name.
         :param pulumi.Input[str] override_snmp_community: Enable/disable overriding the global SNMP communities. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] override_snmp_sysinfo: Enable/disable overriding the global SNMP system information. Valid values: `disable`, `enable`.
@@ -2194,7 +2282,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         :param pulumi.Input[str] tdr_supported: TDR supported.
         :param pulumi.Input[str] type: Type. Valid values: `static`, `sticky`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
-        :param pulumi.Input[int] version: FortiSwitch version.
+        :param pulumi.Input[int] version: IGMP snooping querier version.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -2204,11 +2292,13 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         __props__.__dict__["custom_commands"] = custom_commands
         __props__.__dict__["delayed_restart_trigger"] = delayed_restart_trigger
         __props__.__dict__["description"] = description
+        __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
         __props__.__dict__["directly_connected"] = directly_connected
         __props__.__dict__["dynamic_capability"] = dynamic_capability
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["dynamically_discovered"] = dynamically_discovered
         __props__.__dict__["firmware_provision"] = firmware_provision
+        __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
         __props__.__dict__["firmware_provision_version"] = firmware_provision_version
         __props__.__dict__["flow_identity"] = flow_identity
         __props__.__dict__["fsw_wan1_admin"] = fsw_wan1_admin
@@ -2290,6 +2380,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         return pulumi.get(self, "description")
 
     @property
+    @pulumi.getter(name="dhcpServerAccessList")
+    def dhcp_server_access_list(self) -> pulumi.Output[str]:
+        """
+        DHCP snooping server access list. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_server_access_list")
+
+    @property
     @pulumi.getter(name="directlyConnected")
     def directly_connected(self) -> pulumi.Output[int]:
         """
@@ -2328,6 +2426,14 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
         Enable/disable provisioning of firmware to FortiSwitches on join connection. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "firmware_provision")
+
+    @property
+    @pulumi.getter(name="firmwareProvisionLatest")
+    def firmware_provision_latest(self) -> pulumi.Output[str]:
+        """
+        Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        """
+        return pulumi.get(self, "firmware_provision_latest")
 
     @property
     @pulumi.getter(name="firmwareProvisionVersion")
@@ -2428,6 +2534,9 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
     @property
     @pulumi.getter(name="n8021xSettings")
     def n8021x_settings(self) -> pulumi.Output[Optional['outputs.SwitchControllerManagedSwitchN8021xSettings']]:
+        """
+        Configuration method to edit FortiSwitch 802.1X global settings. The structure of `n802_1x_settings` block is documented below.
+        """
         return pulumi.get(self, "n8021x_settings")
 
     @property
@@ -2690,7 +2799,7 @@ class SwitchControllerManagedSwitch(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[int]:
         """
-        FortiSwitch version.
+        IGMP snooping querier version.
         """
         return pulumi.get(self, "version")
 

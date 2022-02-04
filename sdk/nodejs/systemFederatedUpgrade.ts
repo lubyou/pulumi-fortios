@@ -51,13 +51,29 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
      */
     public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
+     * Serial number of the node to include.
+     */
+    public readonly failureDevice!: pulumi.Output<string>;
+    /**
+     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+     */
+    public readonly failureReason!: pulumi.Output<string>;
+    /**
+     * The index of the next image to upgrade to.
+     */
+    public readonly nextPathIndex!: pulumi.Output<number>;
+    /**
      * Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
      */
     public readonly nodeLists!: pulumi.Output<outputs.SystemFederatedUpgradeNodeList[] | undefined>;
     /**
-     * Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+     * Current status of the upgrade.
      */
     public readonly status!: pulumi.Output<string>;
+    /**
+     * Unique identifier for this upgrade.
+     */
+    public readonly upgradeId!: pulumi.Output<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -72,25 +88,31 @@ export class SystemFederatedUpgrade extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFederatedUpgradeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFederatedUpgradeArgs | SystemFederatedUpgradeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFederatedUpgradeState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["nodeLists"] = state ? state.nodeLists : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["failureDevice"] = state ? state.failureDevice : undefined;
+            resourceInputs["failureReason"] = state ? state.failureReason : undefined;
+            resourceInputs["nextPathIndex"] = state ? state.nextPathIndex : undefined;
+            resourceInputs["nodeLists"] = state ? state.nodeLists : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["upgradeId"] = state ? state.upgradeId : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFederatedUpgradeArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["nodeLists"] = args ? args.nodeLists : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["failureDevice"] = args ? args.failureDevice : undefined;
+            resourceInputs["failureReason"] = args ? args.failureReason : undefined;
+            resourceInputs["nextPathIndex"] = args ? args.nextPathIndex : undefined;
+            resourceInputs["nodeLists"] = args ? args.nodeLists : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["upgradeId"] = args ? args.upgradeId : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFederatedUpgrade.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFederatedUpgrade.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -103,13 +125,29 @@ export interface SystemFederatedUpgradeState {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Serial number of the node to include.
+     */
+    failureDevice?: pulumi.Input<string>;
+    /**
+     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+     */
+    failureReason?: pulumi.Input<string>;
+    /**
+     * The index of the next image to upgrade to.
+     */
+    nextPathIndex?: pulumi.Input<number>;
+    /**
      * Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
      */
     nodeLists?: pulumi.Input<pulumi.Input<inputs.SystemFederatedUpgradeNodeList>[]>;
     /**
-     * Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+     * Current status of the upgrade.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Unique identifier for this upgrade.
+     */
+    upgradeId?: pulumi.Input<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -125,13 +163,29 @@ export interface SystemFederatedUpgradeArgs {
      */
     dynamicSortSubtable?: pulumi.Input<string>;
     /**
+     * Serial number of the node to include.
+     */
+    failureDevice?: pulumi.Input<string>;
+    /**
+     * Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+     */
+    failureReason?: pulumi.Input<string>;
+    /**
+     * The index of the next image to upgrade to.
+     */
+    nextPathIndex?: pulumi.Input<number>;
+    /**
      * Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
      */
     nodeLists?: pulumi.Input<pulumi.Input<inputs.SystemFederatedUpgradeNodeList>[]>;
     /**
-     * Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+     * Current status of the upgrade.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Unique identifier for this upgrade.
+     */
+    upgradeId?: pulumi.Input<number>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

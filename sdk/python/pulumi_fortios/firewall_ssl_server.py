@@ -39,8 +39,8 @@ class FirewallSslServerArgs:
         :param pulumi.Input[str] ssl_algorithm: Relative strength of encryption algorithms accepted in negotiation. Valid values: `high`, `medium`, `low`.
         :param pulumi.Input[str] ssl_client_renegotiation: Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
-        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate.
+        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate.
         :param pulumi.Input[str] ssl_mode: SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
         :param pulumi.Input[str] ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_rewrite: Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
@@ -186,7 +186,7 @@ class FirewallSslServerArgs:
     @pulumi.getter(name="sslMaxVersion")
     def ssl_max_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        Highest SSL/TLS version to negotiate.
         """
         return pulumi.get(self, "ssl_max_version")
 
@@ -198,7 +198,7 @@ class FirewallSslServerArgs:
     @pulumi.getter(name="sslMinVersion")
     def ssl_min_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        Lowest SSL/TLS version to negotiate.
         """
         return pulumi.get(self, "ssl_min_version")
 
@@ -284,8 +284,8 @@ class _FirewallSslServerState:
         :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
         :param pulumi.Input[str] ssl_client_renegotiation: Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
-        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate.
+        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate.
         :param pulumi.Input[str] ssl_mode: SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
         :param pulumi.Input[str] ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_rewrite: Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
@@ -434,7 +434,7 @@ class _FirewallSslServerState:
     @pulumi.getter(name="sslMaxVersion")
     def ssl_max_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        Highest SSL/TLS version to negotiate.
         """
         return pulumi.get(self, "ssl_max_version")
 
@@ -446,7 +446,7 @@ class _FirewallSslServerState:
     @pulumi.getter(name="sslMinVersion")
     def ssl_min_version(self) -> Optional[pulumi.Input[str]]:
         """
-        Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        Lowest SSL/TLS version to negotiate.
         """
         return pulumi.get(self, "ssl_min_version")
 
@@ -570,8 +570,8 @@ class FirewallSslServer(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
         :param pulumi.Input[str] ssl_client_renegotiation: Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
-        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate.
+        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate.
         :param pulumi.Input[str] ssl_mode: SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
         :param pulumi.Input[str] ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_rewrite: Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
@@ -655,6 +655,8 @@ class FirewallSslServer(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -722,8 +724,8 @@ class FirewallSslServer(pulumi.CustomResource):
         :param pulumi.Input[str] ssl_cert: Name of certificate for SSL connections to this server (default = "Fortinet_CA_SSL").
         :param pulumi.Input[str] ssl_client_renegotiation: Allow or block client renegotiation by server. Valid values: `allow`, `deny`, `secure`.
         :param pulumi.Input[str] ssl_dh_bits: Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
-        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
-        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        :param pulumi.Input[str] ssl_max_version: Highest SSL/TLS version to negotiate.
+        :param pulumi.Input[str] ssl_min_version: Lowest SSL/TLS version to negotiate.
         :param pulumi.Input[str] ssl_mode: SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
         :param pulumi.Input[str] ssl_send_empty_frags: Enable/disable sending empty fragments to avoid attack on CBC IV. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] url_rewrite: Enable/disable rewriting the URL. Valid values: `enable`, `disable`.
@@ -826,7 +828,7 @@ class FirewallSslServer(pulumi.CustomResource):
     @pulumi.getter(name="sslMaxVersion")
     def ssl_max_version(self) -> pulumi.Output[str]:
         """
-        Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        Highest SSL/TLS version to negotiate.
         """
         return pulumi.get(self, "ssl_max_version")
 
@@ -834,7 +836,7 @@ class FirewallSslServer(pulumi.CustomResource):
     @pulumi.getter(name="sslMinVersion")
     def ssl_min_version(self) -> pulumi.Output[str]:
         """
-        Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+        Lowest SSL/TLS version to negotiate.
         """
         return pulumi.get(self, "ssl_min_version")
 

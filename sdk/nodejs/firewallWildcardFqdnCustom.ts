@@ -96,31 +96,29 @@ export class FirewallWildcardFqdnCustom extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallWildcardFqdnCustomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallWildcardFqdnCustomArgs | FirewallWildcardFqdnCustomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallWildcardFqdnCustomState | undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
-            inputs["wildcardFqdn"] = state ? state.wildcardFqdn : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["wildcardFqdn"] = state ? state.wildcardFqdn : undefined;
         } else {
             const args = argsOrState as FirewallWildcardFqdnCustomArgs | undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
-            inputs["wildcardFqdn"] = args ? args.wildcardFqdn : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["wildcardFqdn"] = args ? args.wildcardFqdn : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallWildcardFqdnCustom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallWildcardFqdnCustom.__pulumiType, name, resourceInputs, opts);
     }
 }
 

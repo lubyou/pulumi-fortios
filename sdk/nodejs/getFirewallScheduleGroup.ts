@@ -13,9 +13,7 @@ export function getFirewallScheduleGroup(args: GetFirewallScheduleGroupArgs, opt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallScheduleGroup:GetFirewallScheduleGroup", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -45,6 +43,10 @@ export interface GetFirewallScheduleGroupResult {
      */
     readonly color: number;
     /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -57,4 +59,22 @@ export interface GetFirewallScheduleGroupResult {
      */
     readonly name: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallScheduleGroupOutput(args: GetFirewallScheduleGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallScheduleGroupResult> {
+    return pulumi.output(args).apply(a => getFirewallScheduleGroup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallScheduleGroup.
+ */
+export interface GetFirewallScheduleGroupOutputArgs {
+    /**
+     * Specify the name of the desired firewallschedule group.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

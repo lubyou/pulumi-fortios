@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallWildcardFqdnCustom`.
 func GetFirewallWildcardFqdnCustomList(ctx *pulumi.Context, args *GetFirewallWildcardFqdnCustomListArgs, opts ...pulumi.InvokeOption) (*GetFirewallWildcardFqdnCustomListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallWildcardFqdnCustomListResult
 	err := ctx.Invoke("fortios:index/getFirewallWildcardFqdnCustomList:GetFirewallWildcardFqdnCustomList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallWildcardFqdnCustomListResult struct {
 	// A list of the `FirewallWildcardFqdnCustom`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallWildcardFqdnCustomListOutput(ctx *pulumi.Context, args GetFirewallWildcardFqdnCustomListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallWildcardFqdnCustomListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallWildcardFqdnCustomListResult, error) {
+			args := v.(GetFirewallWildcardFqdnCustomListArgs)
+			r, err := GetFirewallWildcardFqdnCustomList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallWildcardFqdnCustomListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallWildcardFqdnCustomList.
+type GetFirewallWildcardFqdnCustomListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallWildcardFqdnCustomListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallWildcardFqdnCustomListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallWildcardFqdnCustomList.
+type GetFirewallWildcardFqdnCustomListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallWildcardFqdnCustomListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallWildcardFqdnCustomListResult)(nil)).Elem()
+}
+
+func (o GetFirewallWildcardFqdnCustomListResultOutput) ToGetFirewallWildcardFqdnCustomListResultOutput() GetFirewallWildcardFqdnCustomListResultOutput {
+	return o
+}
+
+func (o GetFirewallWildcardFqdnCustomListResultOutput) ToGetFirewallWildcardFqdnCustomListResultOutputWithContext(ctx context.Context) GetFirewallWildcardFqdnCustomListResultOutput {
+	return o
+}
+
+func (o GetFirewallWildcardFqdnCustomListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnCustomListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallWildcardFqdnCustomListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnCustomListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallWildcardFqdnCustom`.
+func (o GetFirewallWildcardFqdnCustomListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnCustomListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallWildcardFqdnCustomListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallWildcardFqdnCustomListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallWildcardFqdnCustomListResultOutput{})
 }

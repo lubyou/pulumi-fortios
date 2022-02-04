@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -13,9 +12,7 @@ export function getJSONGenericAPI(args: GetJSONGenericAPIArgs, opts?: pulumi.Inv
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getJSONGenericAPI:GetJSONGenericAPI", {
         "path": args.path,
         "specialparams": args.specialparams,
@@ -59,4 +56,23 @@ export interface GetJSONGenericAPIResult {
      */
     readonly specialparams?: string;
     readonly vdomparam?: string;
+}
+
+export function getJSONGenericAPIOutput(args: GetJSONGenericAPIOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetJSONGenericAPIResult> {
+    return pulumi.output(args).apply(a => getJSONGenericAPI(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetJSONGenericAPI.
+ */
+export interface GetJSONGenericAPIOutputArgs {
+    /**
+     * FortiAPI URL path.
+     */
+    path: pulumi.Input<string>;
+    /**
+     * URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
+     */
+    specialparams?: pulumi.Input<string>;
+    vdomparam?: pulumi.Input<string>;
 }

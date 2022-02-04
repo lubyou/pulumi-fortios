@@ -34,7 +34,7 @@ class DnsfilterProfileArgs:
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a DnsfilterProfile resource.
-        :param pulumi.Input[str] block_action: Action to take for blocked domains. Valid values: `block`, `redirect`.
+        :param pulumi.Input[str] block_action: Action to take for blocked domains.
         :param pulumi.Input[str] block_botnet: Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileDnsTranslationArgs']]] dns_translations: DNS translation settings. The structure of `dns_translation` block is documented below.
@@ -91,7 +91,7 @@ class DnsfilterProfileArgs:
     @pulumi.getter(name="blockAction")
     def block_action(self) -> Optional[pulumi.Input[str]]:
         """
-        Action to take for blocked domains. Valid values: `block`, `redirect`.
+        Action to take for blocked domains.
         """
         return pulumi.get(self, "block_action")
 
@@ -314,7 +314,7 @@ class _DnsfilterProfileState:
                  youtube_restrict: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering DnsfilterProfile resources.
-        :param pulumi.Input[str] block_action: Action to take for blocked domains. Valid values: `block`, `redirect`.
+        :param pulumi.Input[str] block_action: Action to take for blocked domains.
         :param pulumi.Input[str] block_botnet: Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[Sequence[pulumi.Input['DnsfilterProfileDnsTranslationArgs']]] dns_translations: DNS translation settings. The structure of `dns_translation` block is documented below.
@@ -371,7 +371,7 @@ class _DnsfilterProfileState:
     @pulumi.getter(name="blockAction")
     def block_action(self) -> Optional[pulumi.Input[str]]:
         """
-        Action to take for blocked domains. Valid values: `block`, `redirect`.
+        Action to take for blocked domains.
         """
         return pulumi.get(self, "block_action")
 
@@ -658,7 +658,7 @@ class DnsfilterProfile(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] block_action: Action to take for blocked domains. Valid values: `block`, `redirect`.
+        :param pulumi.Input[str] block_action: Action to take for blocked domains.
         :param pulumi.Input[str] block_botnet: Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileDnsTranslationArgs']]]] dns_translations: DNS translation settings. The structure of `dns_translation` block is documented below.
@@ -782,6 +782,8 @@ class DnsfilterProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -838,7 +840,7 @@ class DnsfilterProfile(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] block_action: Action to take for blocked domains. Valid values: `block`, `redirect`.
+        :param pulumi.Input[str] block_action: Action to take for blocked domains.
         :param pulumi.Input[str] block_botnet: Enable/disable blocking botnet C&C DNS lookups. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DnsfilterProfileDnsTranslationArgs']]]] dns_translations: DNS translation settings. The structure of `dns_translation` block is documented below.
@@ -883,7 +885,7 @@ class DnsfilterProfile(pulumi.CustomResource):
     @pulumi.getter(name="blockAction")
     def block_action(self) -> pulumi.Output[str]:
         """
-        Action to take for blocked domains. Valid values: `block`, `redirect`.
+        Action to take for blocked domains.
         """
         return pulumi.get(self, "block_action")
 

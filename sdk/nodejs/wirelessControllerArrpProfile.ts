@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -50,6 +51,18 @@ export class WirelessControllerArrpProfile extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+     */
+    public readonly darrpOptimize!: pulumi.Output<number>;
+    /**
+     * Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+     */
+    public readonly darrpOptimizeSchedules!: pulumi.Output<outputs.WirelessControllerArrpProfileDarrpOptimizeSchedule[] | undefined>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
      * Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
      */
     public readonly includeDfsChannel!: pulumi.Output<string>;
@@ -62,9 +75,13 @@ export class WirelessControllerArrpProfile extends pulumi.CustomResource {
      */
     public readonly monitorPeriod!: pulumi.Output<number>;
     /**
-     * WiFi ARRP profile name.
+     * Schedule name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly overrideDarrpOptimize!: pulumi.Output<string>;
     /**
      * Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
      */
@@ -135,57 +152,63 @@ export class WirelessControllerArrpProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerArrpProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerArrpProfileArgs | WirelessControllerArrpProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerArrpProfileState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["includeDfsChannel"] = state ? state.includeDfsChannel : undefined;
-            inputs["includeWeatherChannel"] = state ? state.includeWeatherChannel : undefined;
-            inputs["monitorPeriod"] = state ? state.monitorPeriod : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["selectionPeriod"] = state ? state.selectionPeriod : undefined;
-            inputs["thresholdAp"] = state ? state.thresholdAp : undefined;
-            inputs["thresholdChannelLoad"] = state ? state.thresholdChannelLoad : undefined;
-            inputs["thresholdNoiseFloor"] = state ? state.thresholdNoiseFloor : undefined;
-            inputs["thresholdRxErrors"] = state ? state.thresholdRxErrors : undefined;
-            inputs["thresholdSpectralRssi"] = state ? state.thresholdSpectralRssi : undefined;
-            inputs["thresholdTxRetries"] = state ? state.thresholdTxRetries : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["weightChannelLoad"] = state ? state.weightChannelLoad : undefined;
-            inputs["weightDfsChannel"] = state ? state.weightDfsChannel : undefined;
-            inputs["weightManagedAp"] = state ? state.weightManagedAp : undefined;
-            inputs["weightNoiseFloor"] = state ? state.weightNoiseFloor : undefined;
-            inputs["weightRogueAp"] = state ? state.weightRogueAp : undefined;
-            inputs["weightSpectralRssi"] = state ? state.weightSpectralRssi : undefined;
-            inputs["weightWeatherChannel"] = state ? state.weightWeatherChannel : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
+            resourceInputs["darrpOptimizeSchedules"] = state ? state.darrpOptimizeSchedules : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["includeDfsChannel"] = state ? state.includeDfsChannel : undefined;
+            resourceInputs["includeWeatherChannel"] = state ? state.includeWeatherChannel : undefined;
+            resourceInputs["monitorPeriod"] = state ? state.monitorPeriod : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["overrideDarrpOptimize"] = state ? state.overrideDarrpOptimize : undefined;
+            resourceInputs["selectionPeriod"] = state ? state.selectionPeriod : undefined;
+            resourceInputs["thresholdAp"] = state ? state.thresholdAp : undefined;
+            resourceInputs["thresholdChannelLoad"] = state ? state.thresholdChannelLoad : undefined;
+            resourceInputs["thresholdNoiseFloor"] = state ? state.thresholdNoiseFloor : undefined;
+            resourceInputs["thresholdRxErrors"] = state ? state.thresholdRxErrors : undefined;
+            resourceInputs["thresholdSpectralRssi"] = state ? state.thresholdSpectralRssi : undefined;
+            resourceInputs["thresholdTxRetries"] = state ? state.thresholdTxRetries : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["weightChannelLoad"] = state ? state.weightChannelLoad : undefined;
+            resourceInputs["weightDfsChannel"] = state ? state.weightDfsChannel : undefined;
+            resourceInputs["weightManagedAp"] = state ? state.weightManagedAp : undefined;
+            resourceInputs["weightNoiseFloor"] = state ? state.weightNoiseFloor : undefined;
+            resourceInputs["weightRogueAp"] = state ? state.weightRogueAp : undefined;
+            resourceInputs["weightSpectralRssi"] = state ? state.weightSpectralRssi : undefined;
+            resourceInputs["weightWeatherChannel"] = state ? state.weightWeatherChannel : undefined;
         } else {
             const args = argsOrState as WirelessControllerArrpProfileArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["includeDfsChannel"] = args ? args.includeDfsChannel : undefined;
-            inputs["includeWeatherChannel"] = args ? args.includeWeatherChannel : undefined;
-            inputs["monitorPeriod"] = args ? args.monitorPeriod : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["selectionPeriod"] = args ? args.selectionPeriod : undefined;
-            inputs["thresholdAp"] = args ? args.thresholdAp : undefined;
-            inputs["thresholdChannelLoad"] = args ? args.thresholdChannelLoad : undefined;
-            inputs["thresholdNoiseFloor"] = args ? args.thresholdNoiseFloor : undefined;
-            inputs["thresholdRxErrors"] = args ? args.thresholdRxErrors : undefined;
-            inputs["thresholdSpectralRssi"] = args ? args.thresholdSpectralRssi : undefined;
-            inputs["thresholdTxRetries"] = args ? args.thresholdTxRetries : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["weightChannelLoad"] = args ? args.weightChannelLoad : undefined;
-            inputs["weightDfsChannel"] = args ? args.weightDfsChannel : undefined;
-            inputs["weightManagedAp"] = args ? args.weightManagedAp : undefined;
-            inputs["weightNoiseFloor"] = args ? args.weightNoiseFloor : undefined;
-            inputs["weightRogueAp"] = args ? args.weightRogueAp : undefined;
-            inputs["weightSpectralRssi"] = args ? args.weightSpectralRssi : undefined;
-            inputs["weightWeatherChannel"] = args ? args.weightWeatherChannel : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
+            resourceInputs["darrpOptimizeSchedules"] = args ? args.darrpOptimizeSchedules : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["includeDfsChannel"] = args ? args.includeDfsChannel : undefined;
+            resourceInputs["includeWeatherChannel"] = args ? args.includeWeatherChannel : undefined;
+            resourceInputs["monitorPeriod"] = args ? args.monitorPeriod : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["overrideDarrpOptimize"] = args ? args.overrideDarrpOptimize : undefined;
+            resourceInputs["selectionPeriod"] = args ? args.selectionPeriod : undefined;
+            resourceInputs["thresholdAp"] = args ? args.thresholdAp : undefined;
+            resourceInputs["thresholdChannelLoad"] = args ? args.thresholdChannelLoad : undefined;
+            resourceInputs["thresholdNoiseFloor"] = args ? args.thresholdNoiseFloor : undefined;
+            resourceInputs["thresholdRxErrors"] = args ? args.thresholdRxErrors : undefined;
+            resourceInputs["thresholdSpectralRssi"] = args ? args.thresholdSpectralRssi : undefined;
+            resourceInputs["thresholdTxRetries"] = args ? args.thresholdTxRetries : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["weightChannelLoad"] = args ? args.weightChannelLoad : undefined;
+            resourceInputs["weightDfsChannel"] = args ? args.weightDfsChannel : undefined;
+            resourceInputs["weightManagedAp"] = args ? args.weightManagedAp : undefined;
+            resourceInputs["weightNoiseFloor"] = args ? args.weightNoiseFloor : undefined;
+            resourceInputs["weightRogueAp"] = args ? args.weightRogueAp : undefined;
+            resourceInputs["weightSpectralRssi"] = args ? args.weightSpectralRssi : undefined;
+            resourceInputs["weightWeatherChannel"] = args ? args.weightWeatherChannel : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerArrpProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerArrpProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -197,6 +220,18 @@ export interface WirelessControllerArrpProfileState {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+     */
+    darrpOptimize?: pulumi.Input<number>;
+    /**
+     * Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+     */
+    darrpOptimizeSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerArrpProfileDarrpOptimizeSchedule>[]>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     /**
      * Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
      */
@@ -210,9 +245,13 @@ export interface WirelessControllerArrpProfileState {
      */
     monitorPeriod?: pulumi.Input<number>;
     /**
-     * WiFi ARRP profile name.
+     * Schedule name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+     */
+    overrideDarrpOptimize?: pulumi.Input<string>;
     /**
      * Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
      */
@@ -284,6 +323,18 @@ export interface WirelessControllerArrpProfileArgs {
      */
     comment?: pulumi.Input<string>;
     /**
+     * Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+     */
+    darrpOptimize?: pulumi.Input<number>;
+    /**
+     * Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrpOptimizeSchedules` block is documented below.
+     */
+    darrpOptimizeSchedules?: pulumi.Input<pulumi.Input<inputs.WirelessControllerArrpProfileDarrpOptimizeSchedule>[]>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
      */
     includeDfsChannel?: pulumi.Input<string>;
@@ -296,9 +347,13 @@ export interface WirelessControllerArrpProfileArgs {
      */
     monitorPeriod?: pulumi.Input<number>;
     /**
-     * WiFi ARRP profile name.
+     * Schedule name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+     */
+    overrideDarrpOptimize?: pulumi.Input<string>;
     /**
      * Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
      */

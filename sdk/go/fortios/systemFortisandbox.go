@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,6 +78,7 @@ func NewSystemFortisandbox(ctx *pulumi.Context,
 		args = &SystemFortisandboxArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFortisandbox
 	err := ctx.RegisterResource("fortios:index/systemFortisandbox:SystemFortisandbox", name, args, &resource, opts...)
 	if err != nil {
@@ -208,7 +209,7 @@ type SystemFortisandboxInput interface {
 }
 
 func (*SystemFortisandbox) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFortisandbox)(nil))
+	return reflect.TypeOf((**SystemFortisandbox)(nil)).Elem()
 }
 
 func (i *SystemFortisandbox) ToSystemFortisandboxOutput() SystemFortisandboxOutput {
@@ -217,35 +218,6 @@ func (i *SystemFortisandbox) ToSystemFortisandboxOutput() SystemFortisandboxOutp
 
 func (i *SystemFortisandbox) ToSystemFortisandboxOutputWithContext(ctx context.Context) SystemFortisandboxOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxOutput)
-}
-
-func (i *SystemFortisandbox) ToSystemFortisandboxPtrOutput() SystemFortisandboxPtrOutput {
-	return i.ToSystemFortisandboxPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFortisandbox) ToSystemFortisandboxPtrOutputWithContext(ctx context.Context) SystemFortisandboxPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxPtrOutput)
-}
-
-type SystemFortisandboxPtrInput interface {
-	pulumi.Input
-
-	ToSystemFortisandboxPtrOutput() SystemFortisandboxPtrOutput
-	ToSystemFortisandboxPtrOutputWithContext(ctx context.Context) SystemFortisandboxPtrOutput
-}
-
-type systemFortisandboxPtrType SystemFortisandboxArgs
-
-func (*systemFortisandboxPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFortisandbox)(nil))
-}
-
-func (i *systemFortisandboxPtrType) ToSystemFortisandboxPtrOutput() SystemFortisandboxPtrOutput {
-	return i.ToSystemFortisandboxPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFortisandboxPtrType) ToSystemFortisandboxPtrOutputWithContext(ctx context.Context) SystemFortisandboxPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxPtrOutput)
 }
 
 // SystemFortisandboxArrayInput is an input type that accepts SystemFortisandboxArray and SystemFortisandboxArrayOutput values.
@@ -262,7 +234,7 @@ type SystemFortisandboxArrayInput interface {
 type SystemFortisandboxArray []SystemFortisandboxInput
 
 func (SystemFortisandboxArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFortisandbox)(nil))
+	return reflect.TypeOf((*[]*SystemFortisandbox)(nil)).Elem()
 }
 
 func (i SystemFortisandboxArray) ToSystemFortisandboxArrayOutput() SystemFortisandboxArrayOutput {
@@ -287,7 +259,7 @@ type SystemFortisandboxMapInput interface {
 type SystemFortisandboxMap map[string]SystemFortisandboxInput
 
 func (SystemFortisandboxMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFortisandbox)(nil))
+	return reflect.TypeOf((*map[string]*SystemFortisandbox)(nil)).Elem()
 }
 
 func (i SystemFortisandboxMap) ToSystemFortisandboxMapOutput() SystemFortisandboxMapOutput {
@@ -298,12 +270,10 @@ func (i SystemFortisandboxMap) ToSystemFortisandboxMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFortisandboxMapOutput)
 }
 
-type SystemFortisandboxOutput struct {
-	*pulumi.OutputState
-}
+type SystemFortisandboxOutput struct{ *pulumi.OutputState }
 
 func (SystemFortisandboxOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFortisandbox)(nil))
+	return reflect.TypeOf((**SystemFortisandbox)(nil)).Elem()
 }
 
 func (o SystemFortisandboxOutput) ToSystemFortisandboxOutput() SystemFortisandboxOutput {
@@ -314,36 +284,10 @@ func (o SystemFortisandboxOutput) ToSystemFortisandboxOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemFortisandboxOutput) ToSystemFortisandboxPtrOutput() SystemFortisandboxPtrOutput {
-	return o.ToSystemFortisandboxPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFortisandboxOutput) ToSystemFortisandboxPtrOutputWithContext(ctx context.Context) SystemFortisandboxPtrOutput {
-	return o.ApplyT(func(v SystemFortisandbox) *SystemFortisandbox {
-		return &v
-	}).(SystemFortisandboxPtrOutput)
-}
-
-type SystemFortisandboxPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFortisandboxPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFortisandbox)(nil))
-}
-
-func (o SystemFortisandboxPtrOutput) ToSystemFortisandboxPtrOutput() SystemFortisandboxPtrOutput {
-	return o
-}
-
-func (o SystemFortisandboxPtrOutput) ToSystemFortisandboxPtrOutputWithContext(ctx context.Context) SystemFortisandboxPtrOutput {
-	return o
-}
-
 type SystemFortisandboxArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFortisandboxArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFortisandbox)(nil))
+	return reflect.TypeOf((*[]*SystemFortisandbox)(nil)).Elem()
 }
 
 func (o SystemFortisandboxArrayOutput) ToSystemFortisandboxArrayOutput() SystemFortisandboxArrayOutput {
@@ -355,15 +299,15 @@ func (o SystemFortisandboxArrayOutput) ToSystemFortisandboxArrayOutputWithContex
 }
 
 func (o SystemFortisandboxArrayOutput) Index(i pulumi.IntInput) SystemFortisandboxOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFortisandbox {
-		return vs[0].([]SystemFortisandbox)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFortisandbox {
+		return vs[0].([]*SystemFortisandbox)[vs[1].(int)]
 	}).(SystemFortisandboxOutput)
 }
 
 type SystemFortisandboxMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFortisandboxMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFortisandbox)(nil))
+	return reflect.TypeOf((*map[string]*SystemFortisandbox)(nil)).Elem()
 }
 
 func (o SystemFortisandboxMapOutput) ToSystemFortisandboxMapOutput() SystemFortisandboxMapOutput {
@@ -375,14 +319,16 @@ func (o SystemFortisandboxMapOutput) ToSystemFortisandboxMapOutputWithContext(ct
 }
 
 func (o SystemFortisandboxMapOutput) MapIndex(k pulumi.StringInput) SystemFortisandboxOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFortisandbox {
-		return vs[0].(map[string]SystemFortisandbox)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFortisandbox {
+		return vs[0].(map[string]*SystemFortisandbox)[vs[1].(string)]
 	}).(SystemFortisandboxOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortisandboxInput)(nil)).Elem(), &SystemFortisandbox{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortisandboxArrayInput)(nil)).Elem(), SystemFortisandboxArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFortisandboxMapInput)(nil)).Elem(), SystemFortisandboxMap{})
 	pulumi.RegisterOutputType(SystemFortisandboxOutput{})
-	pulumi.RegisterOutputType(SystemFortisandboxPtrOutput{})
 	pulumi.RegisterOutputType(SystemFortisandboxArrayOutput{})
 	pulumi.RegisterOutputType(SystemFortisandboxMapOutput{})
 }

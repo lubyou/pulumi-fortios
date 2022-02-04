@@ -83,31 +83,29 @@ export class EndpointControlClient extends pulumi.CustomResource {
      */
     constructor(name: string, args?: EndpointControlClientArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointControlClientArgs | EndpointControlClientState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointControlClientState | undefined;
-            inputs["adGroups"] = state ? state.adGroups : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["ftclUid"] = state ? state.ftclUid : undefined;
-            inputs["info"] = state ? state.info : undefined;
-            inputs["srcIp"] = state ? state.srcIp : undefined;
-            inputs["srcMac"] = state ? state.srcMac : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["adGroups"] = state ? state.adGroups : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["ftclUid"] = state ? state.ftclUid : undefined;
+            resourceInputs["info"] = state ? state.info : undefined;
+            resourceInputs["srcIp"] = state ? state.srcIp : undefined;
+            resourceInputs["srcMac"] = state ? state.srcMac : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlClientArgs | undefined;
-            inputs["adGroups"] = args ? args.adGroups : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["ftclUid"] = args ? args.ftclUid : undefined;
-            inputs["info"] = args ? args.info : undefined;
-            inputs["srcIp"] = args ? args.srcIp : undefined;
-            inputs["srcMac"] = args ? args.srcMac : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["adGroups"] = args ? args.adGroups : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["ftclUid"] = args ? args.ftclUid : undefined;
+            resourceInputs["info"] = args ? args.info : undefined;
+            resourceInputs["srcIp"] = args ? args.srcIp : undefined;
+            resourceInputs["srcMac"] = args ? args.srcMac : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EndpointControlClient.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EndpointControlClient.__pulumiType, name, resourceInputs, opts);
     }
 }
 

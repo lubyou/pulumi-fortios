@@ -112,39 +112,37 @@ export class WafProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WafProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WafProfileArgs | WafProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WafProfileState | undefined;
-            inputs["addressList"] = state ? state.addressList : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["constraint"] = state ? state.constraint : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["extendedLog"] = state ? state.extendedLog : undefined;
-            inputs["external"] = state ? state.external : undefined;
-            inputs["method"] = state ? state.method : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["signature"] = state ? state.signature : undefined;
-            inputs["urlAccesses"] = state ? state.urlAccesses : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["addressList"] = state ? state.addressList : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["constraint"] = state ? state.constraint : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
+            resourceInputs["external"] = state ? state.external : undefined;
+            resourceInputs["method"] = state ? state.method : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["signature"] = state ? state.signature : undefined;
+            resourceInputs["urlAccesses"] = state ? state.urlAccesses : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WafProfileArgs | undefined;
-            inputs["addressList"] = args ? args.addressList : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["constraint"] = args ? args.constraint : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["extendedLog"] = args ? args.extendedLog : undefined;
-            inputs["external"] = args ? args.external : undefined;
-            inputs["method"] = args ? args.method : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["signature"] = args ? args.signature : undefined;
-            inputs["urlAccesses"] = args ? args.urlAccesses : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["addressList"] = args ? args.addressList : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["constraint"] = args ? args.constraint : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
+            resourceInputs["external"] = args ? args.external : undefined;
+            resourceInputs["method"] = args ? args.method : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["signature"] = args ? args.signature : undefined;
+            resourceInputs["urlAccesses"] = args ? args.urlAccesses : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WafProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WafProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

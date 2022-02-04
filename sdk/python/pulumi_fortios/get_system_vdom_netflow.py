@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemVdomNetflowResult',
     'AwaitableGetSystemVdomNetflowResult',
     'get_system_vdom_netflow',
+    'get_system_vdom_netflow_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetSystemVdomNetflowResult:
     """
     A collection of values returned by GetSystemVdomNetflow.
     """
-    def __init__(__self__, collector_ip=None, collector_port=None, id=None, source_ip=None, vdom_netflow=None, vdomparam=None):
+    def __init__(__self__, collector_ip=None, collector_port=None, id=None, interface=None, interface_select_method=None, source_ip=None, vdom_netflow=None, vdomparam=None):
         if collector_ip and not isinstance(collector_ip, str):
             raise TypeError("Expected argument 'collector_ip' to be a str")
         pulumi.set(__self__, "collector_ip", collector_ip)
@@ -29,6 +30,12 @@ class GetSystemVdomNetflowResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if interface and not isinstance(interface, str):
+            raise TypeError("Expected argument 'interface' to be a str")
+        pulumi.set(__self__, "interface", interface)
+        if interface_select_method and not isinstance(interface_select_method, str):
+            raise TypeError("Expected argument 'interface_select_method' to be a str")
+        pulumi.set(__self__, "interface_select_method", interface_select_method)
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
@@ -64,6 +71,22 @@ class GetSystemVdomNetflowResult:
         return pulumi.get(self, "id")
 
     @property
+    @pulumi.getter
+    def interface(self) -> str:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> str:
+        """
+        Specify how to select outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @property
     @pulumi.getter(name="sourceIp")
     def source_ip(self) -> str:
         """
@@ -94,6 +117,8 @@ class AwaitableGetSystemVdomNetflowResult(GetSystemVdomNetflowResult):
             collector_ip=self.collector_ip,
             collector_port=self.collector_port,
             id=self.id,
+            interface=self.interface,
+            interface_select_method=self.interface_select_method,
             source_ip=self.source_ip,
             vdom_netflow=self.vdom_netflow,
             vdomparam=self.vdomparam)
@@ -113,12 +138,28 @@ def get_system_vdom_netflow(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemVdomNetflow:GetSystemVdomNetflow', __args__, opts=opts, typ=GetSystemVdomNetflowResult).value
 
     return AwaitableGetSystemVdomNetflowResult(
         collector_ip=__ret__.collector_ip,
         collector_port=__ret__.collector_port,
         id=__ret__.id,
+        interface=__ret__.interface,
+        interface_select_method=__ret__.interface_select_method,
         source_ip=__ret__.source_ip,
         vdom_netflow=__ret__.vdom_netflow,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_vdom_netflow)
+def get_system_vdom_netflow_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemVdomNetflowResult]:
+    """
+    Use this data source to get information on fortios system vdomnetflow
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

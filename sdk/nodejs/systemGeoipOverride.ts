@@ -95,31 +95,29 @@ export class SystemGeoipOverride extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemGeoipOverrideArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemGeoipOverrideArgs | SystemGeoipOverrideState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemGeoipOverrideState | undefined;
-            inputs["countryId"] = state ? state.countryId : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ip6Ranges"] = state ? state.ip6Ranges : undefined;
-            inputs["ipRanges"] = state ? state.ipRanges : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["countryId"] = state ? state.countryId : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ip6Ranges"] = state ? state.ip6Ranges : undefined;
+            resourceInputs["ipRanges"] = state ? state.ipRanges : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemGeoipOverrideArgs | undefined;
-            inputs["countryId"] = args ? args.countryId : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ip6Ranges"] = args ? args.ip6Ranges : undefined;
-            inputs["ipRanges"] = args ? args.ipRanges : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["countryId"] = args ? args.countryId : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ip6Ranges"] = args ? args.ip6Ranges : undefined;
+            resourceInputs["ipRanges"] = args ? args.ipRanges : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemGeoipOverride.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemGeoipOverride.__pulumiType, name, resourceInputs, opts);
     }
 }
 

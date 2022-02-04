@@ -70,6 +70,10 @@ export class AuthenticationRule extends pulumi.CustomResource {
      */
     public readonly comments!: pulumi.Output<string | undefined>;
     /**
+     * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+     */
+    public readonly dstaddr6s!: pulumi.Output<outputs.AuthenticationRuleDstaddr6[] | undefined>;
+    /**
      * Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
      */
     public readonly dstaddrs!: pulumi.Output<outputs.AuthenticationRuleDstaddr[] | undefined>;
@@ -135,49 +139,49 @@ export class AuthenticationRule extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AuthenticationRuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthenticationRuleArgs | AuthenticationRuleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthenticationRuleState | undefined;
-            inputs["activeAuthMethod"] = state ? state.activeAuthMethod : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ipBased"] = state ? state.ipBased : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintfs"] = state ? state.srcintfs : undefined;
-            inputs["ssoAuthMethod"] = state ? state.ssoAuthMethod : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["transactionBased"] = state ? state.transactionBased : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["webAuthCookie"] = state ? state.webAuthCookie : undefined;
-            inputs["webPortal"] = state ? state.webPortal : undefined;
+            resourceInputs["activeAuthMethod"] = state ? state.activeAuthMethod : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ipBased"] = state ? state.ipBased : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = state ? state.srcintfs : undefined;
+            resourceInputs["ssoAuthMethod"] = state ? state.ssoAuthMethod : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["transactionBased"] = state ? state.transactionBased : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["webAuthCookie"] = state ? state.webAuthCookie : undefined;
+            resourceInputs["webPortal"] = state ? state.webPortal : undefined;
         } else {
             const args = argsOrState as AuthenticationRuleArgs | undefined;
-            inputs["activeAuthMethod"] = args ? args.activeAuthMethod : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ipBased"] = args ? args.ipBased : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintfs"] = args ? args.srcintfs : undefined;
-            inputs["ssoAuthMethod"] = args ? args.ssoAuthMethod : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["transactionBased"] = args ? args.transactionBased : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["webAuthCookie"] = args ? args.webAuthCookie : undefined;
-            inputs["webPortal"] = args ? args.webPortal : undefined;
+            resourceInputs["activeAuthMethod"] = args ? args.activeAuthMethod : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ipBased"] = args ? args.ipBased : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = args ? args.srcintfs : undefined;
+            resourceInputs["ssoAuthMethod"] = args ? args.ssoAuthMethod : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["transactionBased"] = args ? args.transactionBased : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["webAuthCookie"] = args ? args.webAuthCookie : undefined;
+            resourceInputs["webPortal"] = args ? args.webPortal : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthenticationRule.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthenticationRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -193,6 +197,10 @@ export interface AuthenticationRuleState {
      * Comment.
      */
     comments?: pulumi.Input<string>;
+    /**
+     * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+     */
+    dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
     /**
      * Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
      */
@@ -263,6 +271,10 @@ export interface AuthenticationRuleArgs {
      * Comment.
      */
     comments?: pulumi.Input<string>;
+    /**
+     * Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+     */
+    dstaddr6s?: pulumi.Input<pulumi.Input<inputs.AuthenticationRuleDstaddr6>[]>;
     /**
      * Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
      */

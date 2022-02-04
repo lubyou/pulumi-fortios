@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -82,6 +82,8 @@ type VpnIpsecManualkeyInterface struct {
 	LocalSpi pulumi.StringOutput `pulumi:"localSpi"`
 	// IPsec tunnel name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	NpuOffload pulumi.StringOutput `pulumi:"npuOffload"`
 	// IPv4 address of the remote gateway's external interface.
 	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
 	// Remote IPv6 address of VPN gateway.
@@ -114,6 +116,7 @@ func NewVpnIpsecManualkeyInterface(ctx *pulumi.Context,
 	if args.RemoteGw6 == nil {
 		return nil, errors.New("invalid value for required argument 'RemoteGw6'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnIpsecManualkeyInterface
 	err := ctx.RegisterResource("fortios:index/vpnIpsecManualkeyInterface:VpnIpsecManualkeyInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -158,6 +161,8 @@ type vpnIpsecManualkeyInterfaceState struct {
 	LocalSpi *string `pulumi:"localSpi"`
 	// IPsec tunnel name.
 	Name *string `pulumi:"name"`
+	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	NpuOffload *string `pulumi:"npuOffload"`
 	// IPv4 address of the remote gateway's external interface.
 	RemoteGw *string `pulumi:"remoteGw"`
 	// Remote IPv6 address of VPN gateway.
@@ -191,6 +196,8 @@ type VpnIpsecManualkeyInterfaceState struct {
 	LocalSpi pulumi.StringPtrInput
 	// IPsec tunnel name.
 	Name pulumi.StringPtrInput
+	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	NpuOffload pulumi.StringPtrInput
 	// IPv4 address of the remote gateway's external interface.
 	RemoteGw pulumi.StringPtrInput
 	// Remote IPv6 address of VPN gateway.
@@ -228,6 +235,8 @@ type vpnIpsecManualkeyInterfaceArgs struct {
 	LocalSpi *string `pulumi:"localSpi"`
 	// IPsec tunnel name.
 	Name *string `pulumi:"name"`
+	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	NpuOffload *string `pulumi:"npuOffload"`
 	// IPv4 address of the remote gateway's external interface.
 	RemoteGw string `pulumi:"remoteGw"`
 	// Remote IPv6 address of VPN gateway.
@@ -262,6 +271,8 @@ type VpnIpsecManualkeyInterfaceArgs struct {
 	LocalSpi pulumi.StringPtrInput
 	// IPsec tunnel name.
 	Name pulumi.StringPtrInput
+	// Enable/disable offloading IPsec VPN manual key sessions to NPUs. Valid values: `enable`, `disable`.
+	NpuOffload pulumi.StringPtrInput
 	// IPv4 address of the remote gateway's external interface.
 	RemoteGw pulumi.StringInput
 	// Remote IPv6 address of VPN gateway.
@@ -284,7 +295,7 @@ type VpnIpsecManualkeyInterfaceInput interface {
 }
 
 func (*VpnIpsecManualkeyInterface) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecManualkeyInterface)(nil))
+	return reflect.TypeOf((**VpnIpsecManualkeyInterface)(nil)).Elem()
 }
 
 func (i *VpnIpsecManualkeyInterface) ToVpnIpsecManualkeyInterfaceOutput() VpnIpsecManualkeyInterfaceOutput {
@@ -293,35 +304,6 @@ func (i *VpnIpsecManualkeyInterface) ToVpnIpsecManualkeyInterfaceOutput() VpnIps
 
 func (i *VpnIpsecManualkeyInterface) ToVpnIpsecManualkeyInterfaceOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyInterfaceOutput)
-}
-
-func (i *VpnIpsecManualkeyInterface) ToVpnIpsecManualkeyInterfacePtrOutput() VpnIpsecManualkeyInterfacePtrOutput {
-	return i.ToVpnIpsecManualkeyInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *VpnIpsecManualkeyInterface) ToVpnIpsecManualkeyInterfacePtrOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyInterfacePtrOutput)
-}
-
-type VpnIpsecManualkeyInterfacePtrInput interface {
-	pulumi.Input
-
-	ToVpnIpsecManualkeyInterfacePtrOutput() VpnIpsecManualkeyInterfacePtrOutput
-	ToVpnIpsecManualkeyInterfacePtrOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfacePtrOutput
-}
-
-type vpnIpsecManualkeyInterfacePtrType VpnIpsecManualkeyInterfaceArgs
-
-func (*vpnIpsecManualkeyInterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecManualkeyInterface)(nil))
-}
-
-func (i *vpnIpsecManualkeyInterfacePtrType) ToVpnIpsecManualkeyInterfacePtrOutput() VpnIpsecManualkeyInterfacePtrOutput {
-	return i.ToVpnIpsecManualkeyInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *vpnIpsecManualkeyInterfacePtrType) ToVpnIpsecManualkeyInterfacePtrOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyInterfacePtrOutput)
 }
 
 // VpnIpsecManualkeyInterfaceArrayInput is an input type that accepts VpnIpsecManualkeyInterfaceArray and VpnIpsecManualkeyInterfaceArrayOutput values.
@@ -338,7 +320,7 @@ type VpnIpsecManualkeyInterfaceArrayInput interface {
 type VpnIpsecManualkeyInterfaceArray []VpnIpsecManualkeyInterfaceInput
 
 func (VpnIpsecManualkeyInterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnIpsecManualkeyInterface)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecManualkeyInterface)(nil)).Elem()
 }
 
 func (i VpnIpsecManualkeyInterfaceArray) ToVpnIpsecManualkeyInterfaceArrayOutput() VpnIpsecManualkeyInterfaceArrayOutput {
@@ -363,7 +345,7 @@ type VpnIpsecManualkeyInterfaceMapInput interface {
 type VpnIpsecManualkeyInterfaceMap map[string]VpnIpsecManualkeyInterfaceInput
 
 func (VpnIpsecManualkeyInterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnIpsecManualkeyInterface)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecManualkeyInterface)(nil)).Elem()
 }
 
 func (i VpnIpsecManualkeyInterfaceMap) ToVpnIpsecManualkeyInterfaceMapOutput() VpnIpsecManualkeyInterfaceMapOutput {
@@ -374,12 +356,10 @@ func (i VpnIpsecManualkeyInterfaceMap) ToVpnIpsecManualkeyInterfaceMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecManualkeyInterfaceMapOutput)
 }
 
-type VpnIpsecManualkeyInterfaceOutput struct {
-	*pulumi.OutputState
-}
+type VpnIpsecManualkeyInterfaceOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecManualkeyInterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecManualkeyInterface)(nil))
+	return reflect.TypeOf((**VpnIpsecManualkeyInterface)(nil)).Elem()
 }
 
 func (o VpnIpsecManualkeyInterfaceOutput) ToVpnIpsecManualkeyInterfaceOutput() VpnIpsecManualkeyInterfaceOutput {
@@ -390,36 +370,10 @@ func (o VpnIpsecManualkeyInterfaceOutput) ToVpnIpsecManualkeyInterfaceOutputWith
 	return o
 }
 
-func (o VpnIpsecManualkeyInterfaceOutput) ToVpnIpsecManualkeyInterfacePtrOutput() VpnIpsecManualkeyInterfacePtrOutput {
-	return o.ToVpnIpsecManualkeyInterfacePtrOutputWithContext(context.Background())
-}
-
-func (o VpnIpsecManualkeyInterfaceOutput) ToVpnIpsecManualkeyInterfacePtrOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfacePtrOutput {
-	return o.ApplyT(func(v VpnIpsecManualkeyInterface) *VpnIpsecManualkeyInterface {
-		return &v
-	}).(VpnIpsecManualkeyInterfacePtrOutput)
-}
-
-type VpnIpsecManualkeyInterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnIpsecManualkeyInterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecManualkeyInterface)(nil))
-}
-
-func (o VpnIpsecManualkeyInterfacePtrOutput) ToVpnIpsecManualkeyInterfacePtrOutput() VpnIpsecManualkeyInterfacePtrOutput {
-	return o
-}
-
-func (o VpnIpsecManualkeyInterfacePtrOutput) ToVpnIpsecManualkeyInterfacePtrOutputWithContext(ctx context.Context) VpnIpsecManualkeyInterfacePtrOutput {
-	return o
-}
-
 type VpnIpsecManualkeyInterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecManualkeyInterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnIpsecManualkeyInterface)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecManualkeyInterface)(nil)).Elem()
 }
 
 func (o VpnIpsecManualkeyInterfaceArrayOutput) ToVpnIpsecManualkeyInterfaceArrayOutput() VpnIpsecManualkeyInterfaceArrayOutput {
@@ -431,15 +385,15 @@ func (o VpnIpsecManualkeyInterfaceArrayOutput) ToVpnIpsecManualkeyInterfaceArray
 }
 
 func (o VpnIpsecManualkeyInterfaceArrayOutput) Index(i pulumi.IntInput) VpnIpsecManualkeyInterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecManualkeyInterface {
-		return vs[0].([]VpnIpsecManualkeyInterface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecManualkeyInterface {
+		return vs[0].([]*VpnIpsecManualkeyInterface)[vs[1].(int)]
 	}).(VpnIpsecManualkeyInterfaceOutput)
 }
 
 type VpnIpsecManualkeyInterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecManualkeyInterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnIpsecManualkeyInterface)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecManualkeyInterface)(nil)).Elem()
 }
 
 func (o VpnIpsecManualkeyInterfaceMapOutput) ToVpnIpsecManualkeyInterfaceMapOutput() VpnIpsecManualkeyInterfaceMapOutput {
@@ -451,14 +405,16 @@ func (o VpnIpsecManualkeyInterfaceMapOutput) ToVpnIpsecManualkeyInterfaceMapOutp
 }
 
 func (o VpnIpsecManualkeyInterfaceMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecManualkeyInterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnIpsecManualkeyInterface {
-		return vs[0].(map[string]VpnIpsecManualkeyInterface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnIpsecManualkeyInterface {
+		return vs[0].(map[string]*VpnIpsecManualkeyInterface)[vs[1].(string)]
 	}).(VpnIpsecManualkeyInterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecManualkeyInterfaceInput)(nil)).Elem(), &VpnIpsecManualkeyInterface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecManualkeyInterfaceArrayInput)(nil)).Elem(), VpnIpsecManualkeyInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecManualkeyInterfaceMapInput)(nil)).Elem(), VpnIpsecManualkeyInterfaceMap{})
 	pulumi.RegisterOutputType(VpnIpsecManualkeyInterfaceOutput{})
-	pulumi.RegisterOutputType(VpnIpsecManualkeyInterfacePtrOutput{})
 	pulumi.RegisterOutputType(VpnIpsecManualkeyInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecManualkeyInterfaceMapOutput{})
 }

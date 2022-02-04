@@ -4,6 +4,9 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -15,15 +18,15 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		opt0 := "name!=port1"
-// 		_, err := fortios.GetSystemInterfaceList(ctx, &fortios.GetSystemInterfaceListArgs{
-// 			Filter: &opt0,
+// 		_, err := fortios.GetSystemInterfaceList(ctx, &GetSystemInterfaceListArgs{
+// 			Filter: pulumi.StringRef("name!=port1"),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -34,6 +37,7 @@ import (
 // }
 // ```
 func GetSystemInterfaceList(ctx *pulumi.Context, args *GetSystemInterfaceListArgs, opts ...pulumi.InvokeOption) (*GetSystemInterfaceListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemInterfaceListResult
 	err := ctx.Invoke("fortios:index/getSystemInterfaceList:GetSystemInterfaceList", args, &rv, opts...)
 	if err != nil {
@@ -57,4 +61,61 @@ type GetSystemInterfaceListResult struct {
 	// A list of the `SystemInterface`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemInterfaceListOutput(ctx *pulumi.Context, args GetSystemInterfaceListOutputArgs, opts ...pulumi.InvokeOption) GetSystemInterfaceListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemInterfaceListResult, error) {
+			args := v.(GetSystemInterfaceListArgs)
+			r, err := GetSystemInterfaceList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemInterfaceListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemInterfaceList.
+type GetSystemInterfaceListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemInterfaceListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemInterfaceListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemInterfaceList.
+type GetSystemInterfaceListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemInterfaceListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemInterfaceListResult)(nil)).Elem()
+}
+
+func (o GetSystemInterfaceListResultOutput) ToGetSystemInterfaceListResultOutput() GetSystemInterfaceListResultOutput {
+	return o
+}
+
+func (o GetSystemInterfaceListResultOutput) ToGetSystemInterfaceListResultOutputWithContext(ctx context.Context) GetSystemInterfaceListResultOutput {
+	return o
+}
+
+func (o GetSystemInterfaceListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemInterfaceListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemInterfaceListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemInterfaceListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemInterface`.
+func (o GetSystemInterfaceListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemInterfaceListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemInterfaceListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemInterfaceListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemInterfaceListResultOutput{})
 }

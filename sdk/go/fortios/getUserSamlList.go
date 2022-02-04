@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `UserSaml`.
 func GetUserSamlList(ctx *pulumi.Context, args *GetUserSamlListArgs, opts ...pulumi.InvokeOption) (*GetUserSamlListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetUserSamlListResult
 	err := ctx.Invoke("fortios:index/getUserSamlList:GetUserSamlList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetUserSamlListResult struct {
 	// A list of the `UserSaml`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetUserSamlListOutput(ctx *pulumi.Context, args GetUserSamlListOutputArgs, opts ...pulumi.InvokeOption) GetUserSamlListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetUserSamlListResult, error) {
+			args := v.(GetUserSamlListArgs)
+			r, err := GetUserSamlList(ctx, &args, opts...)
+			return *r, err
+		}).(GetUserSamlListResultOutput)
+}
+
+// A collection of arguments for invoking GetUserSamlList.
+type GetUserSamlListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetUserSamlListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserSamlListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetUserSamlList.
+type GetUserSamlListResultOutput struct{ *pulumi.OutputState }
+
+func (GetUserSamlListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetUserSamlListResult)(nil)).Elem()
+}
+
+func (o GetUserSamlListResultOutput) ToGetUserSamlListResultOutput() GetUserSamlListResultOutput {
+	return o
+}
+
+func (o GetUserSamlListResultOutput) ToGetUserSamlListResultOutputWithContext(ctx context.Context) GetUserSamlListResultOutput {
+	return o
+}
+
+func (o GetUserSamlListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetUserSamlListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetUserSamlListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetUserSamlListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `UserSaml`.
+func (o GetUserSamlListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetUserSamlListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetUserSamlListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetUserSamlListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetUserSamlListResultOutput{})
 }

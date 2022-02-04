@@ -147,27 +147,27 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemMobileTunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemMobileTunnelArgs | SystemMobileTunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemMobileTunnelState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["hashAlgorithm"] = state ? state.hashAlgorithm : undefined;
-            inputs["homeAddress"] = state ? state.homeAddress : undefined;
-            inputs["homeAgent"] = state ? state.homeAgent : undefined;
-            inputs["lifetime"] = state ? state.lifetime : undefined;
-            inputs["nMhaeKey"] = state ? state.nMhaeKey : undefined;
-            inputs["nMhaeKeyType"] = state ? state.nMhaeKeyType : undefined;
-            inputs["nMhaeSpi"] = state ? state.nMhaeSpi : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["networks"] = state ? state.networks : undefined;
-            inputs["regInterval"] = state ? state.regInterval : undefined;
-            inputs["regRetry"] = state ? state.regRetry : undefined;
-            inputs["renewInterval"] = state ? state.renewInterval : undefined;
-            inputs["roamingInterface"] = state ? state.roamingInterface : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tunnelMode"] = state ? state.tunnelMode : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["hashAlgorithm"] = state ? state.hashAlgorithm : undefined;
+            resourceInputs["homeAddress"] = state ? state.homeAddress : undefined;
+            resourceInputs["homeAgent"] = state ? state.homeAgent : undefined;
+            resourceInputs["lifetime"] = state ? state.lifetime : undefined;
+            resourceInputs["nMhaeKey"] = state ? state.nMhaeKey : undefined;
+            resourceInputs["nMhaeKeyType"] = state ? state.nMhaeKeyType : undefined;
+            resourceInputs["nMhaeSpi"] = state ? state.nMhaeSpi : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["networks"] = state ? state.networks : undefined;
+            resourceInputs["regInterval"] = state ? state.regInterval : undefined;
+            resourceInputs["regRetry"] = state ? state.regRetry : undefined;
+            resourceInputs["renewInterval"] = state ? state.renewInterval : undefined;
+            resourceInputs["roamingInterface"] = state ? state.roamingInterface : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tunnelMode"] = state ? state.tunnelMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemMobileTunnelArgs | undefined;
             if ((!args || args.hashAlgorithm === undefined) && !opts.urn) {
@@ -200,28 +200,26 @@ export class SystemMobileTunnel extends pulumi.CustomResource {
             if ((!args || args.tunnelMode === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'tunnelMode'");
             }
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["hashAlgorithm"] = args ? args.hashAlgorithm : undefined;
-            inputs["homeAddress"] = args ? args.homeAddress : undefined;
-            inputs["homeAgent"] = args ? args.homeAgent : undefined;
-            inputs["lifetime"] = args ? args.lifetime : undefined;
-            inputs["nMhaeKey"] = args ? args.nMhaeKey : undefined;
-            inputs["nMhaeKeyType"] = args ? args.nMhaeKeyType : undefined;
-            inputs["nMhaeSpi"] = args ? args.nMhaeSpi : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["networks"] = args ? args.networks : undefined;
-            inputs["regInterval"] = args ? args.regInterval : undefined;
-            inputs["regRetry"] = args ? args.regRetry : undefined;
-            inputs["renewInterval"] = args ? args.renewInterval : undefined;
-            inputs["roamingInterface"] = args ? args.roamingInterface : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tunnelMode"] = args ? args.tunnelMode : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["hashAlgorithm"] = args ? args.hashAlgorithm : undefined;
+            resourceInputs["homeAddress"] = args ? args.homeAddress : undefined;
+            resourceInputs["homeAgent"] = args ? args.homeAgent : undefined;
+            resourceInputs["lifetime"] = args ? args.lifetime : undefined;
+            resourceInputs["nMhaeKey"] = args ? args.nMhaeKey : undefined;
+            resourceInputs["nMhaeKeyType"] = args ? args.nMhaeKeyType : undefined;
+            resourceInputs["nMhaeSpi"] = args ? args.nMhaeSpi : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["networks"] = args ? args.networks : undefined;
+            resourceInputs["regInterval"] = args ? args.regInterval : undefined;
+            resourceInputs["regRetry"] = args ? args.regRetry : undefined;
+            resourceInputs["renewInterval"] = args ? args.renewInterval : undefined;
+            resourceInputs["roamingInterface"] = args ? args.roamingInterface : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tunnelMode"] = args ? args.tunnelMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemMobileTunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemMobileTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 

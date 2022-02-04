@@ -77,6 +77,7 @@ func NewSystemVdomProperty(ctx *pulumi.Context,
 		args = &SystemVdomPropertyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomProperty
 	err := ctx.RegisterResource("fortios:index/systemVdomProperty:SystemVdomProperty", name, args, &resource, opts...)
 	if err != nil {
@@ -303,7 +304,7 @@ type SystemVdomPropertyInput interface {
 }
 
 func (*SystemVdomProperty) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomProperty)(nil))
+	return reflect.TypeOf((**SystemVdomProperty)(nil)).Elem()
 }
 
 func (i *SystemVdomProperty) ToSystemVdomPropertyOutput() SystemVdomPropertyOutput {
@@ -312,35 +313,6 @@ func (i *SystemVdomProperty) ToSystemVdomPropertyOutput() SystemVdomPropertyOutp
 
 func (i *SystemVdomProperty) ToSystemVdomPropertyOutputWithContext(ctx context.Context) SystemVdomPropertyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyOutput)
-}
-
-func (i *SystemVdomProperty) ToSystemVdomPropertyPtrOutput() SystemVdomPropertyPtrOutput {
-	return i.ToSystemVdomPropertyPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomProperty) ToSystemVdomPropertyPtrOutputWithContext(ctx context.Context) SystemVdomPropertyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyPtrOutput)
-}
-
-type SystemVdomPropertyPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomPropertyPtrOutput() SystemVdomPropertyPtrOutput
-	ToSystemVdomPropertyPtrOutputWithContext(ctx context.Context) SystemVdomPropertyPtrOutput
-}
-
-type systemVdomPropertyPtrType SystemVdomPropertyArgs
-
-func (*systemVdomPropertyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomProperty)(nil))
-}
-
-func (i *systemVdomPropertyPtrType) ToSystemVdomPropertyPtrOutput() SystemVdomPropertyPtrOutput {
-	return i.ToSystemVdomPropertyPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomPropertyPtrType) ToSystemVdomPropertyPtrOutputWithContext(ctx context.Context) SystemVdomPropertyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyPtrOutput)
 }
 
 // SystemVdomPropertyArrayInput is an input type that accepts SystemVdomPropertyArray and SystemVdomPropertyArrayOutput values.
@@ -357,7 +329,7 @@ type SystemVdomPropertyArrayInput interface {
 type SystemVdomPropertyArray []SystemVdomPropertyInput
 
 func (SystemVdomPropertyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomProperty)(nil))
+	return reflect.TypeOf((*[]*SystemVdomProperty)(nil)).Elem()
 }
 
 func (i SystemVdomPropertyArray) ToSystemVdomPropertyArrayOutput() SystemVdomPropertyArrayOutput {
@@ -382,7 +354,7 @@ type SystemVdomPropertyMapInput interface {
 type SystemVdomPropertyMap map[string]SystemVdomPropertyInput
 
 func (SystemVdomPropertyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomProperty)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomProperty)(nil)).Elem()
 }
 
 func (i SystemVdomPropertyMap) ToSystemVdomPropertyMapOutput() SystemVdomPropertyMapOutput {
@@ -393,12 +365,10 @@ func (i SystemVdomPropertyMap) ToSystemVdomPropertyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomPropertyMapOutput)
 }
 
-type SystemVdomPropertyOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomPropertyOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomPropertyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomProperty)(nil))
+	return reflect.TypeOf((**SystemVdomProperty)(nil)).Elem()
 }
 
 func (o SystemVdomPropertyOutput) ToSystemVdomPropertyOutput() SystemVdomPropertyOutput {
@@ -409,36 +379,10 @@ func (o SystemVdomPropertyOutput) ToSystemVdomPropertyOutputWithContext(ctx cont
 	return o
 }
 
-func (o SystemVdomPropertyOutput) ToSystemVdomPropertyPtrOutput() SystemVdomPropertyPtrOutput {
-	return o.ToSystemVdomPropertyPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomPropertyOutput) ToSystemVdomPropertyPtrOutputWithContext(ctx context.Context) SystemVdomPropertyPtrOutput {
-	return o.ApplyT(func(v SystemVdomProperty) *SystemVdomProperty {
-		return &v
-	}).(SystemVdomPropertyPtrOutput)
-}
-
-type SystemVdomPropertyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomPropertyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomProperty)(nil))
-}
-
-func (o SystemVdomPropertyPtrOutput) ToSystemVdomPropertyPtrOutput() SystemVdomPropertyPtrOutput {
-	return o
-}
-
-func (o SystemVdomPropertyPtrOutput) ToSystemVdomPropertyPtrOutputWithContext(ctx context.Context) SystemVdomPropertyPtrOutput {
-	return o
-}
-
 type SystemVdomPropertyArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomPropertyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomProperty)(nil))
+	return reflect.TypeOf((*[]*SystemVdomProperty)(nil)).Elem()
 }
 
 func (o SystemVdomPropertyArrayOutput) ToSystemVdomPropertyArrayOutput() SystemVdomPropertyArrayOutput {
@@ -450,15 +394,15 @@ func (o SystemVdomPropertyArrayOutput) ToSystemVdomPropertyArrayOutputWithContex
 }
 
 func (o SystemVdomPropertyArrayOutput) Index(i pulumi.IntInput) SystemVdomPropertyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomProperty {
-		return vs[0].([]SystemVdomProperty)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomProperty {
+		return vs[0].([]*SystemVdomProperty)[vs[1].(int)]
 	}).(SystemVdomPropertyOutput)
 }
 
 type SystemVdomPropertyMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomPropertyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomProperty)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomProperty)(nil)).Elem()
 }
 
 func (o SystemVdomPropertyMapOutput) ToSystemVdomPropertyMapOutput() SystemVdomPropertyMapOutput {
@@ -470,14 +414,16 @@ func (o SystemVdomPropertyMapOutput) ToSystemVdomPropertyMapOutputWithContext(ct
 }
 
 func (o SystemVdomPropertyMapOutput) MapIndex(k pulumi.StringInput) SystemVdomPropertyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomProperty {
-		return vs[0].(map[string]SystemVdomProperty)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomProperty {
+		return vs[0].(map[string]*SystemVdomProperty)[vs[1].(string)]
 	}).(SystemVdomPropertyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomPropertyInput)(nil)).Elem(), &SystemVdomProperty{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomPropertyArrayInput)(nil)).Elem(), SystemVdomPropertyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomPropertyMapInput)(nil)).Elem(), SystemVdomPropertyMap{})
 	pulumi.RegisterOutputType(SystemVdomPropertyOutput{})
-	pulumi.RegisterOutputType(SystemVdomPropertyPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomPropertyArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomPropertyMapOutput{})
 }

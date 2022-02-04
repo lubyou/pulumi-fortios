@@ -17,7 +17,10 @@ class SystemLinkMonitorArgs:
     def __init__(__self__, *,
                  servers: pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerArgs']]],
                  addr_mode: Optional[pulumi.Input[str]] = None,
+                 class_id: Optional[pulumi.Input[int]] = None,
+                 diffservcode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fail_weight: Optional[pulumi.Input[int]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
@@ -34,19 +37,27 @@ class SystemLinkMonitorArgs:
                  probe_timeout: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  recoverytime: Optional[pulumi.Input[int]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]]] = None,
                  security_mode: Optional[pulumi.Input[str]] = None,
+                 server_config: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]]] = None,
+                 service_detection: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  srcintf: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_cascade_interface: Optional[pulumi.Input[str]] = None,
+                 update_policy_route: Optional[pulumi.Input[str]] = None,
                  update_static_route: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemLinkMonitor resource.
         :param pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerArgs']]] servers: IP address of the server(s) to be monitored. The structure of `server` block is documented below.
         :param pulumi.Input[str] addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[int] class_id: Traffic class ID.
+        :param pulumi.Input[str] diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[int] fail_weight: Threshold weight to trigger link failure alert.
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
@@ -61,22 +72,33 @@ class SystemLinkMonitorArgs:
         :param pulumi.Input[int] port: Port number of the traffic to be used to monitor the server.
         :param pulumi.Input[int] probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
         :param pulumi.Input[int] probe_timeout: Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-        :param pulumi.Input[str] protocol: Protocols used to monitor the server.
+        :param pulumi.Input[str] protocol: Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         :param pulumi.Input[int] recoverytime: Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        :param pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]] routes: Subnet to monitor. The structure of `route` block is documented below.
         :param pulumi.Input[str] security_mode: Twamp controller security mode. Valid values: `none`, `authentication`.
+        :param pulumi.Input[str] server_config: Mode of server configuration. Valid values: `default`, `individual`.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]] server_lists: Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
+        :param pulumi.Input[str] service_detection: Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address used in packet to the server.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used in packet to the server.
         :param pulumi.Input[str] srcintf: Interface that receives the traffic to be monitored.
         :param pulumi.Input[str] status: Enable/disable this link monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_cascade_interface: Enable/disable update cascade interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_policy_route: Enable/disable updating the policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_static_route: Enable/disable updating the static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "servers", servers)
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if class_id is not None:
+            pulumi.set(__self__, "class_id", class_id)
+        if diffservcode is not None:
+            pulumi.set(__self__, "diffservcode", diffservcode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fail_weight is not None:
+            pulumi.set(__self__, "fail_weight", fail_weight)
         if failtime is not None:
             pulumi.set(__self__, "failtime", failtime)
         if gateway_ip is not None:
@@ -109,8 +131,16 @@ class SystemLinkMonitorArgs:
             pulumi.set(__self__, "protocol", protocol)
         if recoverytime is not None:
             pulumi.set(__self__, "recoverytime", recoverytime)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
         if security_mode is not None:
             pulumi.set(__self__, "security_mode", security_mode)
+        if server_config is not None:
+            pulumi.set(__self__, "server_config", server_config)
+        if server_lists is not None:
+            pulumi.set(__self__, "server_lists", server_lists)
+        if service_detection is not None:
+            pulumi.set(__self__, "service_detection", service_detection)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if source_ip6 is not None:
@@ -121,6 +151,8 @@ class SystemLinkMonitorArgs:
             pulumi.set(__self__, "status", status)
         if update_cascade_interface is not None:
             pulumi.set(__self__, "update_cascade_interface", update_cascade_interface)
+        if update_policy_route is not None:
+            pulumi.set(__self__, "update_policy_route", update_policy_route)
         if update_static_route is not None:
             pulumi.set(__self__, "update_static_route", update_static_route)
         if vdomparam is not None:
@@ -151,6 +183,30 @@ class SystemLinkMonitorArgs:
         pulumi.set(self, "addr_mode", value)
 
     @property
+    @pulumi.getter(name="classId")
+    def class_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Traffic class ID.
+        """
+        return pulumi.get(self, "class_id")
+
+    @class_id.setter
+    def class_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "class_id", value)
+
+    @property
+    @pulumi.getter
+    def diffservcode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Differentiated services code point (DSCP) in the IP header of the probe packet.
+        """
+        return pulumi.get(self, "diffservcode")
+
+    @diffservcode.setter
+    def diffservcode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diffservcode", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -161,6 +217,18 @@ class SystemLinkMonitorArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="failWeight")
+    def fail_weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        Threshold weight to trigger link failure alert.
+        """
+        return pulumi.get(self, "fail_weight")
+
+    @fail_weight.setter
+    def fail_weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fail_weight", value)
 
     @property
     @pulumi.getter
@@ -334,7 +402,7 @@ class SystemLinkMonitorArgs:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Protocols used to monitor the server.
+        Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         """
         return pulumi.get(self, "protocol")
 
@@ -355,6 +423,18 @@ class SystemLinkMonitorArgs:
         pulumi.set(self, "recoverytime", value)
 
     @property
+    @pulumi.getter
+    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]]]:
+        """
+        Subnet to monitor. The structure of `route` block is documented below.
+        """
+        return pulumi.get(self, "routes")
+
+    @routes.setter
+    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]]]):
+        pulumi.set(self, "routes", value)
+
+    @property
     @pulumi.getter(name="securityMode")
     def security_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -365,6 +445,42 @@ class SystemLinkMonitorArgs:
     @security_mode.setter
     def security_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "security_mode", value)
+
+    @property
+    @pulumi.getter(name="serverConfig")
+    def server_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode of server configuration. Valid values: `default`, `individual`.
+        """
+        return pulumi.get(self, "server_config")
+
+    @server_config.setter
+    def server_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_config", value)
+
+    @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]]]:
+        """
+        Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @server_lists.setter
+    def server_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]]]):
+        pulumi.set(self, "server_lists", value)
+
+    @property
+    @pulumi.getter(name="serviceDetection")
+    def service_detection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "service_detection")
+
+    @service_detection.setter
+    def service_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_detection", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -427,6 +543,18 @@ class SystemLinkMonitorArgs:
         pulumi.set(self, "update_cascade_interface", value)
 
     @property
+    @pulumi.getter(name="updatePolicyRoute")
+    def update_policy_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_policy_route")
+
+    @update_policy_route.setter
+    def update_policy_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_policy_route", value)
+
+    @property
     @pulumi.getter(name="updateStaticRoute")
     def update_static_route(self) -> Optional[pulumi.Input[str]]:
         """
@@ -455,7 +583,10 @@ class SystemLinkMonitorArgs:
 class _SystemLinkMonitorState:
     def __init__(__self__, *,
                  addr_mode: Optional[pulumi.Input[str]] = None,
+                 class_id: Optional[pulumi.Input[int]] = None,
+                 diffservcode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fail_weight: Optional[pulumi.Input[int]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
@@ -472,19 +603,27 @@ class _SystemLinkMonitorState:
                  probe_timeout: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  recoverytime: Optional[pulumi.Input[int]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]]] = None,
                  security_mode: Optional[pulumi.Input[str]] = None,
+                 server_config: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]]] = None,
                  servers: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerArgs']]]] = None,
+                 service_detection: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  srcintf: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_cascade_interface: Optional[pulumi.Input[str]] = None,
+                 update_policy_route: Optional[pulumi.Input[str]] = None,
                  update_static_route: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemLinkMonitor resources.
         :param pulumi.Input[str] addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[int] class_id: Traffic class ID.
+        :param pulumi.Input[str] diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[int] fail_weight: Threshold weight to trigger link failure alert.
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
@@ -499,22 +638,33 @@ class _SystemLinkMonitorState:
         :param pulumi.Input[int] port: Port number of the traffic to be used to monitor the server.
         :param pulumi.Input[int] probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
         :param pulumi.Input[int] probe_timeout: Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-        :param pulumi.Input[str] protocol: Protocols used to monitor the server.
+        :param pulumi.Input[str] protocol: Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         :param pulumi.Input[int] recoverytime: Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        :param pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]] routes: Subnet to monitor. The structure of `route` block is documented below.
         :param pulumi.Input[str] security_mode: Twamp controller security mode. Valid values: `none`, `authentication`.
+        :param pulumi.Input[str] server_config: Mode of server configuration. Valid values: `default`, `individual`.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]] server_lists: Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerArgs']]] servers: IP address of the server(s) to be monitored. The structure of `server` block is documented below.
+        :param pulumi.Input[str] service_detection: Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address used in packet to the server.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used in packet to the server.
         :param pulumi.Input[str] srcintf: Interface that receives the traffic to be monitored.
         :param pulumi.Input[str] status: Enable/disable this link monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_cascade_interface: Enable/disable update cascade interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_policy_route: Enable/disable updating the policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_static_route: Enable/disable updating the static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if addr_mode is not None:
             pulumi.set(__self__, "addr_mode", addr_mode)
+        if class_id is not None:
+            pulumi.set(__self__, "class_id", class_id)
+        if diffservcode is not None:
+            pulumi.set(__self__, "diffservcode", diffservcode)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fail_weight is not None:
+            pulumi.set(__self__, "fail_weight", fail_weight)
         if failtime is not None:
             pulumi.set(__self__, "failtime", failtime)
         if gateway_ip is not None:
@@ -547,10 +697,18 @@ class _SystemLinkMonitorState:
             pulumi.set(__self__, "protocol", protocol)
         if recoverytime is not None:
             pulumi.set(__self__, "recoverytime", recoverytime)
+        if routes is not None:
+            pulumi.set(__self__, "routes", routes)
         if security_mode is not None:
             pulumi.set(__self__, "security_mode", security_mode)
+        if server_config is not None:
+            pulumi.set(__self__, "server_config", server_config)
+        if server_lists is not None:
+            pulumi.set(__self__, "server_lists", server_lists)
         if servers is not None:
             pulumi.set(__self__, "servers", servers)
+        if service_detection is not None:
+            pulumi.set(__self__, "service_detection", service_detection)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if source_ip6 is not None:
@@ -561,6 +719,8 @@ class _SystemLinkMonitorState:
             pulumi.set(__self__, "status", status)
         if update_cascade_interface is not None:
             pulumi.set(__self__, "update_cascade_interface", update_cascade_interface)
+        if update_policy_route is not None:
+            pulumi.set(__self__, "update_policy_route", update_policy_route)
         if update_static_route is not None:
             pulumi.set(__self__, "update_static_route", update_static_route)
         if vdomparam is not None:
@@ -579,6 +739,30 @@ class _SystemLinkMonitorState:
         pulumi.set(self, "addr_mode", value)
 
     @property
+    @pulumi.getter(name="classId")
+    def class_id(self) -> Optional[pulumi.Input[int]]:
+        """
+        Traffic class ID.
+        """
+        return pulumi.get(self, "class_id")
+
+    @class_id.setter
+    def class_id(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "class_id", value)
+
+    @property
+    @pulumi.getter
+    def diffservcode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Differentiated services code point (DSCP) in the IP header of the probe packet.
+        """
+        return pulumi.get(self, "diffservcode")
+
+    @diffservcode.setter
+    def diffservcode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "diffservcode", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -589,6 +773,18 @@ class _SystemLinkMonitorState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="failWeight")
+    def fail_weight(self) -> Optional[pulumi.Input[int]]:
+        """
+        Threshold weight to trigger link failure alert.
+        """
+        return pulumi.get(self, "fail_weight")
+
+    @fail_weight.setter
+    def fail_weight(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "fail_weight", value)
 
     @property
     @pulumi.getter
@@ -762,7 +958,7 @@ class _SystemLinkMonitorState:
     @pulumi.getter
     def protocol(self) -> Optional[pulumi.Input[str]]:
         """
-        Protocols used to monitor the server.
+        Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         """
         return pulumi.get(self, "protocol")
 
@@ -783,6 +979,18 @@ class _SystemLinkMonitorState:
         pulumi.set(self, "recoverytime", value)
 
     @property
+    @pulumi.getter
+    def routes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]]]:
+        """
+        Subnet to monitor. The structure of `route` block is documented below.
+        """
+        return pulumi.get(self, "routes")
+
+    @routes.setter
+    def routes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorRouteArgs']]]]):
+        pulumi.set(self, "routes", value)
+
+    @property
     @pulumi.getter(name="securityMode")
     def security_mode(self) -> Optional[pulumi.Input[str]]:
         """
@@ -795,6 +1003,30 @@ class _SystemLinkMonitorState:
         pulumi.set(self, "security_mode", value)
 
     @property
+    @pulumi.getter(name="serverConfig")
+    def server_config(self) -> Optional[pulumi.Input[str]]:
+        """
+        Mode of server configuration. Valid values: `default`, `individual`.
+        """
+        return pulumi.get(self, "server_config")
+
+    @server_config.setter
+    def server_config(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_config", value)
+
+    @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]]]:
+        """
+        Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @server_lists.setter
+    def server_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerListArgs']]]]):
+        pulumi.set(self, "server_lists", value)
+
+    @property
     @pulumi.getter
     def servers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerArgs']]]]:
         """
@@ -805,6 +1037,18 @@ class _SystemLinkMonitorState:
     @servers.setter
     def servers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemLinkMonitorServerArgs']]]]):
         pulumi.set(self, "servers", value)
+
+    @property
+    @pulumi.getter(name="serviceDetection")
+    def service_detection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "service_detection")
+
+    @service_detection.setter
+    def service_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_detection", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -865,6 +1109,18 @@ class _SystemLinkMonitorState:
     @update_cascade_interface.setter
     def update_cascade_interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "update_cascade_interface", value)
+
+    @property
+    @pulumi.getter(name="updatePolicyRoute")
+    def update_policy_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_policy_route")
+
+    @update_policy_route.setter
+    def update_policy_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_policy_route", value)
 
     @property
     @pulumi.getter(name="updateStaticRoute")
@@ -897,7 +1153,10 @@ class SystemLinkMonitor(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  addr_mode: Optional[pulumi.Input[str]] = None,
+                 class_id: Optional[pulumi.Input[int]] = None,
+                 diffservcode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fail_weight: Optional[pulumi.Input[int]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
@@ -914,13 +1173,18 @@ class SystemLinkMonitor(pulumi.CustomResource):
                  probe_timeout: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  recoverytime: Optional[pulumi.Input[int]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorRouteArgs']]]]] = None,
                  security_mode: Optional[pulumi.Input[str]] = None,
+                 server_config: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerListArgs']]]]] = None,
                  servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerArgs']]]]] = None,
+                 service_detection: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  srcintf: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_cascade_interface: Optional[pulumi.Input[str]] = None,
+                 update_policy_route: Optional[pulumi.Input[str]] = None,
                  update_static_route: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -971,7 +1235,10 @@ class SystemLinkMonitor(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[int] class_id: Traffic class ID.
+        :param pulumi.Input[str] diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[int] fail_weight: Threshold weight to trigger link failure alert.
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
@@ -986,15 +1253,20 @@ class SystemLinkMonitor(pulumi.CustomResource):
         :param pulumi.Input[int] port: Port number of the traffic to be used to monitor the server.
         :param pulumi.Input[int] probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
         :param pulumi.Input[int] probe_timeout: Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-        :param pulumi.Input[str] protocol: Protocols used to monitor the server.
+        :param pulumi.Input[str] protocol: Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         :param pulumi.Input[int] recoverytime: Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorRouteArgs']]]] routes: Subnet to monitor. The structure of `route` block is documented below.
         :param pulumi.Input[str] security_mode: Twamp controller security mode. Valid values: `none`, `authentication`.
+        :param pulumi.Input[str] server_config: Mode of server configuration. Valid values: `default`, `individual`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerListArgs']]]] server_lists: Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerArgs']]]] servers: IP address of the server(s) to be monitored. The structure of `server` block is documented below.
+        :param pulumi.Input[str] service_detection: Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address used in packet to the server.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used in packet to the server.
         :param pulumi.Input[str] srcintf: Interface that receives the traffic to be monitored.
         :param pulumi.Input[str] status: Enable/disable this link monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_cascade_interface: Enable/disable update cascade interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_policy_route: Enable/disable updating the policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_static_route: Enable/disable updating the static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1064,7 +1336,10 @@ class SystemLinkMonitor(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  addr_mode: Optional[pulumi.Input[str]] = None,
+                 class_id: Optional[pulumi.Input[int]] = None,
+                 diffservcode: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fail_weight: Optional[pulumi.Input[int]] = None,
                  failtime: Optional[pulumi.Input[int]] = None,
                  gateway_ip: Optional[pulumi.Input[str]] = None,
                  gateway_ip6: Optional[pulumi.Input[str]] = None,
@@ -1081,13 +1356,18 @@ class SystemLinkMonitor(pulumi.CustomResource):
                  probe_timeout: Optional[pulumi.Input[int]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  recoverytime: Optional[pulumi.Input[int]] = None,
+                 routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorRouteArgs']]]]] = None,
                  security_mode: Optional[pulumi.Input[str]] = None,
+                 server_config: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerListArgs']]]]] = None,
                  servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerArgs']]]]] = None,
+                 service_detection: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  srcintf: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  update_cascade_interface: Optional[pulumi.Input[str]] = None,
+                 update_policy_route: Optional[pulumi.Input[str]] = None,
                  update_static_route: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1097,13 +1377,18 @@ class SystemLinkMonitor(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemLinkMonitorArgs.__new__(SystemLinkMonitorArgs)
 
             __props__.__dict__["addr_mode"] = addr_mode
+            __props__.__dict__["class_id"] = class_id
+            __props__.__dict__["diffservcode"] = diffservcode
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fail_weight"] = fail_weight
             __props__.__dict__["failtime"] = failtime
             __props__.__dict__["gateway_ip"] = gateway_ip
             __props__.__dict__["gateway_ip6"] = gateway_ip6
@@ -1120,15 +1405,20 @@ class SystemLinkMonitor(pulumi.CustomResource):
             __props__.__dict__["probe_timeout"] = probe_timeout
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["recoverytime"] = recoverytime
+            __props__.__dict__["routes"] = routes
             __props__.__dict__["security_mode"] = security_mode
+            __props__.__dict__["server_config"] = server_config
+            __props__.__dict__["server_lists"] = server_lists
             if servers is None and not opts.urn:
                 raise TypeError("Missing required property 'servers'")
             __props__.__dict__["servers"] = servers
+            __props__.__dict__["service_detection"] = service_detection
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_ip6"] = source_ip6
             __props__.__dict__["srcintf"] = srcintf
             __props__.__dict__["status"] = status
             __props__.__dict__["update_cascade_interface"] = update_cascade_interface
+            __props__.__dict__["update_policy_route"] = update_policy_route
             __props__.__dict__["update_static_route"] = update_static_route
             __props__.__dict__["vdomparam"] = vdomparam
         super(SystemLinkMonitor, __self__).__init__(
@@ -1142,7 +1432,10 @@ class SystemLinkMonitor(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             addr_mode: Optional[pulumi.Input[str]] = None,
+            class_id: Optional[pulumi.Input[int]] = None,
+            diffservcode: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fail_weight: Optional[pulumi.Input[int]] = None,
             failtime: Optional[pulumi.Input[int]] = None,
             gateway_ip: Optional[pulumi.Input[str]] = None,
             gateway_ip6: Optional[pulumi.Input[str]] = None,
@@ -1159,13 +1452,18 @@ class SystemLinkMonitor(pulumi.CustomResource):
             probe_timeout: Optional[pulumi.Input[int]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             recoverytime: Optional[pulumi.Input[int]] = None,
+            routes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorRouteArgs']]]]] = None,
             security_mode: Optional[pulumi.Input[str]] = None,
+            server_config: Optional[pulumi.Input[str]] = None,
+            server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerListArgs']]]]] = None,
             servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerArgs']]]]] = None,
+            service_detection: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             source_ip6: Optional[pulumi.Input[str]] = None,
             srcintf: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             update_cascade_interface: Optional[pulumi.Input[str]] = None,
+            update_policy_route: Optional[pulumi.Input[str]] = None,
             update_static_route: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemLinkMonitor':
         """
@@ -1176,7 +1474,10 @@ class SystemLinkMonitor(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] addr_mode: Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+        :param pulumi.Input[int] class_id: Traffic class ID.
+        :param pulumi.Input[str] diffservcode: Differentiated services code point (DSCP) in the IP header of the probe packet.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[int] fail_weight: Threshold weight to trigger link failure alert.
         :param pulumi.Input[int] failtime: Number of retry attempts before the server is considered down (1 - 10, default = 5)
         :param pulumi.Input[str] gateway_ip: Gateway IP address used to probe the server.
         :param pulumi.Input[str] gateway_ip6: Gateway IPv6 address used to probe the server.
@@ -1191,15 +1492,20 @@ class SystemLinkMonitor(pulumi.CustomResource):
         :param pulumi.Input[int] port: Port number of the traffic to be used to monitor the server.
         :param pulumi.Input[int] probe_count: Number of most recent probes that should be used to calculate latency and jitter (5 - 30, default = 30).
         :param pulumi.Input[int] probe_timeout: Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
-        :param pulumi.Input[str] protocol: Protocols used to monitor the server.
+        :param pulumi.Input[str] protocol: Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         :param pulumi.Input[int] recoverytime: Number of successful responses received before server is considered recovered (1 - 10, default = 5).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorRouteArgs']]]] routes: Subnet to monitor. The structure of `route` block is documented below.
         :param pulumi.Input[str] security_mode: Twamp controller security mode. Valid values: `none`, `authentication`.
+        :param pulumi.Input[str] server_config: Mode of server configuration. Valid values: `default`, `individual`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerListArgs']]]] server_lists: Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemLinkMonitorServerArgs']]]] servers: IP address of the server(s) to be monitored. The structure of `server` block is documented below.
+        :param pulumi.Input[str] service_detection: Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] source_ip: Source IP address used in packet to the server.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used in packet to the server.
         :param pulumi.Input[str] srcintf: Interface that receives the traffic to be monitored.
         :param pulumi.Input[str] status: Enable/disable this link monitor. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_cascade_interface: Enable/disable update cascade interface. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_policy_route: Enable/disable updating the policy route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] update_static_route: Enable/disable updating the static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -1208,7 +1514,10 @@ class SystemLinkMonitor(pulumi.CustomResource):
         __props__ = _SystemLinkMonitorState.__new__(_SystemLinkMonitorState)
 
         __props__.__dict__["addr_mode"] = addr_mode
+        __props__.__dict__["class_id"] = class_id
+        __props__.__dict__["diffservcode"] = diffservcode
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fail_weight"] = fail_weight
         __props__.__dict__["failtime"] = failtime
         __props__.__dict__["gateway_ip"] = gateway_ip
         __props__.__dict__["gateway_ip6"] = gateway_ip6
@@ -1225,13 +1534,18 @@ class SystemLinkMonitor(pulumi.CustomResource):
         __props__.__dict__["probe_timeout"] = probe_timeout
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["recoverytime"] = recoverytime
+        __props__.__dict__["routes"] = routes
         __props__.__dict__["security_mode"] = security_mode
+        __props__.__dict__["server_config"] = server_config
+        __props__.__dict__["server_lists"] = server_lists
         __props__.__dict__["servers"] = servers
+        __props__.__dict__["service_detection"] = service_detection
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_ip6"] = source_ip6
         __props__.__dict__["srcintf"] = srcintf
         __props__.__dict__["status"] = status
         __props__.__dict__["update_cascade_interface"] = update_cascade_interface
+        __props__.__dict__["update_policy_route"] = update_policy_route
         __props__.__dict__["update_static_route"] = update_static_route
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemLinkMonitor(resource_name, opts=opts, __props__=__props__)
@@ -1245,12 +1559,36 @@ class SystemLinkMonitor(pulumi.CustomResource):
         return pulumi.get(self, "addr_mode")
 
     @property
+    @pulumi.getter(name="classId")
+    def class_id(self) -> pulumi.Output[int]:
+        """
+        Traffic class ID.
+        """
+        return pulumi.get(self, "class_id")
+
+    @property
+    @pulumi.getter
+    def diffservcode(self) -> pulumi.Output[str]:
+        """
+        Differentiated services code point (DSCP) in the IP header of the probe packet.
+        """
+        return pulumi.get(self, "diffservcode")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         """
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="failWeight")
+    def fail_weight(self) -> pulumi.Output[int]:
+        """
+        Threshold weight to trigger link failure alert.
+        """
+        return pulumi.get(self, "fail_weight")
 
     @property
     @pulumi.getter
@@ -1368,7 +1706,7 @@ class SystemLinkMonitor(pulumi.CustomResource):
     @pulumi.getter
     def protocol(self) -> pulumi.Output[str]:
         """
-        Protocols used to monitor the server.
+        Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
         """
         return pulumi.get(self, "protocol")
 
@@ -1381,6 +1719,14 @@ class SystemLinkMonitor(pulumi.CustomResource):
         return pulumi.get(self, "recoverytime")
 
     @property
+    @pulumi.getter
+    def routes(self) -> pulumi.Output[Optional[Sequence['outputs.SystemLinkMonitorRoute']]]:
+        """
+        Subnet to monitor. The structure of `route` block is documented below.
+        """
+        return pulumi.get(self, "routes")
+
+    @property
     @pulumi.getter(name="securityMode")
     def security_mode(self) -> pulumi.Output[str]:
         """
@@ -1389,12 +1735,36 @@ class SystemLinkMonitor(pulumi.CustomResource):
         return pulumi.get(self, "security_mode")
 
     @property
+    @pulumi.getter(name="serverConfig")
+    def server_config(self) -> pulumi.Output[str]:
+        """
+        Mode of server configuration. Valid values: `default`, `individual`.
+        """
+        return pulumi.get(self, "server_config")
+
+    @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemLinkMonitorServerList']]]:
+        """
+        Servers for link-monitor to monitor. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @property
     @pulumi.getter
     def servers(self) -> pulumi.Output[Sequence['outputs.SystemLinkMonitorServer']]:
         """
         IP address of the server(s) to be monitored. The structure of `server` block is documented below.
         """
         return pulumi.get(self, "servers")
+
+    @property
+    @pulumi.getter(name="serviceDetection")
+    def service_detection(self) -> pulumi.Output[str]:
+        """
+        Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "service_detection")
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -1435,6 +1805,14 @@ class SystemLinkMonitor(pulumi.CustomResource):
         Enable/disable update cascade interface. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "update_cascade_interface")
+
+    @property
+    @pulumi.getter(name="updatePolicyRoute")
+    def update_policy_route(self) -> pulumi.Output[str]:
+        """
+        Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_policy_route")
 
     @property
     @pulumi.getter(name="updateStaticRoute")

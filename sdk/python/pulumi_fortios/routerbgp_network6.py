@@ -15,6 +15,7 @@ class RouterbgpNetwork6Args:
     def __init__(__self__, *,
                  backdoor: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 network_import_check: Optional[pulumi.Input[str]] = None,
                  prefix6: Optional[pulumi.Input[str]] = None,
                  route_map: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -22,6 +23,7 @@ class RouterbgpNetwork6Args:
         The set of arguments for constructing a RouterbgpNetwork6 resource.
         :param pulumi.Input[str] backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[str] prefix6: Network IPv6 prefix.
         :param pulumi.Input[str] route_map: Route map to modify generated route.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -30,6 +32,8 @@ class RouterbgpNetwork6Args:
             pulumi.set(__self__, "backdoor", backdoor)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if network_import_check is not None:
+            pulumi.set(__self__, "network_import_check", network_import_check)
         if prefix6 is not None:
             pulumi.set(__self__, "prefix6", prefix6)
         if route_map is not None:
@@ -60,6 +64,18 @@ class RouterbgpNetwork6Args:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "network_import_check")
+
+    @network_import_check.setter
+    def network_import_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_import_check", value)
 
     @property
     @pulumi.getter
@@ -103,6 +119,7 @@ class _RouterbgpNetwork6State:
     def __init__(__self__, *,
                  backdoor: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 network_import_check: Optional[pulumi.Input[str]] = None,
                  prefix6: Optional[pulumi.Input[str]] = None,
                  route_map: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -110,6 +127,7 @@ class _RouterbgpNetwork6State:
         Input properties used for looking up and filtering RouterbgpNetwork6 resources.
         :param pulumi.Input[str] backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[str] prefix6: Network IPv6 prefix.
         :param pulumi.Input[str] route_map: Route map to modify generated route.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -118,6 +136,8 @@ class _RouterbgpNetwork6State:
             pulumi.set(__self__, "backdoor", backdoor)
         if fosid is not None:
             pulumi.set(__self__, "fosid", fosid)
+        if network_import_check is not None:
+            pulumi.set(__self__, "network_import_check", network_import_check)
         if prefix6 is not None:
             pulumi.set(__self__, "prefix6", prefix6)
         if route_map is not None:
@@ -148,6 +168,18 @@ class _RouterbgpNetwork6State:
     @fosid.setter
     def fosid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "fosid", value)
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "network_import_check")
+
+    @network_import_check.setter
+    def network_import_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "network_import_check", value)
 
     @property
     @pulumi.getter
@@ -193,6 +225,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backdoor: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 network_import_check: Optional[pulumi.Input[str]] = None,
                  prefix6: Optional[pulumi.Input[str]] = None,
                  route_map: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -216,6 +249,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[str] prefix6: Network IPv6 prefix.
         :param pulumi.Input[str] route_map: Route map to modify generated route.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -258,6 +292,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  backdoor: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
+                 network_import_check: Optional[pulumi.Input[str]] = None,
                  prefix6: Optional[pulumi.Input[str]] = None,
                  route_map: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -268,6 +303,8 @@ class RouterbgpNetwork6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -275,6 +312,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
 
             __props__.__dict__["backdoor"] = backdoor
             __props__.__dict__["fosid"] = fosid
+            __props__.__dict__["network_import_check"] = network_import_check
             __props__.__dict__["prefix6"] = prefix6
             __props__.__dict__["route_map"] = route_map
             __props__.__dict__["vdomparam"] = vdomparam
@@ -290,6 +328,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             backdoor: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
+            network_import_check: Optional[pulumi.Input[str]] = None,
             prefix6: Optional[pulumi.Input[str]] = None,
             route_map: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'RouterbgpNetwork6':
@@ -302,6 +341,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] backdoor: Enable/disable route as backdoor. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] fosid: ID.
+        :param pulumi.Input[str] network_import_check: Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
         :param pulumi.Input[str] prefix6: Network IPv6 prefix.
         :param pulumi.Input[str] route_map: Route map to modify generated route.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -312,6 +352,7 @@ class RouterbgpNetwork6(pulumi.CustomResource):
 
         __props__.__dict__["backdoor"] = backdoor
         __props__.__dict__["fosid"] = fosid
+        __props__.__dict__["network_import_check"] = network_import_check
         __props__.__dict__["prefix6"] = prefix6
         __props__.__dict__["route_map"] = route_map
         __props__.__dict__["vdomparam"] = vdomparam
@@ -332,6 +373,14 @@ class RouterbgpNetwork6(pulumi.CustomResource):
         ID.
         """
         return pulumi.get(self, "fosid")
+
+    @property
+    @pulumi.getter(name="networkImportCheck")
+    def network_import_check(self) -> pulumi.Output[str]:
+        """
+        Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+        """
+        return pulumi.get(self, "network_import_check")
 
     @property
     @pulumi.getter

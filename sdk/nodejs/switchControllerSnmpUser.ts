@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch SNMP v3 users globally.
+ * Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -46,7 +46,7 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
     }
 
     /**
-     * Authentication protocol. Valid values: `md5`, `sha`.
+     * Authentication protocol.
      */
     public readonly authProto!: pulumi.Output<string>;
     /**
@@ -58,7 +58,7 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`.
+     * Privacy (encryption) protocol.
      */
     public readonly privProto!: pulumi.Output<string>;
     /**
@@ -91,35 +91,33 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSnmpUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSnmpUserArgs | SwitchControllerSnmpUserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSnmpUserState | undefined;
-            inputs["authProto"] = state ? state.authProto : undefined;
-            inputs["authPwd"] = state ? state.authPwd : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["privProto"] = state ? state.privProto : undefined;
-            inputs["privPwd"] = state ? state.privPwd : undefined;
-            inputs["queries"] = state ? state.queries : undefined;
-            inputs["queryPort"] = state ? state.queryPort : undefined;
-            inputs["securityLevel"] = state ? state.securityLevel : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authProto"] = state ? state.authProto : undefined;
+            resourceInputs["authPwd"] = state ? state.authPwd : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["privProto"] = state ? state.privProto : undefined;
+            resourceInputs["privPwd"] = state ? state.privPwd : undefined;
+            resourceInputs["queries"] = state ? state.queries : undefined;
+            resourceInputs["queryPort"] = state ? state.queryPort : undefined;
+            resourceInputs["securityLevel"] = state ? state.securityLevel : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSnmpUserArgs | undefined;
-            inputs["authProto"] = args ? args.authProto : undefined;
-            inputs["authPwd"] = args ? args.authPwd : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["privProto"] = args ? args.privProto : undefined;
-            inputs["privPwd"] = args ? args.privPwd : undefined;
-            inputs["queries"] = args ? args.queries : undefined;
-            inputs["queryPort"] = args ? args.queryPort : undefined;
-            inputs["securityLevel"] = args ? args.securityLevel : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authProto"] = args ? args.authProto : undefined;
+            resourceInputs["authPwd"] = args ? args.authPwd : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["privProto"] = args ? args.privProto : undefined;
+            resourceInputs["privPwd"] = args ? args.privPwd : undefined;
+            resourceInputs["queries"] = args ? args.queries : undefined;
+            resourceInputs["queryPort"] = args ? args.queryPort : undefined;
+            resourceInputs["securityLevel"] = args ? args.securityLevel : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSnmpUser.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSnmpUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -128,7 +126,7 @@ export class SwitchControllerSnmpUser extends pulumi.CustomResource {
  */
 export interface SwitchControllerSnmpUserState {
     /**
-     * Authentication protocol. Valid values: `md5`, `sha`.
+     * Authentication protocol.
      */
     authProto?: pulumi.Input<string>;
     /**
@@ -140,7 +138,7 @@ export interface SwitchControllerSnmpUserState {
      */
     name?: pulumi.Input<string>;
     /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`.
+     * Privacy (encryption) protocol.
      */
     privProto?: pulumi.Input<string>;
     /**
@@ -170,7 +168,7 @@ export interface SwitchControllerSnmpUserState {
  */
 export interface SwitchControllerSnmpUserArgs {
     /**
-     * Authentication protocol. Valid values: `md5`, `sha`.
+     * Authentication protocol.
      */
     authProto?: pulumi.Input<string>;
     /**
@@ -182,7 +180,7 @@ export interface SwitchControllerSnmpUserArgs {
      */
     name?: pulumi.Input<string>;
     /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`.
+     * Privacy (encryption) protocol.
      */
     privProto?: pulumi.Input<string>;
     /**

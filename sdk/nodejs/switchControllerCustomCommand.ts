@@ -83,28 +83,26 @@ export class SwitchControllerCustomCommand extends pulumi.CustomResource {
      */
     constructor(name: string, args: SwitchControllerCustomCommandArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerCustomCommandArgs | SwitchControllerCustomCommandState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerCustomCommandState | undefined;
-            inputs["command"] = state ? state.command : undefined;
-            inputs["commandName"] = state ? state.commandName : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["command"] = state ? state.command : undefined;
+            resourceInputs["commandName"] = state ? state.commandName : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerCustomCommandArgs | undefined;
             if ((!args || args.command === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'command'");
             }
-            inputs["command"] = args ? args.command : undefined;
-            inputs["commandName"] = args ? args.commandName : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["command"] = args ? args.command : undefined;
+            resourceInputs["commandName"] = args ? args.commandName : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerCustomCommand.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerCustomCommand.__pulumiType, name, resourceInputs, opts);
     }
 }
 

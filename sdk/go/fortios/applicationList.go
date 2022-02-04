@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -104,6 +104,7 @@ func NewApplicationList(ctx *pulumi.Context,
 		args = &ApplicationListArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApplicationList
 	err := ctx.RegisterResource("fortios:index/applicationList:ApplicationList", name, args, &resource, opts...)
 	if err != nil {
@@ -314,7 +315,7 @@ type ApplicationListInput interface {
 }
 
 func (*ApplicationList) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationList)(nil))
+	return reflect.TypeOf((**ApplicationList)(nil)).Elem()
 }
 
 func (i *ApplicationList) ToApplicationListOutput() ApplicationListOutput {
@@ -323,35 +324,6 @@ func (i *ApplicationList) ToApplicationListOutput() ApplicationListOutput {
 
 func (i *ApplicationList) ToApplicationListOutputWithContext(ctx context.Context) ApplicationListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListOutput)
-}
-
-func (i *ApplicationList) ToApplicationListPtrOutput() ApplicationListPtrOutput {
-	return i.ToApplicationListPtrOutputWithContext(context.Background())
-}
-
-func (i *ApplicationList) ToApplicationListPtrOutputWithContext(ctx context.Context) ApplicationListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListPtrOutput)
-}
-
-type ApplicationListPtrInput interface {
-	pulumi.Input
-
-	ToApplicationListPtrOutput() ApplicationListPtrOutput
-	ToApplicationListPtrOutputWithContext(ctx context.Context) ApplicationListPtrOutput
-}
-
-type applicationListPtrType ApplicationListArgs
-
-func (*applicationListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationList)(nil))
-}
-
-func (i *applicationListPtrType) ToApplicationListPtrOutput() ApplicationListPtrOutput {
-	return i.ToApplicationListPtrOutputWithContext(context.Background())
-}
-
-func (i *applicationListPtrType) ToApplicationListPtrOutputWithContext(ctx context.Context) ApplicationListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListPtrOutput)
 }
 
 // ApplicationListArrayInput is an input type that accepts ApplicationListArray and ApplicationListArrayOutput values.
@@ -368,7 +340,7 @@ type ApplicationListArrayInput interface {
 type ApplicationListArray []ApplicationListInput
 
 func (ApplicationListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ApplicationList)(nil))
+	return reflect.TypeOf((*[]*ApplicationList)(nil)).Elem()
 }
 
 func (i ApplicationListArray) ToApplicationListArrayOutput() ApplicationListArrayOutput {
@@ -393,7 +365,7 @@ type ApplicationListMapInput interface {
 type ApplicationListMap map[string]ApplicationListInput
 
 func (ApplicationListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ApplicationList)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationList)(nil)).Elem()
 }
 
 func (i ApplicationListMap) ToApplicationListMapOutput() ApplicationListMapOutput {
@@ -404,12 +376,10 @@ func (i ApplicationListMap) ToApplicationListMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationListMapOutput)
 }
 
-type ApplicationListOutput struct {
-	*pulumi.OutputState
-}
+type ApplicationListOutput struct{ *pulumi.OutputState }
 
 func (ApplicationListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationList)(nil))
+	return reflect.TypeOf((**ApplicationList)(nil)).Elem()
 }
 
 func (o ApplicationListOutput) ToApplicationListOutput() ApplicationListOutput {
@@ -420,36 +390,10 @@ func (o ApplicationListOutput) ToApplicationListOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ApplicationListOutput) ToApplicationListPtrOutput() ApplicationListPtrOutput {
-	return o.ToApplicationListPtrOutputWithContext(context.Background())
-}
-
-func (o ApplicationListOutput) ToApplicationListPtrOutputWithContext(ctx context.Context) ApplicationListPtrOutput {
-	return o.ApplyT(func(v ApplicationList) *ApplicationList {
-		return &v
-	}).(ApplicationListPtrOutput)
-}
-
-type ApplicationListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ApplicationListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationList)(nil))
-}
-
-func (o ApplicationListPtrOutput) ToApplicationListPtrOutput() ApplicationListPtrOutput {
-	return o
-}
-
-func (o ApplicationListPtrOutput) ToApplicationListPtrOutputWithContext(ctx context.Context) ApplicationListPtrOutput {
-	return o
-}
-
 type ApplicationListArrayOutput struct{ *pulumi.OutputState }
 
 func (ApplicationListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ApplicationList)(nil))
+	return reflect.TypeOf((*[]*ApplicationList)(nil)).Elem()
 }
 
 func (o ApplicationListArrayOutput) ToApplicationListArrayOutput() ApplicationListArrayOutput {
@@ -461,15 +405,15 @@ func (o ApplicationListArrayOutput) ToApplicationListArrayOutputWithContext(ctx 
 }
 
 func (o ApplicationListArrayOutput) Index(i pulumi.IntInput) ApplicationListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationList {
-		return vs[0].([]ApplicationList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationList {
+		return vs[0].([]*ApplicationList)[vs[1].(int)]
 	}).(ApplicationListOutput)
 }
 
 type ApplicationListMapOutput struct{ *pulumi.OutputState }
 
 func (ApplicationListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ApplicationList)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationList)(nil)).Elem()
 }
 
 func (o ApplicationListMapOutput) ToApplicationListMapOutput() ApplicationListMapOutput {
@@ -481,14 +425,16 @@ func (o ApplicationListMapOutput) ToApplicationListMapOutputWithContext(ctx cont
 }
 
 func (o ApplicationListMapOutput) MapIndex(k pulumi.StringInput) ApplicationListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApplicationList {
-		return vs[0].(map[string]ApplicationList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApplicationList {
+		return vs[0].(map[string]*ApplicationList)[vs[1].(string)]
 	}).(ApplicationListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationListInput)(nil)).Elem(), &ApplicationList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationListArrayInput)(nil)).Elem(), ApplicationListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationListMapInput)(nil)).Elem(), ApplicationListMap{})
 	pulumi.RegisterOutputType(ApplicationListOutput{})
-	pulumi.RegisterOutputType(ApplicationListPtrOutput{})
 	pulumi.RegisterOutputType(ApplicationListArrayOutput{})
 	pulumi.RegisterOutputType(ApplicationListMapOutput{})
 }

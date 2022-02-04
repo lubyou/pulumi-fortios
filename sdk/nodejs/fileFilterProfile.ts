@@ -96,37 +96,35 @@ export class FileFilterProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FileFilterProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FileFilterProfileArgs | FileFilterProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FileFilterProfileState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["extendedLog"] = state ? state.extendedLog : undefined;
-            inputs["featureSet"] = state ? state.featureSet : undefined;
-            inputs["log"] = state ? state.log : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
-            inputs["rules"] = state ? state.rules : undefined;
-            inputs["scanArchiveContents"] = state ? state.scanArchiveContents : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["extendedLog"] = state ? state.extendedLog : undefined;
+            resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["replacemsgGroup"] = state ? state.replacemsgGroup : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["scanArchiveContents"] = state ? state.scanArchiveContents : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FileFilterProfileArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["extendedLog"] = args ? args.extendedLog : undefined;
-            inputs["featureSet"] = args ? args.featureSet : undefined;
-            inputs["log"] = args ? args.log : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
-            inputs["rules"] = args ? args.rules : undefined;
-            inputs["scanArchiveContents"] = args ? args.scanArchiveContents : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["extendedLog"] = args ? args.extendedLog : undefined;
+            resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["replacemsgGroup"] = args ? args.replacemsgGroup : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["scanArchiveContents"] = args ? args.scanArchiveContents : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FileFilterProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FileFilterProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

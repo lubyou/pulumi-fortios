@@ -79,15 +79,15 @@ export class FortimanagerDVMDevice extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerDVMDeviceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerDVMDeviceArgs | FortimanagerDVMDeviceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerDVMDeviceState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["deviceName"] = state ? state.deviceName : undefined;
-            inputs["ipaddr"] = state ? state.ipaddr : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["userid"] = state ? state.userid : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["deviceName"] = state ? state.deviceName : undefined;
+            resourceInputs["ipaddr"] = state ? state.ipaddr : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["userid"] = state ? state.userid : undefined;
         } else {
             const args = argsOrState as FortimanagerDVMDeviceArgs | undefined;
             if ((!args || args.deviceName === undefined) && !opts.urn) {
@@ -99,16 +99,14 @@ export class FortimanagerDVMDevice extends pulumi.CustomResource {
             if ((!args || args.userid === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'userid'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["deviceName"] = args ? args.deviceName : undefined;
-            inputs["ipaddr"] = args ? args.ipaddr : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["userid"] = args ? args.userid : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["deviceName"] = args ? args.deviceName : undefined;
+            resourceInputs["ipaddr"] = args ? args.ipaddr : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["userid"] = args ? args.userid : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerDVMDevice.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerDVMDevice.__pulumiType, name, resourceInputs, opts);
     }
 }
 

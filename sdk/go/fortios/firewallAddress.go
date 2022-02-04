@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -76,6 +76,8 @@ type FirewallAddress struct {
 	EndMac pulumi.StringOutput `pulumi:"endMac"`
 	// Endpoint group name.
 	EpgName pulumi.StringOutput `pulumi:"epgName"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Match criteria filter.
 	Filter pulumi.StringPtrOutput `pulumi:"filter"`
 	// Fully Qualified Domain Name address.
@@ -86,6 +88,8 @@ type FirewallAddress struct {
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
 	Lists FirewallAddressListArrayOutput `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs FirewallAddressMacaddrArrayOutput `pulumi:"macaddrs"`
 	// Tag name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
@@ -116,6 +120,10 @@ type FirewallAddress struct {
 	Subnet pulumi.StringOutput `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName pulumi.StringOutput `pulumi:"subnetName"`
+	// Tag detection level of dynamic address object.
+	TagDetectionLevel pulumi.StringOutput `pulumi:"tagDetectionLevel"`
+	// Tag type of dynamic address object.
+	TagType pulumi.StringOutput `pulumi:"tagType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings FirewallAddressTaggingArrayOutput `pulumi:"taggings"`
 	// Tenant.
@@ -141,6 +149,7 @@ func NewFirewallAddress(ctx *pulumi.Context,
 		args = &FirewallAddressArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallAddress
 	err := ctx.RegisterResource("fortios:index/firewallAddress:FirewallAddress", name, args, &resource, opts...)
 	if err != nil {
@@ -185,6 +194,8 @@ type firewallAddressState struct {
 	EndMac *string `pulumi:"endMac"`
 	// Endpoint group name.
 	EpgName *string `pulumi:"epgName"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Match criteria filter.
 	Filter *string `pulumi:"filter"`
 	// Fully Qualified Domain Name address.
@@ -195,6 +206,8 @@ type firewallAddressState struct {
 	Interface *string `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
 	Lists []FirewallAddressList `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs []FirewallAddressMacaddr `pulumi:"macaddrs"`
 	// Tag name.
 	Name *string `pulumi:"name"`
 	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
@@ -225,6 +238,10 @@ type firewallAddressState struct {
 	Subnet *string `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName *string `pulumi:"subnetName"`
+	// Tag detection level of dynamic address object.
+	TagDetectionLevel *string `pulumi:"tagDetectionLevel"`
+	// Tag type of dynamic address object.
+	TagType *string `pulumi:"tagType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings []FirewallAddressTagging `pulumi:"taggings"`
 	// Tenant.
@@ -266,6 +283,8 @@ type FirewallAddressState struct {
 	EndMac pulumi.StringPtrInput
 	// Endpoint group name.
 	EpgName pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Match criteria filter.
 	Filter pulumi.StringPtrInput
 	// Fully Qualified Domain Name address.
@@ -276,6 +295,8 @@ type FirewallAddressState struct {
 	Interface pulumi.StringPtrInput
 	// IP address list. The structure of `list` block is documented below.
 	Lists FirewallAddressListArrayInput
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs FirewallAddressMacaddrArrayInput
 	// Tag name.
 	Name pulumi.StringPtrInput
 	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
@@ -306,6 +327,10 @@ type FirewallAddressState struct {
 	Subnet pulumi.StringPtrInput
 	// Subnet name.
 	SubnetName pulumi.StringPtrInput
+	// Tag detection level of dynamic address object.
+	TagDetectionLevel pulumi.StringPtrInput
+	// Tag type of dynamic address object.
+	TagType pulumi.StringPtrInput
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings FirewallAddressTaggingArrayInput
 	// Tenant.
@@ -351,6 +376,8 @@ type firewallAddressArgs struct {
 	EndMac *string `pulumi:"endMac"`
 	// Endpoint group name.
 	EpgName *string `pulumi:"epgName"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Match criteria filter.
 	Filter *string `pulumi:"filter"`
 	// Fully Qualified Domain Name address.
@@ -361,6 +388,8 @@ type firewallAddressArgs struct {
 	Interface *string `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
 	Lists []FirewallAddressList `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs []FirewallAddressMacaddr `pulumi:"macaddrs"`
 	// Tag name.
 	Name *string `pulumi:"name"`
 	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
@@ -391,6 +420,10 @@ type firewallAddressArgs struct {
 	Subnet *string `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName *string `pulumi:"subnetName"`
+	// Tag detection level of dynamic address object.
+	TagDetectionLevel *string `pulumi:"tagDetectionLevel"`
+	// Tag type of dynamic address object.
+	TagType *string `pulumi:"tagType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings []FirewallAddressTagging `pulumi:"taggings"`
 	// Tenant.
@@ -433,6 +466,8 @@ type FirewallAddressArgs struct {
 	EndMac pulumi.StringPtrInput
 	// Endpoint group name.
 	EpgName pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Match criteria filter.
 	Filter pulumi.StringPtrInput
 	// Fully Qualified Domain Name address.
@@ -443,6 +478,8 @@ type FirewallAddressArgs struct {
 	Interface pulumi.StringPtrInput
 	// IP address list. The structure of `list` block is documented below.
 	Lists FirewallAddressListArrayInput
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs FirewallAddressMacaddrArrayInput
 	// Tag name.
 	Name pulumi.StringPtrInput
 	// Enable/disable collection of node addresses only in Kubernetes. Valid values: `enable`, `disable`.
@@ -473,6 +510,10 @@ type FirewallAddressArgs struct {
 	Subnet pulumi.StringPtrInput
 	// Subnet name.
 	SubnetName pulumi.StringPtrInput
+	// Tag detection level of dynamic address object.
+	TagDetectionLevel pulumi.StringPtrInput
+	// Tag type of dynamic address object.
+	TagType pulumi.StringPtrInput
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings FirewallAddressTaggingArrayInput
 	// Tenant.
@@ -503,7 +544,7 @@ type FirewallAddressInput interface {
 }
 
 func (*FirewallAddress) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddress)(nil))
+	return reflect.TypeOf((**FirewallAddress)(nil)).Elem()
 }
 
 func (i *FirewallAddress) ToFirewallAddressOutput() FirewallAddressOutput {
@@ -512,35 +553,6 @@ func (i *FirewallAddress) ToFirewallAddressOutput() FirewallAddressOutput {
 
 func (i *FirewallAddress) ToFirewallAddressOutputWithContext(ctx context.Context) FirewallAddressOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddressOutput)
-}
-
-func (i *FirewallAddress) ToFirewallAddressPtrOutput() FirewallAddressPtrOutput {
-	return i.ToFirewallAddressPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallAddress) ToFirewallAddressPtrOutputWithContext(ctx context.Context) FirewallAddressPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddressPtrOutput)
-}
-
-type FirewallAddressPtrInput interface {
-	pulumi.Input
-
-	ToFirewallAddressPtrOutput() FirewallAddressPtrOutput
-	ToFirewallAddressPtrOutputWithContext(ctx context.Context) FirewallAddressPtrOutput
-}
-
-type firewallAddressPtrType FirewallAddressArgs
-
-func (*firewallAddressPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddress)(nil))
-}
-
-func (i *firewallAddressPtrType) ToFirewallAddressPtrOutput() FirewallAddressPtrOutput {
-	return i.ToFirewallAddressPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallAddressPtrType) ToFirewallAddressPtrOutputWithContext(ctx context.Context) FirewallAddressPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddressPtrOutput)
 }
 
 // FirewallAddressArrayInput is an input type that accepts FirewallAddressArray and FirewallAddressArrayOutput values.
@@ -557,7 +569,7 @@ type FirewallAddressArrayInput interface {
 type FirewallAddressArray []FirewallAddressInput
 
 func (FirewallAddressArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallAddress)(nil))
+	return reflect.TypeOf((*[]*FirewallAddress)(nil)).Elem()
 }
 
 func (i FirewallAddressArray) ToFirewallAddressArrayOutput() FirewallAddressArrayOutput {
@@ -582,7 +594,7 @@ type FirewallAddressMapInput interface {
 type FirewallAddressMap map[string]FirewallAddressInput
 
 func (FirewallAddressMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallAddress)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddress)(nil)).Elem()
 }
 
 func (i FirewallAddressMap) ToFirewallAddressMapOutput() FirewallAddressMapOutput {
@@ -593,12 +605,10 @@ func (i FirewallAddressMap) ToFirewallAddressMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddressMapOutput)
 }
 
-type FirewallAddressOutput struct {
-	*pulumi.OutputState
-}
+type FirewallAddressOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddressOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddress)(nil))
+	return reflect.TypeOf((**FirewallAddress)(nil)).Elem()
 }
 
 func (o FirewallAddressOutput) ToFirewallAddressOutput() FirewallAddressOutput {
@@ -609,36 +619,10 @@ func (o FirewallAddressOutput) ToFirewallAddressOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FirewallAddressOutput) ToFirewallAddressPtrOutput() FirewallAddressPtrOutput {
-	return o.ToFirewallAddressPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallAddressOutput) ToFirewallAddressPtrOutputWithContext(ctx context.Context) FirewallAddressPtrOutput {
-	return o.ApplyT(func(v FirewallAddress) *FirewallAddress {
-		return &v
-	}).(FirewallAddressPtrOutput)
-}
-
-type FirewallAddressPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallAddressPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddress)(nil))
-}
-
-func (o FirewallAddressPtrOutput) ToFirewallAddressPtrOutput() FirewallAddressPtrOutput {
-	return o
-}
-
-func (o FirewallAddressPtrOutput) ToFirewallAddressPtrOutputWithContext(ctx context.Context) FirewallAddressPtrOutput {
-	return o
-}
-
 type FirewallAddressArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddressArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallAddress)(nil))
+	return reflect.TypeOf((*[]*FirewallAddress)(nil)).Elem()
 }
 
 func (o FirewallAddressArrayOutput) ToFirewallAddressArrayOutput() FirewallAddressArrayOutput {
@@ -650,15 +634,15 @@ func (o FirewallAddressArrayOutput) ToFirewallAddressArrayOutputWithContext(ctx 
 }
 
 func (o FirewallAddressArrayOutput) Index(i pulumi.IntInput) FirewallAddressOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddress {
-		return vs[0].([]FirewallAddress)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAddress {
+		return vs[0].([]*FirewallAddress)[vs[1].(int)]
 	}).(FirewallAddressOutput)
 }
 
 type FirewallAddressMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddressMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallAddress)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddress)(nil)).Elem()
 }
 
 func (o FirewallAddressMapOutput) ToFirewallAddressMapOutput() FirewallAddressMapOutput {
@@ -670,14 +654,16 @@ func (o FirewallAddressMapOutput) ToFirewallAddressMapOutputWithContext(ctx cont
 }
 
 func (o FirewallAddressMapOutput) MapIndex(k pulumi.StringInput) FirewallAddressOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallAddress {
-		return vs[0].(map[string]FirewallAddress)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallAddress {
+		return vs[0].(map[string]*FirewallAddress)[vs[1].(string)]
 	}).(FirewallAddressOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddressInput)(nil)).Elem(), &FirewallAddress{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddressArrayInput)(nil)).Elem(), FirewallAddressArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddressMapInput)(nil)).Elem(), FirewallAddressMap{})
 	pulumi.RegisterOutputType(FirewallAddressOutput{})
-	pulumi.RegisterOutputType(FirewallAddressPtrOutput{})
 	pulumi.RegisterOutputType(FirewallAddressArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddressMapOutput{})
 }

@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname3 = new fortios.UserFsso("trname3", {
  *     port: 8000,
@@ -92,7 +92,7 @@ export class AuthenticationScheme extends pulumi.CustomResource {
      */
     public readonly kerberosKeytab!: pulumi.Output<string>;
     /**
-     * Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+     * Authentication methods (default = basic).
      */
     public readonly method!: pulumi.Output<string>;
     /**
@@ -108,9 +108,21 @@ export class AuthenticationScheme extends pulumi.CustomResource {
      */
     public readonly requireTfa!: pulumi.Output<string>;
     /**
+     * SAML configuration.
+     */
+    public readonly samlServer!: pulumi.Output<string>;
+    /**
+     * SAML authentication timeout in seconds.
+     */
+    public readonly samlTimeout!: pulumi.Output<number>;
+    /**
      * SSH CA name.
      */
     public readonly sshCa!: pulumi.Output<string>;
+    /**
+     * Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly userCert!: pulumi.Output<string>;
     /**
      * Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
      */
@@ -129,44 +141,48 @@ export class AuthenticationScheme extends pulumi.CustomResource {
      */
     constructor(name: string, args: AuthenticationSchemeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AuthenticationSchemeArgs | AuthenticationSchemeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AuthenticationSchemeState | undefined;
-            inputs["domainController"] = state ? state.domainController : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fssoAgentForNtlm"] = state ? state.fssoAgentForNtlm : undefined;
-            inputs["fssoGuest"] = state ? state.fssoGuest : undefined;
-            inputs["kerberosKeytab"] = state ? state.kerberosKeytab : undefined;
-            inputs["method"] = state ? state.method : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["negotiateNtlm"] = state ? state.negotiateNtlm : undefined;
-            inputs["requireTfa"] = state ? state.requireTfa : undefined;
-            inputs["sshCa"] = state ? state.sshCa : undefined;
-            inputs["userDatabases"] = state ? state.userDatabases : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["domainController"] = state ? state.domainController : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fssoAgentForNtlm"] = state ? state.fssoAgentForNtlm : undefined;
+            resourceInputs["fssoGuest"] = state ? state.fssoGuest : undefined;
+            resourceInputs["kerberosKeytab"] = state ? state.kerberosKeytab : undefined;
+            resourceInputs["method"] = state ? state.method : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["negotiateNtlm"] = state ? state.negotiateNtlm : undefined;
+            resourceInputs["requireTfa"] = state ? state.requireTfa : undefined;
+            resourceInputs["samlServer"] = state ? state.samlServer : undefined;
+            resourceInputs["samlTimeout"] = state ? state.samlTimeout : undefined;
+            resourceInputs["sshCa"] = state ? state.sshCa : undefined;
+            resourceInputs["userCert"] = state ? state.userCert : undefined;
+            resourceInputs["userDatabases"] = state ? state.userDatabases : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AuthenticationSchemeArgs | undefined;
             if ((!args || args.method === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'method'");
             }
-            inputs["domainController"] = args ? args.domainController : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fssoAgentForNtlm"] = args ? args.fssoAgentForNtlm : undefined;
-            inputs["fssoGuest"] = args ? args.fssoGuest : undefined;
-            inputs["kerberosKeytab"] = args ? args.kerberosKeytab : undefined;
-            inputs["method"] = args ? args.method : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["negotiateNtlm"] = args ? args.negotiateNtlm : undefined;
-            inputs["requireTfa"] = args ? args.requireTfa : undefined;
-            inputs["sshCa"] = args ? args.sshCa : undefined;
-            inputs["userDatabases"] = args ? args.userDatabases : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["domainController"] = args ? args.domainController : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fssoAgentForNtlm"] = args ? args.fssoAgentForNtlm : undefined;
+            resourceInputs["fssoGuest"] = args ? args.fssoGuest : undefined;
+            resourceInputs["kerberosKeytab"] = args ? args.kerberosKeytab : undefined;
+            resourceInputs["method"] = args ? args.method : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["negotiateNtlm"] = args ? args.negotiateNtlm : undefined;
+            resourceInputs["requireTfa"] = args ? args.requireTfa : undefined;
+            resourceInputs["samlServer"] = args ? args.samlServer : undefined;
+            resourceInputs["samlTimeout"] = args ? args.samlTimeout : undefined;
+            resourceInputs["sshCa"] = args ? args.sshCa : undefined;
+            resourceInputs["userCert"] = args ? args.userCert : undefined;
+            resourceInputs["userDatabases"] = args ? args.userDatabases : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AuthenticationScheme.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AuthenticationScheme.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -195,7 +211,7 @@ export interface AuthenticationSchemeState {
      */
     kerberosKeytab?: pulumi.Input<string>;
     /**
-     * Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+     * Authentication methods (default = basic).
      */
     method?: pulumi.Input<string>;
     /**
@@ -211,9 +227,21 @@ export interface AuthenticationSchemeState {
      */
     requireTfa?: pulumi.Input<string>;
     /**
+     * SAML configuration.
+     */
+    samlServer?: pulumi.Input<string>;
+    /**
+     * SAML authentication timeout in seconds.
+     */
+    samlTimeout?: pulumi.Input<number>;
+    /**
      * SSH CA name.
      */
     sshCa?: pulumi.Input<string>;
+    /**
+     * Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+     */
+    userCert?: pulumi.Input<string>;
     /**
      * Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
      */
@@ -249,7 +277,7 @@ export interface AuthenticationSchemeArgs {
      */
     kerberosKeytab?: pulumi.Input<string>;
     /**
-     * Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
+     * Authentication methods (default = basic).
      */
     method: pulumi.Input<string>;
     /**
@@ -265,9 +293,21 @@ export interface AuthenticationSchemeArgs {
      */
     requireTfa?: pulumi.Input<string>;
     /**
+     * SAML configuration.
+     */
+    samlServer?: pulumi.Input<string>;
+    /**
+     * SAML authentication timeout in seconds.
+     */
+    samlTimeout?: pulumi.Input<number>;
+    /**
      * SSH CA name.
      */
     sshCa?: pulumi.Input<string>;
+    /**
+     * Enable/disable authentication with user certificate (default = disable). Valid values: `enable`, `disable`.
+     */
+    userCert?: pulumi.Input<string>;
     /**
      * Authentication server to contain user information; "local" (default) or "123" (for LDAP). The structure of `userDatabase` block is documented below.
      */

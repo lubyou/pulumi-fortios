@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,8 +27,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewSwitchControllerQosIpDscpMap(ctx, "trname", &fortios.SwitchControllerQosIpDscpMapArgs{
 // 			Description: pulumi.String("DEIW"),
-// 			Maps: fortios.SwitchControllerQosIpDscpMapMapArray{
-// 				&fortios.SwitchControllerQosIpDscpMapMapArgs{
+// 			Maps: SwitchControllerQosIpDscpMapMapArray{
+// 				&SwitchControllerQosIpDscpMapMapArgs{
 // 					CosQueue: pulumi.Int(3),
 // 					Diffserv: pulumi.String("CS0 CS1 AF11"),
 // 					Name:     pulumi.String("1"),
@@ -73,6 +74,7 @@ func NewSwitchControllerQosIpDscpMap(ctx *pulumi.Context,
 		args = &SwitchControllerQosIpDscpMapArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosIpDscpMap
 	err := ctx.RegisterResource("fortios:index/switchControllerQosIpDscpMap:SwitchControllerQosIpDscpMap", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +165,7 @@ type SwitchControllerQosIpDscpMapInput interface {
 }
 
 func (*SwitchControllerQosIpDscpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosIpDscpMap)(nil))
+	return reflect.TypeOf((**SwitchControllerQosIpDscpMap)(nil)).Elem()
 }
 
 func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapOutput() SwitchControllerQosIpDscpMapOutput {
@@ -172,35 +174,6 @@ func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapOutput() Sw
 
 func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapOutput)
-}
-
-func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapPtrOutput() SwitchControllerQosIpDscpMapPtrOutput {
-	return i.ToSwitchControllerQosIpDscpMapPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerQosIpDscpMap) ToSwitchControllerQosIpDscpMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapPtrOutput)
-}
-
-type SwitchControllerQosIpDscpMapPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerQosIpDscpMapPtrOutput() SwitchControllerQosIpDscpMapPtrOutput
-	ToSwitchControllerQosIpDscpMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapPtrOutput
-}
-
-type switchControllerQosIpDscpMapPtrType SwitchControllerQosIpDscpMapArgs
-
-func (*switchControllerQosIpDscpMapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosIpDscpMap)(nil))
-}
-
-func (i *switchControllerQosIpDscpMapPtrType) ToSwitchControllerQosIpDscpMapPtrOutput() SwitchControllerQosIpDscpMapPtrOutput {
-	return i.ToSwitchControllerQosIpDscpMapPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerQosIpDscpMapPtrType) ToSwitchControllerQosIpDscpMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapPtrOutput)
 }
 
 // SwitchControllerQosIpDscpMapArrayInput is an input type that accepts SwitchControllerQosIpDscpMapArray and SwitchControllerQosIpDscpMapArrayOutput values.
@@ -217,7 +190,7 @@ type SwitchControllerQosIpDscpMapArrayInput interface {
 type SwitchControllerQosIpDscpMapArray []SwitchControllerQosIpDscpMapInput
 
 func (SwitchControllerQosIpDscpMapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerQosIpDscpMap)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosIpDscpMap)(nil)).Elem()
 }
 
 func (i SwitchControllerQosIpDscpMapArray) ToSwitchControllerQosIpDscpMapArrayOutput() SwitchControllerQosIpDscpMapArrayOutput {
@@ -242,7 +215,7 @@ type SwitchControllerQosIpDscpMapMapInput interface {
 type SwitchControllerQosIpDscpMapMap map[string]SwitchControllerQosIpDscpMapInput
 
 func (SwitchControllerQosIpDscpMapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerQosIpDscpMap)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosIpDscpMap)(nil)).Elem()
 }
 
 func (i SwitchControllerQosIpDscpMapMap) ToSwitchControllerQosIpDscpMapMapOutput() SwitchControllerQosIpDscpMapMapOutput {
@@ -253,12 +226,10 @@ func (i SwitchControllerQosIpDscpMapMap) ToSwitchControllerQosIpDscpMapMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosIpDscpMapMapOutput)
 }
 
-type SwitchControllerQosIpDscpMapOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerQosIpDscpMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosIpDscpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosIpDscpMap)(nil))
+	return reflect.TypeOf((**SwitchControllerQosIpDscpMap)(nil)).Elem()
 }
 
 func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapOutput() SwitchControllerQosIpDscpMapOutput {
@@ -269,36 +240,10 @@ func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapOutput
 	return o
 }
 
-func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapPtrOutput() SwitchControllerQosIpDscpMapPtrOutput {
-	return o.ToSwitchControllerQosIpDscpMapPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerQosIpDscpMapOutput) ToSwitchControllerQosIpDscpMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapPtrOutput {
-	return o.ApplyT(func(v SwitchControllerQosIpDscpMap) *SwitchControllerQosIpDscpMap {
-		return &v
-	}).(SwitchControllerQosIpDscpMapPtrOutput)
-}
-
-type SwitchControllerQosIpDscpMapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerQosIpDscpMapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosIpDscpMap)(nil))
-}
-
-func (o SwitchControllerQosIpDscpMapPtrOutput) ToSwitchControllerQosIpDscpMapPtrOutput() SwitchControllerQosIpDscpMapPtrOutput {
-	return o
-}
-
-func (o SwitchControllerQosIpDscpMapPtrOutput) ToSwitchControllerQosIpDscpMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosIpDscpMapPtrOutput {
-	return o
-}
-
 type SwitchControllerQosIpDscpMapArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosIpDscpMapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerQosIpDscpMap)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosIpDscpMap)(nil)).Elem()
 }
 
 func (o SwitchControllerQosIpDscpMapArrayOutput) ToSwitchControllerQosIpDscpMapArrayOutput() SwitchControllerQosIpDscpMapArrayOutput {
@@ -310,15 +255,15 @@ func (o SwitchControllerQosIpDscpMapArrayOutput) ToSwitchControllerQosIpDscpMapA
 }
 
 func (o SwitchControllerQosIpDscpMapArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosIpDscpMapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerQosIpDscpMap {
-		return vs[0].([]SwitchControllerQosIpDscpMap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosIpDscpMap {
+		return vs[0].([]*SwitchControllerQosIpDscpMap)[vs[1].(int)]
 	}).(SwitchControllerQosIpDscpMapOutput)
 }
 
 type SwitchControllerQosIpDscpMapMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosIpDscpMapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerQosIpDscpMap)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosIpDscpMap)(nil)).Elem()
 }
 
 func (o SwitchControllerQosIpDscpMapMapOutput) ToSwitchControllerQosIpDscpMapMapOutput() SwitchControllerQosIpDscpMapMapOutput {
@@ -330,14 +275,16 @@ func (o SwitchControllerQosIpDscpMapMapOutput) ToSwitchControllerQosIpDscpMapMap
 }
 
 func (o SwitchControllerQosIpDscpMapMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosIpDscpMapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerQosIpDscpMap {
-		return vs[0].(map[string]SwitchControllerQosIpDscpMap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerQosIpDscpMap {
+		return vs[0].(map[string]*SwitchControllerQosIpDscpMap)[vs[1].(string)]
 	}).(SwitchControllerQosIpDscpMapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosIpDscpMapInput)(nil)).Elem(), &SwitchControllerQosIpDscpMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosIpDscpMapArrayInput)(nil)).Elem(), SwitchControllerQosIpDscpMapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosIpDscpMapMapInput)(nil)).Elem(), SwitchControllerQosIpDscpMapMap{})
 	pulumi.RegisterOutputType(SwitchControllerQosIpDscpMapOutput{})
-	pulumi.RegisterOutputType(SwitchControllerQosIpDscpMapPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosIpDscpMapArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosIpDscpMapMapOutput{})
 }

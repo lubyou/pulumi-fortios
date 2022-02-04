@@ -96,34 +96,32 @@ export class WanoptAuthGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args: WanoptAuthGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptAuthGroupArgs | WanoptAuthGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptAuthGroupState | undefined;
-            inputs["authMethod"] = state ? state.authMethod : undefined;
-            inputs["cert"] = state ? state.cert : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["peer"] = state ? state.peer : undefined;
-            inputs["peerAccept"] = state ? state.peerAccept : undefined;
-            inputs["psk"] = state ? state.psk : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authMethod"] = state ? state.authMethod : undefined;
+            resourceInputs["cert"] = state ? state.cert : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["peer"] = state ? state.peer : undefined;
+            resourceInputs["peerAccept"] = state ? state.peerAccept : undefined;
+            resourceInputs["psk"] = state ? state.psk : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptAuthGroupArgs | undefined;
             if ((!args || args.cert === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'cert'");
             }
-            inputs["authMethod"] = args ? args.authMethod : undefined;
-            inputs["cert"] = args ? args.cert : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["peer"] = args ? args.peer : undefined;
-            inputs["peerAccept"] = args ? args.peerAccept : undefined;
-            inputs["psk"] = args ? args.psk : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authMethod"] = args ? args.authMethod : undefined;
+            resourceInputs["cert"] = args ? args.cert : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["peer"] = args ? args.peer : undefined;
+            resourceInputs["peerAccept"] = args ? args.peerAccept : undefined;
+            resourceInputs["psk"] = args ? args.psk : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptAuthGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptAuthGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

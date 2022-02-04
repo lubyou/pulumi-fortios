@@ -14,9 +14,7 @@ export function getSystemVirtualWanLink(args?: GetSystemVirtualWanLinkArgs, opts
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemVirtualWanLink:GetSystemVirtualWanLink", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -89,4 +87,18 @@ export interface GetSystemVirtualWanLinkResult {
      * Configure SD-WAN zones. The structure of `zone` block is documented below.
      */
     readonly zones: outputs.GetSystemVirtualWanLinkZone[];
+}
+
+export function getSystemVirtualWanLinkOutput(args?: GetSystemVirtualWanLinkOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemVirtualWanLinkResult> {
+    return pulumi.output(args).apply(a => getSystemVirtualWanLink(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemVirtualWanLink.
+ */
+export interface GetSystemVirtualWanLinkOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

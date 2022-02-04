@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallShaperPerIpShaper`.
 func GetFirewallShaperPerIpShaperList(ctx *pulumi.Context, args *GetFirewallShaperPerIpShaperListArgs, opts ...pulumi.InvokeOption) (*GetFirewallShaperPerIpShaperListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallShaperPerIpShaperListResult
 	err := ctx.Invoke("fortios:index/getFirewallShaperPerIpShaperList:GetFirewallShaperPerIpShaperList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallShaperPerIpShaperListResult struct {
 	// A list of the `FirewallShaperPerIpShaper`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallShaperPerIpShaperListOutput(ctx *pulumi.Context, args GetFirewallShaperPerIpShaperListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallShaperPerIpShaperListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallShaperPerIpShaperListResult, error) {
+			args := v.(GetFirewallShaperPerIpShaperListArgs)
+			r, err := GetFirewallShaperPerIpShaperList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallShaperPerIpShaperListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallShaperPerIpShaperList.
+type GetFirewallShaperPerIpShaperListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallShaperPerIpShaperListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallShaperPerIpShaperListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallShaperPerIpShaperList.
+type GetFirewallShaperPerIpShaperListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallShaperPerIpShaperListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallShaperPerIpShaperListResult)(nil)).Elem()
+}
+
+func (o GetFirewallShaperPerIpShaperListResultOutput) ToGetFirewallShaperPerIpShaperListResultOutput() GetFirewallShaperPerIpShaperListResultOutput {
+	return o
+}
+
+func (o GetFirewallShaperPerIpShaperListResultOutput) ToGetFirewallShaperPerIpShaperListResultOutputWithContext(ctx context.Context) GetFirewallShaperPerIpShaperListResultOutput {
+	return o
+}
+
+func (o GetFirewallShaperPerIpShaperListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallShaperPerIpShaperListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallShaperPerIpShaperListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallShaperPerIpShaperListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallShaperPerIpShaper`.
+func (o GetFirewallShaperPerIpShaperListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallShaperPerIpShaperListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallShaperPerIpShaperListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallShaperPerIpShaperListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallShaperPerIpShaperListResultOutput{})
 }

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemReplacemsgImage`.
 func GetSystemReplacemsgImageList(ctx *pulumi.Context, args *GetSystemReplacemsgImageListArgs, opts ...pulumi.InvokeOption) (*GetSystemReplacemsgImageListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemReplacemsgImageListResult
 	err := ctx.Invoke("fortios:index/getSystemReplacemsgImageList:GetSystemReplacemsgImageList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemReplacemsgImageListResult struct {
 	// A list of the `SystemReplacemsgImage`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemReplacemsgImageListOutput(ctx *pulumi.Context, args GetSystemReplacemsgImageListOutputArgs, opts ...pulumi.InvokeOption) GetSystemReplacemsgImageListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemReplacemsgImageListResult, error) {
+			args := v.(GetSystemReplacemsgImageListArgs)
+			r, err := GetSystemReplacemsgImageList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemReplacemsgImageListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemReplacemsgImageList.
+type GetSystemReplacemsgImageListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemReplacemsgImageListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemReplacemsgImageListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemReplacemsgImageList.
+type GetSystemReplacemsgImageListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemReplacemsgImageListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemReplacemsgImageListResult)(nil)).Elem()
+}
+
+func (o GetSystemReplacemsgImageListResultOutput) ToGetSystemReplacemsgImageListResultOutput() GetSystemReplacemsgImageListResultOutput {
+	return o
+}
+
+func (o GetSystemReplacemsgImageListResultOutput) ToGetSystemReplacemsgImageListResultOutputWithContext(ctx context.Context) GetSystemReplacemsgImageListResultOutput {
+	return o
+}
+
+func (o GetSystemReplacemsgImageListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemReplacemsgImageListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemReplacemsgImageListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemReplacemsgImageListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemReplacemsgImage`.
+func (o GetSystemReplacemsgImageListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemReplacemsgImageListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemReplacemsgImageListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemReplacemsgImageListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemReplacemsgImageListResultOutput{})
 }

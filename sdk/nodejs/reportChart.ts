@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Report chart widget configuration.
+ * Report chart widget configuration. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -179,35 +179,35 @@ export class ReportChart extends pulumi.CustomResource {
      */
     constructor(name: string, args: ReportChartArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ReportChartArgs | ReportChartState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportChartState | undefined;
-            inputs["background"] = state ? state.background : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["categorySeries"] = state ? state.categorySeries : undefined;
-            inputs["colorPalette"] = state ? state.colorPalette : undefined;
-            inputs["columns"] = state ? state.columns : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dataset"] = state ? state.dataset : undefined;
-            inputs["dimension"] = state ? state.dimension : undefined;
-            inputs["drillDownCharts"] = state ? state.drillDownCharts : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["favorite"] = state ? state.favorite : undefined;
-            inputs["graphType"] = state ? state.graphType : undefined;
-            inputs["legend"] = state ? state.legend : undefined;
-            inputs["legendFontSize"] = state ? state.legendFontSize : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["period"] = state ? state.period : undefined;
-            inputs["policy"] = state ? state.policy : undefined;
-            inputs["style"] = state ? state.style : undefined;
-            inputs["title"] = state ? state.title : undefined;
-            inputs["titleFontSize"] = state ? state.titleFontSize : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["valueSeries"] = state ? state.valueSeries : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["xSeries"] = state ? state.xSeries : undefined;
-            inputs["ySeries"] = state ? state.ySeries : undefined;
+            resourceInputs["background"] = state ? state.background : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["categorySeries"] = state ? state.categorySeries : undefined;
+            resourceInputs["colorPalette"] = state ? state.colorPalette : undefined;
+            resourceInputs["columns"] = state ? state.columns : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dataset"] = state ? state.dataset : undefined;
+            resourceInputs["dimension"] = state ? state.dimension : undefined;
+            resourceInputs["drillDownCharts"] = state ? state.drillDownCharts : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["favorite"] = state ? state.favorite : undefined;
+            resourceInputs["graphType"] = state ? state.graphType : undefined;
+            resourceInputs["legend"] = state ? state.legend : undefined;
+            resourceInputs["legendFontSize"] = state ? state.legendFontSize : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["period"] = state ? state.period : undefined;
+            resourceInputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["style"] = state ? state.style : undefined;
+            resourceInputs["title"] = state ? state.title : undefined;
+            resourceInputs["titleFontSize"] = state ? state.titleFontSize : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["valueSeries"] = state ? state.valueSeries : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["xSeries"] = state ? state.xSeries : undefined;
+            resourceInputs["ySeries"] = state ? state.ySeries : undefined;
         } else {
             const args = argsOrState as ReportChartArgs | undefined;
             if ((!args || args.comments === undefined) && !opts.urn) {
@@ -216,36 +216,34 @@ export class ReportChart extends pulumi.CustomResource {
             if ((!args || args.dataset === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'dataset'");
             }
-            inputs["background"] = args ? args.background : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["categorySeries"] = args ? args.categorySeries : undefined;
-            inputs["colorPalette"] = args ? args.colorPalette : undefined;
-            inputs["columns"] = args ? args.columns : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dataset"] = args ? args.dataset : undefined;
-            inputs["dimension"] = args ? args.dimension : undefined;
-            inputs["drillDownCharts"] = args ? args.drillDownCharts : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["favorite"] = args ? args.favorite : undefined;
-            inputs["graphType"] = args ? args.graphType : undefined;
-            inputs["legend"] = args ? args.legend : undefined;
-            inputs["legendFontSize"] = args ? args.legendFontSize : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["period"] = args ? args.period : undefined;
-            inputs["policy"] = args ? args.policy : undefined;
-            inputs["style"] = args ? args.style : undefined;
-            inputs["title"] = args ? args.title : undefined;
-            inputs["titleFontSize"] = args ? args.titleFontSize : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["valueSeries"] = args ? args.valueSeries : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["xSeries"] = args ? args.xSeries : undefined;
-            inputs["ySeries"] = args ? args.ySeries : undefined;
+            resourceInputs["background"] = args ? args.background : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["categorySeries"] = args ? args.categorySeries : undefined;
+            resourceInputs["colorPalette"] = args ? args.colorPalette : undefined;
+            resourceInputs["columns"] = args ? args.columns : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dataset"] = args ? args.dataset : undefined;
+            resourceInputs["dimension"] = args ? args.dimension : undefined;
+            resourceInputs["drillDownCharts"] = args ? args.drillDownCharts : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["favorite"] = args ? args.favorite : undefined;
+            resourceInputs["graphType"] = args ? args.graphType : undefined;
+            resourceInputs["legend"] = args ? args.legend : undefined;
+            resourceInputs["legendFontSize"] = args ? args.legendFontSize : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["period"] = args ? args.period : undefined;
+            resourceInputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["style"] = args ? args.style : undefined;
+            resourceInputs["title"] = args ? args.title : undefined;
+            resourceInputs["titleFontSize"] = args ? args.titleFontSize : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["valueSeries"] = args ? args.valueSeries : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["xSeries"] = args ? args.xSeries : undefined;
+            resourceInputs["ySeries"] = args ? args.ySeries : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ReportChart.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ReportChart.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -24,9 +23,7 @@ export function getSystemGlobal(args?: GetSystemGlobalArgs, opts?: pulumi.Invoke
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemGlobal:GetSystemGlobal", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -55,6 +52,10 @@ export interface GetSystemGlobalResult {
      */
     readonly adminConsoleTimeout: number;
     /**
+     * Enable/disable FortiCloud admin login via SSO.
+     */
+    readonly adminForticloudSsoLogin: string;
+    /**
      * HTTPS Strict-Transport-Security header max-age in seconds. A value of 0 will reset any HSTS records in the browser.When admin-https-redirect is disabled the header max-age will be 0.
      */
     readonly adminHstsMaxAge: number;
@@ -66,6 +67,14 @@ export interface GetSystemGlobalResult {
      * Enable/disable redirection of HTTP administration access to HTTPS.
      */
     readonly adminHttpsRedirect: string;
+    /**
+     * Select one or more cipher technologies that cannot be used in GUI HTTPS negotiations. Only applies to TLS 1.2 and below.
+     */
+    readonly adminHttpsSslBannedCiphers: string;
+    /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, remove TLS1.3 from admin-https-ssl-versions.
+     */
+    readonly adminHttpsSslCiphersuites: string;
     /**
      * Allowed TLS versions for web administration.
      */
@@ -239,6 +248,10 @@ export interface GetSystemGlobalResult {
      */
     readonly cltCertReq: string;
     /**
+     * Affinity setting for cmdbsvr (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    readonly cmdbsvrAffinity: string;
+    /**
      * Enable/disable global PCI DSS compliance check.
      */
     readonly complianceCheck: string;
@@ -283,6 +296,10 @@ export interface GetSystemGlobalResult {
      */
     readonly dst: string;
     /**
+     * Enable/disable edit new VDOM prompt.
+     */
+    readonly editVdomPrompt: string;
+    /**
      * Enable/disable access to the FortiGuard network for non-compliant endpoints.
      */
     readonly endpointControlFdsAccess: string;
@@ -290,6 +307,10 @@ export interface GetSystemGlobalResult {
      * Endpoint control portal port (1 - 65535).
      */
     readonly endpointControlPortalPort: number;
+    /**
+     * Configure reserved network subnet for managed LAN extension FortiExtenders. This is available when the extender daemon is running.
+     */
+    readonly extenderControllerReservedNetwork: string;
     /**
      * Fail-time for server lost.
      */
@@ -323,6 +344,10 @@ export interface GetSystemGlobalResult {
      */
     readonly fortiextenderDataPort: number;
     /**
+     * Enable/disable FortiExtender CAPWAP lockdown.
+     */
+    readonly fortiextenderDiscoveryLockdown: string;
+    /**
      * Enable/disable FortiExtender VLAN mode.
      */
     readonly fortiextenderVlanMode: string;
@@ -342,6 +367,10 @@ export interface GetSystemGlobalResult {
      * Enable/disable the GUI warning about using a default hostname
      */
     readonly guiAllowDefaultHostname: string;
+    /**
+     * Enable/disable Load GUI static files from a CDN.
+     */
+    readonly guiCdnUsage: string;
     /**
      * Enable/disable the System > Certificate GUI page, allowing you to add and configure certificates from the GUI.
      */
@@ -399,6 +428,18 @@ export interface GetSystemGlobalResult {
      */
     readonly guiLinesPerPage: number;
     /**
+     * Enable/disable Local-out traffic on the GUI.
+     */
+    readonly guiLocalOut: string;
+    /**
+     * Enable/disable replacement message groups on the GUI.
+     */
+    readonly guiReplacementMessageGroups: string;
+    /**
+     * Enable/disable REST API result caching on FortiGate.
+     */
+    readonly guiRestApiCache: string;
+    /**
      * Color scheme for the administration GUI.
      */
     readonly guiTheme: string;
@@ -406,6 +447,10 @@ export interface GetSystemGlobalResult {
      * Enable/disable wireless open security option on the GUI.
      */
     readonly guiWirelessOpensecurity: string;
+    /**
+     * Affinity setting for HA daemons (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
+     */
+    readonly haAffinity: string;
     /**
      * Enable/disable honoring of Don't-Fragment (DF) flag.
      */
@@ -427,6 +472,10 @@ export interface GetSystemGlobalResult {
      */
     readonly ikeEmbryonicLimit: number;
     /**
+     * Configure which Internet Service database size to download from FortiGuard and use.
+     */
+    readonly internetServiceDatabase: string;
+    /**
      * Dead gateway detection interval.
      */
     readonly interval: number;
@@ -442,6 +491,10 @@ export interface GetSystemGlobalResult {
      * Enable/disable ASIC offloading (hardware acceleration) for IPsec VPN traffic. Hardware acceleration can offload IPsec VPN sessions and accelerate encryption and decryption.
      */
     readonly ipsecAsicOffload: string;
+    /**
+     * ESP jump ahead rate (1G - 10G pps equivalent).
+     */
+    readonly ipsecHaSeqjumpRate: number;
     /**
      * Enable/disable offloading (hardware acceleration) of HMAC processing for IPsec VPN.
      */
@@ -503,6 +556,18 @@ export interface GetSystemGlobalResult {
      */
     readonly longVdomName: string;
     /**
+     * Management IP address of this FortiGate. Used to log into this FortiGate from another FortiGate in the Security Fabric.
+     */
+    readonly managementIp: string;
+    /**
+     * Overriding port for management connection (Overrides admin port).
+     */
+    readonly managementPort: number;
+    /**
+     * Enable/disable use of the admin-sport setting for the management port. If disabled, FortiGate will allow user to specify management-port.
+     */
+    readonly managementPortUseAdminSport: string;
+    /**
      * Management virtual domain name.
      */
     readonly managementVdom: string;
@@ -559,6 +624,10 @@ export interface GetSystemGlobalResult {
      */
     readonly perUserBwl: string;
     /**
+     * Enable/disable path MTU discovery.
+     */
+    readonly pmtuDiscovery: string;
+    /**
      * Number of concurrent firewall use logins from the same user (1 - 100, default = 0 means no limit).
      */
     readonly policyAuthConcurrent: number;
@@ -587,9 +656,17 @@ export interface GetSystemGlobalResult {
      */
     readonly proxyAuthTimeout: number;
     /**
+     * Enable/disable using management VDOM to send requests.
+     */
+    readonly proxyCertUseMgmtVdom: string;
+    /**
      * Enable/disable using content processor (CP8 or CP9) hardware acceleration to encrypt and decrypt IPsec and SSL traffic.
      */
     readonly proxyCipherHardwareAcceleration: string;
+    /**
+     * Enable/disable email proxy hardware acceleration.
+     */
+    readonly proxyHardwareAcceleration: string;
     /**
      * Enable/disable using the content processor to accelerate KXP traffic.
      */
@@ -598,6 +675,10 @@ export interface GetSystemGlobalResult {
      * Control if users must re-authenticate after a session is closed, traffic has been idle, or from the point at which the user was first created.
      */
     readonly proxyReAuthenticationMode: string;
+    /**
+     * Enable/disable use of the maximum memory usage on the FortiGate unit's proxy processing of resources, such as block lists, allow lists, and external resources.
+     */
+    readonly proxyResourceMode: string;
     /**
      * Proxy worker count.
      */
@@ -659,6 +740,14 @@ export interface GetSystemGlobalResult {
      */
     readonly specialFile23Support: string;
     /**
+     * Enable/disable speed test server.
+     */
+    readonly speedtestServer: string;
+    /**
+     * Split port(s) to multiple 10Gbps ports.
+     */
+    readonly splitPort: string;
+    /**
      * Date within a month to run ssd trim.
      */
     readonly ssdTrimDate: number;
@@ -683,13 +772,25 @@ export interface GetSystemGlobalResult {
      */
     readonly sshCbcCipher: string;
     /**
+     * Select one or more SSH ciphers.
+     */
+    readonly sshEncAlgo: string;
+    /**
      * Enable/disable HMAC-MD5 for SSH access.
      */
     readonly sshHmacMd5: string;
     /**
+     * Select one or more SSH kex algorithms.
+     */
+    readonly sshKexAlgo: string;
+    /**
      * Enable/disable SHA1 key exchange for SSH access.
      */
     readonly sshKexSha1: string;
+    /**
+     * Select one or more SSH MAC algorithms.
+     */
+    readonly sshMacAlgo: string;
     /**
      * Enable/disable HMAC-SHA1 and UMAC-64-ETM for SSH access.
      */
@@ -755,6 +856,10 @@ export interface GetSystemGlobalResult {
      */
     readonly tcpOption: string;
     /**
+     * Length of the TCP CLOSE state in seconds (5 - 300 sec, default = 5).
+     */
+    readonly tcpRstTimer: number;
+    /**
      * Length of the TCP TIME-WAIT state in seconds.
      */
     readonly tcpTimewaitTimer: number;
@@ -815,6 +920,10 @@ export interface GetSystemGlobalResult {
      */
     readonly userDeviceStoreMaxDevices: number;
     /**
+     * Maximum unified memory allowed in user device store.
+     */
+    readonly userDeviceStoreMaxUnifiedMem: number;
+    /**
      * Maximum number of users allowed in user device store.
      */
     readonly userDeviceStoreMaxUsers: number;
@@ -827,7 +936,7 @@ export interface GetSystemGlobalResult {
      */
     readonly vdomAdmin: string;
     /**
-     * Enable/disable support for split/multiple virtual domains (VDOMs). no-vdom:Disable split/multiple VDOMs mode. split-vdom:Enable split VDOMs mode. multi-vdom:Enable multiple VDOMs mode.
+     * Enable/disable support for split/multiple virtual domains (VDOMs).
      */
     readonly vdomMode: string;
     readonly vdomparam?: string;
@@ -843,6 +952,10 @@ export interface GetSystemGlobalResult {
      * Enable/disable virtual server hardware acceleration.
      */
     readonly virtualServerHardwareAcceleration: string;
+    /**
+     * Enable/disable virtual switch VLAN.
+     */
+    readonly virtualSwitchVlan: string;
     /**
      * Affinity setting for wad (hexadecimal value up to 256 bits in the format of xxxxxxxxxxxxxxxx).
      */
@@ -887,4 +1000,18 @@ export interface GetSystemGlobalResult {
      * Port used for the control channel in wireless controller mode (wireless-mode is ac). The data channel port is the control channel port number plus one (1024 - 49150, default = 5246).
      */
     readonly wirelessControllerPort: number;
+}
+
+export function getSystemGlobalOutput(args?: GetSystemGlobalOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemGlobalResult> {
+    return pulumi.output(args).apply(a => getSystemGlobal(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemGlobal.
+ */
+export interface GetSystemGlobalOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

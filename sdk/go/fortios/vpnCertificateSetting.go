@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -91,8 +91,12 @@ type VpnCertificateSetting struct {
 	CmpKeyUsageChecking pulumi.StringOutput `pulumi:"cmpKeyUsageChecking"`
 	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts pulumi.StringOutput `pulumi:"cmpSaveExtraCerts"`
+	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	CnAllowMulti pulumi.StringOutput `pulumi:"cnAllowMulti"`
 	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
 	CnMatch pulumi.StringOutput `pulumi:"cnMatch"`
+	// CRL verification options. The structure of `crlVerification` block is documented below.
+	CrlVerification VpnCertificateSettingCrlVerificationPtrOutput `pulumi:"crlVerification"`
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -113,6 +117,8 @@ type VpnCertificateSetting struct {
 	StrictOcspCheck pulumi.StringOutput `pulumi:"strictOcspCheck"`
 	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
 	SubjectMatch pulumi.StringOutput `pulumi:"subjectMatch"`
+	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+	SubjectSet pulumi.StringOutput `pulumi:"subjectSet"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -142,6 +148,7 @@ func NewVpnCertificateSetting(ctx *pulumi.Context,
 	if args.CertnameRsa2048 == nil {
 		return nil, errors.New("invalid value for required argument 'CertnameRsa2048'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnCertificateSetting
 	err := ctx.RegisterResource("fortios:index/vpnCertificateSetting:VpnCertificateSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -192,8 +199,12 @@ type vpnCertificateSettingState struct {
 	CmpKeyUsageChecking *string `pulumi:"cmpKeyUsageChecking"`
 	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts *string `pulumi:"cmpSaveExtraCerts"`
+	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	CnAllowMulti *string `pulumi:"cnAllowMulti"`
 	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
 	CnMatch *string `pulumi:"cnMatch"`
+	// CRL verification options. The structure of `crlVerification` block is documented below.
+	CrlVerification *VpnCertificateSettingCrlVerification `pulumi:"crlVerification"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -214,6 +225,8 @@ type vpnCertificateSettingState struct {
 	StrictOcspCheck *string `pulumi:"strictOcspCheck"`
 	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
 	SubjectMatch *string `pulumi:"subjectMatch"`
+	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+	SubjectSet *string `pulumi:"subjectSet"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -247,8 +260,12 @@ type VpnCertificateSettingState struct {
 	CmpKeyUsageChecking pulumi.StringPtrInput
 	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts pulumi.StringPtrInput
+	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	CnAllowMulti pulumi.StringPtrInput
 	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
 	CnMatch pulumi.StringPtrInput
+	// CRL verification options. The structure of `crlVerification` block is documented below.
+	CrlVerification VpnCertificateSettingCrlVerificationPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -269,6 +286,8 @@ type VpnCertificateSettingState struct {
 	StrictOcspCheck pulumi.StringPtrInput
 	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
 	SubjectMatch pulumi.StringPtrInput
+	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+	SubjectSet pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -306,8 +325,12 @@ type vpnCertificateSettingArgs struct {
 	CmpKeyUsageChecking *string `pulumi:"cmpKeyUsageChecking"`
 	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts *string `pulumi:"cmpSaveExtraCerts"`
+	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	CnAllowMulti *string `pulumi:"cnAllowMulti"`
 	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
 	CnMatch *string `pulumi:"cnMatch"`
+	// CRL verification options. The structure of `crlVerification` block is documented below.
+	CrlVerification *VpnCertificateSettingCrlVerification `pulumi:"crlVerification"`
 	// Specify outgoing interface to reach server.
 	Interface *string `pulumi:"interface"`
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -328,6 +351,8 @@ type vpnCertificateSettingArgs struct {
 	StrictOcspCheck *string `pulumi:"strictOcspCheck"`
 	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
 	SubjectMatch *string `pulumi:"subjectMatch"`
+	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+	SubjectSet *string `pulumi:"subjectSet"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -362,8 +387,12 @@ type VpnCertificateSettingArgs struct {
 	CmpKeyUsageChecking pulumi.StringPtrInput
 	// Enable/disable saving extra certificates in CMP mode. Valid values: `enable`, `disable`.
 	CmpSaveExtraCerts pulumi.StringPtrInput
+	// When searching for a matching certificate, allow mutliple CN fields in certificate subject name (default = enable). Valid values: `disable`, `enable`.
+	CnAllowMulti pulumi.StringPtrInput
 	// When searching for a matching certificate, control how to find matches in the cn attribute of the certificate subject name. Valid values: `substring`, `value`.
 	CnMatch pulumi.StringPtrInput
+	// CRL verification options. The structure of `crlVerification` block is documented below.
+	CrlVerification VpnCertificateSettingCrlVerificationPtrInput
 	// Specify outgoing interface to reach server.
 	Interface pulumi.StringPtrInput
 	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
@@ -384,6 +413,8 @@ type VpnCertificateSettingArgs struct {
 	StrictOcspCheck pulumi.StringPtrInput
 	// When searching for a matching certificate, control how to find matches in the certificate subject name. Valid values: `substring`, `value`.
 	SubjectMatch pulumi.StringPtrInput
+	// When searching for a matching certificate, control how to do RDN set matching with certificate subject name (default = subset). Valid values: `subset`, `superset`.
+	SubjectSet pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -400,7 +431,7 @@ type VpnCertificateSettingInput interface {
 }
 
 func (*VpnCertificateSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateSetting)(nil))
+	return reflect.TypeOf((**VpnCertificateSetting)(nil)).Elem()
 }
 
 func (i *VpnCertificateSetting) ToVpnCertificateSettingOutput() VpnCertificateSettingOutput {
@@ -409,35 +440,6 @@ func (i *VpnCertificateSetting) ToVpnCertificateSettingOutput() VpnCertificateSe
 
 func (i *VpnCertificateSetting) ToVpnCertificateSettingOutputWithContext(ctx context.Context) VpnCertificateSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingOutput)
-}
-
-func (i *VpnCertificateSetting) ToVpnCertificateSettingPtrOutput() VpnCertificateSettingPtrOutput {
-	return i.ToVpnCertificateSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnCertificateSetting) ToVpnCertificateSettingPtrOutputWithContext(ctx context.Context) VpnCertificateSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingPtrOutput)
-}
-
-type VpnCertificateSettingPtrInput interface {
-	pulumi.Input
-
-	ToVpnCertificateSettingPtrOutput() VpnCertificateSettingPtrOutput
-	ToVpnCertificateSettingPtrOutputWithContext(ctx context.Context) VpnCertificateSettingPtrOutput
-}
-
-type vpnCertificateSettingPtrType VpnCertificateSettingArgs
-
-func (*vpnCertificateSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateSetting)(nil))
-}
-
-func (i *vpnCertificateSettingPtrType) ToVpnCertificateSettingPtrOutput() VpnCertificateSettingPtrOutput {
-	return i.ToVpnCertificateSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnCertificateSettingPtrType) ToVpnCertificateSettingPtrOutputWithContext(ctx context.Context) VpnCertificateSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingPtrOutput)
 }
 
 // VpnCertificateSettingArrayInput is an input type that accepts VpnCertificateSettingArray and VpnCertificateSettingArrayOutput values.
@@ -454,7 +456,7 @@ type VpnCertificateSettingArrayInput interface {
 type VpnCertificateSettingArray []VpnCertificateSettingInput
 
 func (VpnCertificateSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnCertificateSetting)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateSetting)(nil)).Elem()
 }
 
 func (i VpnCertificateSettingArray) ToVpnCertificateSettingArrayOutput() VpnCertificateSettingArrayOutput {
@@ -479,7 +481,7 @@ type VpnCertificateSettingMapInput interface {
 type VpnCertificateSettingMap map[string]VpnCertificateSettingInput
 
 func (VpnCertificateSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnCertificateSetting)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateSetting)(nil)).Elem()
 }
 
 func (i VpnCertificateSettingMap) ToVpnCertificateSettingMapOutput() VpnCertificateSettingMapOutput {
@@ -490,12 +492,10 @@ func (i VpnCertificateSettingMap) ToVpnCertificateSettingMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(VpnCertificateSettingMapOutput)
 }
 
-type VpnCertificateSettingOutput struct {
-	*pulumi.OutputState
-}
+type VpnCertificateSettingOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnCertificateSetting)(nil))
+	return reflect.TypeOf((**VpnCertificateSetting)(nil)).Elem()
 }
 
 func (o VpnCertificateSettingOutput) ToVpnCertificateSettingOutput() VpnCertificateSettingOutput {
@@ -506,36 +506,10 @@ func (o VpnCertificateSettingOutput) ToVpnCertificateSettingOutputWithContext(ct
 	return o
 }
 
-func (o VpnCertificateSettingOutput) ToVpnCertificateSettingPtrOutput() VpnCertificateSettingPtrOutput {
-	return o.ToVpnCertificateSettingPtrOutputWithContext(context.Background())
-}
-
-func (o VpnCertificateSettingOutput) ToVpnCertificateSettingPtrOutputWithContext(ctx context.Context) VpnCertificateSettingPtrOutput {
-	return o.ApplyT(func(v VpnCertificateSetting) *VpnCertificateSetting {
-		return &v
-	}).(VpnCertificateSettingPtrOutput)
-}
-
-type VpnCertificateSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnCertificateSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnCertificateSetting)(nil))
-}
-
-func (o VpnCertificateSettingPtrOutput) ToVpnCertificateSettingPtrOutput() VpnCertificateSettingPtrOutput {
-	return o
-}
-
-func (o VpnCertificateSettingPtrOutput) ToVpnCertificateSettingPtrOutputWithContext(ctx context.Context) VpnCertificateSettingPtrOutput {
-	return o
-}
-
 type VpnCertificateSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnCertificateSetting)(nil))
+	return reflect.TypeOf((*[]*VpnCertificateSetting)(nil)).Elem()
 }
 
 func (o VpnCertificateSettingArrayOutput) ToVpnCertificateSettingArrayOutput() VpnCertificateSettingArrayOutput {
@@ -547,15 +521,15 @@ func (o VpnCertificateSettingArrayOutput) ToVpnCertificateSettingArrayOutputWith
 }
 
 func (o VpnCertificateSettingArrayOutput) Index(i pulumi.IntInput) VpnCertificateSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnCertificateSetting {
-		return vs[0].([]VpnCertificateSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnCertificateSetting {
+		return vs[0].([]*VpnCertificateSetting)[vs[1].(int)]
 	}).(VpnCertificateSettingOutput)
 }
 
 type VpnCertificateSettingMapOutput struct{ *pulumi.OutputState }
 
 func (VpnCertificateSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnCertificateSetting)(nil))
+	return reflect.TypeOf((*map[string]*VpnCertificateSetting)(nil)).Elem()
 }
 
 func (o VpnCertificateSettingMapOutput) ToVpnCertificateSettingMapOutput() VpnCertificateSettingMapOutput {
@@ -567,14 +541,16 @@ func (o VpnCertificateSettingMapOutput) ToVpnCertificateSettingMapOutputWithCont
 }
 
 func (o VpnCertificateSettingMapOutput) MapIndex(k pulumi.StringInput) VpnCertificateSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnCertificateSetting {
-		return vs[0].(map[string]VpnCertificateSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnCertificateSetting {
+		return vs[0].(map[string]*VpnCertificateSetting)[vs[1].(string)]
 	}).(VpnCertificateSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateSettingInput)(nil)).Elem(), &VpnCertificateSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateSettingArrayInput)(nil)).Elem(), VpnCertificateSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnCertificateSettingMapInput)(nil)).Elem(), VpnCertificateSettingMap{})
 	pulumi.RegisterOutputType(VpnCertificateSettingOutput{})
-	pulumi.RegisterOutputType(VpnCertificateSettingPtrOutput{})
 	pulumi.RegisterOutputType(VpnCertificateSettingArrayOutput{})
 	pulumi.RegisterOutputType(VpnCertificateSettingMapOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -47,6 +47,8 @@ type FirewallServiceCategory struct {
 
 	// Comment.
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Service category name.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -60,6 +62,7 @@ func NewFirewallServiceCategory(ctx *pulumi.Context,
 		args = &FirewallServiceCategoryArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallServiceCategory
 	err := ctx.RegisterResource("fortios:index/firewallServiceCategory:FirewallServiceCategory", name, args, &resource, opts...)
 	if err != nil {
@@ -84,6 +87,8 @@ func GetFirewallServiceCategory(ctx *pulumi.Context,
 type firewallServiceCategoryState struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Service category name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -93,6 +98,8 @@ type firewallServiceCategoryState struct {
 type FirewallServiceCategoryState struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Service category name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -106,6 +113,8 @@ func (FirewallServiceCategoryState) ElementType() reflect.Type {
 type firewallServiceCategoryArgs struct {
 	// Comment.
 	Comment *string `pulumi:"comment"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Service category name.
 	Name *string `pulumi:"name"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -116,6 +125,8 @@ type firewallServiceCategoryArgs struct {
 type FirewallServiceCategoryArgs struct {
 	// Comment.
 	Comment pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Service category name.
 	Name pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -134,7 +145,7 @@ type FirewallServiceCategoryInput interface {
 }
 
 func (*FirewallServiceCategory) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallServiceCategory)(nil))
+	return reflect.TypeOf((**FirewallServiceCategory)(nil)).Elem()
 }
 
 func (i *FirewallServiceCategory) ToFirewallServiceCategoryOutput() FirewallServiceCategoryOutput {
@@ -143,35 +154,6 @@ func (i *FirewallServiceCategory) ToFirewallServiceCategoryOutput() FirewallServ
 
 func (i *FirewallServiceCategory) ToFirewallServiceCategoryOutputWithContext(ctx context.Context) FirewallServiceCategoryOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryOutput)
-}
-
-func (i *FirewallServiceCategory) ToFirewallServiceCategoryPtrOutput() FirewallServiceCategoryPtrOutput {
-	return i.ToFirewallServiceCategoryPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallServiceCategory) ToFirewallServiceCategoryPtrOutputWithContext(ctx context.Context) FirewallServiceCategoryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryPtrOutput)
-}
-
-type FirewallServiceCategoryPtrInput interface {
-	pulumi.Input
-
-	ToFirewallServiceCategoryPtrOutput() FirewallServiceCategoryPtrOutput
-	ToFirewallServiceCategoryPtrOutputWithContext(ctx context.Context) FirewallServiceCategoryPtrOutput
-}
-
-type firewallServiceCategoryPtrType FirewallServiceCategoryArgs
-
-func (*firewallServiceCategoryPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallServiceCategory)(nil))
-}
-
-func (i *firewallServiceCategoryPtrType) ToFirewallServiceCategoryPtrOutput() FirewallServiceCategoryPtrOutput {
-	return i.ToFirewallServiceCategoryPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallServiceCategoryPtrType) ToFirewallServiceCategoryPtrOutputWithContext(ctx context.Context) FirewallServiceCategoryPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryPtrOutput)
 }
 
 // FirewallServiceCategoryArrayInput is an input type that accepts FirewallServiceCategoryArray and FirewallServiceCategoryArrayOutput values.
@@ -188,7 +170,7 @@ type FirewallServiceCategoryArrayInput interface {
 type FirewallServiceCategoryArray []FirewallServiceCategoryInput
 
 func (FirewallServiceCategoryArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallServiceCategory)(nil))
+	return reflect.TypeOf((*[]*FirewallServiceCategory)(nil)).Elem()
 }
 
 func (i FirewallServiceCategoryArray) ToFirewallServiceCategoryArrayOutput() FirewallServiceCategoryArrayOutput {
@@ -213,7 +195,7 @@ type FirewallServiceCategoryMapInput interface {
 type FirewallServiceCategoryMap map[string]FirewallServiceCategoryInput
 
 func (FirewallServiceCategoryMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallServiceCategory)(nil))
+	return reflect.TypeOf((*map[string]*FirewallServiceCategory)(nil)).Elem()
 }
 
 func (i FirewallServiceCategoryMap) ToFirewallServiceCategoryMapOutput() FirewallServiceCategoryMapOutput {
@@ -224,12 +206,10 @@ func (i FirewallServiceCategoryMap) ToFirewallServiceCategoryMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallServiceCategoryMapOutput)
 }
 
-type FirewallServiceCategoryOutput struct {
-	*pulumi.OutputState
-}
+type FirewallServiceCategoryOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCategoryOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallServiceCategory)(nil))
+	return reflect.TypeOf((**FirewallServiceCategory)(nil)).Elem()
 }
 
 func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryOutput() FirewallServiceCategoryOutput {
@@ -240,36 +220,10 @@ func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryOutputWithContex
 	return o
 }
 
-func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryPtrOutput() FirewallServiceCategoryPtrOutput {
-	return o.ToFirewallServiceCategoryPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallServiceCategoryOutput) ToFirewallServiceCategoryPtrOutputWithContext(ctx context.Context) FirewallServiceCategoryPtrOutput {
-	return o.ApplyT(func(v FirewallServiceCategory) *FirewallServiceCategory {
-		return &v
-	}).(FirewallServiceCategoryPtrOutput)
-}
-
-type FirewallServiceCategoryPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallServiceCategoryPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallServiceCategory)(nil))
-}
-
-func (o FirewallServiceCategoryPtrOutput) ToFirewallServiceCategoryPtrOutput() FirewallServiceCategoryPtrOutput {
-	return o
-}
-
-func (o FirewallServiceCategoryPtrOutput) ToFirewallServiceCategoryPtrOutputWithContext(ctx context.Context) FirewallServiceCategoryPtrOutput {
-	return o
-}
-
 type FirewallServiceCategoryArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCategoryArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallServiceCategory)(nil))
+	return reflect.TypeOf((*[]*FirewallServiceCategory)(nil)).Elem()
 }
 
 func (o FirewallServiceCategoryArrayOutput) ToFirewallServiceCategoryArrayOutput() FirewallServiceCategoryArrayOutput {
@@ -281,15 +235,15 @@ func (o FirewallServiceCategoryArrayOutput) ToFirewallServiceCategoryArrayOutput
 }
 
 func (o FirewallServiceCategoryArrayOutput) Index(i pulumi.IntInput) FirewallServiceCategoryOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallServiceCategory {
-		return vs[0].([]FirewallServiceCategory)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallServiceCategory {
+		return vs[0].([]*FirewallServiceCategory)[vs[1].(int)]
 	}).(FirewallServiceCategoryOutput)
 }
 
 type FirewallServiceCategoryMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallServiceCategoryMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallServiceCategory)(nil))
+	return reflect.TypeOf((*map[string]*FirewallServiceCategory)(nil)).Elem()
 }
 
 func (o FirewallServiceCategoryMapOutput) ToFirewallServiceCategoryMapOutput() FirewallServiceCategoryMapOutput {
@@ -301,14 +255,16 @@ func (o FirewallServiceCategoryMapOutput) ToFirewallServiceCategoryMapOutputWith
 }
 
 func (o FirewallServiceCategoryMapOutput) MapIndex(k pulumi.StringInput) FirewallServiceCategoryOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallServiceCategory {
-		return vs[0].(map[string]FirewallServiceCategory)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallServiceCategory {
+		return vs[0].(map[string]*FirewallServiceCategory)[vs[1].(string)]
 	}).(FirewallServiceCategoryOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceCategoryInput)(nil)).Elem(), &FirewallServiceCategory{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceCategoryArrayInput)(nil)).Elem(), FirewallServiceCategoryArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallServiceCategoryMapInput)(nil)).Elem(), FirewallServiceCategoryMap{})
 	pulumi.RegisterOutputType(FirewallServiceCategoryOutput{})
-	pulumi.RegisterOutputType(FirewallServiceCategoryPtrOutput{})
 	pulumi.RegisterOutputType(FirewallServiceCategoryArrayOutput{})
 	pulumi.RegisterOutputType(FirewallServiceCategoryMapOutput{})
 }

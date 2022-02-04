@@ -24,10 +24,10 @@ class SwitchControllerSnmpUserArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SwitchControllerSnmpUser resource.
-        :param pulumi.Input[str] auth_proto: Authentication protocol. Valid values: `md5`, `sha`.
+        :param pulumi.Input[str] auth_proto: Authentication protocol.
         :param pulumi.Input[str] auth_pwd: Password for authentication protocol.
         :param pulumi.Input[str] name: SNMP user name.
-        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol.
         :param pulumi.Input[str] priv_pwd: Password for privacy (encryption) protocol.
         :param pulumi.Input[str] queries: Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] query_port: SNMPv3 query port (default = 161).
@@ -57,7 +57,7 @@ class SwitchControllerSnmpUserArgs:
     @pulumi.getter(name="authProto")
     def auth_proto(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication protocol. Valid values: `md5`, `sha`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth_proto")
 
@@ -93,7 +93,7 @@ class SwitchControllerSnmpUserArgs:
     @pulumi.getter(name="privProto")
     def priv_proto(self) -> Optional[pulumi.Input[str]]:
         """
-        Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        Privacy (encryption) protocol.
         """
         return pulumi.get(self, "priv_proto")
 
@@ -176,10 +176,10 @@ class _SwitchControllerSnmpUserState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SwitchControllerSnmpUser resources.
-        :param pulumi.Input[str] auth_proto: Authentication protocol. Valid values: `md5`, `sha`.
+        :param pulumi.Input[str] auth_proto: Authentication protocol.
         :param pulumi.Input[str] auth_pwd: Password for authentication protocol.
         :param pulumi.Input[str] name: SNMP user name.
-        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol.
         :param pulumi.Input[str] priv_pwd: Password for privacy (encryption) protocol.
         :param pulumi.Input[str] queries: Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] query_port: SNMPv3 query port (default = 161).
@@ -209,7 +209,7 @@ class _SwitchControllerSnmpUserState:
     @pulumi.getter(name="authProto")
     def auth_proto(self) -> Optional[pulumi.Input[str]]:
         """
-        Authentication protocol. Valid values: `md5`, `sha`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth_proto")
 
@@ -245,7 +245,7 @@ class _SwitchControllerSnmpUserState:
     @pulumi.getter(name="privProto")
     def priv_proto(self) -> Optional[pulumi.Input[str]]:
         """
-        Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        Privacy (encryption) protocol.
         """
         return pulumi.get(self, "priv_proto")
 
@@ -330,7 +330,7 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure FortiSwitch SNMP v3 users globally.
+        Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -344,10 +344,10 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] auth_proto: Authentication protocol. Valid values: `md5`, `sha`.
+        :param pulumi.Input[str] auth_proto: Authentication protocol.
         :param pulumi.Input[str] auth_pwd: Password for authentication protocol.
         :param pulumi.Input[str] name: SNMP user name.
-        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol.
         :param pulumi.Input[str] priv_pwd: Password for privacy (encryption) protocol.
         :param pulumi.Input[str] queries: Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] query_port: SNMPv3 query port (default = 161).
@@ -361,7 +361,7 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
                  args: Optional[SwitchControllerSnmpUserArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure FortiSwitch SNMP v3 users globally.
+        Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -404,6 +404,8 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -444,10 +446,10 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] auth_proto: Authentication protocol. Valid values: `md5`, `sha`.
+        :param pulumi.Input[str] auth_proto: Authentication protocol.
         :param pulumi.Input[str] auth_pwd: Password for authentication protocol.
         :param pulumi.Input[str] name: SNMP user name.
-        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        :param pulumi.Input[str] priv_proto: Privacy (encryption) protocol.
         :param pulumi.Input[str] priv_pwd: Password for privacy (encryption) protocol.
         :param pulumi.Input[str] queries: Enable/disable SNMP queries for this user. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] query_port: SNMPv3 query port (default = 161).
@@ -473,7 +475,7 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
     @pulumi.getter(name="authProto")
     def auth_proto(self) -> pulumi.Output[str]:
         """
-        Authentication protocol. Valid values: `md5`, `sha`.
+        Authentication protocol.
         """
         return pulumi.get(self, "auth_proto")
 
@@ -497,7 +499,7 @@ class SwitchControllerSnmpUser(pulumi.CustomResource):
     @pulumi.getter(name="privProto")
     def priv_proto(self) -> pulumi.Output[str]:
         """
-        Privacy (encryption) protocol. Valid values: `aes`, `des`.
+        Privacy (encryption) protocol.
         """
         return pulumi.get(self, "priv_proto")
 

@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['LogFortianalyzerCloudSettingArgs', 'LogFortianalyzerCloudSetting']
 
@@ -15,7 +17,9 @@ class LogFortianalyzerCloudSettingArgs:
     def __init__(__self__, *,
                  access_config: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -24,7 +28,9 @@ class LogFortianalyzerCloudSettingArgs:
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -37,7 +43,9 @@ class LogFortianalyzerCloudSettingArgs:
         The set of arguments for constructing a LogFortianalyzerCloudSetting resource.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
+        :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
         :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -46,7 +54,9 @@ class LogFortianalyzerCloudSettingArgs:
         :param pulumi.Input[int] max_log_rate: FortiAnalyzer maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
+        :param pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -60,8 +70,12 @@ class LogFortianalyzerCloudSettingArgs:
             pulumi.set(__self__, "access_config", access_config)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if certificate_verification is not None:
+            pulumi.set(__self__, "certificate_verification", certificate_verification)
         if conn_timeout is not None:
             pulumi.set(__self__, "conn_timeout", conn_timeout)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
         if hmac_algorithm is not None:
@@ -78,8 +92,12 @@ class LogFortianalyzerCloudSettingArgs:
             pulumi.set(__self__, "monitor_failure_retry_period", monitor_failure_retry_period)
         if monitor_keepalive_period is not None:
             pulumi.set(__self__, "monitor_keepalive_period", monitor_keepalive_period)
+        if preshared_key is not None:
+            pulumi.set(__self__, "preshared_key", preshared_key)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if serials is not None:
+            pulumi.set(__self__, "serials", serials)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
@@ -122,6 +140,18 @@ class LogFortianalyzerCloudSettingArgs:
         pulumi.set(self, "certificate", value)
 
     @property
+    @pulumi.getter(name="certificateVerification")
+    def certificate_verification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "certificate_verification")
+
+    @certificate_verification.setter
+    def certificate_verification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_verification", value)
+
+    @property
     @pulumi.getter(name="connTimeout")
     def conn_timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -132,6 +162,18 @@ class LogFortianalyzerCloudSettingArgs:
     @conn_timeout.setter
     def conn_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "conn_timeout", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
     @pulumi.getter(name="encAlgorithm")
@@ -230,6 +272,18 @@ class LogFortianalyzerCloudSettingArgs:
         pulumi.set(self, "monitor_keepalive_period", value)
 
     @property
+    @pulumi.getter(name="presharedKey")
+    def preshared_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preshared-key used for auto-authorization on FortiAnalyzer.
+        """
+        return pulumi.get(self, "preshared_key")
+
+    @preshared_key.setter
+    def preshared_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preshared_key", value)
+
+    @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[str]]:
         """
@@ -240,6 +294,18 @@ class LogFortianalyzerCloudSettingArgs:
     @priority.setter
     def priority(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
+    def serials(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]]]:
+        """
+        Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+        """
+        return pulumi.get(self, "serials")
+
+    @serials.setter
+    def serials(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]]]):
+        pulumi.set(self, "serials", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -343,7 +409,9 @@ class _LogFortianalyzerCloudSettingState:
     def __init__(__self__, *,
                  access_config: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -352,7 +420,9 @@ class _LogFortianalyzerCloudSettingState:
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -365,7 +435,9 @@ class _LogFortianalyzerCloudSettingState:
         Input properties used for looking up and filtering LogFortianalyzerCloudSetting resources.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
+        :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
         :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -374,7 +446,9 @@ class _LogFortianalyzerCloudSettingState:
         :param pulumi.Input[int] max_log_rate: FortiAnalyzer maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
+        :param pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -388,8 +462,12 @@ class _LogFortianalyzerCloudSettingState:
             pulumi.set(__self__, "access_config", access_config)
         if certificate is not None:
             pulumi.set(__self__, "certificate", certificate)
+        if certificate_verification is not None:
+            pulumi.set(__self__, "certificate_verification", certificate_verification)
         if conn_timeout is not None:
             pulumi.set(__self__, "conn_timeout", conn_timeout)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if enc_algorithm is not None:
             pulumi.set(__self__, "enc_algorithm", enc_algorithm)
         if hmac_algorithm is not None:
@@ -406,8 +484,12 @@ class _LogFortianalyzerCloudSettingState:
             pulumi.set(__self__, "monitor_failure_retry_period", monitor_failure_retry_period)
         if monitor_keepalive_period is not None:
             pulumi.set(__self__, "monitor_keepalive_period", monitor_keepalive_period)
+        if preshared_key is not None:
+            pulumi.set(__self__, "preshared_key", preshared_key)
         if priority is not None:
             pulumi.set(__self__, "priority", priority)
+        if serials is not None:
+            pulumi.set(__self__, "serials", serials)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_min_proto_version is not None:
@@ -450,6 +532,18 @@ class _LogFortianalyzerCloudSettingState:
         pulumi.set(self, "certificate", value)
 
     @property
+    @pulumi.getter(name="certificateVerification")
+    def certificate_verification(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "certificate_verification")
+
+    @certificate_verification.setter
+    def certificate_verification(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "certificate_verification", value)
+
+    @property
     @pulumi.getter(name="connTimeout")
     def conn_timeout(self) -> Optional[pulumi.Input[int]]:
         """
@@ -460,6 +554,18 @@ class _LogFortianalyzerCloudSettingState:
     @conn_timeout.setter
     def conn_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "conn_timeout", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
     @pulumi.getter(name="encAlgorithm")
@@ -558,6 +664,18 @@ class _LogFortianalyzerCloudSettingState:
         pulumi.set(self, "monitor_keepalive_period", value)
 
     @property
+    @pulumi.getter(name="presharedKey")
+    def preshared_key(self) -> Optional[pulumi.Input[str]]:
+        """
+        Preshared-key used for auto-authorization on FortiAnalyzer.
+        """
+        return pulumi.get(self, "preshared_key")
+
+    @preshared_key.setter
+    def preshared_key(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "preshared_key", value)
+
+    @property
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[str]]:
         """
@@ -568,6 +686,18 @@ class _LogFortianalyzerCloudSettingState:
     @priority.setter
     def priority(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "priority", value)
+
+    @property
+    @pulumi.getter
+    def serials(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]]]:
+        """
+        Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+        """
+        return pulumi.get(self, "serials")
+
+    @serials.setter
+    def serials(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogFortianalyzerCloudSettingSerialArgs']]]]):
+        pulumi.set(self, "serials", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -673,7 +803,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -682,7 +814,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzerCloudSettingSerialArgs']]]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -693,7 +827,7 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Global FortiAnalyzer Cloud settings.
+        Global FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -709,7 +843,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
+        :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
         :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -718,7 +854,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         :param pulumi.Input[int] max_log_rate: FortiAnalyzer maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzerCloudSettingSerialArgs']]]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -735,7 +873,7 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
                  args: Optional[LogFortianalyzerCloudSettingArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Global FortiAnalyzer Cloud settings.
+        Global FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -764,7 +902,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  access_config: Optional[pulumi.Input[str]] = None,
                  certificate: Optional[pulumi.Input[str]] = None,
+                 certificate_verification: Optional[pulumi.Input[str]] = None,
                  conn_timeout: Optional[pulumi.Input[int]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  enc_algorithm: Optional[pulumi.Input[str]] = None,
                  hmac_algorithm: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -773,7 +913,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
                  max_log_rate: Optional[pulumi.Input[int]] = None,
                  monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
                  monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
+                 preshared_key: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[str]] = None,
+                 serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzerCloudSettingSerialArgs']]]]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -789,6 +931,8 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -796,7 +940,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
 
             __props__.__dict__["access_config"] = access_config
             __props__.__dict__["certificate"] = certificate
+            __props__.__dict__["certificate_verification"] = certificate_verification
             __props__.__dict__["conn_timeout"] = conn_timeout
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["enc_algorithm"] = enc_algorithm
             __props__.__dict__["hmac_algorithm"] = hmac_algorithm
             __props__.__dict__["interface"] = interface
@@ -805,7 +951,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
             __props__.__dict__["max_log_rate"] = max_log_rate
             __props__.__dict__["monitor_failure_retry_period"] = monitor_failure_retry_period
             __props__.__dict__["monitor_keepalive_period"] = monitor_keepalive_period
+            __props__.__dict__["preshared_key"] = preshared_key
             __props__.__dict__["priority"] = priority
+            __props__.__dict__["serials"] = serials
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
             __props__.__dict__["status"] = status
@@ -826,7 +974,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             access_config: Optional[pulumi.Input[str]] = None,
             certificate: Optional[pulumi.Input[str]] = None,
+            certificate_verification: Optional[pulumi.Input[str]] = None,
             conn_timeout: Optional[pulumi.Input[int]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             enc_algorithm: Optional[pulumi.Input[str]] = None,
             hmac_algorithm: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -835,7 +985,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
             max_log_rate: Optional[pulumi.Input[int]] = None,
             monitor_failure_retry_period: Optional[pulumi.Input[int]] = None,
             monitor_keepalive_period: Optional[pulumi.Input[int]] = None,
+            preshared_key: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[str]] = None,
+            serials: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzerCloudSettingSerialArgs']]]]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -853,7 +1005,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] access_config: Enable/disable FortiAnalyzer access to configuration and data. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] certificate: Certificate used to communicate with FortiAnalyzer.
+        :param pulumi.Input[str] certificate_verification: Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] conn_timeout: FortiAnalyzer connection time-out in seconds (for status and log buffer).
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] enc_algorithm: Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
         :param pulumi.Input[str] hmac_algorithm: FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -862,7 +1016,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         :param pulumi.Input[int] max_log_rate: FortiAnalyzer maximum log rate in MBps (0 = unlimited).
         :param pulumi.Input[int] monitor_failure_retry_period: Time between FortiAnalyzer connection retries in seconds (for status and log buffer).
         :param pulumi.Input[int] monitor_keepalive_period: Time between OFTP keepalives in seconds (for status and log buffer).
+        :param pulumi.Input[str] preshared_key: Preshared-key used for auto-authorization on FortiAnalyzer.
         :param pulumi.Input[str] priority: Set log transmission priority. Valid values: `default`, `low`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LogFortianalyzerCloudSettingSerialArgs']]]] serials: Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
         :param pulumi.Input[str] source_ip: Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
         :param pulumi.Input[str] ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         :param pulumi.Input[str] status: Enable/disable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -878,7 +1034,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
 
         __props__.__dict__["access_config"] = access_config
         __props__.__dict__["certificate"] = certificate
+        __props__.__dict__["certificate_verification"] = certificate_verification
         __props__.__dict__["conn_timeout"] = conn_timeout
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["enc_algorithm"] = enc_algorithm
         __props__.__dict__["hmac_algorithm"] = hmac_algorithm
         __props__.__dict__["interface"] = interface
@@ -887,7 +1045,9 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         __props__.__dict__["max_log_rate"] = max_log_rate
         __props__.__dict__["monitor_failure_retry_period"] = monitor_failure_retry_period
         __props__.__dict__["monitor_keepalive_period"] = monitor_keepalive_period
+        __props__.__dict__["preshared_key"] = preshared_key
         __props__.__dict__["priority"] = priority
+        __props__.__dict__["serials"] = serials
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["ssl_min_proto_version"] = ssl_min_proto_version
         __props__.__dict__["status"] = status
@@ -915,12 +1075,28 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         return pulumi.get(self, "certificate")
 
     @property
+    @pulumi.getter(name="certificateVerification")
+    def certificate_verification(self) -> pulumi.Output[str]:
+        """
+        Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "certificate_verification")
+
+    @property
     @pulumi.getter(name="connTimeout")
     def conn_timeout(self) -> pulumi.Output[int]:
         """
         FortiAnalyzer connection time-out in seconds (for status and log buffer).
         """
         return pulumi.get(self, "conn_timeout")
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
     @pulumi.getter(name="encAlgorithm")
@@ -987,12 +1163,28 @@ class LogFortianalyzerCloudSetting(pulumi.CustomResource):
         return pulumi.get(self, "monitor_keepalive_period")
 
     @property
+    @pulumi.getter(name="presharedKey")
+    def preshared_key(self) -> pulumi.Output[str]:
+        """
+        Preshared-key used for auto-authorization on FortiAnalyzer.
+        """
+        return pulumi.get(self, "preshared_key")
+
+    @property
     @pulumi.getter
     def priority(self) -> pulumi.Output[str]:
         """
         Set log transmission priority. Valid values: `default`, `low`.
         """
         return pulumi.get(self, "priority")
+
+    @property
+    @pulumi.getter
+    def serials(self) -> pulumi.Output[Optional[Sequence['outputs.LogFortianalyzerCloudSettingSerial']]]:
+        """
+        Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+        """
+        return pulumi.get(self, "serials")
 
     @property
     @pulumi.getter(name="sourceIp")

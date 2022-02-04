@@ -83,6 +83,7 @@ func NewWirelessControllerQosProfile(ctx *pulumi.Context,
 		args = &WirelessControllerQosProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerQosProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -333,7 +334,7 @@ type WirelessControllerQosProfileInput interface {
 }
 
 func (*WirelessControllerQosProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerQosProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerQosProfile)(nil)).Elem()
 }
 
 func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfileOutput() WirelessControllerQosProfileOutput {
@@ -342,35 +343,6 @@ func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfileOutput() Wi
 
 func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfileOutputWithContext(ctx context.Context) WirelessControllerQosProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileOutput)
-}
-
-func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfilePtrOutput() WirelessControllerQosProfilePtrOutput {
-	return i.ToWirelessControllerQosProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerQosProfile) ToWirelessControllerQosProfilePtrOutputWithContext(ctx context.Context) WirelessControllerQosProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfilePtrOutput)
-}
-
-type WirelessControllerQosProfilePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerQosProfilePtrOutput() WirelessControllerQosProfilePtrOutput
-	ToWirelessControllerQosProfilePtrOutputWithContext(ctx context.Context) WirelessControllerQosProfilePtrOutput
-}
-
-type wirelessControllerQosProfilePtrType WirelessControllerQosProfileArgs
-
-func (*wirelessControllerQosProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerQosProfile)(nil))
-}
-
-func (i *wirelessControllerQosProfilePtrType) ToWirelessControllerQosProfilePtrOutput() WirelessControllerQosProfilePtrOutput {
-	return i.ToWirelessControllerQosProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerQosProfilePtrType) ToWirelessControllerQosProfilePtrOutputWithContext(ctx context.Context) WirelessControllerQosProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfilePtrOutput)
 }
 
 // WirelessControllerQosProfileArrayInput is an input type that accepts WirelessControllerQosProfileArray and WirelessControllerQosProfileArrayOutput values.
@@ -387,7 +359,7 @@ type WirelessControllerQosProfileArrayInput interface {
 type WirelessControllerQosProfileArray []WirelessControllerQosProfileInput
 
 func (WirelessControllerQosProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerQosProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerQosProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerQosProfileArray) ToWirelessControllerQosProfileArrayOutput() WirelessControllerQosProfileArrayOutput {
@@ -412,7 +384,7 @@ type WirelessControllerQosProfileMapInput interface {
 type WirelessControllerQosProfileMap map[string]WirelessControllerQosProfileInput
 
 func (WirelessControllerQosProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerQosProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerQosProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerQosProfileMap) ToWirelessControllerQosProfileMapOutput() WirelessControllerQosProfileMapOutput {
@@ -423,12 +395,10 @@ func (i WirelessControllerQosProfileMap) ToWirelessControllerQosProfileMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerQosProfileMapOutput)
 }
 
-type WirelessControllerQosProfileOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerQosProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerQosProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerQosProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfileOutput() WirelessControllerQosProfileOutput {
@@ -439,36 +409,10 @@ func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfileOutput
 	return o
 }
 
-func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfilePtrOutput() WirelessControllerQosProfilePtrOutput {
-	return o.ToWirelessControllerQosProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerQosProfileOutput) ToWirelessControllerQosProfilePtrOutputWithContext(ctx context.Context) WirelessControllerQosProfilePtrOutput {
-	return o.ApplyT(func(v WirelessControllerQosProfile) *WirelessControllerQosProfile {
-		return &v
-	}).(WirelessControllerQosProfilePtrOutput)
-}
-
-type WirelessControllerQosProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerQosProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerQosProfile)(nil))
-}
-
-func (o WirelessControllerQosProfilePtrOutput) ToWirelessControllerQosProfilePtrOutput() WirelessControllerQosProfilePtrOutput {
-	return o
-}
-
-func (o WirelessControllerQosProfilePtrOutput) ToWirelessControllerQosProfilePtrOutputWithContext(ctx context.Context) WirelessControllerQosProfilePtrOutput {
-	return o
-}
-
 type WirelessControllerQosProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerQosProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerQosProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerQosProfileArrayOutput) ToWirelessControllerQosProfileArrayOutput() WirelessControllerQosProfileArrayOutput {
@@ -480,15 +424,15 @@ func (o WirelessControllerQosProfileArrayOutput) ToWirelessControllerQosProfileA
 }
 
 func (o WirelessControllerQosProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerQosProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerQosProfile {
-		return vs[0].([]WirelessControllerQosProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerQosProfile {
+		return vs[0].([]*WirelessControllerQosProfile)[vs[1].(int)]
 	}).(WirelessControllerQosProfileOutput)
 }
 
 type WirelessControllerQosProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerQosProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerQosProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerQosProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerQosProfileMapOutput) ToWirelessControllerQosProfileMapOutput() WirelessControllerQosProfileMapOutput {
@@ -500,14 +444,16 @@ func (o WirelessControllerQosProfileMapOutput) ToWirelessControllerQosProfileMap
 }
 
 func (o WirelessControllerQosProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerQosProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerQosProfile {
-		return vs[0].(map[string]WirelessControllerQosProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerQosProfile {
+		return vs[0].(map[string]*WirelessControllerQosProfile)[vs[1].(string)]
 	}).(WirelessControllerQosProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerQosProfileInput)(nil)).Elem(), &WirelessControllerQosProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerQosProfileArrayInput)(nil)).Elem(), WirelessControllerQosProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerQosProfileMapInput)(nil)).Elem(), WirelessControllerQosProfileMap{})
 	pulumi.RegisterOutputType(WirelessControllerQosProfileOutput{})
-	pulumi.RegisterOutputType(WirelessControllerQosProfilePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerQosProfileArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerQosProfileMapOutput{})
 }

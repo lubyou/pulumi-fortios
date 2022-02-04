@@ -45,6 +45,7 @@ func NewWirelessControllerAccessControlList(ctx *pulumi.Context,
 		args = &WirelessControllerAccessControlListArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerAccessControlList
 	err := ctx.RegisterResource("fortios:index/wirelessControllerAccessControlList:WirelessControllerAccessControlList", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type WirelessControllerAccessControlListInput interface {
 }
 
 func (*WirelessControllerAccessControlList) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerAccessControlList)(nil))
+	return reflect.TypeOf((**WirelessControllerAccessControlList)(nil)).Elem()
 }
 
 func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlListOutput() WirelessControllerAccessControlListOutput {
@@ -152,35 +153,6 @@ func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlL
 
 func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlListOutputWithContext(ctx context.Context) WirelessControllerAccessControlListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListOutput)
-}
-
-func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlListPtrOutput() WirelessControllerAccessControlListPtrOutput {
-	return i.ToWirelessControllerAccessControlListPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerAccessControlList) ToWirelessControllerAccessControlListPtrOutputWithContext(ctx context.Context) WirelessControllerAccessControlListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListPtrOutput)
-}
-
-type WirelessControllerAccessControlListPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerAccessControlListPtrOutput() WirelessControllerAccessControlListPtrOutput
-	ToWirelessControllerAccessControlListPtrOutputWithContext(ctx context.Context) WirelessControllerAccessControlListPtrOutput
-}
-
-type wirelessControllerAccessControlListPtrType WirelessControllerAccessControlListArgs
-
-func (*wirelessControllerAccessControlListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerAccessControlList)(nil))
-}
-
-func (i *wirelessControllerAccessControlListPtrType) ToWirelessControllerAccessControlListPtrOutput() WirelessControllerAccessControlListPtrOutput {
-	return i.ToWirelessControllerAccessControlListPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerAccessControlListPtrType) ToWirelessControllerAccessControlListPtrOutputWithContext(ctx context.Context) WirelessControllerAccessControlListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListPtrOutput)
 }
 
 // WirelessControllerAccessControlListArrayInput is an input type that accepts WirelessControllerAccessControlListArray and WirelessControllerAccessControlListArrayOutput values.
@@ -197,7 +169,7 @@ type WirelessControllerAccessControlListArrayInput interface {
 type WirelessControllerAccessControlListArray []WirelessControllerAccessControlListInput
 
 func (WirelessControllerAccessControlListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerAccessControlList)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerAccessControlList)(nil)).Elem()
 }
 
 func (i WirelessControllerAccessControlListArray) ToWirelessControllerAccessControlListArrayOutput() WirelessControllerAccessControlListArrayOutput {
@@ -222,7 +194,7 @@ type WirelessControllerAccessControlListMapInput interface {
 type WirelessControllerAccessControlListMap map[string]WirelessControllerAccessControlListInput
 
 func (WirelessControllerAccessControlListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerAccessControlList)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerAccessControlList)(nil)).Elem()
 }
 
 func (i WirelessControllerAccessControlListMap) ToWirelessControllerAccessControlListMapOutput() WirelessControllerAccessControlListMapOutput {
@@ -233,12 +205,10 @@ func (i WirelessControllerAccessControlListMap) ToWirelessControllerAccessContro
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerAccessControlListMapOutput)
 }
 
-type WirelessControllerAccessControlListOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerAccessControlListOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAccessControlListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerAccessControlList)(nil))
+	return reflect.TypeOf((**WirelessControllerAccessControlList)(nil)).Elem()
 }
 
 func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessControlListOutput() WirelessControllerAccessControlListOutput {
@@ -249,36 +219,10 @@ func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessCon
 	return o
 }
 
-func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessControlListPtrOutput() WirelessControllerAccessControlListPtrOutput {
-	return o.ToWirelessControllerAccessControlListPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerAccessControlListOutput) ToWirelessControllerAccessControlListPtrOutputWithContext(ctx context.Context) WirelessControllerAccessControlListPtrOutput {
-	return o.ApplyT(func(v WirelessControllerAccessControlList) *WirelessControllerAccessControlList {
-		return &v
-	}).(WirelessControllerAccessControlListPtrOutput)
-}
-
-type WirelessControllerAccessControlListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerAccessControlListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerAccessControlList)(nil))
-}
-
-func (o WirelessControllerAccessControlListPtrOutput) ToWirelessControllerAccessControlListPtrOutput() WirelessControllerAccessControlListPtrOutput {
-	return o
-}
-
-func (o WirelessControllerAccessControlListPtrOutput) ToWirelessControllerAccessControlListPtrOutputWithContext(ctx context.Context) WirelessControllerAccessControlListPtrOutput {
-	return o
-}
-
 type WirelessControllerAccessControlListArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAccessControlListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerAccessControlList)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerAccessControlList)(nil)).Elem()
 }
 
 func (o WirelessControllerAccessControlListArrayOutput) ToWirelessControllerAccessControlListArrayOutput() WirelessControllerAccessControlListArrayOutput {
@@ -290,15 +234,15 @@ func (o WirelessControllerAccessControlListArrayOutput) ToWirelessControllerAcce
 }
 
 func (o WirelessControllerAccessControlListArrayOutput) Index(i pulumi.IntInput) WirelessControllerAccessControlListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerAccessControlList {
-		return vs[0].([]WirelessControllerAccessControlList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerAccessControlList {
+		return vs[0].([]*WirelessControllerAccessControlList)[vs[1].(int)]
 	}).(WirelessControllerAccessControlListOutput)
 }
 
 type WirelessControllerAccessControlListMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerAccessControlListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerAccessControlList)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerAccessControlList)(nil)).Elem()
 }
 
 func (o WirelessControllerAccessControlListMapOutput) ToWirelessControllerAccessControlListMapOutput() WirelessControllerAccessControlListMapOutput {
@@ -310,14 +254,16 @@ func (o WirelessControllerAccessControlListMapOutput) ToWirelessControllerAccess
 }
 
 func (o WirelessControllerAccessControlListMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerAccessControlListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerAccessControlList {
-		return vs[0].(map[string]WirelessControllerAccessControlList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerAccessControlList {
+		return vs[0].(map[string]*WirelessControllerAccessControlList)[vs[1].(string)]
 	}).(WirelessControllerAccessControlListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerAccessControlListInput)(nil)).Elem(), &WirelessControllerAccessControlList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerAccessControlListArrayInput)(nil)).Elem(), WirelessControllerAccessControlListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerAccessControlListMapInput)(nil)).Elem(), WirelessControllerAccessControlListMap{})
 	pulumi.RegisterOutputType(WirelessControllerAccessControlListOutput{})
-	pulumi.RegisterOutputType(WirelessControllerAccessControlListPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerAccessControlListArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerAccessControlListMapOutput{})
 }

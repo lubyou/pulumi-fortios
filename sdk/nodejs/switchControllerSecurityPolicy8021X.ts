@@ -169,61 +169,59 @@ export class SwitchControllerSecurityPolicy8021X extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSecurityPolicy8021XArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSecurityPolicy8021XArgs | SwitchControllerSecurityPolicy8021XState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSecurityPolicy8021XState | undefined;
-            inputs["authFailVlan"] = state ? state.authFailVlan : undefined;
-            inputs["authFailVlanId"] = state ? state.authFailVlanId : undefined;
-            inputs["authFailVlanid"] = state ? state.authFailVlanid : undefined;
-            inputs["authserverTimeoutPeriod"] = state ? state.authserverTimeoutPeriod : undefined;
-            inputs["authserverTimeoutVlan"] = state ? state.authserverTimeoutVlan : undefined;
-            inputs["authserverTimeoutVlanid"] = state ? state.authserverTimeoutVlanid : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["eapAutoUntaggedVlans"] = state ? state.eapAutoUntaggedVlans : undefined;
-            inputs["eapPassthru"] = state ? state.eapPassthru : undefined;
-            inputs["framevidApply"] = state ? state.framevidApply : undefined;
-            inputs["guestAuthDelay"] = state ? state.guestAuthDelay : undefined;
-            inputs["guestVlan"] = state ? state.guestVlan : undefined;
-            inputs["guestVlanId"] = state ? state.guestVlanId : undefined;
-            inputs["guestVlanid"] = state ? state.guestVlanid : undefined;
-            inputs["macAuthBypass"] = state ? state.macAuthBypass : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["openAuth"] = state ? state.openAuth : undefined;
-            inputs["policyType"] = state ? state.policyType : undefined;
-            inputs["radiusTimeoutOverwrite"] = state ? state.radiusTimeoutOverwrite : undefined;
-            inputs["securityMode"] = state ? state.securityMode : undefined;
-            inputs["userGroups"] = state ? state.userGroups : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authFailVlan"] = state ? state.authFailVlan : undefined;
+            resourceInputs["authFailVlanId"] = state ? state.authFailVlanId : undefined;
+            resourceInputs["authFailVlanid"] = state ? state.authFailVlanid : undefined;
+            resourceInputs["authserverTimeoutPeriod"] = state ? state.authserverTimeoutPeriod : undefined;
+            resourceInputs["authserverTimeoutVlan"] = state ? state.authserverTimeoutVlan : undefined;
+            resourceInputs["authserverTimeoutVlanid"] = state ? state.authserverTimeoutVlanid : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["eapAutoUntaggedVlans"] = state ? state.eapAutoUntaggedVlans : undefined;
+            resourceInputs["eapPassthru"] = state ? state.eapPassthru : undefined;
+            resourceInputs["framevidApply"] = state ? state.framevidApply : undefined;
+            resourceInputs["guestAuthDelay"] = state ? state.guestAuthDelay : undefined;
+            resourceInputs["guestVlan"] = state ? state.guestVlan : undefined;
+            resourceInputs["guestVlanId"] = state ? state.guestVlanId : undefined;
+            resourceInputs["guestVlanid"] = state ? state.guestVlanid : undefined;
+            resourceInputs["macAuthBypass"] = state ? state.macAuthBypass : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["openAuth"] = state ? state.openAuth : undefined;
+            resourceInputs["policyType"] = state ? state.policyType : undefined;
+            resourceInputs["radiusTimeoutOverwrite"] = state ? state.radiusTimeoutOverwrite : undefined;
+            resourceInputs["securityMode"] = state ? state.securityMode : undefined;
+            resourceInputs["userGroups"] = state ? state.userGroups : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSecurityPolicy8021XArgs | undefined;
-            inputs["authFailVlan"] = args ? args.authFailVlan : undefined;
-            inputs["authFailVlanId"] = args ? args.authFailVlanId : undefined;
-            inputs["authFailVlanid"] = args ? args.authFailVlanid : undefined;
-            inputs["authserverTimeoutPeriod"] = args ? args.authserverTimeoutPeriod : undefined;
-            inputs["authserverTimeoutVlan"] = args ? args.authserverTimeoutVlan : undefined;
-            inputs["authserverTimeoutVlanid"] = args ? args.authserverTimeoutVlanid : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["eapAutoUntaggedVlans"] = args ? args.eapAutoUntaggedVlans : undefined;
-            inputs["eapPassthru"] = args ? args.eapPassthru : undefined;
-            inputs["framevidApply"] = args ? args.framevidApply : undefined;
-            inputs["guestAuthDelay"] = args ? args.guestAuthDelay : undefined;
-            inputs["guestVlan"] = args ? args.guestVlan : undefined;
-            inputs["guestVlanId"] = args ? args.guestVlanId : undefined;
-            inputs["guestVlanid"] = args ? args.guestVlanid : undefined;
-            inputs["macAuthBypass"] = args ? args.macAuthBypass : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["openAuth"] = args ? args.openAuth : undefined;
-            inputs["policyType"] = args ? args.policyType : undefined;
-            inputs["radiusTimeoutOverwrite"] = args ? args.radiusTimeoutOverwrite : undefined;
-            inputs["securityMode"] = args ? args.securityMode : undefined;
-            inputs["userGroups"] = args ? args.userGroups : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authFailVlan"] = args ? args.authFailVlan : undefined;
+            resourceInputs["authFailVlanId"] = args ? args.authFailVlanId : undefined;
+            resourceInputs["authFailVlanid"] = args ? args.authFailVlanid : undefined;
+            resourceInputs["authserverTimeoutPeriod"] = args ? args.authserverTimeoutPeriod : undefined;
+            resourceInputs["authserverTimeoutVlan"] = args ? args.authserverTimeoutVlan : undefined;
+            resourceInputs["authserverTimeoutVlanid"] = args ? args.authserverTimeoutVlanid : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["eapAutoUntaggedVlans"] = args ? args.eapAutoUntaggedVlans : undefined;
+            resourceInputs["eapPassthru"] = args ? args.eapPassthru : undefined;
+            resourceInputs["framevidApply"] = args ? args.framevidApply : undefined;
+            resourceInputs["guestAuthDelay"] = args ? args.guestAuthDelay : undefined;
+            resourceInputs["guestVlan"] = args ? args.guestVlan : undefined;
+            resourceInputs["guestVlanId"] = args ? args.guestVlanId : undefined;
+            resourceInputs["guestVlanid"] = args ? args.guestVlanid : undefined;
+            resourceInputs["macAuthBypass"] = args ? args.macAuthBypass : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["openAuth"] = args ? args.openAuth : undefined;
+            resourceInputs["policyType"] = args ? args.policyType : undefined;
+            resourceInputs["radiusTimeoutOverwrite"] = args ? args.radiusTimeoutOverwrite : undefined;
+            resourceInputs["securityMode"] = args ? args.securityMode : undefined;
+            resourceInputs["userGroups"] = args ? args.userGroups : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSecurityPolicy8021X.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSecurityPolicy8021X.__pulumiType, name, resourceInputs, opts);
     }
 }
 

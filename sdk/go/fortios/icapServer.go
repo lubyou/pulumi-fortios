@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,6 +78,7 @@ func NewIcapServer(ctx *pulumi.Context,
 		args = &IcapServerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IcapServer
 	err := ctx.RegisterResource("fortios:index/icapServer:IcapServer", name, args, &resource, opts...)
 	if err != nil {
@@ -200,7 +201,7 @@ type IcapServerInput interface {
 }
 
 func (*IcapServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*IcapServer)(nil))
+	return reflect.TypeOf((**IcapServer)(nil)).Elem()
 }
 
 func (i *IcapServer) ToIcapServerOutput() IcapServerOutput {
@@ -209,35 +210,6 @@ func (i *IcapServer) ToIcapServerOutput() IcapServerOutput {
 
 func (i *IcapServer) ToIcapServerOutputWithContext(ctx context.Context) IcapServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerOutput)
-}
-
-func (i *IcapServer) ToIcapServerPtrOutput() IcapServerPtrOutput {
-	return i.ToIcapServerPtrOutputWithContext(context.Background())
-}
-
-func (i *IcapServer) ToIcapServerPtrOutputWithContext(ctx context.Context) IcapServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IcapServerPtrOutput)
-}
-
-type IcapServerPtrInput interface {
-	pulumi.Input
-
-	ToIcapServerPtrOutput() IcapServerPtrOutput
-	ToIcapServerPtrOutputWithContext(ctx context.Context) IcapServerPtrOutput
-}
-
-type icapServerPtrType IcapServerArgs
-
-func (*icapServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IcapServer)(nil))
-}
-
-func (i *icapServerPtrType) ToIcapServerPtrOutput() IcapServerPtrOutput {
-	return i.ToIcapServerPtrOutputWithContext(context.Background())
-}
-
-func (i *icapServerPtrType) ToIcapServerPtrOutputWithContext(ctx context.Context) IcapServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IcapServerPtrOutput)
 }
 
 // IcapServerArrayInput is an input type that accepts IcapServerArray and IcapServerArrayOutput values.
@@ -254,7 +226,7 @@ type IcapServerArrayInput interface {
 type IcapServerArray []IcapServerInput
 
 func (IcapServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IcapServer)(nil))
+	return reflect.TypeOf((*[]*IcapServer)(nil)).Elem()
 }
 
 func (i IcapServerArray) ToIcapServerArrayOutput() IcapServerArrayOutput {
@@ -279,7 +251,7 @@ type IcapServerMapInput interface {
 type IcapServerMap map[string]IcapServerInput
 
 func (IcapServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IcapServer)(nil))
+	return reflect.TypeOf((*map[string]*IcapServer)(nil)).Elem()
 }
 
 func (i IcapServerMap) ToIcapServerMapOutput() IcapServerMapOutput {
@@ -290,12 +262,10 @@ func (i IcapServerMap) ToIcapServerMapOutputWithContext(ctx context.Context) Ica
 	return pulumi.ToOutputWithContext(ctx, i).(IcapServerMapOutput)
 }
 
-type IcapServerOutput struct {
-	*pulumi.OutputState
-}
+type IcapServerOutput struct{ *pulumi.OutputState }
 
 func (IcapServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IcapServer)(nil))
+	return reflect.TypeOf((**IcapServer)(nil)).Elem()
 }
 
 func (o IcapServerOutput) ToIcapServerOutput() IcapServerOutput {
@@ -306,36 +276,10 @@ func (o IcapServerOutput) ToIcapServerOutputWithContext(ctx context.Context) Ica
 	return o
 }
 
-func (o IcapServerOutput) ToIcapServerPtrOutput() IcapServerPtrOutput {
-	return o.ToIcapServerPtrOutputWithContext(context.Background())
-}
-
-func (o IcapServerOutput) ToIcapServerPtrOutputWithContext(ctx context.Context) IcapServerPtrOutput {
-	return o.ApplyT(func(v IcapServer) *IcapServer {
-		return &v
-	}).(IcapServerPtrOutput)
-}
-
-type IcapServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IcapServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IcapServer)(nil))
-}
-
-func (o IcapServerPtrOutput) ToIcapServerPtrOutput() IcapServerPtrOutput {
-	return o
-}
-
-func (o IcapServerPtrOutput) ToIcapServerPtrOutputWithContext(ctx context.Context) IcapServerPtrOutput {
-	return o
-}
-
 type IcapServerArrayOutput struct{ *pulumi.OutputState }
 
 func (IcapServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IcapServer)(nil))
+	return reflect.TypeOf((*[]*IcapServer)(nil)).Elem()
 }
 
 func (o IcapServerArrayOutput) ToIcapServerArrayOutput() IcapServerArrayOutput {
@@ -347,15 +291,15 @@ func (o IcapServerArrayOutput) ToIcapServerArrayOutputWithContext(ctx context.Co
 }
 
 func (o IcapServerArrayOutput) Index(i pulumi.IntInput) IcapServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IcapServer {
-		return vs[0].([]IcapServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IcapServer {
+		return vs[0].([]*IcapServer)[vs[1].(int)]
 	}).(IcapServerOutput)
 }
 
 type IcapServerMapOutput struct{ *pulumi.OutputState }
 
 func (IcapServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IcapServer)(nil))
+	return reflect.TypeOf((*map[string]*IcapServer)(nil)).Elem()
 }
 
 func (o IcapServerMapOutput) ToIcapServerMapOutput() IcapServerMapOutput {
@@ -367,14 +311,16 @@ func (o IcapServerMapOutput) ToIcapServerMapOutputWithContext(ctx context.Contex
 }
 
 func (o IcapServerMapOutput) MapIndex(k pulumi.StringInput) IcapServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IcapServer {
-		return vs[0].(map[string]IcapServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IcapServer {
+		return vs[0].(map[string]*IcapServer)[vs[1].(string)]
 	}).(IcapServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IcapServerInput)(nil)).Elem(), &IcapServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IcapServerArrayInput)(nil)).Elem(), IcapServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IcapServerMapInput)(nil)).Elem(), IcapServerMap{})
 	pulumi.RegisterOutputType(IcapServerOutput{})
-	pulumi.RegisterOutputType(IcapServerPtrOutput{})
 	pulumi.RegisterOutputType(IcapServerArrayOutput{})
 	pulumi.RegisterOutputType(IcapServerMapOutput{})
 }

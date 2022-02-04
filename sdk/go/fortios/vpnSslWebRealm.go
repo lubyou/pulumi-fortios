@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -68,6 +68,8 @@ type VpnSslWebRealm struct {
 	VirtualHost pulumi.StringPtrOutput `pulumi:"virtualHost"`
 	// Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
 	VirtualHostOnly pulumi.StringOutput `pulumi:"virtualHostOnly"`
+	// Name of the server certificate to used for this realm.
+	VirtualHostServerCert pulumi.StringOutput `pulumi:"virtualHostServerCert"`
 }
 
 // NewVpnSslWebRealm registers a new resource with the given unique name, arguments, and options.
@@ -77,6 +79,7 @@ func NewVpnSslWebRealm(ctx *pulumi.Context,
 		args = &VpnSslWebRealmArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnSslWebRealm
 	err := ctx.RegisterResource("fortios:index/vpnSslWebRealm:VpnSslWebRealm", name, args, &resource, opts...)
 	if err != nil {
@@ -117,6 +120,8 @@ type vpnSslWebRealmState struct {
 	VirtualHost *string `pulumi:"virtualHost"`
 	// Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
 	VirtualHostOnly *string `pulumi:"virtualHostOnly"`
+	// Name of the server certificate to used for this realm.
+	VirtualHostServerCert *string `pulumi:"virtualHostServerCert"`
 }
 
 type VpnSslWebRealmState struct {
@@ -138,6 +143,8 @@ type VpnSslWebRealmState struct {
 	VirtualHost pulumi.StringPtrInput
 	// Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
 	VirtualHostOnly pulumi.StringPtrInput
+	// Name of the server certificate to used for this realm.
+	VirtualHostServerCert pulumi.StringPtrInput
 }
 
 func (VpnSslWebRealmState) ElementType() reflect.Type {
@@ -163,6 +170,8 @@ type vpnSslWebRealmArgs struct {
 	VirtualHost *string `pulumi:"virtualHost"`
 	// Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
 	VirtualHostOnly *string `pulumi:"virtualHostOnly"`
+	// Name of the server certificate to used for this realm.
+	VirtualHostServerCert *string `pulumi:"virtualHostServerCert"`
 }
 
 // The set of arguments for constructing a VpnSslWebRealm resource.
@@ -185,6 +194,8 @@ type VpnSslWebRealmArgs struct {
 	VirtualHost pulumi.StringPtrInput
 	// Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `enable`, `disable`.
 	VirtualHostOnly pulumi.StringPtrInput
+	// Name of the server certificate to used for this realm.
+	VirtualHostServerCert pulumi.StringPtrInput
 }
 
 func (VpnSslWebRealmArgs) ElementType() reflect.Type {
@@ -199,7 +210,7 @@ type VpnSslWebRealmInput interface {
 }
 
 func (*VpnSslWebRealm) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebRealm)(nil))
+	return reflect.TypeOf((**VpnSslWebRealm)(nil)).Elem()
 }
 
 func (i *VpnSslWebRealm) ToVpnSslWebRealmOutput() VpnSslWebRealmOutput {
@@ -208,35 +219,6 @@ func (i *VpnSslWebRealm) ToVpnSslWebRealmOutput() VpnSslWebRealmOutput {
 
 func (i *VpnSslWebRealm) ToVpnSslWebRealmOutputWithContext(ctx context.Context) VpnSslWebRealmOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmOutput)
-}
-
-func (i *VpnSslWebRealm) ToVpnSslWebRealmPtrOutput() VpnSslWebRealmPtrOutput {
-	return i.ToVpnSslWebRealmPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnSslWebRealm) ToVpnSslWebRealmPtrOutputWithContext(ctx context.Context) VpnSslWebRealmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmPtrOutput)
-}
-
-type VpnSslWebRealmPtrInput interface {
-	pulumi.Input
-
-	ToVpnSslWebRealmPtrOutput() VpnSslWebRealmPtrOutput
-	ToVpnSslWebRealmPtrOutputWithContext(ctx context.Context) VpnSslWebRealmPtrOutput
-}
-
-type vpnSslWebRealmPtrType VpnSslWebRealmArgs
-
-func (*vpnSslWebRealmPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebRealm)(nil))
-}
-
-func (i *vpnSslWebRealmPtrType) ToVpnSslWebRealmPtrOutput() VpnSslWebRealmPtrOutput {
-	return i.ToVpnSslWebRealmPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnSslWebRealmPtrType) ToVpnSslWebRealmPtrOutputWithContext(ctx context.Context) VpnSslWebRealmPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmPtrOutput)
 }
 
 // VpnSslWebRealmArrayInput is an input type that accepts VpnSslWebRealmArray and VpnSslWebRealmArrayOutput values.
@@ -253,7 +235,7 @@ type VpnSslWebRealmArrayInput interface {
 type VpnSslWebRealmArray []VpnSslWebRealmInput
 
 func (VpnSslWebRealmArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnSslWebRealm)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebRealm)(nil)).Elem()
 }
 
 func (i VpnSslWebRealmArray) ToVpnSslWebRealmArrayOutput() VpnSslWebRealmArrayOutput {
@@ -278,7 +260,7 @@ type VpnSslWebRealmMapInput interface {
 type VpnSslWebRealmMap map[string]VpnSslWebRealmInput
 
 func (VpnSslWebRealmMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnSslWebRealm)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebRealm)(nil)).Elem()
 }
 
 func (i VpnSslWebRealmMap) ToVpnSslWebRealmMapOutput() VpnSslWebRealmMapOutput {
@@ -289,12 +271,10 @@ func (i VpnSslWebRealmMap) ToVpnSslWebRealmMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebRealmMapOutput)
 }
 
-type VpnSslWebRealmOutput struct {
-	*pulumi.OutputState
-}
+type VpnSslWebRealmOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebRealmOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebRealm)(nil))
+	return reflect.TypeOf((**VpnSslWebRealm)(nil)).Elem()
 }
 
 func (o VpnSslWebRealmOutput) ToVpnSslWebRealmOutput() VpnSslWebRealmOutput {
@@ -305,36 +285,10 @@ func (o VpnSslWebRealmOutput) ToVpnSslWebRealmOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o VpnSslWebRealmOutput) ToVpnSslWebRealmPtrOutput() VpnSslWebRealmPtrOutput {
-	return o.ToVpnSslWebRealmPtrOutputWithContext(context.Background())
-}
-
-func (o VpnSslWebRealmOutput) ToVpnSslWebRealmPtrOutputWithContext(ctx context.Context) VpnSslWebRealmPtrOutput {
-	return o.ApplyT(func(v VpnSslWebRealm) *VpnSslWebRealm {
-		return &v
-	}).(VpnSslWebRealmPtrOutput)
-}
-
-type VpnSslWebRealmPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnSslWebRealmPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebRealm)(nil))
-}
-
-func (o VpnSslWebRealmPtrOutput) ToVpnSslWebRealmPtrOutput() VpnSslWebRealmPtrOutput {
-	return o
-}
-
-func (o VpnSslWebRealmPtrOutput) ToVpnSslWebRealmPtrOutputWithContext(ctx context.Context) VpnSslWebRealmPtrOutput {
-	return o
-}
-
 type VpnSslWebRealmArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebRealmArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnSslWebRealm)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebRealm)(nil)).Elem()
 }
 
 func (o VpnSslWebRealmArrayOutput) ToVpnSslWebRealmArrayOutput() VpnSslWebRealmArrayOutput {
@@ -346,15 +300,15 @@ func (o VpnSslWebRealmArrayOutput) ToVpnSslWebRealmArrayOutputWithContext(ctx co
 }
 
 func (o VpnSslWebRealmArrayOutput) Index(i pulumi.IntInput) VpnSslWebRealmOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebRealm {
-		return vs[0].([]VpnSslWebRealm)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebRealm {
+		return vs[0].([]*VpnSslWebRealm)[vs[1].(int)]
 	}).(VpnSslWebRealmOutput)
 }
 
 type VpnSslWebRealmMapOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebRealmMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnSslWebRealm)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebRealm)(nil)).Elem()
 }
 
 func (o VpnSslWebRealmMapOutput) ToVpnSslWebRealmMapOutput() VpnSslWebRealmMapOutput {
@@ -366,14 +320,16 @@ func (o VpnSslWebRealmMapOutput) ToVpnSslWebRealmMapOutputWithContext(ctx contex
 }
 
 func (o VpnSslWebRealmMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebRealmOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnSslWebRealm {
-		return vs[0].(map[string]VpnSslWebRealm)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnSslWebRealm {
+		return vs[0].(map[string]*VpnSslWebRealm)[vs[1].(string)]
 	}).(VpnSslWebRealmOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebRealmInput)(nil)).Elem(), &VpnSslWebRealm{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebRealmArrayInput)(nil)).Elem(), VpnSslWebRealmArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebRealmMapInput)(nil)).Elem(), VpnSslWebRealmMap{})
 	pulumi.RegisterOutputType(VpnSslWebRealmOutput{})
-	pulumi.RegisterOutputType(VpnSslWebRealmPtrOutput{})
 	pulumi.RegisterOutputType(VpnSslWebRealmArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslWebRealmMapOutput{})
 }

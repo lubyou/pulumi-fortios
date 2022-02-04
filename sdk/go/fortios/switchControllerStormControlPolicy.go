@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch storm control policy to be applied on managed-switch ports.
+// Configure FortiSwitch storm control policy to be applied on managed-switch ports. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -49,6 +49,7 @@ func NewSwitchControllerStormControlPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerStormControlPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerStormControlPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerStormControlPolicy:SwitchControllerStormControlPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type SwitchControllerStormControlPolicyInput interface {
 }
 
 func (*SwitchControllerStormControlPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerStormControlPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerStormControlPolicy)(nil)).Elem()
 }
 
 func (i *SwitchControllerStormControlPolicy) ToSwitchControllerStormControlPolicyOutput() SwitchControllerStormControlPolicyOutput {
@@ -172,35 +173,6 @@ func (i *SwitchControllerStormControlPolicy) ToSwitchControllerStormControlPolic
 
 func (i *SwitchControllerStormControlPolicy) ToSwitchControllerStormControlPolicyOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyOutput)
-}
-
-func (i *SwitchControllerStormControlPolicy) ToSwitchControllerStormControlPolicyPtrOutput() SwitchControllerStormControlPolicyPtrOutput {
-	return i.ToSwitchControllerStormControlPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerStormControlPolicy) ToSwitchControllerStormControlPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyPtrOutput)
-}
-
-type SwitchControllerStormControlPolicyPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerStormControlPolicyPtrOutput() SwitchControllerStormControlPolicyPtrOutput
-	ToSwitchControllerStormControlPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyPtrOutput
-}
-
-type switchControllerStormControlPolicyPtrType SwitchControllerStormControlPolicyArgs
-
-func (*switchControllerStormControlPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerStormControlPolicy)(nil))
-}
-
-func (i *switchControllerStormControlPolicyPtrType) ToSwitchControllerStormControlPolicyPtrOutput() SwitchControllerStormControlPolicyPtrOutput {
-	return i.ToSwitchControllerStormControlPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerStormControlPolicyPtrType) ToSwitchControllerStormControlPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyPtrOutput)
 }
 
 // SwitchControllerStormControlPolicyArrayInput is an input type that accepts SwitchControllerStormControlPolicyArray and SwitchControllerStormControlPolicyArrayOutput values.
@@ -217,7 +189,7 @@ type SwitchControllerStormControlPolicyArrayInput interface {
 type SwitchControllerStormControlPolicyArray []SwitchControllerStormControlPolicyInput
 
 func (SwitchControllerStormControlPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerStormControlPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerStormControlPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerStormControlPolicyArray) ToSwitchControllerStormControlPolicyArrayOutput() SwitchControllerStormControlPolicyArrayOutput {
@@ -242,7 +214,7 @@ type SwitchControllerStormControlPolicyMapInput interface {
 type SwitchControllerStormControlPolicyMap map[string]SwitchControllerStormControlPolicyInput
 
 func (SwitchControllerStormControlPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerStormControlPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerStormControlPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerStormControlPolicyMap) ToSwitchControllerStormControlPolicyMapOutput() SwitchControllerStormControlPolicyMapOutput {
@@ -253,12 +225,10 @@ func (i SwitchControllerStormControlPolicyMap) ToSwitchControllerStormControlPol
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerStormControlPolicyMapOutput)
 }
 
-type SwitchControllerStormControlPolicyOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerStormControlPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStormControlPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerStormControlPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerStormControlPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerStormControlPolicyOutput) ToSwitchControllerStormControlPolicyOutput() SwitchControllerStormControlPolicyOutput {
@@ -269,36 +239,10 @@ func (o SwitchControllerStormControlPolicyOutput) ToSwitchControllerStormControl
 	return o
 }
 
-func (o SwitchControllerStormControlPolicyOutput) ToSwitchControllerStormControlPolicyPtrOutput() SwitchControllerStormControlPolicyPtrOutput {
-	return o.ToSwitchControllerStormControlPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerStormControlPolicyOutput) ToSwitchControllerStormControlPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyPtrOutput {
-	return o.ApplyT(func(v SwitchControllerStormControlPolicy) *SwitchControllerStormControlPolicy {
-		return &v
-	}).(SwitchControllerStormControlPolicyPtrOutput)
-}
-
-type SwitchControllerStormControlPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerStormControlPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerStormControlPolicy)(nil))
-}
-
-func (o SwitchControllerStormControlPolicyPtrOutput) ToSwitchControllerStormControlPolicyPtrOutput() SwitchControllerStormControlPolicyPtrOutput {
-	return o
-}
-
-func (o SwitchControllerStormControlPolicyPtrOutput) ToSwitchControllerStormControlPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerStormControlPolicyPtrOutput {
-	return o
-}
-
 type SwitchControllerStormControlPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStormControlPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerStormControlPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerStormControlPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerStormControlPolicyArrayOutput) ToSwitchControllerStormControlPolicyArrayOutput() SwitchControllerStormControlPolicyArrayOutput {
@@ -310,15 +254,15 @@ func (o SwitchControllerStormControlPolicyArrayOutput) ToSwitchControllerStormCo
 }
 
 func (o SwitchControllerStormControlPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerStormControlPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerStormControlPolicy {
-		return vs[0].([]SwitchControllerStormControlPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerStormControlPolicy {
+		return vs[0].([]*SwitchControllerStormControlPolicy)[vs[1].(int)]
 	}).(SwitchControllerStormControlPolicyOutput)
 }
 
 type SwitchControllerStormControlPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerStormControlPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerStormControlPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerStormControlPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerStormControlPolicyMapOutput) ToSwitchControllerStormControlPolicyMapOutput() SwitchControllerStormControlPolicyMapOutput {
@@ -330,14 +274,16 @@ func (o SwitchControllerStormControlPolicyMapOutput) ToSwitchControllerStormCont
 }
 
 func (o SwitchControllerStormControlPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerStormControlPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerStormControlPolicy {
-		return vs[0].(map[string]SwitchControllerStormControlPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerStormControlPolicy {
+		return vs[0].(map[string]*SwitchControllerStormControlPolicy)[vs[1].(string)]
 	}).(SwitchControllerStormControlPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerStormControlPolicyInput)(nil)).Elem(), &SwitchControllerStormControlPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerStormControlPolicyArrayInput)(nil)).Elem(), SwitchControllerStormControlPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerStormControlPolicyMapInput)(nil)).Elem(), SwitchControllerStormControlPolicyMap{})
 	pulumi.RegisterOutputType(SwitchControllerStormControlPolicyOutput{})
-	pulumi.RegisterOutputType(SwitchControllerStormControlPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerStormControlPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerStormControlPolicyMapOutput{})
 }

@@ -128,53 +128,51 @@ export class WirelessControllerTimers extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerTimersArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerTimersArgs | WirelessControllerTimersState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerTimersState | undefined;
-            inputs["bleScanReportIntv"] = state ? state.bleScanReportIntv : undefined;
-            inputs["clientIdleTimeout"] = state ? state.clientIdleTimeout : undefined;
-            inputs["darrpDay"] = state ? state.darrpDay : undefined;
-            inputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
-            inputs["darrpTimes"] = state ? state.darrpTimes : undefined;
-            inputs["discoveryInterval"] = state ? state.discoveryInterval : undefined;
-            inputs["drmaInterval"] = state ? state.drmaInterval : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["echoInterval"] = state ? state.echoInterval : undefined;
-            inputs["fakeApLog"] = state ? state.fakeApLog : undefined;
-            inputs["ipsecIntfCleanup"] = state ? state.ipsecIntfCleanup : undefined;
-            inputs["radioStatsInterval"] = state ? state.radioStatsInterval : undefined;
-            inputs["rogueApLog"] = state ? state.rogueApLog : undefined;
-            inputs["staCapabilityInterval"] = state ? state.staCapabilityInterval : undefined;
-            inputs["staLocateTimer"] = state ? state.staLocateTimer : undefined;
-            inputs["staStatsInterval"] = state ? state.staStatsInterval : undefined;
-            inputs["vapStatsInterval"] = state ? state.vapStatsInterval : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bleScanReportIntv"] = state ? state.bleScanReportIntv : undefined;
+            resourceInputs["clientIdleTimeout"] = state ? state.clientIdleTimeout : undefined;
+            resourceInputs["darrpDay"] = state ? state.darrpDay : undefined;
+            resourceInputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
+            resourceInputs["darrpTimes"] = state ? state.darrpTimes : undefined;
+            resourceInputs["discoveryInterval"] = state ? state.discoveryInterval : undefined;
+            resourceInputs["drmaInterval"] = state ? state.drmaInterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["echoInterval"] = state ? state.echoInterval : undefined;
+            resourceInputs["fakeApLog"] = state ? state.fakeApLog : undefined;
+            resourceInputs["ipsecIntfCleanup"] = state ? state.ipsecIntfCleanup : undefined;
+            resourceInputs["radioStatsInterval"] = state ? state.radioStatsInterval : undefined;
+            resourceInputs["rogueApLog"] = state ? state.rogueApLog : undefined;
+            resourceInputs["staCapabilityInterval"] = state ? state.staCapabilityInterval : undefined;
+            resourceInputs["staLocateTimer"] = state ? state.staLocateTimer : undefined;
+            resourceInputs["staStatsInterval"] = state ? state.staStatsInterval : undefined;
+            resourceInputs["vapStatsInterval"] = state ? state.vapStatsInterval : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerTimersArgs | undefined;
-            inputs["bleScanReportIntv"] = args ? args.bleScanReportIntv : undefined;
-            inputs["clientIdleTimeout"] = args ? args.clientIdleTimeout : undefined;
-            inputs["darrpDay"] = args ? args.darrpDay : undefined;
-            inputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
-            inputs["darrpTimes"] = args ? args.darrpTimes : undefined;
-            inputs["discoveryInterval"] = args ? args.discoveryInterval : undefined;
-            inputs["drmaInterval"] = args ? args.drmaInterval : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["echoInterval"] = args ? args.echoInterval : undefined;
-            inputs["fakeApLog"] = args ? args.fakeApLog : undefined;
-            inputs["ipsecIntfCleanup"] = args ? args.ipsecIntfCleanup : undefined;
-            inputs["radioStatsInterval"] = args ? args.radioStatsInterval : undefined;
-            inputs["rogueApLog"] = args ? args.rogueApLog : undefined;
-            inputs["staCapabilityInterval"] = args ? args.staCapabilityInterval : undefined;
-            inputs["staLocateTimer"] = args ? args.staLocateTimer : undefined;
-            inputs["staStatsInterval"] = args ? args.staStatsInterval : undefined;
-            inputs["vapStatsInterval"] = args ? args.vapStatsInterval : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bleScanReportIntv"] = args ? args.bleScanReportIntv : undefined;
+            resourceInputs["clientIdleTimeout"] = args ? args.clientIdleTimeout : undefined;
+            resourceInputs["darrpDay"] = args ? args.darrpDay : undefined;
+            resourceInputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
+            resourceInputs["darrpTimes"] = args ? args.darrpTimes : undefined;
+            resourceInputs["discoveryInterval"] = args ? args.discoveryInterval : undefined;
+            resourceInputs["drmaInterval"] = args ? args.drmaInterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["echoInterval"] = args ? args.echoInterval : undefined;
+            resourceInputs["fakeApLog"] = args ? args.fakeApLog : undefined;
+            resourceInputs["ipsecIntfCleanup"] = args ? args.ipsecIntfCleanup : undefined;
+            resourceInputs["radioStatsInterval"] = args ? args.radioStatsInterval : undefined;
+            resourceInputs["rogueApLog"] = args ? args.rogueApLog : undefined;
+            resourceInputs["staCapabilityInterval"] = args ? args.staCapabilityInterval : undefined;
+            resourceInputs["staLocateTimer"] = args ? args.staLocateTimer : undefined;
+            resourceInputs["staStatsInterval"] = args ? args.staStatsInterval : undefined;
+            resourceInputs["vapStatsInterval"] = args ? args.vapStatsInterval : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerTimers.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerTimers.__pulumiType, name, resourceInputs, opts);
     }
 }
 

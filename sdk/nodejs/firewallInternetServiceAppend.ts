@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure additional port mappings for Internet Services.
+ * Configure additional port mappings for Internet Services. Applies to FortiOS Version `6.2.4,6.2.6,6.4.2,7.0.0,7.0.1,7.0.2,7.0.3,7.0.4`.
  *
  * ## Import
  *
@@ -67,23 +67,21 @@ export class FirewallInternetServiceAppend extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallInternetServiceAppendArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallInternetServiceAppendArgs | FirewallInternetServiceAppendState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceAppendState | undefined;
-            inputs["appendPort"] = state ? state.appendPort : undefined;
-            inputs["matchPort"] = state ? state.matchPort : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["appendPort"] = state ? state.appendPort : undefined;
+            resourceInputs["matchPort"] = state ? state.matchPort : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceAppendArgs | undefined;
-            inputs["appendPort"] = args ? args.appendPort : undefined;
-            inputs["matchPort"] = args ? args.matchPort : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["appendPort"] = args ? args.appendPort : undefined;
+            resourceInputs["matchPort"] = args ? args.matchPort : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallInternetServiceAppend.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallInternetServiceAppend.__pulumiType, name, resourceInputs, opts);
     }
 }
 

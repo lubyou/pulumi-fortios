@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global FortiAnalyzer Cloud settings.
+// Global FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -28,8 +28,12 @@ type LogFortianalyzerCloudSetting struct {
 	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
+	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+	CertificateVerification pulumi.StringOutput `pulumi:"certificateVerification"`
 	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
 	ConnTimeout pulumi.IntOutput `pulumi:"connTimeout"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringOutput `pulumi:"encAlgorithm"`
 	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
@@ -46,8 +50,12 @@ type LogFortianalyzerCloudSetting struct {
 	MonitorFailureRetryPeriod pulumi.IntOutput `pulumi:"monitorFailureRetryPeriod"`
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod pulumi.IntOutput `pulumi:"monitorKeepalivePeriod"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringOutput `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringOutput `pulumi:"priority"`
+	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+	Serials LogFortianalyzerCloudSettingSerialArrayOutput `pulumi:"serials"`
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
@@ -73,6 +81,7 @@ func NewLogFortianalyzerCloudSetting(ctx *pulumi.Context,
 		args = &LogFortianalyzerCloudSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerCloudSetting
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerCloudSetting:LogFortianalyzerCloudSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -99,8 +108,12 @@ type logFortianalyzerCloudSettingState struct {
 	AccessConfig *string `pulumi:"accessConfig"`
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate *string `pulumi:"certificate"`
+	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+	CertificateVerification *string `pulumi:"certificateVerification"`
 	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
 	ConnTimeout *int `pulumi:"connTimeout"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
 	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
@@ -117,8 +130,12 @@ type logFortianalyzerCloudSettingState struct {
 	MonitorFailureRetryPeriod *int `pulumi:"monitorFailureRetryPeriod"`
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey *string `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority *string `pulumi:"priority"`
+	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+	Serials []LogFortianalyzerCloudSettingSerial `pulumi:"serials"`
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
@@ -142,8 +159,12 @@ type LogFortianalyzerCloudSettingState struct {
 	AccessConfig pulumi.StringPtrInput
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate pulumi.StringPtrInput
+	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+	CertificateVerification pulumi.StringPtrInput
 	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
 	ConnTimeout pulumi.IntPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringPtrInput
 	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
@@ -160,8 +181,12 @@ type LogFortianalyzerCloudSettingState struct {
 	MonitorFailureRetryPeriod pulumi.IntPtrInput
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod pulumi.IntPtrInput
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringPtrInput
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringPtrInput
+	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+	Serials LogFortianalyzerCloudSettingSerialArrayInput
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp pulumi.StringPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
@@ -189,8 +214,12 @@ type logFortianalyzerCloudSettingArgs struct {
 	AccessConfig *string `pulumi:"accessConfig"`
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate *string `pulumi:"certificate"`
+	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+	CertificateVerification *string `pulumi:"certificateVerification"`
 	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
 	ConnTimeout *int `pulumi:"connTimeout"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm *string `pulumi:"encAlgorithm"`
 	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
@@ -207,8 +236,12 @@ type logFortianalyzerCloudSettingArgs struct {
 	MonitorFailureRetryPeriod *int `pulumi:"monitorFailureRetryPeriod"`
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey *string `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority *string `pulumi:"priority"`
+	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+	Serials []LogFortianalyzerCloudSettingSerial `pulumi:"serials"`
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
@@ -233,8 +266,12 @@ type LogFortianalyzerCloudSettingArgs struct {
 	AccessConfig pulumi.StringPtrInput
 	// Certificate used to communicate with FortiAnalyzer.
 	Certificate pulumi.StringPtrInput
+	// Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+	CertificateVerification pulumi.StringPtrInput
 	// FortiAnalyzer connection time-out in seconds (for status and log buffer).
 	ConnTimeout pulumi.IntPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
 	EncAlgorithm pulumi.StringPtrInput
 	// FortiAnalyzer IPsec tunnel HMAC algorithm. Valid values: `sha256`, `sha1`.
@@ -251,8 +288,12 @@ type LogFortianalyzerCloudSettingArgs struct {
 	MonitorFailureRetryPeriod pulumi.IntPtrInput
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod pulumi.IntPtrInput
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringPtrInput
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringPtrInput
+	// Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+	Serials LogFortianalyzerCloudSettingSerialArrayInput
 	// Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
 	SourceIp pulumi.StringPtrInput
 	// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
@@ -283,7 +324,7 @@ type LogFortianalyzerCloudSettingInput interface {
 }
 
 func (*LogFortianalyzerCloudSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudSetting)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudSetting)(nil)).Elem()
 }
 
 func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingOutput() LogFortianalyzerCloudSettingOutput {
@@ -292,35 +333,6 @@ func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingOutput() Lo
 
 func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingOutput)
-}
-
-func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingPtrOutput() LogFortianalyzerCloudSettingPtrOutput {
-	return i.ToLogFortianalyzerCloudSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortianalyzerCloudSetting) ToLogFortianalyzerCloudSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingPtrOutput)
-}
-
-type LogFortianalyzerCloudSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogFortianalyzerCloudSettingPtrOutput() LogFortianalyzerCloudSettingPtrOutput
-	ToLogFortianalyzerCloudSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingPtrOutput
-}
-
-type logFortianalyzerCloudSettingPtrType LogFortianalyzerCloudSettingArgs
-
-func (*logFortianalyzerCloudSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudSetting)(nil))
-}
-
-func (i *logFortianalyzerCloudSettingPtrType) ToLogFortianalyzerCloudSettingPtrOutput() LogFortianalyzerCloudSettingPtrOutput {
-	return i.ToLogFortianalyzerCloudSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortianalyzerCloudSettingPtrType) ToLogFortianalyzerCloudSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingPtrOutput)
 }
 
 // LogFortianalyzerCloudSettingArrayInput is an input type that accepts LogFortianalyzerCloudSettingArray and LogFortianalyzerCloudSettingArrayOutput values.
@@ -337,7 +349,7 @@ type LogFortianalyzerCloudSettingArrayInput interface {
 type LogFortianalyzerCloudSettingArray []LogFortianalyzerCloudSettingInput
 
 func (LogFortianalyzerCloudSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortianalyzerCloudSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudSetting)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudSettingArray) ToLogFortianalyzerCloudSettingArrayOutput() LogFortianalyzerCloudSettingArrayOutput {
@@ -362,7 +374,7 @@ type LogFortianalyzerCloudSettingMapInput interface {
 type LogFortianalyzerCloudSettingMap map[string]LogFortianalyzerCloudSettingInput
 
 func (LogFortianalyzerCloudSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortianalyzerCloudSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudSetting)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudSettingMap) ToLogFortianalyzerCloudSettingMapOutput() LogFortianalyzerCloudSettingMapOutput {
@@ -373,12 +385,10 @@ func (i LogFortianalyzerCloudSettingMap) ToLogFortianalyzerCloudSettingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudSettingMapOutput)
 }
 
-type LogFortianalyzerCloudSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogFortianalyzerCloudSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudSetting)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingOutput() LogFortianalyzerCloudSettingOutput {
@@ -389,36 +399,10 @@ func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingOutput
 	return o
 }
 
-func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingPtrOutput() LogFortianalyzerCloudSettingPtrOutput {
-	return o.ToLogFortianalyzerCloudSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortianalyzerCloudSettingOutput) ToLogFortianalyzerCloudSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingPtrOutput {
-	return o.ApplyT(func(v LogFortianalyzerCloudSetting) *LogFortianalyzerCloudSetting {
-		return &v
-	}).(LogFortianalyzerCloudSettingPtrOutput)
-}
-
-type LogFortianalyzerCloudSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortianalyzerCloudSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudSetting)(nil))
-}
-
-func (o LogFortianalyzerCloudSettingPtrOutput) ToLogFortianalyzerCloudSettingPtrOutput() LogFortianalyzerCloudSettingPtrOutput {
-	return o
-}
-
-func (o LogFortianalyzerCloudSettingPtrOutput) ToLogFortianalyzerCloudSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudSettingPtrOutput {
-	return o
-}
-
 type LogFortianalyzerCloudSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortianalyzerCloudSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudSettingArrayOutput) ToLogFortianalyzerCloudSettingArrayOutput() LogFortianalyzerCloudSettingArrayOutput {
@@ -430,15 +414,15 @@ func (o LogFortianalyzerCloudSettingArrayOutput) ToLogFortianalyzerCloudSettingA
 }
 
 func (o LogFortianalyzerCloudSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortianalyzerCloudSetting {
-		return vs[0].([]LogFortianalyzerCloudSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudSetting {
+		return vs[0].([]*LogFortianalyzerCloudSetting)[vs[1].(int)]
 	}).(LogFortianalyzerCloudSettingOutput)
 }
 
 type LogFortianalyzerCloudSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortianalyzerCloudSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudSettingMapOutput) ToLogFortianalyzerCloudSettingMapOutput() LogFortianalyzerCloudSettingMapOutput {
@@ -450,14 +434,16 @@ func (o LogFortianalyzerCloudSettingMapOutput) ToLogFortianalyzerCloudSettingMap
 }
 
 func (o LogFortianalyzerCloudSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortianalyzerCloudSetting {
-		return vs[0].(map[string]LogFortianalyzerCloudSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudSetting {
+		return vs[0].(map[string]*LogFortianalyzerCloudSetting)[vs[1].(string)]
 	}).(LogFortianalyzerCloudSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudSettingInput)(nil)).Elem(), &LogFortianalyzerCloudSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudSettingArrayInput)(nil)).Elem(), LogFortianalyzerCloudSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudSettingMapInput)(nil)).Elem(), LogFortianalyzerCloudSettingMap{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudSettingOutput{})
-	pulumi.RegisterOutputType(LogFortianalyzerCloudSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudSettingMapOutput{})
 }

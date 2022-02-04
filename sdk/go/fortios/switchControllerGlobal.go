@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,10 +60,16 @@ type SwitchControllerGlobal struct {
 	CustomCommands SwitchControllerGlobalCustomCommandArrayOutput `pulumi:"customCommands"`
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan pulumi.StringOutput `pulumi:"defaultVirtualSwitchVlan"`
+	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+	DhcpServerAccessList pulumi.StringOutput `pulumi:"dhcpServerAccessList"`
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries SwitchControllerGlobalDisableDiscoveryArrayOutput `pulumi:"disableDiscoveries"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+	FipsEnforce pulumi.StringOutput `pulumi:"fipsEnforce"`
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization pulumi.StringOutput `pulumi:"firmwareProvisionOnAuthorization"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringOutput `pulumi:"httpsImagePush"`
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -97,6 +103,7 @@ func NewSwitchControllerGlobal(ctx *pulumi.Context,
 		args = &SwitchControllerGlobalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerGlobal
 	err := ctx.RegisterResource("fortios:index/switchControllerGlobal:SwitchControllerGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -127,10 +134,16 @@ type switchControllerGlobalState struct {
 	CustomCommands []SwitchControllerGlobalCustomCommand `pulumi:"customCommands"`
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan *string `pulumi:"defaultVirtualSwitchVlan"`
+	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+	FipsEnforce *string `pulumi:"fipsEnforce"`
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush *string `pulumi:"httpsImagePush"`
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -166,10 +179,16 @@ type SwitchControllerGlobalState struct {
 	CustomCommands SwitchControllerGlobalCustomCommandArrayInput
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan pulumi.StringPtrInput
+	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+	DhcpServerAccessList pulumi.StringPtrInput
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries SwitchControllerGlobalDisableDiscoveryArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+	FipsEnforce pulumi.StringPtrInput
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringPtrInput
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -209,10 +228,16 @@ type switchControllerGlobalArgs struct {
 	CustomCommands []SwitchControllerGlobalCustomCommand `pulumi:"customCommands"`
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan *string `pulumi:"defaultVirtualSwitchVlan"`
+	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+	DhcpServerAccessList *string `pulumi:"dhcpServerAccessList"`
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries []SwitchControllerGlobalDisableDiscovery `pulumi:"disableDiscoveries"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+	FipsEnforce *string `pulumi:"fipsEnforce"`
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization *string `pulumi:"firmwareProvisionOnAuthorization"`
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush *string `pulumi:"httpsImagePush"`
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -249,10 +274,16 @@ type SwitchControllerGlobalArgs struct {
 	CustomCommands SwitchControllerGlobalCustomCommandArrayInput
 	// Default VLAN for ports when added to the virtual-switch.
 	DefaultVirtualSwitchVlan pulumi.StringPtrInput
+	// Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+	DhcpServerAccessList pulumi.StringPtrInput
 	// Prevent this FortiSwitch from discovering. The structure of `disableDiscovery` block is documented below.
 	DisableDiscoveries SwitchControllerGlobalDisableDiscoveryArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+	FipsEnforce pulumi.StringPtrInput
+	// Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+	FirmwareProvisionOnAuthorization pulumi.StringPtrInput
 	// Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
 	HttpsImagePush pulumi.StringPtrInput
 	// Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
@@ -291,7 +322,7 @@ type SwitchControllerGlobalInput interface {
 }
 
 func (*SwitchControllerGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerGlobal)(nil))
+	return reflect.TypeOf((**SwitchControllerGlobal)(nil)).Elem()
 }
 
 func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutput() SwitchControllerGlobalOutput {
@@ -300,35 +331,6 @@ func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutput() SwitchControll
 
 func (i *SwitchControllerGlobal) ToSwitchControllerGlobalOutputWithContext(ctx context.Context) SwitchControllerGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalOutput)
-}
-
-func (i *SwitchControllerGlobal) ToSwitchControllerGlobalPtrOutput() SwitchControllerGlobalPtrOutput {
-	return i.ToSwitchControllerGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerGlobal) ToSwitchControllerGlobalPtrOutputWithContext(ctx context.Context) SwitchControllerGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalPtrOutput)
-}
-
-type SwitchControllerGlobalPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerGlobalPtrOutput() SwitchControllerGlobalPtrOutput
-	ToSwitchControllerGlobalPtrOutputWithContext(ctx context.Context) SwitchControllerGlobalPtrOutput
-}
-
-type switchControllerGlobalPtrType SwitchControllerGlobalArgs
-
-func (*switchControllerGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerGlobal)(nil))
-}
-
-func (i *switchControllerGlobalPtrType) ToSwitchControllerGlobalPtrOutput() SwitchControllerGlobalPtrOutput {
-	return i.ToSwitchControllerGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerGlobalPtrType) ToSwitchControllerGlobalPtrOutputWithContext(ctx context.Context) SwitchControllerGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalPtrOutput)
 }
 
 // SwitchControllerGlobalArrayInput is an input type that accepts SwitchControllerGlobalArray and SwitchControllerGlobalArrayOutput values.
@@ -345,7 +347,7 @@ type SwitchControllerGlobalArrayInput interface {
 type SwitchControllerGlobalArray []SwitchControllerGlobalInput
 
 func (SwitchControllerGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerGlobal)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerGlobal)(nil)).Elem()
 }
 
 func (i SwitchControllerGlobalArray) ToSwitchControllerGlobalArrayOutput() SwitchControllerGlobalArrayOutput {
@@ -370,7 +372,7 @@ type SwitchControllerGlobalMapInput interface {
 type SwitchControllerGlobalMap map[string]SwitchControllerGlobalInput
 
 func (SwitchControllerGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerGlobal)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerGlobal)(nil)).Elem()
 }
 
 func (i SwitchControllerGlobalMap) ToSwitchControllerGlobalMapOutput() SwitchControllerGlobalMapOutput {
@@ -381,12 +383,10 @@ func (i SwitchControllerGlobalMap) ToSwitchControllerGlobalMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerGlobalMapOutput)
 }
 
-type SwitchControllerGlobalOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerGlobalOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerGlobal)(nil))
+	return reflect.TypeOf((**SwitchControllerGlobal)(nil)).Elem()
 }
 
 func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutput() SwitchControllerGlobalOutput {
@@ -397,36 +397,10 @@ func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalOutputWithContext(
 	return o
 }
 
-func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalPtrOutput() SwitchControllerGlobalPtrOutput {
-	return o.ToSwitchControllerGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerGlobalOutput) ToSwitchControllerGlobalPtrOutputWithContext(ctx context.Context) SwitchControllerGlobalPtrOutput {
-	return o.ApplyT(func(v SwitchControllerGlobal) *SwitchControllerGlobal {
-		return &v
-	}).(SwitchControllerGlobalPtrOutput)
-}
-
-type SwitchControllerGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerGlobal)(nil))
-}
-
-func (o SwitchControllerGlobalPtrOutput) ToSwitchControllerGlobalPtrOutput() SwitchControllerGlobalPtrOutput {
-	return o
-}
-
-func (o SwitchControllerGlobalPtrOutput) ToSwitchControllerGlobalPtrOutputWithContext(ctx context.Context) SwitchControllerGlobalPtrOutput {
-	return o
-}
-
 type SwitchControllerGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerGlobal)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerGlobal)(nil)).Elem()
 }
 
 func (o SwitchControllerGlobalArrayOutput) ToSwitchControllerGlobalArrayOutput() SwitchControllerGlobalArrayOutput {
@@ -438,15 +412,15 @@ func (o SwitchControllerGlobalArrayOutput) ToSwitchControllerGlobalArrayOutputWi
 }
 
 func (o SwitchControllerGlobalArrayOutput) Index(i pulumi.IntInput) SwitchControllerGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerGlobal {
-		return vs[0].([]SwitchControllerGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerGlobal {
+		return vs[0].([]*SwitchControllerGlobal)[vs[1].(int)]
 	}).(SwitchControllerGlobalOutput)
 }
 
 type SwitchControllerGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerGlobal)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerGlobal)(nil)).Elem()
 }
 
 func (o SwitchControllerGlobalMapOutput) ToSwitchControllerGlobalMapOutput() SwitchControllerGlobalMapOutput {
@@ -458,14 +432,16 @@ func (o SwitchControllerGlobalMapOutput) ToSwitchControllerGlobalMapOutputWithCo
 }
 
 func (o SwitchControllerGlobalMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerGlobal {
-		return vs[0].(map[string]SwitchControllerGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerGlobal {
+		return vs[0].(map[string]*SwitchControllerGlobal)[vs[1].(string)]
 	}).(SwitchControllerGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerGlobalInput)(nil)).Elem(), &SwitchControllerGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerGlobalArrayInput)(nil)).Elem(), SwitchControllerGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerGlobalMapInput)(nil)).Elem(), SwitchControllerGlobalMap{})
 	pulumi.RegisterOutputType(SwitchControllerGlobalOutput{})
-	pulumi.RegisterOutputType(SwitchControllerGlobalPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerGlobalArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerGlobalMapOutput{})
 }

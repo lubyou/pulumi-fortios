@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RouterStatic6Args', 'RouterStatic6']
 
@@ -20,14 +22,18 @@ class RouterStatic6Args:
                  devindex: Optional[pulumi.Input[int]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 virtual_wan_link: Optional[pulumi.Input[str]] = None):
+                 virtual_wan_link: Optional[pulumi.Input[str]] = None,
+                 vrf: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a RouterStatic6 resource.
         :param pulumi.Input[str] device: Gateway out interface or tunnel.
@@ -37,14 +43,18 @@ class RouterStatic6Args:
         :param pulumi.Input[int] devindex: Device index (0 - 4294967295).
         :param pulumi.Input[int] distance: Administrative distance (1 - 255).
         :param pulumi.Input[str] dst: Destination IPv6 prefix.
+        :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
         """
         pulumi.set(__self__, "device", device)
         if bfd is not None:
@@ -59,6 +69,10 @@ class RouterStatic6Args:
             pulumi.set(__self__, "distance", distance)
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
+        if dynamic_gateway is not None:
+            pulumi.set(__self__, "dynamic_gateway", dynamic_gateway)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if link_monitor_exempt is not None:
@@ -67,6 +81,8 @@ class RouterStatic6Args:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
             pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zones is not None:
+            pulumi.set(__self__, "sdwan_zones", sdwan_zones)
         if seq_num is not None:
             pulumi.set(__self__, "seq_num", seq_num)
         if status is not None:
@@ -75,6 +91,8 @@ class RouterStatic6Args:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if virtual_wan_link is not None:
             pulumi.set(__self__, "virtual_wan_link", virtual_wan_link)
+        if vrf is not None:
+            pulumi.set(__self__, "vrf", vrf)
 
     @property
     @pulumi.getter
@@ -161,6 +179,30 @@ class RouterStatic6Args:
         pulumi.set(self, "dst", value)
 
     @property
+    @pulumi.getter(name="dynamicGateway")
+    def dynamic_gateway(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dynamic_gateway")
+
+    @dynamic_gateway.setter
+    def dynamic_gateway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_gateway", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[str]]:
         """
@@ -207,6 +249,18 @@ class RouterStatic6Args:
     @sdwan.setter
     def sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdwan", value)
+
+    @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]]]:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
+
+    @sdwan_zones.setter
+    def sdwan_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]]]):
+        pulumi.set(self, "sdwan_zones", value)
 
     @property
     @pulumi.getter(name="seqNum")
@@ -256,6 +310,18 @@ class RouterStatic6Args:
     def virtual_wan_link(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "virtual_wan_link", value)
 
+    @property
+    @pulumi.getter
+    def vrf(self) -> Optional[pulumi.Input[int]]:
+        """
+        Virtual Routing Forwarding ID.
+        """
+        return pulumi.get(self, "vrf")
+
+    @vrf.setter
+    def vrf(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vrf", value)
+
 
 @pulumi.input_type
 class _RouterStatic6State:
@@ -267,14 +333,18 @@ class _RouterStatic6State:
                  devindex: Optional[pulumi.Input[int]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 virtual_wan_link: Optional[pulumi.Input[str]] = None):
+                 virtual_wan_link: Optional[pulumi.Input[str]] = None,
+                 vrf: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering RouterStatic6 resources.
         :param pulumi.Input[str] bfd: Enable/disable Bidirectional Forwarding Detection (BFD). Valid values: `enable`, `disable`.
@@ -284,14 +354,18 @@ class _RouterStatic6State:
         :param pulumi.Input[int] devindex: Device index (0 - 4294967295).
         :param pulumi.Input[int] distance: Administrative distance (1 - 255).
         :param pulumi.Input[str] dst: Destination IPv6 prefix.
+        :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
         """
         if bfd is not None:
             pulumi.set(__self__, "bfd", bfd)
@@ -307,6 +381,10 @@ class _RouterStatic6State:
             pulumi.set(__self__, "distance", distance)
         if dst is not None:
             pulumi.set(__self__, "dst", dst)
+        if dynamic_gateway is not None:
+            pulumi.set(__self__, "dynamic_gateway", dynamic_gateway)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if gateway is not None:
             pulumi.set(__self__, "gateway", gateway)
         if link_monitor_exempt is not None:
@@ -315,6 +393,8 @@ class _RouterStatic6State:
             pulumi.set(__self__, "priority", priority)
         if sdwan is not None:
             pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zones is not None:
+            pulumi.set(__self__, "sdwan_zones", sdwan_zones)
         if seq_num is not None:
             pulumi.set(__self__, "seq_num", seq_num)
         if status is not None:
@@ -323,6 +403,8 @@ class _RouterStatic6State:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if virtual_wan_link is not None:
             pulumi.set(__self__, "virtual_wan_link", virtual_wan_link)
+        if vrf is not None:
+            pulumi.set(__self__, "vrf", vrf)
 
     @property
     @pulumi.getter
@@ -409,6 +491,30 @@ class _RouterStatic6State:
         pulumi.set(self, "dst", value)
 
     @property
+    @pulumi.getter(name="dynamicGateway")
+    def dynamic_gateway(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dynamic_gateway")
+
+    @dynamic_gateway.setter
+    def dynamic_gateway(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_gateway", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter
     def gateway(self) -> Optional[pulumi.Input[str]]:
         """
@@ -455,6 +561,18 @@ class _RouterStatic6State:
     @sdwan.setter
     def sdwan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "sdwan", value)
+
+    @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]]]:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
+
+    @sdwan_zones.setter
+    def sdwan_zones(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterStatic6SdwanZoneArgs']]]]):
+        pulumi.set(self, "sdwan_zones", value)
 
     @property
     @pulumi.getter(name="seqNum")
@@ -504,6 +622,18 @@ class _RouterStatic6State:
     def virtual_wan_link(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "virtual_wan_link", value)
 
+    @property
+    @pulumi.getter
+    def vrf(self) -> Optional[pulumi.Input[int]]:
+        """
+        Virtual Routing Forwarding ID.
+        """
+        return pulumi.get(self, "vrf")
+
+    @vrf.setter
+    def vrf(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vrf", value)
+
 
 class RouterStatic6(pulumi.CustomResource):
     @overload
@@ -517,14 +647,18 @@ class RouterStatic6(pulumi.CustomResource):
                  devindex: Optional[pulumi.Input[int]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStatic6SdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
+                 vrf: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
         Configure IPv6 static routing tables.
@@ -568,14 +702,18 @@ class RouterStatic6(pulumi.CustomResource):
         :param pulumi.Input[int] devindex: Device index (0 - 4294967295).
         :param pulumi.Input[int] distance: Administrative distance (1 - 255).
         :param pulumi.Input[str] dst: Destination IPv6 prefix.
+        :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStatic6SdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
         """
         ...
     @overload
@@ -638,14 +776,18 @@ class RouterStatic6(pulumi.CustomResource):
                  devindex: Optional[pulumi.Input[int]] = None,
                  distance: Optional[pulumi.Input[int]] = None,
                  dst: Optional[pulumi.Input[str]] = None,
+                 dynamic_gateway: Optional[pulumi.Input[str]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  gateway: Optional[pulumi.Input[str]] = None,
                  link_monitor_exempt: Optional[pulumi.Input[str]] = None,
                  priority: Optional[pulumi.Input[int]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
+                 sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStatic6SdwanZoneArgs']]]]] = None,
                  seq_num: Optional[pulumi.Input[int]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  virtual_wan_link: Optional[pulumi.Input[str]] = None,
+                 vrf: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -653,6 +795,8 @@ class RouterStatic6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -667,14 +811,18 @@ class RouterStatic6(pulumi.CustomResource):
             __props__.__dict__["devindex"] = devindex
             __props__.__dict__["distance"] = distance
             __props__.__dict__["dst"] = dst
+            __props__.__dict__["dynamic_gateway"] = dynamic_gateway
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["gateway"] = gateway
             __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
             __props__.__dict__["priority"] = priority
             __props__.__dict__["sdwan"] = sdwan
+            __props__.__dict__["sdwan_zones"] = sdwan_zones
             __props__.__dict__["seq_num"] = seq_num
             __props__.__dict__["status"] = status
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["virtual_wan_link"] = virtual_wan_link
+            __props__.__dict__["vrf"] = vrf
         super(RouterStatic6, __self__).__init__(
             'fortios:index/routerStatic6:RouterStatic6',
             resource_name,
@@ -692,14 +840,18 @@ class RouterStatic6(pulumi.CustomResource):
             devindex: Optional[pulumi.Input[int]] = None,
             distance: Optional[pulumi.Input[int]] = None,
             dst: Optional[pulumi.Input[str]] = None,
+            dynamic_gateway: Optional[pulumi.Input[str]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             gateway: Optional[pulumi.Input[str]] = None,
             link_monitor_exempt: Optional[pulumi.Input[str]] = None,
             priority: Optional[pulumi.Input[int]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
+            sdwan_zones: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStatic6SdwanZoneArgs']]]]] = None,
             seq_num: Optional[pulumi.Input[int]] = None,
             status: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
-            virtual_wan_link: Optional[pulumi.Input[str]] = None) -> 'RouterStatic6':
+            virtual_wan_link: Optional[pulumi.Input[str]] = None,
+            vrf: Optional[pulumi.Input[int]] = None) -> 'RouterStatic6':
         """
         Get an existing RouterStatic6 resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -714,14 +866,18 @@ class RouterStatic6(pulumi.CustomResource):
         :param pulumi.Input[int] devindex: Device index (0 - 4294967295).
         :param pulumi.Input[int] distance: Administrative distance (1 - 255).
         :param pulumi.Input[str] dst: Destination IPv6 prefix.
+        :param pulumi.Input[str] dynamic_gateway: Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] gateway: IPv6 address of the gateway.
         :param pulumi.Input[str] link_monitor_exempt: Enable/disable withdrawal of this static route when link monitor or health check is down. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] priority: Administrative priority (0 - 4294967295).
         :param pulumi.Input[str] sdwan: Enable/disable egress through the SD-WAN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterStatic6SdwanZoneArgs']]]] sdwan_zones: Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
         :param pulumi.Input[int] seq_num: Sequence number.
         :param pulumi.Input[str] status: Enable/disable this static route. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] virtual_wan_link: Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
+        :param pulumi.Input[int] vrf: Virtual Routing Forwarding ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -734,14 +890,18 @@ class RouterStatic6(pulumi.CustomResource):
         __props__.__dict__["devindex"] = devindex
         __props__.__dict__["distance"] = distance
         __props__.__dict__["dst"] = dst
+        __props__.__dict__["dynamic_gateway"] = dynamic_gateway
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["gateway"] = gateway
         __props__.__dict__["link_monitor_exempt"] = link_monitor_exempt
         __props__.__dict__["priority"] = priority
         __props__.__dict__["sdwan"] = sdwan
+        __props__.__dict__["sdwan_zones"] = sdwan_zones
         __props__.__dict__["seq_num"] = seq_num
         __props__.__dict__["status"] = status
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["virtual_wan_link"] = virtual_wan_link
+        __props__.__dict__["vrf"] = vrf
         return RouterStatic6(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -801,6 +961,22 @@ class RouterStatic6(pulumi.CustomResource):
         return pulumi.get(self, "dst")
 
     @property
+    @pulumi.getter(name="dynamicGateway")
+    def dynamic_gateway(self) -> pulumi.Output[str]:
+        """
+        Enable use of dynamic gateway retrieved from Router Advertisement (RA). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dynamic_gateway")
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
     @pulumi.getter
     def gateway(self) -> pulumi.Output[str]:
         """
@@ -833,6 +1009,14 @@ class RouterStatic6(pulumi.CustomResource):
         return pulumi.get(self, "sdwan")
 
     @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> pulumi.Output[Optional[Sequence['outputs.RouterStatic6SdwanZone']]]:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
+
+    @property
     @pulumi.getter(name="seqNum")
     def seq_num(self) -> pulumi.Output[int]:
         """
@@ -863,4 +1047,12 @@ class RouterStatic6(pulumi.CustomResource):
         Enable/disable egress through the virtual-wan-link. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "virtual_wan_link")
+
+    @property
+    @pulumi.getter
+    def vrf(self) -> pulumi.Output[int]:
+        """
+        Virtual Routing Forwarding ID.
+        """
+        return pulumi.get(self, "vrf")
 

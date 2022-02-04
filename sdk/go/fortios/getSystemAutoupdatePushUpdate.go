@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios systemautoupdate pushupdate
 func LookupSystemAutoupdatePushUpdate(ctx *pulumi.Context, args *LookupSystemAutoupdatePushUpdateArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdatePushUpdateResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdatePushUpdateResult
 	err := ctx.Invoke("fortios:index/getSystemAutoupdatePushUpdate:GetSystemAutoupdatePushUpdate", args, &rv, opts...)
 	if err != nil {
@@ -36,4 +40,71 @@ type LookupSystemAutoupdatePushUpdateResult struct {
 	// Enable/disable push updates.
 	Status    string  `pulumi:"status"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemAutoupdatePushUpdateOutput(ctx *pulumi.Context, args LookupSystemAutoupdatePushUpdateOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutoupdatePushUpdateResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemAutoupdatePushUpdateResult, error) {
+			args := v.(LookupSystemAutoupdatePushUpdateArgs)
+			r, err := LookupSystemAutoupdatePushUpdate(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemAutoupdatePushUpdateResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutoupdatePushUpdate.
+type LookupSystemAutoupdatePushUpdateOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemAutoupdatePushUpdateOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoupdatePushUpdateArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutoupdatePushUpdate.
+type LookupSystemAutoupdatePushUpdateResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemAutoupdatePushUpdateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoupdatePushUpdateResult)(nil)).Elem()
+}
+
+func (o LookupSystemAutoupdatePushUpdateResultOutput) ToLookupSystemAutoupdatePushUpdateResultOutput() LookupSystemAutoupdatePushUpdateResultOutput {
+	return o
+}
+
+func (o LookupSystemAutoupdatePushUpdateResultOutput) ToLookupSystemAutoupdatePushUpdateResultOutputWithContext(ctx context.Context) LookupSystemAutoupdatePushUpdateResultOutput {
+	return o
+}
+
+// Push update override server.
+func (o LookupSystemAutoupdatePushUpdateResultOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemAutoupdatePushUpdateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable push update override server.
+func (o LookupSystemAutoupdatePushUpdateResultOutput) Override() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Override }).(pulumi.StringOutput)
+}
+
+// Push update override port. (Do not overlap with other service ports)
+func (o LookupSystemAutoupdatePushUpdateResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Enable/disable push updates.
+func (o LookupSystemAutoupdatePushUpdateResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAutoupdatePushUpdateResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdatePushUpdateResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemAutoupdatePushUpdateResultOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewIpsSettings(ctx *pulumi.Context,
 		args = &IpsSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsSettings
 	err := ctx.RegisterResource("fortios:index/ipsSettings:IpsSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -159,7 +160,7 @@ type IpsSettingsInput interface {
 }
 
 func (*IpsSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsSettings)(nil))
+	return reflect.TypeOf((**IpsSettings)(nil)).Elem()
 }
 
 func (i *IpsSettings) ToIpsSettingsOutput() IpsSettingsOutput {
@@ -168,35 +169,6 @@ func (i *IpsSettings) ToIpsSettingsOutput() IpsSettingsOutput {
 
 func (i *IpsSettings) ToIpsSettingsOutputWithContext(ctx context.Context) IpsSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsOutput)
-}
-
-func (i *IpsSettings) ToIpsSettingsPtrOutput() IpsSettingsPtrOutput {
-	return i.ToIpsSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *IpsSettings) ToIpsSettingsPtrOutputWithContext(ctx context.Context) IpsSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsPtrOutput)
-}
-
-type IpsSettingsPtrInput interface {
-	pulumi.Input
-
-	ToIpsSettingsPtrOutput() IpsSettingsPtrOutput
-	ToIpsSettingsPtrOutputWithContext(ctx context.Context) IpsSettingsPtrOutput
-}
-
-type ipsSettingsPtrType IpsSettingsArgs
-
-func (*ipsSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsSettings)(nil))
-}
-
-func (i *ipsSettingsPtrType) ToIpsSettingsPtrOutput() IpsSettingsPtrOutput {
-	return i.ToIpsSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *ipsSettingsPtrType) ToIpsSettingsPtrOutputWithContext(ctx context.Context) IpsSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsPtrOutput)
 }
 
 // IpsSettingsArrayInput is an input type that accepts IpsSettingsArray and IpsSettingsArrayOutput values.
@@ -213,7 +185,7 @@ type IpsSettingsArrayInput interface {
 type IpsSettingsArray []IpsSettingsInput
 
 func (IpsSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsSettings)(nil))
+	return reflect.TypeOf((*[]*IpsSettings)(nil)).Elem()
 }
 
 func (i IpsSettingsArray) ToIpsSettingsArrayOutput() IpsSettingsArrayOutput {
@@ -238,7 +210,7 @@ type IpsSettingsMapInput interface {
 type IpsSettingsMap map[string]IpsSettingsInput
 
 func (IpsSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsSettings)(nil))
+	return reflect.TypeOf((*map[string]*IpsSettings)(nil)).Elem()
 }
 
 func (i IpsSettingsMap) ToIpsSettingsMapOutput() IpsSettingsMapOutput {
@@ -249,12 +221,10 @@ func (i IpsSettingsMap) ToIpsSettingsMapOutputWithContext(ctx context.Context) I
 	return pulumi.ToOutputWithContext(ctx, i).(IpsSettingsMapOutput)
 }
 
-type IpsSettingsOutput struct {
-	*pulumi.OutputState
-}
+type IpsSettingsOutput struct{ *pulumi.OutputState }
 
 func (IpsSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsSettings)(nil))
+	return reflect.TypeOf((**IpsSettings)(nil)).Elem()
 }
 
 func (o IpsSettingsOutput) ToIpsSettingsOutput() IpsSettingsOutput {
@@ -265,36 +235,10 @@ func (o IpsSettingsOutput) ToIpsSettingsOutputWithContext(ctx context.Context) I
 	return o
 }
 
-func (o IpsSettingsOutput) ToIpsSettingsPtrOutput() IpsSettingsPtrOutput {
-	return o.ToIpsSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o IpsSettingsOutput) ToIpsSettingsPtrOutputWithContext(ctx context.Context) IpsSettingsPtrOutput {
-	return o.ApplyT(func(v IpsSettings) *IpsSettings {
-		return &v
-	}).(IpsSettingsPtrOutput)
-}
-
-type IpsSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsSettings)(nil))
-}
-
-func (o IpsSettingsPtrOutput) ToIpsSettingsPtrOutput() IpsSettingsPtrOutput {
-	return o
-}
-
-func (o IpsSettingsPtrOutput) ToIpsSettingsPtrOutputWithContext(ctx context.Context) IpsSettingsPtrOutput {
-	return o
-}
-
 type IpsSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsSettings)(nil))
+	return reflect.TypeOf((*[]*IpsSettings)(nil)).Elem()
 }
 
 func (o IpsSettingsArrayOutput) ToIpsSettingsArrayOutput() IpsSettingsArrayOutput {
@@ -306,15 +250,15 @@ func (o IpsSettingsArrayOutput) ToIpsSettingsArrayOutputWithContext(ctx context.
 }
 
 func (o IpsSettingsArrayOutput) Index(i pulumi.IntInput) IpsSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsSettings {
-		return vs[0].([]IpsSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsSettings {
+		return vs[0].([]*IpsSettings)[vs[1].(int)]
 	}).(IpsSettingsOutput)
 }
 
 type IpsSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (IpsSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsSettings)(nil))
+	return reflect.TypeOf((*map[string]*IpsSettings)(nil)).Elem()
 }
 
 func (o IpsSettingsMapOutput) ToIpsSettingsMapOutput() IpsSettingsMapOutput {
@@ -326,14 +270,16 @@ func (o IpsSettingsMapOutput) ToIpsSettingsMapOutputWithContext(ctx context.Cont
 }
 
 func (o IpsSettingsMapOutput) MapIndex(k pulumi.StringInput) IpsSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsSettings {
-		return vs[0].(map[string]IpsSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsSettings {
+		return vs[0].(map[string]*IpsSettings)[vs[1].(string)]
 	}).(IpsSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsSettingsInput)(nil)).Elem(), &IpsSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsSettingsArrayInput)(nil)).Elem(), IpsSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsSettingsMapInput)(nil)).Elem(), IpsSettingsMap{})
 	pulumi.RegisterOutputType(IpsSettingsOutput{})
-	pulumi.RegisterOutputType(IpsSettingsPtrOutput{})
 	pulumi.RegisterOutputType(IpsSettingsArrayOutput{})
 	pulumi.RegisterOutputType(IpsSettingsMapOutput{})
 }

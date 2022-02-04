@@ -89,27 +89,25 @@ export class LogMemoryGlobalSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogMemoryGlobalSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogMemoryGlobalSettingArgs | LogMemoryGlobalSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogMemoryGlobalSettingState | undefined;
-            inputs["fullFinalWarningThreshold"] = state ? state.fullFinalWarningThreshold : undefined;
-            inputs["fullFirstWarningThreshold"] = state ? state.fullFirstWarningThreshold : undefined;
-            inputs["fullSecondWarningThreshold"] = state ? state.fullSecondWarningThreshold : undefined;
-            inputs["maxSize"] = state ? state.maxSize : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fullFinalWarningThreshold"] = state ? state.fullFinalWarningThreshold : undefined;
+            resourceInputs["fullFirstWarningThreshold"] = state ? state.fullFirstWarningThreshold : undefined;
+            resourceInputs["fullSecondWarningThreshold"] = state ? state.fullSecondWarningThreshold : undefined;
+            resourceInputs["maxSize"] = state ? state.maxSize : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogMemoryGlobalSettingArgs | undefined;
-            inputs["fullFinalWarningThreshold"] = args ? args.fullFinalWarningThreshold : undefined;
-            inputs["fullFirstWarningThreshold"] = args ? args.fullFirstWarningThreshold : undefined;
-            inputs["fullSecondWarningThreshold"] = args ? args.fullSecondWarningThreshold : undefined;
-            inputs["maxSize"] = args ? args.maxSize : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fullFinalWarningThreshold"] = args ? args.fullFinalWarningThreshold : undefined;
+            resourceInputs["fullFirstWarningThreshold"] = args ? args.fullFirstWarningThreshold : undefined;
+            resourceInputs["fullSecondWarningThreshold"] = args ? args.fullSecondWarningThreshold : undefined;
+            resourceInputs["maxSize"] = args ? args.maxSize : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogMemoryGlobalSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogMemoryGlobalSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

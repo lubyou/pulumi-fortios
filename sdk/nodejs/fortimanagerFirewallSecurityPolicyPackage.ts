@@ -76,27 +76,25 @@ export class FortimanagerFirewallSecurityPolicyPackage extends pulumi.CustomReso
      */
     constructor(name: string, args?: FortimanagerFirewallSecurityPolicyPackageArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerFirewallSecurityPolicyPackageArgs | FortimanagerFirewallSecurityPolicyPackageState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerFirewallSecurityPolicyPackageState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["inspectionMode"] = state ? state.inspectionMode : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["target"] = state ? state.target : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["inspectionMode"] = state ? state.inspectionMode : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["target"] = state ? state.target : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
         } else {
             const args = argsOrState as FortimanagerFirewallSecurityPolicyPackageArgs | undefined;
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["inspectionMode"] = args ? args.inspectionMode : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["target"] = args ? args.target : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["inspectionMode"] = args ? args.inspectionMode : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["target"] = args ? args.target : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerFirewallSecurityPolicyPackage.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerFirewallSecurityPolicyPackage.__pulumiType, name, resourceInputs, opts);
     }
 }
 

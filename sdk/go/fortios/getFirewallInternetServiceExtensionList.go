@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallInternetServiceExtension`.
 func GetFirewallInternetServiceExtensionList(ctx *pulumi.Context, args *GetFirewallInternetServiceExtensionListArgs, opts ...pulumi.InvokeOption) (*GetFirewallInternetServiceExtensionListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallInternetServiceExtensionListResult
 	err := ctx.Invoke("fortios:index/getFirewallInternetServiceExtensionList:GetFirewallInternetServiceExtensionList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallInternetServiceExtensionListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetFirewallInternetServiceExtensionListOutput(ctx *pulumi.Context, args GetFirewallInternetServiceExtensionListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallInternetServiceExtensionListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallInternetServiceExtensionListResult, error) {
+			args := v.(GetFirewallInternetServiceExtensionListArgs)
+			r, err := GetFirewallInternetServiceExtensionList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallInternetServiceExtensionListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallInternetServiceExtensionList.
+type GetFirewallInternetServiceExtensionListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallInternetServiceExtensionListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallInternetServiceExtensionListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallInternetServiceExtensionList.
+type GetFirewallInternetServiceExtensionListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallInternetServiceExtensionListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallInternetServiceExtensionListResult)(nil)).Elem()
+}
+
+func (o GetFirewallInternetServiceExtensionListResultOutput) ToGetFirewallInternetServiceExtensionListResultOutput() GetFirewallInternetServiceExtensionListResultOutput {
+	return o
+}
+
+func (o GetFirewallInternetServiceExtensionListResultOutput) ToGetFirewallInternetServiceExtensionListResultOutputWithContext(ctx context.Context) GetFirewallInternetServiceExtensionListResultOutput {
+	return o
+}
+
+func (o GetFirewallInternetServiceExtensionListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceExtensionListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `FirewallInternetServiceExtension`.
+func (o GetFirewallInternetServiceExtensionListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceExtensionListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallInternetServiceExtensionListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceExtensionListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetFirewallInternetServiceExtensionListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallInternetServiceExtensionListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallInternetServiceExtensionListResultOutput{})
 }

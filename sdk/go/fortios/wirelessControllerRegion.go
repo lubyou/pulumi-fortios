@@ -45,6 +45,7 @@ func NewWirelessControllerRegion(ctx *pulumi.Context,
 		args = &WirelessControllerRegionArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerRegion
 	err := ctx.RegisterResource("fortios:index/wirelessControllerRegion:WirelessControllerRegion", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type WirelessControllerRegionInput interface {
 }
 
 func (*WirelessControllerRegion) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerRegion)(nil))
+	return reflect.TypeOf((**WirelessControllerRegion)(nil)).Elem()
 }
 
 func (i *WirelessControllerRegion) ToWirelessControllerRegionOutput() WirelessControllerRegionOutput {
@@ -152,35 +153,6 @@ func (i *WirelessControllerRegion) ToWirelessControllerRegionOutput() WirelessCo
 
 func (i *WirelessControllerRegion) ToWirelessControllerRegionOutputWithContext(ctx context.Context) WirelessControllerRegionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerRegionOutput)
-}
-
-func (i *WirelessControllerRegion) ToWirelessControllerRegionPtrOutput() WirelessControllerRegionPtrOutput {
-	return i.ToWirelessControllerRegionPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerRegion) ToWirelessControllerRegionPtrOutputWithContext(ctx context.Context) WirelessControllerRegionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerRegionPtrOutput)
-}
-
-type WirelessControllerRegionPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerRegionPtrOutput() WirelessControllerRegionPtrOutput
-	ToWirelessControllerRegionPtrOutputWithContext(ctx context.Context) WirelessControllerRegionPtrOutput
-}
-
-type wirelessControllerRegionPtrType WirelessControllerRegionArgs
-
-func (*wirelessControllerRegionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerRegion)(nil))
-}
-
-func (i *wirelessControllerRegionPtrType) ToWirelessControllerRegionPtrOutput() WirelessControllerRegionPtrOutput {
-	return i.ToWirelessControllerRegionPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerRegionPtrType) ToWirelessControllerRegionPtrOutputWithContext(ctx context.Context) WirelessControllerRegionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerRegionPtrOutput)
 }
 
 // WirelessControllerRegionArrayInput is an input type that accepts WirelessControllerRegionArray and WirelessControllerRegionArrayOutput values.
@@ -197,7 +169,7 @@ type WirelessControllerRegionArrayInput interface {
 type WirelessControllerRegionArray []WirelessControllerRegionInput
 
 func (WirelessControllerRegionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerRegion)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerRegion)(nil)).Elem()
 }
 
 func (i WirelessControllerRegionArray) ToWirelessControllerRegionArrayOutput() WirelessControllerRegionArrayOutput {
@@ -222,7 +194,7 @@ type WirelessControllerRegionMapInput interface {
 type WirelessControllerRegionMap map[string]WirelessControllerRegionInput
 
 func (WirelessControllerRegionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerRegion)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerRegion)(nil)).Elem()
 }
 
 func (i WirelessControllerRegionMap) ToWirelessControllerRegionMapOutput() WirelessControllerRegionMapOutput {
@@ -233,12 +205,10 @@ func (i WirelessControllerRegionMap) ToWirelessControllerRegionMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerRegionMapOutput)
 }
 
-type WirelessControllerRegionOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerRegionOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerRegion)(nil))
+	return reflect.TypeOf((**WirelessControllerRegion)(nil)).Elem()
 }
 
 func (o WirelessControllerRegionOutput) ToWirelessControllerRegionOutput() WirelessControllerRegionOutput {
@@ -249,36 +219,10 @@ func (o WirelessControllerRegionOutput) ToWirelessControllerRegionOutputWithCont
 	return o
 }
 
-func (o WirelessControllerRegionOutput) ToWirelessControllerRegionPtrOutput() WirelessControllerRegionPtrOutput {
-	return o.ToWirelessControllerRegionPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerRegionOutput) ToWirelessControllerRegionPtrOutputWithContext(ctx context.Context) WirelessControllerRegionPtrOutput {
-	return o.ApplyT(func(v WirelessControllerRegion) *WirelessControllerRegion {
-		return &v
-	}).(WirelessControllerRegionPtrOutput)
-}
-
-type WirelessControllerRegionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerRegionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerRegion)(nil))
-}
-
-func (o WirelessControllerRegionPtrOutput) ToWirelessControllerRegionPtrOutput() WirelessControllerRegionPtrOutput {
-	return o
-}
-
-func (o WirelessControllerRegionPtrOutput) ToWirelessControllerRegionPtrOutputWithContext(ctx context.Context) WirelessControllerRegionPtrOutput {
-	return o
-}
-
 type WirelessControllerRegionArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerRegionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerRegion)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerRegion)(nil)).Elem()
 }
 
 func (o WirelessControllerRegionArrayOutput) ToWirelessControllerRegionArrayOutput() WirelessControllerRegionArrayOutput {
@@ -290,15 +234,15 @@ func (o WirelessControllerRegionArrayOutput) ToWirelessControllerRegionArrayOutp
 }
 
 func (o WirelessControllerRegionArrayOutput) Index(i pulumi.IntInput) WirelessControllerRegionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerRegion {
-		return vs[0].([]WirelessControllerRegion)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerRegion {
+		return vs[0].([]*WirelessControllerRegion)[vs[1].(int)]
 	}).(WirelessControllerRegionOutput)
 }
 
 type WirelessControllerRegionMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerRegionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerRegion)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerRegion)(nil)).Elem()
 }
 
 func (o WirelessControllerRegionMapOutput) ToWirelessControllerRegionMapOutput() WirelessControllerRegionMapOutput {
@@ -310,14 +254,16 @@ func (o WirelessControllerRegionMapOutput) ToWirelessControllerRegionMapOutputWi
 }
 
 func (o WirelessControllerRegionMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerRegionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerRegion {
-		return vs[0].(map[string]WirelessControllerRegion)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerRegion {
+		return vs[0].(map[string]*WirelessControllerRegion)[vs[1].(string)]
 	}).(WirelessControllerRegionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerRegionInput)(nil)).Elem(), &WirelessControllerRegion{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerRegionArrayInput)(nil)).Elem(), WirelessControllerRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerRegionMapInput)(nil)).Elem(), WirelessControllerRegionMap{})
 	pulumi.RegisterOutputType(WirelessControllerRegionOutput{})
-	pulumi.RegisterOutputType(WirelessControllerRegionPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerRegionArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerRegionMapOutput{})
 }

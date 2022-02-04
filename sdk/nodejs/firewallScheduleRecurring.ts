@@ -72,6 +72,10 @@ export class FirewallScheduleRecurring extends pulumi.CustomResource {
      */
     public readonly end!: pulumi.Output<string>;
     /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    public readonly fabricObject!: pulumi.Output<string>;
+    /**
      * Recurring schedule name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -93,16 +97,17 @@ export class FirewallScheduleRecurring extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallScheduleRecurringArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallScheduleRecurringArgs | FirewallScheduleRecurringState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallScheduleRecurringState | undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["day"] = state ? state.day : undefined;
-            inputs["end"] = state ? state.end : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["start"] = state ? state.start : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["day"] = state ? state.day : undefined;
+            resourceInputs["end"] = state ? state.end : undefined;
+            resourceInputs["fabricObject"] = state ? state.fabricObject : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["start"] = state ? state.start : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallScheduleRecurringArgs | undefined;
             if ((!args || args.end === undefined) && !opts.urn) {
@@ -111,17 +116,16 @@ export class FirewallScheduleRecurring extends pulumi.CustomResource {
             if ((!args || args.start === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'start'");
             }
-            inputs["color"] = args ? args.color : undefined;
-            inputs["day"] = args ? args.day : undefined;
-            inputs["end"] = args ? args.end : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["start"] = args ? args.start : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["day"] = args ? args.day : undefined;
+            resourceInputs["end"] = args ? args.end : undefined;
+            resourceInputs["fabricObject"] = args ? args.fabricObject : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["start"] = args ? args.start : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallScheduleRecurring.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallScheduleRecurring.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -141,6 +145,10 @@ export interface FirewallScheduleRecurringState {
      * Time of day to end the schedule, format hh:mm.
      */
     end?: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Recurring schedule name.
      */
@@ -171,6 +179,10 @@ export interface FirewallScheduleRecurringArgs {
      * Time of day to end the schedule, format hh:mm.
      */
     end: pulumi.Input<string>;
+    /**
+     * Security Fabric global object setting. Valid values: `enable`, `disable`.
+     */
+    fabricObject?: pulumi.Input<string>;
     /**
      * Recurring schedule name.
      */

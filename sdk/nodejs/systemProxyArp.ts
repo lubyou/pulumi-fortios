@@ -89,15 +89,15 @@ export class SystemProxyArp extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemProxyArpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemProxyArpArgs | SystemProxyArpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemProxyArpState | undefined;
-            inputs["endIp"] = state ? state.endIp : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["endIp"] = state ? state.endIp : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemProxyArpArgs | undefined;
             if ((!args || args.fosid === undefined) && !opts.urn) {
@@ -109,16 +109,14 @@ export class SystemProxyArp extends pulumi.CustomResource {
             if ((!args || args.ip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ip'");
             }
-            inputs["endIp"] = args ? args.endIp : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["endIp"] = args ? args.endIp : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemProxyArp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemProxyArp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

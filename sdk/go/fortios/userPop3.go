@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,6 +75,7 @@ func NewUserPop3(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserPop3
 	err := ctx.RegisterResource("fortios:index/userPop3:UserPop3", name, args, &resource, opts...)
 	if err != nil {
@@ -173,7 +174,7 @@ type UserPop3Input interface {
 }
 
 func (*UserPop3) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPop3)(nil))
+	return reflect.TypeOf((**UserPop3)(nil)).Elem()
 }
 
 func (i *UserPop3) ToUserPop3Output() UserPop3Output {
@@ -182,35 +183,6 @@ func (i *UserPop3) ToUserPop3Output() UserPop3Output {
 
 func (i *UserPop3) ToUserPop3OutputWithContext(ctx context.Context) UserPop3Output {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPop3Output)
-}
-
-func (i *UserPop3) ToUserPop3PtrOutput() UserPop3PtrOutput {
-	return i.ToUserPop3PtrOutputWithContext(context.Background())
-}
-
-func (i *UserPop3) ToUserPop3PtrOutputWithContext(ctx context.Context) UserPop3PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPop3PtrOutput)
-}
-
-type UserPop3PtrInput interface {
-	pulumi.Input
-
-	ToUserPop3PtrOutput() UserPop3PtrOutput
-	ToUserPop3PtrOutputWithContext(ctx context.Context) UserPop3PtrOutput
-}
-
-type userPop3PtrType UserPop3Args
-
-func (*userPop3PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPop3)(nil))
-}
-
-func (i *userPop3PtrType) ToUserPop3PtrOutput() UserPop3PtrOutput {
-	return i.ToUserPop3PtrOutputWithContext(context.Background())
-}
-
-func (i *userPop3PtrType) ToUserPop3PtrOutputWithContext(ctx context.Context) UserPop3PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPop3PtrOutput)
 }
 
 // UserPop3ArrayInput is an input type that accepts UserPop3Array and UserPop3ArrayOutput values.
@@ -227,7 +199,7 @@ type UserPop3ArrayInput interface {
 type UserPop3Array []UserPop3Input
 
 func (UserPop3Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserPop3)(nil))
+	return reflect.TypeOf((*[]*UserPop3)(nil)).Elem()
 }
 
 func (i UserPop3Array) ToUserPop3ArrayOutput() UserPop3ArrayOutput {
@@ -252,7 +224,7 @@ type UserPop3MapInput interface {
 type UserPop3Map map[string]UserPop3Input
 
 func (UserPop3Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserPop3)(nil))
+	return reflect.TypeOf((*map[string]*UserPop3)(nil)).Elem()
 }
 
 func (i UserPop3Map) ToUserPop3MapOutput() UserPop3MapOutput {
@@ -263,12 +235,10 @@ func (i UserPop3Map) ToUserPop3MapOutputWithContext(ctx context.Context) UserPop
 	return pulumi.ToOutputWithContext(ctx, i).(UserPop3MapOutput)
 }
 
-type UserPop3Output struct {
-	*pulumi.OutputState
-}
+type UserPop3Output struct{ *pulumi.OutputState }
 
 func (UserPop3Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPop3)(nil))
+	return reflect.TypeOf((**UserPop3)(nil)).Elem()
 }
 
 func (o UserPop3Output) ToUserPop3Output() UserPop3Output {
@@ -279,36 +249,10 @@ func (o UserPop3Output) ToUserPop3OutputWithContext(ctx context.Context) UserPop
 	return o
 }
 
-func (o UserPop3Output) ToUserPop3PtrOutput() UserPop3PtrOutput {
-	return o.ToUserPop3PtrOutputWithContext(context.Background())
-}
-
-func (o UserPop3Output) ToUserPop3PtrOutputWithContext(ctx context.Context) UserPop3PtrOutput {
-	return o.ApplyT(func(v UserPop3) *UserPop3 {
-		return &v
-	}).(UserPop3PtrOutput)
-}
-
-type UserPop3PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserPop3PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPop3)(nil))
-}
-
-func (o UserPop3PtrOutput) ToUserPop3PtrOutput() UserPop3PtrOutput {
-	return o
-}
-
-func (o UserPop3PtrOutput) ToUserPop3PtrOutputWithContext(ctx context.Context) UserPop3PtrOutput {
-	return o
-}
-
 type UserPop3ArrayOutput struct{ *pulumi.OutputState }
 
 func (UserPop3ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserPop3)(nil))
+	return reflect.TypeOf((*[]*UserPop3)(nil)).Elem()
 }
 
 func (o UserPop3ArrayOutput) ToUserPop3ArrayOutput() UserPop3ArrayOutput {
@@ -320,15 +264,15 @@ func (o UserPop3ArrayOutput) ToUserPop3ArrayOutputWithContext(ctx context.Contex
 }
 
 func (o UserPop3ArrayOutput) Index(i pulumi.IntInput) UserPop3Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPop3 {
-		return vs[0].([]UserPop3)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPop3 {
+		return vs[0].([]*UserPop3)[vs[1].(int)]
 	}).(UserPop3Output)
 }
 
 type UserPop3MapOutput struct{ *pulumi.OutputState }
 
 func (UserPop3MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserPop3)(nil))
+	return reflect.TypeOf((*map[string]*UserPop3)(nil)).Elem()
 }
 
 func (o UserPop3MapOutput) ToUserPop3MapOutput() UserPop3MapOutput {
@@ -340,14 +284,16 @@ func (o UserPop3MapOutput) ToUserPop3MapOutputWithContext(ctx context.Context) U
 }
 
 func (o UserPop3MapOutput) MapIndex(k pulumi.StringInput) UserPop3Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserPop3 {
-		return vs[0].(map[string]UserPop3)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserPop3 {
+		return vs[0].(map[string]*UserPop3)[vs[1].(string)]
 	}).(UserPop3Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPop3Input)(nil)).Elem(), &UserPop3{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPop3ArrayInput)(nil)).Elem(), UserPop3Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPop3MapInput)(nil)).Elem(), UserPop3Map{})
 	pulumi.RegisterOutputType(UserPop3Output{})
-	pulumi.RegisterOutputType(UserPop3PtrOutput{})
 	pulumi.RegisterOutputType(UserPop3ArrayOutput{})
 	pulumi.RegisterOutputType(UserPop3MapOutput{})
 }

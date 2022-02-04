@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -73,6 +73,7 @@ func NewVpnSslWebHostCheckSoftware(ctx *pulumi.Context,
 		args = &VpnSslWebHostCheckSoftwareArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnSslWebHostCheckSoftware
 	err := ctx.RegisterResource("fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware", name, args, &resource, opts...)
 	if err != nil {
@@ -187,7 +188,7 @@ type VpnSslWebHostCheckSoftwareInput interface {
 }
 
 func (*VpnSslWebHostCheckSoftware) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebHostCheckSoftware)(nil))
+	return reflect.TypeOf((**VpnSslWebHostCheckSoftware)(nil)).Elem()
 }
 
 func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwareOutput() VpnSslWebHostCheckSoftwareOutput {
@@ -196,35 +197,6 @@ func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwareOutput() VpnSsl
 
 func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwareOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwareOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareOutput)
-}
-
-func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwarePtrOutput() VpnSslWebHostCheckSoftwarePtrOutput {
-	return i.ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(context.Background())
-}
-
-func (i *VpnSslWebHostCheckSoftware) ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwarePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwarePtrOutput)
-}
-
-type VpnSslWebHostCheckSoftwarePtrInput interface {
-	pulumi.Input
-
-	ToVpnSslWebHostCheckSoftwarePtrOutput() VpnSslWebHostCheckSoftwarePtrOutput
-	ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwarePtrOutput
-}
-
-type vpnSslWebHostCheckSoftwarePtrType VpnSslWebHostCheckSoftwareArgs
-
-func (*vpnSslWebHostCheckSoftwarePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebHostCheckSoftware)(nil))
-}
-
-func (i *vpnSslWebHostCheckSoftwarePtrType) ToVpnSslWebHostCheckSoftwarePtrOutput() VpnSslWebHostCheckSoftwarePtrOutput {
-	return i.ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(context.Background())
-}
-
-func (i *vpnSslWebHostCheckSoftwarePtrType) ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwarePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwarePtrOutput)
 }
 
 // VpnSslWebHostCheckSoftwareArrayInput is an input type that accepts VpnSslWebHostCheckSoftwareArray and VpnSslWebHostCheckSoftwareArrayOutput values.
@@ -241,7 +213,7 @@ type VpnSslWebHostCheckSoftwareArrayInput interface {
 type VpnSslWebHostCheckSoftwareArray []VpnSslWebHostCheckSoftwareInput
 
 func (VpnSslWebHostCheckSoftwareArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnSslWebHostCheckSoftware)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebHostCheckSoftware)(nil)).Elem()
 }
 
 func (i VpnSslWebHostCheckSoftwareArray) ToVpnSslWebHostCheckSoftwareArrayOutput() VpnSslWebHostCheckSoftwareArrayOutput {
@@ -266,7 +238,7 @@ type VpnSslWebHostCheckSoftwareMapInput interface {
 type VpnSslWebHostCheckSoftwareMap map[string]VpnSslWebHostCheckSoftwareInput
 
 func (VpnSslWebHostCheckSoftwareMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnSslWebHostCheckSoftware)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebHostCheckSoftware)(nil)).Elem()
 }
 
 func (i VpnSslWebHostCheckSoftwareMap) ToVpnSslWebHostCheckSoftwareMapOutput() VpnSslWebHostCheckSoftwareMapOutput {
@@ -277,12 +249,10 @@ func (i VpnSslWebHostCheckSoftwareMap) ToVpnSslWebHostCheckSoftwareMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebHostCheckSoftwareMapOutput)
 }
 
-type VpnSslWebHostCheckSoftwareOutput struct {
-	*pulumi.OutputState
-}
+type VpnSslWebHostCheckSoftwareOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebHostCheckSoftwareOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebHostCheckSoftware)(nil))
+	return reflect.TypeOf((**VpnSslWebHostCheckSoftware)(nil)).Elem()
 }
 
 func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwareOutput() VpnSslWebHostCheckSoftwareOutput {
@@ -293,36 +263,10 @@ func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwareOutputWith
 	return o
 }
 
-func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwarePtrOutput() VpnSslWebHostCheckSoftwarePtrOutput {
-	return o.ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(context.Background())
-}
-
-func (o VpnSslWebHostCheckSoftwareOutput) ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwarePtrOutput {
-	return o.ApplyT(func(v VpnSslWebHostCheckSoftware) *VpnSslWebHostCheckSoftware {
-		return &v
-	}).(VpnSslWebHostCheckSoftwarePtrOutput)
-}
-
-type VpnSslWebHostCheckSoftwarePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnSslWebHostCheckSoftwarePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebHostCheckSoftware)(nil))
-}
-
-func (o VpnSslWebHostCheckSoftwarePtrOutput) ToVpnSslWebHostCheckSoftwarePtrOutput() VpnSslWebHostCheckSoftwarePtrOutput {
-	return o
-}
-
-func (o VpnSslWebHostCheckSoftwarePtrOutput) ToVpnSslWebHostCheckSoftwarePtrOutputWithContext(ctx context.Context) VpnSslWebHostCheckSoftwarePtrOutput {
-	return o
-}
-
 type VpnSslWebHostCheckSoftwareArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebHostCheckSoftwareArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnSslWebHostCheckSoftware)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebHostCheckSoftware)(nil)).Elem()
 }
 
 func (o VpnSslWebHostCheckSoftwareArrayOutput) ToVpnSslWebHostCheckSoftwareArrayOutput() VpnSslWebHostCheckSoftwareArrayOutput {
@@ -334,15 +278,15 @@ func (o VpnSslWebHostCheckSoftwareArrayOutput) ToVpnSslWebHostCheckSoftwareArray
 }
 
 func (o VpnSslWebHostCheckSoftwareArrayOutput) Index(i pulumi.IntInput) VpnSslWebHostCheckSoftwareOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebHostCheckSoftware {
-		return vs[0].([]VpnSslWebHostCheckSoftware)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebHostCheckSoftware {
+		return vs[0].([]*VpnSslWebHostCheckSoftware)[vs[1].(int)]
 	}).(VpnSslWebHostCheckSoftwareOutput)
 }
 
 type VpnSslWebHostCheckSoftwareMapOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebHostCheckSoftwareMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnSslWebHostCheckSoftware)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebHostCheckSoftware)(nil)).Elem()
 }
 
 func (o VpnSslWebHostCheckSoftwareMapOutput) ToVpnSslWebHostCheckSoftwareMapOutput() VpnSslWebHostCheckSoftwareMapOutput {
@@ -354,14 +298,16 @@ func (o VpnSslWebHostCheckSoftwareMapOutput) ToVpnSslWebHostCheckSoftwareMapOutp
 }
 
 func (o VpnSslWebHostCheckSoftwareMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebHostCheckSoftwareOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnSslWebHostCheckSoftware {
-		return vs[0].(map[string]VpnSslWebHostCheckSoftware)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnSslWebHostCheckSoftware {
+		return vs[0].(map[string]*VpnSslWebHostCheckSoftware)[vs[1].(string)]
 	}).(VpnSslWebHostCheckSoftwareOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareInput)(nil)).Elem(), &VpnSslWebHostCheckSoftware{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareArrayInput)(nil)).Elem(), VpnSslWebHostCheckSoftwareArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebHostCheckSoftwareMapInput)(nil)).Elem(), VpnSslWebHostCheckSoftwareMap{})
 	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareOutput{})
-	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwarePtrOutput{})
 	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslWebHostCheckSoftwareMapOutput{})
 }

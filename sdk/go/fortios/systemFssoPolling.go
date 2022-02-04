@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -68,6 +68,7 @@ func NewSystemFssoPolling(ctx *pulumi.Context,
 		args = &SystemFssoPollingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFssoPolling
 	err := ctx.RegisterResource("fortios:index/systemFssoPolling:SystemFssoPolling", name, args, &resource, opts...)
 	if err != nil {
@@ -158,7 +159,7 @@ type SystemFssoPollingInput interface {
 }
 
 func (*SystemFssoPolling) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFssoPolling)(nil))
+	return reflect.TypeOf((**SystemFssoPolling)(nil)).Elem()
 }
 
 func (i *SystemFssoPolling) ToSystemFssoPollingOutput() SystemFssoPollingOutput {
@@ -167,35 +168,6 @@ func (i *SystemFssoPolling) ToSystemFssoPollingOutput() SystemFssoPollingOutput 
 
 func (i *SystemFssoPolling) ToSystemFssoPollingOutputWithContext(ctx context.Context) SystemFssoPollingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingOutput)
-}
-
-func (i *SystemFssoPolling) ToSystemFssoPollingPtrOutput() SystemFssoPollingPtrOutput {
-	return i.ToSystemFssoPollingPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFssoPolling) ToSystemFssoPollingPtrOutputWithContext(ctx context.Context) SystemFssoPollingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingPtrOutput)
-}
-
-type SystemFssoPollingPtrInput interface {
-	pulumi.Input
-
-	ToSystemFssoPollingPtrOutput() SystemFssoPollingPtrOutput
-	ToSystemFssoPollingPtrOutputWithContext(ctx context.Context) SystemFssoPollingPtrOutput
-}
-
-type systemFssoPollingPtrType SystemFssoPollingArgs
-
-func (*systemFssoPollingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFssoPolling)(nil))
-}
-
-func (i *systemFssoPollingPtrType) ToSystemFssoPollingPtrOutput() SystemFssoPollingPtrOutput {
-	return i.ToSystemFssoPollingPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFssoPollingPtrType) ToSystemFssoPollingPtrOutputWithContext(ctx context.Context) SystemFssoPollingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingPtrOutput)
 }
 
 // SystemFssoPollingArrayInput is an input type that accepts SystemFssoPollingArray and SystemFssoPollingArrayOutput values.
@@ -212,7 +184,7 @@ type SystemFssoPollingArrayInput interface {
 type SystemFssoPollingArray []SystemFssoPollingInput
 
 func (SystemFssoPollingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFssoPolling)(nil))
+	return reflect.TypeOf((*[]*SystemFssoPolling)(nil)).Elem()
 }
 
 func (i SystemFssoPollingArray) ToSystemFssoPollingArrayOutput() SystemFssoPollingArrayOutput {
@@ -237,7 +209,7 @@ type SystemFssoPollingMapInput interface {
 type SystemFssoPollingMap map[string]SystemFssoPollingInput
 
 func (SystemFssoPollingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFssoPolling)(nil))
+	return reflect.TypeOf((*map[string]*SystemFssoPolling)(nil)).Elem()
 }
 
 func (i SystemFssoPollingMap) ToSystemFssoPollingMapOutput() SystemFssoPollingMapOutput {
@@ -248,12 +220,10 @@ func (i SystemFssoPollingMap) ToSystemFssoPollingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFssoPollingMapOutput)
 }
 
-type SystemFssoPollingOutput struct {
-	*pulumi.OutputState
-}
+type SystemFssoPollingOutput struct{ *pulumi.OutputState }
 
 func (SystemFssoPollingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFssoPolling)(nil))
+	return reflect.TypeOf((**SystemFssoPolling)(nil)).Elem()
 }
 
 func (o SystemFssoPollingOutput) ToSystemFssoPollingOutput() SystemFssoPollingOutput {
@@ -264,36 +234,10 @@ func (o SystemFssoPollingOutput) ToSystemFssoPollingOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemFssoPollingOutput) ToSystemFssoPollingPtrOutput() SystemFssoPollingPtrOutput {
-	return o.ToSystemFssoPollingPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFssoPollingOutput) ToSystemFssoPollingPtrOutputWithContext(ctx context.Context) SystemFssoPollingPtrOutput {
-	return o.ApplyT(func(v SystemFssoPolling) *SystemFssoPolling {
-		return &v
-	}).(SystemFssoPollingPtrOutput)
-}
-
-type SystemFssoPollingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFssoPollingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFssoPolling)(nil))
-}
-
-func (o SystemFssoPollingPtrOutput) ToSystemFssoPollingPtrOutput() SystemFssoPollingPtrOutput {
-	return o
-}
-
-func (o SystemFssoPollingPtrOutput) ToSystemFssoPollingPtrOutputWithContext(ctx context.Context) SystemFssoPollingPtrOutput {
-	return o
-}
-
 type SystemFssoPollingArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFssoPollingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFssoPolling)(nil))
+	return reflect.TypeOf((*[]*SystemFssoPolling)(nil)).Elem()
 }
 
 func (o SystemFssoPollingArrayOutput) ToSystemFssoPollingArrayOutput() SystemFssoPollingArrayOutput {
@@ -305,15 +249,15 @@ func (o SystemFssoPollingArrayOutput) ToSystemFssoPollingArrayOutputWithContext(
 }
 
 func (o SystemFssoPollingArrayOutput) Index(i pulumi.IntInput) SystemFssoPollingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFssoPolling {
-		return vs[0].([]SystemFssoPolling)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFssoPolling {
+		return vs[0].([]*SystemFssoPolling)[vs[1].(int)]
 	}).(SystemFssoPollingOutput)
 }
 
 type SystemFssoPollingMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFssoPollingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFssoPolling)(nil))
+	return reflect.TypeOf((*map[string]*SystemFssoPolling)(nil)).Elem()
 }
 
 func (o SystemFssoPollingMapOutput) ToSystemFssoPollingMapOutput() SystemFssoPollingMapOutput {
@@ -325,14 +269,16 @@ func (o SystemFssoPollingMapOutput) ToSystemFssoPollingMapOutputWithContext(ctx 
 }
 
 func (o SystemFssoPollingMapOutput) MapIndex(k pulumi.StringInput) SystemFssoPollingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFssoPolling {
-		return vs[0].(map[string]SystemFssoPolling)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFssoPolling {
+		return vs[0].(map[string]*SystemFssoPolling)[vs[1].(string)]
 	}).(SystemFssoPollingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFssoPollingInput)(nil)).Elem(), &SystemFssoPolling{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFssoPollingArrayInput)(nil)).Elem(), SystemFssoPollingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFssoPollingMapInput)(nil)).Elem(), SystemFssoPollingMap{})
 	pulumi.RegisterOutputType(SystemFssoPollingOutput{})
-	pulumi.RegisterOutputType(SystemFssoPollingPtrOutput{})
 	pulumi.RegisterOutputType(SystemFssoPollingArrayOutput{})
 	pulumi.RegisterOutputType(SystemFssoPollingMapOutput{})
 }

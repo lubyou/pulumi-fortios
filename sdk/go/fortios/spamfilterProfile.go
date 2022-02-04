@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -28,29 +29,29 @@ import (
 // 			Comment:   pulumi.String("terraform test"),
 // 			External:  pulumi.String("disable"),
 // 			FlowBased: pulumi.String("disable"),
-// 			Gmail: &fortios.SpamfilterProfileGmailArgs{
+// 			Gmail: &SpamfilterProfileGmailArgs{
 // 				Log: pulumi.String("disable"),
 // 			},
-// 			Imap: &fortios.SpamfilterProfileImapArgs{
+// 			Imap: &SpamfilterProfileImapArgs{
 // 				Action:  pulumi.String("tag"),
 // 				Log:     pulumi.String("disable"),
 // 				TagMsg:  pulumi.String("Spam"),
 // 				TagType: pulumi.String("subject spaminfo"),
 // 			},
-// 			Mapi: &fortios.SpamfilterProfileMapiArgs{
+// 			Mapi: &SpamfilterProfileMapiArgs{
 // 				Action: pulumi.String("discard"),
 // 				Log:    pulumi.String("disable"),
 // 			},
-// 			MsnHotmail: &fortios.SpamfilterProfileMsnHotmailArgs{
+// 			MsnHotmail: &SpamfilterProfileMsnHotmailArgs{
 // 				Log: pulumi.String("disable"),
 // 			},
-// 			Pop3: &fortios.SpamfilterProfilePop3Args{
+// 			Pop3: &SpamfilterProfilePop3Args{
 // 				Action:  pulumi.String("tag"),
 // 				Log:     pulumi.String("disable"),
 // 				TagMsg:  pulumi.String("Spam"),
 // 				TagType: pulumi.String("subject spaminfo"),
 // 			},
-// 			Smtp: &fortios.SpamfilterProfileSmtpArgs{
+// 			Smtp: &SpamfilterProfileSmtpArgs{
 // 				Action:        pulumi.String("discard"),
 // 				Hdrip:         pulumi.String("disable"),
 // 				LocalOverride: pulumi.String("disable"),
@@ -67,7 +68,7 @@ import (
 // 			SpamLogFortiguardResponse: pulumi.String("disable"),
 // 			SpamMheaderTable:          pulumi.Int(0),
 // 			SpamRblTable:              pulumi.Int(0),
-// 			YahooMail: &fortios.SpamfilterProfileYahooMailArgs{
+// 			YahooMail: &SpamfilterProfileYahooMailArgs{
 // 				Log: pulumi.String("disable"),
 // 			},
 // 		})
@@ -146,6 +147,7 @@ func NewSpamfilterProfile(ctx *pulumi.Context,
 		args = &SpamfilterProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SpamfilterProfile
 	err := ctx.RegisterResource("fortios:index/spamfilterProfile:SpamfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -380,7 +382,7 @@ type SpamfilterProfileInput interface {
 }
 
 func (*SpamfilterProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterProfile)(nil))
+	return reflect.TypeOf((**SpamfilterProfile)(nil)).Elem()
 }
 
 func (i *SpamfilterProfile) ToSpamfilterProfileOutput() SpamfilterProfileOutput {
@@ -389,35 +391,6 @@ func (i *SpamfilterProfile) ToSpamfilterProfileOutput() SpamfilterProfileOutput 
 
 func (i *SpamfilterProfile) ToSpamfilterProfileOutputWithContext(ctx context.Context) SpamfilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfileOutput)
-}
-
-func (i *SpamfilterProfile) ToSpamfilterProfilePtrOutput() SpamfilterProfilePtrOutput {
-	return i.ToSpamfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *SpamfilterProfile) ToSpamfilterProfilePtrOutputWithContext(ctx context.Context) SpamfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfilePtrOutput)
-}
-
-type SpamfilterProfilePtrInput interface {
-	pulumi.Input
-
-	ToSpamfilterProfilePtrOutput() SpamfilterProfilePtrOutput
-	ToSpamfilterProfilePtrOutputWithContext(ctx context.Context) SpamfilterProfilePtrOutput
-}
-
-type spamfilterProfilePtrType SpamfilterProfileArgs
-
-func (*spamfilterProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterProfile)(nil))
-}
-
-func (i *spamfilterProfilePtrType) ToSpamfilterProfilePtrOutput() SpamfilterProfilePtrOutput {
-	return i.ToSpamfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *spamfilterProfilePtrType) ToSpamfilterProfilePtrOutputWithContext(ctx context.Context) SpamfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfilePtrOutput)
 }
 
 // SpamfilterProfileArrayInput is an input type that accepts SpamfilterProfileArray and SpamfilterProfileArrayOutput values.
@@ -434,7 +407,7 @@ type SpamfilterProfileArrayInput interface {
 type SpamfilterProfileArray []SpamfilterProfileInput
 
 func (SpamfilterProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SpamfilterProfile)(nil))
+	return reflect.TypeOf((*[]*SpamfilterProfile)(nil)).Elem()
 }
 
 func (i SpamfilterProfileArray) ToSpamfilterProfileArrayOutput() SpamfilterProfileArrayOutput {
@@ -459,7 +432,7 @@ type SpamfilterProfileMapInput interface {
 type SpamfilterProfileMap map[string]SpamfilterProfileInput
 
 func (SpamfilterProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SpamfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterProfile)(nil)).Elem()
 }
 
 func (i SpamfilterProfileMap) ToSpamfilterProfileMapOutput() SpamfilterProfileMapOutput {
@@ -470,12 +443,10 @@ func (i SpamfilterProfileMap) ToSpamfilterProfileMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterProfileMapOutput)
 }
 
-type SpamfilterProfileOutput struct {
-	*pulumi.OutputState
-}
+type SpamfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterProfile)(nil))
+	return reflect.TypeOf((**SpamfilterProfile)(nil)).Elem()
 }
 
 func (o SpamfilterProfileOutput) ToSpamfilterProfileOutput() SpamfilterProfileOutput {
@@ -486,36 +457,10 @@ func (o SpamfilterProfileOutput) ToSpamfilterProfileOutputWithContext(ctx contex
 	return o
 }
 
-func (o SpamfilterProfileOutput) ToSpamfilterProfilePtrOutput() SpamfilterProfilePtrOutput {
-	return o.ToSpamfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (o SpamfilterProfileOutput) ToSpamfilterProfilePtrOutputWithContext(ctx context.Context) SpamfilterProfilePtrOutput {
-	return o.ApplyT(func(v SpamfilterProfile) *SpamfilterProfile {
-		return &v
-	}).(SpamfilterProfilePtrOutput)
-}
-
-type SpamfilterProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SpamfilterProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterProfile)(nil))
-}
-
-func (o SpamfilterProfilePtrOutput) ToSpamfilterProfilePtrOutput() SpamfilterProfilePtrOutput {
-	return o
-}
-
-func (o SpamfilterProfilePtrOutput) ToSpamfilterProfilePtrOutputWithContext(ctx context.Context) SpamfilterProfilePtrOutput {
-	return o
-}
-
 type SpamfilterProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SpamfilterProfile)(nil))
+	return reflect.TypeOf((*[]*SpamfilterProfile)(nil)).Elem()
 }
 
 func (o SpamfilterProfileArrayOutput) ToSpamfilterProfileArrayOutput() SpamfilterProfileArrayOutput {
@@ -527,15 +472,15 @@ func (o SpamfilterProfileArrayOutput) ToSpamfilterProfileArrayOutputWithContext(
 }
 
 func (o SpamfilterProfileArrayOutput) Index(i pulumi.IntInput) SpamfilterProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SpamfilterProfile {
-		return vs[0].([]SpamfilterProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterProfile {
+		return vs[0].([]*SpamfilterProfile)[vs[1].(int)]
 	}).(SpamfilterProfileOutput)
 }
 
 type SpamfilterProfileMapOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SpamfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterProfile)(nil)).Elem()
 }
 
 func (o SpamfilterProfileMapOutput) ToSpamfilterProfileMapOutput() SpamfilterProfileMapOutput {
@@ -547,14 +492,16 @@ func (o SpamfilterProfileMapOutput) ToSpamfilterProfileMapOutputWithContext(ctx 
 }
 
 func (o SpamfilterProfileMapOutput) MapIndex(k pulumi.StringInput) SpamfilterProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SpamfilterProfile {
-		return vs[0].(map[string]SpamfilterProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SpamfilterProfile {
+		return vs[0].(map[string]*SpamfilterProfile)[vs[1].(string)]
 	}).(SpamfilterProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterProfileInput)(nil)).Elem(), &SpamfilterProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterProfileArrayInput)(nil)).Elem(), SpamfilterProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterProfileMapInput)(nil)).Elem(), SpamfilterProfileMap{})
 	pulumi.RegisterOutputType(SpamfilterProfileOutput{})
-	pulumi.RegisterOutputType(SpamfilterProfilePtrOutput{})
 	pulumi.RegisterOutputType(SpamfilterProfileArrayOutput{})
 	pulumi.RegisterOutputType(SpamfilterProfileMapOutput{})
 }

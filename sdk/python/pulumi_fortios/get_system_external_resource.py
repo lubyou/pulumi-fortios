@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemExternalResourceResult',
     'AwaitableGetSystemExternalResourceResult',
     'get_system_external_resource',
+    'get_system_external_resource_output',
 ]
 
 @pulumi.output_type
@@ -236,6 +237,8 @@ def get_system_external_resource(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemExternalResource:GetSystemExternalResource', __args__, opts=opts, typ=GetSystemExternalResourceResult).value
 
     return AwaitableGetSystemExternalResourceResult(
@@ -255,3 +258,17 @@ def get_system_external_resource(name: Optional[str] = None,
         username=__ret__.username,
         uuid=__ret__.uuid,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_external_resource)
+def get_system_external_resource_output(name: Optional[pulumi.Input[str]] = None,
+                                        vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemExternalResourceResult]:
+    """
+    Use this data source to get information on an fortios system externalresource
+
+
+    :param str name: Specify the name of the desired system externalresource.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

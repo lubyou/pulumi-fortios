@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewSystemFipsCc(ctx *pulumi.Context,
 		args = &SystemFipsCcArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFipsCc
 	err := ctx.RegisterResource("fortios:index/systemFipsCc:SystemFipsCc", name, args, &resource, opts...)
 	if err != nil {
@@ -159,7 +160,7 @@ type SystemFipsCcInput interface {
 }
 
 func (*SystemFipsCc) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFipsCc)(nil))
+	return reflect.TypeOf((**SystemFipsCc)(nil)).Elem()
 }
 
 func (i *SystemFipsCc) ToSystemFipsCcOutput() SystemFipsCcOutput {
@@ -168,35 +169,6 @@ func (i *SystemFipsCc) ToSystemFipsCcOutput() SystemFipsCcOutput {
 
 func (i *SystemFipsCc) ToSystemFipsCcOutputWithContext(ctx context.Context) SystemFipsCcOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcOutput)
-}
-
-func (i *SystemFipsCc) ToSystemFipsCcPtrOutput() SystemFipsCcPtrOutput {
-	return i.ToSystemFipsCcPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFipsCc) ToSystemFipsCcPtrOutputWithContext(ctx context.Context) SystemFipsCcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcPtrOutput)
-}
-
-type SystemFipsCcPtrInput interface {
-	pulumi.Input
-
-	ToSystemFipsCcPtrOutput() SystemFipsCcPtrOutput
-	ToSystemFipsCcPtrOutputWithContext(ctx context.Context) SystemFipsCcPtrOutput
-}
-
-type systemFipsCcPtrType SystemFipsCcArgs
-
-func (*systemFipsCcPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFipsCc)(nil))
-}
-
-func (i *systemFipsCcPtrType) ToSystemFipsCcPtrOutput() SystemFipsCcPtrOutput {
-	return i.ToSystemFipsCcPtrOutputWithContext(context.Background())
-}
-
-func (i *systemFipsCcPtrType) ToSystemFipsCcPtrOutputWithContext(ctx context.Context) SystemFipsCcPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcPtrOutput)
 }
 
 // SystemFipsCcArrayInput is an input type that accepts SystemFipsCcArray and SystemFipsCcArrayOutput values.
@@ -213,7 +185,7 @@ type SystemFipsCcArrayInput interface {
 type SystemFipsCcArray []SystemFipsCcInput
 
 func (SystemFipsCcArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFipsCc)(nil))
+	return reflect.TypeOf((*[]*SystemFipsCc)(nil)).Elem()
 }
 
 func (i SystemFipsCcArray) ToSystemFipsCcArrayOutput() SystemFipsCcArrayOutput {
@@ -238,7 +210,7 @@ type SystemFipsCcMapInput interface {
 type SystemFipsCcMap map[string]SystemFipsCcInput
 
 func (SystemFipsCcMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFipsCc)(nil))
+	return reflect.TypeOf((*map[string]*SystemFipsCc)(nil)).Elem()
 }
 
 func (i SystemFipsCcMap) ToSystemFipsCcMapOutput() SystemFipsCcMapOutput {
@@ -249,12 +221,10 @@ func (i SystemFipsCcMap) ToSystemFipsCcMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFipsCcMapOutput)
 }
 
-type SystemFipsCcOutput struct {
-	*pulumi.OutputState
-}
+type SystemFipsCcOutput struct{ *pulumi.OutputState }
 
 func (SystemFipsCcOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFipsCc)(nil))
+	return reflect.TypeOf((**SystemFipsCc)(nil)).Elem()
 }
 
 func (o SystemFipsCcOutput) ToSystemFipsCcOutput() SystemFipsCcOutput {
@@ -265,36 +235,10 @@ func (o SystemFipsCcOutput) ToSystemFipsCcOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o SystemFipsCcOutput) ToSystemFipsCcPtrOutput() SystemFipsCcPtrOutput {
-	return o.ToSystemFipsCcPtrOutputWithContext(context.Background())
-}
-
-func (o SystemFipsCcOutput) ToSystemFipsCcPtrOutputWithContext(ctx context.Context) SystemFipsCcPtrOutput {
-	return o.ApplyT(func(v SystemFipsCc) *SystemFipsCc {
-		return &v
-	}).(SystemFipsCcPtrOutput)
-}
-
-type SystemFipsCcPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFipsCcPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFipsCc)(nil))
-}
-
-func (o SystemFipsCcPtrOutput) ToSystemFipsCcPtrOutput() SystemFipsCcPtrOutput {
-	return o
-}
-
-func (o SystemFipsCcPtrOutput) ToSystemFipsCcPtrOutputWithContext(ctx context.Context) SystemFipsCcPtrOutput {
-	return o
-}
-
 type SystemFipsCcArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFipsCcArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFipsCc)(nil))
+	return reflect.TypeOf((*[]*SystemFipsCc)(nil)).Elem()
 }
 
 func (o SystemFipsCcArrayOutput) ToSystemFipsCcArrayOutput() SystemFipsCcArrayOutput {
@@ -306,15 +250,15 @@ func (o SystemFipsCcArrayOutput) ToSystemFipsCcArrayOutputWithContext(ctx contex
 }
 
 func (o SystemFipsCcArrayOutput) Index(i pulumi.IntInput) SystemFipsCcOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFipsCc {
-		return vs[0].([]SystemFipsCc)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFipsCc {
+		return vs[0].([]*SystemFipsCc)[vs[1].(int)]
 	}).(SystemFipsCcOutput)
 }
 
 type SystemFipsCcMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFipsCcMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFipsCc)(nil))
+	return reflect.TypeOf((*map[string]*SystemFipsCc)(nil)).Elem()
 }
 
 func (o SystemFipsCcMapOutput) ToSystemFipsCcMapOutput() SystemFipsCcMapOutput {
@@ -326,14 +270,16 @@ func (o SystemFipsCcMapOutput) ToSystemFipsCcMapOutputWithContext(ctx context.Co
 }
 
 func (o SystemFipsCcMapOutput) MapIndex(k pulumi.StringInput) SystemFipsCcOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFipsCc {
-		return vs[0].(map[string]SystemFipsCc)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFipsCc {
+		return vs[0].(map[string]*SystemFipsCc)[vs[1].(string)]
 	}).(SystemFipsCcOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFipsCcInput)(nil)).Elem(), &SystemFipsCc{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFipsCcArrayInput)(nil)).Elem(), SystemFipsCcArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFipsCcMapInput)(nil)).Elem(), SystemFipsCcMap{})
 	pulumi.RegisterOutputType(SystemFipsCcOutput{})
-	pulumi.RegisterOutputType(SystemFipsCcPtrOutput{})
 	pulumi.RegisterOutputType(SystemFipsCcArrayOutput{})
 	pulumi.RegisterOutputType(SystemFipsCcMapOutput{})
 }

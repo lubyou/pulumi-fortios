@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname2 = new fortios.WebProxyForwardServer("trname2", {
  *     addrType: "fqdn",
@@ -105,34 +105,32 @@ export class WebProxyUrlMatch extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebProxyUrlMatchArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyUrlMatchArgs | WebProxyUrlMatchState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyUrlMatchState | undefined;
-            inputs["cacheExemption"] = state ? state.cacheExemption : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["forwardServer"] = state ? state.forwardServer : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["urlPattern"] = state ? state.urlPattern : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cacheExemption"] = state ? state.cacheExemption : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["forwardServer"] = state ? state.forwardServer : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["urlPattern"] = state ? state.urlPattern : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebProxyUrlMatchArgs | undefined;
             if ((!args || args.urlPattern === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'urlPattern'");
             }
-            inputs["cacheExemption"] = args ? args.cacheExemption : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["forwardServer"] = args ? args.forwardServer : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["urlPattern"] = args ? args.urlPattern : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cacheExemption"] = args ? args.cacheExemption : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["forwardServer"] = args ? args.forwardServer : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["urlPattern"] = args ? args.urlPattern : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyUrlMatch.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyUrlMatch.__pulumiType, name, resourceInputs, opts);
     }
 }
 

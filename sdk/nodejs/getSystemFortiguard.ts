@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,9 +13,7 @@ export function getSystemFortiguard(args?: GetSystemFortiguardArgs, opts?: pulum
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemFortiguard:GetSystemFortiguard", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -81,6 +78,10 @@ export interface GetSystemFortiguardResult {
      */
     readonly ddnsServerIp: string;
     /**
+     * IPv6 address of the FortiDDNS server.
+     */
+    readonly ddnsServerIp6: string;
+    /**
      * Port used to communicate with FortiDDNS servers.
      */
     readonly ddnsServerPort: number;
@@ -137,6 +138,10 @@ export interface GetSystemFortiguardResult {
      */
     readonly outbreakPreventionTimeout: number;
     /**
+     * Enable/disable use of persistent connection to receive update notification from FortiGuard.
+     */
+    readonly persistentConnection: string;
+    /**
      * Port used to communicate with the FortiGuard servers.
      */
     readonly port: string;
@@ -189,10 +194,34 @@ export interface GetSystemFortiguardResult {
      */
     readonly sourceIp6: string;
     /**
+     * Enable/disable proxy dictionary rebuild.
+     */
+    readonly updateBuildProxy: string;
+    /**
+     * Enable/disable external resource update.
+     */
+    readonly updateExtdb: string;
+    /**
+     * Enable/disable Internet Service Database update.
+     */
+    readonly updateFfdb: string;
+    /**
      * Signature update server location.
      */
     readonly updateServerLocation: string;
+    /**
+     * Enable/disable allowlist update.
+     */
+    readonly updateUwdb: string;
     readonly vdomparam?: string;
+    /**
+     * Expiration date of the FortiGuard video filter contract.
+     */
+    readonly videofilterExpiration: number;
+    /**
+     * Interval of time between license checks for the FortiGuard video filter contract.
+     */
+    readonly videofilterLicense: number;
     /**
      * Enable/disable FortiGuard web filter caching.
      */
@@ -217,4 +246,18 @@ export interface GetSystemFortiguardResult {
      * Web filter query time out (1 - 30 sec, default = 7).
      */
     readonly webfilterTimeout: number;
+}
+
+export function getSystemFortiguardOutput(args?: GetSystemFortiguardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemFortiguardResult> {
+    return pulumi.output(args).apply(a => getSystemFortiguard(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemFortiguard.
+ */
+export interface GetSystemFortiguardOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

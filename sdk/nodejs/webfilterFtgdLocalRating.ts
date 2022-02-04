@@ -88,30 +88,28 @@ export class WebfilterFtgdLocalRating extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebfilterFtgdLocalRatingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebfilterFtgdLocalRatingArgs | WebfilterFtgdLocalRatingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebfilterFtgdLocalRatingState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["rating"] = state ? state.rating : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["url"] = state ? state.url : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["rating"] = state ? state.rating : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["url"] = state ? state.url : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebfilterFtgdLocalRatingArgs | undefined;
             if ((!args || args.rating === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'rating'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["rating"] = args ? args.rating : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["url"] = args ? args.url : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["rating"] = args ? args.rating : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["url"] = args ? args.url : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebfilterFtgdLocalRating.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebfilterFtgdLocalRating.__pulumiType, name, resourceInputs, opts);
     }
 }
 

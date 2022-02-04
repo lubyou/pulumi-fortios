@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -96,6 +96,8 @@ type SystemGreTunnel struct {
 	SequenceNumberReception pulumi.StringOutput `pulumi:"sequenceNumberReception"`
 	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
 	SequenceNumberTransmission pulumi.StringOutput `pulumi:"sequenceNumberTransmission"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -113,6 +115,7 @@ func NewSystemGreTunnel(ctx *pulumi.Context,
 	if args.RemoteGw == nil {
 		return nil, errors.New("invalid value for required argument 'RemoteGw'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemGreTunnel
 	err := ctx.RegisterResource("fortios:index/systemGreTunnel:SystemGreTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -169,6 +172,8 @@ type systemGreTunnelState struct {
 	SequenceNumberReception *string `pulumi:"sequenceNumberReception"`
 	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
 	SequenceNumberTransmission *string `pulumi:"sequenceNumberTransmission"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -208,6 +213,8 @@ type SystemGreTunnelState struct {
 	SequenceNumberReception pulumi.StringPtrInput
 	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
 	SequenceNumberTransmission pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -251,6 +258,8 @@ type systemGreTunnelArgs struct {
 	SequenceNumberReception *string `pulumi:"sequenceNumberReception"`
 	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
 	SequenceNumberTransmission *string `pulumi:"sequenceNumberTransmission"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -291,6 +300,8 @@ type SystemGreTunnelArgs struct {
 	SequenceNumberReception pulumi.StringPtrInput
 	// Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
 	SequenceNumberTransmission pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -307,7 +318,7 @@ type SystemGreTunnelInput interface {
 }
 
 func (*SystemGreTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemGreTunnel)(nil))
+	return reflect.TypeOf((**SystemGreTunnel)(nil)).Elem()
 }
 
 func (i *SystemGreTunnel) ToSystemGreTunnelOutput() SystemGreTunnelOutput {
@@ -316,35 +327,6 @@ func (i *SystemGreTunnel) ToSystemGreTunnelOutput() SystemGreTunnelOutput {
 
 func (i *SystemGreTunnel) ToSystemGreTunnelOutputWithContext(ctx context.Context) SystemGreTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelOutput)
-}
-
-func (i *SystemGreTunnel) ToSystemGreTunnelPtrOutput() SystemGreTunnelPtrOutput {
-	return i.ToSystemGreTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemGreTunnel) ToSystemGreTunnelPtrOutputWithContext(ctx context.Context) SystemGreTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelPtrOutput)
-}
-
-type SystemGreTunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemGreTunnelPtrOutput() SystemGreTunnelPtrOutput
-	ToSystemGreTunnelPtrOutputWithContext(ctx context.Context) SystemGreTunnelPtrOutput
-}
-
-type systemGreTunnelPtrType SystemGreTunnelArgs
-
-func (*systemGreTunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemGreTunnel)(nil))
-}
-
-func (i *systemGreTunnelPtrType) ToSystemGreTunnelPtrOutput() SystemGreTunnelPtrOutput {
-	return i.ToSystemGreTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemGreTunnelPtrType) ToSystemGreTunnelPtrOutputWithContext(ctx context.Context) SystemGreTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelPtrOutput)
 }
 
 // SystemGreTunnelArrayInput is an input type that accepts SystemGreTunnelArray and SystemGreTunnelArrayOutput values.
@@ -361,7 +343,7 @@ type SystemGreTunnelArrayInput interface {
 type SystemGreTunnelArray []SystemGreTunnelInput
 
 func (SystemGreTunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemGreTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemGreTunnel)(nil)).Elem()
 }
 
 func (i SystemGreTunnelArray) ToSystemGreTunnelArrayOutput() SystemGreTunnelArrayOutput {
@@ -386,7 +368,7 @@ type SystemGreTunnelMapInput interface {
 type SystemGreTunnelMap map[string]SystemGreTunnelInput
 
 func (SystemGreTunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemGreTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemGreTunnel)(nil)).Elem()
 }
 
 func (i SystemGreTunnelMap) ToSystemGreTunnelMapOutput() SystemGreTunnelMapOutput {
@@ -397,12 +379,10 @@ func (i SystemGreTunnelMap) ToSystemGreTunnelMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemGreTunnelMapOutput)
 }
 
-type SystemGreTunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemGreTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemGreTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemGreTunnel)(nil))
+	return reflect.TypeOf((**SystemGreTunnel)(nil)).Elem()
 }
 
 func (o SystemGreTunnelOutput) ToSystemGreTunnelOutput() SystemGreTunnelOutput {
@@ -413,36 +393,10 @@ func (o SystemGreTunnelOutput) ToSystemGreTunnelOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemGreTunnelOutput) ToSystemGreTunnelPtrOutput() SystemGreTunnelPtrOutput {
-	return o.ToSystemGreTunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemGreTunnelOutput) ToSystemGreTunnelPtrOutputWithContext(ctx context.Context) SystemGreTunnelPtrOutput {
-	return o.ApplyT(func(v SystemGreTunnel) *SystemGreTunnel {
-		return &v
-	}).(SystemGreTunnelPtrOutput)
-}
-
-type SystemGreTunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemGreTunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemGreTunnel)(nil))
-}
-
-func (o SystemGreTunnelPtrOutput) ToSystemGreTunnelPtrOutput() SystemGreTunnelPtrOutput {
-	return o
-}
-
-func (o SystemGreTunnelPtrOutput) ToSystemGreTunnelPtrOutputWithContext(ctx context.Context) SystemGreTunnelPtrOutput {
-	return o
-}
-
 type SystemGreTunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemGreTunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemGreTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemGreTunnel)(nil)).Elem()
 }
 
 func (o SystemGreTunnelArrayOutput) ToSystemGreTunnelArrayOutput() SystemGreTunnelArrayOutput {
@@ -454,15 +408,15 @@ func (o SystemGreTunnelArrayOutput) ToSystemGreTunnelArrayOutputWithContext(ctx 
 }
 
 func (o SystemGreTunnelArrayOutput) Index(i pulumi.IntInput) SystemGreTunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemGreTunnel {
-		return vs[0].([]SystemGreTunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemGreTunnel {
+		return vs[0].([]*SystemGreTunnel)[vs[1].(int)]
 	}).(SystemGreTunnelOutput)
 }
 
 type SystemGreTunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemGreTunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemGreTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemGreTunnel)(nil)).Elem()
 }
 
 func (o SystemGreTunnelMapOutput) ToSystemGreTunnelMapOutput() SystemGreTunnelMapOutput {
@@ -474,14 +428,16 @@ func (o SystemGreTunnelMapOutput) ToSystemGreTunnelMapOutputWithContext(ctx cont
 }
 
 func (o SystemGreTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemGreTunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemGreTunnel {
-		return vs[0].(map[string]SystemGreTunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemGreTunnel {
+		return vs[0].(map[string]*SystemGreTunnel)[vs[1].(string)]
 	}).(SystemGreTunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGreTunnelInput)(nil)).Elem(), &SystemGreTunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGreTunnelArrayInput)(nil)).Elem(), SystemGreTunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemGreTunnelMapInput)(nil)).Elem(), SystemGreTunnelMap{})
 	pulumi.RegisterOutputType(SystemGreTunnelOutput{})
-	pulumi.RegisterOutputType(SystemGreTunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemGreTunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemGreTunnelMapOutput{})
 }

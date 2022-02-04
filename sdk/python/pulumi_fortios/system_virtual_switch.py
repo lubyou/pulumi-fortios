@@ -23,7 +23,8 @@ class SystemVirtualSwitchArgs:
                  span_dest_port: Optional[pulumi.Input[str]] = None,
                  span_direction: Optional[pulumi.Input[str]] = None,
                  span_source_port: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None):
         """
         The set of arguments for constructing a SystemVirtualSwitch resource.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -33,8 +34,9 @@ class SystemVirtualSwitchArgs:
         :param pulumi.Input[str] span: Enable/disable SPAN. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] span_dest_port: SPAN destination port.
         :param pulumi.Input[str] span_direction: SPAN direction. Valid values: `rx`, `tx`, `both`.
-        :param pulumi.Input[str] span_source_port: SPAN source ports.
+        :param pulumi.Input[str] span_source_port: SPAN source port.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] vlan: VLAN.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
@@ -54,6 +56,8 @@ class SystemVirtualSwitchArgs:
             pulumi.set(__self__, "span_source_port", span_source_port)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -143,7 +147,7 @@ class SystemVirtualSwitchArgs:
     @pulumi.getter(name="spanSourcePort")
     def span_source_port(self) -> Optional[pulumi.Input[str]]:
         """
-        SPAN source ports.
+        SPAN source port.
         """
         return pulumi.get(self, "span_source_port")
 
@@ -162,6 +166,18 @@ class SystemVirtualSwitchArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[int]]:
+        """
+        VLAN.
+        """
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan", value)
 
 
 @pulumi.input_type
@@ -175,7 +191,8 @@ class _SystemVirtualSwitchState:
                  span_dest_port: Optional[pulumi.Input[str]] = None,
                  span_direction: Optional[pulumi.Input[str]] = None,
                  span_source_port: Optional[pulumi.Input[str]] = None,
-                 vdomparam: Optional[pulumi.Input[str]] = None):
+                 vdomparam: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None):
         """
         Input properties used for looking up and filtering SystemVirtualSwitch resources.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -185,8 +202,9 @@ class _SystemVirtualSwitchState:
         :param pulumi.Input[str] span: Enable/disable SPAN. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] span_dest_port: SPAN destination port.
         :param pulumi.Input[str] span_direction: SPAN direction. Valid values: `rx`, `tx`, `both`.
-        :param pulumi.Input[str] span_source_port: SPAN source ports.
+        :param pulumi.Input[str] span_source_port: SPAN source port.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] vlan: VLAN.
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
@@ -206,6 +224,8 @@ class _SystemVirtualSwitchState:
             pulumi.set(__self__, "span_source_port", span_source_port)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if vlan is not None:
+            pulumi.set(__self__, "vlan", vlan)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -295,7 +315,7 @@ class _SystemVirtualSwitchState:
     @pulumi.getter(name="spanSourcePort")
     def span_source_port(self) -> Optional[pulumi.Input[str]]:
         """
-        SPAN source ports.
+        SPAN source port.
         """
         return pulumi.get(self, "span_source_port")
 
@@ -314,6 +334,18 @@ class _SystemVirtualSwitchState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> Optional[pulumi.Input[int]]:
+        """
+        VLAN.
+        """
+        return pulumi.get(self, "vlan")
+
+    @vlan.setter
+    def vlan(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "vlan", value)
 
 
 class SystemVirtualSwitch(pulumi.CustomResource):
@@ -330,9 +362,10 @@ class SystemVirtualSwitch(pulumi.CustomResource):
                  span_direction: Optional[pulumi.Input[str]] = None,
                  span_source_port: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Configure virtual hardware switch interfaces.
+        Configure virtual hardware switch interfaces. Applies to FortiOS Version `>= 7.0.4`.
 
         ## Import
 
@@ -353,8 +386,9 @@ class SystemVirtualSwitch(pulumi.CustomResource):
         :param pulumi.Input[str] span: Enable/disable SPAN. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] span_dest_port: SPAN destination port.
         :param pulumi.Input[str] span_direction: SPAN direction. Valid values: `rx`, `tx`, `both`.
-        :param pulumi.Input[str] span_source_port: SPAN source ports.
+        :param pulumi.Input[str] span_source_port: SPAN source port.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] vlan: VLAN.
         """
         ...
     @overload
@@ -363,7 +397,7 @@ class SystemVirtualSwitch(pulumi.CustomResource):
                  args: Optional[SystemVirtualSwitchArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure virtual hardware switch interfaces.
+        Configure virtual hardware switch interfaces. Applies to FortiOS Version `>= 7.0.4`.
 
         ## Import
 
@@ -399,6 +433,7 @@ class SystemVirtualSwitch(pulumi.CustomResource):
                  span_direction: Optional[pulumi.Input[str]] = None,
                  span_source_port: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 vlan: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -406,6 +441,8 @@ class SystemVirtualSwitch(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -420,6 +457,7 @@ class SystemVirtualSwitch(pulumi.CustomResource):
             __props__.__dict__["span_direction"] = span_direction
             __props__.__dict__["span_source_port"] = span_source_port
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["vlan"] = vlan
         super(SystemVirtualSwitch, __self__).__init__(
             'fortios:index/systemVirtualSwitch:SystemVirtualSwitch',
             resource_name,
@@ -438,7 +476,8 @@ class SystemVirtualSwitch(pulumi.CustomResource):
             span_dest_port: Optional[pulumi.Input[str]] = None,
             span_direction: Optional[pulumi.Input[str]] = None,
             span_source_port: Optional[pulumi.Input[str]] = None,
-            vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemVirtualSwitch':
+            vdomparam: Optional[pulumi.Input[str]] = None,
+            vlan: Optional[pulumi.Input[int]] = None) -> 'SystemVirtualSwitch':
         """
         Get an existing SystemVirtualSwitch resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -453,8 +492,9 @@ class SystemVirtualSwitch(pulumi.CustomResource):
         :param pulumi.Input[str] span: Enable/disable SPAN. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] span_dest_port: SPAN destination port.
         :param pulumi.Input[str] span_direction: SPAN direction. Valid values: `rx`, `tx`, `both`.
-        :param pulumi.Input[str] span_source_port: SPAN source ports.
+        :param pulumi.Input[str] span_source_port: SPAN source port.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] vlan: VLAN.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -469,6 +509,7 @@ class SystemVirtualSwitch(pulumi.CustomResource):
         __props__.__dict__["span_direction"] = span_direction
         __props__.__dict__["span_source_port"] = span_source_port
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["vlan"] = vlan
         return SystemVirtualSwitch(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -531,7 +572,7 @@ class SystemVirtualSwitch(pulumi.CustomResource):
     @pulumi.getter(name="spanSourcePort")
     def span_source_port(self) -> pulumi.Output[str]:
         """
-        SPAN source ports.
+        SPAN source port.
         """
         return pulumi.get(self, "span_source_port")
 
@@ -542,4 +583,12 @@ class SystemVirtualSwitch(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter
+    def vlan(self) -> pulumi.Output[int]:
+        """
+        VLAN.
+        """
+        return pulumi.get(self, "vlan")
 

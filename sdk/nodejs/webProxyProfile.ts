@@ -94,6 +94,10 @@ export class WebProxyProfile extends pulumi.CustomResource {
      */
     public readonly headerXAuthenticatedUser!: pulumi.Output<string>;
     /**
+     * Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+     */
+    public readonly headerXForwardedClientCert!: pulumi.Output<string>;
+    /**
      * Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
      */
     public readonly headerXForwardedFor!: pulumi.Output<string>;
@@ -127,43 +131,43 @@ export class WebProxyProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WebProxyProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebProxyProfileArgs | WebProxyProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebProxyProfileState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["headerClientIp"] = state ? state.headerClientIp : undefined;
-            inputs["headerFrontEndHttps"] = state ? state.headerFrontEndHttps : undefined;
-            inputs["headerViaRequest"] = state ? state.headerViaRequest : undefined;
-            inputs["headerViaResponse"] = state ? state.headerViaResponse : undefined;
-            inputs["headerXAuthenticatedGroups"] = state ? state.headerXAuthenticatedGroups : undefined;
-            inputs["headerXAuthenticatedUser"] = state ? state.headerXAuthenticatedUser : undefined;
-            inputs["headerXForwardedFor"] = state ? state.headerXForwardedFor : undefined;
-            inputs["headers"] = state ? state.headers : undefined;
-            inputs["logHeaderChange"] = state ? state.logHeaderChange : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["stripEncoding"] = state ? state.stripEncoding : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["headerClientIp"] = state ? state.headerClientIp : undefined;
+            resourceInputs["headerFrontEndHttps"] = state ? state.headerFrontEndHttps : undefined;
+            resourceInputs["headerViaRequest"] = state ? state.headerViaRequest : undefined;
+            resourceInputs["headerViaResponse"] = state ? state.headerViaResponse : undefined;
+            resourceInputs["headerXAuthenticatedGroups"] = state ? state.headerXAuthenticatedGroups : undefined;
+            resourceInputs["headerXAuthenticatedUser"] = state ? state.headerXAuthenticatedUser : undefined;
+            resourceInputs["headerXForwardedClientCert"] = state ? state.headerXForwardedClientCert : undefined;
+            resourceInputs["headerXForwardedFor"] = state ? state.headerXForwardedFor : undefined;
+            resourceInputs["headers"] = state ? state.headers : undefined;
+            resourceInputs["logHeaderChange"] = state ? state.logHeaderChange : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["stripEncoding"] = state ? state.stripEncoding : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebProxyProfileArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["headerClientIp"] = args ? args.headerClientIp : undefined;
-            inputs["headerFrontEndHttps"] = args ? args.headerFrontEndHttps : undefined;
-            inputs["headerViaRequest"] = args ? args.headerViaRequest : undefined;
-            inputs["headerViaResponse"] = args ? args.headerViaResponse : undefined;
-            inputs["headerXAuthenticatedGroups"] = args ? args.headerXAuthenticatedGroups : undefined;
-            inputs["headerXAuthenticatedUser"] = args ? args.headerXAuthenticatedUser : undefined;
-            inputs["headerXForwardedFor"] = args ? args.headerXForwardedFor : undefined;
-            inputs["headers"] = args ? args.headers : undefined;
-            inputs["logHeaderChange"] = args ? args.logHeaderChange : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["stripEncoding"] = args ? args.stripEncoding : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["headerClientIp"] = args ? args.headerClientIp : undefined;
+            resourceInputs["headerFrontEndHttps"] = args ? args.headerFrontEndHttps : undefined;
+            resourceInputs["headerViaRequest"] = args ? args.headerViaRequest : undefined;
+            resourceInputs["headerViaResponse"] = args ? args.headerViaResponse : undefined;
+            resourceInputs["headerXAuthenticatedGroups"] = args ? args.headerXAuthenticatedGroups : undefined;
+            resourceInputs["headerXAuthenticatedUser"] = args ? args.headerXAuthenticatedUser : undefined;
+            resourceInputs["headerXForwardedClientCert"] = args ? args.headerXForwardedClientCert : undefined;
+            resourceInputs["headerXForwardedFor"] = args ? args.headerXForwardedFor : undefined;
+            resourceInputs["headers"] = args ? args.headers : undefined;
+            resourceInputs["logHeaderChange"] = args ? args.logHeaderChange : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["stripEncoding"] = args ? args.stripEncoding : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebProxyProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebProxyProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -199,6 +203,10 @@ export interface WebProxyProfileState {
      * Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
      */
     headerXAuthenticatedUser?: pulumi.Input<string>;
+    /**
+     * Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+     */
+    headerXForwardedClientCert?: pulumi.Input<string>;
     /**
      * Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
      */
@@ -257,6 +265,10 @@ export interface WebProxyProfileArgs {
      * Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
      */
     headerXAuthenticatedUser?: pulumi.Input<string>;
+    /**
+     * Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+     */
+    headerXForwardedClientCert?: pulumi.Input<string>;
     /**
      * Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
      */

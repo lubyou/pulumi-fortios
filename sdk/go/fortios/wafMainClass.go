@@ -39,6 +39,7 @@ func NewWafMainClass(ctx *pulumi.Context,
 		args = &WafMainClassArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WafMainClass
 	err := ctx.RegisterResource("fortios:index/wafMainClass:WafMainClass", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type WafMainClassInput interface {
 }
 
 func (*WafMainClass) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafMainClass)(nil))
+	return reflect.TypeOf((**WafMainClass)(nil)).Elem()
 }
 
 func (i *WafMainClass) ToWafMainClassOutput() WafMainClassOutput {
@@ -122,35 +123,6 @@ func (i *WafMainClass) ToWafMainClassOutput() WafMainClassOutput {
 
 func (i *WafMainClass) ToWafMainClassOutputWithContext(ctx context.Context) WafMainClassOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassOutput)
-}
-
-func (i *WafMainClass) ToWafMainClassPtrOutput() WafMainClassPtrOutput {
-	return i.ToWafMainClassPtrOutputWithContext(context.Background())
-}
-
-func (i *WafMainClass) ToWafMainClassPtrOutputWithContext(ctx context.Context) WafMainClassPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassPtrOutput)
-}
-
-type WafMainClassPtrInput interface {
-	pulumi.Input
-
-	ToWafMainClassPtrOutput() WafMainClassPtrOutput
-	ToWafMainClassPtrOutputWithContext(ctx context.Context) WafMainClassPtrOutput
-}
-
-type wafMainClassPtrType WafMainClassArgs
-
-func (*wafMainClassPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafMainClass)(nil))
-}
-
-func (i *wafMainClassPtrType) ToWafMainClassPtrOutput() WafMainClassPtrOutput {
-	return i.ToWafMainClassPtrOutputWithContext(context.Background())
-}
-
-func (i *wafMainClassPtrType) ToWafMainClassPtrOutputWithContext(ctx context.Context) WafMainClassPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassPtrOutput)
 }
 
 // WafMainClassArrayInput is an input type that accepts WafMainClassArray and WafMainClassArrayOutput values.
@@ -167,7 +139,7 @@ type WafMainClassArrayInput interface {
 type WafMainClassArray []WafMainClassInput
 
 func (WafMainClassArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WafMainClass)(nil))
+	return reflect.TypeOf((*[]*WafMainClass)(nil)).Elem()
 }
 
 func (i WafMainClassArray) ToWafMainClassArrayOutput() WafMainClassArrayOutput {
@@ -192,7 +164,7 @@ type WafMainClassMapInput interface {
 type WafMainClassMap map[string]WafMainClassInput
 
 func (WafMainClassMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WafMainClass)(nil))
+	return reflect.TypeOf((*map[string]*WafMainClass)(nil)).Elem()
 }
 
 func (i WafMainClassMap) ToWafMainClassMapOutput() WafMainClassMapOutput {
@@ -203,12 +175,10 @@ func (i WafMainClassMap) ToWafMainClassMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(WafMainClassMapOutput)
 }
 
-type WafMainClassOutput struct {
-	*pulumi.OutputState
-}
+type WafMainClassOutput struct{ *pulumi.OutputState }
 
 func (WafMainClassOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WafMainClass)(nil))
+	return reflect.TypeOf((**WafMainClass)(nil)).Elem()
 }
 
 func (o WafMainClassOutput) ToWafMainClassOutput() WafMainClassOutput {
@@ -219,36 +189,10 @@ func (o WafMainClassOutput) ToWafMainClassOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o WafMainClassOutput) ToWafMainClassPtrOutput() WafMainClassPtrOutput {
-	return o.ToWafMainClassPtrOutputWithContext(context.Background())
-}
-
-func (o WafMainClassOutput) ToWafMainClassPtrOutputWithContext(ctx context.Context) WafMainClassPtrOutput {
-	return o.ApplyT(func(v WafMainClass) *WafMainClass {
-		return &v
-	}).(WafMainClassPtrOutput)
-}
-
-type WafMainClassPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WafMainClassPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WafMainClass)(nil))
-}
-
-func (o WafMainClassPtrOutput) ToWafMainClassPtrOutput() WafMainClassPtrOutput {
-	return o
-}
-
-func (o WafMainClassPtrOutput) ToWafMainClassPtrOutputWithContext(ctx context.Context) WafMainClassPtrOutput {
-	return o
-}
-
 type WafMainClassArrayOutput struct{ *pulumi.OutputState }
 
 func (WafMainClassArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WafMainClass)(nil))
+	return reflect.TypeOf((*[]*WafMainClass)(nil)).Elem()
 }
 
 func (o WafMainClassArrayOutput) ToWafMainClassArrayOutput() WafMainClassArrayOutput {
@@ -260,15 +204,15 @@ func (o WafMainClassArrayOutput) ToWafMainClassArrayOutputWithContext(ctx contex
 }
 
 func (o WafMainClassArrayOutput) Index(i pulumi.IntInput) WafMainClassOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WafMainClass {
-		return vs[0].([]WafMainClass)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WafMainClass {
+		return vs[0].([]*WafMainClass)[vs[1].(int)]
 	}).(WafMainClassOutput)
 }
 
 type WafMainClassMapOutput struct{ *pulumi.OutputState }
 
 func (WafMainClassMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WafMainClass)(nil))
+	return reflect.TypeOf((*map[string]*WafMainClass)(nil)).Elem()
 }
 
 func (o WafMainClassMapOutput) ToWafMainClassMapOutput() WafMainClassMapOutput {
@@ -280,14 +224,16 @@ func (o WafMainClassMapOutput) ToWafMainClassMapOutputWithContext(ctx context.Co
 }
 
 func (o WafMainClassMapOutput) MapIndex(k pulumi.StringInput) WafMainClassOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WafMainClass {
-		return vs[0].(map[string]WafMainClass)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WafMainClass {
+		return vs[0].(map[string]*WafMainClass)[vs[1].(string)]
 	}).(WafMainClassOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WafMainClassInput)(nil)).Elem(), &WafMainClass{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafMainClassArrayInput)(nil)).Elem(), WafMainClassArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WafMainClassMapInput)(nil)).Elem(), WafMainClassMap{})
 	pulumi.RegisterOutputType(WafMainClassOutput{})
-	pulumi.RegisterOutputType(WafMainClassPtrOutput{})
 	pulumi.RegisterOutputType(WafMainClassArrayOutput{})
 	pulumi.RegisterOutputType(WafMainClassMapOutput{})
 }

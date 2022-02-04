@@ -13,6 +13,7 @@ __all__ = [
     'GetRouterMulticast6Result',
     'AwaitableGetRouterMulticast6Result',
     'get_router_multicast6',
+    'get_router_multicast6_output',
 ]
 
 @pulumi.output_type
@@ -114,6 +115,8 @@ def get_router_multicast6(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterMulticast6:GetRouterMulticast6', __args__, opts=opts, typ=GetRouterMulticast6Result).value
 
     return AwaitableGetRouterMulticast6Result(
@@ -123,3 +126,15 @@ def get_router_multicast6(vdomparam: Optional[str] = None,
         multicast_routing=__ret__.multicast_routing,
         pim_sm_global=__ret__.pim_sm_global,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_router_multicast6)
+def get_router_multicast6_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterMulticast6Result]:
+    """
+    Use this data source to get information on fortios router multicast6
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

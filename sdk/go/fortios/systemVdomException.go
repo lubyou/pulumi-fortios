@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -77,6 +77,7 @@ func NewSystemVdomException(ctx *pulumi.Context,
 	if args.Object == nil {
 		return nil, errors.New("invalid value for required argument 'Object'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVdomException
 	err := ctx.RegisterResource("fortios:index/systemVdomException:SystemVdomException", name, args, &resource, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ type SystemVdomExceptionInput interface {
 }
 
 func (*SystemVdomException) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomException)(nil))
+	return reflect.TypeOf((**SystemVdomException)(nil)).Elem()
 }
 
 func (i *SystemVdomException) ToSystemVdomExceptionOutput() SystemVdomExceptionOutput {
@@ -192,35 +193,6 @@ func (i *SystemVdomException) ToSystemVdomExceptionOutput() SystemVdomExceptionO
 
 func (i *SystemVdomException) ToSystemVdomExceptionOutputWithContext(ctx context.Context) SystemVdomExceptionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionOutput)
-}
-
-func (i *SystemVdomException) ToSystemVdomExceptionPtrOutput() SystemVdomExceptionPtrOutput {
-	return i.ToSystemVdomExceptionPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVdomException) ToSystemVdomExceptionPtrOutputWithContext(ctx context.Context) SystemVdomExceptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionPtrOutput)
-}
-
-type SystemVdomExceptionPtrInput interface {
-	pulumi.Input
-
-	ToSystemVdomExceptionPtrOutput() SystemVdomExceptionPtrOutput
-	ToSystemVdomExceptionPtrOutputWithContext(ctx context.Context) SystemVdomExceptionPtrOutput
-}
-
-type systemVdomExceptionPtrType SystemVdomExceptionArgs
-
-func (*systemVdomExceptionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomException)(nil))
-}
-
-func (i *systemVdomExceptionPtrType) ToSystemVdomExceptionPtrOutput() SystemVdomExceptionPtrOutput {
-	return i.ToSystemVdomExceptionPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVdomExceptionPtrType) ToSystemVdomExceptionPtrOutputWithContext(ctx context.Context) SystemVdomExceptionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionPtrOutput)
 }
 
 // SystemVdomExceptionArrayInput is an input type that accepts SystemVdomExceptionArray and SystemVdomExceptionArrayOutput values.
@@ -237,7 +209,7 @@ type SystemVdomExceptionArrayInput interface {
 type SystemVdomExceptionArray []SystemVdomExceptionInput
 
 func (SystemVdomExceptionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVdomException)(nil))
+	return reflect.TypeOf((*[]*SystemVdomException)(nil)).Elem()
 }
 
 func (i SystemVdomExceptionArray) ToSystemVdomExceptionArrayOutput() SystemVdomExceptionArrayOutput {
@@ -262,7 +234,7 @@ type SystemVdomExceptionMapInput interface {
 type SystemVdomExceptionMap map[string]SystemVdomExceptionInput
 
 func (SystemVdomExceptionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVdomException)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomException)(nil)).Elem()
 }
 
 func (i SystemVdomExceptionMap) ToSystemVdomExceptionMapOutput() SystemVdomExceptionMapOutput {
@@ -273,12 +245,10 @@ func (i SystemVdomExceptionMap) ToSystemVdomExceptionMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVdomExceptionMapOutput)
 }
 
-type SystemVdomExceptionOutput struct {
-	*pulumi.OutputState
-}
+type SystemVdomExceptionOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomExceptionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVdomException)(nil))
+	return reflect.TypeOf((**SystemVdomException)(nil)).Elem()
 }
 
 func (o SystemVdomExceptionOutput) ToSystemVdomExceptionOutput() SystemVdomExceptionOutput {
@@ -289,36 +259,10 @@ func (o SystemVdomExceptionOutput) ToSystemVdomExceptionOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemVdomExceptionOutput) ToSystemVdomExceptionPtrOutput() SystemVdomExceptionPtrOutput {
-	return o.ToSystemVdomExceptionPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVdomExceptionOutput) ToSystemVdomExceptionPtrOutputWithContext(ctx context.Context) SystemVdomExceptionPtrOutput {
-	return o.ApplyT(func(v SystemVdomException) *SystemVdomException {
-		return &v
-	}).(SystemVdomExceptionPtrOutput)
-}
-
-type SystemVdomExceptionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVdomExceptionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVdomException)(nil))
-}
-
-func (o SystemVdomExceptionPtrOutput) ToSystemVdomExceptionPtrOutput() SystemVdomExceptionPtrOutput {
-	return o
-}
-
-func (o SystemVdomExceptionPtrOutput) ToSystemVdomExceptionPtrOutputWithContext(ctx context.Context) SystemVdomExceptionPtrOutput {
-	return o
-}
-
 type SystemVdomExceptionArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomExceptionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVdomException)(nil))
+	return reflect.TypeOf((*[]*SystemVdomException)(nil)).Elem()
 }
 
 func (o SystemVdomExceptionArrayOutput) ToSystemVdomExceptionArrayOutput() SystemVdomExceptionArrayOutput {
@@ -330,15 +274,15 @@ func (o SystemVdomExceptionArrayOutput) ToSystemVdomExceptionArrayOutputWithCont
 }
 
 func (o SystemVdomExceptionArrayOutput) Index(i pulumi.IntInput) SystemVdomExceptionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVdomException {
-		return vs[0].([]SystemVdomException)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVdomException {
+		return vs[0].([]*SystemVdomException)[vs[1].(int)]
 	}).(SystemVdomExceptionOutput)
 }
 
 type SystemVdomExceptionMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVdomExceptionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVdomException)(nil))
+	return reflect.TypeOf((*map[string]*SystemVdomException)(nil)).Elem()
 }
 
 func (o SystemVdomExceptionMapOutput) ToSystemVdomExceptionMapOutput() SystemVdomExceptionMapOutput {
@@ -350,14 +294,16 @@ func (o SystemVdomExceptionMapOutput) ToSystemVdomExceptionMapOutputWithContext(
 }
 
 func (o SystemVdomExceptionMapOutput) MapIndex(k pulumi.StringInput) SystemVdomExceptionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVdomException {
-		return vs[0].(map[string]SystemVdomException)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVdomException {
+		return vs[0].(map[string]*SystemVdomException)[vs[1].(string)]
 	}).(SystemVdomExceptionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomExceptionInput)(nil)).Elem(), &SystemVdomException{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomExceptionArrayInput)(nil)).Elem(), SystemVdomExceptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVdomExceptionMapInput)(nil)).Elem(), SystemVdomExceptionMap{})
 	pulumi.RegisterOutputType(SystemVdomExceptionOutput{})
-	pulumi.RegisterOutputType(SystemVdomExceptionPtrOutput{})
 	pulumi.RegisterOutputType(SystemVdomExceptionArrayOutput{})
 	pulumi.RegisterOutputType(SystemVdomExceptionMapOutput{})
 }

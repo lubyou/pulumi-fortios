@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure CIFS profile. Applies to FortiOS Version `<= 6.4.0`.
+ * Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
  *
  * ## Import
  *
@@ -84,31 +84,29 @@ export class CifsProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: CifsProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: CifsProfileArgs | CifsProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CifsProfileState | undefined;
-            inputs["domainController"] = state ? state.domainController : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fileFilter"] = state ? state.fileFilter : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["serverCredentialType"] = state ? state.serverCredentialType : undefined;
-            inputs["serverKeytabs"] = state ? state.serverKeytabs : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["domainController"] = state ? state.domainController : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["serverCredentialType"] = state ? state.serverCredentialType : undefined;
+            resourceInputs["serverKeytabs"] = state ? state.serverKeytabs : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as CifsProfileArgs | undefined;
-            inputs["domainController"] = args ? args.domainController : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fileFilter"] = args ? args.fileFilter : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["serverCredentialType"] = args ? args.serverCredentialType : undefined;
-            inputs["serverKeytabs"] = args ? args.serverKeytabs : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["domainController"] = args ? args.domainController : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["serverCredentialType"] = args ? args.serverCredentialType : undefined;
+            resourceInputs["serverKeytabs"] = args ? args.serverKeytabs : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(CifsProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(CifsProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

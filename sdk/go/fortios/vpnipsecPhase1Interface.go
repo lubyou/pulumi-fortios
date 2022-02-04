@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -241,6 +241,8 @@ type VpnIpsecPhase1Interface struct {
 	EncapsulationAddress pulumi.StringOutput `pulumi:"encapsulationAddress"`
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId pulumi.StringOutput `pulumi:"enforceUniqueId"`
+	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+	Esn pulumi.StringOutput `pulumi:"esn"`
 	// Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
 	ExchangeInterfaceIp pulumi.StringOutput `pulumi:"exchangeInterfaceIp"`
 	// IPv4 address to exchange with peers.
@@ -253,8 +255,12 @@ type VpnIpsecPhase1Interface struct {
 	FecCodec pulumi.IntOutput `pulumi:"fecCodec"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringOutput `pulumi:"fecEgress"`
+	// SD-WAN health check.
+	FecHealthCheck pulumi.StringOutput `pulumi:"fecHealthCheck"`
 	// Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
 	FecIngress pulumi.StringOutput `pulumi:"fecIngress"`
+	// Forward Error Correction (FEC) mapping profile.
+	FecMappingProfile pulumi.StringOutput `pulumi:"fecMappingProfile"`
 	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
 	FecReceiveTimeout pulumi.IntOutput `pulumi:"fecReceiveTimeout"`
 	// Number of redundant Forward Error Correction packets (1 - 100).
@@ -283,6 +289,8 @@ type VpnIpsecPhase1Interface struct {
 	IncludeLocalLan pulumi.StringOutput `pulumi:"includeLocalLan"`
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface pulumi.StringOutput `pulumi:"interface"`
+	// IP address reuse delay interval in seconds (0 - 28800).
+	IpDelayInterval pulumi.IntOutput `pulumi:"ipDelayInterval"`
 	// Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
 	IpFragmentation pulumi.StringOutput `pulumi:"ipFragmentation"`
 	// IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -343,6 +351,8 @@ type VpnIpsecPhase1Interface struct {
 	Localid pulumi.StringOutput `pulumi:"localid"`
 	// Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
 	LocalidType pulumi.StringOutput `pulumi:"localidType"`
+	// Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+	LoopbackAsymroute pulumi.StringOutput `pulumi:"loopbackAsymroute"`
 	// Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
 	MeshSelectorType pulumi.StringOutput `pulumi:"meshSelectorType"`
 	// The ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
@@ -371,6 +381,8 @@ type VpnIpsecPhase1Interface struct {
 	NetworkId pulumi.IntOutput `pulumi:"networkId"`
 	// Enable/disable network overlays. Valid values: `disable`, `enable`.
 	NetworkOverlay pulumi.StringOutput `pulumi:"networkOverlay"`
+	// Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+	NpuOffload pulumi.StringOutput `pulumi:"npuOffload"`
 	// Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
 	PassiveMode pulumi.StringOutput `pulumi:"passiveMode"`
 	// Accept this peer certificate.
@@ -448,6 +460,7 @@ func NewVpnIpsecPhase1Interface(ctx *pulumi.Context,
 	if args.Proposal == nil {
 		return nil, errors.New("invalid value for required argument 'Proposal'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnIpsecPhase1Interface
 	err := ctx.RegisterResource("fortios:index/vpnIpsecPhase1Interface:VpnIpsecPhase1Interface", name, args, &resource, opts...)
 	if err != nil {
@@ -568,6 +581,8 @@ type vpnIpsecPhase1InterfaceState struct {
 	EncapsulationAddress *string `pulumi:"encapsulationAddress"`
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId *string `pulumi:"enforceUniqueId"`
+	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+	Esn *string `pulumi:"esn"`
 	// Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
 	ExchangeInterfaceIp *string `pulumi:"exchangeInterfaceIp"`
 	// IPv4 address to exchange with peers.
@@ -580,8 +595,12 @@ type vpnIpsecPhase1InterfaceState struct {
 	FecCodec *int `pulumi:"fecCodec"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress *string `pulumi:"fecEgress"`
+	// SD-WAN health check.
+	FecHealthCheck *string `pulumi:"fecHealthCheck"`
 	// Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
 	FecIngress *string `pulumi:"fecIngress"`
+	// Forward Error Correction (FEC) mapping profile.
+	FecMappingProfile *string `pulumi:"fecMappingProfile"`
 	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
 	FecReceiveTimeout *int `pulumi:"fecReceiveTimeout"`
 	// Number of redundant Forward Error Correction packets (1 - 100).
@@ -610,6 +629,8 @@ type vpnIpsecPhase1InterfaceState struct {
 	IncludeLocalLan *string `pulumi:"includeLocalLan"`
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface *string `pulumi:"interface"`
+	// IP address reuse delay interval in seconds (0 - 28800).
+	IpDelayInterval *int `pulumi:"ipDelayInterval"`
 	// Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
 	IpFragmentation *string `pulumi:"ipFragmentation"`
 	// IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -670,6 +691,8 @@ type vpnIpsecPhase1InterfaceState struct {
 	Localid *string `pulumi:"localid"`
 	// Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
 	LocalidType *string `pulumi:"localidType"`
+	// Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+	LoopbackAsymroute *string `pulumi:"loopbackAsymroute"`
 	// Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
 	MeshSelectorType *string `pulumi:"meshSelectorType"`
 	// The ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
@@ -698,6 +721,8 @@ type vpnIpsecPhase1InterfaceState struct {
 	NetworkId *int `pulumi:"networkId"`
 	// Enable/disable network overlays. Valid values: `disable`, `enable`.
 	NetworkOverlay *string `pulumi:"networkOverlay"`
+	// Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+	NpuOffload *string `pulumi:"npuOffload"`
 	// Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
 	PassiveMode *string `pulumi:"passiveMode"`
 	// Accept this peer certificate.
@@ -861,6 +886,8 @@ type VpnIpsecPhase1InterfaceState struct {
 	EncapsulationAddress pulumi.StringPtrInput
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId pulumi.StringPtrInput
+	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+	Esn pulumi.StringPtrInput
 	// Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
 	ExchangeInterfaceIp pulumi.StringPtrInput
 	// IPv4 address to exchange with peers.
@@ -873,8 +900,12 @@ type VpnIpsecPhase1InterfaceState struct {
 	FecCodec pulumi.IntPtrInput
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringPtrInput
+	// SD-WAN health check.
+	FecHealthCheck pulumi.StringPtrInput
 	// Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
 	FecIngress pulumi.StringPtrInput
+	// Forward Error Correction (FEC) mapping profile.
+	FecMappingProfile pulumi.StringPtrInput
 	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
 	FecReceiveTimeout pulumi.IntPtrInput
 	// Number of redundant Forward Error Correction packets (1 - 100).
@@ -903,6 +934,8 @@ type VpnIpsecPhase1InterfaceState struct {
 	IncludeLocalLan pulumi.StringPtrInput
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface pulumi.StringPtrInput
+	// IP address reuse delay interval in seconds (0 - 28800).
+	IpDelayInterval pulumi.IntPtrInput
 	// Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
 	IpFragmentation pulumi.StringPtrInput
 	// IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -963,6 +996,8 @@ type VpnIpsecPhase1InterfaceState struct {
 	Localid pulumi.StringPtrInput
 	// Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
 	LocalidType pulumi.StringPtrInput
+	// Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+	LoopbackAsymroute pulumi.StringPtrInput
 	// Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
 	MeshSelectorType pulumi.StringPtrInput
 	// The ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
@@ -991,6 +1026,8 @@ type VpnIpsecPhase1InterfaceState struct {
 	NetworkId pulumi.IntPtrInput
 	// Enable/disable network overlays. Valid values: `disable`, `enable`.
 	NetworkOverlay pulumi.StringPtrInput
+	// Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+	NpuOffload pulumi.StringPtrInput
 	// Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
 	PassiveMode pulumi.StringPtrInput
 	// Accept this peer certificate.
@@ -1158,6 +1195,8 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	EncapsulationAddress *string `pulumi:"encapsulationAddress"`
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId *string `pulumi:"enforceUniqueId"`
+	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+	Esn *string `pulumi:"esn"`
 	// Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
 	ExchangeInterfaceIp *string `pulumi:"exchangeInterfaceIp"`
 	// IPv4 address to exchange with peers.
@@ -1170,8 +1209,12 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	FecCodec *int `pulumi:"fecCodec"`
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress *string `pulumi:"fecEgress"`
+	// SD-WAN health check.
+	FecHealthCheck *string `pulumi:"fecHealthCheck"`
 	// Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
 	FecIngress *string `pulumi:"fecIngress"`
+	// Forward Error Correction (FEC) mapping profile.
+	FecMappingProfile *string `pulumi:"fecMappingProfile"`
 	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
 	FecReceiveTimeout *int `pulumi:"fecReceiveTimeout"`
 	// Number of redundant Forward Error Correction packets (1 - 100).
@@ -1200,6 +1243,8 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	IncludeLocalLan *string `pulumi:"includeLocalLan"`
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface string `pulumi:"interface"`
+	// IP address reuse delay interval in seconds (0 - 28800).
+	IpDelayInterval *int `pulumi:"ipDelayInterval"`
 	// Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
 	IpFragmentation *string `pulumi:"ipFragmentation"`
 	// IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -1260,6 +1305,8 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	Localid *string `pulumi:"localid"`
 	// Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
 	LocalidType *string `pulumi:"localidType"`
+	// Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+	LoopbackAsymroute *string `pulumi:"loopbackAsymroute"`
 	// Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
 	MeshSelectorType *string `pulumi:"meshSelectorType"`
 	// The ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
@@ -1288,6 +1335,8 @@ type vpnIpsecPhase1InterfaceArgs struct {
 	NetworkId *int `pulumi:"networkId"`
 	// Enable/disable network overlays. Valid values: `disable`, `enable`.
 	NetworkOverlay *string `pulumi:"networkOverlay"`
+	// Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+	NpuOffload *string `pulumi:"npuOffload"`
 	// Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
 	PassiveMode *string `pulumi:"passiveMode"`
 	// Accept this peer certificate.
@@ -1452,6 +1501,8 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	EncapsulationAddress pulumi.StringPtrInput
 	// Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
 	EnforceUniqueId pulumi.StringPtrInput
+	// Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+	Esn pulumi.StringPtrInput
 	// Enable/disable exchange of IPsec interface IP address. Valid values: `enable`, `disable`.
 	ExchangeInterfaceIp pulumi.StringPtrInput
 	// IPv4 address to exchange with peers.
@@ -1464,8 +1515,12 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	FecCodec pulumi.IntPtrInput
 	// Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
 	FecEgress pulumi.StringPtrInput
+	// SD-WAN health check.
+	FecHealthCheck pulumi.StringPtrInput
 	// Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
 	FecIngress pulumi.StringPtrInput
+	// Forward Error Correction (FEC) mapping profile.
+	FecMappingProfile pulumi.StringPtrInput
 	// Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
 	FecReceiveTimeout pulumi.IntPtrInput
 	// Number of redundant Forward Error Correction packets (1 - 100).
@@ -1494,6 +1549,8 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	IncludeLocalLan pulumi.StringPtrInput
 	// Local physical, aggregate, or VLAN outgoing interface.
 	Interface pulumi.StringInput
+	// IP address reuse delay interval in seconds (0 - 28800).
+	IpDelayInterval pulumi.IntPtrInput
 	// Determine whether IP packets are fragmented before or after IPsec encapsulation. Valid values: `pre-encapsulation`, `post-encapsulation`.
 	IpFragmentation pulumi.StringPtrInput
 	// IP version to use for VPN interface. Valid values: `4`, `6`.
@@ -1554,6 +1611,8 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	Localid pulumi.StringPtrInput
 	// Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
 	LocalidType pulumi.StringPtrInput
+	// Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+	LoopbackAsymroute pulumi.StringPtrInput
 	// Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
 	MeshSelectorType pulumi.StringPtrInput
 	// The ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
@@ -1582,6 +1641,8 @@ type VpnIpsecPhase1InterfaceArgs struct {
 	NetworkId pulumi.IntPtrInput
 	// Enable/disable network overlays. Valid values: `disable`, `enable`.
 	NetworkOverlay pulumi.StringPtrInput
+	// Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+	NpuOffload pulumi.StringPtrInput
 	// Enable/disable IPsec passive mode for static tunnels. Valid values: `enable`, `disable`.
 	PassiveMode pulumi.StringPtrInput
 	// Accept this peer certificate.
@@ -1658,7 +1719,7 @@ type VpnIpsecPhase1InterfaceInput interface {
 }
 
 func (*VpnIpsecPhase1Interface) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecPhase1Interface)(nil))
+	return reflect.TypeOf((**VpnIpsecPhase1Interface)(nil)).Elem()
 }
 
 func (i *VpnIpsecPhase1Interface) ToVpnIpsecPhase1InterfaceOutput() VpnIpsecPhase1InterfaceOutput {
@@ -1667,35 +1728,6 @@ func (i *VpnIpsecPhase1Interface) ToVpnIpsecPhase1InterfaceOutput() VpnIpsecPhas
 
 func (i *VpnIpsecPhase1Interface) ToVpnIpsecPhase1InterfaceOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceOutput)
-}
-
-func (i *VpnIpsecPhase1Interface) ToVpnIpsecPhase1InterfacePtrOutput() VpnIpsecPhase1InterfacePtrOutput {
-	return i.ToVpnIpsecPhase1InterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *VpnIpsecPhase1Interface) ToVpnIpsecPhase1InterfacePtrOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfacePtrOutput)
-}
-
-type VpnIpsecPhase1InterfacePtrInput interface {
-	pulumi.Input
-
-	ToVpnIpsecPhase1InterfacePtrOutput() VpnIpsecPhase1InterfacePtrOutput
-	ToVpnIpsecPhase1InterfacePtrOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfacePtrOutput
-}
-
-type vpnIpsecPhase1InterfacePtrType VpnIpsecPhase1InterfaceArgs
-
-func (*vpnIpsecPhase1InterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecPhase1Interface)(nil))
-}
-
-func (i *vpnIpsecPhase1InterfacePtrType) ToVpnIpsecPhase1InterfacePtrOutput() VpnIpsecPhase1InterfacePtrOutput {
-	return i.ToVpnIpsecPhase1InterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *vpnIpsecPhase1InterfacePtrType) ToVpnIpsecPhase1InterfacePtrOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfacePtrOutput)
 }
 
 // VpnIpsecPhase1InterfaceArrayInput is an input type that accepts VpnIpsecPhase1InterfaceArray and VpnIpsecPhase1InterfaceArrayOutput values.
@@ -1712,7 +1744,7 @@ type VpnIpsecPhase1InterfaceArrayInput interface {
 type VpnIpsecPhase1InterfaceArray []VpnIpsecPhase1InterfaceInput
 
 func (VpnIpsecPhase1InterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnIpsecPhase1Interface)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecPhase1Interface)(nil)).Elem()
 }
 
 func (i VpnIpsecPhase1InterfaceArray) ToVpnIpsecPhase1InterfaceArrayOutput() VpnIpsecPhase1InterfaceArrayOutput {
@@ -1737,7 +1769,7 @@ type VpnIpsecPhase1InterfaceMapInput interface {
 type VpnIpsecPhase1InterfaceMap map[string]VpnIpsecPhase1InterfaceInput
 
 func (VpnIpsecPhase1InterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnIpsecPhase1Interface)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecPhase1Interface)(nil)).Elem()
 }
 
 func (i VpnIpsecPhase1InterfaceMap) ToVpnIpsecPhase1InterfaceMapOutput() VpnIpsecPhase1InterfaceMapOutput {
@@ -1748,12 +1780,10 @@ func (i VpnIpsecPhase1InterfaceMap) ToVpnIpsecPhase1InterfaceMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase1InterfaceMapOutput)
 }
 
-type VpnIpsecPhase1InterfaceOutput struct {
-	*pulumi.OutputState
-}
+type VpnIpsecPhase1InterfaceOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecPhase1Interface)(nil))
+	return reflect.TypeOf((**VpnIpsecPhase1Interface)(nil)).Elem()
 }
 
 func (o VpnIpsecPhase1InterfaceOutput) ToVpnIpsecPhase1InterfaceOutput() VpnIpsecPhase1InterfaceOutput {
@@ -1764,36 +1794,10 @@ func (o VpnIpsecPhase1InterfaceOutput) ToVpnIpsecPhase1InterfaceOutputWithContex
 	return o
 }
 
-func (o VpnIpsecPhase1InterfaceOutput) ToVpnIpsecPhase1InterfacePtrOutput() VpnIpsecPhase1InterfacePtrOutput {
-	return o.ToVpnIpsecPhase1InterfacePtrOutputWithContext(context.Background())
-}
-
-func (o VpnIpsecPhase1InterfaceOutput) ToVpnIpsecPhase1InterfacePtrOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfacePtrOutput {
-	return o.ApplyT(func(v VpnIpsecPhase1Interface) *VpnIpsecPhase1Interface {
-		return &v
-	}).(VpnIpsecPhase1InterfacePtrOutput)
-}
-
-type VpnIpsecPhase1InterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnIpsecPhase1InterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecPhase1Interface)(nil))
-}
-
-func (o VpnIpsecPhase1InterfacePtrOutput) ToVpnIpsecPhase1InterfacePtrOutput() VpnIpsecPhase1InterfacePtrOutput {
-	return o
-}
-
-func (o VpnIpsecPhase1InterfacePtrOutput) ToVpnIpsecPhase1InterfacePtrOutputWithContext(ctx context.Context) VpnIpsecPhase1InterfacePtrOutput {
-	return o
-}
-
 type VpnIpsecPhase1InterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnIpsecPhase1Interface)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecPhase1Interface)(nil)).Elem()
 }
 
 func (o VpnIpsecPhase1InterfaceArrayOutput) ToVpnIpsecPhase1InterfaceArrayOutput() VpnIpsecPhase1InterfaceArrayOutput {
@@ -1805,15 +1809,15 @@ func (o VpnIpsecPhase1InterfaceArrayOutput) ToVpnIpsecPhase1InterfaceArrayOutput
 }
 
 func (o VpnIpsecPhase1InterfaceArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase1InterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase1Interface {
-		return vs[0].([]VpnIpsecPhase1Interface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecPhase1Interface {
+		return vs[0].([]*VpnIpsecPhase1Interface)[vs[1].(int)]
 	}).(VpnIpsecPhase1InterfaceOutput)
 }
 
 type VpnIpsecPhase1InterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase1InterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnIpsecPhase1Interface)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecPhase1Interface)(nil)).Elem()
 }
 
 func (o VpnIpsecPhase1InterfaceMapOutput) ToVpnIpsecPhase1InterfaceMapOutput() VpnIpsecPhase1InterfaceMapOutput {
@@ -1825,14 +1829,16 @@ func (o VpnIpsecPhase1InterfaceMapOutput) ToVpnIpsecPhase1InterfaceMapOutputWith
 }
 
 func (o VpnIpsecPhase1InterfaceMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecPhase1InterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnIpsecPhase1Interface {
-		return vs[0].(map[string]VpnIpsecPhase1Interface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnIpsecPhase1Interface {
+		return vs[0].(map[string]*VpnIpsecPhase1Interface)[vs[1].(string)]
 	}).(VpnIpsecPhase1InterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceInput)(nil)).Elem(), &VpnIpsecPhase1Interface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceArrayInput)(nil)).Elem(), VpnIpsecPhase1InterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase1InterfaceMapInput)(nil)).Elem(), VpnIpsecPhase1InterfaceMap{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceOutput{})
-	pulumi.RegisterOutputType(VpnIpsecPhase1InterfacePtrOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase1InterfaceMapOutput{})
 }

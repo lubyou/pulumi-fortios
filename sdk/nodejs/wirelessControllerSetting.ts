@@ -91,6 +91,10 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
      */
     public readonly fapcCompatibility!: pulumi.Output<string>;
     /**
+     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+     */
+    public readonly firmwareProvisionOnAuthorization!: pulumi.Output<string>;
+    /**
      * Configure offending SSID. The structure of `offendingSsid` block is documented below.
      */
     public readonly offendingSsids!: pulumi.Output<outputs.WirelessControllerSettingOffendingSsid[] | undefined>;
@@ -116,47 +120,47 @@ export class WirelessControllerSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerSettingArgs | WirelessControllerSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerSettingState | undefined;
-            inputs["accountId"] = state ? state.accountId : undefined;
-            inputs["country"] = state ? state.country : undefined;
-            inputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
-            inputs["darrpOptimizeSchedules"] = state ? state.darrpOptimizeSchedules : undefined;
-            inputs["deviceHoldoff"] = state ? state.deviceHoldoff : undefined;
-            inputs["deviceIdle"] = state ? state.deviceIdle : undefined;
-            inputs["deviceWeight"] = state ? state.deviceWeight : undefined;
-            inputs["duplicateSsid"] = state ? state.duplicateSsid : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fakeSsidAction"] = state ? state.fakeSsidAction : undefined;
-            inputs["fapcCompatibility"] = state ? state.fapcCompatibility : undefined;
-            inputs["offendingSsids"] = state ? state.offendingSsids : undefined;
-            inputs["phishingSsidDetect"] = state ? state.phishingSsidDetect : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wfaCompatibility"] = state ? state.wfaCompatibility : undefined;
+            resourceInputs["accountId"] = state ? state.accountId : undefined;
+            resourceInputs["country"] = state ? state.country : undefined;
+            resourceInputs["darrpOptimize"] = state ? state.darrpOptimize : undefined;
+            resourceInputs["darrpOptimizeSchedules"] = state ? state.darrpOptimizeSchedules : undefined;
+            resourceInputs["deviceHoldoff"] = state ? state.deviceHoldoff : undefined;
+            resourceInputs["deviceIdle"] = state ? state.deviceIdle : undefined;
+            resourceInputs["deviceWeight"] = state ? state.deviceWeight : undefined;
+            resourceInputs["duplicateSsid"] = state ? state.duplicateSsid : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fakeSsidAction"] = state ? state.fakeSsidAction : undefined;
+            resourceInputs["fapcCompatibility"] = state ? state.fapcCompatibility : undefined;
+            resourceInputs["firmwareProvisionOnAuthorization"] = state ? state.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["offendingSsids"] = state ? state.offendingSsids : undefined;
+            resourceInputs["phishingSsidDetect"] = state ? state.phishingSsidDetect : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wfaCompatibility"] = state ? state.wfaCompatibility : undefined;
         } else {
             const args = argsOrState as WirelessControllerSettingArgs | undefined;
-            inputs["accountId"] = args ? args.accountId : undefined;
-            inputs["country"] = args ? args.country : undefined;
-            inputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
-            inputs["darrpOptimizeSchedules"] = args ? args.darrpOptimizeSchedules : undefined;
-            inputs["deviceHoldoff"] = args ? args.deviceHoldoff : undefined;
-            inputs["deviceIdle"] = args ? args.deviceIdle : undefined;
-            inputs["deviceWeight"] = args ? args.deviceWeight : undefined;
-            inputs["duplicateSsid"] = args ? args.duplicateSsid : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fakeSsidAction"] = args ? args.fakeSsidAction : undefined;
-            inputs["fapcCompatibility"] = args ? args.fapcCompatibility : undefined;
-            inputs["offendingSsids"] = args ? args.offendingSsids : undefined;
-            inputs["phishingSsidDetect"] = args ? args.phishingSsidDetect : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wfaCompatibility"] = args ? args.wfaCompatibility : undefined;
+            resourceInputs["accountId"] = args ? args.accountId : undefined;
+            resourceInputs["country"] = args ? args.country : undefined;
+            resourceInputs["darrpOptimize"] = args ? args.darrpOptimize : undefined;
+            resourceInputs["darrpOptimizeSchedules"] = args ? args.darrpOptimizeSchedules : undefined;
+            resourceInputs["deviceHoldoff"] = args ? args.deviceHoldoff : undefined;
+            resourceInputs["deviceIdle"] = args ? args.deviceIdle : undefined;
+            resourceInputs["deviceWeight"] = args ? args.deviceWeight : undefined;
+            resourceInputs["duplicateSsid"] = args ? args.duplicateSsid : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fakeSsidAction"] = args ? args.fakeSsidAction : undefined;
+            resourceInputs["fapcCompatibility"] = args ? args.fapcCompatibility : undefined;
+            resourceInputs["firmwareProvisionOnAuthorization"] = args ? args.firmwareProvisionOnAuthorization : undefined;
+            resourceInputs["offendingSsids"] = args ? args.offendingSsids : undefined;
+            resourceInputs["phishingSsidDetect"] = args ? args.phishingSsidDetect : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wfaCompatibility"] = args ? args.wfaCompatibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -208,6 +212,10 @@ export interface WirelessControllerSettingState {
      * Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
      */
     fapcCompatibility?: pulumi.Input<string>;
+    /**
+     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+     */
+    firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
      * Configure offending SSID. The structure of `offendingSsid` block is documented below.
      */
@@ -274,6 +282,10 @@ export interface WirelessControllerSettingArgs {
      * Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
      */
     fapcCompatibility?: pulumi.Input<string>;
+    /**
+     * Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+     */
+    firmwareProvisionOnAuthorization?: pulumi.Input<string>;
     /**
      * Configure offending SSID. The structure of `offendingSsid` block is documented below.
      */

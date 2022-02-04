@@ -74,21 +74,19 @@ export class SpamfilterOptions extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SpamfilterOptionsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SpamfilterOptionsArgs | SpamfilterOptionsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SpamfilterOptionsState | undefined;
-            inputs["dnsTimeout"] = state ? state.dnsTimeout : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dnsTimeout"] = state ? state.dnsTimeout : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SpamfilterOptionsArgs | undefined;
-            inputs["dnsTimeout"] = args ? args.dnsTimeout : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dnsTimeout"] = args ? args.dnsTimeout : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SpamfilterOptions.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SpamfilterOptions.__pulumiType, name, resourceInputs, opts);
     }
 }
 

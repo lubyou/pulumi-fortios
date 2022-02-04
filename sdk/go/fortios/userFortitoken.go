@@ -53,6 +53,7 @@ func NewUserFortitoken(ctx *pulumi.Context,
 		args = &UserFortitokenArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserFortitoken
 	err := ctx.RegisterResource("fortios:index/userFortitoken:UserFortitoken", name, args, &resource, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ type UserFortitokenInput interface {
 }
 
 func (*UserFortitoken) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFortitoken)(nil))
+	return reflect.TypeOf((**UserFortitoken)(nil)).Elem()
 }
 
 func (i *UserFortitoken) ToUserFortitokenOutput() UserFortitokenOutput {
@@ -192,35 +193,6 @@ func (i *UserFortitoken) ToUserFortitokenOutput() UserFortitokenOutput {
 
 func (i *UserFortitoken) ToUserFortitokenOutputWithContext(ctx context.Context) UserFortitokenOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenOutput)
-}
-
-func (i *UserFortitoken) ToUserFortitokenPtrOutput() UserFortitokenPtrOutput {
-	return i.ToUserFortitokenPtrOutputWithContext(context.Background())
-}
-
-func (i *UserFortitoken) ToUserFortitokenPtrOutputWithContext(ctx context.Context) UserFortitokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenPtrOutput)
-}
-
-type UserFortitokenPtrInput interface {
-	pulumi.Input
-
-	ToUserFortitokenPtrOutput() UserFortitokenPtrOutput
-	ToUserFortitokenPtrOutputWithContext(ctx context.Context) UserFortitokenPtrOutput
-}
-
-type userFortitokenPtrType UserFortitokenArgs
-
-func (*userFortitokenPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFortitoken)(nil))
-}
-
-func (i *userFortitokenPtrType) ToUserFortitokenPtrOutput() UserFortitokenPtrOutput {
-	return i.ToUserFortitokenPtrOutputWithContext(context.Background())
-}
-
-func (i *userFortitokenPtrType) ToUserFortitokenPtrOutputWithContext(ctx context.Context) UserFortitokenPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenPtrOutput)
 }
 
 // UserFortitokenArrayInput is an input type that accepts UserFortitokenArray and UserFortitokenArrayOutput values.
@@ -237,7 +209,7 @@ type UserFortitokenArrayInput interface {
 type UserFortitokenArray []UserFortitokenInput
 
 func (UserFortitokenArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserFortitoken)(nil))
+	return reflect.TypeOf((*[]*UserFortitoken)(nil)).Elem()
 }
 
 func (i UserFortitokenArray) ToUserFortitokenArrayOutput() UserFortitokenArrayOutput {
@@ -262,7 +234,7 @@ type UserFortitokenMapInput interface {
 type UserFortitokenMap map[string]UserFortitokenInput
 
 func (UserFortitokenMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserFortitoken)(nil))
+	return reflect.TypeOf((*map[string]*UserFortitoken)(nil)).Elem()
 }
 
 func (i UserFortitokenMap) ToUserFortitokenMapOutput() UserFortitokenMapOutput {
@@ -273,12 +245,10 @@ func (i UserFortitokenMap) ToUserFortitokenMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(UserFortitokenMapOutput)
 }
 
-type UserFortitokenOutput struct {
-	*pulumi.OutputState
-}
+type UserFortitokenOutput struct{ *pulumi.OutputState }
 
 func (UserFortitokenOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFortitoken)(nil))
+	return reflect.TypeOf((**UserFortitoken)(nil)).Elem()
 }
 
 func (o UserFortitokenOutput) ToUserFortitokenOutput() UserFortitokenOutput {
@@ -289,36 +259,10 @@ func (o UserFortitokenOutput) ToUserFortitokenOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o UserFortitokenOutput) ToUserFortitokenPtrOutput() UserFortitokenPtrOutput {
-	return o.ToUserFortitokenPtrOutputWithContext(context.Background())
-}
-
-func (o UserFortitokenOutput) ToUserFortitokenPtrOutputWithContext(ctx context.Context) UserFortitokenPtrOutput {
-	return o.ApplyT(func(v UserFortitoken) *UserFortitoken {
-		return &v
-	}).(UserFortitokenPtrOutput)
-}
-
-type UserFortitokenPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserFortitokenPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFortitoken)(nil))
-}
-
-func (o UserFortitokenPtrOutput) ToUserFortitokenPtrOutput() UserFortitokenPtrOutput {
-	return o
-}
-
-func (o UserFortitokenPtrOutput) ToUserFortitokenPtrOutputWithContext(ctx context.Context) UserFortitokenPtrOutput {
-	return o
-}
-
 type UserFortitokenArrayOutput struct{ *pulumi.OutputState }
 
 func (UserFortitokenArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserFortitoken)(nil))
+	return reflect.TypeOf((*[]*UserFortitoken)(nil)).Elem()
 }
 
 func (o UserFortitokenArrayOutput) ToUserFortitokenArrayOutput() UserFortitokenArrayOutput {
@@ -330,15 +274,15 @@ func (o UserFortitokenArrayOutput) ToUserFortitokenArrayOutputWithContext(ctx co
 }
 
 func (o UserFortitokenArrayOutput) Index(i pulumi.IntInput) UserFortitokenOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFortitoken {
-		return vs[0].([]UserFortitoken)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFortitoken {
+		return vs[0].([]*UserFortitoken)[vs[1].(int)]
 	}).(UserFortitokenOutput)
 }
 
 type UserFortitokenMapOutput struct{ *pulumi.OutputState }
 
 func (UserFortitokenMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserFortitoken)(nil))
+	return reflect.TypeOf((*map[string]*UserFortitoken)(nil)).Elem()
 }
 
 func (o UserFortitokenMapOutput) ToUserFortitokenMapOutput() UserFortitokenMapOutput {
@@ -350,14 +294,16 @@ func (o UserFortitokenMapOutput) ToUserFortitokenMapOutputWithContext(ctx contex
 }
 
 func (o UserFortitokenMapOutput) MapIndex(k pulumi.StringInput) UserFortitokenOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserFortitoken {
-		return vs[0].(map[string]UserFortitoken)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserFortitoken {
+		return vs[0].(map[string]*UserFortitoken)[vs[1].(string)]
 	}).(UserFortitokenOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFortitokenInput)(nil)).Elem(), &UserFortitoken{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFortitokenArrayInput)(nil)).Elem(), UserFortitokenArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFortitokenMapInput)(nil)).Elem(), UserFortitokenMap{})
 	pulumi.RegisterOutputType(UserFortitokenOutput{})
-	pulumi.RegisterOutputType(UserFortitokenPtrOutput{})
 	pulumi.RegisterOutputType(UserFortitokenArrayOutput{})
 	pulumi.RegisterOutputType(UserFortitokenMapOutput{})
 }

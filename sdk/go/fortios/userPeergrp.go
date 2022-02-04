@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -35,8 +36,8 @@ import (
 // 			return err
 // 		}
 // 		_, err = fortios.NewUserPeergrp(ctx, "trname", &fortios.UserPeergrpArgs{
-// 			Members: fortios.UserPeergrpMemberArray{
-// 				&fortios.UserPeergrpMemberArgs{
+// 			Members: UserPeergrpMemberArray{
+// 				&UserPeergrpMemberArgs{
 // 					Name: trname2.Name,
 // 				},
 // 			},
@@ -78,6 +79,7 @@ func NewUserPeergrp(ctx *pulumi.Context,
 		args = &UserPeergrpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserPeergrp
 	err := ctx.RegisterResource("fortios:index/userPeergrp:UserPeergrp", name, args, &resource, opts...)
 	if err != nil {
@@ -160,7 +162,7 @@ type UserPeergrpInput interface {
 }
 
 func (*UserPeergrp) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPeergrp)(nil))
+	return reflect.TypeOf((**UserPeergrp)(nil)).Elem()
 }
 
 func (i *UserPeergrp) ToUserPeergrpOutput() UserPeergrpOutput {
@@ -169,35 +171,6 @@ func (i *UserPeergrp) ToUserPeergrpOutput() UserPeergrpOutput {
 
 func (i *UserPeergrp) ToUserPeergrpOutputWithContext(ctx context.Context) UserPeergrpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpOutput)
-}
-
-func (i *UserPeergrp) ToUserPeergrpPtrOutput() UserPeergrpPtrOutput {
-	return i.ToUserPeergrpPtrOutputWithContext(context.Background())
-}
-
-func (i *UserPeergrp) ToUserPeergrpPtrOutputWithContext(ctx context.Context) UserPeergrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpPtrOutput)
-}
-
-type UserPeergrpPtrInput interface {
-	pulumi.Input
-
-	ToUserPeergrpPtrOutput() UserPeergrpPtrOutput
-	ToUserPeergrpPtrOutputWithContext(ctx context.Context) UserPeergrpPtrOutput
-}
-
-type userPeergrpPtrType UserPeergrpArgs
-
-func (*userPeergrpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPeergrp)(nil))
-}
-
-func (i *userPeergrpPtrType) ToUserPeergrpPtrOutput() UserPeergrpPtrOutput {
-	return i.ToUserPeergrpPtrOutputWithContext(context.Background())
-}
-
-func (i *userPeergrpPtrType) ToUserPeergrpPtrOutputWithContext(ctx context.Context) UserPeergrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpPtrOutput)
 }
 
 // UserPeergrpArrayInput is an input type that accepts UserPeergrpArray and UserPeergrpArrayOutput values.
@@ -214,7 +187,7 @@ type UserPeergrpArrayInput interface {
 type UserPeergrpArray []UserPeergrpInput
 
 func (UserPeergrpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserPeergrp)(nil))
+	return reflect.TypeOf((*[]*UserPeergrp)(nil)).Elem()
 }
 
 func (i UserPeergrpArray) ToUserPeergrpArrayOutput() UserPeergrpArrayOutput {
@@ -239,7 +212,7 @@ type UserPeergrpMapInput interface {
 type UserPeergrpMap map[string]UserPeergrpInput
 
 func (UserPeergrpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserPeergrp)(nil))
+	return reflect.TypeOf((*map[string]*UserPeergrp)(nil)).Elem()
 }
 
 func (i UserPeergrpMap) ToUserPeergrpMapOutput() UserPeergrpMapOutput {
@@ -250,12 +223,10 @@ func (i UserPeergrpMap) ToUserPeergrpMapOutputWithContext(ctx context.Context) U
 	return pulumi.ToOutputWithContext(ctx, i).(UserPeergrpMapOutput)
 }
 
-type UserPeergrpOutput struct {
-	*pulumi.OutputState
-}
+type UserPeergrpOutput struct{ *pulumi.OutputState }
 
 func (UserPeergrpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserPeergrp)(nil))
+	return reflect.TypeOf((**UserPeergrp)(nil)).Elem()
 }
 
 func (o UserPeergrpOutput) ToUserPeergrpOutput() UserPeergrpOutput {
@@ -266,36 +237,10 @@ func (o UserPeergrpOutput) ToUserPeergrpOutputWithContext(ctx context.Context) U
 	return o
 }
 
-func (o UserPeergrpOutput) ToUserPeergrpPtrOutput() UserPeergrpPtrOutput {
-	return o.ToUserPeergrpPtrOutputWithContext(context.Background())
-}
-
-func (o UserPeergrpOutput) ToUserPeergrpPtrOutputWithContext(ctx context.Context) UserPeergrpPtrOutput {
-	return o.ApplyT(func(v UserPeergrp) *UserPeergrp {
-		return &v
-	}).(UserPeergrpPtrOutput)
-}
-
-type UserPeergrpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserPeergrpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserPeergrp)(nil))
-}
-
-func (o UserPeergrpPtrOutput) ToUserPeergrpPtrOutput() UserPeergrpPtrOutput {
-	return o
-}
-
-func (o UserPeergrpPtrOutput) ToUserPeergrpPtrOutputWithContext(ctx context.Context) UserPeergrpPtrOutput {
-	return o
-}
-
 type UserPeergrpArrayOutput struct{ *pulumi.OutputState }
 
 func (UserPeergrpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserPeergrp)(nil))
+	return reflect.TypeOf((*[]*UserPeergrp)(nil)).Elem()
 }
 
 func (o UserPeergrpArrayOutput) ToUserPeergrpArrayOutput() UserPeergrpArrayOutput {
@@ -307,15 +252,15 @@ func (o UserPeergrpArrayOutput) ToUserPeergrpArrayOutputWithContext(ctx context.
 }
 
 func (o UserPeergrpArrayOutput) Index(i pulumi.IntInput) UserPeergrpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserPeergrp {
-		return vs[0].([]UserPeergrp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserPeergrp {
+		return vs[0].([]*UserPeergrp)[vs[1].(int)]
 	}).(UserPeergrpOutput)
 }
 
 type UserPeergrpMapOutput struct{ *pulumi.OutputState }
 
 func (UserPeergrpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserPeergrp)(nil))
+	return reflect.TypeOf((*map[string]*UserPeergrp)(nil)).Elem()
 }
 
 func (o UserPeergrpMapOutput) ToUserPeergrpMapOutput() UserPeergrpMapOutput {
@@ -327,14 +272,16 @@ func (o UserPeergrpMapOutput) ToUserPeergrpMapOutputWithContext(ctx context.Cont
 }
 
 func (o UserPeergrpMapOutput) MapIndex(k pulumi.StringInput) UserPeergrpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserPeergrp {
-		return vs[0].(map[string]UserPeergrp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserPeergrp {
+		return vs[0].(map[string]*UserPeergrp)[vs[1].(string)]
 	}).(UserPeergrpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeergrpInput)(nil)).Elem(), &UserPeergrp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeergrpArrayInput)(nil)).Elem(), UserPeergrpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserPeergrpMapInput)(nil)).Elem(), UserPeergrpMap{})
 	pulumi.RegisterOutputType(UserPeergrpOutput{})
-	pulumi.RegisterOutputType(UserPeergrpPtrOutput{})
 	pulumi.RegisterOutputType(UserPeergrpArrayOutput{})
 	pulumi.RegisterOutputType(UserPeergrpMapOutput{})
 }

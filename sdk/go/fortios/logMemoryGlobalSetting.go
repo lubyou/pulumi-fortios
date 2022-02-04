@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewLogMemoryGlobalSetting(ctx *pulumi.Context,
 		args = &LogMemoryGlobalSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogMemoryGlobalSetting
 	err := ctx.RegisterResource("fortios:index/logMemoryGlobalSetting:LogMemoryGlobalSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -159,7 +160,7 @@ type LogMemoryGlobalSettingInput interface {
 }
 
 func (*LogMemoryGlobalSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogMemoryGlobalSetting)(nil))
+	return reflect.TypeOf((**LogMemoryGlobalSetting)(nil)).Elem()
 }
 
 func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingOutput() LogMemoryGlobalSettingOutput {
@@ -168,35 +169,6 @@ func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingOutput() LogMemoryGloba
 
 func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingOutputWithContext(ctx context.Context) LogMemoryGlobalSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingOutput)
-}
-
-func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingPtrOutput() LogMemoryGlobalSettingPtrOutput {
-	return i.ToLogMemoryGlobalSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogMemoryGlobalSetting) ToLogMemoryGlobalSettingPtrOutputWithContext(ctx context.Context) LogMemoryGlobalSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingPtrOutput)
-}
-
-type LogMemoryGlobalSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogMemoryGlobalSettingPtrOutput() LogMemoryGlobalSettingPtrOutput
-	ToLogMemoryGlobalSettingPtrOutputWithContext(ctx context.Context) LogMemoryGlobalSettingPtrOutput
-}
-
-type logMemoryGlobalSettingPtrType LogMemoryGlobalSettingArgs
-
-func (*logMemoryGlobalSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogMemoryGlobalSetting)(nil))
-}
-
-func (i *logMemoryGlobalSettingPtrType) ToLogMemoryGlobalSettingPtrOutput() LogMemoryGlobalSettingPtrOutput {
-	return i.ToLogMemoryGlobalSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logMemoryGlobalSettingPtrType) ToLogMemoryGlobalSettingPtrOutputWithContext(ctx context.Context) LogMemoryGlobalSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingPtrOutput)
 }
 
 // LogMemoryGlobalSettingArrayInput is an input type that accepts LogMemoryGlobalSettingArray and LogMemoryGlobalSettingArrayOutput values.
@@ -213,7 +185,7 @@ type LogMemoryGlobalSettingArrayInput interface {
 type LogMemoryGlobalSettingArray []LogMemoryGlobalSettingInput
 
 func (LogMemoryGlobalSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogMemoryGlobalSetting)(nil))
+	return reflect.TypeOf((*[]*LogMemoryGlobalSetting)(nil)).Elem()
 }
 
 func (i LogMemoryGlobalSettingArray) ToLogMemoryGlobalSettingArrayOutput() LogMemoryGlobalSettingArrayOutput {
@@ -238,7 +210,7 @@ type LogMemoryGlobalSettingMapInput interface {
 type LogMemoryGlobalSettingMap map[string]LogMemoryGlobalSettingInput
 
 func (LogMemoryGlobalSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogMemoryGlobalSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogMemoryGlobalSetting)(nil)).Elem()
 }
 
 func (i LogMemoryGlobalSettingMap) ToLogMemoryGlobalSettingMapOutput() LogMemoryGlobalSettingMapOutput {
@@ -249,12 +221,10 @@ func (i LogMemoryGlobalSettingMap) ToLogMemoryGlobalSettingMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemoryGlobalSettingMapOutput)
 }
 
-type LogMemoryGlobalSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogMemoryGlobalSettingOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryGlobalSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogMemoryGlobalSetting)(nil))
+	return reflect.TypeOf((**LogMemoryGlobalSetting)(nil)).Elem()
 }
 
 func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingOutput() LogMemoryGlobalSettingOutput {
@@ -265,36 +235,10 @@ func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingOutputWithContext(
 	return o
 }
 
-func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingPtrOutput() LogMemoryGlobalSettingPtrOutput {
-	return o.ToLogMemoryGlobalSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogMemoryGlobalSettingOutput) ToLogMemoryGlobalSettingPtrOutputWithContext(ctx context.Context) LogMemoryGlobalSettingPtrOutput {
-	return o.ApplyT(func(v LogMemoryGlobalSetting) *LogMemoryGlobalSetting {
-		return &v
-	}).(LogMemoryGlobalSettingPtrOutput)
-}
-
-type LogMemoryGlobalSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogMemoryGlobalSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogMemoryGlobalSetting)(nil))
-}
-
-func (o LogMemoryGlobalSettingPtrOutput) ToLogMemoryGlobalSettingPtrOutput() LogMemoryGlobalSettingPtrOutput {
-	return o
-}
-
-func (o LogMemoryGlobalSettingPtrOutput) ToLogMemoryGlobalSettingPtrOutputWithContext(ctx context.Context) LogMemoryGlobalSettingPtrOutput {
-	return o
-}
-
 type LogMemoryGlobalSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryGlobalSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogMemoryGlobalSetting)(nil))
+	return reflect.TypeOf((*[]*LogMemoryGlobalSetting)(nil)).Elem()
 }
 
 func (o LogMemoryGlobalSettingArrayOutput) ToLogMemoryGlobalSettingArrayOutput() LogMemoryGlobalSettingArrayOutput {
@@ -306,15 +250,15 @@ func (o LogMemoryGlobalSettingArrayOutput) ToLogMemoryGlobalSettingArrayOutputWi
 }
 
 func (o LogMemoryGlobalSettingArrayOutput) Index(i pulumi.IntInput) LogMemoryGlobalSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogMemoryGlobalSetting {
-		return vs[0].([]LogMemoryGlobalSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogMemoryGlobalSetting {
+		return vs[0].([]*LogMemoryGlobalSetting)[vs[1].(int)]
 	}).(LogMemoryGlobalSettingOutput)
 }
 
 type LogMemoryGlobalSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogMemoryGlobalSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogMemoryGlobalSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogMemoryGlobalSetting)(nil)).Elem()
 }
 
 func (o LogMemoryGlobalSettingMapOutput) ToLogMemoryGlobalSettingMapOutput() LogMemoryGlobalSettingMapOutput {
@@ -326,14 +270,16 @@ func (o LogMemoryGlobalSettingMapOutput) ToLogMemoryGlobalSettingMapOutputWithCo
 }
 
 func (o LogMemoryGlobalSettingMapOutput) MapIndex(k pulumi.StringInput) LogMemoryGlobalSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogMemoryGlobalSetting {
-		return vs[0].(map[string]LogMemoryGlobalSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogMemoryGlobalSetting {
+		return vs[0].(map[string]*LogMemoryGlobalSetting)[vs[1].(string)]
 	}).(LogMemoryGlobalSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemoryGlobalSettingInput)(nil)).Elem(), &LogMemoryGlobalSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemoryGlobalSettingArrayInput)(nil)).Elem(), LogMemoryGlobalSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemoryGlobalSettingMapInput)(nil)).Elem(), LogMemoryGlobalSettingMap{})
 	pulumi.RegisterOutputType(LogMemoryGlobalSettingOutput{})
-	pulumi.RegisterOutputType(LogMemoryGlobalSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogMemoryGlobalSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogMemoryGlobalSettingMapOutput{})
 }

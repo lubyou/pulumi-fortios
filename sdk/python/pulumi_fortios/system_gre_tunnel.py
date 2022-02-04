@@ -30,6 +30,7 @@ class SystemGreTunnelArgs:
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  sequence_number_reception: Optional[pulumi.Input[str]] = None,
                  sequence_number_transmission: Optional[pulumi.Input[str]] = None,
+                 use_sdwan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemGreTunnel resource.
@@ -50,6 +51,7 @@ class SystemGreTunnelArgs:
         :param pulumi.Input[str] remote_gw6: IPv6 address of the remote gateway.
         :param pulumi.Input[str] sequence_number_reception: Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sequence_number_transmission: Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] use_sdwan: Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "local_gw", local_gw)
@@ -84,6 +86,8 @@ class SystemGreTunnelArgs:
             pulumi.set(__self__, "sequence_number_reception", sequence_number_reception)
         if sequence_number_transmission is not None:
             pulumi.set(__self__, "sequence_number_transmission", sequence_number_transmission)
+        if use_sdwan is not None:
+            pulumi.set(__self__, "use_sdwan", use_sdwan)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -292,6 +296,18 @@ class SystemGreTunnelArgs:
         pulumi.set(self, "sequence_number_transmission", value)
 
     @property
+    @pulumi.getter(name="useSdwan")
+    def use_sdwan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "use_sdwan")
+
+    @use_sdwan.setter
+    def use_sdwan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "use_sdwan", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -324,6 +340,7 @@ class _SystemGreTunnelState:
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  sequence_number_reception: Optional[pulumi.Input[str]] = None,
                  sequence_number_transmission: Optional[pulumi.Input[str]] = None,
+                 use_sdwan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemGreTunnel resources.
@@ -344,6 +361,7 @@ class _SystemGreTunnelState:
         :param pulumi.Input[str] remote_gw6: IPv6 address of the remote gateway.
         :param pulumi.Input[str] sequence_number_reception: Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sequence_number_transmission: Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] use_sdwan: Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if checksum_reception is not None:
@@ -380,6 +398,8 @@ class _SystemGreTunnelState:
             pulumi.set(__self__, "sequence_number_reception", sequence_number_reception)
         if sequence_number_transmission is not None:
             pulumi.set(__self__, "sequence_number_transmission", sequence_number_transmission)
+        if use_sdwan is not None:
+            pulumi.set(__self__, "use_sdwan", use_sdwan)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -588,6 +608,18 @@ class _SystemGreTunnelState:
         pulumi.set(self, "sequence_number_transmission", value)
 
     @property
+    @pulumi.getter(name="useSdwan")
+    def use_sdwan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "use_sdwan")
+
+    @use_sdwan.setter
+    def use_sdwan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "use_sdwan", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -622,6 +654,7 @@ class SystemGreTunnel(pulumi.CustomResource):
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  sequence_number_reception: Optional[pulumi.Input[str]] = None,
                  sequence_number_transmission: Optional[pulumi.Input[str]] = None,
+                 use_sdwan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -680,6 +713,7 @@ class SystemGreTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] remote_gw6: IPv6 address of the remote gateway.
         :param pulumi.Input[str] sequence_number_reception: Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sequence_number_transmission: Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] use_sdwan: Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -757,6 +791,7 @@ class SystemGreTunnel(pulumi.CustomResource):
                  remote_gw6: Optional[pulumi.Input[str]] = None,
                  sequence_number_reception: Optional[pulumi.Input[str]] = None,
                  sequence_number_transmission: Optional[pulumi.Input[str]] = None,
+                 use_sdwan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -765,6 +800,8 @@ class SystemGreTunnel(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -791,6 +828,7 @@ class SystemGreTunnel(pulumi.CustomResource):
             __props__.__dict__["remote_gw6"] = remote_gw6
             __props__.__dict__["sequence_number_reception"] = sequence_number_reception
             __props__.__dict__["sequence_number_transmission"] = sequence_number_transmission
+            __props__.__dict__["use_sdwan"] = use_sdwan
             __props__.__dict__["vdomparam"] = vdomparam
         super(SystemGreTunnel, __self__).__init__(
             'fortios:index/systemGreTunnel:SystemGreTunnel',
@@ -819,6 +857,7 @@ class SystemGreTunnel(pulumi.CustomResource):
             remote_gw6: Optional[pulumi.Input[str]] = None,
             sequence_number_reception: Optional[pulumi.Input[str]] = None,
             sequence_number_transmission: Optional[pulumi.Input[str]] = None,
+            use_sdwan: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemGreTunnel':
         """
         Get an existing SystemGreTunnel resource's state with the given name, id, and optional extra
@@ -844,6 +883,7 @@ class SystemGreTunnel(pulumi.CustomResource):
         :param pulumi.Input[str] remote_gw6: IPv6 address of the remote gateway.
         :param pulumi.Input[str] sequence_number_reception: Enable/disable validating sequence numbers in received GRE packets. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] sequence_number_transmission: Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] use_sdwan: Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -867,6 +907,7 @@ class SystemGreTunnel(pulumi.CustomResource):
         __props__.__dict__["remote_gw6"] = remote_gw6
         __props__.__dict__["sequence_number_reception"] = sequence_number_reception
         __props__.__dict__["sequence_number_transmission"] = sequence_number_transmission
+        __props__.__dict__["use_sdwan"] = use_sdwan
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemGreTunnel(resource_name, opts=opts, __props__=__props__)
 
@@ -1005,6 +1046,14 @@ class SystemGreTunnel(pulumi.CustomResource):
         Enable/disable including of sequence numbers in transmitted GRE packets. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "sequence_number_transmission")
+
+    @property
+    @pulumi.getter(name="useSdwan")
+    def use_sdwan(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "use_sdwan")
 
     @property
     @pulumi.getter

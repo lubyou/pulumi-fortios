@@ -26,8 +26,11 @@ class SystemSdnConnectorArgs:
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 external_account_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]]] = None,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalIpArgs']]]] = None,
+                 forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -49,6 +52,7 @@ class SystemSdnConnectorArgs:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  subscription_id: Optional[pulumi.Input[str]] = None,
@@ -61,6 +65,7 @@ class SystemSdnConnectorArgs:
                  vcenter_server: Optional[pulumi.Input[str]] = None,
                  vcenter_username: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_certificate: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemSdnConnector resource.
@@ -75,14 +80,17 @@ class SystemSdnConnectorArgs:
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]] external_account_lists: Configure AWS external account list. The structure of `external_account_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalIpArgs']]] external_ips: Configure GCP external IP. The structure of `external_ip` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] ibm_region: IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region: IBM cloud region name.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
-        :param pulumi.Input[str] name: Route name.
+        :param pulumi.Input[str] name: GCP zone name.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorNicArgs']]] nics: Configure Azure network interface. The structure of `nic` block is documented below.
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
@@ -98,6 +106,7 @@ class SystemSdnConnectorArgs:
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
         :param pulumi.Input[str] subscription_id: Subscription ID of Azure route table.
@@ -110,6 +119,7 @@ class SystemSdnConnectorArgs:
         :param pulumi.Input[str] vcenter_server: vCenter server address for NSX quarantine.
         :param pulumi.Input[str] vcenter_username: vCenter server username for NSX quarantine.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_certificate: Enable/disable server certificate verification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vpc_id: AWS VPC ID.
         """
         pulumi.set(__self__, "status", status)
@@ -132,10 +142,16 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "domain", domain)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if external_account_lists is not None:
+            pulumi.set(__self__, "external_account_lists", external_account_lists)
         if external_ips is not None:
             pulumi.set(__self__, "external_ips", external_ips)
+        if forwarding_rules is not None:
+            pulumi.set(__self__, "forwarding_rules", forwarding_rules)
         if gcp_project is not None:
             pulumi.set(__self__, "gcp_project", gcp_project)
+        if gcp_project_lists is not None:
+            pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if ha_status is not None:
@@ -178,6 +194,8 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "secret_token", secret_token)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_lists is not None:
+            pulumi.set(__self__, "server_lists", server_lists)
         if server_port is not None:
             pulumi.set(__self__, "server_port", server_port)
         if service_account is not None:
@@ -202,6 +220,8 @@ class SystemSdnConnectorArgs:
             pulumi.set(__self__, "vcenter_username", vcenter_username)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if verify_certificate is not None:
+            pulumi.set(__self__, "verify_certificate", verify_certificate)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -338,6 +358,18 @@ class SystemSdnConnectorArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="externalAccountLists")
+    def external_account_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]]]:
+        """
+        Configure AWS external account list. The structure of `external_account_list` block is documented below.
+        """
+        return pulumi.get(self, "external_account_lists")
+
+    @external_account_lists.setter
+    def external_account_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]]]):
+        pulumi.set(self, "external_account_lists", value)
+
+    @property
     @pulumi.getter(name="externalIps")
     def external_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalIpArgs']]]]:
         """
@@ -350,6 +382,18 @@ class SystemSdnConnectorArgs:
         pulumi.set(self, "external_ips", value)
 
     @property
+    @pulumi.getter(name="forwardingRules")
+    def forwarding_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]]:
+        """
+        Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
+        """
+        return pulumi.get(self, "forwarding_rules")
+
+    @forwarding_rules.setter
+    def forwarding_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]]):
+        pulumi.set(self, "forwarding_rules", value)
+
+    @property
     @pulumi.getter(name="gcpProject")
     def gcp_project(self) -> Optional[pulumi.Input[str]]:
         """
@@ -360,6 +404,18 @@ class SystemSdnConnectorArgs:
     @gcp_project.setter
     def gcp_project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gcp_project", value)
+
+    @property
+    @pulumi.getter(name="gcpProjectLists")
+    def gcp_project_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]]:
+        """
+        Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        """
+        return pulumi.get(self, "gcp_project_lists")
+
+    @gcp_project_lists.setter
+    def gcp_project_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]]):
+        pulumi.set(self, "gcp_project_lists", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -389,7 +445,7 @@ class SystemSdnConnectorArgs:
     @pulumi.getter(name="ibmRegion")
     def ibm_region(self) -> Optional[pulumi.Input[str]]:
         """
-        IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        IBM cloud region name.
         """
         return pulumi.get(self, "ibm_region")
 
@@ -425,7 +481,7 @@ class SystemSdnConnectorArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -612,6 +668,18 @@ class SystemSdnConnectorArgs:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]]:
+        """
+        Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @server_lists.setter
+    def server_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]]):
+        pulumi.set(self, "server_lists", value)
 
     @property
     @pulumi.getter(name="serverPort")
@@ -758,6 +826,18 @@ class SystemSdnConnectorArgs:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="verifyCertificate")
+    def verify_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "verify_certificate")
+
+    @verify_certificate.setter
+    def verify_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify_certificate", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -782,8 +862,11 @@ class _SystemSdnConnectorState:
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 external_account_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]]] = None,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalIpArgs']]]] = None,
+                 forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -805,6 +888,7 @@ class _SystemSdnConnectorState:
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -819,6 +903,7 @@ class _SystemSdnConnectorState:
                  vcenter_server: Optional[pulumi.Input[str]] = None,
                  vcenter_username: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_certificate: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemSdnConnector resources.
@@ -831,14 +916,17 @@ class _SystemSdnConnectorState:
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]] external_account_lists: Configure AWS external account list. The structure of `external_account_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalIpArgs']]] external_ips: Configure GCP external IP. The structure of `external_ip` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] ibm_region: IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region: IBM cloud region name.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
-        :param pulumi.Input[str] name: Route name.
+        :param pulumi.Input[str] name: GCP zone name.
         :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorNicArgs']]] nics: Configure Azure network interface. The structure of `nic` block is documented below.
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
@@ -854,6 +942,7 @@ class _SystemSdnConnectorState:
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
         :param pulumi.Input[str] status: Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
@@ -868,6 +957,7 @@ class _SystemSdnConnectorState:
         :param pulumi.Input[str] vcenter_server: vCenter server address for NSX quarantine.
         :param pulumi.Input[str] vcenter_username: vCenter server username for NSX quarantine.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_certificate: Enable/disable server certificate verification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vpc_id: AWS VPC ID.
         """
         if access_key is not None:
@@ -888,10 +978,16 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "domain", domain)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if external_account_lists is not None:
+            pulumi.set(__self__, "external_account_lists", external_account_lists)
         if external_ips is not None:
             pulumi.set(__self__, "external_ips", external_ips)
+        if forwarding_rules is not None:
+            pulumi.set(__self__, "forwarding_rules", forwarding_rules)
         if gcp_project is not None:
             pulumi.set(__self__, "gcp_project", gcp_project)
+        if gcp_project_lists is not None:
+            pulumi.set(__self__, "gcp_project_lists", gcp_project_lists)
         if group_name is not None:
             pulumi.set(__self__, "group_name", group_name)
         if ha_status is not None:
@@ -934,6 +1030,8 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "secret_token", secret_token)
         if server is not None:
             pulumi.set(__self__, "server", server)
+        if server_lists is not None:
+            pulumi.set(__self__, "server_lists", server_lists)
         if server_port is not None:
             pulumi.set(__self__, "server_port", server_port)
         if service_account is not None:
@@ -962,6 +1060,8 @@ class _SystemSdnConnectorState:
             pulumi.set(__self__, "vcenter_username", vcenter_username)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if verify_certificate is not None:
+            pulumi.set(__self__, "verify_certificate", verify_certificate)
         if vpc_id is not None:
             pulumi.set(__self__, "vpc_id", vpc_id)
 
@@ -1074,6 +1174,18 @@ class _SystemSdnConnectorState:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="externalAccountLists")
+    def external_account_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]]]:
+        """
+        Configure AWS external account list. The structure of `external_account_list` block is documented below.
+        """
+        return pulumi.get(self, "external_account_lists")
+
+    @external_account_lists.setter
+    def external_account_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalAccountListArgs']]]]):
+        pulumi.set(self, "external_account_lists", value)
+
+    @property
     @pulumi.getter(name="externalIps")
     def external_ips(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorExternalIpArgs']]]]:
         """
@@ -1086,6 +1198,18 @@ class _SystemSdnConnectorState:
         pulumi.set(self, "external_ips", value)
 
     @property
+    @pulumi.getter(name="forwardingRules")
+    def forwarding_rules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]]:
+        """
+        Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
+        """
+        return pulumi.get(self, "forwarding_rules")
+
+    @forwarding_rules.setter
+    def forwarding_rules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorForwardingRuleArgs']]]]):
+        pulumi.set(self, "forwarding_rules", value)
+
+    @property
     @pulumi.getter(name="gcpProject")
     def gcp_project(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1096,6 +1220,18 @@ class _SystemSdnConnectorState:
     @gcp_project.setter
     def gcp_project(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "gcp_project", value)
+
+    @property
+    @pulumi.getter(name="gcpProjectLists")
+    def gcp_project_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]]:
+        """
+        Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        """
+        return pulumi.get(self, "gcp_project_lists")
+
+    @gcp_project_lists.setter
+    def gcp_project_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorGcpProjectListArgs']]]]):
+        pulumi.set(self, "gcp_project_lists", value)
 
     @property
     @pulumi.getter(name="groupName")
@@ -1125,7 +1261,7 @@ class _SystemSdnConnectorState:
     @pulumi.getter(name="ibmRegion")
     def ibm_region(self) -> Optional[pulumi.Input[str]]:
         """
-        IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        IBM cloud region name.
         """
         return pulumi.get(self, "ibm_region")
 
@@ -1161,7 +1297,7 @@ class _SystemSdnConnectorState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -1348,6 +1484,18 @@ class _SystemSdnConnectorState:
     @server.setter
     def server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "server", value)
+
+    @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]]:
+        """
+        Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @server_lists.setter
+    def server_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemSdnConnectorServerListArgs']]]]):
+        pulumi.set(self, "server_lists", value)
 
     @property
     @pulumi.getter(name="serverPort")
@@ -1518,6 +1666,18 @@ class _SystemSdnConnectorState:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="verifyCertificate")
+    def verify_certificate(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "verify_certificate")
+
+    @verify_certificate.setter
+    def verify_certificate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "verify_certificate", value)
+
+    @property
     @pulumi.getter(name="vpcId")
     def vpc_id(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1544,8 +1704,11 @@ class SystemSdnConnector(pulumi.CustomResource):
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 external_account_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalAccountListArgs']]]]] = None,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalIpArgs']]]]] = None,
+                 forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1567,6 +1730,7 @@ class SystemSdnConnector(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -1581,6 +1745,7 @@ class SystemSdnConnector(pulumi.CustomResource):
                  vcenter_server: Optional[pulumi.Input[str]] = None,
                  vcenter_username: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_certificate: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -1626,14 +1791,17 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalAccountListArgs']]]] external_account_lists: Configure AWS external account list. The structure of `external_account_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalIpArgs']]]] external_ips: Configure GCP external IP. The structure of `external_ip` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] ibm_region: IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region: IBM cloud region name.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
-        :param pulumi.Input[str] name: Route name.
+        :param pulumi.Input[str] name: GCP zone name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorNicArgs']]]] nics: Configure Azure network interface. The structure of `nic` block is documented below.
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
@@ -1649,6 +1817,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
         :param pulumi.Input[str] status: Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
@@ -1663,6 +1832,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[str] vcenter_server: vCenter server address for NSX quarantine.
         :param pulumi.Input[str] vcenter_username: vCenter server username for NSX quarantine.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_certificate: Enable/disable server certificate verification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vpc_id: AWS VPC ID.
         """
         ...
@@ -1727,8 +1897,11 @@ class SystemSdnConnector(pulumi.CustomResource):
                  compute_generation: Optional[pulumi.Input[int]] = None,
                  domain: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 external_account_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalAccountListArgs']]]]] = None,
                  external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalIpArgs']]]]] = None,
+                 forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]]] = None,
                  gcp_project: Optional[pulumi.Input[str]] = None,
+                 gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]]] = None,
                  group_name: Optional[pulumi.Input[str]] = None,
                  ha_status: Optional[pulumi.Input[str]] = None,
                  ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1750,6 +1923,7 @@ class SystemSdnConnector(pulumi.CustomResource):
                  secret_key: Optional[pulumi.Input[str]] = None,
                  secret_token: Optional[pulumi.Input[str]] = None,
                  server: Optional[pulumi.Input[str]] = None,
+                 server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]]] = None,
                  server_port: Optional[pulumi.Input[int]] = None,
                  service_account: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
@@ -1764,6 +1938,7 @@ class SystemSdnConnector(pulumi.CustomResource):
                  vcenter_server: Optional[pulumi.Input[str]] = None,
                  vcenter_username: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 verify_certificate: Optional[pulumi.Input[str]] = None,
                  vpc_id: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -1772,6 +1947,8 @@ class SystemSdnConnector(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1786,8 +1963,11 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["compute_generation"] = compute_generation
             __props__.__dict__["domain"] = domain
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["external_account_lists"] = external_account_lists
             __props__.__dict__["external_ips"] = external_ips
+            __props__.__dict__["forwarding_rules"] = forwarding_rules
             __props__.__dict__["gcp_project"] = gcp_project
+            __props__.__dict__["gcp_project_lists"] = gcp_project_lists
             __props__.__dict__["group_name"] = group_name
             __props__.__dict__["ha_status"] = ha_status
             __props__.__dict__["ibm_region"] = ibm_region
@@ -1809,6 +1989,7 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["secret_key"] = secret_key
             __props__.__dict__["secret_token"] = secret_token
             __props__.__dict__["server"] = server
+            __props__.__dict__["server_lists"] = server_lists
             __props__.__dict__["server_port"] = server_port
             __props__.__dict__["service_account"] = service_account
             if status is None and not opts.urn:
@@ -1827,6 +2008,7 @@ class SystemSdnConnector(pulumi.CustomResource):
             __props__.__dict__["vcenter_server"] = vcenter_server
             __props__.__dict__["vcenter_username"] = vcenter_username
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["verify_certificate"] = verify_certificate
             __props__.__dict__["vpc_id"] = vpc_id
         super(SystemSdnConnector, __self__).__init__(
             'fortios:index/systemSdnConnector:SystemSdnConnector',
@@ -1847,8 +2029,11 @@ class SystemSdnConnector(pulumi.CustomResource):
             compute_generation: Optional[pulumi.Input[int]] = None,
             domain: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            external_account_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalAccountListArgs']]]]] = None,
             external_ips: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalIpArgs']]]]] = None,
+            forwarding_rules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]]] = None,
             gcp_project: Optional[pulumi.Input[str]] = None,
+            gcp_project_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]]] = None,
             group_name: Optional[pulumi.Input[str]] = None,
             ha_status: Optional[pulumi.Input[str]] = None,
             ibm_region: Optional[pulumi.Input[str]] = None,
@@ -1870,6 +2055,7 @@ class SystemSdnConnector(pulumi.CustomResource):
             secret_key: Optional[pulumi.Input[str]] = None,
             secret_token: Optional[pulumi.Input[str]] = None,
             server: Optional[pulumi.Input[str]] = None,
+            server_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]]] = None,
             server_port: Optional[pulumi.Input[int]] = None,
             service_account: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
@@ -1884,6 +2070,7 @@ class SystemSdnConnector(pulumi.CustomResource):
             vcenter_server: Optional[pulumi.Input[str]] = None,
             vcenter_username: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            verify_certificate: Optional[pulumi.Input[str]] = None,
             vpc_id: Optional[pulumi.Input[str]] = None) -> 'SystemSdnConnector':
         """
         Get an existing SystemSdnConnector resource's state with the given name, id, and optional extra
@@ -1901,14 +2088,17 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[int] compute_generation: Compute generation for IBM cloud infrastructure.
         :param pulumi.Input[str] domain: Domain name.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalAccountListArgs']]]] external_account_lists: Configure AWS external account list. The structure of `external_account_list` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorExternalIpArgs']]]] external_ips: Configure GCP external IP. The structure of `external_ip` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorForwardingRuleArgs']]]] forwarding_rules: Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
         :param pulumi.Input[str] gcp_project: GCP project name.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorGcpProjectListArgs']]]] gcp_project_lists: Configure GCP project list. The structure of `gcp_project_list` block is documented below.
         :param pulumi.Input[str] group_name: Group name of computers.
         :param pulumi.Input[str] ha_status: Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
-        :param pulumi.Input[str] ibm_region: IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        :param pulumi.Input[str] ibm_region: IBM cloud region name.
         :param pulumi.Input[str] key_passwd: Private key password.
         :param pulumi.Input[str] login_endpoint: Azure Stack login endpoint.
-        :param pulumi.Input[str] name: Route name.
+        :param pulumi.Input[str] name: GCP zone name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorNicArgs']]]] nics: Configure Azure network interface. The structure of `nic` block is documented below.
         :param pulumi.Input[str] oci_cert: OCI certificate.
         :param pulumi.Input[str] oci_fingerprint: OCI pubkey fingerprint.
@@ -1924,6 +2114,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[str] secret_key: AWS secret access key.
         :param pulumi.Input[str] secret_token: Secret token of Kubernetes service account.
         :param pulumi.Input[str] server: Server address of the remote SDN connector.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemSdnConnectorServerListArgs']]]] server_lists: Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
         :param pulumi.Input[int] server_port: Port number of the remote SDN connector.
         :param pulumi.Input[str] service_account: GCP service account email.
         :param pulumi.Input[str] status: Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
@@ -1938,6 +2129,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         :param pulumi.Input[str] vcenter_server: vCenter server address for NSX quarantine.
         :param pulumi.Input[str] vcenter_username: vCenter server username for NSX quarantine.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] verify_certificate: Enable/disable server certificate verification. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vpc_id: AWS VPC ID.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1953,8 +2145,11 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["compute_generation"] = compute_generation
         __props__.__dict__["domain"] = domain
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["external_account_lists"] = external_account_lists
         __props__.__dict__["external_ips"] = external_ips
+        __props__.__dict__["forwarding_rules"] = forwarding_rules
         __props__.__dict__["gcp_project"] = gcp_project
+        __props__.__dict__["gcp_project_lists"] = gcp_project_lists
         __props__.__dict__["group_name"] = group_name
         __props__.__dict__["ha_status"] = ha_status
         __props__.__dict__["ibm_region"] = ibm_region
@@ -1976,6 +2171,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["secret_key"] = secret_key
         __props__.__dict__["secret_token"] = secret_token
         __props__.__dict__["server"] = server
+        __props__.__dict__["server_lists"] = server_lists
         __props__.__dict__["server_port"] = server_port
         __props__.__dict__["service_account"] = service_account
         __props__.__dict__["status"] = status
@@ -1990,6 +2186,7 @@ class SystemSdnConnector(pulumi.CustomResource):
         __props__.__dict__["vcenter_server"] = vcenter_server
         __props__.__dict__["vcenter_username"] = vcenter_username
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["verify_certificate"] = verify_certificate
         __props__.__dict__["vpc_id"] = vpc_id
         return SystemSdnConnector(resource_name, opts=opts, __props__=__props__)
 
@@ -2066,6 +2263,14 @@ class SystemSdnConnector(pulumi.CustomResource):
         return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
+    @pulumi.getter(name="externalAccountLists")
+    def external_account_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorExternalAccountList']]]:
+        """
+        Configure AWS external account list. The structure of `external_account_list` block is documented below.
+        """
+        return pulumi.get(self, "external_account_lists")
+
+    @property
     @pulumi.getter(name="externalIps")
     def external_ips(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorExternalIp']]]:
         """
@@ -2074,12 +2279,28 @@ class SystemSdnConnector(pulumi.CustomResource):
         return pulumi.get(self, "external_ips")
 
     @property
+    @pulumi.getter(name="forwardingRules")
+    def forwarding_rules(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorForwardingRule']]]:
+        """
+        Configure GCP forwarding rule. The structure of `forwarding_rule` block is documented below.
+        """
+        return pulumi.get(self, "forwarding_rules")
+
+    @property
     @pulumi.getter(name="gcpProject")
     def gcp_project(self) -> pulumi.Output[str]:
         """
         GCP project name.
         """
         return pulumi.get(self, "gcp_project")
+
+    @property
+    @pulumi.getter(name="gcpProjectLists")
+    def gcp_project_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorGcpProjectList']]]:
+        """
+        Configure GCP project list. The structure of `gcp_project_list` block is documented below.
+        """
+        return pulumi.get(self, "gcp_project_lists")
 
     @property
     @pulumi.getter(name="groupName")
@@ -2101,7 +2322,7 @@ class SystemSdnConnector(pulumi.CustomResource):
     @pulumi.getter(name="ibmRegion")
     def ibm_region(self) -> pulumi.Output[str]:
         """
-        IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
+        IBM cloud region name.
         """
         return pulumi.get(self, "ibm_region")
 
@@ -2125,7 +2346,7 @@ class SystemSdnConnector(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Route name.
+        GCP zone name.
         """
         return pulumi.get(self, "name")
 
@@ -2250,6 +2471,14 @@ class SystemSdnConnector(pulumi.CustomResource):
         return pulumi.get(self, "server")
 
     @property
+    @pulumi.getter(name="serverLists")
+    def server_lists(self) -> pulumi.Output[Optional[Sequence['outputs.SystemSdnConnectorServerList']]]:
+        """
+        Server address list of the remote SDN connector. The structure of `server_list` block is documented below.
+        """
+        return pulumi.get(self, "server_lists")
+
+    @property
     @pulumi.getter(name="serverPort")
     def server_port(self) -> pulumi.Output[int]:
         """
@@ -2360,6 +2589,14 @@ class SystemSdnConnector(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="verifyCertificate")
+    def verify_certificate(self) -> pulumi.Output[str]:
+        """
+        Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "verify_certificate")
 
     @property
     @pulumi.getter(name="vpcId")

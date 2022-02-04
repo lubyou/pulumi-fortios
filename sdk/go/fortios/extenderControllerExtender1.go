@@ -21,6 +21,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -29,15 +30,15 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewExtenderControllerExtender1(ctx, "trname", &fortios.ExtenderControllerExtender1Args{
 // 			Authorized: pulumi.String("disable"),
-// 			ControllerReport: &fortios.ExtenderControllerExtender1ControllerReportArgs{
+// 			ControllerReport: &ExtenderControllerExtender1ControllerReportArgs{
 // 				Interval:        pulumi.Int(300),
 // 				SignalThreshold: pulumi.Int(10),
 // 				Status:          pulumi.String("disable"),
 // 			},
 // 			ExtName: pulumi.String("2932"),
 // 			Fosid:   pulumi.String("FX201E5919004031"),
-// 			Modem1: &fortios.ExtenderControllerExtender1Modem1Args{
-// 				AutoSwitch: &fortios.ExtenderControllerExtender1Modem1AutoSwitchArgs{
+// 			Modem1: &ExtenderControllerExtender1Modem1Args{
+// 				AutoSwitch: &ExtenderControllerExtender1Modem1AutoSwitchArgs{
 // 					Dataplan:            pulumi.String("disable"),
 // 					Disconnect:          pulumi.String("disable"),
 // 					DisconnectPeriod:    pulumi.Int(600),
@@ -56,8 +57,8 @@ import (
 // 				Sim1PinCode:   pulumi.String("testpincode"),
 // 				Sim2Pin:       pulumi.String("disable"),
 // 			},
-// 			Modem2: &fortios.ExtenderControllerExtender1Modem2Args{
-// 				AutoSwitch: &fortios.ExtenderControllerExtender1Modem2AutoSwitchArgs{
+// 			Modem2: &ExtenderControllerExtender1Modem2Args{
+// 				AutoSwitch: &ExtenderControllerExtender1Modem2AutoSwitchArgs{
 // 					Dataplan:            pulumi.String("disable"),
 // 					Disconnect:          pulumi.String("disable"),
 // 					DisconnectPeriod:    pulumi.Int(600),
@@ -129,6 +130,7 @@ func NewExtenderControllerExtender1(ctx *pulumi.Context,
 	if args.Authorized == nil {
 		return nil, errors.New("invalid value for required argument 'Authorized'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtender1
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtender1:ExtenderControllerExtender1", name, args, &resource, opts...)
 	if err != nil {
@@ -267,7 +269,7 @@ type ExtenderControllerExtender1Input interface {
 }
 
 func (*ExtenderControllerExtender1) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExtenderControllerExtender1)(nil))
+	return reflect.TypeOf((**ExtenderControllerExtender1)(nil)).Elem()
 }
 
 func (i *ExtenderControllerExtender1) ToExtenderControllerExtender1Output() ExtenderControllerExtender1Output {
@@ -276,35 +278,6 @@ func (i *ExtenderControllerExtender1) ToExtenderControllerExtender1Output() Exte
 
 func (i *ExtenderControllerExtender1) ToExtenderControllerExtender1OutputWithContext(ctx context.Context) ExtenderControllerExtender1Output {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtender1Output)
-}
-
-func (i *ExtenderControllerExtender1) ToExtenderControllerExtender1PtrOutput() ExtenderControllerExtender1PtrOutput {
-	return i.ToExtenderControllerExtender1PtrOutputWithContext(context.Background())
-}
-
-func (i *ExtenderControllerExtender1) ToExtenderControllerExtender1PtrOutputWithContext(ctx context.Context) ExtenderControllerExtender1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtender1PtrOutput)
-}
-
-type ExtenderControllerExtender1PtrInput interface {
-	pulumi.Input
-
-	ToExtenderControllerExtender1PtrOutput() ExtenderControllerExtender1PtrOutput
-	ToExtenderControllerExtender1PtrOutputWithContext(ctx context.Context) ExtenderControllerExtender1PtrOutput
-}
-
-type extenderControllerExtender1PtrType ExtenderControllerExtender1Args
-
-func (*extenderControllerExtender1PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExtenderControllerExtender1)(nil))
-}
-
-func (i *extenderControllerExtender1PtrType) ToExtenderControllerExtender1PtrOutput() ExtenderControllerExtender1PtrOutput {
-	return i.ToExtenderControllerExtender1PtrOutputWithContext(context.Background())
-}
-
-func (i *extenderControllerExtender1PtrType) ToExtenderControllerExtender1PtrOutputWithContext(ctx context.Context) ExtenderControllerExtender1PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtender1PtrOutput)
 }
 
 // ExtenderControllerExtender1ArrayInput is an input type that accepts ExtenderControllerExtender1Array and ExtenderControllerExtender1ArrayOutput values.
@@ -321,7 +294,7 @@ type ExtenderControllerExtender1ArrayInput interface {
 type ExtenderControllerExtender1Array []ExtenderControllerExtender1Input
 
 func (ExtenderControllerExtender1Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ExtenderControllerExtender1)(nil))
+	return reflect.TypeOf((*[]*ExtenderControllerExtender1)(nil)).Elem()
 }
 
 func (i ExtenderControllerExtender1Array) ToExtenderControllerExtender1ArrayOutput() ExtenderControllerExtender1ArrayOutput {
@@ -346,7 +319,7 @@ type ExtenderControllerExtender1MapInput interface {
 type ExtenderControllerExtender1Map map[string]ExtenderControllerExtender1Input
 
 func (ExtenderControllerExtender1Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ExtenderControllerExtender1)(nil))
+	return reflect.TypeOf((*map[string]*ExtenderControllerExtender1)(nil)).Elem()
 }
 
 func (i ExtenderControllerExtender1Map) ToExtenderControllerExtender1MapOutput() ExtenderControllerExtender1MapOutput {
@@ -357,12 +330,10 @@ func (i ExtenderControllerExtender1Map) ToExtenderControllerExtender1MapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtender1MapOutput)
 }
 
-type ExtenderControllerExtender1Output struct {
-	*pulumi.OutputState
-}
+type ExtenderControllerExtender1Output struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtender1Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExtenderControllerExtender1)(nil))
+	return reflect.TypeOf((**ExtenderControllerExtender1)(nil)).Elem()
 }
 
 func (o ExtenderControllerExtender1Output) ToExtenderControllerExtender1Output() ExtenderControllerExtender1Output {
@@ -373,36 +344,10 @@ func (o ExtenderControllerExtender1Output) ToExtenderControllerExtender1OutputWi
 	return o
 }
 
-func (o ExtenderControllerExtender1Output) ToExtenderControllerExtender1PtrOutput() ExtenderControllerExtender1PtrOutput {
-	return o.ToExtenderControllerExtender1PtrOutputWithContext(context.Background())
-}
-
-func (o ExtenderControllerExtender1Output) ToExtenderControllerExtender1PtrOutputWithContext(ctx context.Context) ExtenderControllerExtender1PtrOutput {
-	return o.ApplyT(func(v ExtenderControllerExtender1) *ExtenderControllerExtender1 {
-		return &v
-	}).(ExtenderControllerExtender1PtrOutput)
-}
-
-type ExtenderControllerExtender1PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ExtenderControllerExtender1PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExtenderControllerExtender1)(nil))
-}
-
-func (o ExtenderControllerExtender1PtrOutput) ToExtenderControllerExtender1PtrOutput() ExtenderControllerExtender1PtrOutput {
-	return o
-}
-
-func (o ExtenderControllerExtender1PtrOutput) ToExtenderControllerExtender1PtrOutputWithContext(ctx context.Context) ExtenderControllerExtender1PtrOutput {
-	return o
-}
-
 type ExtenderControllerExtender1ArrayOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtender1ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ExtenderControllerExtender1)(nil))
+	return reflect.TypeOf((*[]*ExtenderControllerExtender1)(nil)).Elem()
 }
 
 func (o ExtenderControllerExtender1ArrayOutput) ToExtenderControllerExtender1ArrayOutput() ExtenderControllerExtender1ArrayOutput {
@@ -414,15 +359,15 @@ func (o ExtenderControllerExtender1ArrayOutput) ToExtenderControllerExtender1Arr
 }
 
 func (o ExtenderControllerExtender1ArrayOutput) Index(i pulumi.IntInput) ExtenderControllerExtender1Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExtenderControllerExtender1 {
-		return vs[0].([]ExtenderControllerExtender1)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtenderControllerExtender1 {
+		return vs[0].([]*ExtenderControllerExtender1)[vs[1].(int)]
 	}).(ExtenderControllerExtender1Output)
 }
 
 type ExtenderControllerExtender1MapOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtender1MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ExtenderControllerExtender1)(nil))
+	return reflect.TypeOf((*map[string]*ExtenderControllerExtender1)(nil)).Elem()
 }
 
 func (o ExtenderControllerExtender1MapOutput) ToExtenderControllerExtender1MapOutput() ExtenderControllerExtender1MapOutput {
@@ -434,14 +379,16 @@ func (o ExtenderControllerExtender1MapOutput) ToExtenderControllerExtender1MapOu
 }
 
 func (o ExtenderControllerExtender1MapOutput) MapIndex(k pulumi.StringInput) ExtenderControllerExtender1Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ExtenderControllerExtender1 {
-		return vs[0].(map[string]ExtenderControllerExtender1)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ExtenderControllerExtender1 {
+		return vs[0].(map[string]*ExtenderControllerExtender1)[vs[1].(string)]
 	}).(ExtenderControllerExtender1Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerExtender1Input)(nil)).Elem(), &ExtenderControllerExtender1{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerExtender1ArrayInput)(nil)).Elem(), ExtenderControllerExtender1Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerExtender1MapInput)(nil)).Elem(), ExtenderControllerExtender1Map{})
 	pulumi.RegisterOutputType(ExtenderControllerExtender1Output{})
-	pulumi.RegisterOutputType(ExtenderControllerExtender1PtrOutput{})
 	pulumi.RegisterOutputType(ExtenderControllerExtender1ArrayOutput{})
 	pulumi.RegisterOutputType(ExtenderControllerExtender1MapOutput{})
 }

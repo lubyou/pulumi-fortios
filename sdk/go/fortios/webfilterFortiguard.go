@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -92,6 +92,7 @@ func NewWebfilterFortiguard(ctx *pulumi.Context,
 		args = &WebfilterFortiguardArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterFortiguard
 	err := ctx.RegisterResource("fortios:index/webfilterFortiguard:WebfilterFortiguard", name, args, &resource, opts...)
 	if err != nil {
@@ -246,7 +247,7 @@ type WebfilterFortiguardInput interface {
 }
 
 func (*WebfilterFortiguard) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterFortiguard)(nil))
+	return reflect.TypeOf((**WebfilterFortiguard)(nil)).Elem()
 }
 
 func (i *WebfilterFortiguard) ToWebfilterFortiguardOutput() WebfilterFortiguardOutput {
@@ -255,35 +256,6 @@ func (i *WebfilterFortiguard) ToWebfilterFortiguardOutput() WebfilterFortiguardO
 
 func (i *WebfilterFortiguard) ToWebfilterFortiguardOutputWithContext(ctx context.Context) WebfilterFortiguardOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardOutput)
-}
-
-func (i *WebfilterFortiguard) ToWebfilterFortiguardPtrOutput() WebfilterFortiguardPtrOutput {
-	return i.ToWebfilterFortiguardPtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterFortiguard) ToWebfilterFortiguardPtrOutputWithContext(ctx context.Context) WebfilterFortiguardPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardPtrOutput)
-}
-
-type WebfilterFortiguardPtrInput interface {
-	pulumi.Input
-
-	ToWebfilterFortiguardPtrOutput() WebfilterFortiguardPtrOutput
-	ToWebfilterFortiguardPtrOutputWithContext(ctx context.Context) WebfilterFortiguardPtrOutput
-}
-
-type webfilterFortiguardPtrType WebfilterFortiguardArgs
-
-func (*webfilterFortiguardPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterFortiguard)(nil))
-}
-
-func (i *webfilterFortiguardPtrType) ToWebfilterFortiguardPtrOutput() WebfilterFortiguardPtrOutput {
-	return i.ToWebfilterFortiguardPtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterFortiguardPtrType) ToWebfilterFortiguardPtrOutputWithContext(ctx context.Context) WebfilterFortiguardPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardPtrOutput)
 }
 
 // WebfilterFortiguardArrayInput is an input type that accepts WebfilterFortiguardArray and WebfilterFortiguardArrayOutput values.
@@ -300,7 +272,7 @@ type WebfilterFortiguardArrayInput interface {
 type WebfilterFortiguardArray []WebfilterFortiguardInput
 
 func (WebfilterFortiguardArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterFortiguard)(nil))
+	return reflect.TypeOf((*[]*WebfilterFortiguard)(nil)).Elem()
 }
 
 func (i WebfilterFortiguardArray) ToWebfilterFortiguardArrayOutput() WebfilterFortiguardArrayOutput {
@@ -325,7 +297,7 @@ type WebfilterFortiguardMapInput interface {
 type WebfilterFortiguardMap map[string]WebfilterFortiguardInput
 
 func (WebfilterFortiguardMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterFortiguard)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterFortiguard)(nil)).Elem()
 }
 
 func (i WebfilterFortiguardMap) ToWebfilterFortiguardMapOutput() WebfilterFortiguardMapOutput {
@@ -336,12 +308,10 @@ func (i WebfilterFortiguardMap) ToWebfilterFortiguardMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterFortiguardMapOutput)
 }
 
-type WebfilterFortiguardOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterFortiguardOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFortiguardOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterFortiguard)(nil))
+	return reflect.TypeOf((**WebfilterFortiguard)(nil)).Elem()
 }
 
 func (o WebfilterFortiguardOutput) ToWebfilterFortiguardOutput() WebfilterFortiguardOutput {
@@ -352,36 +322,10 @@ func (o WebfilterFortiguardOutput) ToWebfilterFortiguardOutputWithContext(ctx co
 	return o
 }
 
-func (o WebfilterFortiguardOutput) ToWebfilterFortiguardPtrOutput() WebfilterFortiguardPtrOutput {
-	return o.ToWebfilterFortiguardPtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterFortiguardOutput) ToWebfilterFortiguardPtrOutputWithContext(ctx context.Context) WebfilterFortiguardPtrOutput {
-	return o.ApplyT(func(v WebfilterFortiguard) *WebfilterFortiguard {
-		return &v
-	}).(WebfilterFortiguardPtrOutput)
-}
-
-type WebfilterFortiguardPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterFortiguardPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterFortiguard)(nil))
-}
-
-func (o WebfilterFortiguardPtrOutput) ToWebfilterFortiguardPtrOutput() WebfilterFortiguardPtrOutput {
-	return o
-}
-
-func (o WebfilterFortiguardPtrOutput) ToWebfilterFortiguardPtrOutputWithContext(ctx context.Context) WebfilterFortiguardPtrOutput {
-	return o
-}
-
 type WebfilterFortiguardArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFortiguardArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterFortiguard)(nil))
+	return reflect.TypeOf((*[]*WebfilterFortiguard)(nil)).Elem()
 }
 
 func (o WebfilterFortiguardArrayOutput) ToWebfilterFortiguardArrayOutput() WebfilterFortiguardArrayOutput {
@@ -393,15 +337,15 @@ func (o WebfilterFortiguardArrayOutput) ToWebfilterFortiguardArrayOutputWithCont
 }
 
 func (o WebfilterFortiguardArrayOutput) Index(i pulumi.IntInput) WebfilterFortiguardOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterFortiguard {
-		return vs[0].([]WebfilterFortiguard)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterFortiguard {
+		return vs[0].([]*WebfilterFortiguard)[vs[1].(int)]
 	}).(WebfilterFortiguardOutput)
 }
 
 type WebfilterFortiguardMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterFortiguardMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterFortiguard)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterFortiguard)(nil)).Elem()
 }
 
 func (o WebfilterFortiguardMapOutput) ToWebfilterFortiguardMapOutput() WebfilterFortiguardMapOutput {
@@ -413,14 +357,16 @@ func (o WebfilterFortiguardMapOutput) ToWebfilterFortiguardMapOutputWithContext(
 }
 
 func (o WebfilterFortiguardMapOutput) MapIndex(k pulumi.StringInput) WebfilterFortiguardOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterFortiguard {
-		return vs[0].(map[string]WebfilterFortiguard)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterFortiguard {
+		return vs[0].(map[string]*WebfilterFortiguard)[vs[1].(string)]
 	}).(WebfilterFortiguardOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFortiguardInput)(nil)).Elem(), &WebfilterFortiguard{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFortiguardArrayInput)(nil)).Elem(), WebfilterFortiguardArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterFortiguardMapInput)(nil)).Elem(), WebfilterFortiguardMap{})
 	pulumi.RegisterOutputType(WebfilterFortiguardOutput{})
-	pulumi.RegisterOutputType(WebfilterFortiguardPtrOutput{})
 	pulumi.RegisterOutputType(WebfilterFortiguardArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterFortiguardMapOutput{})
 }

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure SSO admin users.
+// Configure SSO admin users. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Example Usage
 //
@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewSystemSsoAdmin(ctx, "trname", &fortios.SystemSsoAdminArgs{
 // 			Accprofile: pulumi.String("super_admin"),
-// 			Vdoms: fortios.SystemSsoAdminVdomArray{
-// 				&fortios.SystemSsoAdminVdomArgs{
+// 			Vdoms: SystemSsoAdminVdomArray{
+// 				&SystemSsoAdminVdomArgs{
 // 					Name: pulumi.String("root"),
 // 				},
 // 			},
@@ -75,6 +76,7 @@ func NewSystemSsoAdmin(ctx *pulumi.Context,
 	if args.Accprofile == nil {
 		return nil, errors.New("invalid value for required argument 'Accprofile'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSsoAdmin
 	err := ctx.RegisterResource("fortios:index/systemSsoAdmin:SystemSsoAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -165,7 +167,7 @@ type SystemSsoAdminInput interface {
 }
 
 func (*SystemSsoAdmin) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSsoAdmin)(nil))
+	return reflect.TypeOf((**SystemSsoAdmin)(nil)).Elem()
 }
 
 func (i *SystemSsoAdmin) ToSystemSsoAdminOutput() SystemSsoAdminOutput {
@@ -174,35 +176,6 @@ func (i *SystemSsoAdmin) ToSystemSsoAdminOutput() SystemSsoAdminOutput {
 
 func (i *SystemSsoAdmin) ToSystemSsoAdminOutputWithContext(ctx context.Context) SystemSsoAdminOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminOutput)
-}
-
-func (i *SystemSsoAdmin) ToSystemSsoAdminPtrOutput() SystemSsoAdminPtrOutput {
-	return i.ToSystemSsoAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSsoAdmin) ToSystemSsoAdminPtrOutputWithContext(ctx context.Context) SystemSsoAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminPtrOutput)
-}
-
-type SystemSsoAdminPtrInput interface {
-	pulumi.Input
-
-	ToSystemSsoAdminPtrOutput() SystemSsoAdminPtrOutput
-	ToSystemSsoAdminPtrOutputWithContext(ctx context.Context) SystemSsoAdminPtrOutput
-}
-
-type systemSsoAdminPtrType SystemSsoAdminArgs
-
-func (*systemSsoAdminPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSsoAdmin)(nil))
-}
-
-func (i *systemSsoAdminPtrType) ToSystemSsoAdminPtrOutput() SystemSsoAdminPtrOutput {
-	return i.ToSystemSsoAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSsoAdminPtrType) ToSystemSsoAdminPtrOutputWithContext(ctx context.Context) SystemSsoAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminPtrOutput)
 }
 
 // SystemSsoAdminArrayInput is an input type that accepts SystemSsoAdminArray and SystemSsoAdminArrayOutput values.
@@ -219,7 +192,7 @@ type SystemSsoAdminArrayInput interface {
 type SystemSsoAdminArray []SystemSsoAdminInput
 
 func (SystemSsoAdminArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSsoAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemSsoAdmin)(nil)).Elem()
 }
 
 func (i SystemSsoAdminArray) ToSystemSsoAdminArrayOutput() SystemSsoAdminArrayOutput {
@@ -244,7 +217,7 @@ type SystemSsoAdminMapInput interface {
 type SystemSsoAdminMap map[string]SystemSsoAdminInput
 
 func (SystemSsoAdminMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSsoAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemSsoAdmin)(nil)).Elem()
 }
 
 func (i SystemSsoAdminMap) ToSystemSsoAdminMapOutput() SystemSsoAdminMapOutput {
@@ -255,12 +228,10 @@ func (i SystemSsoAdminMap) ToSystemSsoAdminMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSsoAdminMapOutput)
 }
 
-type SystemSsoAdminOutput struct {
-	*pulumi.OutputState
-}
+type SystemSsoAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemSsoAdminOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSsoAdmin)(nil))
+	return reflect.TypeOf((**SystemSsoAdmin)(nil)).Elem()
 }
 
 func (o SystemSsoAdminOutput) ToSystemSsoAdminOutput() SystemSsoAdminOutput {
@@ -271,36 +242,10 @@ func (o SystemSsoAdminOutput) ToSystemSsoAdminOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemSsoAdminOutput) ToSystemSsoAdminPtrOutput() SystemSsoAdminPtrOutput {
-	return o.ToSystemSsoAdminPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSsoAdminOutput) ToSystemSsoAdminPtrOutputWithContext(ctx context.Context) SystemSsoAdminPtrOutput {
-	return o.ApplyT(func(v SystemSsoAdmin) *SystemSsoAdmin {
-		return &v
-	}).(SystemSsoAdminPtrOutput)
-}
-
-type SystemSsoAdminPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSsoAdminPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSsoAdmin)(nil))
-}
-
-func (o SystemSsoAdminPtrOutput) ToSystemSsoAdminPtrOutput() SystemSsoAdminPtrOutput {
-	return o
-}
-
-func (o SystemSsoAdminPtrOutput) ToSystemSsoAdminPtrOutputWithContext(ctx context.Context) SystemSsoAdminPtrOutput {
-	return o
-}
-
 type SystemSsoAdminArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSsoAdminArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSsoAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemSsoAdmin)(nil)).Elem()
 }
 
 func (o SystemSsoAdminArrayOutput) ToSystemSsoAdminArrayOutput() SystemSsoAdminArrayOutput {
@@ -312,15 +257,15 @@ func (o SystemSsoAdminArrayOutput) ToSystemSsoAdminArrayOutputWithContext(ctx co
 }
 
 func (o SystemSsoAdminArrayOutput) Index(i pulumi.IntInput) SystemSsoAdminOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSsoAdmin {
-		return vs[0].([]SystemSsoAdmin)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSsoAdmin {
+		return vs[0].([]*SystemSsoAdmin)[vs[1].(int)]
 	}).(SystemSsoAdminOutput)
 }
 
 type SystemSsoAdminMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSsoAdminMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSsoAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemSsoAdmin)(nil)).Elem()
 }
 
 func (o SystemSsoAdminMapOutput) ToSystemSsoAdminMapOutput() SystemSsoAdminMapOutput {
@@ -332,14 +277,16 @@ func (o SystemSsoAdminMapOutput) ToSystemSsoAdminMapOutputWithContext(ctx contex
 }
 
 func (o SystemSsoAdminMapOutput) MapIndex(k pulumi.StringInput) SystemSsoAdminOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSsoAdmin {
-		return vs[0].(map[string]SystemSsoAdmin)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSsoAdmin {
+		return vs[0].(map[string]*SystemSsoAdmin)[vs[1].(string)]
 	}).(SystemSsoAdminOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSsoAdminInput)(nil)).Elem(), &SystemSsoAdmin{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSsoAdminArrayInput)(nil)).Elem(), SystemSsoAdminArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSsoAdminMapInput)(nil)).Elem(), SystemSsoAdminMap{})
 	pulumi.RegisterOutputType(SystemSsoAdminOutput{})
-	pulumi.RegisterOutputType(SystemSsoAdminPtrOutput{})
 	pulumi.RegisterOutputType(SystemSsoAdminArrayOutput{})
 	pulumi.RegisterOutputType(SystemSsoAdminMapOutput{})
 }

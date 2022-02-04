@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -104,6 +104,7 @@ func NewSystemPppoeInterface(ctx *pulumi.Context,
 	if args.Device == nil {
 		return nil, errors.New("invalid value for required argument 'Device'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemPppoeInterface
 	err := ctx.RegisterResource("fortios:index/systemPppoeInterface:SystemPppoeInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -290,7 +291,7 @@ type SystemPppoeInterfaceInput interface {
 }
 
 func (*SystemPppoeInterface) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemPppoeInterface)(nil))
+	return reflect.TypeOf((**SystemPppoeInterface)(nil)).Elem()
 }
 
 func (i *SystemPppoeInterface) ToSystemPppoeInterfaceOutput() SystemPppoeInterfaceOutput {
@@ -299,35 +300,6 @@ func (i *SystemPppoeInterface) ToSystemPppoeInterfaceOutput() SystemPppoeInterfa
 
 func (i *SystemPppoeInterface) ToSystemPppoeInterfaceOutputWithContext(ctx context.Context) SystemPppoeInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfaceOutput)
-}
-
-func (i *SystemPppoeInterface) ToSystemPppoeInterfacePtrOutput() SystemPppoeInterfacePtrOutput {
-	return i.ToSystemPppoeInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemPppoeInterface) ToSystemPppoeInterfacePtrOutputWithContext(ctx context.Context) SystemPppoeInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfacePtrOutput)
-}
-
-type SystemPppoeInterfacePtrInput interface {
-	pulumi.Input
-
-	ToSystemPppoeInterfacePtrOutput() SystemPppoeInterfacePtrOutput
-	ToSystemPppoeInterfacePtrOutputWithContext(ctx context.Context) SystemPppoeInterfacePtrOutput
-}
-
-type systemPppoeInterfacePtrType SystemPppoeInterfaceArgs
-
-func (*systemPppoeInterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemPppoeInterface)(nil))
-}
-
-func (i *systemPppoeInterfacePtrType) ToSystemPppoeInterfacePtrOutput() SystemPppoeInterfacePtrOutput {
-	return i.ToSystemPppoeInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *systemPppoeInterfacePtrType) ToSystemPppoeInterfacePtrOutputWithContext(ctx context.Context) SystemPppoeInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfacePtrOutput)
 }
 
 // SystemPppoeInterfaceArrayInput is an input type that accepts SystemPppoeInterfaceArray and SystemPppoeInterfaceArrayOutput values.
@@ -344,7 +316,7 @@ type SystemPppoeInterfaceArrayInput interface {
 type SystemPppoeInterfaceArray []SystemPppoeInterfaceInput
 
 func (SystemPppoeInterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemPppoeInterface)(nil))
+	return reflect.TypeOf((*[]*SystemPppoeInterface)(nil)).Elem()
 }
 
 func (i SystemPppoeInterfaceArray) ToSystemPppoeInterfaceArrayOutput() SystemPppoeInterfaceArrayOutput {
@@ -369,7 +341,7 @@ type SystemPppoeInterfaceMapInput interface {
 type SystemPppoeInterfaceMap map[string]SystemPppoeInterfaceInput
 
 func (SystemPppoeInterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemPppoeInterface)(nil))
+	return reflect.TypeOf((*map[string]*SystemPppoeInterface)(nil)).Elem()
 }
 
 func (i SystemPppoeInterfaceMap) ToSystemPppoeInterfaceMapOutput() SystemPppoeInterfaceMapOutput {
@@ -380,12 +352,10 @@ func (i SystemPppoeInterfaceMap) ToSystemPppoeInterfaceMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemPppoeInterfaceMapOutput)
 }
 
-type SystemPppoeInterfaceOutput struct {
-	*pulumi.OutputState
-}
+type SystemPppoeInterfaceOutput struct{ *pulumi.OutputState }
 
 func (SystemPppoeInterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemPppoeInterface)(nil))
+	return reflect.TypeOf((**SystemPppoeInterface)(nil)).Elem()
 }
 
 func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfaceOutput() SystemPppoeInterfaceOutput {
@@ -396,36 +366,10 @@ func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfaceOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfacePtrOutput() SystemPppoeInterfacePtrOutput {
-	return o.ToSystemPppoeInterfacePtrOutputWithContext(context.Background())
-}
-
-func (o SystemPppoeInterfaceOutput) ToSystemPppoeInterfacePtrOutputWithContext(ctx context.Context) SystemPppoeInterfacePtrOutput {
-	return o.ApplyT(func(v SystemPppoeInterface) *SystemPppoeInterface {
-		return &v
-	}).(SystemPppoeInterfacePtrOutput)
-}
-
-type SystemPppoeInterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemPppoeInterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemPppoeInterface)(nil))
-}
-
-func (o SystemPppoeInterfacePtrOutput) ToSystemPppoeInterfacePtrOutput() SystemPppoeInterfacePtrOutput {
-	return o
-}
-
-func (o SystemPppoeInterfacePtrOutput) ToSystemPppoeInterfacePtrOutputWithContext(ctx context.Context) SystemPppoeInterfacePtrOutput {
-	return o
-}
-
 type SystemPppoeInterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemPppoeInterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemPppoeInterface)(nil))
+	return reflect.TypeOf((*[]*SystemPppoeInterface)(nil)).Elem()
 }
 
 func (o SystemPppoeInterfaceArrayOutput) ToSystemPppoeInterfaceArrayOutput() SystemPppoeInterfaceArrayOutput {
@@ -437,15 +381,15 @@ func (o SystemPppoeInterfaceArrayOutput) ToSystemPppoeInterfaceArrayOutputWithCo
 }
 
 func (o SystemPppoeInterfaceArrayOutput) Index(i pulumi.IntInput) SystemPppoeInterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemPppoeInterface {
-		return vs[0].([]SystemPppoeInterface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemPppoeInterface {
+		return vs[0].([]*SystemPppoeInterface)[vs[1].(int)]
 	}).(SystemPppoeInterfaceOutput)
 }
 
 type SystemPppoeInterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (SystemPppoeInterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemPppoeInterface)(nil))
+	return reflect.TypeOf((*map[string]*SystemPppoeInterface)(nil)).Elem()
 }
 
 func (o SystemPppoeInterfaceMapOutput) ToSystemPppoeInterfaceMapOutput() SystemPppoeInterfaceMapOutput {
@@ -457,14 +401,16 @@ func (o SystemPppoeInterfaceMapOutput) ToSystemPppoeInterfaceMapOutputWithContex
 }
 
 func (o SystemPppoeInterfaceMapOutput) MapIndex(k pulumi.StringInput) SystemPppoeInterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemPppoeInterface {
-		return vs[0].(map[string]SystemPppoeInterface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemPppoeInterface {
+		return vs[0].(map[string]*SystemPppoeInterface)[vs[1].(string)]
 	}).(SystemPppoeInterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemPppoeInterfaceInput)(nil)).Elem(), &SystemPppoeInterface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemPppoeInterfaceArrayInput)(nil)).Elem(), SystemPppoeInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemPppoeInterfaceMapInput)(nil)).Elem(), SystemPppoeInterfaceMap{})
 	pulumi.RegisterOutputType(SystemPppoeInterfaceOutput{})
-	pulumi.RegisterOutputType(SystemPppoeInterfacePtrOutput{})
 	pulumi.RegisterOutputType(SystemPppoeInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(SystemPppoeInterfaceMapOutput{})
 }

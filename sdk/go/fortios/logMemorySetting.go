@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewLogMemorySetting(ctx *pulumi.Context,
 		args = &LogMemorySettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogMemorySetting
 	err := ctx.RegisterResource("fortios:index/logMemorySetting:LogMemorySetting", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type LogMemorySettingInput interface {
 }
 
 func (*LogMemorySetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogMemorySetting)(nil))
+	return reflect.TypeOf((**LogMemorySetting)(nil)).Elem()
 }
 
 func (i *LogMemorySetting) ToLogMemorySettingOutput() LogMemorySettingOutput {
@@ -146,35 +147,6 @@ func (i *LogMemorySetting) ToLogMemorySettingOutput() LogMemorySettingOutput {
 
 func (i *LogMemorySetting) ToLogMemorySettingOutputWithContext(ctx context.Context) LogMemorySettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingOutput)
-}
-
-func (i *LogMemorySetting) ToLogMemorySettingPtrOutput() LogMemorySettingPtrOutput {
-	return i.ToLogMemorySettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogMemorySetting) ToLogMemorySettingPtrOutputWithContext(ctx context.Context) LogMemorySettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingPtrOutput)
-}
-
-type LogMemorySettingPtrInput interface {
-	pulumi.Input
-
-	ToLogMemorySettingPtrOutput() LogMemorySettingPtrOutput
-	ToLogMemorySettingPtrOutputWithContext(ctx context.Context) LogMemorySettingPtrOutput
-}
-
-type logMemorySettingPtrType LogMemorySettingArgs
-
-func (*logMemorySettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogMemorySetting)(nil))
-}
-
-func (i *logMemorySettingPtrType) ToLogMemorySettingPtrOutput() LogMemorySettingPtrOutput {
-	return i.ToLogMemorySettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logMemorySettingPtrType) ToLogMemorySettingPtrOutputWithContext(ctx context.Context) LogMemorySettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingPtrOutput)
 }
 
 // LogMemorySettingArrayInput is an input type that accepts LogMemorySettingArray and LogMemorySettingArrayOutput values.
@@ -191,7 +163,7 @@ type LogMemorySettingArrayInput interface {
 type LogMemorySettingArray []LogMemorySettingInput
 
 func (LogMemorySettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogMemorySetting)(nil))
+	return reflect.TypeOf((*[]*LogMemorySetting)(nil)).Elem()
 }
 
 func (i LogMemorySettingArray) ToLogMemorySettingArrayOutput() LogMemorySettingArrayOutput {
@@ -216,7 +188,7 @@ type LogMemorySettingMapInput interface {
 type LogMemorySettingMap map[string]LogMemorySettingInput
 
 func (LogMemorySettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogMemorySetting)(nil))
+	return reflect.TypeOf((*map[string]*LogMemorySetting)(nil)).Elem()
 }
 
 func (i LogMemorySettingMap) ToLogMemorySettingMapOutput() LogMemorySettingMapOutput {
@@ -227,12 +199,10 @@ func (i LogMemorySettingMap) ToLogMemorySettingMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(LogMemorySettingMapOutput)
 }
 
-type LogMemorySettingOutput struct {
-	*pulumi.OutputState
-}
+type LogMemorySettingOutput struct{ *pulumi.OutputState }
 
 func (LogMemorySettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogMemorySetting)(nil))
+	return reflect.TypeOf((**LogMemorySetting)(nil)).Elem()
 }
 
 func (o LogMemorySettingOutput) ToLogMemorySettingOutput() LogMemorySettingOutput {
@@ -243,36 +213,10 @@ func (o LogMemorySettingOutput) ToLogMemorySettingOutputWithContext(ctx context.
 	return o
 }
 
-func (o LogMemorySettingOutput) ToLogMemorySettingPtrOutput() LogMemorySettingPtrOutput {
-	return o.ToLogMemorySettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogMemorySettingOutput) ToLogMemorySettingPtrOutputWithContext(ctx context.Context) LogMemorySettingPtrOutput {
-	return o.ApplyT(func(v LogMemorySetting) *LogMemorySetting {
-		return &v
-	}).(LogMemorySettingPtrOutput)
-}
-
-type LogMemorySettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogMemorySettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogMemorySetting)(nil))
-}
-
-func (o LogMemorySettingPtrOutput) ToLogMemorySettingPtrOutput() LogMemorySettingPtrOutput {
-	return o
-}
-
-func (o LogMemorySettingPtrOutput) ToLogMemorySettingPtrOutputWithContext(ctx context.Context) LogMemorySettingPtrOutput {
-	return o
-}
-
 type LogMemorySettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogMemorySettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogMemorySetting)(nil))
+	return reflect.TypeOf((*[]*LogMemorySetting)(nil)).Elem()
 }
 
 func (o LogMemorySettingArrayOutput) ToLogMemorySettingArrayOutput() LogMemorySettingArrayOutput {
@@ -284,15 +228,15 @@ func (o LogMemorySettingArrayOutput) ToLogMemorySettingArrayOutputWithContext(ct
 }
 
 func (o LogMemorySettingArrayOutput) Index(i pulumi.IntInput) LogMemorySettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogMemorySetting {
-		return vs[0].([]LogMemorySetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogMemorySetting {
+		return vs[0].([]*LogMemorySetting)[vs[1].(int)]
 	}).(LogMemorySettingOutput)
 }
 
 type LogMemorySettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogMemorySettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogMemorySetting)(nil))
+	return reflect.TypeOf((*map[string]*LogMemorySetting)(nil)).Elem()
 }
 
 func (o LogMemorySettingMapOutput) ToLogMemorySettingMapOutput() LogMemorySettingMapOutput {
@@ -304,14 +248,16 @@ func (o LogMemorySettingMapOutput) ToLogMemorySettingMapOutputWithContext(ctx co
 }
 
 func (o LogMemorySettingMapOutput) MapIndex(k pulumi.StringInput) LogMemorySettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogMemorySetting {
-		return vs[0].(map[string]LogMemorySetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogMemorySetting {
+		return vs[0].(map[string]*LogMemorySetting)[vs[1].(string)]
 	}).(LogMemorySettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemorySettingInput)(nil)).Elem(), &LogMemorySetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemorySettingArrayInput)(nil)).Elem(), LogMemorySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogMemorySettingMapInput)(nil)).Elem(), LogMemorySettingMap{})
 	pulumi.RegisterOutputType(LogMemorySettingOutput{})
-	pulumi.RegisterOutputType(LogMemorySettingPtrOutput{})
 	pulumi.RegisterOutputType(LogMemorySettingArrayOutput{})
 	pulumi.RegisterOutputType(LogMemorySettingMapOutput{})
 }

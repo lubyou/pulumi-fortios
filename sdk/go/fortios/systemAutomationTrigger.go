@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -53,10 +53,16 @@ import (
 type SystemAutomationTrigger struct {
 	pulumi.CustomResourceState
 
+	// Description.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Event type.
 	EventType pulumi.StringOutput `pulumi:"eventType"`
+	// Fabric connector event handler name.
+	FabricEventName pulumi.StringPtrOutput `pulumi:"fabricEventName"`
+	// Fabric connector event severity.
+	FabricEventSeverity pulumi.StringPtrOutput `pulumi:"fabricEventSeverity"`
 	// FortiAnalyzer event handler name.
 	FazEventName pulumi.StringPtrOutput `pulumi:"fazEventName"`
 	// FortiAnalyzer event severity.
@@ -73,8 +79,10 @@ type SystemAutomationTrigger struct {
 	Logid pulumi.IntOutput `pulumi:"logid"`
 	// Name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+	// Security Rating report.
 	ReportType pulumi.StringOutput `pulumi:"reportType"`
+	// Fabric connector serial number.
+	Serial pulumi.StringPtrOutput `pulumi:"serial"`
 	// Day within a month to trigger.
 	TriggerDay pulumi.IntOutput `pulumi:"triggerDay"`
 	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
@@ -98,6 +106,7 @@ func NewSystemAutomationTrigger(ctx *pulumi.Context,
 		args = &SystemAutomationTriggerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutomationTrigger
 	err := ctx.RegisterResource("fortios:index/systemAutomationTrigger:SystemAutomationTrigger", name, args, &resource, opts...)
 	if err != nil {
@@ -120,10 +129,16 @@ func GetSystemAutomationTrigger(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutomationTrigger resources.
 type systemAutomationTriggerState struct {
+	// Description.
+	Description *string `pulumi:"description"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Event type.
 	EventType *string `pulumi:"eventType"`
+	// Fabric connector event handler name.
+	FabricEventName *string `pulumi:"fabricEventName"`
+	// Fabric connector event severity.
+	FabricEventSeverity *string `pulumi:"fabricEventSeverity"`
 	// FortiAnalyzer event handler name.
 	FazEventName *string `pulumi:"fazEventName"`
 	// FortiAnalyzer event severity.
@@ -140,8 +155,10 @@ type systemAutomationTriggerState struct {
 	Logid *int `pulumi:"logid"`
 	// Name.
 	Name *string `pulumi:"name"`
-	// Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+	// Security Rating report.
 	ReportType *string `pulumi:"reportType"`
+	// Fabric connector serial number.
+	Serial *string `pulumi:"serial"`
 	// Day within a month to trigger.
 	TriggerDay *int `pulumi:"triggerDay"`
 	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
@@ -159,10 +176,16 @@ type systemAutomationTriggerState struct {
 }
 
 type SystemAutomationTriggerState struct {
+	// Description.
+	Description pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Event type.
 	EventType pulumi.StringPtrInput
+	// Fabric connector event handler name.
+	FabricEventName pulumi.StringPtrInput
+	// Fabric connector event severity.
+	FabricEventSeverity pulumi.StringPtrInput
 	// FortiAnalyzer event handler name.
 	FazEventName pulumi.StringPtrInput
 	// FortiAnalyzer event severity.
@@ -179,8 +202,10 @@ type SystemAutomationTriggerState struct {
 	Logid pulumi.IntPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
-	// Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+	// Security Rating report.
 	ReportType pulumi.StringPtrInput
+	// Fabric connector serial number.
+	Serial pulumi.StringPtrInput
 	// Day within a month to trigger.
 	TriggerDay pulumi.IntPtrInput
 	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
@@ -202,10 +227,16 @@ func (SystemAutomationTriggerState) ElementType() reflect.Type {
 }
 
 type systemAutomationTriggerArgs struct {
+	// Description.
+	Description *string `pulumi:"description"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Event type.
 	EventType *string `pulumi:"eventType"`
+	// Fabric connector event handler name.
+	FabricEventName *string `pulumi:"fabricEventName"`
+	// Fabric connector event severity.
+	FabricEventSeverity *string `pulumi:"fabricEventSeverity"`
 	// FortiAnalyzer event handler name.
 	FazEventName *string `pulumi:"fazEventName"`
 	// FortiAnalyzer event severity.
@@ -222,8 +253,10 @@ type systemAutomationTriggerArgs struct {
 	Logid *int `pulumi:"logid"`
 	// Name.
 	Name *string `pulumi:"name"`
-	// Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+	// Security Rating report.
 	ReportType *string `pulumi:"reportType"`
+	// Fabric connector serial number.
+	Serial *string `pulumi:"serial"`
 	// Day within a month to trigger.
 	TriggerDay *int `pulumi:"triggerDay"`
 	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
@@ -242,10 +275,16 @@ type systemAutomationTriggerArgs struct {
 
 // The set of arguments for constructing a SystemAutomationTrigger resource.
 type SystemAutomationTriggerArgs struct {
+	// Description.
+	Description pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Event type.
 	EventType pulumi.StringPtrInput
+	// Fabric connector event handler name.
+	FabricEventName pulumi.StringPtrInput
+	// Fabric connector event severity.
+	FabricEventSeverity pulumi.StringPtrInput
 	// FortiAnalyzer event handler name.
 	FazEventName pulumi.StringPtrInput
 	// FortiAnalyzer event severity.
@@ -262,8 +301,10 @@ type SystemAutomationTriggerArgs struct {
 	Logid pulumi.IntPtrInput
 	// Name.
 	Name pulumi.StringPtrInput
-	// Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+	// Security Rating report.
 	ReportType pulumi.StringPtrInput
+	// Fabric connector serial number.
+	Serial pulumi.StringPtrInput
 	// Day within a month to trigger.
 	TriggerDay pulumi.IntPtrInput
 	// Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
@@ -292,7 +333,7 @@ type SystemAutomationTriggerInput interface {
 }
 
 func (*SystemAutomationTrigger) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationTrigger)(nil))
+	return reflect.TypeOf((**SystemAutomationTrigger)(nil)).Elem()
 }
 
 func (i *SystemAutomationTrigger) ToSystemAutomationTriggerOutput() SystemAutomationTriggerOutput {
@@ -301,35 +342,6 @@ func (i *SystemAutomationTrigger) ToSystemAutomationTriggerOutput() SystemAutoma
 
 func (i *SystemAutomationTrigger) ToSystemAutomationTriggerOutputWithContext(ctx context.Context) SystemAutomationTriggerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerOutput)
-}
-
-func (i *SystemAutomationTrigger) ToSystemAutomationTriggerPtrOutput() SystemAutomationTriggerPtrOutput {
-	return i.ToSystemAutomationTriggerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutomationTrigger) ToSystemAutomationTriggerPtrOutputWithContext(ctx context.Context) SystemAutomationTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerPtrOutput)
-}
-
-type SystemAutomationTriggerPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutomationTriggerPtrOutput() SystemAutomationTriggerPtrOutput
-	ToSystemAutomationTriggerPtrOutputWithContext(ctx context.Context) SystemAutomationTriggerPtrOutput
-}
-
-type systemAutomationTriggerPtrType SystemAutomationTriggerArgs
-
-func (*systemAutomationTriggerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationTrigger)(nil))
-}
-
-func (i *systemAutomationTriggerPtrType) ToSystemAutomationTriggerPtrOutput() SystemAutomationTriggerPtrOutput {
-	return i.ToSystemAutomationTriggerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutomationTriggerPtrType) ToSystemAutomationTriggerPtrOutputWithContext(ctx context.Context) SystemAutomationTriggerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerPtrOutput)
 }
 
 // SystemAutomationTriggerArrayInput is an input type that accepts SystemAutomationTriggerArray and SystemAutomationTriggerArrayOutput values.
@@ -346,7 +358,7 @@ type SystemAutomationTriggerArrayInput interface {
 type SystemAutomationTriggerArray []SystemAutomationTriggerInput
 
 func (SystemAutomationTriggerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutomationTrigger)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationTrigger)(nil)).Elem()
 }
 
 func (i SystemAutomationTriggerArray) ToSystemAutomationTriggerArrayOutput() SystemAutomationTriggerArrayOutput {
@@ -371,7 +383,7 @@ type SystemAutomationTriggerMapInput interface {
 type SystemAutomationTriggerMap map[string]SystemAutomationTriggerInput
 
 func (SystemAutomationTriggerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutomationTrigger)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationTrigger)(nil)).Elem()
 }
 
 func (i SystemAutomationTriggerMap) ToSystemAutomationTriggerMapOutput() SystemAutomationTriggerMapOutput {
@@ -382,12 +394,10 @@ func (i SystemAutomationTriggerMap) ToSystemAutomationTriggerMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationTriggerMapOutput)
 }
 
-type SystemAutomationTriggerOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutomationTriggerOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationTriggerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationTrigger)(nil))
+	return reflect.TypeOf((**SystemAutomationTrigger)(nil)).Elem()
 }
 
 func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerOutput() SystemAutomationTriggerOutput {
@@ -398,36 +408,10 @@ func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerOutputWithContex
 	return o
 }
 
-func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerPtrOutput() SystemAutomationTriggerPtrOutput {
-	return o.ToSystemAutomationTriggerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutomationTriggerOutput) ToSystemAutomationTriggerPtrOutputWithContext(ctx context.Context) SystemAutomationTriggerPtrOutput {
-	return o.ApplyT(func(v SystemAutomationTrigger) *SystemAutomationTrigger {
-		return &v
-	}).(SystemAutomationTriggerPtrOutput)
-}
-
-type SystemAutomationTriggerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutomationTriggerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationTrigger)(nil))
-}
-
-func (o SystemAutomationTriggerPtrOutput) ToSystemAutomationTriggerPtrOutput() SystemAutomationTriggerPtrOutput {
-	return o
-}
-
-func (o SystemAutomationTriggerPtrOutput) ToSystemAutomationTriggerPtrOutputWithContext(ctx context.Context) SystemAutomationTriggerPtrOutput {
-	return o
-}
-
 type SystemAutomationTriggerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationTriggerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutomationTrigger)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationTrigger)(nil)).Elem()
 }
 
 func (o SystemAutomationTriggerArrayOutput) ToSystemAutomationTriggerArrayOutput() SystemAutomationTriggerArrayOutput {
@@ -439,15 +423,15 @@ func (o SystemAutomationTriggerArrayOutput) ToSystemAutomationTriggerArrayOutput
 }
 
 func (o SystemAutomationTriggerArrayOutput) Index(i pulumi.IntInput) SystemAutomationTriggerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutomationTrigger {
-		return vs[0].([]SystemAutomationTrigger)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationTrigger {
+		return vs[0].([]*SystemAutomationTrigger)[vs[1].(int)]
 	}).(SystemAutomationTriggerOutput)
 }
 
 type SystemAutomationTriggerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationTriggerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutomationTrigger)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationTrigger)(nil)).Elem()
 }
 
 func (o SystemAutomationTriggerMapOutput) ToSystemAutomationTriggerMapOutput() SystemAutomationTriggerMapOutput {
@@ -459,14 +443,16 @@ func (o SystemAutomationTriggerMapOutput) ToSystemAutomationTriggerMapOutputWith
 }
 
 func (o SystemAutomationTriggerMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationTriggerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutomationTrigger {
-		return vs[0].(map[string]SystemAutomationTrigger)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutomationTrigger {
+		return vs[0].(map[string]*SystemAutomationTrigger)[vs[1].(string)]
 	}).(SystemAutomationTriggerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationTriggerInput)(nil)).Elem(), &SystemAutomationTrigger{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationTriggerArrayInput)(nil)).Elem(), SystemAutomationTriggerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationTriggerMapInput)(nil)).Elem(), SystemAutomationTriggerMap{})
 	pulumi.RegisterOutputType(SystemAutomationTriggerOutput{})
-	pulumi.RegisterOutputType(SystemAutomationTriggerPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutomationTriggerArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutomationTriggerMapOutput{})
 }

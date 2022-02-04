@@ -87,33 +87,31 @@ export class SystemDedicatedMgmt extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemDedicatedMgmtArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemDedicatedMgmtArgs | SystemDedicatedMgmtState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemDedicatedMgmtState | undefined;
-            inputs["defaultGateway"] = state ? state.defaultGateway : undefined;
-            inputs["dhcpEndIp"] = state ? state.dhcpEndIp : undefined;
-            inputs["dhcpNetmask"] = state ? state.dhcpNetmask : undefined;
-            inputs["dhcpServer"] = state ? state.dhcpServer : undefined;
-            inputs["dhcpStartIp"] = state ? state.dhcpStartIp : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["defaultGateway"] = state ? state.defaultGateway : undefined;
+            resourceInputs["dhcpEndIp"] = state ? state.dhcpEndIp : undefined;
+            resourceInputs["dhcpNetmask"] = state ? state.dhcpNetmask : undefined;
+            resourceInputs["dhcpServer"] = state ? state.dhcpServer : undefined;
+            resourceInputs["dhcpStartIp"] = state ? state.dhcpStartIp : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemDedicatedMgmtArgs | undefined;
-            inputs["defaultGateway"] = args ? args.defaultGateway : undefined;
-            inputs["dhcpEndIp"] = args ? args.dhcpEndIp : undefined;
-            inputs["dhcpNetmask"] = args ? args.dhcpNetmask : undefined;
-            inputs["dhcpServer"] = args ? args.dhcpServer : undefined;
-            inputs["dhcpStartIp"] = args ? args.dhcpStartIp : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["defaultGateway"] = args ? args.defaultGateway : undefined;
+            resourceInputs["dhcpEndIp"] = args ? args.dhcpEndIp : undefined;
+            resourceInputs["dhcpNetmask"] = args ? args.dhcpNetmask : undefined;
+            resourceInputs["dhcpServer"] = args ? args.dhcpServer : undefined;
+            resourceInputs["dhcpStartIp"] = args ? args.dhcpStartIp : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemDedicatedMgmt.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemDedicatedMgmt.__pulumiType, name, resourceInputs, opts);
     }
 }
 

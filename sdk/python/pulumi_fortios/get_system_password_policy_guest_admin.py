@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemPasswordPolicyGuestAdminResult',
     'AwaitableGetSystemPasswordPolicyGuestAdminResult',
     'get_system_password_policy_guest_admin',
+    'get_system_password_policy_guest_admin_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetSystemPasswordPolicyGuestAdminResult:
     """
     A collection of values returned by GetSystemPasswordPolicyGuestAdmin.
     """
-    def __init__(__self__, apply_to=None, change4_characters=None, expire_day=None, expire_status=None, id=None, min_lower_case_letter=None, min_non_alphanumeric=None, min_number=None, min_upper_case_letter=None, minimum_length=None, reuse_password=None, status=None, vdomparam=None):
+    def __init__(__self__, apply_to=None, change4_characters=None, expire_day=None, expire_status=None, id=None, min_change_characters=None, min_lower_case_letter=None, min_non_alphanumeric=None, min_number=None, min_upper_case_letter=None, minimum_length=None, reuse_password=None, status=None, vdomparam=None):
         if apply_to and not isinstance(apply_to, str):
             raise TypeError("Expected argument 'apply_to' to be a str")
         pulumi.set(__self__, "apply_to", apply_to)
@@ -35,6 +36,9 @@ class GetSystemPasswordPolicyGuestAdminResult:
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
+        if min_change_characters and not isinstance(min_change_characters, int):
+            raise TypeError("Expected argument 'min_change_characters' to be a int")
+        pulumi.set(__self__, "min_change_characters", min_change_characters)
         if min_lower_case_letter and not isinstance(min_lower_case_letter, int):
             raise TypeError("Expected argument 'min_lower_case_letter' to be a int")
         pulumi.set(__self__, "min_lower_case_letter", min_lower_case_letter)
@@ -99,6 +103,14 @@ class GetSystemPasswordPolicyGuestAdminResult:
         The provider-assigned unique ID for this managed resource.
         """
         return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="minChangeCharacters")
+    def min_change_characters(self) -> int:
+        """
+        Minimum number of unique characters in new password which do not exist in old password (This attribute overrides reuse-password if both are enabled).
+        """
+        return pulumi.get(self, "min_change_characters")
 
     @property
     @pulumi.getter(name="minLowerCaseLetter")
@@ -173,6 +185,7 @@ class AwaitableGetSystemPasswordPolicyGuestAdminResult(GetSystemPasswordPolicyGu
             expire_day=self.expire_day,
             expire_status=self.expire_status,
             id=self.id,
+            min_change_characters=self.min_change_characters,
             min_lower_case_letter=self.min_lower_case_letter,
             min_non_alphanumeric=self.min_non_alphanumeric,
             min_number=self.min_number,
@@ -197,6 +210,8 @@ def get_system_password_policy_guest_admin(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemPasswordPolicyGuestAdmin:GetSystemPasswordPolicyGuestAdmin', __args__, opts=opts, typ=GetSystemPasswordPolicyGuestAdminResult).value
 
     return AwaitableGetSystemPasswordPolicyGuestAdminResult(
@@ -205,6 +220,7 @@ def get_system_password_policy_guest_admin(vdomparam: Optional[str] = None,
         expire_day=__ret__.expire_day,
         expire_status=__ret__.expire_status,
         id=__ret__.id,
+        min_change_characters=__ret__.min_change_characters,
         min_lower_case_letter=__ret__.min_lower_case_letter,
         min_non_alphanumeric=__ret__.min_non_alphanumeric,
         min_number=__ret__.min_number,
@@ -213,3 +229,15 @@ def get_system_password_policy_guest_admin(vdomparam: Optional[str] = None,
         reuse_password=__ret__.reuse_password,
         status=__ret__.status,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_password_policy_guest_admin)
+def get_system_password_policy_guest_admin_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemPasswordPolicyGuestAdminResult]:
+    """
+    Use this data source to get information on fortios system passwordpolicyguestadmin
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

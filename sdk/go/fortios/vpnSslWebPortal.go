@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -41,16 +42,16 @@ import (
 // 			HideSsoCredential:               pulumi.String("enable"),
 // 			HostCheck:                       pulumi.String("none"),
 // 			IpMode:                          pulumi.String("range"),
-// 			IpPools: fortios.VpnSslWebPortalIpPoolArray{
-// 				&fortios.VpnSslWebPortalIpPoolArgs{
+// 			IpPools: VpnSslWebPortalIpPoolArray{
+// 				&VpnSslWebPortalIpPoolArgs{
 // 					Name: pulumi.String("SSLVPN_TUNNEL_ADDR1"),
 // 				},
 // 			},
 // 			Ipv6DnsServer1:       pulumi.String("::"),
 // 			Ipv6DnsServer2:       pulumi.String("::"),
 // 			Ipv6ExclusiveRouting: pulumi.String("disable"),
-// 			Ipv6Pools: fortios.VpnSslWebPortalIpv6PoolArray{
-// 				&fortios.VpnSslWebPortalIpv6PoolArgs{
+// 			Ipv6Pools: VpnSslWebPortalIpv6PoolArray{
+// 				&VpnSslWebPortalIpv6PoolArgs{
 // 					Name: pulumi.String("SSLVPN_TUNNEL_IPv6_ADDR1"),
 // 				},
 // 			},
@@ -99,12 +100,14 @@ import (
 type VpnSslWebPortal struct {
 	pulumi.CustomResourceState
 
-	// Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+	// Allow user access to SSL-VPN applications.
 	AllowUserAccess pulumi.StringOutput `pulumi:"allowUserAccess"`
 	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
 	AutoConnect pulumi.StringOutput `pulumi:"autoConnect"`
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups VpnSslWebPortalBookmarkGroupArrayOutput `pulumi:"bookmarkGroups"`
+	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+	Clipboard pulumi.StringOutput `pulumi:"clipboard"`
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang pulumi.StringOutput `pulumi:"customLang"`
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
@@ -185,8 +188,12 @@ type VpnSslWebPortal struct {
 	OsCheck pulumi.StringOutput `pulumi:"osCheck"`
 	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
 	OsCheckLists VpnSslWebPortalOsCheckListArrayOutput `pulumi:"osCheckLists"`
+	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+	PreferIpv6Dns pulumi.StringOutput `pulumi:"preferIpv6Dns"`
 	// Client login redirect URL.
 	RedirUrl pulumi.StringPtrOutput `pulumi:"redirUrl"`
+	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	RewriteIpUriUi pulumi.StringOutput `pulumi:"rewriteIpUriUi"`
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword pulumi.StringOutput `pulumi:"savePassword"`
 	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
@@ -242,6 +249,7 @@ func NewVpnSslWebPortal(ctx *pulumi.Context,
 		args = &VpnSslWebPortalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnSslWebPortal
 	err := ctx.RegisterResource("fortios:index/vpnSslWebPortal:VpnSslWebPortal", name, args, &resource, opts...)
 	if err != nil {
@@ -264,12 +272,14 @@ func GetVpnSslWebPortal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering VpnSslWebPortal resources.
 type vpnSslWebPortalState struct {
-	// Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+	// Allow user access to SSL-VPN applications.
 	AllowUserAccess *string `pulumi:"allowUserAccess"`
 	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
 	AutoConnect *string `pulumi:"autoConnect"`
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups []VpnSslWebPortalBookmarkGroup `pulumi:"bookmarkGroups"`
+	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+	Clipboard *string `pulumi:"clipboard"`
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang *string `pulumi:"customLang"`
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
@@ -350,8 +360,12 @@ type vpnSslWebPortalState struct {
 	OsCheck *string `pulumi:"osCheck"`
 	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
 	OsCheckLists []VpnSslWebPortalOsCheckList `pulumi:"osCheckLists"`
+	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+	PreferIpv6Dns *string `pulumi:"preferIpv6Dns"`
 	// Client login redirect URL.
 	RedirUrl *string `pulumi:"redirUrl"`
+	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	RewriteIpUriUi *string `pulumi:"rewriteIpUriUi"`
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword *string `pulumi:"savePassword"`
 	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
@@ -401,12 +415,14 @@ type vpnSslWebPortalState struct {
 }
 
 type VpnSslWebPortalState struct {
-	// Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+	// Allow user access to SSL-VPN applications.
 	AllowUserAccess pulumi.StringPtrInput
 	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
 	AutoConnect pulumi.StringPtrInput
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups VpnSslWebPortalBookmarkGroupArrayInput
+	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+	Clipboard pulumi.StringPtrInput
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang pulumi.StringPtrInput
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
@@ -487,8 +503,12 @@ type VpnSslWebPortalState struct {
 	OsCheck pulumi.StringPtrInput
 	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
 	OsCheckLists VpnSslWebPortalOsCheckListArrayInput
+	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+	PreferIpv6Dns pulumi.StringPtrInput
 	// Client login redirect URL.
 	RedirUrl pulumi.StringPtrInput
+	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	RewriteIpUriUi pulumi.StringPtrInput
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword pulumi.StringPtrInput
 	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
@@ -542,12 +562,14 @@ func (VpnSslWebPortalState) ElementType() reflect.Type {
 }
 
 type vpnSslWebPortalArgs struct {
-	// Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+	// Allow user access to SSL-VPN applications.
 	AllowUserAccess *string `pulumi:"allowUserAccess"`
 	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
 	AutoConnect *string `pulumi:"autoConnect"`
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups []VpnSslWebPortalBookmarkGroup `pulumi:"bookmarkGroups"`
+	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+	Clipboard *string `pulumi:"clipboard"`
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang *string `pulumi:"customLang"`
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
@@ -628,8 +650,12 @@ type vpnSslWebPortalArgs struct {
 	OsCheck *string `pulumi:"osCheck"`
 	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
 	OsCheckLists []VpnSslWebPortalOsCheckList `pulumi:"osCheckLists"`
+	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+	PreferIpv6Dns *string `pulumi:"preferIpv6Dns"`
 	// Client login redirect URL.
 	RedirUrl *string `pulumi:"redirUrl"`
+	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	RewriteIpUriUi *string `pulumi:"rewriteIpUriUi"`
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword *string `pulumi:"savePassword"`
 	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
@@ -680,12 +706,14 @@ type vpnSslWebPortalArgs struct {
 
 // The set of arguments for constructing a VpnSslWebPortal resource.
 type VpnSslWebPortalArgs struct {
-	// Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+	// Allow user access to SSL-VPN applications.
 	AllowUserAccess pulumi.StringPtrInput
 	// Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
 	AutoConnect pulumi.StringPtrInput
 	// Portal bookmark group. The structure of `bookmarkGroup` block is documented below.
 	BookmarkGroups VpnSslWebPortalBookmarkGroupArrayInput
+	// Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+	Clipboard pulumi.StringPtrInput
 	// Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 	CustomLang pulumi.StringPtrInput
 	// Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
@@ -766,8 +794,12 @@ type VpnSslWebPortalArgs struct {
 	OsCheck pulumi.StringPtrInput
 	// SSL VPN OS checks. The structure of `osCheckList` block is documented below.
 	OsCheckLists VpnSslWebPortalOsCheckListArrayInput
+	// prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+	PreferIpv6Dns pulumi.StringPtrInput
 	// Client login redirect URL.
 	RedirUrl pulumi.StringPtrInput
+	// Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+	RewriteIpUriUi pulumi.StringPtrInput
 	// Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
 	SavePassword pulumi.StringPtrInput
 	// Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
@@ -828,7 +860,7 @@ type VpnSslWebPortalInput interface {
 }
 
 func (*VpnSslWebPortal) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebPortal)(nil))
+	return reflect.TypeOf((**VpnSslWebPortal)(nil)).Elem()
 }
 
 func (i *VpnSslWebPortal) ToVpnSslWebPortalOutput() VpnSslWebPortalOutput {
@@ -837,35 +869,6 @@ func (i *VpnSslWebPortal) ToVpnSslWebPortalOutput() VpnSslWebPortalOutput {
 
 func (i *VpnSslWebPortal) ToVpnSslWebPortalOutputWithContext(ctx context.Context) VpnSslWebPortalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalOutput)
-}
-
-func (i *VpnSslWebPortal) ToVpnSslWebPortalPtrOutput() VpnSslWebPortalPtrOutput {
-	return i.ToVpnSslWebPortalPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnSslWebPortal) ToVpnSslWebPortalPtrOutputWithContext(ctx context.Context) VpnSslWebPortalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalPtrOutput)
-}
-
-type VpnSslWebPortalPtrInput interface {
-	pulumi.Input
-
-	ToVpnSslWebPortalPtrOutput() VpnSslWebPortalPtrOutput
-	ToVpnSslWebPortalPtrOutputWithContext(ctx context.Context) VpnSslWebPortalPtrOutput
-}
-
-type vpnSslWebPortalPtrType VpnSslWebPortalArgs
-
-func (*vpnSslWebPortalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebPortal)(nil))
-}
-
-func (i *vpnSslWebPortalPtrType) ToVpnSslWebPortalPtrOutput() VpnSslWebPortalPtrOutput {
-	return i.ToVpnSslWebPortalPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnSslWebPortalPtrType) ToVpnSslWebPortalPtrOutputWithContext(ctx context.Context) VpnSslWebPortalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalPtrOutput)
 }
 
 // VpnSslWebPortalArrayInput is an input type that accepts VpnSslWebPortalArray and VpnSslWebPortalArrayOutput values.
@@ -882,7 +885,7 @@ type VpnSslWebPortalArrayInput interface {
 type VpnSslWebPortalArray []VpnSslWebPortalInput
 
 func (VpnSslWebPortalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnSslWebPortal)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebPortal)(nil)).Elem()
 }
 
 func (i VpnSslWebPortalArray) ToVpnSslWebPortalArrayOutput() VpnSslWebPortalArrayOutput {
@@ -907,7 +910,7 @@ type VpnSslWebPortalMapInput interface {
 type VpnSslWebPortalMap map[string]VpnSslWebPortalInput
 
 func (VpnSslWebPortalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnSslWebPortal)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebPortal)(nil)).Elem()
 }
 
 func (i VpnSslWebPortalMap) ToVpnSslWebPortalMapOutput() VpnSslWebPortalMapOutput {
@@ -918,12 +921,10 @@ func (i VpnSslWebPortalMap) ToVpnSslWebPortalMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnSslWebPortalMapOutput)
 }
 
-type VpnSslWebPortalOutput struct {
-	*pulumi.OutputState
-}
+type VpnSslWebPortalOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnSslWebPortal)(nil))
+	return reflect.TypeOf((**VpnSslWebPortal)(nil)).Elem()
 }
 
 func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutput() VpnSslWebPortalOutput {
@@ -934,36 +935,10 @@ func (o VpnSslWebPortalOutput) ToVpnSslWebPortalOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o VpnSslWebPortalOutput) ToVpnSslWebPortalPtrOutput() VpnSslWebPortalPtrOutput {
-	return o.ToVpnSslWebPortalPtrOutputWithContext(context.Background())
-}
-
-func (o VpnSslWebPortalOutput) ToVpnSslWebPortalPtrOutputWithContext(ctx context.Context) VpnSslWebPortalPtrOutput {
-	return o.ApplyT(func(v VpnSslWebPortal) *VpnSslWebPortal {
-		return &v
-	}).(VpnSslWebPortalPtrOutput)
-}
-
-type VpnSslWebPortalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnSslWebPortalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnSslWebPortal)(nil))
-}
-
-func (o VpnSslWebPortalPtrOutput) ToVpnSslWebPortalPtrOutput() VpnSslWebPortalPtrOutput {
-	return o
-}
-
-func (o VpnSslWebPortalPtrOutput) ToVpnSslWebPortalPtrOutputWithContext(ctx context.Context) VpnSslWebPortalPtrOutput {
-	return o
-}
-
 type VpnSslWebPortalArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnSslWebPortal)(nil))
+	return reflect.TypeOf((*[]*VpnSslWebPortal)(nil)).Elem()
 }
 
 func (o VpnSslWebPortalArrayOutput) ToVpnSslWebPortalArrayOutput() VpnSslWebPortalArrayOutput {
@@ -975,15 +950,15 @@ func (o VpnSslWebPortalArrayOutput) ToVpnSslWebPortalArrayOutputWithContext(ctx 
 }
 
 func (o VpnSslWebPortalArrayOutput) Index(i pulumi.IntInput) VpnSslWebPortalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnSslWebPortal {
-		return vs[0].([]VpnSslWebPortal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnSslWebPortal {
+		return vs[0].([]*VpnSslWebPortal)[vs[1].(int)]
 	}).(VpnSslWebPortalOutput)
 }
 
 type VpnSslWebPortalMapOutput struct{ *pulumi.OutputState }
 
 func (VpnSslWebPortalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnSslWebPortal)(nil))
+	return reflect.TypeOf((*map[string]*VpnSslWebPortal)(nil)).Elem()
 }
 
 func (o VpnSslWebPortalMapOutput) ToVpnSslWebPortalMapOutput() VpnSslWebPortalMapOutput {
@@ -995,14 +970,16 @@ func (o VpnSslWebPortalMapOutput) ToVpnSslWebPortalMapOutputWithContext(ctx cont
 }
 
 func (o VpnSslWebPortalMapOutput) MapIndex(k pulumi.StringInput) VpnSslWebPortalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnSslWebPortal {
-		return vs[0].(map[string]VpnSslWebPortal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnSslWebPortal {
+		return vs[0].(map[string]*VpnSslWebPortal)[vs[1].(string)]
 	}).(VpnSslWebPortalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalInput)(nil)).Elem(), &VpnSslWebPortal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalArrayInput)(nil)).Elem(), VpnSslWebPortalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnSslWebPortalMapInput)(nil)).Elem(), VpnSslWebPortalMap{})
 	pulumi.RegisterOutputType(VpnSslWebPortalOutput{})
-	pulumi.RegisterOutputType(VpnSslWebPortalPtrOutput{})
 	pulumi.RegisterOutputType(VpnSslWebPortalArrayOutput{})
 	pulumi.RegisterOutputType(VpnSslWebPortalMapOutput{})
 }

@@ -13,9 +13,7 @@ export function getSystemDdns(args: GetSystemDdnsArgs, opts?: pulumi.InvokeOptio
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemDdns:GetSystemDdns", {
         "ddnsid": args.ddnsid,
         "vdomparam": args.vdomparam,
@@ -40,6 +38,10 @@ export interface GetSystemDdnsArgs {
  * A collection of values returned by GetSystemDdns.
  */
 export interface GetSystemDdnsResult {
+    /**
+     * Address type of interface address in DDNS update.
+     */
+    readonly addrType: string;
     /**
      * Bound IP address.
      */
@@ -73,6 +75,10 @@ export interface GetSystemDdnsResult {
      */
     readonly ddnsServer: string;
     /**
+     * Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+     */
+    readonly ddnsServerAddrs: outputs.GetSystemDdnsDdnsServerAddr[];
+    /**
      * Generic DDNS server IP.
      */
     readonly ddnsServerIp: string;
@@ -105,6 +111,10 @@ export interface GetSystemDdnsResult {
      */
     readonly monitorInterfaces: outputs.GetSystemDdnsMonitorInterface[];
     /**
+     * Address type of the DDNS server.
+     */
+    readonly serverType: string;
+    /**
      * Name of local certificate for SSL connections.
      */
     readonly sslCertificate: string;
@@ -117,4 +127,22 @@ export interface GetSystemDdnsResult {
      */
     readonly usePublicIp: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemDdnsOutput(args: GetSystemDdnsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemDdnsResult> {
+    return pulumi.output(args).apply(a => getSystemDdns(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemDdns.
+ */
+export interface GetSystemDdnsOutputArgs {
+    /**
+     * Specify the ddnsid of the desired system ddns.
+     */
+    ddnsid: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

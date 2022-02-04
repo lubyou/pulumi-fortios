@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -29,28 +30,28 @@ import (
 // 			DefaultMetric:               pulumi.Int(1),
 // 			GarbageTimer:                pulumi.Int(120),
 // 			MaxOutMetric:                pulumi.Int(0),
-// 			Redistributes: fortios.RouterRipngRedistributeArray{
-// 				&fortios.RouterRipngRedistributeArgs{
+// 			Redistributes: RouterRipngRedistributeArray{
+// 				&RouterRipngRedistributeArgs{
 // 					Metric: pulumi.Int(10),
 // 					Name:   pulumi.String("connected"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterRipngRedistributeArgs{
+// 				&RouterRipngRedistributeArgs{
 // 					Metric: pulumi.Int(10),
 // 					Name:   pulumi.String("static"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterRipngRedistributeArgs{
+// 				&RouterRipngRedistributeArgs{
 // 					Metric: pulumi.Int(10),
 // 					Name:   pulumi.String("ospf"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterRipngRedistributeArgs{
+// 				&RouterRipngRedistributeArgs{
 // 					Metric: pulumi.Int(10),
 // 					Name:   pulumi.String("bgp"),
 // 					Status: pulumi.String("disable"),
 // 				},
-// 				&fortios.RouterRipngRedistributeArgs{
+// 				&RouterRipngRedistributeArgs{
 // 					Metric: pulumi.Int(10),
 // 					Name:   pulumi.String("isis"),
 // 					Status: pulumi.String("disable"),
@@ -122,6 +123,7 @@ func NewRouterRipng(ctx *pulumi.Context,
 		args = &RouterRipngArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterRipng
 	err := ctx.RegisterResource("fortios:index/routerRipng:RouterRipng", name, args, &resource, opts...)
 	if err != nil {
@@ -308,7 +310,7 @@ type RouterRipngInput interface {
 }
 
 func (*RouterRipng) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterRipng)(nil))
+	return reflect.TypeOf((**RouterRipng)(nil)).Elem()
 }
 
 func (i *RouterRipng) ToRouterRipngOutput() RouterRipngOutput {
@@ -317,35 +319,6 @@ func (i *RouterRipng) ToRouterRipngOutput() RouterRipngOutput {
 
 func (i *RouterRipng) ToRouterRipngOutputWithContext(ctx context.Context) RouterRipngOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngOutput)
-}
-
-func (i *RouterRipng) ToRouterRipngPtrOutput() RouterRipngPtrOutput {
-	return i.ToRouterRipngPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterRipng) ToRouterRipngPtrOutputWithContext(ctx context.Context) RouterRipngPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngPtrOutput)
-}
-
-type RouterRipngPtrInput interface {
-	pulumi.Input
-
-	ToRouterRipngPtrOutput() RouterRipngPtrOutput
-	ToRouterRipngPtrOutputWithContext(ctx context.Context) RouterRipngPtrOutput
-}
-
-type routerRipngPtrType RouterRipngArgs
-
-func (*routerRipngPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterRipng)(nil))
-}
-
-func (i *routerRipngPtrType) ToRouterRipngPtrOutput() RouterRipngPtrOutput {
-	return i.ToRouterRipngPtrOutputWithContext(context.Background())
-}
-
-func (i *routerRipngPtrType) ToRouterRipngPtrOutputWithContext(ctx context.Context) RouterRipngPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngPtrOutput)
 }
 
 // RouterRipngArrayInput is an input type that accepts RouterRipngArray and RouterRipngArrayOutput values.
@@ -362,7 +335,7 @@ type RouterRipngArrayInput interface {
 type RouterRipngArray []RouterRipngInput
 
 func (RouterRipngArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterRipng)(nil))
+	return reflect.TypeOf((*[]*RouterRipng)(nil)).Elem()
 }
 
 func (i RouterRipngArray) ToRouterRipngArrayOutput() RouterRipngArrayOutput {
@@ -387,7 +360,7 @@ type RouterRipngMapInput interface {
 type RouterRipngMap map[string]RouterRipngInput
 
 func (RouterRipngMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterRipng)(nil))
+	return reflect.TypeOf((*map[string]*RouterRipng)(nil)).Elem()
 }
 
 func (i RouterRipngMap) ToRouterRipngMapOutput() RouterRipngMapOutput {
@@ -398,12 +371,10 @@ func (i RouterRipngMap) ToRouterRipngMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(RouterRipngMapOutput)
 }
 
-type RouterRipngOutput struct {
-	*pulumi.OutputState
-}
+type RouterRipngOutput struct{ *pulumi.OutputState }
 
 func (RouterRipngOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterRipng)(nil))
+	return reflect.TypeOf((**RouterRipng)(nil)).Elem()
 }
 
 func (o RouterRipngOutput) ToRouterRipngOutput() RouterRipngOutput {
@@ -414,36 +385,10 @@ func (o RouterRipngOutput) ToRouterRipngOutputWithContext(ctx context.Context) R
 	return o
 }
 
-func (o RouterRipngOutput) ToRouterRipngPtrOutput() RouterRipngPtrOutput {
-	return o.ToRouterRipngPtrOutputWithContext(context.Background())
-}
-
-func (o RouterRipngOutput) ToRouterRipngPtrOutputWithContext(ctx context.Context) RouterRipngPtrOutput {
-	return o.ApplyT(func(v RouterRipng) *RouterRipng {
-		return &v
-	}).(RouterRipngPtrOutput)
-}
-
-type RouterRipngPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterRipngPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterRipng)(nil))
-}
-
-func (o RouterRipngPtrOutput) ToRouterRipngPtrOutput() RouterRipngPtrOutput {
-	return o
-}
-
-func (o RouterRipngPtrOutput) ToRouterRipngPtrOutputWithContext(ctx context.Context) RouterRipngPtrOutput {
-	return o
-}
-
 type RouterRipngArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterRipngArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterRipng)(nil))
+	return reflect.TypeOf((*[]*RouterRipng)(nil)).Elem()
 }
 
 func (o RouterRipngArrayOutput) ToRouterRipngArrayOutput() RouterRipngArrayOutput {
@@ -455,15 +400,15 @@ func (o RouterRipngArrayOutput) ToRouterRipngArrayOutputWithContext(ctx context.
 }
 
 func (o RouterRipngArrayOutput) Index(i pulumi.IntInput) RouterRipngOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterRipng {
-		return vs[0].([]RouterRipng)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterRipng {
+		return vs[0].([]*RouterRipng)[vs[1].(int)]
 	}).(RouterRipngOutput)
 }
 
 type RouterRipngMapOutput struct{ *pulumi.OutputState }
 
 func (RouterRipngMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterRipng)(nil))
+	return reflect.TypeOf((*map[string]*RouterRipng)(nil)).Elem()
 }
 
 func (o RouterRipngMapOutput) ToRouterRipngMapOutput() RouterRipngMapOutput {
@@ -475,14 +420,16 @@ func (o RouterRipngMapOutput) ToRouterRipngMapOutputWithContext(ctx context.Cont
 }
 
 func (o RouterRipngMapOutput) MapIndex(k pulumi.StringInput) RouterRipngOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterRipng {
-		return vs[0].(map[string]RouterRipng)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterRipng {
+		return vs[0].(map[string]*RouterRipng)[vs[1].(string)]
 	}).(RouterRipngOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterRipngInput)(nil)).Elem(), &RouterRipng{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterRipngArrayInput)(nil)).Elem(), RouterRipngArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterRipngMapInput)(nil)).Elem(), RouterRipngMap{})
 	pulumi.RegisterOutputType(RouterRipngOutput{})
-	pulumi.RegisterOutputType(RouterRipngPtrOutput{})
 	pulumi.RegisterOutputType(RouterRipngArrayOutput{})
 	pulumi.RegisterOutputType(RouterRipngMapOutput{})
 }

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -83,6 +83,7 @@ func NewWebProxyWisp(ctx *pulumi.Context,
 	if args.ServerPort == nil {
 		return nil, errors.New("invalid value for required argument 'ServerPort'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebProxyWisp
 	err := ctx.RegisterResource("fortios:index/webProxyWisp:WebProxyWisp", name, args, &resource, opts...)
 	if err != nil {
@@ -197,7 +198,7 @@ type WebProxyWispInput interface {
 }
 
 func (*WebProxyWisp) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyWisp)(nil))
+	return reflect.TypeOf((**WebProxyWisp)(nil)).Elem()
 }
 
 func (i *WebProxyWisp) ToWebProxyWispOutput() WebProxyWispOutput {
@@ -206,35 +207,6 @@ func (i *WebProxyWisp) ToWebProxyWispOutput() WebProxyWispOutput {
 
 func (i *WebProxyWisp) ToWebProxyWispOutputWithContext(ctx context.Context) WebProxyWispOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispOutput)
-}
-
-func (i *WebProxyWisp) ToWebProxyWispPtrOutput() WebProxyWispPtrOutput {
-	return i.ToWebProxyWispPtrOutputWithContext(context.Background())
-}
-
-func (i *WebProxyWisp) ToWebProxyWispPtrOutputWithContext(ctx context.Context) WebProxyWispPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispPtrOutput)
-}
-
-type WebProxyWispPtrInput interface {
-	pulumi.Input
-
-	ToWebProxyWispPtrOutput() WebProxyWispPtrOutput
-	ToWebProxyWispPtrOutputWithContext(ctx context.Context) WebProxyWispPtrOutput
-}
-
-type webProxyWispPtrType WebProxyWispArgs
-
-func (*webProxyWispPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyWisp)(nil))
-}
-
-func (i *webProxyWispPtrType) ToWebProxyWispPtrOutput() WebProxyWispPtrOutput {
-	return i.ToWebProxyWispPtrOutputWithContext(context.Background())
-}
-
-func (i *webProxyWispPtrType) ToWebProxyWispPtrOutputWithContext(ctx context.Context) WebProxyWispPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispPtrOutput)
 }
 
 // WebProxyWispArrayInput is an input type that accepts WebProxyWispArray and WebProxyWispArrayOutput values.
@@ -251,7 +223,7 @@ type WebProxyWispArrayInput interface {
 type WebProxyWispArray []WebProxyWispInput
 
 func (WebProxyWispArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebProxyWisp)(nil))
+	return reflect.TypeOf((*[]*WebProxyWisp)(nil)).Elem()
 }
 
 func (i WebProxyWispArray) ToWebProxyWispArrayOutput() WebProxyWispArrayOutput {
@@ -276,7 +248,7 @@ type WebProxyWispMapInput interface {
 type WebProxyWispMap map[string]WebProxyWispInput
 
 func (WebProxyWispMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebProxyWisp)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyWisp)(nil)).Elem()
 }
 
 func (i WebProxyWispMap) ToWebProxyWispMapOutput() WebProxyWispMapOutput {
@@ -287,12 +259,10 @@ func (i WebProxyWispMap) ToWebProxyWispMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyWispMapOutput)
 }
 
-type WebProxyWispOutput struct {
-	*pulumi.OutputState
-}
+type WebProxyWispOutput struct{ *pulumi.OutputState }
 
 func (WebProxyWispOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyWisp)(nil))
+	return reflect.TypeOf((**WebProxyWisp)(nil)).Elem()
 }
 
 func (o WebProxyWispOutput) ToWebProxyWispOutput() WebProxyWispOutput {
@@ -303,36 +273,10 @@ func (o WebProxyWispOutput) ToWebProxyWispOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o WebProxyWispOutput) ToWebProxyWispPtrOutput() WebProxyWispPtrOutput {
-	return o.ToWebProxyWispPtrOutputWithContext(context.Background())
-}
-
-func (o WebProxyWispOutput) ToWebProxyWispPtrOutputWithContext(ctx context.Context) WebProxyWispPtrOutput {
-	return o.ApplyT(func(v WebProxyWisp) *WebProxyWisp {
-		return &v
-	}).(WebProxyWispPtrOutput)
-}
-
-type WebProxyWispPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebProxyWispPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyWisp)(nil))
-}
-
-func (o WebProxyWispPtrOutput) ToWebProxyWispPtrOutput() WebProxyWispPtrOutput {
-	return o
-}
-
-func (o WebProxyWispPtrOutput) ToWebProxyWispPtrOutputWithContext(ctx context.Context) WebProxyWispPtrOutput {
-	return o
-}
-
 type WebProxyWispArrayOutput struct{ *pulumi.OutputState }
 
 func (WebProxyWispArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebProxyWisp)(nil))
+	return reflect.TypeOf((*[]*WebProxyWisp)(nil)).Elem()
 }
 
 func (o WebProxyWispArrayOutput) ToWebProxyWispArrayOutput() WebProxyWispArrayOutput {
@@ -344,15 +288,15 @@ func (o WebProxyWispArrayOutput) ToWebProxyWispArrayOutputWithContext(ctx contex
 }
 
 func (o WebProxyWispArrayOutput) Index(i pulumi.IntInput) WebProxyWispOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyWisp {
-		return vs[0].([]WebProxyWisp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyWisp {
+		return vs[0].([]*WebProxyWisp)[vs[1].(int)]
 	}).(WebProxyWispOutput)
 }
 
 type WebProxyWispMapOutput struct{ *pulumi.OutputState }
 
 func (WebProxyWispMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebProxyWisp)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyWisp)(nil)).Elem()
 }
 
 func (o WebProxyWispMapOutput) ToWebProxyWispMapOutput() WebProxyWispMapOutput {
@@ -364,14 +308,16 @@ func (o WebProxyWispMapOutput) ToWebProxyWispMapOutputWithContext(ctx context.Co
 }
 
 func (o WebProxyWispMapOutput) MapIndex(k pulumi.StringInput) WebProxyWispOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebProxyWisp {
-		return vs[0].(map[string]WebProxyWisp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebProxyWisp {
+		return vs[0].(map[string]*WebProxyWisp)[vs[1].(string)]
 	}).(WebProxyWispOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyWispInput)(nil)).Elem(), &WebProxyWisp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyWispArrayInput)(nil)).Elem(), WebProxyWispArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyWispMapInput)(nil)).Elem(), WebProxyWispMap{})
 	pulumi.RegisterOutputType(WebProxyWispOutput{})
-	pulumi.RegisterOutputType(WebProxyWispPtrOutput{})
 	pulumi.RegisterOutputType(WebProxyWispArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyWispMapOutput{})
 }

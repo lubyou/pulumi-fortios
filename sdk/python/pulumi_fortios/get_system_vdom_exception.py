@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemVdomExceptionResult',
     'AwaitableGetSystemVdomExceptionResult',
     'get_system_vdom_exception',
+    'get_system_vdom_exception_output',
 ]
 
 @pulumi.output_type
@@ -129,6 +130,8 @@ def get_system_vdom_exception(fosid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemVdomException:GetSystemVdomException', __args__, opts=opts, typ=GetSystemVdomExceptionResult).value
 
     return AwaitableGetSystemVdomExceptionResult(
@@ -139,3 +142,17 @@ def get_system_vdom_exception(fosid: Optional[int] = None,
         scope=__ret__.scope,
         vdomparam=__ret__.vdomparam,
         vdoms=__ret__.vdoms)
+
+
+@_utilities.lift_output_func(get_system_vdom_exception)
+def get_system_vdom_exception_output(fosid: Optional[pulumi.Input[int]] = None,
+                                     vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemVdomExceptionResult]:
+    """
+    Use this data source to get information on an fortios system vdomexception
+
+
+    :param int fosid: Specify the fosid of the desired system vdomexception.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

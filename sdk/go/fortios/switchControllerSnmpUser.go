@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP v3 users globally.
+// Configure FortiSwitch SNMP v3 users globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -24,13 +24,13 @@ import (
 type SwitchControllerSnmpUser struct {
 	pulumi.CustomResourceState
 
-	// Authentication protocol. Valid values: `md5`, `sha`.
+	// Authentication protocol.
 	AuthProto pulumi.StringOutput `pulumi:"authProto"`
 	// Password for authentication protocol.
 	AuthPwd pulumi.StringPtrOutput `pulumi:"authPwd"`
 	// SNMP user name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Privacy (encryption) protocol. Valid values: `aes`, `des`.
+	// Privacy (encryption) protocol.
 	PrivProto pulumi.StringOutput `pulumi:"privProto"`
 	// Password for privacy (encryption) protocol.
 	PrivPwd pulumi.StringPtrOutput `pulumi:"privPwd"`
@@ -51,6 +51,7 @@ func NewSwitchControllerSnmpUser(ctx *pulumi.Context,
 		args = &SwitchControllerSnmpUserArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpUser
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpUser:SwitchControllerSnmpUser", name, args, &resource, opts...)
 	if err != nil {
@@ -73,13 +74,13 @@ func GetSwitchControllerSnmpUser(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SwitchControllerSnmpUser resources.
 type switchControllerSnmpUserState struct {
-	// Authentication protocol. Valid values: `md5`, `sha`.
+	// Authentication protocol.
 	AuthProto *string `pulumi:"authProto"`
 	// Password for authentication protocol.
 	AuthPwd *string `pulumi:"authPwd"`
 	// SNMP user name.
 	Name *string `pulumi:"name"`
-	// Privacy (encryption) protocol. Valid values: `aes`, `des`.
+	// Privacy (encryption) protocol.
 	PrivProto *string `pulumi:"privProto"`
 	// Password for privacy (encryption) protocol.
 	PrivPwd *string `pulumi:"privPwd"`
@@ -94,13 +95,13 @@ type switchControllerSnmpUserState struct {
 }
 
 type SwitchControllerSnmpUserState struct {
-	// Authentication protocol. Valid values: `md5`, `sha`.
+	// Authentication protocol.
 	AuthProto pulumi.StringPtrInput
 	// Password for authentication protocol.
 	AuthPwd pulumi.StringPtrInput
 	// SNMP user name.
 	Name pulumi.StringPtrInput
-	// Privacy (encryption) protocol. Valid values: `aes`, `des`.
+	// Privacy (encryption) protocol.
 	PrivProto pulumi.StringPtrInput
 	// Password for privacy (encryption) protocol.
 	PrivPwd pulumi.StringPtrInput
@@ -119,13 +120,13 @@ func (SwitchControllerSnmpUserState) ElementType() reflect.Type {
 }
 
 type switchControllerSnmpUserArgs struct {
-	// Authentication protocol. Valid values: `md5`, `sha`.
+	// Authentication protocol.
 	AuthProto *string `pulumi:"authProto"`
 	// Password for authentication protocol.
 	AuthPwd *string `pulumi:"authPwd"`
 	// SNMP user name.
 	Name *string `pulumi:"name"`
-	// Privacy (encryption) protocol. Valid values: `aes`, `des`.
+	// Privacy (encryption) protocol.
 	PrivProto *string `pulumi:"privProto"`
 	// Password for privacy (encryption) protocol.
 	PrivPwd *string `pulumi:"privPwd"`
@@ -141,13 +142,13 @@ type switchControllerSnmpUserArgs struct {
 
 // The set of arguments for constructing a SwitchControllerSnmpUser resource.
 type SwitchControllerSnmpUserArgs struct {
-	// Authentication protocol. Valid values: `md5`, `sha`.
+	// Authentication protocol.
 	AuthProto pulumi.StringPtrInput
 	// Password for authentication protocol.
 	AuthPwd pulumi.StringPtrInput
 	// SNMP user name.
 	Name pulumi.StringPtrInput
-	// Privacy (encryption) protocol. Valid values: `aes`, `des`.
+	// Privacy (encryption) protocol.
 	PrivProto pulumi.StringPtrInput
 	// Password for privacy (encryption) protocol.
 	PrivPwd pulumi.StringPtrInput
@@ -173,7 +174,7 @@ type SwitchControllerSnmpUserInput interface {
 }
 
 func (*SwitchControllerSnmpUser) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpUser)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpUser)(nil)).Elem()
 }
 
 func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserOutput() SwitchControllerSnmpUserOutput {
@@ -182,35 +183,6 @@ func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserOutput() SwitchCont
 
 func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserOutputWithContext(ctx context.Context) SwitchControllerSnmpUserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserOutput)
-}
-
-func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserPtrOutput() SwitchControllerSnmpUserPtrOutput {
-	return i.ToSwitchControllerSnmpUserPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSnmpUser) ToSwitchControllerSnmpUserPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserPtrOutput)
-}
-
-type SwitchControllerSnmpUserPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSnmpUserPtrOutput() SwitchControllerSnmpUserPtrOutput
-	ToSwitchControllerSnmpUserPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpUserPtrOutput
-}
-
-type switchControllerSnmpUserPtrType SwitchControllerSnmpUserArgs
-
-func (*switchControllerSnmpUserPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpUser)(nil))
-}
-
-func (i *switchControllerSnmpUserPtrType) ToSwitchControllerSnmpUserPtrOutput() SwitchControllerSnmpUserPtrOutput {
-	return i.ToSwitchControllerSnmpUserPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSnmpUserPtrType) ToSwitchControllerSnmpUserPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserPtrOutput)
 }
 
 // SwitchControllerSnmpUserArrayInput is an input type that accepts SwitchControllerSnmpUserArray and SwitchControllerSnmpUserArrayOutput values.
@@ -227,7 +199,7 @@ type SwitchControllerSnmpUserArrayInput interface {
 type SwitchControllerSnmpUserArray []SwitchControllerSnmpUserInput
 
 func (SwitchControllerSnmpUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSnmpUser)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpUser)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpUserArray) ToSwitchControllerSnmpUserArrayOutput() SwitchControllerSnmpUserArrayOutput {
@@ -252,7 +224,7 @@ type SwitchControllerSnmpUserMapInput interface {
 type SwitchControllerSnmpUserMap map[string]SwitchControllerSnmpUserInput
 
 func (SwitchControllerSnmpUserMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSnmpUser)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpUser)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpUserMap) ToSwitchControllerSnmpUserMapOutput() SwitchControllerSnmpUserMapOutput {
@@ -263,12 +235,10 @@ func (i SwitchControllerSnmpUserMap) ToSwitchControllerSnmpUserMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpUserMapOutput)
 }
 
-type SwitchControllerSnmpUserOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSnmpUserOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpUser)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpUser)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserOutput() SwitchControllerSnmpUserOutput {
@@ -279,36 +249,10 @@ func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserOutputWithCont
 	return o
 }
 
-func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserPtrOutput() SwitchControllerSnmpUserPtrOutput {
-	return o.ToSwitchControllerSnmpUserPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSnmpUserOutput) ToSwitchControllerSnmpUserPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpUserPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSnmpUser) *SwitchControllerSnmpUser {
-		return &v
-	}).(SwitchControllerSnmpUserPtrOutput)
-}
-
-type SwitchControllerSnmpUserPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSnmpUserPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpUser)(nil))
-}
-
-func (o SwitchControllerSnmpUserPtrOutput) ToSwitchControllerSnmpUserPtrOutput() SwitchControllerSnmpUserPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSnmpUserPtrOutput) ToSwitchControllerSnmpUserPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpUserPtrOutput {
-	return o
-}
-
 type SwitchControllerSnmpUserArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSnmpUser)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpUser)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpUserArrayOutput) ToSwitchControllerSnmpUserArrayOutput() SwitchControllerSnmpUserArrayOutput {
@@ -320,15 +264,15 @@ func (o SwitchControllerSnmpUserArrayOutput) ToSwitchControllerSnmpUserArrayOutp
 }
 
 func (o SwitchControllerSnmpUserArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSnmpUser {
-		return vs[0].([]SwitchControllerSnmpUser)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpUser {
+		return vs[0].([]*SwitchControllerSnmpUser)[vs[1].(int)]
 	}).(SwitchControllerSnmpUserOutput)
 }
 
 type SwitchControllerSnmpUserMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpUserMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSnmpUser)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpUser)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpUserMapOutput) ToSwitchControllerSnmpUserMapOutput() SwitchControllerSnmpUserMapOutput {
@@ -340,14 +284,16 @@ func (o SwitchControllerSnmpUserMapOutput) ToSwitchControllerSnmpUserMapOutputWi
 }
 
 func (o SwitchControllerSnmpUserMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpUserOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSnmpUser {
-		return vs[0].(map[string]SwitchControllerSnmpUser)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSnmpUser {
+		return vs[0].(map[string]*SwitchControllerSnmpUser)[vs[1].(string)]
 	}).(SwitchControllerSnmpUserOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpUserInput)(nil)).Elem(), &SwitchControllerSnmpUser{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpUserArrayInput)(nil)).Elem(), SwitchControllerSnmpUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpUserMapInput)(nil)).Elem(), SwitchControllerSnmpUserMap{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpUserOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSnmpUserPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpUserArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpUserMapOutput{})
 }

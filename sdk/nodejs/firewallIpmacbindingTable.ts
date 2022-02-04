@@ -93,32 +93,30 @@ export class FirewallIpmacbindingTable extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallIpmacbindingTableArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallIpmacbindingTableArgs | FirewallIpmacbindingTableState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallIpmacbindingTableState | undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["seqNum"] = state ? state.seqNum : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["seqNum"] = state ? state.seqNum : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallIpmacbindingTableArgs | undefined;
             if ((!args || args.ip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ip'");
             }
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["seqNum"] = args ? args.seqNum : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["seqNum"] = args ? args.seqNum : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallIpmacbindingTable.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallIpmacbindingTable.__pulumiType, name, resourceInputs, opts);
     }
 }
 

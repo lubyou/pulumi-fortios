@@ -128,43 +128,41 @@ export class WanoptContentDeliveryNetworkRule extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WanoptContentDeliveryNetworkRuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WanoptContentDeliveryNetworkRuleArgs | WanoptContentDeliveryNetworkRuleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WanoptContentDeliveryNetworkRuleState | undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["hostDomainNameSuffixes"] = state ? state.hostDomainNameSuffixes : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["requestCacheControl"] = state ? state.requestCacheControl : undefined;
-            inputs["responseCacheControl"] = state ? state.responseCacheControl : undefined;
-            inputs["responseExpires"] = state ? state.responseExpires : undefined;
-            inputs["rules"] = state ? state.rules : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["textResponseVcache"] = state ? state.textResponseVcache : undefined;
-            inputs["updateserver"] = state ? state.updateserver : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["hostDomainNameSuffixes"] = state ? state.hostDomainNameSuffixes : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["requestCacheControl"] = state ? state.requestCacheControl : undefined;
+            resourceInputs["responseCacheControl"] = state ? state.responseCacheControl : undefined;
+            resourceInputs["responseExpires"] = state ? state.responseExpires : undefined;
+            resourceInputs["rules"] = state ? state.rules : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["textResponseVcache"] = state ? state.textResponseVcache : undefined;
+            resourceInputs["updateserver"] = state ? state.updateserver : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WanoptContentDeliveryNetworkRuleArgs | undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["hostDomainNameSuffixes"] = args ? args.hostDomainNameSuffixes : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["requestCacheControl"] = args ? args.requestCacheControl : undefined;
-            inputs["responseCacheControl"] = args ? args.responseCacheControl : undefined;
-            inputs["responseExpires"] = args ? args.responseExpires : undefined;
-            inputs["rules"] = args ? args.rules : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["textResponseVcache"] = args ? args.textResponseVcache : undefined;
-            inputs["updateserver"] = args ? args.updateserver : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["hostDomainNameSuffixes"] = args ? args.hostDomainNameSuffixes : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["requestCacheControl"] = args ? args.requestCacheControl : undefined;
+            resourceInputs["responseCacheControl"] = args ? args.responseCacheControl : undefined;
+            resourceInputs["responseExpires"] = args ? args.responseExpires : undefined;
+            resourceInputs["rules"] = args ? args.rules : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["textResponseVcache"] = args ? args.textResponseVcache : undefined;
+            resourceInputs["updateserver"] = args ? args.updateserver : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WanoptContentDeliveryNetworkRule.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WanoptContentDeliveryNetworkRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 

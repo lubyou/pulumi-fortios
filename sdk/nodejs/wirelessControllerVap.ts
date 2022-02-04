@@ -67,6 +67,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly alias!: pulumi.Output<string>;
     /**
+     * AntiVirus profile name.
+     */
+    public readonly antivirusProfile!: pulumi.Output<string>;
+    /**
+     * Application control list name.
+     */
+    public readonly applicationList!: pulumi.Output<string>;
+    /**
      * Airtime weight in percentage (default = 20).
      */
     public readonly atfWeight!: pulumi.Output<number>;
@@ -74,6 +82,18 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
      */
     public readonly auth!: pulumi.Output<string>;
+    /**
+     * HTTPS server certificate.
+     */
+    public readonly authCert!: pulumi.Output<string>;
+    /**
+     * Address of captive portal.
+     */
+    public readonly authPortalAddr!: pulumi.Output<string>;
+    /**
+     * Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+     */
+    public readonly beaconAdvertising!: pulumi.Output<string>;
     /**
      * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
      */
@@ -86,6 +106,18 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
      */
     public readonly bssColorPartial!: pulumi.Output<string>;
+    /**
+     * Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly bstmDisassociationImminent!: pulumi.Output<string>;
+    /**
+     * Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+     */
+    public readonly bstmLoadBalancingDisassocTimer!: pulumi.Output<number>;
+    /**
+     * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+     */
+    public readonly bstmRssiDisassocTimer!: pulumi.Output<number>;
     /**
      * Local-bridging captive portal ac-name.
      */
@@ -114,6 +146,10 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Session timeout interval (0 - 864000 sec, default = 0).
      */
     public readonly captivePortalSessionTimeoutInterval!: pulumi.Output<number>;
+    /**
+     * Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly dhcpAddressEnforcement!: pulumi.Output<string>;
     /**
      * DHCP lease time in seconds for NAT IP address.
      */
@@ -195,6 +231,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly ftR0KeyLifetime!: pulumi.Output<number>;
     /**
+     * GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+     */
+    public readonly gasComebackDelay!: pulumi.Output<number>;
+    /**
+     * GAS fragmentation limit (512 - 4096, default = 1024).
+     */
+    public readonly gasFragmentationLimit!: pulumi.Output<number>;
+    /**
      * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
      */
     public readonly gtkRekey!: pulumi.Output<string>;
@@ -222,6 +266,10 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * IP address and subnet mask for the local standalone NAT subnet.
      */
     public readonly ip!: pulumi.Output<string>;
+    /**
+     * IPS sensor name.
+     */
+    public readonly ipsSensor!: pulumi.Output<string>;
     /**
      * Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
      */
@@ -255,6 +303,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly localStandalone!: pulumi.Output<string>;
     /**
+     * Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+     */
+    public readonly localStandaloneDns!: pulumi.Output<string>;
+    /**
+     * IPv4 addresses for the local standalone DNS.
+     */
+    public readonly localStandaloneDnsIp!: pulumi.Output<string>;
+    /**
      * Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
      */
     public readonly localStandaloneNat!: pulumi.Output<string>;
@@ -262,6 +318,18 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
      */
     public readonly macAuthBypass!: pulumi.Output<string>;
+    /**
+     * MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    public readonly macCalledStationDelimiter!: pulumi.Output<string>;
+    /**
+     * MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    public readonly macCallingStationDelimiter!: pulumi.Output<string>;
+    /**
+     * MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+     */
+    public readonly macCase!: pulumi.Output<string>;
     /**
      * Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
      */
@@ -275,6 +343,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly macFilterPolicyOther!: pulumi.Output<string>;
     /**
+     * MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    public readonly macPasswordDelimiter!: pulumi.Output<string>;
+    /**
+     * MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    public readonly macUsernameDelimiter!: pulumi.Output<string>;
+    /**
      * Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
      */
     public readonly maxClients!: pulumi.Output<number>;
@@ -282,6 +358,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
      */
     public readonly maxClientsAp!: pulumi.Output<number>;
+    /**
+     * Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+     */
+    public readonly mbo!: pulumi.Output<string>;
+    /**
+     * MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+     */
+    public readonly mboCellDataConnPref!: pulumi.Output<string>;
     /**
      * Disable multicast enhancement when this many clients are receiving multicast traffic.
      */
@@ -319,13 +403,29 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly multicastRate!: pulumi.Output<string>;
     /**
-     * Schedule name.
+     * Enable/disable network access control. Valid values: `enable`, `disable`.
+     */
+    public readonly nac!: pulumi.Output<string>;
+    /**
+     * NAC profile name.
+     */
+    public readonly nacProfile!: pulumi.Output<string>;
+    /**
+     * VLAN name.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+     */
+    public readonly neighborReportDualBand!: pulumi.Output<string>;
     /**
      * Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
      */
     public readonly okc!: pulumi.Output<string>;
+    /**
+     * Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly osen!: pulumi.Output<string>;
     /**
      * OWE-Groups. Valid values: `19`, `20`, `21`.
      */
@@ -431,6 +531,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly radiusMacAuthUsergroups!: pulumi.Output<outputs.WirelessControllerVapRadiusMacAuthUsergroup[] | undefined>;
     /**
+     * Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    public readonly radiusMacMpskAuth!: pulumi.Output<string>;
+    /**
+     * RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+     */
+    public readonly radiusMacMpskTimeout!: pulumi.Output<number>;
+    /**
      * RADIUS server to be used to authenticate WiFi users.
      */
     public readonly radiusServer!: pulumi.Output<string>;
@@ -446,6 +554,14 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
      */
     public readonly rates11acSs34!: pulumi.Output<string>;
+    /**
+     * Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+     */
+    public readonly rates11axSs12!: pulumi.Output<string>;
+    /**
+     * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+     */
+    public readonly rates11axSs34!: pulumi.Output<string>;
     /**
      * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
      */
@@ -466,6 +582,10 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * WPA3 SAE password to be used to authenticate WiFi users.
      */
     public readonly saePassword!: pulumi.Output<string | undefined>;
+    /**
+     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+     */
+    public readonly scanBotnetConnections!: pulumi.Output<string>;
     /**
      * VAP schedule name.
      */
@@ -535,9 +655,17 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     public readonly usergroups!: pulumi.Output<outputs.WirelessControllerVapUsergroup[] | undefined>;
     /**
+     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
+     */
+    public readonly utmLog!: pulumi.Output<string>;
+    /**
      * UTM profile name.
      */
     public readonly utmProfile!: pulumi.Output<string>;
+    /**
+     * Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+     */
+    public readonly utmStatus!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -546,6 +674,10 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
      */
     public readonly vlanAuto!: pulumi.Output<string>;
+    /**
+     * Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+     */
+    public readonly vlanNames!: pulumi.Output<outputs.WirelessControllerVapVlanName[] | undefined>;
     /**
      * Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
      */
@@ -562,6 +694,10 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      * Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
      */
     public readonly voiceEnterprise!: pulumi.Output<string>;
+    /**
+     * WebFilter profile name.
+     */
+    public readonly webfilterProfile!: pulumi.Output<string>;
 
     /**
      * Create a WirelessControllerVap resource with the given unique name, arguments, and options.
@@ -572,275 +708,341 @@ export class WirelessControllerVap extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerVapArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerVapArgs | WirelessControllerVapState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerVapState | undefined;
-            inputs["accessControlList"] = state ? state.accessControlList : undefined;
-            inputs["acctInterimInterval"] = state ? state.acctInterimInterval : undefined;
-            inputs["additionalAkms"] = state ? state.additionalAkms : undefined;
-            inputs["addressGroup"] = state ? state.addressGroup : undefined;
-            inputs["alias"] = state ? state.alias : undefined;
-            inputs["atfWeight"] = state ? state.atfWeight : undefined;
-            inputs["auth"] = state ? state.auth : undefined;
-            inputs["broadcastSsid"] = state ? state.broadcastSsid : undefined;
-            inputs["broadcastSuppression"] = state ? state.broadcastSuppression : undefined;
-            inputs["bssColorPartial"] = state ? state.bssColorPartial : undefined;
-            inputs["captivePortalAcName"] = state ? state.captivePortalAcName : undefined;
-            inputs["captivePortalAuthTimeout"] = state ? state.captivePortalAuthTimeout : undefined;
-            inputs["captivePortalMacauthRadiusSecret"] = state ? state.captivePortalMacauthRadiusSecret : undefined;
-            inputs["captivePortalMacauthRadiusServer"] = state ? state.captivePortalMacauthRadiusServer : undefined;
-            inputs["captivePortalRadiusSecret"] = state ? state.captivePortalRadiusSecret : undefined;
-            inputs["captivePortalRadiusServer"] = state ? state.captivePortalRadiusServer : undefined;
-            inputs["captivePortalSessionTimeoutInterval"] = state ? state.captivePortalSessionTimeoutInterval : undefined;
-            inputs["dhcpLeaseTime"] = state ? state.dhcpLeaseTime : undefined;
-            inputs["dhcpOption43Insertion"] = state ? state.dhcpOption43Insertion : undefined;
-            inputs["dhcpOption82CircuitIdInsertion"] = state ? state.dhcpOption82CircuitIdInsertion : undefined;
-            inputs["dhcpOption82Insertion"] = state ? state.dhcpOption82Insertion : undefined;
-            inputs["dhcpOption82RemoteIdInsertion"] = state ? state.dhcpOption82RemoteIdInsertion : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["dynamicVlan"] = state ? state.dynamicVlan : undefined;
-            inputs["eapReauth"] = state ? state.eapReauth : undefined;
-            inputs["eapReauthIntv"] = state ? state.eapReauthIntv : undefined;
-            inputs["eapolKeyRetries"] = state ? state.eapolKeyRetries : undefined;
-            inputs["encrypt"] = state ? state.encrypt : undefined;
-            inputs["externalFastRoaming"] = state ? state.externalFastRoaming : undefined;
-            inputs["externalLogout"] = state ? state.externalLogout : undefined;
-            inputs["externalWeb"] = state ? state.externalWeb : undefined;
-            inputs["externalWebFormat"] = state ? state.externalWebFormat : undefined;
-            inputs["fastBssTransition"] = state ? state.fastBssTransition : undefined;
-            inputs["fastRoaming"] = state ? state.fastRoaming : undefined;
-            inputs["ftMobilityDomain"] = state ? state.ftMobilityDomain : undefined;
-            inputs["ftOverDs"] = state ? state.ftOverDs : undefined;
-            inputs["ftR0KeyLifetime"] = state ? state.ftR0KeyLifetime : undefined;
-            inputs["gtkRekey"] = state ? state.gtkRekey : undefined;
-            inputs["gtkRekeyIntv"] = state ? state.gtkRekeyIntv : undefined;
-            inputs["highEfficiency"] = state ? state.highEfficiency : undefined;
-            inputs["hotspot20Profile"] = state ? state.hotspot20Profile : undefined;
-            inputs["igmpSnooping"] = state ? state.igmpSnooping : undefined;
-            inputs["intraVapPrivacy"] = state ? state.intraVapPrivacy : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ipv6Rules"] = state ? state.ipv6Rules : undefined;
-            inputs["key"] = state ? state.key : undefined;
-            inputs["keyindex"] = state ? state.keyindex : undefined;
-            inputs["ldpc"] = state ? state.ldpc : undefined;
-            inputs["localAuthentication"] = state ? state.localAuthentication : undefined;
-            inputs["localBridging"] = state ? state.localBridging : undefined;
-            inputs["localLan"] = state ? state.localLan : undefined;
-            inputs["localStandalone"] = state ? state.localStandalone : undefined;
-            inputs["localStandaloneNat"] = state ? state.localStandaloneNat : undefined;
-            inputs["macAuthBypass"] = state ? state.macAuthBypass : undefined;
-            inputs["macFilter"] = state ? state.macFilter : undefined;
-            inputs["macFilterLists"] = state ? state.macFilterLists : undefined;
-            inputs["macFilterPolicyOther"] = state ? state.macFilterPolicyOther : undefined;
-            inputs["maxClients"] = state ? state.maxClients : undefined;
-            inputs["maxClientsAp"] = state ? state.maxClientsAp : undefined;
-            inputs["meDisableThresh"] = state ? state.meDisableThresh : undefined;
-            inputs["meshBackhaul"] = state ? state.meshBackhaul : undefined;
-            inputs["mpsk"] = state ? state.mpsk : undefined;
-            inputs["mpskConcurrentClients"] = state ? state.mpskConcurrentClients : undefined;
-            inputs["mpskKeys"] = state ? state.mpskKeys : undefined;
-            inputs["mpskProfile"] = state ? state.mpskProfile : undefined;
-            inputs["muMimo"] = state ? state.muMimo : undefined;
-            inputs["multicastEnhance"] = state ? state.multicastEnhance : undefined;
-            inputs["multicastRate"] = state ? state.multicastRate : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["okc"] = state ? state.okc : undefined;
-            inputs["oweGroups"] = state ? state.oweGroups : undefined;
-            inputs["oweTransition"] = state ? state.oweTransition : undefined;
-            inputs["oweTransitionSsid"] = state ? state.oweTransitionSsid : undefined;
-            inputs["passphrase"] = state ? state.passphrase : undefined;
-            inputs["pmf"] = state ? state.pmf : undefined;
-            inputs["pmfAssocComebackTimeout"] = state ? state.pmfAssocComebackTimeout : undefined;
-            inputs["pmfSaQueryRetryTimeout"] = state ? state.pmfSaQueryRetryTimeout : undefined;
-            inputs["portMacauth"] = state ? state.portMacauth : undefined;
-            inputs["portMacauthReauthTimeout"] = state ? state.portMacauthReauthTimeout : undefined;
-            inputs["portMacauthTimeout"] = state ? state.portMacauthTimeout : undefined;
-            inputs["portalMessageOverrideGroup"] = state ? state.portalMessageOverrideGroup : undefined;
-            inputs["portalMessageOverrides"] = state ? state.portalMessageOverrides : undefined;
-            inputs["portalType"] = state ? state.portalType : undefined;
-            inputs["primaryWagProfile"] = state ? state.primaryWagProfile : undefined;
-            inputs["probeRespSuppression"] = state ? state.probeRespSuppression : undefined;
-            inputs["probeRespThreshold"] = state ? state.probeRespThreshold : undefined;
-            inputs["ptkRekey"] = state ? state.ptkRekey : undefined;
-            inputs["ptkRekeyIntv"] = state ? state.ptkRekeyIntv : undefined;
-            inputs["qosProfile"] = state ? state.qosProfile : undefined;
-            inputs["quarantine"] = state ? state.quarantine : undefined;
-            inputs["radio2gThreshold"] = state ? state.radio2gThreshold : undefined;
-            inputs["radio5gThreshold"] = state ? state.radio5gThreshold : undefined;
-            inputs["radioSensitivity"] = state ? state.radioSensitivity : undefined;
-            inputs["radiusMacAuth"] = state ? state.radiusMacAuth : undefined;
-            inputs["radiusMacAuthServer"] = state ? state.radiusMacAuthServer : undefined;
-            inputs["radiusMacAuthUsergroups"] = state ? state.radiusMacAuthUsergroups : undefined;
-            inputs["radiusServer"] = state ? state.radiusServer : undefined;
-            inputs["rates11a"] = state ? state.rates11a : undefined;
-            inputs["rates11acSs12"] = state ? state.rates11acSs12 : undefined;
-            inputs["rates11acSs34"] = state ? state.rates11acSs34 : undefined;
-            inputs["rates11bg"] = state ? state.rates11bg : undefined;
-            inputs["rates11nSs12"] = state ? state.rates11nSs12 : undefined;
-            inputs["rates11nSs34"] = state ? state.rates11nSs34 : undefined;
-            inputs["saeGroups"] = state ? state.saeGroups : undefined;
-            inputs["saePassword"] = state ? state.saePassword : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["secondaryWagProfile"] = state ? state.secondaryWagProfile : undefined;
-            inputs["security"] = state ? state.security : undefined;
-            inputs["securityExemptList"] = state ? state.securityExemptList : undefined;
-            inputs["securityObsoleteOption"] = state ? state.securityObsoleteOption : undefined;
-            inputs["securityRedirectUrl"] = state ? state.securityRedirectUrl : undefined;
-            inputs["selectedUsergroups"] = state ? state.selectedUsergroups : undefined;
-            inputs["splitTunneling"] = state ? state.splitTunneling : undefined;
-            inputs["ssid"] = state ? state.ssid : undefined;
-            inputs["stickyClientRemove"] = state ? state.stickyClientRemove : undefined;
-            inputs["stickyClientThreshold2g"] = state ? state.stickyClientThreshold2g : undefined;
-            inputs["stickyClientThreshold5g"] = state ? state.stickyClientThreshold5g : undefined;
-            inputs["targetWakeTime"] = state ? state.targetWakeTime : undefined;
-            inputs["tkipCounterMeasure"] = state ? state.tkipCounterMeasure : undefined;
-            inputs["tunnelEchoInterval"] = state ? state.tunnelEchoInterval : undefined;
-            inputs["tunnelFallbackInterval"] = state ? state.tunnelFallbackInterval : undefined;
-            inputs["usergroups"] = state ? state.usergroups : undefined;
-            inputs["utmProfile"] = state ? state.utmProfile : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanAuto"] = state ? state.vlanAuto : undefined;
-            inputs["vlanPooling"] = state ? state.vlanPooling : undefined;
-            inputs["vlanPools"] = state ? state.vlanPools : undefined;
-            inputs["vlanid"] = state ? state.vlanid : undefined;
-            inputs["voiceEnterprise"] = state ? state.voiceEnterprise : undefined;
+            resourceInputs["accessControlList"] = state ? state.accessControlList : undefined;
+            resourceInputs["acctInterimInterval"] = state ? state.acctInterimInterval : undefined;
+            resourceInputs["additionalAkms"] = state ? state.additionalAkms : undefined;
+            resourceInputs["addressGroup"] = state ? state.addressGroup : undefined;
+            resourceInputs["alias"] = state ? state.alias : undefined;
+            resourceInputs["antivirusProfile"] = state ? state.antivirusProfile : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["atfWeight"] = state ? state.atfWeight : undefined;
+            resourceInputs["auth"] = state ? state.auth : undefined;
+            resourceInputs["authCert"] = state ? state.authCert : undefined;
+            resourceInputs["authPortalAddr"] = state ? state.authPortalAddr : undefined;
+            resourceInputs["beaconAdvertising"] = state ? state.beaconAdvertising : undefined;
+            resourceInputs["broadcastSsid"] = state ? state.broadcastSsid : undefined;
+            resourceInputs["broadcastSuppression"] = state ? state.broadcastSuppression : undefined;
+            resourceInputs["bssColorPartial"] = state ? state.bssColorPartial : undefined;
+            resourceInputs["bstmDisassociationImminent"] = state ? state.bstmDisassociationImminent : undefined;
+            resourceInputs["bstmLoadBalancingDisassocTimer"] = state ? state.bstmLoadBalancingDisassocTimer : undefined;
+            resourceInputs["bstmRssiDisassocTimer"] = state ? state.bstmRssiDisassocTimer : undefined;
+            resourceInputs["captivePortalAcName"] = state ? state.captivePortalAcName : undefined;
+            resourceInputs["captivePortalAuthTimeout"] = state ? state.captivePortalAuthTimeout : undefined;
+            resourceInputs["captivePortalMacauthRadiusSecret"] = state ? state.captivePortalMacauthRadiusSecret : undefined;
+            resourceInputs["captivePortalMacauthRadiusServer"] = state ? state.captivePortalMacauthRadiusServer : undefined;
+            resourceInputs["captivePortalRadiusSecret"] = state ? state.captivePortalRadiusSecret : undefined;
+            resourceInputs["captivePortalRadiusServer"] = state ? state.captivePortalRadiusServer : undefined;
+            resourceInputs["captivePortalSessionTimeoutInterval"] = state ? state.captivePortalSessionTimeoutInterval : undefined;
+            resourceInputs["dhcpAddressEnforcement"] = state ? state.dhcpAddressEnforcement : undefined;
+            resourceInputs["dhcpLeaseTime"] = state ? state.dhcpLeaseTime : undefined;
+            resourceInputs["dhcpOption43Insertion"] = state ? state.dhcpOption43Insertion : undefined;
+            resourceInputs["dhcpOption82CircuitIdInsertion"] = state ? state.dhcpOption82CircuitIdInsertion : undefined;
+            resourceInputs["dhcpOption82Insertion"] = state ? state.dhcpOption82Insertion : undefined;
+            resourceInputs["dhcpOption82RemoteIdInsertion"] = state ? state.dhcpOption82RemoteIdInsertion : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["dynamicVlan"] = state ? state.dynamicVlan : undefined;
+            resourceInputs["eapReauth"] = state ? state.eapReauth : undefined;
+            resourceInputs["eapReauthIntv"] = state ? state.eapReauthIntv : undefined;
+            resourceInputs["eapolKeyRetries"] = state ? state.eapolKeyRetries : undefined;
+            resourceInputs["encrypt"] = state ? state.encrypt : undefined;
+            resourceInputs["externalFastRoaming"] = state ? state.externalFastRoaming : undefined;
+            resourceInputs["externalLogout"] = state ? state.externalLogout : undefined;
+            resourceInputs["externalWeb"] = state ? state.externalWeb : undefined;
+            resourceInputs["externalWebFormat"] = state ? state.externalWebFormat : undefined;
+            resourceInputs["fastBssTransition"] = state ? state.fastBssTransition : undefined;
+            resourceInputs["fastRoaming"] = state ? state.fastRoaming : undefined;
+            resourceInputs["ftMobilityDomain"] = state ? state.ftMobilityDomain : undefined;
+            resourceInputs["ftOverDs"] = state ? state.ftOverDs : undefined;
+            resourceInputs["ftR0KeyLifetime"] = state ? state.ftR0KeyLifetime : undefined;
+            resourceInputs["gasComebackDelay"] = state ? state.gasComebackDelay : undefined;
+            resourceInputs["gasFragmentationLimit"] = state ? state.gasFragmentationLimit : undefined;
+            resourceInputs["gtkRekey"] = state ? state.gtkRekey : undefined;
+            resourceInputs["gtkRekeyIntv"] = state ? state.gtkRekeyIntv : undefined;
+            resourceInputs["highEfficiency"] = state ? state.highEfficiency : undefined;
+            resourceInputs["hotspot20Profile"] = state ? state.hotspot20Profile : undefined;
+            resourceInputs["igmpSnooping"] = state ? state.igmpSnooping : undefined;
+            resourceInputs["intraVapPrivacy"] = state ? state.intraVapPrivacy : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipv6Rules"] = state ? state.ipv6Rules : undefined;
+            resourceInputs["key"] = state ? state.key : undefined;
+            resourceInputs["keyindex"] = state ? state.keyindex : undefined;
+            resourceInputs["ldpc"] = state ? state.ldpc : undefined;
+            resourceInputs["localAuthentication"] = state ? state.localAuthentication : undefined;
+            resourceInputs["localBridging"] = state ? state.localBridging : undefined;
+            resourceInputs["localLan"] = state ? state.localLan : undefined;
+            resourceInputs["localStandalone"] = state ? state.localStandalone : undefined;
+            resourceInputs["localStandaloneDns"] = state ? state.localStandaloneDns : undefined;
+            resourceInputs["localStandaloneDnsIp"] = state ? state.localStandaloneDnsIp : undefined;
+            resourceInputs["localStandaloneNat"] = state ? state.localStandaloneNat : undefined;
+            resourceInputs["macAuthBypass"] = state ? state.macAuthBypass : undefined;
+            resourceInputs["macCalledStationDelimiter"] = state ? state.macCalledStationDelimiter : undefined;
+            resourceInputs["macCallingStationDelimiter"] = state ? state.macCallingStationDelimiter : undefined;
+            resourceInputs["macCase"] = state ? state.macCase : undefined;
+            resourceInputs["macFilter"] = state ? state.macFilter : undefined;
+            resourceInputs["macFilterLists"] = state ? state.macFilterLists : undefined;
+            resourceInputs["macFilterPolicyOther"] = state ? state.macFilterPolicyOther : undefined;
+            resourceInputs["macPasswordDelimiter"] = state ? state.macPasswordDelimiter : undefined;
+            resourceInputs["macUsernameDelimiter"] = state ? state.macUsernameDelimiter : undefined;
+            resourceInputs["maxClients"] = state ? state.maxClients : undefined;
+            resourceInputs["maxClientsAp"] = state ? state.maxClientsAp : undefined;
+            resourceInputs["mbo"] = state ? state.mbo : undefined;
+            resourceInputs["mboCellDataConnPref"] = state ? state.mboCellDataConnPref : undefined;
+            resourceInputs["meDisableThresh"] = state ? state.meDisableThresh : undefined;
+            resourceInputs["meshBackhaul"] = state ? state.meshBackhaul : undefined;
+            resourceInputs["mpsk"] = state ? state.mpsk : undefined;
+            resourceInputs["mpskConcurrentClients"] = state ? state.mpskConcurrentClients : undefined;
+            resourceInputs["mpskKeys"] = state ? state.mpskKeys : undefined;
+            resourceInputs["mpskProfile"] = state ? state.mpskProfile : undefined;
+            resourceInputs["muMimo"] = state ? state.muMimo : undefined;
+            resourceInputs["multicastEnhance"] = state ? state.multicastEnhance : undefined;
+            resourceInputs["multicastRate"] = state ? state.multicastRate : undefined;
+            resourceInputs["nac"] = state ? state.nac : undefined;
+            resourceInputs["nacProfile"] = state ? state.nacProfile : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["neighborReportDualBand"] = state ? state.neighborReportDualBand : undefined;
+            resourceInputs["okc"] = state ? state.okc : undefined;
+            resourceInputs["osen"] = state ? state.osen : undefined;
+            resourceInputs["oweGroups"] = state ? state.oweGroups : undefined;
+            resourceInputs["oweTransition"] = state ? state.oweTransition : undefined;
+            resourceInputs["oweTransitionSsid"] = state ? state.oweTransitionSsid : undefined;
+            resourceInputs["passphrase"] = state ? state.passphrase : undefined;
+            resourceInputs["pmf"] = state ? state.pmf : undefined;
+            resourceInputs["pmfAssocComebackTimeout"] = state ? state.pmfAssocComebackTimeout : undefined;
+            resourceInputs["pmfSaQueryRetryTimeout"] = state ? state.pmfSaQueryRetryTimeout : undefined;
+            resourceInputs["portMacauth"] = state ? state.portMacauth : undefined;
+            resourceInputs["portMacauthReauthTimeout"] = state ? state.portMacauthReauthTimeout : undefined;
+            resourceInputs["portMacauthTimeout"] = state ? state.portMacauthTimeout : undefined;
+            resourceInputs["portalMessageOverrideGroup"] = state ? state.portalMessageOverrideGroup : undefined;
+            resourceInputs["portalMessageOverrides"] = state ? state.portalMessageOverrides : undefined;
+            resourceInputs["portalType"] = state ? state.portalType : undefined;
+            resourceInputs["primaryWagProfile"] = state ? state.primaryWagProfile : undefined;
+            resourceInputs["probeRespSuppression"] = state ? state.probeRespSuppression : undefined;
+            resourceInputs["probeRespThreshold"] = state ? state.probeRespThreshold : undefined;
+            resourceInputs["ptkRekey"] = state ? state.ptkRekey : undefined;
+            resourceInputs["ptkRekeyIntv"] = state ? state.ptkRekeyIntv : undefined;
+            resourceInputs["qosProfile"] = state ? state.qosProfile : undefined;
+            resourceInputs["quarantine"] = state ? state.quarantine : undefined;
+            resourceInputs["radio2gThreshold"] = state ? state.radio2gThreshold : undefined;
+            resourceInputs["radio5gThreshold"] = state ? state.radio5gThreshold : undefined;
+            resourceInputs["radioSensitivity"] = state ? state.radioSensitivity : undefined;
+            resourceInputs["radiusMacAuth"] = state ? state.radiusMacAuth : undefined;
+            resourceInputs["radiusMacAuthServer"] = state ? state.radiusMacAuthServer : undefined;
+            resourceInputs["radiusMacAuthUsergroups"] = state ? state.radiusMacAuthUsergroups : undefined;
+            resourceInputs["radiusMacMpskAuth"] = state ? state.radiusMacMpskAuth : undefined;
+            resourceInputs["radiusMacMpskTimeout"] = state ? state.radiusMacMpskTimeout : undefined;
+            resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
+            resourceInputs["rates11a"] = state ? state.rates11a : undefined;
+            resourceInputs["rates11acSs12"] = state ? state.rates11acSs12 : undefined;
+            resourceInputs["rates11acSs34"] = state ? state.rates11acSs34 : undefined;
+            resourceInputs["rates11axSs12"] = state ? state.rates11axSs12 : undefined;
+            resourceInputs["rates11axSs34"] = state ? state.rates11axSs34 : undefined;
+            resourceInputs["rates11bg"] = state ? state.rates11bg : undefined;
+            resourceInputs["rates11nSs12"] = state ? state.rates11nSs12 : undefined;
+            resourceInputs["rates11nSs34"] = state ? state.rates11nSs34 : undefined;
+            resourceInputs["saeGroups"] = state ? state.saeGroups : undefined;
+            resourceInputs["saePassword"] = state ? state.saePassword : undefined;
+            resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["secondaryWagProfile"] = state ? state.secondaryWagProfile : undefined;
+            resourceInputs["security"] = state ? state.security : undefined;
+            resourceInputs["securityExemptList"] = state ? state.securityExemptList : undefined;
+            resourceInputs["securityObsoleteOption"] = state ? state.securityObsoleteOption : undefined;
+            resourceInputs["securityRedirectUrl"] = state ? state.securityRedirectUrl : undefined;
+            resourceInputs["selectedUsergroups"] = state ? state.selectedUsergroups : undefined;
+            resourceInputs["splitTunneling"] = state ? state.splitTunneling : undefined;
+            resourceInputs["ssid"] = state ? state.ssid : undefined;
+            resourceInputs["stickyClientRemove"] = state ? state.stickyClientRemove : undefined;
+            resourceInputs["stickyClientThreshold2g"] = state ? state.stickyClientThreshold2g : undefined;
+            resourceInputs["stickyClientThreshold5g"] = state ? state.stickyClientThreshold5g : undefined;
+            resourceInputs["targetWakeTime"] = state ? state.targetWakeTime : undefined;
+            resourceInputs["tkipCounterMeasure"] = state ? state.tkipCounterMeasure : undefined;
+            resourceInputs["tunnelEchoInterval"] = state ? state.tunnelEchoInterval : undefined;
+            resourceInputs["tunnelFallbackInterval"] = state ? state.tunnelFallbackInterval : undefined;
+            resourceInputs["usergroups"] = state ? state.usergroups : undefined;
+            resourceInputs["utmLog"] = state ? state.utmLog : undefined;
+            resourceInputs["utmProfile"] = state ? state.utmProfile : undefined;
+            resourceInputs["utmStatus"] = state ? state.utmStatus : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanAuto"] = state ? state.vlanAuto : undefined;
+            resourceInputs["vlanNames"] = state ? state.vlanNames : undefined;
+            resourceInputs["vlanPooling"] = state ? state.vlanPooling : undefined;
+            resourceInputs["vlanPools"] = state ? state.vlanPools : undefined;
+            resourceInputs["vlanid"] = state ? state.vlanid : undefined;
+            resourceInputs["voiceEnterprise"] = state ? state.voiceEnterprise : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
             const args = argsOrState as WirelessControllerVapArgs | undefined;
-            inputs["accessControlList"] = args ? args.accessControlList : undefined;
-            inputs["acctInterimInterval"] = args ? args.acctInterimInterval : undefined;
-            inputs["additionalAkms"] = args ? args.additionalAkms : undefined;
-            inputs["addressGroup"] = args ? args.addressGroup : undefined;
-            inputs["alias"] = args ? args.alias : undefined;
-            inputs["atfWeight"] = args ? args.atfWeight : undefined;
-            inputs["auth"] = args ? args.auth : undefined;
-            inputs["broadcastSsid"] = args ? args.broadcastSsid : undefined;
-            inputs["broadcastSuppression"] = args ? args.broadcastSuppression : undefined;
-            inputs["bssColorPartial"] = args ? args.bssColorPartial : undefined;
-            inputs["captivePortalAcName"] = args ? args.captivePortalAcName : undefined;
-            inputs["captivePortalAuthTimeout"] = args ? args.captivePortalAuthTimeout : undefined;
-            inputs["captivePortalMacauthRadiusSecret"] = args ? args.captivePortalMacauthRadiusSecret : undefined;
-            inputs["captivePortalMacauthRadiusServer"] = args ? args.captivePortalMacauthRadiusServer : undefined;
-            inputs["captivePortalRadiusSecret"] = args ? args.captivePortalRadiusSecret : undefined;
-            inputs["captivePortalRadiusServer"] = args ? args.captivePortalRadiusServer : undefined;
-            inputs["captivePortalSessionTimeoutInterval"] = args ? args.captivePortalSessionTimeoutInterval : undefined;
-            inputs["dhcpLeaseTime"] = args ? args.dhcpLeaseTime : undefined;
-            inputs["dhcpOption43Insertion"] = args ? args.dhcpOption43Insertion : undefined;
-            inputs["dhcpOption82CircuitIdInsertion"] = args ? args.dhcpOption82CircuitIdInsertion : undefined;
-            inputs["dhcpOption82Insertion"] = args ? args.dhcpOption82Insertion : undefined;
-            inputs["dhcpOption82RemoteIdInsertion"] = args ? args.dhcpOption82RemoteIdInsertion : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["dynamicVlan"] = args ? args.dynamicVlan : undefined;
-            inputs["eapReauth"] = args ? args.eapReauth : undefined;
-            inputs["eapReauthIntv"] = args ? args.eapReauthIntv : undefined;
-            inputs["eapolKeyRetries"] = args ? args.eapolKeyRetries : undefined;
-            inputs["encrypt"] = args ? args.encrypt : undefined;
-            inputs["externalFastRoaming"] = args ? args.externalFastRoaming : undefined;
-            inputs["externalLogout"] = args ? args.externalLogout : undefined;
-            inputs["externalWeb"] = args ? args.externalWeb : undefined;
-            inputs["externalWebFormat"] = args ? args.externalWebFormat : undefined;
-            inputs["fastBssTransition"] = args ? args.fastBssTransition : undefined;
-            inputs["fastRoaming"] = args ? args.fastRoaming : undefined;
-            inputs["ftMobilityDomain"] = args ? args.ftMobilityDomain : undefined;
-            inputs["ftOverDs"] = args ? args.ftOverDs : undefined;
-            inputs["ftR0KeyLifetime"] = args ? args.ftR0KeyLifetime : undefined;
-            inputs["gtkRekey"] = args ? args.gtkRekey : undefined;
-            inputs["gtkRekeyIntv"] = args ? args.gtkRekeyIntv : undefined;
-            inputs["highEfficiency"] = args ? args.highEfficiency : undefined;
-            inputs["hotspot20Profile"] = args ? args.hotspot20Profile : undefined;
-            inputs["igmpSnooping"] = args ? args.igmpSnooping : undefined;
-            inputs["intraVapPrivacy"] = args ? args.intraVapPrivacy : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ipv6Rules"] = args ? args.ipv6Rules : undefined;
-            inputs["key"] = args ? args.key : undefined;
-            inputs["keyindex"] = args ? args.keyindex : undefined;
-            inputs["ldpc"] = args ? args.ldpc : undefined;
-            inputs["localAuthentication"] = args ? args.localAuthentication : undefined;
-            inputs["localBridging"] = args ? args.localBridging : undefined;
-            inputs["localLan"] = args ? args.localLan : undefined;
-            inputs["localStandalone"] = args ? args.localStandalone : undefined;
-            inputs["localStandaloneNat"] = args ? args.localStandaloneNat : undefined;
-            inputs["macAuthBypass"] = args ? args.macAuthBypass : undefined;
-            inputs["macFilter"] = args ? args.macFilter : undefined;
-            inputs["macFilterLists"] = args ? args.macFilterLists : undefined;
-            inputs["macFilterPolicyOther"] = args ? args.macFilterPolicyOther : undefined;
-            inputs["maxClients"] = args ? args.maxClients : undefined;
-            inputs["maxClientsAp"] = args ? args.maxClientsAp : undefined;
-            inputs["meDisableThresh"] = args ? args.meDisableThresh : undefined;
-            inputs["meshBackhaul"] = args ? args.meshBackhaul : undefined;
-            inputs["mpsk"] = args ? args.mpsk : undefined;
-            inputs["mpskConcurrentClients"] = args ? args.mpskConcurrentClients : undefined;
-            inputs["mpskKeys"] = args ? args.mpskKeys : undefined;
-            inputs["mpskProfile"] = args ? args.mpskProfile : undefined;
-            inputs["muMimo"] = args ? args.muMimo : undefined;
-            inputs["multicastEnhance"] = args ? args.multicastEnhance : undefined;
-            inputs["multicastRate"] = args ? args.multicastRate : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["okc"] = args ? args.okc : undefined;
-            inputs["oweGroups"] = args ? args.oweGroups : undefined;
-            inputs["oweTransition"] = args ? args.oweTransition : undefined;
-            inputs["oweTransitionSsid"] = args ? args.oweTransitionSsid : undefined;
-            inputs["passphrase"] = args ? args.passphrase : undefined;
-            inputs["pmf"] = args ? args.pmf : undefined;
-            inputs["pmfAssocComebackTimeout"] = args ? args.pmfAssocComebackTimeout : undefined;
-            inputs["pmfSaQueryRetryTimeout"] = args ? args.pmfSaQueryRetryTimeout : undefined;
-            inputs["portMacauth"] = args ? args.portMacauth : undefined;
-            inputs["portMacauthReauthTimeout"] = args ? args.portMacauthReauthTimeout : undefined;
-            inputs["portMacauthTimeout"] = args ? args.portMacauthTimeout : undefined;
-            inputs["portalMessageOverrideGroup"] = args ? args.portalMessageOverrideGroup : undefined;
-            inputs["portalMessageOverrides"] = args ? args.portalMessageOverrides : undefined;
-            inputs["portalType"] = args ? args.portalType : undefined;
-            inputs["primaryWagProfile"] = args ? args.primaryWagProfile : undefined;
-            inputs["probeRespSuppression"] = args ? args.probeRespSuppression : undefined;
-            inputs["probeRespThreshold"] = args ? args.probeRespThreshold : undefined;
-            inputs["ptkRekey"] = args ? args.ptkRekey : undefined;
-            inputs["ptkRekeyIntv"] = args ? args.ptkRekeyIntv : undefined;
-            inputs["qosProfile"] = args ? args.qosProfile : undefined;
-            inputs["quarantine"] = args ? args.quarantine : undefined;
-            inputs["radio2gThreshold"] = args ? args.radio2gThreshold : undefined;
-            inputs["radio5gThreshold"] = args ? args.radio5gThreshold : undefined;
-            inputs["radioSensitivity"] = args ? args.radioSensitivity : undefined;
-            inputs["radiusMacAuth"] = args ? args.radiusMacAuth : undefined;
-            inputs["radiusMacAuthServer"] = args ? args.radiusMacAuthServer : undefined;
-            inputs["radiusMacAuthUsergroups"] = args ? args.radiusMacAuthUsergroups : undefined;
-            inputs["radiusServer"] = args ? args.radiusServer : undefined;
-            inputs["rates11a"] = args ? args.rates11a : undefined;
-            inputs["rates11acSs12"] = args ? args.rates11acSs12 : undefined;
-            inputs["rates11acSs34"] = args ? args.rates11acSs34 : undefined;
-            inputs["rates11bg"] = args ? args.rates11bg : undefined;
-            inputs["rates11nSs12"] = args ? args.rates11nSs12 : undefined;
-            inputs["rates11nSs34"] = args ? args.rates11nSs34 : undefined;
-            inputs["saeGroups"] = args ? args.saeGroups : undefined;
-            inputs["saePassword"] = args ? args.saePassword : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["secondaryWagProfile"] = args ? args.secondaryWagProfile : undefined;
-            inputs["security"] = args ? args.security : undefined;
-            inputs["securityExemptList"] = args ? args.securityExemptList : undefined;
-            inputs["securityObsoleteOption"] = args ? args.securityObsoleteOption : undefined;
-            inputs["securityRedirectUrl"] = args ? args.securityRedirectUrl : undefined;
-            inputs["selectedUsergroups"] = args ? args.selectedUsergroups : undefined;
-            inputs["splitTunneling"] = args ? args.splitTunneling : undefined;
-            inputs["ssid"] = args ? args.ssid : undefined;
-            inputs["stickyClientRemove"] = args ? args.stickyClientRemove : undefined;
-            inputs["stickyClientThreshold2g"] = args ? args.stickyClientThreshold2g : undefined;
-            inputs["stickyClientThreshold5g"] = args ? args.stickyClientThreshold5g : undefined;
-            inputs["targetWakeTime"] = args ? args.targetWakeTime : undefined;
-            inputs["tkipCounterMeasure"] = args ? args.tkipCounterMeasure : undefined;
-            inputs["tunnelEchoInterval"] = args ? args.tunnelEchoInterval : undefined;
-            inputs["tunnelFallbackInterval"] = args ? args.tunnelFallbackInterval : undefined;
-            inputs["usergroups"] = args ? args.usergroups : undefined;
-            inputs["utmProfile"] = args ? args.utmProfile : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanAuto"] = args ? args.vlanAuto : undefined;
-            inputs["vlanPooling"] = args ? args.vlanPooling : undefined;
-            inputs["vlanPools"] = args ? args.vlanPools : undefined;
-            inputs["vlanid"] = args ? args.vlanid : undefined;
-            inputs["voiceEnterprise"] = args ? args.voiceEnterprise : undefined;
+            resourceInputs["accessControlList"] = args ? args.accessControlList : undefined;
+            resourceInputs["acctInterimInterval"] = args ? args.acctInterimInterval : undefined;
+            resourceInputs["additionalAkms"] = args ? args.additionalAkms : undefined;
+            resourceInputs["addressGroup"] = args ? args.addressGroup : undefined;
+            resourceInputs["alias"] = args ? args.alias : undefined;
+            resourceInputs["antivirusProfile"] = args ? args.antivirusProfile : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["atfWeight"] = args ? args.atfWeight : undefined;
+            resourceInputs["auth"] = args ? args.auth : undefined;
+            resourceInputs["authCert"] = args ? args.authCert : undefined;
+            resourceInputs["authPortalAddr"] = args ? args.authPortalAddr : undefined;
+            resourceInputs["beaconAdvertising"] = args ? args.beaconAdvertising : undefined;
+            resourceInputs["broadcastSsid"] = args ? args.broadcastSsid : undefined;
+            resourceInputs["broadcastSuppression"] = args ? args.broadcastSuppression : undefined;
+            resourceInputs["bssColorPartial"] = args ? args.bssColorPartial : undefined;
+            resourceInputs["bstmDisassociationImminent"] = args ? args.bstmDisassociationImminent : undefined;
+            resourceInputs["bstmLoadBalancingDisassocTimer"] = args ? args.bstmLoadBalancingDisassocTimer : undefined;
+            resourceInputs["bstmRssiDisassocTimer"] = args ? args.bstmRssiDisassocTimer : undefined;
+            resourceInputs["captivePortalAcName"] = args ? args.captivePortalAcName : undefined;
+            resourceInputs["captivePortalAuthTimeout"] = args ? args.captivePortalAuthTimeout : undefined;
+            resourceInputs["captivePortalMacauthRadiusSecret"] = args ? args.captivePortalMacauthRadiusSecret : undefined;
+            resourceInputs["captivePortalMacauthRadiusServer"] = args ? args.captivePortalMacauthRadiusServer : undefined;
+            resourceInputs["captivePortalRadiusSecret"] = args ? args.captivePortalRadiusSecret : undefined;
+            resourceInputs["captivePortalRadiusServer"] = args ? args.captivePortalRadiusServer : undefined;
+            resourceInputs["captivePortalSessionTimeoutInterval"] = args ? args.captivePortalSessionTimeoutInterval : undefined;
+            resourceInputs["dhcpAddressEnforcement"] = args ? args.dhcpAddressEnforcement : undefined;
+            resourceInputs["dhcpLeaseTime"] = args ? args.dhcpLeaseTime : undefined;
+            resourceInputs["dhcpOption43Insertion"] = args ? args.dhcpOption43Insertion : undefined;
+            resourceInputs["dhcpOption82CircuitIdInsertion"] = args ? args.dhcpOption82CircuitIdInsertion : undefined;
+            resourceInputs["dhcpOption82Insertion"] = args ? args.dhcpOption82Insertion : undefined;
+            resourceInputs["dhcpOption82RemoteIdInsertion"] = args ? args.dhcpOption82RemoteIdInsertion : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["dynamicVlan"] = args ? args.dynamicVlan : undefined;
+            resourceInputs["eapReauth"] = args ? args.eapReauth : undefined;
+            resourceInputs["eapReauthIntv"] = args ? args.eapReauthIntv : undefined;
+            resourceInputs["eapolKeyRetries"] = args ? args.eapolKeyRetries : undefined;
+            resourceInputs["encrypt"] = args ? args.encrypt : undefined;
+            resourceInputs["externalFastRoaming"] = args ? args.externalFastRoaming : undefined;
+            resourceInputs["externalLogout"] = args ? args.externalLogout : undefined;
+            resourceInputs["externalWeb"] = args ? args.externalWeb : undefined;
+            resourceInputs["externalWebFormat"] = args ? args.externalWebFormat : undefined;
+            resourceInputs["fastBssTransition"] = args ? args.fastBssTransition : undefined;
+            resourceInputs["fastRoaming"] = args ? args.fastRoaming : undefined;
+            resourceInputs["ftMobilityDomain"] = args ? args.ftMobilityDomain : undefined;
+            resourceInputs["ftOverDs"] = args ? args.ftOverDs : undefined;
+            resourceInputs["ftR0KeyLifetime"] = args ? args.ftR0KeyLifetime : undefined;
+            resourceInputs["gasComebackDelay"] = args ? args.gasComebackDelay : undefined;
+            resourceInputs["gasFragmentationLimit"] = args ? args.gasFragmentationLimit : undefined;
+            resourceInputs["gtkRekey"] = args ? args.gtkRekey : undefined;
+            resourceInputs["gtkRekeyIntv"] = args ? args.gtkRekeyIntv : undefined;
+            resourceInputs["highEfficiency"] = args ? args.highEfficiency : undefined;
+            resourceInputs["hotspot20Profile"] = args ? args.hotspot20Profile : undefined;
+            resourceInputs["igmpSnooping"] = args ? args.igmpSnooping : undefined;
+            resourceInputs["intraVapPrivacy"] = args ? args.intraVapPrivacy : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipv6Rules"] = args ? args.ipv6Rules : undefined;
+            resourceInputs["key"] = args ? args.key : undefined;
+            resourceInputs["keyindex"] = args ? args.keyindex : undefined;
+            resourceInputs["ldpc"] = args ? args.ldpc : undefined;
+            resourceInputs["localAuthentication"] = args ? args.localAuthentication : undefined;
+            resourceInputs["localBridging"] = args ? args.localBridging : undefined;
+            resourceInputs["localLan"] = args ? args.localLan : undefined;
+            resourceInputs["localStandalone"] = args ? args.localStandalone : undefined;
+            resourceInputs["localStandaloneDns"] = args ? args.localStandaloneDns : undefined;
+            resourceInputs["localStandaloneDnsIp"] = args ? args.localStandaloneDnsIp : undefined;
+            resourceInputs["localStandaloneNat"] = args ? args.localStandaloneNat : undefined;
+            resourceInputs["macAuthBypass"] = args ? args.macAuthBypass : undefined;
+            resourceInputs["macCalledStationDelimiter"] = args ? args.macCalledStationDelimiter : undefined;
+            resourceInputs["macCallingStationDelimiter"] = args ? args.macCallingStationDelimiter : undefined;
+            resourceInputs["macCase"] = args ? args.macCase : undefined;
+            resourceInputs["macFilter"] = args ? args.macFilter : undefined;
+            resourceInputs["macFilterLists"] = args ? args.macFilterLists : undefined;
+            resourceInputs["macFilterPolicyOther"] = args ? args.macFilterPolicyOther : undefined;
+            resourceInputs["macPasswordDelimiter"] = args ? args.macPasswordDelimiter : undefined;
+            resourceInputs["macUsernameDelimiter"] = args ? args.macUsernameDelimiter : undefined;
+            resourceInputs["maxClients"] = args ? args.maxClients : undefined;
+            resourceInputs["maxClientsAp"] = args ? args.maxClientsAp : undefined;
+            resourceInputs["mbo"] = args ? args.mbo : undefined;
+            resourceInputs["mboCellDataConnPref"] = args ? args.mboCellDataConnPref : undefined;
+            resourceInputs["meDisableThresh"] = args ? args.meDisableThresh : undefined;
+            resourceInputs["meshBackhaul"] = args ? args.meshBackhaul : undefined;
+            resourceInputs["mpsk"] = args ? args.mpsk : undefined;
+            resourceInputs["mpskConcurrentClients"] = args ? args.mpskConcurrentClients : undefined;
+            resourceInputs["mpskKeys"] = args ? args.mpskKeys : undefined;
+            resourceInputs["mpskProfile"] = args ? args.mpskProfile : undefined;
+            resourceInputs["muMimo"] = args ? args.muMimo : undefined;
+            resourceInputs["multicastEnhance"] = args ? args.multicastEnhance : undefined;
+            resourceInputs["multicastRate"] = args ? args.multicastRate : undefined;
+            resourceInputs["nac"] = args ? args.nac : undefined;
+            resourceInputs["nacProfile"] = args ? args.nacProfile : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["neighborReportDualBand"] = args ? args.neighborReportDualBand : undefined;
+            resourceInputs["okc"] = args ? args.okc : undefined;
+            resourceInputs["osen"] = args ? args.osen : undefined;
+            resourceInputs["oweGroups"] = args ? args.oweGroups : undefined;
+            resourceInputs["oweTransition"] = args ? args.oweTransition : undefined;
+            resourceInputs["oweTransitionSsid"] = args ? args.oweTransitionSsid : undefined;
+            resourceInputs["passphrase"] = args ? args.passphrase : undefined;
+            resourceInputs["pmf"] = args ? args.pmf : undefined;
+            resourceInputs["pmfAssocComebackTimeout"] = args ? args.pmfAssocComebackTimeout : undefined;
+            resourceInputs["pmfSaQueryRetryTimeout"] = args ? args.pmfSaQueryRetryTimeout : undefined;
+            resourceInputs["portMacauth"] = args ? args.portMacauth : undefined;
+            resourceInputs["portMacauthReauthTimeout"] = args ? args.portMacauthReauthTimeout : undefined;
+            resourceInputs["portMacauthTimeout"] = args ? args.portMacauthTimeout : undefined;
+            resourceInputs["portalMessageOverrideGroup"] = args ? args.portalMessageOverrideGroup : undefined;
+            resourceInputs["portalMessageOverrides"] = args ? args.portalMessageOverrides : undefined;
+            resourceInputs["portalType"] = args ? args.portalType : undefined;
+            resourceInputs["primaryWagProfile"] = args ? args.primaryWagProfile : undefined;
+            resourceInputs["probeRespSuppression"] = args ? args.probeRespSuppression : undefined;
+            resourceInputs["probeRespThreshold"] = args ? args.probeRespThreshold : undefined;
+            resourceInputs["ptkRekey"] = args ? args.ptkRekey : undefined;
+            resourceInputs["ptkRekeyIntv"] = args ? args.ptkRekeyIntv : undefined;
+            resourceInputs["qosProfile"] = args ? args.qosProfile : undefined;
+            resourceInputs["quarantine"] = args ? args.quarantine : undefined;
+            resourceInputs["radio2gThreshold"] = args ? args.radio2gThreshold : undefined;
+            resourceInputs["radio5gThreshold"] = args ? args.radio5gThreshold : undefined;
+            resourceInputs["radioSensitivity"] = args ? args.radioSensitivity : undefined;
+            resourceInputs["radiusMacAuth"] = args ? args.radiusMacAuth : undefined;
+            resourceInputs["radiusMacAuthServer"] = args ? args.radiusMacAuthServer : undefined;
+            resourceInputs["radiusMacAuthUsergroups"] = args ? args.radiusMacAuthUsergroups : undefined;
+            resourceInputs["radiusMacMpskAuth"] = args ? args.radiusMacMpskAuth : undefined;
+            resourceInputs["radiusMacMpskTimeout"] = args ? args.radiusMacMpskTimeout : undefined;
+            resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
+            resourceInputs["rates11a"] = args ? args.rates11a : undefined;
+            resourceInputs["rates11acSs12"] = args ? args.rates11acSs12 : undefined;
+            resourceInputs["rates11acSs34"] = args ? args.rates11acSs34 : undefined;
+            resourceInputs["rates11axSs12"] = args ? args.rates11axSs12 : undefined;
+            resourceInputs["rates11axSs34"] = args ? args.rates11axSs34 : undefined;
+            resourceInputs["rates11bg"] = args ? args.rates11bg : undefined;
+            resourceInputs["rates11nSs12"] = args ? args.rates11nSs12 : undefined;
+            resourceInputs["rates11nSs34"] = args ? args.rates11nSs34 : undefined;
+            resourceInputs["saeGroups"] = args ? args.saeGroups : undefined;
+            resourceInputs["saePassword"] = args ? args.saePassword : undefined;
+            resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["secondaryWagProfile"] = args ? args.secondaryWagProfile : undefined;
+            resourceInputs["security"] = args ? args.security : undefined;
+            resourceInputs["securityExemptList"] = args ? args.securityExemptList : undefined;
+            resourceInputs["securityObsoleteOption"] = args ? args.securityObsoleteOption : undefined;
+            resourceInputs["securityRedirectUrl"] = args ? args.securityRedirectUrl : undefined;
+            resourceInputs["selectedUsergroups"] = args ? args.selectedUsergroups : undefined;
+            resourceInputs["splitTunneling"] = args ? args.splitTunneling : undefined;
+            resourceInputs["ssid"] = args ? args.ssid : undefined;
+            resourceInputs["stickyClientRemove"] = args ? args.stickyClientRemove : undefined;
+            resourceInputs["stickyClientThreshold2g"] = args ? args.stickyClientThreshold2g : undefined;
+            resourceInputs["stickyClientThreshold5g"] = args ? args.stickyClientThreshold5g : undefined;
+            resourceInputs["targetWakeTime"] = args ? args.targetWakeTime : undefined;
+            resourceInputs["tkipCounterMeasure"] = args ? args.tkipCounterMeasure : undefined;
+            resourceInputs["tunnelEchoInterval"] = args ? args.tunnelEchoInterval : undefined;
+            resourceInputs["tunnelFallbackInterval"] = args ? args.tunnelFallbackInterval : undefined;
+            resourceInputs["usergroups"] = args ? args.usergroups : undefined;
+            resourceInputs["utmLog"] = args ? args.utmLog : undefined;
+            resourceInputs["utmProfile"] = args ? args.utmProfile : undefined;
+            resourceInputs["utmStatus"] = args ? args.utmStatus : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanAuto"] = args ? args.vlanAuto : undefined;
+            resourceInputs["vlanNames"] = args ? args.vlanNames : undefined;
+            resourceInputs["vlanPooling"] = args ? args.vlanPooling : undefined;
+            resourceInputs["vlanPools"] = args ? args.vlanPools : undefined;
+            resourceInputs["vlanid"] = args ? args.vlanid : undefined;
+            resourceInputs["voiceEnterprise"] = args ? args.voiceEnterprise : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerVap.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerVap.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -869,6 +1071,14 @@ export interface WirelessControllerVapState {
      */
     alias?: pulumi.Input<string>;
     /**
+     * AntiVirus profile name.
+     */
+    antivirusProfile?: pulumi.Input<string>;
+    /**
+     * Application control list name.
+     */
+    applicationList?: pulumi.Input<string>;
+    /**
      * Airtime weight in percentage (default = 20).
      */
     atfWeight?: pulumi.Input<number>;
@@ -876,6 +1086,18 @@ export interface WirelessControllerVapState {
      * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
      */
     auth?: pulumi.Input<string>;
+    /**
+     * HTTPS server certificate.
+     */
+    authCert?: pulumi.Input<string>;
+    /**
+     * Address of captive portal.
+     */
+    authPortalAddr?: pulumi.Input<string>;
+    /**
+     * Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+     */
+    beaconAdvertising?: pulumi.Input<string>;
     /**
      * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
      */
@@ -888,6 +1110,18 @@ export interface WirelessControllerVapState {
      * Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
      */
     bssColorPartial?: pulumi.Input<string>;
+    /**
+     * Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+     */
+    bstmDisassociationImminent?: pulumi.Input<string>;
+    /**
+     * Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+     */
+    bstmLoadBalancingDisassocTimer?: pulumi.Input<number>;
+    /**
+     * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+     */
+    bstmRssiDisassocTimer?: pulumi.Input<number>;
     /**
      * Local-bridging captive portal ac-name.
      */
@@ -916,6 +1150,10 @@ export interface WirelessControllerVapState {
      * Session timeout interval (0 - 864000 sec, default = 0).
      */
     captivePortalSessionTimeoutInterval?: pulumi.Input<number>;
+    /**
+     * Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+     */
+    dhcpAddressEnforcement?: pulumi.Input<string>;
     /**
      * DHCP lease time in seconds for NAT IP address.
      */
@@ -997,6 +1235,14 @@ export interface WirelessControllerVapState {
      */
     ftR0KeyLifetime?: pulumi.Input<number>;
     /**
+     * GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+     */
+    gasComebackDelay?: pulumi.Input<number>;
+    /**
+     * GAS fragmentation limit (512 - 4096, default = 1024).
+     */
+    gasFragmentationLimit?: pulumi.Input<number>;
+    /**
      * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
      */
     gtkRekey?: pulumi.Input<string>;
@@ -1024,6 +1270,10 @@ export interface WirelessControllerVapState {
      * IP address and subnet mask for the local standalone NAT subnet.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * IPS sensor name.
+     */
+    ipsSensor?: pulumi.Input<string>;
     /**
      * Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
      */
@@ -1057,6 +1307,14 @@ export interface WirelessControllerVapState {
      */
     localStandalone?: pulumi.Input<string>;
     /**
+     * Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+     */
+    localStandaloneDns?: pulumi.Input<string>;
+    /**
+     * IPv4 addresses for the local standalone DNS.
+     */
+    localStandaloneDnsIp?: pulumi.Input<string>;
+    /**
      * Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
      */
     localStandaloneNat?: pulumi.Input<string>;
@@ -1064,6 +1322,18 @@ export interface WirelessControllerVapState {
      * Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
      */
     macAuthBypass?: pulumi.Input<string>;
+    /**
+     * MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macCalledStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macCallingStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+     */
+    macCase?: pulumi.Input<string>;
     /**
      * Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
      */
@@ -1077,6 +1347,14 @@ export interface WirelessControllerVapState {
      */
     macFilterPolicyOther?: pulumi.Input<string>;
     /**
+     * MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macPasswordDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macUsernameDelimiter?: pulumi.Input<string>;
+    /**
      * Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
      */
     maxClients?: pulumi.Input<number>;
@@ -1084,6 +1362,14 @@ export interface WirelessControllerVapState {
      * Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
      */
     maxClientsAp?: pulumi.Input<number>;
+    /**
+     * Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+     */
+    mbo?: pulumi.Input<string>;
+    /**
+     * MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+     */
+    mboCellDataConnPref?: pulumi.Input<string>;
     /**
      * Disable multicast enhancement when this many clients are receiving multicast traffic.
      */
@@ -1121,13 +1407,29 @@ export interface WirelessControllerVapState {
      */
     multicastRate?: pulumi.Input<string>;
     /**
-     * Schedule name.
+     * Enable/disable network access control. Valid values: `enable`, `disable`.
+     */
+    nac?: pulumi.Input<string>;
+    /**
+     * NAC profile name.
+     */
+    nacProfile?: pulumi.Input<string>;
+    /**
+     * VLAN name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+     */
+    neighborReportDualBand?: pulumi.Input<string>;
     /**
      * Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
      */
     okc?: pulumi.Input<string>;
+    /**
+     * Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+     */
+    osen?: pulumi.Input<string>;
     /**
      * OWE-Groups. Valid values: `19`, `20`, `21`.
      */
@@ -1233,6 +1535,14 @@ export interface WirelessControllerVapState {
      */
     radiusMacAuthUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapRadiusMacAuthUsergroup>[]>;
     /**
+     * Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    radiusMacMpskAuth?: pulumi.Input<string>;
+    /**
+     * RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+     */
+    radiusMacMpskTimeout?: pulumi.Input<number>;
+    /**
      * RADIUS server to be used to authenticate WiFi users.
      */
     radiusServer?: pulumi.Input<string>;
@@ -1248,6 +1558,14 @@ export interface WirelessControllerVapState {
      * Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
      */
     rates11acSs34?: pulumi.Input<string>;
+    /**
+     * Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+     */
+    rates11axSs12?: pulumi.Input<string>;
+    /**
+     * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+     */
+    rates11axSs34?: pulumi.Input<string>;
     /**
      * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
      */
@@ -1268,6 +1586,10 @@ export interface WirelessControllerVapState {
      * WPA3 SAE password to be used to authenticate WiFi users.
      */
     saePassword?: pulumi.Input<string>;
+    /**
+     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+     */
+    scanBotnetConnections?: pulumi.Input<string>;
     /**
      * VAP schedule name.
      */
@@ -1337,9 +1659,17 @@ export interface WirelessControllerVapState {
      */
     usergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapUsergroup>[]>;
     /**
+     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
+     */
+    utmLog?: pulumi.Input<string>;
+    /**
      * UTM profile name.
      */
     utmProfile?: pulumi.Input<string>;
+    /**
+     * Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+     */
+    utmStatus?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -1348,6 +1678,10 @@ export interface WirelessControllerVapState {
      * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
      */
     vlanAuto?: pulumi.Input<string>;
+    /**
+     * Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+     */
+    vlanNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapVlanName>[]>;
     /**
      * Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
      */
@@ -1364,6 +1698,10 @@ export interface WirelessControllerVapState {
      * Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
      */
     voiceEnterprise?: pulumi.Input<string>;
+    /**
+     * WebFilter profile name.
+     */
+    webfilterProfile?: pulumi.Input<string>;
 }
 
 /**
@@ -1391,6 +1729,14 @@ export interface WirelessControllerVapArgs {
      */
     alias?: pulumi.Input<string>;
     /**
+     * AntiVirus profile name.
+     */
+    antivirusProfile?: pulumi.Input<string>;
+    /**
+     * Application control list name.
+     */
+    applicationList?: pulumi.Input<string>;
+    /**
      * Airtime weight in percentage (default = 20).
      */
     atfWeight?: pulumi.Input<number>;
@@ -1398,6 +1744,18 @@ export interface WirelessControllerVapArgs {
      * Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
      */
     auth?: pulumi.Input<string>;
+    /**
+     * HTTPS server certificate.
+     */
+    authCert?: pulumi.Input<string>;
+    /**
+     * Address of captive portal.
+     */
+    authPortalAddr?: pulumi.Input<string>;
+    /**
+     * Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+     */
+    beaconAdvertising?: pulumi.Input<string>;
     /**
      * Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
      */
@@ -1410,6 +1768,18 @@ export interface WirelessControllerVapArgs {
      * Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
      */
     bssColorPartial?: pulumi.Input<string>;
+    /**
+     * Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+     */
+    bstmDisassociationImminent?: pulumi.Input<string>;
+    /**
+     * Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+     */
+    bstmLoadBalancingDisassocTimer?: pulumi.Input<number>;
+    /**
+     * Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+     */
+    bstmRssiDisassocTimer?: pulumi.Input<number>;
     /**
      * Local-bridging captive portal ac-name.
      */
@@ -1438,6 +1808,10 @@ export interface WirelessControllerVapArgs {
      * Session timeout interval (0 - 864000 sec, default = 0).
      */
     captivePortalSessionTimeoutInterval?: pulumi.Input<number>;
+    /**
+     * Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+     */
+    dhcpAddressEnforcement?: pulumi.Input<string>;
     /**
      * DHCP lease time in seconds for NAT IP address.
      */
@@ -1519,6 +1893,14 @@ export interface WirelessControllerVapArgs {
      */
     ftR0KeyLifetime?: pulumi.Input<number>;
     /**
+     * GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+     */
+    gasComebackDelay?: pulumi.Input<number>;
+    /**
+     * GAS fragmentation limit (512 - 4096, default = 1024).
+     */
+    gasFragmentationLimit?: pulumi.Input<number>;
+    /**
      * Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
      */
     gtkRekey?: pulumi.Input<string>;
@@ -1546,6 +1928,10 @@ export interface WirelessControllerVapArgs {
      * IP address and subnet mask for the local standalone NAT subnet.
      */
     ip?: pulumi.Input<string>;
+    /**
+     * IPS sensor name.
+     */
+    ipsSensor?: pulumi.Input<string>;
     /**
      * Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
      */
@@ -1579,6 +1965,14 @@ export interface WirelessControllerVapArgs {
      */
     localStandalone?: pulumi.Input<string>;
     /**
+     * Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+     */
+    localStandaloneDns?: pulumi.Input<string>;
+    /**
+     * IPv4 addresses for the local standalone DNS.
+     */
+    localStandaloneDnsIp?: pulumi.Input<string>;
+    /**
      * Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
      */
     localStandaloneNat?: pulumi.Input<string>;
@@ -1586,6 +1980,18 @@ export interface WirelessControllerVapArgs {
      * Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
      */
     macAuthBypass?: pulumi.Input<string>;
+    /**
+     * MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macCalledStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macCallingStationDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+     */
+    macCase?: pulumi.Input<string>;
     /**
      * Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
      */
@@ -1599,6 +2005,14 @@ export interface WirelessControllerVapArgs {
      */
     macFilterPolicyOther?: pulumi.Input<string>;
     /**
+     * MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macPasswordDelimiter?: pulumi.Input<string>;
+    /**
+     * MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+     */
+    macUsernameDelimiter?: pulumi.Input<string>;
+    /**
      * Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
      */
     maxClients?: pulumi.Input<number>;
@@ -1606,6 +2020,14 @@ export interface WirelessControllerVapArgs {
      * Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
      */
     maxClientsAp?: pulumi.Input<number>;
+    /**
+     * Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+     */
+    mbo?: pulumi.Input<string>;
+    /**
+     * MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+     */
+    mboCellDataConnPref?: pulumi.Input<string>;
     /**
      * Disable multicast enhancement when this many clients are receiving multicast traffic.
      */
@@ -1643,13 +2065,29 @@ export interface WirelessControllerVapArgs {
      */
     multicastRate?: pulumi.Input<string>;
     /**
-     * Schedule name.
+     * Enable/disable network access control. Valid values: `enable`, `disable`.
+     */
+    nac?: pulumi.Input<string>;
+    /**
+     * NAC profile name.
+     */
+    nacProfile?: pulumi.Input<string>;
+    /**
+     * VLAN name.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+     */
+    neighborReportDualBand?: pulumi.Input<string>;
     /**
      * Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
      */
     okc?: pulumi.Input<string>;
+    /**
+     * Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+     */
+    osen?: pulumi.Input<string>;
     /**
      * OWE-Groups. Valid values: `19`, `20`, `21`.
      */
@@ -1755,6 +2193,14 @@ export interface WirelessControllerVapArgs {
      */
     radiusMacAuthUsergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapRadiusMacAuthUsergroup>[]>;
     /**
+     * Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    radiusMacMpskAuth?: pulumi.Input<string>;
+    /**
+     * RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+     */
+    radiusMacMpskTimeout?: pulumi.Input<number>;
+    /**
      * RADIUS server to be used to authenticate WiFi users.
      */
     radiusServer?: pulumi.Input<string>;
@@ -1770,6 +2216,14 @@ export interface WirelessControllerVapArgs {
      * Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
      */
     rates11acSs34?: pulumi.Input<string>;
+    /**
+     * Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+     */
+    rates11axSs12?: pulumi.Input<string>;
+    /**
+     * Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+     */
+    rates11axSs34?: pulumi.Input<string>;
     /**
      * Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
      */
@@ -1790,6 +2244,10 @@ export interface WirelessControllerVapArgs {
      * WPA3 SAE password to be used to authenticate WiFi users.
      */
     saePassword?: pulumi.Input<string>;
+    /**
+     * Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+     */
+    scanBotnetConnections?: pulumi.Input<string>;
     /**
      * VAP schedule name.
      */
@@ -1859,9 +2317,17 @@ export interface WirelessControllerVapArgs {
      */
     usergroups?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapUsergroup>[]>;
     /**
+     * Enable/disable UTM logging. Valid values: `enable`, `disable`.
+     */
+    utmLog?: pulumi.Input<string>;
+    /**
      * UTM profile name.
      */
     utmProfile?: pulumi.Input<string>;
+    /**
+     * Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+     */
+    utmStatus?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -1870,6 +2336,10 @@ export interface WirelessControllerVapArgs {
      * Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
      */
     vlanAuto?: pulumi.Input<string>;
+    /**
+     * Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+     */
+    vlanNames?: pulumi.Input<pulumi.Input<inputs.WirelessControllerVapVlanName>[]>;
     /**
      * Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
      */
@@ -1886,4 +2356,8 @@ export interface WirelessControllerVapArgs {
      * Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
      */
     voiceEnterprise?: pulumi.Input<string>;
+    /**
+     * WebFilter profile name.
+     */
+    webfilterProfile?: pulumi.Input<string>;
 }

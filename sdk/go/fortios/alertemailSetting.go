@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -132,6 +132,7 @@ func NewAlertemailSetting(ctx *pulumi.Context,
 		args = &AlertemailSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AlertemailSetting
 	err := ctx.RegisterResource("fortios:index/alertemailSetting:AlertemailSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -442,7 +443,7 @@ type AlertemailSettingInput interface {
 }
 
 func (*AlertemailSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertemailSetting)(nil))
+	return reflect.TypeOf((**AlertemailSetting)(nil)).Elem()
 }
 
 func (i *AlertemailSetting) ToAlertemailSettingOutput() AlertemailSettingOutput {
@@ -451,35 +452,6 @@ func (i *AlertemailSetting) ToAlertemailSettingOutput() AlertemailSettingOutput 
 
 func (i *AlertemailSetting) ToAlertemailSettingOutputWithContext(ctx context.Context) AlertemailSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingOutput)
-}
-
-func (i *AlertemailSetting) ToAlertemailSettingPtrOutput() AlertemailSettingPtrOutput {
-	return i.ToAlertemailSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *AlertemailSetting) ToAlertemailSettingPtrOutputWithContext(ctx context.Context) AlertemailSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingPtrOutput)
-}
-
-type AlertemailSettingPtrInput interface {
-	pulumi.Input
-
-	ToAlertemailSettingPtrOutput() AlertemailSettingPtrOutput
-	ToAlertemailSettingPtrOutputWithContext(ctx context.Context) AlertemailSettingPtrOutput
-}
-
-type alertemailSettingPtrType AlertemailSettingArgs
-
-func (*alertemailSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertemailSetting)(nil))
-}
-
-func (i *alertemailSettingPtrType) ToAlertemailSettingPtrOutput() AlertemailSettingPtrOutput {
-	return i.ToAlertemailSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *alertemailSettingPtrType) ToAlertemailSettingPtrOutputWithContext(ctx context.Context) AlertemailSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingPtrOutput)
 }
 
 // AlertemailSettingArrayInput is an input type that accepts AlertemailSettingArray and AlertemailSettingArrayOutput values.
@@ -496,7 +468,7 @@ type AlertemailSettingArrayInput interface {
 type AlertemailSettingArray []AlertemailSettingInput
 
 func (AlertemailSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AlertemailSetting)(nil))
+	return reflect.TypeOf((*[]*AlertemailSetting)(nil)).Elem()
 }
 
 func (i AlertemailSettingArray) ToAlertemailSettingArrayOutput() AlertemailSettingArrayOutput {
@@ -521,7 +493,7 @@ type AlertemailSettingMapInput interface {
 type AlertemailSettingMap map[string]AlertemailSettingInput
 
 func (AlertemailSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AlertemailSetting)(nil))
+	return reflect.TypeOf((*map[string]*AlertemailSetting)(nil)).Elem()
 }
 
 func (i AlertemailSettingMap) ToAlertemailSettingMapOutput() AlertemailSettingMapOutput {
@@ -532,12 +504,10 @@ func (i AlertemailSettingMap) ToAlertemailSettingMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(AlertemailSettingMapOutput)
 }
 
-type AlertemailSettingOutput struct {
-	*pulumi.OutputState
-}
+type AlertemailSettingOutput struct{ *pulumi.OutputState }
 
 func (AlertemailSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AlertemailSetting)(nil))
+	return reflect.TypeOf((**AlertemailSetting)(nil)).Elem()
 }
 
 func (o AlertemailSettingOutput) ToAlertemailSettingOutput() AlertemailSettingOutput {
@@ -548,36 +518,10 @@ func (o AlertemailSettingOutput) ToAlertemailSettingOutputWithContext(ctx contex
 	return o
 }
 
-func (o AlertemailSettingOutput) ToAlertemailSettingPtrOutput() AlertemailSettingPtrOutput {
-	return o.ToAlertemailSettingPtrOutputWithContext(context.Background())
-}
-
-func (o AlertemailSettingOutput) ToAlertemailSettingPtrOutputWithContext(ctx context.Context) AlertemailSettingPtrOutput {
-	return o.ApplyT(func(v AlertemailSetting) *AlertemailSetting {
-		return &v
-	}).(AlertemailSettingPtrOutput)
-}
-
-type AlertemailSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AlertemailSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AlertemailSetting)(nil))
-}
-
-func (o AlertemailSettingPtrOutput) ToAlertemailSettingPtrOutput() AlertemailSettingPtrOutput {
-	return o
-}
-
-func (o AlertemailSettingPtrOutput) ToAlertemailSettingPtrOutputWithContext(ctx context.Context) AlertemailSettingPtrOutput {
-	return o
-}
-
 type AlertemailSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (AlertemailSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AlertemailSetting)(nil))
+	return reflect.TypeOf((*[]*AlertemailSetting)(nil)).Elem()
 }
 
 func (o AlertemailSettingArrayOutput) ToAlertemailSettingArrayOutput() AlertemailSettingArrayOutput {
@@ -589,15 +533,15 @@ func (o AlertemailSettingArrayOutput) ToAlertemailSettingArrayOutputWithContext(
 }
 
 func (o AlertemailSettingArrayOutput) Index(i pulumi.IntInput) AlertemailSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AlertemailSetting {
-		return vs[0].([]AlertemailSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AlertemailSetting {
+		return vs[0].([]*AlertemailSetting)[vs[1].(int)]
 	}).(AlertemailSettingOutput)
 }
 
 type AlertemailSettingMapOutput struct{ *pulumi.OutputState }
 
 func (AlertemailSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AlertemailSetting)(nil))
+	return reflect.TypeOf((*map[string]*AlertemailSetting)(nil)).Elem()
 }
 
 func (o AlertemailSettingMapOutput) ToAlertemailSettingMapOutput() AlertemailSettingMapOutput {
@@ -609,14 +553,16 @@ func (o AlertemailSettingMapOutput) ToAlertemailSettingMapOutputWithContext(ctx 
 }
 
 func (o AlertemailSettingMapOutput) MapIndex(k pulumi.StringInput) AlertemailSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AlertemailSetting {
-		return vs[0].(map[string]AlertemailSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AlertemailSetting {
+		return vs[0].(map[string]*AlertemailSetting)[vs[1].(string)]
 	}).(AlertemailSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertemailSettingInput)(nil)).Elem(), &AlertemailSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertemailSettingArrayInput)(nil)).Elem(), AlertemailSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AlertemailSettingMapInput)(nil)).Elem(), AlertemailSettingMap{})
 	pulumi.RegisterOutputType(AlertemailSettingOutput{})
-	pulumi.RegisterOutputType(AlertemailSettingPtrOutput{})
 	pulumi.RegisterOutputType(AlertemailSettingArrayOutput{})
 	pulumi.RegisterOutputType(AlertemailSettingMapOutput{})
 }

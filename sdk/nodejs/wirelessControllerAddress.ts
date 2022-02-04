@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure the client with its MAC address.
+ * Configure the client with its MAC address. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -71,25 +71,23 @@ export class WirelessControllerAddress extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerAddressArgs | WirelessControllerAddressState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerAddressState | undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["mac"] = state ? state.mac : undefined;
-            inputs["policy"] = state ? state.policy : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["mac"] = state ? state.mac : undefined;
+            resourceInputs["policy"] = state ? state.policy : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerAddressArgs | undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["mac"] = args ? args.mac : undefined;
-            inputs["policy"] = args ? args.policy : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["mac"] = args ? args.mac : undefined;
+            resourceInputs["policy"] = args ? args.policy : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerAddress.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerAddress.__pulumiType, name, resourceInputs, opts);
     }
 }
 

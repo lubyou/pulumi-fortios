@@ -39,6 +39,7 @@ func NewFirewallCity(ctx *pulumi.Context,
 		args = &FirewallCityArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallCity
 	err := ctx.RegisterResource("fortios:index/firewallCity:FirewallCity", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallCityInput interface {
 }
 
 func (*FirewallCity) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCity)(nil))
+	return reflect.TypeOf((**FirewallCity)(nil)).Elem()
 }
 
 func (i *FirewallCity) ToFirewallCityOutput() FirewallCityOutput {
@@ -122,35 +123,6 @@ func (i *FirewallCity) ToFirewallCityOutput() FirewallCityOutput {
 
 func (i *FirewallCity) ToFirewallCityOutputWithContext(ctx context.Context) FirewallCityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityOutput)
-}
-
-func (i *FirewallCity) ToFirewallCityPtrOutput() FirewallCityPtrOutput {
-	return i.ToFirewallCityPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallCity) ToFirewallCityPtrOutputWithContext(ctx context.Context) FirewallCityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityPtrOutput)
-}
-
-type FirewallCityPtrInput interface {
-	pulumi.Input
-
-	ToFirewallCityPtrOutput() FirewallCityPtrOutput
-	ToFirewallCityPtrOutputWithContext(ctx context.Context) FirewallCityPtrOutput
-}
-
-type firewallCityPtrType FirewallCityArgs
-
-func (*firewallCityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCity)(nil))
-}
-
-func (i *firewallCityPtrType) ToFirewallCityPtrOutput() FirewallCityPtrOutput {
-	return i.ToFirewallCityPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallCityPtrType) ToFirewallCityPtrOutputWithContext(ctx context.Context) FirewallCityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityPtrOutput)
 }
 
 // FirewallCityArrayInput is an input type that accepts FirewallCityArray and FirewallCityArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallCityArrayInput interface {
 type FirewallCityArray []FirewallCityInput
 
 func (FirewallCityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallCity)(nil))
+	return reflect.TypeOf((*[]*FirewallCity)(nil)).Elem()
 }
 
 func (i FirewallCityArray) ToFirewallCityArrayOutput() FirewallCityArrayOutput {
@@ -192,7 +164,7 @@ type FirewallCityMapInput interface {
 type FirewallCityMap map[string]FirewallCityInput
 
 func (FirewallCityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallCity)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCity)(nil)).Elem()
 }
 
 func (i FirewallCityMap) ToFirewallCityMapOutput() FirewallCityMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallCityMap) ToFirewallCityMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallCityMapOutput)
 }
 
-type FirewallCityOutput struct {
-	*pulumi.OutputState
-}
+type FirewallCityOutput struct{ *pulumi.OutputState }
 
 func (FirewallCityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallCity)(nil))
+	return reflect.TypeOf((**FirewallCity)(nil)).Elem()
 }
 
 func (o FirewallCityOutput) ToFirewallCityOutput() FirewallCityOutput {
@@ -219,36 +189,10 @@ func (o FirewallCityOutput) ToFirewallCityOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o FirewallCityOutput) ToFirewallCityPtrOutput() FirewallCityPtrOutput {
-	return o.ToFirewallCityPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallCityOutput) ToFirewallCityPtrOutputWithContext(ctx context.Context) FirewallCityPtrOutput {
-	return o.ApplyT(func(v FirewallCity) *FirewallCity {
-		return &v
-	}).(FirewallCityPtrOutput)
-}
-
-type FirewallCityPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallCityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallCity)(nil))
-}
-
-func (o FirewallCityPtrOutput) ToFirewallCityPtrOutput() FirewallCityPtrOutput {
-	return o
-}
-
-func (o FirewallCityPtrOutput) ToFirewallCityPtrOutputWithContext(ctx context.Context) FirewallCityPtrOutput {
-	return o
-}
-
 type FirewallCityArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallCityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallCity)(nil))
+	return reflect.TypeOf((*[]*FirewallCity)(nil)).Elem()
 }
 
 func (o FirewallCityArrayOutput) ToFirewallCityArrayOutput() FirewallCityArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallCityArrayOutput) ToFirewallCityArrayOutputWithContext(ctx contex
 }
 
 func (o FirewallCityArrayOutput) Index(i pulumi.IntInput) FirewallCityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallCity {
-		return vs[0].([]FirewallCity)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallCity {
+		return vs[0].([]*FirewallCity)[vs[1].(int)]
 	}).(FirewallCityOutput)
 }
 
 type FirewallCityMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallCityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallCity)(nil))
+	return reflect.TypeOf((*map[string]*FirewallCity)(nil)).Elem()
 }
 
 func (o FirewallCityMapOutput) ToFirewallCityMapOutput() FirewallCityMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallCityMapOutput) ToFirewallCityMapOutputWithContext(ctx context.Co
 }
 
 func (o FirewallCityMapOutput) MapIndex(k pulumi.StringInput) FirewallCityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallCity {
-		return vs[0].(map[string]FirewallCity)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallCity {
+		return vs[0].(map[string]*FirewallCity)[vs[1].(string)]
 	}).(FirewallCityOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCityInput)(nil)).Elem(), &FirewallCity{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCityArrayInput)(nil)).Elem(), FirewallCityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallCityMapInput)(nil)).Elem(), FirewallCityMap{})
 	pulumi.RegisterOutputType(FirewallCityOutput{})
-	pulumi.RegisterOutputType(FirewallCityPtrOutput{})
 	pulumi.RegisterOutputType(FirewallCityArrayOutput{})
 	pulumi.RegisterOutputType(FirewallCityMapOutput{})
 }

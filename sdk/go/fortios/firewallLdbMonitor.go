@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -53,6 +53,12 @@ import (
 type FirewallLdbMonitor struct {
 	pulumi.CustomResourceState
 
+	// Response IP expected from DNS server.
+	DnsMatchIp pulumi.StringOutput `pulumi:"dnsMatchIp"`
+	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+	DnsProtocol pulumi.StringOutput `pulumi:"dnsProtocol"`
+	// Fully qualified domain name to resolve for the DNS probe.
+	DnsRequestDomain pulumi.StringOutput `pulumi:"dnsRequestDomain"`
 	// URL used to send a GET request to check the health of an HTTP server.
 	HttpGet pulumi.StringOutput `pulumi:"httpGet"`
 	// String to match the value expected in response to an HTTP-GET request.
@@ -87,6 +93,7 @@ func NewFirewallLdbMonitor(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallLdbMonitor
 	err := ctx.RegisterResource("fortios:index/firewallLdbMonitor:FirewallLdbMonitor", name, args, &resource, opts...)
 	if err != nil {
@@ -109,6 +116,12 @@ func GetFirewallLdbMonitor(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallLdbMonitor resources.
 type firewallLdbMonitorState struct {
+	// Response IP expected from DNS server.
+	DnsMatchIp *string `pulumi:"dnsMatchIp"`
+	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+	DnsProtocol *string `pulumi:"dnsProtocol"`
+	// Fully qualified domain name to resolve for the DNS probe.
+	DnsRequestDomain *string `pulumi:"dnsRequestDomain"`
 	// URL used to send a GET request to check the health of an HTTP server.
 	HttpGet *string `pulumi:"httpGet"`
 	// String to match the value expected in response to an HTTP-GET request.
@@ -134,6 +147,12 @@ type firewallLdbMonitorState struct {
 }
 
 type FirewallLdbMonitorState struct {
+	// Response IP expected from DNS server.
+	DnsMatchIp pulumi.StringPtrInput
+	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+	DnsProtocol pulumi.StringPtrInput
+	// Fully qualified domain name to resolve for the DNS probe.
+	DnsRequestDomain pulumi.StringPtrInput
 	// URL used to send a GET request to check the health of an HTTP server.
 	HttpGet pulumi.StringPtrInput
 	// String to match the value expected in response to an HTTP-GET request.
@@ -163,6 +182,12 @@ func (FirewallLdbMonitorState) ElementType() reflect.Type {
 }
 
 type firewallLdbMonitorArgs struct {
+	// Response IP expected from DNS server.
+	DnsMatchIp *string `pulumi:"dnsMatchIp"`
+	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+	DnsProtocol *string `pulumi:"dnsProtocol"`
+	// Fully qualified domain name to resolve for the DNS probe.
+	DnsRequestDomain *string `pulumi:"dnsRequestDomain"`
 	// URL used to send a GET request to check the health of an HTTP server.
 	HttpGet *string `pulumi:"httpGet"`
 	// String to match the value expected in response to an HTTP-GET request.
@@ -189,6 +214,12 @@ type firewallLdbMonitorArgs struct {
 
 // The set of arguments for constructing a FirewallLdbMonitor resource.
 type FirewallLdbMonitorArgs struct {
+	// Response IP expected from DNS server.
+	DnsMatchIp pulumi.StringPtrInput
+	// Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+	DnsProtocol pulumi.StringPtrInput
+	// Fully qualified domain name to resolve for the DNS probe.
+	DnsRequestDomain pulumi.StringPtrInput
 	// URL used to send a GET request to check the health of an HTTP server.
 	HttpGet pulumi.StringPtrInput
 	// String to match the value expected in response to an HTTP-GET request.
@@ -225,7 +256,7 @@ type FirewallLdbMonitorInput interface {
 }
 
 func (*FirewallLdbMonitor) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallLdbMonitor)(nil))
+	return reflect.TypeOf((**FirewallLdbMonitor)(nil)).Elem()
 }
 
 func (i *FirewallLdbMonitor) ToFirewallLdbMonitorOutput() FirewallLdbMonitorOutput {
@@ -234,35 +265,6 @@ func (i *FirewallLdbMonitor) ToFirewallLdbMonitorOutput() FirewallLdbMonitorOutp
 
 func (i *FirewallLdbMonitor) ToFirewallLdbMonitorOutputWithContext(ctx context.Context) FirewallLdbMonitorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorOutput)
-}
-
-func (i *FirewallLdbMonitor) ToFirewallLdbMonitorPtrOutput() FirewallLdbMonitorPtrOutput {
-	return i.ToFirewallLdbMonitorPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallLdbMonitor) ToFirewallLdbMonitorPtrOutputWithContext(ctx context.Context) FirewallLdbMonitorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorPtrOutput)
-}
-
-type FirewallLdbMonitorPtrInput interface {
-	pulumi.Input
-
-	ToFirewallLdbMonitorPtrOutput() FirewallLdbMonitorPtrOutput
-	ToFirewallLdbMonitorPtrOutputWithContext(ctx context.Context) FirewallLdbMonitorPtrOutput
-}
-
-type firewallLdbMonitorPtrType FirewallLdbMonitorArgs
-
-func (*firewallLdbMonitorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallLdbMonitor)(nil))
-}
-
-func (i *firewallLdbMonitorPtrType) ToFirewallLdbMonitorPtrOutput() FirewallLdbMonitorPtrOutput {
-	return i.ToFirewallLdbMonitorPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallLdbMonitorPtrType) ToFirewallLdbMonitorPtrOutputWithContext(ctx context.Context) FirewallLdbMonitorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorPtrOutput)
 }
 
 // FirewallLdbMonitorArrayInput is an input type that accepts FirewallLdbMonitorArray and FirewallLdbMonitorArrayOutput values.
@@ -279,7 +281,7 @@ type FirewallLdbMonitorArrayInput interface {
 type FirewallLdbMonitorArray []FirewallLdbMonitorInput
 
 func (FirewallLdbMonitorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallLdbMonitor)(nil))
+	return reflect.TypeOf((*[]*FirewallLdbMonitor)(nil)).Elem()
 }
 
 func (i FirewallLdbMonitorArray) ToFirewallLdbMonitorArrayOutput() FirewallLdbMonitorArrayOutput {
@@ -304,7 +306,7 @@ type FirewallLdbMonitorMapInput interface {
 type FirewallLdbMonitorMap map[string]FirewallLdbMonitorInput
 
 func (FirewallLdbMonitorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallLdbMonitor)(nil))
+	return reflect.TypeOf((*map[string]*FirewallLdbMonitor)(nil)).Elem()
 }
 
 func (i FirewallLdbMonitorMap) ToFirewallLdbMonitorMapOutput() FirewallLdbMonitorMapOutput {
@@ -315,12 +317,10 @@ func (i FirewallLdbMonitorMap) ToFirewallLdbMonitorMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLdbMonitorMapOutput)
 }
 
-type FirewallLdbMonitorOutput struct {
-	*pulumi.OutputState
-}
+type FirewallLdbMonitorOutput struct{ *pulumi.OutputState }
 
 func (FirewallLdbMonitorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallLdbMonitor)(nil))
+	return reflect.TypeOf((**FirewallLdbMonitor)(nil)).Elem()
 }
 
 func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorOutput() FirewallLdbMonitorOutput {
@@ -331,36 +331,10 @@ func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorOutputWithContext(ctx cont
 	return o
 }
 
-func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorPtrOutput() FirewallLdbMonitorPtrOutput {
-	return o.ToFirewallLdbMonitorPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallLdbMonitorOutput) ToFirewallLdbMonitorPtrOutputWithContext(ctx context.Context) FirewallLdbMonitorPtrOutput {
-	return o.ApplyT(func(v FirewallLdbMonitor) *FirewallLdbMonitor {
-		return &v
-	}).(FirewallLdbMonitorPtrOutput)
-}
-
-type FirewallLdbMonitorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallLdbMonitorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallLdbMonitor)(nil))
-}
-
-func (o FirewallLdbMonitorPtrOutput) ToFirewallLdbMonitorPtrOutput() FirewallLdbMonitorPtrOutput {
-	return o
-}
-
-func (o FirewallLdbMonitorPtrOutput) ToFirewallLdbMonitorPtrOutputWithContext(ctx context.Context) FirewallLdbMonitorPtrOutput {
-	return o
-}
-
 type FirewallLdbMonitorArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallLdbMonitorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallLdbMonitor)(nil))
+	return reflect.TypeOf((*[]*FirewallLdbMonitor)(nil)).Elem()
 }
 
 func (o FirewallLdbMonitorArrayOutput) ToFirewallLdbMonitorArrayOutput() FirewallLdbMonitorArrayOutput {
@@ -372,15 +346,15 @@ func (o FirewallLdbMonitorArrayOutput) ToFirewallLdbMonitorArrayOutputWithContex
 }
 
 func (o FirewallLdbMonitorArrayOutput) Index(i pulumi.IntInput) FirewallLdbMonitorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallLdbMonitor {
-		return vs[0].([]FirewallLdbMonitor)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallLdbMonitor {
+		return vs[0].([]*FirewallLdbMonitor)[vs[1].(int)]
 	}).(FirewallLdbMonitorOutput)
 }
 
 type FirewallLdbMonitorMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallLdbMonitorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallLdbMonitor)(nil))
+	return reflect.TypeOf((*map[string]*FirewallLdbMonitor)(nil)).Elem()
 }
 
 func (o FirewallLdbMonitorMapOutput) ToFirewallLdbMonitorMapOutput() FirewallLdbMonitorMapOutput {
@@ -392,14 +366,16 @@ func (o FirewallLdbMonitorMapOutput) ToFirewallLdbMonitorMapOutputWithContext(ct
 }
 
 func (o FirewallLdbMonitorMapOutput) MapIndex(k pulumi.StringInput) FirewallLdbMonitorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallLdbMonitor {
-		return vs[0].(map[string]FirewallLdbMonitor)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallLdbMonitor {
+		return vs[0].(map[string]*FirewallLdbMonitor)[vs[1].(string)]
 	}).(FirewallLdbMonitorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLdbMonitorInput)(nil)).Elem(), &FirewallLdbMonitor{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLdbMonitorArrayInput)(nil)).Elem(), FirewallLdbMonitorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLdbMonitorMapInput)(nil)).Elem(), FirewallLdbMonitorMap{})
 	pulumi.RegisterOutputType(FirewallLdbMonitorOutput{})
-	pulumi.RegisterOutputType(FirewallLdbMonitorPtrOutput{})
 	pulumi.RegisterOutputType(FirewallLdbMonitorArrayOutput{})
 	pulumi.RegisterOutputType(FirewallLdbMonitorMapOutput{})
 }

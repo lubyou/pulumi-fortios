@@ -210,82 +210,80 @@ export class FortimanagerSystemAdminProfiles extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerSystemAdminProfilesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemAdminProfilesArgs | FortimanagerSystemAdminProfilesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemAdminProfilesState | undefined;
-            inputs["adomPolicyPackages"] = state ? state.adomPolicyPackages : undefined;
-            inputs["adomSwitch"] = state ? state.adomSwitch : undefined;
-            inputs["assignment"] = state ? state.assignment : undefined;
-            inputs["configRetrieve"] = state ? state.configRetrieve : undefined;
-            inputs["configRevert"] = state ? state.configRevert : undefined;
-            inputs["consistencyCheck"] = state ? state.consistencyCheck : undefined;
-            inputs["deployManagement"] = state ? state.deployManagement : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["deviceAp"] = state ? state.deviceAp : undefined;
-            inputs["deviceConfig"] = state ? state.deviceConfig : undefined;
-            inputs["deviceForticlient"] = state ? state.deviceForticlient : undefined;
-            inputs["deviceFortiswitch"] = state ? state.deviceFortiswitch : undefined;
-            inputs["deviceManager"] = state ? state.deviceManager : undefined;
-            inputs["deviceOperation"] = state ? state.deviceOperation : undefined;
-            inputs["deviceProfile"] = state ? state.deviceProfile : undefined;
-            inputs["deviceRevisionDeletion"] = state ? state.deviceRevisionDeletion : undefined;
-            inputs["deviceWanLinkLoadBalance"] = state ? state.deviceWanLinkLoadBalance : undefined;
-            inputs["fortiguardCenter"] = state ? state.fortiguardCenter : undefined;
-            inputs["fortiguardCenterAdvanced"] = state ? state.fortiguardCenterAdvanced : undefined;
-            inputs["fortiguardCenterFirmwareManagerment"] = state ? state.fortiguardCenterFirmwareManagerment : undefined;
-            inputs["fortiguardCenterLicensing"] = state ? state.fortiguardCenterLicensing : undefined;
-            inputs["globalPolicyPackages"] = state ? state.globalPolicyPackages : undefined;
-            inputs["importPolicyPackages"] = state ? state.importPolicyPackages : undefined;
-            inputs["intfMapping"] = state ? state.intfMapping : undefined;
-            inputs["logViewer"] = state ? state.logViewer : undefined;
-            inputs["policyObjects"] = state ? state.policyObjects : undefined;
-            inputs["profileid"] = state ? state.profileid : undefined;
-            inputs["setInstallTargets"] = state ? state.setInstallTargets : undefined;
-            inputs["systemSetting"] = state ? state.systemSetting : undefined;
-            inputs["terminalAccess"] = state ? state.terminalAccess : undefined;
-            inputs["vpnManager"] = state ? state.vpnManager : undefined;
+            resourceInputs["adomPolicyPackages"] = state ? state.adomPolicyPackages : undefined;
+            resourceInputs["adomSwitch"] = state ? state.adomSwitch : undefined;
+            resourceInputs["assignment"] = state ? state.assignment : undefined;
+            resourceInputs["configRetrieve"] = state ? state.configRetrieve : undefined;
+            resourceInputs["configRevert"] = state ? state.configRevert : undefined;
+            resourceInputs["consistencyCheck"] = state ? state.consistencyCheck : undefined;
+            resourceInputs["deployManagement"] = state ? state.deployManagement : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["deviceAp"] = state ? state.deviceAp : undefined;
+            resourceInputs["deviceConfig"] = state ? state.deviceConfig : undefined;
+            resourceInputs["deviceForticlient"] = state ? state.deviceForticlient : undefined;
+            resourceInputs["deviceFortiswitch"] = state ? state.deviceFortiswitch : undefined;
+            resourceInputs["deviceManager"] = state ? state.deviceManager : undefined;
+            resourceInputs["deviceOperation"] = state ? state.deviceOperation : undefined;
+            resourceInputs["deviceProfile"] = state ? state.deviceProfile : undefined;
+            resourceInputs["deviceRevisionDeletion"] = state ? state.deviceRevisionDeletion : undefined;
+            resourceInputs["deviceWanLinkLoadBalance"] = state ? state.deviceWanLinkLoadBalance : undefined;
+            resourceInputs["fortiguardCenter"] = state ? state.fortiguardCenter : undefined;
+            resourceInputs["fortiguardCenterAdvanced"] = state ? state.fortiguardCenterAdvanced : undefined;
+            resourceInputs["fortiguardCenterFirmwareManagerment"] = state ? state.fortiguardCenterFirmwareManagerment : undefined;
+            resourceInputs["fortiguardCenterLicensing"] = state ? state.fortiguardCenterLicensing : undefined;
+            resourceInputs["globalPolicyPackages"] = state ? state.globalPolicyPackages : undefined;
+            resourceInputs["importPolicyPackages"] = state ? state.importPolicyPackages : undefined;
+            resourceInputs["intfMapping"] = state ? state.intfMapping : undefined;
+            resourceInputs["logViewer"] = state ? state.logViewer : undefined;
+            resourceInputs["policyObjects"] = state ? state.policyObjects : undefined;
+            resourceInputs["profileid"] = state ? state.profileid : undefined;
+            resourceInputs["setInstallTargets"] = state ? state.setInstallTargets : undefined;
+            resourceInputs["systemSetting"] = state ? state.systemSetting : undefined;
+            resourceInputs["terminalAccess"] = state ? state.terminalAccess : undefined;
+            resourceInputs["vpnManager"] = state ? state.vpnManager : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemAdminProfilesArgs | undefined;
             if ((!args || args.profileid === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'profileid'");
             }
-            inputs["adomPolicyPackages"] = args ? args.adomPolicyPackages : undefined;
-            inputs["adomSwitch"] = args ? args.adomSwitch : undefined;
-            inputs["assignment"] = args ? args.assignment : undefined;
-            inputs["configRetrieve"] = args ? args.configRetrieve : undefined;
-            inputs["configRevert"] = args ? args.configRevert : undefined;
-            inputs["consistencyCheck"] = args ? args.consistencyCheck : undefined;
-            inputs["deployManagement"] = args ? args.deployManagement : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["deviceAp"] = args ? args.deviceAp : undefined;
-            inputs["deviceConfig"] = args ? args.deviceConfig : undefined;
-            inputs["deviceForticlient"] = args ? args.deviceForticlient : undefined;
-            inputs["deviceFortiswitch"] = args ? args.deviceFortiswitch : undefined;
-            inputs["deviceManager"] = args ? args.deviceManager : undefined;
-            inputs["deviceOperation"] = args ? args.deviceOperation : undefined;
-            inputs["deviceProfile"] = args ? args.deviceProfile : undefined;
-            inputs["deviceRevisionDeletion"] = args ? args.deviceRevisionDeletion : undefined;
-            inputs["deviceWanLinkLoadBalance"] = args ? args.deviceWanLinkLoadBalance : undefined;
-            inputs["fortiguardCenter"] = args ? args.fortiguardCenter : undefined;
-            inputs["fortiguardCenterAdvanced"] = args ? args.fortiguardCenterAdvanced : undefined;
-            inputs["fortiguardCenterFirmwareManagerment"] = args ? args.fortiguardCenterFirmwareManagerment : undefined;
-            inputs["fortiguardCenterLicensing"] = args ? args.fortiguardCenterLicensing : undefined;
-            inputs["globalPolicyPackages"] = args ? args.globalPolicyPackages : undefined;
-            inputs["importPolicyPackages"] = args ? args.importPolicyPackages : undefined;
-            inputs["intfMapping"] = args ? args.intfMapping : undefined;
-            inputs["logViewer"] = args ? args.logViewer : undefined;
-            inputs["policyObjects"] = args ? args.policyObjects : undefined;
-            inputs["profileid"] = args ? args.profileid : undefined;
-            inputs["setInstallTargets"] = args ? args.setInstallTargets : undefined;
-            inputs["systemSetting"] = args ? args.systemSetting : undefined;
-            inputs["terminalAccess"] = args ? args.terminalAccess : undefined;
-            inputs["vpnManager"] = args ? args.vpnManager : undefined;
+            resourceInputs["adomPolicyPackages"] = args ? args.adomPolicyPackages : undefined;
+            resourceInputs["adomSwitch"] = args ? args.adomSwitch : undefined;
+            resourceInputs["assignment"] = args ? args.assignment : undefined;
+            resourceInputs["configRetrieve"] = args ? args.configRetrieve : undefined;
+            resourceInputs["configRevert"] = args ? args.configRevert : undefined;
+            resourceInputs["consistencyCheck"] = args ? args.consistencyCheck : undefined;
+            resourceInputs["deployManagement"] = args ? args.deployManagement : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["deviceAp"] = args ? args.deviceAp : undefined;
+            resourceInputs["deviceConfig"] = args ? args.deviceConfig : undefined;
+            resourceInputs["deviceForticlient"] = args ? args.deviceForticlient : undefined;
+            resourceInputs["deviceFortiswitch"] = args ? args.deviceFortiswitch : undefined;
+            resourceInputs["deviceManager"] = args ? args.deviceManager : undefined;
+            resourceInputs["deviceOperation"] = args ? args.deviceOperation : undefined;
+            resourceInputs["deviceProfile"] = args ? args.deviceProfile : undefined;
+            resourceInputs["deviceRevisionDeletion"] = args ? args.deviceRevisionDeletion : undefined;
+            resourceInputs["deviceWanLinkLoadBalance"] = args ? args.deviceWanLinkLoadBalance : undefined;
+            resourceInputs["fortiguardCenter"] = args ? args.fortiguardCenter : undefined;
+            resourceInputs["fortiguardCenterAdvanced"] = args ? args.fortiguardCenterAdvanced : undefined;
+            resourceInputs["fortiguardCenterFirmwareManagerment"] = args ? args.fortiguardCenterFirmwareManagerment : undefined;
+            resourceInputs["fortiguardCenterLicensing"] = args ? args.fortiguardCenterLicensing : undefined;
+            resourceInputs["globalPolicyPackages"] = args ? args.globalPolicyPackages : undefined;
+            resourceInputs["importPolicyPackages"] = args ? args.importPolicyPackages : undefined;
+            resourceInputs["intfMapping"] = args ? args.intfMapping : undefined;
+            resourceInputs["logViewer"] = args ? args.logViewer : undefined;
+            resourceInputs["policyObjects"] = args ? args.policyObjects : undefined;
+            resourceInputs["profileid"] = args ? args.profileid : undefined;
+            resourceInputs["setInstallTargets"] = args ? args.setInstallTargets : undefined;
+            resourceInputs["systemSetting"] = args ? args.systemSetting : undefined;
+            resourceInputs["terminalAccess"] = args ? args.terminalAccess : undefined;
+            resourceInputs["vpnManager"] = args ? args.vpnManager : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemAdminProfiles.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemAdminProfiles.__pulumiType, name, resourceInputs, opts);
     }
 }
 

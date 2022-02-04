@@ -15,23 +15,31 @@ class FirewallIppool6Args:
     def __init__(__self__, *,
                  endip: pulumi.Input[str],
                  startip: pulumi.Input[str],
+                 add_nat46_route: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallIppool6 resource.
         :param pulumi.Input[str] endip: Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] startip: First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
+        :param pulumi.Input[str] add_nat46_route: Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] name: IPv6 IP pool name.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         pulumi.set(__self__, "endip", endip)
         pulumi.set(__self__, "startip", startip)
+        if add_nat46_route is not None:
+            pulumi.set(__self__, "add_nat46_route", add_nat46_route)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -60,6 +68,18 @@ class FirewallIppool6Args:
         pulumi.set(self, "startip", value)
 
     @property
+    @pulumi.getter(name="addNat46Route")
+    def add_nat46_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat46_route")
+
+    @add_nat46_route.setter
+    def add_nat46_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "add_nat46_route", value)
+
+    @property
     @pulumi.getter
     def comments(self) -> Optional[pulumi.Input[str]]:
         """
@@ -85,6 +105,18 @@ class FirewallIppool6Args:
 
     @property
     @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -99,29 +131,49 @@ class FirewallIppool6Args:
 @pulumi.input_type
 class _FirewallIppool6State:
     def __init__(__self__, *,
+                 add_nat46_route: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  endip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallIppool6 resources.
+        :param pulumi.Input[str] add_nat46_route: Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] endip: Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] name: IPv6 IP pool name.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] startip: First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if add_nat46_route is not None:
+            pulumi.set(__self__, "add_nat46_route", add_nat46_route)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
         if endip is not None:
             pulumi.set(__self__, "endip", endip)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
         if startip is not None:
             pulumi.set(__self__, "startip", startip)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="addNat46Route")
+    def add_nat46_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat46_route")
+
+    @add_nat46_route.setter
+    def add_nat46_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "add_nat46_route", value)
 
     @property
     @pulumi.getter
@@ -161,6 +213,18 @@ class _FirewallIppool6State:
 
     @property
     @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
     def startip(self) -> Optional[pulumi.Input[str]]:
         """
         First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
@@ -189,9 +253,11 @@ class FirewallIppool6(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_nat46_route: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  endip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -221,9 +287,11 @@ class FirewallIppool6(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] add_nat46_route: Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] endip: Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] name: IPv6 IP pool name.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] startip: First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -272,9 +340,11 @@ class FirewallIppool6(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_nat46_route: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
                  endip: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
                  startip: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -284,16 +354,20 @@ class FirewallIppool6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallIppool6Args.__new__(FirewallIppool6Args)
 
+            __props__.__dict__["add_nat46_route"] = add_nat46_route
             __props__.__dict__["comments"] = comments
             if endip is None and not opts.urn:
                 raise TypeError("Missing required property 'endip'")
             __props__.__dict__["endip"] = endip
             __props__.__dict__["name"] = name
+            __props__.__dict__["nat46"] = nat46
             if startip is None and not opts.urn:
                 raise TypeError("Missing required property 'startip'")
             __props__.__dict__["startip"] = startip
@@ -308,9 +382,11 @@ class FirewallIppool6(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            add_nat46_route: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
             endip: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nat46: Optional[pulumi.Input[str]] = None,
             startip: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallIppool6':
         """
@@ -320,9 +396,11 @@ class FirewallIppool6(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] add_nat46_route: Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] comments: Comment.
         :param pulumi.Input[str] endip: Final IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] name: IPv6 IP pool name.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] startip: First IPv6 address (inclusive) in the range for the address pool (format xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx, Default: ::).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -330,12 +408,22 @@ class FirewallIppool6(pulumi.CustomResource):
 
         __props__ = _FirewallIppool6State.__new__(_FirewallIppool6State)
 
+        __props__.__dict__["add_nat46_route"] = add_nat46_route
         __props__.__dict__["comments"] = comments
         __props__.__dict__["endip"] = endip
         __props__.__dict__["name"] = name
+        __props__.__dict__["nat46"] = nat46
         __props__.__dict__["startip"] = startip
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallIppool6(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="addNat46Route")
+    def add_nat46_route(self) -> pulumi.Output[str]:
+        """
+        Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat46_route")
 
     @property
     @pulumi.getter
@@ -360,6 +448,14 @@ class FirewallIppool6(pulumi.CustomResource):
         IPv6 IP pool name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def nat46(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT46. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat46")
 
     @property
     @pulumi.getter

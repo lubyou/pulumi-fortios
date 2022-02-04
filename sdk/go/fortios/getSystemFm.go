@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system fm
 func LookupSystemFm(ctx *pulumi.Context, args *LookupSystemFmArgs, opts ...pulumi.InvokeOption) (*LookupSystemFmResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemFmResult
 	err := ctx.Invoke("fortios:index/getSystemFm:GetSystemFm", args, &rv, opts...)
 	if err != nil {
@@ -42,4 +46,86 @@ type LookupSystemFmResult struct {
 	// VDOM.
 	Vdom      string  `pulumi:"vdom"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemFmOutput(ctx *pulumi.Context, args LookupSystemFmOutputArgs, opts ...pulumi.InvokeOption) LookupSystemFmResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemFmResult, error) {
+			args := v.(LookupSystemFmArgs)
+			r, err := LookupSystemFm(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemFmResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemFm.
+type LookupSystemFmOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemFmOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemFmArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemFm.
+type LookupSystemFmResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemFmResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemFmResult)(nil)).Elem()
+}
+
+func (o LookupSystemFmResultOutput) ToLookupSystemFmResultOutput() LookupSystemFmResultOutput {
+	return o
+}
+
+func (o LookupSystemFmResultOutput) ToLookupSystemFmResultOutputWithContext(ctx context.Context) LookupSystemFmResultOutput {
+	return o
+}
+
+// Enable/disable automatic backup.
+func (o LookupSystemFmResultOutput) AutoBackup() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.AutoBackup }).(pulumi.StringOutput)
+}
+
+// ID.
+func (o LookupSystemFmResultOutput) Fosid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.Fosid }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemFmResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IP address.
+func (o LookupSystemFmResultOutput) Ip() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.Ip }).(pulumi.StringOutput)
+}
+
+// Enable/disable IPsec.
+func (o LookupSystemFmResultOutput) Ipsec() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.Ipsec }).(pulumi.StringOutput)
+}
+
+// Enable/disable scheduled configuration restore.
+func (o LookupSystemFmResultOutput) ScheduledConfigRestore() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.ScheduledConfigRestore }).(pulumi.StringOutput)
+}
+
+// Enable/disable FM.
+func (o LookupSystemFmResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// VDOM.
+func (o LookupSystemFmResultOutput) Vdom() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) string { return v.Vdom }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemFmResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemFmResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemFmResultOutput{})
 }

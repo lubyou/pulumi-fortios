@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,7 @@ func NewRouterPrefixList(ctx *pulumi.Context,
 		args = &RouterPrefixListArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterPrefixList
 	err := ctx.RegisterResource("fortios:index/routerPrefixList:RouterPrefixList", name, args, &resource, opts...)
 	if err != nil {
@@ -154,7 +155,7 @@ type RouterPrefixListInput interface {
 }
 
 func (*RouterPrefixList) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterPrefixList)(nil))
+	return reflect.TypeOf((**RouterPrefixList)(nil)).Elem()
 }
 
 func (i *RouterPrefixList) ToRouterPrefixListOutput() RouterPrefixListOutput {
@@ -163,35 +164,6 @@ func (i *RouterPrefixList) ToRouterPrefixListOutput() RouterPrefixListOutput {
 
 func (i *RouterPrefixList) ToRouterPrefixListOutputWithContext(ctx context.Context) RouterPrefixListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPrefixListOutput)
-}
-
-func (i *RouterPrefixList) ToRouterPrefixListPtrOutput() RouterPrefixListPtrOutput {
-	return i.ToRouterPrefixListPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterPrefixList) ToRouterPrefixListPtrOutputWithContext(ctx context.Context) RouterPrefixListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterPrefixListPtrOutput)
-}
-
-type RouterPrefixListPtrInput interface {
-	pulumi.Input
-
-	ToRouterPrefixListPtrOutput() RouterPrefixListPtrOutput
-	ToRouterPrefixListPtrOutputWithContext(ctx context.Context) RouterPrefixListPtrOutput
-}
-
-type routerPrefixListPtrType RouterPrefixListArgs
-
-func (*routerPrefixListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterPrefixList)(nil))
-}
-
-func (i *routerPrefixListPtrType) ToRouterPrefixListPtrOutput() RouterPrefixListPtrOutput {
-	return i.ToRouterPrefixListPtrOutputWithContext(context.Background())
-}
-
-func (i *routerPrefixListPtrType) ToRouterPrefixListPtrOutputWithContext(ctx context.Context) RouterPrefixListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterPrefixListPtrOutput)
 }
 
 // RouterPrefixListArrayInput is an input type that accepts RouterPrefixListArray and RouterPrefixListArrayOutput values.
@@ -208,7 +180,7 @@ type RouterPrefixListArrayInput interface {
 type RouterPrefixListArray []RouterPrefixListInput
 
 func (RouterPrefixListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterPrefixList)(nil))
+	return reflect.TypeOf((*[]*RouterPrefixList)(nil)).Elem()
 }
 
 func (i RouterPrefixListArray) ToRouterPrefixListArrayOutput() RouterPrefixListArrayOutput {
@@ -233,7 +205,7 @@ type RouterPrefixListMapInput interface {
 type RouterPrefixListMap map[string]RouterPrefixListInput
 
 func (RouterPrefixListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterPrefixList)(nil))
+	return reflect.TypeOf((*map[string]*RouterPrefixList)(nil)).Elem()
 }
 
 func (i RouterPrefixListMap) ToRouterPrefixListMapOutput() RouterPrefixListMapOutput {
@@ -244,12 +216,10 @@ func (i RouterPrefixListMap) ToRouterPrefixListMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPrefixListMapOutput)
 }
 
-type RouterPrefixListOutput struct {
-	*pulumi.OutputState
-}
+type RouterPrefixListOutput struct{ *pulumi.OutputState }
 
 func (RouterPrefixListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterPrefixList)(nil))
+	return reflect.TypeOf((**RouterPrefixList)(nil)).Elem()
 }
 
 func (o RouterPrefixListOutput) ToRouterPrefixListOutput() RouterPrefixListOutput {
@@ -260,36 +230,10 @@ func (o RouterPrefixListOutput) ToRouterPrefixListOutputWithContext(ctx context.
 	return o
 }
 
-func (o RouterPrefixListOutput) ToRouterPrefixListPtrOutput() RouterPrefixListPtrOutput {
-	return o.ToRouterPrefixListPtrOutputWithContext(context.Background())
-}
-
-func (o RouterPrefixListOutput) ToRouterPrefixListPtrOutputWithContext(ctx context.Context) RouterPrefixListPtrOutput {
-	return o.ApplyT(func(v RouterPrefixList) *RouterPrefixList {
-		return &v
-	}).(RouterPrefixListPtrOutput)
-}
-
-type RouterPrefixListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterPrefixListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterPrefixList)(nil))
-}
-
-func (o RouterPrefixListPtrOutput) ToRouterPrefixListPtrOutput() RouterPrefixListPtrOutput {
-	return o
-}
-
-func (o RouterPrefixListPtrOutput) ToRouterPrefixListPtrOutputWithContext(ctx context.Context) RouterPrefixListPtrOutput {
-	return o
-}
-
 type RouterPrefixListArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterPrefixListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterPrefixList)(nil))
+	return reflect.TypeOf((*[]*RouterPrefixList)(nil)).Elem()
 }
 
 func (o RouterPrefixListArrayOutput) ToRouterPrefixListArrayOutput() RouterPrefixListArrayOutput {
@@ -301,15 +245,15 @@ func (o RouterPrefixListArrayOutput) ToRouterPrefixListArrayOutputWithContext(ct
 }
 
 func (o RouterPrefixListArrayOutput) Index(i pulumi.IntInput) RouterPrefixListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterPrefixList {
-		return vs[0].([]RouterPrefixList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterPrefixList {
+		return vs[0].([]*RouterPrefixList)[vs[1].(int)]
 	}).(RouterPrefixListOutput)
 }
 
 type RouterPrefixListMapOutput struct{ *pulumi.OutputState }
 
 func (RouterPrefixListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterPrefixList)(nil))
+	return reflect.TypeOf((*map[string]*RouterPrefixList)(nil)).Elem()
 }
 
 func (o RouterPrefixListMapOutput) ToRouterPrefixListMapOutput() RouterPrefixListMapOutput {
@@ -321,14 +265,16 @@ func (o RouterPrefixListMapOutput) ToRouterPrefixListMapOutputWithContext(ctx co
 }
 
 func (o RouterPrefixListMapOutput) MapIndex(k pulumi.StringInput) RouterPrefixListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterPrefixList {
-		return vs[0].(map[string]RouterPrefixList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterPrefixList {
+		return vs[0].(map[string]*RouterPrefixList)[vs[1].(string)]
 	}).(RouterPrefixListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterPrefixListInput)(nil)).Elem(), &RouterPrefixList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterPrefixListArrayInput)(nil)).Elem(), RouterPrefixListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterPrefixListMapInput)(nil)).Elem(), RouterPrefixListMap{})
 	pulumi.RegisterOutputType(RouterPrefixListOutput{})
-	pulumi.RegisterOutputType(RouterPrefixListPtrOutput{})
 	pulumi.RegisterOutputType(RouterPrefixListArrayOutput{})
 	pulumi.RegisterOutputType(RouterPrefixListMapOutput{})
 }

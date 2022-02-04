@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallMulticastAddress6`.
 func GetFirewallMulticastAddress6List(ctx *pulumi.Context, args *GetFirewallMulticastAddress6ListArgs, opts ...pulumi.InvokeOption) (*GetFirewallMulticastAddress6ListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallMulticastAddress6ListResult
 	err := ctx.Invoke("fortios:index/getFirewallMulticastAddress6List:GetFirewallMulticastAddress6List", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallMulticastAddress6ListResult struct {
 	// A list of the `FirewallMulticastAddress6`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetFirewallMulticastAddress6ListOutput(ctx *pulumi.Context, args GetFirewallMulticastAddress6ListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallMulticastAddress6ListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallMulticastAddress6ListResult, error) {
+			args := v.(GetFirewallMulticastAddress6ListArgs)
+			r, err := GetFirewallMulticastAddress6List(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallMulticastAddress6ListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallMulticastAddress6List.
+type GetFirewallMulticastAddress6ListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallMulticastAddress6ListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallMulticastAddress6ListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallMulticastAddress6List.
+type GetFirewallMulticastAddress6ListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallMulticastAddress6ListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallMulticastAddress6ListResult)(nil)).Elem()
+}
+
+func (o GetFirewallMulticastAddress6ListResultOutput) ToGetFirewallMulticastAddress6ListResultOutput() GetFirewallMulticastAddress6ListResultOutput {
+	return o
+}
+
+func (o GetFirewallMulticastAddress6ListResultOutput) ToGetFirewallMulticastAddress6ListResultOutputWithContext(ctx context.Context) GetFirewallMulticastAddress6ListResultOutput {
+	return o
+}
+
+func (o GetFirewallMulticastAddress6ListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallMulticastAddress6ListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallMulticastAddress6ListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallMulticastAddress6ListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallMulticastAddress6`.
+func (o GetFirewallMulticastAddress6ListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetFirewallMulticastAddress6ListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetFirewallMulticastAddress6ListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallMulticastAddress6ListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallMulticastAddress6ListResultOutput{})
 }

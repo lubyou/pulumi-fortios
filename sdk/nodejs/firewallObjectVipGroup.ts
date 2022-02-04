@@ -79,28 +79,26 @@ export class FirewallObjectVipGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallObjectVipGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectVipGroupArgs | FirewallObjectVipGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectVipGroupState | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as FirewallObjectVipGroupArgs | undefined;
             if ((!args || args.members === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectVipGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectVipGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

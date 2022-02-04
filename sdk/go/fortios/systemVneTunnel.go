@@ -24,6 +24,8 @@ import (
 type SystemVneTunnel struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
 	// BMR hostname.
 	BmrHostname pulumi.StringPtrOutput `pulumi:"bmrHostname"`
 	// Border relay IPv6 address.
@@ -51,6 +53,7 @@ func NewSystemVneTunnel(ctx *pulumi.Context,
 		args = &SystemVneTunnelArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVneTunnel
 	err := ctx.RegisterResource("fortios:index/systemVneTunnel:SystemVneTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -73,6 +76,8 @@ func GetSystemVneTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemVneTunnel resources.
 type systemVneTunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// BMR hostname.
 	BmrHostname *string `pulumi:"bmrHostname"`
 	// Border relay IPv6 address.
@@ -94,6 +99,8 @@ type systemVneTunnelState struct {
 }
 
 type SystemVneTunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// BMR hostname.
 	BmrHostname pulumi.StringPtrInput
 	// Border relay IPv6 address.
@@ -119,6 +126,8 @@ func (SystemVneTunnelState) ElementType() reflect.Type {
 }
 
 type systemVneTunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// BMR hostname.
 	BmrHostname *string `pulumi:"bmrHostname"`
 	// Border relay IPv6 address.
@@ -141,6 +150,8 @@ type systemVneTunnelArgs struct {
 
 // The set of arguments for constructing a SystemVneTunnel resource.
 type SystemVneTunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// BMR hostname.
 	BmrHostname pulumi.StringPtrInput
 	// Border relay IPv6 address.
@@ -173,7 +184,7 @@ type SystemVneTunnelInput interface {
 }
 
 func (*SystemVneTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVneTunnel)(nil))
+	return reflect.TypeOf((**SystemVneTunnel)(nil)).Elem()
 }
 
 func (i *SystemVneTunnel) ToSystemVneTunnelOutput() SystemVneTunnelOutput {
@@ -182,35 +193,6 @@ func (i *SystemVneTunnel) ToSystemVneTunnelOutput() SystemVneTunnelOutput {
 
 func (i *SystemVneTunnel) ToSystemVneTunnelOutputWithContext(ctx context.Context) SystemVneTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelOutput)
-}
-
-func (i *SystemVneTunnel) ToSystemVneTunnelPtrOutput() SystemVneTunnelPtrOutput {
-	return i.ToSystemVneTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVneTunnel) ToSystemVneTunnelPtrOutputWithContext(ctx context.Context) SystemVneTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelPtrOutput)
-}
-
-type SystemVneTunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemVneTunnelPtrOutput() SystemVneTunnelPtrOutput
-	ToSystemVneTunnelPtrOutputWithContext(ctx context.Context) SystemVneTunnelPtrOutput
-}
-
-type systemVneTunnelPtrType SystemVneTunnelArgs
-
-func (*systemVneTunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVneTunnel)(nil))
-}
-
-func (i *systemVneTunnelPtrType) ToSystemVneTunnelPtrOutput() SystemVneTunnelPtrOutput {
-	return i.ToSystemVneTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVneTunnelPtrType) ToSystemVneTunnelPtrOutputWithContext(ctx context.Context) SystemVneTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelPtrOutput)
 }
 
 // SystemVneTunnelArrayInput is an input type that accepts SystemVneTunnelArray and SystemVneTunnelArrayOutput values.
@@ -227,7 +209,7 @@ type SystemVneTunnelArrayInput interface {
 type SystemVneTunnelArray []SystemVneTunnelInput
 
 func (SystemVneTunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVneTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemVneTunnel)(nil)).Elem()
 }
 
 func (i SystemVneTunnelArray) ToSystemVneTunnelArrayOutput() SystemVneTunnelArrayOutput {
@@ -252,7 +234,7 @@ type SystemVneTunnelMapInput interface {
 type SystemVneTunnelMap map[string]SystemVneTunnelInput
 
 func (SystemVneTunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVneTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemVneTunnel)(nil)).Elem()
 }
 
 func (i SystemVneTunnelMap) ToSystemVneTunnelMapOutput() SystemVneTunnelMapOutput {
@@ -263,12 +245,10 @@ func (i SystemVneTunnelMap) ToSystemVneTunnelMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVneTunnelMapOutput)
 }
 
-type SystemVneTunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemVneTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemVneTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVneTunnel)(nil))
+	return reflect.TypeOf((**SystemVneTunnel)(nil)).Elem()
 }
 
 func (o SystemVneTunnelOutput) ToSystemVneTunnelOutput() SystemVneTunnelOutput {
@@ -279,36 +259,10 @@ func (o SystemVneTunnelOutput) ToSystemVneTunnelOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemVneTunnelOutput) ToSystemVneTunnelPtrOutput() SystemVneTunnelPtrOutput {
-	return o.ToSystemVneTunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVneTunnelOutput) ToSystemVneTunnelPtrOutputWithContext(ctx context.Context) SystemVneTunnelPtrOutput {
-	return o.ApplyT(func(v SystemVneTunnel) *SystemVneTunnel {
-		return &v
-	}).(SystemVneTunnelPtrOutput)
-}
-
-type SystemVneTunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVneTunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVneTunnel)(nil))
-}
-
-func (o SystemVneTunnelPtrOutput) ToSystemVneTunnelPtrOutput() SystemVneTunnelPtrOutput {
-	return o
-}
-
-func (o SystemVneTunnelPtrOutput) ToSystemVneTunnelPtrOutputWithContext(ctx context.Context) SystemVneTunnelPtrOutput {
-	return o
-}
-
 type SystemVneTunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVneTunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVneTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemVneTunnel)(nil)).Elem()
 }
 
 func (o SystemVneTunnelArrayOutput) ToSystemVneTunnelArrayOutput() SystemVneTunnelArrayOutput {
@@ -320,15 +274,15 @@ func (o SystemVneTunnelArrayOutput) ToSystemVneTunnelArrayOutputWithContext(ctx 
 }
 
 func (o SystemVneTunnelArrayOutput) Index(i pulumi.IntInput) SystemVneTunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVneTunnel {
-		return vs[0].([]SystemVneTunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVneTunnel {
+		return vs[0].([]*SystemVneTunnel)[vs[1].(int)]
 	}).(SystemVneTunnelOutput)
 }
 
 type SystemVneTunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVneTunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVneTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemVneTunnel)(nil)).Elem()
 }
 
 func (o SystemVneTunnelMapOutput) ToSystemVneTunnelMapOutput() SystemVneTunnelMapOutput {
@@ -340,14 +294,16 @@ func (o SystemVneTunnelMapOutput) ToSystemVneTunnelMapOutputWithContext(ctx cont
 }
 
 func (o SystemVneTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemVneTunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVneTunnel {
-		return vs[0].(map[string]SystemVneTunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVneTunnel {
+		return vs[0].(map[string]*SystemVneTunnel)[vs[1].(string)]
 	}).(SystemVneTunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVneTunnelInput)(nil)).Elem(), &SystemVneTunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVneTunnelArrayInput)(nil)).Elem(), SystemVneTunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVneTunnelMapInput)(nil)).Elem(), SystemVneTunnelMap{})
 	pulumi.RegisterOutputType(SystemVneTunnelOutput{})
-	pulumi.RegisterOutputType(SystemVneTunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemVneTunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemVneTunnelMapOutput{})
 }

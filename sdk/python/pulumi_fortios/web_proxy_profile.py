@@ -22,6 +22,7 @@ class WebProxyProfileArgs:
                  header_via_response: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_groups: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_user: Optional[pulumi.Input[str]] = None,
+                 header_x_forwarded_client_cert: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyProfileHeaderArgs']]]] = None,
                  log_header_change: Optional[pulumi.Input[str]] = None,
@@ -37,6 +38,7 @@ class WebProxyProfileArgs:
         :param pulumi.Input[str] header_via_response: Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_groups: Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_user: Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        :param pulumi.Input[str] header_x_forwarded_client_cert: Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_forwarded_for: Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[Sequence[pulumi.Input['WebProxyProfileHeaderArgs']]] headers: Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] log_header_change: Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
@@ -58,6 +60,8 @@ class WebProxyProfileArgs:
             pulumi.set(__self__, "header_x_authenticated_groups", header_x_authenticated_groups)
         if header_x_authenticated_user is not None:
             pulumi.set(__self__, "header_x_authenticated_user", header_x_authenticated_user)
+        if header_x_forwarded_client_cert is not None:
+            pulumi.set(__self__, "header_x_forwarded_client_cert", header_x_forwarded_client_cert)
         if header_x_forwarded_for is not None:
             pulumi.set(__self__, "header_x_forwarded_for", header_x_forwarded_for)
         if headers is not None:
@@ -154,6 +158,18 @@ class WebProxyProfileArgs:
     @header_x_authenticated_user.setter
     def header_x_authenticated_user(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "header_x_authenticated_user", value)
+
+    @property
+    @pulumi.getter(name="headerXForwardedClientCert")
+    def header_x_forwarded_client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        """
+        return pulumi.get(self, "header_x_forwarded_client_cert")
+
+    @header_x_forwarded_client_cert.setter
+    def header_x_forwarded_client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "header_x_forwarded_client_cert", value)
 
     @property
     @pulumi.getter(name="headerXForwardedFor")
@@ -238,6 +254,7 @@ class _WebProxyProfileState:
                  header_via_response: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_groups: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_user: Optional[pulumi.Input[str]] = None,
+                 header_x_forwarded_client_cert: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyProfileHeaderArgs']]]] = None,
                  log_header_change: Optional[pulumi.Input[str]] = None,
@@ -253,6 +270,7 @@ class _WebProxyProfileState:
         :param pulumi.Input[str] header_via_response: Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_groups: Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_user: Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        :param pulumi.Input[str] header_x_forwarded_client_cert: Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_forwarded_for: Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[Sequence[pulumi.Input['WebProxyProfileHeaderArgs']]] headers: Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] log_header_change: Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
@@ -274,6 +292,8 @@ class _WebProxyProfileState:
             pulumi.set(__self__, "header_x_authenticated_groups", header_x_authenticated_groups)
         if header_x_authenticated_user is not None:
             pulumi.set(__self__, "header_x_authenticated_user", header_x_authenticated_user)
+        if header_x_forwarded_client_cert is not None:
+            pulumi.set(__self__, "header_x_forwarded_client_cert", header_x_forwarded_client_cert)
         if header_x_forwarded_for is not None:
             pulumi.set(__self__, "header_x_forwarded_for", header_x_forwarded_for)
         if headers is not None:
@@ -370,6 +390,18 @@ class _WebProxyProfileState:
     @header_x_authenticated_user.setter
     def header_x_authenticated_user(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "header_x_authenticated_user", value)
+
+    @property
+    @pulumi.getter(name="headerXForwardedClientCert")
+    def header_x_forwarded_client_cert(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        """
+        return pulumi.get(self, "header_x_forwarded_client_cert")
+
+    @header_x_forwarded_client_cert.setter
+    def header_x_forwarded_client_cert(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "header_x_forwarded_client_cert", value)
 
     @property
     @pulumi.getter(name="headerXForwardedFor")
@@ -456,6 +488,7 @@ class WebProxyProfile(pulumi.CustomResource):
                  header_via_response: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_groups: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_user: Optional[pulumi.Input[str]] = None,
+                 header_x_forwarded_client_cert: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyProfileHeaderArgs']]]]] = None,
                  log_header_change: Optional[pulumi.Input[str]] = None,
@@ -503,6 +536,7 @@ class WebProxyProfile(pulumi.CustomResource):
         :param pulumi.Input[str] header_via_response: Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_groups: Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_user: Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        :param pulumi.Input[str] header_x_forwarded_client_cert: Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_forwarded_for: Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyProfileHeaderArgs']]]] headers: Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] log_header_change: Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
@@ -569,6 +603,7 @@ class WebProxyProfile(pulumi.CustomResource):
                  header_via_response: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_groups: Optional[pulumi.Input[str]] = None,
                  header_x_authenticated_user: Optional[pulumi.Input[str]] = None,
+                 header_x_forwarded_client_cert: Optional[pulumi.Input[str]] = None,
                  header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
                  headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyProfileHeaderArgs']]]]] = None,
                  log_header_change: Optional[pulumi.Input[str]] = None,
@@ -582,6 +617,8 @@ class WebProxyProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -594,6 +631,7 @@ class WebProxyProfile(pulumi.CustomResource):
             __props__.__dict__["header_via_response"] = header_via_response
             __props__.__dict__["header_x_authenticated_groups"] = header_x_authenticated_groups
             __props__.__dict__["header_x_authenticated_user"] = header_x_authenticated_user
+            __props__.__dict__["header_x_forwarded_client_cert"] = header_x_forwarded_client_cert
             __props__.__dict__["header_x_forwarded_for"] = header_x_forwarded_for
             __props__.__dict__["headers"] = headers
             __props__.__dict__["log_header_change"] = log_header_change
@@ -617,6 +655,7 @@ class WebProxyProfile(pulumi.CustomResource):
             header_via_response: Optional[pulumi.Input[str]] = None,
             header_x_authenticated_groups: Optional[pulumi.Input[str]] = None,
             header_x_authenticated_user: Optional[pulumi.Input[str]] = None,
+            header_x_forwarded_client_cert: Optional[pulumi.Input[str]] = None,
             header_x_forwarded_for: Optional[pulumi.Input[str]] = None,
             headers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyProfileHeaderArgs']]]]] = None,
             log_header_change: Optional[pulumi.Input[str]] = None,
@@ -637,6 +676,7 @@ class WebProxyProfile(pulumi.CustomResource):
         :param pulumi.Input[str] header_via_response: Action to take on the HTTP via header in forwarded responses: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_groups: Action to take on the HTTP x-authenticated-groups header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_authenticated_user: Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        :param pulumi.Input[str] header_x_forwarded_client_cert: Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[str] header_x_forwarded_for: Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyProfileHeaderArgs']]]] headers: Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
         :param pulumi.Input[str] log_header_change: Enable/disable logging HTTP header changes. Valid values: `enable`, `disable`.
@@ -655,6 +695,7 @@ class WebProxyProfile(pulumi.CustomResource):
         __props__.__dict__["header_via_response"] = header_via_response
         __props__.__dict__["header_x_authenticated_groups"] = header_x_authenticated_groups
         __props__.__dict__["header_x_authenticated_user"] = header_x_authenticated_user
+        __props__.__dict__["header_x_forwarded_client_cert"] = header_x_forwarded_client_cert
         __props__.__dict__["header_x_forwarded_for"] = header_x_forwarded_for
         __props__.__dict__["headers"] = headers
         __props__.__dict__["log_header_change"] = log_header_change
@@ -718,6 +759,14 @@ class WebProxyProfile(pulumi.CustomResource):
         Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
         """
         return pulumi.get(self, "header_x_authenticated_user")
+
+    @property
+    @pulumi.getter(name="headerXForwardedClientCert")
+    def header_x_forwarded_client_cert(self) -> pulumi.Output[str]:
+        """
+        Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+        """
+        return pulumi.get(self, "header_x_forwarded_client_cert")
 
     @property
     @pulumi.getter(name="headerXForwardedFor")

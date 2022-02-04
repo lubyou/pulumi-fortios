@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -28,14 +29,14 @@ import (
 // 		_, err := fortios.NewFirewallProxyPolicy(ctx, "trname", &fortios.FirewallProxyPolicyArgs{
 // 			Action:     pulumi.String("deny"),
 // 			Disclaimer: pulumi.String("disable"),
-// 			Dstaddrs: fortios.FirewallProxyPolicyDstaddrArray{
-// 				&fortios.FirewallProxyPolicyDstaddrArgs{
+// 			Dstaddrs: FirewallProxyPolicyDstaddrArray{
+// 				&FirewallProxyPolicyDstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
 // 			DstaddrNegate: pulumi.String("disable"),
-// 			Dstintfs: fortios.FirewallProxyPolicyDstintfArray{
-// 				&fortios.FirewallProxyPolicyDstintfArgs{
+// 			Dstintfs: FirewallProxyPolicyDstintfArray{
+// 				&FirewallProxyPolicyDstintfArgs{
 // 					Name: pulumi.String("port4"),
 // 				},
 // 			},
@@ -50,20 +51,20 @@ import (
 // 			Proxy:                  pulumi.String("transparent-web"),
 // 			ScanBotnetConnections:  pulumi.String("disable"),
 // 			Schedule:               pulumi.String("always"),
-// 			Services: fortios.FirewallProxyPolicyServiceArray{
-// 				&fortios.FirewallProxyPolicyServiceArgs{
+// 			Services: FirewallProxyPolicyServiceArray{
+// 				&FirewallProxyPolicyServiceArgs{
 // 					Name: pulumi.String("webproxy"),
 // 				},
 // 			},
 // 			ServiceNegate: pulumi.String("disable"),
-// 			Srcaddrs: fortios.FirewallProxyPolicySrcaddrArray{
-// 				&fortios.FirewallProxyPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallProxyPolicySrcaddrArray{
+// 				&FirewallProxyPolicySrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
 // 			SrcaddrNegate: pulumi.String("disable"),
-// 			Srcintfs: fortios.FirewallProxyPolicySrcintfArray{
-// 				&fortios.FirewallProxyPolicySrcintfArgs{
+// 			Srcintfs: FirewallProxyPolicySrcintfArray{
+// 				&FirewallProxyPolicySrcintfArgs{
 // 					Name: pulumi.String("port3"),
 // 				},
 // 			},
@@ -93,18 +94,26 @@ import (
 type FirewallProxyPolicy struct {
 	pulumi.CustomResourceState
 
+	// IPv4 access proxy. The structure of `accessProxy` block is documented below.
+	AccessProxies FirewallProxyPolicyAccessProxyArrayOutput `pulumi:"accessProxies"`
+	// IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+	AccessProxy6s FirewallProxyPolicyAccessProxy6ArrayOutput `pulumi:"accessProxy6s"`
 	// Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 	Action pulumi.StringOutput `pulumi:"action"`
 	// Name of an existing Application list.
 	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringOutput `pulumi:"avProfile"`
+	// Enable/disable block notification. Valid values: `enable`, `disable`.
+	BlockNotification pulumi.StringOutput `pulumi:"blockNotification"`
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringOutput `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror pulumi.StringOutput `pulumi:"decryptedTrafficMirror"`
+	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+	DeviceOwnership pulumi.StringOutput `pulumi:"deviceOwnership"`
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer pulumi.StringOutput `pulumi:"disclaimer"`
 	// Name of an existing DLP sensor.
@@ -165,7 +174,7 @@ type FirewallProxyPolicy struct {
 	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
 	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 	ProfileType pulumi.StringOutput `pulumi:"profileType"`
-	// Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+	// Type of explicit proxy.
 	Proxy pulumi.StringOutput `pulumi:"proxy"`
 	// Redirect URL for further explicit web proxy processing.
 	RedirectUrl pulumi.StringPtrOutput `pulumi:"redirectUrl"`
@@ -175,6 +184,8 @@ type FirewallProxyPolicy struct {
 	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
 	// Name of schedule object.
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
 	// When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
 	ServiceNegate pulumi.StringOutput `pulumi:"serviceNegate"`
 	// Name of service objects. The structure of `service` block is documented below.
@@ -209,6 +220,10 @@ type FirewallProxyPolicy struct {
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
+	// Name of an existing VoIP profile.
+	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
 	WafProfile pulumi.StringOutput `pulumi:"wafProfile"`
 	// Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -221,6 +236,10 @@ type FirewallProxyPolicy struct {
 	WebproxyForwardServer pulumi.StringOutput `pulumi:"webproxyForwardServer"`
 	// Name of web proxy profile.
 	WebproxyProfile pulumi.StringOutput `pulumi:"webproxyProfile"`
+	// ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags FirewallProxyPolicyZtnaEmsTagArrayOutput `pulumi:"ztnaEmsTags"`
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic pulumi.StringOutput `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // NewFirewallProxyPolicy registers a new resource with the given unique name, arguments, and options.
@@ -239,6 +258,7 @@ func NewFirewallProxyPolicy(ctx *pulumi.Context,
 	if args.Schedule == nil {
 		return nil, errors.New("invalid value for required argument 'Schedule'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallProxyPolicy
 	err := ctx.RegisterResource("fortios:index/firewallProxyPolicy:FirewallProxyPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -261,18 +281,26 @@ func GetFirewallProxyPolicy(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallProxyPolicy resources.
 type firewallProxyPolicyState struct {
+	// IPv4 access proxy. The structure of `accessProxy` block is documented below.
+	AccessProxies []FirewallProxyPolicyAccessProxy `pulumi:"accessProxies"`
+	// IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+	AccessProxy6s []FirewallProxyPolicyAccessProxy6 `pulumi:"accessProxy6s"`
 	// Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 	Action *string `pulumi:"action"`
 	// Name of an existing Application list.
 	ApplicationList *string `pulumi:"applicationList"`
 	// Name of an existing Antivirus profile.
 	AvProfile *string `pulumi:"avProfile"`
+	// Enable/disable block notification. Valid values: `enable`, `disable`.
+	BlockNotification *string `pulumi:"blockNotification"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments *string `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
+	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+	DeviceOwnership *string `pulumi:"deviceOwnership"`
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer *string `pulumi:"disclaimer"`
 	// Name of an existing DLP sensor.
@@ -333,7 +361,7 @@ type firewallProxyPolicyState struct {
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
 	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 	ProfileType *string `pulumi:"profileType"`
-	// Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+	// Type of explicit proxy.
 	Proxy *string `pulumi:"proxy"`
 	// Redirect URL for further explicit web proxy processing.
 	RedirectUrl *string `pulumi:"redirectUrl"`
@@ -343,6 +371,8 @@ type firewallProxyPolicyState struct {
 	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
 	// Name of schedule object.
 	Schedule *string `pulumi:"schedule"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
 	ServiceNegate *string `pulumi:"serviceNegate"`
 	// Name of service objects. The structure of `service` block is documented below.
@@ -377,6 +407,10 @@ type firewallProxyPolicyState struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
+	// Name of an existing VoIP profile.
+	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
 	WafProfile *string `pulumi:"wafProfile"`
 	// Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -389,21 +423,33 @@ type firewallProxyPolicyState struct {
 	WebproxyForwardServer *string `pulumi:"webproxyForwardServer"`
 	// Name of web proxy profile.
 	WebproxyProfile *string `pulumi:"webproxyProfile"`
+	// ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags []FirewallProxyPolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic *string `pulumi:"ztnaTagsMatchLogic"`
 }
 
 type FirewallProxyPolicyState struct {
+	// IPv4 access proxy. The structure of `accessProxy` block is documented below.
+	AccessProxies FirewallProxyPolicyAccessProxyArrayInput
+	// IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+	AccessProxy6s FirewallProxyPolicyAccessProxy6ArrayInput
 	// Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 	Action pulumi.StringPtrInput
 	// Name of an existing Application list.
 	ApplicationList pulumi.StringPtrInput
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringPtrInput
+	// Enable/disable block notification. Valid values: `enable`, `disable`.
+	BlockNotification pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Optional comments.
 	Comments pulumi.StringPtrInput
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror pulumi.StringPtrInput
+	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+	DeviceOwnership pulumi.StringPtrInput
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer pulumi.StringPtrInput
 	// Name of an existing DLP sensor.
@@ -464,7 +510,7 @@ type FirewallProxyPolicyState struct {
 	ProfileProtocolOptions pulumi.StringPtrInput
 	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 	ProfileType pulumi.StringPtrInput
-	// Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+	// Type of explicit proxy.
 	Proxy pulumi.StringPtrInput
 	// Redirect URL for further explicit web proxy processing.
 	RedirectUrl pulumi.StringPtrInput
@@ -474,6 +520,8 @@ type FirewallProxyPolicyState struct {
 	ScanBotnetConnections pulumi.StringPtrInput
 	// Name of schedule object.
 	Schedule pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
 	ServiceNegate pulumi.StringPtrInput
 	// Name of service objects. The structure of `service` block is documented below.
@@ -508,6 +556,10 @@ type FirewallProxyPolicyState struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
+	// Name of an existing VoIP profile.
+	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
 	WafProfile pulumi.StringPtrInput
 	// Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -520,6 +572,10 @@ type FirewallProxyPolicyState struct {
 	WebproxyForwardServer pulumi.StringPtrInput
 	// Name of web proxy profile.
 	WebproxyProfile pulumi.StringPtrInput
+	// ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags FirewallProxyPolicyZtnaEmsTagArrayInput
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic pulumi.StringPtrInput
 }
 
 func (FirewallProxyPolicyState) ElementType() reflect.Type {
@@ -527,18 +583,26 @@ func (FirewallProxyPolicyState) ElementType() reflect.Type {
 }
 
 type firewallProxyPolicyArgs struct {
+	// IPv4 access proxy. The structure of `accessProxy` block is documented below.
+	AccessProxies []FirewallProxyPolicyAccessProxy `pulumi:"accessProxies"`
+	// IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+	AccessProxy6s []FirewallProxyPolicyAccessProxy6 `pulumi:"accessProxy6s"`
 	// Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 	Action *string `pulumi:"action"`
 	// Name of an existing Application list.
 	ApplicationList *string `pulumi:"applicationList"`
 	// Name of an existing Antivirus profile.
 	AvProfile *string `pulumi:"avProfile"`
+	// Enable/disable block notification. Valid values: `enable`, `disable`.
+	BlockNotification *string `pulumi:"blockNotification"`
 	// Name of an existing CIFS profile.
 	CifsProfile *string `pulumi:"cifsProfile"`
 	// Optional comments.
 	Comments *string `pulumi:"comments"`
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror *string `pulumi:"decryptedTrafficMirror"`
+	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+	DeviceOwnership *string `pulumi:"deviceOwnership"`
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer *string `pulumi:"disclaimer"`
 	// Name of an existing DLP sensor.
@@ -599,7 +663,7 @@ type firewallProxyPolicyArgs struct {
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
 	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 	ProfileType *string `pulumi:"profileType"`
-	// Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+	// Type of explicit proxy.
 	Proxy string `pulumi:"proxy"`
 	// Redirect URL for further explicit web proxy processing.
 	RedirectUrl *string `pulumi:"redirectUrl"`
@@ -609,6 +673,8 @@ type firewallProxyPolicyArgs struct {
 	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
 	// Name of schedule object.
 	Schedule string `pulumi:"schedule"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
 	ServiceNegate *string `pulumi:"serviceNegate"`
 	// Name of service objects. The structure of `service` block is documented below.
@@ -643,6 +709,10 @@ type firewallProxyPolicyArgs struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
+	// Name of an existing VoIP profile.
+	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
 	WafProfile *string `pulumi:"wafProfile"`
 	// Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -655,22 +725,34 @@ type firewallProxyPolicyArgs struct {
 	WebproxyForwardServer *string `pulumi:"webproxyForwardServer"`
 	// Name of web proxy profile.
 	WebproxyProfile *string `pulumi:"webproxyProfile"`
+	// ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags []FirewallProxyPolicyZtnaEmsTag `pulumi:"ztnaEmsTags"`
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic *string `pulumi:"ztnaTagsMatchLogic"`
 }
 
 // The set of arguments for constructing a FirewallProxyPolicy resource.
 type FirewallProxyPolicyArgs struct {
+	// IPv4 access proxy. The structure of `accessProxy` block is documented below.
+	AccessProxies FirewallProxyPolicyAccessProxyArrayInput
+	// IPv6 access proxy. The structure of `accessProxy6` block is documented below.
+	AccessProxy6s FirewallProxyPolicyAccessProxy6ArrayInput
 	// Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 	Action pulumi.StringPtrInput
 	// Name of an existing Application list.
 	ApplicationList pulumi.StringPtrInput
 	// Name of an existing Antivirus profile.
 	AvProfile pulumi.StringPtrInput
+	// Enable/disable block notification. Valid values: `enable`, `disable`.
+	BlockNotification pulumi.StringPtrInput
 	// Name of an existing CIFS profile.
 	CifsProfile pulumi.StringPtrInput
 	// Optional comments.
 	Comments pulumi.StringPtrInput
 	// Decrypted traffic mirror.
 	DecryptedTrafficMirror pulumi.StringPtrInput
+	// When enabled, the ownership enforcement will be done at policy level. Valid values: `enable`, `disable`.
+	DeviceOwnership pulumi.StringPtrInput
 	// Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 	Disclaimer pulumi.StringPtrInput
 	// Name of an existing DLP sensor.
@@ -731,7 +813,7 @@ type FirewallProxyPolicyArgs struct {
 	ProfileProtocolOptions pulumi.StringPtrInput
 	// Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 	ProfileType pulumi.StringPtrInput
-	// Type of explicit proxy. Valid values: `explicit-web`, `transparent-web`, `ftp`, `ssh`, `ssh-tunnel`, `wanopt`.
+	// Type of explicit proxy.
 	Proxy pulumi.StringInput
 	// Redirect URL for further explicit web proxy processing.
 	RedirectUrl pulumi.StringPtrInput
@@ -741,6 +823,8 @@ type FirewallProxyPolicyArgs struct {
 	ScanBotnetConnections pulumi.StringPtrInput
 	// Name of schedule object.
 	Schedule pulumi.StringInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// When enabled, services match against any service EXCEPT the specified destination services. Valid values: `enable`, `disable`.
 	ServiceNegate pulumi.StringPtrInput
 	// Name of service objects. The structure of `service` block is documented below.
@@ -775,6 +859,10 @@ type FirewallProxyPolicyArgs struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
+	// Name of an existing VoIP profile.
+	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
 	WafProfile pulumi.StringPtrInput
 	// Enable/disable web caching. Valid values: `enable`, `disable`.
@@ -787,6 +875,10 @@ type FirewallProxyPolicyArgs struct {
 	WebproxyForwardServer pulumi.StringPtrInput
 	// Name of web proxy profile.
 	WebproxyProfile pulumi.StringPtrInput
+	// ZTNA EMS Tag names. The structure of `ztnaEmsTag` block is documented below.
+	ZtnaEmsTags FirewallProxyPolicyZtnaEmsTagArrayInput
+	// ZTNA tag matching logic. Valid values: `or`, `and`.
+	ZtnaTagsMatchLogic pulumi.StringPtrInput
 }
 
 func (FirewallProxyPolicyArgs) ElementType() reflect.Type {
@@ -801,7 +893,7 @@ type FirewallProxyPolicyInput interface {
 }
 
 func (*FirewallProxyPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProxyPolicy)(nil))
+	return reflect.TypeOf((**FirewallProxyPolicy)(nil)).Elem()
 }
 
 func (i *FirewallProxyPolicy) ToFirewallProxyPolicyOutput() FirewallProxyPolicyOutput {
@@ -810,35 +902,6 @@ func (i *FirewallProxyPolicy) ToFirewallProxyPolicyOutput() FirewallProxyPolicyO
 
 func (i *FirewallProxyPolicy) ToFirewallProxyPolicyOutputWithContext(ctx context.Context) FirewallProxyPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyOutput)
-}
-
-func (i *FirewallProxyPolicy) ToFirewallProxyPolicyPtrOutput() FirewallProxyPolicyPtrOutput {
-	return i.ToFirewallProxyPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallProxyPolicy) ToFirewallProxyPolicyPtrOutputWithContext(ctx context.Context) FirewallProxyPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyPtrOutput)
-}
-
-type FirewallProxyPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallProxyPolicyPtrOutput() FirewallProxyPolicyPtrOutput
-	ToFirewallProxyPolicyPtrOutputWithContext(ctx context.Context) FirewallProxyPolicyPtrOutput
-}
-
-type firewallProxyPolicyPtrType FirewallProxyPolicyArgs
-
-func (*firewallProxyPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProxyPolicy)(nil))
-}
-
-func (i *firewallProxyPolicyPtrType) ToFirewallProxyPolicyPtrOutput() FirewallProxyPolicyPtrOutput {
-	return i.ToFirewallProxyPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallProxyPolicyPtrType) ToFirewallProxyPolicyPtrOutputWithContext(ctx context.Context) FirewallProxyPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyPtrOutput)
 }
 
 // FirewallProxyPolicyArrayInput is an input type that accepts FirewallProxyPolicyArray and FirewallProxyPolicyArrayOutput values.
@@ -855,7 +918,7 @@ type FirewallProxyPolicyArrayInput interface {
 type FirewallProxyPolicyArray []FirewallProxyPolicyInput
 
 func (FirewallProxyPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallProxyPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallProxyPolicy)(nil)).Elem()
 }
 
 func (i FirewallProxyPolicyArray) ToFirewallProxyPolicyArrayOutput() FirewallProxyPolicyArrayOutput {
@@ -880,7 +943,7 @@ type FirewallProxyPolicyMapInput interface {
 type FirewallProxyPolicyMap map[string]FirewallProxyPolicyInput
 
 func (FirewallProxyPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallProxyPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProxyPolicy)(nil)).Elem()
 }
 
 func (i FirewallProxyPolicyMap) ToFirewallProxyPolicyMapOutput() FirewallProxyPolicyMapOutput {
@@ -891,12 +954,10 @@ func (i FirewallProxyPolicyMap) ToFirewallProxyPolicyMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProxyPolicyMapOutput)
 }
 
-type FirewallProxyPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallProxyPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxyPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProxyPolicy)(nil))
+	return reflect.TypeOf((**FirewallProxyPolicy)(nil)).Elem()
 }
 
 func (o FirewallProxyPolicyOutput) ToFirewallProxyPolicyOutput() FirewallProxyPolicyOutput {
@@ -907,36 +968,10 @@ func (o FirewallProxyPolicyOutput) ToFirewallProxyPolicyOutputWithContext(ctx co
 	return o
 }
 
-func (o FirewallProxyPolicyOutput) ToFirewallProxyPolicyPtrOutput() FirewallProxyPolicyPtrOutput {
-	return o.ToFirewallProxyPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallProxyPolicyOutput) ToFirewallProxyPolicyPtrOutputWithContext(ctx context.Context) FirewallProxyPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallProxyPolicy) *FirewallProxyPolicy {
-		return &v
-	}).(FirewallProxyPolicyPtrOutput)
-}
-
-type FirewallProxyPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallProxyPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProxyPolicy)(nil))
-}
-
-func (o FirewallProxyPolicyPtrOutput) ToFirewallProxyPolicyPtrOutput() FirewallProxyPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallProxyPolicyPtrOutput) ToFirewallProxyPolicyPtrOutputWithContext(ctx context.Context) FirewallProxyPolicyPtrOutput {
-	return o
-}
-
 type FirewallProxyPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxyPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallProxyPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallProxyPolicy)(nil)).Elem()
 }
 
 func (o FirewallProxyPolicyArrayOutput) ToFirewallProxyPolicyArrayOutput() FirewallProxyPolicyArrayOutput {
@@ -948,15 +983,15 @@ func (o FirewallProxyPolicyArrayOutput) ToFirewallProxyPolicyArrayOutputWithCont
 }
 
 func (o FirewallProxyPolicyArrayOutput) Index(i pulumi.IntInput) FirewallProxyPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProxyPolicy {
-		return vs[0].([]FirewallProxyPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProxyPolicy {
+		return vs[0].([]*FirewallProxyPolicy)[vs[1].(int)]
 	}).(FirewallProxyPolicyOutput)
 }
 
 type FirewallProxyPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallProxyPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallProxyPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProxyPolicy)(nil)).Elem()
 }
 
 func (o FirewallProxyPolicyMapOutput) ToFirewallProxyPolicyMapOutput() FirewallProxyPolicyMapOutput {
@@ -968,14 +1003,16 @@ func (o FirewallProxyPolicyMapOutput) ToFirewallProxyPolicyMapOutputWithContext(
 }
 
 func (o FirewallProxyPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallProxyPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallProxyPolicy {
-		return vs[0].(map[string]FirewallProxyPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallProxyPolicy {
+		return vs[0].(map[string]*FirewallProxyPolicy)[vs[1].(string)]
 	}).(FirewallProxyPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyInput)(nil)).Elem(), &FirewallProxyPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyArrayInput)(nil)).Elem(), FirewallProxyPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProxyPolicyMapInput)(nil)).Elem(), FirewallProxyPolicyMap{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallProxyPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProxyPolicyMapOutput{})
 }

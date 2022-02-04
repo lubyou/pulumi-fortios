@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -102,6 +102,7 @@ func NewIpsRule(ctx *pulumi.Context,
 		args = &IpsRuleArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsRule
 	err := ctx.RegisterResource("fortios:index/ipsRule:IpsRule", name, args, &resource, opts...)
 	if err != nil {
@@ -288,7 +289,7 @@ type IpsRuleInput interface {
 }
 
 func (*IpsRule) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsRule)(nil))
+	return reflect.TypeOf((**IpsRule)(nil)).Elem()
 }
 
 func (i *IpsRule) ToIpsRuleOutput() IpsRuleOutput {
@@ -297,35 +298,6 @@ func (i *IpsRule) ToIpsRuleOutput() IpsRuleOutput {
 
 func (i *IpsRule) ToIpsRuleOutputWithContext(ctx context.Context) IpsRuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleOutput)
-}
-
-func (i *IpsRule) ToIpsRulePtrOutput() IpsRulePtrOutput {
-	return i.ToIpsRulePtrOutputWithContext(context.Background())
-}
-
-func (i *IpsRule) ToIpsRulePtrOutputWithContext(ctx context.Context) IpsRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsRulePtrOutput)
-}
-
-type IpsRulePtrInput interface {
-	pulumi.Input
-
-	ToIpsRulePtrOutput() IpsRulePtrOutput
-	ToIpsRulePtrOutputWithContext(ctx context.Context) IpsRulePtrOutput
-}
-
-type ipsRulePtrType IpsRuleArgs
-
-func (*ipsRulePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsRule)(nil))
-}
-
-func (i *ipsRulePtrType) ToIpsRulePtrOutput() IpsRulePtrOutput {
-	return i.ToIpsRulePtrOutputWithContext(context.Background())
-}
-
-func (i *ipsRulePtrType) ToIpsRulePtrOutputWithContext(ctx context.Context) IpsRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsRulePtrOutput)
 }
 
 // IpsRuleArrayInput is an input type that accepts IpsRuleArray and IpsRuleArrayOutput values.
@@ -342,7 +314,7 @@ type IpsRuleArrayInput interface {
 type IpsRuleArray []IpsRuleInput
 
 func (IpsRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsRule)(nil))
+	return reflect.TypeOf((*[]*IpsRule)(nil)).Elem()
 }
 
 func (i IpsRuleArray) ToIpsRuleArrayOutput() IpsRuleArrayOutput {
@@ -367,7 +339,7 @@ type IpsRuleMapInput interface {
 type IpsRuleMap map[string]IpsRuleInput
 
 func (IpsRuleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsRule)(nil))
+	return reflect.TypeOf((*map[string]*IpsRule)(nil)).Elem()
 }
 
 func (i IpsRuleMap) ToIpsRuleMapOutput() IpsRuleMapOutput {
@@ -378,12 +350,10 @@ func (i IpsRuleMap) ToIpsRuleMapOutputWithContext(ctx context.Context) IpsRuleMa
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleMapOutput)
 }
 
-type IpsRuleOutput struct {
-	*pulumi.OutputState
-}
+type IpsRuleOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsRule)(nil))
+	return reflect.TypeOf((**IpsRule)(nil)).Elem()
 }
 
 func (o IpsRuleOutput) ToIpsRuleOutput() IpsRuleOutput {
@@ -394,36 +364,10 @@ func (o IpsRuleOutput) ToIpsRuleOutputWithContext(ctx context.Context) IpsRuleOu
 	return o
 }
 
-func (o IpsRuleOutput) ToIpsRulePtrOutput() IpsRulePtrOutput {
-	return o.ToIpsRulePtrOutputWithContext(context.Background())
-}
-
-func (o IpsRuleOutput) ToIpsRulePtrOutputWithContext(ctx context.Context) IpsRulePtrOutput {
-	return o.ApplyT(func(v IpsRule) *IpsRule {
-		return &v
-	}).(IpsRulePtrOutput)
-}
-
-type IpsRulePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsRulePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsRule)(nil))
-}
-
-func (o IpsRulePtrOutput) ToIpsRulePtrOutput() IpsRulePtrOutput {
-	return o
-}
-
-func (o IpsRulePtrOutput) ToIpsRulePtrOutputWithContext(ctx context.Context) IpsRulePtrOutput {
-	return o
-}
-
 type IpsRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsRule)(nil))
+	return reflect.TypeOf((*[]*IpsRule)(nil)).Elem()
 }
 
 func (o IpsRuleArrayOutput) ToIpsRuleArrayOutput() IpsRuleArrayOutput {
@@ -435,15 +379,15 @@ func (o IpsRuleArrayOutput) ToIpsRuleArrayOutputWithContext(ctx context.Context)
 }
 
 func (o IpsRuleArrayOutput) Index(i pulumi.IntInput) IpsRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsRule {
-		return vs[0].([]IpsRule)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsRule {
+		return vs[0].([]*IpsRule)[vs[1].(int)]
 	}).(IpsRuleOutput)
 }
 
 type IpsRuleMapOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsRule)(nil))
+	return reflect.TypeOf((*map[string]*IpsRule)(nil)).Elem()
 }
 
 func (o IpsRuleMapOutput) ToIpsRuleMapOutput() IpsRuleMapOutput {
@@ -455,14 +399,16 @@ func (o IpsRuleMapOutput) ToIpsRuleMapOutputWithContext(ctx context.Context) Ips
 }
 
 func (o IpsRuleMapOutput) MapIndex(k pulumi.StringInput) IpsRuleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsRule {
-		return vs[0].(map[string]IpsRule)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsRule {
+		return vs[0].(map[string]*IpsRule)[vs[1].(string)]
 	}).(IpsRuleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsRuleInput)(nil)).Elem(), &IpsRule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsRuleArrayInput)(nil)).Elem(), IpsRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsRuleMapInput)(nil)).Elem(), IpsRuleMap{})
 	pulumi.RegisterOutputType(IpsRuleOutput{})
-	pulumi.RegisterOutputType(IpsRulePtrOutput{})
 	pulumi.RegisterOutputType(IpsRuleArrayOutput{})
 	pulumi.RegisterOutputType(IpsRuleMapOutput{})
 }

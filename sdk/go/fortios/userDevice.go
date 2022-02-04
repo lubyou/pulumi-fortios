@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -81,6 +81,7 @@ func NewUserDevice(ctx *pulumi.Context,
 		args = &UserDeviceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserDevice
 	err := ctx.RegisterResource("fortios:index/userDevice:UserDevice", name, args, &resource, opts...)
 	if err != nil {
@@ -219,7 +220,7 @@ type UserDeviceInput interface {
 }
 
 func (*UserDevice) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDevice)(nil))
+	return reflect.TypeOf((**UserDevice)(nil)).Elem()
 }
 
 func (i *UserDevice) ToUserDeviceOutput() UserDeviceOutput {
@@ -228,35 +229,6 @@ func (i *UserDevice) ToUserDeviceOutput() UserDeviceOutput {
 
 func (i *UserDevice) ToUserDeviceOutputWithContext(ctx context.Context) UserDeviceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceOutput)
-}
-
-func (i *UserDevice) ToUserDevicePtrOutput() UserDevicePtrOutput {
-	return i.ToUserDevicePtrOutputWithContext(context.Background())
-}
-
-func (i *UserDevice) ToUserDevicePtrOutputWithContext(ctx context.Context) UserDevicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDevicePtrOutput)
-}
-
-type UserDevicePtrInput interface {
-	pulumi.Input
-
-	ToUserDevicePtrOutput() UserDevicePtrOutput
-	ToUserDevicePtrOutputWithContext(ctx context.Context) UserDevicePtrOutput
-}
-
-type userDevicePtrType UserDeviceArgs
-
-func (*userDevicePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDevice)(nil))
-}
-
-func (i *userDevicePtrType) ToUserDevicePtrOutput() UserDevicePtrOutput {
-	return i.ToUserDevicePtrOutputWithContext(context.Background())
-}
-
-func (i *userDevicePtrType) ToUserDevicePtrOutputWithContext(ctx context.Context) UserDevicePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserDevicePtrOutput)
 }
 
 // UserDeviceArrayInput is an input type that accepts UserDeviceArray and UserDeviceArrayOutput values.
@@ -273,7 +245,7 @@ type UserDeviceArrayInput interface {
 type UserDeviceArray []UserDeviceInput
 
 func (UserDeviceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserDevice)(nil))
+	return reflect.TypeOf((*[]*UserDevice)(nil)).Elem()
 }
 
 func (i UserDeviceArray) ToUserDeviceArrayOutput() UserDeviceArrayOutput {
@@ -298,7 +270,7 @@ type UserDeviceMapInput interface {
 type UserDeviceMap map[string]UserDeviceInput
 
 func (UserDeviceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserDevice)(nil))
+	return reflect.TypeOf((*map[string]*UserDevice)(nil)).Elem()
 }
 
 func (i UserDeviceMap) ToUserDeviceMapOutput() UserDeviceMapOutput {
@@ -309,12 +281,10 @@ func (i UserDeviceMap) ToUserDeviceMapOutputWithContext(ctx context.Context) Use
 	return pulumi.ToOutputWithContext(ctx, i).(UserDeviceMapOutput)
 }
 
-type UserDeviceOutput struct {
-	*pulumi.OutputState
-}
+type UserDeviceOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserDevice)(nil))
+	return reflect.TypeOf((**UserDevice)(nil)).Elem()
 }
 
 func (o UserDeviceOutput) ToUserDeviceOutput() UserDeviceOutput {
@@ -325,36 +295,10 @@ func (o UserDeviceOutput) ToUserDeviceOutputWithContext(ctx context.Context) Use
 	return o
 }
 
-func (o UserDeviceOutput) ToUserDevicePtrOutput() UserDevicePtrOutput {
-	return o.ToUserDevicePtrOutputWithContext(context.Background())
-}
-
-func (o UserDeviceOutput) ToUserDevicePtrOutputWithContext(ctx context.Context) UserDevicePtrOutput {
-	return o.ApplyT(func(v UserDevice) *UserDevice {
-		return &v
-	}).(UserDevicePtrOutput)
-}
-
-type UserDevicePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserDevicePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserDevice)(nil))
-}
-
-func (o UserDevicePtrOutput) ToUserDevicePtrOutput() UserDevicePtrOutput {
-	return o
-}
-
-func (o UserDevicePtrOutput) ToUserDevicePtrOutputWithContext(ctx context.Context) UserDevicePtrOutput {
-	return o
-}
-
 type UserDeviceArrayOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserDevice)(nil))
+	return reflect.TypeOf((*[]*UserDevice)(nil)).Elem()
 }
 
 func (o UserDeviceArrayOutput) ToUserDeviceArrayOutput() UserDeviceArrayOutput {
@@ -366,15 +310,15 @@ func (o UserDeviceArrayOutput) ToUserDeviceArrayOutputWithContext(ctx context.Co
 }
 
 func (o UserDeviceArrayOutput) Index(i pulumi.IntInput) UserDeviceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserDevice {
-		return vs[0].([]UserDevice)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserDevice {
+		return vs[0].([]*UserDevice)[vs[1].(int)]
 	}).(UserDeviceOutput)
 }
 
 type UserDeviceMapOutput struct{ *pulumi.OutputState }
 
 func (UserDeviceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserDevice)(nil))
+	return reflect.TypeOf((*map[string]*UserDevice)(nil)).Elem()
 }
 
 func (o UserDeviceMapOutput) ToUserDeviceMapOutput() UserDeviceMapOutput {
@@ -386,14 +330,16 @@ func (o UserDeviceMapOutput) ToUserDeviceMapOutputWithContext(ctx context.Contex
 }
 
 func (o UserDeviceMapOutput) MapIndex(k pulumi.StringInput) UserDeviceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserDevice {
-		return vs[0].(map[string]UserDevice)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserDevice {
+		return vs[0].(map[string]*UserDevice)[vs[1].(string)]
 	}).(UserDeviceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceInput)(nil)).Elem(), &UserDevice{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceArrayInput)(nil)).Elem(), UserDeviceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserDeviceMapInput)(nil)).Elem(), UserDeviceMap{})
 	pulumi.RegisterOutputType(UserDeviceOutput{})
-	pulumi.RegisterOutputType(UserDevicePtrOutput{})
 	pulumi.RegisterOutputType(UserDeviceArrayOutput{})
 	pulumi.RegisterOutputType(UserDeviceMapOutput{})
 }

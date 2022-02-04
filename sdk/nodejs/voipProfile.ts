@@ -118,6 +118,14 @@ export class VoipProfile extends pulumi.CustomResource {
      */
     public readonly comment!: pulumi.Output<string | undefined>;
     /**
+     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+     */
+    public readonly featureSet!: pulumi.Output<string>;
+    /**
+     * MSRP. The structure of `msrp` block is documented below.
+     */
+    public readonly msrp!: pulumi.Output<outputs.VoipProfileMsrp | undefined>;
+    /**
      * Profile name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -143,27 +151,29 @@ export class VoipProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VoipProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VoipProfileArgs | VoipProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VoipProfileState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["sccp"] = state ? state.sccp : undefined;
-            inputs["sip"] = state ? state.sip : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["featureSet"] = state ? state.featureSet : undefined;
+            resourceInputs["msrp"] = state ? state.msrp : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["sccp"] = state ? state.sccp : undefined;
+            resourceInputs["sip"] = state ? state.sip : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VoipProfileArgs | undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["sccp"] = args ? args.sccp : undefined;
-            inputs["sip"] = args ? args.sip : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["featureSet"] = args ? args.featureSet : undefined;
+            resourceInputs["msrp"] = args ? args.msrp : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["sccp"] = args ? args.sccp : undefined;
+            resourceInputs["sip"] = args ? args.sip : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VoipProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VoipProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -175,6 +185,14 @@ export interface VoipProfileState {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+     */
+    featureSet?: pulumi.Input<string>;
+    /**
+     * MSRP. The structure of `msrp` block is documented below.
+     */
+    msrp?: pulumi.Input<inputs.VoipProfileMsrp>;
     /**
      * Profile name.
      */
@@ -201,6 +219,14 @@ export interface VoipProfileArgs {
      * Comment.
      */
     comment?: pulumi.Input<string>;
+    /**
+     * Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+     */
+    featureSet?: pulumi.Input<string>;
+    /**
+     * MSRP. The structure of `msrp` block is documented below.
+     */
+    msrp?: pulumi.Input<inputs.VoipProfileMsrp>;
     /**
      * Profile name.
      */

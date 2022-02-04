@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,24 +26,24 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewEndpointControlProfile(ctx, "trname", &fortios.EndpointControlProfileArgs{
-// 			DeviceGroups: fortios.EndpointControlProfileDeviceGroupArray{
-// 				&fortios.EndpointControlProfileDeviceGroupArgs{
+// 			DeviceGroups: EndpointControlProfileDeviceGroupArray{
+// 				&EndpointControlProfileDeviceGroupArgs{
 // 					Name: pulumi.String("Mobile Devices"),
 // 				},
 // 			},
-// 			ForticlientAndroidSettings: &fortios.EndpointControlProfileForticlientAndroidSettingsArgs{
+// 			ForticlientAndroidSettings: &EndpointControlProfileForticlientAndroidSettingsArgs{
 // 				DisableWfWhenProtected:     pulumi.String("enable"),
 // 				ForticlientAdvancedVpn:     pulumi.String("disable"),
 // 				ForticlientVpnProvisioning: pulumi.String("disable"),
 // 				ForticlientWf:              pulumi.String("disable"),
 // 			},
-// 			ForticlientIosSettings: &fortios.EndpointControlProfileForticlientIosSettingsArgs{
+// 			ForticlientIosSettings: &EndpointControlProfileForticlientIosSettingsArgs{
 // 				ClientVpnProvisioning:          pulumi.String("disable"),
 // 				DisableWfWhenProtected:         pulumi.String("enable"),
 // 				DistributeConfigurationProfile: pulumi.String("disable"),
 // 				ForticlientWf:                  pulumi.String("disable"),
 // 			},
-// 			ForticlientWinmacSettings: &fortios.EndpointControlProfileForticlientWinmacSettingsArgs{
+// 			ForticlientWinmacSettings: &EndpointControlProfileForticlientWinmacSettingsArgs{
 // 				AvRealtimeProtection:                       pulumi.String("disable"),
 // 				AvSignatureUpToDate:                        pulumi.String("disable"),
 // 				ForticlientApplicationFirewall:             pulumi.String("disable"),
@@ -69,14 +70,14 @@ import (
 // 				OsAvSoftwareInstalled:                      pulumi.String("disable"),
 // 				SandboxAnalysis:                            pulumi.String("disable"),
 // 			},
-// 			OnNetAddrs: fortios.EndpointControlProfileOnNetAddrArray{
-// 				&fortios.EndpointControlProfileOnNetAddrArgs{
+// 			OnNetAddrs: EndpointControlProfileOnNetAddrArray{
+// 				&EndpointControlProfileOnNetAddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
 // 			ProfileName: pulumi.String("1"),
-// 			Users: fortios.EndpointControlProfileUserArray{
-// 				&fortios.EndpointControlProfileUserArgs{
+// 			Users: EndpointControlProfileUserArray{
+// 				&EndpointControlProfileUserArgs{
 // 					Name: pulumi.String("guest"),
 // 				},
 // 			},
@@ -136,6 +137,7 @@ func NewEndpointControlProfile(ctx *pulumi.Context,
 		args = &EndpointControlProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlProfile
 	err := ctx.RegisterResource("fortios:index/endpointControlProfile:EndpointControlProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -290,7 +292,7 @@ type EndpointControlProfileInput interface {
 }
 
 func (*EndpointControlProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlProfile)(nil))
+	return reflect.TypeOf((**EndpointControlProfile)(nil)).Elem()
 }
 
 func (i *EndpointControlProfile) ToEndpointControlProfileOutput() EndpointControlProfileOutput {
@@ -299,35 +301,6 @@ func (i *EndpointControlProfile) ToEndpointControlProfileOutput() EndpointContro
 
 func (i *EndpointControlProfile) ToEndpointControlProfileOutputWithContext(ctx context.Context) EndpointControlProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfileOutput)
-}
-
-func (i *EndpointControlProfile) ToEndpointControlProfilePtrOutput() EndpointControlProfilePtrOutput {
-	return i.ToEndpointControlProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *EndpointControlProfile) ToEndpointControlProfilePtrOutputWithContext(ctx context.Context) EndpointControlProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfilePtrOutput)
-}
-
-type EndpointControlProfilePtrInput interface {
-	pulumi.Input
-
-	ToEndpointControlProfilePtrOutput() EndpointControlProfilePtrOutput
-	ToEndpointControlProfilePtrOutputWithContext(ctx context.Context) EndpointControlProfilePtrOutput
-}
-
-type endpointControlProfilePtrType EndpointControlProfileArgs
-
-func (*endpointControlProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlProfile)(nil))
-}
-
-func (i *endpointControlProfilePtrType) ToEndpointControlProfilePtrOutput() EndpointControlProfilePtrOutput {
-	return i.ToEndpointControlProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *endpointControlProfilePtrType) ToEndpointControlProfilePtrOutputWithContext(ctx context.Context) EndpointControlProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfilePtrOutput)
 }
 
 // EndpointControlProfileArrayInput is an input type that accepts EndpointControlProfileArray and EndpointControlProfileArrayOutput values.
@@ -344,7 +317,7 @@ type EndpointControlProfileArrayInput interface {
 type EndpointControlProfileArray []EndpointControlProfileInput
 
 func (EndpointControlProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EndpointControlProfile)(nil))
+	return reflect.TypeOf((*[]*EndpointControlProfile)(nil)).Elem()
 }
 
 func (i EndpointControlProfileArray) ToEndpointControlProfileArrayOutput() EndpointControlProfileArrayOutput {
@@ -369,7 +342,7 @@ type EndpointControlProfileMapInput interface {
 type EndpointControlProfileMap map[string]EndpointControlProfileInput
 
 func (EndpointControlProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EndpointControlProfile)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlProfile)(nil)).Elem()
 }
 
 func (i EndpointControlProfileMap) ToEndpointControlProfileMapOutput() EndpointControlProfileMapOutput {
@@ -380,12 +353,10 @@ func (i EndpointControlProfileMap) ToEndpointControlProfileMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlProfileMapOutput)
 }
 
-type EndpointControlProfileOutput struct {
-	*pulumi.OutputState
-}
+type EndpointControlProfileOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlProfile)(nil))
+	return reflect.TypeOf((**EndpointControlProfile)(nil)).Elem()
 }
 
 func (o EndpointControlProfileOutput) ToEndpointControlProfileOutput() EndpointControlProfileOutput {
@@ -396,36 +367,10 @@ func (o EndpointControlProfileOutput) ToEndpointControlProfileOutputWithContext(
 	return o
 }
 
-func (o EndpointControlProfileOutput) ToEndpointControlProfilePtrOutput() EndpointControlProfilePtrOutput {
-	return o.ToEndpointControlProfilePtrOutputWithContext(context.Background())
-}
-
-func (o EndpointControlProfileOutput) ToEndpointControlProfilePtrOutputWithContext(ctx context.Context) EndpointControlProfilePtrOutput {
-	return o.ApplyT(func(v EndpointControlProfile) *EndpointControlProfile {
-		return &v
-	}).(EndpointControlProfilePtrOutput)
-}
-
-type EndpointControlProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EndpointControlProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlProfile)(nil))
-}
-
-func (o EndpointControlProfilePtrOutput) ToEndpointControlProfilePtrOutput() EndpointControlProfilePtrOutput {
-	return o
-}
-
-func (o EndpointControlProfilePtrOutput) ToEndpointControlProfilePtrOutputWithContext(ctx context.Context) EndpointControlProfilePtrOutput {
-	return o
-}
-
 type EndpointControlProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointControlProfile)(nil))
+	return reflect.TypeOf((*[]*EndpointControlProfile)(nil)).Elem()
 }
 
 func (o EndpointControlProfileArrayOutput) ToEndpointControlProfileArrayOutput() EndpointControlProfileArrayOutput {
@@ -437,15 +382,15 @@ func (o EndpointControlProfileArrayOutput) ToEndpointControlProfileArrayOutputWi
 }
 
 func (o EndpointControlProfileArrayOutput) Index(i pulumi.IntInput) EndpointControlProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointControlProfile {
-		return vs[0].([]EndpointControlProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlProfile {
+		return vs[0].([]*EndpointControlProfile)[vs[1].(int)]
 	}).(EndpointControlProfileOutput)
 }
 
 type EndpointControlProfileMapOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EndpointControlProfile)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlProfile)(nil)).Elem()
 }
 
 func (o EndpointControlProfileMapOutput) ToEndpointControlProfileMapOutput() EndpointControlProfileMapOutput {
@@ -457,14 +402,16 @@ func (o EndpointControlProfileMapOutput) ToEndpointControlProfileMapOutputWithCo
 }
 
 func (o EndpointControlProfileMapOutput) MapIndex(k pulumi.StringInput) EndpointControlProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EndpointControlProfile {
-		return vs[0].(map[string]EndpointControlProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EndpointControlProfile {
+		return vs[0].(map[string]*EndpointControlProfile)[vs[1].(string)]
 	}).(EndpointControlProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlProfileInput)(nil)).Elem(), &EndpointControlProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlProfileArrayInput)(nil)).Elem(), EndpointControlProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlProfileMapInput)(nil)).Elem(), EndpointControlProfileMap{})
 	pulumi.RegisterOutputType(EndpointControlProfileOutput{})
-	pulumi.RegisterOutputType(EndpointControlProfilePtrOutput{})
 	pulumi.RegisterOutputType(EndpointControlProfileArrayOutput{})
 	pulumi.RegisterOutputType(EndpointControlProfileMapOutput{})
 }

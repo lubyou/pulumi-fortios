@@ -127,45 +127,43 @@ export class SwitchControllerLldpProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerLldpProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerLldpProfileArgs | SwitchControllerLldpProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerLldpProfileState | undefined;
-            inputs["autoIsl"] = state ? state.autoIsl : undefined;
-            inputs["autoIslHelloTimer"] = state ? state.autoIslHelloTimer : undefined;
-            inputs["autoIslPortGroup"] = state ? state.autoIslPortGroup : undefined;
-            inputs["autoIslReceiveTimeout"] = state ? state.autoIslReceiveTimeout : undefined;
-            inputs["autoMclagIcl"] = state ? state.autoMclagIcl : undefined;
-            inputs["customTlvs"] = state ? state.customTlvs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["medLocationServices"] = state ? state.medLocationServices : undefined;
-            inputs["medNetworkPolicies"] = state ? state.medNetworkPolicies : undefined;
-            inputs["medTlvs"] = state ? state.medTlvs : undefined;
-            inputs["n8021Tlvs"] = state ? state.n8021Tlvs : undefined;
-            inputs["n8023Tlvs"] = state ? state.n8023Tlvs : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoIsl"] = state ? state.autoIsl : undefined;
+            resourceInputs["autoIslHelloTimer"] = state ? state.autoIslHelloTimer : undefined;
+            resourceInputs["autoIslPortGroup"] = state ? state.autoIslPortGroup : undefined;
+            resourceInputs["autoIslReceiveTimeout"] = state ? state.autoIslReceiveTimeout : undefined;
+            resourceInputs["autoMclagIcl"] = state ? state.autoMclagIcl : undefined;
+            resourceInputs["customTlvs"] = state ? state.customTlvs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["medLocationServices"] = state ? state.medLocationServices : undefined;
+            resourceInputs["medNetworkPolicies"] = state ? state.medNetworkPolicies : undefined;
+            resourceInputs["medTlvs"] = state ? state.medTlvs : undefined;
+            resourceInputs["n8021Tlvs"] = state ? state.n8021Tlvs : undefined;
+            resourceInputs["n8023Tlvs"] = state ? state.n8023Tlvs : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerLldpProfileArgs | undefined;
-            inputs["autoIsl"] = args ? args.autoIsl : undefined;
-            inputs["autoIslHelloTimer"] = args ? args.autoIslHelloTimer : undefined;
-            inputs["autoIslPortGroup"] = args ? args.autoIslPortGroup : undefined;
-            inputs["autoIslReceiveTimeout"] = args ? args.autoIslReceiveTimeout : undefined;
-            inputs["autoMclagIcl"] = args ? args.autoMclagIcl : undefined;
-            inputs["customTlvs"] = args ? args.customTlvs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["medLocationServices"] = args ? args.medLocationServices : undefined;
-            inputs["medNetworkPolicies"] = args ? args.medNetworkPolicies : undefined;
-            inputs["medTlvs"] = args ? args.medTlvs : undefined;
-            inputs["n8021Tlvs"] = args ? args.n8021Tlvs : undefined;
-            inputs["n8023Tlvs"] = args ? args.n8023Tlvs : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoIsl"] = args ? args.autoIsl : undefined;
+            resourceInputs["autoIslHelloTimer"] = args ? args.autoIslHelloTimer : undefined;
+            resourceInputs["autoIslPortGroup"] = args ? args.autoIslPortGroup : undefined;
+            resourceInputs["autoIslReceiveTimeout"] = args ? args.autoIslReceiveTimeout : undefined;
+            resourceInputs["autoMclagIcl"] = args ? args.autoMclagIcl : undefined;
+            resourceInputs["customTlvs"] = args ? args.customTlvs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["medLocationServices"] = args ? args.medLocationServices : undefined;
+            resourceInputs["medNetworkPolicies"] = args ? args.medNetworkPolicies : undefined;
+            resourceInputs["medTlvs"] = args ? args.medTlvs : undefined;
+            resourceInputs["n8021Tlvs"] = args ? args.n8021Tlvs : undefined;
+            resourceInputs["n8023Tlvs"] = args ? args.n8023Tlvs : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerLldpProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerLldpProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

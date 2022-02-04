@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system pppoeinterface
 func LookupSystemPppoeInterface(ctx *pulumi.Context, args *LookupSystemPppoeInterfaceArgs, opts ...pulumi.InvokeOption) (*LookupSystemPppoeInterfaceResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemPppoeInterfaceResult
 	err := ctx.Invoke("fortios:index/getSystemPppoeInterface:GetSystemPppoeInterface", args, &rv, opts...)
 	if err != nil {
@@ -62,4 +66,133 @@ type LookupSystemPppoeInterfaceResult struct {
 	// User name.
 	Username  string  `pulumi:"username"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemPppoeInterfaceOutput(ctx *pulumi.Context, args LookupSystemPppoeInterfaceOutputArgs, opts ...pulumi.InvokeOption) LookupSystemPppoeInterfaceResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemPppoeInterfaceResult, error) {
+			args := v.(LookupSystemPppoeInterfaceArgs)
+			r, err := LookupSystemPppoeInterface(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemPppoeInterfaceResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemPppoeInterface.
+type LookupSystemPppoeInterfaceOutputArgs struct {
+	// Specify the name of the desired system pppoeinterface.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemPppoeInterfaceOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemPppoeInterfaceArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemPppoeInterface.
+type LookupSystemPppoeInterfaceResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemPppoeInterfaceResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemPppoeInterfaceResult)(nil)).Elem()
+}
+
+func (o LookupSystemPppoeInterfaceResultOutput) ToLookupSystemPppoeInterfaceResultOutput() LookupSystemPppoeInterfaceResultOutput {
+	return o
+}
+
+func (o LookupSystemPppoeInterfaceResultOutput) ToLookupSystemPppoeInterfaceResultOutputWithContext(ctx context.Context) LookupSystemPppoeInterfaceResultOutput {
+	return o
+}
+
+// PPPoE AC name.
+func (o LookupSystemPppoeInterfaceResultOutput) AcName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.AcName }).(pulumi.StringOutput)
+}
+
+// PPP authentication type to use.
+func (o LookupSystemPppoeInterfaceResultOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// Name for the physical interface.
+func (o LookupSystemPppoeInterfaceResultOutput) Device() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Device }).(pulumi.StringOutput)
+}
+
+// Enable/disable dial on demand to dial the PPPoE interface when packets are routed to the PPPoE interface.
+func (o LookupSystemPppoeInterfaceResultOutput) DialOnDemand() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.DialOnDemand }).(pulumi.StringOutput)
+}
+
+// PPPoE discovery init timeout value in (0-4294967295 sec).
+func (o LookupSystemPppoeInterfaceResultOutput) DiscRetryTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) int { return v.DiscRetryTimeout }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemPppoeInterfaceResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// PPPoE auto disconnect after idle timeout (0-4294967295 sec).
+func (o LookupSystemPppoeInterfaceResultOutput) IdleTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) int { return v.IdleTimeout }).(pulumi.IntOutput)
+}
+
+// PPPoE unnumbered IP.
+func (o LookupSystemPppoeInterfaceResultOutput) Ipunnumbered() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Ipunnumbered }).(pulumi.StringOutput)
+}
+
+// Enable/disable IPv6 Control Protocol (IPv6CP).
+func (o LookupSystemPppoeInterfaceResultOutput) Ipv6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Ipv6 }).(pulumi.StringOutput)
+}
+
+// PPPoE LCP echo interval in (0-4294967295 sec, default = 5).
+func (o LookupSystemPppoeInterfaceResultOutput) LcpEchoInterval() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) int { return v.LcpEchoInterval }).(pulumi.IntOutput)
+}
+
+// Maximum missed LCP echo messages before disconnect (0-4294967295, default = 3).
+func (o LookupSystemPppoeInterfaceResultOutput) LcpMaxEchoFails() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) int { return v.LcpMaxEchoFails }).(pulumi.IntOutput)
+}
+
+// Name of the PPPoE interface.
+func (o LookupSystemPppoeInterfaceResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// PPPoE terminate timeout value in (0-4294967295 sec).
+func (o LookupSystemPppoeInterfaceResultOutput) PadtRetryTimeout() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) int { return v.PadtRetryTimeout }).(pulumi.IntOutput)
+}
+
+// Enter the password.
+func (o LookupSystemPppoeInterfaceResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Enable/disable PPPoE unnumbered negotiation.
+func (o LookupSystemPppoeInterfaceResultOutput) PppoeUnnumberedNegotiate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.PppoeUnnumberedNegotiate }).(pulumi.StringOutput)
+}
+
+// PPPoE service name.
+func (o LookupSystemPppoeInterfaceResultOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// User name.
+func (o LookupSystemPppoeInterfaceResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemPppoeInterfaceResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemPppoeInterfaceResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemPppoeInterfaceResultOutput{})
 }

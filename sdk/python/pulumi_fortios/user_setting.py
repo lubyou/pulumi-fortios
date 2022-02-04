@@ -28,7 +28,9 @@ class UserSettingArgs:
                  auth_secure_http: Optional[pulumi.Input[str]] = None,
                  auth_src_mac: Optional[pulumi.Input[str]] = None,
                  auth_ssl_allow_renegotiation: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_max_proto_version: Optional[pulumi.Input[str]] = None,
                  auth_ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_sigalgs: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
@@ -51,7 +53,9 @@ class UserSettingArgs:
         :param pulumi.Input[str] auth_secure_http: Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
         :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
@@ -86,8 +90,12 @@ class UserSettingArgs:
             pulumi.set(__self__, "auth_src_mac", auth_src_mac)
         if auth_ssl_allow_renegotiation is not None:
             pulumi.set(__self__, "auth_ssl_allow_renegotiation", auth_ssl_allow_renegotiation)
+        if auth_ssl_max_proto_version is not None:
+            pulumi.set(__self__, "auth_ssl_max_proto_version", auth_ssl_max_proto_version)
         if auth_ssl_min_proto_version is not None:
             pulumi.set(__self__, "auth_ssl_min_proto_version", auth_ssl_min_proto_version)
+        if auth_ssl_sigalgs is not None:
+            pulumi.set(__self__, "auth_ssl_sigalgs", auth_ssl_sigalgs)
         if auth_timeout is not None:
             pulumi.set(__self__, "auth_timeout", auth_timeout)
         if auth_timeout_type is not None:
@@ -260,6 +268,18 @@ class UserSettingArgs:
         pulumi.set(self, "auth_ssl_allow_renegotiation", value)
 
     @property
+    @pulumi.getter(name="authSslMaxProtoVersion")
+    def auth_ssl_max_proto_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+        """
+        return pulumi.get(self, "auth_ssl_max_proto_version")
+
+    @auth_ssl_max_proto_version.setter
+    def auth_ssl_max_proto_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_ssl_max_proto_version", value)
+
+    @property
     @pulumi.getter(name="authSslMinProtoVersion")
     def auth_ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
@@ -270,6 +290,18 @@ class UserSettingArgs:
     @auth_ssl_min_proto_version.setter
     def auth_ssl_min_proto_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth_ssl_min_proto_version", value)
+
+    @property
+    @pulumi.getter(name="authSslSigalgs")
+    def auth_ssl_sigalgs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+        """
+        return pulumi.get(self, "auth_ssl_sigalgs")
+
+    @auth_ssl_sigalgs.setter
+    def auth_ssl_sigalgs(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_ssl_sigalgs", value)
 
     @property
     @pulumi.getter(name="authTimeout")
@@ -372,7 +404,9 @@ class _UserSettingState:
                  auth_secure_http: Optional[pulumi.Input[str]] = None,
                  auth_src_mac: Optional[pulumi.Input[str]] = None,
                  auth_ssl_allow_renegotiation: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_max_proto_version: Optional[pulumi.Input[str]] = None,
                  auth_ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_sigalgs: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
@@ -395,7 +429,9 @@ class _UserSettingState:
         :param pulumi.Input[str] auth_secure_http: Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
         :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
@@ -430,8 +466,12 @@ class _UserSettingState:
             pulumi.set(__self__, "auth_src_mac", auth_src_mac)
         if auth_ssl_allow_renegotiation is not None:
             pulumi.set(__self__, "auth_ssl_allow_renegotiation", auth_ssl_allow_renegotiation)
+        if auth_ssl_max_proto_version is not None:
+            pulumi.set(__self__, "auth_ssl_max_proto_version", auth_ssl_max_proto_version)
         if auth_ssl_min_proto_version is not None:
             pulumi.set(__self__, "auth_ssl_min_proto_version", auth_ssl_min_proto_version)
+        if auth_ssl_sigalgs is not None:
+            pulumi.set(__self__, "auth_ssl_sigalgs", auth_ssl_sigalgs)
         if auth_timeout is not None:
             pulumi.set(__self__, "auth_timeout", auth_timeout)
         if auth_timeout_type is not None:
@@ -604,6 +644,18 @@ class _UserSettingState:
         pulumi.set(self, "auth_ssl_allow_renegotiation", value)
 
     @property
+    @pulumi.getter(name="authSslMaxProtoVersion")
+    def auth_ssl_max_proto_version(self) -> Optional[pulumi.Input[str]]:
+        """
+        Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+        """
+        return pulumi.get(self, "auth_ssl_max_proto_version")
+
+    @auth_ssl_max_proto_version.setter
+    def auth_ssl_max_proto_version(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_ssl_max_proto_version", value)
+
+    @property
     @pulumi.getter(name="authSslMinProtoVersion")
     def auth_ssl_min_proto_version(self) -> Optional[pulumi.Input[str]]:
         """
@@ -614,6 +666,18 @@ class _UserSettingState:
     @auth_ssl_min_proto_version.setter
     def auth_ssl_min_proto_version(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "auth_ssl_min_proto_version", value)
+
+    @property
+    @pulumi.getter(name="authSslSigalgs")
+    def auth_ssl_sigalgs(self) -> Optional[pulumi.Input[str]]:
+        """
+        Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+        """
+        return pulumi.get(self, "auth_ssl_sigalgs")
+
+    @auth_ssl_sigalgs.setter
+    def auth_ssl_sigalgs(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auth_ssl_sigalgs", value)
 
     @property
     @pulumi.getter(name="authTimeout")
@@ -718,7 +782,9 @@ class UserSetting(pulumi.CustomResource):
                  auth_secure_http: Optional[pulumi.Input[str]] = None,
                  auth_src_mac: Optional[pulumi.Input[str]] = None,
                  auth_ssl_allow_renegotiation: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_max_proto_version: Optional[pulumi.Input[str]] = None,
                  auth_ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_sigalgs: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
@@ -779,7 +845,9 @@ class UserSetting(pulumi.CustomResource):
         :param pulumi.Input[str] auth_secure_http: Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
         :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
@@ -859,7 +927,9 @@ class UserSetting(pulumi.CustomResource):
                  auth_secure_http: Optional[pulumi.Input[str]] = None,
                  auth_src_mac: Optional[pulumi.Input[str]] = None,
                  auth_ssl_allow_renegotiation: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_max_proto_version: Optional[pulumi.Input[str]] = None,
                  auth_ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+                 auth_ssl_sigalgs: Optional[pulumi.Input[str]] = None,
                  auth_timeout: Optional[pulumi.Input[int]] = None,
                  auth_timeout_type: Optional[pulumi.Input[str]] = None,
                  auth_type: Optional[pulumi.Input[str]] = None,
@@ -874,6 +944,8 @@ class UserSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -892,7 +964,9 @@ class UserSetting(pulumi.CustomResource):
             __props__.__dict__["auth_secure_http"] = auth_secure_http
             __props__.__dict__["auth_src_mac"] = auth_src_mac
             __props__.__dict__["auth_ssl_allow_renegotiation"] = auth_ssl_allow_renegotiation
+            __props__.__dict__["auth_ssl_max_proto_version"] = auth_ssl_max_proto_version
             __props__.__dict__["auth_ssl_min_proto_version"] = auth_ssl_min_proto_version
+            __props__.__dict__["auth_ssl_sigalgs"] = auth_ssl_sigalgs
             __props__.__dict__["auth_timeout"] = auth_timeout
             __props__.__dict__["auth_timeout_type"] = auth_timeout_type
             __props__.__dict__["auth_type"] = auth_type
@@ -923,7 +997,9 @@ class UserSetting(pulumi.CustomResource):
             auth_secure_http: Optional[pulumi.Input[str]] = None,
             auth_src_mac: Optional[pulumi.Input[str]] = None,
             auth_ssl_allow_renegotiation: Optional[pulumi.Input[str]] = None,
+            auth_ssl_max_proto_version: Optional[pulumi.Input[str]] = None,
             auth_ssl_min_proto_version: Optional[pulumi.Input[str]] = None,
+            auth_ssl_sigalgs: Optional[pulumi.Input[str]] = None,
             auth_timeout: Optional[pulumi.Input[int]] = None,
             auth_timeout_type: Optional[pulumi.Input[str]] = None,
             auth_type: Optional[pulumi.Input[str]] = None,
@@ -951,7 +1027,9 @@ class UserSetting(pulumi.CustomResource):
         :param pulumi.Input[str] auth_secure_http: Enable/disable redirecting HTTP user authentication to more secure HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_src_mac: Enable/disable source MAC for user identity. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] auth_ssl_allow_renegotiation: Allow/forbid SSL re-negotiation for HTTPS authentication. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] auth_ssl_max_proto_version: Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
         :param pulumi.Input[str] auth_ssl_min_proto_version: Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
+        :param pulumi.Input[str] auth_ssl_sigalgs: Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
         :param pulumi.Input[int] auth_timeout: Time in minutes before the firewall user authentication timeout requires the user to re-authenticate.
         :param pulumi.Input[str] auth_timeout_type: Control if authenticated users have to login again after a hard timeout, after an idle timeout, or after a session timeout. Valid values: `idle-timeout`, `hard-timeout`, `new-session`.
         :param pulumi.Input[str] auth_type: Supported firewall policy authentication protocols/methods. Valid values: `http`, `https`, `ftp`, `telnet`.
@@ -977,7 +1055,9 @@ class UserSetting(pulumi.CustomResource):
         __props__.__dict__["auth_secure_http"] = auth_secure_http
         __props__.__dict__["auth_src_mac"] = auth_src_mac
         __props__.__dict__["auth_ssl_allow_renegotiation"] = auth_ssl_allow_renegotiation
+        __props__.__dict__["auth_ssl_max_proto_version"] = auth_ssl_max_proto_version
         __props__.__dict__["auth_ssl_min_proto_version"] = auth_ssl_min_proto_version
+        __props__.__dict__["auth_ssl_sigalgs"] = auth_ssl_sigalgs
         __props__.__dict__["auth_timeout"] = auth_timeout
         __props__.__dict__["auth_timeout_type"] = auth_timeout_type
         __props__.__dict__["auth_type"] = auth_type
@@ -1092,12 +1172,28 @@ class UserSetting(pulumi.CustomResource):
         return pulumi.get(self, "auth_ssl_allow_renegotiation")
 
     @property
+    @pulumi.getter(name="authSslMaxProtoVersion")
+    def auth_ssl_max_proto_version(self) -> pulumi.Output[str]:
+        """
+        Maximum supported protocol version for SSL/TLS connections (default is no limit). Valid values: `sslv3`, `tlsv1`, `tlsv1-1`, `tlsv1-2`, `tlsv1-3`.
+        """
+        return pulumi.get(self, "auth_ssl_max_proto_version")
+
+    @property
     @pulumi.getter(name="authSslMinProtoVersion")
     def auth_ssl_min_proto_version(self) -> pulumi.Output[str]:
         """
         Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
         """
         return pulumi.get(self, "auth_ssl_min_proto_version")
+
+    @property
+    @pulumi.getter(name="authSslSigalgs")
+    def auth_ssl_sigalgs(self) -> pulumi.Output[str]:
+        """
+        Set signature algorithms related to HTTPS authentication (affects TLS version <= 1.2 only, default is to enable all). Valid values: `no-rsa-pss`, `all`.
+        """
+        return pulumi.get(self, "auth_ssl_sigalgs")
 
     @property
     @pulumi.getter(name="authTimeout")

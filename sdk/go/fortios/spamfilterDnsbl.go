@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewSpamfilterDnsbl(ctx, "trname", &fortios.SpamfilterDnsblArgs{
 // 			Comment: pulumi.String("test"),
-// 			Entries: fortios.SpamfilterDnsblEntryArray{
-// 				&fortios.SpamfilterDnsblEntryArgs{
+// 			Entries: SpamfilterDnsblEntryArray{
+// 				&SpamfilterDnsblEntryArgs{
 // 					Action: pulumi.String("reject"),
 // 					Server: pulumi.String("1.1.1.1"),
 // 					Status: pulumi.String("enable"),
@@ -80,6 +81,7 @@ func NewSpamfilterDnsbl(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SpamfilterDnsbl
 	err := ctx.RegisterResource("fortios:index/spamfilterDnsbl:SpamfilterDnsbl", name, args, &resource, opts...)
 	if err != nil {
@@ -178,7 +180,7 @@ type SpamfilterDnsblInput interface {
 }
 
 func (*SpamfilterDnsbl) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterDnsbl)(nil))
+	return reflect.TypeOf((**SpamfilterDnsbl)(nil)).Elem()
 }
 
 func (i *SpamfilterDnsbl) ToSpamfilterDnsblOutput() SpamfilterDnsblOutput {
@@ -187,35 +189,6 @@ func (i *SpamfilterDnsbl) ToSpamfilterDnsblOutput() SpamfilterDnsblOutput {
 
 func (i *SpamfilterDnsbl) ToSpamfilterDnsblOutputWithContext(ctx context.Context) SpamfilterDnsblOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterDnsblOutput)
-}
-
-func (i *SpamfilterDnsbl) ToSpamfilterDnsblPtrOutput() SpamfilterDnsblPtrOutput {
-	return i.ToSpamfilterDnsblPtrOutputWithContext(context.Background())
-}
-
-func (i *SpamfilterDnsbl) ToSpamfilterDnsblPtrOutputWithContext(ctx context.Context) SpamfilterDnsblPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterDnsblPtrOutput)
-}
-
-type SpamfilterDnsblPtrInput interface {
-	pulumi.Input
-
-	ToSpamfilterDnsblPtrOutput() SpamfilterDnsblPtrOutput
-	ToSpamfilterDnsblPtrOutputWithContext(ctx context.Context) SpamfilterDnsblPtrOutput
-}
-
-type spamfilterDnsblPtrType SpamfilterDnsblArgs
-
-func (*spamfilterDnsblPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterDnsbl)(nil))
-}
-
-func (i *spamfilterDnsblPtrType) ToSpamfilterDnsblPtrOutput() SpamfilterDnsblPtrOutput {
-	return i.ToSpamfilterDnsblPtrOutputWithContext(context.Background())
-}
-
-func (i *spamfilterDnsblPtrType) ToSpamfilterDnsblPtrOutputWithContext(ctx context.Context) SpamfilterDnsblPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterDnsblPtrOutput)
 }
 
 // SpamfilterDnsblArrayInput is an input type that accepts SpamfilterDnsblArray and SpamfilterDnsblArrayOutput values.
@@ -232,7 +205,7 @@ type SpamfilterDnsblArrayInput interface {
 type SpamfilterDnsblArray []SpamfilterDnsblInput
 
 func (SpamfilterDnsblArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SpamfilterDnsbl)(nil))
+	return reflect.TypeOf((*[]*SpamfilterDnsbl)(nil)).Elem()
 }
 
 func (i SpamfilterDnsblArray) ToSpamfilterDnsblArrayOutput() SpamfilterDnsblArrayOutput {
@@ -257,7 +230,7 @@ type SpamfilterDnsblMapInput interface {
 type SpamfilterDnsblMap map[string]SpamfilterDnsblInput
 
 func (SpamfilterDnsblMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SpamfilterDnsbl)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterDnsbl)(nil)).Elem()
 }
 
 func (i SpamfilterDnsblMap) ToSpamfilterDnsblMapOutput() SpamfilterDnsblMapOutput {
@@ -268,12 +241,10 @@ func (i SpamfilterDnsblMap) ToSpamfilterDnsblMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SpamfilterDnsblMapOutput)
 }
 
-type SpamfilterDnsblOutput struct {
-	*pulumi.OutputState
-}
+type SpamfilterDnsblOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterDnsblOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SpamfilterDnsbl)(nil))
+	return reflect.TypeOf((**SpamfilterDnsbl)(nil)).Elem()
 }
 
 func (o SpamfilterDnsblOutput) ToSpamfilterDnsblOutput() SpamfilterDnsblOutput {
@@ -284,36 +255,10 @@ func (o SpamfilterDnsblOutput) ToSpamfilterDnsblOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SpamfilterDnsblOutput) ToSpamfilterDnsblPtrOutput() SpamfilterDnsblPtrOutput {
-	return o.ToSpamfilterDnsblPtrOutputWithContext(context.Background())
-}
-
-func (o SpamfilterDnsblOutput) ToSpamfilterDnsblPtrOutputWithContext(ctx context.Context) SpamfilterDnsblPtrOutput {
-	return o.ApplyT(func(v SpamfilterDnsbl) *SpamfilterDnsbl {
-		return &v
-	}).(SpamfilterDnsblPtrOutput)
-}
-
-type SpamfilterDnsblPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SpamfilterDnsblPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SpamfilterDnsbl)(nil))
-}
-
-func (o SpamfilterDnsblPtrOutput) ToSpamfilterDnsblPtrOutput() SpamfilterDnsblPtrOutput {
-	return o
-}
-
-func (o SpamfilterDnsblPtrOutput) ToSpamfilterDnsblPtrOutputWithContext(ctx context.Context) SpamfilterDnsblPtrOutput {
-	return o
-}
-
 type SpamfilterDnsblArrayOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterDnsblArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SpamfilterDnsbl)(nil))
+	return reflect.TypeOf((*[]*SpamfilterDnsbl)(nil)).Elem()
 }
 
 func (o SpamfilterDnsblArrayOutput) ToSpamfilterDnsblArrayOutput() SpamfilterDnsblArrayOutput {
@@ -325,15 +270,15 @@ func (o SpamfilterDnsblArrayOutput) ToSpamfilterDnsblArrayOutputWithContext(ctx 
 }
 
 func (o SpamfilterDnsblArrayOutput) Index(i pulumi.IntInput) SpamfilterDnsblOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SpamfilterDnsbl {
-		return vs[0].([]SpamfilterDnsbl)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SpamfilterDnsbl {
+		return vs[0].([]*SpamfilterDnsbl)[vs[1].(int)]
 	}).(SpamfilterDnsblOutput)
 }
 
 type SpamfilterDnsblMapOutput struct{ *pulumi.OutputState }
 
 func (SpamfilterDnsblMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SpamfilterDnsbl)(nil))
+	return reflect.TypeOf((*map[string]*SpamfilterDnsbl)(nil)).Elem()
 }
 
 func (o SpamfilterDnsblMapOutput) ToSpamfilterDnsblMapOutput() SpamfilterDnsblMapOutput {
@@ -345,14 +290,16 @@ func (o SpamfilterDnsblMapOutput) ToSpamfilterDnsblMapOutputWithContext(ctx cont
 }
 
 func (o SpamfilterDnsblMapOutput) MapIndex(k pulumi.StringInput) SpamfilterDnsblOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SpamfilterDnsbl {
-		return vs[0].(map[string]SpamfilterDnsbl)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SpamfilterDnsbl {
+		return vs[0].(map[string]*SpamfilterDnsbl)[vs[1].(string)]
 	}).(SpamfilterDnsblOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterDnsblInput)(nil)).Elem(), &SpamfilterDnsbl{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterDnsblArrayInput)(nil)).Elem(), SpamfilterDnsblArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SpamfilterDnsblMapInput)(nil)).Elem(), SpamfilterDnsblMap{})
 	pulumi.RegisterOutputType(SpamfilterDnsblOutput{})
-	pulumi.RegisterOutputType(SpamfilterDnsblPtrOutput{})
 	pulumi.RegisterOutputType(SpamfilterDnsblArrayOutput{})
 	pulumi.RegisterOutputType(SpamfilterDnsblMapOutput{})
 }

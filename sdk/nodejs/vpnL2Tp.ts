@@ -58,6 +58,10 @@ export class VpnL2Tp extends pulumi.CustomResource {
      */
     public readonly enforceIpsec!: pulumi.Output<string>;
     /**
+     * L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+     */
+    public readonly helloInterval!: pulumi.Output<number>;
+    /**
      * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
      */
     public readonly lcpEchoInterval!: pulumi.Output<number>;
@@ -91,38 +95,38 @@ export class VpnL2Tp extends pulumi.CustomResource {
      */
     constructor(name: string, args: VpnL2TpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnL2TpArgs | VpnL2TpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnL2TpState | undefined;
-            inputs["compress"] = state ? state.compress : undefined;
-            inputs["eip"] = state ? state.eip : undefined;
-            inputs["enforceIpsec"] = state ? state.enforceIpsec : undefined;
-            inputs["lcpEchoInterval"] = state ? state.lcpEchoInterval : undefined;
-            inputs["lcpMaxEchoFails"] = state ? state.lcpMaxEchoFails : undefined;
-            inputs["sip"] = state ? state.sip : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["usrgrp"] = state ? state.usrgrp : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["compress"] = state ? state.compress : undefined;
+            resourceInputs["eip"] = state ? state.eip : undefined;
+            resourceInputs["enforceIpsec"] = state ? state.enforceIpsec : undefined;
+            resourceInputs["helloInterval"] = state ? state.helloInterval : undefined;
+            resourceInputs["lcpEchoInterval"] = state ? state.lcpEchoInterval : undefined;
+            resourceInputs["lcpMaxEchoFails"] = state ? state.lcpMaxEchoFails : undefined;
+            resourceInputs["sip"] = state ? state.sip : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["usrgrp"] = state ? state.usrgrp : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as VpnL2TpArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["compress"] = args ? args.compress : undefined;
-            inputs["eip"] = args ? args.eip : undefined;
-            inputs["enforceIpsec"] = args ? args.enforceIpsec : undefined;
-            inputs["lcpEchoInterval"] = args ? args.lcpEchoInterval : undefined;
-            inputs["lcpMaxEchoFails"] = args ? args.lcpMaxEchoFails : undefined;
-            inputs["sip"] = args ? args.sip : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["usrgrp"] = args ? args.usrgrp : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["compress"] = args ? args.compress : undefined;
+            resourceInputs["eip"] = args ? args.eip : undefined;
+            resourceInputs["enforceIpsec"] = args ? args.enforceIpsec : undefined;
+            resourceInputs["helloInterval"] = args ? args.helloInterval : undefined;
+            resourceInputs["lcpEchoInterval"] = args ? args.lcpEchoInterval : undefined;
+            resourceInputs["lcpMaxEchoFails"] = args ? args.lcpMaxEchoFails : undefined;
+            resourceInputs["sip"] = args ? args.sip : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["usrgrp"] = args ? args.usrgrp : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnL2Tp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnL2Tp.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -142,6 +146,10 @@ export interface VpnL2TpState {
      * Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
      */
     enforceIpsec?: pulumi.Input<string>;
+    /**
+     * L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+     */
+    helloInterval?: pulumi.Input<number>;
     /**
      * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
      */
@@ -184,6 +192,10 @@ export interface VpnL2TpArgs {
      * Enable/disable IPsec enforcement. Valid values: `enable`, `disable`.
      */
     enforceIpsec?: pulumi.Input<string>;
+    /**
+     * L2TP hello message interval in seconds (0 - 3600 sec, default = 60).
+     */
+    helloInterval?: pulumi.Input<number>;
     /**
      * Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
      */

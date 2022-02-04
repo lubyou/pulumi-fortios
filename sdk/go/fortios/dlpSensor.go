@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -88,6 +88,7 @@ func NewDlpSensor(ctx *pulumi.Context,
 		args = &DlpSensorArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource DlpSensor
 	err := ctx.RegisterResource("fortios:index/dlpSensor:DlpSensor", name, args, &resource, opts...)
 	if err != nil {
@@ -250,7 +251,7 @@ type DlpSensorInput interface {
 }
 
 func (*DlpSensor) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpSensor)(nil))
+	return reflect.TypeOf((**DlpSensor)(nil)).Elem()
 }
 
 func (i *DlpSensor) ToDlpSensorOutput() DlpSensorOutput {
@@ -259,35 +260,6 @@ func (i *DlpSensor) ToDlpSensorOutput() DlpSensorOutput {
 
 func (i *DlpSensor) ToDlpSensorOutputWithContext(ctx context.Context) DlpSensorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorOutput)
-}
-
-func (i *DlpSensor) ToDlpSensorPtrOutput() DlpSensorPtrOutput {
-	return i.ToDlpSensorPtrOutputWithContext(context.Background())
-}
-
-func (i *DlpSensor) ToDlpSensorPtrOutputWithContext(ctx context.Context) DlpSensorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorPtrOutput)
-}
-
-type DlpSensorPtrInput interface {
-	pulumi.Input
-
-	ToDlpSensorPtrOutput() DlpSensorPtrOutput
-	ToDlpSensorPtrOutputWithContext(ctx context.Context) DlpSensorPtrOutput
-}
-
-type dlpSensorPtrType DlpSensorArgs
-
-func (*dlpSensorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpSensor)(nil))
-}
-
-func (i *dlpSensorPtrType) ToDlpSensorPtrOutput() DlpSensorPtrOutput {
-	return i.ToDlpSensorPtrOutputWithContext(context.Background())
-}
-
-func (i *dlpSensorPtrType) ToDlpSensorPtrOutputWithContext(ctx context.Context) DlpSensorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorPtrOutput)
 }
 
 // DlpSensorArrayInput is an input type that accepts DlpSensorArray and DlpSensorArrayOutput values.
@@ -304,7 +276,7 @@ type DlpSensorArrayInput interface {
 type DlpSensorArray []DlpSensorInput
 
 func (DlpSensorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*DlpSensor)(nil))
+	return reflect.TypeOf((*[]*DlpSensor)(nil)).Elem()
 }
 
 func (i DlpSensorArray) ToDlpSensorArrayOutput() DlpSensorArrayOutput {
@@ -329,7 +301,7 @@ type DlpSensorMapInput interface {
 type DlpSensorMap map[string]DlpSensorInput
 
 func (DlpSensorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*DlpSensor)(nil))
+	return reflect.TypeOf((*map[string]*DlpSensor)(nil)).Elem()
 }
 
 func (i DlpSensorMap) ToDlpSensorMapOutput() DlpSensorMapOutput {
@@ -340,12 +312,10 @@ func (i DlpSensorMap) ToDlpSensorMapOutputWithContext(ctx context.Context) DlpSe
 	return pulumi.ToOutputWithContext(ctx, i).(DlpSensorMapOutput)
 }
 
-type DlpSensorOutput struct {
-	*pulumi.OutputState
-}
+type DlpSensorOutput struct{ *pulumi.OutputState }
 
 func (DlpSensorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*DlpSensor)(nil))
+	return reflect.TypeOf((**DlpSensor)(nil)).Elem()
 }
 
 func (o DlpSensorOutput) ToDlpSensorOutput() DlpSensorOutput {
@@ -356,36 +326,10 @@ func (o DlpSensorOutput) ToDlpSensorOutputWithContext(ctx context.Context) DlpSe
 	return o
 }
 
-func (o DlpSensorOutput) ToDlpSensorPtrOutput() DlpSensorPtrOutput {
-	return o.ToDlpSensorPtrOutputWithContext(context.Background())
-}
-
-func (o DlpSensorOutput) ToDlpSensorPtrOutputWithContext(ctx context.Context) DlpSensorPtrOutput {
-	return o.ApplyT(func(v DlpSensor) *DlpSensor {
-		return &v
-	}).(DlpSensorPtrOutput)
-}
-
-type DlpSensorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (DlpSensorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**DlpSensor)(nil))
-}
-
-func (o DlpSensorPtrOutput) ToDlpSensorPtrOutput() DlpSensorPtrOutput {
-	return o
-}
-
-func (o DlpSensorPtrOutput) ToDlpSensorPtrOutputWithContext(ctx context.Context) DlpSensorPtrOutput {
-	return o
-}
-
 type DlpSensorArrayOutput struct{ *pulumi.OutputState }
 
 func (DlpSensorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]DlpSensor)(nil))
+	return reflect.TypeOf((*[]*DlpSensor)(nil)).Elem()
 }
 
 func (o DlpSensorArrayOutput) ToDlpSensorArrayOutput() DlpSensorArrayOutput {
@@ -397,15 +341,15 @@ func (o DlpSensorArrayOutput) ToDlpSensorArrayOutputWithContext(ctx context.Cont
 }
 
 func (o DlpSensorArrayOutput) Index(i pulumi.IntInput) DlpSensorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) DlpSensor {
-		return vs[0].([]DlpSensor)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *DlpSensor {
+		return vs[0].([]*DlpSensor)[vs[1].(int)]
 	}).(DlpSensorOutput)
 }
 
 type DlpSensorMapOutput struct{ *pulumi.OutputState }
 
 func (DlpSensorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]DlpSensor)(nil))
+	return reflect.TypeOf((*map[string]*DlpSensor)(nil)).Elem()
 }
 
 func (o DlpSensorMapOutput) ToDlpSensorMapOutput() DlpSensorMapOutput {
@@ -417,14 +361,16 @@ func (o DlpSensorMapOutput) ToDlpSensorMapOutputWithContext(ctx context.Context)
 }
 
 func (o DlpSensorMapOutput) MapIndex(k pulumi.StringInput) DlpSensorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) DlpSensor {
-		return vs[0].(map[string]DlpSensor)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *DlpSensor {
+		return vs[0].(map[string]*DlpSensor)[vs[1].(string)]
 	}).(DlpSensorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSensorInput)(nil)).Elem(), &DlpSensor{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSensorArrayInput)(nil)).Elem(), DlpSensorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DlpSensorMapInput)(nil)).Elem(), DlpSensorMap{})
 	pulumi.RegisterOutputType(DlpSensorOutput{})
-	pulumi.RegisterOutputType(DlpSensorPtrOutput{})
 	pulumi.RegisterOutputType(DlpSensorArrayOutput{})
 	pulumi.RegisterOutputType(DlpSensorMapOutput{})
 }

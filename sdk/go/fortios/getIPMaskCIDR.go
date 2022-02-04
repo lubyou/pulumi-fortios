@@ -4,6 +4,9 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -16,21 +19,21 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trnameGetSystemInterface, err := fortios.GetSystemInterface(ctx, &fortios.LookupSystemInterfaceArgs{
+// 		trnameGetSystemInterface, err := fortios.GetSystemInterface(ctx, &GetSystemInterfaceArgs{
 // 			Name: "port3",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		opt0 := trnameGetSystemInterface.Ip
-// 		trnameGetIPMaskCIDR, err := fortios.GetIPMaskCIDR(ctx, &fortios.GetIPMaskCIDRArgs{
-// 			Ipmask: &opt0,
+// 		trnameGetIPMaskCIDR, err := fortios.GetIPMaskCIDR(ctx, &GetIPMaskCIDRArgs{
+// 			Ipmask: pulumi.StringRef(trnameGetSystemInterface.Ip),
 // 		}, nil)
 // 		if err != nil {
 // 			return err
@@ -46,21 +49,21 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
-// 		trnameGetSystemInterface, err := fortios.GetSystemInterface(ctx, &fortios.LookupSystemInterfaceArgs{
+// 		trnameGetSystemInterface, err := fortios.GetSystemInterface(ctx, &GetSystemInterfaceArgs{
 // 			Name: "port3",
 // 		}, nil)
 // 		if err != nil {
 // 			return err
 // 		}
-// 		opt0 := trnameGetSystemInterface.Ip
-// 		trnameGetIPMaskCIDR, err := fortios.GetIPMaskCIDR(ctx, &fortios.GetIPMaskCIDRArgs{
-// 			Ipmask: &opt0,
+// 		trnameGetIPMaskCIDR, err := fortios.GetIPMaskCIDR(ctx, &GetIPMaskCIDRArgs{
+// 			Ipmask: pulumi.StringRef(trnameGetSystemInterface.Ip),
 // 			Ipmasklists: []string{
 // 				"21.1.1.1 255.255.255.0",
 // 				"22.1.1.1 255.255.255.240",
@@ -78,6 +81,7 @@ import (
 // }
 // ```
 func GetIPMaskCIDR(ctx *pulumi.Context, args *GetIPMaskCIDRArgs, opts ...pulumi.InvokeOption) (*GetIPMaskCIDRResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetIPMaskCIDRResult
 	err := ctx.Invoke("fortios:index/getIPMaskCIDR:GetIPMaskCIDR", args, &rv, opts...)
 	if err != nil {
@@ -106,4 +110,69 @@ type GetIPMaskCIDRResult struct {
 	Ipmask *string `pulumi:"ipmask"`
 	// IP/MASK list.
 	Ipmasklists []string `pulumi:"ipmasklists"`
+}
+
+func GetIPMaskCIDROutput(ctx *pulumi.Context, args GetIPMaskCIDROutputArgs, opts ...pulumi.InvokeOption) GetIPMaskCIDRResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetIPMaskCIDRResult, error) {
+			args := v.(GetIPMaskCIDRArgs)
+			r, err := GetIPMaskCIDR(ctx, &args, opts...)
+			return *r, err
+		}).(GetIPMaskCIDRResultOutput)
+}
+
+// A collection of arguments for invoking GetIPMaskCIDR.
+type GetIPMaskCIDROutputArgs struct {
+	// Specify IP/MASK.
+	Ipmask pulumi.StringPtrInput `pulumi:"ipmask"`
+	// Specify IP/MASK list.
+	Ipmasklists pulumi.StringArrayInput `pulumi:"ipmasklists"`
+}
+
+func (GetIPMaskCIDROutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIPMaskCIDRArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetIPMaskCIDR.
+type GetIPMaskCIDRResultOutput struct{ *pulumi.OutputState }
+
+func (GetIPMaskCIDRResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIPMaskCIDRResult)(nil)).Elem()
+}
+
+func (o GetIPMaskCIDRResultOutput) ToGetIPMaskCIDRResultOutput() GetIPMaskCIDRResultOutput {
+	return o
+}
+
+func (o GetIPMaskCIDRResultOutput) ToGetIPMaskCIDRResultOutputWithContext(ctx context.Context) GetIPMaskCIDRResultOutput {
+	return o
+}
+
+// Classless Inter-Domain Routing of the IP/MASK.
+func (o GetIPMaskCIDRResultOutput) Cidr() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIPMaskCIDRResult) string { return v.Cidr }).(pulumi.StringOutput)
+}
+
+// Classless Inter-Domain Routing list converted from the IP/MASK list.
+func (o GetIPMaskCIDRResultOutput) Cidrlists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIPMaskCIDRResult) []string { return v.Cidrlists }).(pulumi.StringArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetIPMaskCIDRResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIPMaskCIDRResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IP/MASK.
+func (o GetIPMaskCIDRResultOutput) Ipmask() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetIPMaskCIDRResult) *string { return v.Ipmask }).(pulumi.StringPtrOutput)
+}
+
+// IP/MASK list.
+func (o GetIPMaskCIDRResultOutput) Ipmasklists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIPMaskCIDRResult) []string { return v.Ipmasklists }).(pulumi.StringArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetIPMaskCIDRResultOutput{})
 }

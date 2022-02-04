@@ -12,6 +12,7 @@ __all__ = [
     'GetFirewallScheduleRecurringResult',
     'AwaitableGetFirewallScheduleRecurringResult',
     'get_firewall_schedule_recurring',
+    'get_firewall_schedule_recurring_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,7 @@ class GetFirewallScheduleRecurringResult:
     """
     A collection of values returned by GetFirewallScheduleRecurring.
     """
-    def __init__(__self__, color=None, day=None, end=None, id=None, name=None, start=None, vdomparam=None):
+    def __init__(__self__, color=None, day=None, end=None, fabric_object=None, id=None, name=None, start=None, vdomparam=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
@@ -29,6 +30,9 @@ class GetFirewallScheduleRecurringResult:
         if end and not isinstance(end, str):
             raise TypeError("Expected argument 'end' to be a str")
         pulumi.set(__self__, "end", end)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -65,6 +69,14 @@ class GetFirewallScheduleRecurringResult:
         Time of day to end the schedule, format hh:mm.
         """
         return pulumi.get(self, "end")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -105,6 +117,7 @@ class AwaitableGetFirewallScheduleRecurringResult(GetFirewallScheduleRecurringRe
             color=self.color,
             day=self.day,
             end=self.end,
+            fabric_object=self.fabric_object,
             id=self.id,
             name=self.name,
             start=self.start,
@@ -128,13 +141,30 @@ def get_firewall_schedule_recurring(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallScheduleRecurring:GetFirewallScheduleRecurring', __args__, opts=opts, typ=GetFirewallScheduleRecurringResult).value
 
     return AwaitableGetFirewallScheduleRecurringResult(
         color=__ret__.color,
         day=__ret__.day,
         end=__ret__.end,
+        fabric_object=__ret__.fabric_object,
         id=__ret__.id,
         name=__ret__.name,
         start=__ret__.start,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_schedule_recurring)
+def get_firewall_schedule_recurring_output(name: Optional[pulumi.Input[str]] = None,
+                                           vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallScheduleRecurringResult]:
+    """
+    Use this data source to get information on an fortios firewallschedule recurring
+
+
+    :param str name: Specify the name of the desired firewallschedule recurring.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

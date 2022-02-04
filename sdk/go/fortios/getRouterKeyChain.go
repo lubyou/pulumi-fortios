@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios router keychain
 func LookupRouterKeyChain(ctx *pulumi.Context, args *LookupRouterKeyChainArgs, opts ...pulumi.InvokeOption) (*LookupRouterKeyChainResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterKeyChainResult
 	err := ctx.Invoke("fortios:index/getRouterKeyChain:GetRouterKeyChain", args, &rv, opts...)
 	if err != nil {
@@ -34,4 +38,63 @@ type LookupRouterKeyChainResult struct {
 	// Key-chain name.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupRouterKeyChainOutput(ctx *pulumi.Context, args LookupRouterKeyChainOutputArgs, opts ...pulumi.InvokeOption) LookupRouterKeyChainResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterKeyChainResult, error) {
+			args := v.(LookupRouterKeyChainArgs)
+			r, err := LookupRouterKeyChain(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterKeyChainResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterKeyChain.
+type LookupRouterKeyChainOutputArgs struct {
+	// Specify the name of the desired router keychain.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterKeyChainOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterKeyChainArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterKeyChain.
+type LookupRouterKeyChainResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterKeyChainResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterKeyChainResult)(nil)).Elem()
+}
+
+func (o LookupRouterKeyChainResultOutput) ToLookupRouterKeyChainResultOutput() LookupRouterKeyChainResultOutput {
+	return o
+}
+
+func (o LookupRouterKeyChainResultOutput) ToLookupRouterKeyChainResultOutputWithContext(ctx context.Context) LookupRouterKeyChainResultOutput {
+	return o
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterKeyChainResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterKeyChainResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Configuration method to edit key settings. The structure of `key` block is documented below.
+func (o LookupRouterKeyChainResultOutput) Keys() GetRouterKeyChainKeyArrayOutput {
+	return o.ApplyT(func(v LookupRouterKeyChainResult) []GetRouterKeyChainKey { return v.Keys }).(GetRouterKeyChainKeyArrayOutput)
+}
+
+// Key-chain name.
+func (o LookupRouterKeyChainResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterKeyChainResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupRouterKeyChainResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterKeyChainResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterKeyChainResultOutput{})
 }

@@ -16,6 +16,8 @@ __all__ = ['VoipProfileArgs', 'VoipProfile']
 class VoipProfileArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 feature_set: Optional[pulumi.Input[str]] = None,
+                 msrp: Optional[pulumi.Input['VoipProfileMsrpArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input['VoipProfileSccpArgs']] = None,
                  sip: Optional[pulumi.Input['VoipProfileSipArgs']] = None,
@@ -23,6 +25,8 @@ class VoipProfileArgs:
         """
         The set of arguments for constructing a VoipProfile resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input['VoipProfileMsrpArgs'] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input['VoipProfileSccpArgs'] sccp: SCCP. The structure of `sccp` block is documented below.
         :param pulumi.Input['VoipProfileSipArgs'] sip: SIP. The structure of `sip` block is documented below.
@@ -30,6 +34,10 @@ class VoipProfileArgs:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if feature_set is not None:
+            pulumi.set(__self__, "feature_set", feature_set)
+        if msrp is not None:
+            pulumi.set(__self__, "msrp", msrp)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if sccp is not None:
@@ -50,6 +58,30 @@ class VoipProfileArgs:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="featureSet")
+    def feature_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        """
+        return pulumi.get(self, "feature_set")
+
+    @feature_set.setter
+    def feature_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter
+    def msrp(self) -> Optional[pulumi.Input['VoipProfileMsrpArgs']]:
+        """
+        MSRP. The structure of `msrp` block is documented below.
+        """
+        return pulumi.get(self, "msrp")
+
+    @msrp.setter
+    def msrp(self, value: Optional[pulumi.Input['VoipProfileMsrpArgs']]):
+        pulumi.set(self, "msrp", value)
 
     @property
     @pulumi.getter
@@ -104,6 +136,8 @@ class VoipProfileArgs:
 class _VoipProfileState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 feature_set: Optional[pulumi.Input[str]] = None,
+                 msrp: Optional[pulumi.Input['VoipProfileMsrpArgs']] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input['VoipProfileSccpArgs']] = None,
                  sip: Optional[pulumi.Input['VoipProfileSipArgs']] = None,
@@ -111,6 +145,8 @@ class _VoipProfileState:
         """
         Input properties used for looking up and filtering VoipProfile resources.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input['VoipProfileMsrpArgs'] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input['VoipProfileSccpArgs'] sccp: SCCP. The structure of `sccp` block is documented below.
         :param pulumi.Input['VoipProfileSipArgs'] sip: SIP. The structure of `sip` block is documented below.
@@ -118,6 +154,10 @@ class _VoipProfileState:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if feature_set is not None:
+            pulumi.set(__self__, "feature_set", feature_set)
+        if msrp is not None:
+            pulumi.set(__self__, "msrp", msrp)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if sccp is not None:
@@ -138,6 +178,30 @@ class _VoipProfileState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="featureSet")
+    def feature_set(self) -> Optional[pulumi.Input[str]]:
+        """
+        Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        """
+        return pulumi.get(self, "feature_set")
+
+    @feature_set.setter
+    def feature_set(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter
+    def msrp(self) -> Optional[pulumi.Input['VoipProfileMsrpArgs']]:
+        """
+        MSRP. The structure of `msrp` block is documented below.
+        """
+        return pulumi.get(self, "msrp")
+
+    @msrp.setter
+    def msrp(self, value: Optional[pulumi.Input['VoipProfileMsrpArgs']]):
+        pulumi.set(self, "msrp", value)
 
     @property
     @pulumi.getter
@@ -194,6 +258,8 @@ class VoipProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 feature_set: Optional[pulumi.Input[str]] = None,
+                 msrp: Optional[pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']]] = None,
                  sip: Optional[pulumi.Input[pulumi.InputType['VoipProfileSipArgs']]] = None,
@@ -281,6 +347,8 @@ class VoipProfile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']] sccp: SCCP. The structure of `sccp` block is documented below.
         :param pulumi.Input[pulumi.InputType['VoipProfileSipArgs']] sip: SIP. The structure of `sip` block is documented below.
@@ -387,6 +455,8 @@ class VoipProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 feature_set: Optional[pulumi.Input[str]] = None,
+                 msrp: Optional[pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  sccp: Optional[pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']]] = None,
                  sip: Optional[pulumi.Input[pulumi.InputType['VoipProfileSipArgs']]] = None,
@@ -398,12 +468,16 @@ class VoipProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = VoipProfileArgs.__new__(VoipProfileArgs)
 
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["feature_set"] = feature_set
+            __props__.__dict__["msrp"] = msrp
             __props__.__dict__["name"] = name
             __props__.__dict__["sccp"] = sccp
             __props__.__dict__["sip"] = sip
@@ -419,6 +493,8 @@ class VoipProfile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            feature_set: Optional[pulumi.Input[str]] = None,
+            msrp: Optional[pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']]] = None,
             name: Optional[pulumi.Input[str]] = None,
             sccp: Optional[pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']]] = None,
             sip: Optional[pulumi.Input[pulumi.InputType['VoipProfileSipArgs']]] = None,
@@ -431,6 +507,8 @@ class VoipProfile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] feature_set: Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[pulumi.InputType['VoipProfileMsrpArgs']] msrp: MSRP. The structure of `msrp` block is documented below.
         :param pulumi.Input[str] name: Profile name.
         :param pulumi.Input[pulumi.InputType['VoipProfileSccpArgs']] sccp: SCCP. The structure of `sccp` block is documented below.
         :param pulumi.Input[pulumi.InputType['VoipProfileSipArgs']] sip: SIP. The structure of `sip` block is documented below.
@@ -441,6 +519,8 @@ class VoipProfile(pulumi.CustomResource):
         __props__ = _VoipProfileState.__new__(_VoipProfileState)
 
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["feature_set"] = feature_set
+        __props__.__dict__["msrp"] = msrp
         __props__.__dict__["name"] = name
         __props__.__dict__["sccp"] = sccp
         __props__.__dict__["sip"] = sip
@@ -454,6 +534,22 @@ class VoipProfile(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="featureSet")
+    def feature_set(self) -> pulumi.Output[str]:
+        """
+        Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
+        """
+        return pulumi.get(self, "feature_set")
+
+    @property
+    @pulumi.getter
+    def msrp(self) -> pulumi.Output[Optional['outputs.VoipProfileMsrp']]:
+        """
+        MSRP. The structure of `msrp` block is documented below.
+        """
+        return pulumi.get(self, "msrp")
 
     @property
     @pulumi.getter

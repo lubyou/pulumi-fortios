@@ -24,6 +24,7 @@ class WirelessControllerWtpArgs:
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -69,6 +70,7 @@ class WirelessControllerWtpArgs:
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -121,6 +123,8 @@ class WirelessControllerWtpArgs:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if firmware_provision is not None:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
+        if firmware_provision_latest is not None:
+            pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if image_download is not None:
             pulumi.set(__self__, "image_download", image_download)
         if index is not None:
@@ -297,6 +301,18 @@ class WirelessControllerWtpArgs:
     @firmware_provision.setter
     def firmware_provision(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionLatest")
+    def firmware_provision_latest(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        """
+        return pulumi.get(self, "firmware_provision_latest")
+
+    @firmware_provision_latest.setter
+    def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_latest", value)
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -718,6 +734,7 @@ class _WirelessControllerWtpState:
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -763,6 +780,7 @@ class _WirelessControllerWtpState:
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -815,6 +833,8 @@ class _WirelessControllerWtpState:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if firmware_provision is not None:
             pulumi.set(__self__, "firmware_provision", firmware_provision)
+        if firmware_provision_latest is not None:
+            pulumi.set(__self__, "firmware_provision_latest", firmware_provision_latest)
         if image_download is not None:
             pulumi.set(__self__, "image_download", image_download)
         if index is not None:
@@ -981,6 +1001,18 @@ class _WirelessControllerWtpState:
     @firmware_provision.setter
     def firmware_provision(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "firmware_provision", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionLatest")
+    def firmware_provision_latest(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        """
+        return pulumi.get(self, "firmware_provision_latest")
+
+    @firmware_provision_latest.setter
+    def firmware_provision_latest(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_latest", value)
 
     @property
     @pulumi.getter(name="imageDownload")
@@ -1416,6 +1448,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1475,6 +1508,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -1553,6 +1587,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
                  coordinate_longitude: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  firmware_provision: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_latest: Optional[pulumi.Input[str]] = None,
                  image_download: Optional[pulumi.Input[str]] = None,
                  index: Optional[pulumi.Input[int]] = None,
                  ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1595,6 +1630,8 @@ class WirelessControllerWtp(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1608,6 +1645,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
             __props__.__dict__["coordinate_longitude"] = coordinate_longitude
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["firmware_provision"] = firmware_provision
+            __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
             __props__.__dict__["image_download"] = image_download
             __props__.__dict__["index"] = index
             __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
@@ -1663,6 +1701,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
             coordinate_longitude: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             firmware_provision: Optional[pulumi.Input[str]] = None,
+            firmware_provision_latest: Optional[pulumi.Input[str]] = None,
             image_download: Optional[pulumi.Input[str]] = None,
             index: Optional[pulumi.Input[int]] = None,
             ip_fragment_preventing: Optional[pulumi.Input[str]] = None,
@@ -1713,6 +1752,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
         :param pulumi.Input[str] coordinate_longitude: WTP longitude coordinate.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] firmware_provision: Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
+        :param pulumi.Input[str] firmware_provision_latest: Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
         :param pulumi.Input[str] image_download: Enable/disable WTP image download. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] index: Index (0 - 4294967295).
         :param pulumi.Input[str] ip_fragment_preventing: Method by which IP fragmentation is prevented for CAPWAP tunneled control and data packets (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
@@ -1761,6 +1801,7 @@ class WirelessControllerWtp(pulumi.CustomResource):
         __props__.__dict__["coordinate_longitude"] = coordinate_longitude
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["firmware_provision"] = firmware_provision
+        __props__.__dict__["firmware_provision_latest"] = firmware_provision_latest
         __props__.__dict__["image_download"] = image_download
         __props__.__dict__["index"] = index
         __props__.__dict__["ip_fragment_preventing"] = ip_fragment_preventing
@@ -1861,6 +1902,14 @@ class WirelessControllerWtp(pulumi.CustomResource):
         Firmware version to provision to this FortiAP on bootup (major.minor.build, i.e. 6.2.1234).
         """
         return pulumi.get(self, "firmware_provision")
+
+    @property
+    @pulumi.getter(name="firmwareProvisionLatest")
+    def firmware_provision_latest(self) -> pulumi.Output[str]:
+        """
+        Enable/disable one-time automatic provisioning of the latest firmware version. Valid values: `disable`, `once`.
+        """
+        return pulumi.get(self, "firmware_provision_latest")
 
     @property
     @pulumi.getter(name="imageDownload")

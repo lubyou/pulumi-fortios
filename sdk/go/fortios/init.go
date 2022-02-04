@@ -118,8 +118,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ExtenderControllerExtender1{}
 	case "fortios:index/extenderControllerExtender:ExtenderControllerExtender":
 		r = &ExtenderControllerExtender{}
+	case "fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile":
+		r = &ExtenderControllerExtenderProfile{}
 	case "fortios:index/fileFilterProfile:FileFilterProfile":
 		r = &FileFilterProfile{}
+	case "fortios:index/firewallAccessProxy6:FirewallAccessProxy6":
+		r = &FirewallAccessProxy6{}
+	case "fortios:index/firewallAccessProxy:FirewallAccessProxy":
+		r = &FirewallAccessProxy{}
+	case "fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert":
+		r = &FirewallAccessProxySshClientCert{}
+	case "fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost":
+		r = &FirewallAccessProxyVirtualHost{}
 	case "fortios:index/firewallAddress6:FirewallAddress6":
 		r = &FirewallAddress6{}
 	case "fortios:index/firewallAddress6Template:FirewallAddress6Template":
@@ -496,6 +506,18 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LogSyslogdOverrideSetting{}
 	case "fortios:index/logSyslogdSetting:LogSyslogdSetting":
 		r = &LogSyslogdSetting{}
+	case "fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter":
+		r = &LogTacacsAccounting2Filter{}
+	case "fortios:index/logTacacsAccounting2Setting:LogTacacsAccounting2Setting":
+		r = &LogTacacsAccounting2Setting{}
+	case "fortios:index/logTacacsAccounting3Filter:LogTacacsAccounting3Filter":
+		r = &LogTacacsAccounting3Filter{}
+	case "fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting":
+		r = &LogTacacsAccounting3Setting{}
+	case "fortios:index/logTacacsAccountingFilter:LogTacacsAccountingFilter":
+		r = &LogTacacsAccountingFilter{}
+	case "fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting":
+		r = &LogTacacsAccountingSetting{}
 	case "fortios:index/logThreatWeight:LogThreatWeight":
 		r = &LogThreatWeight{}
 	case "fortios:index/logWebtrendsFilter:LogWebtrendsFilter":
@@ -586,6 +608,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &RouterospfNetwork{}
 	case "fortios:index/routerospfOspfInterface:RouterospfOspfInterface":
 		r = &RouterospfOspfInterface{}
+	case "fortios:index/sctpFilterProfile:SctpFilterProfile":
+		r = &SctpFilterProfile{}
 	case "fortios:index/spamfilterBwl:SpamfilterBwl":
 		r = &SpamfilterBwl{}
 	case "fortios:index/spamfilterBword:SpamfilterBword":
@@ -614,8 +638,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SwitchControllerAutoConfigPolicy{}
 	case "fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand":
 		r = &SwitchControllerCustomCommand{}
+	case "fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy":
+		r = &SwitchControllerDynamicPortPolicy{}
 	case "fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking":
 		r = &SwitchControllerFlowTracking{}
+	case "fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings":
+		r = &SwitchControllerFortilinkSettings{}
 	case "fortios:index/switchControllerGlobal:SwitchControllerGlobal":
 		r = &SwitchControllerGlobal{}
 	case "fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping":
@@ -702,10 +730,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SwitchControllerVlan{}
 	case "fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy":
 		r = &SwitchControllerVlanPolicy{}
+	case "fortios:index/system3GModemCustom:System3GModemCustom":
+		r = &System3GModemCustom{}
 	case "fortios:index/systemAPIUserSetting:SystemAPIUserSetting":
 		r = &SystemAPIUserSetting{}
 	case "fortios:index/systemAccprofile:SystemAccprofile":
 		r = &SystemAccprofile{}
+	case "fortios:index/systemAcme:SystemAcme":
+		r = &SystemAcme{}
 	case "fortios:index/systemAdmin:SystemAdmin":
 		r = &SystemAdmin{}
 	case "fortios:index/systemAdminAdministrator:SystemAdminAdministrator":
@@ -760,6 +792,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemDhcp6Server{}
 	case "fortios:index/systemDhcpServer:SystemDhcpServer":
 		r = &SystemDhcpServer{}
+	case "fortios:index/systemDns64:SystemDns64":
+		r = &SystemDns64{}
 	case "fortios:index/systemDns:SystemDns":
 		r = &SystemDns{}
 	case "fortios:index/systemDnsDatabase:SystemDnsDatabase":
@@ -778,6 +812,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemFipsCc{}
 	case "fortios:index/systemFm:SystemFm":
 		r = &SystemFm{}
+	case "fortios:index/systemFortiai:SystemFortiai":
+		r = &SystemFortiai{}
 	case "fortios:index/systemFortiguard:SystemFortiguard":
 		r = &SystemFortiguard{}
 	case "fortios:index/systemFortimanager:SystemFortimanager":
@@ -802,8 +838,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemHa{}
 	case "fortios:index/systemHaMonitor:SystemHaMonitor":
 		r = &SystemHaMonitor{}
+	case "fortios:index/systemIke:SystemIke":
+		r = &SystemIke{}
 	case "fortios:index/systemInterface:SystemInterface":
 		r = &SystemInterface{}
+	case "fortios:index/systemIpam:SystemIpam":
+		r = &SystemIpam{}
 	case "fortios:index/systemIpipTunnel:SystemIpipTunnel":
 		r = &SystemIpipTunnel{}
 	case "fortios:index/systemIps:SystemIps":
@@ -828,12 +868,16 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemLinkMonitor{}
 	case "fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy":
 		r = &SystemLldpNetworkPolicy{}
+	case "fortios:index/systemLteModem:SystemLteModem":
+		r = &SystemLteModem{}
 	case "fortios:index/systemMacAddressTable:SystemMacAddressTable":
 		r = &SystemMacAddressTable{}
 	case "fortios:index/systemManagementTunnel:SystemManagementTunnel":
 		r = &SystemManagementTunnel{}
 	case "fortios:index/systemMobileTunnel:SystemMobileTunnel":
 		r = &SystemMobileTunnel{}
+	case "fortios:index/systemModem:SystemModem":
+		r = &SystemModem{}
 	case "fortios:index/systemNat64:SystemNat64":
 		r = &SystemNat64{}
 	case "fortios:index/systemNdProxy:SystemNdProxy":
@@ -842,6 +886,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemNetflow{}
 	case "fortios:index/systemNetworkVisibility:SystemNetworkVisibility":
 		r = &SystemNetworkVisibility{}
+	case "fortios:index/systemNpu:SystemNpu":
+		r = &SystemNpu{}
 	case "fortios:index/systemNtp:SystemNtp":
 		r = &SystemNtp{}
 	case "fortios:index/systemObjectTagging:SystemObjectTagging":
@@ -850,6 +896,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemPasswordPolicy{}
 	case "fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin":
 		r = &SystemPasswordPolicyGuestAdmin{}
+	case "fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch":
+		r = &SystemPhysicalSwitch{}
 	case "fortios:index/systemPppoeInterface:SystemPppoeInterface":
 		r = &SystemPppoeInterface{}
 	case "fortios:index/systemProbeResponse:SystemProbeResponse":
@@ -936,10 +984,14 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemSpeedTestServer{}
 	case "fortios:index/systemSsoAdmin:SystemSsoAdmin":
 		r = &SystemSsoAdmin{}
+	case "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin":
+		r = &SystemSsoForticloudAdmin{}
 	case "fortios:index/systemStandaloneCluster:SystemStandaloneCluster":
 		r = &SystemStandaloneCluster{}
 	case "fortios:index/systemStorage:SystemStorage":
 		r = &SystemStorage{}
+	case "fortios:index/systemStp:SystemStp":
+		r = &SystemStp{}
 	case "fortios:index/systemSwitchInterface:SystemSwitchInterface":
 		r = &SystemSwitchInterface{}
 	case "fortios:index/systemTosBasedPriority:SystemTosBasedPriority":
@@ -978,6 +1030,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &SystemZone{}
 	case "fortios:index/userAdgrp:UserAdgrp":
 		r = &UserAdgrp{}
+	case "fortios:index/userCertificate:UserCertificate":
+		r = &UserCertificate{}
 	case "fortios:index/userDevice:UserDevice":
 		r = &UserDevice{}
 	case "fortios:index/userDeviceAccessList:UserDeviceAccessList":
@@ -1030,6 +1084,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VPNIPsecPhase1InterfaceLegacy{}
 	case "fortios:index/vPNIPsecPhase2InterfaceLegacy:VPNIPsecPhase2InterfaceLegacy":
 		r = &VPNIPsecPhase2InterfaceLegacy{}
+	case "fortios:index/videofilterProfile:VideofilterProfile":
+		r = &VideofilterProfile{}
+	case "fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter":
+		r = &VideofilterYoutubeChannelFilter{}
+	case "fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey":
+		r = &VideofilterYoutubeKey{}
 	case "fortios:index/voipProfile:VoipProfile":
 		r = &VoipProfile{}
 	case "fortios:index/vpnCertificateCa:VpnCertificateCa":
@@ -1046,6 +1106,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpnCertificateSetting{}
 	case "fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator":
 		r = &VpnIpsecConcentrator{}
+	case "fortios:index/vpnIpsecFec:VpnIpsecFec":
+		r = &VpnIpsecFec{}
 	case "fortios:index/vpnIpsecForticlient:VpnIpsecForticlient":
 		r = &VpnIpsecForticlient{}
 	case "fortios:index/vpnIpsecManualkey:VpnIpsecManualkey":
@@ -1066,6 +1128,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &VpnOcvpn{}
 	case "fortios:index/vpnPptp:VpnPptp":
 		r = &VpnPptp{}
+	case "fortios:index/vpnSslClient:VpnSslClient":
+		r = &VpnSslClient{}
 	case "fortios:index/vpnSslSettings:VpnSslSettings":
 		r = &VpnSslSettings{}
 	case "fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware":
@@ -1172,12 +1236,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &WirelessControllerHotspot20AnqpRoamingConsortium{}
 	case "fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName":
 		r = &WirelessControllerHotspot20AnqpVenueName{}
+	case "fortios:index/wirelessControllerHotspot20AnqpVenueUrl:WirelessControllerHotspot20AnqpVenueUrl":
+		r = &WirelessControllerHotspot20AnqpVenueUrl{}
+	case "fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge":
+		r = &WirelessControllerHotspot20H2QpAdviceOfCharge{}
 	case "fortios:index/wirelessControllerHotspot20H2QpConnCapability:WirelessControllerHotspot20H2QpConnCapability":
 		r = &WirelessControllerHotspot20H2QpConnCapability{}
 	case "fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName":
 		r = &WirelessControllerHotspot20H2QpOperatorName{}
 	case "fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider":
 		r = &WirelessControllerHotspot20H2QpOsuProvider{}
+	case "fortios:index/wirelessControllerHotspot20H2QpOsuProviderNai:WirelessControllerHotspot20H2QpOsuProviderNai":
+		r = &WirelessControllerHotspot20H2QpOsuProviderNai{}
+	case "fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions":
+		r = &WirelessControllerHotspot20H2QpTermsAndConditions{}
 	case "fortios:index/wirelessControllerHotspot20H2QpWanMetric:WirelessControllerHotspot20H2QpWanMetric":
 		r = &WirelessControllerHotspot20H2QpWanMetric{}
 	case "fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile":
@@ -1192,6 +1264,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &WirelessControllerLog{}
 	case "fortios:index/wirelessControllerMpskProfile:WirelessControllerMpskProfile":
 		r = &WirelessControllerMpskProfile{}
+	case "fortios:index/wirelessControllerNacProfile:WirelessControllerNacProfile":
+		r = &WirelessControllerNacProfile{}
 	case "fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile":
 		r = &WirelessControllerQosProfile{}
 	case "fortios:index/wirelessControllerRegion:WirelessControllerRegion":
@@ -1200,6 +1274,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &WirelessControllerSetting{}
 	case "fortios:index/wirelessControllerSnmp:WirelessControllerSnmp":
 		r = &WirelessControllerSnmp{}
+	case "fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy":
+		r = &WirelessControllerSsidPolicy{}
+	case "fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile":
+		r = &WirelessControllerSyslogProfile{}
 	case "fortios:index/wirelessControllerTimers:WirelessControllerTimers":
 		r = &WirelessControllerTimers{}
 	case "fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile":
@@ -1247,7 +1325,7 @@ func (p *pkg) ConstructProvider(ctx *pulumi.Context, name, typ, urn string) (pul
 func init() {
 	version, err := PkgVersion()
 	if err != nil {
-		fmt.Println("failed to determine package version. defaulting to v1: %v", err)
+		fmt.Printf("failed to determine package version. defaulting to v1: %v\n", err)
 	}
 	pulumi.RegisterResourceModule(
 		"fortios",
@@ -1496,7 +1574,32 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/extenderControllerExtenderProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/fileFilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessProxy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessProxy6",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessProxySshClientCert",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/firewallAccessProxyVirtualHost",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -2441,6 +2544,36 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/logTacacsAccounting2Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logTacacsAccounting2Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logTacacsAccounting3Filter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logTacacsAccounting3Setting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logTacacsAccountingFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/logTacacsAccountingSetting",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/logThreatWeight",
 		&module{version},
 	)
@@ -2666,6 +2799,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/sctpFilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/spamfilterBwl",
 		&module{version},
 	)
@@ -2736,7 +2874,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/switchControllerDynamicPortPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/switchControllerFlowTracking",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/switchControllerFortilinkSettings",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -2956,12 +3104,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/system3GModemCustom",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemAPIUserSetting",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemAccprofile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemAcme",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3106,6 +3264,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemDns64",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemDnsDatabase",
 		&module{version},
 	)
@@ -3142,6 +3305,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemFm",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemFortiai",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3206,7 +3374,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemIke",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemInterface",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemIpam",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3271,6 +3449,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemLteModem",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemMacAddressTable",
 		&module{version},
 	)
@@ -3282,6 +3465,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemMobileTunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemModem",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3306,6 +3494,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemNpu",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemNtp",
 		&module{version},
 	)
@@ -3322,6 +3515,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemPasswordPolicyGuestAdmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemPhysicalSwitch",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3541,12 +3739,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/systemSsoForticloudAdmin",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/systemStandaloneCluster",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/systemStorage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/systemStp",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3642,6 +3850,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/userAdgrp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/userCertificate",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3776,6 +3989,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/videofilterProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/videofilterYoutubeChannelFilter",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/videofilterYoutubeKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/voipProfile",
 		&module{version},
 	)
@@ -3812,6 +4040,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/vpnIpsecConcentrator",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnIpsecFec",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -3862,6 +4095,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/vpnPptp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/vpnSslClient",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -4131,6 +4369,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/wirelessControllerHotspot20AnqpVenueUrl",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelessControllerHotspot20H2QpAdviceOfCharge",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/wirelessControllerHotspot20H2QpConnCapability",
 		&module{version},
 	)
@@ -4142,6 +4390,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/wirelessControllerHotspot20H2QpOsuProvider",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelessControllerHotspot20H2QpOsuProviderNai",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelessControllerHotspot20H2QpTermsAndConditions",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -4181,6 +4439,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"fortios",
+		"index/wirelessControllerNacProfile",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
 		"index/wirelessControllerQosProfile",
 		&module{version},
 	)
@@ -4197,6 +4460,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"fortios",
 		"index/wirelessControllerSnmp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelessControllerSsidPolicy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"fortios",
+		"index/wirelessControllerSyslogProfile",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

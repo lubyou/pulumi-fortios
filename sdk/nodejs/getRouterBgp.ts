@@ -24,9 +24,7 @@ export function getRouterBgp(args?: GetRouterBgpArgs, opts?: pulumi.InvokeOption
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getRouterBgp:GetRouterBgp", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -247,7 +245,7 @@ export interface GetRouterBgpResult {
      */
     readonly network6s: outputs.GetRouterBgpNetwork6[];
     /**
-     * Enable/disable ensure BGP network route exists in IGP.
+     * Configure insurance of BGP network route existence in IGP.
      */
     readonly networkImportCheck: string;
     /**
@@ -278,9 +276,31 @@ export interface GetRouterBgpResult {
      * Enable/disable only advertise routes from iBGP if routes present in an IGP.
      */
     readonly synchronization: string;
+    /**
+     * Configure tag-match mode. Resolves BGP routes with other routes containing the same tag.
+     */
+    readonly tagResolveMode: string;
     readonly vdomparam?: string;
+    /**
+     * BGP IPv6 VRF leaking table. The structure of `vrfLeak6` block is documented below.
+     */
+    readonly vrfLeak6s: outputs.GetRouterBgpVrfLeak6[];
     /**
      * BGP VRF leaking table. The structure of `vrfLeak` block is documented below.
      */
     readonly vrfLeaks: outputs.GetRouterBgpVrfLeak[];
+}
+
+export function getRouterBgpOutput(args?: GetRouterBgpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRouterBgpResult> {
+    return pulumi.output(args).apply(a => getRouterBgp(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetRouterBgp.
+ */
+export interface GetRouterBgpOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemDhcpServerResult',
     'AwaitableGetSystemDhcpServerResult',
     'get_system_dhcp_server',
+    'get_system_dhcp_server_output',
 ]
 
 @pulumi.output_type
@@ -669,6 +670,8 @@ def get_system_dhcp_server(fosid: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDhcpServer:GetSystemDhcpServer', __args__, opts=opts, typ=GetSystemDhcpServerResult).value
 
     return AwaitableGetSystemDhcpServerResult(
@@ -724,3 +727,17 @@ def get_system_dhcp_server(fosid: Optional[int] = None,
         wifi_ac_service=__ret__.wifi_ac_service,
         wins_server1=__ret__.wins_server1,
         wins_server2=__ret__.wins_server2)
+
+
+@_utilities.lift_output_func(get_system_dhcp_server)
+def get_system_dhcp_server_output(fosid: Optional[pulumi.Input[int]] = None,
+                                  vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemDhcpServerResult]:
+    """
+    Use this data source to get information on an fortios systemdhcp server
+
+
+    :param int fosid: Specify the fosid of the desired systemdhcp server.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

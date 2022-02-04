@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,6 +78,8 @@ type RouterStatic struct {
 	Dstaddr pulumi.StringOutput `pulumi:"dstaddr"`
 	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
 	DynamicGateway pulumi.StringOutput `pulumi:"dynamicGateway"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway pulumi.StringOutput `pulumi:"gateway"`
 	// Application ID in the Internet service database.
@@ -90,6 +92,8 @@ type RouterStatic struct {
 	Priority pulumi.IntOutput `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringOutput `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones RouterStaticSdwanZoneArrayOutput `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum pulumi.IntOutput `pulumi:"seqNum"`
 	// Source prefix for this route.
@@ -113,6 +117,7 @@ func NewRouterStatic(ctx *pulumi.Context,
 		args = &RouterStaticArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterStatic
 	err := ctx.RegisterResource("fortios:index/routerStatic:RouterStatic", name, args, &resource, opts...)
 	if err != nil {
@@ -151,6 +156,8 @@ type routerStaticState struct {
 	Dstaddr *string `pulumi:"dstaddr"`
 	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
 	DynamicGateway *string `pulumi:"dynamicGateway"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway *string `pulumi:"gateway"`
 	// Application ID in the Internet service database.
@@ -163,6 +170,8 @@ type routerStaticState struct {
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones []RouterStaticSdwanZone `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum *int `pulumi:"seqNum"`
 	// Source prefix for this route.
@@ -196,6 +205,8 @@ type RouterStaticState struct {
 	Dstaddr pulumi.StringPtrInput
 	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
 	DynamicGateway pulumi.StringPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Gateway IP for this route.
 	Gateway pulumi.StringPtrInput
 	// Application ID in the Internet service database.
@@ -208,6 +219,8 @@ type RouterStaticState struct {
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones RouterStaticSdwanZoneArrayInput
 	// Sequence number.
 	SeqNum pulumi.IntPtrInput
 	// Source prefix for this route.
@@ -245,6 +258,8 @@ type routerStaticArgs struct {
 	Dstaddr *string `pulumi:"dstaddr"`
 	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
 	DynamicGateway *string `pulumi:"dynamicGateway"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Gateway IP for this route.
 	Gateway *string `pulumi:"gateway"`
 	// Application ID in the Internet service database.
@@ -257,6 +272,8 @@ type routerStaticArgs struct {
 	Priority *int `pulumi:"priority"`
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan *string `pulumi:"sdwan"`
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones []RouterStaticSdwanZone `pulumi:"sdwanZones"`
 	// Sequence number.
 	SeqNum *int `pulumi:"seqNum"`
 	// Source prefix for this route.
@@ -291,6 +308,8 @@ type RouterStaticArgs struct {
 	Dstaddr pulumi.StringPtrInput
 	// Enable use of dynamic gateway retrieved from a DHCP or PPP server. Valid values: `enable`, `disable`.
 	DynamicGateway pulumi.StringPtrInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Gateway IP for this route.
 	Gateway pulumi.StringPtrInput
 	// Application ID in the Internet service database.
@@ -303,6 +322,8 @@ type RouterStaticArgs struct {
 	Priority pulumi.IntPtrInput
 	// Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
 	Sdwan pulumi.StringPtrInput
+	// Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+	SdwanZones RouterStaticSdwanZoneArrayInput
 	// Sequence number.
 	SeqNum pulumi.IntPtrInput
 	// Source prefix for this route.
@@ -331,7 +352,7 @@ type RouterStaticInput interface {
 }
 
 func (*RouterStatic) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterStatic)(nil))
+	return reflect.TypeOf((**RouterStatic)(nil)).Elem()
 }
 
 func (i *RouterStatic) ToRouterStaticOutput() RouterStaticOutput {
@@ -340,35 +361,6 @@ func (i *RouterStatic) ToRouterStaticOutput() RouterStaticOutput {
 
 func (i *RouterStatic) ToRouterStaticOutputWithContext(ctx context.Context) RouterStaticOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticOutput)
-}
-
-func (i *RouterStatic) ToRouterStaticPtrOutput() RouterStaticPtrOutput {
-	return i.ToRouterStaticPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterStatic) ToRouterStaticPtrOutputWithContext(ctx context.Context) RouterStaticPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticPtrOutput)
-}
-
-type RouterStaticPtrInput interface {
-	pulumi.Input
-
-	ToRouterStaticPtrOutput() RouterStaticPtrOutput
-	ToRouterStaticPtrOutputWithContext(ctx context.Context) RouterStaticPtrOutput
-}
-
-type routerStaticPtrType RouterStaticArgs
-
-func (*routerStaticPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterStatic)(nil))
-}
-
-func (i *routerStaticPtrType) ToRouterStaticPtrOutput() RouterStaticPtrOutput {
-	return i.ToRouterStaticPtrOutputWithContext(context.Background())
-}
-
-func (i *routerStaticPtrType) ToRouterStaticPtrOutputWithContext(ctx context.Context) RouterStaticPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticPtrOutput)
 }
 
 // RouterStaticArrayInput is an input type that accepts RouterStaticArray and RouterStaticArrayOutput values.
@@ -385,7 +377,7 @@ type RouterStaticArrayInput interface {
 type RouterStaticArray []RouterStaticInput
 
 func (RouterStaticArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterStatic)(nil))
+	return reflect.TypeOf((*[]*RouterStatic)(nil)).Elem()
 }
 
 func (i RouterStaticArray) ToRouterStaticArrayOutput() RouterStaticArrayOutput {
@@ -410,7 +402,7 @@ type RouterStaticMapInput interface {
 type RouterStaticMap map[string]RouterStaticInput
 
 func (RouterStaticMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterStatic)(nil))
+	return reflect.TypeOf((*map[string]*RouterStatic)(nil)).Elem()
 }
 
 func (i RouterStaticMap) ToRouterStaticMapOutput() RouterStaticMapOutput {
@@ -421,12 +413,10 @@ func (i RouterStaticMap) ToRouterStaticMapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(RouterStaticMapOutput)
 }
 
-type RouterStaticOutput struct {
-	*pulumi.OutputState
-}
+type RouterStaticOutput struct{ *pulumi.OutputState }
 
 func (RouterStaticOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterStatic)(nil))
+	return reflect.TypeOf((**RouterStatic)(nil)).Elem()
 }
 
 func (o RouterStaticOutput) ToRouterStaticOutput() RouterStaticOutput {
@@ -437,36 +427,10 @@ func (o RouterStaticOutput) ToRouterStaticOutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o RouterStaticOutput) ToRouterStaticPtrOutput() RouterStaticPtrOutput {
-	return o.ToRouterStaticPtrOutputWithContext(context.Background())
-}
-
-func (o RouterStaticOutput) ToRouterStaticPtrOutputWithContext(ctx context.Context) RouterStaticPtrOutput {
-	return o.ApplyT(func(v RouterStatic) *RouterStatic {
-		return &v
-	}).(RouterStaticPtrOutput)
-}
-
-type RouterStaticPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterStaticPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterStatic)(nil))
-}
-
-func (o RouterStaticPtrOutput) ToRouterStaticPtrOutput() RouterStaticPtrOutput {
-	return o
-}
-
-func (o RouterStaticPtrOutput) ToRouterStaticPtrOutputWithContext(ctx context.Context) RouterStaticPtrOutput {
-	return o
-}
-
 type RouterStaticArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterStaticArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterStatic)(nil))
+	return reflect.TypeOf((*[]*RouterStatic)(nil)).Elem()
 }
 
 func (o RouterStaticArrayOutput) ToRouterStaticArrayOutput() RouterStaticArrayOutput {
@@ -478,15 +442,15 @@ func (o RouterStaticArrayOutput) ToRouterStaticArrayOutputWithContext(ctx contex
 }
 
 func (o RouterStaticArrayOutput) Index(i pulumi.IntInput) RouterStaticOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterStatic {
-		return vs[0].([]RouterStatic)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterStatic {
+		return vs[0].([]*RouterStatic)[vs[1].(int)]
 	}).(RouterStaticOutput)
 }
 
 type RouterStaticMapOutput struct{ *pulumi.OutputState }
 
 func (RouterStaticMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterStatic)(nil))
+	return reflect.TypeOf((*map[string]*RouterStatic)(nil)).Elem()
 }
 
 func (o RouterStaticMapOutput) ToRouterStaticMapOutput() RouterStaticMapOutput {
@@ -498,14 +462,16 @@ func (o RouterStaticMapOutput) ToRouterStaticMapOutputWithContext(ctx context.Co
 }
 
 func (o RouterStaticMapOutput) MapIndex(k pulumi.StringInput) RouterStaticOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterStatic {
-		return vs[0].(map[string]RouterStatic)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterStatic {
+		return vs[0].(map[string]*RouterStatic)[vs[1].(string)]
 	}).(RouterStaticOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterStaticInput)(nil)).Elem(), &RouterStatic{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterStaticArrayInput)(nil)).Elem(), RouterStaticArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterStaticMapInput)(nil)).Elem(), RouterStaticMap{})
 	pulumi.RegisterOutputType(RouterStaticOutput{})
-	pulumi.RegisterOutputType(RouterStaticPtrOutput{})
 	pulumi.RegisterOutputType(RouterStaticArrayOutput{})
 	pulumi.RegisterOutputType(RouterStaticMapOutput{})
 }

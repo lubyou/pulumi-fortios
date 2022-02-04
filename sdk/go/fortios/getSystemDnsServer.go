@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system dnsserver
 func LookupSystemDnsServer(ctx *pulumi.Context, args *LookupSystemDnsServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemDnsServerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemDnsServerResult
 	err := ctx.Invoke("fortios:index/getSystemDnsServer:GetSystemDnsServer", args, &rv, opts...)
 	if err != nil {
@@ -29,6 +33,8 @@ type LookupSystemDnsServerArgs struct {
 type LookupSystemDnsServerResult struct {
 	// DNS filter profile.
 	DnsfilterProfile string `pulumi:"dnsfilterProfile"`
+	// DNS over HTTPS.
+	Doh string `pulumi:"doh"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// DNS server mode.
@@ -36,4 +42,73 @@ type LookupSystemDnsServerResult struct {
 	// DNS server name.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemDnsServerOutput(ctx *pulumi.Context, args LookupSystemDnsServerOutputArgs, opts ...pulumi.InvokeOption) LookupSystemDnsServerResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemDnsServerResult, error) {
+			args := v.(LookupSystemDnsServerArgs)
+			r, err := LookupSystemDnsServer(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemDnsServerResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemDnsServer.
+type LookupSystemDnsServerOutputArgs struct {
+	// Specify the name of the desired system dnsserver.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemDnsServerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemDnsServerArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemDnsServer.
+type LookupSystemDnsServerResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemDnsServerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemDnsServerResult)(nil)).Elem()
+}
+
+func (o LookupSystemDnsServerResultOutput) ToLookupSystemDnsServerResultOutput() LookupSystemDnsServerResultOutput {
+	return o
+}
+
+func (o LookupSystemDnsServerResultOutput) ToLookupSystemDnsServerResultOutputWithContext(ctx context.Context) LookupSystemDnsServerResultOutput {
+	return o
+}
+
+// DNS filter profile.
+func (o LookupSystemDnsServerResultOutput) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+// DNS over HTTPS.
+func (o LookupSystemDnsServerResultOutput) Doh() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Doh }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemDnsServerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// DNS server mode.
+func (o LookupSystemDnsServerResultOutput) Mode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Mode }).(pulumi.StringOutput)
+}
+
+// DNS server name.
+func (o LookupSystemDnsServerResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemDnsServerResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemDnsServerResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemDnsServerResultOutput{})
 }

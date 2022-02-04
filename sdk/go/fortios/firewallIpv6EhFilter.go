@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewFirewallIpv6EhFilter(ctx *pulumi.Context,
 		args = &FirewallIpv6EhFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallIpv6EhFilter
 	err := ctx.RegisterResource("fortios:index/firewallIpv6EhFilter:FirewallIpv6EhFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -201,7 +202,7 @@ type FirewallIpv6EhFilterInput interface {
 }
 
 func (*FirewallIpv6EhFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIpv6EhFilter)(nil))
+	return reflect.TypeOf((**FirewallIpv6EhFilter)(nil)).Elem()
 }
 
 func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterOutput() FirewallIpv6EhFilterOutput {
@@ -210,35 +211,6 @@ func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterOutput() FirewallIpv6EhFilt
 
 func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterOutputWithContext(ctx context.Context) FirewallIpv6EhFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterOutput)
-}
-
-func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterPtrOutput() FirewallIpv6EhFilterPtrOutput {
-	return i.ToFirewallIpv6EhFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallIpv6EhFilter) ToFirewallIpv6EhFilterPtrOutputWithContext(ctx context.Context) FirewallIpv6EhFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterPtrOutput)
-}
-
-type FirewallIpv6EhFilterPtrInput interface {
-	pulumi.Input
-
-	ToFirewallIpv6EhFilterPtrOutput() FirewallIpv6EhFilterPtrOutput
-	ToFirewallIpv6EhFilterPtrOutputWithContext(ctx context.Context) FirewallIpv6EhFilterPtrOutput
-}
-
-type firewallIpv6EhFilterPtrType FirewallIpv6EhFilterArgs
-
-func (*firewallIpv6EhFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIpv6EhFilter)(nil))
-}
-
-func (i *firewallIpv6EhFilterPtrType) ToFirewallIpv6EhFilterPtrOutput() FirewallIpv6EhFilterPtrOutput {
-	return i.ToFirewallIpv6EhFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallIpv6EhFilterPtrType) ToFirewallIpv6EhFilterPtrOutputWithContext(ctx context.Context) FirewallIpv6EhFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterPtrOutput)
 }
 
 // FirewallIpv6EhFilterArrayInput is an input type that accepts FirewallIpv6EhFilterArray and FirewallIpv6EhFilterArrayOutput values.
@@ -255,7 +227,7 @@ type FirewallIpv6EhFilterArrayInput interface {
 type FirewallIpv6EhFilterArray []FirewallIpv6EhFilterInput
 
 func (FirewallIpv6EhFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallIpv6EhFilter)(nil))
+	return reflect.TypeOf((*[]*FirewallIpv6EhFilter)(nil)).Elem()
 }
 
 func (i FirewallIpv6EhFilterArray) ToFirewallIpv6EhFilterArrayOutput() FirewallIpv6EhFilterArrayOutput {
@@ -280,7 +252,7 @@ type FirewallIpv6EhFilterMapInput interface {
 type FirewallIpv6EhFilterMap map[string]FirewallIpv6EhFilterInput
 
 func (FirewallIpv6EhFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallIpv6EhFilter)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIpv6EhFilter)(nil)).Elem()
 }
 
 func (i FirewallIpv6EhFilterMap) ToFirewallIpv6EhFilterMapOutput() FirewallIpv6EhFilterMapOutput {
@@ -291,12 +263,10 @@ func (i FirewallIpv6EhFilterMap) ToFirewallIpv6EhFilterMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIpv6EhFilterMapOutput)
 }
 
-type FirewallIpv6EhFilterOutput struct {
-	*pulumi.OutputState
-}
+type FirewallIpv6EhFilterOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpv6EhFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIpv6EhFilter)(nil))
+	return reflect.TypeOf((**FirewallIpv6EhFilter)(nil)).Elem()
 }
 
 func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterOutput() FirewallIpv6EhFilterOutput {
@@ -307,36 +277,10 @@ func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterPtrOutput() FirewallIpv6EhFilterPtrOutput {
-	return o.ToFirewallIpv6EhFilterPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallIpv6EhFilterOutput) ToFirewallIpv6EhFilterPtrOutputWithContext(ctx context.Context) FirewallIpv6EhFilterPtrOutput {
-	return o.ApplyT(func(v FirewallIpv6EhFilter) *FirewallIpv6EhFilter {
-		return &v
-	}).(FirewallIpv6EhFilterPtrOutput)
-}
-
-type FirewallIpv6EhFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallIpv6EhFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIpv6EhFilter)(nil))
-}
-
-func (o FirewallIpv6EhFilterPtrOutput) ToFirewallIpv6EhFilterPtrOutput() FirewallIpv6EhFilterPtrOutput {
-	return o
-}
-
-func (o FirewallIpv6EhFilterPtrOutput) ToFirewallIpv6EhFilterPtrOutputWithContext(ctx context.Context) FirewallIpv6EhFilterPtrOutput {
-	return o
-}
-
 type FirewallIpv6EhFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpv6EhFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallIpv6EhFilter)(nil))
+	return reflect.TypeOf((*[]*FirewallIpv6EhFilter)(nil)).Elem()
 }
 
 func (o FirewallIpv6EhFilterArrayOutput) ToFirewallIpv6EhFilterArrayOutput() FirewallIpv6EhFilterArrayOutput {
@@ -348,15 +292,15 @@ func (o FirewallIpv6EhFilterArrayOutput) ToFirewallIpv6EhFilterArrayOutputWithCo
 }
 
 func (o FirewallIpv6EhFilterArrayOutput) Index(i pulumi.IntInput) FirewallIpv6EhFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIpv6EhFilter {
-		return vs[0].([]FirewallIpv6EhFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIpv6EhFilter {
+		return vs[0].([]*FirewallIpv6EhFilter)[vs[1].(int)]
 	}).(FirewallIpv6EhFilterOutput)
 }
 
 type FirewallIpv6EhFilterMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallIpv6EhFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallIpv6EhFilter)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIpv6EhFilter)(nil)).Elem()
 }
 
 func (o FirewallIpv6EhFilterMapOutput) ToFirewallIpv6EhFilterMapOutput() FirewallIpv6EhFilterMapOutput {
@@ -368,14 +312,16 @@ func (o FirewallIpv6EhFilterMapOutput) ToFirewallIpv6EhFilterMapOutputWithContex
 }
 
 func (o FirewallIpv6EhFilterMapOutput) MapIndex(k pulumi.StringInput) FirewallIpv6EhFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallIpv6EhFilter {
-		return vs[0].(map[string]FirewallIpv6EhFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallIpv6EhFilter {
+		return vs[0].(map[string]*FirewallIpv6EhFilter)[vs[1].(string)]
 	}).(FirewallIpv6EhFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpv6EhFilterInput)(nil)).Elem(), &FirewallIpv6EhFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpv6EhFilterArrayInput)(nil)).Elem(), FirewallIpv6EhFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIpv6EhFilterMapInput)(nil)).Elem(), FirewallIpv6EhFilterMap{})
 	pulumi.RegisterOutputType(FirewallIpv6EhFilterOutput{})
-	pulumi.RegisterOutputType(FirewallIpv6EhFilterPtrOutput{})
 	pulumi.RegisterOutputType(FirewallIpv6EhFilterArrayOutput{})
 	pulumi.RegisterOutputType(FirewallIpv6EhFilterMapOutput{})
 }

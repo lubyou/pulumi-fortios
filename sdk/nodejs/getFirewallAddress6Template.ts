@@ -13,9 +13,7 @@ export function getFirewallAddress6Template(args: GetFirewallAddress6TemplateArg
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallAddress6Template:GetFirewallAddress6Template", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -41,6 +39,10 @@ export interface GetFirewallAddress6TemplateArgs {
  */
 export interface GetFirewallAddress6TemplateResult {
     /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -61,4 +63,22 @@ export interface GetFirewallAddress6TemplateResult {
      */
     readonly subnetSegments: outputs.GetFirewallAddress6TemplateSubnetSegment[];
     readonly vdomparam?: string;
+}
+
+export function getFirewallAddress6TemplateOutput(args: GetFirewallAddress6TemplateOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddress6TemplateResult> {
+    return pulumi.output(args).apply(a => getFirewallAddress6Template(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallAddress6Template.
+ */
+export interface GetFirewallAddress6TemplateOutputArgs {
+    /**
+     * Specify the name of the desired firewall address6template.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

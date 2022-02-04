@@ -14,9 +14,21 @@ export interface AntivirusProfileCifs {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable/disable the virus emulator. Valid values: `enable`, `disable`.
      */
     emulator: string;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
     /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
@@ -25,6 +37,10 @@ export interface AntivirusProfileCifs {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileContentDisarm {
@@ -106,6 +122,13 @@ export interface AntivirusProfileContentDisarm {
     pdfJavacode: string;
 }
 
+export interface AntivirusProfileExternalBlocklist {
+    /**
+     * External blocklist.
+     */
+    name: string;
+}
+
 export interface AntivirusProfileFtp {
     /**
      * Select the archive types to block. Valid values: `encrypted`, `corrupted`, `partiallycorrupted`, `multipart`, `nested`, `mailbomb`, `fileslimit`, `timeout`, `unhandled`.
@@ -116,9 +139,21 @@ export interface AntivirusProfileFtp {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable/disable the virus emulator. Valid values: `enable`, `disable`.
      */
     emulator: string;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
     /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
@@ -127,6 +162,10 @@ export interface AntivirusProfileFtp {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileHttp {
@@ -139,6 +178,10 @@ export interface AntivirusProfileHttp {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
      */
     contentDisarm: string;
@@ -147,6 +190,14 @@ export interface AntivirusProfileHttp {
      */
     emulator: string;
     /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
+    /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
     options: string;
@@ -154,6 +205,10 @@ export interface AntivirusProfileHttp {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileImap {
@@ -166,6 +221,10 @@ export interface AntivirusProfileImap {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
      */
     contentDisarm: string;
@@ -178,6 +237,14 @@ export interface AntivirusProfileImap {
      */
     executables: string;
     /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
+    /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
     options: string;
@@ -185,6 +252,10 @@ export interface AntivirusProfileImap {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileMapi {
@@ -197,6 +268,10 @@ export interface AntivirusProfileMapi {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable/disable the virus emulator. Valid values: `enable`, `disable`.
      */
     emulator: string;
@@ -205,6 +280,14 @@ export interface AntivirusProfileMapi {
      */
     executables: string;
     /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
+    /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
     options: string;
@@ -212,6 +295,10 @@ export interface AntivirusProfileMapi {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileNacQuar {
@@ -239,9 +326,21 @@ export interface AntivirusProfileNntp {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable/disable the virus emulator. Valid values: `enable`, `disable`.
      */
     emulator: string;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
     /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
@@ -250,6 +349,10 @@ export interface AntivirusProfileNntp {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileOutbreakPrevention {
@@ -273,6 +376,10 @@ export interface AntivirusProfilePop3 {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
      */
     contentDisarm: string;
@@ -285,6 +392,14 @@ export interface AntivirusProfilePop3 {
      */
     executables: string;
     /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
+    /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
     options: string;
@@ -292,6 +407,10 @@ export interface AntivirusProfilePop3 {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileSmb {
@@ -327,6 +446,10 @@ export interface AntivirusProfileSmtp {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
      */
     contentDisarm: string;
@@ -339,6 +462,14 @@ export interface AntivirusProfileSmtp {
      */
     executables: string;
     /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
+    /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
     options: string;
@@ -346,6 +477,10 @@ export interface AntivirusProfileSmtp {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface AntivirusProfileSsh {
@@ -358,9 +493,21 @@ export interface AntivirusProfileSsh {
      */
     archiveLog: string;
     /**
+     * Enable AntiVirus scan service. Valid values: `disable`, `block`, `monitor`.
+     */
+    avScan: string;
+    /**
      * Enable/disable the virus emulator. Valid values: `enable`, `disable`.
      */
     emulator: string;
+    /**
+     * Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+     */
+    externalBlocklist: string;
+    /**
+     * Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `block`, `monitor`.
+     */
+    fortiai: string;
     /**
      * Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `avmonitor`, `quarantine`.
      */
@@ -369,6 +516,10 @@ export interface AntivirusProfileSsh {
      * Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
      */
     outbreakPrevention: string;
+    /**
+     * Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+     */
+    quarantine: string;
 }
 
 export interface ApplicationGroupApplication {
@@ -612,6 +763,13 @@ export interface AuthenticationRuleDstaddr {
     name: string;
 }
 
+export interface AuthenticationRuleDstaddr6 {
+    /**
+     * Address name.
+     */
+    name: string;
+}
+
 export interface AuthenticationRuleSrcaddr {
     /**
      * Address name.
@@ -636,6 +794,20 @@ export interface AuthenticationRuleSrcintf {
 export interface AuthenticationSchemeUserDatabase {
     /**
      * Authentication server name.
+     */
+    name: string;
+}
+
+export interface AuthenticationSettingDevRange {
+    /**
+     * Address name.
+     */
+    name: string;
+}
+
+export interface AuthenticationSettingUserCertCa {
+    /**
+     * Address name.
      */
     name: string;
 }
@@ -737,7 +909,7 @@ export interface DlpSensorFilter {
      */
     fileType: number;
     /**
-     * Select the type of content to match. Valid values: `credit-card`, `ssn`, `regexp`, `file-type`, `file-size`, `fingerprint`, `watermark`, `encrypted`.
+     * Select the type of content to match.
      */
     filterBy: string;
     /**
@@ -1860,6 +2032,520 @@ export interface ExtenderControllerExtender1Modem2AutoSwitch {
     switchBackTimer: number;
 }
 
+export interface ExtenderControllerExtenderControllerReport {
+    /**
+     * Controller report interval.
+     */
+    interval: number;
+    /**
+     * Controller report signal threshold.
+     */
+    signalThreshold: number;
+    /**
+     * FortiExtender controller report status. Valid values: `disable`, `enable`.
+     */
+    status: string;
+}
+
+export interface ExtenderControllerExtenderModem1 {
+    /**
+     * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
+     */
+    autoSwitch?: outputs.ExtenderControllerExtenderModem1AutoSwitch;
+    /**
+     * Connection status.
+     */
+    connStatus: number;
+    /**
+     * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+     */
+    defaultSim: string;
+    /**
+     * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+     */
+    gps: string;
+    /**
+     * FortiExtender interface name.
+     */
+    ifname: string;
+    /**
+     * Preferred carrier.
+     */
+    preferredCarrier: string;
+    /**
+     * Redundant interface.
+     */
+    redundantIntf: string;
+    /**
+     * FortiExtender mode. Valid values: `disable`, `enable`.
+     */
+    redundantMode: string;
+    /**
+     * SIM #1 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim1Pin: string;
+    /**
+     * SIM #1 PIN password.
+     */
+    sim1PinCode?: string;
+    /**
+     * SIM #2 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim2Pin: string;
+    /**
+     * SIM #2 PIN password.
+     */
+    sim2PinCode?: string;
+}
+
+export interface ExtenderControllerExtenderModem1AutoSwitch {
+    /**
+     * Automatically switch based on data usage. Valid values: `disable`, `enable`.
+     */
+    dataplan: string;
+    /**
+     * Auto switch by disconnect. Valid values: `disable`, `enable`.
+     */
+    disconnect: string;
+    /**
+     * Automatically switch based on disconnect period.
+     */
+    disconnectPeriod: number;
+    /**
+     * Automatically switch based on disconnect threshold.
+     */
+    disconnectThreshold: number;
+    /**
+     * Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+     */
+    signal: string;
+    /**
+     * Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+     */
+    switchBack: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+     */
+    switchBackTime: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+     */
+    switchBackTimer: number;
+}
+
+export interface ExtenderControllerExtenderModem2 {
+    /**
+     * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
+     */
+    autoSwitch?: outputs.ExtenderControllerExtenderModem2AutoSwitch;
+    /**
+     * Connection status.
+     */
+    connStatus: number;
+    /**
+     * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+     */
+    defaultSim: string;
+    /**
+     * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+     */
+    gps: string;
+    /**
+     * FortiExtender interface name.
+     */
+    ifname: string;
+    /**
+     * Preferred carrier.
+     */
+    preferredCarrier: string;
+    /**
+     * Redundant interface.
+     */
+    redundantIntf: string;
+    /**
+     * FortiExtender mode. Valid values: `disable`, `enable`.
+     */
+    redundantMode: string;
+    /**
+     * SIM #1 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim1Pin: string;
+    /**
+     * SIM #1 PIN password.
+     */
+    sim1PinCode?: string;
+    /**
+     * SIM #2 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim2Pin: string;
+    /**
+     * SIM #2 PIN password.
+     */
+    sim2PinCode?: string;
+}
+
+export interface ExtenderControllerExtenderModem2AutoSwitch {
+    /**
+     * Automatically switch based on data usage. Valid values: `disable`, `enable`.
+     */
+    dataplan: string;
+    /**
+     * Auto switch by disconnect. Valid values: `disable`, `enable`.
+     */
+    disconnect: string;
+    /**
+     * Automatically switch based on disconnect period.
+     */
+    disconnectPeriod: number;
+    /**
+     * Automatically switch based on disconnect threshold.
+     */
+    disconnectThreshold: number;
+    /**
+     * Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+     */
+    signal: string;
+    /**
+     * Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+     */
+    switchBack: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+     */
+    switchBackTime: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+     */
+    switchBackTimer: number;
+}
+
+export interface ExtenderControllerExtenderProfileCellular {
+    /**
+     * FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+     */
+    controllerReport?: outputs.ExtenderControllerExtenderProfileCellularControllerReport;
+    /**
+     * Automatically switch based on data usage. Valid values: `disable`, `enable`.
+     */
+    dataplans?: outputs.ExtenderControllerExtenderProfileCellularDataplan[];
+    /**
+     * Configuration options for modem 1. The structure of `modem1` block is documented below.
+     */
+    modem1?: outputs.ExtenderControllerExtenderProfileCellularModem1;
+    /**
+     * Configuration options for modem 2. The structure of `modem2` block is documented below.
+     */
+    modem2?: outputs.ExtenderControllerExtenderProfileCellularModem2;
+    /**
+     * FortiExtender cellular SMS notification configuration. The structure of `smsNotification` block is documented below.
+     */
+    smsNotification?: outputs.ExtenderControllerExtenderProfileCellularSmsNotification;
+}
+
+export interface ExtenderControllerExtenderProfileCellularControllerReport {
+    /**
+     * Controller report interval.
+     */
+    interval: number;
+    /**
+     * Controller report signal threshold.
+     */
+    signalThreshold: number;
+    /**
+     * SMS notification receiver status. Valid values: `disable`, `enable`.
+     */
+    status: string;
+}
+
+export interface ExtenderControllerExtenderProfileCellularDataplan {
+    /**
+     * FortiExtender LAN extension backhaul name
+     */
+    name: string;
+}
+
+export interface ExtenderControllerExtenderProfileCellularModem1 {
+    /**
+     * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
+     */
+    autoSwitch?: outputs.ExtenderControllerExtenderProfileCellularModem1AutoSwitch;
+    /**
+     * Connection status.
+     */
+    connStatus: number;
+    /**
+     * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+     */
+    defaultSim: string;
+    /**
+     * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+     */
+    gps: string;
+    /**
+     * Preferred carrier.
+     */
+    preferredCarrier: string;
+    /**
+     * Redundant interface.
+     */
+    redundantIntf: string;
+    /**
+     * FortiExtender mode. Valid values: `disable`, `enable`.
+     */
+    redundantMode: string;
+    /**
+     * SIM #1 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim1Pin: string;
+    /**
+     * SIM #1 PIN password.
+     */
+    sim1PinCode?: string;
+    /**
+     * SIM #2 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim2Pin: string;
+    /**
+     * SIM #2 PIN password.
+     */
+    sim2PinCode?: string;
+}
+
+export interface ExtenderControllerExtenderProfileCellularModem1AutoSwitch {
+    /**
+     * Automatically switch based on data usage. Valid values: `disable`, `enable`.
+     */
+    dataplan: string;
+    /**
+     * Auto switch by disconnect. Valid values: `disable`, `enable`.
+     */
+    disconnect: string;
+    /**
+     * Automatically switch based on disconnect period.
+     */
+    disconnectPeriod: number;
+    /**
+     * Automatically switch based on disconnect threshold.
+     */
+    disconnectThreshold: number;
+    /**
+     * Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+     */
+    signal: string;
+    /**
+     * Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+     */
+    switchBack: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+     */
+    switchBackTime: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+     */
+    switchBackTimer: number;
+}
+
+export interface ExtenderControllerExtenderProfileCellularModem2 {
+    /**
+     * FortiExtender auto switch configuration. The structure of `autoSwitch` block is documented below.
+     */
+    autoSwitch?: outputs.ExtenderControllerExtenderProfileCellularModem2AutoSwitch;
+    /**
+     * Connection status.
+     */
+    connStatus: number;
+    /**
+     * Default SIM selection. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
+     */
+    defaultSim: string;
+    /**
+     * FortiExtender GPS enable/disable. Valid values: `disable`, `enable`.
+     */
+    gps: string;
+    /**
+     * Preferred carrier.
+     */
+    preferredCarrier: string;
+    /**
+     * Redundant interface.
+     */
+    redundantIntf: string;
+    /**
+     * FortiExtender mode. Valid values: `disable`, `enable`.
+     */
+    redundantMode: string;
+    /**
+     * SIM #1 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim1Pin: string;
+    /**
+     * SIM #1 PIN password.
+     */
+    sim1PinCode?: string;
+    /**
+     * SIM #2 PIN status. Valid values: `disable`, `enable`.
+     */
+    sim2Pin: string;
+    /**
+     * SIM #2 PIN password.
+     */
+    sim2PinCode?: string;
+}
+
+export interface ExtenderControllerExtenderProfileCellularModem2AutoSwitch {
+    /**
+     * Automatically switch based on data usage. Valid values: `disable`, `enable`.
+     */
+    dataplan: string;
+    /**
+     * Auto switch by disconnect. Valid values: `disable`, `enable`.
+     */
+    disconnect: string;
+    /**
+     * Automatically switch based on disconnect period.
+     */
+    disconnectPeriod: number;
+    /**
+     * Automatically switch based on disconnect threshold.
+     */
+    disconnectThreshold: number;
+    /**
+     * Automatically switch based on signal strength. Valid values: `disable`, `enable`.
+     */
+    signal: string;
+    /**
+     * Auto switch with switch back multi-options. Valid values: `time`, `timer`.
+     */
+    switchBack: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier at a specified time in UTC (HH:MM).
+     */
+    switchBackTime: string;
+    /**
+     * Automatically switch over to preferred SIM/carrier after the given time (3600 - 2147483647 sec).
+     */
+    switchBackTimer: number;
+}
+
+export interface ExtenderControllerExtenderProfileCellularSmsNotification {
+    /**
+     * Alert multi-options. Valid values: `system-reboot`, `data-exhausted`, `session-disconnect`, `low-signal-strength`, `mode-switch`, `os-image-fallback`, `fgt-backup-mode-switch`.
+     */
+    alert?: outputs.ExtenderControllerExtenderProfileCellularSmsNotificationAlert;
+    /**
+     * SMS notification receiver list. The structure of `receiver` block is documented below.
+     */
+    receivers?: outputs.ExtenderControllerExtenderProfileCellularSmsNotificationReceiver[];
+    /**
+     * SMS notification receiver status. Valid values: `disable`, `enable`.
+     */
+    status: string;
+}
+
+export interface ExtenderControllerExtenderProfileCellularSmsNotificationAlert {
+    /**
+     * Display string when data exhausted.
+     */
+    dataExhausted: string;
+    /**
+     * Display string when FortiGate backup mode switched.
+     */
+    fgtBackupModeSwitch: string;
+    /**
+     * Display string when signal strength is low.
+     */
+    lowSignalStrength: string;
+    /**
+     * Display string when mode is switched.
+     */
+    modeSwitch: string;
+    /**
+     * Display string when falling back to a previous OS image.
+     */
+    osImageFallback: string;
+    /**
+     * Display string when session disconnected.
+     */
+    sessionDisconnect: string;
+    /**
+     * Display string when system rebooted.
+     */
+    systemReboot: string;
+}
+
+export interface ExtenderControllerExtenderProfileCellularSmsNotificationReceiver {
+    /**
+     * Alert multi-options. Valid values: `system-reboot`, `data-exhausted`, `session-disconnect`, `low-signal-strength`, `mode-switch`, `os-image-fallback`, `fgt-backup-mode-switch`.
+     */
+    alert: string;
+    /**
+     * FortiExtender LAN extension backhaul name
+     */
+    name: string;
+    /**
+     * Receiver phone number.  Format: [+][country code][area code][local phone number].  For example: +16501234567.
+     */
+    phoneNumber: string;
+    /**
+     * SMS notification receiver status. Valid values: `disable`, `enable`.
+     */
+    status: string;
+}
+
+export interface ExtenderControllerExtenderProfileLanExtension {
+    /**
+     * IPsec phase1 interface.
+     */
+    backhaulInterface: string;
+    /**
+     * IPsec phase1 IPv4/FQDN. Used to specify the external IP/FQDN when the FortiGate unit is behind a NAT device.
+     */
+    backhaulIp: string;
+    /**
+     * LAN extension backhaul tunnel configuration. The structure of `backhaul` block is documented below.
+     */
+    backhauls?: outputs.ExtenderControllerExtenderProfileLanExtensionBackhaul[];
+    /**
+     * IPsec tunnel name.
+     */
+    ipsecTunnel: string;
+    /**
+     * LAN extension link load balance strategy. Valid values: `activebackup`, `loadbalance`.
+     */
+    linkLoadbalance: string;
+}
+
+export interface ExtenderControllerExtenderProfileLanExtensionBackhaul {
+    /**
+     * FortiExtender LAN extension backhaul name
+     */
+    name: string;
+    /**
+     * FortiExtender uplink port. Valid values: `wan`, `lte1`, `lte2`, `port1`, `port2`, `port3`, `port4`, `port5`, `sfp`.
+     */
+    port: string;
+    /**
+     * FortiExtender uplink port. Valid values: `primary`, `secondary`.
+     */
+    role: string;
+    /**
+     * WRR weight parameter
+     */
+    weight: number;
+}
+
+export interface ExtenderControllerExtenderWanExtension {
+    /**
+     * FortiExtender interface name.
+     */
+    modem1Extension: string;
+    /**
+     * FortiExtender interface name.
+     */
+    modem2Extension: string;
+}
+
 export interface FileFilterProfileRule {
     /**
      * Action taken for matched file. Valid values: `log-only`, `block`.
@@ -1898,11 +2584,789 @@ export interface FileFilterProfileRuleFileType {
     name: string;
 }
 
+export interface FirewallAccessProxy6ApiGateway {
+    /**
+     * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+     */
+    httpCookieAge: number;
+    /**
+     * Domain that HTTP cookie persistence should apply to.
+     */
+    httpCookieDomain: string;
+    /**
+     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+     */
+    httpCookieDomainFromHost: string;
+    /**
+     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+     */
+    httpCookieGeneration: number;
+    /**
+     * Limit HTTP cookie persistence to the specified path.
+     */
+    httpCookiePath: string;
+    /**
+     * Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+     */
+    httpCookieShare: string;
+    /**
+     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+     */
+    httpsCookieSecure: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+     */
+    ldbMethod: string;
+    /**
+     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+     */
+    persistence: string;
+    /**
+     * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+     */
+    realservers?: outputs.FirewallAccessProxy6ApiGatewayRealserver[];
+    /**
+     * Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+     */
+    samlRedirect: string;
+    /**
+     * SAML service provider configuration for VIP authentication.
+     */
+    samlServer: string;
+    /**
+     * Service.
+     */
+    service: string;
+    /**
+     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+     */
+    sslAlgorithm: string;
+    /**
+     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
+     */
+    sslCipherSuites?: outputs.FirewallAccessProxy6ApiGatewaySslCipherSuite[];
+    /**
+     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+     */
+    sslDhBits: string;
+    /**
+     * Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMaxVersion: string;
+    /**
+     * Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMinVersion: string;
+    /**
+     * SSL-VPN web portal.
+     */
+    sslVpnWebPortal: string;
+    /**
+     * URL pattern to match.
+     */
+    urlMap: string;
+    /**
+     * Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+     */
+    urlMapType: string;
+    /**
+     * Virtual host.
+     */
+    virtualHost: string;
+}
+
+export interface FirewallAccessProxy6ApiGateway6 {
+    /**
+     * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+     */
+    httpCookieAge: number;
+    /**
+     * Domain that HTTP cookie persistence should apply to.
+     */
+    httpCookieDomain: string;
+    /**
+     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+     */
+    httpCookieDomainFromHost: string;
+    /**
+     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+     */
+    httpCookieGeneration: number;
+    /**
+     * Limit HTTP cookie persistence to the specified path.
+     */
+    httpCookiePath: string;
+    /**
+     * Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+     */
+    httpCookieShare: string;
+    /**
+     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+     */
+    httpsCookieSecure: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+     */
+    ldbMethod: string;
+    /**
+     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+     */
+    persistence: string;
+    /**
+     * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+     */
+    realservers?: outputs.FirewallAccessProxy6ApiGateway6Realserver[];
+    /**
+     * Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+     */
+    samlRedirect: string;
+    /**
+     * SAML service provider configuration for VIP authentication.
+     */
+    samlServer: string;
+    /**
+     * Service.
+     */
+    service: string;
+    /**
+     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+     */
+    sslAlgorithm: string;
+    /**
+     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
+     */
+    sslCipherSuites?: outputs.FirewallAccessProxy6ApiGateway6SslCipherSuite[];
+    /**
+     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+     */
+    sslDhBits: string;
+    /**
+     * Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMaxVersion: string;
+    /**
+     * Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMinVersion: string;
+    /**
+     * SSL-VPN web portal.
+     */
+    sslVpnWebPortal: string;
+    /**
+     * URL pattern to match.
+     */
+    urlMap: string;
+    /**
+     * Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+     */
+    urlMapType: string;
+    /**
+     * Virtual host.
+     */
+    virtualHost: string;
+}
+
+export interface FirewallAccessProxy6ApiGateway6Realserver {
+    /**
+     * Type of address. Valid values: `ip`, `fqdn`.
+     */
+    addrType: string;
+    /**
+     * Address or address group of the real server.
+     */
+    address: string;
+    /**
+     * Wildcard domain name of the real server.
+     */
+    domain: string;
+    /**
+     * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+     */
+    healthCheck: string;
+    /**
+     * Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+     */
+    healthCheckProto: string;
+    /**
+     * Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+     */
+    holddownInterval: string;
+    /**
+     * HTTP server domain name in HTTP header.
+     */
+    httpHost: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * IPv6 address of the real server.
+     */
+    ip: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    mappedport: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    port: number;
+    /**
+     * Set access-proxy SSH client certificate profile.
+     */
+    sshClientCert: string;
+    /**
+     * Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+     */
+    sshHostKeyValidation: string;
+    /**
+     * One or more server host key. The structure of `sshHostKey` block is documented below.
+     */
+    sshHostKeys?: outputs.FirewallAccessProxy6ApiGateway6RealserverSshHostKey[];
+    /**
+     * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+     */
+    status: string;
+    /**
+     * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+     */
+    type: string;
+    /**
+     * Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+     */
+    weight: number;
+}
+
+export interface FirewallAccessProxy6ApiGateway6RealserverSshHostKey {
+    /**
+     * Server host key name.
+     */
+    name: string;
+}
+
+export interface FirewallAccessProxy6ApiGateway6SslCipherSuite {
+    /**
+     * Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+     */
+    cipher: string;
+    /**
+     * SSL/TLS cipher suites priority.
+     */
+    priority: number;
+    /**
+     * SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    versions: string;
+}
+
+export interface FirewallAccessProxy6ApiGatewayRealserver {
+    /**
+     * Type of address. Valid values: `ip`, `fqdn`.
+     */
+    addrType: string;
+    /**
+     * Address or address group of the real server.
+     */
+    address: string;
+    /**
+     * Wildcard domain name of the real server.
+     */
+    domain: string;
+    /**
+     * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+     */
+    healthCheck: string;
+    /**
+     * Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+     */
+    healthCheckProto: string;
+    /**
+     * Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+     */
+    holddownInterval: string;
+    /**
+     * HTTP server domain name in HTTP header.
+     */
+    httpHost: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * IPv6 address of the real server.
+     */
+    ip: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    mappedport: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    port: number;
+    /**
+     * Set access-proxy SSH client certificate profile.
+     */
+    sshClientCert: string;
+    /**
+     * Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+     */
+    sshHostKeyValidation: string;
+    /**
+     * One or more server host key. The structure of `sshHostKey` block is documented below.
+     */
+    sshHostKeys?: outputs.FirewallAccessProxy6ApiGatewayRealserverSshHostKey[];
+    /**
+     * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+     */
+    status: string;
+    /**
+     * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+     */
+    type: string;
+    /**
+     * Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+     */
+    weight: number;
+}
+
+export interface FirewallAccessProxy6ApiGatewayRealserverSshHostKey {
+    /**
+     * Server host key name.
+     */
+    name: string;
+}
+
+export interface FirewallAccessProxy6ApiGatewaySslCipherSuite {
+    /**
+     * Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+     */
+    cipher: string;
+    /**
+     * SSL/TLS cipher suites priority.
+     */
+    priority: number;
+    /**
+     * SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    versions: string;
+}
+
+export interface FirewallAccessProxyApiGateway {
+    /**
+     * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+     */
+    httpCookieAge: number;
+    /**
+     * Domain that HTTP cookie persistence should apply to.
+     */
+    httpCookieDomain: string;
+    /**
+     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+     */
+    httpCookieDomainFromHost: string;
+    /**
+     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+     */
+    httpCookieGeneration: number;
+    /**
+     * Limit HTTP cookie persistence to the specified path.
+     */
+    httpCookiePath: string;
+    /**
+     * Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+     */
+    httpCookieShare: string;
+    /**
+     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+     */
+    httpsCookieSecure: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+     */
+    ldbMethod: string;
+    /**
+     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+     */
+    persistence: string;
+    /**
+     * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+     */
+    realservers?: outputs.FirewallAccessProxyApiGatewayRealserver[];
+    /**
+     * Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+     */
+    samlRedirect: string;
+    /**
+     * SAML service provider configuration for VIP authentication.
+     */
+    samlServer: string;
+    /**
+     * Service.
+     */
+    service: string;
+    /**
+     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+     */
+    sslAlgorithm: string;
+    /**
+     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
+     */
+    sslCipherSuites?: outputs.FirewallAccessProxyApiGatewaySslCipherSuite[];
+    /**
+     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+     */
+    sslDhBits: string;
+    /**
+     * Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMaxVersion: string;
+    /**
+     * Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMinVersion: string;
+    /**
+     * SSL-VPN web portal.
+     */
+    sslVpnWebPortal: string;
+    /**
+     * URL pattern to match.
+     */
+    urlMap: string;
+    /**
+     * Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+     */
+    urlMapType: string;
+    /**
+     * Virtual host.
+     */
+    virtualHost: string;
+}
+
+export interface FirewallAccessProxyApiGateway6 {
+    /**
+     * Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+     */
+    httpCookieAge: number;
+    /**
+     * Domain that HTTP cookie persistence should apply to.
+     */
+    httpCookieDomain: string;
+    /**
+     * Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
+     */
+    httpCookieDomainFromHost: string;
+    /**
+     * Generation of HTTP cookie to be accepted. Changing invalidates all existing cookies.
+     */
+    httpCookieGeneration: number;
+    /**
+     * Limit HTTP cookie persistence to the specified path.
+     */
+    httpCookiePath: string;
+    /**
+     * Control sharing of cookies across API Gateway. same-ip means a cookie from one virtual server can be used by another. Disable stops cookie sharing. Valid values: `disable`, `same-ip`.
+     */
+    httpCookieShare: string;
+    /**
+     * Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+     */
+    httpsCookieSecure: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `first-alive`, `http-host`.
+     */
+    ldbMethod: string;
+    /**
+     * Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
+     */
+    persistence: string;
+    /**
+     * Select the real servers that this Access Proxy will distribute traffic to. The structure of `realservers` block is documented below.
+     */
+    realservers?: outputs.FirewallAccessProxyApiGateway6Realserver[];
+    /**
+     * Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
+     */
+    samlRedirect: string;
+    /**
+     * SAML service provider configuration for VIP authentication.
+     */
+    samlServer: string;
+    /**
+     * Service.
+     */
+    service: string;
+    /**
+     * Permitted encryption algorithms for the server side of SSL full mode sessions according to encryption strength. Valid values: `high`, `medium`, `low`.
+     */
+    sslAlgorithm: string;
+    /**
+     * SSL/TLS cipher suites to offer to a server, ordered by priority. The structure of `sslCipherSuites` block is documented below.
+     */
+    sslCipherSuites?: outputs.FirewallAccessProxyApiGateway6SslCipherSuite[];
+    /**
+     * Number of bits to use in the Diffie-Hellman exchange for RSA encryption of SSL sessions. Valid values: `768`, `1024`, `1536`, `2048`, `3072`, `4096`.
+     */
+    sslDhBits: string;
+    /**
+     * Highest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMaxVersion: string;
+    /**
+     * Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    sslMinVersion: string;
+    /**
+     * SSL-VPN web portal.
+     */
+    sslVpnWebPortal: string;
+    /**
+     * URL pattern to match.
+     */
+    urlMap: string;
+    /**
+     * Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
+     */
+    urlMapType: string;
+    /**
+     * Virtual host.
+     */
+    virtualHost: string;
+}
+
+export interface FirewallAccessProxyApiGateway6Realserver {
+    /**
+     * Type of address. Valid values: `ip`, `fqdn`.
+     */
+    addrType: string;
+    /**
+     * Address or address group of the real server.
+     */
+    address: string;
+    /**
+     * Wildcard domain name of the real server.
+     */
+    domain: string;
+    /**
+     * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+     */
+    healthCheck: string;
+    /**
+     * Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+     */
+    healthCheckProto: string;
+    /**
+     * Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+     */
+    holddownInterval: string;
+    /**
+     * HTTP server domain name in HTTP header.
+     */
+    httpHost: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * IPv6 address of the real server.
+     */
+    ip: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    mappedport: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    port: number;
+    /**
+     * Set access-proxy SSH client certificate profile.
+     */
+    sshClientCert: string;
+    /**
+     * Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+     */
+    sshHostKeyValidation: string;
+    /**
+     * One or more server host key. The structure of `sshHostKey` block is documented below.
+     */
+    sshHostKeys?: outputs.FirewallAccessProxyApiGateway6RealserverSshHostKey[];
+    /**
+     * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+     */
+    status: string;
+    /**
+     * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+     */
+    type: string;
+    /**
+     * Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+     */
+    weight: number;
+}
+
+export interface FirewallAccessProxyApiGateway6RealserverSshHostKey {
+    /**
+     * Server host key name.
+     */
+    name: string;
+}
+
+export interface FirewallAccessProxyApiGateway6SslCipherSuite {
+    /**
+     * Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+     */
+    cipher: string;
+    /**
+     * SSL/TLS cipher suites priority.
+     */
+    priority: number;
+    /**
+     * SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    versions: string;
+}
+
+export interface FirewallAccessProxyApiGatewayRealserver {
+    /**
+     * Type of address. Valid values: `ip`, `fqdn`.
+     */
+    addrType: string;
+    /**
+     * Address or address group of the real server.
+     */
+    address: string;
+    /**
+     * Wildcard domain name of the real server.
+     */
+    domain: string;
+    /**
+     * Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
+     */
+    healthCheck: string;
+    /**
+     * Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
+     */
+    healthCheckProto: string;
+    /**
+     * Enable/disable holddown timer. Server will be considered active and reachable once the holddown period has expired (30 seconds). Valid values: `enable`, `disable`.
+     */
+    holddownInterval: string;
+    /**
+     * HTTP server domain name in HTTP header.
+     */
+    httpHost: string;
+    /**
+     * Real server ID.
+     */
+    id: number;
+    /**
+     * IPv6 address of the real server.
+     */
+    ip: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    mappedport: string;
+    /**
+     * Port for communicating with the real server.
+     */
+    port: number;
+    /**
+     * Set access-proxy SSH client certificate profile.
+     */
+    sshClientCert: string;
+    /**
+     * Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
+     */
+    sshHostKeyValidation: string;
+    /**
+     * One or more server host key. The structure of `sshHostKey` block is documented below.
+     */
+    sshHostKeys?: outputs.FirewallAccessProxyApiGatewayRealserverSshHostKey[];
+    /**
+     * Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+     */
+    status: string;
+    /**
+     * TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
+     */
+    type: string;
+    /**
+     * Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+     */
+    weight: number;
+}
+
+export interface FirewallAccessProxyApiGatewayRealserverSshHostKey {
+    /**
+     * Server host key name.
+     */
+    name: string;
+}
+
+export interface FirewallAccessProxyApiGatewaySslCipherSuite {
+    /**
+     * Cipher suite name. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`.
+     */
+    cipher: string;
+    /**
+     * SSL/TLS cipher suites priority.
+     */
+    priority: number;
+    /**
+     * SSL/TLS versions that the cipher suite can be used with. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    versions: string;
+}
+
+export interface FirewallAccessProxySshClientCertCertExtension {
+    /**
+     * Critical option. Valid values: `no`, `yes`.
+     */
+    critical: string;
+    /**
+     * Data of certificate extension.
+     */
+    data: string;
+    /**
+     * Name of certificate extension.
+     */
+    name: string;
+    /**
+     * Type of certificate extension. Valid values: `fixed`, `user`.
+     */
+    type: string;
+}
+
 export interface FirewallAddress6List {
     /**
      * IP.
      */
     ip: string;
+}
+
+export interface FirewallAddress6Macaddr {
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddr: string;
 }
 
 export interface FirewallAddress6SubnetSegment {
@@ -1988,6 +3452,13 @@ export interface FirewallAddressList {
      * IP.
      */
     ip: string;
+}
+
+export interface FirewallAddressMacaddr {
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddr: string;
 }
 
 export interface FirewallAddressTagging {
@@ -2338,7 +3809,7 @@ export interface FirewallDecryptedTrafficMirrorInterface {
 
 export interface FirewallDosPolicy6Anomaly {
     /**
-     * Action taken when the threshold is reached. Valid values: `pass`, `block`.
+     * Action taken when the threshold is reached.
      */
     action: string;
     /**
@@ -2398,7 +3869,7 @@ export interface FirewallDosPolicy6Srcaddr {
 
 export interface FirewallDosPolicyAnomaly {
     /**
-     * Action taken when the threshold is reached. Valid values: `pass`, `block`.
+     * Action taken when the threshold is reached.
      */
     action: string;
     /**
@@ -3033,7 +4504,7 @@ export interface FirewallPolicy6User {
 
 export interface FirewallPolicyAppCategory {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -3047,7 +4518,7 @@ export interface FirewallPolicyAppGroup {
 
 export interface FirewallPolicyApplication {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -3124,7 +4595,7 @@ export interface FirewallPolicyInternetServiceGroup {
 
 export interface FirewallPolicyInternetServiceId {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -3159,7 +4630,7 @@ export interface FirewallPolicyInternetServiceSrcGroup {
 
 export interface FirewallPolicyInternetServiceSrcId {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -3206,9 +4677,16 @@ export interface FirewallPolicyService {
     name: string;
 }
 
+export interface FirewallPolicySgt {
+    /**
+     * Security group tag.
+     */
+    id: number;
+}
+
 export interface FirewallPolicySrcVendorMac {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -3243,12 +4721,26 @@ export interface FirewallPolicySslMirrorIntf {
 
 export interface FirewallPolicyUrlCategory {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
 
 export interface FirewallPolicyUser {
+    /**
+     * Mirror Interface name.
+     */
+    name: string;
+}
+
+export interface FirewallPolicyZtnaEmsTag {
+    /**
+     * Mirror Interface name.
+     */
+    name: string;
+}
+
+export interface FirewallPolicyZtnaGeoTag {
     /**
      * Mirror Interface name.
      */
@@ -3301,7 +4793,7 @@ export interface FirewallProfileProtocolOptionsCifs {
      */
     tcpWindowSize: number;
     /**
-     * Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+     * Specify type of TCP window to use for this protocol.
      */
     tcpWindowType: string;
     /**
@@ -3390,7 +4882,7 @@ export interface FirewallProfileProtocolOptionsFtp {
      */
     tcpWindowSize: number;
     /**
-     * Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+     * Specify type of TCP window to use for this protocol.
      */
     tcpWindowType: string;
     /**
@@ -3501,7 +4993,7 @@ export interface FirewallProfileProtocolOptionsHttp {
      */
     tcpWindowSize: number;
     /**
-     * Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+     * Specify type of TCP window to use for this protocol.
      */
     tcpWindowType: string;
     /**
@@ -3778,7 +5270,7 @@ export interface FirewallProfileProtocolOptionsSsh {
      */
     tcpWindowSize: number;
     /**
-     * Specify type of TCP window to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+     * Specify type of TCP window to use for this protocol.
      */
     tcpWindowType: string;
     /**
@@ -3864,6 +5356,20 @@ export interface FirewallProxyAddrgrpTagging {
 export interface FirewallProxyAddrgrpTaggingTag {
     /**
      * Tag name.
+     */
+    name: string;
+}
+
+export interface FirewallProxyPolicyAccessProxy {
+    /**
+     * Group name.
+     */
+    name: string;
+}
+
+export interface FirewallProxyPolicyAccessProxy6 {
+    /**
+     * Group name.
      */
     name: string;
 }
@@ -3967,6 +5473,13 @@ export interface FirewallProxyPolicySrcintf {
 }
 
 export interface FirewallProxyPolicyUser {
+    /**
+     * Group name.
+     */
+    name: string;
+}
+
+export interface FirewallProxyPolicyZtnaEmsTag {
     /**
      * Group name.
      */
@@ -4412,7 +5925,7 @@ export interface FirewallShapingProfileShapingEntry {
 
 export interface FirewallSnifferAnomaly {
     /**
-     * Action taken when the threshold is reached. Valid values: `pass`, `block`.
+     * Action taken when the threshold is reached.
      */
     action: string;
     /**
@@ -4456,6 +5969,57 @@ export interface FirewallSnifferIpThreatfeed {
     name: string;
 }
 
+export interface FirewallSslSshProfileDot {
+    /**
+     * Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
+     */
+    certValidationFailure: string;
+    /**
+     * Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
+     */
+    certValidationTimeout: string;
+    /**
+     * Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+     */
+    clientCertificate: string;
+    /**
+     * Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+     */
+    expiredServerCert: string;
+    /**
+     * Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `enable`, `disable`.
+     */
+    proxyAfterTcpHandshake: string;
+    /**
+     * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
+     */
+    revokedServerCert: string;
+    /**
+     * Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
+     */
+    sniServerCertCheck: string;
+    /**
+     * Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
+     */
+    status: string;
+    /**
+     * Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
+     */
+    unsupportedSslCipher: string;
+    /**
+     * Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+     */
+    unsupportedSslNegotiation: string;
+    /**
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
+     */
+    untrustedServerCert: string;
+}
+
 export interface FirewallSslSshProfileFtps {
     /**
      * Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
@@ -4481,6 +6045,10 @@ export interface FirewallSslSshProfileFtps {
      * Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
      */
     invalidServerCert: string;
+    /**
+     * Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    minAllowedSslVersion: string;
     /**
      * Ports to use for scanning (1 - 65535, default = 443).
      */
@@ -4510,12 +6078,20 @@ export interface FirewallSslSshProfileFtps {
      */
     unsupportedSslNegotiation: string;
     /**
-     * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
      */
     untrustedServerCert: string;
 }
 
 export interface FirewallSslSshProfileHttps {
+    /**
+     * Action based on certificate probe failure. Valid values: `allow`, `block`.
+     */
+    certProbeFailure: string;
     /**
      * Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
      */
@@ -4540,6 +6116,10 @@ export interface FirewallSslSshProfileHttps {
      * Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
      */
     invalidServerCert: string;
+    /**
+     * Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    minAllowedSslVersion: string;
     /**
      * Ports to use for scanning (1 - 65535, default = 443).
      */
@@ -4573,7 +6153,11 @@ export interface FirewallSslSshProfileHttps {
      */
     unsupportedSslNegotiation: string;
     /**
-     * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
      */
     untrustedServerCert: string;
 }
@@ -4636,7 +6220,11 @@ export interface FirewallSslSshProfileImaps {
      */
     unsupportedSslNegotiation: string;
     /**
-     * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
      */
     untrustedServerCert: string;
 }
@@ -4699,7 +6287,11 @@ export interface FirewallSslSshProfilePop3s {
      */
     unsupportedSslNegotiation: string;
     /**
-     * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
      */
     untrustedServerCert: string;
 }
@@ -4762,7 +6354,11 @@ export interface FirewallSslSshProfileSmtps {
      */
     unsupportedSslNegotiation: string;
     /**
-     * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
      */
     untrustedServerCert: string;
 }
@@ -4804,6 +6400,10 @@ export interface FirewallSslSshProfileSsh {
 
 export interface FirewallSslSshProfileSsl {
     /**
+     * Action based on certificate probe failure. Valid values: `allow`, `block`.
+     */
+    certProbeFailure: string;
+    /**
      * Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
      */
     certValidationFailure: string;
@@ -4832,6 +6432,10 @@ export interface FirewallSslSshProfileSsl {
      */
     invalidServerCert: string;
     /**
+     * Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+     */
+    minAllowedSslVersion: string;
+    /**
      * Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
      */
     revokedServerCert: string;
@@ -4852,7 +6456,11 @@ export interface FirewallSslSshProfileSsl {
      */
     unsupportedSslNegotiation: string;
     /**
-     * Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+     * Action based on the SSL version used being unsupported.
+     */
+    unsupportedSslVersion: string;
+    /**
+     * Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
      */
     untrustedServerCert: string;
 }
@@ -5342,6 +6950,13 @@ export interface GetFirewallAddress6List {
     ip: string;
 }
 
+export interface GetFirewallAddress6Macaddr {
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddr: string;
+}
+
 export interface GetFirewallAddress6SubnetSegment {
     /**
      * Specify the name of the desired firewall address6.
@@ -5425,6 +7040,13 @@ export interface GetFirewallAddressList {
      * IP.
      */
     ip: string;
+}
+
+export interface GetFirewallAddressMacaddr {
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    macaddr: string;
 }
 
 export interface GetFirewallAddressTagging {
@@ -6281,7 +7903,7 @@ export interface GetFirewallPolicy6User {
 
 export interface GetFirewallPolicyAppCategory {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -6295,7 +7917,7 @@ export interface GetFirewallPolicyAppGroup {
 
 export interface GetFirewallPolicyApplication {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -6372,7 +7994,7 @@ export interface GetFirewallPolicyInternetServiceGroup {
 
 export interface GetFirewallPolicyInternetServiceId {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -6407,7 +8029,7 @@ export interface GetFirewallPolicyInternetServiceSrcGroup {
 
 export interface GetFirewallPolicyInternetServiceSrcId {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -6454,9 +8076,16 @@ export interface GetFirewallPolicyService {
     name: string;
 }
 
+export interface GetFirewallPolicySgt {
+    /**
+     * Security group tag.
+     */
+    id: number;
+}
+
 export interface GetFirewallPolicySrcVendorMac {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
@@ -6491,12 +8120,26 @@ export interface GetFirewallPolicySslMirrorIntf {
 
 export interface GetFirewallPolicyUrlCategory {
     /**
-     * URL category ID.
+     * Security group tag.
      */
     id: number;
 }
 
 export interface GetFirewallPolicyUser {
+    /**
+     * Mirror Interface name.
+     */
+    name: string;
+}
+
+export interface GetFirewallPolicyZtnaEmsTag {
+    /**
+     * Mirror Interface name.
+     */
+    name: string;
+}
+
+export interface GetFirewallPolicyZtnaGeoTag {
     /**
      * Mirror Interface name.
      */
@@ -7116,6 +8759,20 @@ export interface GetFirewallProxyAddrgrpTaggingTag {
     name: string;
 }
 
+export interface GetFirewallProxyPolicyAccessProxy {
+    /**
+     * Group name.
+     */
+    name: string;
+}
+
+export interface GetFirewallProxyPolicyAccessProxy6 {
+    /**
+     * Group name.
+     */
+    name: string;
+}
+
 export interface GetFirewallProxyPolicyDstaddr {
     /**
      * Group name.
@@ -7215,6 +8872,13 @@ export interface GetFirewallProxyPolicySrcintf {
 }
 
 export interface GetFirewallProxyPolicyUser {
+    /**
+     * Group name.
+     */
+    name: string;
+}
+
+export interface GetFirewallProxyPolicyZtnaEmsTag {
     /**
      * Group name.
      */
@@ -7505,6 +9169,10 @@ export interface GetRouterBgpNeighbor {
      */
     capabilityRouteRefresh: string;
     /**
+     * IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+     */
+    conditionalAdvertise6s: outputs.GetRouterBgpNeighborConditionalAdvertise6[];
+    /**
      * Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
      */
     conditionalAdvertises: outputs.GetRouterBgpNeighborConditionalAdvertise[];
@@ -7775,6 +9443,21 @@ export interface GetRouterBgpNeighbor {
 }
 
 export interface GetRouterBgpNeighborConditionalAdvertise {
+    /**
+     * Name of advertising route map.
+     */
+    advertiseRoutemap: string;
+    /**
+     * Name of condition route map.
+     */
+    conditionRoutemap: string;
+    /**
+     * Type of condition.
+     */
+    conditionType: string;
+}
+
+export interface GetRouterBgpNeighborConditionalAdvertise6 {
     /**
      * Name of advertising route map.
      */
@@ -8196,6 +9879,10 @@ export interface GetRouterBgpNetwork {
      */
     id: number;
     /**
+     * Configure insurance of BGP network route existence in IGP.
+     */
+    networkImportCheck: string;
+    /**
      * Network prefix.
      */
     prefix: string;
@@ -8214,6 +9901,10 @@ export interface GetRouterBgpNetwork6 {
      * ID.
      */
     id: number;
+    /**
+     * Configure insurance of BGP network route existence in IGP.
+     */
+    networkImportCheck: string;
     /**
      * Network IPv6 prefix.
      */
@@ -8259,6 +9950,32 @@ export interface GetRouterBgpVrfLeak {
      * Target VRF table. The structure of `target` block is documented below.
      */
     targets: outputs.GetRouterBgpVrfLeakTarget[];
+    /**
+     * Target VRF ID <0 - 31>.
+     */
+    vrf: string;
+}
+
+export interface GetRouterBgpVrfLeak6 {
+    /**
+     * Target VRF table. The structure of `target` block is documented below.
+     */
+    targets: outputs.GetRouterBgpVrfLeak6Target[];
+    /**
+     * Target VRF ID <0 - 31>.
+     */
+    vrf: string;
+}
+
+export interface GetRouterBgpVrfLeak6Target {
+    /**
+     * Interface which is used to leak routes to target VRF.
+     */
+    interface: string;
+    /**
+     * Route map of VRF leaking.
+     */
+    routeMap: string;
     /**
      * Target VRF ID <0 - 31>.
      */
@@ -8522,6 +10239,10 @@ export interface GetRouterKeyChainKey {
      * Lifetime of received authentication key (format: hh:mm:ss day month year).
      */
     acceptLifetime: string;
+    /**
+     * Cryptographic algorithm.
+     */
+    algorithm: string;
     /**
      * Key ID (0 - 2147483647).
      */
@@ -9178,6 +10899,10 @@ export interface GetRouterOspfArea {
      */
     authentication: string;
     /**
+     * Comment.
+     */
+    comments: string;
+    /**
      * Summary default cost of stub or NSSA area.
      */
     defaultCost: number;
@@ -9287,6 +11012,10 @@ export interface GetRouterOspfAreaVirtualLink {
      */
     helloInterval: number;
     /**
+     * Message-digest key-chain name.
+     */
+    keychain: string;
+    /**
      * MD5 key.
      */
     md5Key: string;
@@ -9371,6 +11100,10 @@ export interface GetRouterOspfNetwork {
      */
     area: string;
     /**
+     * Comment.
+     */
+    comments: string;
+    /**
      * Distribute list entry ID.
      */
     id: number;
@@ -9393,6 +11126,10 @@ export interface GetRouterOspfOspfInterface {
      * Bidirectional Forwarding Detection (BFD).
      */
     bfd: string;
+    /**
+     * Comment.
+     */
+    comments: string;
     /**
      * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
      */
@@ -9421,6 +11158,10 @@ export interface GetRouterOspfOspfInterface {
      * Interface IP address of the neighbor.
      */
     ip: string;
+    /**
+     * Message-digest key-chain name.
+     */
+    keychain: string;
     /**
      * MD5 key.
      */
@@ -10156,7 +11897,36 @@ export interface GetRouterRouteMapRuleSetExtcommunitySoo {
     community: string;
 }
 
+export interface GetRouterStatic6SdwanZone {
+    /**
+     * SD-WAN zone name.
+     */
+    name: string;
+}
+
+export interface GetRouterStaticSdwanZone {
+    /**
+     * SD-WAN zone name.
+     */
+    name: string;
+}
+
 export interface GetRouterbgpNeighborConditionalAdvertise {
+    /**
+     * Name of advertising route map.
+     */
+    advertiseRoutemap: string;
+    /**
+     * Name of condition route map.
+     */
+    conditionRoutemap: string;
+    /**
+     * Type of condition.
+     */
+    conditionType: string;
+}
+
+export interface GetRouterbgpNeighborConditionalAdvertise6 {
     /**
      * Name of advertising route map.
      */
@@ -10176,6 +11946,10 @@ export interface GetSystemAccprofileFwgrpPermission {
      * Address Configuration.
      */
     address: string;
+    /**
+     * Other Firewall Configuration.
+     */
+    others: string;
     /**
      * Policy Configuration.
      */
@@ -10613,6 +12387,21 @@ export interface GetSystemClusterSyncSyncvd {
     name: string;
 }
 
+export interface GetSystemCsfFabricConnector {
+    /**
+     * Override access profile.
+     */
+    accprofile: string;
+    /**
+     * Enable/disable downstream device write access to configuration.
+     */
+    configurationWriteAccess: string;
+    /**
+     * Serial.
+     */
+    serial: string;
+}
+
 export interface GetSystemCsfFabricDevice {
     /**
      * Device access token.
@@ -10673,6 +12462,13 @@ export interface GetSystemCsfTrustedList {
      * Serial.
      */
     serial: string;
+}
+
+export interface GetSystemDdnsDdnsServerAddr {
+    /**
+     * IP address or FQDN of the server.
+     */
+    addr: string;
 }
 
 export interface GetSystemDdnsMonitorInterface {
@@ -10911,6 +12707,17 @@ export interface GetSystemHaSecondaryVcluster {
     vdom: string;
 }
 
+export interface GetSystemHaUnicastPeer {
+    /**
+     * Table ID.
+     */
+    id: number;
+    /**
+     * Unicast peer IP.
+     */
+    peerIp: string;
+}
+
 export interface GetSystemInterfaceClientOption {
     /**
      * DHCP client option code.
@@ -10934,6 +12741,17 @@ export interface GetSystemInterfaceClientOption {
     value: string;
 }
 
+export interface GetSystemInterfaceDhcpSnoopingServerList {
+    /**
+     * Specify the name of the desired system interface.
+     */
+    name: string;
+    /**
+     * IP address for DHCP server.
+     */
+    serverIp: string;
+}
+
 export interface GetSystemInterfaceFailAlertInterface {
     /**
      * Specify the name of the desired system interface.
@@ -10954,6 +12772,10 @@ export interface GetSystemInterfaceIpv6 {
      * DHCPv6 client options.
      */
     dhcp6ClientOptions: string;
+    /**
+     * DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
+     */
+    dhcp6IapdLists: outputs.GetSystemInterfaceIpv6Dhcp6IapdList[];
     /**
      * Enable/disable DHCPv6 information request.
      */
@@ -11006,6 +12828,10 @@ export interface GetSystemInterfaceIpv6 {
      * Default life (sec).
      */
     ip6DefaultLife: number;
+    /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    ip6DelegatedPrefixIaid: number;
     /**
      * Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
      */
@@ -11099,6 +12925,10 @@ export interface GetSystemInterfaceIpv6 {
      */
     ndTimestampFuzz: number;
     /**
+     * Enable/disable sending link MTU in RA packet.
+     */
+    raSendMtu: string;
+    /**
      * Enable/disable unique auto config address.
      */
     uniqueAutoconfAddr: string;
@@ -11116,11 +12946,34 @@ export interface GetSystemInterfaceIpv6 {
     vrrpVirtualMac6: string;
 }
 
+export interface GetSystemInterfaceIpv6Dhcp6IapdList {
+    /**
+     * Identity association identifier.
+     */
+    iaid: number;
+    /**
+     * DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
+     */
+    prefixHint: string;
+    /**
+     * DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
+     */
+    prefixHintPlt: number;
+    /**
+     * DHCPv6 prefix hint valid life time (sec).
+     */
+    prefixHintVlt: number;
+}
+
 export interface GetSystemInterfaceIpv6Ip6DelegatedPrefixList {
     /**
      * Enable/disable the autonomous flag.
      */
     autonomousFlag: string;
+    /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    delegatedPrefixIaid: number;
     /**
      * Enable/disable the onlink flag.
      */
@@ -11383,11 +13236,41 @@ export interface GetSystemInterfaceVrrpProxyArp {
     ip: string;
 }
 
+export interface GetSystemLinkMonitorRoute {
+    /**
+     * IP and netmask (x.x.x.x/y).
+     */
+    subnet: string;
+}
+
 export interface GetSystemLinkMonitorServer {
     /**
      * Server address.
      */
     address: string;
+}
+
+export interface GetSystemLinkMonitorServerList {
+    /**
+     * IP address of the server to be monitored.
+     */
+    dst: string;
+    /**
+     * Server ID.
+     */
+    id: number;
+    /**
+     * Port number of the traffic to be used to monitor the server.
+     */
+    port: number;
+    /**
+     * Protocols used to monitor the server.
+     */
+    protocol: string;
+    /**
+     * Weight of the monitor to this dst (0 - 255).
+     */
+    weight: number;
 }
 
 export interface GetSystemLldpNetworkPolicyGuest {
@@ -12017,7 +13900,54 @@ export interface GetSystemReplacemsgGroupWebproxy {
     msgType: string;
 }
 
+export interface GetSystemSdnConnectorExternalAccountList {
+    /**
+     * AWS region name list. The structure of `regionList` block is documented below.
+     */
+    regionLists: outputs.GetSystemSdnConnectorExternalAccountListRegionList[];
+    /**
+     * AWS role ARN to assume.
+     */
+    roleArn: string;
+}
+
+export interface GetSystemSdnConnectorExternalAccountListRegionList {
+    /**
+     * AWS region name.
+     */
+    region: string;
+}
+
 export interface GetSystemSdnConnectorExternalIp {
+    /**
+     * Specify the name of the desired system sdnconnector.
+     */
+    name: string;
+}
+
+export interface GetSystemSdnConnectorForwardingRule {
+    /**
+     * Forwarding rule name.
+     */
+    ruleName: string;
+    /**
+     * Target instance name.
+     */
+    target: string;
+}
+
+export interface GetSystemSdnConnectorGcpProjectList {
+    /**
+     * Configure GCP zone list. The structure of `gcpZoneList` block is documented below.
+     */
+    gcpZoneLists: outputs.GetSystemSdnConnectorGcpProjectListGcpZoneList[];
+    /**
+     * GCP project ID.
+     */
+    id: string;
+}
+
+export interface GetSystemSdnConnectorGcpProjectListGcpZoneList {
     /**
      * Specify the name of the desired system sdnconnector.
      */
@@ -12085,6 +14015,13 @@ export interface GetSystemSdnConnectorRouteTableRoute {
      * Next hop address.
      */
     nextHop: string;
+}
+
+export interface GetSystemSdnConnectorServerList {
+    /**
+     * Configure IP configuration. The structure of `ip` block is documented below.
+     */
+    ip: string;
 }
 
 export interface GetSystemSessionTtlPort {
@@ -13152,7 +15089,7 @@ export interface IpsSensorOverrideExemptIp {
 
 export interface LogDiskFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13171,7 +15108,7 @@ export interface LogDiskFilterFreeStyle {
 
 export interface LogFortianalyzer2FilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13190,7 +15127,7 @@ export interface LogFortianalyzer2FilterFreeStyle {
 
 export interface LogFortianalyzer2OverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13223,7 +15160,7 @@ export interface LogFortianalyzer2SettingSerial {
 
 export interface LogFortianalyzer3FilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13242,7 +15179,7 @@ export interface LogFortianalyzer3FilterFreeStyle {
 
 export interface LogFortianalyzer3OverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13275,7 +15212,7 @@ export interface LogFortianalyzer3SettingSerial {
 
 export interface LogFortianalyzerCloudFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13294,7 +15231,7 @@ export interface LogFortianalyzerCloudFilterFreeStyle {
 
 export interface LogFortianalyzerCloudOverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13311,9 +15248,16 @@ export interface LogFortianalyzerCloudOverrideFilterFreeStyle {
     id: number;
 }
 
+export interface LogFortianalyzerCloudSettingSerial {
+    /**
+     * Serial Number.
+     */
+    name: string;
+}
+
 export interface LogFortianalyzerFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13332,7 +15276,7 @@ export interface LogFortianalyzerFilterFreeStyle {
 
 export interface LogFortianalyzerOverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13365,7 +15309,7 @@ export interface LogFortianalyzerSettingSerial {
 
 export interface LogFortiguardFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13384,7 +15328,7 @@ export interface LogFortiguardFilterFreeStyle {
 
 export interface LogFortiguardOverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13403,7 +15347,7 @@ export interface LogFortiguardOverrideFilterFreeStyle {
 
 export interface LogMemoryFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13422,7 +15366,7 @@ export interface LogMemoryFilterFreeStyle {
 
 export interface LogNullDeviceFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13448,7 +15392,7 @@ export interface LogSettingCustomLogField {
 
 export interface LogSyslogd2FilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13467,7 +15411,7 @@ export interface LogSyslogd2FilterFreeStyle {
 
 export interface LogSyslogd2OverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13516,7 +15460,7 @@ export interface LogSyslogd2SettingCustomFieldName {
 
 export interface LogSyslogd3FilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13535,7 +15479,7 @@ export interface LogSyslogd3FilterFreeStyle {
 
 export interface LogSyslogd3OverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13584,7 +15528,7 @@ export interface LogSyslogd3SettingCustomFieldName {
 
 export interface LogSyslogd4FilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13603,7 +15547,7 @@ export interface LogSyslogd4FilterFreeStyle {
 
 export interface LogSyslogd4OverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13652,7 +15596,7 @@ export interface LogSyslogd4SettingCustomFieldName {
 
 export interface LogSyslogdFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13671,7 +15615,7 @@ export interface LogSyslogdFilterFreeStyle {
 
 export interface LogSyslogdOverrideFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -13804,9 +15748,17 @@ export interface LogThreatWeightMalware {
      */
     contentDisarm: string;
     /**
+     * Threat weight score for virus (EMS threat feed) detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+     */
+    emsThreatFeed: string;
+    /**
      * Threat weight score for blocked file detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
      */
     fileBlocked: string;
+    /**
+     * Threat weight score for FortiAI-detected virus. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
+     */
+    fortiai: string;
     /**
      * Threat weight score for FortiSandbox high risk malware detected. Valid values: `disable`, `low`, `medium`, `high`, `critical`.
      */
@@ -13870,7 +15822,7 @@ export interface LogThreatWeightWeb {
 
 export interface LogWebtrendsFilterFreeStyle {
     /**
-     * Log category. Valid values: `traffic`, `event`, `virus`, `webfilter`, `attack`, `spam`, `anomaly`, `voip`, `dlp`, `app-ctrl`, `waf`, `gtp`, `dns`, `ssh`, `ssl`, `file-filter`, `icap`.
+     * Log category.
      */
     category: string;
     /**
@@ -14606,6 +16558,10 @@ export interface RouterBgpNeighbor {
      */
     capabilityRouteRefresh: string;
     /**
+     * IPv6 conditional advertisement. The structure of `conditionalAdvertise6` block is documented below.
+     */
+    conditionalAdvertise6s?: outputs.RouterBgpNeighborConditionalAdvertise6[];
+    /**
      * Conditional advertisement. The structure of `conditionalAdvertise` block is documented below.
      */
     conditionalAdvertises?: outputs.RouterBgpNeighborConditionalAdvertise[];
@@ -14876,6 +16832,21 @@ export interface RouterBgpNeighbor {
 }
 
 export interface RouterBgpNeighborConditionalAdvertise {
+    /**
+     * Name of advertising route map.
+     */
+    advertiseRoutemap: string;
+    /**
+     * Name of condition route map.
+     */
+    conditionRoutemap: string;
+    /**
+     * Type of condition. Valid values: `exist`, `non-exist`.
+     */
+    conditionType: string;
+}
+
+export interface RouterBgpNeighborConditionalAdvertise6 {
     /**
      * Name of advertising route map.
      */
@@ -15297,6 +17268,10 @@ export interface RouterBgpNetwork {
      */
     id: number;
     /**
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+     */
+    networkImportCheck: string;
+    /**
      * Network prefix.
      */
     prefix: string;
@@ -15315,6 +17290,10 @@ export interface RouterBgpNetwork6 {
      * ID.
      */
     id: number;
+    /**
+     * Configure insurance of BGP network route existence in IGP. Valid values: `global`, `enable`, `disable`.
+     */
+    networkImportCheck: string;
     /**
      * Network IPv6 prefix.
      */
@@ -15360,6 +17339,32 @@ export interface RouterBgpVrfLeak {
      * Target VRF table. The structure of `target` block is documented below.
      */
     targets?: outputs.RouterBgpVrfLeakTarget[];
+    /**
+     * Target VRF ID <0 - 31>.
+     */
+    vrf: string;
+}
+
+export interface RouterBgpVrfLeak6 {
+    /**
+     * Target VRF table. The structure of `target` block is documented below.
+     */
+    targets?: outputs.RouterBgpVrfLeak6Target[];
+    /**
+     * Target VRF ID <0 - 31>.
+     */
+    vrf: string;
+}
+
+export interface RouterBgpVrfLeak6Target {
+    /**
+     * Interface which is used to leak routes to target VRF.
+     */
+    interface: string;
+    /**
+     * Route map of VRF leaking.
+     */
+    routeMap: string;
     /**
      * Target VRF ID <0 - 31>.
      */
@@ -15623,6 +17628,10 @@ export interface RouterKeyChainKey {
      * Lifetime of received authentication key (format: hh:mm:ss day month year).
      */
     acceptLifetime: string;
+    /**
+     * Cryptographic algorithm. Valid values: `md5`, `hmac-sha1`, `hmac-sha256`, `hmac-sha384`, `hmac-sha512`.
+     */
+    algorithm: string;
     /**
      * Key ID (0 - 2147483647).
      */
@@ -16275,9 +18284,13 @@ export interface RouterOspf6SummaryAddress {
 
 export interface RouterOspfArea {
     /**
-     * Authentication type. Valid values: `none`, `text`, `md5`.
+     * Authentication type.
      */
     authentication: string;
+    /**
+     * Comment.
+     */
+    comments?: string;
     /**
      * Summary default cost of stub or NSSA area.
      */
@@ -16372,7 +18385,7 @@ export interface RouterOspfAreaRange {
 
 export interface RouterOspfAreaVirtualLink {
     /**
-     * Authentication type. Valid values: `none`, `text`, `md5`.
+     * Authentication type.
      */
     authentication: string;
     /**
@@ -16387,6 +18400,10 @@ export interface RouterOspfAreaVirtualLink {
      * Hello interval.
      */
     helloInterval: number;
+    /**
+     * Message-digest key-chain name.
+     */
+    keychain: string;
     /**
      * MD5 key.
      */
@@ -16472,6 +18489,10 @@ export interface RouterOspfNetwork {
      */
     area: string;
     /**
+     * Comment.
+     */
+    comments?: string;
+    /**
      * Distribute list entry ID.
      */
     id: number;
@@ -16483,7 +18504,7 @@ export interface RouterOspfNetwork {
 
 export interface RouterOspfOspfInterface {
     /**
-     * Authentication type. Valid values: `none`, `text`, `md5`.
+     * Authentication type.
      */
     authentication: string;
     /**
@@ -16494,6 +18515,10 @@ export interface RouterOspfOspfInterface {
      * Bidirectional Forwarding Detection (BFD). Valid values: `global`, `enable`, `disable`.
      */
     bfd: string;
+    /**
+     * Comment.
+     */
+    comments?: string;
     /**
      * Cost of the interface, value range from 0 to 65535, 0 means auto-cost.
      */
@@ -16522,6 +18547,10 @@ export interface RouterOspfOspfInterface {
      * Interface IP address of the neighbor.
      */
     ip: string;
+    /**
+     * Message-digest key-chain name.
+     */
+    keychain: string;
     /**
      * MD5 key.
      */
@@ -17108,7 +19137,7 @@ export interface RouterRouteMapRule {
      */
     matchOrigin: string;
     /**
-     * Match route type. Valid values: `1`, `2`, `none`.
+     * Match route type.
      */
     matchRouteType: string;
     /**
@@ -17204,7 +19233,7 @@ export interface RouterRouteMapRule {
      */
     setMetric: number;
     /**
-     * Metric type. Valid values: `1`, `2`, `none`.
+     * Metric type.
      */
     setMetricType: string;
     /**
@@ -17257,7 +19286,36 @@ export interface RouterRouteMapRuleSetExtcommunitySoo {
     community: string;
 }
 
+export interface RouterStatic6SdwanZone {
+    /**
+     * SD-WAN zone name.
+     */
+    name: string;
+}
+
+export interface RouterStaticSdwanZone {
+    /**
+     * SD-WAN zone name.
+     */
+    name: string;
+}
+
 export interface RouterbgpNeighborConditionalAdvertise {
+    /**
+     * Name of advertising route map.
+     */
+    advertiseRoutemap: string;
+    /**
+     * Name of condition route map.
+     */
+    conditionRoutemap: string;
+    /**
+     * Type of condition. Valid values: `exist`, `non-exist`.
+     */
+    conditionType: string;
+}
+
+export interface RouterbgpNeighborConditionalAdvertise6 {
     /**
      * Name of advertising route map.
      */
@@ -17315,6 +19373,25 @@ export interface RouterospfOspfInterfaceMd5Key {
      * Password for the key.
      */
     keyString?: string;
+}
+
+export interface SctpFilterProfilePpidFilter {
+    /**
+     * Action taken when PPID is matched. Valid values: `pass`, `reset`, `replace`.
+     */
+    action: string;
+    /**
+     * Comment.
+     */
+    comment?: string;
+    /**
+     * ID.
+     */
+    id: number;
+    /**
+     * Payload protocol identifier.
+     */
+    ppid: number;
 }
 
 export interface SpamfilterBwlEntry {
@@ -17652,6 +19729,76 @@ export interface SwitchControllerAutoConfigCustomSwitchBinding {
     switchId: string;
 }
 
+export interface SwitchControllerDynamicPortPolicyPolicy {
+    /**
+     * Enable/disable bouncing (administratively bring the link down, up) of a switch port where this policy is applied. Helps to clear and reassign VLAN from lldp-profile. Valid values: `disable`, `enable`.
+     */
+    bouncePortLink: string;
+    /**
+     * Category of Dynamic port policy. Valid values: `device`, `interface-tag`.
+     */
+    category: string;
+    /**
+     * Description for the policy.
+     */
+    description: string;
+    /**
+     * Policy matching family.
+     */
+    family: string;
+    /**
+     * Policy matching host.
+     */
+    host: string;
+    /**
+     * Match policy based on hardware vendor.
+     */
+    hwVendor: string;
+    /**
+     * Policy matching the FortiSwitch interface object tags. The structure of `interfaceTags` block is documented below.
+     */
+    interfaceTags?: outputs.SwitchControllerDynamicPortPolicyPolicyInterfaceTag[];
+    /**
+     * LLDP profile to be applied when using this policy.
+     */
+    lldpProfile: string;
+    /**
+     * Policy matching MAC address.
+     */
+    mac: string;
+    /**
+     * 802.1x security policy to be applied when using this policy.
+     */
+    n8021x: string;
+    /**
+     * Policy name.
+     */
+    name: string;
+    /**
+     * QoS policy to be applied when using this policy.
+     */
+    qosPolicy: string;
+    /**
+     * Enable/disable policy. Valid values: `enable`, `disable`.
+     */
+    status: string;
+    /**
+     * Policy matching type.
+     */
+    type: string;
+    /**
+     * VLAN policy to be applied when using this policy.
+     */
+    vlanPolicy: string;
+}
+
+export interface SwitchControllerDynamicPortPolicyPolicyInterfaceTag {
+    /**
+     * FortiSwitch port tag name.
+     */
+    tagName: string;
+}
+
 export interface SwitchControllerFlowTrackingAggregate {
     /**
      * Aggregate id.
@@ -17661,6 +19808,44 @@ export interface SwitchControllerFlowTrackingAggregate {
      * IP address to group all matching traffic sessions to a flow.
      */
     ip: string;
+}
+
+export interface SwitchControllerFortilinkSettingsNacPorts {
+    /**
+     * Enable/disable bouncing (administratively bring the link down, up) of a switch port when NAC mode is configured on the port. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
+     */
+    bounceNacPort: string;
+    /**
+     * Enable/disable LAN segment feature on the FortiLink interface. Valid values: `enabled`, `disabled`.
+     */
+    lanSegment: string;
+    /**
+     * Member change flag.
+     */
+    memberChange: number;
+    /**
+     * Configure NAC LAN interface.
+     */
+    nacLanInterface: string;
+    /**
+     * Configure NAC segment VLANs. The structure of `nacSegmentVlans` block is documented below.
+     */
+    nacSegmentVlans?: outputs.SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan[];
+    /**
+     * Default NAC Onboarding VLAN when NAC devices are discovered.
+     */
+    onboardingVlan: string;
+    /**
+     * Parent key name.
+     */
+    parentKey: string;
+}
+
+export interface SwitchControllerFortilinkSettingsNacPortsNacSegmentVlan {
+    /**
+     * VLAN interface name.
+     */
+    vlanName: string;
 }
 
 export interface SwitchControllerGlobalCustomCommand {
@@ -17947,6 +20132,33 @@ export interface SwitchControllerManagedSwitchIgmpSnooping {
      * Enable to override global 802.1X settings on individual FortiSwitches. Valid values: `enable`, `disable`.
      */
     localOverride: string;
+    /**
+     * Configure IGMP snooping VLAN. The structure of `vlans` block is documented below.
+     */
+    vlans?: outputs.SwitchControllerManagedSwitchIgmpSnoopingVlan[];
+}
+
+export interface SwitchControllerManagedSwitchIgmpSnoopingVlan {
+    /**
+     * IGMP snooping proxy for the VLAN interface. Valid values: `disable`, `enable`, `global`.
+     */
+    proxy: string;
+    /**
+     * Enable/disable IGMP snooping querier for the VLAN interface. Valid values: `disable`, `enable`.
+     */
+    querier: string;
+    /**
+     * IGMP snooping querier address.
+     */
+    querierAddr: string;
+    /**
+     * IGMP snooping querier version.
+     */
+    version: number;
+    /**
+     * List of FortiSwitch VLANs.
+     */
+    vlanName: string;
 }
 
 export interface SwitchControllerManagedSwitchIpSourceGuard {
@@ -18045,7 +20257,7 @@ export interface SwitchControllerManagedSwitchN8021xSettings {
 
 export interface SwitchControllerManagedSwitchPort {
     /**
-     * Access mode of the port. Valid values: `normal`, `nac`.
+     * Access mode of the port.
      */
     accessMode: string;
     /**
@@ -18149,6 +20361,10 @@ export interface SwitchControllerManagedSwitchPort {
      */
     igmpsFloodTraffic: string;
     /**
+     * Tag(s) associated with the interface for various features including virtual port pool, dynamic port policy. The structure of `interfaceTags` block is documented below.
+     */
+    interfaceTags?: outputs.SwitchControllerManagedSwitchPortInterfaceTag[];
+    /**
      * Enable/disable IP source guard. Valid values: `disable`, `enable`.
      */
     ipSourceGuard: string;
@@ -18192,6 +20408,14 @@ export interface SwitchControllerManagedSwitchPort {
      * Port/Trunk MAC.
      */
     macAddr: string;
+    /**
+     * Matched interface tags in the dynamic port policy.
+     */
+    matchedDppIntfTags: string;
+    /**
+     * Matched child policy in the dynamic port policy.
+     */
+    matchedDppPolicy: string;
     /**
      * Maximum size of LAG bundle (1 - 24, default = 24)
      */
@@ -18249,9 +20473,17 @@ export interface SwitchControllerManagedSwitchPort {
      */
     poeCapable: number;
     /**
+     * PoE maximum power.
+     */
+    poeMaxPower: string;
+    /**
      * Enable/disable PoE pre-standard detection. Valid values: `enable`, `disable`.
      */
     poePreStandardDetection: string;
+    /**
+     * PoE standard supported.
+     */
+    poeStandard: string;
     /**
      * Enable/disable PoE status. Valid values: `enable`, `disable`.
      */
@@ -18268,6 +20500,10 @@ export interface SwitchControllerManagedSwitchPort {
      * Switch port name.
      */
     portOwner: string;
+    /**
+     * Switch controller dynamic port policy from available options.
+     */
+    portPolicy: string;
     /**
      * Port prefix type.
      */
@@ -18372,12 +20608,19 @@ export interface SwitchControllerManagedSwitchPort {
 
 export interface SwitchControllerManagedSwitchPortAllowedVlan {
     /**
-     * VLAN name.
+     * List of FortiSwitch VLANs.
      */
     vlanName: string;
 }
 
 export interface SwitchControllerManagedSwitchPortExportTag {
+    /**
+     * Switch tag name.
+     */
+    tagName: string;
+}
+
+export interface SwitchControllerManagedSwitchPortInterfaceTag {
     /**
      * Switch tag name.
      */
@@ -18393,7 +20636,7 @@ export interface SwitchControllerManagedSwitchPortMember {
 
 export interface SwitchControllerManagedSwitchPortUntaggedVlan {
     /**
-     * VLAN name.
+     * List of FortiSwitch VLANs.
      */
     vlanName: string;
 }
@@ -18543,7 +20786,7 @@ export interface SwitchControllerManagedSwitchSnmpTrapThreshold {
 
 export interface SwitchControllerManagedSwitchSnmpUser {
     /**
-     * Authentication protocol. Valid values: `md5`, `sha`.
+     * Authentication protocol.
      */
     authProto: string;
     /**
@@ -18555,7 +20798,7 @@ export interface SwitchControllerManagedSwitchSnmpUser {
      */
     name: string;
     /**
-     * Privacy (encryption) protocol. Valid values: `aes`, `des`.
+     * Privacy (encryption) protocol.
      */
     privProto: string;
     /**
@@ -18928,6 +21171,10 @@ export interface SystemAccprofileFwgrpPermission {
      */
     address: string;
     /**
+     * Other Firewall Configuration. Valid values: `none`, `read`, `read-write`.
+     */
+    others: string;
+    /**
      * Policy Configuration. Valid values: `none`, `read`, `read-write`.
      */
     policy: string;
@@ -19047,6 +21294,40 @@ export interface SystemAccprofileUtmgrpPermission {
      * Web Filter profiles and settings. Valid values: `none`, `read`, `read-write`.
      */
     webfilter: string;
+}
+
+export interface SystemAcmeAccount {
+    /**
+     * Account ca_url.
+     */
+    caUrl: string;
+    /**
+     * Account email.
+     */
+    email: string;
+    /**
+     * Account id.
+     */
+    id: string;
+    /**
+     * Account Private Key.
+     */
+    privatekey: string;
+    /**
+     * Account status.
+     */
+    status: string;
+    /**
+     * Account url.
+     */
+    url: string;
+}
+
+export interface SystemAcmeInterface {
+    /**
+     * Interface name.
+     */
+    interfaceName: string;
 }
 
 export interface SystemAdminGuestUsergroup {
@@ -19350,9 +21631,21 @@ export interface SystemAutomationDestinationDestination {
 
 export interface SystemAutomationStitchAction {
     /**
-     * Destination name.
+     * Action name.
      */
-    name: string;
+    action: string;
+    /**
+     * Delay before execution (in seconds).
+     */
+    delay: number;
+    /**
+     * Entry ID.
+     */
+    id: number;
+    /**
+     * Required in action chain. Valid values: `enable`, `disable`.
+     */
+    required: string;
 }
 
 export interface SystemAutomationStitchDestination {
@@ -19464,6 +21757,21 @@ export interface SystemClusterSyncSyncvd {
     name: string;
 }
 
+export interface SystemCsfFabricConnector {
+    /**
+     * Override access profile.
+     */
+    accprofile: string;
+    /**
+     * Enable/disable downstream device write access to configuration. Valid values: `enable`, `disable`.
+     */
+    configurationWriteAccess: string;
+    /**
+     * Serial.
+     */
+    serial: string;
+}
+
 export interface SystemCsfFabricDevice {
     /**
      * Device access token.
@@ -19524,6 +21832,13 @@ export interface SystemCsfTrustedList {
      * Serial.
      */
     serial: string;
+}
+
+export interface SystemDdnsDdnsServerAddr {
+    /**
+     * IP address or FQDN of the server.
+     */
+    addr: string;
 }
 
 export interface SystemDdnsMonitorInterface {
@@ -19732,6 +22047,14 @@ export interface SystemDnsServerHostname {
 
 export interface SystemFederatedUpgradeNodeList {
     /**
+     * The serial of the FortiGate that controls this device
+     */
+    coordinatingFortigate: string;
+    /**
+     * What type of device this node represents. Valid values: `fortigate`, `fortiswitch`, `fortiap`.
+     */
+    deviceType: string;
+    /**
      * Serial number of the node to include.
      */
     serial: string;
@@ -19804,6 +22127,266 @@ export interface SystemHaSecondaryVcluster {
     vdom: string;
 }
 
+export interface SystemHaUnicastPeer {
+    id: number;
+    peerIp: string;
+}
+
+export interface SystemIkeDhGroup1 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup14 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup15 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup16 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup17 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup18 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup19 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup2 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup20 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup21 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup27 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup28 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup29 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup30 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup31 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup32 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
+export interface SystemIkeDhGroup5 {
+    /**
+     * Configure custom key pair cache size for this Diffie-Hellman group. Valid values: `global`, `custom`.
+     */
+    keypairCache: string;
+    /**
+     * Number of key pairs to pre-generate for this Diffie-Hellman group (per-worker).
+     */
+    keypairCount: number;
+    /**
+     * Use software (CPU) or hardware (CPX) to perform calculations for this Diffie-Hellman group. Valid values: `software`, `hardware`, `global`.
+     */
+    mode: string;
+}
+
 export interface SystemInterfaceClientOption {
     /**
      * DHCP client option code.
@@ -19827,6 +22410,17 @@ export interface SystemInterfaceClientOption {
     value: string;
 }
 
+export interface SystemInterfaceDhcpSnoopingServerList {
+    /**
+     * Tag name.
+     */
+    name: string;
+    /**
+     * IP address for DHCP server.
+     */
+    serverIp: string;
+}
+
 export interface SystemInterfaceFailAlertInterface {
     /**
      * Tag name.
@@ -19847,6 +22441,10 @@ export interface SystemInterfaceIpv6 {
      * DHCPv6 client options. Valid values: `rapid`, `iapd`, `iana`.
      */
     dhcp6ClientOptions: string;
+    /**
+     * DHCPv6 IA-PD list The structure of `dhcp6IapdList` block is documented below.
+     */
+    dhcp6IapdLists?: outputs.SystemInterfaceIpv6Dhcp6IapdList[];
     /**
      * Enable/disable DHCPv6 information request. Valid values: `enable`, `disable`.
      */
@@ -19899,6 +22497,10 @@ export interface SystemInterfaceIpv6 {
      * Default life (sec).
      */
     ip6DefaultLife: number;
+    /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    ip6DelegatedPrefixIaid: number;
     /**
      * Advertised IPv6 delegated prefix list. The structure of `ip6DelegatedPrefixList` block is documented below.
      */
@@ -19992,6 +22594,10 @@ export interface SystemInterfaceIpv6 {
      */
     ndTimestampFuzz: number;
     /**
+     * Enable/disable sending link MTU in RA packet. Valid values: `enable`, `disable`.
+     */
+    raSendMtu: string;
+    /**
      * Enable/disable unique auto config address. Valid values: `enable`, `disable`.
      */
     uniqueAutoconfAddr: string;
@@ -20009,11 +22615,34 @@ export interface SystemInterfaceIpv6 {
     vrrpVirtualMac6: string;
 }
 
+export interface SystemInterfaceIpv6Dhcp6IapdList {
+    /**
+     * Identity association identifier.
+     */
+    iaid: number;
+    /**
+     * DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
+     */
+    prefixHint: string;
+    /**
+     * DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
+     */
+    prefixHintPlt: number;
+    /**
+     * DHCPv6 prefix hint valid life time (sec).
+     */
+    prefixHintVlt: number;
+}
+
 export interface SystemInterfaceIpv6Ip6DelegatedPrefixList {
     /**
      * Enable/disable the autonomous flag. Valid values: `enable`, `disable`.
      */
     autonomousFlag: string;
+    /**
+     * IAID of obtained delegated-prefix from the upstream interface.
+     */
+    delegatedPrefixIaid: number;
     /**
      * Enable/disable the onlink flag. Valid values: `enable`, `disable`.
      */
@@ -20283,11 +22912,41 @@ export interface SystemIpsecAggregateMember {
     tunnelName: string;
 }
 
+export interface SystemLinkMonitorRoute {
+    /**
+     * IP and netmask (x.x.x.x/y).
+     */
+    subnet: string;
+}
+
 export interface SystemLinkMonitorServer {
     /**
      * Server address.
      */
     address: string;
+}
+
+export interface SystemLinkMonitorServerList {
+    /**
+     * IP address of the server to be monitored.
+     */
+    dst: string;
+    /**
+     * Server ID.
+     */
+    id: number;
+    /**
+     * Port number of the traffic to be used to monitor the server.
+     */
+    port: number;
+    /**
+     * Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
+     */
+    protocol: string;
+    /**
+     * Weight of the monitor to this dst (0 - 255).
+     */
+    weight: number;
 }
 
 export interface SystemLldpNetworkPolicyGuest {
@@ -20507,6 +23166,21 @@ export interface SystemNdProxyMember {
     interfaceName: string;
 }
 
+export interface SystemNpuPriorityProtocol {
+    /**
+     * Enable/disable NPU BFD priority protocol. Valid values: `enable`, `disable`.
+     */
+    bfd: string;
+    /**
+     * Enable/disable NPU BGP priority protocol. Valid values: `enable`, `disable`.
+     */
+    bgp: string;
+    /**
+     * Enable/disable NPU SLBC priority protocol. Valid values: `enable`, `disable`.
+     */
+    slbc: string;
+}
+
 export interface SystemNtpInterface {
     /**
      * Interface name.
@@ -20554,6 +23228,21 @@ export interface SystemObjectTaggingTag {
      * Tag name.
      */
     name: string;
+}
+
+export interface SystemPtpServerInterface {
+    /**
+     * End to end delay detection or peer to peer delay detection. Valid values: `E2E`, `P2P`.
+     */
+    delayMechanism: string;
+    /**
+     * ID.
+     */
+    id: number;
+    /**
+     * Interface name.
+     */
+    serverInterfaceName: string;
 }
 
 export interface SystemReplacemsgGroupAdmin {
@@ -20943,6 +23632,10 @@ export interface SystemSamlServiceProvider {
      */
     prefix: string;
     /**
+     * SP binding protocol. Valid values: `post`, `redirect`.
+     */
+    spBindingProtocol: string;
+    /**
      * SP certificate name.
      */
     spCert: string;
@@ -20975,9 +23668,56 @@ export interface SystemSamlServiceProviderAssertionAttribute {
     type: string;
 }
 
+export interface SystemSdnConnectorExternalAccountList {
+    /**
+     * AWS region name list. The structure of `regionList` block is documented below.
+     */
+    regionLists?: outputs.SystemSdnConnectorExternalAccountListRegionList[];
+    /**
+     * AWS role ARN to assume.
+     */
+    roleArn: string;
+}
+
+export interface SystemSdnConnectorExternalAccountListRegionList {
+    /**
+     * AWS region name.
+     */
+    region: string;
+}
+
 export interface SystemSdnConnectorExternalIp {
     /**
-     * Route name.
+     * GCP zone name.
+     */
+    name: string;
+}
+
+export interface SystemSdnConnectorForwardingRule {
+    /**
+     * Forwarding rule name.
+     */
+    ruleName: string;
+    /**
+     * Target instance name.
+     */
+    target: string;
+}
+
+export interface SystemSdnConnectorGcpProjectList {
+    /**
+     * Configure GCP zone list. The structure of `gcpZoneList` block is documented below.
+     */
+    gcpZoneLists?: outputs.SystemSdnConnectorGcpProjectListGcpZoneList[];
+    /**
+     * GCP project ID.
+     */
+    id: string;
+}
+
+export interface SystemSdnConnectorGcpProjectListGcpZoneList {
+    /**
+     * GCP zone name.
      */
     name: string;
 }
@@ -20988,14 +23728,14 @@ export interface SystemSdnConnectorNic {
      */
     ips?: outputs.SystemSdnConnectorNicIp[];
     /**
-     * Route name.
+     * GCP zone name.
      */
     name: string;
 }
 
 export interface SystemSdnConnectorNicIp {
     /**
-     * Route name.
+     * GCP zone name.
      */
     name: string;
     /**
@@ -21010,14 +23750,14 @@ export interface SystemSdnConnectorNicIp {
 
 export interface SystemSdnConnectorRoute {
     /**
-     * Route name.
+     * GCP zone name.
      */
     name: string;
 }
 
 export interface SystemSdnConnectorRouteTable {
     /**
-     * Route name.
+     * GCP zone name.
      */
     name: string;
     /**
@@ -21036,13 +23776,20 @@ export interface SystemSdnConnectorRouteTable {
 
 export interface SystemSdnConnectorRouteTableRoute {
     /**
-     * Route name.
+     * GCP zone name.
      */
     name: string;
     /**
      * Next hop address.
      */
     nextHop: string;
+}
+
+export interface SystemSdnConnectorServerList {
+    /**
+     * Configure IP configuration. The structure of `ip` block is documented below.
+     */
+    ip: string;
 }
 
 export interface SystemSdwanDuplication {
@@ -21160,6 +23907,10 @@ export interface SystemSdwanHealthCheck {
      * Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
      */
     addrMode: string;
+    /**
+     * The mode determining how to detect the server. Valid values: `active`, `passive`, `prefer-passive`.
+     */
+    detectMode: string;
     /**
      * Differentiated services code point (DSCP) in the IP header of the probe packet.
      */
@@ -21421,6 +24172,10 @@ export interface SystemSdwanNeighbor {
      */
     member: number;
     /**
+     * Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
+     */
+    mode: string;
+    /**
      * Service role to work with neighbor. Valid values: `standalone`, `primary`, `secondary`.
      */
     role: string;
@@ -21568,9 +24323,17 @@ export interface SystemSdwanService {
      */
     packetLossWeight: number;
     /**
+     * Enable/disable passive measurement based on the service criteria. Valid values: `enable`, `disable`.
+     */
+    passiveMeasurement: string;
+    /**
      * Member sequence number list. The structure of `priorityMembers` block is documented below.
      */
     priorityMembers?: outputs.SystemSdwanServicePriorityMember[];
+    /**
+     * Priority zone name list. The structure of `priorityZone` block is documented below.
+     */
+    priorityZones?: outputs.SystemSdwanServicePriorityZone[];
     /**
      * Protocol number.
      */
@@ -21723,6 +24486,13 @@ export interface SystemSdwanServicePriorityMember {
      * Member sequence number.
      */
     seqNum: number;
+}
+
+export interface SystemSdwanServicePriorityZone {
+    /**
+     * Service and service group name.
+     */
+    name: string;
 }
 
 export interface SystemSdwanServiceSla {
@@ -21881,6 +24651,13 @@ export interface SystemSsoAdminVdom {
     name: string;
 }
 
+export interface SystemSsoForticloudAdminVdom {
+    /**
+     * Virtual domain name.
+     */
+    name: string;
+}
+
 export interface SystemSwitchInterfaceMember {
     /**
      * Physical interface name.
@@ -21918,14 +24695,6 @@ export interface SystemVirtualSwitchPort {
      * Physical interface name.
      */
     name: string;
-    /**
-     * Interface speed. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `1000auto`.
-     */
-    speed: string;
-    /**
-     * Interface status. Valid values: `up`, `down`.
-     */
-    status: string;
 }
 
 export interface SystemVirtualWanLinkFailAlertInterface {
@@ -22659,6 +25428,14 @@ export interface UserDomainControllerExtraServer {
      * Port to be used for communication with the domain controller (default = 445).
      */
     port: number;
+    /**
+     * FortiGate IPv4 address to be used for communication with the domain controller.
+     */
+    sourceIpAddress: string;
+    /**
+     * Source port to be used for communication with the domain controller.
+     */
+    sourcePort: number;
 }
 
 export interface UserExchangeKdcIp {
@@ -22736,6 +25513,13 @@ export interface UserGroupMatch {
 export interface UserGroupMember {
     /**
      * Guest name.
+     */
+    name: string;
+}
+
+export interface UserNacPolicySwitchGroup {
+    /**
+     * Managed FortiSwitch group name from available options.
      */
     name: string;
 }
@@ -22900,6 +25684,70 @@ export interface UserSettingAuthPort {
     type: string;
 }
 
+export interface VideofilterProfileFortiguardCategory {
+    /**
+     * Configure VideoFilter FortiGuard category. The structure of `filters` block is documented below.
+     */
+    filters?: outputs.VideofilterProfileFortiguardCategoryFilter[];
+}
+
+export interface VideofilterProfileFortiguardCategoryFilter {
+    /**
+     * VideoFilter action. Valid values: `allow`, `monitor`, `block`.
+     */
+    action: string;
+    /**
+     * Category ID.
+     */
+    categoryId: number;
+    /**
+     * ID.
+     */
+    id: number;
+    /**
+     * Enable/disable logging. Valid values: `enable`, `disable`.
+     */
+    log: string;
+}
+
+export interface VideofilterYoutubeChannelFilterEntry {
+    /**
+     * YouTube channel filter action. Valid values: `allow`, `monitor`, `block`.
+     */
+    action: string;
+    /**
+     * Channel ID.
+     */
+    channelId: string;
+    /**
+     * Comment.
+     */
+    comment?: string;
+    /**
+     * ID.
+     */
+    id: number;
+}
+
+export interface VoipProfileMsrp {
+    /**
+     * Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
+     */
+    logViolations: string;
+    /**
+     * Maximum allowable MSRP message size (1-65535).
+     */
+    maxMsgSize: number;
+    /**
+     * Action for violation of max-msg-size. Valid values: `pass`, `block`, `reset`, `monitor`.
+     */
+    maxMsgSizeAction: string;
+    /**
+     * Enable/disable MSRP. Valid values: `disable`, `enable`.
+     */
+    status: string;
+}
+
 export interface VoipProfileSccp {
     /**
      * Enable/disable block multicast RTP connections. Valid values: `disable`, `enable`.
@@ -22910,7 +25758,7 @@ export interface VoipProfileSccp {
      */
     logCallSummary: string;
     /**
-     * Enable/disable logging of SCCP violations. Valid values: `disable`, `enable`.
+     * Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
      */
     logViolations: string;
     /**
@@ -22918,7 +25766,7 @@ export interface VoipProfileSccp {
      */
     maxCalls: number;
     /**
-     * Enable/disable SCCP. Valid values: `disable`, `enable`.
+     * Enable/disable MSRP. Valid values: `disable`, `enable`.
      */
     status: string;
     /**
@@ -22932,6 +25780,10 @@ export interface VoipProfileSip {
      * ACK request rate limit (per second, per policy).
      */
     ackRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    ackRateTrack: string;
     /**
      * Enable/disable block ACK requests. Valid values: `disable`, `enable`.
      */
@@ -23005,6 +25857,10 @@ export interface VoipProfileSip {
      */
     byeRate: number;
     /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    byeRateTrack: string;
+    /**
      * Continue tracking calls with no RTP for this many minutes.
      */
     callKeepalive: number;
@@ -23012,6 +25868,10 @@ export interface VoipProfileSip {
      * CANCEL request rate limit (per second, per policy).
      */
     cancelRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    cancelRateTrack: string;
     /**
      * Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
      */
@@ -23029,9 +25889,17 @@ export interface VoipProfileSip {
      */
     infoRate: number;
     /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    infoRateTrack: string;
+    /**
      * INVITE request rate limit (per second, per policy).
      */
     inviteRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    inviteRateTrack: string;
     /**
      * Enable/disable allow IPS on RTP. Valid values: `disable`, `enable`.
      */
@@ -23041,7 +25909,7 @@ export interface VoipProfileSip {
      */
     logCallSummary: string;
     /**
-     * Enable/disable logging of SCCP violations. Valid values: `disable`, `enable`.
+     * Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
      */
     logViolations: string;
     /**
@@ -23080,6 +25948,14 @@ export interface VoipProfileSip {
      * Action for malformed Max-Forwards header. Valid values: `discard`, `pass`, `respond`.
      */
     malformedHeaderMaxForwards: string;
+    /**
+     * Action for malformed SIP messages without Proxy-Require header. Valid values: `discard`, `pass`, `respond`.
+     */
+    malformedHeaderNoProxyRequire: string;
+    /**
+     * Action for malformed SIP messages without Require header. Valid values: `discard`, `pass`, `respond`.
+     */
+    malformedHeaderNoRequire: string;
     /**
      * Action for malformed P-Asserted-Identity header. Valid values: `discard`, `pass`, `respond`.
      */
@@ -23181,6 +26057,10 @@ export interface VoipProfileSip {
      */
     messageRate: number;
     /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    messageRateTrack: string;
+    /**
      * RTP NAT port range.
      */
     natPortRange: string;
@@ -23196,6 +26076,10 @@ export interface VoipProfileSip {
      * NOTIFY request rate limit (per second, per policy).
      */
     notifyRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    notifyRateTrack: string;
     /**
      * Enable/disable open pinhole for non-REGISTER Contact port. Valid values: `disable`, `enable`.
      */
@@ -23217,9 +26101,17 @@ export interface VoipProfileSip {
      */
     optionsRate: number;
     /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    optionsRateTrack: string;
+    /**
      * PRACK request rate limit (per second, per policy).
      */
     prackRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    prackRateTrack: string;
     /**
      * Override i line to preserve original IPS (default: append). Valid values: `disable`, `enable`.
      */
@@ -23233,9 +26125,17 @@ export interface VoipProfileSip {
      */
     publishRate: number;
     /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    publishRateTrack: string;
+    /**
      * REFER request rate limit (per second, per policy).
      */
     referRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    referRateTrack: string;
     /**
      * Enable/disable trace original IP/port within the contact header of REGISTER requests. Valid values: `disable`, `enable`.
      */
@@ -23244,6 +26144,10 @@ export interface VoipProfileSip {
      * REGISTER request rate limit (per second, per policy).
      */
     registerRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    registerRateTrack: string;
     /**
      * Enable/disable support via branch compliant with RFC 2543. Valid values: `disable`, `enable`.
      */
@@ -23297,7 +26201,7 @@ export interface VoipProfileSip {
      */
     sslServerCertificate: string;
     /**
-     * Enable/disable SCCP. Valid values: `disable`, `enable`.
+     * Enable/disable MSRP. Valid values: `disable`, `enable`.
      */
     status: string;
     /**
@@ -23309,6 +26213,10 @@ export interface VoipProfileSip {
      */
     subscribeRate: number;
     /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    subscribeRateTrack: string;
+    /**
      * Action for unknown SIP header. Valid values: `discard`, `pass`, `respond`.
      */
     unknownHeader: string;
@@ -23316,6 +26224,25 @@ export interface VoipProfileSip {
      * UPDATE request rate limit (per second, per policy).
      */
     updateRate: number;
+    /**
+     * Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
+     */
+    updateRateTrack: string;
+}
+
+export interface VpnCertificateSettingCrlVerification {
+    /**
+     * CRL verification option when CRL of any certificate in chain is absent (default = ignore). Valid values: `ignore`, `revoke`.
+     */
+    chainCrlAbsence: string;
+    /**
+     * CRL verification option when CRL is expired (default = ignore). Valid values: `ignore`, `revoke`.
+     */
+    expiry: string;
+    /**
+     * CRL verification option when leaf CRL is absent (default = ignore). Valid values: `ignore`, `revoke`.
+     */
+    leafCrlAbsence: string;
 }
 
 export interface VpnIpsecConcentratorMember {
@@ -23323,6 +26250,41 @@ export interface VpnIpsecConcentratorMember {
      * Member name.
      */
     name: string;
+}
+
+export interface VpnIpsecFecMapping {
+    /**
+     * Apply FEC parameters when available bi-bandwidth is >= threshold (kbps, 0 means no threshold).
+     */
+    bandwidthBiThreshold: number;
+    /**
+     * Apply FEC parameters when available down bandwidth is >= threshold (kbps, 0 means no threshold).
+     */
+    bandwidthDownThreshold: number;
+    /**
+     * Apply FEC parameters when available up bandwidth is >= threshold (kbps, 0 means no threshold).
+     */
+    bandwidthUpThreshold: number;
+    /**
+     * Number of base FEC packets (1 - 20).
+     */
+    base: number;
+    /**
+     * Apply FEC parameters when latency is <= threshold (0 means no threshold).
+     */
+    latencyThreshold: number;
+    /**
+     * Apply FEC parameters when packet loss is >= threshold (0 - 100, 0 means no threshold).
+     */
+    packetLossThreshold: number;
+    /**
+     * Number of redundant FEC packets (1 - 5).
+     */
+    redundant: number;
+    /**
+     * Sequence number (1 - 64).
+     */
+    seqno: number;
 }
 
 export interface VpnIpsecPhase1BackupGateway {
@@ -23513,7 +26475,7 @@ export interface VpnOcvpnWanInterface {
 
 export interface VpnSslSettingsAuthenticationRule {
     /**
-     * SSL VPN authentication method restriction. Valid values: `any`, `local`, `radius`, `tacacs+`, `ldap`.
+     * SSL VPN authentication method restriction.
      */
     auth: string;
     /**
@@ -23695,6 +26657,10 @@ export interface VpnSslWebPortalBookmarkGroupBookmark {
      */
     apptype: string;
     /**
+     * Color depth per pixel. Valid values: `32`, `16`, `8`.
+     */
+    colorDepth: string;
+    /**
      * Description.
      */
     description?: string;
@@ -23711,9 +26677,17 @@ export interface VpnSslWebPortalBookmarkGroupBookmark {
      */
     formDatas?: outputs.VpnSslWebPortalBookmarkGroupBookmarkFormData[];
     /**
+     * Screen height (range from 480 - 65535, default = 768).
+     */
+    height: number;
+    /**
      * Host name/IP parameter.
      */
     host?: string;
+    /**
+     * Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+     */
+    keyboardLayout: string;
     /**
      * Listening port (0 - 65535).
      */
@@ -23751,9 +26725,17 @@ export interface VpnSslWebPortalBookmarkGroupBookmark {
      */
     remotePort: number;
     /**
+     * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+     */
+    restrictedAdmin: string;
+    /**
      * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
      */
     security: string;
+    /**
+     * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+     */
+    sendPreconnectionId: string;
     /**
      * Server side keyboard layout.
      */
@@ -23786,6 +26768,10 @@ export interface VpnSslWebPortalBookmarkGroupBookmark {
      * URL parameter.
      */
     url?: string;
+    /**
+     * Screen width (range from 640 - 65535, default = 1024).
+     */
+    width: number;
 }
 
 export interface VpnSslWebPortalBookmarkGroupBookmarkFormData {
@@ -23912,6 +26898,10 @@ export interface VpnSslWebUserBookmarkBookmark {
      */
     apptype: string;
     /**
+     * Color depth per pixel. Valid values: `32`, `16`, `8`.
+     */
+    colorDepth: string;
+    /**
      * Description.
      */
     description?: string;
@@ -23928,9 +26918,17 @@ export interface VpnSslWebUserBookmarkBookmark {
      */
     formDatas?: outputs.VpnSslWebUserBookmarkBookmarkFormData[];
     /**
+     * Screen height (range from 480 - 65535, default = 768).
+     */
+    height: number;
+    /**
      * Host name/IP parameter.
      */
     host?: string;
+    /**
+     * Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+     */
+    keyboardLayout: string;
     /**
      * Listening port (0 - 65535).
      */
@@ -23968,9 +26966,17 @@ export interface VpnSslWebUserBookmarkBookmark {
      */
     remotePort: number;
     /**
+     * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+     */
+    restrictedAdmin: string;
+    /**
      * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
      */
     security: string;
+    /**
+     * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+     */
+    sendPreconnectionId: string;
     /**
      * Server side keyboard layout.
      */
@@ -24003,6 +27009,10 @@ export interface VpnSslWebUserBookmarkBookmark {
      * URL parameter.
      */
     url?: string;
+    /**
+     * Screen width (range from 640 - 65535, default = 1024).
+     */
+    width: number;
 }
 
 export interface VpnSslWebUserBookmarkBookmarkFormData {
@@ -24026,6 +27036,10 @@ export interface VpnSslWebUserGroupBookmarkBookmark {
      */
     apptype: string;
     /**
+     * Color depth per pixel. Valid values: `32`, `16`, `8`.
+     */
+    colorDepth: string;
+    /**
      * Description.
      */
     description?: string;
@@ -24042,9 +27056,17 @@ export interface VpnSslWebUserGroupBookmarkBookmark {
      */
     formDatas?: outputs.VpnSslWebUserGroupBookmarkBookmarkFormData[];
     /**
+     * Screen height (range from 480 - 65535, default = 768).
+     */
+    height: number;
+    /**
      * Host name/IP parameter.
      */
     host?: string;
+    /**
+     * Keyboard layout. Valid values: `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `da`, `nl`, `de`, `de-ch`, `de-ibm`, `en-uk`, `en-uk-ext`, `en-us`, `en-us-dvorak`, `es`, `es-var`, `fi`, `fi-sami`, `fr`, `fr-ca`, `fr-ch`, `fr-be`, `hr`, `hu`, `hu-101`, `it`, `it-142`, `ja`, `ko`, `lt`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk`, `mk-std`, `no`, `no-sami`, `pol-214`, `pol-pr`, `pt`, `pt-br`, `pt-br-abnt2`, `ru`, `ru-mne`, `ru-t`, `sl`, `sv`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+     */
+    keyboardLayout: string;
     /**
      * Listening port (0 - 65535).
      */
@@ -24082,9 +27104,17 @@ export interface VpnSslWebUserGroupBookmarkBookmark {
      */
     remotePort: number;
     /**
+     * Enable/disable restricted admin mode for RDP. Valid values: `enable`, `disable`.
+     */
+    restrictedAdmin: string;
+    /**
      * Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
      */
     security: string;
+    /**
+     * Enable/disable sending of preconnection ID. Valid values: `enable`, `disable`.
+     */
+    sendPreconnectionId: string;
     /**
      * Server side keyboard layout.
      */
@@ -24117,6 +27147,10 @@ export interface VpnSslWebUserGroupBookmarkBookmark {
      * URL parameter.
      */
     url?: string;
+    /**
+     * Screen width (range from 640 - 65535, default = 1024).
+     */
+    width: number;
 }
 
 export interface VpnSslWebUserGroupBookmarkBookmarkFormData {
@@ -25303,6 +28337,10 @@ export interface WebfilterContentHeaderEntry {
 
 export interface WebfilterProfileAntiphish {
     /**
+     * Authentication methods. Valid values: `domain-controller`, `ldap`.
+     */
+    authentication: string;
+    /**
      * Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `enable`, `disable`.
      */
     checkBasicAuth: string;
@@ -25310,6 +28348,10 @@ export interface WebfilterProfileAntiphish {
      * Enable/disable checking of GET URI parameters for known credentials. Valid values: `enable`, `disable`.
      */
     checkUri: string;
+    /**
+     * Enable/disable username only matching of credentials. Action will be taken for valid usernames regardless of password validity. Valid values: `enable`, `disable`.
+     */
+    checkUsernameOnly: string;
     /**
      * Custom username and password regex patterns. The structure of `customPatterns` block is documented below.
      */
@@ -25326,6 +28368,10 @@ export interface WebfilterProfileAntiphish {
      * AntiPhishing entries. The structure of `inspectionEntries` block is documented below.
      */
     inspectionEntries?: outputs.WebfilterProfileAntiphishInspectionEntry[];
+    /**
+     * LDAP server for which to verify received credentials against.
+     */
+    ldap: string;
     /**
      * Maximum size of a POST body to check for credentials.
      */
@@ -25345,6 +28391,10 @@ export interface WebfilterProfileAntiphishCustomPattern {
      * Target pattern.
      */
     pattern: string;
+    /**
+     * Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
+     */
+    type: string;
 }
 
 export interface WebfilterProfileAntiphishInspectionEntry {
@@ -25526,7 +28576,7 @@ export interface WebfilterProfileFtgdWfQuota {
      */
     overrideReplacemsg: string;
     /**
-     * Quota type. Valid values: `time`, `traffic`.
+     * Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
      */
     type: string;
     /**
@@ -25629,6 +28679,10 @@ export interface WebfilterProfileWeb {
      * URL filter table ID.
      */
     urlfilterTable: number;
+    /**
+     * Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "contentRating".
+     */
+    vimeoRestrict: string;
     /**
      * FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
      */
@@ -25811,6 +28865,13 @@ export interface WirelessControllerApcfgProfileCommandList {
     value: string;
 }
 
+export interface WirelessControllerArrpProfileDarrpOptimizeSchedule {
+    /**
+     * Schedule name.
+     */
+    name: string;
+}
+
 export interface WirelessControllerBonjourProfilePolicyList {
     /**
      * Description.
@@ -25928,6 +28989,63 @@ export interface WirelessControllerHotspot20AnqpVenueNameValueList {
     value: string;
 }
 
+export interface WirelessControllerHotspot20AnqpVenueUrlValueList {
+    /**
+     * URL index.
+     */
+    index: number;
+    /**
+     * Venue number.
+     */
+    number: number;
+    /**
+     * Venue URL value.
+     */
+    value: string;
+}
+
+export interface WirelessControllerHotspot20H2QpAdviceOfChargeAocList {
+    /**
+     * NAI realm list name.
+     */
+    naiRealm: string;
+    /**
+     * NAI realm encoding.
+     */
+    naiRealmEncoding: string;
+    /**
+     * Plan name.
+     */
+    name: string;
+    /**
+     * Plan info. The structure of `planInfo` block is documented below.
+     */
+    planInfos?: outputs.WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo[];
+    /**
+     * Usage charge type. Valid values: `time-based`, `volume-based`, `time-and-volume-based`, `unlimited`.
+     */
+    type: string;
+}
+
+export interface WirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo {
+    /**
+     * Currency code.
+     */
+    currency: string;
+    /**
+     * Info file.
+     */
+    infoFile: string;
+    /**
+     * Languague code.
+     */
+    lang: string;
+    /**
+     * Plan name.
+     */
+    name: string;
+}
+
 export interface WirelessControllerHotspot20H2QpOperatorNameValueList {
     /**
      * Value index.
@@ -25956,6 +29074,17 @@ export interface WirelessControllerHotspot20H2QpOsuProviderFriendlyName {
      * Language code.
      */
     lang: string;
+}
+
+export interface WirelessControllerHotspot20H2QpOsuProviderNaiNaiList {
+    /**
+     * OSU NAI ID.
+     */
+    name: string;
+    /**
+     * OSU NAI.
+     */
+    osuNai: string;
 }
 
 export interface WirelessControllerHotspot20H2QpOsuProviderServiceDescription {
@@ -26310,7 +29439,7 @@ export interface WirelessControllerVapMpskKey {
 
 export interface WirelessControllerVapMpskKeyMpskSchedule {
     /**
-     * Schedule name.
+     * VLAN name.
      */
     name: string;
 }
@@ -26336,23 +29465,34 @@ export interface WirelessControllerVapPortalMessageOverrides {
 
 export interface WirelessControllerVapRadiusMacAuthUsergroup {
     /**
-     * Schedule name.
+     * VLAN name.
      */
     name: string;
 }
 
 export interface WirelessControllerVapSelectedUsergroup {
     /**
-     * Schedule name.
+     * VLAN name.
      */
     name: string;
 }
 
 export interface WirelessControllerVapUsergroup {
     /**
-     * Schedule name.
+     * VLAN name.
      */
     name: string;
+}
+
+export interface WirelessControllerVapVlanName {
+    /**
+     * VLAN name.
+     */
+    name: string;
+    /**
+     * VLAN ID.
+     */
+    vlanId: number;
 }
 
 export interface WirelessControllerVapVlanPool {
@@ -26472,6 +29612,53 @@ export interface WirelessControllerWtpProfileDenyMacList {
      * A WiFi device with this MAC address is denied access to this WTP, FortiAP or AP.
      */
     mac: string;
+}
+
+export interface WirelessControllerWtpProfileEslSesDongle {
+    /**
+     * ESL SES-imagotag APC address type (default = fqdn). Valid values: `fqdn`, `ip`.
+     */
+    apcAddrType: string;
+    /**
+     * FQDN of ESL SES-imagotag Access Point Controller (APC).
+     */
+    apcFqdn: string;
+    /**
+     * IP address of ESL SES-imagotag Access Point Controller (APC).
+     */
+    apcIp: string;
+    /**
+     * Port of ESL SES-imagotag Access Point Controller (APC).
+     */
+    apcPort: number;
+    /**
+     * ESL SES-imagotag dongle coexistence level (default = none). Valid values: `none`.
+     */
+    coexLevel: string;
+    /**
+     * Compliance levels for the ESL solution integration (default = compliance-level-2). Valid values: `compliance-level-2`.
+     */
+    complianceLevel: string;
+    /**
+     * ESL SES-imagotag dongle channel (default = 127). Valid values: `-1`, `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `127`.
+     */
+    eslChannel: string;
+    /**
+     * ESL SES-imagotag dongle output power (default = A). Valid values: `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`.
+     */
+    outputPower: string;
+    /**
+     * Enable/disable ESL SES-imagotag Serial Communication Daemon (SCD) (default = disable). Valid values: `enable`, `disable`.
+     */
+    scdEnable: string;
+    /**
+     * Enable/disable TLS Certificate verification. (default = enable). Valid values: `enable`, `disable`.
+     */
+    tlsCertVerification: string;
+    /**
+     * Enable/disable TLS Certificate verification. (default = disable). Valid values: `enable`, `disable`.
+     */
+    tlsFqdnVerification: string;
 }
 
 export interface WirelessControllerWtpProfileLan {
@@ -26639,6 +29826,14 @@ export interface WirelessControllerWtpProfileLbs {
      */
     fortipresenceServer: string;
     /**
+     * FortiPresence server address type (default = ipv4). Valid values: `ipv4`, `fqdn`.
+     */
+    fortipresenceServerAddrType: string;
+    /**
+     * FQDN of FortiPresence server.
+     */
+    fortipresenceServerFqdn: string;
+    /**
      * Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `enable`, `disable`.
      */
     fortipresenceUnassoc: string;
@@ -26661,7 +29856,7 @@ export interface WirelessControllerWtpProfilePlatform {
      */
     ddscan: string;
     /**
-     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
      */
     mode: string;
     /**
@@ -26716,6 +29911,10 @@ export interface WirelessControllerWtpProfileRadio1 {
      */
     apSnifferMgmtProbe: string;
     /**
+     * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+     */
+    arrpProfile: string;
+    /**
      * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
      */
     autoPowerHigh: number;
@@ -26755,6 +29954,10 @@ export interface WirelessControllerWtpProfileRadio1 {
      * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
      */
     bssColor: number;
+    /**
+     * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+     */
+    bssColorMode: string;
     /**
      * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
      */
@@ -26804,6 +30007,14 @@ export interface WirelessControllerWtpProfileRadio1 {
      */
     frequencyHandoff: string;
     /**
+     * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+     */
+    iperfProtocol: string;
+    /**
+     * Iperf service port number.
+     */
+    iperfServerPort: number;
+    /**
      * Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
      */
     maxClients: number;
@@ -26812,13 +30023,21 @@ export interface WirelessControllerWtpProfileRadio1 {
      */
     maxDistance: number;
     /**
-     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
      */
     mode: string;
     /**
      * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
      */
     powerLevel: number;
+    /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
     /**
      * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
      */
@@ -26835,6 +30054,74 @@ export interface WirelessControllerWtpProfileRadio1 {
      * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
      */
     rtsThreshold: number;
+    /**
+     * BSSID for WiFi network.
+     */
+    samBssid: string;
+    /**
+     * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    samCaptivePortal: string;
+    /**
+     * Failure identification on the page after an incorrect login.
+     */
+    samCwpFailureString: string;
+    /**
+     * Identification string from the captive portal login form.
+     */
+    samCwpMatchString: string;
+    /**
+     * Password for captive portal authentication.
+     */
+    samCwpPassword?: string;
+    /**
+     * Success identification on the page after a successful login.
+     */
+    samCwpSuccessString: string;
+    /**
+     * Website the client is trying to access.
+     */
+    samCwpTestUrl: string;
+    /**
+     * Username for captive portal authentication.
+     */
+    samCwpUsername: string;
+    /**
+     * Passphrase for WiFi network connection.
+     */
+    samPassword?: string;
+    /**
+     * SAM report interval (sec), 0 for a one-time report.
+     */
+    samReportIntv: number;
+    /**
+     * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+     */
+    samSecurityType: string;
+    /**
+     * SAM test server domain name.
+     */
+    samServerFqdn: string;
+    /**
+     * SAM test server IP address.
+     */
+    samServerIp: string;
+    /**
+     * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+     */
+    samServerType: string;
+    /**
+     * SSID for WiFi network.
+     */
+    samSsid: string;
+    /**
+     * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+     */
+    samTest: string;
+    /**
+     * Username for WiFi network connection.
+     */
+    samUsername: string;
     /**
      * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
      */
@@ -26925,6 +30212,10 @@ export interface WirelessControllerWtpProfileRadio2 {
      */
     apSnifferMgmtProbe: string;
     /**
+     * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+     */
+    arrpProfile: string;
+    /**
      * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
      */
     autoPowerHigh: number;
@@ -26964,6 +30255,10 @@ export interface WirelessControllerWtpProfileRadio2 {
      * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
      */
     bssColor: number;
+    /**
+     * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+     */
+    bssColorMode: string;
     /**
      * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
      */
@@ -27013,6 +30308,14 @@ export interface WirelessControllerWtpProfileRadio2 {
      */
     frequencyHandoff: string;
     /**
+     * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+     */
+    iperfProtocol: string;
+    /**
+     * Iperf service port number.
+     */
+    iperfServerPort: number;
+    /**
      * Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
      */
     maxClients: number;
@@ -27021,13 +30324,21 @@ export interface WirelessControllerWtpProfileRadio2 {
      */
     maxDistance: number;
     /**
-     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
      */
     mode: string;
     /**
      * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
      */
     powerLevel: number;
+    /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
     /**
      * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
      */
@@ -27044,6 +30355,74 @@ export interface WirelessControllerWtpProfileRadio2 {
      * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
      */
     rtsThreshold: number;
+    /**
+     * BSSID for WiFi network.
+     */
+    samBssid: string;
+    /**
+     * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    samCaptivePortal: string;
+    /**
+     * Failure identification on the page after an incorrect login.
+     */
+    samCwpFailureString: string;
+    /**
+     * Identification string from the captive portal login form.
+     */
+    samCwpMatchString: string;
+    /**
+     * Password for captive portal authentication.
+     */
+    samCwpPassword?: string;
+    /**
+     * Success identification on the page after a successful login.
+     */
+    samCwpSuccessString: string;
+    /**
+     * Website the client is trying to access.
+     */
+    samCwpTestUrl: string;
+    /**
+     * Username for captive portal authentication.
+     */
+    samCwpUsername: string;
+    /**
+     * Passphrase for WiFi network connection.
+     */
+    samPassword?: string;
+    /**
+     * SAM report interval (sec), 0 for a one-time report.
+     */
+    samReportIntv: number;
+    /**
+     * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+     */
+    samSecurityType: string;
+    /**
+     * SAM test server domain name.
+     */
+    samServerFqdn: string;
+    /**
+     * SAM test server IP address.
+     */
+    samServerIp: string;
+    /**
+     * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+     */
+    samServerType: string;
+    /**
+     * SSID for WiFi network.
+     */
+    samSsid: string;
+    /**
+     * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+     */
+    samTest: string;
+    /**
+     * Username for WiFi network connection.
+     */
+    samUsername: string;
     /**
      * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
      */
@@ -27134,6 +30513,10 @@ export interface WirelessControllerWtpProfileRadio3 {
      */
     apSnifferMgmtProbe: string;
     /**
+     * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+     */
+    arrpProfile: string;
+    /**
      * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
      */
     autoPowerHigh: number;
@@ -27173,6 +30556,10 @@ export interface WirelessControllerWtpProfileRadio3 {
      * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
      */
     bssColor: number;
+    /**
+     * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+     */
+    bssColorMode: string;
     /**
      * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
      */
@@ -27222,6 +30609,14 @@ export interface WirelessControllerWtpProfileRadio3 {
      */
     frequencyHandoff: string;
     /**
+     * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+     */
+    iperfProtocol: string;
+    /**
+     * Iperf service port number.
+     */
+    iperfServerPort: number;
+    /**
      * Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
      */
     maxClients: number;
@@ -27230,13 +30625,21 @@ export interface WirelessControllerWtpProfileRadio3 {
      */
     maxDistance: number;
     /**
-     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
      */
     mode: string;
     /**
      * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
      */
     powerLevel: number;
+    /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
     /**
      * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
      */
@@ -27249,6 +30652,74 @@ export interface WirelessControllerWtpProfileRadio3 {
      * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
      */
     rtsThreshold: number;
+    /**
+     * BSSID for WiFi network.
+     */
+    samBssid: string;
+    /**
+     * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    samCaptivePortal: string;
+    /**
+     * Failure identification on the page after an incorrect login.
+     */
+    samCwpFailureString: string;
+    /**
+     * Identification string from the captive portal login form.
+     */
+    samCwpMatchString: string;
+    /**
+     * Password for captive portal authentication.
+     */
+    samCwpPassword?: string;
+    /**
+     * Success identification on the page after a successful login.
+     */
+    samCwpSuccessString: string;
+    /**
+     * Website the client is trying to access.
+     */
+    samCwpTestUrl: string;
+    /**
+     * Username for captive portal authentication.
+     */
+    samCwpUsername: string;
+    /**
+     * Passphrase for WiFi network connection.
+     */
+    samPassword?: string;
+    /**
+     * SAM report interval (sec), 0 for a one-time report.
+     */
+    samReportIntv: number;
+    /**
+     * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+     */
+    samSecurityType: string;
+    /**
+     * SAM test server domain name.
+     */
+    samServerFqdn: string;
+    /**
+     * SAM test server IP address.
+     */
+    samServerIp: string;
+    /**
+     * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+     */
+    samServerType: string;
+    /**
+     * SSID for WiFi network.
+     */
+    samSsid: string;
+    /**
+     * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+     */
+    samTest: string;
+    /**
+     * Username for WiFi network connection.
+     */
+    samUsername: string;
     /**
      * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
      */
@@ -27339,6 +30810,10 @@ export interface WirelessControllerWtpProfileRadio4 {
      */
     apSnifferMgmtProbe: string;
     /**
+     * Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
+     */
+    arrpProfile: string;
+    /**
      * The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
      */
     autoPowerHigh: number;
@@ -27378,6 +30853,10 @@ export interface WirelessControllerWtpProfileRadio4 {
      * BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
      */
     bssColor: number;
+    /**
+     * BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+     */
+    bssColorMode: string;
     /**
      * Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `enable`, `disable`.
      */
@@ -27427,6 +30906,14 @@ export interface WirelessControllerWtpProfileRadio4 {
      */
     frequencyHandoff: string;
     /**
+     * Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+     */
+    iperfProtocol: string;
+    /**
+     * Iperf service port number.
+     */
+    iperfServerPort: number;
+    /**
      * Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
      */
     maxClients: number;
@@ -27435,13 +30922,21 @@ export interface WirelessControllerWtpProfileRadio4 {
      */
     maxDistance: number;
     /**
-     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+     * Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer.
      */
     mode: string;
     /**
      * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
      */
     powerLevel: number;
+    /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
     /**
      * Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
      */
@@ -27454,6 +30949,74 @@ export interface WirelessControllerWtpProfileRadio4 {
      * Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
      */
     rtsThreshold: number;
+    /**
+     * BSSID for WiFi network.
+     */
+    samBssid: string;
+    /**
+     * Enable/disable Captive Portal Authentication (default = disable). Valid values: `enable`, `disable`.
+     */
+    samCaptivePortal: string;
+    /**
+     * Failure identification on the page after an incorrect login.
+     */
+    samCwpFailureString: string;
+    /**
+     * Identification string from the captive portal login form.
+     */
+    samCwpMatchString: string;
+    /**
+     * Password for captive portal authentication.
+     */
+    samCwpPassword?: string;
+    /**
+     * Success identification on the page after a successful login.
+     */
+    samCwpSuccessString: string;
+    /**
+     * Website the client is trying to access.
+     */
+    samCwpTestUrl: string;
+    /**
+     * Username for captive portal authentication.
+     */
+    samCwpUsername: string;
+    /**
+     * Passphrase for WiFi network connection.
+     */
+    samPassword?: string;
+    /**
+     * SAM report interval (sec), 0 for a one-time report.
+     */
+    samReportIntv: number;
+    /**
+     * Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+     */
+    samSecurityType: string;
+    /**
+     * SAM test server domain name.
+     */
+    samServerFqdn: string;
+    /**
+     * SAM test server IP address.
+     */
+    samServerIp: string;
+    /**
+     * Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+     */
+    samServerType: string;
+    /**
+     * SSID for WiFi network.
+     */
+    samSsid: string;
+    /**
+     * Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+     */
+    samTest: string;
+    /**
+     * Username for WiFi network connection.
+     */
+    samUsername: string;
     /**
      * Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `enable`, `disable`.
      */
@@ -27563,6 +31126,14 @@ export interface WirelessControllerWtpRadio1 {
      */
     powerLevel: number;
     /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
+    /**
      * radio-id
      */
     radioId: number;
@@ -27647,6 +31218,14 @@ export interface WirelessControllerWtpRadio2 {
      * Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
      */
     powerLevel: number;
+    /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
     /**
      * radio-id
      */
@@ -27733,6 +31312,14 @@ export interface WirelessControllerWtpRadio3 {
      */
     powerLevel: number;
     /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
+    /**
      * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
      */
     spectrumAnalysis: string;
@@ -27814,6 +31401,14 @@ export interface WirelessControllerWtpRadio4 {
      */
     powerLevel: number;
     /**
+     * Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+     */
+    powerMode: string;
+    /**
+     * Radio EIRP power in dBm (1 - 33, default = 27).
+     */
+    powerValue: number;
+    /**
      * Enable/disable spectrum analysis to find interference that would negatively impact wireless performance.
      */
     spectrumAnalysis: string;
@@ -27851,3 +31446,4 @@ export interface WirelessControllerWtpSplitTunnelingAcl {
      */
     id: number;
 }
+

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report themes configuration
+// Report themes configuration Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -120,6 +120,7 @@ func NewReportTheme(ctx *pulumi.Context,
 		args = &ReportThemeArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReportTheme
 	err := ctx.RegisterResource("fortios:index/reportTheme:ReportTheme", name, args, &resource, opts...)
 	if err != nil {
@@ -418,7 +419,7 @@ type ReportThemeInput interface {
 }
 
 func (*ReportTheme) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportTheme)(nil))
+	return reflect.TypeOf((**ReportTheme)(nil)).Elem()
 }
 
 func (i *ReportTheme) ToReportThemeOutput() ReportThemeOutput {
@@ -427,35 +428,6 @@ func (i *ReportTheme) ToReportThemeOutput() ReportThemeOutput {
 
 func (i *ReportTheme) ToReportThemeOutputWithContext(ctx context.Context) ReportThemeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportThemeOutput)
-}
-
-func (i *ReportTheme) ToReportThemePtrOutput() ReportThemePtrOutput {
-	return i.ToReportThemePtrOutputWithContext(context.Background())
-}
-
-func (i *ReportTheme) ToReportThemePtrOutputWithContext(ctx context.Context) ReportThemePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportThemePtrOutput)
-}
-
-type ReportThemePtrInput interface {
-	pulumi.Input
-
-	ToReportThemePtrOutput() ReportThemePtrOutput
-	ToReportThemePtrOutputWithContext(ctx context.Context) ReportThemePtrOutput
-}
-
-type reportThemePtrType ReportThemeArgs
-
-func (*reportThemePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportTheme)(nil))
-}
-
-func (i *reportThemePtrType) ToReportThemePtrOutput() ReportThemePtrOutput {
-	return i.ToReportThemePtrOutputWithContext(context.Background())
-}
-
-func (i *reportThemePtrType) ToReportThemePtrOutputWithContext(ctx context.Context) ReportThemePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportThemePtrOutput)
 }
 
 // ReportThemeArrayInput is an input type that accepts ReportThemeArray and ReportThemeArrayOutput values.
@@ -472,7 +444,7 @@ type ReportThemeArrayInput interface {
 type ReportThemeArray []ReportThemeInput
 
 func (ReportThemeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ReportTheme)(nil))
+	return reflect.TypeOf((*[]*ReportTheme)(nil)).Elem()
 }
 
 func (i ReportThemeArray) ToReportThemeArrayOutput() ReportThemeArrayOutput {
@@ -497,7 +469,7 @@ type ReportThemeMapInput interface {
 type ReportThemeMap map[string]ReportThemeInput
 
 func (ReportThemeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ReportTheme)(nil))
+	return reflect.TypeOf((*map[string]*ReportTheme)(nil)).Elem()
 }
 
 func (i ReportThemeMap) ToReportThemeMapOutput() ReportThemeMapOutput {
@@ -508,12 +480,10 @@ func (i ReportThemeMap) ToReportThemeMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(ReportThemeMapOutput)
 }
 
-type ReportThemeOutput struct {
-	*pulumi.OutputState
-}
+type ReportThemeOutput struct{ *pulumi.OutputState }
 
 func (ReportThemeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportTheme)(nil))
+	return reflect.TypeOf((**ReportTheme)(nil)).Elem()
 }
 
 func (o ReportThemeOutput) ToReportThemeOutput() ReportThemeOutput {
@@ -524,36 +494,10 @@ func (o ReportThemeOutput) ToReportThemeOutputWithContext(ctx context.Context) R
 	return o
 }
 
-func (o ReportThemeOutput) ToReportThemePtrOutput() ReportThemePtrOutput {
-	return o.ToReportThemePtrOutputWithContext(context.Background())
-}
-
-func (o ReportThemeOutput) ToReportThemePtrOutputWithContext(ctx context.Context) ReportThemePtrOutput {
-	return o.ApplyT(func(v ReportTheme) *ReportTheme {
-		return &v
-	}).(ReportThemePtrOutput)
-}
-
-type ReportThemePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ReportThemePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportTheme)(nil))
-}
-
-func (o ReportThemePtrOutput) ToReportThemePtrOutput() ReportThemePtrOutput {
-	return o
-}
-
-func (o ReportThemePtrOutput) ToReportThemePtrOutputWithContext(ctx context.Context) ReportThemePtrOutput {
-	return o
-}
-
 type ReportThemeArrayOutput struct{ *pulumi.OutputState }
 
 func (ReportThemeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ReportTheme)(nil))
+	return reflect.TypeOf((*[]*ReportTheme)(nil)).Elem()
 }
 
 func (o ReportThemeArrayOutput) ToReportThemeArrayOutput() ReportThemeArrayOutput {
@@ -565,15 +509,15 @@ func (o ReportThemeArrayOutput) ToReportThemeArrayOutputWithContext(ctx context.
 }
 
 func (o ReportThemeArrayOutput) Index(i pulumi.IntInput) ReportThemeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportTheme {
-		return vs[0].([]ReportTheme)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportTheme {
+		return vs[0].([]*ReportTheme)[vs[1].(int)]
 	}).(ReportThemeOutput)
 }
 
 type ReportThemeMapOutput struct{ *pulumi.OutputState }
 
 func (ReportThemeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ReportTheme)(nil))
+	return reflect.TypeOf((*map[string]*ReportTheme)(nil)).Elem()
 }
 
 func (o ReportThemeMapOutput) ToReportThemeMapOutput() ReportThemeMapOutput {
@@ -585,14 +529,16 @@ func (o ReportThemeMapOutput) ToReportThemeMapOutputWithContext(ctx context.Cont
 }
 
 func (o ReportThemeMapOutput) MapIndex(k pulumi.StringInput) ReportThemeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ReportTheme {
-		return vs[0].(map[string]ReportTheme)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ReportTheme {
+		return vs[0].(map[string]*ReportTheme)[vs[1].(string)]
 	}).(ReportThemeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportThemeInput)(nil)).Elem(), &ReportTheme{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportThemeArrayInput)(nil)).Elem(), ReportThemeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportThemeMapInput)(nil)).Elem(), ReportThemeMap{})
 	pulumi.RegisterOutputType(ReportThemeOutput{})
-	pulumi.RegisterOutputType(ReportThemePtrOutput{})
 	pulumi.RegisterOutputType(ReportThemeArrayOutput{})
 	pulumi.RegisterOutputType(ReportThemeMapOutput{})
 }

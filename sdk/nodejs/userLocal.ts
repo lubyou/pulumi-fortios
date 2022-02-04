@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const trname3 = new fortios.UserLdap("trname3", {
  *     accountKeyFilter: `(&(userPrincipalName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))`,
@@ -183,6 +183,10 @@ export class UserLocal extends pulumi.CustomResource {
      */
     public readonly usernameCaseSensitivity!: pulumi.Output<string>;
     /**
+     * Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+     */
+    public readonly usernameSensitivity!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -200,37 +204,38 @@ export class UserLocal extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserLocalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserLocalArgs | UserLocalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserLocalState | undefined;
-            inputs["authConcurrentOverride"] = state ? state.authConcurrentOverride : undefined;
-            inputs["authConcurrentValue"] = state ? state.authConcurrentValue : undefined;
-            inputs["authtimeout"] = state ? state.authtimeout : undefined;
-            inputs["emailTo"] = state ? state.emailTo : undefined;
-            inputs["fortitoken"] = state ? state.fortitoken : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["ldapServer"] = state ? state.ldapServer : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["passwd"] = state ? state.passwd : undefined;
-            inputs["passwdPolicy"] = state ? state.passwdPolicy : undefined;
-            inputs["passwdTime"] = state ? state.passwdTime : undefined;
-            inputs["ppkIdentity"] = state ? state.ppkIdentity : undefined;
-            inputs["ppkSecret"] = state ? state.ppkSecret : undefined;
-            inputs["radiusServer"] = state ? state.radiusServer : undefined;
-            inputs["smsCustomServer"] = state ? state.smsCustomServer : undefined;
-            inputs["smsPhone"] = state ? state.smsPhone : undefined;
-            inputs["smsServer"] = state ? state.smsServer : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tacacsServer"] = state ? state.tacacsServer : undefined;
-            inputs["twoFactor"] = state ? state.twoFactor : undefined;
-            inputs["twoFactorAuthentication"] = state ? state.twoFactorAuthentication : undefined;
-            inputs["twoFactorNotification"] = state ? state.twoFactorNotification : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["usernameCaseInsensitivity"] = state ? state.usernameCaseInsensitivity : undefined;
-            inputs["usernameCaseSensitivity"] = state ? state.usernameCaseSensitivity : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["workstation"] = state ? state.workstation : undefined;
+            resourceInputs["authConcurrentOverride"] = state ? state.authConcurrentOverride : undefined;
+            resourceInputs["authConcurrentValue"] = state ? state.authConcurrentValue : undefined;
+            resourceInputs["authtimeout"] = state ? state.authtimeout : undefined;
+            resourceInputs["emailTo"] = state ? state.emailTo : undefined;
+            resourceInputs["fortitoken"] = state ? state.fortitoken : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["passwd"] = state ? state.passwd : undefined;
+            resourceInputs["passwdPolicy"] = state ? state.passwdPolicy : undefined;
+            resourceInputs["passwdTime"] = state ? state.passwdTime : undefined;
+            resourceInputs["ppkIdentity"] = state ? state.ppkIdentity : undefined;
+            resourceInputs["ppkSecret"] = state ? state.ppkSecret : undefined;
+            resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
+            resourceInputs["smsCustomServer"] = state ? state.smsCustomServer : undefined;
+            resourceInputs["smsPhone"] = state ? state.smsPhone : undefined;
+            resourceInputs["smsServer"] = state ? state.smsServer : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tacacsServer"] = state ? state.tacacsServer : undefined;
+            resourceInputs["twoFactor"] = state ? state.twoFactor : undefined;
+            resourceInputs["twoFactorAuthentication"] = state ? state.twoFactorAuthentication : undefined;
+            resourceInputs["twoFactorNotification"] = state ? state.twoFactorNotification : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["usernameCaseInsensitivity"] = state ? state.usernameCaseInsensitivity : undefined;
+            resourceInputs["usernameCaseSensitivity"] = state ? state.usernameCaseSensitivity : undefined;
+            resourceInputs["usernameSensitivity"] = state ? state.usernameSensitivity : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["workstation"] = state ? state.workstation : undefined;
         } else {
             const args = argsOrState as UserLocalArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
@@ -239,38 +244,37 @@ export class UserLocal extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["authConcurrentOverride"] = args ? args.authConcurrentOverride : undefined;
-            inputs["authConcurrentValue"] = args ? args.authConcurrentValue : undefined;
-            inputs["authtimeout"] = args ? args.authtimeout : undefined;
-            inputs["emailTo"] = args ? args.emailTo : undefined;
-            inputs["fortitoken"] = args ? args.fortitoken : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["ldapServer"] = args ? args.ldapServer : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["passwd"] = args ? args.passwd : undefined;
-            inputs["passwdPolicy"] = args ? args.passwdPolicy : undefined;
-            inputs["passwdTime"] = args ? args.passwdTime : undefined;
-            inputs["ppkIdentity"] = args ? args.ppkIdentity : undefined;
-            inputs["ppkSecret"] = args ? args.ppkSecret : undefined;
-            inputs["radiusServer"] = args ? args.radiusServer : undefined;
-            inputs["smsCustomServer"] = args ? args.smsCustomServer : undefined;
-            inputs["smsPhone"] = args ? args.smsPhone : undefined;
-            inputs["smsServer"] = args ? args.smsServer : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tacacsServer"] = args ? args.tacacsServer : undefined;
-            inputs["twoFactor"] = args ? args.twoFactor : undefined;
-            inputs["twoFactorAuthentication"] = args ? args.twoFactorAuthentication : undefined;
-            inputs["twoFactorNotification"] = args ? args.twoFactorNotification : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["usernameCaseInsensitivity"] = args ? args.usernameCaseInsensitivity : undefined;
-            inputs["usernameCaseSensitivity"] = args ? args.usernameCaseSensitivity : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["workstation"] = args ? args.workstation : undefined;
+            resourceInputs["authConcurrentOverride"] = args ? args.authConcurrentOverride : undefined;
+            resourceInputs["authConcurrentValue"] = args ? args.authConcurrentValue : undefined;
+            resourceInputs["authtimeout"] = args ? args.authtimeout : undefined;
+            resourceInputs["emailTo"] = args ? args.emailTo : undefined;
+            resourceInputs["fortitoken"] = args ? args.fortitoken : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["passwd"] = args ? args.passwd : undefined;
+            resourceInputs["passwdPolicy"] = args ? args.passwdPolicy : undefined;
+            resourceInputs["passwdTime"] = args ? args.passwdTime : undefined;
+            resourceInputs["ppkIdentity"] = args ? args.ppkIdentity : undefined;
+            resourceInputs["ppkSecret"] = args ? args.ppkSecret : undefined;
+            resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
+            resourceInputs["smsCustomServer"] = args ? args.smsCustomServer : undefined;
+            resourceInputs["smsPhone"] = args ? args.smsPhone : undefined;
+            resourceInputs["smsServer"] = args ? args.smsServer : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tacacsServer"] = args ? args.tacacsServer : undefined;
+            resourceInputs["twoFactor"] = args ? args.twoFactor : undefined;
+            resourceInputs["twoFactorAuthentication"] = args ? args.twoFactorAuthentication : undefined;
+            resourceInputs["twoFactorNotification"] = args ? args.twoFactorNotification : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["usernameCaseInsensitivity"] = args ? args.usernameCaseInsensitivity : undefined;
+            resourceInputs["usernameCaseSensitivity"] = args ? args.usernameCaseSensitivity : undefined;
+            resourceInputs["usernameSensitivity"] = args ? args.usernameSensitivity : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["workstation"] = args ? args.workstation : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserLocal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserLocal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -378,6 +382,10 @@ export interface UserLocalState {
      * Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
      */
     usernameCaseSensitivity?: pulumi.Input<string>;
+    /**
+     * Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+     */
+    usernameSensitivity?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -492,6 +500,10 @@ export interface UserLocalArgs {
      * Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
      */
     usernameCaseSensitivity?: pulumi.Input<string>;
+    /**
+     * Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+     */
+    usernameSensitivity?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

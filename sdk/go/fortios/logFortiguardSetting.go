@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -53,6 +53,8 @@ import (
 type LogFortiguardSetting struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig pulumi.StringOutput `pulumi:"accessConfig"`
 	// FortiGate Cloud connection timeout in seconds.
 	ConnTimeout pulumi.IntOutput `pulumi:"connTimeout"`
 	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
@@ -90,6 +92,7 @@ func NewLogFortiguardSetting(ctx *pulumi.Context,
 		args = &LogFortiguardSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortiguardSetting
 	err := ctx.RegisterResource("fortios:index/logFortiguardSetting:LogFortiguardSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -112,6 +115,8 @@ func GetLogFortiguardSetting(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering LogFortiguardSetting resources.
 type logFortiguardSettingState struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig *string `pulumi:"accessConfig"`
 	// FortiGate Cloud connection timeout in seconds.
 	ConnTimeout *int `pulumi:"connTimeout"`
 	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
@@ -143,6 +148,8 @@ type logFortiguardSettingState struct {
 }
 
 type LogFortiguardSettingState struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig pulumi.StringPtrInput
 	// FortiGate Cloud connection timeout in seconds.
 	ConnTimeout pulumi.IntPtrInput
 	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
@@ -178,6 +185,8 @@ func (LogFortiguardSettingState) ElementType() reflect.Type {
 }
 
 type logFortiguardSettingArgs struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig *string `pulumi:"accessConfig"`
 	// FortiGate Cloud connection timeout in seconds.
 	ConnTimeout *int `pulumi:"connTimeout"`
 	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
@@ -210,6 +219,8 @@ type logFortiguardSettingArgs struct {
 
 // The set of arguments for constructing a LogFortiguardSetting resource.
 type LogFortiguardSettingArgs struct {
+	// Enable/disable FortiCloud access to configuration and data. Valid values: `enable`, `disable`.
+	AccessConfig pulumi.StringPtrInput
 	// FortiGate Cloud connection timeout in seconds.
 	ConnTimeout pulumi.IntPtrInput
 	// Enable and set the SSL security level for for sending encrypted logs to FortiCloud. Valid values: `high-medium`, `high`, `low`.
@@ -252,7 +263,7 @@ type LogFortiguardSettingInput interface {
 }
 
 func (*LogFortiguardSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardSetting)(nil))
+	return reflect.TypeOf((**LogFortiguardSetting)(nil)).Elem()
 }
 
 func (i *LogFortiguardSetting) ToLogFortiguardSettingOutput() LogFortiguardSettingOutput {
@@ -261,35 +272,6 @@ func (i *LogFortiguardSetting) ToLogFortiguardSettingOutput() LogFortiguardSetti
 
 func (i *LogFortiguardSetting) ToLogFortiguardSettingOutputWithContext(ctx context.Context) LogFortiguardSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingOutput)
-}
-
-func (i *LogFortiguardSetting) ToLogFortiguardSettingPtrOutput() LogFortiguardSettingPtrOutput {
-	return i.ToLogFortiguardSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortiguardSetting) ToLogFortiguardSettingPtrOutputWithContext(ctx context.Context) LogFortiguardSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingPtrOutput)
-}
-
-type LogFortiguardSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogFortiguardSettingPtrOutput() LogFortiguardSettingPtrOutput
-	ToLogFortiguardSettingPtrOutputWithContext(ctx context.Context) LogFortiguardSettingPtrOutput
-}
-
-type logFortiguardSettingPtrType LogFortiguardSettingArgs
-
-func (*logFortiguardSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardSetting)(nil))
-}
-
-func (i *logFortiguardSettingPtrType) ToLogFortiguardSettingPtrOutput() LogFortiguardSettingPtrOutput {
-	return i.ToLogFortiguardSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortiguardSettingPtrType) ToLogFortiguardSettingPtrOutputWithContext(ctx context.Context) LogFortiguardSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingPtrOutput)
 }
 
 // LogFortiguardSettingArrayInput is an input type that accepts LogFortiguardSettingArray and LogFortiguardSettingArrayOutput values.
@@ -306,7 +288,7 @@ type LogFortiguardSettingArrayInput interface {
 type LogFortiguardSettingArray []LogFortiguardSettingInput
 
 func (LogFortiguardSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortiguardSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardSetting)(nil)).Elem()
 }
 
 func (i LogFortiguardSettingArray) ToLogFortiguardSettingArrayOutput() LogFortiguardSettingArrayOutput {
@@ -331,7 +313,7 @@ type LogFortiguardSettingMapInput interface {
 type LogFortiguardSettingMap map[string]LogFortiguardSettingInput
 
 func (LogFortiguardSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortiguardSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardSetting)(nil)).Elem()
 }
 
 func (i LogFortiguardSettingMap) ToLogFortiguardSettingMapOutput() LogFortiguardSettingMapOutput {
@@ -342,12 +324,10 @@ func (i LogFortiguardSettingMap) ToLogFortiguardSettingMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardSettingMapOutput)
 }
 
-type LogFortiguardSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogFortiguardSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardSetting)(nil))
+	return reflect.TypeOf((**LogFortiguardSetting)(nil)).Elem()
 }
 
 func (o LogFortiguardSettingOutput) ToLogFortiguardSettingOutput() LogFortiguardSettingOutput {
@@ -358,36 +338,10 @@ func (o LogFortiguardSettingOutput) ToLogFortiguardSettingOutputWithContext(ctx 
 	return o
 }
 
-func (o LogFortiguardSettingOutput) ToLogFortiguardSettingPtrOutput() LogFortiguardSettingPtrOutput {
-	return o.ToLogFortiguardSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortiguardSettingOutput) ToLogFortiguardSettingPtrOutputWithContext(ctx context.Context) LogFortiguardSettingPtrOutput {
-	return o.ApplyT(func(v LogFortiguardSetting) *LogFortiguardSetting {
-		return &v
-	}).(LogFortiguardSettingPtrOutput)
-}
-
-type LogFortiguardSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortiguardSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardSetting)(nil))
-}
-
-func (o LogFortiguardSettingPtrOutput) ToLogFortiguardSettingPtrOutput() LogFortiguardSettingPtrOutput {
-	return o
-}
-
-func (o LogFortiguardSettingPtrOutput) ToLogFortiguardSettingPtrOutputWithContext(ctx context.Context) LogFortiguardSettingPtrOutput {
-	return o
-}
-
 type LogFortiguardSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortiguardSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardSetting)(nil)).Elem()
 }
 
 func (o LogFortiguardSettingArrayOutput) ToLogFortiguardSettingArrayOutput() LogFortiguardSettingArrayOutput {
@@ -399,15 +353,15 @@ func (o LogFortiguardSettingArrayOutput) ToLogFortiguardSettingArrayOutputWithCo
 }
 
 func (o LogFortiguardSettingArrayOutput) Index(i pulumi.IntInput) LogFortiguardSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortiguardSetting {
-		return vs[0].([]LogFortiguardSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardSetting {
+		return vs[0].([]*LogFortiguardSetting)[vs[1].(int)]
 	}).(LogFortiguardSettingOutput)
 }
 
 type LogFortiguardSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortiguardSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardSetting)(nil)).Elem()
 }
 
 func (o LogFortiguardSettingMapOutput) ToLogFortiguardSettingMapOutput() LogFortiguardSettingMapOutput {
@@ -419,14 +373,16 @@ func (o LogFortiguardSettingMapOutput) ToLogFortiguardSettingMapOutputWithContex
 }
 
 func (o LogFortiguardSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortiguardSetting {
-		return vs[0].(map[string]LogFortiguardSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortiguardSetting {
+		return vs[0].(map[string]*LogFortiguardSetting)[vs[1].(string)]
 	}).(LogFortiguardSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardSettingInput)(nil)).Elem(), &LogFortiguardSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardSettingArrayInput)(nil)).Elem(), LogFortiguardSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardSettingMapInput)(nil)).Elem(), LogFortiguardSettingMap{})
 	pulumi.RegisterOutputType(LogFortiguardSettingOutput{})
-	pulumi.RegisterOutputType(LogFortiguardSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogFortiguardSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogFortiguardSettingMapOutput{})
 }

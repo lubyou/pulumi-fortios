@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewSwitchControllerCustomCommand(ctx *pulumi.Context,
 	if args.Command == nil {
 		return nil, errors.New("invalid value for required argument 'Command'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerCustomCommand
 	err := ctx.RegisterResource("fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand", name, args, &resource, opts...)
 	if err != nil {
@@ -151,7 +152,7 @@ type SwitchControllerCustomCommandInput interface {
 }
 
 func (*SwitchControllerCustomCommand) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerCustomCommand)(nil))
+	return reflect.TypeOf((**SwitchControllerCustomCommand)(nil)).Elem()
 }
 
 func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandOutput() SwitchControllerCustomCommandOutput {
@@ -160,35 +161,6 @@ func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandOutput() 
 
 func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandOutputWithContext(ctx context.Context) SwitchControllerCustomCommandOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandOutput)
-}
-
-func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandPtrOutput() SwitchControllerCustomCommandPtrOutput {
-	return i.ToSwitchControllerCustomCommandPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerCustomCommand) ToSwitchControllerCustomCommandPtrOutputWithContext(ctx context.Context) SwitchControllerCustomCommandPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandPtrOutput)
-}
-
-type SwitchControllerCustomCommandPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerCustomCommandPtrOutput() SwitchControllerCustomCommandPtrOutput
-	ToSwitchControllerCustomCommandPtrOutputWithContext(ctx context.Context) SwitchControllerCustomCommandPtrOutput
-}
-
-type switchControllerCustomCommandPtrType SwitchControllerCustomCommandArgs
-
-func (*switchControllerCustomCommandPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerCustomCommand)(nil))
-}
-
-func (i *switchControllerCustomCommandPtrType) ToSwitchControllerCustomCommandPtrOutput() SwitchControllerCustomCommandPtrOutput {
-	return i.ToSwitchControllerCustomCommandPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerCustomCommandPtrType) ToSwitchControllerCustomCommandPtrOutputWithContext(ctx context.Context) SwitchControllerCustomCommandPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandPtrOutput)
 }
 
 // SwitchControllerCustomCommandArrayInput is an input type that accepts SwitchControllerCustomCommandArray and SwitchControllerCustomCommandArrayOutput values.
@@ -205,7 +177,7 @@ type SwitchControllerCustomCommandArrayInput interface {
 type SwitchControllerCustomCommandArray []SwitchControllerCustomCommandInput
 
 func (SwitchControllerCustomCommandArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerCustomCommand)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerCustomCommand)(nil)).Elem()
 }
 
 func (i SwitchControllerCustomCommandArray) ToSwitchControllerCustomCommandArrayOutput() SwitchControllerCustomCommandArrayOutput {
@@ -230,7 +202,7 @@ type SwitchControllerCustomCommandMapInput interface {
 type SwitchControllerCustomCommandMap map[string]SwitchControllerCustomCommandInput
 
 func (SwitchControllerCustomCommandMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerCustomCommand)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerCustomCommand)(nil)).Elem()
 }
 
 func (i SwitchControllerCustomCommandMap) ToSwitchControllerCustomCommandMapOutput() SwitchControllerCustomCommandMapOutput {
@@ -241,12 +213,10 @@ func (i SwitchControllerCustomCommandMap) ToSwitchControllerCustomCommandMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerCustomCommandMapOutput)
 }
 
-type SwitchControllerCustomCommandOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerCustomCommandOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerCustomCommandOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerCustomCommand)(nil))
+	return reflect.TypeOf((**SwitchControllerCustomCommand)(nil)).Elem()
 }
 
 func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandOutput() SwitchControllerCustomCommandOutput {
@@ -257,36 +227,10 @@ func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandOutp
 	return o
 }
 
-func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandPtrOutput() SwitchControllerCustomCommandPtrOutput {
-	return o.ToSwitchControllerCustomCommandPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerCustomCommandOutput) ToSwitchControllerCustomCommandPtrOutputWithContext(ctx context.Context) SwitchControllerCustomCommandPtrOutput {
-	return o.ApplyT(func(v SwitchControllerCustomCommand) *SwitchControllerCustomCommand {
-		return &v
-	}).(SwitchControllerCustomCommandPtrOutput)
-}
-
-type SwitchControllerCustomCommandPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerCustomCommandPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerCustomCommand)(nil))
-}
-
-func (o SwitchControllerCustomCommandPtrOutput) ToSwitchControllerCustomCommandPtrOutput() SwitchControllerCustomCommandPtrOutput {
-	return o
-}
-
-func (o SwitchControllerCustomCommandPtrOutput) ToSwitchControllerCustomCommandPtrOutputWithContext(ctx context.Context) SwitchControllerCustomCommandPtrOutput {
-	return o
-}
-
 type SwitchControllerCustomCommandArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerCustomCommandArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerCustomCommand)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerCustomCommand)(nil)).Elem()
 }
 
 func (o SwitchControllerCustomCommandArrayOutput) ToSwitchControllerCustomCommandArrayOutput() SwitchControllerCustomCommandArrayOutput {
@@ -298,15 +242,15 @@ func (o SwitchControllerCustomCommandArrayOutput) ToSwitchControllerCustomComman
 }
 
 func (o SwitchControllerCustomCommandArrayOutput) Index(i pulumi.IntInput) SwitchControllerCustomCommandOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerCustomCommand {
-		return vs[0].([]SwitchControllerCustomCommand)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerCustomCommand {
+		return vs[0].([]*SwitchControllerCustomCommand)[vs[1].(int)]
 	}).(SwitchControllerCustomCommandOutput)
 }
 
 type SwitchControllerCustomCommandMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerCustomCommandMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerCustomCommand)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerCustomCommand)(nil)).Elem()
 }
 
 func (o SwitchControllerCustomCommandMapOutput) ToSwitchControllerCustomCommandMapOutput() SwitchControllerCustomCommandMapOutput {
@@ -318,14 +262,16 @@ func (o SwitchControllerCustomCommandMapOutput) ToSwitchControllerCustomCommandM
 }
 
 func (o SwitchControllerCustomCommandMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerCustomCommandOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerCustomCommand {
-		return vs[0].(map[string]SwitchControllerCustomCommand)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerCustomCommand {
+		return vs[0].(map[string]*SwitchControllerCustomCommand)[vs[1].(string)]
 	}).(SwitchControllerCustomCommandOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerCustomCommandInput)(nil)).Elem(), &SwitchControllerCustomCommand{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerCustomCommandArrayInput)(nil)).Elem(), SwitchControllerCustomCommandArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerCustomCommandMapInput)(nil)).Elem(), SwitchControllerCustomCommandMap{})
 	pulumi.RegisterOutputType(SwitchControllerCustomCommandOutput{})
-	pulumi.RegisterOutputType(SwitchControllerCustomCommandPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerCustomCommandArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerCustomCommandMapOutput{})
 }

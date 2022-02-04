@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -57,6 +57,8 @@ import (
 type FirewallIppool struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route pulumi.StringOutput `pulumi:"addNat64Route"`
 	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 	ArpIntf pulumi.StringOutput `pulumi:"arpIntf"`
 	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
@@ -73,6 +75,8 @@ type FirewallIppool struct {
 	Endport pulumi.IntOutput `pulumi:"endport"`
 	// IP pool name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable NAT64. Valid values: `disable`, `enable`.
+	Nat64 pulumi.StringOutput `pulumi:"nat64"`
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser pulumi.IntOutput `pulumi:"numBlocksPerUser"`
 	// Port block allocation timeout (seconds).
@@ -108,6 +112,7 @@ func NewFirewallIppool(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallIppool
 	err := ctx.RegisterResource("fortios:index/firewallIppool:FirewallIppool", name, args, &resource, opts...)
 	if err != nil {
@@ -130,6 +135,8 @@ func GetFirewallIppool(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallIppool resources.
 type firewallIppoolState struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route *string `pulumi:"addNat64Route"`
 	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 	ArpIntf *string `pulumi:"arpIntf"`
 	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
@@ -146,6 +153,8 @@ type firewallIppoolState struct {
 	Endport *int `pulumi:"endport"`
 	// IP pool name.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAT64. Valid values: `disable`, `enable`.
+	Nat64 *string `pulumi:"nat64"`
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser *int `pulumi:"numBlocksPerUser"`
 	// Port block allocation timeout (seconds).
@@ -169,6 +178,8 @@ type firewallIppoolState struct {
 }
 
 type FirewallIppoolState struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route pulumi.StringPtrInput
 	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 	ArpIntf pulumi.StringPtrInput
 	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
@@ -185,6 +196,8 @@ type FirewallIppoolState struct {
 	Endport pulumi.IntPtrInput
 	// IP pool name.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `disable`, `enable`.
+	Nat64 pulumi.StringPtrInput
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser pulumi.IntPtrInput
 	// Port block allocation timeout (seconds).
@@ -212,6 +225,8 @@ func (FirewallIppoolState) ElementType() reflect.Type {
 }
 
 type firewallIppoolArgs struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route *string `pulumi:"addNat64Route"`
 	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 	ArpIntf *string `pulumi:"arpIntf"`
 	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
@@ -228,6 +243,8 @@ type firewallIppoolArgs struct {
 	Endport *int `pulumi:"endport"`
 	// IP pool name.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAT64. Valid values: `disable`, `enable`.
+	Nat64 *string `pulumi:"nat64"`
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser *int `pulumi:"numBlocksPerUser"`
 	// Port block allocation timeout (seconds).
@@ -252,6 +269,8 @@ type firewallIppoolArgs struct {
 
 // The set of arguments for constructing a FirewallIppool resource.
 type FirewallIppoolArgs struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route pulumi.StringPtrInput
 	// Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 	ArpIntf pulumi.StringPtrInput
 	// Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
@@ -268,6 +287,8 @@ type FirewallIppoolArgs struct {
 	Endport pulumi.IntPtrInput
 	// IP pool name.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `disable`, `enable`.
+	Nat64 pulumi.StringPtrInput
 	// Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 	NumBlocksPerUser pulumi.IntPtrInput
 	// Port block allocation timeout (seconds).
@@ -302,7 +323,7 @@ type FirewallIppoolInput interface {
 }
 
 func (*FirewallIppool) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIppool)(nil))
+	return reflect.TypeOf((**FirewallIppool)(nil)).Elem()
 }
 
 func (i *FirewallIppool) ToFirewallIppoolOutput() FirewallIppoolOutput {
@@ -311,35 +332,6 @@ func (i *FirewallIppool) ToFirewallIppoolOutput() FirewallIppoolOutput {
 
 func (i *FirewallIppool) ToFirewallIppoolOutputWithContext(ctx context.Context) FirewallIppoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppoolOutput)
-}
-
-func (i *FirewallIppool) ToFirewallIppoolPtrOutput() FirewallIppoolPtrOutput {
-	return i.ToFirewallIppoolPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallIppool) ToFirewallIppoolPtrOutputWithContext(ctx context.Context) FirewallIppoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppoolPtrOutput)
-}
-
-type FirewallIppoolPtrInput interface {
-	pulumi.Input
-
-	ToFirewallIppoolPtrOutput() FirewallIppoolPtrOutput
-	ToFirewallIppoolPtrOutputWithContext(ctx context.Context) FirewallIppoolPtrOutput
-}
-
-type firewallIppoolPtrType FirewallIppoolArgs
-
-func (*firewallIppoolPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIppool)(nil))
-}
-
-func (i *firewallIppoolPtrType) ToFirewallIppoolPtrOutput() FirewallIppoolPtrOutput {
-	return i.ToFirewallIppoolPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallIppoolPtrType) ToFirewallIppoolPtrOutputWithContext(ctx context.Context) FirewallIppoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppoolPtrOutput)
 }
 
 // FirewallIppoolArrayInput is an input type that accepts FirewallIppoolArray and FirewallIppoolArrayOutput values.
@@ -356,7 +348,7 @@ type FirewallIppoolArrayInput interface {
 type FirewallIppoolArray []FirewallIppoolInput
 
 func (FirewallIppoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallIppool)(nil))
+	return reflect.TypeOf((*[]*FirewallIppool)(nil)).Elem()
 }
 
 func (i FirewallIppoolArray) ToFirewallIppoolArrayOutput() FirewallIppoolArrayOutput {
@@ -381,7 +373,7 @@ type FirewallIppoolMapInput interface {
 type FirewallIppoolMap map[string]FirewallIppoolInput
 
 func (FirewallIppoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallIppool)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIppool)(nil)).Elem()
 }
 
 func (i FirewallIppoolMap) ToFirewallIppoolMapOutput() FirewallIppoolMapOutput {
@@ -392,12 +384,10 @@ func (i FirewallIppoolMap) ToFirewallIppoolMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallIppoolMapOutput)
 }
 
-type FirewallIppoolOutput struct {
-	*pulumi.OutputState
-}
+type FirewallIppoolOutput struct{ *pulumi.OutputState }
 
 func (FirewallIppoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallIppool)(nil))
+	return reflect.TypeOf((**FirewallIppool)(nil)).Elem()
 }
 
 func (o FirewallIppoolOutput) ToFirewallIppoolOutput() FirewallIppoolOutput {
@@ -408,36 +398,10 @@ func (o FirewallIppoolOutput) ToFirewallIppoolOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o FirewallIppoolOutput) ToFirewallIppoolPtrOutput() FirewallIppoolPtrOutput {
-	return o.ToFirewallIppoolPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallIppoolOutput) ToFirewallIppoolPtrOutputWithContext(ctx context.Context) FirewallIppoolPtrOutput {
-	return o.ApplyT(func(v FirewallIppool) *FirewallIppool {
-		return &v
-	}).(FirewallIppoolPtrOutput)
-}
-
-type FirewallIppoolPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallIppoolPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallIppool)(nil))
-}
-
-func (o FirewallIppoolPtrOutput) ToFirewallIppoolPtrOutput() FirewallIppoolPtrOutput {
-	return o
-}
-
-func (o FirewallIppoolPtrOutput) ToFirewallIppoolPtrOutputWithContext(ctx context.Context) FirewallIppoolPtrOutput {
-	return o
-}
-
 type FirewallIppoolArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallIppoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallIppool)(nil))
+	return reflect.TypeOf((*[]*FirewallIppool)(nil)).Elem()
 }
 
 func (o FirewallIppoolArrayOutput) ToFirewallIppoolArrayOutput() FirewallIppoolArrayOutput {
@@ -449,15 +413,15 @@ func (o FirewallIppoolArrayOutput) ToFirewallIppoolArrayOutputWithContext(ctx co
 }
 
 func (o FirewallIppoolArrayOutput) Index(i pulumi.IntInput) FirewallIppoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallIppool {
-		return vs[0].([]FirewallIppool)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallIppool {
+		return vs[0].([]*FirewallIppool)[vs[1].(int)]
 	}).(FirewallIppoolOutput)
 }
 
 type FirewallIppoolMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallIppoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallIppool)(nil))
+	return reflect.TypeOf((*map[string]*FirewallIppool)(nil)).Elem()
 }
 
 func (o FirewallIppoolMapOutput) ToFirewallIppoolMapOutput() FirewallIppoolMapOutput {
@@ -469,14 +433,16 @@ func (o FirewallIppoolMapOutput) ToFirewallIppoolMapOutputWithContext(ctx contex
 }
 
 func (o FirewallIppoolMapOutput) MapIndex(k pulumi.StringInput) FirewallIppoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallIppool {
-		return vs[0].(map[string]FirewallIppool)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallIppool {
+		return vs[0].(map[string]*FirewallIppool)[vs[1].(string)]
 	}).(FirewallIppoolOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIppoolInput)(nil)).Elem(), &FirewallIppool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIppoolArrayInput)(nil)).Elem(), FirewallIppoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallIppoolMapInput)(nil)).Elem(), FirewallIppoolMap{})
 	pulumi.RegisterOutputType(FirewallIppoolOutput{})
-	pulumi.RegisterOutputType(FirewallIppoolPtrOutput{})
 	pulumi.RegisterOutputType(FirewallIppoolArrayOutput{})
 	pulumi.RegisterOutputType(FirewallIppoolMapOutput{})
 }

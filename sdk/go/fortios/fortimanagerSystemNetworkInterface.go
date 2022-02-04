@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewFortimanagerSystemNetworkInterface(ctx *pulumi.Context,
 		args = &FortimanagerSystemNetworkInterfaceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemNetworkInterface
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemNetworkInterface:FortimanagerSystemNetworkInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -163,7 +164,7 @@ type FortimanagerSystemNetworkInterfaceInput interface {
 }
 
 func (*FortimanagerSystemNetworkInterface) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemNetworkInterface)(nil))
+	return reflect.TypeOf((**FortimanagerSystemNetworkInterface)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemNetworkInterface) ToFortimanagerSystemNetworkInterfaceOutput() FortimanagerSystemNetworkInterfaceOutput {
@@ -172,35 +173,6 @@ func (i *FortimanagerSystemNetworkInterface) ToFortimanagerSystemNetworkInterfac
 
 func (i *FortimanagerSystemNetworkInterface) ToFortimanagerSystemNetworkInterfaceOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkInterfaceOutput)
-}
-
-func (i *FortimanagerSystemNetworkInterface) ToFortimanagerSystemNetworkInterfacePtrOutput() FortimanagerSystemNetworkInterfacePtrOutput {
-	return i.ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemNetworkInterface) ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkInterfacePtrOutput)
-}
-
-type FortimanagerSystemNetworkInterfacePtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemNetworkInterfacePtrOutput() FortimanagerSystemNetworkInterfacePtrOutput
-	ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfacePtrOutput
-}
-
-type fortimanagerSystemNetworkInterfacePtrType FortimanagerSystemNetworkInterfaceArgs
-
-func (*fortimanagerSystemNetworkInterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemNetworkInterface)(nil))
-}
-
-func (i *fortimanagerSystemNetworkInterfacePtrType) ToFortimanagerSystemNetworkInterfacePtrOutput() FortimanagerSystemNetworkInterfacePtrOutput {
-	return i.ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemNetworkInterfacePtrType) ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkInterfacePtrOutput)
 }
 
 // FortimanagerSystemNetworkInterfaceArrayInput is an input type that accepts FortimanagerSystemNetworkInterfaceArray and FortimanagerSystemNetworkInterfaceArrayOutput values.
@@ -217,7 +189,7 @@ type FortimanagerSystemNetworkInterfaceArrayInput interface {
 type FortimanagerSystemNetworkInterfaceArray []FortimanagerSystemNetworkInterfaceInput
 
 func (FortimanagerSystemNetworkInterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemNetworkInterface)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemNetworkInterface)(nil)).Elem()
 }
 
 func (i FortimanagerSystemNetworkInterfaceArray) ToFortimanagerSystemNetworkInterfaceArrayOutput() FortimanagerSystemNetworkInterfaceArrayOutput {
@@ -242,7 +214,7 @@ type FortimanagerSystemNetworkInterfaceMapInput interface {
 type FortimanagerSystemNetworkInterfaceMap map[string]FortimanagerSystemNetworkInterfaceInput
 
 func (FortimanagerSystemNetworkInterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemNetworkInterface)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemNetworkInterface)(nil)).Elem()
 }
 
 func (i FortimanagerSystemNetworkInterfaceMap) ToFortimanagerSystemNetworkInterfaceMapOutput() FortimanagerSystemNetworkInterfaceMapOutput {
@@ -253,12 +225,10 @@ func (i FortimanagerSystemNetworkInterfaceMap) ToFortimanagerSystemNetworkInterf
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNetworkInterfaceMapOutput)
 }
 
-type FortimanagerSystemNetworkInterfaceOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemNetworkInterfaceOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNetworkInterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemNetworkInterface)(nil))
+	return reflect.TypeOf((**FortimanagerSystemNetworkInterface)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNetworkInterfaceOutput) ToFortimanagerSystemNetworkInterfaceOutput() FortimanagerSystemNetworkInterfaceOutput {
@@ -269,36 +239,10 @@ func (o FortimanagerSystemNetworkInterfaceOutput) ToFortimanagerSystemNetworkInt
 	return o
 }
 
-func (o FortimanagerSystemNetworkInterfaceOutput) ToFortimanagerSystemNetworkInterfacePtrOutput() FortimanagerSystemNetworkInterfacePtrOutput {
-	return o.ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemNetworkInterfaceOutput) ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfacePtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemNetworkInterface) *FortimanagerSystemNetworkInterface {
-		return &v
-	}).(FortimanagerSystemNetworkInterfacePtrOutput)
-}
-
-type FortimanagerSystemNetworkInterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemNetworkInterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemNetworkInterface)(nil))
-}
-
-func (o FortimanagerSystemNetworkInterfacePtrOutput) ToFortimanagerSystemNetworkInterfacePtrOutput() FortimanagerSystemNetworkInterfacePtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemNetworkInterfacePtrOutput) ToFortimanagerSystemNetworkInterfacePtrOutputWithContext(ctx context.Context) FortimanagerSystemNetworkInterfacePtrOutput {
-	return o
-}
-
 type FortimanagerSystemNetworkInterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNetworkInterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemNetworkInterface)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemNetworkInterface)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNetworkInterfaceArrayOutput) ToFortimanagerSystemNetworkInterfaceArrayOutput() FortimanagerSystemNetworkInterfaceArrayOutput {
@@ -310,15 +254,15 @@ func (o FortimanagerSystemNetworkInterfaceArrayOutput) ToFortimanagerSystemNetwo
 }
 
 func (o FortimanagerSystemNetworkInterfaceArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemNetworkInterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemNetworkInterface {
-		return vs[0].([]FortimanagerSystemNetworkInterface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemNetworkInterface {
+		return vs[0].([]*FortimanagerSystemNetworkInterface)[vs[1].(int)]
 	}).(FortimanagerSystemNetworkInterfaceOutput)
 }
 
 type FortimanagerSystemNetworkInterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNetworkInterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemNetworkInterface)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemNetworkInterface)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNetworkInterfaceMapOutput) ToFortimanagerSystemNetworkInterfaceMapOutput() FortimanagerSystemNetworkInterfaceMapOutput {
@@ -330,14 +274,16 @@ func (o FortimanagerSystemNetworkInterfaceMapOutput) ToFortimanagerSystemNetwork
 }
 
 func (o FortimanagerSystemNetworkInterfaceMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemNetworkInterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemNetworkInterface {
-		return vs[0].(map[string]FortimanagerSystemNetworkInterface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemNetworkInterface {
+		return vs[0].(map[string]*FortimanagerSystemNetworkInterface)[vs[1].(string)]
 	}).(FortimanagerSystemNetworkInterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNetworkInterfaceInput)(nil)).Elem(), &FortimanagerSystemNetworkInterface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNetworkInterfaceArrayInput)(nil)).Elem(), FortimanagerSystemNetworkInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNetworkInterfaceMapInput)(nil)).Elem(), FortimanagerSystemNetworkInterfaceMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemNetworkInterfaceOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemNetworkInterfacePtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemNetworkInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemNetworkInterfaceMapOutput{})
 }

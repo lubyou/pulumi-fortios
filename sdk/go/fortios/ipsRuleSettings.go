@@ -37,6 +37,7 @@ func NewIpsRuleSettings(ctx *pulumi.Context,
 		args = &IpsRuleSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsRuleSettings
 	err := ctx.RegisterResource("fortios:index/ipsRuleSettings:IpsRuleSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type IpsRuleSettingsInput interface {
 }
 
 func (*IpsRuleSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsRuleSettings)(nil))
+	return reflect.TypeOf((**IpsRuleSettings)(nil)).Elem()
 }
 
 func (i *IpsRuleSettings) ToIpsRuleSettingsOutput() IpsRuleSettingsOutput {
@@ -112,35 +113,6 @@ func (i *IpsRuleSettings) ToIpsRuleSettingsOutput() IpsRuleSettingsOutput {
 
 func (i *IpsRuleSettings) ToIpsRuleSettingsOutputWithContext(ctx context.Context) IpsRuleSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsOutput)
-}
-
-func (i *IpsRuleSettings) ToIpsRuleSettingsPtrOutput() IpsRuleSettingsPtrOutput {
-	return i.ToIpsRuleSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *IpsRuleSettings) ToIpsRuleSettingsPtrOutputWithContext(ctx context.Context) IpsRuleSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsPtrOutput)
-}
-
-type IpsRuleSettingsPtrInput interface {
-	pulumi.Input
-
-	ToIpsRuleSettingsPtrOutput() IpsRuleSettingsPtrOutput
-	ToIpsRuleSettingsPtrOutputWithContext(ctx context.Context) IpsRuleSettingsPtrOutput
-}
-
-type ipsRuleSettingsPtrType IpsRuleSettingsArgs
-
-func (*ipsRuleSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsRuleSettings)(nil))
-}
-
-func (i *ipsRuleSettingsPtrType) ToIpsRuleSettingsPtrOutput() IpsRuleSettingsPtrOutput {
-	return i.ToIpsRuleSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *ipsRuleSettingsPtrType) ToIpsRuleSettingsPtrOutputWithContext(ctx context.Context) IpsRuleSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsPtrOutput)
 }
 
 // IpsRuleSettingsArrayInput is an input type that accepts IpsRuleSettingsArray and IpsRuleSettingsArrayOutput values.
@@ -157,7 +129,7 @@ type IpsRuleSettingsArrayInput interface {
 type IpsRuleSettingsArray []IpsRuleSettingsInput
 
 func (IpsRuleSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsRuleSettings)(nil))
+	return reflect.TypeOf((*[]*IpsRuleSettings)(nil)).Elem()
 }
 
 func (i IpsRuleSettingsArray) ToIpsRuleSettingsArrayOutput() IpsRuleSettingsArrayOutput {
@@ -182,7 +154,7 @@ type IpsRuleSettingsMapInput interface {
 type IpsRuleSettingsMap map[string]IpsRuleSettingsInput
 
 func (IpsRuleSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsRuleSettings)(nil))
+	return reflect.TypeOf((*map[string]*IpsRuleSettings)(nil)).Elem()
 }
 
 func (i IpsRuleSettingsMap) ToIpsRuleSettingsMapOutput() IpsRuleSettingsMapOutput {
@@ -193,12 +165,10 @@ func (i IpsRuleSettingsMap) ToIpsRuleSettingsMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(IpsRuleSettingsMapOutput)
 }
 
-type IpsRuleSettingsOutput struct {
-	*pulumi.OutputState
-}
+type IpsRuleSettingsOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsRuleSettings)(nil))
+	return reflect.TypeOf((**IpsRuleSettings)(nil)).Elem()
 }
 
 func (o IpsRuleSettingsOutput) ToIpsRuleSettingsOutput() IpsRuleSettingsOutput {
@@ -209,36 +179,10 @@ func (o IpsRuleSettingsOutput) ToIpsRuleSettingsOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o IpsRuleSettingsOutput) ToIpsRuleSettingsPtrOutput() IpsRuleSettingsPtrOutput {
-	return o.ToIpsRuleSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o IpsRuleSettingsOutput) ToIpsRuleSettingsPtrOutputWithContext(ctx context.Context) IpsRuleSettingsPtrOutput {
-	return o.ApplyT(func(v IpsRuleSettings) *IpsRuleSettings {
-		return &v
-	}).(IpsRuleSettingsPtrOutput)
-}
-
-type IpsRuleSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsRuleSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsRuleSettings)(nil))
-}
-
-func (o IpsRuleSettingsPtrOutput) ToIpsRuleSettingsPtrOutput() IpsRuleSettingsPtrOutput {
-	return o
-}
-
-func (o IpsRuleSettingsPtrOutput) ToIpsRuleSettingsPtrOutputWithContext(ctx context.Context) IpsRuleSettingsPtrOutput {
-	return o
-}
-
 type IpsRuleSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsRuleSettings)(nil))
+	return reflect.TypeOf((*[]*IpsRuleSettings)(nil)).Elem()
 }
 
 func (o IpsRuleSettingsArrayOutput) ToIpsRuleSettingsArrayOutput() IpsRuleSettingsArrayOutput {
@@ -250,15 +194,15 @@ func (o IpsRuleSettingsArrayOutput) ToIpsRuleSettingsArrayOutputWithContext(ctx 
 }
 
 func (o IpsRuleSettingsArrayOutput) Index(i pulumi.IntInput) IpsRuleSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsRuleSettings {
-		return vs[0].([]IpsRuleSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsRuleSettings {
+		return vs[0].([]*IpsRuleSettings)[vs[1].(int)]
 	}).(IpsRuleSettingsOutput)
 }
 
 type IpsRuleSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (IpsRuleSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsRuleSettings)(nil))
+	return reflect.TypeOf((*map[string]*IpsRuleSettings)(nil)).Elem()
 }
 
 func (o IpsRuleSettingsMapOutput) ToIpsRuleSettingsMapOutput() IpsRuleSettingsMapOutput {
@@ -270,14 +214,16 @@ func (o IpsRuleSettingsMapOutput) ToIpsRuleSettingsMapOutputWithContext(ctx cont
 }
 
 func (o IpsRuleSettingsMapOutput) MapIndex(k pulumi.StringInput) IpsRuleSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsRuleSettings {
-		return vs[0].(map[string]IpsRuleSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsRuleSettings {
+		return vs[0].(map[string]*IpsRuleSettings)[vs[1].(string)]
 	}).(IpsRuleSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsRuleSettingsInput)(nil)).Elem(), &IpsRuleSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsRuleSettingsArrayInput)(nil)).Elem(), IpsRuleSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsRuleSettingsMapInput)(nil)).Elem(), IpsRuleSettingsMap{})
 	pulumi.RegisterOutputType(IpsRuleSettingsOutput{})
-	pulumi.RegisterOutputType(IpsRuleSettingsPtrOutput{})
 	pulumi.RegisterOutputType(IpsRuleSettingsArrayOutput{})
 	pulumi.RegisterOutputType(IpsRuleSettingsMapOutput{})
 }

@@ -26,6 +26,7 @@ class WirelessControllerSettingArgs:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerSettingOffendingSsidArgs']]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -43,6 +44,7 @@ class WirelessControllerSettingArgs:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerSettingOffendingSsidArgs']]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -70,6 +72,8 @@ class WirelessControllerSettingArgs:
             pulumi.set(__self__, "fake_ssid_action", fake_ssid_action)
         if fapc_compatibility is not None:
             pulumi.set(__self__, "fapc_compatibility", fapc_compatibility)
+        if firmware_provision_on_authorization is not None:
+            pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
         if offending_ssids is not None:
             pulumi.set(__self__, "offending_ssids", offending_ssids)
         if phishing_ssid_detect is not None:
@@ -210,6 +214,18 @@ class WirelessControllerSettingArgs:
     @fapc_compatibility.setter
     def fapc_compatibility(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fapc_compatibility", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionOnAuthorization")
+    def firmware_provision_on_authorization(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @firmware_provision_on_authorization.setter
+    def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_on_authorization", value)
 
     @property
     @pulumi.getter(name="offendingSsids")
@@ -274,6 +290,7 @@ class _WirelessControllerSettingState:
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerSettingOffendingSsidArgs']]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -291,6 +308,7 @@ class _WirelessControllerSettingState:
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerSettingOffendingSsidArgs']]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -318,6 +336,8 @@ class _WirelessControllerSettingState:
             pulumi.set(__self__, "fake_ssid_action", fake_ssid_action)
         if fapc_compatibility is not None:
             pulumi.set(__self__, "fapc_compatibility", fapc_compatibility)
+        if firmware_provision_on_authorization is not None:
+            pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
         if offending_ssids is not None:
             pulumi.set(__self__, "offending_ssids", offending_ssids)
         if phishing_ssid_detect is not None:
@@ -458,6 +478,18 @@ class _WirelessControllerSettingState:
     @fapc_compatibility.setter
     def fapc_compatibility(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fapc_compatibility", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionOnAuthorization")
+    def firmware_provision_on_authorization(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @firmware_provision_on_authorization.setter
+    def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_on_authorization", value)
 
     @property
     @pulumi.getter(name="offendingSsids")
@@ -524,6 +556,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -555,6 +588,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -605,6 +639,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  fake_ssid_action: Optional[pulumi.Input[str]] = None,
                  fapc_compatibility: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]]] = None,
                  phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -616,6 +651,8 @@ class WirelessControllerSetting(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -632,6 +669,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["fake_ssid_action"] = fake_ssid_action
             __props__.__dict__["fapc_compatibility"] = fapc_compatibility
+            __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
             __props__.__dict__["offending_ssids"] = offending_ssids
             __props__.__dict__["phishing_ssid_detect"] = phishing_ssid_detect
             __props__.__dict__["vdomparam"] = vdomparam
@@ -657,6 +695,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             fake_ssid_action: Optional[pulumi.Input[str]] = None,
             fapc_compatibility: Optional[pulumi.Input[str]] = None,
+            firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
             offending_ssids: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]]] = None,
             phishing_ssid_detect: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -679,6 +718,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] fake_ssid_action: Actions taken for detected fake SSID. Valid values: `log`, `suppress`.
         :param pulumi.Input[str] fapc_compatibility: Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerSettingOffendingSsidArgs']]]] offending_ssids: Configure offending SSID. The structure of `offending_ssid` block is documented below.
         :param pulumi.Input[str] phishing_ssid_detect: Enable/disable phishing SSID detection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -699,6 +739,7 @@ class WirelessControllerSetting(pulumi.CustomResource):
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["fake_ssid_action"] = fake_ssid_action
         __props__.__dict__["fapc_compatibility"] = fapc_compatibility
+        __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
         __props__.__dict__["offending_ssids"] = offending_ssids
         __props__.__dict__["phishing_ssid_detect"] = phishing_ssid_detect
         __props__.__dict__["vdomparam"] = vdomparam
@@ -792,6 +833,14 @@ class WirelessControllerSetting(pulumi.CustomResource):
         Enable/disable FAP-C series compatibility. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fapc_compatibility")
+
+    @property
+    @pulumi.getter(name="firmwareProvisionOnAuthorization")
+    def firmware_provision_on_authorization(self) -> pulumi.Output[str]:
+        """
+        Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "firmware_provision_on_authorization")
 
     @property
     @pulumi.getter(name="offendingSsids")

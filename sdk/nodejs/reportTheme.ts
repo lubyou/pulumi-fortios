@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Report themes configuration
+ * Report themes configuration Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -192,79 +192,77 @@ export class ReportTheme extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ReportThemeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ReportThemeArgs | ReportThemeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ReportThemeState | undefined;
-            inputs["bulletListStyle"] = state ? state.bulletListStyle : undefined;
-            inputs["columnCount"] = state ? state.columnCount : undefined;
-            inputs["defaultHtmlStyle"] = state ? state.defaultHtmlStyle : undefined;
-            inputs["defaultPdfStyle"] = state ? state.defaultPdfStyle : undefined;
-            inputs["graphChartStyle"] = state ? state.graphChartStyle : undefined;
-            inputs["heading1Style"] = state ? state.heading1Style : undefined;
-            inputs["heading2Style"] = state ? state.heading2Style : undefined;
-            inputs["heading3Style"] = state ? state.heading3Style : undefined;
-            inputs["heading4Style"] = state ? state.heading4Style : undefined;
-            inputs["hlineStyle"] = state ? state.hlineStyle : undefined;
-            inputs["imageStyle"] = state ? state.imageStyle : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["normalTextStyle"] = state ? state.normalTextStyle : undefined;
-            inputs["numberedListStyle"] = state ? state.numberedListStyle : undefined;
-            inputs["pageFooterStyle"] = state ? state.pageFooterStyle : undefined;
-            inputs["pageHeaderStyle"] = state ? state.pageHeaderStyle : undefined;
-            inputs["pageOrient"] = state ? state.pageOrient : undefined;
-            inputs["pageStyle"] = state ? state.pageStyle : undefined;
-            inputs["reportSubtitleStyle"] = state ? state.reportSubtitleStyle : undefined;
-            inputs["reportTitleStyle"] = state ? state.reportTitleStyle : undefined;
-            inputs["tableChartCaptionStyle"] = state ? state.tableChartCaptionStyle : undefined;
-            inputs["tableChartEvenRowStyle"] = state ? state.tableChartEvenRowStyle : undefined;
-            inputs["tableChartHeadStyle"] = state ? state.tableChartHeadStyle : undefined;
-            inputs["tableChartOddRowStyle"] = state ? state.tableChartOddRowStyle : undefined;
-            inputs["tableChartStyle"] = state ? state.tableChartStyle : undefined;
-            inputs["tocHeading1Style"] = state ? state.tocHeading1Style : undefined;
-            inputs["tocHeading2Style"] = state ? state.tocHeading2Style : undefined;
-            inputs["tocHeading3Style"] = state ? state.tocHeading3Style : undefined;
-            inputs["tocHeading4Style"] = state ? state.tocHeading4Style : undefined;
-            inputs["tocTitleStyle"] = state ? state.tocTitleStyle : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bulletListStyle"] = state ? state.bulletListStyle : undefined;
+            resourceInputs["columnCount"] = state ? state.columnCount : undefined;
+            resourceInputs["defaultHtmlStyle"] = state ? state.defaultHtmlStyle : undefined;
+            resourceInputs["defaultPdfStyle"] = state ? state.defaultPdfStyle : undefined;
+            resourceInputs["graphChartStyle"] = state ? state.graphChartStyle : undefined;
+            resourceInputs["heading1Style"] = state ? state.heading1Style : undefined;
+            resourceInputs["heading2Style"] = state ? state.heading2Style : undefined;
+            resourceInputs["heading3Style"] = state ? state.heading3Style : undefined;
+            resourceInputs["heading4Style"] = state ? state.heading4Style : undefined;
+            resourceInputs["hlineStyle"] = state ? state.hlineStyle : undefined;
+            resourceInputs["imageStyle"] = state ? state.imageStyle : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["normalTextStyle"] = state ? state.normalTextStyle : undefined;
+            resourceInputs["numberedListStyle"] = state ? state.numberedListStyle : undefined;
+            resourceInputs["pageFooterStyle"] = state ? state.pageFooterStyle : undefined;
+            resourceInputs["pageHeaderStyle"] = state ? state.pageHeaderStyle : undefined;
+            resourceInputs["pageOrient"] = state ? state.pageOrient : undefined;
+            resourceInputs["pageStyle"] = state ? state.pageStyle : undefined;
+            resourceInputs["reportSubtitleStyle"] = state ? state.reportSubtitleStyle : undefined;
+            resourceInputs["reportTitleStyle"] = state ? state.reportTitleStyle : undefined;
+            resourceInputs["tableChartCaptionStyle"] = state ? state.tableChartCaptionStyle : undefined;
+            resourceInputs["tableChartEvenRowStyle"] = state ? state.tableChartEvenRowStyle : undefined;
+            resourceInputs["tableChartHeadStyle"] = state ? state.tableChartHeadStyle : undefined;
+            resourceInputs["tableChartOddRowStyle"] = state ? state.tableChartOddRowStyle : undefined;
+            resourceInputs["tableChartStyle"] = state ? state.tableChartStyle : undefined;
+            resourceInputs["tocHeading1Style"] = state ? state.tocHeading1Style : undefined;
+            resourceInputs["tocHeading2Style"] = state ? state.tocHeading2Style : undefined;
+            resourceInputs["tocHeading3Style"] = state ? state.tocHeading3Style : undefined;
+            resourceInputs["tocHeading4Style"] = state ? state.tocHeading4Style : undefined;
+            resourceInputs["tocTitleStyle"] = state ? state.tocTitleStyle : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as ReportThemeArgs | undefined;
-            inputs["bulletListStyle"] = args ? args.bulletListStyle : undefined;
-            inputs["columnCount"] = args ? args.columnCount : undefined;
-            inputs["defaultHtmlStyle"] = args ? args.defaultHtmlStyle : undefined;
-            inputs["defaultPdfStyle"] = args ? args.defaultPdfStyle : undefined;
-            inputs["graphChartStyle"] = args ? args.graphChartStyle : undefined;
-            inputs["heading1Style"] = args ? args.heading1Style : undefined;
-            inputs["heading2Style"] = args ? args.heading2Style : undefined;
-            inputs["heading3Style"] = args ? args.heading3Style : undefined;
-            inputs["heading4Style"] = args ? args.heading4Style : undefined;
-            inputs["hlineStyle"] = args ? args.hlineStyle : undefined;
-            inputs["imageStyle"] = args ? args.imageStyle : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["normalTextStyle"] = args ? args.normalTextStyle : undefined;
-            inputs["numberedListStyle"] = args ? args.numberedListStyle : undefined;
-            inputs["pageFooterStyle"] = args ? args.pageFooterStyle : undefined;
-            inputs["pageHeaderStyle"] = args ? args.pageHeaderStyle : undefined;
-            inputs["pageOrient"] = args ? args.pageOrient : undefined;
-            inputs["pageStyle"] = args ? args.pageStyle : undefined;
-            inputs["reportSubtitleStyle"] = args ? args.reportSubtitleStyle : undefined;
-            inputs["reportTitleStyle"] = args ? args.reportTitleStyle : undefined;
-            inputs["tableChartCaptionStyle"] = args ? args.tableChartCaptionStyle : undefined;
-            inputs["tableChartEvenRowStyle"] = args ? args.tableChartEvenRowStyle : undefined;
-            inputs["tableChartHeadStyle"] = args ? args.tableChartHeadStyle : undefined;
-            inputs["tableChartOddRowStyle"] = args ? args.tableChartOddRowStyle : undefined;
-            inputs["tableChartStyle"] = args ? args.tableChartStyle : undefined;
-            inputs["tocHeading1Style"] = args ? args.tocHeading1Style : undefined;
-            inputs["tocHeading2Style"] = args ? args.tocHeading2Style : undefined;
-            inputs["tocHeading3Style"] = args ? args.tocHeading3Style : undefined;
-            inputs["tocHeading4Style"] = args ? args.tocHeading4Style : undefined;
-            inputs["tocTitleStyle"] = args ? args.tocTitleStyle : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bulletListStyle"] = args ? args.bulletListStyle : undefined;
+            resourceInputs["columnCount"] = args ? args.columnCount : undefined;
+            resourceInputs["defaultHtmlStyle"] = args ? args.defaultHtmlStyle : undefined;
+            resourceInputs["defaultPdfStyle"] = args ? args.defaultPdfStyle : undefined;
+            resourceInputs["graphChartStyle"] = args ? args.graphChartStyle : undefined;
+            resourceInputs["heading1Style"] = args ? args.heading1Style : undefined;
+            resourceInputs["heading2Style"] = args ? args.heading2Style : undefined;
+            resourceInputs["heading3Style"] = args ? args.heading3Style : undefined;
+            resourceInputs["heading4Style"] = args ? args.heading4Style : undefined;
+            resourceInputs["hlineStyle"] = args ? args.hlineStyle : undefined;
+            resourceInputs["imageStyle"] = args ? args.imageStyle : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["normalTextStyle"] = args ? args.normalTextStyle : undefined;
+            resourceInputs["numberedListStyle"] = args ? args.numberedListStyle : undefined;
+            resourceInputs["pageFooterStyle"] = args ? args.pageFooterStyle : undefined;
+            resourceInputs["pageHeaderStyle"] = args ? args.pageHeaderStyle : undefined;
+            resourceInputs["pageOrient"] = args ? args.pageOrient : undefined;
+            resourceInputs["pageStyle"] = args ? args.pageStyle : undefined;
+            resourceInputs["reportSubtitleStyle"] = args ? args.reportSubtitleStyle : undefined;
+            resourceInputs["reportTitleStyle"] = args ? args.reportTitleStyle : undefined;
+            resourceInputs["tableChartCaptionStyle"] = args ? args.tableChartCaptionStyle : undefined;
+            resourceInputs["tableChartEvenRowStyle"] = args ? args.tableChartEvenRowStyle : undefined;
+            resourceInputs["tableChartHeadStyle"] = args ? args.tableChartHeadStyle : undefined;
+            resourceInputs["tableChartOddRowStyle"] = args ? args.tableChartOddRowStyle : undefined;
+            resourceInputs["tableChartStyle"] = args ? args.tableChartStyle : undefined;
+            resourceInputs["tocHeading1Style"] = args ? args.tocHeading1Style : undefined;
+            resourceInputs["tocHeading2Style"] = args ? args.tocHeading2Style : undefined;
+            resourceInputs["tocHeading3Style"] = args ? args.tocHeading3Style : undefined;
+            resourceInputs["tocHeading4Style"] = args ? args.tocHeading4Style : undefined;
+            resourceInputs["tocTitleStyle"] = args ? args.tocTitleStyle : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ReportTheme.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ReportTheme.__pulumiType, name, resourceInputs, opts);
     }
 }
 

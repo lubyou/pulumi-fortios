@@ -174,71 +174,69 @@ export class RouterSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterSettingArgs | RouterSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterSettingState | undefined;
-            inputs["bgpDebugFlags"] = state ? state.bgpDebugFlags : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["igmpDebugFlags"] = state ? state.igmpDebugFlags : undefined;
-            inputs["imiDebugFlags"] = state ? state.imiDebugFlags : undefined;
-            inputs["isisDebugFlags"] = state ? state.isisDebugFlags : undefined;
-            inputs["ospf6DebugEventsFlags"] = state ? state.ospf6DebugEventsFlags : undefined;
-            inputs["ospf6DebugIfsmFlags"] = state ? state.ospf6DebugIfsmFlags : undefined;
-            inputs["ospf6DebugLsaFlags"] = state ? state.ospf6DebugLsaFlags : undefined;
-            inputs["ospf6DebugNfsmFlags"] = state ? state.ospf6DebugNfsmFlags : undefined;
-            inputs["ospf6DebugNsmFlags"] = state ? state.ospf6DebugNsmFlags : undefined;
-            inputs["ospf6DebugPacketFlags"] = state ? state.ospf6DebugPacketFlags : undefined;
-            inputs["ospf6DebugRouteFlags"] = state ? state.ospf6DebugRouteFlags : undefined;
-            inputs["ospfDebugEventsFlags"] = state ? state.ospfDebugEventsFlags : undefined;
-            inputs["ospfDebugIfsmFlags"] = state ? state.ospfDebugIfsmFlags : undefined;
-            inputs["ospfDebugLsaFlags"] = state ? state.ospfDebugLsaFlags : undefined;
-            inputs["ospfDebugNfsmFlags"] = state ? state.ospfDebugNfsmFlags : undefined;
-            inputs["ospfDebugNsmFlags"] = state ? state.ospfDebugNsmFlags : undefined;
-            inputs["ospfDebugPacketFlags"] = state ? state.ospfDebugPacketFlags : undefined;
-            inputs["ospfDebugRouteFlags"] = state ? state.ospfDebugRouteFlags : undefined;
-            inputs["pimdmDebugFlags"] = state ? state.pimdmDebugFlags : undefined;
-            inputs["pimsmDebugJoinpruneFlags"] = state ? state.pimsmDebugJoinpruneFlags : undefined;
-            inputs["pimsmDebugSimpleFlags"] = state ? state.pimsmDebugSimpleFlags : undefined;
-            inputs["pimsmDebugTimerFlags"] = state ? state.pimsmDebugTimerFlags : undefined;
-            inputs["ripDebugFlags"] = state ? state.ripDebugFlags : undefined;
-            inputs["ripngDebugFlags"] = state ? state.ripngDebugFlags : undefined;
-            inputs["showFilter"] = state ? state.showFilter : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["bgpDebugFlags"] = state ? state.bgpDebugFlags : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["igmpDebugFlags"] = state ? state.igmpDebugFlags : undefined;
+            resourceInputs["imiDebugFlags"] = state ? state.imiDebugFlags : undefined;
+            resourceInputs["isisDebugFlags"] = state ? state.isisDebugFlags : undefined;
+            resourceInputs["ospf6DebugEventsFlags"] = state ? state.ospf6DebugEventsFlags : undefined;
+            resourceInputs["ospf6DebugIfsmFlags"] = state ? state.ospf6DebugIfsmFlags : undefined;
+            resourceInputs["ospf6DebugLsaFlags"] = state ? state.ospf6DebugLsaFlags : undefined;
+            resourceInputs["ospf6DebugNfsmFlags"] = state ? state.ospf6DebugNfsmFlags : undefined;
+            resourceInputs["ospf6DebugNsmFlags"] = state ? state.ospf6DebugNsmFlags : undefined;
+            resourceInputs["ospf6DebugPacketFlags"] = state ? state.ospf6DebugPacketFlags : undefined;
+            resourceInputs["ospf6DebugRouteFlags"] = state ? state.ospf6DebugRouteFlags : undefined;
+            resourceInputs["ospfDebugEventsFlags"] = state ? state.ospfDebugEventsFlags : undefined;
+            resourceInputs["ospfDebugIfsmFlags"] = state ? state.ospfDebugIfsmFlags : undefined;
+            resourceInputs["ospfDebugLsaFlags"] = state ? state.ospfDebugLsaFlags : undefined;
+            resourceInputs["ospfDebugNfsmFlags"] = state ? state.ospfDebugNfsmFlags : undefined;
+            resourceInputs["ospfDebugNsmFlags"] = state ? state.ospfDebugNsmFlags : undefined;
+            resourceInputs["ospfDebugPacketFlags"] = state ? state.ospfDebugPacketFlags : undefined;
+            resourceInputs["ospfDebugRouteFlags"] = state ? state.ospfDebugRouteFlags : undefined;
+            resourceInputs["pimdmDebugFlags"] = state ? state.pimdmDebugFlags : undefined;
+            resourceInputs["pimsmDebugJoinpruneFlags"] = state ? state.pimsmDebugJoinpruneFlags : undefined;
+            resourceInputs["pimsmDebugSimpleFlags"] = state ? state.pimsmDebugSimpleFlags : undefined;
+            resourceInputs["pimsmDebugTimerFlags"] = state ? state.pimsmDebugTimerFlags : undefined;
+            resourceInputs["ripDebugFlags"] = state ? state.ripDebugFlags : undefined;
+            resourceInputs["ripngDebugFlags"] = state ? state.ripngDebugFlags : undefined;
+            resourceInputs["showFilter"] = state ? state.showFilter : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterSettingArgs | undefined;
-            inputs["bgpDebugFlags"] = args ? args.bgpDebugFlags : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["igmpDebugFlags"] = args ? args.igmpDebugFlags : undefined;
-            inputs["imiDebugFlags"] = args ? args.imiDebugFlags : undefined;
-            inputs["isisDebugFlags"] = args ? args.isisDebugFlags : undefined;
-            inputs["ospf6DebugEventsFlags"] = args ? args.ospf6DebugEventsFlags : undefined;
-            inputs["ospf6DebugIfsmFlags"] = args ? args.ospf6DebugIfsmFlags : undefined;
-            inputs["ospf6DebugLsaFlags"] = args ? args.ospf6DebugLsaFlags : undefined;
-            inputs["ospf6DebugNfsmFlags"] = args ? args.ospf6DebugNfsmFlags : undefined;
-            inputs["ospf6DebugNsmFlags"] = args ? args.ospf6DebugNsmFlags : undefined;
-            inputs["ospf6DebugPacketFlags"] = args ? args.ospf6DebugPacketFlags : undefined;
-            inputs["ospf6DebugRouteFlags"] = args ? args.ospf6DebugRouteFlags : undefined;
-            inputs["ospfDebugEventsFlags"] = args ? args.ospfDebugEventsFlags : undefined;
-            inputs["ospfDebugIfsmFlags"] = args ? args.ospfDebugIfsmFlags : undefined;
-            inputs["ospfDebugLsaFlags"] = args ? args.ospfDebugLsaFlags : undefined;
-            inputs["ospfDebugNfsmFlags"] = args ? args.ospfDebugNfsmFlags : undefined;
-            inputs["ospfDebugNsmFlags"] = args ? args.ospfDebugNsmFlags : undefined;
-            inputs["ospfDebugPacketFlags"] = args ? args.ospfDebugPacketFlags : undefined;
-            inputs["ospfDebugRouteFlags"] = args ? args.ospfDebugRouteFlags : undefined;
-            inputs["pimdmDebugFlags"] = args ? args.pimdmDebugFlags : undefined;
-            inputs["pimsmDebugJoinpruneFlags"] = args ? args.pimsmDebugJoinpruneFlags : undefined;
-            inputs["pimsmDebugSimpleFlags"] = args ? args.pimsmDebugSimpleFlags : undefined;
-            inputs["pimsmDebugTimerFlags"] = args ? args.pimsmDebugTimerFlags : undefined;
-            inputs["ripDebugFlags"] = args ? args.ripDebugFlags : undefined;
-            inputs["ripngDebugFlags"] = args ? args.ripngDebugFlags : undefined;
-            inputs["showFilter"] = args ? args.showFilter : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["bgpDebugFlags"] = args ? args.bgpDebugFlags : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["igmpDebugFlags"] = args ? args.igmpDebugFlags : undefined;
+            resourceInputs["imiDebugFlags"] = args ? args.imiDebugFlags : undefined;
+            resourceInputs["isisDebugFlags"] = args ? args.isisDebugFlags : undefined;
+            resourceInputs["ospf6DebugEventsFlags"] = args ? args.ospf6DebugEventsFlags : undefined;
+            resourceInputs["ospf6DebugIfsmFlags"] = args ? args.ospf6DebugIfsmFlags : undefined;
+            resourceInputs["ospf6DebugLsaFlags"] = args ? args.ospf6DebugLsaFlags : undefined;
+            resourceInputs["ospf6DebugNfsmFlags"] = args ? args.ospf6DebugNfsmFlags : undefined;
+            resourceInputs["ospf6DebugNsmFlags"] = args ? args.ospf6DebugNsmFlags : undefined;
+            resourceInputs["ospf6DebugPacketFlags"] = args ? args.ospf6DebugPacketFlags : undefined;
+            resourceInputs["ospf6DebugRouteFlags"] = args ? args.ospf6DebugRouteFlags : undefined;
+            resourceInputs["ospfDebugEventsFlags"] = args ? args.ospfDebugEventsFlags : undefined;
+            resourceInputs["ospfDebugIfsmFlags"] = args ? args.ospfDebugIfsmFlags : undefined;
+            resourceInputs["ospfDebugLsaFlags"] = args ? args.ospfDebugLsaFlags : undefined;
+            resourceInputs["ospfDebugNfsmFlags"] = args ? args.ospfDebugNfsmFlags : undefined;
+            resourceInputs["ospfDebugNsmFlags"] = args ? args.ospfDebugNsmFlags : undefined;
+            resourceInputs["ospfDebugPacketFlags"] = args ? args.ospfDebugPacketFlags : undefined;
+            resourceInputs["ospfDebugRouteFlags"] = args ? args.ospfDebugRouteFlags : undefined;
+            resourceInputs["pimdmDebugFlags"] = args ? args.pimdmDebugFlags : undefined;
+            resourceInputs["pimsmDebugJoinpruneFlags"] = args ? args.pimsmDebugJoinpruneFlags : undefined;
+            resourceInputs["pimsmDebugSimpleFlags"] = args ? args.pimsmDebugSimpleFlags : undefined;
+            resourceInputs["pimsmDebugTimerFlags"] = args ? args.pimsmDebugTimerFlags : undefined;
+            resourceInputs["ripDebugFlags"] = args ? args.ripDebugFlags : undefined;
+            resourceInputs["ripngDebugFlags"] = args ? args.ripngDebugFlags : undefined;
+            resourceInputs["showFilter"] = args ? args.showFilter : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

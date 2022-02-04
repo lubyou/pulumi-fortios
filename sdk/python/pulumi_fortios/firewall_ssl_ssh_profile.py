@@ -20,6 +20,7 @@ class FirewallSslSshProfileArgs:
                  block_blocklisted_certificates: Optional[pulumi.Input[str]] = None,
                  caname: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 dot: Optional[pulumi.Input['FirewallSslSshProfileDotArgs']] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input['FirewallSslSshProfileFtpsArgs']] = None,
                  https: Optional[pulumi.Input['FirewallSslSshProfileHttpsArgs']] = None,
@@ -34,9 +35,13 @@ class FirewallSslSshProfileArgs:
                  ssh: Optional[pulumi.Input['FirewallSslSshProfileSshArgs']] = None,
                  ssl: Optional[pulumi.Input['FirewallSslSshProfileSslArgs']] = None,
                  ssl_anomalies_log: Optional[pulumi.Input[str]] = None,
+                 ssl_anomaly_log: Optional[pulumi.Input[str]] = None,
+                 ssl_exemption_log: Optional[pulumi.Input[str]] = None,
                  ssl_exemptions_log: Optional[pulumi.Input[str]] = None,
                  ssl_exempts: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslExemptArgs']]]] = None,
+                 ssl_handshake_log: Optional[pulumi.Input[str]] = None,
                  ssl_negotiation_log: Optional[pulumi.Input[str]] = None,
+                 ssl_server_cert_log: Optional[pulumi.Input[str]] = None,
                  ssl_servers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslServerArgs']]]] = None,
                  supported_alpn: Optional[pulumi.Input[str]] = None,
                  untrusted_caname: Optional[pulumi.Input[str]] = None,
@@ -50,6 +55,7 @@ class FirewallSslSshProfileArgs:
         :param pulumi.Input[str] block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] caname: CA certificate used by SSL Inspection.
         :param pulumi.Input[str] comment: Optional comments.
+        :param pulumi.Input['FirewallSslSshProfileDotArgs'] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input['FirewallSslSshProfileFtpsArgs'] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
         :param pulumi.Input['FirewallSslSshProfileHttpsArgs'] https: Configure HTTPS options. The structure of `https` block is documented below.
@@ -64,9 +70,13 @@ class FirewallSslSshProfileArgs:
         :param pulumi.Input['FirewallSslSshProfileSshArgs'] ssh: Configure SSH options. The structure of `ssh` block is documented below.
         :param pulumi.Input['FirewallSslSshProfileSslArgs'] ssl: Configure SSL options. The structure of `ssl` block is documented below.
         :param pulumi.Input[str] ssl_anomalies_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_anomaly_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_exemption_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_exemptions_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslExemptArgs']]] ssl_exempts: Servers to exempt from SSL inspection. The structure of `ssl_exempt` block is documented below.
+        :param pulumi.Input[str] ssl_handshake_log: Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_negotiation_log: Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_server_cert_log: Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslServerArgs']]] ssl_servers: SSL servers. The structure of `ssl_server` block is documented below.
         :param pulumi.Input[str] supported_alpn: Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
         :param pulumi.Input[str] untrusted_caname: Untrusted CA certificate used by SSL Inspection.
@@ -84,6 +94,8 @@ class FirewallSslSshProfileArgs:
             pulumi.set(__self__, "caname", caname)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if dot is not None:
+            pulumi.set(__self__, "dot", dot)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if ftps is not None:
@@ -112,12 +124,20 @@ class FirewallSslSshProfileArgs:
             pulumi.set(__self__, "ssl", ssl)
         if ssl_anomalies_log is not None:
             pulumi.set(__self__, "ssl_anomalies_log", ssl_anomalies_log)
+        if ssl_anomaly_log is not None:
+            pulumi.set(__self__, "ssl_anomaly_log", ssl_anomaly_log)
+        if ssl_exemption_log is not None:
+            pulumi.set(__self__, "ssl_exemption_log", ssl_exemption_log)
         if ssl_exemptions_log is not None:
             pulumi.set(__self__, "ssl_exemptions_log", ssl_exemptions_log)
         if ssl_exempts is not None:
             pulumi.set(__self__, "ssl_exempts", ssl_exempts)
+        if ssl_handshake_log is not None:
+            pulumi.set(__self__, "ssl_handshake_log", ssl_handshake_log)
         if ssl_negotiation_log is not None:
             pulumi.set(__self__, "ssl_negotiation_log", ssl_negotiation_log)
+        if ssl_server_cert_log is not None:
+            pulumi.set(__self__, "ssl_server_cert_log", ssl_server_cert_log)
         if ssl_servers is not None:
             pulumi.set(__self__, "ssl_servers", ssl_servers)
         if supported_alpn is not None:
@@ -190,6 +210,18 @@ class FirewallSslSshProfileArgs:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def dot(self) -> Optional[pulumi.Input['FirewallSslSshProfileDotArgs']]:
+        """
+        Configure DNS over TLS options. The structure of `dot` block is documented below.
+        """
+        return pulumi.get(self, "dot")
+
+    @dot.setter
+    def dot(self, value: Optional[pulumi.Input['FirewallSslSshProfileDotArgs']]):
+        pulumi.set(self, "dot", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -360,6 +392,30 @@ class FirewallSslSshProfileArgs:
         pulumi.set(self, "ssl_anomalies_log", value)
 
     @property
+    @pulumi.getter(name="sslAnomalyLog")
+    def ssl_anomaly_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_anomaly_log")
+
+    @ssl_anomaly_log.setter
+    def ssl_anomaly_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_anomaly_log", value)
+
+    @property
+    @pulumi.getter(name="sslExemptionLog")
+    def ssl_exemption_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_exemption_log")
+
+    @ssl_exemption_log.setter
+    def ssl_exemption_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_exemption_log", value)
+
+    @property
     @pulumi.getter(name="sslExemptionsLog")
     def ssl_exemptions_log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -384,6 +440,18 @@ class FirewallSslSshProfileArgs:
         pulumi.set(self, "ssl_exempts", value)
 
     @property
+    @pulumi.getter(name="sslHandshakeLog")
+    def ssl_handshake_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_handshake_log")
+
+    @ssl_handshake_log.setter
+    def ssl_handshake_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_handshake_log", value)
+
+    @property
     @pulumi.getter(name="sslNegotiationLog")
     def ssl_negotiation_log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -394,6 +462,18 @@ class FirewallSslSshProfileArgs:
     @ssl_negotiation_log.setter
     def ssl_negotiation_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_negotiation_log", value)
+
+    @property
+    @pulumi.getter(name="sslServerCertLog")
+    def ssl_server_cert_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_server_cert_log")
+
+    @ssl_server_cert_log.setter
+    def ssl_server_cert_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_cert_log", value)
 
     @property
     @pulumi.getter(name="sslServers")
@@ -476,6 +556,7 @@ class _FirewallSslSshProfileState:
                  block_blocklisted_certificates: Optional[pulumi.Input[str]] = None,
                  caname: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 dot: Optional[pulumi.Input['FirewallSslSshProfileDotArgs']] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input['FirewallSslSshProfileFtpsArgs']] = None,
                  https: Optional[pulumi.Input['FirewallSslSshProfileHttpsArgs']] = None,
@@ -490,9 +571,13 @@ class _FirewallSslSshProfileState:
                  ssh: Optional[pulumi.Input['FirewallSslSshProfileSshArgs']] = None,
                  ssl: Optional[pulumi.Input['FirewallSslSshProfileSslArgs']] = None,
                  ssl_anomalies_log: Optional[pulumi.Input[str]] = None,
+                 ssl_anomaly_log: Optional[pulumi.Input[str]] = None,
+                 ssl_exemption_log: Optional[pulumi.Input[str]] = None,
                  ssl_exemptions_log: Optional[pulumi.Input[str]] = None,
                  ssl_exempts: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslExemptArgs']]]] = None,
+                 ssl_handshake_log: Optional[pulumi.Input[str]] = None,
                  ssl_negotiation_log: Optional[pulumi.Input[str]] = None,
+                 ssl_server_cert_log: Optional[pulumi.Input[str]] = None,
                  ssl_servers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslServerArgs']]]] = None,
                  supported_alpn: Optional[pulumi.Input[str]] = None,
                  untrusted_caname: Optional[pulumi.Input[str]] = None,
@@ -506,6 +591,7 @@ class _FirewallSslSshProfileState:
         :param pulumi.Input[str] block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] caname: CA certificate used by SSL Inspection.
         :param pulumi.Input[str] comment: Optional comments.
+        :param pulumi.Input['FirewallSslSshProfileDotArgs'] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input['FirewallSslSshProfileFtpsArgs'] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
         :param pulumi.Input['FirewallSslSshProfileHttpsArgs'] https: Configure HTTPS options. The structure of `https` block is documented below.
@@ -520,9 +606,13 @@ class _FirewallSslSshProfileState:
         :param pulumi.Input['FirewallSslSshProfileSshArgs'] ssh: Configure SSH options. The structure of `ssh` block is documented below.
         :param pulumi.Input['FirewallSslSshProfileSslArgs'] ssl: Configure SSL options. The structure of `ssl` block is documented below.
         :param pulumi.Input[str] ssl_anomalies_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_anomaly_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_exemption_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_exemptions_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslExemptArgs']]] ssl_exempts: Servers to exempt from SSL inspection. The structure of `ssl_exempt` block is documented below.
+        :param pulumi.Input[str] ssl_handshake_log: Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_negotiation_log: Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_server_cert_log: Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallSslSshProfileSslServerArgs']]] ssl_servers: SSL servers. The structure of `ssl_server` block is documented below.
         :param pulumi.Input[str] supported_alpn: Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
         :param pulumi.Input[str] untrusted_caname: Untrusted CA certificate used by SSL Inspection.
@@ -540,6 +630,8 @@ class _FirewallSslSshProfileState:
             pulumi.set(__self__, "caname", caname)
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if dot is not None:
+            pulumi.set(__self__, "dot", dot)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if ftps is not None:
@@ -568,12 +660,20 @@ class _FirewallSslSshProfileState:
             pulumi.set(__self__, "ssl", ssl)
         if ssl_anomalies_log is not None:
             pulumi.set(__self__, "ssl_anomalies_log", ssl_anomalies_log)
+        if ssl_anomaly_log is not None:
+            pulumi.set(__self__, "ssl_anomaly_log", ssl_anomaly_log)
+        if ssl_exemption_log is not None:
+            pulumi.set(__self__, "ssl_exemption_log", ssl_exemption_log)
         if ssl_exemptions_log is not None:
             pulumi.set(__self__, "ssl_exemptions_log", ssl_exemptions_log)
         if ssl_exempts is not None:
             pulumi.set(__self__, "ssl_exempts", ssl_exempts)
+        if ssl_handshake_log is not None:
+            pulumi.set(__self__, "ssl_handshake_log", ssl_handshake_log)
         if ssl_negotiation_log is not None:
             pulumi.set(__self__, "ssl_negotiation_log", ssl_negotiation_log)
+        if ssl_server_cert_log is not None:
+            pulumi.set(__self__, "ssl_server_cert_log", ssl_server_cert_log)
         if ssl_servers is not None:
             pulumi.set(__self__, "ssl_servers", ssl_servers)
         if supported_alpn is not None:
@@ -646,6 +746,18 @@ class _FirewallSslSshProfileState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter
+    def dot(self) -> Optional[pulumi.Input['FirewallSslSshProfileDotArgs']]:
+        """
+        Configure DNS over TLS options. The structure of `dot` block is documented below.
+        """
+        return pulumi.get(self, "dot")
+
+    @dot.setter
+    def dot(self, value: Optional[pulumi.Input['FirewallSslSshProfileDotArgs']]):
+        pulumi.set(self, "dot", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -816,6 +928,30 @@ class _FirewallSslSshProfileState:
         pulumi.set(self, "ssl_anomalies_log", value)
 
     @property
+    @pulumi.getter(name="sslAnomalyLog")
+    def ssl_anomaly_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_anomaly_log")
+
+    @ssl_anomaly_log.setter
+    def ssl_anomaly_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_anomaly_log", value)
+
+    @property
+    @pulumi.getter(name="sslExemptionLog")
+    def ssl_exemption_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_exemption_log")
+
+    @ssl_exemption_log.setter
+    def ssl_exemption_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_exemption_log", value)
+
+    @property
     @pulumi.getter(name="sslExemptionsLog")
     def ssl_exemptions_log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -840,6 +976,18 @@ class _FirewallSslSshProfileState:
         pulumi.set(self, "ssl_exempts", value)
 
     @property
+    @pulumi.getter(name="sslHandshakeLog")
+    def ssl_handshake_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_handshake_log")
+
+    @ssl_handshake_log.setter
+    def ssl_handshake_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_handshake_log", value)
+
+    @property
     @pulumi.getter(name="sslNegotiationLog")
     def ssl_negotiation_log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -850,6 +998,18 @@ class _FirewallSslSshProfileState:
     @ssl_negotiation_log.setter
     def ssl_negotiation_log(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ssl_negotiation_log", value)
+
+    @property
+    @pulumi.getter(name="sslServerCertLog")
+    def ssl_server_cert_log(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_server_cert_log")
+
+    @ssl_server_cert_log.setter
+    def ssl_server_cert_log(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_cert_log", value)
 
     @property
     @pulumi.getter(name="sslServers")
@@ -934,6 +1094,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
                  block_blocklisted_certificates: Optional[pulumi.Input[str]] = None,
                  caname: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 dot: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']]] = None,
                  https: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']]] = None,
@@ -948,9 +1109,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
                  ssh: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSshArgs']]] = None,
                  ssl: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslArgs']]] = None,
                  ssl_anomalies_log: Optional[pulumi.Input[str]] = None,
+                 ssl_anomaly_log: Optional[pulumi.Input[str]] = None,
+                 ssl_exemption_log: Optional[pulumi.Input[str]] = None,
                  ssl_exemptions_log: Optional[pulumi.Input[str]] = None,
                  ssl_exempts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslExemptArgs']]]]] = None,
+                 ssl_handshake_log: Optional[pulumi.Input[str]] = None,
                  ssl_negotiation_log: Optional[pulumi.Input[str]] = None,
+                 ssl_server_cert_log: Optional[pulumi.Input[str]] = None,
                  ssl_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslServerArgs']]]]] = None,
                  supported_alpn: Optional[pulumi.Input[str]] = None,
                  untrusted_caname: Optional[pulumi.Input[str]] = None,
@@ -1012,6 +1177,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         :param pulumi.Input[str] block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] caname: CA certificate used by SSL Inspection.
         :param pulumi.Input[str] comment: Optional comments.
+        :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']] https: Configure HTTPS options. The structure of `https` block is documented below.
@@ -1026,9 +1192,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileSshArgs']] ssh: Configure SSH options. The structure of `ssh` block is documented below.
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslArgs']] ssl: Configure SSL options. The structure of `ssl` block is documented below.
         :param pulumi.Input[str] ssl_anomalies_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_anomaly_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_exemption_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_exemptions_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslExemptArgs']]]] ssl_exempts: Servers to exempt from SSL inspection. The structure of `ssl_exempt` block is documented below.
+        :param pulumi.Input[str] ssl_handshake_log: Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_negotiation_log: Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_server_cert_log: Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslServerArgs']]]] ssl_servers: SSL servers. The structure of `ssl_server` block is documented below.
         :param pulumi.Input[str] supported_alpn: Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
         :param pulumi.Input[str] untrusted_caname: Untrusted CA certificate used by SSL Inspection.
@@ -1109,6 +1279,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
                  block_blocklisted_certificates: Optional[pulumi.Input[str]] = None,
                  caname: Optional[pulumi.Input[str]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 dot: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  ftps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']]] = None,
                  https: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']]] = None,
@@ -1123,9 +1294,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
                  ssh: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSshArgs']]] = None,
                  ssl: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslArgs']]] = None,
                  ssl_anomalies_log: Optional[pulumi.Input[str]] = None,
+                 ssl_anomaly_log: Optional[pulumi.Input[str]] = None,
+                 ssl_exemption_log: Optional[pulumi.Input[str]] = None,
                  ssl_exemptions_log: Optional[pulumi.Input[str]] = None,
                  ssl_exempts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslExemptArgs']]]]] = None,
+                 ssl_handshake_log: Optional[pulumi.Input[str]] = None,
                  ssl_negotiation_log: Optional[pulumi.Input[str]] = None,
+                 ssl_server_cert_log: Optional[pulumi.Input[str]] = None,
                  ssl_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslServerArgs']]]]] = None,
                  supported_alpn: Optional[pulumi.Input[str]] = None,
                  untrusted_caname: Optional[pulumi.Input[str]] = None,
@@ -1139,6 +1314,8 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1149,6 +1326,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             __props__.__dict__["block_blocklisted_certificates"] = block_blocklisted_certificates
             __props__.__dict__["caname"] = caname
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["dot"] = dot
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["ftps"] = ftps
             __props__.__dict__["https"] = https
@@ -1163,9 +1341,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             __props__.__dict__["ssh"] = ssh
             __props__.__dict__["ssl"] = ssl
             __props__.__dict__["ssl_anomalies_log"] = ssl_anomalies_log
+            __props__.__dict__["ssl_anomaly_log"] = ssl_anomaly_log
+            __props__.__dict__["ssl_exemption_log"] = ssl_exemption_log
             __props__.__dict__["ssl_exemptions_log"] = ssl_exemptions_log
             __props__.__dict__["ssl_exempts"] = ssl_exempts
+            __props__.__dict__["ssl_handshake_log"] = ssl_handshake_log
             __props__.__dict__["ssl_negotiation_log"] = ssl_negotiation_log
+            __props__.__dict__["ssl_server_cert_log"] = ssl_server_cert_log
             __props__.__dict__["ssl_servers"] = ssl_servers
             __props__.__dict__["supported_alpn"] = supported_alpn
             __props__.__dict__["untrusted_caname"] = untrusted_caname
@@ -1187,6 +1369,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             block_blocklisted_certificates: Optional[pulumi.Input[str]] = None,
             caname: Optional[pulumi.Input[str]] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            dot: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             ftps: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']]] = None,
             https: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']]] = None,
@@ -1201,9 +1384,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
             ssh: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSshArgs']]] = None,
             ssl: Optional[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslArgs']]] = None,
             ssl_anomalies_log: Optional[pulumi.Input[str]] = None,
+            ssl_anomaly_log: Optional[pulumi.Input[str]] = None,
+            ssl_exemption_log: Optional[pulumi.Input[str]] = None,
             ssl_exemptions_log: Optional[pulumi.Input[str]] = None,
             ssl_exempts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslExemptArgs']]]]] = None,
+            ssl_handshake_log: Optional[pulumi.Input[str]] = None,
             ssl_negotiation_log: Optional[pulumi.Input[str]] = None,
+            ssl_server_cert_log: Optional[pulumi.Input[str]] = None,
             ssl_servers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslServerArgs']]]]] = None,
             supported_alpn: Optional[pulumi.Input[str]] = None,
             untrusted_caname: Optional[pulumi.Input[str]] = None,
@@ -1222,6 +1409,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         :param pulumi.Input[str] block_blocklisted_certificates: Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] caname: CA certificate used by SSL Inspection.
         :param pulumi.Input[str] comment: Optional comments.
+        :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileDotArgs']] dot: Configure DNS over TLS options. The structure of `dot` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileFtpsArgs']] ftps: Configure FTPS options. The structure of `ftps` block is documented below.
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileHttpsArgs']] https: Configure HTTPS options. The structure of `https` block is documented below.
@@ -1236,9 +1424,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileSshArgs']] ssh: Configure SSH options. The structure of `ssh` block is documented below.
         :param pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslArgs']] ssl: Configure SSL options. The structure of `ssl` block is documented below.
         :param pulumi.Input[str] ssl_anomalies_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_anomaly_log: Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_exemption_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_exemptions_log: Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslExemptArgs']]]] ssl_exempts: Servers to exempt from SSL inspection. The structure of `ssl_exempt` block is documented below.
+        :param pulumi.Input[str] ssl_handshake_log: Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] ssl_negotiation_log: Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ssl_server_cert_log: Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallSslSshProfileSslServerArgs']]]] ssl_servers: SSL servers. The structure of `ssl_server` block is documented below.
         :param pulumi.Input[str] supported_alpn: Configure ALPN option. Valid values: `http1-1`, `http2`, `all`, `none`.
         :param pulumi.Input[str] untrusted_caname: Untrusted CA certificate used by SSL Inspection.
@@ -1255,6 +1447,7 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         __props__.__dict__["block_blocklisted_certificates"] = block_blocklisted_certificates
         __props__.__dict__["caname"] = caname
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["dot"] = dot
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["ftps"] = ftps
         __props__.__dict__["https"] = https
@@ -1269,9 +1462,13 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         __props__.__dict__["ssh"] = ssh
         __props__.__dict__["ssl"] = ssl
         __props__.__dict__["ssl_anomalies_log"] = ssl_anomalies_log
+        __props__.__dict__["ssl_anomaly_log"] = ssl_anomaly_log
+        __props__.__dict__["ssl_exemption_log"] = ssl_exemption_log
         __props__.__dict__["ssl_exemptions_log"] = ssl_exemptions_log
         __props__.__dict__["ssl_exempts"] = ssl_exempts
+        __props__.__dict__["ssl_handshake_log"] = ssl_handshake_log
         __props__.__dict__["ssl_negotiation_log"] = ssl_negotiation_log
+        __props__.__dict__["ssl_server_cert_log"] = ssl_server_cert_log
         __props__.__dict__["ssl_servers"] = ssl_servers
         __props__.__dict__["supported_alpn"] = supported_alpn
         __props__.__dict__["untrusted_caname"] = untrusted_caname
@@ -1319,6 +1516,14 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         Optional comments.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter
+    def dot(self) -> pulumi.Output[Optional['outputs.FirewallSslSshProfileDot']]:
+        """
+        Configure DNS over TLS options. The structure of `dot` block is documented below.
+        """
+        return pulumi.get(self, "dot")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -1433,6 +1638,22 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         return pulumi.get(self, "ssl_anomalies_log")
 
     @property
+    @pulumi.getter(name="sslAnomalyLog")
+    def ssl_anomaly_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_anomaly_log")
+
+    @property
+    @pulumi.getter(name="sslExemptionLog")
+    def ssl_exemption_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_exemption_log")
+
+    @property
     @pulumi.getter(name="sslExemptionsLog")
     def ssl_exemptions_log(self) -> pulumi.Output[str]:
         """
@@ -1449,12 +1670,28 @@ class FirewallSslSshProfile(pulumi.CustomResource):
         return pulumi.get(self, "ssl_exempts")
 
     @property
+    @pulumi.getter(name="sslHandshakeLog")
+    def ssl_handshake_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_handshake_log")
+
+    @property
     @pulumi.getter(name="sslNegotiationLog")
     def ssl_negotiation_log(self) -> pulumi.Output[str]:
         """
         Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "ssl_negotiation_log")
+
+    @property
+    @pulumi.getter(name="sslServerCertLog")
+    def ssl_server_cert_log(self) -> pulumi.Output[str]:
+        """
+        Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ssl_server_cert_log")
 
     @property
     @pulumi.getter(name="sslServers")

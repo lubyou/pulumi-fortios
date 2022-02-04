@@ -14,16 +14,20 @@ __all__ = ['FirewallServiceCategoryArgs', 'FirewallServiceCategory']
 class FirewallServiceCategoryArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallServiceCategory resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Service category name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -40,6 +44,18 @@ class FirewallServiceCategoryArgs:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -70,16 +86,20 @@ class FirewallServiceCategoryArgs:
 class _FirewallServiceCategoryState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallServiceCategory resources.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Service category name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if vdomparam is not None:
@@ -96,6 +116,18 @@ class _FirewallServiceCategoryState:
     @comment.setter
     def comment(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comment", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -128,6 +160,7 @@ class FirewallServiceCategory(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -156,6 +189,7 @@ class FirewallServiceCategory(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Service category name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -203,6 +237,7 @@ class FirewallServiceCategory(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -212,12 +247,15 @@ class FirewallServiceCategory(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallServiceCategoryArgs.__new__(FirewallServiceCategoryArgs)
 
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["name"] = name
             __props__.__dict__["vdomparam"] = vdomparam
         super(FirewallServiceCategory, __self__).__init__(
@@ -231,6 +269,7 @@ class FirewallServiceCategory(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'FirewallServiceCategory':
         """
@@ -241,6 +280,7 @@ class FirewallServiceCategory(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Service category name.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
@@ -249,6 +289,7 @@ class FirewallServiceCategory(pulumi.CustomResource):
         __props__ = _FirewallServiceCategoryState.__new__(_FirewallServiceCategoryState)
 
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["name"] = name
         __props__.__dict__["vdomparam"] = vdomparam
         return FirewallServiceCategory(resource_name, opts=opts, __props__=__props__)
@@ -260,6 +301,14 @@ class FirewallServiceCategory(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewallservice category
 func LookupFirewallServiceCategory(ctx *pulumi.Context, args *LookupFirewallServiceCategoryArgs, opts ...pulumi.InvokeOption) (*LookupFirewallServiceCategoryResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallServiceCategoryResult
 	err := ctx.Invoke("fortios:index/getFirewallServiceCategory:GetFirewallServiceCategory", args, &rv, opts...)
 	if err != nil {
@@ -29,9 +33,75 @@ type LookupFirewallServiceCategoryArgs struct {
 type LookupFirewallServiceCategoryResult struct {
 	// Comment.
 	Comment string `pulumi:"comment"`
+	// Security Fabric global object setting.
+	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// Service category name.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallServiceCategoryOutput(ctx *pulumi.Context, args LookupFirewallServiceCategoryOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallServiceCategoryResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallServiceCategoryResult, error) {
+			args := v.(LookupFirewallServiceCategoryArgs)
+			r, err := LookupFirewallServiceCategory(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallServiceCategoryResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallServiceCategory.
+type LookupFirewallServiceCategoryOutputArgs struct {
+	// Specify the name of the desired firewallservice category.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallServiceCategoryOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallServiceCategoryArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallServiceCategory.
+type LookupFirewallServiceCategoryResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallServiceCategoryResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallServiceCategoryResult)(nil)).Elem()
+}
+
+func (o LookupFirewallServiceCategoryResultOutput) ToLookupFirewallServiceCategoryResultOutput() LookupFirewallServiceCategoryResultOutput {
+	return o
+}
+
+func (o LookupFirewallServiceCategoryResultOutput) ToLookupFirewallServiceCategoryResultOutputWithContext(ctx context.Context) LookupFirewallServiceCategoryResultOutput {
+	return o
+}
+
+// Comment.
+func (o LookupFirewallServiceCategoryResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// Security Fabric global object setting.
+func (o LookupFirewallServiceCategoryResultOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallServiceCategoryResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Service category name.
+func (o LookupFirewallServiceCategoryResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallServiceCategoryResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallServiceCategoryResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallServiceCategoryResultOutput{})
 }

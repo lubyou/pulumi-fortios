@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallMulticastPolicy6(ctx, "trname", &fortios.FirewallMulticastPolicy6Args{
 // 			Action: pulumi.String("accept"),
-// 			Dstaddrs: fortios.FirewallMulticastPolicy6DstaddrArray{
-// 				&fortios.FirewallMulticastPolicy6DstaddrArgs{
+// 			Dstaddrs: FirewallMulticastPolicy6DstaddrArray{
+// 				&FirewallMulticastPolicy6DstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -37,8 +38,8 @@ import (
 // 			Fosid:      pulumi.Int(1),
 // 			Logtraffic: pulumi.String("disable"),
 // 			Protocol:   pulumi.Int(0),
-// 			Srcaddrs: fortios.FirewallMulticastPolicy6SrcaddrArray{
-// 				&fortios.FirewallMulticastPolicy6SrcaddrArgs{
+// 			Srcaddrs: FirewallMulticastPolicy6SrcaddrArray{
+// 				&FirewallMulticastPolicy6SrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -96,6 +97,8 @@ type FirewallMulticastPolicy6 struct {
 	StartPort pulumi.IntOutput `pulumi:"startPort"`
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -119,6 +122,7 @@ func NewFirewallMulticastPolicy6(ctx *pulumi.Context,
 	if args.Srcintf == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintf'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallMulticastPolicy6
 	err := ctx.RegisterResource("fortios:index/firewallMulticastPolicy6:FirewallMulticastPolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -171,6 +175,8 @@ type firewallMulticastPolicy6State struct {
 	StartPort *int `pulumi:"startPort"`
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -206,6 +212,8 @@ type FirewallMulticastPolicy6State struct {
 	StartPort pulumi.IntPtrInput
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -245,6 +253,8 @@ type firewallMulticastPolicy6Args struct {
 	StartPort *int `pulumi:"startPort"`
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -281,6 +291,8 @@ type FirewallMulticastPolicy6Args struct {
 	StartPort pulumi.IntPtrInput
 	// Enable/disable this policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
+	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -297,7 +309,7 @@ type FirewallMulticastPolicy6Input interface {
 }
 
 func (*FirewallMulticastPolicy6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallMulticastPolicy6)(nil))
+	return reflect.TypeOf((**FirewallMulticastPolicy6)(nil)).Elem()
 }
 
 func (i *FirewallMulticastPolicy6) ToFirewallMulticastPolicy6Output() FirewallMulticastPolicy6Output {
@@ -306,35 +318,6 @@ func (i *FirewallMulticastPolicy6) ToFirewallMulticastPolicy6Output() FirewallMu
 
 func (i *FirewallMulticastPolicy6) ToFirewallMulticastPolicy6OutputWithContext(ctx context.Context) FirewallMulticastPolicy6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastPolicy6Output)
-}
-
-func (i *FirewallMulticastPolicy6) ToFirewallMulticastPolicy6PtrOutput() FirewallMulticastPolicy6PtrOutput {
-	return i.ToFirewallMulticastPolicy6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallMulticastPolicy6) ToFirewallMulticastPolicy6PtrOutputWithContext(ctx context.Context) FirewallMulticastPolicy6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastPolicy6PtrOutput)
-}
-
-type FirewallMulticastPolicy6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallMulticastPolicy6PtrOutput() FirewallMulticastPolicy6PtrOutput
-	ToFirewallMulticastPolicy6PtrOutputWithContext(ctx context.Context) FirewallMulticastPolicy6PtrOutput
-}
-
-type firewallMulticastPolicy6PtrType FirewallMulticastPolicy6Args
-
-func (*firewallMulticastPolicy6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallMulticastPolicy6)(nil))
-}
-
-func (i *firewallMulticastPolicy6PtrType) ToFirewallMulticastPolicy6PtrOutput() FirewallMulticastPolicy6PtrOutput {
-	return i.ToFirewallMulticastPolicy6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallMulticastPolicy6PtrType) ToFirewallMulticastPolicy6PtrOutputWithContext(ctx context.Context) FirewallMulticastPolicy6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastPolicy6PtrOutput)
 }
 
 // FirewallMulticastPolicy6ArrayInput is an input type that accepts FirewallMulticastPolicy6Array and FirewallMulticastPolicy6ArrayOutput values.
@@ -351,7 +334,7 @@ type FirewallMulticastPolicy6ArrayInput interface {
 type FirewallMulticastPolicy6Array []FirewallMulticastPolicy6Input
 
 func (FirewallMulticastPolicy6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallMulticastPolicy6)(nil))
+	return reflect.TypeOf((*[]*FirewallMulticastPolicy6)(nil)).Elem()
 }
 
 func (i FirewallMulticastPolicy6Array) ToFirewallMulticastPolicy6ArrayOutput() FirewallMulticastPolicy6ArrayOutput {
@@ -376,7 +359,7 @@ type FirewallMulticastPolicy6MapInput interface {
 type FirewallMulticastPolicy6Map map[string]FirewallMulticastPolicy6Input
 
 func (FirewallMulticastPolicy6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallMulticastPolicy6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallMulticastPolicy6)(nil)).Elem()
 }
 
 func (i FirewallMulticastPolicy6Map) ToFirewallMulticastPolicy6MapOutput() FirewallMulticastPolicy6MapOutput {
@@ -387,12 +370,10 @@ func (i FirewallMulticastPolicy6Map) ToFirewallMulticastPolicy6MapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallMulticastPolicy6MapOutput)
 }
 
-type FirewallMulticastPolicy6Output struct {
-	*pulumi.OutputState
-}
+type FirewallMulticastPolicy6Output struct{ *pulumi.OutputState }
 
 func (FirewallMulticastPolicy6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallMulticastPolicy6)(nil))
+	return reflect.TypeOf((**FirewallMulticastPolicy6)(nil)).Elem()
 }
 
 func (o FirewallMulticastPolicy6Output) ToFirewallMulticastPolicy6Output() FirewallMulticastPolicy6Output {
@@ -403,36 +384,10 @@ func (o FirewallMulticastPolicy6Output) ToFirewallMulticastPolicy6OutputWithCont
 	return o
 }
 
-func (o FirewallMulticastPolicy6Output) ToFirewallMulticastPolicy6PtrOutput() FirewallMulticastPolicy6PtrOutput {
-	return o.ToFirewallMulticastPolicy6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallMulticastPolicy6Output) ToFirewallMulticastPolicy6PtrOutputWithContext(ctx context.Context) FirewallMulticastPolicy6PtrOutput {
-	return o.ApplyT(func(v FirewallMulticastPolicy6) *FirewallMulticastPolicy6 {
-		return &v
-	}).(FirewallMulticastPolicy6PtrOutput)
-}
-
-type FirewallMulticastPolicy6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallMulticastPolicy6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallMulticastPolicy6)(nil))
-}
-
-func (o FirewallMulticastPolicy6PtrOutput) ToFirewallMulticastPolicy6PtrOutput() FirewallMulticastPolicy6PtrOutput {
-	return o
-}
-
-func (o FirewallMulticastPolicy6PtrOutput) ToFirewallMulticastPolicy6PtrOutputWithContext(ctx context.Context) FirewallMulticastPolicy6PtrOutput {
-	return o
-}
-
 type FirewallMulticastPolicy6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallMulticastPolicy6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallMulticastPolicy6)(nil))
+	return reflect.TypeOf((*[]*FirewallMulticastPolicy6)(nil)).Elem()
 }
 
 func (o FirewallMulticastPolicy6ArrayOutput) ToFirewallMulticastPolicy6ArrayOutput() FirewallMulticastPolicy6ArrayOutput {
@@ -444,15 +399,15 @@ func (o FirewallMulticastPolicy6ArrayOutput) ToFirewallMulticastPolicy6ArrayOutp
 }
 
 func (o FirewallMulticastPolicy6ArrayOutput) Index(i pulumi.IntInput) FirewallMulticastPolicy6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallMulticastPolicy6 {
-		return vs[0].([]FirewallMulticastPolicy6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallMulticastPolicy6 {
+		return vs[0].([]*FirewallMulticastPolicy6)[vs[1].(int)]
 	}).(FirewallMulticastPolicy6Output)
 }
 
 type FirewallMulticastPolicy6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallMulticastPolicy6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallMulticastPolicy6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallMulticastPolicy6)(nil)).Elem()
 }
 
 func (o FirewallMulticastPolicy6MapOutput) ToFirewallMulticastPolicy6MapOutput() FirewallMulticastPolicy6MapOutput {
@@ -464,14 +419,16 @@ func (o FirewallMulticastPolicy6MapOutput) ToFirewallMulticastPolicy6MapOutputWi
 }
 
 func (o FirewallMulticastPolicy6MapOutput) MapIndex(k pulumi.StringInput) FirewallMulticastPolicy6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallMulticastPolicy6 {
-		return vs[0].(map[string]FirewallMulticastPolicy6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallMulticastPolicy6 {
+		return vs[0].(map[string]*FirewallMulticastPolicy6)[vs[1].(string)]
 	}).(FirewallMulticastPolicy6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallMulticastPolicy6Input)(nil)).Elem(), &FirewallMulticastPolicy6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallMulticastPolicy6ArrayInput)(nil)).Elem(), FirewallMulticastPolicy6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallMulticastPolicy6MapInput)(nil)).Elem(), FirewallMulticastPolicy6Map{})
 	pulumi.RegisterOutputType(FirewallMulticastPolicy6Output{})
-	pulumi.RegisterOutputType(FirewallMulticastPolicy6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallMulticastPolicy6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallMulticastPolicy6MapOutput{})
 }

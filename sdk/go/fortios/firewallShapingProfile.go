@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -28,8 +29,8 @@ import (
 // 		_, err := fortios.NewFirewallShapingProfile(ctx, "trname", &fortios.FirewallShapingProfileArgs{
 // 			DefaultClassId: pulumi.Int(2),
 // 			ProfileName:    pulumi.String("shapingprofiles1"),
-// 			ShapingEntries: fortios.FirewallShapingProfileShapingEntryArray{
-// 				&fortios.FirewallShapingProfileShapingEntryArgs{
+// 			ShapingEntries: FirewallShapingProfileShapingEntryArray{
+// 				&FirewallShapingProfileShapingEntryArgs{
 // 					ClassId:                       pulumi.Int(2),
 // 					GuaranteedBandwidthPercentage: pulumi.Int(33),
 // 					Id:                            pulumi.Int(1),
@@ -87,6 +88,7 @@ func NewFirewallShapingProfile(ctx *pulumi.Context,
 	if args.ProfileName == nil {
 		return nil, errors.New("invalid value for required argument 'ProfileName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallShapingProfile
 	err := ctx.RegisterResource("fortios:index/firewallShapingProfile:FirewallShapingProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -193,7 +195,7 @@ type FirewallShapingProfileInput interface {
 }
 
 func (*FirewallShapingProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShapingProfile)(nil))
+	return reflect.TypeOf((**FirewallShapingProfile)(nil)).Elem()
 }
 
 func (i *FirewallShapingProfile) ToFirewallShapingProfileOutput() FirewallShapingProfileOutput {
@@ -202,35 +204,6 @@ func (i *FirewallShapingProfile) ToFirewallShapingProfileOutput() FirewallShapin
 
 func (i *FirewallShapingProfile) ToFirewallShapingProfileOutputWithContext(ctx context.Context) FirewallShapingProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingProfileOutput)
-}
-
-func (i *FirewallShapingProfile) ToFirewallShapingProfilePtrOutput() FirewallShapingProfilePtrOutput {
-	return i.ToFirewallShapingProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallShapingProfile) ToFirewallShapingProfilePtrOutputWithContext(ctx context.Context) FirewallShapingProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingProfilePtrOutput)
-}
-
-type FirewallShapingProfilePtrInput interface {
-	pulumi.Input
-
-	ToFirewallShapingProfilePtrOutput() FirewallShapingProfilePtrOutput
-	ToFirewallShapingProfilePtrOutputWithContext(ctx context.Context) FirewallShapingProfilePtrOutput
-}
-
-type firewallShapingProfilePtrType FirewallShapingProfileArgs
-
-func (*firewallShapingProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShapingProfile)(nil))
-}
-
-func (i *firewallShapingProfilePtrType) ToFirewallShapingProfilePtrOutput() FirewallShapingProfilePtrOutput {
-	return i.ToFirewallShapingProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *firewallShapingProfilePtrType) ToFirewallShapingProfilePtrOutputWithContext(ctx context.Context) FirewallShapingProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingProfilePtrOutput)
 }
 
 // FirewallShapingProfileArrayInput is an input type that accepts FirewallShapingProfileArray and FirewallShapingProfileArrayOutput values.
@@ -247,7 +220,7 @@ type FirewallShapingProfileArrayInput interface {
 type FirewallShapingProfileArray []FirewallShapingProfileInput
 
 func (FirewallShapingProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallShapingProfile)(nil))
+	return reflect.TypeOf((*[]*FirewallShapingProfile)(nil)).Elem()
 }
 
 func (i FirewallShapingProfileArray) ToFirewallShapingProfileArrayOutput() FirewallShapingProfileArrayOutput {
@@ -272,7 +245,7 @@ type FirewallShapingProfileMapInput interface {
 type FirewallShapingProfileMap map[string]FirewallShapingProfileInput
 
 func (FirewallShapingProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallShapingProfile)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShapingProfile)(nil)).Elem()
 }
 
 func (i FirewallShapingProfileMap) ToFirewallShapingProfileMapOutput() FirewallShapingProfileMapOutput {
@@ -283,12 +256,10 @@ func (i FirewallShapingProfileMap) ToFirewallShapingProfileMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingProfileMapOutput)
 }
 
-type FirewallShapingProfileOutput struct {
-	*pulumi.OutputState
-}
+type FirewallShapingProfileOutput struct{ *pulumi.OutputState }
 
 func (FirewallShapingProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShapingProfile)(nil))
+	return reflect.TypeOf((**FirewallShapingProfile)(nil)).Elem()
 }
 
 func (o FirewallShapingProfileOutput) ToFirewallShapingProfileOutput() FirewallShapingProfileOutput {
@@ -299,36 +270,10 @@ func (o FirewallShapingProfileOutput) ToFirewallShapingProfileOutputWithContext(
 	return o
 }
 
-func (o FirewallShapingProfileOutput) ToFirewallShapingProfilePtrOutput() FirewallShapingProfilePtrOutput {
-	return o.ToFirewallShapingProfilePtrOutputWithContext(context.Background())
-}
-
-func (o FirewallShapingProfileOutput) ToFirewallShapingProfilePtrOutputWithContext(ctx context.Context) FirewallShapingProfilePtrOutput {
-	return o.ApplyT(func(v FirewallShapingProfile) *FirewallShapingProfile {
-		return &v
-	}).(FirewallShapingProfilePtrOutput)
-}
-
-type FirewallShapingProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallShapingProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShapingProfile)(nil))
-}
-
-func (o FirewallShapingProfilePtrOutput) ToFirewallShapingProfilePtrOutput() FirewallShapingProfilePtrOutput {
-	return o
-}
-
-func (o FirewallShapingProfilePtrOutput) ToFirewallShapingProfilePtrOutputWithContext(ctx context.Context) FirewallShapingProfilePtrOutput {
-	return o
-}
-
 type FirewallShapingProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallShapingProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallShapingProfile)(nil))
+	return reflect.TypeOf((*[]*FirewallShapingProfile)(nil)).Elem()
 }
 
 func (o FirewallShapingProfileArrayOutput) ToFirewallShapingProfileArrayOutput() FirewallShapingProfileArrayOutput {
@@ -340,15 +285,15 @@ func (o FirewallShapingProfileArrayOutput) ToFirewallShapingProfileArrayOutputWi
 }
 
 func (o FirewallShapingProfileArrayOutput) Index(i pulumi.IntInput) FirewallShapingProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallShapingProfile {
-		return vs[0].([]FirewallShapingProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallShapingProfile {
+		return vs[0].([]*FirewallShapingProfile)[vs[1].(int)]
 	}).(FirewallShapingProfileOutput)
 }
 
 type FirewallShapingProfileMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallShapingProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallShapingProfile)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShapingProfile)(nil)).Elem()
 }
 
 func (o FirewallShapingProfileMapOutput) ToFirewallShapingProfileMapOutput() FirewallShapingProfileMapOutput {
@@ -360,14 +305,16 @@ func (o FirewallShapingProfileMapOutput) ToFirewallShapingProfileMapOutputWithCo
 }
 
 func (o FirewallShapingProfileMapOutput) MapIndex(k pulumi.StringInput) FirewallShapingProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallShapingProfile {
-		return vs[0].(map[string]FirewallShapingProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallShapingProfile {
+		return vs[0].(map[string]*FirewallShapingProfile)[vs[1].(string)]
 	}).(FirewallShapingProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShapingProfileInput)(nil)).Elem(), &FirewallShapingProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShapingProfileArrayInput)(nil)).Elem(), FirewallShapingProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShapingProfileMapInput)(nil)).Elem(), FirewallShapingProfileMap{})
 	pulumi.RegisterOutputType(FirewallShapingProfileOutput{})
-	pulumi.RegisterOutputType(FirewallShapingProfilePtrOutput{})
 	pulumi.RegisterOutputType(FirewallShapingProfileArrayOutput{})
 	pulumi.RegisterOutputType(FirewallShapingProfileMapOutput{})
 }

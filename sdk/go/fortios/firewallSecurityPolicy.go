@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NGFW IPv4/IPv6 application policies.
+// Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Example Usage
 //
@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,13 +27,13 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallSecurityPolicy(ctx, "trname", &fortios.FirewallSecurityPolicyArgs{
 // 			Action: pulumi.String("accept"),
-// 			Dstaddrs: fortios.FirewallSecurityPolicyDstaddrArray{
-// 				&fortios.FirewallSecurityPolicyDstaddrArgs{
+// 			Dstaddrs: FirewallSecurityPolicyDstaddrArray{
+// 				&FirewallSecurityPolicyDstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
-// 			Dstintfs: fortios.FirewallSecurityPolicyDstintfArray{
-// 				&fortios.FirewallSecurityPolicyDstintfArgs{
+// 			Dstintfs: FirewallSecurityPolicyDstintfArray{
+// 				&FirewallSecurityPolicyDstintfArgs{
 // 					Name: pulumi.String("port4"),
 // 				},
 // 			},
@@ -41,13 +42,13 @@ import (
 // 			ProfileProtocolOptions: pulumi.String("default"),
 // 			ProfileType:            pulumi.String("single"),
 // 			Schedule:               pulumi.String("always"),
-// 			Srcaddrs: fortios.FirewallSecurityPolicySrcaddrArray{
-// 				&fortios.FirewallSecurityPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallSecurityPolicySrcaddrArray{
+// 				&FirewallSecurityPolicySrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
-// 			Srcintfs: fortios.FirewallSecurityPolicySrcintfArray{
-// 				&fortios.FirewallSecurityPolicySrcintfArgs{
+// 			Srcintfs: FirewallSecurityPolicySrcintfArray{
+// 				&FirewallSecurityPolicySrcintfArgs{
 // 					Name: pulumi.String("port2"),
 // 				},
 // 			},
@@ -147,12 +148,18 @@ type FirewallSecurityPolicy struct {
 	InternetServiceSrcNegate pulumi.StringOutput `pulumi:"internetServiceSrcNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
+	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+	LearningMode pulumi.StringOutput `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringOutput `pulumi:"logtraffic"`
 	// Record logs when a session starts. Valid values: `enable`, `disable`.
 	LogtrafficStart pulumi.StringOutput `pulumi:"logtrafficStart"`
 	// Names of FSSO groups.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringOutput `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringOutput `pulumi:"nat64"`
 	// Policy ID.
 	Policyid pulumi.IntOutput `pulumi:"policyid"`
 	// Name of profile group.
@@ -163,6 +170,8 @@ type FirewallSecurityPolicy struct {
 	ProfileType pulumi.StringOutput `pulumi:"profileType"`
 	// Schedule name.
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringOutput `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -193,6 +202,8 @@ type FirewallSecurityPolicy struct {
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
 	// Name of an existing Web filter profile.
@@ -206,6 +217,7 @@ func NewFirewallSecurityPolicy(ctx *pulumi.Context,
 		args = &FirewallSecurityPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSecurityPolicy
 	err := ctx.RegisterResource("fortios:index/firewallSecurityPolicy:FirewallSecurityPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -302,12 +314,18 @@ type firewallSecurityPolicyState struct {
 	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+	LearningMode *string `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
 	Logtraffic *string `pulumi:"logtraffic"`
 	// Record logs when a session starts. Valid values: `enable`, `disable`.
 	LogtrafficStart *string `pulumi:"logtrafficStart"`
 	// Names of FSSO groups.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 *string `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 *string `pulumi:"nat64"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
 	// Name of profile group.
@@ -318,6 +336,8 @@ type firewallSecurityPolicyState struct {
 	ProfileType *string `pulumi:"profileType"`
 	// Schedule name.
 	Schedule *string `pulumi:"schedule"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket *string `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -348,6 +368,8 @@ type firewallSecurityPolicyState struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web filter profile.
@@ -429,12 +451,18 @@ type FirewallSecurityPolicyState struct {
 	InternetServiceSrcNegate pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+	LearningMode pulumi.StringPtrInput
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringPtrInput
 	// Record logs when a session starts. Valid values: `enable`, `disable`.
 	LogtrafficStart pulumi.StringPtrInput
 	// Names of FSSO groups.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringPtrInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
 	// Name of profile group.
@@ -445,6 +473,8 @@ type FirewallSecurityPolicyState struct {
 	ProfileType pulumi.StringPtrInput
 	// Schedule name.
 	Schedule pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringPtrInput
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -475,6 +505,8 @@ type FirewallSecurityPolicyState struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web filter profile.
@@ -560,12 +592,18 @@ type firewallSecurityPolicyArgs struct {
 	InternetServiceSrcNegate *string `pulumi:"internetServiceSrcNegate"`
 	// Name of an existing IPS sensor.
 	IpsSensor *string `pulumi:"ipsSensor"`
+	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+	LearningMode *string `pulumi:"learningMode"`
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
 	Logtraffic *string `pulumi:"logtraffic"`
 	// Record logs when a session starts. Valid values: `enable`, `disable`.
 	LogtrafficStart *string `pulumi:"logtrafficStart"`
 	// Names of FSSO groups.
 	Name *string `pulumi:"name"`
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 *string `pulumi:"nat46"`
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 *string `pulumi:"nat64"`
 	// Policy ID.
 	Policyid *int `pulumi:"policyid"`
 	// Name of profile group.
@@ -576,6 +614,8 @@ type firewallSecurityPolicyArgs struct {
 	ProfileType *string `pulumi:"profileType"`
 	// Schedule name.
 	Schedule *string `pulumi:"schedule"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket *string `pulumi:"sendDenyPacket"`
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -606,6 +646,8 @@ type firewallSecurityPolicyArgs struct {
 	Uuid *string `pulumi:"uuid"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web filter profile.
@@ -688,12 +730,18 @@ type FirewallSecurityPolicyArgs struct {
 	InternetServiceSrcNegate pulumi.StringPtrInput
 	// Name of an existing IPS sensor.
 	IpsSensor pulumi.StringPtrInput
+	// Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+	LearningMode pulumi.StringPtrInput
 	// Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
 	Logtraffic pulumi.StringPtrInput
 	// Record logs when a session starts. Valid values: `enable`, `disable`.
 	LogtrafficStart pulumi.StringPtrInput
 	// Names of FSSO groups.
 	Name pulumi.StringPtrInput
+	// Enable/disable NAT46. Valid values: `enable`, `disable`.
+	Nat46 pulumi.StringPtrInput
+	// Enable/disable NAT64. Valid values: `enable`, `disable`.
+	Nat64 pulumi.StringPtrInput
 	// Policy ID.
 	Policyid pulumi.IntPtrInput
 	// Name of profile group.
@@ -704,6 +752,8 @@ type FirewallSecurityPolicyArgs struct {
 	ProfileType pulumi.StringPtrInput
 	// Schedule name.
 	Schedule pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 	SendDenyPacket pulumi.StringPtrInput
 	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
@@ -734,6 +784,8 @@ type FirewallSecurityPolicyArgs struct {
 	Uuid pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web filter profile.
@@ -752,7 +804,7 @@ type FirewallSecurityPolicyInput interface {
 }
 
 func (*FirewallSecurityPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((**FirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (i *FirewallSecurityPolicy) ToFirewallSecurityPolicyOutput() FirewallSecurityPolicyOutput {
@@ -761,35 +813,6 @@ func (i *FirewallSecurityPolicy) ToFirewallSecurityPolicyOutput() FirewallSecuri
 
 func (i *FirewallSecurityPolicy) ToFirewallSecurityPolicyOutputWithContext(ctx context.Context) FirewallSecurityPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicyOutput)
-}
-
-func (i *FirewallSecurityPolicy) ToFirewallSecurityPolicyPtrOutput() FirewallSecurityPolicyPtrOutput {
-	return i.ToFirewallSecurityPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSecurityPolicy) ToFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicyPtrOutput)
-}
-
-type FirewallSecurityPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSecurityPolicyPtrOutput() FirewallSecurityPolicyPtrOutput
-	ToFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicyPtrOutput
-}
-
-type firewallSecurityPolicyPtrType FirewallSecurityPolicyArgs
-
-func (*firewallSecurityPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicy)(nil))
-}
-
-func (i *firewallSecurityPolicyPtrType) ToFirewallSecurityPolicyPtrOutput() FirewallSecurityPolicyPtrOutput {
-	return i.ToFirewallSecurityPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSecurityPolicyPtrType) ToFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicyPtrOutput)
 }
 
 // FirewallSecurityPolicyArrayInput is an input type that accepts FirewallSecurityPolicyArray and FirewallSecurityPolicyArrayOutput values.
@@ -806,7 +829,7 @@ type FirewallSecurityPolicyArrayInput interface {
 type FirewallSecurityPolicyArray []FirewallSecurityPolicyInput
 
 func (FirewallSecurityPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (i FirewallSecurityPolicyArray) ToFirewallSecurityPolicyArrayOutput() FirewallSecurityPolicyArrayOutput {
@@ -831,7 +854,7 @@ type FirewallSecurityPolicyMapInput interface {
 type FirewallSecurityPolicyMap map[string]FirewallSecurityPolicyInput
 
 func (FirewallSecurityPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (i FirewallSecurityPolicyMap) ToFirewallSecurityPolicyMapOutput() FirewallSecurityPolicyMapOutput {
@@ -842,12 +865,10 @@ func (i FirewallSecurityPolicyMap) ToFirewallSecurityPolicyMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSecurityPolicyMapOutput)
 }
 
-type FirewallSecurityPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSecurityPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((**FirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicyOutput) ToFirewallSecurityPolicyOutput() FirewallSecurityPolicyOutput {
@@ -858,36 +879,10 @@ func (o FirewallSecurityPolicyOutput) ToFirewallSecurityPolicyOutputWithContext(
 	return o
 }
 
-func (o FirewallSecurityPolicyOutput) ToFirewallSecurityPolicyPtrOutput() FirewallSecurityPolicyPtrOutput {
-	return o.ToFirewallSecurityPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSecurityPolicyOutput) ToFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallSecurityPolicy) *FirewallSecurityPolicy {
-		return &v
-	}).(FirewallSecurityPolicyPtrOutput)
-}
-
-type FirewallSecurityPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSecurityPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSecurityPolicy)(nil))
-}
-
-func (o FirewallSecurityPolicyPtrOutput) ToFirewallSecurityPolicyPtrOutput() FirewallSecurityPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallSecurityPolicyPtrOutput) ToFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FirewallSecurityPolicyPtrOutput {
-	return o
-}
-
 type FirewallSecurityPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicyArrayOutput) ToFirewallSecurityPolicyArrayOutput() FirewallSecurityPolicyArrayOutput {
@@ -899,15 +894,15 @@ func (o FirewallSecurityPolicyArrayOutput) ToFirewallSecurityPolicyArrayOutputWi
 }
 
 func (o FirewallSecurityPolicyArrayOutput) Index(i pulumi.IntInput) FirewallSecurityPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSecurityPolicy {
-		return vs[0].([]FirewallSecurityPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSecurityPolicy {
+		return vs[0].([]*FirewallSecurityPolicy)[vs[1].(int)]
 	}).(FirewallSecurityPolicyOutput)
 }
 
 type FirewallSecurityPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSecurityPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (o FirewallSecurityPolicyMapOutput) ToFirewallSecurityPolicyMapOutput() FirewallSecurityPolicyMapOutput {
@@ -919,14 +914,16 @@ func (o FirewallSecurityPolicyMapOutput) ToFirewallSecurityPolicyMapOutputWithCo
 }
 
 func (o FirewallSecurityPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallSecurityPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSecurityPolicy {
-		return vs[0].(map[string]FirewallSecurityPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSecurityPolicy {
+		return vs[0].(map[string]*FirewallSecurityPolicy)[vs[1].(string)]
 	}).(FirewallSecurityPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicyInput)(nil)).Elem(), &FirewallSecurityPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicyArrayInput)(nil)).Elem(), FirewallSecurityPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSecurityPolicyMapInput)(nil)).Elem(), FirewallSecurityPolicyMap{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallSecurityPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSecurityPolicyMapOutput{})
 }

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -96,6 +96,8 @@ import (
 type FirewallVip6 struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route pulumi.StringOutput `pulumi:"addNat64Route"`
 	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 	ArpReply pulumi.StringOutput `pulumi:"arpReply"`
 	// Color of icon on the GUI.
@@ -104,6 +106,8 @@ type FirewallVip6 struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+	EmbeddedIpv4Address pulumi.StringOutput `pulumi:"embeddedIpv4Address"`
 	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 	Extip pulumi.StringOutput `pulumi:"extip"`
 	// Incoming port number range that you want to map to a port number range on the destination network.
@@ -132,6 +136,10 @@ type FirewallVip6 struct {
 	HttpRedirect pulumi.StringOutput `pulumi:"httpRedirect"`
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure pulumi.StringOutput `pulumi:"httpsCookieSecure"`
+	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
+	Ipv4Mappedip pulumi.StringOutput `pulumi:"ipv4Mappedip"`
+	// IPv4 port number range on the destination network to which the external port number range is mapped.
+	Ipv4Mappedport pulumi.StringOutput `pulumi:"ipv4Mappedport"`
 	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 	LdbMethod pulumi.StringOutput `pulumi:"ldbMethod"`
 	// Mapped IP address range in the format startIP-endIP.
@@ -144,6 +152,10 @@ type FirewallVip6 struct {
 	Monitors FirewallVip6MonitorArrayOutput `pulumi:"monitors"`
 	// Health monitor name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
+	Nat64 pulumi.StringOutput `pulumi:"nat64"`
+	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
+	Nat66 pulumi.StringOutput `pulumi:"nat66"`
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringOutput `pulumi:"natSourceVip"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
@@ -160,6 +172,8 @@ type FirewallVip6 struct {
 	ServerType pulumi.StringOutput `pulumi:"serverType"`
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters FirewallVip6SrcFilterArrayOutput `pulumi:"srcFilters"`
+	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+	SslAcceptFfdheGroups pulumi.StringOutput `pulumi:"sslAcceptFfdheGroups"`
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 	SslAlgorithm pulumi.StringOutput `pulumi:"sslAlgorithm"`
 	// The name of the SSL certificate to use for SSL acceleration.
@@ -226,7 +240,7 @@ type FirewallVip6 struct {
 	SslServerSessionStateTimeout pulumi.IntOutput `pulumi:"sslServerSessionStateTimeout"`
 	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
 	SslServerSessionStateType pulumi.StringOutput `pulumi:"sslServerSessionStateType"`
-	// Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+	// Configure a static NAT or server load balance VIP.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringOutput `pulumi:"uuid"`
@@ -251,6 +265,7 @@ func NewFirewallVip6(ctx *pulumi.Context,
 	if args.Mappedip == nil {
 		return nil, errors.New("invalid value for required argument 'Mappedip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallVip6
 	err := ctx.RegisterResource("fortios:index/firewallVip6:FirewallVip6", name, args, &resource, opts...)
 	if err != nil {
@@ -273,6 +288,8 @@ func GetFirewallVip6(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering FirewallVip6 resources.
 type firewallVip6State struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route *string `pulumi:"addNat64Route"`
 	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 	ArpReply *string `pulumi:"arpReply"`
 	// Color of icon on the GUI.
@@ -281,6 +298,8 @@ type firewallVip6State struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+	EmbeddedIpv4Address *string `pulumi:"embeddedIpv4Address"`
 	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 	Extip *string `pulumi:"extip"`
 	// Incoming port number range that you want to map to a port number range on the destination network.
@@ -309,6 +328,10 @@ type firewallVip6State struct {
 	HttpRedirect *string `pulumi:"httpRedirect"`
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
+	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
+	Ipv4Mappedip *string `pulumi:"ipv4Mappedip"`
+	// IPv4 port number range on the destination network to which the external port number range is mapped.
+	Ipv4Mappedport *string `pulumi:"ipv4Mappedport"`
 	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Mapped IP address range in the format startIP-endIP.
@@ -321,6 +344,10 @@ type firewallVip6State struct {
 	Monitors []FirewallVip6Monitor `pulumi:"monitors"`
 	// Health monitor name.
 	Name *string `pulumi:"name"`
+	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
+	Nat64 *string `pulumi:"nat64"`
+	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
+	Nat66 *string `pulumi:"nat66"`
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip *string `pulumi:"natSourceVip"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
@@ -337,6 +364,8 @@ type firewallVip6State struct {
 	ServerType *string `pulumi:"serverType"`
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters []FirewallVip6SrcFilter `pulumi:"srcFilters"`
+	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+	SslAcceptFfdheGroups *string `pulumi:"sslAcceptFfdheGroups"`
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
 	// The name of the SSL certificate to use for SSL acceleration.
@@ -403,7 +432,7 @@ type firewallVip6State struct {
 	SslServerSessionStateTimeout *int `pulumi:"sslServerSessionStateTimeout"`
 	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
 	SslServerSessionStateType *string `pulumi:"sslServerSessionStateType"`
-	// Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+	// Configure a static NAT or server load balance VIP.
 	Type *string `pulumi:"type"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
@@ -416,6 +445,8 @@ type firewallVip6State struct {
 }
 
 type FirewallVip6State struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route pulumi.StringPtrInput
 	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 	ArpReply pulumi.StringPtrInput
 	// Color of icon on the GUI.
@@ -424,6 +455,8 @@ type FirewallVip6State struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+	EmbeddedIpv4Address pulumi.StringPtrInput
 	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 	Extip pulumi.StringPtrInput
 	// Incoming port number range that you want to map to a port number range on the destination network.
@@ -452,6 +485,10 @@ type FirewallVip6State struct {
 	HttpRedirect pulumi.StringPtrInput
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure pulumi.StringPtrInput
+	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
+	Ipv4Mappedip pulumi.StringPtrInput
+	// IPv4 port number range on the destination network to which the external port number range is mapped.
+	Ipv4Mappedport pulumi.StringPtrInput
 	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 	LdbMethod pulumi.StringPtrInput
 	// Mapped IP address range in the format startIP-endIP.
@@ -464,6 +501,10 @@ type FirewallVip6State struct {
 	Monitors FirewallVip6MonitorArrayInput
 	// Health monitor name.
 	Name pulumi.StringPtrInput
+	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
+	Nat64 pulumi.StringPtrInput
+	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
+	Nat66 pulumi.StringPtrInput
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringPtrInput
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
@@ -480,6 +521,8 @@ type FirewallVip6State struct {
 	ServerType pulumi.StringPtrInput
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters FirewallVip6SrcFilterArrayInput
+	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+	SslAcceptFfdheGroups pulumi.StringPtrInput
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 	SslAlgorithm pulumi.StringPtrInput
 	// The name of the SSL certificate to use for SSL acceleration.
@@ -546,7 +589,7 @@ type FirewallVip6State struct {
 	SslServerSessionStateTimeout pulumi.IntPtrInput
 	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
 	SslServerSessionStateType pulumi.StringPtrInput
-	// Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+	// Configure a static NAT or server load balance VIP.
 	Type pulumi.StringPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
@@ -563,6 +606,8 @@ func (FirewallVip6State) ElementType() reflect.Type {
 }
 
 type firewallVip6Args struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route *string `pulumi:"addNat64Route"`
 	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 	ArpReply *string `pulumi:"arpReply"`
 	// Color of icon on the GUI.
@@ -571,6 +616,8 @@ type firewallVip6Args struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+	EmbeddedIpv4Address *string `pulumi:"embeddedIpv4Address"`
 	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 	Extip string `pulumi:"extip"`
 	// Incoming port number range that you want to map to a port number range on the destination network.
@@ -599,6 +646,10 @@ type firewallVip6Args struct {
 	HttpRedirect *string `pulumi:"httpRedirect"`
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure *string `pulumi:"httpsCookieSecure"`
+	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
+	Ipv4Mappedip *string `pulumi:"ipv4Mappedip"`
+	// IPv4 port number range on the destination network to which the external port number range is mapped.
+	Ipv4Mappedport *string `pulumi:"ipv4Mappedport"`
 	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 	LdbMethod *string `pulumi:"ldbMethod"`
 	// Mapped IP address range in the format startIP-endIP.
@@ -611,6 +662,10 @@ type firewallVip6Args struct {
 	Monitors []FirewallVip6Monitor `pulumi:"monitors"`
 	// Health monitor name.
 	Name *string `pulumi:"name"`
+	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
+	Nat64 *string `pulumi:"nat64"`
+	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
+	Nat66 *string `pulumi:"nat66"`
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip *string `pulumi:"natSourceVip"`
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
@@ -627,6 +682,8 @@ type firewallVip6Args struct {
 	ServerType *string `pulumi:"serverType"`
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters []FirewallVip6SrcFilter `pulumi:"srcFilters"`
+	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+	SslAcceptFfdheGroups *string `pulumi:"sslAcceptFfdheGroups"`
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 	SslAlgorithm *string `pulumi:"sslAlgorithm"`
 	// The name of the SSL certificate to use for SSL acceleration.
@@ -693,7 +750,7 @@ type firewallVip6Args struct {
 	SslServerSessionStateTimeout *int `pulumi:"sslServerSessionStateTimeout"`
 	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
 	SslServerSessionStateType *string `pulumi:"sslServerSessionStateType"`
-	// Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+	// Configure a static NAT or server load balance VIP.
 	Type *string `pulumi:"type"`
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid *string `pulumi:"uuid"`
@@ -707,6 +764,8 @@ type firewallVip6Args struct {
 
 // The set of arguments for constructing a FirewallVip6 resource.
 type FirewallVip6Args struct {
+	// Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+	AddNat64Route pulumi.StringPtrInput
 	// Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 	ArpReply pulumi.StringPtrInput
 	// Color of icon on the GUI.
@@ -715,6 +774,8 @@ type FirewallVip6Args struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+	EmbeddedIpv4Address pulumi.StringPtrInput
 	// IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 	Extip pulumi.StringInput
 	// Incoming port number range that you want to map to a port number range on the destination network.
@@ -743,6 +804,10 @@ type FirewallVip6Args struct {
 	HttpRedirect pulumi.StringPtrInput
 	// Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 	HttpsCookieSecure pulumi.StringPtrInput
+	// Start-mapped-IPv4-address [-end mapped-IPv4-address].
+	Ipv4Mappedip pulumi.StringPtrInput
+	// IPv4 port number range on the destination network to which the external port number range is mapped.
+	Ipv4Mappedport pulumi.StringPtrInput
 	// Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 	LdbMethod pulumi.StringPtrInput
 	// Mapped IP address range in the format startIP-endIP.
@@ -755,6 +820,10 @@ type FirewallVip6Args struct {
 	Monitors FirewallVip6MonitorArrayInput
 	// Health monitor name.
 	Name pulumi.StringPtrInput
+	// Enable/disable DNAT64. Valid values: `disable`, `enable`.
+	Nat64 pulumi.StringPtrInput
+	// Enable/disable DNAT66. Valid values: `disable`, `enable`.
+	Nat66 pulumi.StringPtrInput
 	// Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
 	NatSourceVip pulumi.StringPtrInput
 	// Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
@@ -771,6 +840,8 @@ type FirewallVip6Args struct {
 	ServerType pulumi.StringPtrInput
 	// Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `srcFilter` block is documented below.
 	SrcFilters FirewallVip6SrcFilterArrayInput
+	// Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+	SslAcceptFfdheGroups pulumi.StringPtrInput
 	// Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 	SslAlgorithm pulumi.StringPtrInput
 	// The name of the SSL certificate to use for SSL acceleration.
@@ -837,7 +908,7 @@ type FirewallVip6Args struct {
 	SslServerSessionStateTimeout pulumi.IntPtrInput
 	// How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
 	SslServerSessionStateType pulumi.StringPtrInput
-	// Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+	// Configure a static NAT or server load balance VIP.
 	Type pulumi.StringPtrInput
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid pulumi.StringPtrInput
@@ -861,7 +932,7 @@ type FirewallVip6Input interface {
 }
 
 func (*FirewallVip6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVip6)(nil))
+	return reflect.TypeOf((**FirewallVip6)(nil)).Elem()
 }
 
 func (i *FirewallVip6) ToFirewallVip6Output() FirewallVip6Output {
@@ -870,35 +941,6 @@ func (i *FirewallVip6) ToFirewallVip6Output() FirewallVip6Output {
 
 func (i *FirewallVip6) ToFirewallVip6OutputWithContext(ctx context.Context) FirewallVip6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip6Output)
-}
-
-func (i *FirewallVip6) ToFirewallVip6PtrOutput() FirewallVip6PtrOutput {
-	return i.ToFirewallVip6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallVip6) ToFirewallVip6PtrOutputWithContext(ctx context.Context) FirewallVip6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip6PtrOutput)
-}
-
-type FirewallVip6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallVip6PtrOutput() FirewallVip6PtrOutput
-	ToFirewallVip6PtrOutputWithContext(ctx context.Context) FirewallVip6PtrOutput
-}
-
-type firewallVip6PtrType FirewallVip6Args
-
-func (*firewallVip6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVip6)(nil))
-}
-
-func (i *firewallVip6PtrType) ToFirewallVip6PtrOutput() FirewallVip6PtrOutput {
-	return i.ToFirewallVip6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallVip6PtrType) ToFirewallVip6PtrOutputWithContext(ctx context.Context) FirewallVip6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip6PtrOutput)
 }
 
 // FirewallVip6ArrayInput is an input type that accepts FirewallVip6Array and FirewallVip6ArrayOutput values.
@@ -915,7 +957,7 @@ type FirewallVip6ArrayInput interface {
 type FirewallVip6Array []FirewallVip6Input
 
 func (FirewallVip6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallVip6)(nil))
+	return reflect.TypeOf((*[]*FirewallVip6)(nil)).Elem()
 }
 
 func (i FirewallVip6Array) ToFirewallVip6ArrayOutput() FirewallVip6ArrayOutput {
@@ -940,7 +982,7 @@ type FirewallVip6MapInput interface {
 type FirewallVip6Map map[string]FirewallVip6Input
 
 func (FirewallVip6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallVip6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVip6)(nil)).Elem()
 }
 
 func (i FirewallVip6Map) ToFirewallVip6MapOutput() FirewallVip6MapOutput {
@@ -951,12 +993,10 @@ func (i FirewallVip6Map) ToFirewallVip6MapOutputWithContext(ctx context.Context)
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVip6MapOutput)
 }
 
-type FirewallVip6Output struct {
-	*pulumi.OutputState
-}
+type FirewallVip6Output struct{ *pulumi.OutputState }
 
 func (FirewallVip6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVip6)(nil))
+	return reflect.TypeOf((**FirewallVip6)(nil)).Elem()
 }
 
 func (o FirewallVip6Output) ToFirewallVip6Output() FirewallVip6Output {
@@ -967,36 +1007,10 @@ func (o FirewallVip6Output) ToFirewallVip6OutputWithContext(ctx context.Context)
 	return o
 }
 
-func (o FirewallVip6Output) ToFirewallVip6PtrOutput() FirewallVip6PtrOutput {
-	return o.ToFirewallVip6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallVip6Output) ToFirewallVip6PtrOutputWithContext(ctx context.Context) FirewallVip6PtrOutput {
-	return o.ApplyT(func(v FirewallVip6) *FirewallVip6 {
-		return &v
-	}).(FirewallVip6PtrOutput)
-}
-
-type FirewallVip6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallVip6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVip6)(nil))
-}
-
-func (o FirewallVip6PtrOutput) ToFirewallVip6PtrOutput() FirewallVip6PtrOutput {
-	return o
-}
-
-func (o FirewallVip6PtrOutput) ToFirewallVip6PtrOutputWithContext(ctx context.Context) FirewallVip6PtrOutput {
-	return o
-}
-
 type FirewallVip6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallVip6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallVip6)(nil))
+	return reflect.TypeOf((*[]*FirewallVip6)(nil)).Elem()
 }
 
 func (o FirewallVip6ArrayOutput) ToFirewallVip6ArrayOutput() FirewallVip6ArrayOutput {
@@ -1008,15 +1022,15 @@ func (o FirewallVip6ArrayOutput) ToFirewallVip6ArrayOutputWithContext(ctx contex
 }
 
 func (o FirewallVip6ArrayOutput) Index(i pulumi.IntInput) FirewallVip6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallVip6 {
-		return vs[0].([]FirewallVip6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVip6 {
+		return vs[0].([]*FirewallVip6)[vs[1].(int)]
 	}).(FirewallVip6Output)
 }
 
 type FirewallVip6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallVip6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallVip6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVip6)(nil)).Elem()
 }
 
 func (o FirewallVip6MapOutput) ToFirewallVip6MapOutput() FirewallVip6MapOutput {
@@ -1028,14 +1042,16 @@ func (o FirewallVip6MapOutput) ToFirewallVip6MapOutputWithContext(ctx context.Co
 }
 
 func (o FirewallVip6MapOutput) MapIndex(k pulumi.StringInput) FirewallVip6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallVip6 {
-		return vs[0].(map[string]FirewallVip6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallVip6 {
+		return vs[0].(map[string]*FirewallVip6)[vs[1].(string)]
 	}).(FirewallVip6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVip6Input)(nil)).Elem(), &FirewallVip6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVip6ArrayInput)(nil)).Elem(), FirewallVip6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVip6MapInput)(nil)).Elem(), FirewallVip6Map{})
 	pulumi.RegisterOutputType(FirewallVip6Output{})
-	pulumi.RegisterOutputType(FirewallVip6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallVip6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallVip6MapOutput{})
 }

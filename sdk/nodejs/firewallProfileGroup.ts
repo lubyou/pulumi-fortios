@@ -102,6 +102,10 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
      */
     public readonly profileProtocolOptions!: pulumi.Output<string>;
     /**
+     * Name of an existing SCTP filter profile.
+     */
+    public readonly sctpFilterProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing Spam filter profile.
      */
     public readonly spamfilterProfile!: pulumi.Output<string>;
@@ -117,6 +121,10 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
+    /**
+     * Name of an existing VideoFilter profile.
+     */
+    public readonly videofilterProfile!: pulumi.Output<string>;
     /**
      * Name of an existing VoIP profile.
      */
@@ -139,53 +147,55 @@ export class FirewallProfileGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallProfileGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallProfileGroupArgs | FirewallProfileGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallProfileGroupState | undefined;
-            inputs["applicationList"] = state ? state.applicationList : undefined;
-            inputs["avProfile"] = state ? state.avProfile : undefined;
-            inputs["cifsProfile"] = state ? state.cifsProfile : undefined;
-            inputs["dlpSensor"] = state ? state.dlpSensor : undefined;
-            inputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
-            inputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
-            inputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
-            inputs["icapProfile"] = state ? state.icapProfile : undefined;
-            inputs["ipsSensor"] = state ? state.ipsSensor : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
-            inputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
-            inputs["sshFilterProfile"] = state ? state.sshFilterProfile : undefined;
-            inputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["voipProfile"] = state ? state.voipProfile : undefined;
-            inputs["wafProfile"] = state ? state.wafProfile : undefined;
-            inputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
+            resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
+            resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
+            resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
+            resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
+            resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
+            resourceInputs["sctpFilterProfile"] = state ? state.sctpFilterProfile : undefined;
+            resourceInputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
+            resourceInputs["sshFilterProfile"] = state ? state.sshFilterProfile : undefined;
+            resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
+            resourceInputs["wafProfile"] = state ? state.wafProfile : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
             const args = argsOrState as FirewallProfileGroupArgs | undefined;
-            inputs["applicationList"] = args ? args.applicationList : undefined;
-            inputs["avProfile"] = args ? args.avProfile : undefined;
-            inputs["cifsProfile"] = args ? args.cifsProfile : undefined;
-            inputs["dlpSensor"] = args ? args.dlpSensor : undefined;
-            inputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
-            inputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
-            inputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
-            inputs["icapProfile"] = args ? args.icapProfile : undefined;
-            inputs["ipsSensor"] = args ? args.ipsSensor : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
-            inputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
-            inputs["sshFilterProfile"] = args ? args.sshFilterProfile : undefined;
-            inputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["voipProfile"] = args ? args.voipProfile : undefined;
-            inputs["wafProfile"] = args ? args.wafProfile : undefined;
-            inputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
+            resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
+            resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
+            resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
+            resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
+            resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
+            resourceInputs["sctpFilterProfile"] = args ? args.sctpFilterProfile : undefined;
+            resourceInputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
+            resourceInputs["sshFilterProfile"] = args ? args.sshFilterProfile : undefined;
+            resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
+            resourceInputs["wafProfile"] = args ? args.wafProfile : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallProfileGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallProfileGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -238,6 +248,10 @@ export interface FirewallProfileGroupState {
      */
     profileProtocolOptions?: pulumi.Input<string>;
     /**
+     * Name of an existing SCTP filter profile.
+     */
+    sctpFilterProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing Spam filter profile.
      */
     spamfilterProfile?: pulumi.Input<string>;
@@ -253,6 +267,10 @@ export interface FirewallProfileGroupState {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Name of an existing VideoFilter profile.
+     */
+    videofilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing VoIP profile.
      */
@@ -316,6 +334,10 @@ export interface FirewallProfileGroupArgs {
      */
     profileProtocolOptions?: pulumi.Input<string>;
     /**
+     * Name of an existing SCTP filter profile.
+     */
+    sctpFilterProfile?: pulumi.Input<string>;
+    /**
      * Name of an existing Spam filter profile.
      */
     spamfilterProfile?: pulumi.Input<string>;
@@ -331,6 +353,10 @@ export interface FirewallProfileGroupArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Name of an existing VideoFilter profile.
+     */
+    videofilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing VoIP profile.
      */

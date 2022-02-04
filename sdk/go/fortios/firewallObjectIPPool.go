@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -46,7 +46,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -99,6 +99,7 @@ func NewFirewallObjectIPPool(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallObjectIPPool
 	err := ctx.RegisterResource("fortios:index/firewallObjectIPPool:FirewallObjectIPPool", name, args, &resource, opts...)
 	if err != nil {
@@ -197,7 +198,7 @@ type FirewallObjectIPPoolInput interface {
 }
 
 func (*FirewallObjectIPPool) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallObjectIPPool)(nil))
+	return reflect.TypeOf((**FirewallObjectIPPool)(nil)).Elem()
 }
 
 func (i *FirewallObjectIPPool) ToFirewallObjectIPPoolOutput() FirewallObjectIPPoolOutput {
@@ -206,35 +207,6 @@ func (i *FirewallObjectIPPool) ToFirewallObjectIPPoolOutput() FirewallObjectIPPo
 
 func (i *FirewallObjectIPPool) ToFirewallObjectIPPoolOutputWithContext(ctx context.Context) FirewallObjectIPPoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectIPPoolOutput)
-}
-
-func (i *FirewallObjectIPPool) ToFirewallObjectIPPoolPtrOutput() FirewallObjectIPPoolPtrOutput {
-	return i.ToFirewallObjectIPPoolPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallObjectIPPool) ToFirewallObjectIPPoolPtrOutputWithContext(ctx context.Context) FirewallObjectIPPoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectIPPoolPtrOutput)
-}
-
-type FirewallObjectIPPoolPtrInput interface {
-	pulumi.Input
-
-	ToFirewallObjectIPPoolPtrOutput() FirewallObjectIPPoolPtrOutput
-	ToFirewallObjectIPPoolPtrOutputWithContext(ctx context.Context) FirewallObjectIPPoolPtrOutput
-}
-
-type firewallObjectIPPoolPtrType FirewallObjectIPPoolArgs
-
-func (*firewallObjectIPPoolPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallObjectIPPool)(nil))
-}
-
-func (i *firewallObjectIPPoolPtrType) ToFirewallObjectIPPoolPtrOutput() FirewallObjectIPPoolPtrOutput {
-	return i.ToFirewallObjectIPPoolPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallObjectIPPoolPtrType) ToFirewallObjectIPPoolPtrOutputWithContext(ctx context.Context) FirewallObjectIPPoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectIPPoolPtrOutput)
 }
 
 // FirewallObjectIPPoolArrayInput is an input type that accepts FirewallObjectIPPoolArray and FirewallObjectIPPoolArrayOutput values.
@@ -251,7 +223,7 @@ type FirewallObjectIPPoolArrayInput interface {
 type FirewallObjectIPPoolArray []FirewallObjectIPPoolInput
 
 func (FirewallObjectIPPoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallObjectIPPool)(nil))
+	return reflect.TypeOf((*[]*FirewallObjectIPPool)(nil)).Elem()
 }
 
 func (i FirewallObjectIPPoolArray) ToFirewallObjectIPPoolArrayOutput() FirewallObjectIPPoolArrayOutput {
@@ -276,7 +248,7 @@ type FirewallObjectIPPoolMapInput interface {
 type FirewallObjectIPPoolMap map[string]FirewallObjectIPPoolInput
 
 func (FirewallObjectIPPoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallObjectIPPool)(nil))
+	return reflect.TypeOf((*map[string]*FirewallObjectIPPool)(nil)).Elem()
 }
 
 func (i FirewallObjectIPPoolMap) ToFirewallObjectIPPoolMapOutput() FirewallObjectIPPoolMapOutput {
@@ -287,12 +259,10 @@ func (i FirewallObjectIPPoolMap) ToFirewallObjectIPPoolMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallObjectIPPoolMapOutput)
 }
 
-type FirewallObjectIPPoolOutput struct {
-	*pulumi.OutputState
-}
+type FirewallObjectIPPoolOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectIPPoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallObjectIPPool)(nil))
+	return reflect.TypeOf((**FirewallObjectIPPool)(nil)).Elem()
 }
 
 func (o FirewallObjectIPPoolOutput) ToFirewallObjectIPPoolOutput() FirewallObjectIPPoolOutput {
@@ -303,36 +273,10 @@ func (o FirewallObjectIPPoolOutput) ToFirewallObjectIPPoolOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallObjectIPPoolOutput) ToFirewallObjectIPPoolPtrOutput() FirewallObjectIPPoolPtrOutput {
-	return o.ToFirewallObjectIPPoolPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallObjectIPPoolOutput) ToFirewallObjectIPPoolPtrOutputWithContext(ctx context.Context) FirewallObjectIPPoolPtrOutput {
-	return o.ApplyT(func(v FirewallObjectIPPool) *FirewallObjectIPPool {
-		return &v
-	}).(FirewallObjectIPPoolPtrOutput)
-}
-
-type FirewallObjectIPPoolPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallObjectIPPoolPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallObjectIPPool)(nil))
-}
-
-func (o FirewallObjectIPPoolPtrOutput) ToFirewallObjectIPPoolPtrOutput() FirewallObjectIPPoolPtrOutput {
-	return o
-}
-
-func (o FirewallObjectIPPoolPtrOutput) ToFirewallObjectIPPoolPtrOutputWithContext(ctx context.Context) FirewallObjectIPPoolPtrOutput {
-	return o
-}
-
 type FirewallObjectIPPoolArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectIPPoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallObjectIPPool)(nil))
+	return reflect.TypeOf((*[]*FirewallObjectIPPool)(nil)).Elem()
 }
 
 func (o FirewallObjectIPPoolArrayOutput) ToFirewallObjectIPPoolArrayOutput() FirewallObjectIPPoolArrayOutput {
@@ -344,15 +288,15 @@ func (o FirewallObjectIPPoolArrayOutput) ToFirewallObjectIPPoolArrayOutputWithCo
 }
 
 func (o FirewallObjectIPPoolArrayOutput) Index(i pulumi.IntInput) FirewallObjectIPPoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallObjectIPPool {
-		return vs[0].([]FirewallObjectIPPool)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallObjectIPPool {
+		return vs[0].([]*FirewallObjectIPPool)[vs[1].(int)]
 	}).(FirewallObjectIPPoolOutput)
 }
 
 type FirewallObjectIPPoolMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallObjectIPPoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallObjectIPPool)(nil))
+	return reflect.TypeOf((*map[string]*FirewallObjectIPPool)(nil)).Elem()
 }
 
 func (o FirewallObjectIPPoolMapOutput) ToFirewallObjectIPPoolMapOutput() FirewallObjectIPPoolMapOutput {
@@ -364,14 +308,16 @@ func (o FirewallObjectIPPoolMapOutput) ToFirewallObjectIPPoolMapOutputWithContex
 }
 
 func (o FirewallObjectIPPoolMapOutput) MapIndex(k pulumi.StringInput) FirewallObjectIPPoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallObjectIPPool {
-		return vs[0].(map[string]FirewallObjectIPPool)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallObjectIPPool {
+		return vs[0].(map[string]*FirewallObjectIPPool)[vs[1].(string)]
 	}).(FirewallObjectIPPoolOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallObjectIPPoolInput)(nil)).Elem(), &FirewallObjectIPPool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallObjectIPPoolArrayInput)(nil)).Elem(), FirewallObjectIPPoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallObjectIPPoolMapInput)(nil)).Elem(), FirewallObjectIPPoolMap{})
 	pulumi.RegisterOutputType(FirewallObjectIPPoolOutput{})
-	pulumi.RegisterOutputType(FirewallObjectIPPoolPtrOutput{})
 	pulumi.RegisterOutputType(FirewallObjectIPPoolArrayOutput{})
 	pulumi.RegisterOutputType(FirewallObjectIPPoolMapOutput{})
 }

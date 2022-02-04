@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemDnsResult',
     'AwaitableGetSystemDnsResult',
     'get_system_dns',
+    'get_system_dns_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,13 @@ class GetSystemDnsResult:
     """
     A collection of values returned by GetSystemDns.
     """
-    def __init__(__self__, cache_notfound_responses=None, dns_cache_limit=None, dns_cache_ttl=None, dns_over_tls=None, domains=None, id=None, interface=None, interface_select_method=None, ip6_primary=None, ip6_secondary=None, primary=None, retry=None, secondary=None, server_hostnames=None, source_ip=None, ssl_certificate=None, timeout=None, vdomparam=None):
+    def __init__(__self__, alt_primary=None, alt_secondary=None, cache_notfound_responses=None, dns_cache_limit=None, dns_cache_ttl=None, dns_over_tls=None, domains=None, id=None, interface=None, interface_select_method=None, ip6_primary=None, ip6_secondary=None, log=None, primary=None, protocol=None, retry=None, secondary=None, server_hostnames=None, server_select_method=None, source_ip=None, ssl_certificate=None, timeout=None, vdomparam=None):
+        if alt_primary and not isinstance(alt_primary, str):
+            raise TypeError("Expected argument 'alt_primary' to be a str")
+        pulumi.set(__self__, "alt_primary", alt_primary)
+        if alt_secondary and not isinstance(alt_secondary, str):
+            raise TypeError("Expected argument 'alt_secondary' to be a str")
+        pulumi.set(__self__, "alt_secondary", alt_secondary)
         if cache_notfound_responses and not isinstance(cache_notfound_responses, str):
             raise TypeError("Expected argument 'cache_notfound_responses' to be a str")
         pulumi.set(__self__, "cache_notfound_responses", cache_notfound_responses)
@@ -51,9 +58,15 @@ class GetSystemDnsResult:
         if ip6_secondary and not isinstance(ip6_secondary, str):
             raise TypeError("Expected argument 'ip6_secondary' to be a str")
         pulumi.set(__self__, "ip6_secondary", ip6_secondary)
+        if log and not isinstance(log, str):
+            raise TypeError("Expected argument 'log' to be a str")
+        pulumi.set(__self__, "log", log)
         if primary and not isinstance(primary, str):
             raise TypeError("Expected argument 'primary' to be a str")
         pulumi.set(__self__, "primary", primary)
+        if protocol and not isinstance(protocol, str):
+            raise TypeError("Expected argument 'protocol' to be a str")
+        pulumi.set(__self__, "protocol", protocol)
         if retry and not isinstance(retry, int):
             raise TypeError("Expected argument 'retry' to be a int")
         pulumi.set(__self__, "retry", retry)
@@ -63,6 +76,9 @@ class GetSystemDnsResult:
         if server_hostnames and not isinstance(server_hostnames, list):
             raise TypeError("Expected argument 'server_hostnames' to be a list")
         pulumi.set(__self__, "server_hostnames", server_hostnames)
+        if server_select_method and not isinstance(server_select_method, str):
+            raise TypeError("Expected argument 'server_select_method' to be a str")
+        pulumi.set(__self__, "server_select_method", server_select_method)
         if source_ip and not isinstance(source_ip, str):
             raise TypeError("Expected argument 'source_ip' to be a str")
         pulumi.set(__self__, "source_ip", source_ip)
@@ -75,6 +91,22 @@ class GetSystemDnsResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> str:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> str:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
 
     @property
     @pulumi.getter(name="cacheNotfoundResponses")
@@ -158,11 +190,27 @@ class GetSystemDnsResult:
 
     @property
     @pulumi.getter
+    def log(self) -> str:
+        """
+        Local DNS log setting.
+        """
+        return pulumi.get(self, "log")
+
+    @property
+    @pulumi.getter
     def primary(self) -> str:
         """
         Primary DNS server IP address.
         """
         return pulumi.get(self, "primary")
+
+    @property
+    @pulumi.getter
+    def protocol(self) -> str:
+        """
+        DNS protocols.
+        """
+        return pulumi.get(self, "protocol")
 
     @property
     @pulumi.getter
@@ -187,6 +235,14 @@ class GetSystemDnsResult:
         DNS server host name list. The structure of `server_hostname` block is documented below.
         """
         return pulumi.get(self, "server_hostnames")
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> str:
+        """
+        Specify how configured servers are prioritized.
+        """
+        return pulumi.get(self, "server_select_method")
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -224,6 +280,8 @@ class AwaitableGetSystemDnsResult(GetSystemDnsResult):
         if False:
             yield self
         return GetSystemDnsResult(
+            alt_primary=self.alt_primary,
+            alt_secondary=self.alt_secondary,
             cache_notfound_responses=self.cache_notfound_responses,
             dns_cache_limit=self.dns_cache_limit,
             dns_cache_ttl=self.dns_cache_ttl,
@@ -234,10 +292,13 @@ class AwaitableGetSystemDnsResult(GetSystemDnsResult):
             interface_select_method=self.interface_select_method,
             ip6_primary=self.ip6_primary,
             ip6_secondary=self.ip6_secondary,
+            log=self.log,
             primary=self.primary,
+            protocol=self.protocol,
             retry=self.retry,
             secondary=self.secondary,
             server_hostnames=self.server_hostnames,
+            server_select_method=self.server_select_method,
             source_ip=self.source_ip,
             ssl_certificate=self.ssl_certificate,
             timeout=self.timeout,
@@ -258,9 +319,13 @@ def get_system_dns(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemDns:GetSystemDns', __args__, opts=opts, typ=GetSystemDnsResult).value
 
     return AwaitableGetSystemDnsResult(
+        alt_primary=__ret__.alt_primary,
+        alt_secondary=__ret__.alt_secondary,
         cache_notfound_responses=__ret__.cache_notfound_responses,
         dns_cache_limit=__ret__.dns_cache_limit,
         dns_cache_ttl=__ret__.dns_cache_ttl,
@@ -271,11 +336,26 @@ def get_system_dns(vdomparam: Optional[str] = None,
         interface_select_method=__ret__.interface_select_method,
         ip6_primary=__ret__.ip6_primary,
         ip6_secondary=__ret__.ip6_secondary,
+        log=__ret__.log,
         primary=__ret__.primary,
+        protocol=__ret__.protocol,
         retry=__ret__.retry,
         secondary=__ret__.secondary,
         server_hostnames=__ret__.server_hostnames,
+        server_select_method=__ret__.server_select_method,
         source_ip=__ret__.source_ip,
         ssl_certificate=__ret__.ssl_certificate,
         timeout=__ret__.timeout,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_dns)
+def get_system_dns_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                          opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemDnsResult]:
+    """
+    Use this data source to get information on fortios system dns
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewSystemAutoInstall(ctx *pulumi.Context,
 		args = &SystemAutoInstallArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutoInstall
 	err := ctx.RegisterResource("fortios:index/systemAutoInstall:SystemAutoInstall", name, args, &resource, opts...)
 	if err != nil {
@@ -159,7 +160,7 @@ type SystemAutoInstallInput interface {
 }
 
 func (*SystemAutoInstall) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoInstall)(nil))
+	return reflect.TypeOf((**SystemAutoInstall)(nil)).Elem()
 }
 
 func (i *SystemAutoInstall) ToSystemAutoInstallOutput() SystemAutoInstallOutput {
@@ -168,35 +169,6 @@ func (i *SystemAutoInstall) ToSystemAutoInstallOutput() SystemAutoInstallOutput 
 
 func (i *SystemAutoInstall) ToSystemAutoInstallOutputWithContext(ctx context.Context) SystemAutoInstallOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallOutput)
-}
-
-func (i *SystemAutoInstall) ToSystemAutoInstallPtrOutput() SystemAutoInstallPtrOutput {
-	return i.ToSystemAutoInstallPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutoInstall) ToSystemAutoInstallPtrOutputWithContext(ctx context.Context) SystemAutoInstallPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallPtrOutput)
-}
-
-type SystemAutoInstallPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutoInstallPtrOutput() SystemAutoInstallPtrOutput
-	ToSystemAutoInstallPtrOutputWithContext(ctx context.Context) SystemAutoInstallPtrOutput
-}
-
-type systemAutoInstallPtrType SystemAutoInstallArgs
-
-func (*systemAutoInstallPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoInstall)(nil))
-}
-
-func (i *systemAutoInstallPtrType) ToSystemAutoInstallPtrOutput() SystemAutoInstallPtrOutput {
-	return i.ToSystemAutoInstallPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutoInstallPtrType) ToSystemAutoInstallPtrOutputWithContext(ctx context.Context) SystemAutoInstallPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallPtrOutput)
 }
 
 // SystemAutoInstallArrayInput is an input type that accepts SystemAutoInstallArray and SystemAutoInstallArrayOutput values.
@@ -213,7 +185,7 @@ type SystemAutoInstallArrayInput interface {
 type SystemAutoInstallArray []SystemAutoInstallInput
 
 func (SystemAutoInstallArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutoInstall)(nil))
+	return reflect.TypeOf((*[]*SystemAutoInstall)(nil)).Elem()
 }
 
 func (i SystemAutoInstallArray) ToSystemAutoInstallArrayOutput() SystemAutoInstallArrayOutput {
@@ -238,7 +210,7 @@ type SystemAutoInstallMapInput interface {
 type SystemAutoInstallMap map[string]SystemAutoInstallInput
 
 func (SystemAutoInstallMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutoInstall)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoInstall)(nil)).Elem()
 }
 
 func (i SystemAutoInstallMap) ToSystemAutoInstallMapOutput() SystemAutoInstallMapOutput {
@@ -249,12 +221,10 @@ func (i SystemAutoInstallMap) ToSystemAutoInstallMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoInstallMapOutput)
 }
 
-type SystemAutoInstallOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutoInstallOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoInstallOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoInstall)(nil))
+	return reflect.TypeOf((**SystemAutoInstall)(nil)).Elem()
 }
 
 func (o SystemAutoInstallOutput) ToSystemAutoInstallOutput() SystemAutoInstallOutput {
@@ -265,36 +235,10 @@ func (o SystemAutoInstallOutput) ToSystemAutoInstallOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemAutoInstallOutput) ToSystemAutoInstallPtrOutput() SystemAutoInstallPtrOutput {
-	return o.ToSystemAutoInstallPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutoInstallOutput) ToSystemAutoInstallPtrOutputWithContext(ctx context.Context) SystemAutoInstallPtrOutput {
-	return o.ApplyT(func(v SystemAutoInstall) *SystemAutoInstall {
-		return &v
-	}).(SystemAutoInstallPtrOutput)
-}
-
-type SystemAutoInstallPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutoInstallPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoInstall)(nil))
-}
-
-func (o SystemAutoInstallPtrOutput) ToSystemAutoInstallPtrOutput() SystemAutoInstallPtrOutput {
-	return o
-}
-
-func (o SystemAutoInstallPtrOutput) ToSystemAutoInstallPtrOutputWithContext(ctx context.Context) SystemAutoInstallPtrOutput {
-	return o
-}
-
 type SystemAutoInstallArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoInstallArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutoInstall)(nil))
+	return reflect.TypeOf((*[]*SystemAutoInstall)(nil)).Elem()
 }
 
 func (o SystemAutoInstallArrayOutput) ToSystemAutoInstallArrayOutput() SystemAutoInstallArrayOutput {
@@ -306,15 +250,15 @@ func (o SystemAutoInstallArrayOutput) ToSystemAutoInstallArrayOutputWithContext(
 }
 
 func (o SystemAutoInstallArrayOutput) Index(i pulumi.IntInput) SystemAutoInstallOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutoInstall {
-		return vs[0].([]SystemAutoInstall)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoInstall {
+		return vs[0].([]*SystemAutoInstall)[vs[1].(int)]
 	}).(SystemAutoInstallOutput)
 }
 
 type SystemAutoInstallMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoInstallMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutoInstall)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoInstall)(nil)).Elem()
 }
 
 func (o SystemAutoInstallMapOutput) ToSystemAutoInstallMapOutput() SystemAutoInstallMapOutput {
@@ -326,14 +270,16 @@ func (o SystemAutoInstallMapOutput) ToSystemAutoInstallMapOutputWithContext(ctx 
 }
 
 func (o SystemAutoInstallMapOutput) MapIndex(k pulumi.StringInput) SystemAutoInstallOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutoInstall {
-		return vs[0].(map[string]SystemAutoInstall)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutoInstall {
+		return vs[0].(map[string]*SystemAutoInstall)[vs[1].(string)]
 	}).(SystemAutoInstallOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoInstallInput)(nil)).Elem(), &SystemAutoInstall{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoInstallArrayInput)(nil)).Elem(), SystemAutoInstallArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoInstallMapInput)(nil)).Elem(), SystemAutoInstallMap{})
 	pulumi.RegisterOutputType(SystemAutoInstallOutput{})
-	pulumi.RegisterOutputType(SystemAutoInstallPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutoInstallArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutoInstallMapOutput{})
 }

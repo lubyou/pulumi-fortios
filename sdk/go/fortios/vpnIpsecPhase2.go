@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -265,6 +265,7 @@ func NewVpnIpsecPhase2(ctx *pulumi.Context,
 	if args.Proposal == nil {
 		return nil, errors.New("invalid value for required argument 'Proposal'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnIpsecPhase2
 	err := ctx.RegisterResource("fortios:index/vpnIpsecPhase2:VpnIpsecPhase2", name, args, &resource, opts...)
 	if err != nil {
@@ -683,7 +684,7 @@ type VpnIpsecPhase2Input interface {
 }
 
 func (*VpnIpsecPhase2) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecPhase2)(nil))
+	return reflect.TypeOf((**VpnIpsecPhase2)(nil)).Elem()
 }
 
 func (i *VpnIpsecPhase2) ToVpnIpsecPhase2Output() VpnIpsecPhase2Output {
@@ -692,35 +693,6 @@ func (i *VpnIpsecPhase2) ToVpnIpsecPhase2Output() VpnIpsecPhase2Output {
 
 func (i *VpnIpsecPhase2) ToVpnIpsecPhase2OutputWithContext(ctx context.Context) VpnIpsecPhase2Output {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2Output)
-}
-
-func (i *VpnIpsecPhase2) ToVpnIpsecPhase2PtrOutput() VpnIpsecPhase2PtrOutput {
-	return i.ToVpnIpsecPhase2PtrOutputWithContext(context.Background())
-}
-
-func (i *VpnIpsecPhase2) ToVpnIpsecPhase2PtrOutputWithContext(ctx context.Context) VpnIpsecPhase2PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2PtrOutput)
-}
-
-type VpnIpsecPhase2PtrInput interface {
-	pulumi.Input
-
-	ToVpnIpsecPhase2PtrOutput() VpnIpsecPhase2PtrOutput
-	ToVpnIpsecPhase2PtrOutputWithContext(ctx context.Context) VpnIpsecPhase2PtrOutput
-}
-
-type vpnIpsecPhase2PtrType VpnIpsecPhase2Args
-
-func (*vpnIpsecPhase2PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecPhase2)(nil))
-}
-
-func (i *vpnIpsecPhase2PtrType) ToVpnIpsecPhase2PtrOutput() VpnIpsecPhase2PtrOutput {
-	return i.ToVpnIpsecPhase2PtrOutputWithContext(context.Background())
-}
-
-func (i *vpnIpsecPhase2PtrType) ToVpnIpsecPhase2PtrOutputWithContext(ctx context.Context) VpnIpsecPhase2PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2PtrOutput)
 }
 
 // VpnIpsecPhase2ArrayInput is an input type that accepts VpnIpsecPhase2Array and VpnIpsecPhase2ArrayOutput values.
@@ -737,7 +709,7 @@ type VpnIpsecPhase2ArrayInput interface {
 type VpnIpsecPhase2Array []VpnIpsecPhase2Input
 
 func (VpnIpsecPhase2Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnIpsecPhase2)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecPhase2)(nil)).Elem()
 }
 
 func (i VpnIpsecPhase2Array) ToVpnIpsecPhase2ArrayOutput() VpnIpsecPhase2ArrayOutput {
@@ -762,7 +734,7 @@ type VpnIpsecPhase2MapInput interface {
 type VpnIpsecPhase2Map map[string]VpnIpsecPhase2Input
 
 func (VpnIpsecPhase2Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnIpsecPhase2)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecPhase2)(nil)).Elem()
 }
 
 func (i VpnIpsecPhase2Map) ToVpnIpsecPhase2MapOutput() VpnIpsecPhase2MapOutput {
@@ -773,12 +745,10 @@ func (i VpnIpsecPhase2Map) ToVpnIpsecPhase2MapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecPhase2MapOutput)
 }
 
-type VpnIpsecPhase2Output struct {
-	*pulumi.OutputState
-}
+type VpnIpsecPhase2Output struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase2Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecPhase2)(nil))
+	return reflect.TypeOf((**VpnIpsecPhase2)(nil)).Elem()
 }
 
 func (o VpnIpsecPhase2Output) ToVpnIpsecPhase2Output() VpnIpsecPhase2Output {
@@ -789,36 +759,10 @@ func (o VpnIpsecPhase2Output) ToVpnIpsecPhase2OutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o VpnIpsecPhase2Output) ToVpnIpsecPhase2PtrOutput() VpnIpsecPhase2PtrOutput {
-	return o.ToVpnIpsecPhase2PtrOutputWithContext(context.Background())
-}
-
-func (o VpnIpsecPhase2Output) ToVpnIpsecPhase2PtrOutputWithContext(ctx context.Context) VpnIpsecPhase2PtrOutput {
-	return o.ApplyT(func(v VpnIpsecPhase2) *VpnIpsecPhase2 {
-		return &v
-	}).(VpnIpsecPhase2PtrOutput)
-}
-
-type VpnIpsecPhase2PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnIpsecPhase2PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecPhase2)(nil))
-}
-
-func (o VpnIpsecPhase2PtrOutput) ToVpnIpsecPhase2PtrOutput() VpnIpsecPhase2PtrOutput {
-	return o
-}
-
-func (o VpnIpsecPhase2PtrOutput) ToVpnIpsecPhase2PtrOutputWithContext(ctx context.Context) VpnIpsecPhase2PtrOutput {
-	return o
-}
-
 type VpnIpsecPhase2ArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase2ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnIpsecPhase2)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecPhase2)(nil)).Elem()
 }
 
 func (o VpnIpsecPhase2ArrayOutput) ToVpnIpsecPhase2ArrayOutput() VpnIpsecPhase2ArrayOutput {
@@ -830,15 +774,15 @@ func (o VpnIpsecPhase2ArrayOutput) ToVpnIpsecPhase2ArrayOutputWithContext(ctx co
 }
 
 func (o VpnIpsecPhase2ArrayOutput) Index(i pulumi.IntInput) VpnIpsecPhase2Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecPhase2 {
-		return vs[0].([]VpnIpsecPhase2)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecPhase2 {
+		return vs[0].([]*VpnIpsecPhase2)[vs[1].(int)]
 	}).(VpnIpsecPhase2Output)
 }
 
 type VpnIpsecPhase2MapOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecPhase2MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnIpsecPhase2)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecPhase2)(nil)).Elem()
 }
 
 func (o VpnIpsecPhase2MapOutput) ToVpnIpsecPhase2MapOutput() VpnIpsecPhase2MapOutput {
@@ -850,14 +794,16 @@ func (o VpnIpsecPhase2MapOutput) ToVpnIpsecPhase2MapOutputWithContext(ctx contex
 }
 
 func (o VpnIpsecPhase2MapOutput) MapIndex(k pulumi.StringInput) VpnIpsecPhase2Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnIpsecPhase2 {
-		return vs[0].(map[string]VpnIpsecPhase2)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnIpsecPhase2 {
+		return vs[0].(map[string]*VpnIpsecPhase2)[vs[1].(string)]
 	}).(VpnIpsecPhase2Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase2Input)(nil)).Elem(), &VpnIpsecPhase2{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase2ArrayInput)(nil)).Elem(), VpnIpsecPhase2Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecPhase2MapInput)(nil)).Elem(), VpnIpsecPhase2Map{})
 	pulumi.RegisterOutputType(VpnIpsecPhase2Output{})
-	pulumi.RegisterOutputType(VpnIpsecPhase2PtrOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase2ArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecPhase2MapOutput{})
 }

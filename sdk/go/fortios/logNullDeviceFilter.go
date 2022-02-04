@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -91,6 +91,8 @@ type LogNullDeviceFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogNullDeviceFilter registers a new resource with the given unique name, arguments, and options.
@@ -100,6 +102,7 @@ func NewLogNullDeviceFilter(ctx *pulumi.Context,
 		args = &LogNullDeviceFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogNullDeviceFilter
 	err := ctx.RegisterResource("fortios:index/logNullDeviceFilter:LogNullDeviceFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -156,6 +159,8 @@ type logNullDeviceFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogNullDeviceFilterState struct {
@@ -193,6 +198,8 @@ type LogNullDeviceFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogNullDeviceFilterState) ElementType() reflect.Type {
@@ -234,6 +241,8 @@ type logNullDeviceFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogNullDeviceFilter resource.
@@ -272,6 +281,8 @@ type LogNullDeviceFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogNullDeviceFilterArgs) ElementType() reflect.Type {
@@ -286,7 +297,7 @@ type LogNullDeviceFilterInput interface {
 }
 
 func (*LogNullDeviceFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogNullDeviceFilter)(nil))
+	return reflect.TypeOf((**LogNullDeviceFilter)(nil)).Elem()
 }
 
 func (i *LogNullDeviceFilter) ToLogNullDeviceFilterOutput() LogNullDeviceFilterOutput {
@@ -295,35 +306,6 @@ func (i *LogNullDeviceFilter) ToLogNullDeviceFilterOutput() LogNullDeviceFilterO
 
 func (i *LogNullDeviceFilter) ToLogNullDeviceFilterOutputWithContext(ctx context.Context) LogNullDeviceFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterOutput)
-}
-
-func (i *LogNullDeviceFilter) ToLogNullDeviceFilterPtrOutput() LogNullDeviceFilterPtrOutput {
-	return i.ToLogNullDeviceFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogNullDeviceFilter) ToLogNullDeviceFilterPtrOutputWithContext(ctx context.Context) LogNullDeviceFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterPtrOutput)
-}
-
-type LogNullDeviceFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogNullDeviceFilterPtrOutput() LogNullDeviceFilterPtrOutput
-	ToLogNullDeviceFilterPtrOutputWithContext(ctx context.Context) LogNullDeviceFilterPtrOutput
-}
-
-type logNullDeviceFilterPtrType LogNullDeviceFilterArgs
-
-func (*logNullDeviceFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogNullDeviceFilter)(nil))
-}
-
-func (i *logNullDeviceFilterPtrType) ToLogNullDeviceFilterPtrOutput() LogNullDeviceFilterPtrOutput {
-	return i.ToLogNullDeviceFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logNullDeviceFilterPtrType) ToLogNullDeviceFilterPtrOutputWithContext(ctx context.Context) LogNullDeviceFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterPtrOutput)
 }
 
 // LogNullDeviceFilterArrayInput is an input type that accepts LogNullDeviceFilterArray and LogNullDeviceFilterArrayOutput values.
@@ -340,7 +322,7 @@ type LogNullDeviceFilterArrayInput interface {
 type LogNullDeviceFilterArray []LogNullDeviceFilterInput
 
 func (LogNullDeviceFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogNullDeviceFilter)(nil))
+	return reflect.TypeOf((*[]*LogNullDeviceFilter)(nil)).Elem()
 }
 
 func (i LogNullDeviceFilterArray) ToLogNullDeviceFilterArrayOutput() LogNullDeviceFilterArrayOutput {
@@ -365,7 +347,7 @@ type LogNullDeviceFilterMapInput interface {
 type LogNullDeviceFilterMap map[string]LogNullDeviceFilterInput
 
 func (LogNullDeviceFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogNullDeviceFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogNullDeviceFilter)(nil)).Elem()
 }
 
 func (i LogNullDeviceFilterMap) ToLogNullDeviceFilterMapOutput() LogNullDeviceFilterMapOutput {
@@ -376,12 +358,10 @@ func (i LogNullDeviceFilterMap) ToLogNullDeviceFilterMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LogNullDeviceFilterMapOutput)
 }
 
-type LogNullDeviceFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogNullDeviceFilterOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogNullDeviceFilter)(nil))
+	return reflect.TypeOf((**LogNullDeviceFilter)(nil)).Elem()
 }
 
 func (o LogNullDeviceFilterOutput) ToLogNullDeviceFilterOutput() LogNullDeviceFilterOutput {
@@ -392,36 +372,10 @@ func (o LogNullDeviceFilterOutput) ToLogNullDeviceFilterOutputWithContext(ctx co
 	return o
 }
 
-func (o LogNullDeviceFilterOutput) ToLogNullDeviceFilterPtrOutput() LogNullDeviceFilterPtrOutput {
-	return o.ToLogNullDeviceFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogNullDeviceFilterOutput) ToLogNullDeviceFilterPtrOutputWithContext(ctx context.Context) LogNullDeviceFilterPtrOutput {
-	return o.ApplyT(func(v LogNullDeviceFilter) *LogNullDeviceFilter {
-		return &v
-	}).(LogNullDeviceFilterPtrOutput)
-}
-
-type LogNullDeviceFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogNullDeviceFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogNullDeviceFilter)(nil))
-}
-
-func (o LogNullDeviceFilterPtrOutput) ToLogNullDeviceFilterPtrOutput() LogNullDeviceFilterPtrOutput {
-	return o
-}
-
-func (o LogNullDeviceFilterPtrOutput) ToLogNullDeviceFilterPtrOutputWithContext(ctx context.Context) LogNullDeviceFilterPtrOutput {
-	return o
-}
-
 type LogNullDeviceFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogNullDeviceFilter)(nil))
+	return reflect.TypeOf((*[]*LogNullDeviceFilter)(nil)).Elem()
 }
 
 func (o LogNullDeviceFilterArrayOutput) ToLogNullDeviceFilterArrayOutput() LogNullDeviceFilterArrayOutput {
@@ -433,15 +387,15 @@ func (o LogNullDeviceFilterArrayOutput) ToLogNullDeviceFilterArrayOutputWithCont
 }
 
 func (o LogNullDeviceFilterArrayOutput) Index(i pulumi.IntInput) LogNullDeviceFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogNullDeviceFilter {
-		return vs[0].([]LogNullDeviceFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogNullDeviceFilter {
+		return vs[0].([]*LogNullDeviceFilter)[vs[1].(int)]
 	}).(LogNullDeviceFilterOutput)
 }
 
 type LogNullDeviceFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogNullDeviceFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogNullDeviceFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogNullDeviceFilter)(nil)).Elem()
 }
 
 func (o LogNullDeviceFilterMapOutput) ToLogNullDeviceFilterMapOutput() LogNullDeviceFilterMapOutput {
@@ -453,14 +407,16 @@ func (o LogNullDeviceFilterMapOutput) ToLogNullDeviceFilterMapOutputWithContext(
 }
 
 func (o LogNullDeviceFilterMapOutput) MapIndex(k pulumi.StringInput) LogNullDeviceFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogNullDeviceFilter {
-		return vs[0].(map[string]LogNullDeviceFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogNullDeviceFilter {
+		return vs[0].(map[string]*LogNullDeviceFilter)[vs[1].(string)]
 	}).(LogNullDeviceFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogNullDeviceFilterInput)(nil)).Elem(), &LogNullDeviceFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogNullDeviceFilterArrayInput)(nil)).Elem(), LogNullDeviceFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogNullDeviceFilterMapInput)(nil)).Elem(), LogNullDeviceFilterMap{})
 	pulumi.RegisterOutputType(LogNullDeviceFilterOutput{})
-	pulumi.RegisterOutputType(LogNullDeviceFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogNullDeviceFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogNullDeviceFilterMapOutput{})
 }

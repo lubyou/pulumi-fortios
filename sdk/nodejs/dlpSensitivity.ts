@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source.
+ * Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -63,21 +63,19 @@ export class DlpSensitivity extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DlpSensitivityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DlpSensitivityArgs | DlpSensitivityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DlpSensitivityState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as DlpSensitivityArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DlpSensitivity.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DlpSensitivity.__pulumiType, name, resourceInputs, opts);
     }
 }
 

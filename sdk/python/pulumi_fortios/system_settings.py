@@ -17,6 +17,7 @@ class SystemSettingsArgs:
     def __init__(__self__, *,
                  allow_linkdown_path: Optional[pulumi.Input[str]] = None,
                  allow_subnet_overlap: Optional[pulumi.Input[str]] = None,
+                 application_bandwidth_tracking: Optional[pulumi.Input[str]] = None,
                  asymroute: Optional[pulumi.Input[str]] = None,
                  asymroute6: Optional[pulumi.Input[str]] = None,
                  asymroute6_icmp: Optional[pulumi.Input[str]] = None,
@@ -92,6 +93,7 @@ class SystemSettingsArgs:
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
+                 gui_videofilter: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -100,9 +102,12 @@ class SystemSettingsArgs:
                  gui_webfilter: Optional[pulumi.Input[str]] = None,
                  gui_webfilter_advanced: Optional[pulumi.Input[str]] = None,
                  gui_wireless_controller: Optional[pulumi.Input[str]] = None,
+                 gui_ztna: Optional[pulumi.Input[str]] = None,
+                 h323_direct_model: Optional[pulumi.Input[str]] = None,
                  http_external_dest: Optional[pulumi.Input[str]] = None,
                  ike_dn_format: Optional[pulumi.Input[str]] = None,
                  ike_natt_port: Optional[pulumi.Input[int]] = None,
+                 ike_policy_route: Optional[pulumi.Input[str]] = None,
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
@@ -113,6 +118,7 @@ class SystemSettingsArgs:
                  link_down_access: Optional[pulumi.Input[str]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 location_id: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  manageip: Optional[pulumi.Input[str]] = None,
                  manageip6: Optional[pulumi.Input[str]] = None,
@@ -146,6 +152,7 @@ class SystemSettingsArgs:
         The set of arguments for constructing a SystemSettings resource.
         :param pulumi.Input[str] allow_linkdown_path: Enable/disable link down path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] allow_subnet_overlap: Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] application_bandwidth_tracking: Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] asymroute: Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6: Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6_icmp: Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
@@ -221,6 +228,7 @@ class SystemSettingsArgs:
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -229,9 +237,12 @@ class SystemSettingsArgs:
         :param pulumi.Input[str] gui_webfilter: Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_webfilter_advanced: Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_wireless_controller: Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_ztna: Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h323_direct_model: Enable/disable H323 direct model. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] http_external_dest: Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
         :param pulumi.Input[str] ike_dn_format: Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
         :param pulumi.Input[int] ike_natt_port: UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
+        :param pulumi.Input[str] ike_policy_route: Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
@@ -242,6 +253,7 @@ class SystemSettingsArgs:
         :param pulumi.Input[str] link_down_access: Enable/disable link down access traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
         :param pulumi.Input[str] lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
+        :param pulumi.Input[str] location_id: Local location ID in the form of an IPv4 address.
         :param pulumi.Input[int] mac_ttl: Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
         :param pulumi.Input[str] manageip: Transparent mode IPv4 management IP address and netmask.
         :param pulumi.Input[str] manageip6: Transparent mode IPv6 management IP address and netmask.
@@ -276,6 +288,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "allow_linkdown_path", allow_linkdown_path)
         if allow_subnet_overlap is not None:
             pulumi.set(__self__, "allow_subnet_overlap", allow_subnet_overlap)
+        if application_bandwidth_tracking is not None:
+            pulumi.set(__self__, "application_bandwidth_tracking", application_bandwidth_tracking)
         if asymroute is not None:
             pulumi.set(__self__, "asymroute", asymroute)
         if asymroute6 is not None:
@@ -426,6 +440,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_threat_weight", gui_threat_weight)
         if gui_traffic_shaping is not None:
             pulumi.set(__self__, "gui_traffic_shaping", gui_traffic_shaping)
+        if gui_videofilter is not None:
+            pulumi.set(__self__, "gui_videofilter", gui_videofilter)
         if gui_voip_profile is not None:
             pulumi.set(__self__, "gui_voip_profile", gui_voip_profile)
         if gui_vpn is not None:
@@ -442,12 +458,18 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "gui_webfilter_advanced", gui_webfilter_advanced)
         if gui_wireless_controller is not None:
             pulumi.set(__self__, "gui_wireless_controller", gui_wireless_controller)
+        if gui_ztna is not None:
+            pulumi.set(__self__, "gui_ztna", gui_ztna)
+        if h323_direct_model is not None:
+            pulumi.set(__self__, "h323_direct_model", h323_direct_model)
         if http_external_dest is not None:
             pulumi.set(__self__, "http_external_dest", http_external_dest)
         if ike_dn_format is not None:
             pulumi.set(__self__, "ike_dn_format", ike_dn_format)
         if ike_natt_port is not None:
             pulumi.set(__self__, "ike_natt_port", ike_natt_port)
+        if ike_policy_route is not None:
+            pulumi.set(__self__, "ike_policy_route", ike_policy_route)
         if ike_port is not None:
             pulumi.set(__self__, "ike_port", ike_port)
         if ike_quick_crash_detect is not None:
@@ -468,6 +490,8 @@ class SystemSettingsArgs:
             pulumi.set(__self__, "lldp_reception", lldp_reception)
         if lldp_transmission is not None:
             pulumi.set(__self__, "lldp_transmission", lldp_transmission)
+        if location_id is not None:
+            pulumi.set(__self__, "location_id", location_id)
         if mac_ttl is not None:
             pulumi.set(__self__, "mac_ttl", mac_ttl)
         if manageip is not None:
@@ -550,6 +574,18 @@ class SystemSettingsArgs:
     @allow_subnet_overlap.setter
     def allow_subnet_overlap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_subnet_overlap", value)
+
+    @property
+    @pulumi.getter(name="applicationBandwidthTracking")
+    def application_bandwidth_tracking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "application_bandwidth_tracking")
+
+    @application_bandwidth_tracking.setter
+    def application_bandwidth_tracking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application_bandwidth_tracking", value)
 
     @property
     @pulumi.getter
@@ -1452,6 +1488,18 @@ class SystemSettingsArgs:
         pulumi.set(self, "gui_traffic_shaping", value)
 
     @property
+    @pulumi.getter(name="guiVideofilter")
+    def gui_videofilter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_videofilter")
+
+    @gui_videofilter.setter
+    def gui_videofilter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_videofilter", value)
+
+    @property
     @pulumi.getter(name="guiVoipProfile")
     def gui_voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1548,6 +1596,30 @@ class SystemSettingsArgs:
         pulumi.set(self, "gui_wireless_controller", value)
 
     @property
+    @pulumi.getter(name="guiZtna")
+    def gui_ztna(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_ztna")
+
+    @gui_ztna.setter
+    def gui_ztna(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_ztna", value)
+
+    @property
+    @pulumi.getter(name="h323DirectModel")
+    def h323_direct_model(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "h323_direct_model")
+
+    @h323_direct_model.setter
+    def h323_direct_model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h323_direct_model", value)
+
+    @property
     @pulumi.getter(name="httpExternalDest")
     def http_external_dest(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1582,6 +1654,18 @@ class SystemSettingsArgs:
     @ike_natt_port.setter
     def ike_natt_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ike_natt_port", value)
+
+    @property
+    @pulumi.getter(name="ikePolicyRoute")
+    def ike_policy_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ike_policy_route")
+
+    @ike_policy_route.setter
+    def ike_policy_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ike_policy_route", value)
 
     @property
     @pulumi.getter(name="ikePort")
@@ -1702,6 +1786,18 @@ class SystemSettingsArgs:
     @lldp_transmission.setter
     def lldp_transmission(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lldp_transmission", value)
+
+    @property
+    @pulumi.getter(name="locationId")
+    def location_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local location ID in the form of an IPv4 address.
+        """
+        return pulumi.get(self, "location_id")
+
+    @location_id.setter
+    def location_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location_id", value)
 
     @property
     @pulumi.getter(name="macTtl")
@@ -2057,6 +2153,7 @@ class _SystemSettingsState:
     def __init__(__self__, *,
                  allow_linkdown_path: Optional[pulumi.Input[str]] = None,
                  allow_subnet_overlap: Optional[pulumi.Input[str]] = None,
+                 application_bandwidth_tracking: Optional[pulumi.Input[str]] = None,
                  asymroute: Optional[pulumi.Input[str]] = None,
                  asymroute6: Optional[pulumi.Input[str]] = None,
                  asymroute6_icmp: Optional[pulumi.Input[str]] = None,
@@ -2132,6 +2229,7 @@ class _SystemSettingsState:
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
+                 gui_videofilter: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -2140,9 +2238,12 @@ class _SystemSettingsState:
                  gui_webfilter: Optional[pulumi.Input[str]] = None,
                  gui_webfilter_advanced: Optional[pulumi.Input[str]] = None,
                  gui_wireless_controller: Optional[pulumi.Input[str]] = None,
+                 gui_ztna: Optional[pulumi.Input[str]] = None,
+                 h323_direct_model: Optional[pulumi.Input[str]] = None,
                  http_external_dest: Optional[pulumi.Input[str]] = None,
                  ike_dn_format: Optional[pulumi.Input[str]] = None,
                  ike_natt_port: Optional[pulumi.Input[int]] = None,
+                 ike_policy_route: Optional[pulumi.Input[str]] = None,
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
@@ -2153,6 +2254,7 @@ class _SystemSettingsState:
                  link_down_access: Optional[pulumi.Input[str]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 location_id: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  manageip: Optional[pulumi.Input[str]] = None,
                  manageip6: Optional[pulumi.Input[str]] = None,
@@ -2186,6 +2288,7 @@ class _SystemSettingsState:
         Input properties used for looking up and filtering SystemSettings resources.
         :param pulumi.Input[str] allow_linkdown_path: Enable/disable link down path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] allow_subnet_overlap: Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] application_bandwidth_tracking: Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] asymroute: Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6: Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6_icmp: Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
@@ -2261,6 +2364,7 @@ class _SystemSettingsState:
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -2269,9 +2373,12 @@ class _SystemSettingsState:
         :param pulumi.Input[str] gui_webfilter: Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_webfilter_advanced: Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_wireless_controller: Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_ztna: Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h323_direct_model: Enable/disable H323 direct model. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] http_external_dest: Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
         :param pulumi.Input[str] ike_dn_format: Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
         :param pulumi.Input[int] ike_natt_port: UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
+        :param pulumi.Input[str] ike_policy_route: Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
@@ -2282,6 +2389,7 @@ class _SystemSettingsState:
         :param pulumi.Input[str] link_down_access: Enable/disable link down access traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
         :param pulumi.Input[str] lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
+        :param pulumi.Input[str] location_id: Local location ID in the form of an IPv4 address.
         :param pulumi.Input[int] mac_ttl: Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
         :param pulumi.Input[str] manageip: Transparent mode IPv4 management IP address and netmask.
         :param pulumi.Input[str] manageip6: Transparent mode IPv6 management IP address and netmask.
@@ -2316,6 +2424,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "allow_linkdown_path", allow_linkdown_path)
         if allow_subnet_overlap is not None:
             pulumi.set(__self__, "allow_subnet_overlap", allow_subnet_overlap)
+        if application_bandwidth_tracking is not None:
+            pulumi.set(__self__, "application_bandwidth_tracking", application_bandwidth_tracking)
         if asymroute is not None:
             pulumi.set(__self__, "asymroute", asymroute)
         if asymroute6 is not None:
@@ -2466,6 +2576,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_threat_weight", gui_threat_weight)
         if gui_traffic_shaping is not None:
             pulumi.set(__self__, "gui_traffic_shaping", gui_traffic_shaping)
+        if gui_videofilter is not None:
+            pulumi.set(__self__, "gui_videofilter", gui_videofilter)
         if gui_voip_profile is not None:
             pulumi.set(__self__, "gui_voip_profile", gui_voip_profile)
         if gui_vpn is not None:
@@ -2482,12 +2594,18 @@ class _SystemSettingsState:
             pulumi.set(__self__, "gui_webfilter_advanced", gui_webfilter_advanced)
         if gui_wireless_controller is not None:
             pulumi.set(__self__, "gui_wireless_controller", gui_wireless_controller)
+        if gui_ztna is not None:
+            pulumi.set(__self__, "gui_ztna", gui_ztna)
+        if h323_direct_model is not None:
+            pulumi.set(__self__, "h323_direct_model", h323_direct_model)
         if http_external_dest is not None:
             pulumi.set(__self__, "http_external_dest", http_external_dest)
         if ike_dn_format is not None:
             pulumi.set(__self__, "ike_dn_format", ike_dn_format)
         if ike_natt_port is not None:
             pulumi.set(__self__, "ike_natt_port", ike_natt_port)
+        if ike_policy_route is not None:
+            pulumi.set(__self__, "ike_policy_route", ike_policy_route)
         if ike_port is not None:
             pulumi.set(__self__, "ike_port", ike_port)
         if ike_quick_crash_detect is not None:
@@ -2508,6 +2626,8 @@ class _SystemSettingsState:
             pulumi.set(__self__, "lldp_reception", lldp_reception)
         if lldp_transmission is not None:
             pulumi.set(__self__, "lldp_transmission", lldp_transmission)
+        if location_id is not None:
+            pulumi.set(__self__, "location_id", location_id)
         if mac_ttl is not None:
             pulumi.set(__self__, "mac_ttl", mac_ttl)
         if manageip is not None:
@@ -2590,6 +2710,18 @@ class _SystemSettingsState:
     @allow_subnet_overlap.setter
     def allow_subnet_overlap(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "allow_subnet_overlap", value)
+
+    @property
+    @pulumi.getter(name="applicationBandwidthTracking")
+    def application_bandwidth_tracking(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "application_bandwidth_tracking")
+
+    @application_bandwidth_tracking.setter
+    def application_bandwidth_tracking(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "application_bandwidth_tracking", value)
 
     @property
     @pulumi.getter
@@ -3492,6 +3624,18 @@ class _SystemSettingsState:
         pulumi.set(self, "gui_traffic_shaping", value)
 
     @property
+    @pulumi.getter(name="guiVideofilter")
+    def gui_videofilter(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_videofilter")
+
+    @gui_videofilter.setter
+    def gui_videofilter(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_videofilter", value)
+
+    @property
     @pulumi.getter(name="guiVoipProfile")
     def gui_voip_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3588,6 +3732,30 @@ class _SystemSettingsState:
         pulumi.set(self, "gui_wireless_controller", value)
 
     @property
+    @pulumi.getter(name="guiZtna")
+    def gui_ztna(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_ztna")
+
+    @gui_ztna.setter
+    def gui_ztna(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "gui_ztna", value)
+
+    @property
+    @pulumi.getter(name="h323DirectModel")
+    def h323_direct_model(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "h323_direct_model")
+
+    @h323_direct_model.setter
+    def h323_direct_model(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "h323_direct_model", value)
+
+    @property
     @pulumi.getter(name="httpExternalDest")
     def http_external_dest(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3622,6 +3790,18 @@ class _SystemSettingsState:
     @ike_natt_port.setter
     def ike_natt_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ike_natt_port", value)
+
+    @property
+    @pulumi.getter(name="ikePolicyRoute")
+    def ike_policy_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ike_policy_route")
+
+    @ike_policy_route.setter
+    def ike_policy_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ike_policy_route", value)
 
     @property
     @pulumi.getter(name="ikePort")
@@ -3742,6 +3922,18 @@ class _SystemSettingsState:
     @lldp_transmission.setter
     def lldp_transmission(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "lldp_transmission", value)
+
+    @property
+    @pulumi.getter(name="locationId")
+    def location_id(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local location ID in the form of an IPv4 address.
+        """
+        return pulumi.get(self, "location_id")
+
+    @location_id.setter
+    def location_id(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "location_id", value)
 
     @property
     @pulumi.getter(name="macTtl")
@@ -4099,6 +4291,7 @@ class SystemSettings(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_linkdown_path: Optional[pulumi.Input[str]] = None,
                  allow_subnet_overlap: Optional[pulumi.Input[str]] = None,
+                 application_bandwidth_tracking: Optional[pulumi.Input[str]] = None,
                  asymroute: Optional[pulumi.Input[str]] = None,
                  asymroute6: Optional[pulumi.Input[str]] = None,
                  asymroute6_icmp: Optional[pulumi.Input[str]] = None,
@@ -4174,6 +4367,7 @@ class SystemSettings(pulumi.CustomResource):
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
+                 gui_videofilter: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -4182,9 +4376,12 @@ class SystemSettings(pulumi.CustomResource):
                  gui_webfilter: Optional[pulumi.Input[str]] = None,
                  gui_webfilter_advanced: Optional[pulumi.Input[str]] = None,
                  gui_wireless_controller: Optional[pulumi.Input[str]] = None,
+                 gui_ztna: Optional[pulumi.Input[str]] = None,
+                 h323_direct_model: Optional[pulumi.Input[str]] = None,
                  http_external_dest: Optional[pulumi.Input[str]] = None,
                  ike_dn_format: Optional[pulumi.Input[str]] = None,
                  ike_natt_port: Optional[pulumi.Input[int]] = None,
+                 ike_policy_route: Optional[pulumi.Input[str]] = None,
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
@@ -4195,6 +4392,7 @@ class SystemSettings(pulumi.CustomResource):
                  link_down_access: Optional[pulumi.Input[str]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 location_id: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  manageip: Optional[pulumi.Input[str]] = None,
                  manageip6: Optional[pulumi.Input[str]] = None,
@@ -4256,6 +4454,7 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allow_linkdown_path: Enable/disable link down path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] allow_subnet_overlap: Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] application_bandwidth_tracking: Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] asymroute: Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6: Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6_icmp: Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
@@ -4331,6 +4530,7 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -4339,9 +4539,12 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.Input[str] gui_webfilter: Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_webfilter_advanced: Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_wireless_controller: Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_ztna: Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h323_direct_model: Enable/disable H323 direct model. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] http_external_dest: Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
         :param pulumi.Input[str] ike_dn_format: Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
         :param pulumi.Input[int] ike_natt_port: UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
+        :param pulumi.Input[str] ike_policy_route: Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
@@ -4352,6 +4555,7 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.Input[str] link_down_access: Enable/disable link down access traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
         :param pulumi.Input[str] lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
+        :param pulumi.Input[str] location_id: Local location ID in the form of an IPv4 address.
         :param pulumi.Input[int] mac_ttl: Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
         :param pulumi.Input[str] manageip: Transparent mode IPv4 management IP address and netmask.
         :param pulumi.Input[str] manageip6: Transparent mode IPv6 management IP address and netmask.
@@ -4432,6 +4636,7 @@ class SystemSettings(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  allow_linkdown_path: Optional[pulumi.Input[str]] = None,
                  allow_subnet_overlap: Optional[pulumi.Input[str]] = None,
+                 application_bandwidth_tracking: Optional[pulumi.Input[str]] = None,
                  asymroute: Optional[pulumi.Input[str]] = None,
                  asymroute6: Optional[pulumi.Input[str]] = None,
                  asymroute6_icmp: Optional[pulumi.Input[str]] = None,
@@ -4507,6 +4712,7 @@ class SystemSettings(pulumi.CustomResource):
                  gui_switch_controller: Optional[pulumi.Input[str]] = None,
                  gui_threat_weight: Optional[pulumi.Input[str]] = None,
                  gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
+                 gui_videofilter: Optional[pulumi.Input[str]] = None,
                  gui_voip_profile: Optional[pulumi.Input[str]] = None,
                  gui_vpn: Optional[pulumi.Input[str]] = None,
                  gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -4515,9 +4721,12 @@ class SystemSettings(pulumi.CustomResource):
                  gui_webfilter: Optional[pulumi.Input[str]] = None,
                  gui_webfilter_advanced: Optional[pulumi.Input[str]] = None,
                  gui_wireless_controller: Optional[pulumi.Input[str]] = None,
+                 gui_ztna: Optional[pulumi.Input[str]] = None,
+                 h323_direct_model: Optional[pulumi.Input[str]] = None,
                  http_external_dest: Optional[pulumi.Input[str]] = None,
                  ike_dn_format: Optional[pulumi.Input[str]] = None,
                  ike_natt_port: Optional[pulumi.Input[int]] = None,
+                 ike_policy_route: Optional[pulumi.Input[str]] = None,
                  ike_port: Optional[pulumi.Input[int]] = None,
                  ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
                  ike_session_resume: Optional[pulumi.Input[str]] = None,
@@ -4528,6 +4737,7 @@ class SystemSettings(pulumi.CustomResource):
                  link_down_access: Optional[pulumi.Input[str]] = None,
                  lldp_reception: Optional[pulumi.Input[str]] = None,
                  lldp_transmission: Optional[pulumi.Input[str]] = None,
+                 location_id: Optional[pulumi.Input[str]] = None,
                  mac_ttl: Optional[pulumi.Input[int]] = None,
                  manageip: Optional[pulumi.Input[str]] = None,
                  manageip6: Optional[pulumi.Input[str]] = None,
@@ -4564,6 +4774,8 @@ class SystemSettings(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -4571,6 +4783,7 @@ class SystemSettings(pulumi.CustomResource):
 
             __props__.__dict__["allow_linkdown_path"] = allow_linkdown_path
             __props__.__dict__["allow_subnet_overlap"] = allow_subnet_overlap
+            __props__.__dict__["application_bandwidth_tracking"] = application_bandwidth_tracking
             __props__.__dict__["asymroute"] = asymroute
             __props__.__dict__["asymroute6"] = asymroute6
             __props__.__dict__["asymroute6_icmp"] = asymroute6_icmp
@@ -4646,6 +4859,7 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["gui_switch_controller"] = gui_switch_controller
             __props__.__dict__["gui_threat_weight"] = gui_threat_weight
             __props__.__dict__["gui_traffic_shaping"] = gui_traffic_shaping
+            __props__.__dict__["gui_videofilter"] = gui_videofilter
             __props__.__dict__["gui_voip_profile"] = gui_voip_profile
             __props__.__dict__["gui_vpn"] = gui_vpn
             __props__.__dict__["gui_waf_profile"] = gui_waf_profile
@@ -4654,9 +4868,12 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["gui_webfilter"] = gui_webfilter
             __props__.__dict__["gui_webfilter_advanced"] = gui_webfilter_advanced
             __props__.__dict__["gui_wireless_controller"] = gui_wireless_controller
+            __props__.__dict__["gui_ztna"] = gui_ztna
+            __props__.__dict__["h323_direct_model"] = h323_direct_model
             __props__.__dict__["http_external_dest"] = http_external_dest
             __props__.__dict__["ike_dn_format"] = ike_dn_format
             __props__.__dict__["ike_natt_port"] = ike_natt_port
+            __props__.__dict__["ike_policy_route"] = ike_policy_route
             __props__.__dict__["ike_port"] = ike_port
             __props__.__dict__["ike_quick_crash_detect"] = ike_quick_crash_detect
             __props__.__dict__["ike_session_resume"] = ike_session_resume
@@ -4667,6 +4884,7 @@ class SystemSettings(pulumi.CustomResource):
             __props__.__dict__["link_down_access"] = link_down_access
             __props__.__dict__["lldp_reception"] = lldp_reception
             __props__.__dict__["lldp_transmission"] = lldp_transmission
+            __props__.__dict__["location_id"] = location_id
             __props__.__dict__["mac_ttl"] = mac_ttl
             __props__.__dict__["manageip"] = manageip
             __props__.__dict__["manageip6"] = manageip6
@@ -4708,6 +4926,7 @@ class SystemSettings(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             allow_linkdown_path: Optional[pulumi.Input[str]] = None,
             allow_subnet_overlap: Optional[pulumi.Input[str]] = None,
+            application_bandwidth_tracking: Optional[pulumi.Input[str]] = None,
             asymroute: Optional[pulumi.Input[str]] = None,
             asymroute6: Optional[pulumi.Input[str]] = None,
             asymroute6_icmp: Optional[pulumi.Input[str]] = None,
@@ -4783,6 +5002,7 @@ class SystemSettings(pulumi.CustomResource):
             gui_switch_controller: Optional[pulumi.Input[str]] = None,
             gui_threat_weight: Optional[pulumi.Input[str]] = None,
             gui_traffic_shaping: Optional[pulumi.Input[str]] = None,
+            gui_videofilter: Optional[pulumi.Input[str]] = None,
             gui_voip_profile: Optional[pulumi.Input[str]] = None,
             gui_vpn: Optional[pulumi.Input[str]] = None,
             gui_waf_profile: Optional[pulumi.Input[str]] = None,
@@ -4791,9 +5011,12 @@ class SystemSettings(pulumi.CustomResource):
             gui_webfilter: Optional[pulumi.Input[str]] = None,
             gui_webfilter_advanced: Optional[pulumi.Input[str]] = None,
             gui_wireless_controller: Optional[pulumi.Input[str]] = None,
+            gui_ztna: Optional[pulumi.Input[str]] = None,
+            h323_direct_model: Optional[pulumi.Input[str]] = None,
             http_external_dest: Optional[pulumi.Input[str]] = None,
             ike_dn_format: Optional[pulumi.Input[str]] = None,
             ike_natt_port: Optional[pulumi.Input[int]] = None,
+            ike_policy_route: Optional[pulumi.Input[str]] = None,
             ike_port: Optional[pulumi.Input[int]] = None,
             ike_quick_crash_detect: Optional[pulumi.Input[str]] = None,
             ike_session_resume: Optional[pulumi.Input[str]] = None,
@@ -4804,6 +5027,7 @@ class SystemSettings(pulumi.CustomResource):
             link_down_access: Optional[pulumi.Input[str]] = None,
             lldp_reception: Optional[pulumi.Input[str]] = None,
             lldp_transmission: Optional[pulumi.Input[str]] = None,
+            location_id: Optional[pulumi.Input[str]] = None,
             mac_ttl: Optional[pulumi.Input[int]] = None,
             manageip: Optional[pulumi.Input[str]] = None,
             manageip6: Optional[pulumi.Input[str]] = None,
@@ -4842,6 +5066,7 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] allow_linkdown_path: Enable/disable link down path. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] allow_subnet_overlap: Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] application_bandwidth_tracking: Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] asymroute: Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6: Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] asymroute6_icmp: Enable/disable asymmetric ICMPv6 routing. Valid values: `enable`, `disable`.
@@ -4917,6 +5142,7 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.Input[str] gui_switch_controller: Enable/disable the switch controller on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_threat_weight: Enable/disable threat weight on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_traffic_shaping: Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_videofilter: Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_voip_profile: Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_vpn: Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_waf_profile: Enable/disable Web Application Firewall on the GUI. Valid values: `enable`, `disable`.
@@ -4925,9 +5151,12 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.Input[str] gui_webfilter: Enable/disable Web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_webfilter_advanced: Enable/disable advanced web filtering on the GUI. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] gui_wireless_controller: Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] gui_ztna: Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] h323_direct_model: Enable/disable H323 direct model. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] http_external_dest: Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
         :param pulumi.Input[str] ike_dn_format: Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
         :param pulumi.Input[int] ike_natt_port: UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
+        :param pulumi.Input[str] ike_policy_route: Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] ike_port: UDP port for IKE/IPsec traffic (default 500).
         :param pulumi.Input[str] ike_quick_crash_detect: Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ike_session_resume: Enable/disable IKEv2 session resumption (RFC 5723). Valid values: `enable`, `disable`.
@@ -4938,6 +5167,7 @@ class SystemSettings(pulumi.CustomResource):
         :param pulumi.Input[str] link_down_access: Enable/disable link down access traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] lldp_reception: Enable/disable Link Layer Discovery Protocol (LLDP) reception for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
         :param pulumi.Input[str] lldp_transmission: Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
+        :param pulumi.Input[str] location_id: Local location ID in the form of an IPv4 address.
         :param pulumi.Input[int] mac_ttl: Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
         :param pulumi.Input[str] manageip: Transparent mode IPv4 management IP address and netmask.
         :param pulumi.Input[str] manageip6: Transparent mode IPv6 management IP address and netmask.
@@ -4974,6 +5204,7 @@ class SystemSettings(pulumi.CustomResource):
 
         __props__.__dict__["allow_linkdown_path"] = allow_linkdown_path
         __props__.__dict__["allow_subnet_overlap"] = allow_subnet_overlap
+        __props__.__dict__["application_bandwidth_tracking"] = application_bandwidth_tracking
         __props__.__dict__["asymroute"] = asymroute
         __props__.__dict__["asymroute6"] = asymroute6
         __props__.__dict__["asymroute6_icmp"] = asymroute6_icmp
@@ -5049,6 +5280,7 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["gui_switch_controller"] = gui_switch_controller
         __props__.__dict__["gui_threat_weight"] = gui_threat_weight
         __props__.__dict__["gui_traffic_shaping"] = gui_traffic_shaping
+        __props__.__dict__["gui_videofilter"] = gui_videofilter
         __props__.__dict__["gui_voip_profile"] = gui_voip_profile
         __props__.__dict__["gui_vpn"] = gui_vpn
         __props__.__dict__["gui_waf_profile"] = gui_waf_profile
@@ -5057,9 +5289,12 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["gui_webfilter"] = gui_webfilter
         __props__.__dict__["gui_webfilter_advanced"] = gui_webfilter_advanced
         __props__.__dict__["gui_wireless_controller"] = gui_wireless_controller
+        __props__.__dict__["gui_ztna"] = gui_ztna
+        __props__.__dict__["h323_direct_model"] = h323_direct_model
         __props__.__dict__["http_external_dest"] = http_external_dest
         __props__.__dict__["ike_dn_format"] = ike_dn_format
         __props__.__dict__["ike_natt_port"] = ike_natt_port
+        __props__.__dict__["ike_policy_route"] = ike_policy_route
         __props__.__dict__["ike_port"] = ike_port
         __props__.__dict__["ike_quick_crash_detect"] = ike_quick_crash_detect
         __props__.__dict__["ike_session_resume"] = ike_session_resume
@@ -5070,6 +5305,7 @@ class SystemSettings(pulumi.CustomResource):
         __props__.__dict__["link_down_access"] = link_down_access
         __props__.__dict__["lldp_reception"] = lldp_reception
         __props__.__dict__["lldp_transmission"] = lldp_transmission
+        __props__.__dict__["location_id"] = location_id
         __props__.__dict__["mac_ttl"] = mac_ttl
         __props__.__dict__["manageip"] = manageip
         __props__.__dict__["manageip6"] = manageip6
@@ -5116,6 +5352,14 @@ class SystemSettings(pulumi.CustomResource):
         Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "allow_subnet_overlap")
+
+    @property
+    @pulumi.getter(name="applicationBandwidthTracking")
+    def application_bandwidth_tracking(self) -> pulumi.Output[str]:
+        """
+        Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "application_bandwidth_tracking")
 
     @property
     @pulumi.getter
@@ -5718,6 +5962,14 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gui_traffic_shaping")
 
     @property
+    @pulumi.getter(name="guiVideofilter")
+    def gui_videofilter(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_videofilter")
+
+    @property
     @pulumi.getter(name="guiVoipProfile")
     def gui_voip_profile(self) -> pulumi.Output[str]:
         """
@@ -5782,6 +6034,22 @@ class SystemSettings(pulumi.CustomResource):
         return pulumi.get(self, "gui_wireless_controller")
 
     @property
+    @pulumi.getter(name="guiZtna")
+    def gui_ztna(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "gui_ztna")
+
+    @property
+    @pulumi.getter(name="h323DirectModel")
+    def h323_direct_model(self) -> pulumi.Output[str]:
+        """
+        Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "h323_direct_model")
+
+    @property
     @pulumi.getter(name="httpExternalDest")
     def http_external_dest(self) -> pulumi.Output[str]:
         """
@@ -5804,6 +6072,14 @@ class SystemSettings(pulumi.CustomResource):
         UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
         """
         return pulumi.get(self, "ike_natt_port")
+
+    @property
+    @pulumi.getter(name="ikePolicyRoute")
+    def ike_policy_route(self) -> pulumi.Output[str]:
+        """
+        Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ike_policy_route")
 
     @property
     @pulumi.getter(name="ikePort")
@@ -5884,6 +6160,14 @@ class SystemSettings(pulumi.CustomResource):
         Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
         """
         return pulumi.get(self, "lldp_transmission")
+
+    @property
+    @pulumi.getter(name="locationId")
+    def location_id(self) -> pulumi.Output[str]:
+        """
+        Local location ID in the form of an IPv4 address.
+        """
+        return pulumi.get(self, "location_id")
 
     @property
     @pulumi.getter(name="macTtl")

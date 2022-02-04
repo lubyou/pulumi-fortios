@@ -58,6 +58,14 @@ export class AntivirusSettings extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly cacheCleanResult!: pulumi.Output<string>;
+    /**
+     * Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+     */
+    public readonly cacheInfectedResult!: pulumi.Output<string>;
+    /**
      * Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
      */
     public readonly defaultDb!: pulumi.Output<string>;
@@ -65,6 +73,10 @@ export class AntivirusSettings extends pulumi.CustomResource {
      * Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
      */
     public readonly grayware!: pulumi.Output<string>;
+    /**
+     * Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+     */
+    public readonly machineLearningDetection!: pulumi.Output<string>;
     /**
      * Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
      */
@@ -87,27 +99,31 @@ export class AntivirusSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AntivirusSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AntivirusSettingsArgs | AntivirusSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AntivirusSettingsState | undefined;
-            inputs["defaultDb"] = state ? state.defaultDb : undefined;
-            inputs["grayware"] = state ? state.grayware : undefined;
-            inputs["overrideTimeout"] = state ? state.overrideTimeout : undefined;
-            inputs["useExtremeDb"] = state ? state.useExtremeDb : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cacheCleanResult"] = state ? state.cacheCleanResult : undefined;
+            resourceInputs["cacheInfectedResult"] = state ? state.cacheInfectedResult : undefined;
+            resourceInputs["defaultDb"] = state ? state.defaultDb : undefined;
+            resourceInputs["grayware"] = state ? state.grayware : undefined;
+            resourceInputs["machineLearningDetection"] = state ? state.machineLearningDetection : undefined;
+            resourceInputs["overrideTimeout"] = state ? state.overrideTimeout : undefined;
+            resourceInputs["useExtremeDb"] = state ? state.useExtremeDb : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AntivirusSettingsArgs | undefined;
-            inputs["defaultDb"] = args ? args.defaultDb : undefined;
-            inputs["grayware"] = args ? args.grayware : undefined;
-            inputs["overrideTimeout"] = args ? args.overrideTimeout : undefined;
-            inputs["useExtremeDb"] = args ? args.useExtremeDb : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cacheCleanResult"] = args ? args.cacheCleanResult : undefined;
+            resourceInputs["cacheInfectedResult"] = args ? args.cacheInfectedResult : undefined;
+            resourceInputs["defaultDb"] = args ? args.defaultDb : undefined;
+            resourceInputs["grayware"] = args ? args.grayware : undefined;
+            resourceInputs["machineLearningDetection"] = args ? args.machineLearningDetection : undefined;
+            resourceInputs["overrideTimeout"] = args ? args.overrideTimeout : undefined;
+            resourceInputs["useExtremeDb"] = args ? args.useExtremeDb : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AntivirusSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AntivirusSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -116,6 +132,14 @@ export class AntivirusSettings extends pulumi.CustomResource {
  */
 export interface AntivirusSettingsState {
     /**
+     * Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+     */
+    cacheCleanResult?: pulumi.Input<string>;
+    /**
+     * Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+     */
+    cacheInfectedResult?: pulumi.Input<string>;
+    /**
      * Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
      */
     defaultDb?: pulumi.Input<string>;
@@ -123,6 +147,10 @@ export interface AntivirusSettingsState {
      * Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
      */
     grayware?: pulumi.Input<string>;
+    /**
+     * Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+     */
+    machineLearningDetection?: pulumi.Input<string>;
     /**
      * Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
      */
@@ -142,6 +170,14 @@ export interface AntivirusSettingsState {
  */
 export interface AntivirusSettingsArgs {
     /**
+     * Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+     */
+    cacheCleanResult?: pulumi.Input<string>;
+    /**
+     * Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+     */
+    cacheInfectedResult?: pulumi.Input<string>;
+    /**
      * Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
      */
     defaultDb?: pulumi.Input<string>;
@@ -149,6 +185,10 @@ export interface AntivirusSettingsArgs {
      * Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
      */
     grayware?: pulumi.Input<string>;
+    /**
+     * Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+     */
+    machineLearningDetection?: pulumi.Input<string>;
     /**
      * Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
      */

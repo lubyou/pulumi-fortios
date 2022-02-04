@@ -70,23 +70,21 @@ export class FortimanagerSystemAdmin extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerSystemAdminArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemAdminArgs | FortimanagerSystemAdminState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemAdminState | undefined;
-            inputs["httpPort"] = state ? state.httpPort : undefined;
-            inputs["httpsPort"] = state ? state.httpsPort : undefined;
-            inputs["idleTimeout"] = state ? state.idleTimeout : undefined;
+            resourceInputs["httpPort"] = state ? state.httpPort : undefined;
+            resourceInputs["httpsPort"] = state ? state.httpsPort : undefined;
+            resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemAdminArgs | undefined;
-            inputs["httpPort"] = args ? args.httpPort : undefined;
-            inputs["httpsPort"] = args ? args.httpsPort : undefined;
-            inputs["idleTimeout"] = args ? args.idleTimeout : undefined;
+            resourceInputs["httpPort"] = args ? args.httpPort : undefined;
+            resourceInputs["httpsPort"] = args ? args.httpsPort : undefined;
+            resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemAdmin.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemAdmin.__pulumiType, name, resourceInputs, opts);
     }
 }
 

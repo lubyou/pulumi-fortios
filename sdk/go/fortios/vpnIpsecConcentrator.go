@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -49,6 +49,8 @@ type VpnIpsecConcentrator struct {
 
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Concentrator ID. (1-65535)
+	Fosid pulumi.IntOutput `pulumi:"fosid"`
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members VpnIpsecConcentratorMemberArrayOutput `pulumi:"members"`
 	// Member name.
@@ -66,6 +68,7 @@ func NewVpnIpsecConcentrator(ctx *pulumi.Context,
 		args = &VpnIpsecConcentratorArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnIpsecConcentrator
 	err := ctx.RegisterResource("fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator", name, args, &resource, opts...)
 	if err != nil {
@@ -90,6 +93,8 @@ func GetVpnIpsecConcentrator(ctx *pulumi.Context,
 type vpnIpsecConcentratorState struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Concentrator ID. (1-65535)
+	Fosid *int `pulumi:"fosid"`
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members []VpnIpsecConcentratorMember `pulumi:"members"`
 	// Member name.
@@ -103,6 +108,8 @@ type vpnIpsecConcentratorState struct {
 type VpnIpsecConcentratorState struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Concentrator ID. (1-65535)
+	Fosid pulumi.IntPtrInput
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members VpnIpsecConcentratorMemberArrayInput
 	// Member name.
@@ -120,6 +127,8 @@ func (VpnIpsecConcentratorState) ElementType() reflect.Type {
 type vpnIpsecConcentratorArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Concentrator ID. (1-65535)
+	Fosid *int `pulumi:"fosid"`
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members []VpnIpsecConcentratorMember `pulumi:"members"`
 	// Member name.
@@ -134,6 +143,8 @@ type vpnIpsecConcentratorArgs struct {
 type VpnIpsecConcentratorArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Concentrator ID. (1-65535)
+	Fosid pulumi.IntPtrInput
 	// Names of up to 3 VPN tunnels to add to the concentrator. The structure of `member` block is documented below.
 	Members VpnIpsecConcentratorMemberArrayInput
 	// Member name.
@@ -156,7 +167,7 @@ type VpnIpsecConcentratorInput interface {
 }
 
 func (*VpnIpsecConcentrator) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecConcentrator)(nil))
+	return reflect.TypeOf((**VpnIpsecConcentrator)(nil)).Elem()
 }
 
 func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorOutput() VpnIpsecConcentratorOutput {
@@ -165,35 +176,6 @@ func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorOutput() VpnIpsecConcentrat
 
 func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorOutputWithContext(ctx context.Context) VpnIpsecConcentratorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorOutput)
-}
-
-func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorPtrOutput() VpnIpsecConcentratorPtrOutput {
-	return i.ToVpnIpsecConcentratorPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnIpsecConcentrator) ToVpnIpsecConcentratorPtrOutputWithContext(ctx context.Context) VpnIpsecConcentratorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorPtrOutput)
-}
-
-type VpnIpsecConcentratorPtrInput interface {
-	pulumi.Input
-
-	ToVpnIpsecConcentratorPtrOutput() VpnIpsecConcentratorPtrOutput
-	ToVpnIpsecConcentratorPtrOutputWithContext(ctx context.Context) VpnIpsecConcentratorPtrOutput
-}
-
-type vpnIpsecConcentratorPtrType VpnIpsecConcentratorArgs
-
-func (*vpnIpsecConcentratorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecConcentrator)(nil))
-}
-
-func (i *vpnIpsecConcentratorPtrType) ToVpnIpsecConcentratorPtrOutput() VpnIpsecConcentratorPtrOutput {
-	return i.ToVpnIpsecConcentratorPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnIpsecConcentratorPtrType) ToVpnIpsecConcentratorPtrOutputWithContext(ctx context.Context) VpnIpsecConcentratorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorPtrOutput)
 }
 
 // VpnIpsecConcentratorArrayInput is an input type that accepts VpnIpsecConcentratorArray and VpnIpsecConcentratorArrayOutput values.
@@ -210,7 +192,7 @@ type VpnIpsecConcentratorArrayInput interface {
 type VpnIpsecConcentratorArray []VpnIpsecConcentratorInput
 
 func (VpnIpsecConcentratorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnIpsecConcentrator)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecConcentrator)(nil)).Elem()
 }
 
 func (i VpnIpsecConcentratorArray) ToVpnIpsecConcentratorArrayOutput() VpnIpsecConcentratorArrayOutput {
@@ -235,7 +217,7 @@ type VpnIpsecConcentratorMapInput interface {
 type VpnIpsecConcentratorMap map[string]VpnIpsecConcentratorInput
 
 func (VpnIpsecConcentratorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnIpsecConcentrator)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecConcentrator)(nil)).Elem()
 }
 
 func (i VpnIpsecConcentratorMap) ToVpnIpsecConcentratorMapOutput() VpnIpsecConcentratorMapOutput {
@@ -246,12 +228,10 @@ func (i VpnIpsecConcentratorMap) ToVpnIpsecConcentratorMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecConcentratorMapOutput)
 }
 
-type VpnIpsecConcentratorOutput struct {
-	*pulumi.OutputState
-}
+type VpnIpsecConcentratorOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecConcentratorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecConcentrator)(nil))
+	return reflect.TypeOf((**VpnIpsecConcentrator)(nil)).Elem()
 }
 
 func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorOutput() VpnIpsecConcentratorOutput {
@@ -262,36 +242,10 @@ func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorOutputWithContext(ctx 
 	return o
 }
 
-func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorPtrOutput() VpnIpsecConcentratorPtrOutput {
-	return o.ToVpnIpsecConcentratorPtrOutputWithContext(context.Background())
-}
-
-func (o VpnIpsecConcentratorOutput) ToVpnIpsecConcentratorPtrOutputWithContext(ctx context.Context) VpnIpsecConcentratorPtrOutput {
-	return o.ApplyT(func(v VpnIpsecConcentrator) *VpnIpsecConcentrator {
-		return &v
-	}).(VpnIpsecConcentratorPtrOutput)
-}
-
-type VpnIpsecConcentratorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnIpsecConcentratorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecConcentrator)(nil))
-}
-
-func (o VpnIpsecConcentratorPtrOutput) ToVpnIpsecConcentratorPtrOutput() VpnIpsecConcentratorPtrOutput {
-	return o
-}
-
-func (o VpnIpsecConcentratorPtrOutput) ToVpnIpsecConcentratorPtrOutputWithContext(ctx context.Context) VpnIpsecConcentratorPtrOutput {
-	return o
-}
-
 type VpnIpsecConcentratorArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecConcentratorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnIpsecConcentrator)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecConcentrator)(nil)).Elem()
 }
 
 func (o VpnIpsecConcentratorArrayOutput) ToVpnIpsecConcentratorArrayOutput() VpnIpsecConcentratorArrayOutput {
@@ -303,15 +257,15 @@ func (o VpnIpsecConcentratorArrayOutput) ToVpnIpsecConcentratorArrayOutputWithCo
 }
 
 func (o VpnIpsecConcentratorArrayOutput) Index(i pulumi.IntInput) VpnIpsecConcentratorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecConcentrator {
-		return vs[0].([]VpnIpsecConcentrator)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecConcentrator {
+		return vs[0].([]*VpnIpsecConcentrator)[vs[1].(int)]
 	}).(VpnIpsecConcentratorOutput)
 }
 
 type VpnIpsecConcentratorMapOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecConcentratorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnIpsecConcentrator)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecConcentrator)(nil)).Elem()
 }
 
 func (o VpnIpsecConcentratorMapOutput) ToVpnIpsecConcentratorMapOutput() VpnIpsecConcentratorMapOutput {
@@ -323,14 +277,16 @@ func (o VpnIpsecConcentratorMapOutput) ToVpnIpsecConcentratorMapOutputWithContex
 }
 
 func (o VpnIpsecConcentratorMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecConcentratorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnIpsecConcentrator {
-		return vs[0].(map[string]VpnIpsecConcentrator)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnIpsecConcentrator {
+		return vs[0].(map[string]*VpnIpsecConcentrator)[vs[1].(string)]
 	}).(VpnIpsecConcentratorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecConcentratorInput)(nil)).Elem(), &VpnIpsecConcentrator{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecConcentratorArrayInput)(nil)).Elem(), VpnIpsecConcentratorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecConcentratorMapInput)(nil)).Elem(), VpnIpsecConcentratorMap{})
 	pulumi.RegisterOutputType(VpnIpsecConcentratorOutput{})
-	pulumi.RegisterOutputType(VpnIpsecConcentratorPtrOutput{})
 	pulumi.RegisterOutputType(VpnIpsecConcentratorArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecConcentratorMapOutput{})
 }

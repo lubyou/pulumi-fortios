@@ -83,31 +83,29 @@ export class FirewallInternetServiceName extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallInternetServiceNameArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallInternetServiceNameArgs | FirewallInternetServiceNameState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallInternetServiceNameState | undefined;
-            inputs["cityId"] = state ? state.cityId : undefined;
-            inputs["countryId"] = state ? state.countryId : undefined;
-            inputs["internetServiceId"] = state ? state.internetServiceId : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["regionId"] = state ? state.regionId : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["cityId"] = state ? state.cityId : undefined;
+            resourceInputs["countryId"] = state ? state.countryId : undefined;
+            resourceInputs["internetServiceId"] = state ? state.internetServiceId : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["regionId"] = state ? state.regionId : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallInternetServiceNameArgs | undefined;
-            inputs["cityId"] = args ? args.cityId : undefined;
-            inputs["countryId"] = args ? args.countryId : undefined;
-            inputs["internetServiceId"] = args ? args.internetServiceId : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["regionId"] = args ? args.regionId : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["cityId"] = args ? args.cityId : undefined;
+            resourceInputs["countryId"] = args ? args.countryId : undefined;
+            resourceInputs["internetServiceId"] = args ? args.internetServiceId : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["regionId"] = args ? args.regionId : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallInternetServiceName.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallInternetServiceName.__pulumiType, name, resourceInputs, opts);
     }
 }
 

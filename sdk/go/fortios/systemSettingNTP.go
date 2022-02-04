@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewSystemSettingNTP(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSettingNTP
 	err := ctx.RegisterResource("fortios:index/systemSettingNTP:SystemSettingNTP", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemSettingNTPInput interface {
 }
 
 func (*SystemSettingNTP) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettingNTP)(nil))
+	return reflect.TypeOf((**SystemSettingNTP)(nil)).Elem()
 }
 
 func (i *SystemSettingNTP) ToSystemSettingNTPOutput() SystemSettingNTPOutput {
@@ -146,35 +147,6 @@ func (i *SystemSettingNTP) ToSystemSettingNTPOutput() SystemSettingNTPOutput {
 
 func (i *SystemSettingNTP) ToSystemSettingNTPOutputWithContext(ctx context.Context) SystemSettingNTPOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPOutput)
-}
-
-func (i *SystemSettingNTP) ToSystemSettingNTPPtrOutput() SystemSettingNTPPtrOutput {
-	return i.ToSystemSettingNTPPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSettingNTP) ToSystemSettingNTPPtrOutputWithContext(ctx context.Context) SystemSettingNTPPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPPtrOutput)
-}
-
-type SystemSettingNTPPtrInput interface {
-	pulumi.Input
-
-	ToSystemSettingNTPPtrOutput() SystemSettingNTPPtrOutput
-	ToSystemSettingNTPPtrOutputWithContext(ctx context.Context) SystemSettingNTPPtrOutput
-}
-
-type systemSettingNTPPtrType SystemSettingNTPArgs
-
-func (*systemSettingNTPPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettingNTP)(nil))
-}
-
-func (i *systemSettingNTPPtrType) ToSystemSettingNTPPtrOutput() SystemSettingNTPPtrOutput {
-	return i.ToSystemSettingNTPPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSettingNTPPtrType) ToSystemSettingNTPPtrOutputWithContext(ctx context.Context) SystemSettingNTPPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPPtrOutput)
 }
 
 // SystemSettingNTPArrayInput is an input type that accepts SystemSettingNTPArray and SystemSettingNTPArrayOutput values.
@@ -191,7 +163,7 @@ type SystemSettingNTPArrayInput interface {
 type SystemSettingNTPArray []SystemSettingNTPInput
 
 func (SystemSettingNTPArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSettingNTP)(nil))
+	return reflect.TypeOf((*[]*SystemSettingNTP)(nil)).Elem()
 }
 
 func (i SystemSettingNTPArray) ToSystemSettingNTPArrayOutput() SystemSettingNTPArrayOutput {
@@ -216,7 +188,7 @@ type SystemSettingNTPMapInput interface {
 type SystemSettingNTPMap map[string]SystemSettingNTPInput
 
 func (SystemSettingNTPMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSettingNTP)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettingNTP)(nil)).Elem()
 }
 
 func (i SystemSettingNTPMap) ToSystemSettingNTPMapOutput() SystemSettingNTPMapOutput {
@@ -227,12 +199,10 @@ func (i SystemSettingNTPMap) ToSystemSettingNTPMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingNTPMapOutput)
 }
 
-type SystemSettingNTPOutput struct {
-	*pulumi.OutputState
-}
+type SystemSettingNTPOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingNTPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettingNTP)(nil))
+	return reflect.TypeOf((**SystemSettingNTP)(nil)).Elem()
 }
 
 func (o SystemSettingNTPOutput) ToSystemSettingNTPOutput() SystemSettingNTPOutput {
@@ -243,36 +213,10 @@ func (o SystemSettingNTPOutput) ToSystemSettingNTPOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemSettingNTPOutput) ToSystemSettingNTPPtrOutput() SystemSettingNTPPtrOutput {
-	return o.ToSystemSettingNTPPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSettingNTPOutput) ToSystemSettingNTPPtrOutputWithContext(ctx context.Context) SystemSettingNTPPtrOutput {
-	return o.ApplyT(func(v SystemSettingNTP) *SystemSettingNTP {
-		return &v
-	}).(SystemSettingNTPPtrOutput)
-}
-
-type SystemSettingNTPPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSettingNTPPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettingNTP)(nil))
-}
-
-func (o SystemSettingNTPPtrOutput) ToSystemSettingNTPPtrOutput() SystemSettingNTPPtrOutput {
-	return o
-}
-
-func (o SystemSettingNTPPtrOutput) ToSystemSettingNTPPtrOutputWithContext(ctx context.Context) SystemSettingNTPPtrOutput {
-	return o
-}
-
 type SystemSettingNTPArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingNTPArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSettingNTP)(nil))
+	return reflect.TypeOf((*[]*SystemSettingNTP)(nil)).Elem()
 }
 
 func (o SystemSettingNTPArrayOutput) ToSystemSettingNTPArrayOutput() SystemSettingNTPArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemSettingNTPArrayOutput) ToSystemSettingNTPArrayOutputWithContext(ct
 }
 
 func (o SystemSettingNTPArrayOutput) Index(i pulumi.IntInput) SystemSettingNTPOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSettingNTP {
-		return vs[0].([]SystemSettingNTP)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettingNTP {
+		return vs[0].([]*SystemSettingNTP)[vs[1].(int)]
 	}).(SystemSettingNTPOutput)
 }
 
 type SystemSettingNTPMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingNTPMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSettingNTP)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettingNTP)(nil)).Elem()
 }
 
 func (o SystemSettingNTPMapOutput) ToSystemSettingNTPMapOutput() SystemSettingNTPMapOutput {
@@ -304,14 +248,16 @@ func (o SystemSettingNTPMapOutput) ToSystemSettingNTPMapOutputWithContext(ctx co
 }
 
 func (o SystemSettingNTPMapOutput) MapIndex(k pulumi.StringInput) SystemSettingNTPOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSettingNTP {
-		return vs[0].(map[string]SystemSettingNTP)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSettingNTP {
+		return vs[0].(map[string]*SystemSettingNTP)[vs[1].(string)]
 	}).(SystemSettingNTPOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingNTPInput)(nil)).Elem(), &SystemSettingNTP{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingNTPArrayInput)(nil)).Elem(), SystemSettingNTPArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingNTPMapInput)(nil)).Elem(), SystemSettingNTPMap{})
 	pulumi.RegisterOutputType(SystemSettingNTPOutput{})
-	pulumi.RegisterOutputType(SystemSettingNTPPtrOutput{})
 	pulumi.RegisterOutputType(SystemSettingNTPArrayOutput{})
 	pulumi.RegisterOutputType(SystemSettingNTPMapOutput{})
 }

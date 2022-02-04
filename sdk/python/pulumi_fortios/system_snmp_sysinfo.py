@@ -16,6 +16,7 @@ class SystemSnmpSysinfoArgs:
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
@@ -27,6 +28,7 @@ class SystemSnmpSysinfoArgs:
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
         :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
@@ -40,6 +42,8 @@ class SystemSnmpSysinfoArgs:
             pulumi.set(__self__, "description", description)
         if engine_id is not None:
             pulumi.set(__self__, "engine_id", engine_id)
+        if engine_id_type is not None:
+            pulumi.set(__self__, "engine_id_type", engine_id_type)
         if location is not None:
             pulumi.set(__self__, "location", location)
         if status is not None:
@@ -88,6 +92,18 @@ class SystemSnmpSysinfoArgs:
     @engine_id.setter
     def engine_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "engine_id", value)
+
+    @property
+    @pulumi.getter(name="engineIdType")
+    def engine_id_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+        """
+        return pulumi.get(self, "engine_id_type")
+
+    @engine_id_type.setter
+    def engine_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "engine_id_type", value)
 
     @property
     @pulumi.getter
@@ -168,6 +184,7 @@ class _SystemSnmpSysinfoState:
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
@@ -179,6 +196,7 @@ class _SystemSnmpSysinfoState:
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
         :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
@@ -192,6 +210,8 @@ class _SystemSnmpSysinfoState:
             pulumi.set(__self__, "description", description)
         if engine_id is not None:
             pulumi.set(__self__, "engine_id", engine_id)
+        if engine_id_type is not None:
+            pulumi.set(__self__, "engine_id_type", engine_id_type)
         if location is not None:
             pulumi.set(__self__, "location", location)
         if status is not None:
@@ -240,6 +260,18 @@ class _SystemSnmpSysinfoState:
     @engine_id.setter
     def engine_id(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "engine_id", value)
+
+    @property
+    @pulumi.getter(name="engineIdType")
+    def engine_id_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+        """
+        return pulumi.get(self, "engine_id_type")
+
+    @engine_id_type.setter
+    def engine_id_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "engine_id_type", value)
 
     @property
     @pulumi.getter
@@ -322,6 +354,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
@@ -360,6 +393,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
         :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
@@ -417,6 +451,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
                  contact_info: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  engine_id: Optional[pulumi.Input[str]] = None,
+                 engine_id_type: Optional[pulumi.Input[str]] = None,
                  location: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
@@ -430,6 +465,8 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -438,6 +475,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
             __props__.__dict__["contact_info"] = contact_info
             __props__.__dict__["description"] = description
             __props__.__dict__["engine_id"] = engine_id
+            __props__.__dict__["engine_id_type"] = engine_id_type
             __props__.__dict__["location"] = location
             __props__.__dict__["status"] = status
             __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
@@ -457,6 +495,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
             contact_info: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
             engine_id: Optional[pulumi.Input[str]] = None,
+            engine_id_type: Optional[pulumi.Input[str]] = None,
             location: Optional[pulumi.Input[str]] = None,
             status: Optional[pulumi.Input[str]] = None,
             trap_high_cpu_threshold: Optional[pulumi.Input[int]] = None,
@@ -473,6 +512,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
         :param pulumi.Input[str] contact_info: Contact information.
         :param pulumi.Input[str] description: System description.
         :param pulumi.Input[str] engine_id: Local SNMP engineID string (maximum 24 characters).
+        :param pulumi.Input[str] engine_id_type: Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
         :param pulumi.Input[str] location: System location.
         :param pulumi.Input[str] status: Enable/disable SNMP. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] trap_high_cpu_threshold: CPU usage when trap is sent.
@@ -487,6 +527,7 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
         __props__.__dict__["contact_info"] = contact_info
         __props__.__dict__["description"] = description
         __props__.__dict__["engine_id"] = engine_id
+        __props__.__dict__["engine_id_type"] = engine_id_type
         __props__.__dict__["location"] = location
         __props__.__dict__["status"] = status
         __props__.__dict__["trap_high_cpu_threshold"] = trap_high_cpu_threshold
@@ -518,6 +559,14 @@ class SystemSnmpSysinfo(pulumi.CustomResource):
         Local SNMP engineID string (maximum 24 characters).
         """
         return pulumi.get(self, "engine_id")
+
+    @property
+    @pulumi.getter(name="engineIdType")
+    def engine_id_type(self) -> pulumi.Output[str]:
+        """
+        Local SNMP engineID type (text/hex/mac). Valid values: `text`, `hex`, `mac`.
+        """
+        return pulumi.get(self, "engine_id_type")
 
     @property
     @pulumi.getter

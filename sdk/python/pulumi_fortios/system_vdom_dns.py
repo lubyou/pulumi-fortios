@@ -15,6 +15,8 @@ __all__ = ['SystemVdomDnsArgs', 'SystemVdomDns']
 @pulumi.input_type
 class SystemVdomDnsArgs:
     def __init__(__self__, *,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  dns_over_tls: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -22,14 +24,18 @@ class SystemVdomDnsArgs:
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVdomDnsServerHostnameArgs']]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  vdom_dns: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemVdomDns resource.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -37,13 +43,19 @@ class SystemVdomDnsArgs:
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] ip6_secondary: Secondary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] primary: Primary DNS server IP address for the VDOM.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[str] secondary: Secondary DNS server IP address for the VDOM.
         :param pulumi.Input[Sequence[pulumi.Input['SystemVdomDnsServerHostnameArgs']]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: Source IP for communications with the DNS server.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[str] vdom_dns: Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if alt_primary is not None:
+            pulumi.set(__self__, "alt_primary", alt_primary)
+        if alt_secondary is not None:
+            pulumi.set(__self__, "alt_secondary", alt_secondary)
         if dns_over_tls is not None:
             pulumi.set(__self__, "dns_over_tls", dns_over_tls)
         if dynamic_sort_subtable is not None:
@@ -58,10 +70,14 @@ class SystemVdomDnsArgs:
             pulumi.set(__self__, "ip6_secondary", ip6_secondary)
         if primary is not None:
             pulumi.set(__self__, "primary", primary)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if secondary is not None:
             pulumi.set(__self__, "secondary", secondary)
         if server_hostnames is not None:
             pulumi.set(__self__, "server_hostnames", server_hostnames)
+        if server_select_method is not None:
+            pulumi.set(__self__, "server_select_method", server_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_certificate is not None:
@@ -70,6 +86,30 @@ class SystemVdomDnsArgs:
             pulumi.set(__self__, "vdom_dns", vdom_dns)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @alt_primary.setter
+    def alt_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_primary", value)
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
+
+    @alt_secondary.setter
+    def alt_secondary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_secondary", value)
 
     @property
     @pulumi.getter(name="dnsOverTls")
@@ -157,6 +197,18 @@ class SystemVdomDnsArgs:
 
     @property
     @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
     def secondary(self) -> Optional[pulumi.Input[str]]:
         """
         Secondary DNS server IP address for the VDOM.
@@ -178,6 +230,18 @@ class SystemVdomDnsArgs:
     @server_hostnames.setter
     def server_hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVdomDnsServerHostnameArgs']]]]):
         pulumi.set(self, "server_hostnames", value)
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+        """
+        return pulumi.get(self, "server_select_method")
+
+    @server_select_method.setter
+    def server_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -231,6 +295,8 @@ class SystemVdomDnsArgs:
 @pulumi.input_type
 class _SystemVdomDnsState:
     def __init__(__self__, *,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  dns_over_tls: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -238,14 +304,18 @@ class _SystemVdomDnsState:
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVdomDnsServerHostnameArgs']]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  vdom_dns: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemVdomDns resources.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -253,13 +323,19 @@ class _SystemVdomDnsState:
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] ip6_secondary: Secondary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] primary: Primary DNS server IP address for the VDOM.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[str] secondary: Secondary DNS server IP address for the VDOM.
         :param pulumi.Input[Sequence[pulumi.Input['SystemVdomDnsServerHostnameArgs']]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: Source IP for communications with the DNS server.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[str] vdom_dns: Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if alt_primary is not None:
+            pulumi.set(__self__, "alt_primary", alt_primary)
+        if alt_secondary is not None:
+            pulumi.set(__self__, "alt_secondary", alt_secondary)
         if dns_over_tls is not None:
             pulumi.set(__self__, "dns_over_tls", dns_over_tls)
         if dynamic_sort_subtable is not None:
@@ -274,10 +350,14 @@ class _SystemVdomDnsState:
             pulumi.set(__self__, "ip6_secondary", ip6_secondary)
         if primary is not None:
             pulumi.set(__self__, "primary", primary)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
         if secondary is not None:
             pulumi.set(__self__, "secondary", secondary)
         if server_hostnames is not None:
             pulumi.set(__self__, "server_hostnames", server_hostnames)
+        if server_select_method is not None:
+            pulumi.set(__self__, "server_select_method", server_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if ssl_certificate is not None:
@@ -286,6 +366,30 @@ class _SystemVdomDnsState:
             pulumi.set(__self__, "vdom_dns", vdom_dns)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @alt_primary.setter
+    def alt_primary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_primary", value)
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> Optional[pulumi.Input[str]]:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
+
+    @alt_secondary.setter
+    def alt_secondary(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "alt_secondary", value)
 
     @property
     @pulumi.getter(name="dnsOverTls")
@@ -373,6 +477,18 @@ class _SystemVdomDnsState:
 
     @property
     @pulumi.getter
+    def protocol(self) -> Optional[pulumi.Input[str]]:
+        """
+        DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "protocol", value)
+
+    @property
+    @pulumi.getter
     def secondary(self) -> Optional[pulumi.Input[str]]:
         """
         Secondary DNS server IP address for the VDOM.
@@ -394,6 +510,18 @@ class _SystemVdomDnsState:
     @server_hostnames.setter
     def server_hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemVdomDnsServerHostnameArgs']]]]):
         pulumi.set(self, "server_hostnames", value)
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+        """
+        return pulumi.get(self, "server_select_method")
+
+    @server_select_method.setter
+    def server_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "server_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -449,6 +577,8 @@ class SystemVdomDns(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  dns_over_tls: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -456,8 +586,10 @@ class SystemVdomDns(pulumi.CustomResource):
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVdomDnsServerHostnameArgs']]]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  vdom_dns: Optional[pulumi.Input[str]] = None,
@@ -478,6 +610,8 @@ class SystemVdomDns(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -485,8 +619,10 @@ class SystemVdomDns(pulumi.CustomResource):
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] ip6_secondary: Secondary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] primary: Primary DNS server IP address for the VDOM.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[str] secondary: Secondary DNS server IP address for the VDOM.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVdomDnsServerHostnameArgs']]]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: Source IP for communications with the DNS server.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[str] vdom_dns: Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
@@ -526,6 +662,8 @@ class SystemVdomDns(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 alt_primary: Optional[pulumi.Input[str]] = None,
+                 alt_secondary: Optional[pulumi.Input[str]] = None,
                  dns_over_tls: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -533,8 +671,10 @@ class SystemVdomDns(pulumi.CustomResource):
                  ip6_primary: Optional[pulumi.Input[str]] = None,
                  ip6_secondary: Optional[pulumi.Input[str]] = None,
                  primary: Optional[pulumi.Input[str]] = None,
+                 protocol: Optional[pulumi.Input[str]] = None,
                  secondary: Optional[pulumi.Input[str]] = None,
                  server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVdomDnsServerHostnameArgs']]]]] = None,
+                 server_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  vdom_dns: Optional[pulumi.Input[str]] = None,
@@ -546,11 +686,15 @@ class SystemVdomDns(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemVdomDnsArgs.__new__(SystemVdomDnsArgs)
 
+            __props__.__dict__["alt_primary"] = alt_primary
+            __props__.__dict__["alt_secondary"] = alt_secondary
             __props__.__dict__["dns_over_tls"] = dns_over_tls
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["interface"] = interface
@@ -558,8 +702,10 @@ class SystemVdomDns(pulumi.CustomResource):
             __props__.__dict__["ip6_primary"] = ip6_primary
             __props__.__dict__["ip6_secondary"] = ip6_secondary
             __props__.__dict__["primary"] = primary
+            __props__.__dict__["protocol"] = protocol
             __props__.__dict__["secondary"] = secondary
             __props__.__dict__["server_hostnames"] = server_hostnames
+            __props__.__dict__["server_select_method"] = server_select_method
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["ssl_certificate"] = ssl_certificate
             __props__.__dict__["vdom_dns"] = vdom_dns
@@ -574,6 +720,8 @@ class SystemVdomDns(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            alt_primary: Optional[pulumi.Input[str]] = None,
+            alt_secondary: Optional[pulumi.Input[str]] = None,
             dns_over_tls: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -581,8 +729,10 @@ class SystemVdomDns(pulumi.CustomResource):
             ip6_primary: Optional[pulumi.Input[str]] = None,
             ip6_secondary: Optional[pulumi.Input[str]] = None,
             primary: Optional[pulumi.Input[str]] = None,
+            protocol: Optional[pulumi.Input[str]] = None,
             secondary: Optional[pulumi.Input[str]] = None,
             server_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVdomDnsServerHostnameArgs']]]]] = None,
+            server_select_method: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             ssl_certificate: Optional[pulumi.Input[str]] = None,
             vdom_dns: Optional[pulumi.Input[str]] = None,
@@ -594,6 +744,8 @@ class SystemVdomDns(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] alt_primary: Alternate primary DNS server. (This is not used as a failover DNS server.)
+        :param pulumi.Input[str] alt_secondary: Alternate secondary DNS server. (This is not used as a failover DNS server.)
         :param pulumi.Input[str] dns_over_tls: Enable/disable/enforce DNS over TLS. Valid values: `disable`, `enable`, `enforce`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
@@ -601,8 +753,10 @@ class SystemVdomDns(pulumi.CustomResource):
         :param pulumi.Input[str] ip6_primary: Primary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] ip6_secondary: Secondary IPv6 DNS server IP address for the VDOM.
         :param pulumi.Input[str] primary: Primary DNS server IP address for the VDOM.
+        :param pulumi.Input[str] protocol: DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
         :param pulumi.Input[str] secondary: Secondary DNS server IP address for the VDOM.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemVdomDnsServerHostnameArgs']]]] server_hostnames: DNS server host name list. The structure of `server_hostname` block is documented below.
+        :param pulumi.Input[str] server_select_method: Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
         :param pulumi.Input[str] source_ip: Source IP for communications with the DNS server.
         :param pulumi.Input[str] ssl_certificate: Name of local certificate for SSL connections.
         :param pulumi.Input[str] vdom_dns: Enable/disable configuring DNS servers for the current VDOM. Valid values: `enable`, `disable`.
@@ -612,6 +766,8 @@ class SystemVdomDns(pulumi.CustomResource):
 
         __props__ = _SystemVdomDnsState.__new__(_SystemVdomDnsState)
 
+        __props__.__dict__["alt_primary"] = alt_primary
+        __props__.__dict__["alt_secondary"] = alt_secondary
         __props__.__dict__["dns_over_tls"] = dns_over_tls
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["interface"] = interface
@@ -619,13 +775,31 @@ class SystemVdomDns(pulumi.CustomResource):
         __props__.__dict__["ip6_primary"] = ip6_primary
         __props__.__dict__["ip6_secondary"] = ip6_secondary
         __props__.__dict__["primary"] = primary
+        __props__.__dict__["protocol"] = protocol
         __props__.__dict__["secondary"] = secondary
         __props__.__dict__["server_hostnames"] = server_hostnames
+        __props__.__dict__["server_select_method"] = server_select_method
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["ssl_certificate"] = ssl_certificate
         __props__.__dict__["vdom_dns"] = vdom_dns
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemVdomDns(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="altPrimary")
+    def alt_primary(self) -> pulumi.Output[str]:
+        """
+        Alternate primary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_primary")
+
+    @property
+    @pulumi.getter(name="altSecondary")
+    def alt_secondary(self) -> pulumi.Output[str]:
+        """
+        Alternate secondary DNS server. (This is not used as a failover DNS server.)
+        """
+        return pulumi.get(self, "alt_secondary")
 
     @property
     @pulumi.getter(name="dnsOverTls")
@@ -685,6 +859,14 @@ class SystemVdomDns(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def protocol(self) -> pulumi.Output[str]:
+        """
+        DNS protocols. Valid values: `cleartext`, `dot`, `doh`.
+        """
+        return pulumi.get(self, "protocol")
+
+    @property
+    @pulumi.getter
     def secondary(self) -> pulumi.Output[str]:
         """
         Secondary DNS server IP address for the VDOM.
@@ -698,6 +880,14 @@ class SystemVdomDns(pulumi.CustomResource):
         DNS server host name list. The structure of `server_hostname` block is documented below.
         """
         return pulumi.get(self, "server_hostnames")
+
+    @property
+    @pulumi.getter(name="serverSelectMethod")
+    def server_select_method(self) -> pulumi.Output[str]:
+        """
+        Specify how configured servers are prioritized. Valid values: `least-rtt`, `failover`.
+        """
+        return pulumi.get(self, "server_select_method")
 
     @property
     @pulumi.getter(name="sourceIp")

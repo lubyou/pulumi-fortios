@@ -38,6 +38,7 @@ class UserLocalArgs:
                  two_factor_notification: Optional[pulumi.Input[str]] = None,
                  username_case_insensitivity: Optional[pulumi.Input[str]] = None,
                  username_case_sensitivity: Optional[pulumi.Input[str]] = None,
+                 username_sensitivity: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  workstation: Optional[pulumi.Input[str]] = None):
         """
@@ -67,6 +68,7 @@ class UserLocalArgs:
         :param pulumi.Input[str] two_factor_notification: Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
         :param pulumi.Input[str] username_case_insensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] username_sensitivity: Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] workstation: Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
         """
@@ -118,6 +120,8 @@ class UserLocalArgs:
             pulumi.set(__self__, "username_case_insensitivity", username_case_insensitivity)
         if username_case_sensitivity is not None:
             pulumi.set(__self__, "username_case_sensitivity", username_case_sensitivity)
+        if username_sensitivity is not None:
+            pulumi.set(__self__, "username_sensitivity", username_sensitivity)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if workstation is not None:
@@ -424,6 +428,18 @@ class UserLocalArgs:
         pulumi.set(self, "username_case_sensitivity", value)
 
     @property
+    @pulumi.getter(name="usernameSensitivity")
+    def username_sensitivity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "username_sensitivity")
+
+    @username_sensitivity.setter
+    def username_sensitivity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_sensitivity", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -476,6 +492,7 @@ class _UserLocalState:
                  type: Optional[pulumi.Input[str]] = None,
                  username_case_insensitivity: Optional[pulumi.Input[str]] = None,
                  username_case_sensitivity: Optional[pulumi.Input[str]] = None,
+                 username_sensitivity: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  workstation: Optional[pulumi.Input[str]] = None):
         """
@@ -505,6 +522,7 @@ class _UserLocalState:
         :param pulumi.Input[str] type: Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
         :param pulumi.Input[str] username_case_insensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] username_sensitivity: Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] workstation: Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
         """
@@ -558,6 +576,8 @@ class _UserLocalState:
             pulumi.set(__self__, "username_case_insensitivity", username_case_insensitivity)
         if username_case_sensitivity is not None:
             pulumi.set(__self__, "username_case_sensitivity", username_case_sensitivity)
+        if username_sensitivity is not None:
+            pulumi.set(__self__, "username_sensitivity", username_sensitivity)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if workstation is not None:
@@ -864,6 +884,18 @@ class _UserLocalState:
         pulumi.set(self, "username_case_sensitivity", value)
 
     @property
+    @pulumi.getter(name="usernameSensitivity")
+    def username_sensitivity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "username_sensitivity")
+
+    @username_sensitivity.setter
+    def username_sensitivity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "username_sensitivity", value)
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[pulumi.Input[str]]:
         """
@@ -918,6 +950,7 @@ class UserLocal(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  username_case_insensitivity: Optional[pulumi.Input[str]] = None,
                  username_case_sensitivity: Optional[pulumi.Input[str]] = None,
+                 username_sensitivity: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  workstation: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -996,6 +1029,7 @@ class UserLocal(pulumi.CustomResource):
         :param pulumi.Input[str] type: Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
         :param pulumi.Input[str] username_case_insensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] username_sensitivity: Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] workstation: Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
         """
@@ -1093,6 +1127,7 @@ class UserLocal(pulumi.CustomResource):
                  type: Optional[pulumi.Input[str]] = None,
                  username_case_insensitivity: Optional[pulumi.Input[str]] = None,
                  username_case_sensitivity: Optional[pulumi.Input[str]] = None,
+                 username_sensitivity: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  workstation: Optional[pulumi.Input[str]] = None,
                  __props__=None):
@@ -1102,6 +1137,8 @@ class UserLocal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1136,6 +1173,7 @@ class UserLocal(pulumi.CustomResource):
             __props__.__dict__["type"] = type
             __props__.__dict__["username_case_insensitivity"] = username_case_insensitivity
             __props__.__dict__["username_case_sensitivity"] = username_case_sensitivity
+            __props__.__dict__["username_sensitivity"] = username_sensitivity
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["workstation"] = workstation
         super(UserLocal, __self__).__init__(
@@ -1173,6 +1211,7 @@ class UserLocal(pulumi.CustomResource):
             type: Optional[pulumi.Input[str]] = None,
             username_case_insensitivity: Optional[pulumi.Input[str]] = None,
             username_case_sensitivity: Optional[pulumi.Input[str]] = None,
+            username_sensitivity: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
             workstation: Optional[pulumi.Input[str]] = None) -> 'UserLocal':
         """
@@ -1207,6 +1246,7 @@ class UserLocal(pulumi.CustomResource):
         :param pulumi.Input[str] type: Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
         :param pulumi.Input[str] username_case_insensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] username_case_sensitivity: Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] username_sensitivity: Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] workstation: Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
         """
@@ -1239,6 +1279,7 @@ class UserLocal(pulumi.CustomResource):
         __props__.__dict__["type"] = type
         __props__.__dict__["username_case_insensitivity"] = username_case_insensitivity
         __props__.__dict__["username_case_sensitivity"] = username_case_sensitivity
+        __props__.__dict__["username_sensitivity"] = username_sensitivity
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["workstation"] = workstation
         return UserLocal(resource_name, opts=opts, __props__=__props__)
@@ -1442,6 +1483,14 @@ class UserLocal(pulumi.CustomResource):
         Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "username_case_sensitivity")
+
+    @property
+    @pulumi.getter(name="usernameSensitivity")
+    def username_sensitivity(self) -> pulumi.Output[str]:
+        """
+        Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "username_sensitivity")
 
     @property
     @pulumi.getter

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -54,6 +54,10 @@ type SystemSflow struct {
 	CollectorIp pulumi.StringOutput `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort pulumi.IntOutput `pulumi:"collectorPort"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
 	// Source IP address for sFlow agent.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -70,6 +74,7 @@ func NewSystemSflow(ctx *pulumi.Context,
 	if args.CollectorIp == nil {
 		return nil, errors.New("invalid value for required argument 'CollectorIp'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSflow
 	err := ctx.RegisterResource("fortios:index/systemSflow:SystemSflow", name, args, &resource, opts...)
 	if err != nil {
@@ -96,6 +101,10 @@ type systemSflowState struct {
 	CollectorIp *string `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for sFlow agent.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -107,6 +116,10 @@ type SystemSflowState struct {
 	CollectorIp pulumi.StringPtrInput
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort pulumi.IntPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Source IP address for sFlow agent.
 	SourceIp pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -122,6 +135,10 @@ type systemSflowArgs struct {
 	CollectorIp string `pulumi:"collectorIp"`
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort *int `pulumi:"collectorPort"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// Source IP address for sFlow agent.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -134,6 +151,10 @@ type SystemSflowArgs struct {
 	CollectorIp pulumi.StringInput
 	// UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
 	CollectorPort pulumi.IntPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// Source IP address for sFlow agent.
 	SourceIp pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -152,7 +173,7 @@ type SystemSflowInput interface {
 }
 
 func (*SystemSflow) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSflow)(nil))
+	return reflect.TypeOf((**SystemSflow)(nil)).Elem()
 }
 
 func (i *SystemSflow) ToSystemSflowOutput() SystemSflowOutput {
@@ -161,35 +182,6 @@ func (i *SystemSflow) ToSystemSflowOutput() SystemSflowOutput {
 
 func (i *SystemSflow) ToSystemSflowOutputWithContext(ctx context.Context) SystemSflowOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowOutput)
-}
-
-func (i *SystemSflow) ToSystemSflowPtrOutput() SystemSflowPtrOutput {
-	return i.ToSystemSflowPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSflow) ToSystemSflowPtrOutputWithContext(ctx context.Context) SystemSflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowPtrOutput)
-}
-
-type SystemSflowPtrInput interface {
-	pulumi.Input
-
-	ToSystemSflowPtrOutput() SystemSflowPtrOutput
-	ToSystemSflowPtrOutputWithContext(ctx context.Context) SystemSflowPtrOutput
-}
-
-type systemSflowPtrType SystemSflowArgs
-
-func (*systemSflowPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSflow)(nil))
-}
-
-func (i *systemSflowPtrType) ToSystemSflowPtrOutput() SystemSflowPtrOutput {
-	return i.ToSystemSflowPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSflowPtrType) ToSystemSflowPtrOutputWithContext(ctx context.Context) SystemSflowPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowPtrOutput)
 }
 
 // SystemSflowArrayInput is an input type that accepts SystemSflowArray and SystemSflowArrayOutput values.
@@ -206,7 +198,7 @@ type SystemSflowArrayInput interface {
 type SystemSflowArray []SystemSflowInput
 
 func (SystemSflowArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSflow)(nil))
+	return reflect.TypeOf((*[]*SystemSflow)(nil)).Elem()
 }
 
 func (i SystemSflowArray) ToSystemSflowArrayOutput() SystemSflowArrayOutput {
@@ -231,7 +223,7 @@ type SystemSflowMapInput interface {
 type SystemSflowMap map[string]SystemSflowInput
 
 func (SystemSflowMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSflow)(nil))
+	return reflect.TypeOf((*map[string]*SystemSflow)(nil)).Elem()
 }
 
 func (i SystemSflowMap) ToSystemSflowMapOutput() SystemSflowMapOutput {
@@ -242,12 +234,10 @@ func (i SystemSflowMap) ToSystemSflowMapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSflowMapOutput)
 }
 
-type SystemSflowOutput struct {
-	*pulumi.OutputState
-}
+type SystemSflowOutput struct{ *pulumi.OutputState }
 
 func (SystemSflowOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSflow)(nil))
+	return reflect.TypeOf((**SystemSflow)(nil)).Elem()
 }
 
 func (o SystemSflowOutput) ToSystemSflowOutput() SystemSflowOutput {
@@ -258,36 +248,10 @@ func (o SystemSflowOutput) ToSystemSflowOutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemSflowOutput) ToSystemSflowPtrOutput() SystemSflowPtrOutput {
-	return o.ToSystemSflowPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSflowOutput) ToSystemSflowPtrOutputWithContext(ctx context.Context) SystemSflowPtrOutput {
-	return o.ApplyT(func(v SystemSflow) *SystemSflow {
-		return &v
-	}).(SystemSflowPtrOutput)
-}
-
-type SystemSflowPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSflowPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSflow)(nil))
-}
-
-func (o SystemSflowPtrOutput) ToSystemSflowPtrOutput() SystemSflowPtrOutput {
-	return o
-}
-
-func (o SystemSflowPtrOutput) ToSystemSflowPtrOutputWithContext(ctx context.Context) SystemSflowPtrOutput {
-	return o
-}
-
 type SystemSflowArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSflowArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSflow)(nil))
+	return reflect.TypeOf((*[]*SystemSflow)(nil)).Elem()
 }
 
 func (o SystemSflowArrayOutput) ToSystemSflowArrayOutput() SystemSflowArrayOutput {
@@ -299,15 +263,15 @@ func (o SystemSflowArrayOutput) ToSystemSflowArrayOutputWithContext(ctx context.
 }
 
 func (o SystemSflowArrayOutput) Index(i pulumi.IntInput) SystemSflowOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSflow {
-		return vs[0].([]SystemSflow)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSflow {
+		return vs[0].([]*SystemSflow)[vs[1].(int)]
 	}).(SystemSflowOutput)
 }
 
 type SystemSflowMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSflowMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSflow)(nil))
+	return reflect.TypeOf((*map[string]*SystemSflow)(nil)).Elem()
 }
 
 func (o SystemSflowMapOutput) ToSystemSflowMapOutput() SystemSflowMapOutput {
@@ -319,14 +283,16 @@ func (o SystemSflowMapOutput) ToSystemSflowMapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemSflowMapOutput) MapIndex(k pulumi.StringInput) SystemSflowOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSflow {
-		return vs[0].(map[string]SystemSflow)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSflow {
+		return vs[0].(map[string]*SystemSflow)[vs[1].(string)]
 	}).(SystemSflowOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSflowInput)(nil)).Elem(), &SystemSflow{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSflowArrayInput)(nil)).Elem(), SystemSflowArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSflowMapInput)(nil)).Elem(), SystemSflowMap{})
 	pulumi.RegisterOutputType(SystemSflowOutput{})
-	pulumi.RegisterOutputType(SystemSflowPtrOutput{})
 	pulumi.RegisterOutputType(SystemSflowArrayOutput{})
 	pulumi.RegisterOutputType(SystemSflowMapOutput{})
 }

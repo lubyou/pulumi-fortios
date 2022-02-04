@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -77,6 +77,7 @@ func NewFortimanagerFirewallObjectIppool(ctx *pulumi.Context,
 	if args.Startip == nil {
 		return nil, errors.New("invalid value for required argument 'Startip'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerFirewallObjectIppool
 	err := ctx.RegisterResource("fortios:index/fortimanagerFirewallObjectIppool:FortimanagerFirewallObjectIppool", name, args, &resource, opts...)
 	if err != nil {
@@ -199,7 +200,7 @@ type FortimanagerFirewallObjectIppoolInput interface {
 }
 
 func (*FortimanagerFirewallObjectIppool) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerFirewallObjectIppool)(nil))
+	return reflect.TypeOf((**FortimanagerFirewallObjectIppool)(nil)).Elem()
 }
 
 func (i *FortimanagerFirewallObjectIppool) ToFortimanagerFirewallObjectIppoolOutput() FortimanagerFirewallObjectIppoolOutput {
@@ -208,35 +209,6 @@ func (i *FortimanagerFirewallObjectIppool) ToFortimanagerFirewallObjectIppoolOut
 
 func (i *FortimanagerFirewallObjectIppool) ToFortimanagerFirewallObjectIppoolOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectIppoolOutput)
-}
-
-func (i *FortimanagerFirewallObjectIppool) ToFortimanagerFirewallObjectIppoolPtrOutput() FortimanagerFirewallObjectIppoolPtrOutput {
-	return i.ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerFirewallObjectIppool) ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectIppoolPtrOutput)
-}
-
-type FortimanagerFirewallObjectIppoolPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerFirewallObjectIppoolPtrOutput() FortimanagerFirewallObjectIppoolPtrOutput
-	ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolPtrOutput
-}
-
-type fortimanagerFirewallObjectIppoolPtrType FortimanagerFirewallObjectIppoolArgs
-
-func (*fortimanagerFirewallObjectIppoolPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerFirewallObjectIppool)(nil))
-}
-
-func (i *fortimanagerFirewallObjectIppoolPtrType) ToFortimanagerFirewallObjectIppoolPtrOutput() FortimanagerFirewallObjectIppoolPtrOutput {
-	return i.ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerFirewallObjectIppoolPtrType) ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectIppoolPtrOutput)
 }
 
 // FortimanagerFirewallObjectIppoolArrayInput is an input type that accepts FortimanagerFirewallObjectIppoolArray and FortimanagerFirewallObjectIppoolArrayOutput values.
@@ -253,7 +225,7 @@ type FortimanagerFirewallObjectIppoolArrayInput interface {
 type FortimanagerFirewallObjectIppoolArray []FortimanagerFirewallObjectIppoolInput
 
 func (FortimanagerFirewallObjectIppoolArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerFirewallObjectIppool)(nil))
+	return reflect.TypeOf((*[]*FortimanagerFirewallObjectIppool)(nil)).Elem()
 }
 
 func (i FortimanagerFirewallObjectIppoolArray) ToFortimanagerFirewallObjectIppoolArrayOutput() FortimanagerFirewallObjectIppoolArrayOutput {
@@ -278,7 +250,7 @@ type FortimanagerFirewallObjectIppoolMapInput interface {
 type FortimanagerFirewallObjectIppoolMap map[string]FortimanagerFirewallObjectIppoolInput
 
 func (FortimanagerFirewallObjectIppoolMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerFirewallObjectIppool)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerFirewallObjectIppool)(nil)).Elem()
 }
 
 func (i FortimanagerFirewallObjectIppoolMap) ToFortimanagerFirewallObjectIppoolMapOutput() FortimanagerFirewallObjectIppoolMapOutput {
@@ -289,12 +261,10 @@ func (i FortimanagerFirewallObjectIppoolMap) ToFortimanagerFirewallObjectIppoolM
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallObjectIppoolMapOutput)
 }
 
-type FortimanagerFirewallObjectIppoolOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerFirewallObjectIppoolOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectIppoolOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerFirewallObjectIppool)(nil))
+	return reflect.TypeOf((**FortimanagerFirewallObjectIppool)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallObjectIppoolOutput) ToFortimanagerFirewallObjectIppoolOutput() FortimanagerFirewallObjectIppoolOutput {
@@ -305,36 +275,10 @@ func (o FortimanagerFirewallObjectIppoolOutput) ToFortimanagerFirewallObjectIppo
 	return o
 }
 
-func (o FortimanagerFirewallObjectIppoolOutput) ToFortimanagerFirewallObjectIppoolPtrOutput() FortimanagerFirewallObjectIppoolPtrOutput {
-	return o.ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerFirewallObjectIppoolOutput) ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolPtrOutput {
-	return o.ApplyT(func(v FortimanagerFirewallObjectIppool) *FortimanagerFirewallObjectIppool {
-		return &v
-	}).(FortimanagerFirewallObjectIppoolPtrOutput)
-}
-
-type FortimanagerFirewallObjectIppoolPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerFirewallObjectIppoolPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerFirewallObjectIppool)(nil))
-}
-
-func (o FortimanagerFirewallObjectIppoolPtrOutput) ToFortimanagerFirewallObjectIppoolPtrOutput() FortimanagerFirewallObjectIppoolPtrOutput {
-	return o
-}
-
-func (o FortimanagerFirewallObjectIppoolPtrOutput) ToFortimanagerFirewallObjectIppoolPtrOutputWithContext(ctx context.Context) FortimanagerFirewallObjectIppoolPtrOutput {
-	return o
-}
-
 type FortimanagerFirewallObjectIppoolArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectIppoolArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerFirewallObjectIppool)(nil))
+	return reflect.TypeOf((*[]*FortimanagerFirewallObjectIppool)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallObjectIppoolArrayOutput) ToFortimanagerFirewallObjectIppoolArrayOutput() FortimanagerFirewallObjectIppoolArrayOutput {
@@ -346,15 +290,15 @@ func (o FortimanagerFirewallObjectIppoolArrayOutput) ToFortimanagerFirewallObjec
 }
 
 func (o FortimanagerFirewallObjectIppoolArrayOutput) Index(i pulumi.IntInput) FortimanagerFirewallObjectIppoolOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerFirewallObjectIppool {
-		return vs[0].([]FortimanagerFirewallObjectIppool)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerFirewallObjectIppool {
+		return vs[0].([]*FortimanagerFirewallObjectIppool)[vs[1].(int)]
 	}).(FortimanagerFirewallObjectIppoolOutput)
 }
 
 type FortimanagerFirewallObjectIppoolMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallObjectIppoolMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerFirewallObjectIppool)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerFirewallObjectIppool)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallObjectIppoolMapOutput) ToFortimanagerFirewallObjectIppoolMapOutput() FortimanagerFirewallObjectIppoolMapOutput {
@@ -366,14 +310,16 @@ func (o FortimanagerFirewallObjectIppoolMapOutput) ToFortimanagerFirewallObjectI
 }
 
 func (o FortimanagerFirewallObjectIppoolMapOutput) MapIndex(k pulumi.StringInput) FortimanagerFirewallObjectIppoolOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerFirewallObjectIppool {
-		return vs[0].(map[string]FortimanagerFirewallObjectIppool)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerFirewallObjectIppool {
+		return vs[0].(map[string]*FortimanagerFirewallObjectIppool)[vs[1].(string)]
 	}).(FortimanagerFirewallObjectIppoolOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallObjectIppoolInput)(nil)).Elem(), &FortimanagerFirewallObjectIppool{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallObjectIppoolArrayInput)(nil)).Elem(), FortimanagerFirewallObjectIppoolArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallObjectIppoolMapInput)(nil)).Elem(), FortimanagerFirewallObjectIppoolMap{})
 	pulumi.RegisterOutputType(FortimanagerFirewallObjectIppoolOutput{})
-	pulumi.RegisterOutputType(FortimanagerFirewallObjectIppoolPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerFirewallObjectIppoolArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerFirewallObjectIppoolMapOutput{})
 }

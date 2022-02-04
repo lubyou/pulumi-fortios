@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch SNMP trap threshold values globally.
+ * Configure FortiSwitch SNMP trap threshold values globally. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -71,25 +71,23 @@ export class SwitchControllerSnmpTrapThreshold extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSnmpTrapThresholdArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSnmpTrapThresholdArgs | SwitchControllerSnmpTrapThresholdState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSnmpTrapThresholdState | undefined;
-            inputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
-            inputs["trapLogFullThreshold"] = state ? state.trapLogFullThreshold : undefined;
-            inputs["trapLowMemoryThreshold"] = state ? state.trapLowMemoryThreshold : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["trapHighCpuThreshold"] = state ? state.trapHighCpuThreshold : undefined;
+            resourceInputs["trapLogFullThreshold"] = state ? state.trapLogFullThreshold : undefined;
+            resourceInputs["trapLowMemoryThreshold"] = state ? state.trapLowMemoryThreshold : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSnmpTrapThresholdArgs | undefined;
-            inputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
-            inputs["trapLogFullThreshold"] = args ? args.trapLogFullThreshold : undefined;
-            inputs["trapLowMemoryThreshold"] = args ? args.trapLowMemoryThreshold : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["trapHighCpuThreshold"] = args ? args.trapHighCpuThreshold : undefined;
+            resourceInputs["trapLogFullThreshold"] = args ? args.trapLogFullThreshold : undefined;
+            resourceInputs["trapLowMemoryThreshold"] = args ? args.trapLowMemoryThreshold : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSnmpTrapThreshold.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSnmpTrapThreshold.__pulumiType, name, resourceInputs, opts);
     }
 }
 

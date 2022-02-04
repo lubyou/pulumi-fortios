@@ -57,6 +57,7 @@ func NewSystemSwitchInterface(ctx *pulumi.Context,
 		args = &SystemSwitchInterfaceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSwitchInterface
 	err := ctx.RegisterResource("fortios:index/systemSwitchInterface:SystemSwitchInterface", name, args, &resource, opts...)
 	if err != nil {
@@ -203,7 +204,7 @@ type SystemSwitchInterfaceInput interface {
 }
 
 func (*SystemSwitchInterface) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSwitchInterface)(nil))
+	return reflect.TypeOf((**SystemSwitchInterface)(nil)).Elem()
 }
 
 func (i *SystemSwitchInterface) ToSystemSwitchInterfaceOutput() SystemSwitchInterfaceOutput {
@@ -212,35 +213,6 @@ func (i *SystemSwitchInterface) ToSystemSwitchInterfaceOutput() SystemSwitchInte
 
 func (i *SystemSwitchInterface) ToSystemSwitchInterfaceOutputWithContext(ctx context.Context) SystemSwitchInterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfaceOutput)
-}
-
-func (i *SystemSwitchInterface) ToSystemSwitchInterfacePtrOutput() SystemSwitchInterfacePtrOutput {
-	return i.ToSystemSwitchInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSwitchInterface) ToSystemSwitchInterfacePtrOutputWithContext(ctx context.Context) SystemSwitchInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfacePtrOutput)
-}
-
-type SystemSwitchInterfacePtrInput interface {
-	pulumi.Input
-
-	ToSystemSwitchInterfacePtrOutput() SystemSwitchInterfacePtrOutput
-	ToSystemSwitchInterfacePtrOutputWithContext(ctx context.Context) SystemSwitchInterfacePtrOutput
-}
-
-type systemSwitchInterfacePtrType SystemSwitchInterfaceArgs
-
-func (*systemSwitchInterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSwitchInterface)(nil))
-}
-
-func (i *systemSwitchInterfacePtrType) ToSystemSwitchInterfacePtrOutput() SystemSwitchInterfacePtrOutput {
-	return i.ToSystemSwitchInterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *systemSwitchInterfacePtrType) ToSystemSwitchInterfacePtrOutputWithContext(ctx context.Context) SystemSwitchInterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfacePtrOutput)
 }
 
 // SystemSwitchInterfaceArrayInput is an input type that accepts SystemSwitchInterfaceArray and SystemSwitchInterfaceArrayOutput values.
@@ -257,7 +229,7 @@ type SystemSwitchInterfaceArrayInput interface {
 type SystemSwitchInterfaceArray []SystemSwitchInterfaceInput
 
 func (SystemSwitchInterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSwitchInterface)(nil))
+	return reflect.TypeOf((*[]*SystemSwitchInterface)(nil)).Elem()
 }
 
 func (i SystemSwitchInterfaceArray) ToSystemSwitchInterfaceArrayOutput() SystemSwitchInterfaceArrayOutput {
@@ -282,7 +254,7 @@ type SystemSwitchInterfaceMapInput interface {
 type SystemSwitchInterfaceMap map[string]SystemSwitchInterfaceInput
 
 func (SystemSwitchInterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSwitchInterface)(nil))
+	return reflect.TypeOf((*map[string]*SystemSwitchInterface)(nil)).Elem()
 }
 
 func (i SystemSwitchInterfaceMap) ToSystemSwitchInterfaceMapOutput() SystemSwitchInterfaceMapOutput {
@@ -293,12 +265,10 @@ func (i SystemSwitchInterfaceMap) ToSystemSwitchInterfaceMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSwitchInterfaceMapOutput)
 }
 
-type SystemSwitchInterfaceOutput struct {
-	*pulumi.OutputState
-}
+type SystemSwitchInterfaceOutput struct{ *pulumi.OutputState }
 
 func (SystemSwitchInterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSwitchInterface)(nil))
+	return reflect.TypeOf((**SystemSwitchInterface)(nil)).Elem()
 }
 
 func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfaceOutput() SystemSwitchInterfaceOutput {
@@ -309,36 +279,10 @@ func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfaceOutputWithContext(ct
 	return o
 }
 
-func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfacePtrOutput() SystemSwitchInterfacePtrOutput {
-	return o.ToSystemSwitchInterfacePtrOutputWithContext(context.Background())
-}
-
-func (o SystemSwitchInterfaceOutput) ToSystemSwitchInterfacePtrOutputWithContext(ctx context.Context) SystemSwitchInterfacePtrOutput {
-	return o.ApplyT(func(v SystemSwitchInterface) *SystemSwitchInterface {
-		return &v
-	}).(SystemSwitchInterfacePtrOutput)
-}
-
-type SystemSwitchInterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSwitchInterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSwitchInterface)(nil))
-}
-
-func (o SystemSwitchInterfacePtrOutput) ToSystemSwitchInterfacePtrOutput() SystemSwitchInterfacePtrOutput {
-	return o
-}
-
-func (o SystemSwitchInterfacePtrOutput) ToSystemSwitchInterfacePtrOutputWithContext(ctx context.Context) SystemSwitchInterfacePtrOutput {
-	return o
-}
-
 type SystemSwitchInterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSwitchInterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSwitchInterface)(nil))
+	return reflect.TypeOf((*[]*SystemSwitchInterface)(nil)).Elem()
 }
 
 func (o SystemSwitchInterfaceArrayOutput) ToSystemSwitchInterfaceArrayOutput() SystemSwitchInterfaceArrayOutput {
@@ -350,15 +294,15 @@ func (o SystemSwitchInterfaceArrayOutput) ToSystemSwitchInterfaceArrayOutputWith
 }
 
 func (o SystemSwitchInterfaceArrayOutput) Index(i pulumi.IntInput) SystemSwitchInterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSwitchInterface {
-		return vs[0].([]SystemSwitchInterface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSwitchInterface {
+		return vs[0].([]*SystemSwitchInterface)[vs[1].(int)]
 	}).(SystemSwitchInterfaceOutput)
 }
 
 type SystemSwitchInterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSwitchInterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSwitchInterface)(nil))
+	return reflect.TypeOf((*map[string]*SystemSwitchInterface)(nil)).Elem()
 }
 
 func (o SystemSwitchInterfaceMapOutput) ToSystemSwitchInterfaceMapOutput() SystemSwitchInterfaceMapOutput {
@@ -370,14 +314,16 @@ func (o SystemSwitchInterfaceMapOutput) ToSystemSwitchInterfaceMapOutputWithCont
 }
 
 func (o SystemSwitchInterfaceMapOutput) MapIndex(k pulumi.StringInput) SystemSwitchInterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSwitchInterface {
-		return vs[0].(map[string]SystemSwitchInterface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSwitchInterface {
+		return vs[0].(map[string]*SystemSwitchInterface)[vs[1].(string)]
 	}).(SystemSwitchInterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSwitchInterfaceInput)(nil)).Elem(), &SystemSwitchInterface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSwitchInterfaceArrayInput)(nil)).Elem(), SystemSwitchInterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSwitchInterfaceMapInput)(nil)).Elem(), SystemSwitchInterfaceMap{})
 	pulumi.RegisterOutputType(SystemSwitchInterfaceOutput{})
-	pulumi.RegisterOutputType(SystemSwitchInterfacePtrOutput{})
 	pulumi.RegisterOutputType(SystemSwitchInterfaceArrayOutput{})
 	pulumi.RegisterOutputType(SystemSwitchInterfaceMapOutput{})
 }

@@ -52,6 +52,7 @@ func NewFirewallSshLocalKey(ctx *pulumi.Context,
 	if args.PublicKey == nil {
 		return nil, errors.New("invalid value for required argument 'PublicKey'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSshLocalKey
 	err := ctx.RegisterResource("fortios:index/firewallSshLocalKey:FirewallSshLocalKey", name, args, &resource, opts...)
 	if err != nil {
@@ -150,7 +151,7 @@ type FirewallSshLocalKeyInput interface {
 }
 
 func (*FirewallSshLocalKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSshLocalKey)(nil))
+	return reflect.TypeOf((**FirewallSshLocalKey)(nil)).Elem()
 }
 
 func (i *FirewallSshLocalKey) ToFirewallSshLocalKeyOutput() FirewallSshLocalKeyOutput {
@@ -159,35 +160,6 @@ func (i *FirewallSshLocalKey) ToFirewallSshLocalKeyOutput() FirewallSshLocalKeyO
 
 func (i *FirewallSshLocalKey) ToFirewallSshLocalKeyOutputWithContext(ctx context.Context) FirewallSshLocalKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalKeyOutput)
-}
-
-func (i *FirewallSshLocalKey) ToFirewallSshLocalKeyPtrOutput() FirewallSshLocalKeyPtrOutput {
-	return i.ToFirewallSshLocalKeyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSshLocalKey) ToFirewallSshLocalKeyPtrOutputWithContext(ctx context.Context) FirewallSshLocalKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalKeyPtrOutput)
-}
-
-type FirewallSshLocalKeyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSshLocalKeyPtrOutput() FirewallSshLocalKeyPtrOutput
-	ToFirewallSshLocalKeyPtrOutputWithContext(ctx context.Context) FirewallSshLocalKeyPtrOutput
-}
-
-type firewallSshLocalKeyPtrType FirewallSshLocalKeyArgs
-
-func (*firewallSshLocalKeyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSshLocalKey)(nil))
-}
-
-func (i *firewallSshLocalKeyPtrType) ToFirewallSshLocalKeyPtrOutput() FirewallSshLocalKeyPtrOutput {
-	return i.ToFirewallSshLocalKeyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSshLocalKeyPtrType) ToFirewallSshLocalKeyPtrOutputWithContext(ctx context.Context) FirewallSshLocalKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalKeyPtrOutput)
 }
 
 // FirewallSshLocalKeyArrayInput is an input type that accepts FirewallSshLocalKeyArray and FirewallSshLocalKeyArrayOutput values.
@@ -204,7 +176,7 @@ type FirewallSshLocalKeyArrayInput interface {
 type FirewallSshLocalKeyArray []FirewallSshLocalKeyInput
 
 func (FirewallSshLocalKeyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSshLocalKey)(nil))
+	return reflect.TypeOf((*[]*FirewallSshLocalKey)(nil)).Elem()
 }
 
 func (i FirewallSshLocalKeyArray) ToFirewallSshLocalKeyArrayOutput() FirewallSshLocalKeyArrayOutput {
@@ -229,7 +201,7 @@ type FirewallSshLocalKeyMapInput interface {
 type FirewallSshLocalKeyMap map[string]FirewallSshLocalKeyInput
 
 func (FirewallSshLocalKeyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSshLocalKey)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSshLocalKey)(nil)).Elem()
 }
 
 func (i FirewallSshLocalKeyMap) ToFirewallSshLocalKeyMapOutput() FirewallSshLocalKeyMapOutput {
@@ -240,12 +212,10 @@ func (i FirewallSshLocalKeyMap) ToFirewallSshLocalKeyMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshLocalKeyMapOutput)
 }
 
-type FirewallSshLocalKeyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSshLocalKeyOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshLocalKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSshLocalKey)(nil))
+	return reflect.TypeOf((**FirewallSshLocalKey)(nil)).Elem()
 }
 
 func (o FirewallSshLocalKeyOutput) ToFirewallSshLocalKeyOutput() FirewallSshLocalKeyOutput {
@@ -256,36 +226,10 @@ func (o FirewallSshLocalKeyOutput) ToFirewallSshLocalKeyOutputWithContext(ctx co
 	return o
 }
 
-func (o FirewallSshLocalKeyOutput) ToFirewallSshLocalKeyPtrOutput() FirewallSshLocalKeyPtrOutput {
-	return o.ToFirewallSshLocalKeyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSshLocalKeyOutput) ToFirewallSshLocalKeyPtrOutputWithContext(ctx context.Context) FirewallSshLocalKeyPtrOutput {
-	return o.ApplyT(func(v FirewallSshLocalKey) *FirewallSshLocalKey {
-		return &v
-	}).(FirewallSshLocalKeyPtrOutput)
-}
-
-type FirewallSshLocalKeyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSshLocalKeyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSshLocalKey)(nil))
-}
-
-func (o FirewallSshLocalKeyPtrOutput) ToFirewallSshLocalKeyPtrOutput() FirewallSshLocalKeyPtrOutput {
-	return o
-}
-
-func (o FirewallSshLocalKeyPtrOutput) ToFirewallSshLocalKeyPtrOutputWithContext(ctx context.Context) FirewallSshLocalKeyPtrOutput {
-	return o
-}
-
 type FirewallSshLocalKeyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshLocalKeyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSshLocalKey)(nil))
+	return reflect.TypeOf((*[]*FirewallSshLocalKey)(nil)).Elem()
 }
 
 func (o FirewallSshLocalKeyArrayOutput) ToFirewallSshLocalKeyArrayOutput() FirewallSshLocalKeyArrayOutput {
@@ -297,15 +241,15 @@ func (o FirewallSshLocalKeyArrayOutput) ToFirewallSshLocalKeyArrayOutputWithCont
 }
 
 func (o FirewallSshLocalKeyArrayOutput) Index(i pulumi.IntInput) FirewallSshLocalKeyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSshLocalKey {
-		return vs[0].([]FirewallSshLocalKey)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSshLocalKey {
+		return vs[0].([]*FirewallSshLocalKey)[vs[1].(int)]
 	}).(FirewallSshLocalKeyOutput)
 }
 
 type FirewallSshLocalKeyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshLocalKeyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSshLocalKey)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSshLocalKey)(nil)).Elem()
 }
 
 func (o FirewallSshLocalKeyMapOutput) ToFirewallSshLocalKeyMapOutput() FirewallSshLocalKeyMapOutput {
@@ -317,14 +261,16 @@ func (o FirewallSshLocalKeyMapOutput) ToFirewallSshLocalKeyMapOutputWithContext(
 }
 
 func (o FirewallSshLocalKeyMapOutput) MapIndex(k pulumi.StringInput) FirewallSshLocalKeyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSshLocalKey {
-		return vs[0].(map[string]FirewallSshLocalKey)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSshLocalKey {
+		return vs[0].(map[string]*FirewallSshLocalKey)[vs[1].(string)]
 	}).(FirewallSshLocalKeyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshLocalKeyInput)(nil)).Elem(), &FirewallSshLocalKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshLocalKeyArrayInput)(nil)).Elem(), FirewallSshLocalKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshLocalKeyMapInput)(nil)).Elem(), FirewallSshLocalKeyMap{})
 	pulumi.RegisterOutputType(FirewallSshLocalKeyOutput{})
-	pulumi.RegisterOutputType(FirewallSshLocalKeyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSshLocalKeyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSshLocalKeyMapOutput{})
 }

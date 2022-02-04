@@ -20,6 +20,7 @@ class WebProxyGlobalArgs:
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddr6Args']]]] = None,
@@ -27,6 +28,8 @@ class WebProxyGlobalArgs:
                  max_message_length: Optional[pulumi.Input[int]] = None,
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
+                 src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
                  strict_web_check: Optional[pulumi.Input[str]] = None,
@@ -41,6 +44,7 @@ class WebProxyGlobalArgs:
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddr6Args']]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
@@ -48,6 +52,8 @@ class WebProxyGlobalArgs:
         :param pulumi.Input[int] max_message_length: Maximum length of HTTP message, not including body (16 - 256 Kbytes, default = 32).
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
+        :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
+        :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
         :param pulumi.Input[str] ssl_cert: SSL certificate for SSL interception.
         :param pulumi.Input[str] strict_web_check: Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
@@ -65,6 +71,8 @@ class WebProxyGlobalArgs:
             pulumi.set(__self__, "forward_proxy_auth", forward_proxy_auth)
         if forward_server_affinity_timeout is not None:
             pulumi.set(__self__, "forward_server_affinity_timeout", forward_server_affinity_timeout)
+        if ldap_user_cache is not None:
+            pulumi.set(__self__, "ldap_user_cache", ldap_user_cache)
         if learn_client_ip is not None:
             pulumi.set(__self__, "learn_client_ip", learn_client_ip)
         if learn_client_ip_from_header is not None:
@@ -79,6 +87,10 @@ class WebProxyGlobalArgs:
             pulumi.set(__self__, "max_request_length", max_request_length)
         if max_waf_body_cache_length is not None:
             pulumi.set(__self__, "max_waf_body_cache_length", max_waf_body_cache_length)
+        if src_affinity_exempt_addr is not None:
+            pulumi.set(__self__, "src_affinity_exempt_addr", src_affinity_exempt_addr)
+        if src_affinity_exempt_addr6 is not None:
+            pulumi.set(__self__, "src_affinity_exempt_addr6", src_affinity_exempt_addr6)
         if ssl_ca_cert is not None:
             pulumi.set(__self__, "ssl_ca_cert", ssl_ca_cert)
         if ssl_cert is not None:
@@ -153,6 +165,18 @@ class WebProxyGlobalArgs:
     @forward_server_affinity_timeout.setter
     def forward_server_affinity_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "forward_server_affinity_timeout", value)
+
+    @property
+    @pulumi.getter(name="ldapUserCache")
+    def ldap_user_cache(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ldap_user_cache")
+
+    @ldap_user_cache.setter
+    def ldap_user_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_user_cache", value)
 
     @property
     @pulumi.getter(name="learnClientIp")
@@ -237,6 +261,30 @@ class WebProxyGlobalArgs:
     @max_waf_body_cache_length.setter
     def max_waf_body_cache_length(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "max_waf_body_cache_length", value)
+
+    @property
+    @pulumi.getter(name="srcAffinityExemptAddr")
+    def src_affinity_exempt_addr(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 source addresses to exempt proxy affinity.
+        """
+        return pulumi.get(self, "src_affinity_exempt_addr")
+
+    @src_affinity_exempt_addr.setter
+    def src_affinity_exempt_addr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_affinity_exempt_addr", value)
+
+    @property
+    @pulumi.getter(name="srcAffinityExemptAddr6")
+    def src_affinity_exempt_addr6(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 source addresses to exempt proxy affinity.
+        """
+        return pulumi.get(self, "src_affinity_exempt_addr6")
+
+    @src_affinity_exempt_addr6.setter
+    def src_affinity_exempt_addr6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_affinity_exempt_addr6", value)
 
     @property
     @pulumi.getter(name="sslCaCert")
@@ -330,6 +378,7 @@ class _WebProxyGlobalState:
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddr6Args']]]] = None,
@@ -338,6 +387,8 @@ class _WebProxyGlobalState:
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
                  strict_web_check: Optional[pulumi.Input[str]] = None,
@@ -351,6 +402,7 @@ class _WebProxyGlobalState:
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input['WebProxyGlobalLearnClientIpSrcaddr6Args']]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
@@ -359,6 +411,8 @@ class _WebProxyGlobalState:
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
+        :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
         :param pulumi.Input[str] ssl_cert: SSL certificate for SSL interception.
         :param pulumi.Input[str] strict_web_check: Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
@@ -375,6 +429,8 @@ class _WebProxyGlobalState:
             pulumi.set(__self__, "forward_proxy_auth", forward_proxy_auth)
         if forward_server_affinity_timeout is not None:
             pulumi.set(__self__, "forward_server_affinity_timeout", forward_server_affinity_timeout)
+        if ldap_user_cache is not None:
+            pulumi.set(__self__, "ldap_user_cache", ldap_user_cache)
         if learn_client_ip is not None:
             pulumi.set(__self__, "learn_client_ip", learn_client_ip)
         if learn_client_ip_from_header is not None:
@@ -391,6 +447,10 @@ class _WebProxyGlobalState:
             pulumi.set(__self__, "max_waf_body_cache_length", max_waf_body_cache_length)
         if proxy_fqdn is not None:
             pulumi.set(__self__, "proxy_fqdn", proxy_fqdn)
+        if src_affinity_exempt_addr is not None:
+            pulumi.set(__self__, "src_affinity_exempt_addr", src_affinity_exempt_addr)
+        if src_affinity_exempt_addr6 is not None:
+            pulumi.set(__self__, "src_affinity_exempt_addr6", src_affinity_exempt_addr6)
         if ssl_ca_cert is not None:
             pulumi.set(__self__, "ssl_ca_cert", ssl_ca_cert)
         if ssl_cert is not None:
@@ -453,6 +513,18 @@ class _WebProxyGlobalState:
     @forward_server_affinity_timeout.setter
     def forward_server_affinity_timeout(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "forward_server_affinity_timeout", value)
+
+    @property
+    @pulumi.getter(name="ldapUserCache")
+    def ldap_user_cache(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ldap_user_cache")
+
+    @ldap_user_cache.setter
+    def ldap_user_cache(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ldap_user_cache", value)
 
     @property
     @pulumi.getter(name="learnClientIp")
@@ -551,6 +623,30 @@ class _WebProxyGlobalState:
         pulumi.set(self, "proxy_fqdn", value)
 
     @property
+    @pulumi.getter(name="srcAffinityExemptAddr")
+    def src_affinity_exempt_addr(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 source addresses to exempt proxy affinity.
+        """
+        return pulumi.get(self, "src_affinity_exempt_addr")
+
+    @src_affinity_exempt_addr.setter
+    def src_affinity_exempt_addr(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_affinity_exempt_addr", value)
+
+    @property
+    @pulumi.getter(name="srcAffinityExemptAddr6")
+    def src_affinity_exempt_addr6(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 source addresses to exempt proxy affinity.
+        """
+        return pulumi.get(self, "src_affinity_exempt_addr6")
+
+    @src_affinity_exempt_addr6.setter
+    def src_affinity_exempt_addr6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "src_affinity_exempt_addr6", value)
+
+    @property
     @pulumi.getter(name="sslCaCert")
     def ssl_ca_cert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -644,6 +740,7 @@ class WebProxyGlobal(pulumi.CustomResource):
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]]] = None,
@@ -652,6 +749,8 @@ class WebProxyGlobal(pulumi.CustomResource):
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
                  strict_web_check: Optional[pulumi.Input[str]] = None,
@@ -701,6 +800,7 @@ class WebProxyGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
@@ -709,6 +809,8 @@ class WebProxyGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
+        :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
         :param pulumi.Input[str] ssl_cert: SSL certificate for SSL interception.
         :param pulumi.Input[str] strict_web_check: Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
@@ -777,6 +879,7 @@ class WebProxyGlobal(pulumi.CustomResource):
                  fast_policy_match: Optional[pulumi.Input[str]] = None,
                  forward_proxy_auth: Optional[pulumi.Input[str]] = None,
                  forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+                 ldap_user_cache: Optional[pulumi.Input[str]] = None,
                  learn_client_ip: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
                  learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]]] = None,
@@ -785,6 +888,8 @@ class WebProxyGlobal(pulumi.CustomResource):
                  max_request_length: Optional[pulumi.Input[int]] = None,
                  max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
                  proxy_fqdn: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
+                 src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
                  ssl_ca_cert: Optional[pulumi.Input[str]] = None,
                  ssl_cert: Optional[pulumi.Input[str]] = None,
                  strict_web_check: Optional[pulumi.Input[str]] = None,
@@ -799,6 +904,8 @@ class WebProxyGlobal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -808,6 +915,7 @@ class WebProxyGlobal(pulumi.CustomResource):
             __props__.__dict__["fast_policy_match"] = fast_policy_match
             __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
             __props__.__dict__["forward_server_affinity_timeout"] = forward_server_affinity_timeout
+            __props__.__dict__["ldap_user_cache"] = ldap_user_cache
             __props__.__dict__["learn_client_ip"] = learn_client_ip
             __props__.__dict__["learn_client_ip_from_header"] = learn_client_ip_from_header
             __props__.__dict__["learn_client_ip_srcaddr6s"] = learn_client_ip_srcaddr6s
@@ -818,6 +926,8 @@ class WebProxyGlobal(pulumi.CustomResource):
             if proxy_fqdn is None and not opts.urn:
                 raise TypeError("Missing required property 'proxy_fqdn'")
             __props__.__dict__["proxy_fqdn"] = proxy_fqdn
+            __props__.__dict__["src_affinity_exempt_addr"] = src_affinity_exempt_addr
+            __props__.__dict__["src_affinity_exempt_addr6"] = src_affinity_exempt_addr6
             __props__.__dict__["ssl_ca_cert"] = ssl_ca_cert
             __props__.__dict__["ssl_cert"] = ssl_cert
             __props__.__dict__["strict_web_check"] = strict_web_check
@@ -839,6 +949,7 @@ class WebProxyGlobal(pulumi.CustomResource):
             fast_policy_match: Optional[pulumi.Input[str]] = None,
             forward_proxy_auth: Optional[pulumi.Input[str]] = None,
             forward_server_affinity_timeout: Optional[pulumi.Input[int]] = None,
+            ldap_user_cache: Optional[pulumi.Input[str]] = None,
             learn_client_ip: Optional[pulumi.Input[str]] = None,
             learn_client_ip_from_header: Optional[pulumi.Input[str]] = None,
             learn_client_ip_srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]]] = None,
@@ -847,6 +958,8 @@ class WebProxyGlobal(pulumi.CustomResource):
             max_request_length: Optional[pulumi.Input[int]] = None,
             max_waf_body_cache_length: Optional[pulumi.Input[int]] = None,
             proxy_fqdn: Optional[pulumi.Input[str]] = None,
+            src_affinity_exempt_addr: Optional[pulumi.Input[str]] = None,
+            src_affinity_exempt_addr6: Optional[pulumi.Input[str]] = None,
             ssl_ca_cert: Optional[pulumi.Input[str]] = None,
             ssl_cert: Optional[pulumi.Input[str]] = None,
             strict_web_check: Optional[pulumi.Input[str]] = None,
@@ -865,6 +978,7 @@ class WebProxyGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] fast_policy_match: Enable/disable fast matching algorithm for explicit and transparent proxy policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] forward_proxy_auth: Enable/disable forwarding proxy authentication headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] forward_server_affinity_timeout: Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
+        :param pulumi.Input[str] ldap_user_cache: Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip: Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] learn_client_ip_from_header: Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WebProxyGlobalLearnClientIpSrcaddr6Args']]]] learn_client_ip_srcaddr6s: IPv6 Source address name (srcaddr or srcaddr6 must be set). The structure of `learn_client_ip_srcaddr6` block is documented below.
@@ -873,6 +987,8 @@ class WebProxyGlobal(pulumi.CustomResource):
         :param pulumi.Input[int] max_request_length: Maximum length of HTTP request line (2 - 64 Kbytes, default = 4).
         :param pulumi.Input[int] max_waf_body_cache_length: Maximum length of HTTP messages processed by Web Application Firewall (WAF) (10 - 1024 Kbytes, default = 32).
         :param pulumi.Input[str] proxy_fqdn: Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
+        :param pulumi.Input[str] src_affinity_exempt_addr: IPv4 source addresses to exempt proxy affinity.
+        :param pulumi.Input[str] src_affinity_exempt_addr6: IPv6 source addresses to exempt proxy affinity.
         :param pulumi.Input[str] ssl_ca_cert: SSL CA certificate for SSL interception.
         :param pulumi.Input[str] ssl_cert: SSL certificate for SSL interception.
         :param pulumi.Input[str] strict_web_check: Enable/disable strict web checking to block web sites that send incorrect headers that don't conform to HTTP 1.1. Valid values: `enable`, `disable`.
@@ -889,6 +1005,7 @@ class WebProxyGlobal(pulumi.CustomResource):
         __props__.__dict__["fast_policy_match"] = fast_policy_match
         __props__.__dict__["forward_proxy_auth"] = forward_proxy_auth
         __props__.__dict__["forward_server_affinity_timeout"] = forward_server_affinity_timeout
+        __props__.__dict__["ldap_user_cache"] = ldap_user_cache
         __props__.__dict__["learn_client_ip"] = learn_client_ip
         __props__.__dict__["learn_client_ip_from_header"] = learn_client_ip_from_header
         __props__.__dict__["learn_client_ip_srcaddr6s"] = learn_client_ip_srcaddr6s
@@ -897,6 +1014,8 @@ class WebProxyGlobal(pulumi.CustomResource):
         __props__.__dict__["max_request_length"] = max_request_length
         __props__.__dict__["max_waf_body_cache_length"] = max_waf_body_cache_length
         __props__.__dict__["proxy_fqdn"] = proxy_fqdn
+        __props__.__dict__["src_affinity_exempt_addr"] = src_affinity_exempt_addr
+        __props__.__dict__["src_affinity_exempt_addr6"] = src_affinity_exempt_addr6
         __props__.__dict__["ssl_ca_cert"] = ssl_ca_cert
         __props__.__dict__["ssl_cert"] = ssl_cert
         __props__.__dict__["strict_web_check"] = strict_web_check
@@ -937,6 +1056,14 @@ class WebProxyGlobal(pulumi.CustomResource):
         Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
         """
         return pulumi.get(self, "forward_server_affinity_timeout")
+
+    @property
+    @pulumi.getter(name="ldapUserCache")
+    def ldap_user_cache(self) -> pulumi.Output[str]:
+        """
+        Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ldap_user_cache")
 
     @property
     @pulumi.getter(name="learnClientIp")
@@ -1001,6 +1128,22 @@ class WebProxyGlobal(pulumi.CustomResource):
         Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
         """
         return pulumi.get(self, "proxy_fqdn")
+
+    @property
+    @pulumi.getter(name="srcAffinityExemptAddr")
+    def src_affinity_exempt_addr(self) -> pulumi.Output[str]:
+        """
+        IPv4 source addresses to exempt proxy affinity.
+        """
+        return pulumi.get(self, "src_affinity_exempt_addr")
+
+    @property
+    @pulumi.getter(name="srcAffinityExemptAddr6")
+    def src_affinity_exempt_addr6(self) -> pulumi.Output[str]:
+        """
+        IPv6 source addresses to exempt proxy affinity.
+        """
+        return pulumi.get(self, "src_affinity_exempt_addr6")
 
     @property
     @pulumi.getter(name="sslCaCert")

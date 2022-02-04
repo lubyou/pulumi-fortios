@@ -2,10 +2,11 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Global FortiAnalyzer Cloud settings.
+ * Global FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -54,9 +55,17 @@ export class LogFortianalyzerCloudSetting extends pulumi.CustomResource {
      */
     public readonly certificate!: pulumi.Output<string>;
     /**
+     * Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+     */
+    public readonly certificateVerification!: pulumi.Output<string>;
+    /**
      * FortiAnalyzer connection time-out in seconds (for status and log buffer).
      */
     public readonly connTimeout!: pulumi.Output<number>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
     /**
      * Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
      */
@@ -90,9 +99,17 @@ export class LogFortianalyzerCloudSetting extends pulumi.CustomResource {
      */
     public readonly monitorKeepalivePeriod!: pulumi.Output<number>;
     /**
+     * Preshared-key used for auto-authorization on FortiAnalyzer.
+     */
+    public readonly presharedKey!: pulumi.Output<string>;
+    /**
      * Set log transmission priority. Valid values: `default`, `low`.
      */
     public readonly priority!: pulumi.Output<string>;
+    /**
+     * Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+     */
+    public readonly serials!: pulumi.Output<outputs.LogFortianalyzerCloudSettingSerial[] | undefined>;
     /**
      * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
      */
@@ -135,57 +152,63 @@ export class LogFortianalyzerCloudSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogFortianalyzerCloudSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortianalyzerCloudSettingArgs | LogFortianalyzerCloudSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortianalyzerCloudSettingState | undefined;
-            inputs["accessConfig"] = state ? state.accessConfig : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["connTimeout"] = state ? state.connTimeout : undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ipsArchive"] = state ? state.ipsArchive : undefined;
-            inputs["maxLogRate"] = state ? state.maxLogRate : undefined;
-            inputs["monitorFailureRetryPeriod"] = state ? state.monitorFailureRetryPeriod : undefined;
-            inputs["monitorKeepalivePeriod"] = state ? state.monitorKeepalivePeriod : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uploadDay"] = state ? state.uploadDay : undefined;
-            inputs["uploadInterval"] = state ? state.uploadInterval : undefined;
-            inputs["uploadOption"] = state ? state.uploadOption : undefined;
-            inputs["uploadTime"] = state ? state.uploadTime : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["accessConfig"] = state ? state.accessConfig : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["certificateVerification"] = state ? state.certificateVerification : undefined;
+            resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ipsArchive"] = state ? state.ipsArchive : undefined;
+            resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
+            resourceInputs["monitorFailureRetryPeriod"] = state ? state.monitorFailureRetryPeriod : undefined;
+            resourceInputs["monitorKeepalivePeriod"] = state ? state.monitorKeepalivePeriod : undefined;
+            resourceInputs["presharedKey"] = state ? state.presharedKey : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["serials"] = state ? state.serials : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uploadDay"] = state ? state.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = state ? state.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = state ? state.uploadOption : undefined;
+            resourceInputs["uploadTime"] = state ? state.uploadTime : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogFortianalyzerCloudSettingArgs | undefined;
-            inputs["accessConfig"] = args ? args.accessConfig : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["connTimeout"] = args ? args.connTimeout : undefined;
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ipsArchive"] = args ? args.ipsArchive : undefined;
-            inputs["maxLogRate"] = args ? args.maxLogRate : undefined;
-            inputs["monitorFailureRetryPeriod"] = args ? args.monitorFailureRetryPeriod : undefined;
-            inputs["monitorKeepalivePeriod"] = args ? args.monitorKeepalivePeriod : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uploadDay"] = args ? args.uploadDay : undefined;
-            inputs["uploadInterval"] = args ? args.uploadInterval : undefined;
-            inputs["uploadOption"] = args ? args.uploadOption : undefined;
-            inputs["uploadTime"] = args ? args.uploadTime : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["accessConfig"] = args ? args.accessConfig : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["certificateVerification"] = args ? args.certificateVerification : undefined;
+            resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ipsArchive"] = args ? args.ipsArchive : undefined;
+            resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
+            resourceInputs["monitorFailureRetryPeriod"] = args ? args.monitorFailureRetryPeriod : undefined;
+            resourceInputs["monitorKeepalivePeriod"] = args ? args.monitorKeepalivePeriod : undefined;
+            resourceInputs["presharedKey"] = args ? args.presharedKey : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["serials"] = args ? args.serials : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uploadDay"] = args ? args.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = args ? args.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = args ? args.uploadOption : undefined;
+            resourceInputs["uploadTime"] = args ? args.uploadTime : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortianalyzerCloudSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortianalyzerCloudSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -202,9 +225,17 @@ export interface LogFortianalyzerCloudSettingState {
      */
     certificate?: pulumi.Input<string>;
     /**
+     * Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+     */
+    certificateVerification?: pulumi.Input<string>;
+    /**
      * FortiAnalyzer connection time-out in seconds (for status and log buffer).
      */
     connTimeout?: pulumi.Input<number>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     /**
      * Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
      */
@@ -238,9 +269,17 @@ export interface LogFortianalyzerCloudSettingState {
      */
     monitorKeepalivePeriod?: pulumi.Input<number>;
     /**
+     * Preshared-key used for auto-authorization on FortiAnalyzer.
+     */
+    presharedKey?: pulumi.Input<string>;
+    /**
      * Set log transmission priority. Valid values: `default`, `low`.
      */
     priority?: pulumi.Input<string>;
+    /**
+     * Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+     */
+    serials?: pulumi.Input<pulumi.Input<inputs.LogFortianalyzerCloudSettingSerial>[]>;
     /**
      * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
      */
@@ -288,9 +327,17 @@ export interface LogFortianalyzerCloudSettingArgs {
      */
     certificate?: pulumi.Input<string>;
     /**
+     * Enable/disable identity verification of FortiAnalyzer by use of certificate. Valid values: `enable`, `disable`.
+     */
+    certificateVerification?: pulumi.Input<string>;
+    /**
      * FortiAnalyzer connection time-out in seconds (for status and log buffer).
      */
     connTimeout?: pulumi.Input<number>;
+    /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
     /**
      * Configure the level of SSL protection for secure communication with FortiAnalyzer. Valid values: `high-medium`, `high`, `low`.
      */
@@ -324,9 +371,17 @@ export interface LogFortianalyzerCloudSettingArgs {
      */
     monitorKeepalivePeriod?: pulumi.Input<number>;
     /**
+     * Preshared-key used for auto-authorization on FortiAnalyzer.
+     */
+    presharedKey?: pulumi.Input<string>;
+    /**
      * Set log transmission priority. Valid values: `default`, `low`.
      */
     priority?: pulumi.Input<string>;
+    /**
+     * Serial numbers of the FortiAnalyzer. The structure of `serial` block is documented below.
+     */
+    serials?: pulumi.Input<pulumi.Input<inputs.LogFortianalyzerCloudSettingSerial>[]>;
     /**
      * Source IPv4 or IPv6 address used to communicate with FortiAnalyzer.
      */

@@ -21,6 +21,7 @@ class UserFssoArgs:
                  ldap_poll_filter: Optional[pulumi.Input[str]] = None,
                  ldap_poll_interval: Optional[pulumi.Input[int]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
+                 logon_timeout: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  password2: Optional[pulumi.Input[str]] = None,
@@ -39,6 +40,7 @@ class UserFssoArgs:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
+                 ssl_server_host_ip_check: Optional[pulumi.Input[str]] = None,
                  ssl_trusted_cert: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  user_info_server: Optional[pulumi.Input[str]] = None,
@@ -53,6 +55,7 @@ class UserFssoArgs:
         :param pulumi.Input[str] ldap_poll_filter: Filter used to fetch groups.
         :param pulumi.Input[int] ldap_poll_interval: Interval in minutes within to fetch groups from LDAP server.
         :param pulumi.Input[str] ldap_server: LDAP server to get group information.
+        :param pulumi.Input[int] logon_timeout: Interval in minutes to keep logons after FSSO server down.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] password: Password of the first FSSO collector agent.
         :param pulumi.Input[str] password2: Password of the second FSSO collector agent.
@@ -71,6 +74,7 @@ class UserFssoArgs:
         :param pulumi.Input[str] source_ip: Source IP for communications to FSSO agent.
         :param pulumi.Input[str] source_ip6: IPv6 source for communications to FSSO agent.
         :param pulumi.Input[str] ssl: Enable/disable use of SSL. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssl_server_host_ip_check: Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_trusted_cert: Trusted server certificate or CA certificate.
         :param pulumi.Input[str] type: Server type.
         :param pulumi.Input[str] user_info_server: LDAP server to get user information.
@@ -91,6 +95,8 @@ class UserFssoArgs:
             pulumi.set(__self__, "ldap_poll_interval", ldap_poll_interval)
         if ldap_server is not None:
             pulumi.set(__self__, "ldap_server", ldap_server)
+        if logon_timeout is not None:
+            pulumi.set(__self__, "logon_timeout", logon_timeout)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -127,6 +133,8 @@ class UserFssoArgs:
             pulumi.set(__self__, "source_ip6", source_ip6)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
+        if ssl_server_host_ip_check is not None:
+            pulumi.set(__self__, "ssl_server_host_ip_check", ssl_server_host_ip_check)
         if ssl_trusted_cert is not None:
             pulumi.set(__self__, "ssl_trusted_cert", ssl_trusted_cert)
         if type is not None:
@@ -231,6 +239,18 @@ class UserFssoArgs:
     @ldap_server.setter
     def ldap_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ldap_server", value)
+
+    @property
+    @pulumi.getter(name="logonTimeout")
+    def logon_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval in minutes to keep logons after FSSO server down.
+        """
+        return pulumi.get(self, "logon_timeout")
+
+    @logon_timeout.setter
+    def logon_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "logon_timeout", value)
 
     @property
     @pulumi.getter
@@ -449,6 +469,18 @@ class UserFssoArgs:
         pulumi.set(self, "ssl", value)
 
     @property
+    @pulumi.getter(name="sslServerHostIpCheck")
+    def ssl_server_host_ip_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_host_ip_check")
+
+    @ssl_server_host_ip_check.setter
+    def ssl_server_host_ip_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_host_ip_check", value)
+
+    @property
     @pulumi.getter(name="sslTrustedCert")
     def ssl_trusted_cert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -507,6 +539,7 @@ class _UserFssoState:
                  ldap_poll_filter: Optional[pulumi.Input[str]] = None,
                  ldap_poll_interval: Optional[pulumi.Input[int]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
+                 logon_timeout: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  password2: Optional[pulumi.Input[str]] = None,
@@ -526,6 +559,7 @@ class _UserFssoState:
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
+                 ssl_server_host_ip_check: Optional[pulumi.Input[str]] = None,
                  ssl_trusted_cert: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  user_info_server: Optional[pulumi.Input[str]] = None,
@@ -539,6 +573,7 @@ class _UserFssoState:
         :param pulumi.Input[str] ldap_poll_filter: Filter used to fetch groups.
         :param pulumi.Input[int] ldap_poll_interval: Interval in minutes within to fetch groups from LDAP server.
         :param pulumi.Input[str] ldap_server: LDAP server to get group information.
+        :param pulumi.Input[int] logon_timeout: Interval in minutes to keep logons after FSSO server down.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] password: Password of the first FSSO collector agent.
         :param pulumi.Input[str] password2: Password of the second FSSO collector agent.
@@ -558,6 +593,7 @@ class _UserFssoState:
         :param pulumi.Input[str] source_ip: Source IP for communications to FSSO agent.
         :param pulumi.Input[str] source_ip6: IPv6 source for communications to FSSO agent.
         :param pulumi.Input[str] ssl: Enable/disable use of SSL. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssl_server_host_ip_check: Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_trusted_cert: Trusted server certificate or CA certificate.
         :param pulumi.Input[str] type: Server type.
         :param pulumi.Input[str] user_info_server: LDAP server to get user information.
@@ -577,6 +613,8 @@ class _UserFssoState:
             pulumi.set(__self__, "ldap_poll_interval", ldap_poll_interval)
         if ldap_server is not None:
             pulumi.set(__self__, "ldap_server", ldap_server)
+        if logon_timeout is not None:
+            pulumi.set(__self__, "logon_timeout", logon_timeout)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if password is not None:
@@ -615,6 +653,8 @@ class _UserFssoState:
             pulumi.set(__self__, "source_ip6", source_ip6)
         if ssl is not None:
             pulumi.set(__self__, "ssl", ssl)
+        if ssl_server_host_ip_check is not None:
+            pulumi.set(__self__, "ssl_server_host_ip_check", ssl_server_host_ip_check)
         if ssl_trusted_cert is not None:
             pulumi.set(__self__, "ssl_trusted_cert", ssl_trusted_cert)
         if type is not None:
@@ -707,6 +747,18 @@ class _UserFssoState:
     @ldap_server.setter
     def ldap_server(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ldap_server", value)
+
+    @property
+    @pulumi.getter(name="logonTimeout")
+    def logon_timeout(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval in minutes to keep logons after FSSO server down.
+        """
+        return pulumi.get(self, "logon_timeout")
+
+    @logon_timeout.setter
+    def logon_timeout(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "logon_timeout", value)
 
     @property
     @pulumi.getter
@@ -937,6 +989,18 @@ class _UserFssoState:
         pulumi.set(self, "ssl", value)
 
     @property
+    @pulumi.getter(name="sslServerHostIpCheck")
+    def ssl_server_host_ip_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_host_ip_check")
+
+    @ssl_server_host_ip_check.setter
+    def ssl_server_host_ip_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_server_host_ip_check", value)
+
+    @property
     @pulumi.getter(name="sslTrustedCert")
     def ssl_trusted_cert(self) -> Optional[pulumi.Input[str]]:
         """
@@ -997,6 +1061,7 @@ class UserFsso(pulumi.CustomResource):
                  ldap_poll_filter: Optional[pulumi.Input[str]] = None,
                  ldap_poll_interval: Optional[pulumi.Input[int]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
+                 logon_timeout: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  password2: Optional[pulumi.Input[str]] = None,
@@ -1016,6 +1081,7 @@ class UserFsso(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
+                 ssl_server_host_ip_check: Optional[pulumi.Input[str]] = None,
                  ssl_trusted_cert: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  user_info_server: Optional[pulumi.Input[str]] = None,
@@ -1060,6 +1126,7 @@ class UserFsso(pulumi.CustomResource):
         :param pulumi.Input[str] ldap_poll_filter: Filter used to fetch groups.
         :param pulumi.Input[int] ldap_poll_interval: Interval in minutes within to fetch groups from LDAP server.
         :param pulumi.Input[str] ldap_server: LDAP server to get group information.
+        :param pulumi.Input[int] logon_timeout: Interval in minutes to keep logons after FSSO server down.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] password: Password of the first FSSO collector agent.
         :param pulumi.Input[str] password2: Password of the second FSSO collector agent.
@@ -1079,6 +1146,7 @@ class UserFsso(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip: Source IP for communications to FSSO agent.
         :param pulumi.Input[str] source_ip6: IPv6 source for communications to FSSO agent.
         :param pulumi.Input[str] ssl: Enable/disable use of SSL. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssl_server_host_ip_check: Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_trusted_cert: Trusted server certificate or CA certificate.
         :param pulumi.Input[str] type: Server type.
         :param pulumi.Input[str] user_info_server: LDAP server to get user information.
@@ -1142,6 +1210,7 @@ class UserFsso(pulumi.CustomResource):
                  ldap_poll_filter: Optional[pulumi.Input[str]] = None,
                  ldap_poll_interval: Optional[pulumi.Input[int]] = None,
                  ldap_server: Optional[pulumi.Input[str]] = None,
+                 logon_timeout: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  password: Optional[pulumi.Input[str]] = None,
                  password2: Optional[pulumi.Input[str]] = None,
@@ -1161,6 +1230,7 @@ class UserFsso(pulumi.CustomResource):
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[str]] = None,
+                 ssl_server_host_ip_check: Optional[pulumi.Input[str]] = None,
                  ssl_trusted_cert: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
                  user_info_server: Optional[pulumi.Input[str]] = None,
@@ -1172,6 +1242,8 @@ class UserFsso(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1184,6 +1256,7 @@ class UserFsso(pulumi.CustomResource):
             __props__.__dict__["ldap_poll_filter"] = ldap_poll_filter
             __props__.__dict__["ldap_poll_interval"] = ldap_poll_interval
             __props__.__dict__["ldap_server"] = ldap_server
+            __props__.__dict__["logon_timeout"] = logon_timeout
             __props__.__dict__["name"] = name
             __props__.__dict__["password"] = password
             __props__.__dict__["password2"] = password2
@@ -1205,6 +1278,7 @@ class UserFsso(pulumi.CustomResource):
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_ip6"] = source_ip6
             __props__.__dict__["ssl"] = ssl
+            __props__.__dict__["ssl_server_host_ip_check"] = ssl_server_host_ip_check
             __props__.__dict__["ssl_trusted_cert"] = ssl_trusted_cert
             __props__.__dict__["type"] = type
             __props__.__dict__["user_info_server"] = user_info_server
@@ -1226,6 +1300,7 @@ class UserFsso(pulumi.CustomResource):
             ldap_poll_filter: Optional[pulumi.Input[str]] = None,
             ldap_poll_interval: Optional[pulumi.Input[int]] = None,
             ldap_server: Optional[pulumi.Input[str]] = None,
+            logon_timeout: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             password: Optional[pulumi.Input[str]] = None,
             password2: Optional[pulumi.Input[str]] = None,
@@ -1245,6 +1320,7 @@ class UserFsso(pulumi.CustomResource):
             source_ip: Optional[pulumi.Input[str]] = None,
             source_ip6: Optional[pulumi.Input[str]] = None,
             ssl: Optional[pulumi.Input[str]] = None,
+            ssl_server_host_ip_check: Optional[pulumi.Input[str]] = None,
             ssl_trusted_cert: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
             user_info_server: Optional[pulumi.Input[str]] = None,
@@ -1263,6 +1339,7 @@ class UserFsso(pulumi.CustomResource):
         :param pulumi.Input[str] ldap_poll_filter: Filter used to fetch groups.
         :param pulumi.Input[int] ldap_poll_interval: Interval in minutes within to fetch groups from LDAP server.
         :param pulumi.Input[str] ldap_server: LDAP server to get group information.
+        :param pulumi.Input[int] logon_timeout: Interval in minutes to keep logons after FSSO server down.
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] password: Password of the first FSSO collector agent.
         :param pulumi.Input[str] password2: Password of the second FSSO collector agent.
@@ -1282,6 +1359,7 @@ class UserFsso(pulumi.CustomResource):
         :param pulumi.Input[str] source_ip: Source IP for communications to FSSO agent.
         :param pulumi.Input[str] source_ip6: IPv6 source for communications to FSSO agent.
         :param pulumi.Input[str] ssl: Enable/disable use of SSL. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ssl_server_host_ip_check: Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_trusted_cert: Trusted server certificate or CA certificate.
         :param pulumi.Input[str] type: Server type.
         :param pulumi.Input[str] user_info_server: LDAP server to get user information.
@@ -1298,6 +1376,7 @@ class UserFsso(pulumi.CustomResource):
         __props__.__dict__["ldap_poll_filter"] = ldap_poll_filter
         __props__.__dict__["ldap_poll_interval"] = ldap_poll_interval
         __props__.__dict__["ldap_server"] = ldap_server
+        __props__.__dict__["logon_timeout"] = logon_timeout
         __props__.__dict__["name"] = name
         __props__.__dict__["password"] = password
         __props__.__dict__["password2"] = password2
@@ -1317,6 +1396,7 @@ class UserFsso(pulumi.CustomResource):
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_ip6"] = source_ip6
         __props__.__dict__["ssl"] = ssl
+        __props__.__dict__["ssl_server_host_ip_check"] = ssl_server_host_ip_check
         __props__.__dict__["ssl_trusted_cert"] = ssl_trusted_cert
         __props__.__dict__["type"] = type
         __props__.__dict__["user_info_server"] = user_info_server
@@ -1378,6 +1458,14 @@ class UserFsso(pulumi.CustomResource):
         LDAP server to get group information.
         """
         return pulumi.get(self, "ldap_server")
+
+    @property
+    @pulumi.getter(name="logonTimeout")
+    def logon_timeout(self) -> pulumi.Output[int]:
+        """
+        Interval in minutes to keep logons after FSSO server down.
+        """
+        return pulumi.get(self, "logon_timeout")
 
     @property
     @pulumi.getter
@@ -1530,6 +1618,14 @@ class UserFsso(pulumi.CustomResource):
         Enable/disable use of SSL. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ssl")
+
+    @property
+    @pulumi.getter(name="sslServerHostIpCheck")
+    def ssl_server_host_ip_check(self) -> pulumi.Output[str]:
+        """
+        Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_server_host_ip_check")
 
     @property
     @pulumi.getter(name="sslTrustedCert")

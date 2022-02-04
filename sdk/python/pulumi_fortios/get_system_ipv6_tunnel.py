@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemIpv6TunnelResult',
     'AwaitableGetSystemIpv6TunnelResult',
     'get_system_ipv6_tunnel',
+    'get_system_ipv6_tunnel_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +20,10 @@ class GetSystemIpv6TunnelResult:
     """
     A collection of values returned by GetSystemIpv6Tunnel.
     """
-    def __init__(__self__, destination=None, id=None, interface=None, name=None, source=None, vdomparam=None):
+    def __init__(__self__, auto_asic_offload=None, destination=None, id=None, interface=None, name=None, source=None, use_sdwan=None, vdomparam=None):
+        if auto_asic_offload and not isinstance(auto_asic_offload, str):
+            raise TypeError("Expected argument 'auto_asic_offload' to be a str")
+        pulumi.set(__self__, "auto_asic_offload", auto_asic_offload)
         if destination and not isinstance(destination, str):
             raise TypeError("Expected argument 'destination' to be a str")
         pulumi.set(__self__, "destination", destination)
@@ -35,9 +39,20 @@ class GetSystemIpv6TunnelResult:
         if source and not isinstance(source, str):
             raise TypeError("Expected argument 'source' to be a str")
         pulumi.set(__self__, "source", source)
+        if use_sdwan and not isinstance(use_sdwan, str):
+            raise TypeError("Expected argument 'use_sdwan' to be a str")
+        pulumi.set(__self__, "use_sdwan", use_sdwan)
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="autoAsicOffload")
+    def auto_asic_offload(self) -> str:
+        """
+        Enable/disable tunnel ASIC offloading.
+        """
+        return pulumi.get(self, "auto_asic_offload")
 
     @property
     @pulumi.getter
@@ -80,6 +95,14 @@ class GetSystemIpv6TunnelResult:
         return pulumi.get(self, "source")
 
     @property
+    @pulumi.getter(name="useSdwan")
+    def use_sdwan(self) -> str:
+        """
+        Enable/disable use of SD-WAN to reach remote gateway.
+        """
+        return pulumi.get(self, "use_sdwan")
+
+    @property
     @pulumi.getter
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
@@ -91,11 +114,13 @@ class AwaitableGetSystemIpv6TunnelResult(GetSystemIpv6TunnelResult):
         if False:
             yield self
         return GetSystemIpv6TunnelResult(
+            auto_asic_offload=self.auto_asic_offload,
             destination=self.destination,
             id=self.id,
             interface=self.interface,
             name=self.name,
             source=self.source,
+            use_sdwan=self.use_sdwan,
             vdomparam=self.vdomparam)
 
 
@@ -116,12 +141,30 @@ def get_system_ipv6_tunnel(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemIpv6Tunnel:GetSystemIpv6Tunnel', __args__, opts=opts, typ=GetSystemIpv6TunnelResult).value
 
     return AwaitableGetSystemIpv6TunnelResult(
+        auto_asic_offload=__ret__.auto_asic_offload,
         destination=__ret__.destination,
         id=__ret__.id,
         interface=__ret__.interface,
         name=__ret__.name,
         source=__ret__.source,
+        use_sdwan=__ret__.use_sdwan,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_ipv6_tunnel)
+def get_system_ipv6_tunnel_output(name: Optional[pulumi.Input[str]] = None,
+                                  vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemIpv6TunnelResult]:
+    """
+    Use this data source to get information on an fortios system ipv6tunnel
+
+
+    :param str name: Specify the name of the desired system ipv6tunnel.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

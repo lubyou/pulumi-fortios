@@ -103,33 +103,31 @@ export class WirelessControllerInterController extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerInterControllerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerInterControllerArgs | WirelessControllerInterControllerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerInterControllerState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fastFailoverMax"] = state ? state.fastFailoverMax : undefined;
-            inputs["fastFailoverWait"] = state ? state.fastFailoverWait : undefined;
-            inputs["interControllerKey"] = state ? state.interControllerKey : undefined;
-            inputs["interControllerMode"] = state ? state.interControllerMode : undefined;
-            inputs["interControllerPeers"] = state ? state.interControllerPeers : undefined;
-            inputs["interControllerPri"] = state ? state.interControllerPri : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fastFailoverMax"] = state ? state.fastFailoverMax : undefined;
+            resourceInputs["fastFailoverWait"] = state ? state.fastFailoverWait : undefined;
+            resourceInputs["interControllerKey"] = state ? state.interControllerKey : undefined;
+            resourceInputs["interControllerMode"] = state ? state.interControllerMode : undefined;
+            resourceInputs["interControllerPeers"] = state ? state.interControllerPeers : undefined;
+            resourceInputs["interControllerPri"] = state ? state.interControllerPri : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerInterControllerArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fastFailoverMax"] = args ? args.fastFailoverMax : undefined;
-            inputs["fastFailoverWait"] = args ? args.fastFailoverWait : undefined;
-            inputs["interControllerKey"] = args ? args.interControllerKey : undefined;
-            inputs["interControllerMode"] = args ? args.interControllerMode : undefined;
-            inputs["interControllerPeers"] = args ? args.interControllerPeers : undefined;
-            inputs["interControllerPri"] = args ? args.interControllerPri : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fastFailoverMax"] = args ? args.fastFailoverMax : undefined;
+            resourceInputs["fastFailoverWait"] = args ? args.fastFailoverWait : undefined;
+            resourceInputs["interControllerKey"] = args ? args.interControllerKey : undefined;
+            resourceInputs["interControllerMode"] = args ? args.interControllerMode : undefined;
+            resourceInputs["interControllerPeers"] = args ? args.interControllerPeers : undefined;
+            resourceInputs["interControllerPri"] = args ? args.interControllerPri : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerInterController.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerInterController.__pulumiType, name, resourceInputs, opts);
     }
 }
 

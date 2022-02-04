@@ -47,6 +47,7 @@ func NewSystemReplacemsgNacQuar(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgNacQuar
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgNacQuar:SystemReplacemsgNacQuar", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgNacQuarInput interface {
 }
 
 func (*SystemReplacemsgNacQuar) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgNacQuar)(nil))
+	return reflect.TypeOf((**SystemReplacemsgNacQuar)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgNacQuar) ToSystemReplacemsgNacQuarOutput() SystemReplacemsgNacQuarOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgNacQuar) ToSystemReplacemsgNacQuarOutput() SystemReplac
 
 func (i *SystemReplacemsgNacQuar) ToSystemReplacemsgNacQuarOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarOutput)
-}
-
-func (i *SystemReplacemsgNacQuar) ToSystemReplacemsgNacQuarPtrOutput() SystemReplacemsgNacQuarPtrOutput {
-	return i.ToSystemReplacemsgNacQuarPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgNacQuar) ToSystemReplacemsgNacQuarPtrOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarPtrOutput)
-}
-
-type SystemReplacemsgNacQuarPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgNacQuarPtrOutput() SystemReplacemsgNacQuarPtrOutput
-	ToSystemReplacemsgNacQuarPtrOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarPtrOutput
-}
-
-type systemReplacemsgNacQuarPtrType SystemReplacemsgNacQuarArgs
-
-func (*systemReplacemsgNacQuarPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgNacQuar)(nil))
-}
-
-func (i *systemReplacemsgNacQuarPtrType) ToSystemReplacemsgNacQuarPtrOutput() SystemReplacemsgNacQuarPtrOutput {
-	return i.ToSystemReplacemsgNacQuarPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgNacQuarPtrType) ToSystemReplacemsgNacQuarPtrOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarPtrOutput)
 }
 
 // SystemReplacemsgNacQuarArrayInput is an input type that accepts SystemReplacemsgNacQuarArray and SystemReplacemsgNacQuarArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgNacQuarArrayInput interface {
 type SystemReplacemsgNacQuarArray []SystemReplacemsgNacQuarInput
 
 func (SystemReplacemsgNacQuarArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgNacQuar)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgNacQuar)(nil)).Elem()
 }
 
 func (i SystemReplacemsgNacQuarArray) ToSystemReplacemsgNacQuarArrayOutput() SystemReplacemsgNacQuarArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgNacQuarMapInput interface {
 type SystemReplacemsgNacQuarMap map[string]SystemReplacemsgNacQuarInput
 
 func (SystemReplacemsgNacQuarMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgNacQuar)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgNacQuar)(nil)).Elem()
 }
 
 func (i SystemReplacemsgNacQuarMap) ToSystemReplacemsgNacQuarMapOutput() SystemReplacemsgNacQuarMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgNacQuarMap) ToSystemReplacemsgNacQuarMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgNacQuarMapOutput)
 }
 
-type SystemReplacemsgNacQuarOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgNacQuarOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgNacQuarOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgNacQuar)(nil))
+	return reflect.TypeOf((**SystemReplacemsgNacQuar)(nil)).Elem()
 }
 
 func (o SystemReplacemsgNacQuarOutput) ToSystemReplacemsgNacQuarOutput() SystemReplacemsgNacQuarOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgNacQuarOutput) ToSystemReplacemsgNacQuarOutputWithContex
 	return o
 }
 
-func (o SystemReplacemsgNacQuarOutput) ToSystemReplacemsgNacQuarPtrOutput() SystemReplacemsgNacQuarPtrOutput {
-	return o.ToSystemReplacemsgNacQuarPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgNacQuarOutput) ToSystemReplacemsgNacQuarPtrOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgNacQuar) *SystemReplacemsgNacQuar {
-		return &v
-	}).(SystemReplacemsgNacQuarPtrOutput)
-}
-
-type SystemReplacemsgNacQuarPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgNacQuarPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgNacQuar)(nil))
-}
-
-func (o SystemReplacemsgNacQuarPtrOutput) ToSystemReplacemsgNacQuarPtrOutput() SystemReplacemsgNacQuarPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgNacQuarPtrOutput) ToSystemReplacemsgNacQuarPtrOutputWithContext(ctx context.Context) SystemReplacemsgNacQuarPtrOutput {
-	return o
-}
-
 type SystemReplacemsgNacQuarArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgNacQuarArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgNacQuar)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgNacQuar)(nil)).Elem()
 }
 
 func (o SystemReplacemsgNacQuarArrayOutput) ToSystemReplacemsgNacQuarArrayOutput() SystemReplacemsgNacQuarArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgNacQuarArrayOutput) ToSystemReplacemsgNacQuarArrayOutput
 }
 
 func (o SystemReplacemsgNacQuarArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgNacQuarOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgNacQuar {
-		return vs[0].([]SystemReplacemsgNacQuar)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgNacQuar {
+		return vs[0].([]*SystemReplacemsgNacQuar)[vs[1].(int)]
 	}).(SystemReplacemsgNacQuarOutput)
 }
 
 type SystemReplacemsgNacQuarMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgNacQuarMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgNacQuar)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgNacQuar)(nil)).Elem()
 }
 
 func (o SystemReplacemsgNacQuarMapOutput) ToSystemReplacemsgNacQuarMapOutput() SystemReplacemsgNacQuarMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgNacQuarMapOutput) ToSystemReplacemsgNacQuarMapOutputWith
 }
 
 func (o SystemReplacemsgNacQuarMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgNacQuarOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgNacQuar {
-		return vs[0].(map[string]SystemReplacemsgNacQuar)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgNacQuar {
+		return vs[0].(map[string]*SystemReplacemsgNacQuar)[vs[1].(string)]
 	}).(SystemReplacemsgNacQuarOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgNacQuarInput)(nil)).Elem(), &SystemReplacemsgNacQuar{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgNacQuarArrayInput)(nil)).Elem(), SystemReplacemsgNacQuarArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgNacQuarMapInput)(nil)).Elem(), SystemReplacemsgNacQuarMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgNacQuarOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgNacQuarPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgNacQuarArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgNacQuarMapOutput{})
 }

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewSwitchControllerIgmpSnooping(ctx *pulumi.Context,
 		args = &SwitchControllerIgmpSnoopingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerIgmpSnooping
 	err := ctx.RegisterResource("fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SwitchControllerIgmpSnoopingInput interface {
 }
 
 func (*SwitchControllerIgmpSnooping) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerIgmpSnooping)(nil))
+	return reflect.TypeOf((**SwitchControllerIgmpSnooping)(nil)).Elem()
 }
 
 func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingOutput() SwitchControllerIgmpSnoopingOutput {
@@ -146,35 +147,6 @@ func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingOutput() Sw
 
 func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingOutput)
-}
-
-func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingPtrOutput() SwitchControllerIgmpSnoopingPtrOutput {
-	return i.ToSwitchControllerIgmpSnoopingPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerIgmpSnooping) ToSwitchControllerIgmpSnoopingPtrOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingPtrOutput)
-}
-
-type SwitchControllerIgmpSnoopingPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerIgmpSnoopingPtrOutput() SwitchControllerIgmpSnoopingPtrOutput
-	ToSwitchControllerIgmpSnoopingPtrOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingPtrOutput
-}
-
-type switchControllerIgmpSnoopingPtrType SwitchControllerIgmpSnoopingArgs
-
-func (*switchControllerIgmpSnoopingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerIgmpSnooping)(nil))
-}
-
-func (i *switchControllerIgmpSnoopingPtrType) ToSwitchControllerIgmpSnoopingPtrOutput() SwitchControllerIgmpSnoopingPtrOutput {
-	return i.ToSwitchControllerIgmpSnoopingPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerIgmpSnoopingPtrType) ToSwitchControllerIgmpSnoopingPtrOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingPtrOutput)
 }
 
 // SwitchControllerIgmpSnoopingArrayInput is an input type that accepts SwitchControllerIgmpSnoopingArray and SwitchControllerIgmpSnoopingArrayOutput values.
@@ -191,7 +163,7 @@ type SwitchControllerIgmpSnoopingArrayInput interface {
 type SwitchControllerIgmpSnoopingArray []SwitchControllerIgmpSnoopingInput
 
 func (SwitchControllerIgmpSnoopingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerIgmpSnooping)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerIgmpSnooping)(nil)).Elem()
 }
 
 func (i SwitchControllerIgmpSnoopingArray) ToSwitchControllerIgmpSnoopingArrayOutput() SwitchControllerIgmpSnoopingArrayOutput {
@@ -216,7 +188,7 @@ type SwitchControllerIgmpSnoopingMapInput interface {
 type SwitchControllerIgmpSnoopingMap map[string]SwitchControllerIgmpSnoopingInput
 
 func (SwitchControllerIgmpSnoopingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerIgmpSnooping)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerIgmpSnooping)(nil)).Elem()
 }
 
 func (i SwitchControllerIgmpSnoopingMap) ToSwitchControllerIgmpSnoopingMapOutput() SwitchControllerIgmpSnoopingMapOutput {
@@ -227,12 +199,10 @@ func (i SwitchControllerIgmpSnoopingMap) ToSwitchControllerIgmpSnoopingMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerIgmpSnoopingMapOutput)
 }
 
-type SwitchControllerIgmpSnoopingOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerIgmpSnoopingOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerIgmpSnoopingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerIgmpSnooping)(nil))
+	return reflect.TypeOf((**SwitchControllerIgmpSnooping)(nil)).Elem()
 }
 
 func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingOutput() SwitchControllerIgmpSnoopingOutput {
@@ -243,36 +213,10 @@ func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingOutput
 	return o
 }
 
-func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingPtrOutput() SwitchControllerIgmpSnoopingPtrOutput {
-	return o.ToSwitchControllerIgmpSnoopingPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerIgmpSnoopingOutput) ToSwitchControllerIgmpSnoopingPtrOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingPtrOutput {
-	return o.ApplyT(func(v SwitchControllerIgmpSnooping) *SwitchControllerIgmpSnooping {
-		return &v
-	}).(SwitchControllerIgmpSnoopingPtrOutput)
-}
-
-type SwitchControllerIgmpSnoopingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerIgmpSnoopingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerIgmpSnooping)(nil))
-}
-
-func (o SwitchControllerIgmpSnoopingPtrOutput) ToSwitchControllerIgmpSnoopingPtrOutput() SwitchControllerIgmpSnoopingPtrOutput {
-	return o
-}
-
-func (o SwitchControllerIgmpSnoopingPtrOutput) ToSwitchControllerIgmpSnoopingPtrOutputWithContext(ctx context.Context) SwitchControllerIgmpSnoopingPtrOutput {
-	return o
-}
-
 type SwitchControllerIgmpSnoopingArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerIgmpSnoopingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerIgmpSnooping)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerIgmpSnooping)(nil)).Elem()
 }
 
 func (o SwitchControllerIgmpSnoopingArrayOutput) ToSwitchControllerIgmpSnoopingArrayOutput() SwitchControllerIgmpSnoopingArrayOutput {
@@ -284,15 +228,15 @@ func (o SwitchControllerIgmpSnoopingArrayOutput) ToSwitchControllerIgmpSnoopingA
 }
 
 func (o SwitchControllerIgmpSnoopingArrayOutput) Index(i pulumi.IntInput) SwitchControllerIgmpSnoopingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerIgmpSnooping {
-		return vs[0].([]SwitchControllerIgmpSnooping)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerIgmpSnooping {
+		return vs[0].([]*SwitchControllerIgmpSnooping)[vs[1].(int)]
 	}).(SwitchControllerIgmpSnoopingOutput)
 }
 
 type SwitchControllerIgmpSnoopingMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerIgmpSnoopingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerIgmpSnooping)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerIgmpSnooping)(nil)).Elem()
 }
 
 func (o SwitchControllerIgmpSnoopingMapOutput) ToSwitchControllerIgmpSnoopingMapOutput() SwitchControllerIgmpSnoopingMapOutput {
@@ -304,14 +248,16 @@ func (o SwitchControllerIgmpSnoopingMapOutput) ToSwitchControllerIgmpSnoopingMap
 }
 
 func (o SwitchControllerIgmpSnoopingMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerIgmpSnoopingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerIgmpSnooping {
-		return vs[0].(map[string]SwitchControllerIgmpSnooping)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerIgmpSnooping {
+		return vs[0].(map[string]*SwitchControllerIgmpSnooping)[vs[1].(string)]
 	}).(SwitchControllerIgmpSnoopingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerIgmpSnoopingInput)(nil)).Elem(), &SwitchControllerIgmpSnooping{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerIgmpSnoopingArrayInput)(nil)).Elem(), SwitchControllerIgmpSnoopingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerIgmpSnoopingMapInput)(nil)).Elem(), SwitchControllerIgmpSnoopingMap{})
 	pulumi.RegisterOutputType(SwitchControllerIgmpSnoopingOutput{})
-	pulumi.RegisterOutputType(SwitchControllerIgmpSnoopingPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerIgmpSnoopingArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerIgmpSnoopingMapOutput{})
 }

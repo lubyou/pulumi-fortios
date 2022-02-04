@@ -60,22 +60,20 @@ export class SystemLicenseFortiCare extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemLicenseFortiCareArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemLicenseFortiCareArgs | SystemLicenseFortiCareState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemLicenseFortiCareState | undefined;
-            inputs["registrationCode"] = state ? state.registrationCode : undefined;
+            resourceInputs["registrationCode"] = state ? state.registrationCode : undefined;
         } else {
             const args = argsOrState as SystemLicenseFortiCareArgs | undefined;
             if ((!args || args.registrationCode === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'registrationCode'");
             }
-            inputs["registrationCode"] = args ? args.registrationCode : undefined;
+            resourceInputs["registrationCode"] = args ? args.registrationCode : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemLicenseFortiCare.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemLicenseFortiCare.__pulumiType, name, resourceInputs, opts);
     }
 }
 

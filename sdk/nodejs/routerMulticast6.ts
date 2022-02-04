@@ -95,29 +95,27 @@ export class RouterMulticast6 extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterMulticast6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterMulticast6Args | RouterMulticast6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterMulticast6State | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = state ? state.interfaces : undefined;
-            inputs["multicastPmtu"] = state ? state.multicastPmtu : undefined;
-            inputs["multicastRouting"] = state ? state.multicastRouting : undefined;
-            inputs["pimSmGlobal"] = state ? state.pimSmGlobal : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = state ? state.interfaces : undefined;
+            resourceInputs["multicastPmtu"] = state ? state.multicastPmtu : undefined;
+            resourceInputs["multicastRouting"] = state ? state.multicastRouting : undefined;
+            resourceInputs["pimSmGlobal"] = state ? state.pimSmGlobal : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterMulticast6Args | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interfaces"] = args ? args.interfaces : undefined;
-            inputs["multicastPmtu"] = args ? args.multicastPmtu : undefined;
-            inputs["multicastRouting"] = args ? args.multicastRouting : undefined;
-            inputs["pimSmGlobal"] = args ? args.pimSmGlobal : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interfaces"] = args ? args.interfaces : undefined;
+            resourceInputs["multicastPmtu"] = args ? args.multicastPmtu : undefined;
+            resourceInputs["multicastRouting"] = args ? args.multicastRouting : undefined;
+            resourceInputs["pimSmGlobal"] = args ? args.pimSmGlobal : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterMulticast6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterMulticast6.__pulumiType, name, resourceInputs, opts);
     }
 }
 

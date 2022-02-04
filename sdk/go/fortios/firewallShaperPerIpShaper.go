@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -84,6 +84,7 @@ func NewFirewallShaperPerIpShaper(ctx *pulumi.Context,
 		args = &FirewallShaperPerIpShaperArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallShaperPerIpShaper
 	err := ctx.RegisterResource("fortios:index/firewallShaperPerIpShaper:FirewallShaperPerIpShaper", name, args, &resource, opts...)
 	if err != nil {
@@ -222,7 +223,7 @@ type FirewallShaperPerIpShaperInput interface {
 }
 
 func (*FirewallShaperPerIpShaper) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShaperPerIpShaper)(nil))
+	return reflect.TypeOf((**FirewallShaperPerIpShaper)(nil)).Elem()
 }
 
 func (i *FirewallShaperPerIpShaper) ToFirewallShaperPerIpShaperOutput() FirewallShaperPerIpShaperOutput {
@@ -231,35 +232,6 @@ func (i *FirewallShaperPerIpShaper) ToFirewallShaperPerIpShaperOutput() Firewall
 
 func (i *FirewallShaperPerIpShaper) ToFirewallShaperPerIpShaperOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperPerIpShaperOutput)
-}
-
-func (i *FirewallShaperPerIpShaper) ToFirewallShaperPerIpShaperPtrOutput() FirewallShaperPerIpShaperPtrOutput {
-	return i.ToFirewallShaperPerIpShaperPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallShaperPerIpShaper) ToFirewallShaperPerIpShaperPtrOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperPerIpShaperPtrOutput)
-}
-
-type FirewallShaperPerIpShaperPtrInput interface {
-	pulumi.Input
-
-	ToFirewallShaperPerIpShaperPtrOutput() FirewallShaperPerIpShaperPtrOutput
-	ToFirewallShaperPerIpShaperPtrOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperPtrOutput
-}
-
-type firewallShaperPerIpShaperPtrType FirewallShaperPerIpShaperArgs
-
-func (*firewallShaperPerIpShaperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShaperPerIpShaper)(nil))
-}
-
-func (i *firewallShaperPerIpShaperPtrType) ToFirewallShaperPerIpShaperPtrOutput() FirewallShaperPerIpShaperPtrOutput {
-	return i.ToFirewallShaperPerIpShaperPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallShaperPerIpShaperPtrType) ToFirewallShaperPerIpShaperPtrOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperPerIpShaperPtrOutput)
 }
 
 // FirewallShaperPerIpShaperArrayInput is an input type that accepts FirewallShaperPerIpShaperArray and FirewallShaperPerIpShaperArrayOutput values.
@@ -276,7 +248,7 @@ type FirewallShaperPerIpShaperArrayInput interface {
 type FirewallShaperPerIpShaperArray []FirewallShaperPerIpShaperInput
 
 func (FirewallShaperPerIpShaperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallShaperPerIpShaper)(nil))
+	return reflect.TypeOf((*[]*FirewallShaperPerIpShaper)(nil)).Elem()
 }
 
 func (i FirewallShaperPerIpShaperArray) ToFirewallShaperPerIpShaperArrayOutput() FirewallShaperPerIpShaperArrayOutput {
@@ -301,7 +273,7 @@ type FirewallShaperPerIpShaperMapInput interface {
 type FirewallShaperPerIpShaperMap map[string]FirewallShaperPerIpShaperInput
 
 func (FirewallShaperPerIpShaperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallShaperPerIpShaper)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShaperPerIpShaper)(nil)).Elem()
 }
 
 func (i FirewallShaperPerIpShaperMap) ToFirewallShaperPerIpShaperMapOutput() FirewallShaperPerIpShaperMapOutput {
@@ -312,12 +284,10 @@ func (i FirewallShaperPerIpShaperMap) ToFirewallShaperPerIpShaperMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShaperPerIpShaperMapOutput)
 }
 
-type FirewallShaperPerIpShaperOutput struct {
-	*pulumi.OutputState
-}
+type FirewallShaperPerIpShaperOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperPerIpShaperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShaperPerIpShaper)(nil))
+	return reflect.TypeOf((**FirewallShaperPerIpShaper)(nil)).Elem()
 }
 
 func (o FirewallShaperPerIpShaperOutput) ToFirewallShaperPerIpShaperOutput() FirewallShaperPerIpShaperOutput {
@@ -328,36 +298,10 @@ func (o FirewallShaperPerIpShaperOutput) ToFirewallShaperPerIpShaperOutputWithCo
 	return o
 }
 
-func (o FirewallShaperPerIpShaperOutput) ToFirewallShaperPerIpShaperPtrOutput() FirewallShaperPerIpShaperPtrOutput {
-	return o.ToFirewallShaperPerIpShaperPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallShaperPerIpShaperOutput) ToFirewallShaperPerIpShaperPtrOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperPtrOutput {
-	return o.ApplyT(func(v FirewallShaperPerIpShaper) *FirewallShaperPerIpShaper {
-		return &v
-	}).(FirewallShaperPerIpShaperPtrOutput)
-}
-
-type FirewallShaperPerIpShaperPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallShaperPerIpShaperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShaperPerIpShaper)(nil))
-}
-
-func (o FirewallShaperPerIpShaperPtrOutput) ToFirewallShaperPerIpShaperPtrOutput() FirewallShaperPerIpShaperPtrOutput {
-	return o
-}
-
-func (o FirewallShaperPerIpShaperPtrOutput) ToFirewallShaperPerIpShaperPtrOutputWithContext(ctx context.Context) FirewallShaperPerIpShaperPtrOutput {
-	return o
-}
-
 type FirewallShaperPerIpShaperArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperPerIpShaperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallShaperPerIpShaper)(nil))
+	return reflect.TypeOf((*[]*FirewallShaperPerIpShaper)(nil)).Elem()
 }
 
 func (o FirewallShaperPerIpShaperArrayOutput) ToFirewallShaperPerIpShaperArrayOutput() FirewallShaperPerIpShaperArrayOutput {
@@ -369,15 +313,15 @@ func (o FirewallShaperPerIpShaperArrayOutput) ToFirewallShaperPerIpShaperArrayOu
 }
 
 func (o FirewallShaperPerIpShaperArrayOutput) Index(i pulumi.IntInput) FirewallShaperPerIpShaperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallShaperPerIpShaper {
-		return vs[0].([]FirewallShaperPerIpShaper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallShaperPerIpShaper {
+		return vs[0].([]*FirewallShaperPerIpShaper)[vs[1].(int)]
 	}).(FirewallShaperPerIpShaperOutput)
 }
 
 type FirewallShaperPerIpShaperMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallShaperPerIpShaperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallShaperPerIpShaper)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShaperPerIpShaper)(nil)).Elem()
 }
 
 func (o FirewallShaperPerIpShaperMapOutput) ToFirewallShaperPerIpShaperMapOutput() FirewallShaperPerIpShaperMapOutput {
@@ -389,14 +333,16 @@ func (o FirewallShaperPerIpShaperMapOutput) ToFirewallShaperPerIpShaperMapOutput
 }
 
 func (o FirewallShaperPerIpShaperMapOutput) MapIndex(k pulumi.StringInput) FirewallShaperPerIpShaperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallShaperPerIpShaper {
-		return vs[0].(map[string]FirewallShaperPerIpShaper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallShaperPerIpShaper {
+		return vs[0].(map[string]*FirewallShaperPerIpShaper)[vs[1].(string)]
 	}).(FirewallShaperPerIpShaperOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShaperPerIpShaperInput)(nil)).Elem(), &FirewallShaperPerIpShaper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShaperPerIpShaperArrayInput)(nil)).Elem(), FirewallShaperPerIpShaperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShaperPerIpShaperMapInput)(nil)).Elem(), FirewallShaperPerIpShaperMap{})
 	pulumi.RegisterOutputType(FirewallShaperPerIpShaperOutput{})
-	pulumi.RegisterOutputType(FirewallShaperPerIpShaperPtrOutput{})
 	pulumi.RegisterOutputType(FirewallShaperPerIpShaperArrayOutput{})
 	pulumi.RegisterOutputType(FirewallShaperPerIpShaperMapOutput{})
 }

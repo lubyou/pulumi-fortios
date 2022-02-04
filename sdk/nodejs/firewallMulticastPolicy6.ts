@@ -132,6 +132,10 @@ export class FirewallMulticastPolicy6 extends pulumi.CustomResource {
      */
     public readonly status!: pulumi.Output<string>;
     /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    public readonly uuid!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -145,26 +149,27 @@ export class FirewallMulticastPolicy6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallMulticastPolicy6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallMulticastPolicy6Args | FirewallMulticastPolicy6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallMulticastPolicy6State | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dstintf"] = state ? state.dstintf : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["endPort"] = state ? state.endPort : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintf"] = state ? state.srcintf : undefined;
-            inputs["startPort"] = state ? state.startPort : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dstintf"] = state ? state.dstintf : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintf"] = state ? state.srcintf : undefined;
+            resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallMulticastPolicy6Args | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -179,27 +184,26 @@ export class FirewallMulticastPolicy6 extends pulumi.CustomResource {
             if ((!args || args.srcintf === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcintf'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dstintf"] = args ? args.dstintf : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["endPort"] = args ? args.endPort : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintf"] = args ? args.srcintf : undefined;
-            inputs["startPort"] = args ? args.startPort : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dstintf"] = args ? args.dstintf : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintf"] = args ? args.srcintf : undefined;
+            resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallMulticastPolicy6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallMulticastPolicy6.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -267,6 +271,10 @@ export interface FirewallMulticastPolicy6State {
      * Enable/disable this policy. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -337,6 +345,10 @@ export interface FirewallMulticastPolicy6Args {
      * Enable/disable this policy. Valid values: `enable`, `disable`.
      */
     status?: pulumi.Input<string>;
+    /**
+     * Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+     */
+    uuid?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

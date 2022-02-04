@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch SNMP trap threshold values globally.
+// Configure FortiSwitch SNMP trap threshold values globally. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -41,6 +41,7 @@ func NewSwitchControllerSnmpTrapThreshold(ctx *pulumi.Context,
 		args = &SwitchControllerSnmpTrapThresholdArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSnmpTrapThreshold
 	err := ctx.RegisterResource("fortios:index/switchControllerSnmpTrapThreshold:SwitchControllerSnmpTrapThreshold", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SwitchControllerSnmpTrapThresholdInput interface {
 }
 
 func (*SwitchControllerSnmpTrapThreshold) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpTrapThreshold)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpTrapThreshold)(nil)).Elem()
 }
 
 func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdOutput() SwitchControllerSnmpTrapThresholdOutput {
@@ -132,35 +133,6 @@ func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdO
 
 func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdOutput)
-}
-
-func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdPtrOutput() SwitchControllerSnmpTrapThresholdPtrOutput {
-	return i.ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSnmpTrapThreshold) ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdPtrOutput)
-}
-
-type SwitchControllerSnmpTrapThresholdPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSnmpTrapThresholdPtrOutput() SwitchControllerSnmpTrapThresholdPtrOutput
-	ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdPtrOutput
-}
-
-type switchControllerSnmpTrapThresholdPtrType SwitchControllerSnmpTrapThresholdArgs
-
-func (*switchControllerSnmpTrapThresholdPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpTrapThreshold)(nil))
-}
-
-func (i *switchControllerSnmpTrapThresholdPtrType) ToSwitchControllerSnmpTrapThresholdPtrOutput() SwitchControllerSnmpTrapThresholdPtrOutput {
-	return i.ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSnmpTrapThresholdPtrType) ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdPtrOutput)
 }
 
 // SwitchControllerSnmpTrapThresholdArrayInput is an input type that accepts SwitchControllerSnmpTrapThresholdArray and SwitchControllerSnmpTrapThresholdArrayOutput values.
@@ -177,7 +149,7 @@ type SwitchControllerSnmpTrapThresholdArrayInput interface {
 type SwitchControllerSnmpTrapThresholdArray []SwitchControllerSnmpTrapThresholdInput
 
 func (SwitchControllerSnmpTrapThresholdArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSnmpTrapThreshold)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpTrapThreshold)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpTrapThresholdArray) ToSwitchControllerSnmpTrapThresholdArrayOutput() SwitchControllerSnmpTrapThresholdArrayOutput {
@@ -202,7 +174,7 @@ type SwitchControllerSnmpTrapThresholdMapInput interface {
 type SwitchControllerSnmpTrapThresholdMap map[string]SwitchControllerSnmpTrapThresholdInput
 
 func (SwitchControllerSnmpTrapThresholdMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSnmpTrapThreshold)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpTrapThreshold)(nil)).Elem()
 }
 
 func (i SwitchControllerSnmpTrapThresholdMap) ToSwitchControllerSnmpTrapThresholdMapOutput() SwitchControllerSnmpTrapThresholdMapOutput {
@@ -213,12 +185,10 @@ func (i SwitchControllerSnmpTrapThresholdMap) ToSwitchControllerSnmpTrapThreshol
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSnmpTrapThresholdMapOutput)
 }
 
-type SwitchControllerSnmpTrapThresholdOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSnmpTrapThresholdOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpTrapThresholdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSnmpTrapThreshold)(nil))
+	return reflect.TypeOf((**SwitchControllerSnmpTrapThreshold)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThresholdOutput() SwitchControllerSnmpTrapThresholdOutput {
@@ -229,36 +199,10 @@ func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThres
 	return o
 }
 
-func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThresholdPtrOutput() SwitchControllerSnmpTrapThresholdPtrOutput {
-	return o.ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSnmpTrapThresholdOutput) ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdPtrOutput {
-	return o.ApplyT(func(v SwitchControllerSnmpTrapThreshold) *SwitchControllerSnmpTrapThreshold {
-		return &v
-	}).(SwitchControllerSnmpTrapThresholdPtrOutput)
-}
-
-type SwitchControllerSnmpTrapThresholdPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSnmpTrapThresholdPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSnmpTrapThreshold)(nil))
-}
-
-func (o SwitchControllerSnmpTrapThresholdPtrOutput) ToSwitchControllerSnmpTrapThresholdPtrOutput() SwitchControllerSnmpTrapThresholdPtrOutput {
-	return o
-}
-
-func (o SwitchControllerSnmpTrapThresholdPtrOutput) ToSwitchControllerSnmpTrapThresholdPtrOutputWithContext(ctx context.Context) SwitchControllerSnmpTrapThresholdPtrOutput {
-	return o
-}
-
 type SwitchControllerSnmpTrapThresholdArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpTrapThresholdArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSnmpTrapThreshold)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSnmpTrapThreshold)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpTrapThresholdArrayOutput) ToSwitchControllerSnmpTrapThresholdArrayOutput() SwitchControllerSnmpTrapThresholdArrayOutput {
@@ -270,15 +214,15 @@ func (o SwitchControllerSnmpTrapThresholdArrayOutput) ToSwitchControllerSnmpTrap
 }
 
 func (o SwitchControllerSnmpTrapThresholdArrayOutput) Index(i pulumi.IntInput) SwitchControllerSnmpTrapThresholdOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSnmpTrapThreshold {
-		return vs[0].([]SwitchControllerSnmpTrapThreshold)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSnmpTrapThreshold {
+		return vs[0].([]*SwitchControllerSnmpTrapThreshold)[vs[1].(int)]
 	}).(SwitchControllerSnmpTrapThresholdOutput)
 }
 
 type SwitchControllerSnmpTrapThresholdMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSnmpTrapThresholdMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSnmpTrapThreshold)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSnmpTrapThreshold)(nil)).Elem()
 }
 
 func (o SwitchControllerSnmpTrapThresholdMapOutput) ToSwitchControllerSnmpTrapThresholdMapOutput() SwitchControllerSnmpTrapThresholdMapOutput {
@@ -290,14 +234,16 @@ func (o SwitchControllerSnmpTrapThresholdMapOutput) ToSwitchControllerSnmpTrapTh
 }
 
 func (o SwitchControllerSnmpTrapThresholdMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSnmpTrapThresholdOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSnmpTrapThreshold {
-		return vs[0].(map[string]SwitchControllerSnmpTrapThreshold)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSnmpTrapThreshold {
+		return vs[0].(map[string]*SwitchControllerSnmpTrapThreshold)[vs[1].(string)]
 	}).(SwitchControllerSnmpTrapThresholdOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpTrapThresholdInput)(nil)).Elem(), &SwitchControllerSnmpTrapThreshold{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpTrapThresholdArrayInput)(nil)).Elem(), SwitchControllerSnmpTrapThresholdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSnmpTrapThresholdMapInput)(nil)).Elem(), SwitchControllerSnmpTrapThresholdMap{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpTrapThresholdOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSnmpTrapThresholdPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpTrapThresholdArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSnmpTrapThresholdMapOutput{})
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Internet Service owner.
+// Internet Service owner. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -39,6 +39,7 @@ func NewFirewallInternetServiceOwner(ctx *pulumi.Context,
 		args = &FirewallInternetServiceOwnerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceOwner
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceOwner:FirewallInternetServiceOwner", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallInternetServiceOwnerInput interface {
 }
 
 func (*FirewallInternetServiceOwner) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceOwner)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceOwner)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerOutput() FirewallInternetServiceOwnerOutput {
@@ -122,35 +123,6 @@ func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerOutput() Fi
 
 func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerOutput)
-}
-
-func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerPtrOutput() FirewallInternetServiceOwnerPtrOutput {
-	return i.ToFirewallInternetServiceOwnerPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceOwner) ToFirewallInternetServiceOwnerPtrOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerPtrOutput)
-}
-
-type FirewallInternetServiceOwnerPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceOwnerPtrOutput() FirewallInternetServiceOwnerPtrOutput
-	ToFirewallInternetServiceOwnerPtrOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerPtrOutput
-}
-
-type firewallInternetServiceOwnerPtrType FirewallInternetServiceOwnerArgs
-
-func (*firewallInternetServiceOwnerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceOwner)(nil))
-}
-
-func (i *firewallInternetServiceOwnerPtrType) ToFirewallInternetServiceOwnerPtrOutput() FirewallInternetServiceOwnerPtrOutput {
-	return i.ToFirewallInternetServiceOwnerPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceOwnerPtrType) ToFirewallInternetServiceOwnerPtrOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerPtrOutput)
 }
 
 // FirewallInternetServiceOwnerArrayInput is an input type that accepts FirewallInternetServiceOwnerArray and FirewallInternetServiceOwnerArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallInternetServiceOwnerArrayInput interface {
 type FirewallInternetServiceOwnerArray []FirewallInternetServiceOwnerInput
 
 func (FirewallInternetServiceOwnerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceOwner)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceOwner)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceOwnerArray) ToFirewallInternetServiceOwnerArrayOutput() FirewallInternetServiceOwnerArrayOutput {
@@ -192,7 +164,7 @@ type FirewallInternetServiceOwnerMapInput interface {
 type FirewallInternetServiceOwnerMap map[string]FirewallInternetServiceOwnerInput
 
 func (FirewallInternetServiceOwnerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceOwner)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceOwner)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceOwnerMap) ToFirewallInternetServiceOwnerMapOutput() FirewallInternetServiceOwnerMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallInternetServiceOwnerMap) ToFirewallInternetServiceOwnerMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceOwnerMapOutput)
 }
 
-type FirewallInternetServiceOwnerOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceOwnerOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceOwnerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceOwner)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceOwner)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerOutput() FirewallInternetServiceOwnerOutput {
@@ -219,36 +189,10 @@ func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerOutput
 	return o
 }
 
-func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerPtrOutput() FirewallInternetServiceOwnerPtrOutput {
-	return o.ToFirewallInternetServiceOwnerPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceOwnerOutput) ToFirewallInternetServiceOwnerPtrOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceOwner) *FirewallInternetServiceOwner {
-		return &v
-	}).(FirewallInternetServiceOwnerPtrOutput)
-}
-
-type FirewallInternetServiceOwnerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceOwnerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceOwner)(nil))
-}
-
-func (o FirewallInternetServiceOwnerPtrOutput) ToFirewallInternetServiceOwnerPtrOutput() FirewallInternetServiceOwnerPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceOwnerPtrOutput) ToFirewallInternetServiceOwnerPtrOutputWithContext(ctx context.Context) FirewallInternetServiceOwnerPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceOwnerArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceOwnerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceOwner)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceOwner)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceOwnerArrayOutput) ToFirewallInternetServiceOwnerArrayOutput() FirewallInternetServiceOwnerArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallInternetServiceOwnerArrayOutput) ToFirewallInternetServiceOwnerA
 }
 
 func (o FirewallInternetServiceOwnerArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceOwnerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceOwner {
-		return vs[0].([]FirewallInternetServiceOwner)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceOwner {
+		return vs[0].([]*FirewallInternetServiceOwner)[vs[1].(int)]
 	}).(FirewallInternetServiceOwnerOutput)
 }
 
 type FirewallInternetServiceOwnerMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceOwnerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceOwner)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceOwner)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceOwnerMapOutput) ToFirewallInternetServiceOwnerMapOutput() FirewallInternetServiceOwnerMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallInternetServiceOwnerMapOutput) ToFirewallInternetServiceOwnerMap
 }
 
 func (o FirewallInternetServiceOwnerMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceOwnerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceOwner {
-		return vs[0].(map[string]FirewallInternetServiceOwner)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceOwner {
+		return vs[0].(map[string]*FirewallInternetServiceOwner)[vs[1].(string)]
 	}).(FirewallInternetServiceOwnerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceOwnerInput)(nil)).Elem(), &FirewallInternetServiceOwner{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceOwnerArrayInput)(nil)).Elem(), FirewallInternetServiceOwnerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceOwnerMapInput)(nil)).Elem(), FirewallInternetServiceOwnerMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceOwnerOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceOwnerPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceOwnerArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceOwnerMapOutput{})
 }

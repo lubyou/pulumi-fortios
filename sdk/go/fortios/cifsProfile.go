@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure CIFS profile. Applies to FortiOS Version `<= 6.4.0`.
+// Configure CIFS profile. Applies to FortiOS Version `6.2.4,6.2.6,6.4.0`.
 //
 // ## Import
 //
@@ -47,6 +47,7 @@ func NewCifsProfile(ctx *pulumi.Context,
 		args = &CifsProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CifsProfile
 	err := ctx.RegisterResource("fortios:index/cifsProfile:CifsProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -153,7 +154,7 @@ type CifsProfileInput interface {
 }
 
 func (*CifsProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*CifsProfile)(nil))
+	return reflect.TypeOf((**CifsProfile)(nil)).Elem()
 }
 
 func (i *CifsProfile) ToCifsProfileOutput() CifsProfileOutput {
@@ -162,35 +163,6 @@ func (i *CifsProfile) ToCifsProfileOutput() CifsProfileOutput {
 
 func (i *CifsProfile) ToCifsProfileOutputWithContext(ctx context.Context) CifsProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CifsProfileOutput)
-}
-
-func (i *CifsProfile) ToCifsProfilePtrOutput() CifsProfilePtrOutput {
-	return i.ToCifsProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *CifsProfile) ToCifsProfilePtrOutputWithContext(ctx context.Context) CifsProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CifsProfilePtrOutput)
-}
-
-type CifsProfilePtrInput interface {
-	pulumi.Input
-
-	ToCifsProfilePtrOutput() CifsProfilePtrOutput
-	ToCifsProfilePtrOutputWithContext(ctx context.Context) CifsProfilePtrOutput
-}
-
-type cifsProfilePtrType CifsProfileArgs
-
-func (*cifsProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CifsProfile)(nil))
-}
-
-func (i *cifsProfilePtrType) ToCifsProfilePtrOutput() CifsProfilePtrOutput {
-	return i.ToCifsProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *cifsProfilePtrType) ToCifsProfilePtrOutputWithContext(ctx context.Context) CifsProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CifsProfilePtrOutput)
 }
 
 // CifsProfileArrayInput is an input type that accepts CifsProfileArray and CifsProfileArrayOutput values.
@@ -207,7 +179,7 @@ type CifsProfileArrayInput interface {
 type CifsProfileArray []CifsProfileInput
 
 func (CifsProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CifsProfile)(nil))
+	return reflect.TypeOf((*[]*CifsProfile)(nil)).Elem()
 }
 
 func (i CifsProfileArray) ToCifsProfileArrayOutput() CifsProfileArrayOutput {
@@ -232,7 +204,7 @@ type CifsProfileMapInput interface {
 type CifsProfileMap map[string]CifsProfileInput
 
 func (CifsProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CifsProfile)(nil))
+	return reflect.TypeOf((*map[string]*CifsProfile)(nil)).Elem()
 }
 
 func (i CifsProfileMap) ToCifsProfileMapOutput() CifsProfileMapOutput {
@@ -243,12 +215,10 @@ func (i CifsProfileMap) ToCifsProfileMapOutputWithContext(ctx context.Context) C
 	return pulumi.ToOutputWithContext(ctx, i).(CifsProfileMapOutput)
 }
 
-type CifsProfileOutput struct {
-	*pulumi.OutputState
-}
+type CifsProfileOutput struct{ *pulumi.OutputState }
 
 func (CifsProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CifsProfile)(nil))
+	return reflect.TypeOf((**CifsProfile)(nil)).Elem()
 }
 
 func (o CifsProfileOutput) ToCifsProfileOutput() CifsProfileOutput {
@@ -259,36 +229,10 @@ func (o CifsProfileOutput) ToCifsProfileOutputWithContext(ctx context.Context) C
 	return o
 }
 
-func (o CifsProfileOutput) ToCifsProfilePtrOutput() CifsProfilePtrOutput {
-	return o.ToCifsProfilePtrOutputWithContext(context.Background())
-}
-
-func (o CifsProfileOutput) ToCifsProfilePtrOutputWithContext(ctx context.Context) CifsProfilePtrOutput {
-	return o.ApplyT(func(v CifsProfile) *CifsProfile {
-		return &v
-	}).(CifsProfilePtrOutput)
-}
-
-type CifsProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CifsProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CifsProfile)(nil))
-}
-
-func (o CifsProfilePtrOutput) ToCifsProfilePtrOutput() CifsProfilePtrOutput {
-	return o
-}
-
-func (o CifsProfilePtrOutput) ToCifsProfilePtrOutputWithContext(ctx context.Context) CifsProfilePtrOutput {
-	return o
-}
-
 type CifsProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (CifsProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CifsProfile)(nil))
+	return reflect.TypeOf((*[]*CifsProfile)(nil)).Elem()
 }
 
 func (o CifsProfileArrayOutput) ToCifsProfileArrayOutput() CifsProfileArrayOutput {
@@ -300,15 +244,15 @@ func (o CifsProfileArrayOutput) ToCifsProfileArrayOutputWithContext(ctx context.
 }
 
 func (o CifsProfileArrayOutput) Index(i pulumi.IntInput) CifsProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CifsProfile {
-		return vs[0].([]CifsProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CifsProfile {
+		return vs[0].([]*CifsProfile)[vs[1].(int)]
 	}).(CifsProfileOutput)
 }
 
 type CifsProfileMapOutput struct{ *pulumi.OutputState }
 
 func (CifsProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CifsProfile)(nil))
+	return reflect.TypeOf((*map[string]*CifsProfile)(nil)).Elem()
 }
 
 func (o CifsProfileMapOutput) ToCifsProfileMapOutput() CifsProfileMapOutput {
@@ -320,14 +264,16 @@ func (o CifsProfileMapOutput) ToCifsProfileMapOutputWithContext(ctx context.Cont
 }
 
 func (o CifsProfileMapOutput) MapIndex(k pulumi.StringInput) CifsProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CifsProfile {
-		return vs[0].(map[string]CifsProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CifsProfile {
+		return vs[0].(map[string]*CifsProfile)[vs[1].(string)]
 	}).(CifsProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CifsProfileInput)(nil)).Elem(), &CifsProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CifsProfileArrayInput)(nil)).Elem(), CifsProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CifsProfileMapInput)(nil)).Elem(), CifsProfileMap{})
 	pulumi.RegisterOutputType(CifsProfileOutput{})
-	pulumi.RegisterOutputType(CifsProfilePtrOutput{})
 	pulumi.RegisterOutputType(CifsProfileArrayOutput{})
 	pulumi.RegisterOutputType(CifsProfileMapOutput{})
 }

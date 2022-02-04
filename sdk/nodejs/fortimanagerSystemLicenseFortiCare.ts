@@ -69,13 +69,13 @@ export class FortimanagerSystemLicenseFortiCare extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerSystemLicenseFortiCareArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemLicenseFortiCareArgs | FortimanagerSystemLicenseFortiCareState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemLicenseFortiCareState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["registrationCode"] = state ? state.registrationCode : undefined;
-            inputs["target"] = state ? state.target : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["registrationCode"] = state ? state.registrationCode : undefined;
+            resourceInputs["target"] = state ? state.target : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemLicenseFortiCareArgs | undefined;
             if ((!args || args.registrationCode === undefined) && !opts.urn) {
@@ -84,14 +84,12 @@ export class FortimanagerSystemLicenseFortiCare extends pulumi.CustomResource {
             if ((!args || args.target === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'target'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["registrationCode"] = args ? args.registrationCode : undefined;
-            inputs["target"] = args ? args.target : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["registrationCode"] = args ? args.registrationCode : undefined;
+            resourceInputs["target"] = args ? args.target : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemLicenseFortiCare.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemLicenseFortiCare.__pulumiType, name, resourceInputs, opts);
     }
 }
 

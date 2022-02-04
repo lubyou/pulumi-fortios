@@ -183,67 +183,65 @@ export class RouterPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterPolicyArgs | RouterPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterPolicyState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstNegate"] = state ? state.dstNegate : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dsts"] = state ? state.dsts : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["endPort"] = state ? state.endPort : undefined;
-            inputs["endSourcePort"] = state ? state.endSourcePort : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
-            inputs["inputDevices"] = state ? state.inputDevices : undefined;
-            inputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
-            inputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
-            inputs["outputDevice"] = state ? state.outputDevice : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["seqNum"] = state ? state.seqNum : undefined;
-            inputs["srcNegate"] = state ? state.srcNegate : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcs"] = state ? state.srcs : undefined;
-            inputs["startPort"] = state ? state.startPort : undefined;
-            inputs["startSourcePort"] = state ? state.startSourcePort : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["tos"] = state ? state.tos : undefined;
-            inputs["tosMask"] = state ? state.tosMask : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstNegate"] = state ? state.dstNegate : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dsts"] = state ? state.dsts : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["endSourcePort"] = state ? state.endSourcePort : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["inputDeviceNegate"] = state ? state.inputDeviceNegate : undefined;
+            resourceInputs["inputDevices"] = state ? state.inputDevices : undefined;
+            resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
+            resourceInputs["outputDevice"] = state ? state.outputDevice : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["seqNum"] = state ? state.seqNum : undefined;
+            resourceInputs["srcNegate"] = state ? state.srcNegate : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcs"] = state ? state.srcs : undefined;
+            resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["startSourcePort"] = state ? state.startSourcePort : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tos"] = state ? state.tos : undefined;
+            resourceInputs["tosMask"] = state ? state.tosMask : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as RouterPolicyArgs | undefined;
-            inputs["action"] = args ? args.action : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstNegate"] = args ? args.dstNegate : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dsts"] = args ? args.dsts : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["endPort"] = args ? args.endPort : undefined;
-            inputs["endSourcePort"] = args ? args.endSourcePort : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
-            inputs["inputDevices"] = args ? args.inputDevices : undefined;
-            inputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
-            inputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
-            inputs["outputDevice"] = args ? args.outputDevice : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["seqNum"] = args ? args.seqNum : undefined;
-            inputs["srcNegate"] = args ? args.srcNegate : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcs"] = args ? args.srcs : undefined;
-            inputs["startPort"] = args ? args.startPort : undefined;
-            inputs["startSourcePort"] = args ? args.startSourcePort : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["tos"] = args ? args.tos : undefined;
-            inputs["tosMask"] = args ? args.tosMask : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstNegate"] = args ? args.dstNegate : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dsts"] = args ? args.dsts : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["endSourcePort"] = args ? args.endSourcePort : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["inputDeviceNegate"] = args ? args.inputDeviceNegate : undefined;
+            resourceInputs["inputDevices"] = args ? args.inputDevices : undefined;
+            resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
+            resourceInputs["outputDevice"] = args ? args.outputDevice : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["seqNum"] = args ? args.seqNum : undefined;
+            resourceInputs["srcNegate"] = args ? args.srcNegate : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcs"] = args ? args.srcs : undefined;
+            resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["startSourcePort"] = args ? args.startSourcePort : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tos"] = args ? args.tos : undefined;
+            resourceInputs["tosMask"] = args ? args.tosMask : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

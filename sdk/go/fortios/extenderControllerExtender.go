@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -74,8 +74,14 @@ type ExtenderControllerExtender struct {
 	AccessPointName pulumi.StringOutput `pulumi:"accessPointName"`
 	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
 	Admin pulumi.StringOutput `pulumi:"admin"`
+	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+	Allowaccess pulumi.StringOutput `pulumi:"allowaccess"`
 	// Initialization AT commands specific to the MODEM.
 	AtDialScript pulumi.StringOutput `pulumi:"atDialScript"`
+	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	Authorized pulumi.StringOutput `pulumi:"authorized"`
+	// FortiExtender LAN extension bandwidth limit (Mbps).
+	BandwidthLimit pulumi.IntOutput `pulumi:"bandwidthLimit"`
 	// Billing start day.
 	BillingStartDay pulumi.IntOutput `pulumi:"billingStartDay"`
 	// CDMA AAA SPI.
@@ -86,14 +92,22 @@ type ExtenderControllerExtender struct {
 	CdmaNai pulumi.StringOutput `pulumi:"cdmaNai"`
 	// Connection status.
 	ConnStatus pulumi.IntOutput `pulumi:"connStatus"`
+	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	ControllerReport ExtenderControllerExtenderControllerReportPtrOutput `pulumi:"controllerReport"`
 	// Description.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// device-id
+	DeviceId pulumi.IntOutput `pulumi:"deviceId"`
 	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
 	DialMode pulumi.StringOutput `pulumi:"dialMode"`
 	// Dial status.
 	DialStatus pulumi.IntOutput `pulumi:"dialStatus"`
+	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+	EnforceBandwidth pulumi.StringOutput `pulumi:"enforceBandwidth"`
 	// FortiExtender name.
 	ExtName pulumi.StringOutput `pulumi:"extName"`
+	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+	ExtensionType pulumi.StringOutput `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid pulumi.StringOutput `pulumi:"fosid"`
 	// HA shared secret.
@@ -102,14 +116,30 @@ type ExtenderControllerExtender struct {
 	Ifname pulumi.StringOutput `pulumi:"ifname"`
 	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
 	InitiatedUpdate pulumi.StringOutput `pulumi:"initiatedUpdate"`
+	// FortiExtender login password.
+	LoginPassword pulumi.StringPtrOutput `pulumi:"loginPassword"`
+	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	LoginPasswordChange pulumi.StringOutput `pulumi:"loginPasswordChange"`
 	// FortiExtender mode. Valid values: `standalone`, `redundant`.
 	Mode pulumi.StringOutput `pulumi:"mode"`
+	// Configuration options for modem 1. The structure of `modem1` block is documented below.
+	Modem1 ExtenderControllerExtenderModem1PtrOutput `pulumi:"modem1"`
+	// Configuration options for modem 2. The structure of `modem2` block is documented below.
+	Modem2 ExtenderControllerExtenderModem2PtrOutput `pulumi:"modem2"`
 	// MODEM password.
 	ModemPasswd pulumi.StringPtrOutput `pulumi:"modemPasswd"`
 	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
 	ModemType pulumi.StringOutput `pulumi:"modemType"`
 	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
 	MultiMode pulumi.StringOutput `pulumi:"multiMode"`
+	// FortiExtender entry name.
+	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+	OverrideAllowaccess pulumi.StringOutput `pulumi:"overrideAllowaccess"`
+	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+	OverrideEnforceBandwidth pulumi.StringOutput `pulumi:"overrideEnforceBandwidth"`
+	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	OverrideLoginPasswordChange pulumi.StringOutput `pulumi:"overrideLoginPasswordChange"`
 	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
 	PppAuthProtocol pulumi.StringOutput `pulumi:"pppAuthProtocol"`
 	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
@@ -120,6 +150,8 @@ type ExtenderControllerExtender struct {
 	PppUsername pulumi.StringOutput `pulumi:"pppUsername"`
 	// Primary HA.
 	PrimaryHa pulumi.StringOutput `pulumi:"primaryHa"`
+	// FortiExtender profile configuration.
+	Profile pulumi.StringOutput `pulumi:"profile"`
 	// Monthly quota limit (MB).
 	QuotaLimitMb pulumi.IntOutput `pulumi:"quotaLimitMb"`
 	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
@@ -138,6 +170,8 @@ type ExtenderControllerExtender struct {
 	Vdom pulumi.IntOutput `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+	WanExtension ExtenderControllerExtenderWanExtensionPtrOutput `pulumi:"wanExtension"`
 	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
 	WimaxAuthProtocol pulumi.StringOutput `pulumi:"wimaxAuthProtocol"`
 	// WiMax carrier.
@@ -162,6 +196,7 @@ func NewExtenderControllerExtender(ctx *pulumi.Context,
 	if args.Role == nil {
 		return nil, errors.New("invalid value for required argument 'Role'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ExtenderControllerExtender
 	err := ctx.RegisterResource("fortios:index/extenderControllerExtender:ExtenderControllerExtender", name, args, &resource, opts...)
 	if err != nil {
@@ -190,8 +225,14 @@ type extenderControllerExtenderState struct {
 	AccessPointName *string `pulumi:"accessPointName"`
 	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
 	Admin *string `pulumi:"admin"`
+	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+	Allowaccess *string `pulumi:"allowaccess"`
 	// Initialization AT commands specific to the MODEM.
 	AtDialScript *string `pulumi:"atDialScript"`
+	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	Authorized *string `pulumi:"authorized"`
+	// FortiExtender LAN extension bandwidth limit (Mbps).
+	BandwidthLimit *int `pulumi:"bandwidthLimit"`
 	// Billing start day.
 	BillingStartDay *int `pulumi:"billingStartDay"`
 	// CDMA AAA SPI.
@@ -202,14 +243,22 @@ type extenderControllerExtenderState struct {
 	CdmaNai *string `pulumi:"cdmaNai"`
 	// Connection status.
 	ConnStatus *int `pulumi:"connStatus"`
+	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	ControllerReport *ExtenderControllerExtenderControllerReport `pulumi:"controllerReport"`
 	// Description.
 	Description *string `pulumi:"description"`
+	// device-id
+	DeviceId *int `pulumi:"deviceId"`
 	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
 	DialMode *string `pulumi:"dialMode"`
 	// Dial status.
 	DialStatus *int `pulumi:"dialStatus"`
+	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+	EnforceBandwidth *string `pulumi:"enforceBandwidth"`
 	// FortiExtender name.
 	ExtName *string `pulumi:"extName"`
+	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+	ExtensionType *string `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid *string `pulumi:"fosid"`
 	// HA shared secret.
@@ -218,14 +267,30 @@ type extenderControllerExtenderState struct {
 	Ifname *string `pulumi:"ifname"`
 	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
 	InitiatedUpdate *string `pulumi:"initiatedUpdate"`
+	// FortiExtender login password.
+	LoginPassword *string `pulumi:"loginPassword"`
+	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
 	// FortiExtender mode. Valid values: `standalone`, `redundant`.
 	Mode *string `pulumi:"mode"`
+	// Configuration options for modem 1. The structure of `modem1` block is documented below.
+	Modem1 *ExtenderControllerExtenderModem1 `pulumi:"modem1"`
+	// Configuration options for modem 2. The structure of `modem2` block is documented below.
+	Modem2 *ExtenderControllerExtenderModem2 `pulumi:"modem2"`
 	// MODEM password.
 	ModemPasswd *string `pulumi:"modemPasswd"`
 	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
 	ModemType *string `pulumi:"modemType"`
 	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
 	MultiMode *string `pulumi:"multiMode"`
+	// FortiExtender entry name.
+	Name *string `pulumi:"name"`
+	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+	OverrideAllowaccess *string `pulumi:"overrideAllowaccess"`
+	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+	OverrideEnforceBandwidth *string `pulumi:"overrideEnforceBandwidth"`
+	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	OverrideLoginPasswordChange *string `pulumi:"overrideLoginPasswordChange"`
 	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
 	PppAuthProtocol *string `pulumi:"pppAuthProtocol"`
 	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
@@ -236,6 +301,8 @@ type extenderControllerExtenderState struct {
 	PppUsername *string `pulumi:"pppUsername"`
 	// Primary HA.
 	PrimaryHa *string `pulumi:"primaryHa"`
+	// FortiExtender profile configuration.
+	Profile *string `pulumi:"profile"`
 	// Monthly quota limit (MB).
 	QuotaLimitMb *int `pulumi:"quotaLimitMb"`
 	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
@@ -254,6 +321,8 @@ type extenderControllerExtenderState struct {
 	Vdom *int `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+	WanExtension *ExtenderControllerExtenderWanExtension `pulumi:"wanExtension"`
 	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
 	WimaxAuthProtocol *string `pulumi:"wimaxAuthProtocol"`
 	// WiMax carrier.
@@ -269,8 +338,14 @@ type ExtenderControllerExtenderState struct {
 	AccessPointName pulumi.StringPtrInput
 	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
 	Admin pulumi.StringPtrInput
+	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+	Allowaccess pulumi.StringPtrInput
 	// Initialization AT commands specific to the MODEM.
 	AtDialScript pulumi.StringPtrInput
+	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	Authorized pulumi.StringPtrInput
+	// FortiExtender LAN extension bandwidth limit (Mbps).
+	BandwidthLimit pulumi.IntPtrInput
 	// Billing start day.
 	BillingStartDay pulumi.IntPtrInput
 	// CDMA AAA SPI.
@@ -281,14 +356,22 @@ type ExtenderControllerExtenderState struct {
 	CdmaNai pulumi.StringPtrInput
 	// Connection status.
 	ConnStatus pulumi.IntPtrInput
+	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	ControllerReport ExtenderControllerExtenderControllerReportPtrInput
 	// Description.
 	Description pulumi.StringPtrInput
+	// device-id
+	DeviceId pulumi.IntPtrInput
 	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
 	DialMode pulumi.StringPtrInput
 	// Dial status.
 	DialStatus pulumi.IntPtrInput
+	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+	EnforceBandwidth pulumi.StringPtrInput
 	// FortiExtender name.
 	ExtName pulumi.StringPtrInput
+	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+	ExtensionType pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringPtrInput
 	// HA shared secret.
@@ -297,14 +380,30 @@ type ExtenderControllerExtenderState struct {
 	Ifname pulumi.StringPtrInput
 	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
 	InitiatedUpdate pulumi.StringPtrInput
+	// FortiExtender login password.
+	LoginPassword pulumi.StringPtrInput
+	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	LoginPasswordChange pulumi.StringPtrInput
 	// FortiExtender mode. Valid values: `standalone`, `redundant`.
 	Mode pulumi.StringPtrInput
+	// Configuration options for modem 1. The structure of `modem1` block is documented below.
+	Modem1 ExtenderControllerExtenderModem1PtrInput
+	// Configuration options for modem 2. The structure of `modem2` block is documented below.
+	Modem2 ExtenderControllerExtenderModem2PtrInput
 	// MODEM password.
 	ModemPasswd pulumi.StringPtrInput
 	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
 	ModemType pulumi.StringPtrInput
 	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
 	MultiMode pulumi.StringPtrInput
+	// FortiExtender entry name.
+	Name pulumi.StringPtrInput
+	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+	OverrideAllowaccess pulumi.StringPtrInput
+	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+	OverrideEnforceBandwidth pulumi.StringPtrInput
+	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	OverrideLoginPasswordChange pulumi.StringPtrInput
 	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
 	PppAuthProtocol pulumi.StringPtrInput
 	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
@@ -315,6 +414,8 @@ type ExtenderControllerExtenderState struct {
 	PppUsername pulumi.StringPtrInput
 	// Primary HA.
 	PrimaryHa pulumi.StringPtrInput
+	// FortiExtender profile configuration.
+	Profile pulumi.StringPtrInput
 	// Monthly quota limit (MB).
 	QuotaLimitMb pulumi.IntPtrInput
 	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
@@ -333,6 +434,8 @@ type ExtenderControllerExtenderState struct {
 	Vdom pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+	WanExtension ExtenderControllerExtenderWanExtensionPtrInput
 	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
 	WimaxAuthProtocol pulumi.StringPtrInput
 	// WiMax carrier.
@@ -352,8 +455,14 @@ type extenderControllerExtenderArgs struct {
 	AccessPointName *string `pulumi:"accessPointName"`
 	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
 	Admin string `pulumi:"admin"`
+	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+	Allowaccess *string `pulumi:"allowaccess"`
 	// Initialization AT commands specific to the MODEM.
 	AtDialScript *string `pulumi:"atDialScript"`
+	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	Authorized *string `pulumi:"authorized"`
+	// FortiExtender LAN extension bandwidth limit (Mbps).
+	BandwidthLimit *int `pulumi:"bandwidthLimit"`
 	// Billing start day.
 	BillingStartDay *int `pulumi:"billingStartDay"`
 	// CDMA AAA SPI.
@@ -364,14 +473,22 @@ type extenderControllerExtenderArgs struct {
 	CdmaNai *string `pulumi:"cdmaNai"`
 	// Connection status.
 	ConnStatus *int `pulumi:"connStatus"`
+	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	ControllerReport *ExtenderControllerExtenderControllerReport `pulumi:"controllerReport"`
 	// Description.
 	Description *string `pulumi:"description"`
+	// device-id
+	DeviceId *int `pulumi:"deviceId"`
 	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
 	DialMode *string `pulumi:"dialMode"`
 	// Dial status.
 	DialStatus *int `pulumi:"dialStatus"`
+	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+	EnforceBandwidth *string `pulumi:"enforceBandwidth"`
 	// FortiExtender name.
 	ExtName *string `pulumi:"extName"`
+	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+	ExtensionType *string `pulumi:"extensionType"`
 	// FortiExtender serial number.
 	Fosid string `pulumi:"fosid"`
 	// HA shared secret.
@@ -380,14 +497,30 @@ type extenderControllerExtenderArgs struct {
 	Ifname *string `pulumi:"ifname"`
 	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
 	InitiatedUpdate *string `pulumi:"initiatedUpdate"`
+	// FortiExtender login password.
+	LoginPassword *string `pulumi:"loginPassword"`
+	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	LoginPasswordChange *string `pulumi:"loginPasswordChange"`
 	// FortiExtender mode. Valid values: `standalone`, `redundant`.
 	Mode *string `pulumi:"mode"`
+	// Configuration options for modem 1. The structure of `modem1` block is documented below.
+	Modem1 *ExtenderControllerExtenderModem1 `pulumi:"modem1"`
+	// Configuration options for modem 2. The structure of `modem2` block is documented below.
+	Modem2 *ExtenderControllerExtenderModem2 `pulumi:"modem2"`
 	// MODEM password.
 	ModemPasswd *string `pulumi:"modemPasswd"`
 	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
 	ModemType *string `pulumi:"modemType"`
 	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
 	MultiMode *string `pulumi:"multiMode"`
+	// FortiExtender entry name.
+	Name *string `pulumi:"name"`
+	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+	OverrideAllowaccess *string `pulumi:"overrideAllowaccess"`
+	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+	OverrideEnforceBandwidth *string `pulumi:"overrideEnforceBandwidth"`
+	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	OverrideLoginPasswordChange *string `pulumi:"overrideLoginPasswordChange"`
 	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
 	PppAuthProtocol *string `pulumi:"pppAuthProtocol"`
 	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
@@ -398,6 +531,8 @@ type extenderControllerExtenderArgs struct {
 	PppUsername *string `pulumi:"pppUsername"`
 	// Primary HA.
 	PrimaryHa *string `pulumi:"primaryHa"`
+	// FortiExtender profile configuration.
+	Profile *string `pulumi:"profile"`
 	// Monthly quota limit (MB).
 	QuotaLimitMb *int `pulumi:"quotaLimitMb"`
 	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
@@ -416,6 +551,8 @@ type extenderControllerExtenderArgs struct {
 	Vdom *int `pulumi:"vdom"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+	WanExtension *ExtenderControllerExtenderWanExtension `pulumi:"wanExtension"`
 	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
 	WimaxAuthProtocol *string `pulumi:"wimaxAuthProtocol"`
 	// WiMax carrier.
@@ -432,8 +569,14 @@ type ExtenderControllerExtenderArgs struct {
 	AccessPointName pulumi.StringPtrInput
 	// FortiExtender Administration (enable or disable). Valid values: `disable`, `discovered`, `enable`.
 	Admin pulumi.StringInput
+	// Control management access to the managed extender. Separate entries with a space. Valid values: `ping`, `telnet`, `http`, `https`, `ssh`, `snmp`.
+	Allowaccess pulumi.StringPtrInput
 	// Initialization AT commands specific to the MODEM.
 	AtDialScript pulumi.StringPtrInput
+	// FortiExtender Administration (enable or disable). Valid values: `disable`, `enable`.
+	Authorized pulumi.StringPtrInput
+	// FortiExtender LAN extension bandwidth limit (Mbps).
+	BandwidthLimit pulumi.IntPtrInput
 	// Billing start day.
 	BillingStartDay pulumi.IntPtrInput
 	// CDMA AAA SPI.
@@ -444,14 +587,22 @@ type ExtenderControllerExtenderArgs struct {
 	CdmaNai pulumi.StringPtrInput
 	// Connection status.
 	ConnStatus pulumi.IntPtrInput
+	// FortiExtender controller report configuration. The structure of `controllerReport` block is documented below.
+	ControllerReport ExtenderControllerExtenderControllerReportPtrInput
 	// Description.
 	Description pulumi.StringPtrInput
+	// device-id
+	DeviceId pulumi.IntPtrInput
 	// Dial mode (dial-on-demand or always-connect). Valid values: `dial-on-demand`, `always-connect`.
 	DialMode pulumi.StringPtrInput
 	// Dial status.
 	DialStatus pulumi.IntPtrInput
+	// Enable/disable enforcement of bandwidth on LAN extension interface. Valid values: `enable`, `disable`.
+	EnforceBandwidth pulumi.StringPtrInput
 	// FortiExtender name.
 	ExtName pulumi.StringPtrInput
+	// Extension type for this FortiExtender. Valid values: `wan-extension`, `lan-extension`.
+	ExtensionType pulumi.StringPtrInput
 	// FortiExtender serial number.
 	Fosid pulumi.StringInput
 	// HA shared secret.
@@ -460,14 +611,30 @@ type ExtenderControllerExtenderArgs struct {
 	Ifname pulumi.StringPtrInput
 	// Allow/disallow network initiated updates to the MODEM. Valid values: `enable`, `disable`.
 	InitiatedUpdate pulumi.StringPtrInput
+	// FortiExtender login password.
+	LoginPassword pulumi.StringPtrInput
+	// Change or reset the administrator password of a managed extender (yes, default, or no, default = no). Valid values: `yes`, `default`, `no`.
+	LoginPasswordChange pulumi.StringPtrInput
 	// FortiExtender mode. Valid values: `standalone`, `redundant`.
 	Mode pulumi.StringPtrInput
+	// Configuration options for modem 1. The structure of `modem1` block is documented below.
+	Modem1 ExtenderControllerExtenderModem1PtrInput
+	// Configuration options for modem 2. The structure of `modem2` block is documented below.
+	Modem2 ExtenderControllerExtenderModem2PtrInput
 	// MODEM password.
 	ModemPasswd pulumi.StringPtrInput
 	// MODEM type (CDMA, GSM/LTE or WIMAX). Valid values: `cdma`, `gsm/lte`, `wimax`.
 	ModemType pulumi.StringPtrInput
 	// MODEM mode of operation(3G,LTE,etc). Valid values: `auto`, `auto-3g`, `force-lte`, `force-3g`, `force-2g`.
 	MultiMode pulumi.StringPtrInput
+	// FortiExtender entry name.
+	Name pulumi.StringPtrInput
+	// Enable to override the extender profile management access configuration. Valid values: `enable`, `disable`.
+	OverrideAllowaccess pulumi.StringPtrInput
+	// Enable to override the extender profile enforce-bandwidth setting. Valid values: `enable`, `disable`.
+	OverrideEnforceBandwidth pulumi.StringPtrInput
+	// Enable to override the extender profile login-password (administrator password) setting. Valid values: `enable`, `disable`.
+	OverrideLoginPasswordChange pulumi.StringPtrInput
 	// PPP authentication protocol (PAP,CHAP or auto). Valid values: `auto`, `pap`, `chap`.
 	PppAuthProtocol pulumi.StringPtrInput
 	// Enable/disable PPP echo request. Valid values: `enable`, `disable`.
@@ -478,6 +645,8 @@ type ExtenderControllerExtenderArgs struct {
 	PppUsername pulumi.StringPtrInput
 	// Primary HA.
 	PrimaryHa pulumi.StringPtrInput
+	// FortiExtender profile configuration.
+	Profile pulumi.StringPtrInput
 	// Monthly quota limit (MB).
 	QuotaLimitMb pulumi.IntPtrInput
 	// Number of redials allowed based on failed attempts. Valid values: `none`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
@@ -496,6 +665,8 @@ type ExtenderControllerExtenderArgs struct {
 	Vdom pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// FortiExtender wan extension configuration. The structure of `wanExtension` block is documented below.
+	WanExtension ExtenderControllerExtenderWanExtensionPtrInput
 	// WiMax authentication protocol(TLS or TTLS). Valid values: `tls`, `ttls`.
 	WimaxAuthProtocol pulumi.StringPtrInput
 	// WiMax carrier.
@@ -516,7 +687,7 @@ type ExtenderControllerExtenderInput interface {
 }
 
 func (*ExtenderControllerExtender) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExtenderControllerExtender)(nil))
+	return reflect.TypeOf((**ExtenderControllerExtender)(nil)).Elem()
 }
 
 func (i *ExtenderControllerExtender) ToExtenderControllerExtenderOutput() ExtenderControllerExtenderOutput {
@@ -525,35 +696,6 @@ func (i *ExtenderControllerExtender) ToExtenderControllerExtenderOutput() Extend
 
 func (i *ExtenderControllerExtender) ToExtenderControllerExtenderOutputWithContext(ctx context.Context) ExtenderControllerExtenderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderOutput)
-}
-
-func (i *ExtenderControllerExtender) ToExtenderControllerExtenderPtrOutput() ExtenderControllerExtenderPtrOutput {
-	return i.ToExtenderControllerExtenderPtrOutputWithContext(context.Background())
-}
-
-func (i *ExtenderControllerExtender) ToExtenderControllerExtenderPtrOutputWithContext(ctx context.Context) ExtenderControllerExtenderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderPtrOutput)
-}
-
-type ExtenderControllerExtenderPtrInput interface {
-	pulumi.Input
-
-	ToExtenderControllerExtenderPtrOutput() ExtenderControllerExtenderPtrOutput
-	ToExtenderControllerExtenderPtrOutputWithContext(ctx context.Context) ExtenderControllerExtenderPtrOutput
-}
-
-type extenderControllerExtenderPtrType ExtenderControllerExtenderArgs
-
-func (*extenderControllerExtenderPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExtenderControllerExtender)(nil))
-}
-
-func (i *extenderControllerExtenderPtrType) ToExtenderControllerExtenderPtrOutput() ExtenderControllerExtenderPtrOutput {
-	return i.ToExtenderControllerExtenderPtrOutputWithContext(context.Background())
-}
-
-func (i *extenderControllerExtenderPtrType) ToExtenderControllerExtenderPtrOutputWithContext(ctx context.Context) ExtenderControllerExtenderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderPtrOutput)
 }
 
 // ExtenderControllerExtenderArrayInput is an input type that accepts ExtenderControllerExtenderArray and ExtenderControllerExtenderArrayOutput values.
@@ -570,7 +712,7 @@ type ExtenderControllerExtenderArrayInput interface {
 type ExtenderControllerExtenderArray []ExtenderControllerExtenderInput
 
 func (ExtenderControllerExtenderArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ExtenderControllerExtender)(nil))
+	return reflect.TypeOf((*[]*ExtenderControllerExtender)(nil)).Elem()
 }
 
 func (i ExtenderControllerExtenderArray) ToExtenderControllerExtenderArrayOutput() ExtenderControllerExtenderArrayOutput {
@@ -595,7 +737,7 @@ type ExtenderControllerExtenderMapInput interface {
 type ExtenderControllerExtenderMap map[string]ExtenderControllerExtenderInput
 
 func (ExtenderControllerExtenderMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ExtenderControllerExtender)(nil))
+	return reflect.TypeOf((*map[string]*ExtenderControllerExtender)(nil)).Elem()
 }
 
 func (i ExtenderControllerExtenderMap) ToExtenderControllerExtenderMapOutput() ExtenderControllerExtenderMapOutput {
@@ -606,12 +748,10 @@ func (i ExtenderControllerExtenderMap) ToExtenderControllerExtenderMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(ExtenderControllerExtenderMapOutput)
 }
 
-type ExtenderControllerExtenderOutput struct {
-	*pulumi.OutputState
-}
+type ExtenderControllerExtenderOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtenderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ExtenderControllerExtender)(nil))
+	return reflect.TypeOf((**ExtenderControllerExtender)(nil)).Elem()
 }
 
 func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderOutput() ExtenderControllerExtenderOutput {
@@ -622,36 +762,10 @@ func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderOutputWith
 	return o
 }
 
-func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderPtrOutput() ExtenderControllerExtenderPtrOutput {
-	return o.ToExtenderControllerExtenderPtrOutputWithContext(context.Background())
-}
-
-func (o ExtenderControllerExtenderOutput) ToExtenderControllerExtenderPtrOutputWithContext(ctx context.Context) ExtenderControllerExtenderPtrOutput {
-	return o.ApplyT(func(v ExtenderControllerExtender) *ExtenderControllerExtender {
-		return &v
-	}).(ExtenderControllerExtenderPtrOutput)
-}
-
-type ExtenderControllerExtenderPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ExtenderControllerExtenderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ExtenderControllerExtender)(nil))
-}
-
-func (o ExtenderControllerExtenderPtrOutput) ToExtenderControllerExtenderPtrOutput() ExtenderControllerExtenderPtrOutput {
-	return o
-}
-
-func (o ExtenderControllerExtenderPtrOutput) ToExtenderControllerExtenderPtrOutputWithContext(ctx context.Context) ExtenderControllerExtenderPtrOutput {
-	return o
-}
-
 type ExtenderControllerExtenderArrayOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtenderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ExtenderControllerExtender)(nil))
+	return reflect.TypeOf((*[]*ExtenderControllerExtender)(nil)).Elem()
 }
 
 func (o ExtenderControllerExtenderArrayOutput) ToExtenderControllerExtenderArrayOutput() ExtenderControllerExtenderArrayOutput {
@@ -663,15 +777,15 @@ func (o ExtenderControllerExtenderArrayOutput) ToExtenderControllerExtenderArray
 }
 
 func (o ExtenderControllerExtenderArrayOutput) Index(i pulumi.IntInput) ExtenderControllerExtenderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ExtenderControllerExtender {
-		return vs[0].([]ExtenderControllerExtender)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ExtenderControllerExtender {
+		return vs[0].([]*ExtenderControllerExtender)[vs[1].(int)]
 	}).(ExtenderControllerExtenderOutput)
 }
 
 type ExtenderControllerExtenderMapOutput struct{ *pulumi.OutputState }
 
 func (ExtenderControllerExtenderMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ExtenderControllerExtender)(nil))
+	return reflect.TypeOf((*map[string]*ExtenderControllerExtender)(nil)).Elem()
 }
 
 func (o ExtenderControllerExtenderMapOutput) ToExtenderControllerExtenderMapOutput() ExtenderControllerExtenderMapOutput {
@@ -683,14 +797,16 @@ func (o ExtenderControllerExtenderMapOutput) ToExtenderControllerExtenderMapOutp
 }
 
 func (o ExtenderControllerExtenderMapOutput) MapIndex(k pulumi.StringInput) ExtenderControllerExtenderOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ExtenderControllerExtender {
-		return vs[0].(map[string]ExtenderControllerExtender)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ExtenderControllerExtender {
+		return vs[0].(map[string]*ExtenderControllerExtender)[vs[1].(string)]
 	}).(ExtenderControllerExtenderOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerExtenderInput)(nil)).Elem(), &ExtenderControllerExtender{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerExtenderArrayInput)(nil)).Elem(), ExtenderControllerExtenderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ExtenderControllerExtenderMapInput)(nil)).Elem(), ExtenderControllerExtenderMap{})
 	pulumi.RegisterOutputType(ExtenderControllerExtenderOutput{})
-	pulumi.RegisterOutputType(ExtenderControllerExtenderPtrOutput{})
 	pulumi.RegisterOutputType(ExtenderControllerExtenderArrayOutput{})
 	pulumi.RegisterOutputType(ExtenderControllerExtenderMapOutput{})
 }

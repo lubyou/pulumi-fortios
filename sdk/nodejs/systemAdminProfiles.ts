@@ -131,47 +131,45 @@ export class SystemAdminProfiles extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemAdminProfilesArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAdminProfilesArgs | SystemAdminProfilesState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAdminProfilesState | undefined;
-            inputs["admintimeoutOverride"] = state ? state.admintimeoutOverride : undefined;
-            inputs["authgrp"] = state ? state.authgrp : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["ftviewgrp"] = state ? state.ftviewgrp : undefined;
-            inputs["fwgrp"] = state ? state.fwgrp : undefined;
-            inputs["loggrp"] = state ? state.loggrp : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["netgrp"] = state ? state.netgrp : undefined;
-            inputs["scope"] = state ? state.scope : undefined;
-            inputs["secfabgrp"] = state ? state.secfabgrp : undefined;
-            inputs["sysgrp"] = state ? state.sysgrp : undefined;
-            inputs["utmgrp"] = state ? state.utmgrp : undefined;
-            inputs["vpngrp"] = state ? state.vpngrp : undefined;
-            inputs["wanoptgrp"] = state ? state.wanoptgrp : undefined;
-            inputs["wifi"] = state ? state.wifi : undefined;
+            resourceInputs["admintimeoutOverride"] = state ? state.admintimeoutOverride : undefined;
+            resourceInputs["authgrp"] = state ? state.authgrp : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["ftviewgrp"] = state ? state.ftviewgrp : undefined;
+            resourceInputs["fwgrp"] = state ? state.fwgrp : undefined;
+            resourceInputs["loggrp"] = state ? state.loggrp : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["netgrp"] = state ? state.netgrp : undefined;
+            resourceInputs["scope"] = state ? state.scope : undefined;
+            resourceInputs["secfabgrp"] = state ? state.secfabgrp : undefined;
+            resourceInputs["sysgrp"] = state ? state.sysgrp : undefined;
+            resourceInputs["utmgrp"] = state ? state.utmgrp : undefined;
+            resourceInputs["vpngrp"] = state ? state.vpngrp : undefined;
+            resourceInputs["wanoptgrp"] = state ? state.wanoptgrp : undefined;
+            resourceInputs["wifi"] = state ? state.wifi : undefined;
         } else {
             const args = argsOrState as SystemAdminProfilesArgs | undefined;
-            inputs["admintimeoutOverride"] = args ? args.admintimeoutOverride : undefined;
-            inputs["authgrp"] = args ? args.authgrp : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["ftviewgrp"] = args ? args.ftviewgrp : undefined;
-            inputs["fwgrp"] = args ? args.fwgrp : undefined;
-            inputs["loggrp"] = args ? args.loggrp : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["netgrp"] = args ? args.netgrp : undefined;
-            inputs["scope"] = args ? args.scope : undefined;
-            inputs["secfabgrp"] = args ? args.secfabgrp : undefined;
-            inputs["sysgrp"] = args ? args.sysgrp : undefined;
-            inputs["utmgrp"] = args ? args.utmgrp : undefined;
-            inputs["vpngrp"] = args ? args.vpngrp : undefined;
-            inputs["wanoptgrp"] = args ? args.wanoptgrp : undefined;
-            inputs["wifi"] = args ? args.wifi : undefined;
+            resourceInputs["admintimeoutOverride"] = args ? args.admintimeoutOverride : undefined;
+            resourceInputs["authgrp"] = args ? args.authgrp : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["ftviewgrp"] = args ? args.ftviewgrp : undefined;
+            resourceInputs["fwgrp"] = args ? args.fwgrp : undefined;
+            resourceInputs["loggrp"] = args ? args.loggrp : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["netgrp"] = args ? args.netgrp : undefined;
+            resourceInputs["scope"] = args ? args.scope : undefined;
+            resourceInputs["secfabgrp"] = args ? args.secfabgrp : undefined;
+            resourceInputs["sysgrp"] = args ? args.sysgrp : undefined;
+            resourceInputs["utmgrp"] = args ? args.utmgrp : undefined;
+            resourceInputs["vpngrp"] = args ? args.vpngrp : undefined;
+            resourceInputs["wanoptgrp"] = args ? args.wanoptgrp : undefined;
+            resourceInputs["wifi"] = args ? args.wifi : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAdminProfiles.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAdminProfiles.__pulumiType, name, resourceInputs, opts);
     }
 }
 

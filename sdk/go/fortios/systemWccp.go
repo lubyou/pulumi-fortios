@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -122,6 +122,7 @@ func NewSystemWccp(ctx *pulumi.Context,
 		args = &SystemWccpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemWccp
 	err := ctx.RegisterResource("fortios:index/systemWccp:SystemWccp", name, args, &resource, opts...)
 	if err != nil {
@@ -364,7 +365,7 @@ type SystemWccpInput interface {
 }
 
 func (*SystemWccp) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemWccp)(nil))
+	return reflect.TypeOf((**SystemWccp)(nil)).Elem()
 }
 
 func (i *SystemWccp) ToSystemWccpOutput() SystemWccpOutput {
@@ -373,35 +374,6 @@ func (i *SystemWccp) ToSystemWccpOutput() SystemWccpOutput {
 
 func (i *SystemWccp) ToSystemWccpOutputWithContext(ctx context.Context) SystemWccpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpOutput)
-}
-
-func (i *SystemWccp) ToSystemWccpPtrOutput() SystemWccpPtrOutput {
-	return i.ToSystemWccpPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemWccp) ToSystemWccpPtrOutputWithContext(ctx context.Context) SystemWccpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpPtrOutput)
-}
-
-type SystemWccpPtrInput interface {
-	pulumi.Input
-
-	ToSystemWccpPtrOutput() SystemWccpPtrOutput
-	ToSystemWccpPtrOutputWithContext(ctx context.Context) SystemWccpPtrOutput
-}
-
-type systemWccpPtrType SystemWccpArgs
-
-func (*systemWccpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemWccp)(nil))
-}
-
-func (i *systemWccpPtrType) ToSystemWccpPtrOutput() SystemWccpPtrOutput {
-	return i.ToSystemWccpPtrOutputWithContext(context.Background())
-}
-
-func (i *systemWccpPtrType) ToSystemWccpPtrOutputWithContext(ctx context.Context) SystemWccpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpPtrOutput)
 }
 
 // SystemWccpArrayInput is an input type that accepts SystemWccpArray and SystemWccpArrayOutput values.
@@ -418,7 +390,7 @@ type SystemWccpArrayInput interface {
 type SystemWccpArray []SystemWccpInput
 
 func (SystemWccpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemWccp)(nil))
+	return reflect.TypeOf((*[]*SystemWccp)(nil)).Elem()
 }
 
 func (i SystemWccpArray) ToSystemWccpArrayOutput() SystemWccpArrayOutput {
@@ -443,7 +415,7 @@ type SystemWccpMapInput interface {
 type SystemWccpMap map[string]SystemWccpInput
 
 func (SystemWccpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemWccp)(nil))
+	return reflect.TypeOf((*map[string]*SystemWccp)(nil)).Elem()
 }
 
 func (i SystemWccpMap) ToSystemWccpMapOutput() SystemWccpMapOutput {
@@ -454,12 +426,10 @@ func (i SystemWccpMap) ToSystemWccpMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemWccpMapOutput)
 }
 
-type SystemWccpOutput struct {
-	*pulumi.OutputState
-}
+type SystemWccpOutput struct{ *pulumi.OutputState }
 
 func (SystemWccpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemWccp)(nil))
+	return reflect.TypeOf((**SystemWccp)(nil)).Elem()
 }
 
 func (o SystemWccpOutput) ToSystemWccpOutput() SystemWccpOutput {
@@ -470,36 +440,10 @@ func (o SystemWccpOutput) ToSystemWccpOutputWithContext(ctx context.Context) Sys
 	return o
 }
 
-func (o SystemWccpOutput) ToSystemWccpPtrOutput() SystemWccpPtrOutput {
-	return o.ToSystemWccpPtrOutputWithContext(context.Background())
-}
-
-func (o SystemWccpOutput) ToSystemWccpPtrOutputWithContext(ctx context.Context) SystemWccpPtrOutput {
-	return o.ApplyT(func(v SystemWccp) *SystemWccp {
-		return &v
-	}).(SystemWccpPtrOutput)
-}
-
-type SystemWccpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemWccpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemWccp)(nil))
-}
-
-func (o SystemWccpPtrOutput) ToSystemWccpPtrOutput() SystemWccpPtrOutput {
-	return o
-}
-
-func (o SystemWccpPtrOutput) ToSystemWccpPtrOutputWithContext(ctx context.Context) SystemWccpPtrOutput {
-	return o
-}
-
 type SystemWccpArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemWccpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemWccp)(nil))
+	return reflect.TypeOf((*[]*SystemWccp)(nil)).Elem()
 }
 
 func (o SystemWccpArrayOutput) ToSystemWccpArrayOutput() SystemWccpArrayOutput {
@@ -511,15 +455,15 @@ func (o SystemWccpArrayOutput) ToSystemWccpArrayOutputWithContext(ctx context.Co
 }
 
 func (o SystemWccpArrayOutput) Index(i pulumi.IntInput) SystemWccpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemWccp {
-		return vs[0].([]SystemWccp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemWccp {
+		return vs[0].([]*SystemWccp)[vs[1].(int)]
 	}).(SystemWccpOutput)
 }
 
 type SystemWccpMapOutput struct{ *pulumi.OutputState }
 
 func (SystemWccpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemWccp)(nil))
+	return reflect.TypeOf((*map[string]*SystemWccp)(nil)).Elem()
 }
 
 func (o SystemWccpMapOutput) ToSystemWccpMapOutput() SystemWccpMapOutput {
@@ -531,14 +475,16 @@ func (o SystemWccpMapOutput) ToSystemWccpMapOutputWithContext(ctx context.Contex
 }
 
 func (o SystemWccpMapOutput) MapIndex(k pulumi.StringInput) SystemWccpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemWccp {
-		return vs[0].(map[string]SystemWccp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemWccp {
+		return vs[0].(map[string]*SystemWccp)[vs[1].(string)]
 	}).(SystemWccpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemWccpInput)(nil)).Elem(), &SystemWccp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemWccpArrayInput)(nil)).Elem(), SystemWccpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemWccpMapInput)(nil)).Elem(), SystemWccpMap{})
 	pulumi.RegisterOutputType(SystemWccpOutput{})
-	pulumi.RegisterOutputType(SystemWccpPtrOutput{})
 	pulumi.RegisterOutputType(SystemWccpArrayOutput{})
 	pulumi.RegisterOutputType(SystemWccpMapOutput{})
 }

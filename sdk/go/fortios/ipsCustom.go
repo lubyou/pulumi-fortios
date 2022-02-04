@@ -63,6 +63,7 @@ func NewIpsCustom(ctx *pulumi.Context,
 		args = &IpsCustomArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource IpsCustom
 	err := ctx.RegisterResource("fortios:index/ipsCustom:IpsCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -233,7 +234,7 @@ type IpsCustomInput interface {
 }
 
 func (*IpsCustom) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsCustom)(nil))
+	return reflect.TypeOf((**IpsCustom)(nil)).Elem()
 }
 
 func (i *IpsCustom) ToIpsCustomOutput() IpsCustomOutput {
@@ -242,35 +243,6 @@ func (i *IpsCustom) ToIpsCustomOutput() IpsCustomOutput {
 
 func (i *IpsCustom) ToIpsCustomOutputWithContext(ctx context.Context) IpsCustomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomOutput)
-}
-
-func (i *IpsCustom) ToIpsCustomPtrOutput() IpsCustomPtrOutput {
-	return i.ToIpsCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *IpsCustom) ToIpsCustomPtrOutputWithContext(ctx context.Context) IpsCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomPtrOutput)
-}
-
-type IpsCustomPtrInput interface {
-	pulumi.Input
-
-	ToIpsCustomPtrOutput() IpsCustomPtrOutput
-	ToIpsCustomPtrOutputWithContext(ctx context.Context) IpsCustomPtrOutput
-}
-
-type ipsCustomPtrType IpsCustomArgs
-
-func (*ipsCustomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsCustom)(nil))
-}
-
-func (i *ipsCustomPtrType) ToIpsCustomPtrOutput() IpsCustomPtrOutput {
-	return i.ToIpsCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *ipsCustomPtrType) ToIpsCustomPtrOutputWithContext(ctx context.Context) IpsCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomPtrOutput)
 }
 
 // IpsCustomArrayInput is an input type that accepts IpsCustomArray and IpsCustomArrayOutput values.
@@ -287,7 +259,7 @@ type IpsCustomArrayInput interface {
 type IpsCustomArray []IpsCustomInput
 
 func (IpsCustomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*IpsCustom)(nil))
+	return reflect.TypeOf((*[]*IpsCustom)(nil)).Elem()
 }
 
 func (i IpsCustomArray) ToIpsCustomArrayOutput() IpsCustomArrayOutput {
@@ -312,7 +284,7 @@ type IpsCustomMapInput interface {
 type IpsCustomMap map[string]IpsCustomInput
 
 func (IpsCustomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*IpsCustom)(nil))
+	return reflect.TypeOf((*map[string]*IpsCustom)(nil)).Elem()
 }
 
 func (i IpsCustomMap) ToIpsCustomMapOutput() IpsCustomMapOutput {
@@ -323,12 +295,10 @@ func (i IpsCustomMap) ToIpsCustomMapOutputWithContext(ctx context.Context) IpsCu
 	return pulumi.ToOutputWithContext(ctx, i).(IpsCustomMapOutput)
 }
 
-type IpsCustomOutput struct {
-	*pulumi.OutputState
-}
+type IpsCustomOutput struct{ *pulumi.OutputState }
 
 func (IpsCustomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*IpsCustom)(nil))
+	return reflect.TypeOf((**IpsCustom)(nil)).Elem()
 }
 
 func (o IpsCustomOutput) ToIpsCustomOutput() IpsCustomOutput {
@@ -339,36 +309,10 @@ func (o IpsCustomOutput) ToIpsCustomOutputWithContext(ctx context.Context) IpsCu
 	return o
 }
 
-func (o IpsCustomOutput) ToIpsCustomPtrOutput() IpsCustomPtrOutput {
-	return o.ToIpsCustomPtrOutputWithContext(context.Background())
-}
-
-func (o IpsCustomOutput) ToIpsCustomPtrOutputWithContext(ctx context.Context) IpsCustomPtrOutput {
-	return o.ApplyT(func(v IpsCustom) *IpsCustom {
-		return &v
-	}).(IpsCustomPtrOutput)
-}
-
-type IpsCustomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (IpsCustomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**IpsCustom)(nil))
-}
-
-func (o IpsCustomPtrOutput) ToIpsCustomPtrOutput() IpsCustomPtrOutput {
-	return o
-}
-
-func (o IpsCustomPtrOutput) ToIpsCustomPtrOutputWithContext(ctx context.Context) IpsCustomPtrOutput {
-	return o
-}
-
 type IpsCustomArrayOutput struct{ *pulumi.OutputState }
 
 func (IpsCustomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]IpsCustom)(nil))
+	return reflect.TypeOf((*[]*IpsCustom)(nil)).Elem()
 }
 
 func (o IpsCustomArrayOutput) ToIpsCustomArrayOutput() IpsCustomArrayOutput {
@@ -380,15 +324,15 @@ func (o IpsCustomArrayOutput) ToIpsCustomArrayOutputWithContext(ctx context.Cont
 }
 
 func (o IpsCustomArrayOutput) Index(i pulumi.IntInput) IpsCustomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) IpsCustom {
-		return vs[0].([]IpsCustom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *IpsCustom {
+		return vs[0].([]*IpsCustom)[vs[1].(int)]
 	}).(IpsCustomOutput)
 }
 
 type IpsCustomMapOutput struct{ *pulumi.OutputState }
 
 func (IpsCustomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]IpsCustom)(nil))
+	return reflect.TypeOf((*map[string]*IpsCustom)(nil)).Elem()
 }
 
 func (o IpsCustomMapOutput) ToIpsCustomMapOutput() IpsCustomMapOutput {
@@ -400,14 +344,16 @@ func (o IpsCustomMapOutput) ToIpsCustomMapOutputWithContext(ctx context.Context)
 }
 
 func (o IpsCustomMapOutput) MapIndex(k pulumi.StringInput) IpsCustomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) IpsCustom {
-		return vs[0].(map[string]IpsCustom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *IpsCustom {
+		return vs[0].(map[string]*IpsCustom)[vs[1].(string)]
 	}).(IpsCustomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsCustomInput)(nil)).Elem(), &IpsCustom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsCustomArrayInput)(nil)).Elem(), IpsCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*IpsCustomMapInput)(nil)).Elem(), IpsCustomMap{})
 	pulumi.RegisterOutputType(IpsCustomOutput{})
-	pulumi.RegisterOutputType(IpsCustomPtrOutput{})
 	pulumi.RegisterOutputType(IpsCustomArrayOutput{})
 	pulumi.RegisterOutputType(IpsCustomMapOutput{})
 }

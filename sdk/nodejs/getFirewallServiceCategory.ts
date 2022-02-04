@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -13,9 +12,7 @@ export function getFirewallServiceCategory(args: GetFirewallServiceCategoryArgs,
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallServiceCategory:GetFirewallServiceCategory", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -45,6 +42,10 @@ export interface GetFirewallServiceCategoryResult {
      */
     readonly comment: string;
     /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
+    /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
@@ -53,4 +54,22 @@ export interface GetFirewallServiceCategoryResult {
      */
     readonly name: string;
     readonly vdomparam?: string;
+}
+
+export function getFirewallServiceCategoryOutput(args: GetFirewallServiceCategoryOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallServiceCategoryResult> {
+    return pulumi.output(args).apply(a => getFirewallServiceCategory(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallServiceCategory.
+ */
+export interface GetFirewallServiceCategoryOutputArgs {
+    /**
+     * Specify the name of the desired firewallservice category.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

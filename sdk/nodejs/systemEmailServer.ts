@@ -69,6 +69,14 @@ export class SystemEmailServer extends pulumi.CustomResource {
      */
     public readonly authenticate!: pulumi.Output<string>;
     /**
+     * Specify outgoing interface to reach server.
+     */
+    public readonly interface!: pulumi.Output<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    public readonly interfaceSelectMethod!: pulumi.Output<string>;
+    /**
      * SMTP server user password for authentication.
      */
     public readonly password!: pulumi.Output<string | undefined>;
@@ -126,43 +134,45 @@ export class SystemEmailServer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemEmailServerArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemEmailServerArgs | SystemEmailServerState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemEmailServerState | undefined;
-            inputs["authenticate"] = state ? state.authenticate : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["replyTo"] = state ? state.replyTo : undefined;
-            inputs["security"] = state ? state.security : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["validateServer"] = state ? state.validateServer : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authenticate"] = state ? state.authenticate : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["replyTo"] = state ? state.replyTo : undefined;
+            resourceInputs["security"] = state ? state.security : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["validateServer"] = state ? state.validateServer : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemEmailServerArgs | undefined;
-            inputs["authenticate"] = args ? args.authenticate : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["replyTo"] = args ? args.replyTo : undefined;
-            inputs["security"] = args ? args.security : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["validateServer"] = args ? args.validateServer : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authenticate"] = args ? args.authenticate : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["replyTo"] = args ? args.replyTo : undefined;
+            resourceInputs["security"] = args ? args.security : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["validateServer"] = args ? args.validateServer : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemEmailServer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemEmailServer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -174,6 +184,14 @@ export interface SystemEmailServerState {
      * Enable/disable authentication. Valid values: `enable`, `disable`.
      */
     authenticate?: pulumi.Input<string>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * SMTP server user password for authentication.
      */
@@ -232,6 +250,14 @@ export interface SystemEmailServerArgs {
      * Enable/disable authentication. Valid values: `enable`, `disable`.
      */
     authenticate?: pulumi.Input<string>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * SMTP server user password for authentication.
      */

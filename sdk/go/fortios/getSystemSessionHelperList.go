@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemSessionHelper`.
 func GetSystemSessionHelperList(ctx *pulumi.Context, args *GetSystemSessionHelperListArgs, opts ...pulumi.InvokeOption) (*GetSystemSessionHelperListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSessionHelperListResult
 	err := ctx.Invoke("fortios:index/getSystemSessionHelperList:GetSystemSessionHelperList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemSessionHelperListResult struct {
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func GetSystemSessionHelperListOutput(ctx *pulumi.Context, args GetSystemSessionHelperListOutputArgs, opts ...pulumi.InvokeOption) GetSystemSessionHelperListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemSessionHelperListResult, error) {
+			args := v.(GetSystemSessionHelperListArgs)
+			r, err := GetSystemSessionHelperList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemSessionHelperListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSessionHelperList.
+type GetSystemSessionHelperListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemSessionHelperListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSessionHelperListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSessionHelperList.
+type GetSystemSessionHelperListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemSessionHelperListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSessionHelperListResult)(nil)).Elem()
+}
+
+func (o GetSystemSessionHelperListResultOutput) ToGetSystemSessionHelperListResultOutput() GetSystemSessionHelperListResultOutput {
+	return o
+}
+
+func (o GetSystemSessionHelperListResultOutput) ToGetSystemSessionHelperListResultOutputWithContext(ctx context.Context) GetSystemSessionHelperListResultOutput {
+	return o
+}
+
+func (o GetSystemSessionHelperListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSessionHelperListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// A list of the `SystemSessionHelper`.
+func (o GetSystemSessionHelperListResultOutput) Fosidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetSystemSessionHelperListResult) []int { return v.Fosidlists }).(pulumi.IntArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemSessionHelperListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemSessionHelperListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+func (o GetSystemSessionHelperListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSessionHelperListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemSessionHelperListResultOutput{})
 }

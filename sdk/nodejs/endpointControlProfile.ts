@@ -167,43 +167,41 @@ export class EndpointControlProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: EndpointControlProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: EndpointControlProfileArgs | EndpointControlProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as EndpointControlProfileState | undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["deviceGroups"] = state ? state.deviceGroups : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["forticlientAndroidSettings"] = state ? state.forticlientAndroidSettings : undefined;
-            inputs["forticlientIosSettings"] = state ? state.forticlientIosSettings : undefined;
-            inputs["forticlientWinmacSettings"] = state ? state.forticlientWinmacSettings : undefined;
-            inputs["onNetAddrs"] = state ? state.onNetAddrs : undefined;
-            inputs["profileName"] = state ? state.profileName : undefined;
-            inputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
-            inputs["srcAddrs"] = state ? state.srcAddrs : undefined;
-            inputs["userGroups"] = state ? state.userGroups : undefined;
-            inputs["users"] = state ? state.users : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["deviceGroups"] = state ? state.deviceGroups : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["forticlientAndroidSettings"] = state ? state.forticlientAndroidSettings : undefined;
+            resourceInputs["forticlientIosSettings"] = state ? state.forticlientIosSettings : undefined;
+            resourceInputs["forticlientWinmacSettings"] = state ? state.forticlientWinmacSettings : undefined;
+            resourceInputs["onNetAddrs"] = state ? state.onNetAddrs : undefined;
+            resourceInputs["profileName"] = state ? state.profileName : undefined;
+            resourceInputs["replacemsgOverrideGroup"] = state ? state.replacemsgOverrideGroup : undefined;
+            resourceInputs["srcAddrs"] = state ? state.srcAddrs : undefined;
+            resourceInputs["userGroups"] = state ? state.userGroups : undefined;
+            resourceInputs["users"] = state ? state.users : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as EndpointControlProfileArgs | undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["deviceGroups"] = args ? args.deviceGroups : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["forticlientAndroidSettings"] = args ? args.forticlientAndroidSettings : undefined;
-            inputs["forticlientIosSettings"] = args ? args.forticlientIosSettings : undefined;
-            inputs["forticlientWinmacSettings"] = args ? args.forticlientWinmacSettings : undefined;
-            inputs["onNetAddrs"] = args ? args.onNetAddrs : undefined;
-            inputs["profileName"] = args ? args.profileName : undefined;
-            inputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
-            inputs["srcAddrs"] = args ? args.srcAddrs : undefined;
-            inputs["userGroups"] = args ? args.userGroups : undefined;
-            inputs["users"] = args ? args.users : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["deviceGroups"] = args ? args.deviceGroups : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["forticlientAndroidSettings"] = args ? args.forticlientAndroidSettings : undefined;
+            resourceInputs["forticlientIosSettings"] = args ? args.forticlientIosSettings : undefined;
+            resourceInputs["forticlientWinmacSettings"] = args ? args.forticlientWinmacSettings : undefined;
+            resourceInputs["onNetAddrs"] = args ? args.onNetAddrs : undefined;
+            resourceInputs["profileName"] = args ? args.profileName : undefined;
+            resourceInputs["replacemsgOverrideGroup"] = args ? args.replacemsgOverrideGroup : undefined;
+            resourceInputs["srcAddrs"] = args ? args.srcAddrs : undefined;
+            resourceInputs["userGroups"] = args ? args.userGroups : undefined;
+            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(EndpointControlProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(EndpointControlProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemZoneResult',
     'AwaitableGetSystemZoneResult',
     'get_system_zone',
+    'get_system_zone_output',
 ]
 
 @pulumi.output_type
@@ -129,6 +130,8 @@ def get_system_zone(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemZone:GetSystemZone', __args__, opts=opts, typ=GetSystemZoneResult).value
 
     return AwaitableGetSystemZoneResult(
@@ -139,3 +142,17 @@ def get_system_zone(name: Optional[str] = None,
         name=__ret__.name,
         taggings=__ret__.taggings,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_zone)
+def get_system_zone_output(name: Optional[pulumi.Input[str]] = None,
+                           vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                           opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemZoneResult]:
+    """
+    Use this data source to get information on an fortios system zone
+
+
+    :param str name: Specify the name of the desired system zone.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

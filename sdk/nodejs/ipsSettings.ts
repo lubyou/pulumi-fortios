@@ -89,27 +89,25 @@ export class IpsSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IpsSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IpsSettingsArgs | IpsSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpsSettingsState | undefined;
-            inputs["ipsPacketQuota"] = state ? state.ipsPacketQuota : undefined;
-            inputs["packetLogHistory"] = state ? state.packetLogHistory : undefined;
-            inputs["packetLogMemory"] = state ? state.packetLogMemory : undefined;
-            inputs["packetLogPostAttack"] = state ? state.packetLogPostAttack : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ipsPacketQuota"] = state ? state.ipsPacketQuota : undefined;
+            resourceInputs["packetLogHistory"] = state ? state.packetLogHistory : undefined;
+            resourceInputs["packetLogMemory"] = state ? state.packetLogMemory : undefined;
+            resourceInputs["packetLogPostAttack"] = state ? state.packetLogPostAttack : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpsSettingsArgs | undefined;
-            inputs["ipsPacketQuota"] = args ? args.ipsPacketQuota : undefined;
-            inputs["packetLogHistory"] = args ? args.packetLogHistory : undefined;
-            inputs["packetLogMemory"] = args ? args.packetLogMemory : undefined;
-            inputs["packetLogPostAttack"] = args ? args.packetLogPostAttack : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ipsPacketQuota"] = args ? args.ipsPacketQuota : undefined;
+            resourceInputs["packetLogHistory"] = args ? args.packetLogHistory : undefined;
+            resourceInputs["packetLogMemory"] = args ? args.packetLogMemory : undefined;
+            resourceInputs["packetLogPostAttack"] = args ? args.packetLogPostAttack : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IpsSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IpsSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 

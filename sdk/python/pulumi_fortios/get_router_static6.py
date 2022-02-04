@@ -7,11 +7,13 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
 
 __all__ = [
     'GetRouterStatic6Result',
     'AwaitableGetRouterStatic6Result',
     'get_router_static6',
+    'get_router_static6_output',
 ]
 
 @pulumi.output_type
@@ -19,7 +21,7 @@ class GetRouterStatic6Result:
     """
     A collection of values returned by GetRouterStatic6.
     """
-    def __init__(__self__, bfd=None, blackhole=None, comment=None, device=None, devindex=None, distance=None, dst=None, gateway=None, id=None, link_monitor_exempt=None, priority=None, sdwan=None, seq_num=None, status=None, vdomparam=None, virtual_wan_link=None):
+    def __init__(__self__, bfd=None, blackhole=None, comment=None, device=None, devindex=None, distance=None, dst=None, dynamic_gateway=None, gateway=None, id=None, link_monitor_exempt=None, priority=None, sdwan=None, sdwan_zones=None, seq_num=None, status=None, vdomparam=None, virtual_wan_link=None, vrf=None):
         if bfd and not isinstance(bfd, str):
             raise TypeError("Expected argument 'bfd' to be a str")
         pulumi.set(__self__, "bfd", bfd)
@@ -41,6 +43,9 @@ class GetRouterStatic6Result:
         if dst and not isinstance(dst, str):
             raise TypeError("Expected argument 'dst' to be a str")
         pulumi.set(__self__, "dst", dst)
+        if dynamic_gateway and not isinstance(dynamic_gateway, str):
+            raise TypeError("Expected argument 'dynamic_gateway' to be a str")
+        pulumi.set(__self__, "dynamic_gateway", dynamic_gateway)
         if gateway and not isinstance(gateway, str):
             raise TypeError("Expected argument 'gateway' to be a str")
         pulumi.set(__self__, "gateway", gateway)
@@ -56,6 +61,9 @@ class GetRouterStatic6Result:
         if sdwan and not isinstance(sdwan, str):
             raise TypeError("Expected argument 'sdwan' to be a str")
         pulumi.set(__self__, "sdwan", sdwan)
+        if sdwan_zones and not isinstance(sdwan_zones, list):
+            raise TypeError("Expected argument 'sdwan_zones' to be a list")
+        pulumi.set(__self__, "sdwan_zones", sdwan_zones)
         if seq_num and not isinstance(seq_num, int):
             raise TypeError("Expected argument 'seq_num' to be a int")
         pulumi.set(__self__, "seq_num", seq_num)
@@ -68,6 +76,9 @@ class GetRouterStatic6Result:
         if virtual_wan_link and not isinstance(virtual_wan_link, str):
             raise TypeError("Expected argument 'virtual_wan_link' to be a str")
         pulumi.set(__self__, "virtual_wan_link", virtual_wan_link)
+        if vrf and not isinstance(vrf, int):
+            raise TypeError("Expected argument 'vrf' to be a int")
+        pulumi.set(__self__, "vrf", vrf)
 
     @property
     @pulumi.getter
@@ -126,6 +137,14 @@ class GetRouterStatic6Result:
         return pulumi.get(self, "dst")
 
     @property
+    @pulumi.getter(name="dynamicGateway")
+    def dynamic_gateway(self) -> str:
+        """
+        Enable use of dynamic gateway retrieved from Router Advertisement (RA).
+        """
+        return pulumi.get(self, "dynamic_gateway")
+
+    @property
     @pulumi.getter
     def gateway(self) -> str:
         """
@@ -166,6 +185,14 @@ class GetRouterStatic6Result:
         return pulumi.get(self, "sdwan")
 
     @property
+    @pulumi.getter(name="sdwanZones")
+    def sdwan_zones(self) -> Sequence['outputs.GetRouterStatic6SdwanZoneResult']:
+        """
+        Choose SD-WAN Zone. The structure of `sdwan_zone` block is documented below.
+        """
+        return pulumi.get(self, "sdwan_zones")
+
+    @property
     @pulumi.getter(name="seqNum")
     def seq_num(self) -> int:
         """
@@ -194,6 +221,14 @@ class GetRouterStatic6Result:
         """
         return pulumi.get(self, "virtual_wan_link")
 
+    @property
+    @pulumi.getter
+    def vrf(self) -> int:
+        """
+        Virtual Routing Forwarding ID.
+        """
+        return pulumi.get(self, "vrf")
+
 
 class AwaitableGetRouterStatic6Result(GetRouterStatic6Result):
     # pylint: disable=using-constant-test
@@ -208,15 +243,18 @@ class AwaitableGetRouterStatic6Result(GetRouterStatic6Result):
             devindex=self.devindex,
             distance=self.distance,
             dst=self.dst,
+            dynamic_gateway=self.dynamic_gateway,
             gateway=self.gateway,
             id=self.id,
             link_monitor_exempt=self.link_monitor_exempt,
             priority=self.priority,
             sdwan=self.sdwan,
+            sdwan_zones=self.sdwan_zones,
             seq_num=self.seq_num,
             status=self.status,
             vdomparam=self.vdomparam,
-            virtual_wan_link=self.virtual_wan_link)
+            virtual_wan_link=self.virtual_wan_link,
+            vrf=self.vrf)
 
 
 def get_router_static6(seq_num: Optional[int] = None,
@@ -236,6 +274,8 @@ def get_router_static6(seq_num: Optional[int] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getRouterStatic6:GetRouterStatic6', __args__, opts=opts, typ=GetRouterStatic6Result).value
 
     return AwaitableGetRouterStatic6Result(
@@ -246,12 +286,29 @@ def get_router_static6(seq_num: Optional[int] = None,
         devindex=__ret__.devindex,
         distance=__ret__.distance,
         dst=__ret__.dst,
+        dynamic_gateway=__ret__.dynamic_gateway,
         gateway=__ret__.gateway,
         id=__ret__.id,
         link_monitor_exempt=__ret__.link_monitor_exempt,
         priority=__ret__.priority,
         sdwan=__ret__.sdwan,
+        sdwan_zones=__ret__.sdwan_zones,
         seq_num=__ret__.seq_num,
         status=__ret__.status,
         vdomparam=__ret__.vdomparam,
-        virtual_wan_link=__ret__.virtual_wan_link)
+        virtual_wan_link=__ret__.virtual_wan_link,
+        vrf=__ret__.vrf)
+
+
+@_utilities.lift_output_func(get_router_static6)
+def get_router_static6_output(seq_num: Optional[pulumi.Input[int]] = None,
+                              vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetRouterStatic6Result]:
+    """
+    Use this data source to get information on an fortios router static6
+
+
+    :param int seq_num: Specify the seq_num of the desired router static6.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

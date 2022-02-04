@@ -94,16 +94,16 @@ export class FirewallIpTranslation extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallIpTranslationArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallIpTranslationArgs | FirewallIpTranslationState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallIpTranslationState | undefined;
-            inputs["endip"] = state ? state.endip : undefined;
-            inputs["mapStartip"] = state ? state.mapStartip : undefined;
-            inputs["startip"] = state ? state.startip : undefined;
-            inputs["transid"] = state ? state.transid : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["endip"] = state ? state.endip : undefined;
+            resourceInputs["mapStartip"] = state ? state.mapStartip : undefined;
+            resourceInputs["startip"] = state ? state.startip : undefined;
+            resourceInputs["transid"] = state ? state.transid : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallIpTranslationArgs | undefined;
             if ((!args || args.endip === undefined) && !opts.urn) {
@@ -115,17 +115,15 @@ export class FirewallIpTranslation extends pulumi.CustomResource {
             if ((!args || args.startip === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'startip'");
             }
-            inputs["endip"] = args ? args.endip : undefined;
-            inputs["mapStartip"] = args ? args.mapStartip : undefined;
-            inputs["startip"] = args ? args.startip : undefined;
-            inputs["transid"] = args ? args.transid : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["endip"] = args ? args.endip : undefined;
+            resourceInputs["mapStartip"] = args ? args.mapStartip : undefined;
+            resourceInputs["startip"] = args ? args.startip : undefined;
+            resourceInputs["transid"] = args ? args.transid : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallIpTranslation.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallIpTranslation.__pulumiType, name, resourceInputs, opts);
     }
 }
 

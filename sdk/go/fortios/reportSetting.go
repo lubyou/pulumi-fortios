@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,7 @@ func NewReportSetting(ctx *pulumi.Context,
 		args = &ReportSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReportSetting
 	err := ctx.RegisterResource("fortios:index/reportSetting:ReportSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -170,7 +171,7 @@ type ReportSettingInput interface {
 }
 
 func (*ReportSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportSetting)(nil))
+	return reflect.TypeOf((**ReportSetting)(nil)).Elem()
 }
 
 func (i *ReportSetting) ToReportSettingOutput() ReportSettingOutput {
@@ -179,35 +180,6 @@ func (i *ReportSetting) ToReportSettingOutput() ReportSettingOutput {
 
 func (i *ReportSetting) ToReportSettingOutputWithContext(ctx context.Context) ReportSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingOutput)
-}
-
-func (i *ReportSetting) ToReportSettingPtrOutput() ReportSettingPtrOutput {
-	return i.ToReportSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *ReportSetting) ToReportSettingPtrOutputWithContext(ctx context.Context) ReportSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingPtrOutput)
-}
-
-type ReportSettingPtrInput interface {
-	pulumi.Input
-
-	ToReportSettingPtrOutput() ReportSettingPtrOutput
-	ToReportSettingPtrOutputWithContext(ctx context.Context) ReportSettingPtrOutput
-}
-
-type reportSettingPtrType ReportSettingArgs
-
-func (*reportSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportSetting)(nil))
-}
-
-func (i *reportSettingPtrType) ToReportSettingPtrOutput() ReportSettingPtrOutput {
-	return i.ToReportSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *reportSettingPtrType) ToReportSettingPtrOutputWithContext(ctx context.Context) ReportSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingPtrOutput)
 }
 
 // ReportSettingArrayInput is an input type that accepts ReportSettingArray and ReportSettingArrayOutput values.
@@ -224,7 +196,7 @@ type ReportSettingArrayInput interface {
 type ReportSettingArray []ReportSettingInput
 
 func (ReportSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ReportSetting)(nil))
+	return reflect.TypeOf((*[]*ReportSetting)(nil)).Elem()
 }
 
 func (i ReportSettingArray) ToReportSettingArrayOutput() ReportSettingArrayOutput {
@@ -249,7 +221,7 @@ type ReportSettingMapInput interface {
 type ReportSettingMap map[string]ReportSettingInput
 
 func (ReportSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ReportSetting)(nil))
+	return reflect.TypeOf((*map[string]*ReportSetting)(nil)).Elem()
 }
 
 func (i ReportSettingMap) ToReportSettingMapOutput() ReportSettingMapOutput {
@@ -260,12 +232,10 @@ func (i ReportSettingMap) ToReportSettingMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(ReportSettingMapOutput)
 }
 
-type ReportSettingOutput struct {
-	*pulumi.OutputState
-}
+type ReportSettingOutput struct{ *pulumi.OutputState }
 
 func (ReportSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportSetting)(nil))
+	return reflect.TypeOf((**ReportSetting)(nil)).Elem()
 }
 
 func (o ReportSettingOutput) ToReportSettingOutput() ReportSettingOutput {
@@ -276,36 +246,10 @@ func (o ReportSettingOutput) ToReportSettingOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o ReportSettingOutput) ToReportSettingPtrOutput() ReportSettingPtrOutput {
-	return o.ToReportSettingPtrOutputWithContext(context.Background())
-}
-
-func (o ReportSettingOutput) ToReportSettingPtrOutputWithContext(ctx context.Context) ReportSettingPtrOutput {
-	return o.ApplyT(func(v ReportSetting) *ReportSetting {
-		return &v
-	}).(ReportSettingPtrOutput)
-}
-
-type ReportSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ReportSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportSetting)(nil))
-}
-
-func (o ReportSettingPtrOutput) ToReportSettingPtrOutput() ReportSettingPtrOutput {
-	return o
-}
-
-func (o ReportSettingPtrOutput) ToReportSettingPtrOutputWithContext(ctx context.Context) ReportSettingPtrOutput {
-	return o
-}
-
 type ReportSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (ReportSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ReportSetting)(nil))
+	return reflect.TypeOf((*[]*ReportSetting)(nil)).Elem()
 }
 
 func (o ReportSettingArrayOutput) ToReportSettingArrayOutput() ReportSettingArrayOutput {
@@ -317,15 +261,15 @@ func (o ReportSettingArrayOutput) ToReportSettingArrayOutputWithContext(ctx cont
 }
 
 func (o ReportSettingArrayOutput) Index(i pulumi.IntInput) ReportSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportSetting {
-		return vs[0].([]ReportSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportSetting {
+		return vs[0].([]*ReportSetting)[vs[1].(int)]
 	}).(ReportSettingOutput)
 }
 
 type ReportSettingMapOutput struct{ *pulumi.OutputState }
 
 func (ReportSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ReportSetting)(nil))
+	return reflect.TypeOf((*map[string]*ReportSetting)(nil)).Elem()
 }
 
 func (o ReportSettingMapOutput) ToReportSettingMapOutput() ReportSettingMapOutput {
@@ -337,14 +281,16 @@ func (o ReportSettingMapOutput) ToReportSettingMapOutputWithContext(ctx context.
 }
 
 func (o ReportSettingMapOutput) MapIndex(k pulumi.StringInput) ReportSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ReportSetting {
-		return vs[0].(map[string]ReportSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ReportSetting {
+		return vs[0].(map[string]*ReportSetting)[vs[1].(string)]
 	}).(ReportSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportSettingInput)(nil)).Elem(), &ReportSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportSettingArrayInput)(nil)).Elem(), ReportSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportSettingMapInput)(nil)).Elem(), ReportSettingMap{})
 	pulumi.RegisterOutputType(ReportSettingOutput{})
-	pulumi.RegisterOutputType(ReportSettingPtrOutput{})
 	pulumi.RegisterOutputType(ReportSettingArrayOutput{})
 	pulumi.RegisterOutputType(ReportSettingMapOutput{})
 }

@@ -49,6 +49,7 @@ func NewSwitchControllerQosQosPolicy(ctx *pulumi.Context,
 	if args.DefaultCos == nil {
 		return nil, errors.New("invalid value for required argument 'DefaultCos'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosQosPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerQosQosPolicy:SwitchControllerQosQosPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -147,7 +148,7 @@ type SwitchControllerQosQosPolicyInput interface {
 }
 
 func (*SwitchControllerQosQosPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosQosPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerQosQosPolicy)(nil)).Elem()
 }
 
 func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyOutput() SwitchControllerQosQosPolicyOutput {
@@ -156,35 +157,6 @@ func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyOutput() Sw
 
 func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyOutput)
-}
-
-func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyPtrOutput() SwitchControllerQosQosPolicyPtrOutput {
-	return i.ToSwitchControllerQosQosPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerQosQosPolicy) ToSwitchControllerQosQosPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyPtrOutput)
-}
-
-type SwitchControllerQosQosPolicyPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerQosQosPolicyPtrOutput() SwitchControllerQosQosPolicyPtrOutput
-	ToSwitchControllerQosQosPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyPtrOutput
-}
-
-type switchControllerQosQosPolicyPtrType SwitchControllerQosQosPolicyArgs
-
-func (*switchControllerQosQosPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosQosPolicy)(nil))
-}
-
-func (i *switchControllerQosQosPolicyPtrType) ToSwitchControllerQosQosPolicyPtrOutput() SwitchControllerQosQosPolicyPtrOutput {
-	return i.ToSwitchControllerQosQosPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerQosQosPolicyPtrType) ToSwitchControllerQosQosPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyPtrOutput)
 }
 
 // SwitchControllerQosQosPolicyArrayInput is an input type that accepts SwitchControllerQosQosPolicyArray and SwitchControllerQosQosPolicyArrayOutput values.
@@ -201,7 +173,7 @@ type SwitchControllerQosQosPolicyArrayInput interface {
 type SwitchControllerQosQosPolicyArray []SwitchControllerQosQosPolicyInput
 
 func (SwitchControllerQosQosPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerQosQosPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosQosPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerQosQosPolicyArray) ToSwitchControllerQosQosPolicyArrayOutput() SwitchControllerQosQosPolicyArrayOutput {
@@ -226,7 +198,7 @@ type SwitchControllerQosQosPolicyMapInput interface {
 type SwitchControllerQosQosPolicyMap map[string]SwitchControllerQosQosPolicyInput
 
 func (SwitchControllerQosQosPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerQosQosPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosQosPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerQosQosPolicyMap) ToSwitchControllerQosQosPolicyMapOutput() SwitchControllerQosQosPolicyMapOutput {
@@ -237,12 +209,10 @@ func (i SwitchControllerQosQosPolicyMap) ToSwitchControllerQosQosPolicyMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosQosPolicyMapOutput)
 }
 
-type SwitchControllerQosQosPolicyOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerQosQosPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQosPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosQosPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerQosQosPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyOutput() SwitchControllerQosQosPolicyOutput {
@@ -253,36 +223,10 @@ func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyOutput
 	return o
 }
 
-func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyPtrOutput() SwitchControllerQosQosPolicyPtrOutput {
-	return o.ToSwitchControllerQosQosPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerQosQosPolicyOutput) ToSwitchControllerQosQosPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyPtrOutput {
-	return o.ApplyT(func(v SwitchControllerQosQosPolicy) *SwitchControllerQosQosPolicy {
-		return &v
-	}).(SwitchControllerQosQosPolicyPtrOutput)
-}
-
-type SwitchControllerQosQosPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerQosQosPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosQosPolicy)(nil))
-}
-
-func (o SwitchControllerQosQosPolicyPtrOutput) ToSwitchControllerQosQosPolicyPtrOutput() SwitchControllerQosQosPolicyPtrOutput {
-	return o
-}
-
-func (o SwitchControllerQosQosPolicyPtrOutput) ToSwitchControllerQosQosPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerQosQosPolicyPtrOutput {
-	return o
-}
-
 type SwitchControllerQosQosPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQosPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerQosQosPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosQosPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerQosQosPolicyArrayOutput) ToSwitchControllerQosQosPolicyArrayOutput() SwitchControllerQosQosPolicyArrayOutput {
@@ -294,15 +238,15 @@ func (o SwitchControllerQosQosPolicyArrayOutput) ToSwitchControllerQosQosPolicyA
 }
 
 func (o SwitchControllerQosQosPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosQosPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerQosQosPolicy {
-		return vs[0].([]SwitchControllerQosQosPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosQosPolicy {
+		return vs[0].([]*SwitchControllerQosQosPolicy)[vs[1].(int)]
 	}).(SwitchControllerQosQosPolicyOutput)
 }
 
 type SwitchControllerQosQosPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosQosPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerQosQosPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosQosPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerQosQosPolicyMapOutput) ToSwitchControllerQosQosPolicyMapOutput() SwitchControllerQosQosPolicyMapOutput {
@@ -314,14 +258,16 @@ func (o SwitchControllerQosQosPolicyMapOutput) ToSwitchControllerQosQosPolicyMap
 }
 
 func (o SwitchControllerQosQosPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosQosPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerQosQosPolicy {
-		return vs[0].(map[string]SwitchControllerQosQosPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerQosQosPolicy {
+		return vs[0].(map[string]*SwitchControllerQosQosPolicy)[vs[1].(string)]
 	}).(SwitchControllerQosQosPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosQosPolicyInput)(nil)).Elem(), &SwitchControllerQosQosPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosQosPolicyArrayInput)(nil)).Elem(), SwitchControllerQosQosPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosQosPolicyMapInput)(nil)).Elem(), SwitchControllerQosQosPolicyMap{})
 	pulumi.RegisterOutputType(SwitchControllerQosQosPolicyOutput{})
-	pulumi.RegisterOutputType(SwitchControllerQosQosPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosQosPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosQosPolicyMapOutput{})
 }

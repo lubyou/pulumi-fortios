@@ -45,6 +45,7 @@ func NewFirewallInternetServiceCustom(ctx *pulumi.Context,
 		args = &FirewallInternetServiceCustomArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceCustom
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceCustom:FirewallInternetServiceCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type FirewallInternetServiceCustomInput interface {
 }
 
 func (*FirewallInternetServiceCustom) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceCustom)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceCustom)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceCustom) ToFirewallInternetServiceCustomOutput() FirewallInternetServiceCustomOutput {
@@ -152,35 +153,6 @@ func (i *FirewallInternetServiceCustom) ToFirewallInternetServiceCustomOutput() 
 
 func (i *FirewallInternetServiceCustom) ToFirewallInternetServiceCustomOutputWithContext(ctx context.Context) FirewallInternetServiceCustomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomOutput)
-}
-
-func (i *FirewallInternetServiceCustom) ToFirewallInternetServiceCustomPtrOutput() FirewallInternetServiceCustomPtrOutput {
-	return i.ToFirewallInternetServiceCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceCustom) ToFirewallInternetServiceCustomPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomPtrOutput)
-}
-
-type FirewallInternetServiceCustomPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceCustomPtrOutput() FirewallInternetServiceCustomPtrOutput
-	ToFirewallInternetServiceCustomPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomPtrOutput
-}
-
-type firewallInternetServiceCustomPtrType FirewallInternetServiceCustomArgs
-
-func (*firewallInternetServiceCustomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceCustom)(nil))
-}
-
-func (i *firewallInternetServiceCustomPtrType) ToFirewallInternetServiceCustomPtrOutput() FirewallInternetServiceCustomPtrOutput {
-	return i.ToFirewallInternetServiceCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceCustomPtrType) ToFirewallInternetServiceCustomPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomPtrOutput)
 }
 
 // FirewallInternetServiceCustomArrayInput is an input type that accepts FirewallInternetServiceCustomArray and FirewallInternetServiceCustomArrayOutput values.
@@ -197,7 +169,7 @@ type FirewallInternetServiceCustomArrayInput interface {
 type FirewallInternetServiceCustomArray []FirewallInternetServiceCustomInput
 
 func (FirewallInternetServiceCustomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceCustom)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceCustom)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceCustomArray) ToFirewallInternetServiceCustomArrayOutput() FirewallInternetServiceCustomArrayOutput {
@@ -222,7 +194,7 @@ type FirewallInternetServiceCustomMapInput interface {
 type FirewallInternetServiceCustomMap map[string]FirewallInternetServiceCustomInput
 
 func (FirewallInternetServiceCustomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceCustom)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceCustom)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceCustomMap) ToFirewallInternetServiceCustomMapOutput() FirewallInternetServiceCustomMapOutput {
@@ -233,12 +205,10 @@ func (i FirewallInternetServiceCustomMap) ToFirewallInternetServiceCustomMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomMapOutput)
 }
 
-type FirewallInternetServiceCustomOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceCustomOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceCustom)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceCustom)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceCustomOutput) ToFirewallInternetServiceCustomOutput() FirewallInternetServiceCustomOutput {
@@ -249,36 +219,10 @@ func (o FirewallInternetServiceCustomOutput) ToFirewallInternetServiceCustomOutp
 	return o
 }
 
-func (o FirewallInternetServiceCustomOutput) ToFirewallInternetServiceCustomPtrOutput() FirewallInternetServiceCustomPtrOutput {
-	return o.ToFirewallInternetServiceCustomPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceCustomOutput) ToFirewallInternetServiceCustomPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceCustom) *FirewallInternetServiceCustom {
-		return &v
-	}).(FirewallInternetServiceCustomPtrOutput)
-}
-
-type FirewallInternetServiceCustomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceCustomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceCustom)(nil))
-}
-
-func (o FirewallInternetServiceCustomPtrOutput) ToFirewallInternetServiceCustomPtrOutput() FirewallInternetServiceCustomPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceCustomPtrOutput) ToFirewallInternetServiceCustomPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceCustomArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceCustom)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceCustom)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceCustomArrayOutput) ToFirewallInternetServiceCustomArrayOutput() FirewallInternetServiceCustomArrayOutput {
@@ -290,15 +234,15 @@ func (o FirewallInternetServiceCustomArrayOutput) ToFirewallInternetServiceCusto
 }
 
 func (o FirewallInternetServiceCustomArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceCustomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceCustom {
-		return vs[0].([]FirewallInternetServiceCustom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceCustom {
+		return vs[0].([]*FirewallInternetServiceCustom)[vs[1].(int)]
 	}).(FirewallInternetServiceCustomOutput)
 }
 
 type FirewallInternetServiceCustomMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceCustom)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceCustom)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceCustomMapOutput) ToFirewallInternetServiceCustomMapOutput() FirewallInternetServiceCustomMapOutput {
@@ -310,14 +254,16 @@ func (o FirewallInternetServiceCustomMapOutput) ToFirewallInternetServiceCustomM
 }
 
 func (o FirewallInternetServiceCustomMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceCustomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceCustom {
-		return vs[0].(map[string]FirewallInternetServiceCustom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceCustom {
+		return vs[0].(map[string]*FirewallInternetServiceCustom)[vs[1].(string)]
 	}).(FirewallInternetServiceCustomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceCustomInput)(nil)).Elem(), &FirewallInternetServiceCustom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceCustomArrayInput)(nil)).Elem(), FirewallInternetServiceCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceCustomMapInput)(nil)).Elem(), FirewallInternetServiceCustomMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceCustomOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceCustomPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceCustomArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceCustomMapOutput{})
 }

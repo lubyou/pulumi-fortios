@@ -47,6 +47,7 @@ func NewSystemReplacemsgHttp(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgHttp
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgHttp:SystemReplacemsgHttp", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgHttpInput interface {
 }
 
 func (*SystemReplacemsgHttp) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgHttp)(nil))
+	return reflect.TypeOf((**SystemReplacemsgHttp)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgHttp) ToSystemReplacemsgHttpOutput() SystemReplacemsgHttpOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgHttp) ToSystemReplacemsgHttpOutput() SystemReplacemsgHt
 
 func (i *SystemReplacemsgHttp) ToSystemReplacemsgHttpOutputWithContext(ctx context.Context) SystemReplacemsgHttpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpOutput)
-}
-
-func (i *SystemReplacemsgHttp) ToSystemReplacemsgHttpPtrOutput() SystemReplacemsgHttpPtrOutput {
-	return i.ToSystemReplacemsgHttpPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgHttp) ToSystemReplacemsgHttpPtrOutputWithContext(ctx context.Context) SystemReplacemsgHttpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpPtrOutput)
-}
-
-type SystemReplacemsgHttpPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgHttpPtrOutput() SystemReplacemsgHttpPtrOutput
-	ToSystemReplacemsgHttpPtrOutputWithContext(ctx context.Context) SystemReplacemsgHttpPtrOutput
-}
-
-type systemReplacemsgHttpPtrType SystemReplacemsgHttpArgs
-
-func (*systemReplacemsgHttpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgHttp)(nil))
-}
-
-func (i *systemReplacemsgHttpPtrType) ToSystemReplacemsgHttpPtrOutput() SystemReplacemsgHttpPtrOutput {
-	return i.ToSystemReplacemsgHttpPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgHttpPtrType) ToSystemReplacemsgHttpPtrOutputWithContext(ctx context.Context) SystemReplacemsgHttpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpPtrOutput)
 }
 
 // SystemReplacemsgHttpArrayInput is an input type that accepts SystemReplacemsgHttpArray and SystemReplacemsgHttpArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgHttpArrayInput interface {
 type SystemReplacemsgHttpArray []SystemReplacemsgHttpInput
 
 func (SystemReplacemsgHttpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgHttp)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgHttp)(nil)).Elem()
 }
 
 func (i SystemReplacemsgHttpArray) ToSystemReplacemsgHttpArrayOutput() SystemReplacemsgHttpArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgHttpMapInput interface {
 type SystemReplacemsgHttpMap map[string]SystemReplacemsgHttpInput
 
 func (SystemReplacemsgHttpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgHttp)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgHttp)(nil)).Elem()
 }
 
 func (i SystemReplacemsgHttpMap) ToSystemReplacemsgHttpMapOutput() SystemReplacemsgHttpMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgHttpMap) ToSystemReplacemsgHttpMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgHttpMapOutput)
 }
 
-type SystemReplacemsgHttpOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgHttpOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgHttpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgHttp)(nil))
+	return reflect.TypeOf((**SystemReplacemsgHttp)(nil)).Elem()
 }
 
 func (o SystemReplacemsgHttpOutput) ToSystemReplacemsgHttpOutput() SystemReplacemsgHttpOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgHttpOutput) ToSystemReplacemsgHttpOutputWithContext(ctx 
 	return o
 }
 
-func (o SystemReplacemsgHttpOutput) ToSystemReplacemsgHttpPtrOutput() SystemReplacemsgHttpPtrOutput {
-	return o.ToSystemReplacemsgHttpPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgHttpOutput) ToSystemReplacemsgHttpPtrOutputWithContext(ctx context.Context) SystemReplacemsgHttpPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgHttp) *SystemReplacemsgHttp {
-		return &v
-	}).(SystemReplacemsgHttpPtrOutput)
-}
-
-type SystemReplacemsgHttpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgHttpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgHttp)(nil))
-}
-
-func (o SystemReplacemsgHttpPtrOutput) ToSystemReplacemsgHttpPtrOutput() SystemReplacemsgHttpPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgHttpPtrOutput) ToSystemReplacemsgHttpPtrOutputWithContext(ctx context.Context) SystemReplacemsgHttpPtrOutput {
-	return o
-}
-
 type SystemReplacemsgHttpArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgHttpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgHttp)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgHttp)(nil)).Elem()
 }
 
 func (o SystemReplacemsgHttpArrayOutput) ToSystemReplacemsgHttpArrayOutput() SystemReplacemsgHttpArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgHttpArrayOutput) ToSystemReplacemsgHttpArrayOutputWithCo
 }
 
 func (o SystemReplacemsgHttpArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgHttpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgHttp {
-		return vs[0].([]SystemReplacemsgHttp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgHttp {
+		return vs[0].([]*SystemReplacemsgHttp)[vs[1].(int)]
 	}).(SystemReplacemsgHttpOutput)
 }
 
 type SystemReplacemsgHttpMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgHttpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgHttp)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgHttp)(nil)).Elem()
 }
 
 func (o SystemReplacemsgHttpMapOutput) ToSystemReplacemsgHttpMapOutput() SystemReplacemsgHttpMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgHttpMapOutput) ToSystemReplacemsgHttpMapOutputWithContex
 }
 
 func (o SystemReplacemsgHttpMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgHttpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgHttp {
-		return vs[0].(map[string]SystemReplacemsgHttp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgHttp {
+		return vs[0].(map[string]*SystemReplacemsgHttp)[vs[1].(string)]
 	}).(SystemReplacemsgHttpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgHttpInput)(nil)).Elem(), &SystemReplacemsgHttp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgHttpArrayInput)(nil)).Elem(), SystemReplacemsgHttpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgHttpMapInput)(nil)).Elem(), SystemReplacemsgHttpMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgHttpOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgHttpPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgHttpArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgHttpMapOutput{})
 }

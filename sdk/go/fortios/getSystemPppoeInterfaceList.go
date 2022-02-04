@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemPppoeInterface`.
 func GetSystemPppoeInterfaceList(ctx *pulumi.Context, args *GetSystemPppoeInterfaceListArgs, opts ...pulumi.InvokeOption) (*GetSystemPppoeInterfaceListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemPppoeInterfaceListResult
 	err := ctx.Invoke("fortios:index/getSystemPppoeInterfaceList:GetSystemPppoeInterfaceList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemPppoeInterfaceListResult struct {
 	// A list of the `SystemPppoeInterface`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemPppoeInterfaceListOutput(ctx *pulumi.Context, args GetSystemPppoeInterfaceListOutputArgs, opts ...pulumi.InvokeOption) GetSystemPppoeInterfaceListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemPppoeInterfaceListResult, error) {
+			args := v.(GetSystemPppoeInterfaceListArgs)
+			r, err := GetSystemPppoeInterfaceList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemPppoeInterfaceListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemPppoeInterfaceList.
+type GetSystemPppoeInterfaceListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemPppoeInterfaceListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemPppoeInterfaceListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemPppoeInterfaceList.
+type GetSystemPppoeInterfaceListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemPppoeInterfaceListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemPppoeInterfaceListResult)(nil)).Elem()
+}
+
+func (o GetSystemPppoeInterfaceListResultOutput) ToGetSystemPppoeInterfaceListResultOutput() GetSystemPppoeInterfaceListResultOutput {
+	return o
+}
+
+func (o GetSystemPppoeInterfaceListResultOutput) ToGetSystemPppoeInterfaceListResultOutputWithContext(ctx context.Context) GetSystemPppoeInterfaceListResultOutput {
+	return o
+}
+
+func (o GetSystemPppoeInterfaceListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemPppoeInterfaceListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemPppoeInterfaceListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemPppoeInterfaceListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemPppoeInterface`.
+func (o GetSystemPppoeInterfaceListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemPppoeInterfaceListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemPppoeInterfaceListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemPppoeInterfaceListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemPppoeInterfaceListResultOutput{})
 }

@@ -180,65 +180,63 @@ export class SystemWccp extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemWccpArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemWccpArgs | SystemWccpState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemWccpState | undefined;
-            inputs["assignmentBucketFormat"] = state ? state.assignmentBucketFormat : undefined;
-            inputs["assignmentDstaddrMask"] = state ? state.assignmentDstaddrMask : undefined;
-            inputs["assignmentMethod"] = state ? state.assignmentMethod : undefined;
-            inputs["assignmentSrcaddrMask"] = state ? state.assignmentSrcaddrMask : undefined;
-            inputs["assignmentWeight"] = state ? state.assignmentWeight : undefined;
-            inputs["authentication"] = state ? state.authentication : undefined;
-            inputs["cacheEngineMethod"] = state ? state.cacheEngineMethod : undefined;
-            inputs["cacheId"] = state ? state.cacheId : undefined;
-            inputs["forwardMethod"] = state ? state.forwardMethod : undefined;
-            inputs["groupAddress"] = state ? state.groupAddress : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["ports"] = state ? state.ports : undefined;
-            inputs["portsDefined"] = state ? state.portsDefined : undefined;
-            inputs["primaryHash"] = state ? state.primaryHash : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["returnMethod"] = state ? state.returnMethod : undefined;
-            inputs["routerId"] = state ? state.routerId : undefined;
-            inputs["routerList"] = state ? state.routerList : undefined;
-            inputs["serverList"] = state ? state.serverList : undefined;
-            inputs["serverType"] = state ? state.serverType : undefined;
-            inputs["serviceId"] = state ? state.serviceId : undefined;
-            inputs["serviceType"] = state ? state.serviceType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["assignmentBucketFormat"] = state ? state.assignmentBucketFormat : undefined;
+            resourceInputs["assignmentDstaddrMask"] = state ? state.assignmentDstaddrMask : undefined;
+            resourceInputs["assignmentMethod"] = state ? state.assignmentMethod : undefined;
+            resourceInputs["assignmentSrcaddrMask"] = state ? state.assignmentSrcaddrMask : undefined;
+            resourceInputs["assignmentWeight"] = state ? state.assignmentWeight : undefined;
+            resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["cacheEngineMethod"] = state ? state.cacheEngineMethod : undefined;
+            resourceInputs["cacheId"] = state ? state.cacheId : undefined;
+            resourceInputs["forwardMethod"] = state ? state.forwardMethod : undefined;
+            resourceInputs["groupAddress"] = state ? state.groupAddress : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["ports"] = state ? state.ports : undefined;
+            resourceInputs["portsDefined"] = state ? state.portsDefined : undefined;
+            resourceInputs["primaryHash"] = state ? state.primaryHash : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["returnMethod"] = state ? state.returnMethod : undefined;
+            resourceInputs["routerId"] = state ? state.routerId : undefined;
+            resourceInputs["routerList"] = state ? state.routerList : undefined;
+            resourceInputs["serverList"] = state ? state.serverList : undefined;
+            resourceInputs["serverType"] = state ? state.serverType : undefined;
+            resourceInputs["serviceId"] = state ? state.serviceId : undefined;
+            resourceInputs["serviceType"] = state ? state.serviceType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemWccpArgs | undefined;
-            inputs["assignmentBucketFormat"] = args ? args.assignmentBucketFormat : undefined;
-            inputs["assignmentDstaddrMask"] = args ? args.assignmentDstaddrMask : undefined;
-            inputs["assignmentMethod"] = args ? args.assignmentMethod : undefined;
-            inputs["assignmentSrcaddrMask"] = args ? args.assignmentSrcaddrMask : undefined;
-            inputs["assignmentWeight"] = args ? args.assignmentWeight : undefined;
-            inputs["authentication"] = args ? args.authentication : undefined;
-            inputs["cacheEngineMethod"] = args ? args.cacheEngineMethod : undefined;
-            inputs["cacheId"] = args ? args.cacheId : undefined;
-            inputs["forwardMethod"] = args ? args.forwardMethod : undefined;
-            inputs["groupAddress"] = args ? args.groupAddress : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["ports"] = args ? args.ports : undefined;
-            inputs["portsDefined"] = args ? args.portsDefined : undefined;
-            inputs["primaryHash"] = args ? args.primaryHash : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["returnMethod"] = args ? args.returnMethod : undefined;
-            inputs["routerId"] = args ? args.routerId : undefined;
-            inputs["routerList"] = args ? args.routerList : undefined;
-            inputs["serverList"] = args ? args.serverList : undefined;
-            inputs["serverType"] = args ? args.serverType : undefined;
-            inputs["serviceId"] = args ? args.serviceId : undefined;
-            inputs["serviceType"] = args ? args.serviceType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["assignmentBucketFormat"] = args ? args.assignmentBucketFormat : undefined;
+            resourceInputs["assignmentDstaddrMask"] = args ? args.assignmentDstaddrMask : undefined;
+            resourceInputs["assignmentMethod"] = args ? args.assignmentMethod : undefined;
+            resourceInputs["assignmentSrcaddrMask"] = args ? args.assignmentSrcaddrMask : undefined;
+            resourceInputs["assignmentWeight"] = args ? args.assignmentWeight : undefined;
+            resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["cacheEngineMethod"] = args ? args.cacheEngineMethod : undefined;
+            resourceInputs["cacheId"] = args ? args.cacheId : undefined;
+            resourceInputs["forwardMethod"] = args ? args.forwardMethod : undefined;
+            resourceInputs["groupAddress"] = args ? args.groupAddress : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["ports"] = args ? args.ports : undefined;
+            resourceInputs["portsDefined"] = args ? args.portsDefined : undefined;
+            resourceInputs["primaryHash"] = args ? args.primaryHash : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["returnMethod"] = args ? args.returnMethod : undefined;
+            resourceInputs["routerId"] = args ? args.routerId : undefined;
+            resourceInputs["routerList"] = args ? args.routerList : undefined;
+            resourceInputs["serverList"] = args ? args.serverList : undefined;
+            resourceInputs["serverType"] = args ? args.serverType : undefined;
+            resourceInputs["serviceId"] = args ? args.serviceId : undefined;
+            resourceInputs["serviceType"] = args ? args.serviceType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemWccp.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemWccp.__pulumiType, name, resourceInputs, opts);
     }
 }
 

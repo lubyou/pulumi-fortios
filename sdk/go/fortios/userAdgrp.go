@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -79,6 +79,7 @@ func NewUserAdgrp(ctx *pulumi.Context,
 		args = &UserAdgrpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserAdgrp
 	err := ctx.RegisterResource("fortios:index/userAdgrp:UserAdgrp", name, args, &resource, opts...)
 	if err != nil {
@@ -169,7 +170,7 @@ type UserAdgrpInput interface {
 }
 
 func (*UserAdgrp) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAdgrp)(nil))
+	return reflect.TypeOf((**UserAdgrp)(nil)).Elem()
 }
 
 func (i *UserAdgrp) ToUserAdgrpOutput() UserAdgrpOutput {
@@ -178,35 +179,6 @@ func (i *UserAdgrp) ToUserAdgrpOutput() UserAdgrpOutput {
 
 func (i *UserAdgrp) ToUserAdgrpOutputWithContext(ctx context.Context) UserAdgrpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpOutput)
-}
-
-func (i *UserAdgrp) ToUserAdgrpPtrOutput() UserAdgrpPtrOutput {
-	return i.ToUserAdgrpPtrOutputWithContext(context.Background())
-}
-
-func (i *UserAdgrp) ToUserAdgrpPtrOutputWithContext(ctx context.Context) UserAdgrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpPtrOutput)
-}
-
-type UserAdgrpPtrInput interface {
-	pulumi.Input
-
-	ToUserAdgrpPtrOutput() UserAdgrpPtrOutput
-	ToUserAdgrpPtrOutputWithContext(ctx context.Context) UserAdgrpPtrOutput
-}
-
-type userAdgrpPtrType UserAdgrpArgs
-
-func (*userAdgrpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserAdgrp)(nil))
-}
-
-func (i *userAdgrpPtrType) ToUserAdgrpPtrOutput() UserAdgrpPtrOutput {
-	return i.ToUserAdgrpPtrOutputWithContext(context.Background())
-}
-
-func (i *userAdgrpPtrType) ToUserAdgrpPtrOutputWithContext(ctx context.Context) UserAdgrpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpPtrOutput)
 }
 
 // UserAdgrpArrayInput is an input type that accepts UserAdgrpArray and UserAdgrpArrayOutput values.
@@ -223,7 +195,7 @@ type UserAdgrpArrayInput interface {
 type UserAdgrpArray []UserAdgrpInput
 
 func (UserAdgrpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserAdgrp)(nil))
+	return reflect.TypeOf((*[]*UserAdgrp)(nil)).Elem()
 }
 
 func (i UserAdgrpArray) ToUserAdgrpArrayOutput() UserAdgrpArrayOutput {
@@ -248,7 +220,7 @@ type UserAdgrpMapInput interface {
 type UserAdgrpMap map[string]UserAdgrpInput
 
 func (UserAdgrpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserAdgrp)(nil))
+	return reflect.TypeOf((*map[string]*UserAdgrp)(nil)).Elem()
 }
 
 func (i UserAdgrpMap) ToUserAdgrpMapOutput() UserAdgrpMapOutput {
@@ -259,12 +231,10 @@ func (i UserAdgrpMap) ToUserAdgrpMapOutputWithContext(ctx context.Context) UserA
 	return pulumi.ToOutputWithContext(ctx, i).(UserAdgrpMapOutput)
 }
 
-type UserAdgrpOutput struct {
-	*pulumi.OutputState
-}
+type UserAdgrpOutput struct{ *pulumi.OutputState }
 
 func (UserAdgrpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserAdgrp)(nil))
+	return reflect.TypeOf((**UserAdgrp)(nil)).Elem()
 }
 
 func (o UserAdgrpOutput) ToUserAdgrpOutput() UserAdgrpOutput {
@@ -275,36 +245,10 @@ func (o UserAdgrpOutput) ToUserAdgrpOutputWithContext(ctx context.Context) UserA
 	return o
 }
 
-func (o UserAdgrpOutput) ToUserAdgrpPtrOutput() UserAdgrpPtrOutput {
-	return o.ToUserAdgrpPtrOutputWithContext(context.Background())
-}
-
-func (o UserAdgrpOutput) ToUserAdgrpPtrOutputWithContext(ctx context.Context) UserAdgrpPtrOutput {
-	return o.ApplyT(func(v UserAdgrp) *UserAdgrp {
-		return &v
-	}).(UserAdgrpPtrOutput)
-}
-
-type UserAdgrpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserAdgrpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserAdgrp)(nil))
-}
-
-func (o UserAdgrpPtrOutput) ToUserAdgrpPtrOutput() UserAdgrpPtrOutput {
-	return o
-}
-
-func (o UserAdgrpPtrOutput) ToUserAdgrpPtrOutputWithContext(ctx context.Context) UserAdgrpPtrOutput {
-	return o
-}
-
 type UserAdgrpArrayOutput struct{ *pulumi.OutputState }
 
 func (UserAdgrpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserAdgrp)(nil))
+	return reflect.TypeOf((*[]*UserAdgrp)(nil)).Elem()
 }
 
 func (o UserAdgrpArrayOutput) ToUserAdgrpArrayOutput() UserAdgrpArrayOutput {
@@ -316,15 +260,15 @@ func (o UserAdgrpArrayOutput) ToUserAdgrpArrayOutputWithContext(ctx context.Cont
 }
 
 func (o UserAdgrpArrayOutput) Index(i pulumi.IntInput) UserAdgrpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserAdgrp {
-		return vs[0].([]UserAdgrp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserAdgrp {
+		return vs[0].([]*UserAdgrp)[vs[1].(int)]
 	}).(UserAdgrpOutput)
 }
 
 type UserAdgrpMapOutput struct{ *pulumi.OutputState }
 
 func (UserAdgrpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserAdgrp)(nil))
+	return reflect.TypeOf((*map[string]*UserAdgrp)(nil)).Elem()
 }
 
 func (o UserAdgrpMapOutput) ToUserAdgrpMapOutput() UserAdgrpMapOutput {
@@ -336,14 +280,16 @@ func (o UserAdgrpMapOutput) ToUserAdgrpMapOutputWithContext(ctx context.Context)
 }
 
 func (o UserAdgrpMapOutput) MapIndex(k pulumi.StringInput) UserAdgrpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserAdgrp {
-		return vs[0].(map[string]UserAdgrp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserAdgrp {
+		return vs[0].(map[string]*UserAdgrp)[vs[1].(string)]
 	}).(UserAdgrpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAdgrpInput)(nil)).Elem(), &UserAdgrp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAdgrpArrayInput)(nil)).Elem(), UserAdgrpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserAdgrpMapInput)(nil)).Elem(), UserAdgrpMap{})
 	pulumi.RegisterOutputType(UserAdgrpOutput{})
-	pulumi.RegisterOutputType(UserAdgrpPtrOutput{})
 	pulumi.RegisterOutputType(UserAdgrpArrayOutput{})
 	pulumi.RegisterOutputType(UserAdgrpMapOutput{})
 }

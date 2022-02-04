@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallProxyPolicy`.
 func GetFirewallProxyPolicyList(ctx *pulumi.Context, args *GetFirewallProxyPolicyListArgs, opts ...pulumi.InvokeOption) (*GetFirewallProxyPolicyListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallProxyPolicyListResult
 	err := ctx.Invoke("fortios:index/getFirewallProxyPolicyList:GetFirewallProxyPolicyList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallProxyPolicyListResult struct {
 	// A list of the `FirewallProxyPolicy`.
 	Policyidlists []int   `pulumi:"policyidlists"`
 	Vdomparam     *string `pulumi:"vdomparam"`
+}
+
+func GetFirewallProxyPolicyListOutput(ctx *pulumi.Context, args GetFirewallProxyPolicyListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallProxyPolicyListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallProxyPolicyListResult, error) {
+			args := v.(GetFirewallProxyPolicyListArgs)
+			r, err := GetFirewallProxyPolicyList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallProxyPolicyListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallProxyPolicyList.
+type GetFirewallProxyPolicyListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallProxyPolicyListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallProxyPolicyListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallProxyPolicyList.
+type GetFirewallProxyPolicyListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallProxyPolicyListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallProxyPolicyListResult)(nil)).Elem()
+}
+
+func (o GetFirewallProxyPolicyListResultOutput) ToGetFirewallProxyPolicyListResultOutput() GetFirewallProxyPolicyListResultOutput {
+	return o
+}
+
+func (o GetFirewallProxyPolicyListResultOutput) ToGetFirewallProxyPolicyListResultOutputWithContext(ctx context.Context) GetFirewallProxyPolicyListResultOutput {
+	return o
+}
+
+func (o GetFirewallProxyPolicyListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallProxyPolicyListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallProxyPolicyListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallProxyPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallProxyPolicy`.
+func (o GetFirewallProxyPolicyListResultOutput) Policyidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetFirewallProxyPolicyListResult) []int { return v.Policyidlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetFirewallProxyPolicyListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallProxyPolicyListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallProxyPolicyListResultOutput{})
 }

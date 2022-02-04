@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam MIME header.
+// Configure AntiSpam MIME header. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -45,6 +45,7 @@ func NewEmailfilterMheader(ctx *pulumi.Context,
 		args = &EmailfilterMheaderArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EmailfilterMheader
 	err := ctx.RegisterResource("fortios:index/emailfilterMheader:EmailfilterMheader", name, args, &resource, opts...)
 	if err != nil {
@@ -143,7 +144,7 @@ type EmailfilterMheaderInput interface {
 }
 
 func (*EmailfilterMheader) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterMheader)(nil))
+	return reflect.TypeOf((**EmailfilterMheader)(nil)).Elem()
 }
 
 func (i *EmailfilterMheader) ToEmailfilterMheaderOutput() EmailfilterMheaderOutput {
@@ -152,35 +153,6 @@ func (i *EmailfilterMheader) ToEmailfilterMheaderOutput() EmailfilterMheaderOutp
 
 func (i *EmailfilterMheader) ToEmailfilterMheaderOutputWithContext(ctx context.Context) EmailfilterMheaderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterMheaderOutput)
-}
-
-func (i *EmailfilterMheader) ToEmailfilterMheaderPtrOutput() EmailfilterMheaderPtrOutput {
-	return i.ToEmailfilterMheaderPtrOutputWithContext(context.Background())
-}
-
-func (i *EmailfilterMheader) ToEmailfilterMheaderPtrOutputWithContext(ctx context.Context) EmailfilterMheaderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterMheaderPtrOutput)
-}
-
-type EmailfilterMheaderPtrInput interface {
-	pulumi.Input
-
-	ToEmailfilterMheaderPtrOutput() EmailfilterMheaderPtrOutput
-	ToEmailfilterMheaderPtrOutputWithContext(ctx context.Context) EmailfilterMheaderPtrOutput
-}
-
-type emailfilterMheaderPtrType EmailfilterMheaderArgs
-
-func (*emailfilterMheaderPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterMheader)(nil))
-}
-
-func (i *emailfilterMheaderPtrType) ToEmailfilterMheaderPtrOutput() EmailfilterMheaderPtrOutput {
-	return i.ToEmailfilterMheaderPtrOutputWithContext(context.Background())
-}
-
-func (i *emailfilterMheaderPtrType) ToEmailfilterMheaderPtrOutputWithContext(ctx context.Context) EmailfilterMheaderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterMheaderPtrOutput)
 }
 
 // EmailfilterMheaderArrayInput is an input type that accepts EmailfilterMheaderArray and EmailfilterMheaderArrayOutput values.
@@ -197,7 +169,7 @@ type EmailfilterMheaderArrayInput interface {
 type EmailfilterMheaderArray []EmailfilterMheaderInput
 
 func (EmailfilterMheaderArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EmailfilterMheader)(nil))
+	return reflect.TypeOf((*[]*EmailfilterMheader)(nil)).Elem()
 }
 
 func (i EmailfilterMheaderArray) ToEmailfilterMheaderArrayOutput() EmailfilterMheaderArrayOutput {
@@ -222,7 +194,7 @@ type EmailfilterMheaderMapInput interface {
 type EmailfilterMheaderMap map[string]EmailfilterMheaderInput
 
 func (EmailfilterMheaderMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EmailfilterMheader)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterMheader)(nil)).Elem()
 }
 
 func (i EmailfilterMheaderMap) ToEmailfilterMheaderMapOutput() EmailfilterMheaderMapOutput {
@@ -233,12 +205,10 @@ func (i EmailfilterMheaderMap) ToEmailfilterMheaderMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterMheaderMapOutput)
 }
 
-type EmailfilterMheaderOutput struct {
-	*pulumi.OutputState
-}
+type EmailfilterMheaderOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterMheaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterMheader)(nil))
+	return reflect.TypeOf((**EmailfilterMheader)(nil)).Elem()
 }
 
 func (o EmailfilterMheaderOutput) ToEmailfilterMheaderOutput() EmailfilterMheaderOutput {
@@ -249,36 +219,10 @@ func (o EmailfilterMheaderOutput) ToEmailfilterMheaderOutputWithContext(ctx cont
 	return o
 }
 
-func (o EmailfilterMheaderOutput) ToEmailfilterMheaderPtrOutput() EmailfilterMheaderPtrOutput {
-	return o.ToEmailfilterMheaderPtrOutputWithContext(context.Background())
-}
-
-func (o EmailfilterMheaderOutput) ToEmailfilterMheaderPtrOutputWithContext(ctx context.Context) EmailfilterMheaderPtrOutput {
-	return o.ApplyT(func(v EmailfilterMheader) *EmailfilterMheader {
-		return &v
-	}).(EmailfilterMheaderPtrOutput)
-}
-
-type EmailfilterMheaderPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EmailfilterMheaderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterMheader)(nil))
-}
-
-func (o EmailfilterMheaderPtrOutput) ToEmailfilterMheaderPtrOutput() EmailfilterMheaderPtrOutput {
-	return o
-}
-
-func (o EmailfilterMheaderPtrOutput) ToEmailfilterMheaderPtrOutputWithContext(ctx context.Context) EmailfilterMheaderPtrOutput {
-	return o
-}
-
 type EmailfilterMheaderArrayOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterMheaderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EmailfilterMheader)(nil))
+	return reflect.TypeOf((*[]*EmailfilterMheader)(nil)).Elem()
 }
 
 func (o EmailfilterMheaderArrayOutput) ToEmailfilterMheaderArrayOutput() EmailfilterMheaderArrayOutput {
@@ -290,15 +234,15 @@ func (o EmailfilterMheaderArrayOutput) ToEmailfilterMheaderArrayOutputWithContex
 }
 
 func (o EmailfilterMheaderArrayOutput) Index(i pulumi.IntInput) EmailfilterMheaderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EmailfilterMheader {
-		return vs[0].([]EmailfilterMheader)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterMheader {
+		return vs[0].([]*EmailfilterMheader)[vs[1].(int)]
 	}).(EmailfilterMheaderOutput)
 }
 
 type EmailfilterMheaderMapOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterMheaderMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EmailfilterMheader)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterMheader)(nil)).Elem()
 }
 
 func (o EmailfilterMheaderMapOutput) ToEmailfilterMheaderMapOutput() EmailfilterMheaderMapOutput {
@@ -310,14 +254,16 @@ func (o EmailfilterMheaderMapOutput) ToEmailfilterMheaderMapOutputWithContext(ct
 }
 
 func (o EmailfilterMheaderMapOutput) MapIndex(k pulumi.StringInput) EmailfilterMheaderOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EmailfilterMheader {
-		return vs[0].(map[string]EmailfilterMheader)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EmailfilterMheader {
+		return vs[0].(map[string]*EmailfilterMheader)[vs[1].(string)]
 	}).(EmailfilterMheaderOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterMheaderInput)(nil)).Elem(), &EmailfilterMheader{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterMheaderArrayInput)(nil)).Elem(), EmailfilterMheaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterMheaderMapInput)(nil)).Elem(), EmailfilterMheaderMap{})
 	pulumi.RegisterOutputType(EmailfilterMheaderOutput{})
-	pulumi.RegisterOutputType(EmailfilterMheaderPtrOutput{})
 	pulumi.RegisterOutputType(EmailfilterMheaderArrayOutput{})
 	pulumi.RegisterOutputType(EmailfilterMheaderMapOutput{})
 }

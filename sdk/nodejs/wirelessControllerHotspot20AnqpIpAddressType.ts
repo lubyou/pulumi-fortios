@@ -83,25 +83,23 @@ export class WirelessControllerHotspot20AnqpIpAddressType extends pulumi.CustomR
      */
     constructor(name: string, args?: WirelessControllerHotspot20AnqpIpAddressTypeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20AnqpIpAddressTypeArgs | WirelessControllerHotspot20AnqpIpAddressTypeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20AnqpIpAddressTypeState | undefined;
-            inputs["ipv4AddressType"] = state ? state.ipv4AddressType : undefined;
-            inputs["ipv6AddressType"] = state ? state.ipv6AddressType : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["ipv4AddressType"] = state ? state.ipv4AddressType : undefined;
+            resourceInputs["ipv6AddressType"] = state ? state.ipv6AddressType : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20AnqpIpAddressTypeArgs | undefined;
-            inputs["ipv4AddressType"] = args ? args.ipv4AddressType : undefined;
-            inputs["ipv6AddressType"] = args ? args.ipv6AddressType : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["ipv4AddressType"] = args ? args.ipv4AddressType : undefined;
+            resourceInputs["ipv6AddressType"] = args ? args.ipv6AddressType : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20AnqpIpAddressType.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20AnqpIpAddressType.__pulumiType, name, resourceInputs, opts);
     }
 }
 

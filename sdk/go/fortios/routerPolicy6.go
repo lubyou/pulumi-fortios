@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -99,6 +99,7 @@ func NewRouterPolicy6(ctx *pulumi.Context,
 	if args.InputDevice == nil {
 		return nil, errors.New("invalid value for required argument 'InputDevice'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterPolicy6
 	err := ctx.RegisterResource("fortios:index/routerPolicy6:RouterPolicy6", name, args, &resource, opts...)
 	if err != nil {
@@ -261,7 +262,7 @@ type RouterPolicy6Input interface {
 }
 
 func (*RouterPolicy6) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterPolicy6)(nil))
+	return reflect.TypeOf((**RouterPolicy6)(nil)).Elem()
 }
 
 func (i *RouterPolicy6) ToRouterPolicy6Output() RouterPolicy6Output {
@@ -270,35 +271,6 @@ func (i *RouterPolicy6) ToRouterPolicy6Output() RouterPolicy6Output {
 
 func (i *RouterPolicy6) ToRouterPolicy6OutputWithContext(ctx context.Context) RouterPolicy6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6Output)
-}
-
-func (i *RouterPolicy6) ToRouterPolicy6PtrOutput() RouterPolicy6PtrOutput {
-	return i.ToRouterPolicy6PtrOutputWithContext(context.Background())
-}
-
-func (i *RouterPolicy6) ToRouterPolicy6PtrOutputWithContext(ctx context.Context) RouterPolicy6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6PtrOutput)
-}
-
-type RouterPolicy6PtrInput interface {
-	pulumi.Input
-
-	ToRouterPolicy6PtrOutput() RouterPolicy6PtrOutput
-	ToRouterPolicy6PtrOutputWithContext(ctx context.Context) RouterPolicy6PtrOutput
-}
-
-type routerPolicy6PtrType RouterPolicy6Args
-
-func (*routerPolicy6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterPolicy6)(nil))
-}
-
-func (i *routerPolicy6PtrType) ToRouterPolicy6PtrOutput() RouterPolicy6PtrOutput {
-	return i.ToRouterPolicy6PtrOutputWithContext(context.Background())
-}
-
-func (i *routerPolicy6PtrType) ToRouterPolicy6PtrOutputWithContext(ctx context.Context) RouterPolicy6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6PtrOutput)
 }
 
 // RouterPolicy6ArrayInput is an input type that accepts RouterPolicy6Array and RouterPolicy6ArrayOutput values.
@@ -315,7 +287,7 @@ type RouterPolicy6ArrayInput interface {
 type RouterPolicy6Array []RouterPolicy6Input
 
 func (RouterPolicy6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterPolicy6)(nil))
+	return reflect.TypeOf((*[]*RouterPolicy6)(nil)).Elem()
 }
 
 func (i RouterPolicy6Array) ToRouterPolicy6ArrayOutput() RouterPolicy6ArrayOutput {
@@ -340,7 +312,7 @@ type RouterPolicy6MapInput interface {
 type RouterPolicy6Map map[string]RouterPolicy6Input
 
 func (RouterPolicy6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterPolicy6)(nil))
+	return reflect.TypeOf((*map[string]*RouterPolicy6)(nil)).Elem()
 }
 
 func (i RouterPolicy6Map) ToRouterPolicy6MapOutput() RouterPolicy6MapOutput {
@@ -351,12 +323,10 @@ func (i RouterPolicy6Map) ToRouterPolicy6MapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(RouterPolicy6MapOutput)
 }
 
-type RouterPolicy6Output struct {
-	*pulumi.OutputState
-}
+type RouterPolicy6Output struct{ *pulumi.OutputState }
 
 func (RouterPolicy6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterPolicy6)(nil))
+	return reflect.TypeOf((**RouterPolicy6)(nil)).Elem()
 }
 
 func (o RouterPolicy6Output) ToRouterPolicy6Output() RouterPolicy6Output {
@@ -367,36 +337,10 @@ func (o RouterPolicy6Output) ToRouterPolicy6OutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o RouterPolicy6Output) ToRouterPolicy6PtrOutput() RouterPolicy6PtrOutput {
-	return o.ToRouterPolicy6PtrOutputWithContext(context.Background())
-}
-
-func (o RouterPolicy6Output) ToRouterPolicy6PtrOutputWithContext(ctx context.Context) RouterPolicy6PtrOutput {
-	return o.ApplyT(func(v RouterPolicy6) *RouterPolicy6 {
-		return &v
-	}).(RouterPolicy6PtrOutput)
-}
-
-type RouterPolicy6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterPolicy6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterPolicy6)(nil))
-}
-
-func (o RouterPolicy6PtrOutput) ToRouterPolicy6PtrOutput() RouterPolicy6PtrOutput {
-	return o
-}
-
-func (o RouterPolicy6PtrOutput) ToRouterPolicy6PtrOutputWithContext(ctx context.Context) RouterPolicy6PtrOutput {
-	return o
-}
-
 type RouterPolicy6ArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterPolicy6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterPolicy6)(nil))
+	return reflect.TypeOf((*[]*RouterPolicy6)(nil)).Elem()
 }
 
 func (o RouterPolicy6ArrayOutput) ToRouterPolicy6ArrayOutput() RouterPolicy6ArrayOutput {
@@ -408,15 +352,15 @@ func (o RouterPolicy6ArrayOutput) ToRouterPolicy6ArrayOutputWithContext(ctx cont
 }
 
 func (o RouterPolicy6ArrayOutput) Index(i pulumi.IntInput) RouterPolicy6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterPolicy6 {
-		return vs[0].([]RouterPolicy6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterPolicy6 {
+		return vs[0].([]*RouterPolicy6)[vs[1].(int)]
 	}).(RouterPolicy6Output)
 }
 
 type RouterPolicy6MapOutput struct{ *pulumi.OutputState }
 
 func (RouterPolicy6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterPolicy6)(nil))
+	return reflect.TypeOf((*map[string]*RouterPolicy6)(nil)).Elem()
 }
 
 func (o RouterPolicy6MapOutput) ToRouterPolicy6MapOutput() RouterPolicy6MapOutput {
@@ -428,14 +372,16 @@ func (o RouterPolicy6MapOutput) ToRouterPolicy6MapOutputWithContext(ctx context.
 }
 
 func (o RouterPolicy6MapOutput) MapIndex(k pulumi.StringInput) RouterPolicy6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterPolicy6 {
-		return vs[0].(map[string]RouterPolicy6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterPolicy6 {
+		return vs[0].(map[string]*RouterPolicy6)[vs[1].(string)]
 	}).(RouterPolicy6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterPolicy6Input)(nil)).Elem(), &RouterPolicy6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterPolicy6ArrayInput)(nil)).Elem(), RouterPolicy6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterPolicy6MapInput)(nil)).Elem(), RouterPolicy6Map{})
 	pulumi.RegisterOutputType(RouterPolicy6Output{})
-	pulumi.RegisterOutputType(RouterPolicy6PtrOutput{})
 	pulumi.RegisterOutputType(RouterPolicy6ArrayOutput{})
 	pulumi.RegisterOutputType(RouterPolicy6MapOutput{})
 }

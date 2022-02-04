@@ -363,7 +363,7 @@ class WirelessControllerWagProfile(pulumi.CustomResource):
                  wag_port: Optional[pulumi.Input[int]] = None,
                  __props__=None):
         """
-        Configure wireless access gateway (WAG) profiles used for tunnels on AP.
+        Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -395,7 +395,7 @@ class WirelessControllerWagProfile(pulumi.CustomResource):
                  args: Optional[WirelessControllerWagProfileArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure wireless access gateway (WAG) profiles used for tunnels on AP.
+        Configure wireless access gateway (WAG) profiles used for tunnels on AP. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -439,6 +439,8 @@ class WirelessControllerWagProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

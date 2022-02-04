@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure NGFW IPv4/IPv6 application policies.
+ * Configure NGFW IPv4/IPv6 application policies. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Example Usage
  *
@@ -224,6 +224,10 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
      */
     public readonly ipsSensor!: pulumi.Output<string>;
     /**
+     * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+     */
+    public readonly learningMode!: pulumi.Output<string>;
+    /**
      * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
      */
     public readonly logtraffic!: pulumi.Output<string>;
@@ -235,6 +239,14 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
      * Names of FSSO groups.
      */
     public readonly name!: pulumi.Output<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `enable`, `disable`.
+     */
+    public readonly nat46!: pulumi.Output<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `enable`, `disable`.
+     */
+    public readonly nat64!: pulumi.Output<string>;
     /**
      * Policy ID.
      */
@@ -255,6 +267,10 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
      * Schedule name.
      */
     public readonly schedule!: pulumi.Output<string>;
+    /**
+     * Name of an existing SCTP filter profile.
+     */
+    public readonly sctpFilterProfile!: pulumi.Output<string>;
     /**
      * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
      */
@@ -316,6 +332,10 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
     /**
+     * Name of an existing VideoFilter profile.
+     */
+    public readonly videofilterProfile!: pulumi.Output<string>;
+    /**
      * Name of an existing VoIP profile.
      */
     public readonly voipProfile!: pulumi.Output<string>;
@@ -333,141 +353,149 @@ export class FirewallSecurityPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallSecurityPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSecurityPolicyArgs | FirewallSecurityPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSecurityPolicyState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["appCategories"] = state ? state.appCategories : undefined;
-            inputs["appGroups"] = state ? state.appGroups : undefined;
-            inputs["applicationList"] = state ? state.applicationList : undefined;
-            inputs["applications"] = state ? state.applications : undefined;
-            inputs["avProfile"] = state ? state.avProfile : undefined;
-            inputs["cifsProfile"] = state ? state.cifsProfile : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dlpSensor"] = state ? state.dlpSensor : undefined;
-            inputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
-            inputs["dstaddr4s"] = state ? state.dstaddr4s : undefined;
-            inputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
-            inputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dstintfs"] = state ? state.dstintfs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
-            inputs["enforceDefaultAppPort"] = state ? state.enforceDefaultAppPort : undefined;
-            inputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
-            inputs["fssoGroups"] = state ? state.fssoGroups : undefined;
-            inputs["groups"] = state ? state.groups : undefined;
-            inputs["icapProfile"] = state ? state.icapProfile : undefined;
-            inputs["internetService"] = state ? state.internetService : undefined;
-            inputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
-            inputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
-            inputs["internetServiceGroups"] = state ? state.internetServiceGroups : undefined;
-            inputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
-            inputs["internetServiceNames"] = state ? state.internetServiceNames : undefined;
-            inputs["internetServiceNegate"] = state ? state.internetServiceNegate : undefined;
-            inputs["internetServiceSrc"] = state ? state.internetServiceSrc : undefined;
-            inputs["internetServiceSrcCustomGroups"] = state ? state.internetServiceSrcCustomGroups : undefined;
-            inputs["internetServiceSrcCustoms"] = state ? state.internetServiceSrcCustoms : undefined;
-            inputs["internetServiceSrcGroups"] = state ? state.internetServiceSrcGroups : undefined;
-            inputs["internetServiceSrcIds"] = state ? state.internetServiceSrcIds : undefined;
-            inputs["internetServiceSrcNames"] = state ? state.internetServiceSrcNames : undefined;
-            inputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
-            inputs["ipsSensor"] = state ? state.ipsSensor : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policyid"] = state ? state.policyid : undefined;
-            inputs["profileGroup"] = state ? state.profileGroup : undefined;
-            inputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
-            inputs["profileType"] = state ? state.profileType : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["sendDenyPacket"] = state ? state.sendDenyPacket : undefined;
-            inputs["serviceNegate"] = state ? state.serviceNegate : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["srcaddr4s"] = state ? state.srcaddr4s : undefined;
-            inputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
-            inputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintfs"] = state ? state.srcintfs : undefined;
-            inputs["sshFilterProfile"] = state ? state.sshFilterProfile : undefined;
-            inputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["urlCategories"] = state ? state.urlCategories : undefined;
-            inputs["users"] = state ? state.users : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["voipProfile"] = state ? state.voipProfile : undefined;
-            inputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["appCategories"] = state ? state.appCategories : undefined;
+            resourceInputs["appGroups"] = state ? state.appGroups : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["applications"] = state ? state.applications : undefined;
+            resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["cifsProfile"] = state ? state.cifsProfile : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
+            resourceInputs["dnsfilterProfile"] = state ? state.dnsfilterProfile : undefined;
+            resourceInputs["dstaddr4s"] = state ? state.dstaddr4s : undefined;
+            resourceInputs["dstaddr6s"] = state ? state.dstaddr6s : undefined;
+            resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
+            resourceInputs["enforceDefaultAppPort"] = state ? state.enforceDefaultAppPort : undefined;
+            resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
+            resourceInputs["fssoGroups"] = state ? state.fssoGroups : undefined;
+            resourceInputs["groups"] = state ? state.groups : undefined;
+            resourceInputs["icapProfile"] = state ? state.icapProfile : undefined;
+            resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["internetServiceCustomGroups"] = state ? state.internetServiceCustomGroups : undefined;
+            resourceInputs["internetServiceCustoms"] = state ? state.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceGroups"] = state ? state.internetServiceGroups : undefined;
+            resourceInputs["internetServiceIds"] = state ? state.internetServiceIds : undefined;
+            resourceInputs["internetServiceNames"] = state ? state.internetServiceNames : undefined;
+            resourceInputs["internetServiceNegate"] = state ? state.internetServiceNegate : undefined;
+            resourceInputs["internetServiceSrc"] = state ? state.internetServiceSrc : undefined;
+            resourceInputs["internetServiceSrcCustomGroups"] = state ? state.internetServiceSrcCustomGroups : undefined;
+            resourceInputs["internetServiceSrcCustoms"] = state ? state.internetServiceSrcCustoms : undefined;
+            resourceInputs["internetServiceSrcGroups"] = state ? state.internetServiceSrcGroups : undefined;
+            resourceInputs["internetServiceSrcIds"] = state ? state.internetServiceSrcIds : undefined;
+            resourceInputs["internetServiceSrcNames"] = state ? state.internetServiceSrcNames : undefined;
+            resourceInputs["internetServiceSrcNegate"] = state ? state.internetServiceSrcNegate : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["learningMode"] = state ? state.learningMode : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = state ? state.logtrafficStart : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nat46"] = state ? state.nat46 : undefined;
+            resourceInputs["nat64"] = state ? state.nat64 : undefined;
+            resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["profileGroup"] = state ? state.profileGroup : undefined;
+            resourceInputs["profileProtocolOptions"] = state ? state.profileProtocolOptions : undefined;
+            resourceInputs["profileType"] = state ? state.profileType : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["sctpFilterProfile"] = state ? state.sctpFilterProfile : undefined;
+            resourceInputs["sendDenyPacket"] = state ? state.sendDenyPacket : undefined;
+            resourceInputs["serviceNegate"] = state ? state.serviceNegate : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["srcaddr4s"] = state ? state.srcaddr4s : undefined;
+            resourceInputs["srcaddr6s"] = state ? state.srcaddr6s : undefined;
+            resourceInputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = state ? state.srcintfs : undefined;
+            resourceInputs["sshFilterProfile"] = state ? state.sshFilterProfile : undefined;
+            resourceInputs["sslSshProfile"] = state ? state.sslSshProfile : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["urlCategories"] = state ? state.urlCategories : undefined;
+            resourceInputs["users"] = state ? state.users : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["videofilterProfile"] = state ? state.videofilterProfile : undefined;
+            resourceInputs["voipProfile"] = state ? state.voipProfile : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
         } else {
             const args = argsOrState as FirewallSecurityPolicyArgs | undefined;
-            inputs["action"] = args ? args.action : undefined;
-            inputs["appCategories"] = args ? args.appCategories : undefined;
-            inputs["appGroups"] = args ? args.appGroups : undefined;
-            inputs["applicationList"] = args ? args.applicationList : undefined;
-            inputs["applications"] = args ? args.applications : undefined;
-            inputs["avProfile"] = args ? args.avProfile : undefined;
-            inputs["cifsProfile"] = args ? args.cifsProfile : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dlpSensor"] = args ? args.dlpSensor : undefined;
-            inputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
-            inputs["dstaddr4s"] = args ? args.dstaddr4s : undefined;
-            inputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
-            inputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dstintfs"] = args ? args.dstintfs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
-            inputs["enforceDefaultAppPort"] = args ? args.enforceDefaultAppPort : undefined;
-            inputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
-            inputs["fssoGroups"] = args ? args.fssoGroups : undefined;
-            inputs["groups"] = args ? args.groups : undefined;
-            inputs["icapProfile"] = args ? args.icapProfile : undefined;
-            inputs["internetService"] = args ? args.internetService : undefined;
-            inputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
-            inputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
-            inputs["internetServiceGroups"] = args ? args.internetServiceGroups : undefined;
-            inputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
-            inputs["internetServiceNames"] = args ? args.internetServiceNames : undefined;
-            inputs["internetServiceNegate"] = args ? args.internetServiceNegate : undefined;
-            inputs["internetServiceSrc"] = args ? args.internetServiceSrc : undefined;
-            inputs["internetServiceSrcCustomGroups"] = args ? args.internetServiceSrcCustomGroups : undefined;
-            inputs["internetServiceSrcCustoms"] = args ? args.internetServiceSrcCustoms : undefined;
-            inputs["internetServiceSrcGroups"] = args ? args.internetServiceSrcGroups : undefined;
-            inputs["internetServiceSrcIds"] = args ? args.internetServiceSrcIds : undefined;
-            inputs["internetServiceSrcNames"] = args ? args.internetServiceSrcNames : undefined;
-            inputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
-            inputs["ipsSensor"] = args ? args.ipsSensor : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policyid"] = args ? args.policyid : undefined;
-            inputs["profileGroup"] = args ? args.profileGroup : undefined;
-            inputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
-            inputs["profileType"] = args ? args.profileType : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["sendDenyPacket"] = args ? args.sendDenyPacket : undefined;
-            inputs["serviceNegate"] = args ? args.serviceNegate : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["srcaddr4s"] = args ? args.srcaddr4s : undefined;
-            inputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
-            inputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintfs"] = args ? args.srcintfs : undefined;
-            inputs["sshFilterProfile"] = args ? args.sshFilterProfile : undefined;
-            inputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["urlCategories"] = args ? args.urlCategories : undefined;
-            inputs["users"] = args ? args.users : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["voipProfile"] = args ? args.voipProfile : undefined;
-            inputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["appCategories"] = args ? args.appCategories : undefined;
+            resourceInputs["appGroups"] = args ? args.appGroups : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["applications"] = args ? args.applications : undefined;
+            resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["cifsProfile"] = args ? args.cifsProfile : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
+            resourceInputs["dnsfilterProfile"] = args ? args.dnsfilterProfile : undefined;
+            resourceInputs["dstaddr4s"] = args ? args.dstaddr4s : undefined;
+            resourceInputs["dstaddr6s"] = args ? args.dstaddr6s : undefined;
+            resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
+            resourceInputs["enforceDefaultAppPort"] = args ? args.enforceDefaultAppPort : undefined;
+            resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
+            resourceInputs["fssoGroups"] = args ? args.fssoGroups : undefined;
+            resourceInputs["groups"] = args ? args.groups : undefined;
+            resourceInputs["icapProfile"] = args ? args.icapProfile : undefined;
+            resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["internetServiceCustomGroups"] = args ? args.internetServiceCustomGroups : undefined;
+            resourceInputs["internetServiceCustoms"] = args ? args.internetServiceCustoms : undefined;
+            resourceInputs["internetServiceGroups"] = args ? args.internetServiceGroups : undefined;
+            resourceInputs["internetServiceIds"] = args ? args.internetServiceIds : undefined;
+            resourceInputs["internetServiceNames"] = args ? args.internetServiceNames : undefined;
+            resourceInputs["internetServiceNegate"] = args ? args.internetServiceNegate : undefined;
+            resourceInputs["internetServiceSrc"] = args ? args.internetServiceSrc : undefined;
+            resourceInputs["internetServiceSrcCustomGroups"] = args ? args.internetServiceSrcCustomGroups : undefined;
+            resourceInputs["internetServiceSrcCustoms"] = args ? args.internetServiceSrcCustoms : undefined;
+            resourceInputs["internetServiceSrcGroups"] = args ? args.internetServiceSrcGroups : undefined;
+            resourceInputs["internetServiceSrcIds"] = args ? args.internetServiceSrcIds : undefined;
+            resourceInputs["internetServiceSrcNames"] = args ? args.internetServiceSrcNames : undefined;
+            resourceInputs["internetServiceSrcNegate"] = args ? args.internetServiceSrcNegate : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["learningMode"] = args ? args.learningMode : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["logtrafficStart"] = args ? args.logtrafficStart : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nat46"] = args ? args.nat46 : undefined;
+            resourceInputs["nat64"] = args ? args.nat64 : undefined;
+            resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["profileGroup"] = args ? args.profileGroup : undefined;
+            resourceInputs["profileProtocolOptions"] = args ? args.profileProtocolOptions : undefined;
+            resourceInputs["profileType"] = args ? args.profileType : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["sctpFilterProfile"] = args ? args.sctpFilterProfile : undefined;
+            resourceInputs["sendDenyPacket"] = args ? args.sendDenyPacket : undefined;
+            resourceInputs["serviceNegate"] = args ? args.serviceNegate : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["srcaddr4s"] = args ? args.srcaddr4s : undefined;
+            resourceInputs["srcaddr6s"] = args ? args.srcaddr6s : undefined;
+            resourceInputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintfs"] = args ? args.srcintfs : undefined;
+            resourceInputs["sshFilterProfile"] = args ? args.sshFilterProfile : undefined;
+            resourceInputs["sslSshProfile"] = args ? args.sslSshProfile : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["urlCategories"] = args ? args.urlCategories : undefined;
+            resourceInputs["users"] = args ? args.users : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["videofilterProfile"] = args ? args.videofilterProfile : undefined;
+            resourceInputs["voipProfile"] = args ? args.voipProfile : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSecurityPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSecurityPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -624,6 +652,10 @@ export interface FirewallSecurityPolicyState {
      */
     ipsSensor?: pulumi.Input<string>;
     /**
+     * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+     */
+    learningMode?: pulumi.Input<string>;
+    /**
      * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
      */
     logtraffic?: pulumi.Input<string>;
@@ -635,6 +667,14 @@ export interface FirewallSecurityPolicyState {
      * Names of FSSO groups.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `enable`, `disable`.
+     */
+    nat46?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `enable`, `disable`.
+     */
+    nat64?: pulumi.Input<string>;
     /**
      * Policy ID.
      */
@@ -655,6 +695,10 @@ export interface FirewallSecurityPolicyState {
      * Schedule name.
      */
     schedule?: pulumi.Input<string>;
+    /**
+     * Name of an existing SCTP filter profile.
+     */
+    sctpFilterProfile?: pulumi.Input<string>;
     /**
      * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
      */
@@ -715,6 +759,10 @@ export interface FirewallSecurityPolicyState {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Name of an existing VideoFilter profile.
+     */
+    videofilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing VoIP profile.
      */
@@ -878,6 +926,10 @@ export interface FirewallSecurityPolicyArgs {
      */
     ipsSensor?: pulumi.Input<string>;
     /**
+     * Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `enable`, `disable`.
+     */
+    learningMode?: pulumi.Input<string>;
+    /**
      * Enable or disable logging. Log all sessions or security profile sessions. Valid values: `all`, `utm`, `disable`.
      */
     logtraffic?: pulumi.Input<string>;
@@ -889,6 +941,14 @@ export interface FirewallSecurityPolicyArgs {
      * Names of FSSO groups.
      */
     name?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `enable`, `disable`.
+     */
+    nat46?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `enable`, `disable`.
+     */
+    nat64?: pulumi.Input<string>;
     /**
      * Policy ID.
      */
@@ -909,6 +969,10 @@ export interface FirewallSecurityPolicyArgs {
      * Schedule name.
      */
     schedule?: pulumi.Input<string>;
+    /**
+     * Name of an existing SCTP filter profile.
+     */
+    sctpFilterProfile?: pulumi.Input<string>;
     /**
      * Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
      */
@@ -969,6 +1033,10 @@ export interface FirewallSecurityPolicyArgs {
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
+    /**
+     * Name of an existing VideoFilter profile.
+     */
+    videofilterProfile?: pulumi.Input<string>;
     /**
      * Name of an existing VoIP profile.
      */

@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure MS Exchange server entries.
+ * Configure MS Exchange server entries. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -116,47 +116,45 @@ export class UserExchange extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserExchangeArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserExchangeArgs | UserExchangeState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserExchangeState | undefined;
-            inputs["authLevel"] = state ? state.authLevel : undefined;
-            inputs["authType"] = state ? state.authType : undefined;
-            inputs["autoDiscoverKdc"] = state ? state.autoDiscoverKdc : undefined;
-            inputs["connectProtocol"] = state ? state.connectProtocol : undefined;
-            inputs["domainName"] = state ? state.domainName : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["httpAuthType"] = state ? state.httpAuthType : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["kdcIps"] = state ? state.kdcIps : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["serverName"] = state ? state.serverName : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authLevel"] = state ? state.authLevel : undefined;
+            resourceInputs["authType"] = state ? state.authType : undefined;
+            resourceInputs["autoDiscoverKdc"] = state ? state.autoDiscoverKdc : undefined;
+            resourceInputs["connectProtocol"] = state ? state.connectProtocol : undefined;
+            resourceInputs["domainName"] = state ? state.domainName : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["httpAuthType"] = state ? state.httpAuthType : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["kdcIps"] = state ? state.kdcIps : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["serverName"] = state ? state.serverName : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserExchangeArgs | undefined;
-            inputs["authLevel"] = args ? args.authLevel : undefined;
-            inputs["authType"] = args ? args.authType : undefined;
-            inputs["autoDiscoverKdc"] = args ? args.autoDiscoverKdc : undefined;
-            inputs["connectProtocol"] = args ? args.connectProtocol : undefined;
-            inputs["domainName"] = args ? args.domainName : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["httpAuthType"] = args ? args.httpAuthType : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["kdcIps"] = args ? args.kdcIps : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["serverName"] = args ? args.serverName : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authLevel"] = args ? args.authLevel : undefined;
+            resourceInputs["authType"] = args ? args.authType : undefined;
+            resourceInputs["autoDiscoverKdc"] = args ? args.autoDiscoverKdc : undefined;
+            resourceInputs["connectProtocol"] = args ? args.connectProtocol : undefined;
+            resourceInputs["domainName"] = args ? args.domainName : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["httpAuthType"] = args ? args.httpAuthType : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["kdcIps"] = args ? args.kdcIps : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["serverName"] = args ? args.serverName : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserExchange.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserExchange.__pulumiType, name, resourceInputs, opts);
     }
 }
 

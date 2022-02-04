@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -193,6 +193,7 @@ func NewFortimanagerFirewallSecurityPolicy(ctx *pulumi.Context,
 	if args.Srcintfs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcintfs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerFirewallSecurityPolicy
 	err := ctx.RegisterResource("fortios:index/fortimanagerFirewallSecurityPolicy:FortimanagerFirewallSecurityPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -583,7 +584,7 @@ type FortimanagerFirewallSecurityPolicyInput interface {
 }
 
 func (*FortimanagerFirewallSecurityPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerFirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((**FortimanagerFirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (i *FortimanagerFirewallSecurityPolicy) ToFortimanagerFirewallSecurityPolicyOutput() FortimanagerFirewallSecurityPolicyOutput {
@@ -592,35 +593,6 @@ func (i *FortimanagerFirewallSecurityPolicy) ToFortimanagerFirewallSecurityPolic
 
 func (i *FortimanagerFirewallSecurityPolicy) ToFortimanagerFirewallSecurityPolicyOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallSecurityPolicyOutput)
-}
-
-func (i *FortimanagerFirewallSecurityPolicy) ToFortimanagerFirewallSecurityPolicyPtrOutput() FortimanagerFirewallSecurityPolicyPtrOutput {
-	return i.ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerFirewallSecurityPolicy) ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallSecurityPolicyPtrOutput)
-}
-
-type FortimanagerFirewallSecurityPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerFirewallSecurityPolicyPtrOutput() FortimanagerFirewallSecurityPolicyPtrOutput
-	ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyPtrOutput
-}
-
-type fortimanagerFirewallSecurityPolicyPtrType FortimanagerFirewallSecurityPolicyArgs
-
-func (*fortimanagerFirewallSecurityPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerFirewallSecurityPolicy)(nil))
-}
-
-func (i *fortimanagerFirewallSecurityPolicyPtrType) ToFortimanagerFirewallSecurityPolicyPtrOutput() FortimanagerFirewallSecurityPolicyPtrOutput {
-	return i.ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerFirewallSecurityPolicyPtrType) ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallSecurityPolicyPtrOutput)
 }
 
 // FortimanagerFirewallSecurityPolicyArrayInput is an input type that accepts FortimanagerFirewallSecurityPolicyArray and FortimanagerFirewallSecurityPolicyArrayOutput values.
@@ -637,7 +609,7 @@ type FortimanagerFirewallSecurityPolicyArrayInput interface {
 type FortimanagerFirewallSecurityPolicyArray []FortimanagerFirewallSecurityPolicyInput
 
 func (FortimanagerFirewallSecurityPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerFirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*[]*FortimanagerFirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (i FortimanagerFirewallSecurityPolicyArray) ToFortimanagerFirewallSecurityPolicyArrayOutput() FortimanagerFirewallSecurityPolicyArrayOutput {
@@ -662,7 +634,7 @@ type FortimanagerFirewallSecurityPolicyMapInput interface {
 type FortimanagerFirewallSecurityPolicyMap map[string]FortimanagerFirewallSecurityPolicyInput
 
 func (FortimanagerFirewallSecurityPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerFirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerFirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (i FortimanagerFirewallSecurityPolicyMap) ToFortimanagerFirewallSecurityPolicyMapOutput() FortimanagerFirewallSecurityPolicyMapOutput {
@@ -673,12 +645,10 @@ func (i FortimanagerFirewallSecurityPolicyMap) ToFortimanagerFirewallSecurityPol
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerFirewallSecurityPolicyMapOutput)
 }
 
-type FortimanagerFirewallSecurityPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerFirewallSecurityPolicyOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallSecurityPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerFirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((**FortimanagerFirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallSecurityPolicyOutput) ToFortimanagerFirewallSecurityPolicyOutput() FortimanagerFirewallSecurityPolicyOutput {
@@ -689,36 +659,10 @@ func (o FortimanagerFirewallSecurityPolicyOutput) ToFortimanagerFirewallSecurity
 	return o
 }
 
-func (o FortimanagerFirewallSecurityPolicyOutput) ToFortimanagerFirewallSecurityPolicyPtrOutput() FortimanagerFirewallSecurityPolicyPtrOutput {
-	return o.ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerFirewallSecurityPolicyOutput) ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyPtrOutput {
-	return o.ApplyT(func(v FortimanagerFirewallSecurityPolicy) *FortimanagerFirewallSecurityPolicy {
-		return &v
-	}).(FortimanagerFirewallSecurityPolicyPtrOutput)
-}
-
-type FortimanagerFirewallSecurityPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerFirewallSecurityPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerFirewallSecurityPolicy)(nil))
-}
-
-func (o FortimanagerFirewallSecurityPolicyPtrOutput) ToFortimanagerFirewallSecurityPolicyPtrOutput() FortimanagerFirewallSecurityPolicyPtrOutput {
-	return o
-}
-
-func (o FortimanagerFirewallSecurityPolicyPtrOutput) ToFortimanagerFirewallSecurityPolicyPtrOutputWithContext(ctx context.Context) FortimanagerFirewallSecurityPolicyPtrOutput {
-	return o
-}
-
 type FortimanagerFirewallSecurityPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallSecurityPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerFirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*[]*FortimanagerFirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallSecurityPolicyArrayOutput) ToFortimanagerFirewallSecurityPolicyArrayOutput() FortimanagerFirewallSecurityPolicyArrayOutput {
@@ -730,15 +674,15 @@ func (o FortimanagerFirewallSecurityPolicyArrayOutput) ToFortimanagerFirewallSec
 }
 
 func (o FortimanagerFirewallSecurityPolicyArrayOutput) Index(i pulumi.IntInput) FortimanagerFirewallSecurityPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerFirewallSecurityPolicy {
-		return vs[0].([]FortimanagerFirewallSecurityPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerFirewallSecurityPolicy {
+		return vs[0].([]*FortimanagerFirewallSecurityPolicy)[vs[1].(int)]
 	}).(FortimanagerFirewallSecurityPolicyOutput)
 }
 
 type FortimanagerFirewallSecurityPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerFirewallSecurityPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerFirewallSecurityPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerFirewallSecurityPolicy)(nil)).Elem()
 }
 
 func (o FortimanagerFirewallSecurityPolicyMapOutput) ToFortimanagerFirewallSecurityPolicyMapOutput() FortimanagerFirewallSecurityPolicyMapOutput {
@@ -750,14 +694,16 @@ func (o FortimanagerFirewallSecurityPolicyMapOutput) ToFortimanagerFirewallSecur
 }
 
 func (o FortimanagerFirewallSecurityPolicyMapOutput) MapIndex(k pulumi.StringInput) FortimanagerFirewallSecurityPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerFirewallSecurityPolicy {
-		return vs[0].(map[string]FortimanagerFirewallSecurityPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerFirewallSecurityPolicy {
+		return vs[0].(map[string]*FortimanagerFirewallSecurityPolicy)[vs[1].(string)]
 	}).(FortimanagerFirewallSecurityPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallSecurityPolicyInput)(nil)).Elem(), &FortimanagerFirewallSecurityPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallSecurityPolicyArrayInput)(nil)).Elem(), FortimanagerFirewallSecurityPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerFirewallSecurityPolicyMapInput)(nil)).Elem(), FortimanagerFirewallSecurityPolicyMap{})
 	pulumi.RegisterOutputType(FortimanagerFirewallSecurityPolicyOutput{})
-	pulumi.RegisterOutputType(FortimanagerFirewallSecurityPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerFirewallSecurityPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerFirewallSecurityPolicyMapOutput{})
 }

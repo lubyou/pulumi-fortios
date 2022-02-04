@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemIpv6Tunnel`.
 func GetSystemIpv6TunnelList(ctx *pulumi.Context, args *GetSystemIpv6TunnelListArgs, opts ...pulumi.InvokeOption) (*GetSystemIpv6TunnelListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemIpv6TunnelListResult
 	err := ctx.Invoke("fortios:index/getSystemIpv6TunnelList:GetSystemIpv6TunnelList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemIpv6TunnelListResult struct {
 	// A list of the `SystemIpv6Tunnel`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemIpv6TunnelListOutput(ctx *pulumi.Context, args GetSystemIpv6TunnelListOutputArgs, opts ...pulumi.InvokeOption) GetSystemIpv6TunnelListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemIpv6TunnelListResult, error) {
+			args := v.(GetSystemIpv6TunnelListArgs)
+			r, err := GetSystemIpv6TunnelList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemIpv6TunnelListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemIpv6TunnelList.
+type GetSystemIpv6TunnelListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemIpv6TunnelListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemIpv6TunnelListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemIpv6TunnelList.
+type GetSystemIpv6TunnelListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemIpv6TunnelListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemIpv6TunnelListResult)(nil)).Elem()
+}
+
+func (o GetSystemIpv6TunnelListResultOutput) ToGetSystemIpv6TunnelListResultOutput() GetSystemIpv6TunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemIpv6TunnelListResultOutput) ToGetSystemIpv6TunnelListResultOutputWithContext(ctx context.Context) GetSystemIpv6TunnelListResultOutput {
+	return o
+}
+
+func (o GetSystemIpv6TunnelListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemIpv6TunnelListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemIpv6TunnelListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemIpv6TunnelListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemIpv6Tunnel`.
+func (o GetSystemIpv6TunnelListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemIpv6TunnelListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemIpv6TunnelListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemIpv6TunnelListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemIpv6TunnelListResultOutput{})
 }

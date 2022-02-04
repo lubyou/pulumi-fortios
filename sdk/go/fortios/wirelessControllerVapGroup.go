@@ -43,6 +43,7 @@ func NewWirelessControllerVapGroup(ctx *pulumi.Context,
 		args = &WirelessControllerVapGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerVapGroup
 	err := ctx.RegisterResource("fortios:index/wirelessControllerVapGroup:WirelessControllerVapGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type WirelessControllerVapGroupInput interface {
 }
 
 func (*WirelessControllerVapGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerVapGroup)(nil))
+	return reflect.TypeOf((**WirelessControllerVapGroup)(nil)).Elem()
 }
 
 func (i *WirelessControllerVapGroup) ToWirelessControllerVapGroupOutput() WirelessControllerVapGroupOutput {
@@ -142,35 +143,6 @@ func (i *WirelessControllerVapGroup) ToWirelessControllerVapGroupOutput() Wirele
 
 func (i *WirelessControllerVapGroup) ToWirelessControllerVapGroupOutputWithContext(ctx context.Context) WirelessControllerVapGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapGroupOutput)
-}
-
-func (i *WirelessControllerVapGroup) ToWirelessControllerVapGroupPtrOutput() WirelessControllerVapGroupPtrOutput {
-	return i.ToWirelessControllerVapGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerVapGroup) ToWirelessControllerVapGroupPtrOutputWithContext(ctx context.Context) WirelessControllerVapGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapGroupPtrOutput)
-}
-
-type WirelessControllerVapGroupPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerVapGroupPtrOutput() WirelessControllerVapGroupPtrOutput
-	ToWirelessControllerVapGroupPtrOutputWithContext(ctx context.Context) WirelessControllerVapGroupPtrOutput
-}
-
-type wirelessControllerVapGroupPtrType WirelessControllerVapGroupArgs
-
-func (*wirelessControllerVapGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerVapGroup)(nil))
-}
-
-func (i *wirelessControllerVapGroupPtrType) ToWirelessControllerVapGroupPtrOutput() WirelessControllerVapGroupPtrOutput {
-	return i.ToWirelessControllerVapGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerVapGroupPtrType) ToWirelessControllerVapGroupPtrOutputWithContext(ctx context.Context) WirelessControllerVapGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapGroupPtrOutput)
 }
 
 // WirelessControllerVapGroupArrayInput is an input type that accepts WirelessControllerVapGroupArray and WirelessControllerVapGroupArrayOutput values.
@@ -187,7 +159,7 @@ type WirelessControllerVapGroupArrayInput interface {
 type WirelessControllerVapGroupArray []WirelessControllerVapGroupInput
 
 func (WirelessControllerVapGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerVapGroup)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerVapGroup)(nil)).Elem()
 }
 
 func (i WirelessControllerVapGroupArray) ToWirelessControllerVapGroupArrayOutput() WirelessControllerVapGroupArrayOutput {
@@ -212,7 +184,7 @@ type WirelessControllerVapGroupMapInput interface {
 type WirelessControllerVapGroupMap map[string]WirelessControllerVapGroupInput
 
 func (WirelessControllerVapGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerVapGroup)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerVapGroup)(nil)).Elem()
 }
 
 func (i WirelessControllerVapGroupMap) ToWirelessControllerVapGroupMapOutput() WirelessControllerVapGroupMapOutput {
@@ -223,12 +195,10 @@ func (i WirelessControllerVapGroupMap) ToWirelessControllerVapGroupMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapGroupMapOutput)
 }
 
-type WirelessControllerVapGroupOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerVapGroupOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerVapGroup)(nil))
+	return reflect.TypeOf((**WirelessControllerVapGroup)(nil)).Elem()
 }
 
 func (o WirelessControllerVapGroupOutput) ToWirelessControllerVapGroupOutput() WirelessControllerVapGroupOutput {
@@ -239,36 +209,10 @@ func (o WirelessControllerVapGroupOutput) ToWirelessControllerVapGroupOutputWith
 	return o
 }
 
-func (o WirelessControllerVapGroupOutput) ToWirelessControllerVapGroupPtrOutput() WirelessControllerVapGroupPtrOutput {
-	return o.ToWirelessControllerVapGroupPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerVapGroupOutput) ToWirelessControllerVapGroupPtrOutputWithContext(ctx context.Context) WirelessControllerVapGroupPtrOutput {
-	return o.ApplyT(func(v WirelessControllerVapGroup) *WirelessControllerVapGroup {
-		return &v
-	}).(WirelessControllerVapGroupPtrOutput)
-}
-
-type WirelessControllerVapGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerVapGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerVapGroup)(nil))
-}
-
-func (o WirelessControllerVapGroupPtrOutput) ToWirelessControllerVapGroupPtrOutput() WirelessControllerVapGroupPtrOutput {
-	return o
-}
-
-func (o WirelessControllerVapGroupPtrOutput) ToWirelessControllerVapGroupPtrOutputWithContext(ctx context.Context) WirelessControllerVapGroupPtrOutput {
-	return o
-}
-
 type WirelessControllerVapGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerVapGroup)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerVapGroup)(nil)).Elem()
 }
 
 func (o WirelessControllerVapGroupArrayOutput) ToWirelessControllerVapGroupArrayOutput() WirelessControllerVapGroupArrayOutput {
@@ -280,15 +224,15 @@ func (o WirelessControllerVapGroupArrayOutput) ToWirelessControllerVapGroupArray
 }
 
 func (o WirelessControllerVapGroupArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerVapGroup {
-		return vs[0].([]WirelessControllerVapGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerVapGroup {
+		return vs[0].([]*WirelessControllerVapGroup)[vs[1].(int)]
 	}).(WirelessControllerVapGroupOutput)
 }
 
 type WirelessControllerVapGroupMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerVapGroup)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerVapGroup)(nil)).Elem()
 }
 
 func (o WirelessControllerVapGroupMapOutput) ToWirelessControllerVapGroupMapOutput() WirelessControllerVapGroupMapOutput {
@@ -300,14 +244,16 @@ func (o WirelessControllerVapGroupMapOutput) ToWirelessControllerVapGroupMapOutp
 }
 
 func (o WirelessControllerVapGroupMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerVapGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerVapGroup {
-		return vs[0].(map[string]WirelessControllerVapGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerVapGroup {
+		return vs[0].(map[string]*WirelessControllerVapGroup)[vs[1].(string)]
 	}).(WirelessControllerVapGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapGroupInput)(nil)).Elem(), &WirelessControllerVapGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapGroupArrayInput)(nil)).Elem(), WirelessControllerVapGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapGroupMapInput)(nil)).Elem(), WirelessControllerVapGroupMap{})
 	pulumi.RegisterOutputType(WirelessControllerVapGroupOutput{})
-	pulumi.RegisterOutputType(WirelessControllerVapGroupPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerVapGroupArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerVapGroupMapOutput{})
 }

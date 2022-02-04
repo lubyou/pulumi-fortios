@@ -214,82 +214,80 @@ export class LogDiskSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args: LogDiskSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogDiskSettingArgs | LogDiskSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogDiskSettingState | undefined;
-            inputs["diskfull"] = state ? state.diskfull : undefined;
-            inputs["dlpArchiveQuota"] = state ? state.dlpArchiveQuota : undefined;
-            inputs["fullFinalWarningThreshold"] = state ? state.fullFinalWarningThreshold : undefined;
-            inputs["fullFirstWarningThreshold"] = state ? state.fullFirstWarningThreshold : undefined;
-            inputs["fullSecondWarningThreshold"] = state ? state.fullSecondWarningThreshold : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ipsArchive"] = state ? state.ipsArchive : undefined;
-            inputs["logQuota"] = state ? state.logQuota : undefined;
-            inputs["maxLogFileSize"] = state ? state.maxLogFileSize : undefined;
-            inputs["maxPolicyPacketCaptureSize"] = state ? state.maxPolicyPacketCaptureSize : undefined;
-            inputs["maximumLogAge"] = state ? state.maximumLogAge : undefined;
-            inputs["reportQuota"] = state ? state.reportQuota : undefined;
-            inputs["rollDay"] = state ? state.rollDay : undefined;
-            inputs["rollSchedule"] = state ? state.rollSchedule : undefined;
-            inputs["rollTime"] = state ? state.rollTime : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["upload"] = state ? state.upload : undefined;
-            inputs["uploadDeleteFiles"] = state ? state.uploadDeleteFiles : undefined;
-            inputs["uploadDestination"] = state ? state.uploadDestination : undefined;
-            inputs["uploadSslConn"] = state ? state.uploadSslConn : undefined;
-            inputs["uploaddir"] = state ? state.uploaddir : undefined;
-            inputs["uploadip"] = state ? state.uploadip : undefined;
-            inputs["uploadpass"] = state ? state.uploadpass : undefined;
-            inputs["uploadport"] = state ? state.uploadport : undefined;
-            inputs["uploadsched"] = state ? state.uploadsched : undefined;
-            inputs["uploadtime"] = state ? state.uploadtime : undefined;
-            inputs["uploadtype"] = state ? state.uploadtype : undefined;
-            inputs["uploaduser"] = state ? state.uploaduser : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["diskfull"] = state ? state.diskfull : undefined;
+            resourceInputs["dlpArchiveQuota"] = state ? state.dlpArchiveQuota : undefined;
+            resourceInputs["fullFinalWarningThreshold"] = state ? state.fullFinalWarningThreshold : undefined;
+            resourceInputs["fullFirstWarningThreshold"] = state ? state.fullFirstWarningThreshold : undefined;
+            resourceInputs["fullSecondWarningThreshold"] = state ? state.fullSecondWarningThreshold : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ipsArchive"] = state ? state.ipsArchive : undefined;
+            resourceInputs["logQuota"] = state ? state.logQuota : undefined;
+            resourceInputs["maxLogFileSize"] = state ? state.maxLogFileSize : undefined;
+            resourceInputs["maxPolicyPacketCaptureSize"] = state ? state.maxPolicyPacketCaptureSize : undefined;
+            resourceInputs["maximumLogAge"] = state ? state.maximumLogAge : undefined;
+            resourceInputs["reportQuota"] = state ? state.reportQuota : undefined;
+            resourceInputs["rollDay"] = state ? state.rollDay : undefined;
+            resourceInputs["rollSchedule"] = state ? state.rollSchedule : undefined;
+            resourceInputs["rollTime"] = state ? state.rollTime : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["upload"] = state ? state.upload : undefined;
+            resourceInputs["uploadDeleteFiles"] = state ? state.uploadDeleteFiles : undefined;
+            resourceInputs["uploadDestination"] = state ? state.uploadDestination : undefined;
+            resourceInputs["uploadSslConn"] = state ? state.uploadSslConn : undefined;
+            resourceInputs["uploaddir"] = state ? state.uploaddir : undefined;
+            resourceInputs["uploadip"] = state ? state.uploadip : undefined;
+            resourceInputs["uploadpass"] = state ? state.uploadpass : undefined;
+            resourceInputs["uploadport"] = state ? state.uploadport : undefined;
+            resourceInputs["uploadsched"] = state ? state.uploadsched : undefined;
+            resourceInputs["uploadtime"] = state ? state.uploadtime : undefined;
+            resourceInputs["uploadtype"] = state ? state.uploadtype : undefined;
+            resourceInputs["uploaduser"] = state ? state.uploaduser : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogDiskSettingArgs | undefined;
             if ((!args || args.status === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'status'");
             }
-            inputs["diskfull"] = args ? args.diskfull : undefined;
-            inputs["dlpArchiveQuota"] = args ? args.dlpArchiveQuota : undefined;
-            inputs["fullFinalWarningThreshold"] = args ? args.fullFinalWarningThreshold : undefined;
-            inputs["fullFirstWarningThreshold"] = args ? args.fullFirstWarningThreshold : undefined;
-            inputs["fullSecondWarningThreshold"] = args ? args.fullSecondWarningThreshold : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ipsArchive"] = args ? args.ipsArchive : undefined;
-            inputs["logQuota"] = args ? args.logQuota : undefined;
-            inputs["maxLogFileSize"] = args ? args.maxLogFileSize : undefined;
-            inputs["maxPolicyPacketCaptureSize"] = args ? args.maxPolicyPacketCaptureSize : undefined;
-            inputs["maximumLogAge"] = args ? args.maximumLogAge : undefined;
-            inputs["reportQuota"] = args ? args.reportQuota : undefined;
-            inputs["rollDay"] = args ? args.rollDay : undefined;
-            inputs["rollSchedule"] = args ? args.rollSchedule : undefined;
-            inputs["rollTime"] = args ? args.rollTime : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["upload"] = args ? args.upload : undefined;
-            inputs["uploadDeleteFiles"] = args ? args.uploadDeleteFiles : undefined;
-            inputs["uploadDestination"] = args ? args.uploadDestination : undefined;
-            inputs["uploadSslConn"] = args ? args.uploadSslConn : undefined;
-            inputs["uploaddir"] = args ? args.uploaddir : undefined;
-            inputs["uploadip"] = args ? args.uploadip : undefined;
-            inputs["uploadpass"] = args ? args.uploadpass : undefined;
-            inputs["uploadport"] = args ? args.uploadport : undefined;
-            inputs["uploadsched"] = args ? args.uploadsched : undefined;
-            inputs["uploadtime"] = args ? args.uploadtime : undefined;
-            inputs["uploadtype"] = args ? args.uploadtype : undefined;
-            inputs["uploaduser"] = args ? args.uploaduser : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["diskfull"] = args ? args.diskfull : undefined;
+            resourceInputs["dlpArchiveQuota"] = args ? args.dlpArchiveQuota : undefined;
+            resourceInputs["fullFinalWarningThreshold"] = args ? args.fullFinalWarningThreshold : undefined;
+            resourceInputs["fullFirstWarningThreshold"] = args ? args.fullFirstWarningThreshold : undefined;
+            resourceInputs["fullSecondWarningThreshold"] = args ? args.fullSecondWarningThreshold : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ipsArchive"] = args ? args.ipsArchive : undefined;
+            resourceInputs["logQuota"] = args ? args.logQuota : undefined;
+            resourceInputs["maxLogFileSize"] = args ? args.maxLogFileSize : undefined;
+            resourceInputs["maxPolicyPacketCaptureSize"] = args ? args.maxPolicyPacketCaptureSize : undefined;
+            resourceInputs["maximumLogAge"] = args ? args.maximumLogAge : undefined;
+            resourceInputs["reportQuota"] = args ? args.reportQuota : undefined;
+            resourceInputs["rollDay"] = args ? args.rollDay : undefined;
+            resourceInputs["rollSchedule"] = args ? args.rollSchedule : undefined;
+            resourceInputs["rollTime"] = args ? args.rollTime : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["upload"] = args ? args.upload : undefined;
+            resourceInputs["uploadDeleteFiles"] = args ? args.uploadDeleteFiles : undefined;
+            resourceInputs["uploadDestination"] = args ? args.uploadDestination : undefined;
+            resourceInputs["uploadSslConn"] = args ? args.uploadSslConn : undefined;
+            resourceInputs["uploaddir"] = args ? args.uploaddir : undefined;
+            resourceInputs["uploadip"] = args ? args.uploadip : undefined;
+            resourceInputs["uploadpass"] = args ? args.uploadpass : undefined;
+            resourceInputs["uploadport"] = args ? args.uploadport : undefined;
+            resourceInputs["uploadsched"] = args ? args.uploadsched : undefined;
+            resourceInputs["uploadtime"] = args ? args.uploadtime : undefined;
+            resourceInputs["uploadtype"] = args ? args.uploadtype : undefined;
+            resourceInputs["uploaduser"] = args ? args.uploaduser : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogDiskSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogDiskSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

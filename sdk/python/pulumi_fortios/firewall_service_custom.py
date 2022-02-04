@@ -23,6 +23,7 @@ class FirewallServiceCustomArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
@@ -37,6 +38,7 @@ class FirewallServiceCustomArgs:
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_portrange: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
@@ -52,6 +54,7 @@ class FirewallServiceCustomArgs:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
@@ -66,6 +69,7 @@ class FirewallServiceCustomArgs:
         :param pulumi.Input[int] tcp_halfclose_timer: Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[int] tcp_halfopen_timer: Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
+        :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
         :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
@@ -88,6 +92,8 @@ class FirewallServiceCustomArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
         if helper is not None:
@@ -116,6 +122,8 @@ class FirewallServiceCustomArgs:
             pulumi.set(__self__, "tcp_halfopen_timer", tcp_halfopen_timer)
         if tcp_portrange is not None:
             pulumi.set(__self__, "tcp_portrange", tcp_portrange)
+        if tcp_rst_timer is not None:
+            pulumi.set(__self__, "tcp_rst_timer", tcp_rst_timer)
         if tcp_timewait_timer is not None:
             pulumi.set(__self__, "tcp_timewait_timer", tcp_timewait_timer)
         if udp_idle_timer is not None:
@@ -222,6 +230,18 @@ class FirewallServiceCustomArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -390,6 +410,18 @@ class FirewallServiceCustomArgs:
     @tcp_portrange.setter
     def tcp_portrange(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tcp_portrange", value)
+
+    @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
+
+    @tcp_rst_timer.setter
+    def tcp_rst_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tcp_rst_timer", value)
 
     @property
     @pulumi.getter(name="tcpTimewaitTimer")
@@ -463,6 +495,7 @@ class _FirewallServiceCustomState:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
@@ -477,6 +510,7 @@ class _FirewallServiceCustomState:
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_portrange: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
@@ -492,6 +526,7 @@ class _FirewallServiceCustomState:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
@@ -506,6 +541,7 @@ class _FirewallServiceCustomState:
         :param pulumi.Input[int] tcp_halfclose_timer: Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[int] tcp_halfopen_timer: Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
+        :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
         :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
@@ -528,6 +564,8 @@ class _FirewallServiceCustomState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn is not None:
             pulumi.set(__self__, "fqdn", fqdn)
         if helper is not None:
@@ -556,6 +594,8 @@ class _FirewallServiceCustomState:
             pulumi.set(__self__, "tcp_halfopen_timer", tcp_halfopen_timer)
         if tcp_portrange is not None:
             pulumi.set(__self__, "tcp_portrange", tcp_portrange)
+        if tcp_rst_timer is not None:
+            pulumi.set(__self__, "tcp_rst_timer", tcp_rst_timer)
         if tcp_timewait_timer is not None:
             pulumi.set(__self__, "tcp_timewait_timer", tcp_timewait_timer)
         if udp_idle_timer is not None:
@@ -662,6 +702,18 @@ class _FirewallServiceCustomState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -830,6 +882,18 @@ class _FirewallServiceCustomState:
     @tcp_portrange.setter
     def tcp_portrange(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "tcp_portrange", value)
+
+    @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> Optional[pulumi.Input[int]]:
+        """
+        Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
+
+    @tcp_rst_timer.setter
+    def tcp_rst_timer(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "tcp_rst_timer", value)
 
     @property
     @pulumi.getter(name="tcpTimewaitTimer")
@@ -905,6 +969,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
@@ -919,6 +984,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_portrange: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
@@ -972,6 +1038,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
@@ -986,6 +1053,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         :param pulumi.Input[int] tcp_halfclose_timer: Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[int] tcp_halfopen_timer: Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
+        :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
         :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
@@ -1058,6 +1126,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  fqdn: Optional[pulumi.Input[str]] = None,
                  helper: Optional[pulumi.Input[str]] = None,
                  icmpcode: Optional[pulumi.Input[int]] = None,
@@ -1072,6 +1141,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
                  tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
                  tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
                  tcp_portrange: Optional[pulumi.Input[str]] = None,
+                 tcp_rst_timer: Optional[pulumi.Input[int]] = None,
                  tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
                  udp_idle_timer: Optional[pulumi.Input[int]] = None,
                  udp_portrange: Optional[pulumi.Input[str]] = None,
@@ -1084,6 +1154,8 @@ class FirewallServiceCustom(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1097,6 +1169,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["fqdn"] = fqdn
             __props__.__dict__["helper"] = helper
             __props__.__dict__["icmpcode"] = icmpcode
@@ -1111,6 +1184,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
             __props__.__dict__["tcp_halfclose_timer"] = tcp_halfclose_timer
             __props__.__dict__["tcp_halfopen_timer"] = tcp_halfopen_timer
             __props__.__dict__["tcp_portrange"] = tcp_portrange
+            __props__.__dict__["tcp_rst_timer"] = tcp_rst_timer
             __props__.__dict__["tcp_timewait_timer"] = tcp_timewait_timer
             __props__.__dict__["udp_idle_timer"] = udp_idle_timer
             __props__.__dict__["udp_portrange"] = udp_portrange
@@ -1134,6 +1208,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             fqdn: Optional[pulumi.Input[str]] = None,
             helper: Optional[pulumi.Input[str]] = None,
             icmpcode: Optional[pulumi.Input[int]] = None,
@@ -1148,6 +1223,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
             tcp_halfclose_timer: Optional[pulumi.Input[int]] = None,
             tcp_halfopen_timer: Optional[pulumi.Input[int]] = None,
             tcp_portrange: Optional[pulumi.Input[str]] = None,
+            tcp_rst_timer: Optional[pulumi.Input[int]] = None,
             tcp_timewait_timer: Optional[pulumi.Input[int]] = None,
             udp_idle_timer: Optional[pulumi.Input[int]] = None,
             udp_portrange: Optional[pulumi.Input[str]] = None,
@@ -1168,6 +1244,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fqdn: Fully qualified domain name.
         :param pulumi.Input[str] helper: Helper name.
         :param pulumi.Input[int] icmpcode: ICMP code.
@@ -1182,6 +1259,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         :param pulumi.Input[int] tcp_halfclose_timer: Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[int] tcp_halfopen_timer: Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
         :param pulumi.Input[str] tcp_portrange: Multiple TCP port ranges.
+        :param pulumi.Input[int] tcp_rst_timer: Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
         :param pulumi.Input[int] tcp_timewait_timer: Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
         :param pulumi.Input[int] udp_idle_timer: UDP half close timeout (0 - 86400 sec, 0 = default).
         :param pulumi.Input[str] udp_portrange: Multiple UDP port ranges.
@@ -1200,6 +1278,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["fqdn"] = fqdn
         __props__.__dict__["helper"] = helper
         __props__.__dict__["icmpcode"] = icmpcode
@@ -1214,6 +1293,7 @@ class FirewallServiceCustom(pulumi.CustomResource):
         __props__.__dict__["tcp_halfclose_timer"] = tcp_halfclose_timer
         __props__.__dict__["tcp_halfopen_timer"] = tcp_halfopen_timer
         __props__.__dict__["tcp_portrange"] = tcp_portrange
+        __props__.__dict__["tcp_rst_timer"] = tcp_rst_timer
         __props__.__dict__["tcp_timewait_timer"] = tcp_timewait_timer
         __props__.__dict__["udp_idle_timer"] = udp_idle_timer
         __props__.__dict__["udp_portrange"] = udp_portrange
@@ -1284,6 +1364,14 @@ class FirewallServiceCustom(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -1396,6 +1484,14 @@ class FirewallServiceCustom(pulumi.CustomResource):
         Multiple TCP port ranges.
         """
         return pulumi.get(self, "tcp_portrange")
+
+    @property
+    @pulumi.getter(name="tcpRstTimer")
+    def tcp_rst_timer(self) -> pulumi.Output[int]:
+        """
+        Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+        """
+        return pulumi.get(self, "tcp_rst_timer")
 
     @property
     @pulumi.getter(name="tcpTimewaitTimer")

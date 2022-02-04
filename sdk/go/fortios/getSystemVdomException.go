@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system vdomexception
 func LookupSystemVdomException(ctx *pulumi.Context, args *LookupSystemVdomExceptionArgs, opts ...pulumi.InvokeOption) (*LookupSystemVdomExceptionResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemVdomExceptionResult
 	err := ctx.Invoke("fortios:index/getSystemVdomException:GetSystemVdomException", args, &rv, opts...)
 	if err != nil {
@@ -40,4 +44,78 @@ type LookupSystemVdomExceptionResult struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Names of the VDOMs. The structure of `vdom` block is documented below.
 	Vdoms []GetSystemVdomExceptionVdom `pulumi:"vdoms"`
+}
+
+func LookupSystemVdomExceptionOutput(ctx *pulumi.Context, args LookupSystemVdomExceptionOutputArgs, opts ...pulumi.InvokeOption) LookupSystemVdomExceptionResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemVdomExceptionResult, error) {
+			args := v.(LookupSystemVdomExceptionArgs)
+			r, err := LookupSystemVdomException(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemVdomExceptionResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemVdomException.
+type LookupSystemVdomExceptionOutputArgs struct {
+	// Specify the fosid of the desired system vdomexception.
+	Fosid pulumi.IntInput `pulumi:"fosid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemVdomExceptionOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemVdomExceptionArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemVdomException.
+type LookupSystemVdomExceptionResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemVdomExceptionResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemVdomExceptionResult)(nil)).Elem()
+}
+
+func (o LookupSystemVdomExceptionResultOutput) ToLookupSystemVdomExceptionResultOutput() LookupSystemVdomExceptionResultOutput {
+	return o
+}
+
+func (o LookupSystemVdomExceptionResultOutput) ToLookupSystemVdomExceptionResultOutputWithContext(ctx context.Context) LookupSystemVdomExceptionResultOutput {
+	return o
+}
+
+// Index <1-4096>.
+func (o LookupSystemVdomExceptionResultOutput) Fosid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) int { return v.Fosid }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemVdomExceptionResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of the configuration object that can be configured independently for all VDOMs.
+func (o LookupSystemVdomExceptionResultOutput) Object() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) string { return v.Object }).(pulumi.StringOutput)
+}
+
+// Object ID.
+func (o LookupSystemVdomExceptionResultOutput) Oid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) int { return v.Oid }).(pulumi.IntOutput)
+}
+
+// Determine whether the configuration object can be configured separately for all VDOMs or if some VDOMs share the same configuration.
+func (o LookupSystemVdomExceptionResultOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemVdomExceptionResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Names of the VDOMs. The structure of `vdom` block is documented below.
+func (o LookupSystemVdomExceptionResultOutput) Vdoms() GetSystemVdomExceptionVdomArrayOutput {
+	return o.ApplyT(func(v LookupSystemVdomExceptionResult) []GetSystemVdomExceptionVdom { return v.Vdoms }).(GetSystemVdomExceptionVdomArrayOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemVdomExceptionResultOutput{})
 }

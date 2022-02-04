@@ -18,6 +18,7 @@ class FirewallServiceGroupArgs:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallServiceGroupMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -27,6 +28,7 @@ class FirewallServiceGroupArgs:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallServiceGroupMemberArgs']]] members: Service objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] proxy: Enable/disable web proxy service group. Valid values: `enable`, `disable`.
@@ -38,6 +40,8 @@ class FirewallServiceGroupArgs:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -82,6 +86,18 @@ class FirewallServiceGroupArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -138,6 +154,7 @@ class _FirewallServiceGroupState:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallServiceGroupMemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -147,6 +164,7 @@ class _FirewallServiceGroupState:
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallServiceGroupMemberArgs']]] members: Service objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] proxy: Enable/disable web proxy service group. Valid values: `enable`, `disable`.
@@ -158,6 +176,8 @@ class _FirewallServiceGroupState:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -202,6 +222,18 @@ class _FirewallServiceGroupState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -260,6 +292,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -313,6 +346,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]] members: Service objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] proxy: Enable/disable web proxy service group. Valid values: `enable`, `disable`.
@@ -385,6 +419,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  proxy: Optional[pulumi.Input[str]] = None,
@@ -396,6 +431,8 @@ class FirewallServiceGroup(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -404,6 +441,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fabric_object"] = fabric_object
             __props__.__dict__["members"] = members
             __props__.__dict__["name"] = name
             __props__.__dict__["proxy"] = proxy
@@ -421,6 +459,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             proxy: Optional[pulumi.Input[str]] = None,
@@ -435,6 +474,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallServiceGroupMemberArgs']]]] members: Service objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Address name.
         :param pulumi.Input[str] proxy: Enable/disable web proxy service group. Valid values: `enable`, `disable`.
@@ -447,6 +487,7 @@ class FirewallServiceGroup(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["proxy"] = proxy
@@ -476,6 +517,14 @@ class FirewallServiceGroup(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter

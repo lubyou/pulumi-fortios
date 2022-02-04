@@ -103,33 +103,31 @@ export class SystemProbeResponse extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemProbeResponseArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemProbeResponseArgs | SystemProbeResponseState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemProbeResponseState | undefined;
-            inputs["httpProbeValue"] = state ? state.httpProbeValue : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["securityMode"] = state ? state.securityMode : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["ttlMode"] = state ? state.ttlMode : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["httpProbeValue"] = state ? state.httpProbeValue : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["securityMode"] = state ? state.securityMode : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["ttlMode"] = state ? state.ttlMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemProbeResponseArgs | undefined;
-            inputs["httpProbeValue"] = args ? args.httpProbeValue : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["securityMode"] = args ? args.securityMode : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["ttlMode"] = args ? args.ttlMode : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["httpProbeValue"] = args ? args.httpProbeValue : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["securityMode"] = args ? args.securityMode : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["ttlMode"] = args ? args.ttlMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemProbeResponse.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemProbeResponse.__pulumiType, name, resourceInputs, opts);
     }
 }
 

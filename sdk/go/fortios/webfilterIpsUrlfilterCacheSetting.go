@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -63,6 +63,7 @@ func NewWebfilterIpsUrlfilterCacheSetting(ctx *pulumi.Context,
 		args = &WebfilterIpsUrlfilterCacheSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterIpsUrlfilterCacheSetting
 	err := ctx.RegisterResource("fortios:index/webfilterIpsUrlfilterCacheSetting:WebfilterIpsUrlfilterCacheSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type WebfilterIpsUrlfilterCacheSettingInput interface {
 }
 
 func (*WebfilterIpsUrlfilterCacheSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterIpsUrlfilterCacheSetting)(nil))
+	return reflect.TypeOf((**WebfilterIpsUrlfilterCacheSetting)(nil)).Elem()
 }
 
 func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingOutput() WebfilterIpsUrlfilterCacheSettingOutput {
@@ -146,35 +147,6 @@ func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingO
 
 func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingOutput)
-}
-
-func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingPtrOutput() WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return i.ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterIpsUrlfilterCacheSetting) ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingPtrOutput)
-}
-
-type WebfilterIpsUrlfilterCacheSettingPtrInput interface {
-	pulumi.Input
-
-	ToWebfilterIpsUrlfilterCacheSettingPtrOutput() WebfilterIpsUrlfilterCacheSettingPtrOutput
-	ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingPtrOutput
-}
-
-type webfilterIpsUrlfilterCacheSettingPtrType WebfilterIpsUrlfilterCacheSettingArgs
-
-func (*webfilterIpsUrlfilterCacheSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterIpsUrlfilterCacheSetting)(nil))
-}
-
-func (i *webfilterIpsUrlfilterCacheSettingPtrType) ToWebfilterIpsUrlfilterCacheSettingPtrOutput() WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return i.ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterIpsUrlfilterCacheSettingPtrType) ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingPtrOutput)
 }
 
 // WebfilterIpsUrlfilterCacheSettingArrayInput is an input type that accepts WebfilterIpsUrlfilterCacheSettingArray and WebfilterIpsUrlfilterCacheSettingArrayOutput values.
@@ -191,7 +163,7 @@ type WebfilterIpsUrlfilterCacheSettingArrayInput interface {
 type WebfilterIpsUrlfilterCacheSettingArray []WebfilterIpsUrlfilterCacheSettingInput
 
 func (WebfilterIpsUrlfilterCacheSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterIpsUrlfilterCacheSetting)(nil))
+	return reflect.TypeOf((*[]*WebfilterIpsUrlfilterCacheSetting)(nil)).Elem()
 }
 
 func (i WebfilterIpsUrlfilterCacheSettingArray) ToWebfilterIpsUrlfilterCacheSettingArrayOutput() WebfilterIpsUrlfilterCacheSettingArrayOutput {
@@ -216,7 +188,7 @@ type WebfilterIpsUrlfilterCacheSettingMapInput interface {
 type WebfilterIpsUrlfilterCacheSettingMap map[string]WebfilterIpsUrlfilterCacheSettingInput
 
 func (WebfilterIpsUrlfilterCacheSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterIpsUrlfilterCacheSetting)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterIpsUrlfilterCacheSetting)(nil)).Elem()
 }
 
 func (i WebfilterIpsUrlfilterCacheSettingMap) ToWebfilterIpsUrlfilterCacheSettingMapOutput() WebfilterIpsUrlfilterCacheSettingMapOutput {
@@ -227,12 +199,10 @@ func (i WebfilterIpsUrlfilterCacheSettingMap) ToWebfilterIpsUrlfilterCacheSettin
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterCacheSettingMapOutput)
 }
 
-type WebfilterIpsUrlfilterCacheSettingOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterIpsUrlfilterCacheSettingOutput struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterCacheSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterIpsUrlfilterCacheSetting)(nil))
+	return reflect.TypeOf((**WebfilterIpsUrlfilterCacheSetting)(nil)).Elem()
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSettingOutput() WebfilterIpsUrlfilterCacheSettingOutput {
@@ -243,36 +213,10 @@ func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSet
 	return o
 }
 
-func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSettingPtrOutput() WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return o.ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterIpsUrlfilterCacheSettingOutput) ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return o.ApplyT(func(v WebfilterIpsUrlfilterCacheSetting) *WebfilterIpsUrlfilterCacheSetting {
-		return &v
-	}).(WebfilterIpsUrlfilterCacheSettingPtrOutput)
-}
-
-type WebfilterIpsUrlfilterCacheSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterIpsUrlfilterCacheSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterIpsUrlfilterCacheSetting)(nil))
-}
-
-func (o WebfilterIpsUrlfilterCacheSettingPtrOutput) ToWebfilterIpsUrlfilterCacheSettingPtrOutput() WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return o
-}
-
-func (o WebfilterIpsUrlfilterCacheSettingPtrOutput) ToWebfilterIpsUrlfilterCacheSettingPtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterCacheSettingPtrOutput {
-	return o
-}
-
 type WebfilterIpsUrlfilterCacheSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterCacheSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterIpsUrlfilterCacheSetting)(nil))
+	return reflect.TypeOf((*[]*WebfilterIpsUrlfilterCacheSetting)(nil)).Elem()
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingArrayOutput) ToWebfilterIpsUrlfilterCacheSettingArrayOutput() WebfilterIpsUrlfilterCacheSettingArrayOutput {
@@ -284,15 +228,15 @@ func (o WebfilterIpsUrlfilterCacheSettingArrayOutput) ToWebfilterIpsUrlfilterCac
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingArrayOutput) Index(i pulumi.IntInput) WebfilterIpsUrlfilterCacheSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterIpsUrlfilterCacheSetting {
-		return vs[0].([]WebfilterIpsUrlfilterCacheSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterIpsUrlfilterCacheSetting {
+		return vs[0].([]*WebfilterIpsUrlfilterCacheSetting)[vs[1].(int)]
 	}).(WebfilterIpsUrlfilterCacheSettingOutput)
 }
 
 type WebfilterIpsUrlfilterCacheSettingMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterCacheSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterIpsUrlfilterCacheSetting)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterIpsUrlfilterCacheSetting)(nil)).Elem()
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingMapOutput) ToWebfilterIpsUrlfilterCacheSettingMapOutput() WebfilterIpsUrlfilterCacheSettingMapOutput {
@@ -304,14 +248,16 @@ func (o WebfilterIpsUrlfilterCacheSettingMapOutput) ToWebfilterIpsUrlfilterCache
 }
 
 func (o WebfilterIpsUrlfilterCacheSettingMapOutput) MapIndex(k pulumi.StringInput) WebfilterIpsUrlfilterCacheSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterIpsUrlfilterCacheSetting {
-		return vs[0].(map[string]WebfilterIpsUrlfilterCacheSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterIpsUrlfilterCacheSetting {
+		return vs[0].(map[string]*WebfilterIpsUrlfilterCacheSetting)[vs[1].(string)]
 	}).(WebfilterIpsUrlfilterCacheSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterIpsUrlfilterCacheSettingInput)(nil)).Elem(), &WebfilterIpsUrlfilterCacheSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterIpsUrlfilterCacheSettingArrayInput)(nil)).Elem(), WebfilterIpsUrlfilterCacheSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterIpsUrlfilterCacheSettingMapInput)(nil)).Elem(), WebfilterIpsUrlfilterCacheSettingMap{})
 	pulumi.RegisterOutputType(WebfilterIpsUrlfilterCacheSettingOutput{})
-	pulumi.RegisterOutputType(WebfilterIpsUrlfilterCacheSettingPtrOutput{})
 	pulumi.RegisterOutputType(WebfilterIpsUrlfilterCacheSettingArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterIpsUrlfilterCacheSettingMapOutput{})
 }

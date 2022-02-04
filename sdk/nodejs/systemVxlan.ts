@@ -113,20 +113,20 @@ export class SystemVxlan extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemVxlanArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVxlanArgs | SystemVxlanState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVxlanState | undefined;
-            inputs["dstport"] = state ? state.dstport : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipVersion"] = state ? state.ipVersion : undefined;
-            inputs["multicastTtl"] = state ? state.multicastTtl : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["remoteIp6s"] = state ? state.remoteIp6s : undefined;
-            inputs["remoteIps"] = state ? state.remoteIps : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vni"] = state ? state.vni : undefined;
+            resourceInputs["dstport"] = state ? state.dstport : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipVersion"] = state ? state.ipVersion : undefined;
+            resourceInputs["multicastTtl"] = state ? state.multicastTtl : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["remoteIp6s"] = state ? state.remoteIp6s : undefined;
+            resourceInputs["remoteIps"] = state ? state.remoteIps : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vni"] = state ? state.vni : undefined;
         } else {
             const args = argsOrState as SystemVxlanArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
@@ -138,21 +138,19 @@ export class SystemVxlan extends pulumi.CustomResource {
             if ((!args || args.vni === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'vni'");
             }
-            inputs["dstport"] = args ? args.dstport : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipVersion"] = args ? args.ipVersion : undefined;
-            inputs["multicastTtl"] = args ? args.multicastTtl : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["remoteIp6s"] = args ? args.remoteIp6s : undefined;
-            inputs["remoteIps"] = args ? args.remoteIps : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vni"] = args ? args.vni : undefined;
+            resourceInputs["dstport"] = args ? args.dstport : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipVersion"] = args ? args.ipVersion : undefined;
+            resourceInputs["multicastTtl"] = args ? args.multicastTtl : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["remoteIp6s"] = args ? args.remoteIp6s : undefined;
+            resourceInputs["remoteIps"] = args ? args.remoteIps : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vni"] = args ? args.vni : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVxlan.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVxlan.__pulumiType, name, resourceInputs, opts);
     }
 }
 

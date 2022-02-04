@@ -22,8 +22,11 @@ class FirewallLocalInPolicy6Args:
                  srcaddrs: pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6SrcaddrArgs']]],
                  action: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
+                 service_negate: Optional[pulumi.Input[str]] = None,
+                 srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -36,8 +39,11 @@ class FirewallLocalInPolicy6Args:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6SrcaddrArgs']]] srcaddrs: Source address object from available options. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] action: Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
+        :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -51,10 +57,16 @@ class FirewallLocalInPolicy6Args:
             pulumi.set(__self__, "action", action)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if dstaddr_negate is not None:
+            pulumi.set(__self__, "dstaddr_negate", dstaddr_negate)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if policyid is not None:
             pulumi.set(__self__, "policyid", policyid)
+        if service_negate is not None:
+            pulumi.set(__self__, "service_negate", service_negate)
+        if srcaddr_negate is not None:
+            pulumi.set(__self__, "srcaddr_negate", srcaddr_negate)
         if status is not None:
             pulumi.set(__self__, "status", status)
         if uuid is not None:
@@ -147,6 +159,18 @@ class FirewallLocalInPolicy6Args:
         pulumi.set(self, "comments", value)
 
     @property
+    @pulumi.getter(name="dstaddrNegate")
+    def dstaddr_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dstaddr_negate")
+
+    @dstaddr_negate.setter
+    def dstaddr_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dstaddr_negate", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -169,6 +193,30 @@ class FirewallLocalInPolicy6Args:
     @policyid.setter
     def policyid(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "policyid", value)
+
+    @property
+    @pulumi.getter(name="serviceNegate")
+    def service_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "service_negate")
+
+    @service_negate.setter
+    def service_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_negate", value)
+
+    @property
+    @pulumi.getter(name="srcaddrNegate")
+    def srcaddr_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "srcaddr_negate")
+
+    @srcaddr_negate.setter
+    def srcaddr_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srcaddr_negate", value)
 
     @property
     @pulumi.getter
@@ -212,12 +260,15 @@ class _FirewallLocalInPolicy6State:
     def __init__(__self__, *,
                  action: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6DstaddrArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6ServiceArgs']]]] = None,
+                 srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6SrcaddrArgs']]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -226,12 +277,15 @@ class _FirewallLocalInPolicy6State:
         Input properties used for looking up and filtering FirewallLocalInPolicy6 resources.
         :param pulumi.Input[str] action: Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6DstaddrArgs']]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] schedule: Schedule object from available options.
+        :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6ServiceArgs']]] services: Service object from available options. Separate names with a space. The structure of `service` block is documented below.
+        :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6SrcaddrArgs']]] srcaddrs: Source address object from available options. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -241,6 +295,8 @@ class _FirewallLocalInPolicy6State:
             pulumi.set(__self__, "action", action)
         if comments is not None:
             pulumi.set(__self__, "comments", comments)
+        if dstaddr_negate is not None:
+            pulumi.set(__self__, "dstaddr_negate", dstaddr_negate)
         if dstaddrs is not None:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dynamic_sort_subtable is not None:
@@ -251,8 +307,12 @@ class _FirewallLocalInPolicy6State:
             pulumi.set(__self__, "policyid", policyid)
         if schedule is not None:
             pulumi.set(__self__, "schedule", schedule)
+        if service_negate is not None:
+            pulumi.set(__self__, "service_negate", service_negate)
         if services is not None:
             pulumi.set(__self__, "services", services)
+        if srcaddr_negate is not None:
+            pulumi.set(__self__, "srcaddr_negate", srcaddr_negate)
         if srcaddrs is not None:
             pulumi.set(__self__, "srcaddrs", srcaddrs)
         if status is not None:
@@ -285,6 +345,18 @@ class _FirewallLocalInPolicy6State:
     @comments.setter
     def comments(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "comments", value)
+
+    @property
+    @pulumi.getter(name="dstaddrNegate")
+    def dstaddr_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dstaddr_negate")
+
+    @dstaddr_negate.setter
+    def dstaddr_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dstaddr_negate", value)
 
     @property
     @pulumi.getter
@@ -347,6 +419,18 @@ class _FirewallLocalInPolicy6State:
         pulumi.set(self, "schedule", value)
 
     @property
+    @pulumi.getter(name="serviceNegate")
+    def service_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "service_negate")
+
+    @service_negate.setter
+    def service_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "service_negate", value)
+
+    @property
     @pulumi.getter
     def services(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6ServiceArgs']]]]:
         """
@@ -357,6 +441,18 @@ class _FirewallLocalInPolicy6State:
     @services.setter
     def services(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallLocalInPolicy6ServiceArgs']]]]):
         pulumi.set(self, "services", value)
+
+    @property
+    @pulumi.getter(name="srcaddrNegate")
+    def srcaddr_negate(self) -> Optional[pulumi.Input[str]]:
+        """
+        When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "srcaddr_negate")
+
+    @srcaddr_negate.setter
+    def srcaddr_negate(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "srcaddr_negate", value)
 
     @property
     @pulumi.getter
@@ -414,12 +510,15 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6ServiceArgs']]]]] = None,
+                 srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6SrcaddrArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -465,12 +564,15 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] action: Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] schedule: Schedule object from available options.
+        :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6ServiceArgs']]]] services: Service object from available options. Separate names with a space. The structure of `service` block is documented below.
+        :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6SrcaddrArgs']]]] srcaddrs: Source address object from available options. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -535,12 +637,15 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  action: Optional[pulumi.Input[str]] = None,
                  comments: Optional[pulumi.Input[str]] = None,
+                 dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  intf: Optional[pulumi.Input[str]] = None,
                  policyid: Optional[pulumi.Input[int]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
+                 service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6ServiceArgs']]]]] = None,
+                 srcaddr_negate: Optional[pulumi.Input[str]] = None,
                  srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6SrcaddrArgs']]]]] = None,
                  status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -552,6 +657,8 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -559,6 +666,7 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
 
             __props__.__dict__["action"] = action
             __props__.__dict__["comments"] = comments
+            __props__.__dict__["dstaddr_negate"] = dstaddr_negate
             if dstaddrs is None and not opts.urn:
                 raise TypeError("Missing required property 'dstaddrs'")
             __props__.__dict__["dstaddrs"] = dstaddrs
@@ -570,9 +678,11 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
             if schedule is None and not opts.urn:
                 raise TypeError("Missing required property 'schedule'")
             __props__.__dict__["schedule"] = schedule
+            __props__.__dict__["service_negate"] = service_negate
             if services is None and not opts.urn:
                 raise TypeError("Missing required property 'services'")
             __props__.__dict__["services"] = services
+            __props__.__dict__["srcaddr_negate"] = srcaddr_negate
             if srcaddrs is None and not opts.urn:
                 raise TypeError("Missing required property 'srcaddrs'")
             __props__.__dict__["srcaddrs"] = srcaddrs
@@ -591,12 +701,15 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             action: Optional[pulumi.Input[str]] = None,
             comments: Optional[pulumi.Input[str]] = None,
+            dstaddr_negate: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             intf: Optional[pulumi.Input[str]] = None,
             policyid: Optional[pulumi.Input[int]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
+            service_negate: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6ServiceArgs']]]]] = None,
+            srcaddr_negate: Optional[pulumi.Input[str]] = None,
             srcaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6SrcaddrArgs']]]]] = None,
             status: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
@@ -610,12 +723,15 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] action: Action performed on traffic matching the policy (default = deny). Valid values: `accept`, `deny`.
         :param pulumi.Input[str] comments: Comment.
+        :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6DstaddrArgs']]]] dstaddrs: Destination address object from available options. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] intf: Incoming interface name from available options.
         :param pulumi.Input[int] policyid: User defined local in policy ID.
         :param pulumi.Input[str] schedule: Schedule object from available options.
+        :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6ServiceArgs']]]] services: Service object from available options. Separate names with a space. The structure of `service` block is documented below.
+        :param pulumi.Input[str] srcaddr_negate: When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallLocalInPolicy6SrcaddrArgs']]]] srcaddrs: Source address object from available options. The structure of `srcaddr` block is documented below.
         :param pulumi.Input[str] status: Enable/disable this local-in policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -627,12 +743,15 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
 
         __props__.__dict__["action"] = action
         __props__.__dict__["comments"] = comments
+        __props__.__dict__["dstaddr_negate"] = dstaddr_negate
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["intf"] = intf
         __props__.__dict__["policyid"] = policyid
         __props__.__dict__["schedule"] = schedule
+        __props__.__dict__["service_negate"] = service_negate
         __props__.__dict__["services"] = services
+        __props__.__dict__["srcaddr_negate"] = srcaddr_negate
         __props__.__dict__["srcaddrs"] = srcaddrs
         __props__.__dict__["status"] = status
         __props__.__dict__["uuid"] = uuid
@@ -654,6 +773,14 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comments")
+
+    @property
+    @pulumi.getter(name="dstaddrNegate")
+    def dstaddr_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dstaddr_negate")
 
     @property
     @pulumi.getter
@@ -696,12 +823,28 @@ class FirewallLocalInPolicy6(pulumi.CustomResource):
         return pulumi.get(self, "schedule")
 
     @property
+    @pulumi.getter(name="serviceNegate")
+    def service_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "service_negate")
+
+    @property
     @pulumi.getter
     def services(self) -> pulumi.Output[Sequence['outputs.FirewallLocalInPolicy6Service']]:
         """
         Service object from available options. Separate names with a space. The structure of `service` block is documented below.
         """
         return pulumi.get(self, "services")
+
+    @property
+    @pulumi.getter(name="srcaddrNegate")
+    def srcaddr_negate(self) -> pulumi.Output[str]:
+        """
+        When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "srcaddr_negate")
 
     @property
     @pulumi.getter

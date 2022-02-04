@@ -40,6 +40,7 @@ class RouterbgpNeighborArgs:
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
                  capability_route_refresh: Optional[pulumi.Input[str]] = None,
+                 conditional_advertise6s: Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]]] = None,
                  conditional_advertises: Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertiseArgs']]]] = None,
                  connect_timer: Optional[pulumi.Input[int]] = None,
                  default_originate_routemap: Optional[pulumi.Input[str]] = None,
@@ -135,6 +136,7 @@ class RouterbgpNeighborArgs:
         :param pulumi.Input[str] capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]] conditional_advertise6s: IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertiseArgs']]] conditional_advertises: Conditional advertisement. The structure of `conditional_advertise` block is documented below.
         :param pulumi.Input[int] connect_timer: Interval (sec) for connect timer.
         :param pulumi.Input[str] default_originate_routemap: Route map to specify criteria to originate IPv4 default.
@@ -253,6 +255,8 @@ class RouterbgpNeighborArgs:
             pulumi.set(__self__, "capability_orf6", capability_orf6)
         if capability_route_refresh is not None:
             pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
+        if conditional_advertise6s is not None:
+            pulumi.set(__self__, "conditional_advertise6s", conditional_advertise6s)
         if conditional_advertises is not None:
             pulumi.set(__self__, "conditional_advertises", conditional_advertises)
         if connect_timer is not None:
@@ -689,6 +693,18 @@ class RouterbgpNeighborArgs:
     @capability_route_refresh.setter
     def capability_route_refresh(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capability_route_refresh", value)
+
+    @property
+    @pulumi.getter(name="conditionalAdvertise6s")
+    def conditional_advertise6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]]]:
+        """
+        IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
+        """
+        return pulumi.get(self, "conditional_advertise6s")
+
+    @conditional_advertise6s.setter
+    def conditional_advertise6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]]]):
+        pulumi.set(self, "conditional_advertise6s", value)
 
     @property
     @pulumi.getter(name="conditionalAdvertises")
@@ -1534,6 +1550,7 @@ class _RouterbgpNeighborState:
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
                  capability_route_refresh: Optional[pulumi.Input[str]] = None,
+                 conditional_advertise6s: Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]]] = None,
                  conditional_advertises: Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertiseArgs']]]] = None,
                  connect_timer: Optional[pulumi.Input[int]] = None,
                  default_originate_routemap: Optional[pulumi.Input[str]] = None,
@@ -1629,6 +1646,7 @@ class _RouterbgpNeighborState:
         :param pulumi.Input[str] capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]] conditional_advertise6s: IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertiseArgs']]] conditional_advertises: Conditional advertisement. The structure of `conditional_advertise` block is documented below.
         :param pulumi.Input[int] connect_timer: Interval (sec) for connect timer.
         :param pulumi.Input[str] default_originate_routemap: Route map to specify criteria to originate IPv4 default.
@@ -1747,6 +1765,8 @@ class _RouterbgpNeighborState:
             pulumi.set(__self__, "capability_orf6", capability_orf6)
         if capability_route_refresh is not None:
             pulumi.set(__self__, "capability_route_refresh", capability_route_refresh)
+        if conditional_advertise6s is not None:
+            pulumi.set(__self__, "conditional_advertise6s", conditional_advertise6s)
         if conditional_advertises is not None:
             pulumi.set(__self__, "conditional_advertises", conditional_advertises)
         if connect_timer is not None:
@@ -2173,6 +2193,18 @@ class _RouterbgpNeighborState:
     @capability_route_refresh.setter
     def capability_route_refresh(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "capability_route_refresh", value)
+
+    @property
+    @pulumi.getter(name="conditionalAdvertise6s")
+    def conditional_advertise6s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]]]:
+        """
+        IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
+        """
+        return pulumi.get(self, "conditional_advertise6s")
+
+    @conditional_advertise6s.setter
+    def conditional_advertise6s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['RouterbgpNeighborConditionalAdvertise6Args']]]]):
+        pulumi.set(self, "conditional_advertise6s", value)
 
     @property
     @pulumi.getter(name="conditionalAdvertises")
@@ -3032,6 +3064,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
                  capability_route_refresh: Optional[pulumi.Input[str]] = None,
+                 conditional_advertise6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertise6Args']]]]] = None,
                  conditional_advertises: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertiseArgs']]]]] = None,
                  connect_timer: Optional[pulumi.Input[int]] = None,
                  default_originate_routemap: Optional[pulumi.Input[str]] = None,
@@ -3143,6 +3176,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         :param pulumi.Input[str] capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertise6Args']]]] conditional_advertise6s: IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertiseArgs']]]] conditional_advertises: Conditional advertisement. The structure of `conditional_advertise` block is documented below.
         :param pulumi.Input[int] connect_timer: Interval (sec) for connect timer.
         :param pulumi.Input[str] default_originate_routemap: Route map to specify criteria to originate IPv4 default.
@@ -3273,6 +3307,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
                  capability_orf: Optional[pulumi.Input[str]] = None,
                  capability_orf6: Optional[pulumi.Input[str]] = None,
                  capability_route_refresh: Optional[pulumi.Input[str]] = None,
+                 conditional_advertise6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertise6Args']]]]] = None,
                  conditional_advertises: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertiseArgs']]]]] = None,
                  connect_timer: Optional[pulumi.Input[int]] = None,
                  default_originate_routemap: Optional[pulumi.Input[str]] = None,
@@ -3349,6 +3384,8 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -3378,6 +3415,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             __props__.__dict__["capability_orf"] = capability_orf
             __props__.__dict__["capability_orf6"] = capability_orf6
             __props__.__dict__["capability_route_refresh"] = capability_route_refresh
+            __props__.__dict__["conditional_advertise6s"] = conditional_advertise6s
             __props__.__dict__["conditional_advertises"] = conditional_advertises
             __props__.__dict__["connect_timer"] = connect_timer
             __props__.__dict__["default_originate_routemap"] = default_originate_routemap
@@ -3483,6 +3521,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
             capability_orf: Optional[pulumi.Input[str]] = None,
             capability_orf6: Optional[pulumi.Input[str]] = None,
             capability_route_refresh: Optional[pulumi.Input[str]] = None,
+            conditional_advertise6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertise6Args']]]]] = None,
             conditional_advertises: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertiseArgs']]]]] = None,
             connect_timer: Optional[pulumi.Input[int]] = None,
             default_originate_routemap: Optional[pulumi.Input[str]] = None,
@@ -3583,6 +3622,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         :param pulumi.Input[str] capability_orf: Accept/Send IPv4 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_orf6: Accept/Send IPv6 ORF lists to/from this neighbor. Valid values: `none`, `receive`, `send`, `both`.
         :param pulumi.Input[str] capability_route_refresh: Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertise6Args']]]] conditional_advertise6s: IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['RouterbgpNeighborConditionalAdvertiseArgs']]]] conditional_advertises: Conditional advertisement. The structure of `conditional_advertise` block is documented below.
         :param pulumi.Input[int] connect_timer: Interval (sec) for connect timer.
         :param pulumi.Input[str] default_originate_routemap: Route map to specify criteria to originate IPv4 default.
@@ -3681,6 +3721,7 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         __props__.__dict__["capability_orf"] = capability_orf
         __props__.__dict__["capability_orf6"] = capability_orf6
         __props__.__dict__["capability_route_refresh"] = capability_route_refresh
+        __props__.__dict__["conditional_advertise6s"] = conditional_advertise6s
         __props__.__dict__["conditional_advertises"] = conditional_advertises
         __props__.__dict__["connect_timer"] = connect_timer
         __props__.__dict__["default_originate_routemap"] = default_originate_routemap
@@ -3943,6 +3984,14 @@ class RouterbgpNeighbor(pulumi.CustomResource):
         Enable/disable advertise route refresh capability to this neighbor. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "capability_route_refresh")
+
+    @property
+    @pulumi.getter(name="conditionalAdvertise6s")
+    def conditional_advertise6s(self) -> pulumi.Output[Optional[Sequence['outputs.RouterbgpNeighborConditionalAdvertise6']]]:
+        """
+        IPv6 conditional advertisement. The structure of `conditional_advertise6` block is documented below.
+        """
+        return pulumi.get(self, "conditional_advertise6s")
 
     @property
     @pulumi.getter(name="conditionalAdvertises")

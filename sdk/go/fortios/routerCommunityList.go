@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,8 +27,8 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewRouterCommunityList(ctx, "trname", &fortios.RouterCommunityListArgs{
-// 			Rules: fortios.RouterCommunityListRuleArray{
-// 				&fortios.RouterCommunityListRuleArgs{
+// 			Rules: RouterCommunityListRuleArray{
+// 				&RouterCommunityListRuleArgs{
 // 					Action: pulumi.String("deny"),
 // 					Match:  pulumi.String("123:234 345:456"),
 // 					Regexp: pulumi.String("123:234 345:456"),
@@ -77,6 +78,7 @@ func NewRouterCommunityList(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterCommunityList
 	err := ctx.RegisterResource("fortios:index/routerCommunityList:RouterCommunityList", name, args, &resource, opts...)
 	if err != nil {
@@ -167,7 +169,7 @@ type RouterCommunityListInput interface {
 }
 
 func (*RouterCommunityList) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterCommunityList)(nil))
+	return reflect.TypeOf((**RouterCommunityList)(nil)).Elem()
 }
 
 func (i *RouterCommunityList) ToRouterCommunityListOutput() RouterCommunityListOutput {
@@ -176,35 +178,6 @@ func (i *RouterCommunityList) ToRouterCommunityListOutput() RouterCommunityListO
 
 func (i *RouterCommunityList) ToRouterCommunityListOutputWithContext(ctx context.Context) RouterCommunityListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterCommunityListOutput)
-}
-
-func (i *RouterCommunityList) ToRouterCommunityListPtrOutput() RouterCommunityListPtrOutput {
-	return i.ToRouterCommunityListPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterCommunityList) ToRouterCommunityListPtrOutputWithContext(ctx context.Context) RouterCommunityListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterCommunityListPtrOutput)
-}
-
-type RouterCommunityListPtrInput interface {
-	pulumi.Input
-
-	ToRouterCommunityListPtrOutput() RouterCommunityListPtrOutput
-	ToRouterCommunityListPtrOutputWithContext(ctx context.Context) RouterCommunityListPtrOutput
-}
-
-type routerCommunityListPtrType RouterCommunityListArgs
-
-func (*routerCommunityListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterCommunityList)(nil))
-}
-
-func (i *routerCommunityListPtrType) ToRouterCommunityListPtrOutput() RouterCommunityListPtrOutput {
-	return i.ToRouterCommunityListPtrOutputWithContext(context.Background())
-}
-
-func (i *routerCommunityListPtrType) ToRouterCommunityListPtrOutputWithContext(ctx context.Context) RouterCommunityListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterCommunityListPtrOutput)
 }
 
 // RouterCommunityListArrayInput is an input type that accepts RouterCommunityListArray and RouterCommunityListArrayOutput values.
@@ -221,7 +194,7 @@ type RouterCommunityListArrayInput interface {
 type RouterCommunityListArray []RouterCommunityListInput
 
 func (RouterCommunityListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterCommunityList)(nil))
+	return reflect.TypeOf((*[]*RouterCommunityList)(nil)).Elem()
 }
 
 func (i RouterCommunityListArray) ToRouterCommunityListArrayOutput() RouterCommunityListArrayOutput {
@@ -246,7 +219,7 @@ type RouterCommunityListMapInput interface {
 type RouterCommunityListMap map[string]RouterCommunityListInput
 
 func (RouterCommunityListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterCommunityList)(nil))
+	return reflect.TypeOf((*map[string]*RouterCommunityList)(nil)).Elem()
 }
 
 func (i RouterCommunityListMap) ToRouterCommunityListMapOutput() RouterCommunityListMapOutput {
@@ -257,12 +230,10 @@ func (i RouterCommunityListMap) ToRouterCommunityListMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(RouterCommunityListMapOutput)
 }
 
-type RouterCommunityListOutput struct {
-	*pulumi.OutputState
-}
+type RouterCommunityListOutput struct{ *pulumi.OutputState }
 
 func (RouterCommunityListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterCommunityList)(nil))
+	return reflect.TypeOf((**RouterCommunityList)(nil)).Elem()
 }
 
 func (o RouterCommunityListOutput) ToRouterCommunityListOutput() RouterCommunityListOutput {
@@ -273,36 +244,10 @@ func (o RouterCommunityListOutput) ToRouterCommunityListOutputWithContext(ctx co
 	return o
 }
 
-func (o RouterCommunityListOutput) ToRouterCommunityListPtrOutput() RouterCommunityListPtrOutput {
-	return o.ToRouterCommunityListPtrOutputWithContext(context.Background())
-}
-
-func (o RouterCommunityListOutput) ToRouterCommunityListPtrOutputWithContext(ctx context.Context) RouterCommunityListPtrOutput {
-	return o.ApplyT(func(v RouterCommunityList) *RouterCommunityList {
-		return &v
-	}).(RouterCommunityListPtrOutput)
-}
-
-type RouterCommunityListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterCommunityListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterCommunityList)(nil))
-}
-
-func (o RouterCommunityListPtrOutput) ToRouterCommunityListPtrOutput() RouterCommunityListPtrOutput {
-	return o
-}
-
-func (o RouterCommunityListPtrOutput) ToRouterCommunityListPtrOutputWithContext(ctx context.Context) RouterCommunityListPtrOutput {
-	return o
-}
-
 type RouterCommunityListArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterCommunityListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterCommunityList)(nil))
+	return reflect.TypeOf((*[]*RouterCommunityList)(nil)).Elem()
 }
 
 func (o RouterCommunityListArrayOutput) ToRouterCommunityListArrayOutput() RouterCommunityListArrayOutput {
@@ -314,15 +259,15 @@ func (o RouterCommunityListArrayOutput) ToRouterCommunityListArrayOutputWithCont
 }
 
 func (o RouterCommunityListArrayOutput) Index(i pulumi.IntInput) RouterCommunityListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterCommunityList {
-		return vs[0].([]RouterCommunityList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterCommunityList {
+		return vs[0].([]*RouterCommunityList)[vs[1].(int)]
 	}).(RouterCommunityListOutput)
 }
 
 type RouterCommunityListMapOutput struct{ *pulumi.OutputState }
 
 func (RouterCommunityListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterCommunityList)(nil))
+	return reflect.TypeOf((*map[string]*RouterCommunityList)(nil)).Elem()
 }
 
 func (o RouterCommunityListMapOutput) ToRouterCommunityListMapOutput() RouterCommunityListMapOutput {
@@ -334,14 +279,16 @@ func (o RouterCommunityListMapOutput) ToRouterCommunityListMapOutputWithContext(
 }
 
 func (o RouterCommunityListMapOutput) MapIndex(k pulumi.StringInput) RouterCommunityListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterCommunityList {
-		return vs[0].(map[string]RouterCommunityList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterCommunityList {
+		return vs[0].(map[string]*RouterCommunityList)[vs[1].(string)]
 	}).(RouterCommunityListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterCommunityListInput)(nil)).Elem(), &RouterCommunityList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterCommunityListArrayInput)(nil)).Elem(), RouterCommunityListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterCommunityListMapInput)(nil)).Elem(), RouterCommunityListMap{})
 	pulumi.RegisterOutputType(RouterCommunityListOutput{})
-	pulumi.RegisterOutputType(RouterCommunityListPtrOutput{})
 	pulumi.RegisterOutputType(RouterCommunityListArrayOutput{})
 	pulumi.RegisterOutputType(RouterCommunityListMapOutput{})
 }

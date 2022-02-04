@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewallconsolidated policy
 func LookupFirewallConsolidatedPolicy(ctx *pulumi.Context, args *LookupFirewallConsolidatedPolicyArgs, opts ...pulumi.InvokeOption) (*LookupFirewallConsolidatedPolicyResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallConsolidatedPolicyResult
 	err := ctx.Invoke("fortios:index/getFirewallConsolidatedPolicy:GetFirewallConsolidatedPolicy", args, &rv, opts...)
 	if err != nil {
@@ -210,4 +214,551 @@ type LookupFirewallConsolidatedPolicyResult struct {
 	WebproxyForwardServer string `pulumi:"webproxyForwardServer"`
 	// Webproxy profile name.
 	WebproxyProfile string `pulumi:"webproxyProfile"`
+}
+
+func LookupFirewallConsolidatedPolicyOutput(ctx *pulumi.Context, args LookupFirewallConsolidatedPolicyOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallConsolidatedPolicyResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallConsolidatedPolicyResult, error) {
+			args := v.(LookupFirewallConsolidatedPolicyArgs)
+			r, err := LookupFirewallConsolidatedPolicy(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallConsolidatedPolicyResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallConsolidatedPolicy.
+type LookupFirewallConsolidatedPolicyOutputArgs struct {
+	// Specify the policyid of the desired firewallconsolidated policy.
+	Policyid pulumi.IntInput `pulumi:"policyid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallConsolidatedPolicyOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallConsolidatedPolicyArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallConsolidatedPolicy.
+type LookupFirewallConsolidatedPolicyResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallConsolidatedPolicyResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallConsolidatedPolicyResult)(nil)).Elem()
+}
+
+func (o LookupFirewallConsolidatedPolicyResultOutput) ToLookupFirewallConsolidatedPolicyResultOutput() LookupFirewallConsolidatedPolicyResultOutput {
+	return o
+}
+
+func (o LookupFirewallConsolidatedPolicyResultOutput) ToLookupFirewallConsolidatedPolicyResultOutputWithContext(ctx context.Context) LookupFirewallConsolidatedPolicyResultOutput {
+	return o
+}
+
+// Policy action (allow/deny/ipsec).
+func (o LookupFirewallConsolidatedPolicyResultOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// Application category ID list. The structure of `appCategory` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) AppCategories() GetFirewallConsolidatedPolicyAppCategoryArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyAppCategory {
+		return v.AppCategories
+	}).(GetFirewallConsolidatedPolicyAppCategoryArrayOutput)
+}
+
+// Application group names. The structure of `appGroup` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) AppGroups() GetFirewallConsolidatedPolicyAppGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyAppGroup {
+		return v.AppGroups
+	}).(GetFirewallConsolidatedPolicyAppGroupArrayOutput)
+}
+
+// Name of an existing Application list.
+func (o LookupFirewallConsolidatedPolicyResultOutput) ApplicationList() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.ApplicationList }).(pulumi.StringOutput)
+}
+
+// Application ID list. The structure of `application` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Applications() GetFirewallConsolidatedPolicyApplicationArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyApplication {
+		return v.Applications
+	}).(GetFirewallConsolidatedPolicyApplicationArrayOutput)
+}
+
+// Enable/disable policy traffic ASIC offloading.
+func (o LookupFirewallConsolidatedPolicyResultOutput) AutoAsicOffload() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.AutoAsicOffload }).(pulumi.StringOutput)
+}
+
+// Name of an existing Antivirus profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) AvProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.AvProfile }).(pulumi.StringOutput)
+}
+
+// Enable exemption of some users from the captive portal.
+func (o LookupFirewallConsolidatedPolicyResultOutput) CaptivePortalExempt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.CaptivePortalExempt }).(pulumi.StringOutput)
+}
+
+// Name of an existing CIFS profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) CifsProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.CifsProfile }).(pulumi.StringOutput)
+}
+
+// Comment.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Comments }).(pulumi.StringOutput)
+}
+
+// Enable to change packet's DiffServ values to the specified diffservcode-forward value.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DiffservForward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DiffservForward }).(pulumi.StringOutput)
+}
+
+// Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DiffservReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DiffservReverse }).(pulumi.StringOutput)
+}
+
+// Change packet's DiffServ to this value.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DiffservcodeForward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DiffservcodeForward }).(pulumi.StringOutput)
+}
+
+// Change packet's reverse (reply) DiffServ to this value.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DiffservcodeRev() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DiffservcodeRev }).(pulumi.StringOutput)
+}
+
+// Name of an existing DLP sensor.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DlpSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DlpSensor }).(pulumi.StringOutput)
+}
+
+// Name of an existing DNS filter profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DnsfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DnsfilterProfile }).(pulumi.StringOutput)
+}
+
+// Destination IPv4 address name and address group names. The structure of `dstaddr4` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Dstaddr4s() GetFirewallConsolidatedPolicyDstaddr4ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyDstaddr4 {
+		return v.Dstaddr4s
+	}).(GetFirewallConsolidatedPolicyDstaddr4ArrayOutput)
+}
+
+// Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Dstaddr6s() GetFirewallConsolidatedPolicyDstaddr6ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyDstaddr6 {
+		return v.Dstaddr6s
+	}).(GetFirewallConsolidatedPolicyDstaddr6ArrayOutput)
+}
+
+// When enabled dstaddr specifies what the destination address must NOT be.
+func (o LookupFirewallConsolidatedPolicyResultOutput) DstaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.DstaddrNegate }).(pulumi.StringOutput)
+}
+
+// Outgoing (egress) interface. The structure of `dstintf` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Dstintfs() GetFirewallConsolidatedPolicyDstintfArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyDstintf {
+		return v.Dstintfs
+	}).(GetFirewallConsolidatedPolicyDstintfArrayOutput)
+}
+
+// Name of an existing email filter profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) EmailfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.EmailfilterProfile }).(pulumi.StringOutput)
+}
+
+// Enable to prevent source NAT from changing a session's source port.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Fixedport() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Fixedport }).(pulumi.StringOutput)
+}
+
+// Names of FSSO groups. The structure of `fssoGroups` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) FssoGroups() GetFirewallConsolidatedPolicyFssoGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyFssoGroup {
+		return v.FssoGroups
+	}).(GetFirewallConsolidatedPolicyFssoGroupArrayOutput)
+}
+
+// Names of user groups that can authenticate with this policy. The structure of `groups` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Groups() GetFirewallConsolidatedPolicyGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyGroup { return v.Groups }).(GetFirewallConsolidatedPolicyGroupArrayOutput)
+}
+
+// Redirect HTTP(S) traffic to matching transparent web proxy policy.
+func (o LookupFirewallConsolidatedPolicyResultOutput) HttpPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.HttpPolicyRedirect }).(pulumi.StringOutput)
+}
+
+// Name of an existing ICAP profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) IcapProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.IcapProfile }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Inbound() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Inbound }).(pulumi.StringOutput)
+}
+
+// Policy inspection mode (Flow/proxy). Default is Flow mode.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InspectionMode() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.InspectionMode }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of Internet Services for this policy. If enabled, destination address and service are not used.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetService() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.InternetService }).(pulumi.StringOutput)
+}
+
+// Custom Internet Service group name. The structure of `internetServiceCustomGroup` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceCustomGroups() GetFirewallConsolidatedPolicyInternetServiceCustomGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceCustomGroup {
+		return v.InternetServiceCustomGroups
+	}).(GetFirewallConsolidatedPolicyInternetServiceCustomGroupArrayOutput)
+}
+
+// Custom Internet Service name. The structure of `internetServiceCustom` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceCustoms() GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceCustom {
+		return v.InternetServiceCustoms
+	}).(GetFirewallConsolidatedPolicyInternetServiceCustomArrayOutput)
+}
+
+// Internet Service group name. The structure of `internetServiceGroup` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceGroups() GetFirewallConsolidatedPolicyInternetServiceGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceGroup {
+		return v.InternetServiceGroups
+	}).(GetFirewallConsolidatedPolicyInternetServiceGroupArrayOutput)
+}
+
+// Internet Service ID. The structure of `internetServiceId` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceIds() GetFirewallConsolidatedPolicyInternetServiceIdArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceId {
+		return v.InternetServiceIds
+	}).(GetFirewallConsolidatedPolicyInternetServiceIdArrayOutput)
+}
+
+// Internet Service name. The structure of `internetServiceName` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceNames() GetFirewallConsolidatedPolicyInternetServiceNameArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceName {
+		return v.InternetServiceNames
+	}).(GetFirewallConsolidatedPolicyInternetServiceNameArrayOutput)
+}
+
+// When enabled internet-service specifies what the service must NOT be.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.InternetServiceNegate }).(pulumi.StringOutput)
+}
+
+// Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrc() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.InternetServiceSrc }).(pulumi.StringOutput)
+}
+
+// Custom Internet Service source group name. The structure of `internetServiceSrcCustomGroup` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrcCustomGroups() GetFirewallConsolidatedPolicyInternetServiceSrcCustomGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceSrcCustomGroup {
+		return v.InternetServiceSrcCustomGroups
+	}).(GetFirewallConsolidatedPolicyInternetServiceSrcCustomGroupArrayOutput)
+}
+
+// Custom Internet Service source name. The structure of `internetServiceSrcCustom` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrcCustoms() GetFirewallConsolidatedPolicyInternetServiceSrcCustomArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceSrcCustom {
+		return v.InternetServiceSrcCustoms
+	}).(GetFirewallConsolidatedPolicyInternetServiceSrcCustomArrayOutput)
+}
+
+// Internet Service source group name. The structure of `internetServiceSrcGroup` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrcGroups() GetFirewallConsolidatedPolicyInternetServiceSrcGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceSrcGroup {
+		return v.InternetServiceSrcGroups
+	}).(GetFirewallConsolidatedPolicyInternetServiceSrcGroupArrayOutput)
+}
+
+// Internet Service source ID. The structure of `internetServiceSrcId` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrcIds() GetFirewallConsolidatedPolicyInternetServiceSrcIdArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceSrcId {
+		return v.InternetServiceSrcIds
+	}).(GetFirewallConsolidatedPolicyInternetServiceSrcIdArrayOutput)
+}
+
+// Internet Service source name. The structure of `internetServiceSrcName` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrcNames() GetFirewallConsolidatedPolicyInternetServiceSrcNameArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyInternetServiceSrcName {
+		return v.InternetServiceSrcNames
+	}).(GetFirewallConsolidatedPolicyInternetServiceSrcNameArrayOutput)
+}
+
+// When enabled internet-service-src specifies what the service must NOT be.
+func (o LookupFirewallConsolidatedPolicyResultOutput) InternetServiceSrcNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.InternetServiceSrcNegate }).(pulumi.StringOutput)
+}
+
+// Enable to use IP Pools for source NAT.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Ippool() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Ippool }).(pulumi.StringOutput)
+}
+
+// Name of an existing IPS sensor.
+func (o LookupFirewallConsolidatedPolicyResultOutput) IpsSensor() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.IpsSensor }).(pulumi.StringOutput)
+}
+
+// Enable or disable logging. Log all sessions or security profile sessions.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+// Record logs when a session starts.
+func (o LookupFirewallConsolidatedPolicyResultOutput) LogtrafficStart() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.LogtrafficStart }).(pulumi.StringOutput)
+}
+
+// Application group names.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable source NAT.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Nat() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Nat }).(pulumi.StringOutput)
+}
+
+// Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Outbound() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Outbound }).(pulumi.StringOutput)
+}
+
+// Per-IP traffic shaper.
+func (o LookupFirewallConsolidatedPolicyResultOutput) PerIpShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.PerIpShaper }).(pulumi.StringOutput)
+}
+
+// Policy ID.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) int { return v.Policyid }).(pulumi.IntOutput)
+}
+
+// IPv4 pool names. The structure of `poolname4` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Poolname4s() GetFirewallConsolidatedPolicyPoolname4ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyPoolname4 {
+		return v.Poolname4s
+	}).(GetFirewallConsolidatedPolicyPoolname4ArrayOutput)
+}
+
+// IPv6 pool names. The structure of `poolname6` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Poolname6s() GetFirewallConsolidatedPolicyPoolname6ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyPoolname6 {
+		return v.Poolname6s
+	}).(GetFirewallConsolidatedPolicyPoolname6ArrayOutput)
+}
+
+// Name of profile group.
+func (o LookupFirewallConsolidatedPolicyResultOutput) ProfileGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.ProfileGroup }).(pulumi.StringOutput)
+}
+
+// Name of an existing Protocol options profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) ProfileProtocolOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.ProfileProtocolOptions }).(pulumi.StringOutput)
+}
+
+// Determine whether the firewall policy allows security profile groups or single profiles only.
+func (o LookupFirewallConsolidatedPolicyResultOutput) ProfileType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.ProfileType }).(pulumi.StringOutput)
+}
+
+// Schedule name.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// When enabled service specifies what the service must NOT be.
+func (o LookupFirewallConsolidatedPolicyResultOutput) ServiceNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.ServiceNegate }).(pulumi.StringOutput)
+}
+
+// Service and service group names. The structure of `service` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Services() GetFirewallConsolidatedPolicyServiceArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyService {
+		return v.Services
+	}).(GetFirewallConsolidatedPolicyServiceArrayOutput)
+}
+
+// TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+func (o LookupFirewallConsolidatedPolicyResultOutput) SessionTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) int { return v.SessionTtl }).(pulumi.IntOutput)
+}
+
+// Name of an existing Spam filter profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) SpamfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.SpamfilterProfile }).(pulumi.StringOutput)
+}
+
+// Source IPv4 address name and address group names. The structure of `srcaddr4` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Srcaddr4s() GetFirewallConsolidatedPolicySrcaddr4ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicySrcaddr4 {
+		return v.Srcaddr4s
+	}).(GetFirewallConsolidatedPolicySrcaddr4ArrayOutput)
+}
+
+// Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Srcaddr6s() GetFirewallConsolidatedPolicySrcaddr6ArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicySrcaddr6 {
+		return v.Srcaddr6s
+	}).(GetFirewallConsolidatedPolicySrcaddr6ArrayOutput)
+}
+
+// When enabled srcaddr specifies what the source address must NOT be.
+func (o LookupFirewallConsolidatedPolicyResultOutput) SrcaddrNegate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.SrcaddrNegate }).(pulumi.StringOutput)
+}
+
+// Incoming (ingress) interface. The structure of `srcintf` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Srcintfs() GetFirewallConsolidatedPolicySrcintfArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicySrcintf {
+		return v.Srcintfs
+	}).(GetFirewallConsolidatedPolicySrcintfArrayOutput)
+}
+
+// Name of an existing SSH filter profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) SshFilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.SshFilterProfile }).(pulumi.StringOutput)
+}
+
+// Redirect SSH traffic to matching transparent proxy policy.
+func (o LookupFirewallConsolidatedPolicyResultOutput) SshPolicyRedirect() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.SshPolicyRedirect }).(pulumi.StringOutput)
+}
+
+// Name of an existing SSL SSH profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) SslSshProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.SslSshProfile }).(pulumi.StringOutput)
+}
+
+// Enable or disable this policy.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Receiver TCP maximum segment size (MSS).
+func (o LookupFirewallConsolidatedPolicyResultOutput) TcpMssReceiver() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) int { return v.TcpMssReceiver }).(pulumi.IntOutput)
+}
+
+// Sender TCP maximum segment size (MSS).
+func (o LookupFirewallConsolidatedPolicyResultOutput) TcpMssSender() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) int { return v.TcpMssSender }).(pulumi.IntOutput)
+}
+
+// Traffic shaper.
+func (o LookupFirewallConsolidatedPolicyResultOutput) TrafficShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.TrafficShaper }).(pulumi.StringOutput)
+}
+
+// Reverse traffic shaper.
+func (o LookupFirewallConsolidatedPolicyResultOutput) TrafficShaperReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+// URL category ID list. The structure of `urlCategory` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) UrlCategories() GetFirewallConsolidatedPolicyUrlCategoryArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyUrlCategory {
+		return v.UrlCategories
+	}).(GetFirewallConsolidatedPolicyUrlCategoryArrayOutput)
+}
+
+// Names of individual users that can authenticate with this policy. The structure of `users` block is documented below.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Users() GetFirewallConsolidatedPolicyUserArrayOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) []GetFirewallConsolidatedPolicyUser { return v.Users }).(GetFirewallConsolidatedPolicyUserArrayOutput)
+}
+
+// Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy.
+func (o LookupFirewallConsolidatedPolicyResultOutput) UtmStatus() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.UtmStatus }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallConsolidatedPolicyResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallConsolidatedPolicyResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Name of an existing VoIP profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) VoipProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.VoipProfile }).(pulumi.StringOutput)
+}
+
+// Policy-based IPsec VPN: name of the IPsec VPN Phase 1.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Vpntunnel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Vpntunnel }).(pulumi.StringOutput)
+}
+
+// Name of an existing Web application firewall profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WafProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WafProfile }).(pulumi.StringOutput)
+}
+
+// Enable/disable WAN optimization.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Wanopt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Wanopt }).(pulumi.StringOutput)
+}
+
+// WAN optimization auto-detection mode.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WanoptDetection() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WanoptDetection }).(pulumi.StringOutput)
+}
+
+// WAN optimization passive mode options. This option decides what IP address will be used to connect to server.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WanoptPassiveOpt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WanoptPassiveOpt }).(pulumi.StringOutput)
+}
+
+// WAN optimization peer.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WanoptPeer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WanoptPeer }).(pulumi.StringOutput)
+}
+
+// WAN optimization profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WanoptProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WanoptProfile }).(pulumi.StringOutput)
+}
+
+// Enable/disable web cache.
+func (o LookupFirewallConsolidatedPolicyResultOutput) Webcache() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.Webcache }).(pulumi.StringOutput)
+}
+
+// Enable/disable web cache for HTTPS.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WebcacheHttps() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WebcacheHttps }).(pulumi.StringOutput)
+}
+
+// Name of an existing Web filter profile.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WebfilterProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WebfilterProfile }).(pulumi.StringOutput)
+}
+
+// Webproxy forward server name.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WebproxyForwardServer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WebproxyForwardServer }).(pulumi.StringOutput)
+}
+
+// Webproxy profile name.
+func (o LookupFirewallConsolidatedPolicyResultOutput) WebproxyProfile() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallConsolidatedPolicyResult) string { return v.WebproxyProfile }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallConsolidatedPolicyResultOutput{})
 }

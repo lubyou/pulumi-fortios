@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -50,6 +50,8 @@ import (
 type SystemIpipTunnel struct {
 	pulumi.CustomResourceState
 
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringOutput `pulumi:"autoAsicOffload"`
 	// Interface name that is associated with the incoming traffic from available options.
 	Interface pulumi.StringOutput `pulumi:"interface"`
 	// IPv4 address for the local gateway.
@@ -58,6 +60,8 @@ type SystemIpipTunnel struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// IPv4 address for the remote gateway.
 	RemoteGw pulumi.StringOutput `pulumi:"remoteGw"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringOutput `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -78,6 +82,7 @@ func NewSystemIpipTunnel(ctx *pulumi.Context,
 	if args.RemoteGw == nil {
 		return nil, errors.New("invalid value for required argument 'RemoteGw'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemIpipTunnel
 	err := ctx.RegisterResource("fortios:index/systemIpipTunnel:SystemIpipTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -100,6 +105,8 @@ func GetSystemIpipTunnel(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemIpipTunnel resources.
 type systemIpipTunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// Interface name that is associated with the incoming traffic from available options.
 	Interface *string `pulumi:"interface"`
 	// IPv4 address for the local gateway.
@@ -108,11 +115,15 @@ type systemIpipTunnelState struct {
 	Name *string `pulumi:"name"`
 	// IPv4 address for the remote gateway.
 	RemoteGw *string `pulumi:"remoteGw"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 type SystemIpipTunnelState struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// Interface name that is associated with the incoming traffic from available options.
 	Interface pulumi.StringPtrInput
 	// IPv4 address for the local gateway.
@@ -121,6 +132,8 @@ type SystemIpipTunnelState struct {
 	Name pulumi.StringPtrInput
 	// IPv4 address for the remote gateway.
 	RemoteGw pulumi.StringPtrInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -130,6 +143,8 @@ func (SystemIpipTunnelState) ElementType() reflect.Type {
 }
 
 type systemIpipTunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload *string `pulumi:"autoAsicOffload"`
 	// Interface name that is associated with the incoming traffic from available options.
 	Interface string `pulumi:"interface"`
 	// IPv4 address for the local gateway.
@@ -138,12 +153,16 @@ type systemIpipTunnelArgs struct {
 	Name *string `pulumi:"name"`
 	// IPv4 address for the remote gateway.
 	RemoteGw string `pulumi:"remoteGw"`
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan *string `pulumi:"useSdwan"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
 
 // The set of arguments for constructing a SystemIpipTunnel resource.
 type SystemIpipTunnelArgs struct {
+	// Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+	AutoAsicOffload pulumi.StringPtrInput
 	// Interface name that is associated with the incoming traffic from available options.
 	Interface pulumi.StringInput
 	// IPv4 address for the local gateway.
@@ -152,6 +171,8 @@ type SystemIpipTunnelArgs struct {
 	Name pulumi.StringPtrInput
 	// IPv4 address for the remote gateway.
 	RemoteGw pulumi.StringInput
+	// Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+	UseSdwan pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -168,7 +189,7 @@ type SystemIpipTunnelInput interface {
 }
 
 func (*SystemIpipTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpipTunnel)(nil))
+	return reflect.TypeOf((**SystemIpipTunnel)(nil)).Elem()
 }
 
 func (i *SystemIpipTunnel) ToSystemIpipTunnelOutput() SystemIpipTunnelOutput {
@@ -177,35 +198,6 @@ func (i *SystemIpipTunnel) ToSystemIpipTunnelOutput() SystemIpipTunnelOutput {
 
 func (i *SystemIpipTunnel) ToSystemIpipTunnelOutputWithContext(ctx context.Context) SystemIpipTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelOutput)
-}
-
-func (i *SystemIpipTunnel) ToSystemIpipTunnelPtrOutput() SystemIpipTunnelPtrOutput {
-	return i.ToSystemIpipTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemIpipTunnel) ToSystemIpipTunnelPtrOutputWithContext(ctx context.Context) SystemIpipTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelPtrOutput)
-}
-
-type SystemIpipTunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemIpipTunnelPtrOutput() SystemIpipTunnelPtrOutput
-	ToSystemIpipTunnelPtrOutputWithContext(ctx context.Context) SystemIpipTunnelPtrOutput
-}
-
-type systemIpipTunnelPtrType SystemIpipTunnelArgs
-
-func (*systemIpipTunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpipTunnel)(nil))
-}
-
-func (i *systemIpipTunnelPtrType) ToSystemIpipTunnelPtrOutput() SystemIpipTunnelPtrOutput {
-	return i.ToSystemIpipTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemIpipTunnelPtrType) ToSystemIpipTunnelPtrOutputWithContext(ctx context.Context) SystemIpipTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelPtrOutput)
 }
 
 // SystemIpipTunnelArrayInput is an input type that accepts SystemIpipTunnelArray and SystemIpipTunnelArrayOutput values.
@@ -222,7 +214,7 @@ type SystemIpipTunnelArrayInput interface {
 type SystemIpipTunnelArray []SystemIpipTunnelInput
 
 func (SystemIpipTunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemIpipTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemIpipTunnel)(nil)).Elem()
 }
 
 func (i SystemIpipTunnelArray) ToSystemIpipTunnelArrayOutput() SystemIpipTunnelArrayOutput {
@@ -247,7 +239,7 @@ type SystemIpipTunnelMapInput interface {
 type SystemIpipTunnelMap map[string]SystemIpipTunnelInput
 
 func (SystemIpipTunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemIpipTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpipTunnel)(nil)).Elem()
 }
 
 func (i SystemIpipTunnelMap) ToSystemIpipTunnelMapOutput() SystemIpipTunnelMapOutput {
@@ -258,12 +250,10 @@ func (i SystemIpipTunnelMap) ToSystemIpipTunnelMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemIpipTunnelMapOutput)
 }
 
-type SystemIpipTunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemIpipTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemIpipTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemIpipTunnel)(nil))
+	return reflect.TypeOf((**SystemIpipTunnel)(nil)).Elem()
 }
 
 func (o SystemIpipTunnelOutput) ToSystemIpipTunnelOutput() SystemIpipTunnelOutput {
@@ -274,36 +264,10 @@ func (o SystemIpipTunnelOutput) ToSystemIpipTunnelOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemIpipTunnelOutput) ToSystemIpipTunnelPtrOutput() SystemIpipTunnelPtrOutput {
-	return o.ToSystemIpipTunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemIpipTunnelOutput) ToSystemIpipTunnelPtrOutputWithContext(ctx context.Context) SystemIpipTunnelPtrOutput {
-	return o.ApplyT(func(v SystemIpipTunnel) *SystemIpipTunnel {
-		return &v
-	}).(SystemIpipTunnelPtrOutput)
-}
-
-type SystemIpipTunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemIpipTunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemIpipTunnel)(nil))
-}
-
-func (o SystemIpipTunnelPtrOutput) ToSystemIpipTunnelPtrOutput() SystemIpipTunnelPtrOutput {
-	return o
-}
-
-func (o SystemIpipTunnelPtrOutput) ToSystemIpipTunnelPtrOutputWithContext(ctx context.Context) SystemIpipTunnelPtrOutput {
-	return o
-}
-
 type SystemIpipTunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemIpipTunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemIpipTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemIpipTunnel)(nil)).Elem()
 }
 
 func (o SystemIpipTunnelArrayOutput) ToSystemIpipTunnelArrayOutput() SystemIpipTunnelArrayOutput {
@@ -315,15 +279,15 @@ func (o SystemIpipTunnelArrayOutput) ToSystemIpipTunnelArrayOutputWithContext(ct
 }
 
 func (o SystemIpipTunnelArrayOutput) Index(i pulumi.IntInput) SystemIpipTunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemIpipTunnel {
-		return vs[0].([]SystemIpipTunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemIpipTunnel {
+		return vs[0].([]*SystemIpipTunnel)[vs[1].(int)]
 	}).(SystemIpipTunnelOutput)
 }
 
 type SystemIpipTunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemIpipTunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemIpipTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemIpipTunnel)(nil)).Elem()
 }
 
 func (o SystemIpipTunnelMapOutput) ToSystemIpipTunnelMapOutput() SystemIpipTunnelMapOutput {
@@ -335,14 +299,16 @@ func (o SystemIpipTunnelMapOutput) ToSystemIpipTunnelMapOutputWithContext(ctx co
 }
 
 func (o SystemIpipTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemIpipTunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemIpipTunnel {
-		return vs[0].(map[string]SystemIpipTunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemIpipTunnel {
+		return vs[0].(map[string]*SystemIpipTunnel)[vs[1].(string)]
 	}).(SystemIpipTunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpipTunnelInput)(nil)).Elem(), &SystemIpipTunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpipTunnelArrayInput)(nil)).Elem(), SystemIpipTunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemIpipTunnelMapInput)(nil)).Elem(), SystemIpipTunnelMap{})
 	pulumi.RegisterOutputType(SystemIpipTunnelOutput{})
-	pulumi.RegisterOutputType(SystemIpipTunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemIpipTunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemIpipTunnelMapOutput{})
 }

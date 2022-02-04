@@ -86,6 +86,9 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
      * Configure CAPWAP control message data channel offload.
      */
     public readonly controlMessageOffload!: pulumi.Output<string>;
+    /**
+     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+     */
     public readonly dataEthernetIi!: pulumi.Output<string>;
     /**
      * Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -124,6 +127,10 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
      */
     public readonly meshEthType!: pulumi.Output<number>;
     /**
+     * Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+     */
+    public readonly nacInterval!: pulumi.Output<number>;
+    /**
      * Name of the wireless controller.
      */
     public readonly name!: pulumi.Output<string>;
@@ -131,6 +138,10 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
      * Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
      */
     public readonly rogueScanMacAdjacency!: pulumi.Output<number>;
+    /**
+     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     */
+    public readonly tunnelMode!: pulumi.Output<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -149,53 +160,55 @@ export class WirelessControllerGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerGlobalArgs | WirelessControllerGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerGlobalState | undefined;
-            inputs["apLogServer"] = state ? state.apLogServer : undefined;
-            inputs["apLogServerIp"] = state ? state.apLogServerIp : undefined;
-            inputs["apLogServerPort"] = state ? state.apLogServerPort : undefined;
-            inputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
-            inputs["dataEthernetIi"] = state ? state.dataEthernetIi : undefined;
-            inputs["discoveryMcAddr"] = state ? state.discoveryMcAddr : undefined;
-            inputs["fiappEthType"] = state ? state.fiappEthType : undefined;
-            inputs["imageDownload"] = state ? state.imageDownload : undefined;
-            inputs["ipsecBaseIp"] = state ? state.ipsecBaseIp : undefined;
-            inputs["linkAggregation"] = state ? state.linkAggregation : undefined;
-            inputs["location"] = state ? state.location : undefined;
-            inputs["maxClients"] = state ? state.maxClients : undefined;
-            inputs["maxRetransmit"] = state ? state.maxRetransmit : undefined;
-            inputs["meshEthType"] = state ? state.meshEthType : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["rogueScanMacAdjacency"] = state ? state.rogueScanMacAdjacency : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["wtpShare"] = state ? state.wtpShare : undefined;
+            resourceInputs["apLogServer"] = state ? state.apLogServer : undefined;
+            resourceInputs["apLogServerIp"] = state ? state.apLogServerIp : undefined;
+            resourceInputs["apLogServerPort"] = state ? state.apLogServerPort : undefined;
+            resourceInputs["controlMessageOffload"] = state ? state.controlMessageOffload : undefined;
+            resourceInputs["dataEthernetIi"] = state ? state.dataEthernetIi : undefined;
+            resourceInputs["discoveryMcAddr"] = state ? state.discoveryMcAddr : undefined;
+            resourceInputs["fiappEthType"] = state ? state.fiappEthType : undefined;
+            resourceInputs["imageDownload"] = state ? state.imageDownload : undefined;
+            resourceInputs["ipsecBaseIp"] = state ? state.ipsecBaseIp : undefined;
+            resourceInputs["linkAggregation"] = state ? state.linkAggregation : undefined;
+            resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["maxClients"] = state ? state.maxClients : undefined;
+            resourceInputs["maxRetransmit"] = state ? state.maxRetransmit : undefined;
+            resourceInputs["meshEthType"] = state ? state.meshEthType : undefined;
+            resourceInputs["nacInterval"] = state ? state.nacInterval : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["rogueScanMacAdjacency"] = state ? state.rogueScanMacAdjacency : undefined;
+            resourceInputs["tunnelMode"] = state ? state.tunnelMode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["wtpShare"] = state ? state.wtpShare : undefined;
         } else {
             const args = argsOrState as WirelessControllerGlobalArgs | undefined;
-            inputs["apLogServer"] = args ? args.apLogServer : undefined;
-            inputs["apLogServerIp"] = args ? args.apLogServerIp : undefined;
-            inputs["apLogServerPort"] = args ? args.apLogServerPort : undefined;
-            inputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
-            inputs["dataEthernetIi"] = args ? args.dataEthernetIi : undefined;
-            inputs["discoveryMcAddr"] = args ? args.discoveryMcAddr : undefined;
-            inputs["fiappEthType"] = args ? args.fiappEthType : undefined;
-            inputs["imageDownload"] = args ? args.imageDownload : undefined;
-            inputs["ipsecBaseIp"] = args ? args.ipsecBaseIp : undefined;
-            inputs["linkAggregation"] = args ? args.linkAggregation : undefined;
-            inputs["location"] = args ? args.location : undefined;
-            inputs["maxClients"] = args ? args.maxClients : undefined;
-            inputs["maxRetransmit"] = args ? args.maxRetransmit : undefined;
-            inputs["meshEthType"] = args ? args.meshEthType : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["rogueScanMacAdjacency"] = args ? args.rogueScanMacAdjacency : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["wtpShare"] = args ? args.wtpShare : undefined;
+            resourceInputs["apLogServer"] = args ? args.apLogServer : undefined;
+            resourceInputs["apLogServerIp"] = args ? args.apLogServerIp : undefined;
+            resourceInputs["apLogServerPort"] = args ? args.apLogServerPort : undefined;
+            resourceInputs["controlMessageOffload"] = args ? args.controlMessageOffload : undefined;
+            resourceInputs["dataEthernetIi"] = args ? args.dataEthernetIi : undefined;
+            resourceInputs["discoveryMcAddr"] = args ? args.discoveryMcAddr : undefined;
+            resourceInputs["fiappEthType"] = args ? args.fiappEthType : undefined;
+            resourceInputs["imageDownload"] = args ? args.imageDownload : undefined;
+            resourceInputs["ipsecBaseIp"] = args ? args.ipsecBaseIp : undefined;
+            resourceInputs["linkAggregation"] = args ? args.linkAggregation : undefined;
+            resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["maxClients"] = args ? args.maxClients : undefined;
+            resourceInputs["maxRetransmit"] = args ? args.maxRetransmit : undefined;
+            resourceInputs["meshEthType"] = args ? args.meshEthType : undefined;
+            resourceInputs["nacInterval"] = args ? args.nacInterval : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["rogueScanMacAdjacency"] = args ? args.rogueScanMacAdjacency : undefined;
+            resourceInputs["tunnelMode"] = args ? args.tunnelMode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["wtpShare"] = args ? args.wtpShare : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -219,6 +232,9 @@ export interface WirelessControllerGlobalState {
      * Configure CAPWAP control message data channel offload.
      */
     controlMessageOffload?: pulumi.Input<string>;
+    /**
+     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+     */
     dataEthernetIi?: pulumi.Input<string>;
     /**
      * Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -257,6 +273,10 @@ export interface WirelessControllerGlobalState {
      */
     meshEthType?: pulumi.Input<number>;
     /**
+     * Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+     */
+    nacInterval?: pulumi.Input<number>;
+    /**
      * Name of the wireless controller.
      */
     name?: pulumi.Input<string>;
@@ -264,6 +284,10 @@ export interface WirelessControllerGlobalState {
      * Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
      */
     rogueScanMacAdjacency?: pulumi.Input<number>;
+    /**
+     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     */
+    tunnelMode?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -294,6 +318,9 @@ export interface WirelessControllerGlobalArgs {
      * Configure CAPWAP control message data channel offload.
      */
     controlMessageOffload?: pulumi.Input<string>;
+    /**
+     * Configure the wireless controller to use Ethernet II or 802.3 frames with 802.3 data tunnel mode (default = disable). Valid values: `enable`, `disable`.
+     */
     dataEthernetIi?: pulumi.Input<string>;
     /**
      * Multicast IP address for AP discovery (default = 244.0.1.140).
@@ -332,6 +359,10 @@ export interface WirelessControllerGlobalArgs {
      */
     meshEthType?: pulumi.Input<number>;
     /**
+     * Interval in seconds between two WiFi network access control (NAC) checks (10 - 600, default = 120).
+     */
+    nacInterval?: pulumi.Input<number>;
+    /**
      * Name of the wireless controller.
      */
     name?: pulumi.Input<string>;
@@ -339,6 +370,10 @@ export interface WirelessControllerGlobalArgs {
      * Maximum numerical difference between an AP's Ethernet and wireless MAC values to match for rogue detection (0 - 31, default = 7).
      */
     rogueScanMacAdjacency?: pulumi.Input<number>;
+    /**
+     * Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+     */
+    tunnelMode?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

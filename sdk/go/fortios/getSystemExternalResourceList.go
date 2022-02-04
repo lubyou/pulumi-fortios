@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemExternalResource`.
 func GetSystemExternalResourceList(ctx *pulumi.Context, args *GetSystemExternalResourceListArgs, opts ...pulumi.InvokeOption) (*GetSystemExternalResourceListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemExternalResourceListResult
 	err := ctx.Invoke("fortios:index/getSystemExternalResourceList:GetSystemExternalResourceList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemExternalResourceListResult struct {
 	// A list of the `SystemExternalResource`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemExternalResourceListOutput(ctx *pulumi.Context, args GetSystemExternalResourceListOutputArgs, opts ...pulumi.InvokeOption) GetSystemExternalResourceListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemExternalResourceListResult, error) {
+			args := v.(GetSystemExternalResourceListArgs)
+			r, err := GetSystemExternalResourceList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemExternalResourceListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemExternalResourceList.
+type GetSystemExternalResourceListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemExternalResourceListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemExternalResourceListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemExternalResourceList.
+type GetSystemExternalResourceListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemExternalResourceListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemExternalResourceListResult)(nil)).Elem()
+}
+
+func (o GetSystemExternalResourceListResultOutput) ToGetSystemExternalResourceListResultOutput() GetSystemExternalResourceListResultOutput {
+	return o
+}
+
+func (o GetSystemExternalResourceListResultOutput) ToGetSystemExternalResourceListResultOutputWithContext(ctx context.Context) GetSystemExternalResourceListResultOutput {
+	return o
+}
+
+func (o GetSystemExternalResourceListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemExternalResourceListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemExternalResourceListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemExternalResourceListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemExternalResource`.
+func (o GetSystemExternalResourceListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemExternalResourceListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemExternalResourceListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemExternalResourceListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemExternalResourceListResultOutput{})
 }

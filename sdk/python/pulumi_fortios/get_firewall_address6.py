@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallAddress6Result',
     'AwaitableGetFirewallAddress6Result',
     'get_firewall_address6',
+    'get_firewall_address6_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetFirewallAddress6Result:
     """
     A collection of values returned by GetFirewallAddress6.
     """
-    def __init__(__self__, cache_ttl=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, fqdn=None, host=None, host_type=None, id=None, ip6=None, lists=None, name=None, obj_id=None, sdn=None, start_ip=None, start_mac=None, subnet_segments=None, taggings=None, template=None, type=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, cache_ttl=None, color=None, comment=None, country=None, end_ip=None, end_mac=None, fabric_object=None, fqdn=None, host=None, host_type=None, id=None, ip6=None, lists=None, macaddrs=None, name=None, obj_id=None, sdn=None, start_ip=None, start_mac=None, subnet_segments=None, taggings=None, template=None, type=None, uuid=None, vdomparam=None, visibility=None):
         if cache_ttl and not isinstance(cache_ttl, int):
             raise TypeError("Expected argument 'cache_ttl' to be a int")
         pulumi.set(__self__, "cache_ttl", cache_ttl)
@@ -39,6 +40,9 @@ class GetFirewallAddress6Result:
         if end_mac and not isinstance(end_mac, str):
             raise TypeError("Expected argument 'end_mac' to be a str")
         pulumi.set(__self__, "end_mac", end_mac)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if fqdn and not isinstance(fqdn, str):
             raise TypeError("Expected argument 'fqdn' to be a str")
         pulumi.set(__self__, "fqdn", fqdn)
@@ -57,6 +61,9 @@ class GetFirewallAddress6Result:
         if lists and not isinstance(lists, list):
             raise TypeError("Expected argument 'lists' to be a list")
         pulumi.set(__self__, "lists", lists)
+        if macaddrs and not isinstance(macaddrs, list):
+            raise TypeError("Expected argument 'macaddrs' to be a list")
+        pulumi.set(__self__, "macaddrs", macaddrs)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -143,6 +150,14 @@ class GetFirewallAddress6Result:
         return pulumi.get(self, "end_mac")
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @property
     @pulumi.getter
     def fqdn(self) -> str:
         """
@@ -189,6 +204,14 @@ class GetFirewallAddress6Result:
         IP address list. The structure of `list` block is documented below.
         """
         return pulumi.get(self, "lists")
+
+    @property
+    @pulumi.getter
+    def macaddrs(self) -> Sequence['outputs.GetFirewallAddress6MacaddrResult']:
+        """
+        MAC address ranges <start>[-<end>] separated by space.
+        """
+        return pulumi.get(self, "macaddrs")
 
     @property
     @pulumi.getter
@@ -296,12 +319,14 @@ class AwaitableGetFirewallAddress6Result(GetFirewallAddress6Result):
             country=self.country,
             end_ip=self.end_ip,
             end_mac=self.end_mac,
+            fabric_object=self.fabric_object,
             fqdn=self.fqdn,
             host=self.host,
             host_type=self.host_type,
             id=self.id,
             ip6=self.ip6,
             lists=self.lists,
+            macaddrs=self.macaddrs,
             name=self.name,
             obj_id=self.obj_id,
             sdn=self.sdn,
@@ -333,6 +358,8 @@ def get_firewall_address6(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddress6:GetFirewallAddress6', __args__, opts=opts, typ=GetFirewallAddress6Result).value
 
     return AwaitableGetFirewallAddress6Result(
@@ -342,12 +369,14 @@ def get_firewall_address6(name: Optional[str] = None,
         country=__ret__.country,
         end_ip=__ret__.end_ip,
         end_mac=__ret__.end_mac,
+        fabric_object=__ret__.fabric_object,
         fqdn=__ret__.fqdn,
         host=__ret__.host,
         host_type=__ret__.host_type,
         id=__ret__.id,
         ip6=__ret__.ip6,
         lists=__ret__.lists,
+        macaddrs=__ret__.macaddrs,
         name=__ret__.name,
         obj_id=__ret__.obj_id,
         sdn=__ret__.sdn,
@@ -360,3 +389,17 @@ def get_firewall_address6(name: Optional[str] = None,
         uuid=__ret__.uuid,
         vdomparam=__ret__.vdomparam,
         visibility=__ret__.visibility)
+
+
+@_utilities.lift_output_func(get_firewall_address6)
+def get_firewall_address6_output(name: Optional[pulumi.Input[str]] = None,
+                                 vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallAddress6Result]:
+    """
+    Use this data source to get information on an fortios firewall address6
+
+
+    :param str name: Specify the name of the desired firewall address6.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

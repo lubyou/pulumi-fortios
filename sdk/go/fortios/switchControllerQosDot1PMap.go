@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -87,6 +87,7 @@ func NewSwitchControllerQosDot1PMap(ctx *pulumi.Context,
 		args = &SwitchControllerQosDot1PMapArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQosDot1PMap
 	err := ctx.RegisterResource("fortios:index/switchControllerQosDot1PMap:SwitchControllerQosDot1PMap", name, args, &resource, opts...)
 	if err != nil {
@@ -233,7 +234,7 @@ type SwitchControllerQosDot1PMapInput interface {
 }
 
 func (*SwitchControllerQosDot1PMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosDot1PMap)(nil))
+	return reflect.TypeOf((**SwitchControllerQosDot1PMap)(nil)).Elem()
 }
 
 func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapOutput() SwitchControllerQosDot1PMapOutput {
@@ -242,35 +243,6 @@ func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapOutput() Swit
 
 func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapOutput)
-}
-
-func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapPtrOutput() SwitchControllerQosDot1PMapPtrOutput {
-	return i.ToSwitchControllerQosDot1PMapPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerQosDot1PMap) ToSwitchControllerQosDot1PMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapPtrOutput)
-}
-
-type SwitchControllerQosDot1PMapPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerQosDot1PMapPtrOutput() SwitchControllerQosDot1PMapPtrOutput
-	ToSwitchControllerQosDot1PMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapPtrOutput
-}
-
-type switchControllerQosDot1PMapPtrType SwitchControllerQosDot1PMapArgs
-
-func (*switchControllerQosDot1PMapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosDot1PMap)(nil))
-}
-
-func (i *switchControllerQosDot1PMapPtrType) ToSwitchControllerQosDot1PMapPtrOutput() SwitchControllerQosDot1PMapPtrOutput {
-	return i.ToSwitchControllerQosDot1PMapPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerQosDot1PMapPtrType) ToSwitchControllerQosDot1PMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapPtrOutput)
 }
 
 // SwitchControllerQosDot1PMapArrayInput is an input type that accepts SwitchControllerQosDot1PMapArray and SwitchControllerQosDot1PMapArrayOutput values.
@@ -287,7 +259,7 @@ type SwitchControllerQosDot1PMapArrayInput interface {
 type SwitchControllerQosDot1PMapArray []SwitchControllerQosDot1PMapInput
 
 func (SwitchControllerQosDot1PMapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerQosDot1PMap)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosDot1PMap)(nil)).Elem()
 }
 
 func (i SwitchControllerQosDot1PMapArray) ToSwitchControllerQosDot1PMapArrayOutput() SwitchControllerQosDot1PMapArrayOutput {
@@ -312,7 +284,7 @@ type SwitchControllerQosDot1PMapMapInput interface {
 type SwitchControllerQosDot1PMapMap map[string]SwitchControllerQosDot1PMapInput
 
 func (SwitchControllerQosDot1PMapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerQosDot1PMap)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosDot1PMap)(nil)).Elem()
 }
 
 func (i SwitchControllerQosDot1PMapMap) ToSwitchControllerQosDot1PMapMapOutput() SwitchControllerQosDot1PMapMapOutput {
@@ -323,12 +295,10 @@ func (i SwitchControllerQosDot1PMapMap) ToSwitchControllerQosDot1PMapMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQosDot1PMapMapOutput)
 }
 
-type SwitchControllerQosDot1PMapOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerQosDot1PMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosDot1PMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQosDot1PMap)(nil))
+	return reflect.TypeOf((**SwitchControllerQosDot1PMap)(nil)).Elem()
 }
 
 func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapOutput() SwitchControllerQosDot1PMapOutput {
@@ -339,36 +309,10 @@ func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapOutputWi
 	return o
 }
 
-func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapPtrOutput() SwitchControllerQosDot1PMapPtrOutput {
-	return o.ToSwitchControllerQosDot1PMapPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerQosDot1PMapOutput) ToSwitchControllerQosDot1PMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapPtrOutput {
-	return o.ApplyT(func(v SwitchControllerQosDot1PMap) *SwitchControllerQosDot1PMap {
-		return &v
-	}).(SwitchControllerQosDot1PMapPtrOutput)
-}
-
-type SwitchControllerQosDot1PMapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerQosDot1PMapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQosDot1PMap)(nil))
-}
-
-func (o SwitchControllerQosDot1PMapPtrOutput) ToSwitchControllerQosDot1PMapPtrOutput() SwitchControllerQosDot1PMapPtrOutput {
-	return o
-}
-
-func (o SwitchControllerQosDot1PMapPtrOutput) ToSwitchControllerQosDot1PMapPtrOutputWithContext(ctx context.Context) SwitchControllerQosDot1PMapPtrOutput {
-	return o
-}
-
 type SwitchControllerQosDot1PMapArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosDot1PMapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerQosDot1PMap)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQosDot1PMap)(nil)).Elem()
 }
 
 func (o SwitchControllerQosDot1PMapArrayOutput) ToSwitchControllerQosDot1PMapArrayOutput() SwitchControllerQosDot1PMapArrayOutput {
@@ -380,15 +324,15 @@ func (o SwitchControllerQosDot1PMapArrayOutput) ToSwitchControllerQosDot1PMapArr
 }
 
 func (o SwitchControllerQosDot1PMapArrayOutput) Index(i pulumi.IntInput) SwitchControllerQosDot1PMapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerQosDot1PMap {
-		return vs[0].([]SwitchControllerQosDot1PMap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQosDot1PMap {
+		return vs[0].([]*SwitchControllerQosDot1PMap)[vs[1].(int)]
 	}).(SwitchControllerQosDot1PMapOutput)
 }
 
 type SwitchControllerQosDot1PMapMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQosDot1PMapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerQosDot1PMap)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQosDot1PMap)(nil)).Elem()
 }
 
 func (o SwitchControllerQosDot1PMapMapOutput) ToSwitchControllerQosDot1PMapMapOutput() SwitchControllerQosDot1PMapMapOutput {
@@ -400,14 +344,16 @@ func (o SwitchControllerQosDot1PMapMapOutput) ToSwitchControllerQosDot1PMapMapOu
 }
 
 func (o SwitchControllerQosDot1PMapMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQosDot1PMapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerQosDot1PMap {
-		return vs[0].(map[string]SwitchControllerQosDot1PMap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerQosDot1PMap {
+		return vs[0].(map[string]*SwitchControllerQosDot1PMap)[vs[1].(string)]
 	}).(SwitchControllerQosDot1PMapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosDot1PMapInput)(nil)).Elem(), &SwitchControllerQosDot1PMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosDot1PMapArrayInput)(nil)).Elem(), SwitchControllerQosDot1PMapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQosDot1PMapMapInput)(nil)).Elem(), SwitchControllerQosDot1PMapMap{})
 	pulumi.RegisterOutputType(SwitchControllerQosDot1PMapOutput{})
-	pulumi.RegisterOutputType(SwitchControllerQosDot1PMapPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosDot1PMapArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQosDot1PMapMapOutput{})
 }

@@ -21,7 +21,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,7 @@ func NewLogSyslogSetting(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogSyslogSetting
 	err := ctx.RegisterResource("fortios:index/logSyslogSetting:LogSyslogSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -178,7 +179,7 @@ type LogSyslogSettingInput interface {
 }
 
 func (*LogSyslogSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogSetting)(nil))
+	return reflect.TypeOf((**LogSyslogSetting)(nil)).Elem()
 }
 
 func (i *LogSyslogSetting) ToLogSyslogSettingOutput() LogSyslogSettingOutput {
@@ -187,35 +188,6 @@ func (i *LogSyslogSetting) ToLogSyslogSettingOutput() LogSyslogSettingOutput {
 
 func (i *LogSyslogSetting) ToLogSyslogSettingOutputWithContext(ctx context.Context) LogSyslogSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogSettingOutput)
-}
-
-func (i *LogSyslogSetting) ToLogSyslogSettingPtrOutput() LogSyslogSettingPtrOutput {
-	return i.ToLogSyslogSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogSyslogSetting) ToLogSyslogSettingPtrOutputWithContext(ctx context.Context) LogSyslogSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogSettingPtrOutput)
-}
-
-type LogSyslogSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogSyslogSettingPtrOutput() LogSyslogSettingPtrOutput
-	ToLogSyslogSettingPtrOutputWithContext(ctx context.Context) LogSyslogSettingPtrOutput
-}
-
-type logSyslogSettingPtrType LogSyslogSettingArgs
-
-func (*logSyslogSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogSetting)(nil))
-}
-
-func (i *logSyslogSettingPtrType) ToLogSyslogSettingPtrOutput() LogSyslogSettingPtrOutput {
-	return i.ToLogSyslogSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logSyslogSettingPtrType) ToLogSyslogSettingPtrOutputWithContext(ctx context.Context) LogSyslogSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogSettingPtrOutput)
 }
 
 // LogSyslogSettingArrayInput is an input type that accepts LogSyslogSettingArray and LogSyslogSettingArrayOutput values.
@@ -232,7 +204,7 @@ type LogSyslogSettingArrayInput interface {
 type LogSyslogSettingArray []LogSyslogSettingInput
 
 func (LogSyslogSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogSyslogSetting)(nil))
+	return reflect.TypeOf((*[]*LogSyslogSetting)(nil)).Elem()
 }
 
 func (i LogSyslogSettingArray) ToLogSyslogSettingArrayOutput() LogSyslogSettingArrayOutput {
@@ -257,7 +229,7 @@ type LogSyslogSettingMapInput interface {
 type LogSyslogSettingMap map[string]LogSyslogSettingInput
 
 func (LogSyslogSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogSyslogSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogSetting)(nil)).Elem()
 }
 
 func (i LogSyslogSettingMap) ToLogSyslogSettingMapOutput() LogSyslogSettingMapOutput {
@@ -268,12 +240,10 @@ func (i LogSyslogSettingMap) ToLogSyslogSettingMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogSettingMapOutput)
 }
 
-type LogSyslogSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogSyslogSettingOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogSetting)(nil))
+	return reflect.TypeOf((**LogSyslogSetting)(nil)).Elem()
 }
 
 func (o LogSyslogSettingOutput) ToLogSyslogSettingOutput() LogSyslogSettingOutput {
@@ -284,36 +254,10 @@ func (o LogSyslogSettingOutput) ToLogSyslogSettingOutputWithContext(ctx context.
 	return o
 }
 
-func (o LogSyslogSettingOutput) ToLogSyslogSettingPtrOutput() LogSyslogSettingPtrOutput {
-	return o.ToLogSyslogSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogSyslogSettingOutput) ToLogSyslogSettingPtrOutputWithContext(ctx context.Context) LogSyslogSettingPtrOutput {
-	return o.ApplyT(func(v LogSyslogSetting) *LogSyslogSetting {
-		return &v
-	}).(LogSyslogSettingPtrOutput)
-}
-
-type LogSyslogSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogSyslogSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogSetting)(nil))
-}
-
-func (o LogSyslogSettingPtrOutput) ToLogSyslogSettingPtrOutput() LogSyslogSettingPtrOutput {
-	return o
-}
-
-func (o LogSyslogSettingPtrOutput) ToLogSyslogSettingPtrOutputWithContext(ctx context.Context) LogSyslogSettingPtrOutput {
-	return o
-}
-
 type LogSyslogSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogSyslogSetting)(nil))
+	return reflect.TypeOf((*[]*LogSyslogSetting)(nil)).Elem()
 }
 
 func (o LogSyslogSettingArrayOutput) ToLogSyslogSettingArrayOutput() LogSyslogSettingArrayOutput {
@@ -325,15 +269,15 @@ func (o LogSyslogSettingArrayOutput) ToLogSyslogSettingArrayOutputWithContext(ct
 }
 
 func (o LogSyslogSettingArrayOutput) Index(i pulumi.IntInput) LogSyslogSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogSyslogSetting {
-		return vs[0].([]LogSyslogSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogSetting {
+		return vs[0].([]*LogSyslogSetting)[vs[1].(int)]
 	}).(LogSyslogSettingOutput)
 }
 
 type LogSyslogSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogSyslogSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogSetting)(nil)).Elem()
 }
 
 func (o LogSyslogSettingMapOutput) ToLogSyslogSettingMapOutput() LogSyslogSettingMapOutput {
@@ -345,14 +289,16 @@ func (o LogSyslogSettingMapOutput) ToLogSyslogSettingMapOutputWithContext(ctx co
 }
 
 func (o LogSyslogSettingMapOutput) MapIndex(k pulumi.StringInput) LogSyslogSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogSyslogSetting {
-		return vs[0].(map[string]LogSyslogSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogSyslogSetting {
+		return vs[0].(map[string]*LogSyslogSetting)[vs[1].(string)]
 	}).(LogSyslogSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogSettingInput)(nil)).Elem(), &LogSyslogSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogSettingArrayInput)(nil)).Elem(), LogSyslogSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogSettingMapInput)(nil)).Elem(), LogSyslogSettingMap{})
 	pulumi.RegisterOutputType(LogSyslogSettingOutput{})
-	pulumi.RegisterOutputType(LogSyslogSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogSyslogSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogSyslogSettingMapOutput{})
 }

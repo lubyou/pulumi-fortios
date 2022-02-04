@@ -99,42 +99,40 @@ export class ApplicationCustom extends pulumi.CustomResource {
      */
     constructor(name: string, args: ApplicationCustomArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApplicationCustomArgs | ApplicationCustomState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApplicationCustomState | undefined;
-            inputs["behavior"] = state ? state.behavior : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["signature"] = state ? state.signature : undefined;
-            inputs["tag"] = state ? state.tag : undefined;
-            inputs["technology"] = state ? state.technology : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vendor"] = state ? state.vendor : undefined;
+            resourceInputs["behavior"] = state ? state.behavior : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["signature"] = state ? state.signature : undefined;
+            resourceInputs["tag"] = state ? state.tag : undefined;
+            resourceInputs["technology"] = state ? state.technology : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vendor"] = state ? state.vendor : undefined;
         } else {
             const args = argsOrState as ApplicationCustomArgs | undefined;
             if ((!args || args.category === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'category'");
             }
-            inputs["behavior"] = args ? args.behavior : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["signature"] = args ? args.signature : undefined;
-            inputs["tag"] = args ? args.tag : undefined;
-            inputs["technology"] = args ? args.technology : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["behavior"] = args ? args.behavior : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["signature"] = args ? args.signature : undefined;
+            resourceInputs["tag"] = args ? args.tag : undefined;
+            resourceInputs["technology"] = args ? args.technology : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vendor"] = args ? args.vendor : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ApplicationCustom.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ApplicationCustom.__pulumiType, name, resourceInputs, opts);
     }
 }
 

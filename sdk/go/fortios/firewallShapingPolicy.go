@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -31,13 +32,13 @@ import (
 // 			DiffservReverse:     pulumi.String("disable"),
 // 			DiffservcodeForward: pulumi.String("000000"),
 // 			DiffservcodeRev:     pulumi.String("000000"),
-// 			Dstaddrs: fortios.FirewallShapingPolicyDstaddrArray{
-// 				&fortios.FirewallShapingPolicyDstaddrArgs{
+// 			Dstaddrs: FirewallShapingPolicyDstaddrArray{
+// 				&FirewallShapingPolicyDstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
-// 			Dstintfs: fortios.FirewallShapingPolicyDstintfArray{
-// 				&fortios.FirewallShapingPolicyDstintfArgs{
+// 			Dstintfs: FirewallShapingPolicyDstintfArray{
+// 				&FirewallShapingPolicyDstintfArgs{
 // 					Name: pulumi.String("port4"),
 // 				},
 // 			},
@@ -45,13 +46,13 @@ import (
 // 			InternetService:    pulumi.String("disable"),
 // 			InternetServiceSrc: pulumi.String("disable"),
 // 			IpVersion:          pulumi.String("4"),
-// 			Services: fortios.FirewallShapingPolicyServiceArray{
-// 				&fortios.FirewallShapingPolicyServiceArgs{
+// 			Services: FirewallShapingPolicyServiceArray{
+// 				&FirewallShapingPolicyServiceArgs{
 // 					Name: pulumi.String("ALL"),
 // 				},
 // 			},
-// 			Srcaddrs: fortios.FirewallShapingPolicySrcaddrArray{
-// 				&fortios.FirewallShapingPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallShapingPolicySrcaddrArray{
+// 				&FirewallShapingPolicySrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -189,6 +190,7 @@ func NewFirewallShapingPolicy(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallShapingPolicy
 	err := ctx.RegisterResource("fortios:index/firewallShapingPolicy:FirewallShapingPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -591,7 +593,7 @@ type FirewallShapingPolicyInput interface {
 }
 
 func (*FirewallShapingPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShapingPolicy)(nil))
+	return reflect.TypeOf((**FirewallShapingPolicy)(nil)).Elem()
 }
 
 func (i *FirewallShapingPolicy) ToFirewallShapingPolicyOutput() FirewallShapingPolicyOutput {
@@ -600,35 +602,6 @@ func (i *FirewallShapingPolicy) ToFirewallShapingPolicyOutput() FirewallShapingP
 
 func (i *FirewallShapingPolicy) ToFirewallShapingPolicyOutputWithContext(ctx context.Context) FirewallShapingPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingPolicyOutput)
-}
-
-func (i *FirewallShapingPolicy) ToFirewallShapingPolicyPtrOutput() FirewallShapingPolicyPtrOutput {
-	return i.ToFirewallShapingPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallShapingPolicy) ToFirewallShapingPolicyPtrOutputWithContext(ctx context.Context) FirewallShapingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingPolicyPtrOutput)
-}
-
-type FirewallShapingPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallShapingPolicyPtrOutput() FirewallShapingPolicyPtrOutput
-	ToFirewallShapingPolicyPtrOutputWithContext(ctx context.Context) FirewallShapingPolicyPtrOutput
-}
-
-type firewallShapingPolicyPtrType FirewallShapingPolicyArgs
-
-func (*firewallShapingPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShapingPolicy)(nil))
-}
-
-func (i *firewallShapingPolicyPtrType) ToFirewallShapingPolicyPtrOutput() FirewallShapingPolicyPtrOutput {
-	return i.ToFirewallShapingPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallShapingPolicyPtrType) ToFirewallShapingPolicyPtrOutputWithContext(ctx context.Context) FirewallShapingPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingPolicyPtrOutput)
 }
 
 // FirewallShapingPolicyArrayInput is an input type that accepts FirewallShapingPolicyArray and FirewallShapingPolicyArrayOutput values.
@@ -645,7 +618,7 @@ type FirewallShapingPolicyArrayInput interface {
 type FirewallShapingPolicyArray []FirewallShapingPolicyInput
 
 func (FirewallShapingPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallShapingPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallShapingPolicy)(nil)).Elem()
 }
 
 func (i FirewallShapingPolicyArray) ToFirewallShapingPolicyArrayOutput() FirewallShapingPolicyArrayOutput {
@@ -670,7 +643,7 @@ type FirewallShapingPolicyMapInput interface {
 type FirewallShapingPolicyMap map[string]FirewallShapingPolicyInput
 
 func (FirewallShapingPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallShapingPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShapingPolicy)(nil)).Elem()
 }
 
 func (i FirewallShapingPolicyMap) ToFirewallShapingPolicyMapOutput() FirewallShapingPolicyMapOutput {
@@ -681,12 +654,10 @@ func (i FirewallShapingPolicyMap) ToFirewallShapingPolicyMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallShapingPolicyMapOutput)
 }
 
-type FirewallShapingPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallShapingPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallShapingPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallShapingPolicy)(nil))
+	return reflect.TypeOf((**FirewallShapingPolicy)(nil)).Elem()
 }
 
 func (o FirewallShapingPolicyOutput) ToFirewallShapingPolicyOutput() FirewallShapingPolicyOutput {
@@ -697,36 +668,10 @@ func (o FirewallShapingPolicyOutput) ToFirewallShapingPolicyOutputWithContext(ct
 	return o
 }
 
-func (o FirewallShapingPolicyOutput) ToFirewallShapingPolicyPtrOutput() FirewallShapingPolicyPtrOutput {
-	return o.ToFirewallShapingPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallShapingPolicyOutput) ToFirewallShapingPolicyPtrOutputWithContext(ctx context.Context) FirewallShapingPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallShapingPolicy) *FirewallShapingPolicy {
-		return &v
-	}).(FirewallShapingPolicyPtrOutput)
-}
-
-type FirewallShapingPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallShapingPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallShapingPolicy)(nil))
-}
-
-func (o FirewallShapingPolicyPtrOutput) ToFirewallShapingPolicyPtrOutput() FirewallShapingPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallShapingPolicyPtrOutput) ToFirewallShapingPolicyPtrOutputWithContext(ctx context.Context) FirewallShapingPolicyPtrOutput {
-	return o
-}
-
 type FirewallShapingPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallShapingPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallShapingPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallShapingPolicy)(nil)).Elem()
 }
 
 func (o FirewallShapingPolicyArrayOutput) ToFirewallShapingPolicyArrayOutput() FirewallShapingPolicyArrayOutput {
@@ -738,15 +683,15 @@ func (o FirewallShapingPolicyArrayOutput) ToFirewallShapingPolicyArrayOutputWith
 }
 
 func (o FirewallShapingPolicyArrayOutput) Index(i pulumi.IntInput) FirewallShapingPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallShapingPolicy {
-		return vs[0].([]FirewallShapingPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallShapingPolicy {
+		return vs[0].([]*FirewallShapingPolicy)[vs[1].(int)]
 	}).(FirewallShapingPolicyOutput)
 }
 
 type FirewallShapingPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallShapingPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallShapingPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallShapingPolicy)(nil)).Elem()
 }
 
 func (o FirewallShapingPolicyMapOutput) ToFirewallShapingPolicyMapOutput() FirewallShapingPolicyMapOutput {
@@ -758,14 +703,16 @@ func (o FirewallShapingPolicyMapOutput) ToFirewallShapingPolicyMapOutputWithCont
 }
 
 func (o FirewallShapingPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallShapingPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallShapingPolicy {
-		return vs[0].(map[string]FirewallShapingPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallShapingPolicy {
+		return vs[0].(map[string]*FirewallShapingPolicy)[vs[1].(string)]
 	}).(FirewallShapingPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShapingPolicyInput)(nil)).Elem(), &FirewallShapingPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShapingPolicyArrayInput)(nil)).Elem(), FirewallShapingPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallShapingPolicyMapInput)(nil)).Elem(), FirewallShapingPolicyMap{})
 	pulumi.RegisterOutputType(FirewallShapingPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallShapingPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallShapingPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallShapingPolicyMapOutput{})
 }

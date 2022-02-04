@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -27,8 +28,8 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallLocalInPolicy(ctx, "trname", &fortios.FirewallLocalInPolicyArgs{
 // 			Action: pulumi.String("accept"),
-// 			Dstaddrs: fortios.FirewallLocalInPolicyDstaddrArray{
-// 				&fortios.FirewallLocalInPolicyDstaddrArgs{
+// 			Dstaddrs: FirewallLocalInPolicyDstaddrArray{
+// 				&FirewallLocalInPolicyDstaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -36,13 +37,13 @@ import (
 // 			Intf:           pulumi.String("port4"),
 // 			Policyid:       pulumi.Int(1),
 // 			Schedule:       pulumi.String("always"),
-// 			Services: fortios.FirewallLocalInPolicyServiceArray{
-// 				&fortios.FirewallLocalInPolicyServiceArgs{
+// 			Services: FirewallLocalInPolicyServiceArray{
+// 				&FirewallLocalInPolicyServiceArgs{
 // 					Name: pulumi.String("ALL"),
 // 				},
 // 			},
-// 			Srcaddrs: fortios.FirewallLocalInPolicySrcaddrArray{
-// 				&fortios.FirewallLocalInPolicySrcaddrArgs{
+// 			Srcaddrs: FirewallLocalInPolicySrcaddrArray{
+// 				&FirewallLocalInPolicySrcaddrArgs{
 // 					Name: pulumi.String("all"),
 // 				},
 // 			},
@@ -72,6 +73,8 @@ type FirewallLocalInPolicy struct {
 	Action pulumi.StringOutput `pulumi:"action"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
+	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	DstaddrNegate pulumi.StringOutput `pulumi:"dstaddrNegate"`
 	// Destination address object from available options. The structure of `dstaddr` block is documented below.
 	Dstaddrs FirewallLocalInPolicyDstaddrArrayOutput `pulumi:"dstaddrs"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -84,8 +87,12 @@ type FirewallLocalInPolicy struct {
 	Policyid pulumi.IntOutput `pulumi:"policyid"`
 	// Schedule object from available options.
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
+	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	ServiceNegate pulumi.StringOutput `pulumi:"serviceNegate"`
 	// Service object from available options. The structure of `service` block is documented below.
 	Services FirewallLocalInPolicyServiceArrayOutput `pulumi:"services"`
+	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	SrcaddrNegate pulumi.StringOutput `pulumi:"srcaddrNegate"`
 	// Source address object from available options. The structure of `srcaddr` block is documented below.
 	Srcaddrs FirewallLocalInPolicySrcaddrArrayOutput `pulumi:"srcaddrs"`
 	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
@@ -112,6 +119,7 @@ func NewFirewallLocalInPolicy(ctx *pulumi.Context,
 	if args.Srcaddrs == nil {
 		return nil, errors.New("invalid value for required argument 'Srcaddrs'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallLocalInPolicy
 	err := ctx.RegisterResource("fortios:index/firewallLocalInPolicy:FirewallLocalInPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -138,6 +146,8 @@ type firewallLocalInPolicyState struct {
 	Action *string `pulumi:"action"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	DstaddrNegate *string `pulumi:"dstaddrNegate"`
 	// Destination address object from available options. The structure of `dstaddr` block is documented below.
 	Dstaddrs []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -150,8 +160,12 @@ type firewallLocalInPolicyState struct {
 	Policyid *int `pulumi:"policyid"`
 	// Schedule object from available options.
 	Schedule *string `pulumi:"schedule"`
+	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	ServiceNegate *string `pulumi:"serviceNegate"`
 	// Service object from available options. The structure of `service` block is documented below.
 	Services []FirewallLocalInPolicyService `pulumi:"services"`
+	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
 	// Source address object from available options. The structure of `srcaddr` block is documented below.
 	Srcaddrs []FirewallLocalInPolicySrcaddr `pulumi:"srcaddrs"`
 	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
@@ -167,6 +181,8 @@ type FirewallLocalInPolicyState struct {
 	Action pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	DstaddrNegate pulumi.StringPtrInput
 	// Destination address object from available options. The structure of `dstaddr` block is documented below.
 	Dstaddrs FirewallLocalInPolicyDstaddrArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -179,8 +195,12 @@ type FirewallLocalInPolicyState struct {
 	Policyid pulumi.IntPtrInput
 	// Schedule object from available options.
 	Schedule pulumi.StringPtrInput
+	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	ServiceNegate pulumi.StringPtrInput
 	// Service object from available options. The structure of `service` block is documented below.
 	Services FirewallLocalInPolicyServiceArrayInput
+	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	SrcaddrNegate pulumi.StringPtrInput
 	// Source address object from available options. The structure of `srcaddr` block is documented below.
 	Srcaddrs FirewallLocalInPolicySrcaddrArrayInput
 	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
@@ -200,6 +220,8 @@ type firewallLocalInPolicyArgs struct {
 	Action *string `pulumi:"action"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	DstaddrNegate *string `pulumi:"dstaddrNegate"`
 	// Destination address object from available options. The structure of `dstaddr` block is documented below.
 	Dstaddrs []FirewallLocalInPolicyDstaddr `pulumi:"dstaddrs"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -212,8 +234,12 @@ type firewallLocalInPolicyArgs struct {
 	Policyid *int `pulumi:"policyid"`
 	// Schedule object from available options.
 	Schedule string `pulumi:"schedule"`
+	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	ServiceNegate *string `pulumi:"serviceNegate"`
 	// Service object from available options. The structure of `service` block is documented below.
 	Services []FirewallLocalInPolicyService `pulumi:"services"`
+	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	SrcaddrNegate *string `pulumi:"srcaddrNegate"`
 	// Source address object from available options. The structure of `srcaddr` block is documented below.
 	Srcaddrs []FirewallLocalInPolicySrcaddr `pulumi:"srcaddrs"`
 	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
@@ -230,6 +256,8 @@ type FirewallLocalInPolicyArgs struct {
 	Action pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+	DstaddrNegate pulumi.StringPtrInput
 	// Destination address object from available options. The structure of `dstaddr` block is documented below.
 	Dstaddrs FirewallLocalInPolicyDstaddrArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -242,8 +270,12 @@ type FirewallLocalInPolicyArgs struct {
 	Policyid pulumi.IntPtrInput
 	// Schedule object from available options.
 	Schedule pulumi.StringInput
+	// When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+	ServiceNegate pulumi.StringPtrInput
 	// Service object from available options. The structure of `service` block is documented below.
 	Services FirewallLocalInPolicyServiceArrayInput
+	// When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+	SrcaddrNegate pulumi.StringPtrInput
 	// Source address object from available options. The structure of `srcaddr` block is documented below.
 	Srcaddrs FirewallLocalInPolicySrcaddrArrayInput
 	// Enable/disable this local-in policy. Valid values: `enable`, `disable`.
@@ -266,7 +298,7 @@ type FirewallLocalInPolicyInput interface {
 }
 
 func (*FirewallLocalInPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallLocalInPolicy)(nil))
+	return reflect.TypeOf((**FirewallLocalInPolicy)(nil)).Elem()
 }
 
 func (i *FirewallLocalInPolicy) ToFirewallLocalInPolicyOutput() FirewallLocalInPolicyOutput {
@@ -275,35 +307,6 @@ func (i *FirewallLocalInPolicy) ToFirewallLocalInPolicyOutput() FirewallLocalInP
 
 func (i *FirewallLocalInPolicy) ToFirewallLocalInPolicyOutputWithContext(ctx context.Context) FirewallLocalInPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLocalInPolicyOutput)
-}
-
-func (i *FirewallLocalInPolicy) ToFirewallLocalInPolicyPtrOutput() FirewallLocalInPolicyPtrOutput {
-	return i.ToFirewallLocalInPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallLocalInPolicy) ToFirewallLocalInPolicyPtrOutputWithContext(ctx context.Context) FirewallLocalInPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallLocalInPolicyPtrOutput)
-}
-
-type FirewallLocalInPolicyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallLocalInPolicyPtrOutput() FirewallLocalInPolicyPtrOutput
-	ToFirewallLocalInPolicyPtrOutputWithContext(ctx context.Context) FirewallLocalInPolicyPtrOutput
-}
-
-type firewallLocalInPolicyPtrType FirewallLocalInPolicyArgs
-
-func (*firewallLocalInPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallLocalInPolicy)(nil))
-}
-
-func (i *firewallLocalInPolicyPtrType) ToFirewallLocalInPolicyPtrOutput() FirewallLocalInPolicyPtrOutput {
-	return i.ToFirewallLocalInPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallLocalInPolicyPtrType) ToFirewallLocalInPolicyPtrOutputWithContext(ctx context.Context) FirewallLocalInPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallLocalInPolicyPtrOutput)
 }
 
 // FirewallLocalInPolicyArrayInput is an input type that accepts FirewallLocalInPolicyArray and FirewallLocalInPolicyArrayOutput values.
@@ -320,7 +323,7 @@ type FirewallLocalInPolicyArrayInput interface {
 type FirewallLocalInPolicyArray []FirewallLocalInPolicyInput
 
 func (FirewallLocalInPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallLocalInPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallLocalInPolicy)(nil)).Elem()
 }
 
 func (i FirewallLocalInPolicyArray) ToFirewallLocalInPolicyArrayOutput() FirewallLocalInPolicyArrayOutput {
@@ -345,7 +348,7 @@ type FirewallLocalInPolicyMapInput interface {
 type FirewallLocalInPolicyMap map[string]FirewallLocalInPolicyInput
 
 func (FirewallLocalInPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallLocalInPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallLocalInPolicy)(nil)).Elem()
 }
 
 func (i FirewallLocalInPolicyMap) ToFirewallLocalInPolicyMapOutput() FirewallLocalInPolicyMapOutput {
@@ -356,12 +359,10 @@ func (i FirewallLocalInPolicyMap) ToFirewallLocalInPolicyMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallLocalInPolicyMapOutput)
 }
 
-type FirewallLocalInPolicyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallLocalInPolicyOutput struct{ *pulumi.OutputState }
 
 func (FirewallLocalInPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallLocalInPolicy)(nil))
+	return reflect.TypeOf((**FirewallLocalInPolicy)(nil)).Elem()
 }
 
 func (o FirewallLocalInPolicyOutput) ToFirewallLocalInPolicyOutput() FirewallLocalInPolicyOutput {
@@ -372,36 +373,10 @@ func (o FirewallLocalInPolicyOutput) ToFirewallLocalInPolicyOutputWithContext(ct
 	return o
 }
 
-func (o FirewallLocalInPolicyOutput) ToFirewallLocalInPolicyPtrOutput() FirewallLocalInPolicyPtrOutput {
-	return o.ToFirewallLocalInPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallLocalInPolicyOutput) ToFirewallLocalInPolicyPtrOutputWithContext(ctx context.Context) FirewallLocalInPolicyPtrOutput {
-	return o.ApplyT(func(v FirewallLocalInPolicy) *FirewallLocalInPolicy {
-		return &v
-	}).(FirewallLocalInPolicyPtrOutput)
-}
-
-type FirewallLocalInPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallLocalInPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallLocalInPolicy)(nil))
-}
-
-func (o FirewallLocalInPolicyPtrOutput) ToFirewallLocalInPolicyPtrOutput() FirewallLocalInPolicyPtrOutput {
-	return o
-}
-
-func (o FirewallLocalInPolicyPtrOutput) ToFirewallLocalInPolicyPtrOutputWithContext(ctx context.Context) FirewallLocalInPolicyPtrOutput {
-	return o
-}
-
 type FirewallLocalInPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallLocalInPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallLocalInPolicy)(nil))
+	return reflect.TypeOf((*[]*FirewallLocalInPolicy)(nil)).Elem()
 }
 
 func (o FirewallLocalInPolicyArrayOutput) ToFirewallLocalInPolicyArrayOutput() FirewallLocalInPolicyArrayOutput {
@@ -413,15 +388,15 @@ func (o FirewallLocalInPolicyArrayOutput) ToFirewallLocalInPolicyArrayOutputWith
 }
 
 func (o FirewallLocalInPolicyArrayOutput) Index(i pulumi.IntInput) FirewallLocalInPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallLocalInPolicy {
-		return vs[0].([]FirewallLocalInPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallLocalInPolicy {
+		return vs[0].([]*FirewallLocalInPolicy)[vs[1].(int)]
 	}).(FirewallLocalInPolicyOutput)
 }
 
 type FirewallLocalInPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallLocalInPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallLocalInPolicy)(nil))
+	return reflect.TypeOf((*map[string]*FirewallLocalInPolicy)(nil)).Elem()
 }
 
 func (o FirewallLocalInPolicyMapOutput) ToFirewallLocalInPolicyMapOutput() FirewallLocalInPolicyMapOutput {
@@ -433,14 +408,16 @@ func (o FirewallLocalInPolicyMapOutput) ToFirewallLocalInPolicyMapOutputWithCont
 }
 
 func (o FirewallLocalInPolicyMapOutput) MapIndex(k pulumi.StringInput) FirewallLocalInPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallLocalInPolicy {
-		return vs[0].(map[string]FirewallLocalInPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallLocalInPolicy {
+		return vs[0].(map[string]*FirewallLocalInPolicy)[vs[1].(string)]
 	}).(FirewallLocalInPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLocalInPolicyInput)(nil)).Elem(), &FirewallLocalInPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLocalInPolicyArrayInput)(nil)).Elem(), FirewallLocalInPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallLocalInPolicyMapInput)(nil)).Elem(), FirewallLocalInPolicyMap{})
 	pulumi.RegisterOutputType(FirewallLocalInPolicyOutput{})
-	pulumi.RegisterOutputType(FirewallLocalInPolicyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallLocalInPolicyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallLocalInPolicyMapOutput{})
 }

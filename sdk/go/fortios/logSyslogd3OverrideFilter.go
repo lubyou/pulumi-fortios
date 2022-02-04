@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -91,6 +91,8 @@ type LogSyslogd3OverrideFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogSyslogd3OverrideFilter registers a new resource with the given unique name, arguments, and options.
@@ -100,6 +102,7 @@ func NewLogSyslogd3OverrideFilter(ctx *pulumi.Context,
 		args = &LogSyslogd3OverrideFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogSyslogd3OverrideFilter
 	err := ctx.RegisterResource("fortios:index/logSyslogd3OverrideFilter:LogSyslogd3OverrideFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -156,6 +159,8 @@ type logSyslogd3OverrideFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogSyslogd3OverrideFilterState struct {
@@ -193,6 +198,8 @@ type LogSyslogd3OverrideFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogSyslogd3OverrideFilterState) ElementType() reflect.Type {
@@ -234,6 +241,8 @@ type logSyslogd3OverrideFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogSyslogd3OverrideFilter resource.
@@ -272,6 +281,8 @@ type LogSyslogd3OverrideFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogSyslogd3OverrideFilterArgs) ElementType() reflect.Type {
@@ -286,7 +297,7 @@ type LogSyslogd3OverrideFilterInput interface {
 }
 
 func (*LogSyslogd3OverrideFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogd3OverrideFilter)(nil))
+	return reflect.TypeOf((**LogSyslogd3OverrideFilter)(nil)).Elem()
 }
 
 func (i *LogSyslogd3OverrideFilter) ToLogSyslogd3OverrideFilterOutput() LogSyslogd3OverrideFilterOutput {
@@ -295,35 +306,6 @@ func (i *LogSyslogd3OverrideFilter) ToLogSyslogd3OverrideFilterOutput() LogSyslo
 
 func (i *LogSyslogd3OverrideFilter) ToLogSyslogd3OverrideFilterOutputWithContext(ctx context.Context) LogSyslogd3OverrideFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3OverrideFilterOutput)
-}
-
-func (i *LogSyslogd3OverrideFilter) ToLogSyslogd3OverrideFilterPtrOutput() LogSyslogd3OverrideFilterPtrOutput {
-	return i.ToLogSyslogd3OverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogSyslogd3OverrideFilter) ToLogSyslogd3OverrideFilterPtrOutputWithContext(ctx context.Context) LogSyslogd3OverrideFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3OverrideFilterPtrOutput)
-}
-
-type LogSyslogd3OverrideFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogSyslogd3OverrideFilterPtrOutput() LogSyslogd3OverrideFilterPtrOutput
-	ToLogSyslogd3OverrideFilterPtrOutputWithContext(ctx context.Context) LogSyslogd3OverrideFilterPtrOutput
-}
-
-type logSyslogd3OverrideFilterPtrType LogSyslogd3OverrideFilterArgs
-
-func (*logSyslogd3OverrideFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogd3OverrideFilter)(nil))
-}
-
-func (i *logSyslogd3OverrideFilterPtrType) ToLogSyslogd3OverrideFilterPtrOutput() LogSyslogd3OverrideFilterPtrOutput {
-	return i.ToLogSyslogd3OverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logSyslogd3OverrideFilterPtrType) ToLogSyslogd3OverrideFilterPtrOutputWithContext(ctx context.Context) LogSyslogd3OverrideFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3OverrideFilterPtrOutput)
 }
 
 // LogSyslogd3OverrideFilterArrayInput is an input type that accepts LogSyslogd3OverrideFilterArray and LogSyslogd3OverrideFilterArrayOutput values.
@@ -340,7 +322,7 @@ type LogSyslogd3OverrideFilterArrayInput interface {
 type LogSyslogd3OverrideFilterArray []LogSyslogd3OverrideFilterInput
 
 func (LogSyslogd3OverrideFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogSyslogd3OverrideFilter)(nil))
+	return reflect.TypeOf((*[]*LogSyslogd3OverrideFilter)(nil)).Elem()
 }
 
 func (i LogSyslogd3OverrideFilterArray) ToLogSyslogd3OverrideFilterArrayOutput() LogSyslogd3OverrideFilterArrayOutput {
@@ -365,7 +347,7 @@ type LogSyslogd3OverrideFilterMapInput interface {
 type LogSyslogd3OverrideFilterMap map[string]LogSyslogd3OverrideFilterInput
 
 func (LogSyslogd3OverrideFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogSyslogd3OverrideFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogd3OverrideFilter)(nil)).Elem()
 }
 
 func (i LogSyslogd3OverrideFilterMap) ToLogSyslogd3OverrideFilterMapOutput() LogSyslogd3OverrideFilterMapOutput {
@@ -376,12 +358,10 @@ func (i LogSyslogd3OverrideFilterMap) ToLogSyslogd3OverrideFilterMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(LogSyslogd3OverrideFilterMapOutput)
 }
 
-type LogSyslogd3OverrideFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogSyslogd3OverrideFilterOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd3OverrideFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogSyslogd3OverrideFilter)(nil))
+	return reflect.TypeOf((**LogSyslogd3OverrideFilter)(nil)).Elem()
 }
 
 func (o LogSyslogd3OverrideFilterOutput) ToLogSyslogd3OverrideFilterOutput() LogSyslogd3OverrideFilterOutput {
@@ -392,36 +372,10 @@ func (o LogSyslogd3OverrideFilterOutput) ToLogSyslogd3OverrideFilterOutputWithCo
 	return o
 }
 
-func (o LogSyslogd3OverrideFilterOutput) ToLogSyslogd3OverrideFilterPtrOutput() LogSyslogd3OverrideFilterPtrOutput {
-	return o.ToLogSyslogd3OverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogSyslogd3OverrideFilterOutput) ToLogSyslogd3OverrideFilterPtrOutputWithContext(ctx context.Context) LogSyslogd3OverrideFilterPtrOutput {
-	return o.ApplyT(func(v LogSyslogd3OverrideFilter) *LogSyslogd3OverrideFilter {
-		return &v
-	}).(LogSyslogd3OverrideFilterPtrOutput)
-}
-
-type LogSyslogd3OverrideFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogSyslogd3OverrideFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogSyslogd3OverrideFilter)(nil))
-}
-
-func (o LogSyslogd3OverrideFilterPtrOutput) ToLogSyslogd3OverrideFilterPtrOutput() LogSyslogd3OverrideFilterPtrOutput {
-	return o
-}
-
-func (o LogSyslogd3OverrideFilterPtrOutput) ToLogSyslogd3OverrideFilterPtrOutputWithContext(ctx context.Context) LogSyslogd3OverrideFilterPtrOutput {
-	return o
-}
-
 type LogSyslogd3OverrideFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd3OverrideFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogSyslogd3OverrideFilter)(nil))
+	return reflect.TypeOf((*[]*LogSyslogd3OverrideFilter)(nil)).Elem()
 }
 
 func (o LogSyslogd3OverrideFilterArrayOutput) ToLogSyslogd3OverrideFilterArrayOutput() LogSyslogd3OverrideFilterArrayOutput {
@@ -433,15 +387,15 @@ func (o LogSyslogd3OverrideFilterArrayOutput) ToLogSyslogd3OverrideFilterArrayOu
 }
 
 func (o LogSyslogd3OverrideFilterArrayOutput) Index(i pulumi.IntInput) LogSyslogd3OverrideFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogSyslogd3OverrideFilter {
-		return vs[0].([]LogSyslogd3OverrideFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogSyslogd3OverrideFilter {
+		return vs[0].([]*LogSyslogd3OverrideFilter)[vs[1].(int)]
 	}).(LogSyslogd3OverrideFilterOutput)
 }
 
 type LogSyslogd3OverrideFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogSyslogd3OverrideFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogSyslogd3OverrideFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogSyslogd3OverrideFilter)(nil)).Elem()
 }
 
 func (o LogSyslogd3OverrideFilterMapOutput) ToLogSyslogd3OverrideFilterMapOutput() LogSyslogd3OverrideFilterMapOutput {
@@ -453,14 +407,16 @@ func (o LogSyslogd3OverrideFilterMapOutput) ToLogSyslogd3OverrideFilterMapOutput
 }
 
 func (o LogSyslogd3OverrideFilterMapOutput) MapIndex(k pulumi.StringInput) LogSyslogd3OverrideFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogSyslogd3OverrideFilter {
-		return vs[0].(map[string]LogSyslogd3OverrideFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogSyslogd3OverrideFilter {
+		return vs[0].(map[string]*LogSyslogd3OverrideFilter)[vs[1].(string)]
 	}).(LogSyslogd3OverrideFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogd3OverrideFilterInput)(nil)).Elem(), &LogSyslogd3OverrideFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogd3OverrideFilterArrayInput)(nil)).Elem(), LogSyslogd3OverrideFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogSyslogd3OverrideFilterMapInput)(nil)).Elem(), LogSyslogd3OverrideFilterMap{})
 	pulumi.RegisterOutputType(LogSyslogd3OverrideFilterOutput{})
-	pulumi.RegisterOutputType(LogSyslogd3OverrideFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogSyslogd3OverrideFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogSyslogd3OverrideFilterMapOutput{})
 }

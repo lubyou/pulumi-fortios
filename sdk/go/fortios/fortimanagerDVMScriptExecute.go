@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,7 @@ func NewFortimanagerDVMScriptExecute(ctx *pulumi.Context,
 	if args.ScriptName == nil {
 		return nil, errors.New("invalid value for required argument 'ScriptName'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerDVMScriptExecute
 	err := ctx.RegisterResource("fortios:index/fortimanagerDVMScriptExecute:FortimanagerDVMScriptExecute", name, args, &resource, opts...)
 	if err != nil {
@@ -162,7 +163,7 @@ type FortimanagerDVMScriptExecuteInput interface {
 }
 
 func (*FortimanagerDVMScriptExecute) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerDVMScriptExecute)(nil))
+	return reflect.TypeOf((**FortimanagerDVMScriptExecute)(nil)).Elem()
 }
 
 func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecuteOutput() FortimanagerDVMScriptExecuteOutput {
@@ -171,35 +172,6 @@ func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecuteOutput() Fo
 
 func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecuteOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecuteOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecuteOutput)
-}
-
-func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecutePtrOutput() FortimanagerDVMScriptExecutePtrOutput {
-	return i.ToFortimanagerDVMScriptExecutePtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerDVMScriptExecute) ToFortimanagerDVMScriptExecutePtrOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecutePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecutePtrOutput)
-}
-
-type FortimanagerDVMScriptExecutePtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerDVMScriptExecutePtrOutput() FortimanagerDVMScriptExecutePtrOutput
-	ToFortimanagerDVMScriptExecutePtrOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecutePtrOutput
-}
-
-type fortimanagerDVMScriptExecutePtrType FortimanagerDVMScriptExecuteArgs
-
-func (*fortimanagerDVMScriptExecutePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerDVMScriptExecute)(nil))
-}
-
-func (i *fortimanagerDVMScriptExecutePtrType) ToFortimanagerDVMScriptExecutePtrOutput() FortimanagerDVMScriptExecutePtrOutput {
-	return i.ToFortimanagerDVMScriptExecutePtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerDVMScriptExecutePtrType) ToFortimanagerDVMScriptExecutePtrOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecutePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecutePtrOutput)
 }
 
 // FortimanagerDVMScriptExecuteArrayInput is an input type that accepts FortimanagerDVMScriptExecuteArray and FortimanagerDVMScriptExecuteArrayOutput values.
@@ -216,7 +188,7 @@ type FortimanagerDVMScriptExecuteArrayInput interface {
 type FortimanagerDVMScriptExecuteArray []FortimanagerDVMScriptExecuteInput
 
 func (FortimanagerDVMScriptExecuteArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerDVMScriptExecute)(nil))
+	return reflect.TypeOf((*[]*FortimanagerDVMScriptExecute)(nil)).Elem()
 }
 
 func (i FortimanagerDVMScriptExecuteArray) ToFortimanagerDVMScriptExecuteArrayOutput() FortimanagerDVMScriptExecuteArrayOutput {
@@ -241,7 +213,7 @@ type FortimanagerDVMScriptExecuteMapInput interface {
 type FortimanagerDVMScriptExecuteMap map[string]FortimanagerDVMScriptExecuteInput
 
 func (FortimanagerDVMScriptExecuteMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerDVMScriptExecute)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerDVMScriptExecute)(nil)).Elem()
 }
 
 func (i FortimanagerDVMScriptExecuteMap) ToFortimanagerDVMScriptExecuteMapOutput() FortimanagerDVMScriptExecuteMapOutput {
@@ -252,12 +224,10 @@ func (i FortimanagerDVMScriptExecuteMap) ToFortimanagerDVMScriptExecuteMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerDVMScriptExecuteMapOutput)
 }
 
-type FortimanagerDVMScriptExecuteOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerDVMScriptExecuteOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMScriptExecuteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerDVMScriptExecute)(nil))
+	return reflect.TypeOf((**FortimanagerDVMScriptExecute)(nil)).Elem()
 }
 
 func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecuteOutput() FortimanagerDVMScriptExecuteOutput {
@@ -268,36 +238,10 @@ func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecuteOutput
 	return o
 }
 
-func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecutePtrOutput() FortimanagerDVMScriptExecutePtrOutput {
-	return o.ToFortimanagerDVMScriptExecutePtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerDVMScriptExecuteOutput) ToFortimanagerDVMScriptExecutePtrOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecutePtrOutput {
-	return o.ApplyT(func(v FortimanagerDVMScriptExecute) *FortimanagerDVMScriptExecute {
-		return &v
-	}).(FortimanagerDVMScriptExecutePtrOutput)
-}
-
-type FortimanagerDVMScriptExecutePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerDVMScriptExecutePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerDVMScriptExecute)(nil))
-}
-
-func (o FortimanagerDVMScriptExecutePtrOutput) ToFortimanagerDVMScriptExecutePtrOutput() FortimanagerDVMScriptExecutePtrOutput {
-	return o
-}
-
-func (o FortimanagerDVMScriptExecutePtrOutput) ToFortimanagerDVMScriptExecutePtrOutputWithContext(ctx context.Context) FortimanagerDVMScriptExecutePtrOutput {
-	return o
-}
-
 type FortimanagerDVMScriptExecuteArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMScriptExecuteArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerDVMScriptExecute)(nil))
+	return reflect.TypeOf((*[]*FortimanagerDVMScriptExecute)(nil)).Elem()
 }
 
 func (o FortimanagerDVMScriptExecuteArrayOutput) ToFortimanagerDVMScriptExecuteArrayOutput() FortimanagerDVMScriptExecuteArrayOutput {
@@ -309,15 +253,15 @@ func (o FortimanagerDVMScriptExecuteArrayOutput) ToFortimanagerDVMScriptExecuteA
 }
 
 func (o FortimanagerDVMScriptExecuteArrayOutput) Index(i pulumi.IntInput) FortimanagerDVMScriptExecuteOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerDVMScriptExecute {
-		return vs[0].([]FortimanagerDVMScriptExecute)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerDVMScriptExecute {
+		return vs[0].([]*FortimanagerDVMScriptExecute)[vs[1].(int)]
 	}).(FortimanagerDVMScriptExecuteOutput)
 }
 
 type FortimanagerDVMScriptExecuteMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerDVMScriptExecuteMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerDVMScriptExecute)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerDVMScriptExecute)(nil)).Elem()
 }
 
 func (o FortimanagerDVMScriptExecuteMapOutput) ToFortimanagerDVMScriptExecuteMapOutput() FortimanagerDVMScriptExecuteMapOutput {
@@ -329,14 +273,16 @@ func (o FortimanagerDVMScriptExecuteMapOutput) ToFortimanagerDVMScriptExecuteMap
 }
 
 func (o FortimanagerDVMScriptExecuteMapOutput) MapIndex(k pulumi.StringInput) FortimanagerDVMScriptExecuteOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerDVMScriptExecute {
-		return vs[0].(map[string]FortimanagerDVMScriptExecute)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerDVMScriptExecute {
+		return vs[0].(map[string]*FortimanagerDVMScriptExecute)[vs[1].(string)]
 	}).(FortimanagerDVMScriptExecuteOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerDVMScriptExecuteInput)(nil)).Elem(), &FortimanagerDVMScriptExecute{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerDVMScriptExecuteArrayInput)(nil)).Elem(), FortimanagerDVMScriptExecuteArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerDVMScriptExecuteMapInput)(nil)).Elem(), FortimanagerDVMScriptExecuteMap{})
 	pulumi.RegisterOutputType(FortimanagerDVMScriptExecuteOutput{})
-	pulumi.RegisterOutputType(FortimanagerDVMScriptExecutePtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerDVMScriptExecuteArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerDVMScriptExecuteMapOutput{})
 }

@@ -112,45 +112,43 @@ export class SwitchControllerVlan extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerVlanArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerVlanArgs | SwitchControllerVlanState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerVlanState | undefined;
-            inputs["auth"] = state ? state.auth : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["portalMessageOverrideGroup"] = state ? state.portalMessageOverrideGroup : undefined;
-            inputs["portalMessageOverrides"] = state ? state.portalMessageOverrides : undefined;
-            inputs["radiusServer"] = state ? state.radiusServer : undefined;
-            inputs["security"] = state ? state.security : undefined;
-            inputs["selectedUsergroups"] = state ? state.selectedUsergroups : undefined;
-            inputs["usergroup"] = state ? state.usergroup : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanid"] = state ? state.vlanid : undefined;
+            resourceInputs["auth"] = state ? state.auth : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["portalMessageOverrideGroup"] = state ? state.portalMessageOverrideGroup : undefined;
+            resourceInputs["portalMessageOverrides"] = state ? state.portalMessageOverrides : undefined;
+            resourceInputs["radiusServer"] = state ? state.radiusServer : undefined;
+            resourceInputs["security"] = state ? state.security : undefined;
+            resourceInputs["selectedUsergroups"] = state ? state.selectedUsergroups : undefined;
+            resourceInputs["usergroup"] = state ? state.usergroup : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanid"] = state ? state.vlanid : undefined;
         } else {
             const args = argsOrState as SwitchControllerVlanArgs | undefined;
-            inputs["auth"] = args ? args.auth : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["portalMessageOverrideGroup"] = args ? args.portalMessageOverrideGroup : undefined;
-            inputs["portalMessageOverrides"] = args ? args.portalMessageOverrides : undefined;
-            inputs["radiusServer"] = args ? args.radiusServer : undefined;
-            inputs["security"] = args ? args.security : undefined;
-            inputs["selectedUsergroups"] = args ? args.selectedUsergroups : undefined;
-            inputs["usergroup"] = args ? args.usergroup : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanid"] = args ? args.vlanid : undefined;
+            resourceInputs["auth"] = args ? args.auth : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["portalMessageOverrideGroup"] = args ? args.portalMessageOverrideGroup : undefined;
+            resourceInputs["portalMessageOverrides"] = args ? args.portalMessageOverrides : undefined;
+            resourceInputs["radiusServer"] = args ? args.radiusServer : undefined;
+            resourceInputs["security"] = args ? args.security : undefined;
+            resourceInputs["selectedUsergroups"] = args ? args.selectedUsergroups : undefined;
+            resourceInputs["usergroup"] = args ? args.usergroup : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanid"] = args ? args.vlanid : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerVlan.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerVlan.__pulumiType, name, resourceInputs, opts);
     }
 }
 

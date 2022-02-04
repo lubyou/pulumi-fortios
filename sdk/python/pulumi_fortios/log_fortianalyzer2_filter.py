@@ -32,7 +32,8 @@ class LogFortianalyzer2FilterArgs:
                  sniffer_traffic: Optional[pulumi.Input[str]] = None,
                  ssh: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 voip: Optional[pulumi.Input[str]] = None):
+                 voip: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LogFortianalyzer2Filter resource.
         :param pulumi.Input[str] anomaly: Enable/disable anomaly logging. Valid values: `enable`, `disable`.
@@ -53,6 +54,7 @@ class LogFortianalyzer2FilterArgs:
         :param pulumi.Input[str] ssh: Enable/disable SSH logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         if anomaly is not None:
             pulumi.set(__self__, "anomaly", anomaly)
@@ -90,6 +92,8 @@ class LogFortianalyzer2FilterArgs:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if voip is not None:
             pulumi.set(__self__, "voip", voip)
+        if ztna_traffic is not None:
+            pulumi.set(__self__, "ztna_traffic", ztna_traffic)
 
     @property
     @pulumi.getter
@@ -306,6 +310,18 @@ class LogFortianalyzer2FilterArgs:
     @voip.setter
     def voip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "voip", value)
+
+    @property
+    @pulumi.getter(name="ztnaTraffic")
+    def ztna_traffic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_traffic")
+
+    @ztna_traffic.setter
+    def ztna_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_traffic", value)
 
 
 @pulumi.input_type
@@ -328,7 +344,8 @@ class _LogFortianalyzer2FilterState:
                  sniffer_traffic: Optional[pulumi.Input[str]] = None,
                  ssh: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
-                 voip: Optional[pulumi.Input[str]] = None):
+                 voip: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering LogFortianalyzer2Filter resources.
         :param pulumi.Input[str] anomaly: Enable/disable anomaly logging. Valid values: `enable`, `disable`.
@@ -349,6 +366,7 @@ class _LogFortianalyzer2FilterState:
         :param pulumi.Input[str] ssh: Enable/disable SSH logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         if anomaly is not None:
             pulumi.set(__self__, "anomaly", anomaly)
@@ -386,6 +404,8 @@ class _LogFortianalyzer2FilterState:
             pulumi.set(__self__, "vdomparam", vdomparam)
         if voip is not None:
             pulumi.set(__self__, "voip", voip)
+        if ztna_traffic is not None:
+            pulumi.set(__self__, "ztna_traffic", ztna_traffic)
 
     @property
     @pulumi.getter
@@ -602,6 +622,18 @@ class _LogFortianalyzer2FilterState:
     @voip.setter
     def voip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "voip", value)
+
+    @property
+    @pulumi.getter(name="ztnaTraffic")
+    def ztna_traffic(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_traffic")
+
+    @ztna_traffic.setter
+    def ztna_traffic(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_traffic", value)
 
 
 class LogFortianalyzer2Filter(pulumi.CustomResource):
@@ -627,6 +659,7 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
                  ssh: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  voip: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Filters for FortiAnalyzer.
@@ -682,6 +715,7 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
         :param pulumi.Input[str] ssh: Enable/disable SSH logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         ...
     @overload
@@ -756,6 +790,7 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
                  ssh: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  voip: Optional[pulumi.Input[str]] = None,
+                 ztna_traffic: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -763,6 +798,8 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -786,6 +823,7 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
             __props__.__dict__["ssh"] = ssh
             __props__.__dict__["vdomparam"] = vdomparam
             __props__.__dict__["voip"] = voip
+            __props__.__dict__["ztna_traffic"] = ztna_traffic
         super(LogFortianalyzer2Filter, __self__).__init__(
             'fortios:index/logFortianalyzer2Filter:LogFortianalyzer2Filter',
             resource_name,
@@ -813,7 +851,8 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
             sniffer_traffic: Optional[pulumi.Input[str]] = None,
             ssh: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
-            voip: Optional[pulumi.Input[str]] = None) -> 'LogFortianalyzer2Filter':
+            voip: Optional[pulumi.Input[str]] = None,
+            ztna_traffic: Optional[pulumi.Input[str]] = None) -> 'LogFortianalyzer2Filter':
         """
         Get an existing LogFortianalyzer2Filter resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -839,6 +878,7 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
         :param pulumi.Input[str] ssh: Enable/disable SSH logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] voip: Enable/disable VoIP logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ztna_traffic: Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -862,6 +902,7 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
         __props__.__dict__["ssh"] = ssh
         __props__.__dict__["vdomparam"] = vdomparam
         __props__.__dict__["voip"] = voip
+        __props__.__dict__["ztna_traffic"] = ztna_traffic
         return LogFortianalyzer2Filter(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -1007,4 +1048,12 @@ class LogFortianalyzer2Filter(pulumi.CustomResource):
         Enable/disable VoIP logging. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "voip")
+
+    @property
+    @pulumi.getter(name="ztnaTraffic")
+    def ztna_traffic(self) -> pulumi.Output[str]:
+        """
+        Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_traffic")
 

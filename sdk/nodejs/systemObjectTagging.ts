@@ -108,35 +108,33 @@ export class SystemObjectTagging extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemObjectTaggingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemObjectTaggingArgs | SystemObjectTaggingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemObjectTaggingState | undefined;
-            inputs["address"] = state ? state.address : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["multiple"] = state ? state.multiple : undefined;
-            inputs["tags"] = state ? state.tags : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["address"] = state ? state.address : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["multiple"] = state ? state.multiple : undefined;
+            resourceInputs["tags"] = state ? state.tags : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemObjectTaggingArgs | undefined;
-            inputs["address"] = args ? args.address : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["device"] = args ? args.device : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["multiple"] = args ? args.multiple : undefined;
-            inputs["tags"] = args ? args.tags : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["address"] = args ? args.address : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["multiple"] = args ? args.multiple : undefined;
+            resourceInputs["tags"] = args ? args.tags : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemObjectTagging.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemObjectTagging.__pulumiType, name, resourceInputs, opts);
     }
 }
 

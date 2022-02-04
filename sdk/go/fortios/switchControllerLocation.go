@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiSwitch location services.
+// Configure FortiSwitch location services. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -43,6 +43,7 @@ func NewSwitchControllerLocation(ctx *pulumi.Context,
 		args = &SwitchControllerLocationArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerLocation
 	err := ctx.RegisterResource("fortios:index/switchControllerLocation:SwitchControllerLocation", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type SwitchControllerLocationInput interface {
 }
 
 func (*SwitchControllerLocation) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerLocation)(nil))
+	return reflect.TypeOf((**SwitchControllerLocation)(nil)).Elem()
 }
 
 func (i *SwitchControllerLocation) ToSwitchControllerLocationOutput() SwitchControllerLocationOutput {
@@ -142,35 +143,6 @@ func (i *SwitchControllerLocation) ToSwitchControllerLocationOutput() SwitchCont
 
 func (i *SwitchControllerLocation) ToSwitchControllerLocationOutputWithContext(ctx context.Context) SwitchControllerLocationOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationOutput)
-}
-
-func (i *SwitchControllerLocation) ToSwitchControllerLocationPtrOutput() SwitchControllerLocationPtrOutput {
-	return i.ToSwitchControllerLocationPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerLocation) ToSwitchControllerLocationPtrOutputWithContext(ctx context.Context) SwitchControllerLocationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationPtrOutput)
-}
-
-type SwitchControllerLocationPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerLocationPtrOutput() SwitchControllerLocationPtrOutput
-	ToSwitchControllerLocationPtrOutputWithContext(ctx context.Context) SwitchControllerLocationPtrOutput
-}
-
-type switchControllerLocationPtrType SwitchControllerLocationArgs
-
-func (*switchControllerLocationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerLocation)(nil))
-}
-
-func (i *switchControllerLocationPtrType) ToSwitchControllerLocationPtrOutput() SwitchControllerLocationPtrOutput {
-	return i.ToSwitchControllerLocationPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerLocationPtrType) ToSwitchControllerLocationPtrOutputWithContext(ctx context.Context) SwitchControllerLocationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationPtrOutput)
 }
 
 // SwitchControllerLocationArrayInput is an input type that accepts SwitchControllerLocationArray and SwitchControllerLocationArrayOutput values.
@@ -187,7 +159,7 @@ type SwitchControllerLocationArrayInput interface {
 type SwitchControllerLocationArray []SwitchControllerLocationInput
 
 func (SwitchControllerLocationArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerLocation)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerLocation)(nil)).Elem()
 }
 
 func (i SwitchControllerLocationArray) ToSwitchControllerLocationArrayOutput() SwitchControllerLocationArrayOutput {
@@ -212,7 +184,7 @@ type SwitchControllerLocationMapInput interface {
 type SwitchControllerLocationMap map[string]SwitchControllerLocationInput
 
 func (SwitchControllerLocationMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerLocation)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerLocation)(nil)).Elem()
 }
 
 func (i SwitchControllerLocationMap) ToSwitchControllerLocationMapOutput() SwitchControllerLocationMapOutput {
@@ -223,12 +195,10 @@ func (i SwitchControllerLocationMap) ToSwitchControllerLocationMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerLocationMapOutput)
 }
 
-type SwitchControllerLocationOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerLocationOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLocationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerLocation)(nil))
+	return reflect.TypeOf((**SwitchControllerLocation)(nil)).Elem()
 }
 
 func (o SwitchControllerLocationOutput) ToSwitchControllerLocationOutput() SwitchControllerLocationOutput {
@@ -239,36 +209,10 @@ func (o SwitchControllerLocationOutput) ToSwitchControllerLocationOutputWithCont
 	return o
 }
 
-func (o SwitchControllerLocationOutput) ToSwitchControllerLocationPtrOutput() SwitchControllerLocationPtrOutput {
-	return o.ToSwitchControllerLocationPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerLocationOutput) ToSwitchControllerLocationPtrOutputWithContext(ctx context.Context) SwitchControllerLocationPtrOutput {
-	return o.ApplyT(func(v SwitchControllerLocation) *SwitchControllerLocation {
-		return &v
-	}).(SwitchControllerLocationPtrOutput)
-}
-
-type SwitchControllerLocationPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerLocationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerLocation)(nil))
-}
-
-func (o SwitchControllerLocationPtrOutput) ToSwitchControllerLocationPtrOutput() SwitchControllerLocationPtrOutput {
-	return o
-}
-
-func (o SwitchControllerLocationPtrOutput) ToSwitchControllerLocationPtrOutputWithContext(ctx context.Context) SwitchControllerLocationPtrOutput {
-	return o
-}
-
 type SwitchControllerLocationArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLocationArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerLocation)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerLocation)(nil)).Elem()
 }
 
 func (o SwitchControllerLocationArrayOutput) ToSwitchControllerLocationArrayOutput() SwitchControllerLocationArrayOutput {
@@ -280,15 +224,15 @@ func (o SwitchControllerLocationArrayOutput) ToSwitchControllerLocationArrayOutp
 }
 
 func (o SwitchControllerLocationArrayOutput) Index(i pulumi.IntInput) SwitchControllerLocationOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerLocation {
-		return vs[0].([]SwitchControllerLocation)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerLocation {
+		return vs[0].([]*SwitchControllerLocation)[vs[1].(int)]
 	}).(SwitchControllerLocationOutput)
 }
 
 type SwitchControllerLocationMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerLocationMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerLocation)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerLocation)(nil)).Elem()
 }
 
 func (o SwitchControllerLocationMapOutput) ToSwitchControllerLocationMapOutput() SwitchControllerLocationMapOutput {
@@ -300,14 +244,16 @@ func (o SwitchControllerLocationMapOutput) ToSwitchControllerLocationMapOutputWi
 }
 
 func (o SwitchControllerLocationMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerLocationOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerLocation {
-		return vs[0].(map[string]SwitchControllerLocation)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerLocation {
+		return vs[0].(map[string]*SwitchControllerLocation)[vs[1].(string)]
 	}).(SwitchControllerLocationOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLocationInput)(nil)).Elem(), &SwitchControllerLocation{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLocationArrayInput)(nil)).Elem(), SwitchControllerLocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerLocationMapInput)(nil)).Elem(), SwitchControllerLocationMap{})
 	pulumi.RegisterOutputType(SwitchControllerLocationOutput{})
-	pulumi.RegisterOutputType(SwitchControllerLocationPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerLocationArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerLocationMapOutput{})
 }

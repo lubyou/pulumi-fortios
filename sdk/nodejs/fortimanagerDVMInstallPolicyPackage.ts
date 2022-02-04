@@ -69,26 +69,24 @@ export class FortimanagerDVMInstallPolicyPackage extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerDVMInstallPolicyPackageArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerDVMInstallPolicyPackageArgs | FortimanagerDVMInstallPolicyPackageState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerDVMInstallPolicyPackageState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["packageName"] = state ? state.packageName : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["packageName"] = state ? state.packageName : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
         } else {
             const args = argsOrState as FortimanagerDVMInstallPolicyPackageArgs | undefined;
             if ((!args || args.packageName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'packageName'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["packageName"] = args ? args.packageName : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["packageName"] = args ? args.packageName : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerDVMInstallPolicyPackage.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerDVMInstallPolicyPackage.__pulumiType, name, resourceInputs, opts);
     }
 }
 

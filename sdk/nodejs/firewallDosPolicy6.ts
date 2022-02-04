@@ -100,21 +100,21 @@ export class FirewallDosPolicy6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallDosPolicy6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallDosPolicy6Args | FirewallDosPolicy6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallDosPolicy6State | undefined;
-            inputs["anomalies"] = state ? state.anomalies : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policyid"] = state ? state.policyid : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["anomalies"] = state ? state.anomalies : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallDosPolicy6Args | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -126,22 +126,20 @@ export class FirewallDosPolicy6 extends pulumi.CustomResource {
             if ((!args || args.srcaddrs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcaddrs'");
             }
-            inputs["anomalies"] = args ? args.anomalies : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policyid"] = args ? args.policyid : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["anomalies"] = args ? args.anomalies : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallDosPolicy6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallDosPolicy6.__pulumiType, name, resourceInputs, opts);
     }
 }
 

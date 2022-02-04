@@ -78,27 +78,25 @@ export class FortimanagerObjectAdomRevision extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerObjectAdomRevisionArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerObjectAdomRevisionArgs | FortimanagerObjectAdomRevisionState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerObjectAdomRevisionState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["createdBy"] = state ? state.createdBy : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["locked"] = state ? state.locked : undefined;
-            inputs["name"] = state ? state.name : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["createdBy"] = state ? state.createdBy : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["locked"] = state ? state.locked : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
         } else {
             const args = argsOrState as FortimanagerObjectAdomRevisionArgs | undefined;
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["createdBy"] = args ? args.createdBy : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["locked"] = args ? args.locked : undefined;
-            inputs["name"] = args ? args.name : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["createdBy"] = args ? args.createdBy : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["locked"] = args ? args.locked : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerObjectAdomRevision.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerObjectAdomRevision.__pulumiType, name, resourceInputs, opts);
     }
 }
 

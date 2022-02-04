@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -58,6 +58,7 @@ func NewFortimanagerSystemNTP(ctx *pulumi.Context,
 	if args.Server == nil {
 		return nil, errors.New("invalid value for required argument 'Server'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemNTP
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemNTP:FortimanagerSystemNTP", name, args, &resource, opts...)
 	if err != nil {
@@ -132,7 +133,7 @@ type FortimanagerSystemNTPInput interface {
 }
 
 func (*FortimanagerSystemNTP) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemNTP)(nil))
+	return reflect.TypeOf((**FortimanagerSystemNTP)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemNTP) ToFortimanagerSystemNTPOutput() FortimanagerSystemNTPOutput {
@@ -141,35 +142,6 @@ func (i *FortimanagerSystemNTP) ToFortimanagerSystemNTPOutput() FortimanagerSyst
 
 func (i *FortimanagerSystemNTP) ToFortimanagerSystemNTPOutputWithContext(ctx context.Context) FortimanagerSystemNTPOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNTPOutput)
-}
-
-func (i *FortimanagerSystemNTP) ToFortimanagerSystemNTPPtrOutput() FortimanagerSystemNTPPtrOutput {
-	return i.ToFortimanagerSystemNTPPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemNTP) ToFortimanagerSystemNTPPtrOutputWithContext(ctx context.Context) FortimanagerSystemNTPPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNTPPtrOutput)
-}
-
-type FortimanagerSystemNTPPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemNTPPtrOutput() FortimanagerSystemNTPPtrOutput
-	ToFortimanagerSystemNTPPtrOutputWithContext(ctx context.Context) FortimanagerSystemNTPPtrOutput
-}
-
-type fortimanagerSystemNTPPtrType FortimanagerSystemNTPArgs
-
-func (*fortimanagerSystemNTPPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemNTP)(nil))
-}
-
-func (i *fortimanagerSystemNTPPtrType) ToFortimanagerSystemNTPPtrOutput() FortimanagerSystemNTPPtrOutput {
-	return i.ToFortimanagerSystemNTPPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemNTPPtrType) ToFortimanagerSystemNTPPtrOutputWithContext(ctx context.Context) FortimanagerSystemNTPPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNTPPtrOutput)
 }
 
 // FortimanagerSystemNTPArrayInput is an input type that accepts FortimanagerSystemNTPArray and FortimanagerSystemNTPArrayOutput values.
@@ -186,7 +158,7 @@ type FortimanagerSystemNTPArrayInput interface {
 type FortimanagerSystemNTPArray []FortimanagerSystemNTPInput
 
 func (FortimanagerSystemNTPArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemNTP)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemNTP)(nil)).Elem()
 }
 
 func (i FortimanagerSystemNTPArray) ToFortimanagerSystemNTPArrayOutput() FortimanagerSystemNTPArrayOutput {
@@ -211,7 +183,7 @@ type FortimanagerSystemNTPMapInput interface {
 type FortimanagerSystemNTPMap map[string]FortimanagerSystemNTPInput
 
 func (FortimanagerSystemNTPMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemNTP)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemNTP)(nil)).Elem()
 }
 
 func (i FortimanagerSystemNTPMap) ToFortimanagerSystemNTPMapOutput() FortimanagerSystemNTPMapOutput {
@@ -222,12 +194,10 @@ func (i FortimanagerSystemNTPMap) ToFortimanagerSystemNTPMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemNTPMapOutput)
 }
 
-type FortimanagerSystemNTPOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemNTPOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNTPOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemNTP)(nil))
+	return reflect.TypeOf((**FortimanagerSystemNTP)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNTPOutput) ToFortimanagerSystemNTPOutput() FortimanagerSystemNTPOutput {
@@ -238,36 +208,10 @@ func (o FortimanagerSystemNTPOutput) ToFortimanagerSystemNTPOutputWithContext(ct
 	return o
 }
 
-func (o FortimanagerSystemNTPOutput) ToFortimanagerSystemNTPPtrOutput() FortimanagerSystemNTPPtrOutput {
-	return o.ToFortimanagerSystemNTPPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemNTPOutput) ToFortimanagerSystemNTPPtrOutputWithContext(ctx context.Context) FortimanagerSystemNTPPtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemNTP) *FortimanagerSystemNTP {
-		return &v
-	}).(FortimanagerSystemNTPPtrOutput)
-}
-
-type FortimanagerSystemNTPPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemNTPPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemNTP)(nil))
-}
-
-func (o FortimanagerSystemNTPPtrOutput) ToFortimanagerSystemNTPPtrOutput() FortimanagerSystemNTPPtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemNTPPtrOutput) ToFortimanagerSystemNTPPtrOutputWithContext(ctx context.Context) FortimanagerSystemNTPPtrOutput {
-	return o
-}
-
 type FortimanagerSystemNTPArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNTPArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemNTP)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemNTP)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNTPArrayOutput) ToFortimanagerSystemNTPArrayOutput() FortimanagerSystemNTPArrayOutput {
@@ -279,15 +223,15 @@ func (o FortimanagerSystemNTPArrayOutput) ToFortimanagerSystemNTPArrayOutputWith
 }
 
 func (o FortimanagerSystemNTPArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemNTPOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemNTP {
-		return vs[0].([]FortimanagerSystemNTP)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemNTP {
+		return vs[0].([]*FortimanagerSystemNTP)[vs[1].(int)]
 	}).(FortimanagerSystemNTPOutput)
 }
 
 type FortimanagerSystemNTPMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemNTPMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemNTP)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemNTP)(nil)).Elem()
 }
 
 func (o FortimanagerSystemNTPMapOutput) ToFortimanagerSystemNTPMapOutput() FortimanagerSystemNTPMapOutput {
@@ -299,14 +243,16 @@ func (o FortimanagerSystemNTPMapOutput) ToFortimanagerSystemNTPMapOutputWithCont
 }
 
 func (o FortimanagerSystemNTPMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemNTPOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemNTP {
-		return vs[0].(map[string]FortimanagerSystemNTP)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemNTP {
+		return vs[0].(map[string]*FortimanagerSystemNTP)[vs[1].(string)]
 	}).(FortimanagerSystemNTPOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNTPInput)(nil)).Elem(), &FortimanagerSystemNTP{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNTPArrayInput)(nil)).Elem(), FortimanagerSystemNTPArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemNTPMapInput)(nil)).Elem(), FortimanagerSystemNTPMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemNTPOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemNTPPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemNTPArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemNTPMapOutput{})
 }

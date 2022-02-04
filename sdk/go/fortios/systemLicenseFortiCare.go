@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -52,6 +52,7 @@ func NewSystemLicenseFortiCare(ctx *pulumi.Context,
 	if args.RegistrationCode == nil {
 		return nil, errors.New("invalid value for required argument 'RegistrationCode'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemLicenseFortiCare
 	err := ctx.RegisterResource("fortios:index/systemLicenseFortiCare:SystemLicenseFortiCare", name, args, &resource, opts...)
 	if err != nil {
@@ -110,7 +111,7 @@ type SystemLicenseFortiCareInput interface {
 }
 
 func (*SystemLicenseFortiCare) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((**SystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCareOutput() SystemLicenseFortiCareOutput {
@@ -119,35 +120,6 @@ func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCareOutput() SystemLicenseF
 
 func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCareOutputWithContext(ctx context.Context) SystemLicenseFortiCareOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCareOutput)
-}
-
-func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCarePtrOutput() SystemLicenseFortiCarePtrOutput {
-	return i.ToSystemLicenseFortiCarePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemLicenseFortiCare) ToSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) SystemLicenseFortiCarePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCarePtrOutput)
-}
-
-type SystemLicenseFortiCarePtrInput interface {
-	pulumi.Input
-
-	ToSystemLicenseFortiCarePtrOutput() SystemLicenseFortiCarePtrOutput
-	ToSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) SystemLicenseFortiCarePtrOutput
-}
-
-type systemLicenseFortiCarePtrType SystemLicenseFortiCareArgs
-
-func (*systemLicenseFortiCarePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLicenseFortiCare)(nil))
-}
-
-func (i *systemLicenseFortiCarePtrType) ToSystemLicenseFortiCarePtrOutput() SystemLicenseFortiCarePtrOutput {
-	return i.ToSystemLicenseFortiCarePtrOutputWithContext(context.Background())
-}
-
-func (i *systemLicenseFortiCarePtrType) ToSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) SystemLicenseFortiCarePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCarePtrOutput)
 }
 
 // SystemLicenseFortiCareArrayInput is an input type that accepts SystemLicenseFortiCareArray and SystemLicenseFortiCareArrayOutput values.
@@ -164,7 +136,7 @@ type SystemLicenseFortiCareArrayInput interface {
 type SystemLicenseFortiCareArray []SystemLicenseFortiCareInput
 
 func (SystemLicenseFortiCareArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*[]*SystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (i SystemLicenseFortiCareArray) ToSystemLicenseFortiCareArrayOutput() SystemLicenseFortiCareArrayOutput {
@@ -189,7 +161,7 @@ type SystemLicenseFortiCareMapInput interface {
 type SystemLicenseFortiCareMap map[string]SystemLicenseFortiCareInput
 
 func (SystemLicenseFortiCareMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*map[string]*SystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (i SystemLicenseFortiCareMap) ToSystemLicenseFortiCareMapOutput() SystemLicenseFortiCareMapOutput {
@@ -200,12 +172,10 @@ func (i SystemLicenseFortiCareMap) ToSystemLicenseFortiCareMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseFortiCareMapOutput)
 }
 
-type SystemLicenseFortiCareOutput struct {
-	*pulumi.OutputState
-}
+type SystemLicenseFortiCareOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseFortiCareOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((**SystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCareOutput() SystemLicenseFortiCareOutput {
@@ -216,36 +186,10 @@ func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCareOutputWithContext(
 	return o
 }
 
-func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCarePtrOutput() SystemLicenseFortiCarePtrOutput {
-	return o.ToSystemLicenseFortiCarePtrOutputWithContext(context.Background())
-}
-
-func (o SystemLicenseFortiCareOutput) ToSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) SystemLicenseFortiCarePtrOutput {
-	return o.ApplyT(func(v SystemLicenseFortiCare) *SystemLicenseFortiCare {
-		return &v
-	}).(SystemLicenseFortiCarePtrOutput)
-}
-
-type SystemLicenseFortiCarePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemLicenseFortiCarePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLicenseFortiCare)(nil))
-}
-
-func (o SystemLicenseFortiCarePtrOutput) ToSystemLicenseFortiCarePtrOutput() SystemLicenseFortiCarePtrOutput {
-	return o
-}
-
-func (o SystemLicenseFortiCarePtrOutput) ToSystemLicenseFortiCarePtrOutputWithContext(ctx context.Context) SystemLicenseFortiCarePtrOutput {
-	return o
-}
-
 type SystemLicenseFortiCareArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseFortiCareArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*[]*SystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (o SystemLicenseFortiCareArrayOutput) ToSystemLicenseFortiCareArrayOutput() SystemLicenseFortiCareArrayOutput {
@@ -257,15 +201,15 @@ func (o SystemLicenseFortiCareArrayOutput) ToSystemLicenseFortiCareArrayOutputWi
 }
 
 func (o SystemLicenseFortiCareArrayOutput) Index(i pulumi.IntInput) SystemLicenseFortiCareOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemLicenseFortiCare {
-		return vs[0].([]SystemLicenseFortiCare)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLicenseFortiCare {
+		return vs[0].([]*SystemLicenseFortiCare)[vs[1].(int)]
 	}).(SystemLicenseFortiCareOutput)
 }
 
 type SystemLicenseFortiCareMapOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseFortiCareMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemLicenseFortiCare)(nil))
+	return reflect.TypeOf((*map[string]*SystemLicenseFortiCare)(nil)).Elem()
 }
 
 func (o SystemLicenseFortiCareMapOutput) ToSystemLicenseFortiCareMapOutput() SystemLicenseFortiCareMapOutput {
@@ -277,14 +221,16 @@ func (o SystemLicenseFortiCareMapOutput) ToSystemLicenseFortiCareMapOutputWithCo
 }
 
 func (o SystemLicenseFortiCareMapOutput) MapIndex(k pulumi.StringInput) SystemLicenseFortiCareOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemLicenseFortiCare {
-		return vs[0].(map[string]SystemLicenseFortiCare)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemLicenseFortiCare {
+		return vs[0].(map[string]*SystemLicenseFortiCare)[vs[1].(string)]
 	}).(SystemLicenseFortiCareOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseFortiCareInput)(nil)).Elem(), &SystemLicenseFortiCare{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseFortiCareArrayInput)(nil)).Elem(), SystemLicenseFortiCareArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseFortiCareMapInput)(nil)).Elem(), SystemLicenseFortiCareMap{})
 	pulumi.RegisterOutputType(SystemLicenseFortiCareOutput{})
-	pulumi.RegisterOutputType(SystemLicenseFortiCarePtrOutput{})
 	pulumi.RegisterOutputType(SystemLicenseFortiCareArrayOutput{})
 	pulumi.RegisterOutputType(SystemLicenseFortiCareMapOutput{})
 }

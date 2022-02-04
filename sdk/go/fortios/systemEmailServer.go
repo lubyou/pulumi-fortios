@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -57,6 +57,10 @@ type SystemEmailServer struct {
 
 	// Enable/disable authentication. Valid values: `enable`, `disable`.
 	Authenticate pulumi.StringOutput `pulumi:"authenticate"`
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringOutput `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringOutput `pulumi:"interfaceSelectMethod"`
 	// SMTP server user password for authentication.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// SMTP server port.
@@ -90,6 +94,7 @@ func NewSystemEmailServer(ctx *pulumi.Context,
 		args = &SystemEmailServerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemEmailServer
 	err := ctx.RegisterResource("fortios:index/systemEmailServer:SystemEmailServer", name, args, &resource, opts...)
 	if err != nil {
@@ -114,6 +119,10 @@ func GetSystemEmailServer(ctx *pulumi.Context,
 type systemEmailServerState struct {
 	// Enable/disable authentication. Valid values: `enable`, `disable`.
 	Authenticate *string `pulumi:"authenticate"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// SMTP server user password for authentication.
 	Password *string `pulumi:"password"`
 	// SMTP server port.
@@ -143,6 +152,10 @@ type systemEmailServerState struct {
 type SystemEmailServerState struct {
 	// Enable/disable authentication. Valid values: `enable`, `disable`.
 	Authenticate pulumi.StringPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// SMTP server user password for authentication.
 	Password pulumi.StringPtrInput
 	// SMTP server port.
@@ -176,6 +189,10 @@ func (SystemEmailServerState) ElementType() reflect.Type {
 type systemEmailServerArgs struct {
 	// Enable/disable authentication. Valid values: `enable`, `disable`.
 	Authenticate *string `pulumi:"authenticate"`
+	// Specify outgoing interface to reach server.
+	Interface *string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod *string `pulumi:"interfaceSelectMethod"`
 	// SMTP server user password for authentication.
 	Password *string `pulumi:"password"`
 	// SMTP server port.
@@ -206,6 +223,10 @@ type systemEmailServerArgs struct {
 type SystemEmailServerArgs struct {
 	// Enable/disable authentication. Valid values: `enable`, `disable`.
 	Authenticate pulumi.StringPtrInput
+	// Specify outgoing interface to reach server.
+	Interface pulumi.StringPtrInput
+	// Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+	InterfaceSelectMethod pulumi.StringPtrInput
 	// SMTP server user password for authentication.
 	Password pulumi.StringPtrInput
 	// SMTP server port.
@@ -244,7 +265,7 @@ type SystemEmailServerInput interface {
 }
 
 func (*SystemEmailServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemEmailServer)(nil))
+	return reflect.TypeOf((**SystemEmailServer)(nil)).Elem()
 }
 
 func (i *SystemEmailServer) ToSystemEmailServerOutput() SystemEmailServerOutput {
@@ -253,35 +274,6 @@ func (i *SystemEmailServer) ToSystemEmailServerOutput() SystemEmailServerOutput 
 
 func (i *SystemEmailServer) ToSystemEmailServerOutputWithContext(ctx context.Context) SystemEmailServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerOutput)
-}
-
-func (i *SystemEmailServer) ToSystemEmailServerPtrOutput() SystemEmailServerPtrOutput {
-	return i.ToSystemEmailServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemEmailServer) ToSystemEmailServerPtrOutputWithContext(ctx context.Context) SystemEmailServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerPtrOutput)
-}
-
-type SystemEmailServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemEmailServerPtrOutput() SystemEmailServerPtrOutput
-	ToSystemEmailServerPtrOutputWithContext(ctx context.Context) SystemEmailServerPtrOutput
-}
-
-type systemEmailServerPtrType SystemEmailServerArgs
-
-func (*systemEmailServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemEmailServer)(nil))
-}
-
-func (i *systemEmailServerPtrType) ToSystemEmailServerPtrOutput() SystemEmailServerPtrOutput {
-	return i.ToSystemEmailServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemEmailServerPtrType) ToSystemEmailServerPtrOutputWithContext(ctx context.Context) SystemEmailServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerPtrOutput)
 }
 
 // SystemEmailServerArrayInput is an input type that accepts SystemEmailServerArray and SystemEmailServerArrayOutput values.
@@ -298,7 +290,7 @@ type SystemEmailServerArrayInput interface {
 type SystemEmailServerArray []SystemEmailServerInput
 
 func (SystemEmailServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemEmailServer)(nil))
+	return reflect.TypeOf((*[]*SystemEmailServer)(nil)).Elem()
 }
 
 func (i SystemEmailServerArray) ToSystemEmailServerArrayOutput() SystemEmailServerArrayOutput {
@@ -323,7 +315,7 @@ type SystemEmailServerMapInput interface {
 type SystemEmailServerMap map[string]SystemEmailServerInput
 
 func (SystemEmailServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemEmailServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemEmailServer)(nil)).Elem()
 }
 
 func (i SystemEmailServerMap) ToSystemEmailServerMapOutput() SystemEmailServerMapOutput {
@@ -334,12 +326,10 @@ func (i SystemEmailServerMap) ToSystemEmailServerMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemEmailServerMapOutput)
 }
 
-type SystemEmailServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemEmailServerOutput struct{ *pulumi.OutputState }
 
 func (SystemEmailServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemEmailServer)(nil))
+	return reflect.TypeOf((**SystemEmailServer)(nil)).Elem()
 }
 
 func (o SystemEmailServerOutput) ToSystemEmailServerOutput() SystemEmailServerOutput {
@@ -350,36 +340,10 @@ func (o SystemEmailServerOutput) ToSystemEmailServerOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemEmailServerOutput) ToSystemEmailServerPtrOutput() SystemEmailServerPtrOutput {
-	return o.ToSystemEmailServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemEmailServerOutput) ToSystemEmailServerPtrOutputWithContext(ctx context.Context) SystemEmailServerPtrOutput {
-	return o.ApplyT(func(v SystemEmailServer) *SystemEmailServer {
-		return &v
-	}).(SystemEmailServerPtrOutput)
-}
-
-type SystemEmailServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemEmailServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemEmailServer)(nil))
-}
-
-func (o SystemEmailServerPtrOutput) ToSystemEmailServerPtrOutput() SystemEmailServerPtrOutput {
-	return o
-}
-
-func (o SystemEmailServerPtrOutput) ToSystemEmailServerPtrOutputWithContext(ctx context.Context) SystemEmailServerPtrOutput {
-	return o
-}
-
 type SystemEmailServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemEmailServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemEmailServer)(nil))
+	return reflect.TypeOf((*[]*SystemEmailServer)(nil)).Elem()
 }
 
 func (o SystemEmailServerArrayOutput) ToSystemEmailServerArrayOutput() SystemEmailServerArrayOutput {
@@ -391,15 +355,15 @@ func (o SystemEmailServerArrayOutput) ToSystemEmailServerArrayOutputWithContext(
 }
 
 func (o SystemEmailServerArrayOutput) Index(i pulumi.IntInput) SystemEmailServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemEmailServer {
-		return vs[0].([]SystemEmailServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemEmailServer {
+		return vs[0].([]*SystemEmailServer)[vs[1].(int)]
 	}).(SystemEmailServerOutput)
 }
 
 type SystemEmailServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemEmailServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemEmailServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemEmailServer)(nil)).Elem()
 }
 
 func (o SystemEmailServerMapOutput) ToSystemEmailServerMapOutput() SystemEmailServerMapOutput {
@@ -411,14 +375,16 @@ func (o SystemEmailServerMapOutput) ToSystemEmailServerMapOutputWithContext(ctx 
 }
 
 func (o SystemEmailServerMapOutput) MapIndex(k pulumi.StringInput) SystemEmailServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemEmailServer {
-		return vs[0].(map[string]SystemEmailServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemEmailServer {
+		return vs[0].(map[string]*SystemEmailServer)[vs[1].(string)]
 	}).(SystemEmailServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemEmailServerInput)(nil)).Elem(), &SystemEmailServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemEmailServerArrayInput)(nil)).Elem(), SystemEmailServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemEmailServerMapInput)(nil)).Elem(), SystemEmailServerMap{})
 	pulumi.RegisterOutputType(SystemEmailServerOutput{})
-	pulumi.RegisterOutputType(SystemEmailServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemEmailServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemEmailServerMapOutput{})
 }

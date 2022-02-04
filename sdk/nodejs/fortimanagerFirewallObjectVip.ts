@@ -110,37 +110,35 @@ export class FortimanagerFirewallObjectVip extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerFirewallObjectVipArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerFirewallObjectVipArgs | FortimanagerFirewallObjectVipState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerFirewallObjectVipState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["arpReply"] = state ? state.arpReply : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["configDefault"] = state ? state.configDefault : undefined;
-            inputs["extIntf"] = state ? state.extIntf : undefined;
-            inputs["extIp"] = state ? state.extIp : undefined;
-            inputs["mappedAddr"] = state ? state.mappedAddr : undefined;
-            inputs["mappedIp"] = state ? state.mappedIp : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["arpReply"] = state ? state.arpReply : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["configDefault"] = state ? state.configDefault : undefined;
+            resourceInputs["extIntf"] = state ? state.extIntf : undefined;
+            resourceInputs["extIp"] = state ? state.extIp : undefined;
+            resourceInputs["mappedAddr"] = state ? state.mappedAddr : undefined;
+            resourceInputs["mappedIp"] = state ? state.mappedIp : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as FortimanagerFirewallObjectVipArgs | undefined;
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["arpReply"] = args ? args.arpReply : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["configDefault"] = args ? args.configDefault : undefined;
-            inputs["extIntf"] = args ? args.extIntf : undefined;
-            inputs["extIp"] = args ? args.extIp : undefined;
-            inputs["mappedAddr"] = args ? args.mappedAddr : undefined;
-            inputs["mappedIp"] = args ? args.mappedIp : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["arpReply"] = args ? args.arpReply : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["configDefault"] = args ? args.configDefault : undefined;
+            resourceInputs["extIntf"] = args ? args.extIntf : undefined;
+            resourceInputs["extIp"] = args ? args.extIp : undefined;
+            resourceInputs["mappedAddr"] = args ? args.mappedAddr : undefined;
+            resourceInputs["mappedIp"] = args ? args.mappedIp : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerFirewallObjectVip.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerFirewallObjectVip.__pulumiType, name, resourceInputs, opts);
     }
 }
 

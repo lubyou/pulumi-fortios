@@ -15,8 +15,11 @@ __all__ = ['SystemAutomationTriggerArgs', 'SystemAutomationTrigger']
 @pulumi.input_type
 class SystemAutomationTriggerArgs:
     def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
+                 fabric_event_name: Optional[pulumi.Input[str]] = None,
+                 fabric_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_name: Optional[pulumi.Input[str]] = None,
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
@@ -26,6 +29,7 @@ class SystemAutomationTriggerArgs:
                  logid: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
+                 serial: Optional[pulumi.Input[str]] = None,
                  trigger_day: Optional[pulumi.Input[int]] = None,
                  trigger_frequency: Optional[pulumi.Input[str]] = None,
                  trigger_hour: Optional[pulumi.Input[int]] = None,
@@ -35,8 +39,11 @@ class SystemAutomationTriggerArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemAutomationTrigger resource.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] event_type: Event type.
+        :param pulumi.Input[str] fabric_event_name: Fabric connector event handler name.
+        :param pulumi.Input[str] fabric_event_severity: Fabric connector event severity.
         :param pulumi.Input[str] faz_event_name: FortiAnalyzer event handler name.
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
@@ -45,7 +52,8 @@ class SystemAutomationTriggerArgs:
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
         :param pulumi.Input[str] name: Name.
-        :param pulumi.Input[str] report_type: Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        :param pulumi.Input[str] report_type: Security Rating report.
+        :param pulumi.Input[str] serial: Fabric connector serial number.
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
@@ -54,10 +62,16 @@ class SystemAutomationTriggerArgs:
         :param pulumi.Input[str] trigger_weekday: Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if event_type is not None:
             pulumi.set(__self__, "event_type", event_type)
+        if fabric_event_name is not None:
+            pulumi.set(__self__, "fabric_event_name", fabric_event_name)
+        if fabric_event_severity is not None:
+            pulumi.set(__self__, "fabric_event_severity", fabric_event_severity)
         if faz_event_name is not None:
             pulumi.set(__self__, "faz_event_name", faz_event_name)
         if faz_event_severity is not None:
@@ -76,6 +90,8 @@ class SystemAutomationTriggerArgs:
             pulumi.set(__self__, "name", name)
         if report_type is not None:
             pulumi.set(__self__, "report_type", report_type)
+        if serial is not None:
+            pulumi.set(__self__, "serial", serial)
         if trigger_day is not None:
             pulumi.set(__self__, "trigger_day", trigger_day)
         if trigger_frequency is not None:
@@ -90,6 +106,18 @@ class SystemAutomationTriggerArgs:
             pulumi.set(__self__, "trigger_weekday", trigger_weekday)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -114,6 +142,30 @@ class SystemAutomationTriggerArgs:
     @event_type.setter
     def event_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "event_type", value)
+
+    @property
+    @pulumi.getter(name="fabricEventName")
+    def fabric_event_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric connector event handler name.
+        """
+        return pulumi.get(self, "fabric_event_name")
+
+    @fabric_event_name.setter
+    def fabric_event_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_event_name", value)
+
+    @property
+    @pulumi.getter(name="fabricEventSeverity")
+    def fabric_event_severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric connector event severity.
+        """
+        return pulumi.get(self, "fabric_event_severity")
+
+    @fabric_event_severity.setter
+    def fabric_event_severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_event_severity", value)
 
     @property
     @pulumi.getter(name="fazEventName")
@@ -215,13 +267,25 @@ class SystemAutomationTriggerArgs:
     @pulumi.getter(name="reportType")
     def report_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        Security Rating report.
         """
         return pulumi.get(self, "report_type")
 
     @report_type.setter
     def report_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "report_type", value)
+
+    @property
+    @pulumi.getter
+    def serial(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric connector serial number.
+        """
+        return pulumi.get(self, "serial")
+
+    @serial.setter
+    def serial(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial", value)
 
     @property
     @pulumi.getter(name="triggerDay")
@@ -311,8 +375,11 @@ class SystemAutomationTriggerArgs:
 @pulumi.input_type
 class _SystemAutomationTriggerState:
     def __init__(__self__, *,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
+                 fabric_event_name: Optional[pulumi.Input[str]] = None,
+                 fabric_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_name: Optional[pulumi.Input[str]] = None,
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
@@ -322,6 +389,7 @@ class _SystemAutomationTriggerState:
                  logid: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
+                 serial: Optional[pulumi.Input[str]] = None,
                  trigger_day: Optional[pulumi.Input[int]] = None,
                  trigger_frequency: Optional[pulumi.Input[str]] = None,
                  trigger_hour: Optional[pulumi.Input[int]] = None,
@@ -331,8 +399,11 @@ class _SystemAutomationTriggerState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemAutomationTrigger resources.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] event_type: Event type.
+        :param pulumi.Input[str] fabric_event_name: Fabric connector event handler name.
+        :param pulumi.Input[str] fabric_event_severity: Fabric connector event severity.
         :param pulumi.Input[str] faz_event_name: FortiAnalyzer event handler name.
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
@@ -341,7 +412,8 @@ class _SystemAutomationTriggerState:
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
         :param pulumi.Input[str] name: Name.
-        :param pulumi.Input[str] report_type: Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        :param pulumi.Input[str] report_type: Security Rating report.
+        :param pulumi.Input[str] serial: Fabric connector serial number.
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
@@ -350,10 +422,16 @@ class _SystemAutomationTriggerState:
         :param pulumi.Input[str] trigger_weekday: Day of week for trigger. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if event_type is not None:
             pulumi.set(__self__, "event_type", event_type)
+        if fabric_event_name is not None:
+            pulumi.set(__self__, "fabric_event_name", fabric_event_name)
+        if fabric_event_severity is not None:
+            pulumi.set(__self__, "fabric_event_severity", fabric_event_severity)
         if faz_event_name is not None:
             pulumi.set(__self__, "faz_event_name", faz_event_name)
         if faz_event_severity is not None:
@@ -372,6 +450,8 @@ class _SystemAutomationTriggerState:
             pulumi.set(__self__, "name", name)
         if report_type is not None:
             pulumi.set(__self__, "report_type", report_type)
+        if serial is not None:
+            pulumi.set(__self__, "serial", serial)
         if trigger_day is not None:
             pulumi.set(__self__, "trigger_day", trigger_day)
         if trigger_frequency is not None:
@@ -386,6 +466,18 @@ class _SystemAutomationTriggerState:
             pulumi.set(__self__, "trigger_weekday", trigger_weekday)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -410,6 +502,30 @@ class _SystemAutomationTriggerState:
     @event_type.setter
     def event_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "event_type", value)
+
+    @property
+    @pulumi.getter(name="fabricEventName")
+    def fabric_event_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric connector event handler name.
+        """
+        return pulumi.get(self, "fabric_event_name")
+
+    @fabric_event_name.setter
+    def fabric_event_name(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_event_name", value)
+
+    @property
+    @pulumi.getter(name="fabricEventSeverity")
+    def fabric_event_severity(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric connector event severity.
+        """
+        return pulumi.get(self, "fabric_event_severity")
+
+    @fabric_event_severity.setter
+    def fabric_event_severity(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_event_severity", value)
 
     @property
     @pulumi.getter(name="fazEventName")
@@ -511,13 +627,25 @@ class _SystemAutomationTriggerState:
     @pulumi.getter(name="reportType")
     def report_type(self) -> Optional[pulumi.Input[str]]:
         """
-        Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        Security Rating report.
         """
         return pulumi.get(self, "report_type")
 
     @report_type.setter
     def report_type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "report_type", value)
+
+    @property
+    @pulumi.getter
+    def serial(self) -> Optional[pulumi.Input[str]]:
+        """
+        Fabric connector serial number.
+        """
+        return pulumi.get(self, "serial")
+
+    @serial.setter
+    def serial(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "serial", value)
 
     @property
     @pulumi.getter(name="triggerDay")
@@ -609,8 +737,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
+                 fabric_event_name: Optional[pulumi.Input[str]] = None,
+                 fabric_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_name: Optional[pulumi.Input[str]] = None,
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
@@ -620,6 +751,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
                  logid: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
+                 serial: Optional[pulumi.Input[str]] = None,
                  trigger_day: Optional[pulumi.Input[int]] = None,
                  trigger_frequency: Optional[pulumi.Input[str]] = None,
                  trigger_hour: Optional[pulumi.Input[int]] = None,
@@ -659,8 +791,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] event_type: Event type.
+        :param pulumi.Input[str] fabric_event_name: Fabric connector event handler name.
+        :param pulumi.Input[str] fabric_event_severity: Fabric connector event severity.
         :param pulumi.Input[str] faz_event_name: FortiAnalyzer event handler name.
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
@@ -669,7 +804,8 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
         :param pulumi.Input[str] name: Name.
-        :param pulumi.Input[str] report_type: Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        :param pulumi.Input[str] report_type: Security Rating report.
+        :param pulumi.Input[str] serial: Fabric connector serial number.
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
@@ -728,8 +864,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  event_type: Optional[pulumi.Input[str]] = None,
+                 fabric_event_name: Optional[pulumi.Input[str]] = None,
+                 fabric_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_name: Optional[pulumi.Input[str]] = None,
                  faz_event_severity: Optional[pulumi.Input[str]] = None,
                  faz_event_tags: Optional[pulumi.Input[str]] = None,
@@ -739,6 +878,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
                  logid: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  report_type: Optional[pulumi.Input[str]] = None,
+                 serial: Optional[pulumi.Input[str]] = None,
                  trigger_day: Optional[pulumi.Input[int]] = None,
                  trigger_frequency: Optional[pulumi.Input[str]] = None,
                  trigger_hour: Optional[pulumi.Input[int]] = None,
@@ -753,13 +893,18 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemAutomationTriggerArgs.__new__(SystemAutomationTriggerArgs)
 
+            __props__.__dict__["description"] = description
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["event_type"] = event_type
+            __props__.__dict__["fabric_event_name"] = fabric_event_name
+            __props__.__dict__["fabric_event_severity"] = fabric_event_severity
             __props__.__dict__["faz_event_name"] = faz_event_name
             __props__.__dict__["faz_event_severity"] = faz_event_severity
             __props__.__dict__["faz_event_tags"] = faz_event_tags
@@ -769,6 +914,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             __props__.__dict__["logid"] = logid
             __props__.__dict__["name"] = name
             __props__.__dict__["report_type"] = report_type
+            __props__.__dict__["serial"] = serial
             __props__.__dict__["trigger_day"] = trigger_day
             __props__.__dict__["trigger_frequency"] = trigger_frequency
             __props__.__dict__["trigger_hour"] = trigger_hour
@@ -786,8 +932,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            description: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             event_type: Optional[pulumi.Input[str]] = None,
+            fabric_event_name: Optional[pulumi.Input[str]] = None,
+            fabric_event_severity: Optional[pulumi.Input[str]] = None,
             faz_event_name: Optional[pulumi.Input[str]] = None,
             faz_event_severity: Optional[pulumi.Input[str]] = None,
             faz_event_tags: Optional[pulumi.Input[str]] = None,
@@ -797,6 +946,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
             logid: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
             report_type: Optional[pulumi.Input[str]] = None,
+            serial: Optional[pulumi.Input[str]] = None,
             trigger_day: Optional[pulumi.Input[int]] = None,
             trigger_frequency: Optional[pulumi.Input[str]] = None,
             trigger_hour: Optional[pulumi.Input[int]] = None,
@@ -811,8 +961,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] event_type: Event type.
+        :param pulumi.Input[str] fabric_event_name: Fabric connector event handler name.
+        :param pulumi.Input[str] fabric_event_severity: Fabric connector event severity.
         :param pulumi.Input[str] faz_event_name: FortiAnalyzer event handler name.
         :param pulumi.Input[str] faz_event_severity: FortiAnalyzer event severity.
         :param pulumi.Input[str] faz_event_tags: FortiAnalyzer event tags.
@@ -821,7 +974,8 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         :param pulumi.Input[str] license_type: License type.
         :param pulumi.Input[int] logid: Log ID to trigger event.
         :param pulumi.Input[str] name: Name.
-        :param pulumi.Input[str] report_type: Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        :param pulumi.Input[str] report_type: Security Rating report.
+        :param pulumi.Input[str] serial: Fabric connector serial number.
         :param pulumi.Input[int] trigger_day: Day within a month to trigger.
         :param pulumi.Input[str] trigger_frequency: Scheduled trigger frequency (default = daily). Valid values: `hourly`, `daily`, `weekly`, `monthly`.
         :param pulumi.Input[int] trigger_hour: Hour of the day on which to trigger (0 - 23, default = 1).
@@ -834,8 +988,11 @@ class SystemAutomationTrigger(pulumi.CustomResource):
 
         __props__ = _SystemAutomationTriggerState.__new__(_SystemAutomationTriggerState)
 
+        __props__.__dict__["description"] = description
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["event_type"] = event_type
+        __props__.__dict__["fabric_event_name"] = fabric_event_name
+        __props__.__dict__["fabric_event_severity"] = fabric_event_severity
         __props__.__dict__["faz_event_name"] = faz_event_name
         __props__.__dict__["faz_event_severity"] = faz_event_severity
         __props__.__dict__["faz_event_tags"] = faz_event_tags
@@ -845,6 +1002,7 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         __props__.__dict__["logid"] = logid
         __props__.__dict__["name"] = name
         __props__.__dict__["report_type"] = report_type
+        __props__.__dict__["serial"] = serial
         __props__.__dict__["trigger_day"] = trigger_day
         __props__.__dict__["trigger_frequency"] = trigger_frequency
         __props__.__dict__["trigger_hour"] = trigger_hour
@@ -853,6 +1011,14 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         __props__.__dict__["trigger_weekday"] = trigger_weekday
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemAutomationTrigger(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter(name="dynamicSortSubtable")
@@ -869,6 +1035,22 @@ class SystemAutomationTrigger(pulumi.CustomResource):
         Event type.
         """
         return pulumi.get(self, "event_type")
+
+    @property
+    @pulumi.getter(name="fabricEventName")
+    def fabric_event_name(self) -> pulumi.Output[Optional[str]]:
+        """
+        Fabric connector event handler name.
+        """
+        return pulumi.get(self, "fabric_event_name")
+
+    @property
+    @pulumi.getter(name="fabricEventSeverity")
+    def fabric_event_severity(self) -> pulumi.Output[Optional[str]]:
+        """
+        Fabric connector event severity.
+        """
+        return pulumi.get(self, "fabric_event_severity")
 
     @property
     @pulumi.getter(name="fazEventName")
@@ -938,9 +1120,17 @@ class SystemAutomationTrigger(pulumi.CustomResource):
     @pulumi.getter(name="reportType")
     def report_type(self) -> pulumi.Output[str]:
         """
-        Security Rating report. Valid values: `PostureReport`, `CoverageReport`, `OptimizationReport`.
+        Security Rating report.
         """
         return pulumi.get(self, "report_type")
+
+    @property
+    @pulumi.getter
+    def serial(self) -> pulumi.Output[Optional[str]]:
+        """
+        Fabric connector serial number.
+        """
+        return pulumi.get(self, "serial")
 
     @property
     @pulumi.getter(name="triggerDay")

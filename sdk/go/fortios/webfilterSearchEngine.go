@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -59,7 +59,7 @@ type WebfilterSearchEngine struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Code used to prefix a query (must end with an equals character).
 	Query pulumi.StringOutput `pulumi:"query"`
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
 	Safesearch pulumi.StringOutput `pulumi:"safesearch"`
 	// Safe search parameter used in the URL.
 	SafesearchStr pulumi.StringOutput `pulumi:"safesearchStr"`
@@ -76,6 +76,7 @@ func NewWebfilterSearchEngine(ctx *pulumi.Context,
 		args = &WebfilterSearchEngineArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterSearchEngine
 	err := ctx.RegisterResource("fortios:index/webfilterSearchEngine:WebfilterSearchEngine", name, args, &resource, opts...)
 	if err != nil {
@@ -106,7 +107,7 @@ type webfilterSearchEngineState struct {
 	Name *string `pulumi:"name"`
 	// Code used to prefix a query (must end with an equals character).
 	Query *string `pulumi:"query"`
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
 	Safesearch *string `pulumi:"safesearch"`
 	// Safe search parameter used in the URL.
 	SafesearchStr *string `pulumi:"safesearchStr"`
@@ -125,7 +126,7 @@ type WebfilterSearchEngineState struct {
 	Name pulumi.StringPtrInput
 	// Code used to prefix a query (must end with an equals character).
 	Query pulumi.StringPtrInput
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
 	Safesearch pulumi.StringPtrInput
 	// Safe search parameter used in the URL.
 	SafesearchStr pulumi.StringPtrInput
@@ -148,7 +149,7 @@ type webfilterSearchEngineArgs struct {
 	Name *string `pulumi:"name"`
 	// Code used to prefix a query (must end with an equals character).
 	Query *string `pulumi:"query"`
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
 	Safesearch *string `pulumi:"safesearch"`
 	// Safe search parameter used in the URL.
 	SafesearchStr *string `pulumi:"safesearchStr"`
@@ -168,7 +169,7 @@ type WebfilterSearchEngineArgs struct {
 	Name pulumi.StringPtrInput
 	// Code used to prefix a query (must end with an equals character).
 	Query pulumi.StringPtrInput
-	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+	// Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
 	Safesearch pulumi.StringPtrInput
 	// Safe search parameter used in the URL.
 	SafesearchStr pulumi.StringPtrInput
@@ -190,7 +191,7 @@ type WebfilterSearchEngineInput interface {
 }
 
 func (*WebfilterSearchEngine) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterSearchEngine)(nil))
+	return reflect.TypeOf((**WebfilterSearchEngine)(nil)).Elem()
 }
 
 func (i *WebfilterSearchEngine) ToWebfilterSearchEngineOutput() WebfilterSearchEngineOutput {
@@ -199,35 +200,6 @@ func (i *WebfilterSearchEngine) ToWebfilterSearchEngineOutput() WebfilterSearchE
 
 func (i *WebfilterSearchEngine) ToWebfilterSearchEngineOutputWithContext(ctx context.Context) WebfilterSearchEngineOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEngineOutput)
-}
-
-func (i *WebfilterSearchEngine) ToWebfilterSearchEnginePtrOutput() WebfilterSearchEnginePtrOutput {
-	return i.ToWebfilterSearchEnginePtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterSearchEngine) ToWebfilterSearchEnginePtrOutputWithContext(ctx context.Context) WebfilterSearchEnginePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEnginePtrOutput)
-}
-
-type WebfilterSearchEnginePtrInput interface {
-	pulumi.Input
-
-	ToWebfilterSearchEnginePtrOutput() WebfilterSearchEnginePtrOutput
-	ToWebfilterSearchEnginePtrOutputWithContext(ctx context.Context) WebfilterSearchEnginePtrOutput
-}
-
-type webfilterSearchEnginePtrType WebfilterSearchEngineArgs
-
-func (*webfilterSearchEnginePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterSearchEngine)(nil))
-}
-
-func (i *webfilterSearchEnginePtrType) ToWebfilterSearchEnginePtrOutput() WebfilterSearchEnginePtrOutput {
-	return i.ToWebfilterSearchEnginePtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterSearchEnginePtrType) ToWebfilterSearchEnginePtrOutputWithContext(ctx context.Context) WebfilterSearchEnginePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEnginePtrOutput)
 }
 
 // WebfilterSearchEngineArrayInput is an input type that accepts WebfilterSearchEngineArray and WebfilterSearchEngineArrayOutput values.
@@ -244,7 +216,7 @@ type WebfilterSearchEngineArrayInput interface {
 type WebfilterSearchEngineArray []WebfilterSearchEngineInput
 
 func (WebfilterSearchEngineArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterSearchEngine)(nil))
+	return reflect.TypeOf((*[]*WebfilterSearchEngine)(nil)).Elem()
 }
 
 func (i WebfilterSearchEngineArray) ToWebfilterSearchEngineArrayOutput() WebfilterSearchEngineArrayOutput {
@@ -269,7 +241,7 @@ type WebfilterSearchEngineMapInput interface {
 type WebfilterSearchEngineMap map[string]WebfilterSearchEngineInput
 
 func (WebfilterSearchEngineMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterSearchEngine)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterSearchEngine)(nil)).Elem()
 }
 
 func (i WebfilterSearchEngineMap) ToWebfilterSearchEngineMapOutput() WebfilterSearchEngineMapOutput {
@@ -280,12 +252,10 @@ func (i WebfilterSearchEngineMap) ToWebfilterSearchEngineMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterSearchEngineMapOutput)
 }
 
-type WebfilterSearchEngineOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterSearchEngineOutput struct{ *pulumi.OutputState }
 
 func (WebfilterSearchEngineOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterSearchEngine)(nil))
+	return reflect.TypeOf((**WebfilterSearchEngine)(nil)).Elem()
 }
 
 func (o WebfilterSearchEngineOutput) ToWebfilterSearchEngineOutput() WebfilterSearchEngineOutput {
@@ -296,36 +266,10 @@ func (o WebfilterSearchEngineOutput) ToWebfilterSearchEngineOutputWithContext(ct
 	return o
 }
 
-func (o WebfilterSearchEngineOutput) ToWebfilterSearchEnginePtrOutput() WebfilterSearchEnginePtrOutput {
-	return o.ToWebfilterSearchEnginePtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterSearchEngineOutput) ToWebfilterSearchEnginePtrOutputWithContext(ctx context.Context) WebfilterSearchEnginePtrOutput {
-	return o.ApplyT(func(v WebfilterSearchEngine) *WebfilterSearchEngine {
-		return &v
-	}).(WebfilterSearchEnginePtrOutput)
-}
-
-type WebfilterSearchEnginePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterSearchEnginePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterSearchEngine)(nil))
-}
-
-func (o WebfilterSearchEnginePtrOutput) ToWebfilterSearchEnginePtrOutput() WebfilterSearchEnginePtrOutput {
-	return o
-}
-
-func (o WebfilterSearchEnginePtrOutput) ToWebfilterSearchEnginePtrOutputWithContext(ctx context.Context) WebfilterSearchEnginePtrOutput {
-	return o
-}
-
 type WebfilterSearchEngineArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterSearchEngineArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterSearchEngine)(nil))
+	return reflect.TypeOf((*[]*WebfilterSearchEngine)(nil)).Elem()
 }
 
 func (o WebfilterSearchEngineArrayOutput) ToWebfilterSearchEngineArrayOutput() WebfilterSearchEngineArrayOutput {
@@ -337,15 +281,15 @@ func (o WebfilterSearchEngineArrayOutput) ToWebfilterSearchEngineArrayOutputWith
 }
 
 func (o WebfilterSearchEngineArrayOutput) Index(i pulumi.IntInput) WebfilterSearchEngineOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterSearchEngine {
-		return vs[0].([]WebfilterSearchEngine)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterSearchEngine {
+		return vs[0].([]*WebfilterSearchEngine)[vs[1].(int)]
 	}).(WebfilterSearchEngineOutput)
 }
 
 type WebfilterSearchEngineMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterSearchEngineMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterSearchEngine)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterSearchEngine)(nil)).Elem()
 }
 
 func (o WebfilterSearchEngineMapOutput) ToWebfilterSearchEngineMapOutput() WebfilterSearchEngineMapOutput {
@@ -357,14 +301,16 @@ func (o WebfilterSearchEngineMapOutput) ToWebfilterSearchEngineMapOutputWithCont
 }
 
 func (o WebfilterSearchEngineMapOutput) MapIndex(k pulumi.StringInput) WebfilterSearchEngineOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterSearchEngine {
-		return vs[0].(map[string]WebfilterSearchEngine)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterSearchEngine {
+		return vs[0].(map[string]*WebfilterSearchEngine)[vs[1].(string)]
 	}).(WebfilterSearchEngineOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterSearchEngineInput)(nil)).Elem(), &WebfilterSearchEngine{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterSearchEngineArrayInput)(nil)).Elem(), WebfilterSearchEngineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterSearchEngineMapInput)(nil)).Elem(), WebfilterSearchEngineMap{})
 	pulumi.RegisterOutputType(WebfilterSearchEngineOutput{})
-	pulumi.RegisterOutputType(WebfilterSearchEnginePtrOutput{})
 	pulumi.RegisterOutputType(WebfilterSearchEngineArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterSearchEngineMapOutput{})
 }

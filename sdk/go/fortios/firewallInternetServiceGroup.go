@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,26 +27,26 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewFirewallInternetServiceGroup(ctx, "trname", &fortios.FirewallInternetServiceGroupArgs{
 // 			Direction: pulumi.String("both"),
-// 			Members: fortios.FirewallInternetServiceGroupMemberArray{
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 			Members: FirewallInternetServiceGroupMemberArray{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(65641),
 // 				},
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(65646),
 // 				},
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(196747),
 // 				},
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(327781),
 // 				},
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(327786),
 // 				},
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(327791),
 // 				},
-// 				&fortios.FirewallInternetServiceGroupMemberArgs{
+// 				&FirewallInternetServiceGroupMemberArgs{
 // 					Id: pulumi.Int(327839),
 // 				},
 // 			},
@@ -91,6 +92,7 @@ func NewFirewallInternetServiceGroup(ctx *pulumi.Context,
 		args = &FirewallInternetServiceGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceGroup
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceGroup:FirewallInternetServiceGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -189,7 +191,7 @@ type FirewallInternetServiceGroupInput interface {
 }
 
 func (*FirewallInternetServiceGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceGroup)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceGroup)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceGroup) ToFirewallInternetServiceGroupOutput() FirewallInternetServiceGroupOutput {
@@ -198,35 +200,6 @@ func (i *FirewallInternetServiceGroup) ToFirewallInternetServiceGroupOutput() Fi
 
 func (i *FirewallInternetServiceGroup) ToFirewallInternetServiceGroupOutputWithContext(ctx context.Context) FirewallInternetServiceGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupOutput)
-}
-
-func (i *FirewallInternetServiceGroup) ToFirewallInternetServiceGroupPtrOutput() FirewallInternetServiceGroupPtrOutput {
-	return i.ToFirewallInternetServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceGroup) ToFirewallInternetServiceGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupPtrOutput)
-}
-
-type FirewallInternetServiceGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceGroupPtrOutput() FirewallInternetServiceGroupPtrOutput
-	ToFirewallInternetServiceGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceGroupPtrOutput
-}
-
-type firewallInternetServiceGroupPtrType FirewallInternetServiceGroupArgs
-
-func (*firewallInternetServiceGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceGroup)(nil))
-}
-
-func (i *firewallInternetServiceGroupPtrType) ToFirewallInternetServiceGroupPtrOutput() FirewallInternetServiceGroupPtrOutput {
-	return i.ToFirewallInternetServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceGroupPtrType) ToFirewallInternetServiceGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupPtrOutput)
 }
 
 // FirewallInternetServiceGroupArrayInput is an input type that accepts FirewallInternetServiceGroupArray and FirewallInternetServiceGroupArrayOutput values.
@@ -243,7 +216,7 @@ type FirewallInternetServiceGroupArrayInput interface {
 type FirewallInternetServiceGroupArray []FirewallInternetServiceGroupInput
 
 func (FirewallInternetServiceGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceGroup)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceGroupArray) ToFirewallInternetServiceGroupArrayOutput() FirewallInternetServiceGroupArrayOutput {
@@ -268,7 +241,7 @@ type FirewallInternetServiceGroupMapInput interface {
 type FirewallInternetServiceGroupMap map[string]FirewallInternetServiceGroupInput
 
 func (FirewallInternetServiceGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceGroup)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceGroupMap) ToFirewallInternetServiceGroupMapOutput() FirewallInternetServiceGroupMapOutput {
@@ -279,12 +252,10 @@ func (i FirewallInternetServiceGroupMap) ToFirewallInternetServiceGroupMapOutput
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceGroupMapOutput)
 }
 
-type FirewallInternetServiceGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceGroup)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceGroupOutput) ToFirewallInternetServiceGroupOutput() FirewallInternetServiceGroupOutput {
@@ -295,36 +266,10 @@ func (o FirewallInternetServiceGroupOutput) ToFirewallInternetServiceGroupOutput
 	return o
 }
 
-func (o FirewallInternetServiceGroupOutput) ToFirewallInternetServiceGroupPtrOutput() FirewallInternetServiceGroupPtrOutput {
-	return o.ToFirewallInternetServiceGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceGroupOutput) ToFirewallInternetServiceGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceGroupPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceGroup) *FirewallInternetServiceGroup {
-		return &v
-	}).(FirewallInternetServiceGroupPtrOutput)
-}
-
-type FirewallInternetServiceGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceGroup)(nil))
-}
-
-func (o FirewallInternetServiceGroupPtrOutput) ToFirewallInternetServiceGroupPtrOutput() FirewallInternetServiceGroupPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceGroupPtrOutput) ToFirewallInternetServiceGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceGroupPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceGroupArrayOutput) ToFirewallInternetServiceGroupArrayOutput() FirewallInternetServiceGroupArrayOutput {
@@ -336,15 +281,15 @@ func (o FirewallInternetServiceGroupArrayOutput) ToFirewallInternetServiceGroupA
 }
 
 func (o FirewallInternetServiceGroupArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceGroup {
-		return vs[0].([]FirewallInternetServiceGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceGroup {
+		return vs[0].([]*FirewallInternetServiceGroup)[vs[1].(int)]
 	}).(FirewallInternetServiceGroupOutput)
 }
 
 type FirewallInternetServiceGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceGroup)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceGroupMapOutput) ToFirewallInternetServiceGroupMapOutput() FirewallInternetServiceGroupMapOutput {
@@ -356,14 +301,16 @@ func (o FirewallInternetServiceGroupMapOutput) ToFirewallInternetServiceGroupMap
 }
 
 func (o FirewallInternetServiceGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceGroup {
-		return vs[0].(map[string]FirewallInternetServiceGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceGroup {
+		return vs[0].(map[string]*FirewallInternetServiceGroup)[vs[1].(string)]
 	}).(FirewallInternetServiceGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceGroupInput)(nil)).Elem(), &FirewallInternetServiceGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceGroupArrayInput)(nil)).Elem(), FirewallInternetServiceGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceGroupMapInput)(nil)).Elem(), FirewallInternetServiceGroupMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceGroupOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceGroupMapOutput{})
 }

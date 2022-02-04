@@ -80,32 +80,30 @@ export class SystemVirtualWirePair extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemVirtualWirePairArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVirtualWirePairArgs | SystemVirtualWirePairState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVirtualWirePairState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlanFilter"] = state ? state.vlanFilter : undefined;
-            inputs["wildcardVlan"] = state ? state.wildcardVlan : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlanFilter"] = state ? state.vlanFilter : undefined;
+            resourceInputs["wildcardVlan"] = state ? state.wildcardVlan : undefined;
         } else {
             const args = argsOrState as SystemVirtualWirePairArgs | undefined;
             if ((!args || args.members === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'members'");
             }
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlanFilter"] = args ? args.vlanFilter : undefined;
-            inputs["wildcardVlan"] = args ? args.wildcardVlan : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlanFilter"] = args ? args.vlanFilter : undefined;
+            resourceInputs["wildcardVlan"] = args ? args.wildcardVlan : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVirtualWirePair.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVirtualWirePair.__pulumiType, name, resourceInputs, opts);
     }
 }
 

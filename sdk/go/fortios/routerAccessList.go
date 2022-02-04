@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -45,7 +45,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -95,6 +95,7 @@ func NewRouterAccessList(ctx *pulumi.Context,
 		args = &RouterAccessListArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterAccessList
 	err := ctx.RegisterResource("fortios:index/routerAccessList:RouterAccessList", name, args, &resource, opts...)
 	if err != nil {
@@ -177,7 +178,7 @@ type RouterAccessListInput interface {
 }
 
 func (*RouterAccessList) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterAccessList)(nil))
+	return reflect.TypeOf((**RouterAccessList)(nil)).Elem()
 }
 
 func (i *RouterAccessList) ToRouterAccessListOutput() RouterAccessListOutput {
@@ -186,35 +187,6 @@ func (i *RouterAccessList) ToRouterAccessListOutput() RouterAccessListOutput {
 
 func (i *RouterAccessList) ToRouterAccessListOutputWithContext(ctx context.Context) RouterAccessListOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAccessListOutput)
-}
-
-func (i *RouterAccessList) ToRouterAccessListPtrOutput() RouterAccessListPtrOutput {
-	return i.ToRouterAccessListPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterAccessList) ToRouterAccessListPtrOutputWithContext(ctx context.Context) RouterAccessListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterAccessListPtrOutput)
-}
-
-type RouterAccessListPtrInput interface {
-	pulumi.Input
-
-	ToRouterAccessListPtrOutput() RouterAccessListPtrOutput
-	ToRouterAccessListPtrOutputWithContext(ctx context.Context) RouterAccessListPtrOutput
-}
-
-type routerAccessListPtrType RouterAccessListArgs
-
-func (*routerAccessListPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterAccessList)(nil))
-}
-
-func (i *routerAccessListPtrType) ToRouterAccessListPtrOutput() RouterAccessListPtrOutput {
-	return i.ToRouterAccessListPtrOutputWithContext(context.Background())
-}
-
-func (i *routerAccessListPtrType) ToRouterAccessListPtrOutputWithContext(ctx context.Context) RouterAccessListPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterAccessListPtrOutput)
 }
 
 // RouterAccessListArrayInput is an input type that accepts RouterAccessListArray and RouterAccessListArrayOutput values.
@@ -231,7 +203,7 @@ type RouterAccessListArrayInput interface {
 type RouterAccessListArray []RouterAccessListInput
 
 func (RouterAccessListArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterAccessList)(nil))
+	return reflect.TypeOf((*[]*RouterAccessList)(nil)).Elem()
 }
 
 func (i RouterAccessListArray) ToRouterAccessListArrayOutput() RouterAccessListArrayOutput {
@@ -256,7 +228,7 @@ type RouterAccessListMapInput interface {
 type RouterAccessListMap map[string]RouterAccessListInput
 
 func (RouterAccessListMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterAccessList)(nil))
+	return reflect.TypeOf((*map[string]*RouterAccessList)(nil)).Elem()
 }
 
 func (i RouterAccessListMap) ToRouterAccessListMapOutput() RouterAccessListMapOutput {
@@ -267,12 +239,10 @@ func (i RouterAccessListMap) ToRouterAccessListMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAccessListMapOutput)
 }
 
-type RouterAccessListOutput struct {
-	*pulumi.OutputState
-}
+type RouterAccessListOutput struct{ *pulumi.OutputState }
 
 func (RouterAccessListOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterAccessList)(nil))
+	return reflect.TypeOf((**RouterAccessList)(nil)).Elem()
 }
 
 func (o RouterAccessListOutput) ToRouterAccessListOutput() RouterAccessListOutput {
@@ -283,36 +253,10 @@ func (o RouterAccessListOutput) ToRouterAccessListOutputWithContext(ctx context.
 	return o
 }
 
-func (o RouterAccessListOutput) ToRouterAccessListPtrOutput() RouterAccessListPtrOutput {
-	return o.ToRouterAccessListPtrOutputWithContext(context.Background())
-}
-
-func (o RouterAccessListOutput) ToRouterAccessListPtrOutputWithContext(ctx context.Context) RouterAccessListPtrOutput {
-	return o.ApplyT(func(v RouterAccessList) *RouterAccessList {
-		return &v
-	}).(RouterAccessListPtrOutput)
-}
-
-type RouterAccessListPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterAccessListPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterAccessList)(nil))
-}
-
-func (o RouterAccessListPtrOutput) ToRouterAccessListPtrOutput() RouterAccessListPtrOutput {
-	return o
-}
-
-func (o RouterAccessListPtrOutput) ToRouterAccessListPtrOutputWithContext(ctx context.Context) RouterAccessListPtrOutput {
-	return o
-}
-
 type RouterAccessListArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterAccessListArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterAccessList)(nil))
+	return reflect.TypeOf((*[]*RouterAccessList)(nil)).Elem()
 }
 
 func (o RouterAccessListArrayOutput) ToRouterAccessListArrayOutput() RouterAccessListArrayOutput {
@@ -324,15 +268,15 @@ func (o RouterAccessListArrayOutput) ToRouterAccessListArrayOutputWithContext(ct
 }
 
 func (o RouterAccessListArrayOutput) Index(i pulumi.IntInput) RouterAccessListOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterAccessList {
-		return vs[0].([]RouterAccessList)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterAccessList {
+		return vs[0].([]*RouterAccessList)[vs[1].(int)]
 	}).(RouterAccessListOutput)
 }
 
 type RouterAccessListMapOutput struct{ *pulumi.OutputState }
 
 func (RouterAccessListMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterAccessList)(nil))
+	return reflect.TypeOf((*map[string]*RouterAccessList)(nil)).Elem()
 }
 
 func (o RouterAccessListMapOutput) ToRouterAccessListMapOutput() RouterAccessListMapOutput {
@@ -344,14 +288,16 @@ func (o RouterAccessListMapOutput) ToRouterAccessListMapOutputWithContext(ctx co
 }
 
 func (o RouterAccessListMapOutput) MapIndex(k pulumi.StringInput) RouterAccessListOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterAccessList {
-		return vs[0].(map[string]RouterAccessList)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterAccessList {
+		return vs[0].(map[string]*RouterAccessList)[vs[1].(string)]
 	}).(RouterAccessListOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterAccessListInput)(nil)).Elem(), &RouterAccessList{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterAccessListArrayInput)(nil)).Elem(), RouterAccessListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterAccessListMapInput)(nil)).Elem(), RouterAccessListMap{})
 	pulumi.RegisterOutputType(RouterAccessListOutput{})
-	pulumi.RegisterOutputType(RouterAccessListPtrOutput{})
 	pulumi.RegisterOutputType(RouterAccessListArrayOutput{})
 	pulumi.RegisterOutputType(RouterAccessListMapOutput{})
 }

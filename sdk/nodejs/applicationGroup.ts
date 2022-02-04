@@ -123,43 +123,41 @@ export class ApplicationGroup extends pulumi.CustomResource {
      */
     constructor(name: string, args?: ApplicationGroupArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ApplicationGroupArgs | ApplicationGroupState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ApplicationGroupState | undefined;
-            inputs["applications"] = state ? state.applications : undefined;
-            inputs["behavior"] = state ? state.behavior : undefined;
-            inputs["categories"] = state ? state.categories : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["popularity"] = state ? state.popularity : undefined;
-            inputs["protocols"] = state ? state.protocols : undefined;
-            inputs["risks"] = state ? state.risks : undefined;
-            inputs["technology"] = state ? state.technology : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vendor"] = state ? state.vendor : undefined;
+            resourceInputs["applications"] = state ? state.applications : undefined;
+            resourceInputs["behavior"] = state ? state.behavior : undefined;
+            resourceInputs["categories"] = state ? state.categories : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["popularity"] = state ? state.popularity : undefined;
+            resourceInputs["protocols"] = state ? state.protocols : undefined;
+            resourceInputs["risks"] = state ? state.risks : undefined;
+            resourceInputs["technology"] = state ? state.technology : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vendor"] = state ? state.vendor : undefined;
         } else {
             const args = argsOrState as ApplicationGroupArgs | undefined;
-            inputs["applications"] = args ? args.applications : undefined;
-            inputs["behavior"] = args ? args.behavior : undefined;
-            inputs["categories"] = args ? args.categories : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["popularity"] = args ? args.popularity : undefined;
-            inputs["protocols"] = args ? args.protocols : undefined;
-            inputs["risks"] = args ? args.risks : undefined;
-            inputs["technology"] = args ? args.technology : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vendor"] = args ? args.vendor : undefined;
+            resourceInputs["applications"] = args ? args.applications : undefined;
+            resourceInputs["behavior"] = args ? args.behavior : undefined;
+            resourceInputs["categories"] = args ? args.categories : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["popularity"] = args ? args.popularity : undefined;
+            resourceInputs["protocols"] = args ? args.protocols : undefined;
+            resourceInputs["risks"] = args ? args.risks : undefined;
+            resourceInputs["technology"] = args ? args.technology : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vendor"] = args ? args.vendor : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ApplicationGroup.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ApplicationGroup.__pulumiType, name, resourceInputs, opts);
     }
 }
 

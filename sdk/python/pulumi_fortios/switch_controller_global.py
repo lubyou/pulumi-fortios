@@ -19,8 +19,11 @@ class SwitchControllerGlobalArgs:
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalCustomCommandArgs']]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fips_enforce: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -39,8 +42,11 @@ class SwitchControllerGlobalArgs:
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalCustomCommandArgs']]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -62,10 +68,16 @@ class SwitchControllerGlobalArgs:
             pulumi.set(__self__, "custom_commands", custom_commands)
         if default_virtual_switch_vlan is not None:
             pulumi.set(__self__, "default_virtual_switch_vlan", default_virtual_switch_vlan)
+        if dhcp_server_access_list is not None:
+            pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
         if disable_discoveries is not None:
             pulumi.set(__self__, "disable_discoveries", disable_discoveries)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fips_enforce is not None:
+            pulumi.set(__self__, "fips_enforce", fips_enforce)
+        if firmware_provision_on_authorization is not None:
+            pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
         if https_image_push is not None:
             pulumi.set(__self__, "https_image_push", https_image_push)
         if log_mac_limit_violations is not None:
@@ -140,6 +152,18 @@ class SwitchControllerGlobalArgs:
         pulumi.set(self, "default_virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="dhcpServerAccessList")
+    def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_server_access_list")
+
+    @dhcp_server_access_list.setter
+    def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
     @pulumi.getter(name="disableDiscoveries")
     def disable_discoveries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]]]:
         """
@@ -162,6 +186,30 @@ class SwitchControllerGlobalArgs:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fipsEnforce")
+    def fips_enforce(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fips_enforce")
+
+    @fips_enforce.setter
+    def fips_enforce(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fips_enforce", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionOnAuthorization")
+    def firmware_provision_on_authorization(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @firmware_provision_on_authorization.setter
+    def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_on_authorization", value)
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -315,8 +363,11 @@ class _SwitchControllerGlobalState:
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalCustomCommandArgs']]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fips_enforce: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -335,8 +386,11 @@ class _SwitchControllerGlobalState:
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalCustomCommandArgs']]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -358,10 +412,16 @@ class _SwitchControllerGlobalState:
             pulumi.set(__self__, "custom_commands", custom_commands)
         if default_virtual_switch_vlan is not None:
             pulumi.set(__self__, "default_virtual_switch_vlan", default_virtual_switch_vlan)
+        if dhcp_server_access_list is not None:
+            pulumi.set(__self__, "dhcp_server_access_list", dhcp_server_access_list)
         if disable_discoveries is not None:
             pulumi.set(__self__, "disable_discoveries", disable_discoveries)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fips_enforce is not None:
+            pulumi.set(__self__, "fips_enforce", fips_enforce)
+        if firmware_provision_on_authorization is not None:
+            pulumi.set(__self__, "firmware_provision_on_authorization", firmware_provision_on_authorization)
         if https_image_push is not None:
             pulumi.set(__self__, "https_image_push", https_image_push)
         if log_mac_limit_violations is not None:
@@ -436,6 +496,18 @@ class _SwitchControllerGlobalState:
         pulumi.set(self, "default_virtual_switch_vlan", value)
 
     @property
+    @pulumi.getter(name="dhcpServerAccessList")
+    def dhcp_server_access_list(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_server_access_list")
+
+    @dhcp_server_access_list.setter
+    def dhcp_server_access_list(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dhcp_server_access_list", value)
+
+    @property
     @pulumi.getter(name="disableDiscoveries")
     def disable_discoveries(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SwitchControllerGlobalDisableDiscoveryArgs']]]]:
         """
@@ -458,6 +530,30 @@ class _SwitchControllerGlobalState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fipsEnforce")
+    def fips_enforce(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fips_enforce")
+
+    @fips_enforce.setter
+    def fips_enforce(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fips_enforce", value)
+
+    @property
+    @pulumi.getter(name="firmwareProvisionOnAuthorization")
+    def firmware_provision_on_authorization(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "firmware_provision_on_authorization")
+
+    @firmware_provision_on_authorization.setter
+    def firmware_provision_on_authorization(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "firmware_provision_on_authorization", value)
 
     @property
     @pulumi.getter(name="httpsImagePush")
@@ -613,8 +709,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fips_enforce: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -662,8 +761,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -730,8 +832,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
                  bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
                  custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]]] = None,
                  default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+                 dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
                  disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fips_enforce: Optional[pulumi.Input[str]] = None,
+                 firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
                  https_image_push: Optional[pulumi.Input[str]] = None,
                  log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
                  mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -751,6 +856,8 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -760,8 +867,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             __props__.__dict__["bounce_quarantined_link"] = bounce_quarantined_link
             __props__.__dict__["custom_commands"] = custom_commands
             __props__.__dict__["default_virtual_switch_vlan"] = default_virtual_switch_vlan
+            __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
             __props__.__dict__["disable_discoveries"] = disable_discoveries
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fips_enforce"] = fips_enforce
+            __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
             __props__.__dict__["https_image_push"] = https_image_push
             __props__.__dict__["log_mac_limit_violations"] = log_mac_limit_violations
             __props__.__dict__["mac_aging_interval"] = mac_aging_interval
@@ -788,8 +898,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
             bounce_quarantined_link: Optional[pulumi.Input[str]] = None,
             custom_commands: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]]] = None,
             default_virtual_switch_vlan: Optional[pulumi.Input[str]] = None,
+            dhcp_server_access_list: Optional[pulumi.Input[str]] = None,
             disable_discoveries: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fips_enforce: Optional[pulumi.Input[str]] = None,
+            firmware_provision_on_authorization: Optional[pulumi.Input[str]] = None,
             https_image_push: Optional[pulumi.Input[str]] = None,
             log_mac_limit_violations: Optional[pulumi.Input[str]] = None,
             mac_aging_interval: Optional[pulumi.Input[int]] = None,
@@ -813,8 +926,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] bounce_quarantined_link: Enable/disable bouncing (administratively bring the link down, up) of a switch port where a quarantined device was seen last. Helps to re-initiate the DHCP process for a device. Valid values: `disable`, `enable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalCustomCommandArgs']]]] custom_commands: List of custom commands to be pushed to all FortiSwitches in the VDOM. The structure of `custom_command` block is documented below.
         :param pulumi.Input[str] default_virtual_switch_vlan: Default VLAN for ports when added to the virtual-switch.
+        :param pulumi.Input[str] dhcp_server_access_list: Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SwitchControllerGlobalDisableDiscoveryArgs']]]] disable_discoveries: Prevent this FortiSwitch from discovering. The structure of `disable_discovery` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fips_enforce: Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] firmware_provision_on_authorization: Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_image_push: Enable/disable image push to FortiSwitch using HTTPS. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] log_mac_limit_violations: Enable/disable logs for Learning Limit Violations. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] mac_aging_interval: Time after which an inactive MAC is aged out (10 - 1000000 sec, default = 300, 0 = disable).
@@ -836,8 +952,11 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         __props__.__dict__["bounce_quarantined_link"] = bounce_quarantined_link
         __props__.__dict__["custom_commands"] = custom_commands
         __props__.__dict__["default_virtual_switch_vlan"] = default_virtual_switch_vlan
+        __props__.__dict__["dhcp_server_access_list"] = dhcp_server_access_list
         __props__.__dict__["disable_discoveries"] = disable_discoveries
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fips_enforce"] = fips_enforce
+        __props__.__dict__["firmware_provision_on_authorization"] = firmware_provision_on_authorization
         __props__.__dict__["https_image_push"] = https_image_push
         __props__.__dict__["log_mac_limit_violations"] = log_mac_limit_violations
         __props__.__dict__["mac_aging_interval"] = mac_aging_interval
@@ -885,6 +1004,14 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         return pulumi.get(self, "default_virtual_switch_vlan")
 
     @property
+    @pulumi.getter(name="dhcpServerAccessList")
+    def dhcp_server_access_list(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DHCP snooping server access list. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dhcp_server_access_list")
+
+    @property
     @pulumi.getter(name="disableDiscoveries")
     def disable_discoveries(self) -> pulumi.Output[Optional[Sequence['outputs.SwitchControllerGlobalDisableDiscovery']]]:
         """
@@ -899,6 +1026,22 @@ class SwitchControllerGlobal(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="fipsEnforce")
+    def fips_enforce(self) -> pulumi.Output[str]:
+        """
+        Enable/disable enforcement of FIPS on managed FortiSwitch devices. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "fips_enforce")
+
+    @property
+    @pulumi.getter(name="firmwareProvisionOnAuthorization")
+    def firmware_provision_on_authorization(self) -> pulumi.Output[str]:
+        """
+        Enable/disable automatic provisioning of latest firmware on authorization. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "firmware_provision_on_authorization")
 
     @property
     @pulumi.getter(name="httpsImagePush")

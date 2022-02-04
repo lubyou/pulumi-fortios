@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `RouterMulticastFlow`.
 func GetRouterMulticastFlowList(ctx *pulumi.Context, args *GetRouterMulticastFlowListArgs, opts ...pulumi.InvokeOption) (*GetRouterMulticastFlowListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetRouterMulticastFlowListResult
 	err := ctx.Invoke("fortios:index/getRouterMulticastFlowList:GetRouterMulticastFlowList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetRouterMulticastFlowListResult struct {
 	// A list of the `RouterMulticastFlow`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetRouterMulticastFlowListOutput(ctx *pulumi.Context, args GetRouterMulticastFlowListOutputArgs, opts ...pulumi.InvokeOption) GetRouterMulticastFlowListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetRouterMulticastFlowListResult, error) {
+			args := v.(GetRouterMulticastFlowListArgs)
+			r, err := GetRouterMulticastFlowList(ctx, &args, opts...)
+			return *r, err
+		}).(GetRouterMulticastFlowListResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterMulticastFlowList.
+type GetRouterMulticastFlowListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetRouterMulticastFlowListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterMulticastFlowListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterMulticastFlowList.
+type GetRouterMulticastFlowListResultOutput struct{ *pulumi.OutputState }
+
+func (GetRouterMulticastFlowListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRouterMulticastFlowListResult)(nil)).Elem()
+}
+
+func (o GetRouterMulticastFlowListResultOutput) ToGetRouterMulticastFlowListResultOutput() GetRouterMulticastFlowListResultOutput {
+	return o
+}
+
+func (o GetRouterMulticastFlowListResultOutput) ToGetRouterMulticastFlowListResultOutputWithContext(ctx context.Context) GetRouterMulticastFlowListResultOutput {
+	return o
+}
+
+func (o GetRouterMulticastFlowListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterMulticastFlowListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetRouterMulticastFlowListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetRouterMulticastFlowListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `RouterMulticastFlow`.
+func (o GetRouterMulticastFlowListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetRouterMulticastFlowListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetRouterMulticastFlowListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetRouterMulticastFlowListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetRouterMulticastFlowListResultOutput{})
 }

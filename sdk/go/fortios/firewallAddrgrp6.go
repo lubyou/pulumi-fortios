@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -42,8 +43,8 @@ import (
 // 		_, err = fortios.NewFirewallAddrgrp6(ctx, "trname", &fortios.FirewallAddrgrp6Args{
 // 			Color:      pulumi.Int(0),
 // 			Visibility: pulumi.String("enable"),
-// 			Members: fortios.FirewallAddrgrp6MemberArray{
-// 				&fortios.FirewallAddrgrp6MemberArgs{
+// 			Members: FirewallAddrgrp6MemberArray{
+// 				&FirewallAddrgrp6MemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -74,6 +75,8 @@ type FirewallAddrgrp6 struct {
 	Comment pulumi.StringPtrOutput `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallAddrgrp6MemberArrayOutput `pulumi:"members"`
 	// Tag name.
@@ -98,6 +101,7 @@ func NewFirewallAddrgrp6(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallAddrgrp6
 	err := ctx.RegisterResource("fortios:index/firewallAddrgrp6:FirewallAddrgrp6", name, args, &resource, opts...)
 	if err != nil {
@@ -126,6 +130,8 @@ type firewallAddrgrp6State struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []FirewallAddrgrp6Member `pulumi:"members"`
 	// Tag name.
@@ -147,6 +153,8 @@ type FirewallAddrgrp6State struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallAddrgrp6MemberArrayInput
 	// Tag name.
@@ -172,6 +180,8 @@ type firewallAddrgrp6Args struct {
 	Comment *string `pulumi:"comment"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members []FirewallAddrgrp6Member `pulumi:"members"`
 	// Tag name.
@@ -194,6 +204,8 @@ type FirewallAddrgrp6Args struct {
 	Comment pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Address objects contained within the group. The structure of `member` block is documented below.
 	Members FirewallAddrgrp6MemberArrayInput
 	// Tag name.
@@ -220,7 +232,7 @@ type FirewallAddrgrp6Input interface {
 }
 
 func (*FirewallAddrgrp6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddrgrp6)(nil))
+	return reflect.TypeOf((**FirewallAddrgrp6)(nil)).Elem()
 }
 
 func (i *FirewallAddrgrp6) ToFirewallAddrgrp6Output() FirewallAddrgrp6Output {
@@ -229,35 +241,6 @@ func (i *FirewallAddrgrp6) ToFirewallAddrgrp6Output() FirewallAddrgrp6Output {
 
 func (i *FirewallAddrgrp6) ToFirewallAddrgrp6OutputWithContext(ctx context.Context) FirewallAddrgrp6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrp6Output)
-}
-
-func (i *FirewallAddrgrp6) ToFirewallAddrgrp6PtrOutput() FirewallAddrgrp6PtrOutput {
-	return i.ToFirewallAddrgrp6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallAddrgrp6) ToFirewallAddrgrp6PtrOutputWithContext(ctx context.Context) FirewallAddrgrp6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrp6PtrOutput)
-}
-
-type FirewallAddrgrp6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallAddrgrp6PtrOutput() FirewallAddrgrp6PtrOutput
-	ToFirewallAddrgrp6PtrOutputWithContext(ctx context.Context) FirewallAddrgrp6PtrOutput
-}
-
-type firewallAddrgrp6PtrType FirewallAddrgrp6Args
-
-func (*firewallAddrgrp6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddrgrp6)(nil))
-}
-
-func (i *firewallAddrgrp6PtrType) ToFirewallAddrgrp6PtrOutput() FirewallAddrgrp6PtrOutput {
-	return i.ToFirewallAddrgrp6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallAddrgrp6PtrType) ToFirewallAddrgrp6PtrOutputWithContext(ctx context.Context) FirewallAddrgrp6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrp6PtrOutput)
 }
 
 // FirewallAddrgrp6ArrayInput is an input type that accepts FirewallAddrgrp6Array and FirewallAddrgrp6ArrayOutput values.
@@ -274,7 +257,7 @@ type FirewallAddrgrp6ArrayInput interface {
 type FirewallAddrgrp6Array []FirewallAddrgrp6Input
 
 func (FirewallAddrgrp6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallAddrgrp6)(nil))
+	return reflect.TypeOf((*[]*FirewallAddrgrp6)(nil)).Elem()
 }
 
 func (i FirewallAddrgrp6Array) ToFirewallAddrgrp6ArrayOutput() FirewallAddrgrp6ArrayOutput {
@@ -299,7 +282,7 @@ type FirewallAddrgrp6MapInput interface {
 type FirewallAddrgrp6Map map[string]FirewallAddrgrp6Input
 
 func (FirewallAddrgrp6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallAddrgrp6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddrgrp6)(nil)).Elem()
 }
 
 func (i FirewallAddrgrp6Map) ToFirewallAddrgrp6MapOutput() FirewallAddrgrp6MapOutput {
@@ -310,12 +293,10 @@ func (i FirewallAddrgrp6Map) ToFirewallAddrgrp6MapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallAddrgrp6MapOutput)
 }
 
-type FirewallAddrgrp6Output struct {
-	*pulumi.OutputState
-}
+type FirewallAddrgrp6Output struct{ *pulumi.OutputState }
 
 func (FirewallAddrgrp6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallAddrgrp6)(nil))
+	return reflect.TypeOf((**FirewallAddrgrp6)(nil)).Elem()
 }
 
 func (o FirewallAddrgrp6Output) ToFirewallAddrgrp6Output() FirewallAddrgrp6Output {
@@ -326,36 +307,10 @@ func (o FirewallAddrgrp6Output) ToFirewallAddrgrp6OutputWithContext(ctx context.
 	return o
 }
 
-func (o FirewallAddrgrp6Output) ToFirewallAddrgrp6PtrOutput() FirewallAddrgrp6PtrOutput {
-	return o.ToFirewallAddrgrp6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallAddrgrp6Output) ToFirewallAddrgrp6PtrOutputWithContext(ctx context.Context) FirewallAddrgrp6PtrOutput {
-	return o.ApplyT(func(v FirewallAddrgrp6) *FirewallAddrgrp6 {
-		return &v
-	}).(FirewallAddrgrp6PtrOutput)
-}
-
-type FirewallAddrgrp6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallAddrgrp6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallAddrgrp6)(nil))
-}
-
-func (o FirewallAddrgrp6PtrOutput) ToFirewallAddrgrp6PtrOutput() FirewallAddrgrp6PtrOutput {
-	return o
-}
-
-func (o FirewallAddrgrp6PtrOutput) ToFirewallAddrgrp6PtrOutputWithContext(ctx context.Context) FirewallAddrgrp6PtrOutput {
-	return o
-}
-
 type FirewallAddrgrp6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddrgrp6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallAddrgrp6)(nil))
+	return reflect.TypeOf((*[]*FirewallAddrgrp6)(nil)).Elem()
 }
 
 func (o FirewallAddrgrp6ArrayOutput) ToFirewallAddrgrp6ArrayOutput() FirewallAddrgrp6ArrayOutput {
@@ -367,15 +322,15 @@ func (o FirewallAddrgrp6ArrayOutput) ToFirewallAddrgrp6ArrayOutputWithContext(ct
 }
 
 func (o FirewallAddrgrp6ArrayOutput) Index(i pulumi.IntInput) FirewallAddrgrp6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallAddrgrp6 {
-		return vs[0].([]FirewallAddrgrp6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallAddrgrp6 {
+		return vs[0].([]*FirewallAddrgrp6)[vs[1].(int)]
 	}).(FirewallAddrgrp6Output)
 }
 
 type FirewallAddrgrp6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallAddrgrp6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallAddrgrp6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallAddrgrp6)(nil)).Elem()
 }
 
 func (o FirewallAddrgrp6MapOutput) ToFirewallAddrgrp6MapOutput() FirewallAddrgrp6MapOutput {
@@ -387,14 +342,16 @@ func (o FirewallAddrgrp6MapOutput) ToFirewallAddrgrp6MapOutputWithContext(ctx co
 }
 
 func (o FirewallAddrgrp6MapOutput) MapIndex(k pulumi.StringInput) FirewallAddrgrp6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallAddrgrp6 {
-		return vs[0].(map[string]FirewallAddrgrp6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallAddrgrp6 {
+		return vs[0].(map[string]*FirewallAddrgrp6)[vs[1].(string)]
 	}).(FirewallAddrgrp6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6Input)(nil)).Elem(), &FirewallAddrgrp6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6ArrayInput)(nil)).Elem(), FirewallAddrgrp6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallAddrgrp6MapInput)(nil)).Elem(), FirewallAddrgrp6Map{})
 	pulumi.RegisterOutputType(FirewallAddrgrp6Output{})
-	pulumi.RegisterOutputType(FirewallAddrgrp6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrp6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallAddrgrp6MapOutput{})
 }

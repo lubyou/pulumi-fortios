@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -64,6 +64,7 @@ func NewSwitchControllerSwitchProfile(ctx *pulumi.Context,
 		args = &SwitchControllerSwitchProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerSwitchProfile
 	err := ctx.RegisterResource("fortios:index/switchControllerSwitchProfile:SwitchControllerSwitchProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -146,7 +147,7 @@ type SwitchControllerSwitchProfileInput interface {
 }
 
 func (*SwitchControllerSwitchProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchProfile)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchProfile)(nil)).Elem()
 }
 
 func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfileOutput() SwitchControllerSwitchProfileOutput {
@@ -155,35 +156,6 @@ func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfileOutput() 
 
 func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfileOutputWithContext(ctx context.Context) SwitchControllerSwitchProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfileOutput)
-}
-
-func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfilePtrOutput() SwitchControllerSwitchProfilePtrOutput {
-	return i.ToSwitchControllerSwitchProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerSwitchProfile) ToSwitchControllerSwitchProfilePtrOutputWithContext(ctx context.Context) SwitchControllerSwitchProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfilePtrOutput)
-}
-
-type SwitchControllerSwitchProfilePtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerSwitchProfilePtrOutput() SwitchControllerSwitchProfilePtrOutput
-	ToSwitchControllerSwitchProfilePtrOutputWithContext(ctx context.Context) SwitchControllerSwitchProfilePtrOutput
-}
-
-type switchControllerSwitchProfilePtrType SwitchControllerSwitchProfileArgs
-
-func (*switchControllerSwitchProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchProfile)(nil))
-}
-
-func (i *switchControllerSwitchProfilePtrType) ToSwitchControllerSwitchProfilePtrOutput() SwitchControllerSwitchProfilePtrOutput {
-	return i.ToSwitchControllerSwitchProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerSwitchProfilePtrType) ToSwitchControllerSwitchProfilePtrOutputWithContext(ctx context.Context) SwitchControllerSwitchProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfilePtrOutput)
 }
 
 // SwitchControllerSwitchProfileArrayInput is an input type that accepts SwitchControllerSwitchProfileArray and SwitchControllerSwitchProfileArrayOutput values.
@@ -200,7 +172,7 @@ type SwitchControllerSwitchProfileArrayInput interface {
 type SwitchControllerSwitchProfileArray []SwitchControllerSwitchProfileInput
 
 func (SwitchControllerSwitchProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerSwitchProfile)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchProfile)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchProfileArray) ToSwitchControllerSwitchProfileArrayOutput() SwitchControllerSwitchProfileArrayOutput {
@@ -225,7 +197,7 @@ type SwitchControllerSwitchProfileMapInput interface {
 type SwitchControllerSwitchProfileMap map[string]SwitchControllerSwitchProfileInput
 
 func (SwitchControllerSwitchProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerSwitchProfile)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchProfile)(nil)).Elem()
 }
 
 func (i SwitchControllerSwitchProfileMap) ToSwitchControllerSwitchProfileMapOutput() SwitchControllerSwitchProfileMapOutput {
@@ -236,12 +208,10 @@ func (i SwitchControllerSwitchProfileMap) ToSwitchControllerSwitchProfileMapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerSwitchProfileMapOutput)
 }
 
-type SwitchControllerSwitchProfileOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerSwitchProfileOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerSwitchProfile)(nil))
+	return reflect.TypeOf((**SwitchControllerSwitchProfile)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfileOutput() SwitchControllerSwitchProfileOutput {
@@ -252,36 +222,10 @@ func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfileOutp
 	return o
 }
 
-func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfilePtrOutput() SwitchControllerSwitchProfilePtrOutput {
-	return o.ToSwitchControllerSwitchProfilePtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerSwitchProfileOutput) ToSwitchControllerSwitchProfilePtrOutputWithContext(ctx context.Context) SwitchControllerSwitchProfilePtrOutput {
-	return o.ApplyT(func(v SwitchControllerSwitchProfile) *SwitchControllerSwitchProfile {
-		return &v
-	}).(SwitchControllerSwitchProfilePtrOutput)
-}
-
-type SwitchControllerSwitchProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerSwitchProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerSwitchProfile)(nil))
-}
-
-func (o SwitchControllerSwitchProfilePtrOutput) ToSwitchControllerSwitchProfilePtrOutput() SwitchControllerSwitchProfilePtrOutput {
-	return o
-}
-
-func (o SwitchControllerSwitchProfilePtrOutput) ToSwitchControllerSwitchProfilePtrOutputWithContext(ctx context.Context) SwitchControllerSwitchProfilePtrOutput {
-	return o
-}
-
 type SwitchControllerSwitchProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerSwitchProfile)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerSwitchProfile)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchProfileArrayOutput) ToSwitchControllerSwitchProfileArrayOutput() SwitchControllerSwitchProfileArrayOutput {
@@ -293,15 +237,15 @@ func (o SwitchControllerSwitchProfileArrayOutput) ToSwitchControllerSwitchProfil
 }
 
 func (o SwitchControllerSwitchProfileArrayOutput) Index(i pulumi.IntInput) SwitchControllerSwitchProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerSwitchProfile {
-		return vs[0].([]SwitchControllerSwitchProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerSwitchProfile {
+		return vs[0].([]*SwitchControllerSwitchProfile)[vs[1].(int)]
 	}).(SwitchControllerSwitchProfileOutput)
 }
 
 type SwitchControllerSwitchProfileMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerSwitchProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerSwitchProfile)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerSwitchProfile)(nil)).Elem()
 }
 
 func (o SwitchControllerSwitchProfileMapOutput) ToSwitchControllerSwitchProfileMapOutput() SwitchControllerSwitchProfileMapOutput {
@@ -313,14 +257,16 @@ func (o SwitchControllerSwitchProfileMapOutput) ToSwitchControllerSwitchProfileM
 }
 
 func (o SwitchControllerSwitchProfileMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerSwitchProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerSwitchProfile {
-		return vs[0].(map[string]SwitchControllerSwitchProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerSwitchProfile {
+		return vs[0].(map[string]*SwitchControllerSwitchProfile)[vs[1].(string)]
 	}).(SwitchControllerSwitchProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchProfileInput)(nil)).Elem(), &SwitchControllerSwitchProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchProfileArrayInput)(nil)).Elem(), SwitchControllerSwitchProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerSwitchProfileMapInput)(nil)).Elem(), SwitchControllerSwitchProfileMap{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchProfileOutput{})
-	pulumi.RegisterOutputType(SwitchControllerSwitchProfilePtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchProfileArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerSwitchProfileMapOutput{})
 }

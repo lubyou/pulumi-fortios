@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Filters for FortiAnalyzer Cloud.
+// Filters for FortiAnalyzer Cloud. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -52,6 +52,8 @@ type LogFortianalyzerCloudFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogFortianalyzerCloudFilter registers a new resource with the given unique name, arguments, and options.
@@ -61,6 +63,7 @@ func NewLogFortianalyzerCloudFilter(ctx *pulumi.Context,
 		args = &LogFortianalyzerCloudFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerCloudFilter
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerCloudFilter:LogFortianalyzerCloudFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -111,6 +114,8 @@ type logFortianalyzerCloudFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogFortianalyzerCloudFilterState struct {
@@ -142,6 +147,8 @@ type LogFortianalyzerCloudFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerCloudFilterState) ElementType() reflect.Type {
@@ -177,6 +184,8 @@ type logFortianalyzerCloudFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogFortianalyzerCloudFilter resource.
@@ -209,6 +218,8 @@ type LogFortianalyzerCloudFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerCloudFilterArgs) ElementType() reflect.Type {
@@ -223,7 +234,7 @@ type LogFortianalyzerCloudFilterInput interface {
 }
 
 func (*LogFortianalyzerCloudFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudFilter)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudFilter)(nil)).Elem()
 }
 
 func (i *LogFortianalyzerCloudFilter) ToLogFortianalyzerCloudFilterOutput() LogFortianalyzerCloudFilterOutput {
@@ -232,35 +243,6 @@ func (i *LogFortianalyzerCloudFilter) ToLogFortianalyzerCloudFilterOutput() LogF
 
 func (i *LogFortianalyzerCloudFilter) ToLogFortianalyzerCloudFilterOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterOutput)
-}
-
-func (i *LogFortianalyzerCloudFilter) ToLogFortianalyzerCloudFilterPtrOutput() LogFortianalyzerCloudFilterPtrOutput {
-	return i.ToLogFortianalyzerCloudFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortianalyzerCloudFilter) ToLogFortianalyzerCloudFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterPtrOutput)
-}
-
-type LogFortianalyzerCloudFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogFortianalyzerCloudFilterPtrOutput() LogFortianalyzerCloudFilterPtrOutput
-	ToLogFortianalyzerCloudFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterPtrOutput
-}
-
-type logFortianalyzerCloudFilterPtrType LogFortianalyzerCloudFilterArgs
-
-func (*logFortianalyzerCloudFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudFilter)(nil))
-}
-
-func (i *logFortianalyzerCloudFilterPtrType) ToLogFortianalyzerCloudFilterPtrOutput() LogFortianalyzerCloudFilterPtrOutput {
-	return i.ToLogFortianalyzerCloudFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortianalyzerCloudFilterPtrType) ToLogFortianalyzerCloudFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterPtrOutput)
 }
 
 // LogFortianalyzerCloudFilterArrayInput is an input type that accepts LogFortianalyzerCloudFilterArray and LogFortianalyzerCloudFilterArrayOutput values.
@@ -277,7 +259,7 @@ type LogFortianalyzerCloudFilterArrayInput interface {
 type LogFortianalyzerCloudFilterArray []LogFortianalyzerCloudFilterInput
 
 func (LogFortianalyzerCloudFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortianalyzerCloudFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudFilter)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudFilterArray) ToLogFortianalyzerCloudFilterArrayOutput() LogFortianalyzerCloudFilterArrayOutput {
@@ -302,7 +284,7 @@ type LogFortianalyzerCloudFilterMapInput interface {
 type LogFortianalyzerCloudFilterMap map[string]LogFortianalyzerCloudFilterInput
 
 func (LogFortianalyzerCloudFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortianalyzerCloudFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudFilter)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudFilterMap) ToLogFortianalyzerCloudFilterMapOutput() LogFortianalyzerCloudFilterMapOutput {
@@ -313,12 +295,10 @@ func (i LogFortianalyzerCloudFilterMap) ToLogFortianalyzerCloudFilterMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudFilterMapOutput)
 }
 
-type LogFortianalyzerCloudFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogFortianalyzerCloudFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudFilter)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudFilter)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudFilterOutput) ToLogFortianalyzerCloudFilterOutput() LogFortianalyzerCloudFilterOutput {
@@ -329,36 +309,10 @@ func (o LogFortianalyzerCloudFilterOutput) ToLogFortianalyzerCloudFilterOutputWi
 	return o
 }
 
-func (o LogFortianalyzerCloudFilterOutput) ToLogFortianalyzerCloudFilterPtrOutput() LogFortianalyzerCloudFilterPtrOutput {
-	return o.ToLogFortianalyzerCloudFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortianalyzerCloudFilterOutput) ToLogFortianalyzerCloudFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterPtrOutput {
-	return o.ApplyT(func(v LogFortianalyzerCloudFilter) *LogFortianalyzerCloudFilter {
-		return &v
-	}).(LogFortianalyzerCloudFilterPtrOutput)
-}
-
-type LogFortianalyzerCloudFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortianalyzerCloudFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudFilter)(nil))
-}
-
-func (o LogFortianalyzerCloudFilterPtrOutput) ToLogFortianalyzerCloudFilterPtrOutput() LogFortianalyzerCloudFilterPtrOutput {
-	return o
-}
-
-func (o LogFortianalyzerCloudFilterPtrOutput) ToLogFortianalyzerCloudFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudFilterPtrOutput {
-	return o
-}
-
 type LogFortianalyzerCloudFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortianalyzerCloudFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudFilter)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudFilterArrayOutput) ToLogFortianalyzerCloudFilterArrayOutput() LogFortianalyzerCloudFilterArrayOutput {
@@ -370,15 +324,15 @@ func (o LogFortianalyzerCloudFilterArrayOutput) ToLogFortianalyzerCloudFilterArr
 }
 
 func (o LogFortianalyzerCloudFilterArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortianalyzerCloudFilter {
-		return vs[0].([]LogFortianalyzerCloudFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudFilter {
+		return vs[0].([]*LogFortianalyzerCloudFilter)[vs[1].(int)]
 	}).(LogFortianalyzerCloudFilterOutput)
 }
 
 type LogFortianalyzerCloudFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortianalyzerCloudFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudFilter)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudFilterMapOutput) ToLogFortianalyzerCloudFilterMapOutput() LogFortianalyzerCloudFilterMapOutput {
@@ -390,14 +344,16 @@ func (o LogFortianalyzerCloudFilterMapOutput) ToLogFortianalyzerCloudFilterMapOu
 }
 
 func (o LogFortianalyzerCloudFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortianalyzerCloudFilter {
-		return vs[0].(map[string]LogFortianalyzerCloudFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudFilter {
+		return vs[0].(map[string]*LogFortianalyzerCloudFilter)[vs[1].(string)]
 	}).(LogFortianalyzerCloudFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudFilterInput)(nil)).Elem(), &LogFortianalyzerCloudFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudFilterArrayInput)(nil)).Elem(), LogFortianalyzerCloudFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudFilterMapInput)(nil)).Elem(), LogFortianalyzerCloudFilterMap{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudFilterOutput{})
-	pulumi.RegisterOutputType(LogFortianalyzerCloudFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudFilterMapOutput{})
 }

@@ -101,33 +101,31 @@ export class SshFilterProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SshFilterProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SshFilterProfileArgs | SshFilterProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SshFilterProfileState | undefined;
-            inputs["block"] = state ? state.block : undefined;
-            inputs["defaultCommandLog"] = state ? state.defaultCommandLog : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["fileFilter"] = state ? state.fileFilter : undefined;
-            inputs["log"] = state ? state.log : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["shellCommands"] = state ? state.shellCommands : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["block"] = state ? state.block : undefined;
+            resourceInputs["defaultCommandLog"] = state ? state.defaultCommandLog : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["fileFilter"] = state ? state.fileFilter : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["shellCommands"] = state ? state.shellCommands : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SshFilterProfileArgs | undefined;
-            inputs["block"] = args ? args.block : undefined;
-            inputs["defaultCommandLog"] = args ? args.defaultCommandLog : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["fileFilter"] = args ? args.fileFilter : undefined;
-            inputs["log"] = args ? args.log : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["shellCommands"] = args ? args.shellCommands : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["block"] = args ? args.block : undefined;
+            resourceInputs["defaultCommandLog"] = args ? args.defaultCommandLog : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["fileFilter"] = args ? args.fileFilter : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["shellCommands"] = args ? args.shellCommands : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SshFilterProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SshFilterProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 

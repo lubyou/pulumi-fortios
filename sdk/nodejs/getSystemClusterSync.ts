@@ -13,9 +13,7 @@ export function getSystemClusterSync(args: GetSystemClusterSyncArgs, opts?: pulu
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemClusterSync:GetSystemClusterSync", {
         "syncId": args.syncId,
         "vdomparam": args.vdomparam,
@@ -57,6 +55,18 @@ export interface GetSystemClusterSyncResult {
      */
     readonly id: string;
     /**
+     * IKE heartbeat interval (1 - 60 secs).
+     */
+    readonly ikeHeartbeatInterval: number;
+    /**
+     * Enable/disable IKE HA monitor.
+     */
+    readonly ikeMonitor: string;
+    /**
+     * IKE HA monitor interval (10 - 300 secs).
+     */
+    readonly ikeMonitorInterval: number;
+    /**
      * Enable/disable IPsec tunnel synchronization.
      */
     readonly ipsecTunnelSync: string;
@@ -68,6 +78,10 @@ export interface GetSystemClusterSyncResult {
      * VDOM that contains the session synchronization link interface on the peer unit. Usually both peers would have the same peervd.
      */
     readonly peervd: string;
+    /**
+     * Enable/disable IKE route announcement on the backup unit.
+     */
+    readonly secondaryAddIpsecRoutes: string;
     /**
      * Add one or more filters if you only want to synchronize some sessions. Use the filter to configure the types of sessions to synchronize. The structure of `sessionSyncFilter` block is documented below.
      */
@@ -85,4 +99,22 @@ export interface GetSystemClusterSyncResult {
      */
     readonly syncvds: outputs.GetSystemClusterSyncSyncvd[];
     readonly vdomparam?: string;
+}
+
+export function getSystemClusterSyncOutput(args: GetSystemClusterSyncOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemClusterSyncResult> {
+    return pulumi.output(args).apply(a => getSystemClusterSync(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemClusterSync.
+ */
+export interface GetSystemClusterSyncOutputArgs {
+    /**
+     * Specify the syncId of the desired system clustersync.
+     */
+    syncId: pulumi.Input<number>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

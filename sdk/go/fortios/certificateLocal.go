@@ -24,7 +24,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -47,6 +47,11 @@ import (
 type CertificateLocal struct {
 	pulumi.CustomResourceState
 
+	AcmeCaUrl                 pulumi.StringOutput    `pulumi:"acmeCaUrl"`
+	AcmeDomain                pulumi.StringOutput    `pulumi:"acmeDomain"`
+	AcmeEmail                 pulumi.StringOutput    `pulumi:"acmeEmail"`
+	AcmeRenewWindow           pulumi.IntOutput       `pulumi:"acmeRenewWindow"`
+	AcmeRsaKeySize            pulumi.IntOutput       `pulumi:"acmeRsaKeySize"`
 	AutoRegenerateDays        pulumi.IntOutput       `pulumi:"autoRegenerateDays"`
 	AutoRegenerateDaysWarning pulumi.IntOutput       `pulumi:"autoRegenerateDaysWarning"`
 	CaIdentifier              pulumi.StringOutput    `pulumi:"caIdentifier"`
@@ -84,6 +89,7 @@ func NewCertificateLocal(ctx *pulumi.Context,
 	if args.PrivateKey == nil {
 		return nil, errors.New("invalid value for required argument 'PrivateKey'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CertificateLocal
 	err := ctx.RegisterResource("fortios:index/certificateLocal:CertificateLocal", name, args, &resource, opts...)
 	if err != nil {
@@ -106,6 +112,11 @@ func GetCertificateLocal(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering CertificateLocal resources.
 type certificateLocalState struct {
+	AcmeCaUrl                 *string `pulumi:"acmeCaUrl"`
+	AcmeDomain                *string `pulumi:"acmeDomain"`
+	AcmeEmail                 *string `pulumi:"acmeEmail"`
+	AcmeRenewWindow           *int    `pulumi:"acmeRenewWindow"`
+	AcmeRsaKeySize            *int    `pulumi:"acmeRsaKeySize"`
 	AutoRegenerateDays        *int    `pulumi:"autoRegenerateDays"`
 	AutoRegenerateDaysWarning *int    `pulumi:"autoRegenerateDaysWarning"`
 	CaIdentifier              *string `pulumi:"caIdentifier"`
@@ -134,6 +145,11 @@ type certificateLocalState struct {
 }
 
 type CertificateLocalState struct {
+	AcmeCaUrl                 pulumi.StringPtrInput
+	AcmeDomain                pulumi.StringPtrInput
+	AcmeEmail                 pulumi.StringPtrInput
+	AcmeRenewWindow           pulumi.IntPtrInput
+	AcmeRsaKeySize            pulumi.IntPtrInput
 	AutoRegenerateDays        pulumi.IntPtrInput
 	AutoRegenerateDaysWarning pulumi.IntPtrInput
 	CaIdentifier              pulumi.StringPtrInput
@@ -166,6 +182,11 @@ func (CertificateLocalState) ElementType() reflect.Type {
 }
 
 type certificateLocalArgs struct {
+	AcmeCaUrl                 *string `pulumi:"acmeCaUrl"`
+	AcmeDomain                *string `pulumi:"acmeDomain"`
+	AcmeEmail                 *string `pulumi:"acmeEmail"`
+	AcmeRenewWindow           *int    `pulumi:"acmeRenewWindow"`
+	AcmeRsaKeySize            *int    `pulumi:"acmeRsaKeySize"`
 	AutoRegenerateDays        *int    `pulumi:"autoRegenerateDays"`
 	AutoRegenerateDaysWarning *int    `pulumi:"autoRegenerateDaysWarning"`
 	CaIdentifier              *string `pulumi:"caIdentifier"`
@@ -195,6 +216,11 @@ type certificateLocalArgs struct {
 
 // The set of arguments for constructing a CertificateLocal resource.
 type CertificateLocalArgs struct {
+	AcmeCaUrl                 pulumi.StringPtrInput
+	AcmeDomain                pulumi.StringPtrInput
+	AcmeEmail                 pulumi.StringPtrInput
+	AcmeRenewWindow           pulumi.IntPtrInput
+	AcmeRsaKeySize            pulumi.IntPtrInput
 	AutoRegenerateDays        pulumi.IntPtrInput
 	AutoRegenerateDaysWarning pulumi.IntPtrInput
 	CaIdentifier              pulumi.StringPtrInput
@@ -234,7 +260,7 @@ type CertificateLocalInput interface {
 }
 
 func (*CertificateLocal) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateLocal)(nil))
+	return reflect.TypeOf((**CertificateLocal)(nil)).Elem()
 }
 
 func (i *CertificateLocal) ToCertificateLocalOutput() CertificateLocalOutput {
@@ -243,35 +269,6 @@ func (i *CertificateLocal) ToCertificateLocalOutput() CertificateLocalOutput {
 
 func (i *CertificateLocal) ToCertificateLocalOutputWithContext(ctx context.Context) CertificateLocalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalOutput)
-}
-
-func (i *CertificateLocal) ToCertificateLocalPtrOutput() CertificateLocalPtrOutput {
-	return i.ToCertificateLocalPtrOutputWithContext(context.Background())
-}
-
-func (i *CertificateLocal) ToCertificateLocalPtrOutputWithContext(ctx context.Context) CertificateLocalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalPtrOutput)
-}
-
-type CertificateLocalPtrInput interface {
-	pulumi.Input
-
-	ToCertificateLocalPtrOutput() CertificateLocalPtrOutput
-	ToCertificateLocalPtrOutputWithContext(ctx context.Context) CertificateLocalPtrOutput
-}
-
-type certificateLocalPtrType CertificateLocalArgs
-
-func (*certificateLocalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CertificateLocal)(nil))
-}
-
-func (i *certificateLocalPtrType) ToCertificateLocalPtrOutput() CertificateLocalPtrOutput {
-	return i.ToCertificateLocalPtrOutputWithContext(context.Background())
-}
-
-func (i *certificateLocalPtrType) ToCertificateLocalPtrOutputWithContext(ctx context.Context) CertificateLocalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalPtrOutput)
 }
 
 // CertificateLocalArrayInput is an input type that accepts CertificateLocalArray and CertificateLocalArrayOutput values.
@@ -288,7 +285,7 @@ type CertificateLocalArrayInput interface {
 type CertificateLocalArray []CertificateLocalInput
 
 func (CertificateLocalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CertificateLocal)(nil))
+	return reflect.TypeOf((*[]*CertificateLocal)(nil)).Elem()
 }
 
 func (i CertificateLocalArray) ToCertificateLocalArrayOutput() CertificateLocalArrayOutput {
@@ -313,7 +310,7 @@ type CertificateLocalMapInput interface {
 type CertificateLocalMap map[string]CertificateLocalInput
 
 func (CertificateLocalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CertificateLocal)(nil))
+	return reflect.TypeOf((*map[string]*CertificateLocal)(nil)).Elem()
 }
 
 func (i CertificateLocalMap) ToCertificateLocalMapOutput() CertificateLocalMapOutput {
@@ -324,12 +321,10 @@ func (i CertificateLocalMap) ToCertificateLocalMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(CertificateLocalMapOutput)
 }
 
-type CertificateLocalOutput struct {
-	*pulumi.OutputState
-}
+type CertificateLocalOutput struct{ *pulumi.OutputState }
 
 func (CertificateLocalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CertificateLocal)(nil))
+	return reflect.TypeOf((**CertificateLocal)(nil)).Elem()
 }
 
 func (o CertificateLocalOutput) ToCertificateLocalOutput() CertificateLocalOutput {
@@ -340,36 +335,10 @@ func (o CertificateLocalOutput) ToCertificateLocalOutputWithContext(ctx context.
 	return o
 }
 
-func (o CertificateLocalOutput) ToCertificateLocalPtrOutput() CertificateLocalPtrOutput {
-	return o.ToCertificateLocalPtrOutputWithContext(context.Background())
-}
-
-func (o CertificateLocalOutput) ToCertificateLocalPtrOutputWithContext(ctx context.Context) CertificateLocalPtrOutput {
-	return o.ApplyT(func(v CertificateLocal) *CertificateLocal {
-		return &v
-	}).(CertificateLocalPtrOutput)
-}
-
-type CertificateLocalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CertificateLocalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CertificateLocal)(nil))
-}
-
-func (o CertificateLocalPtrOutput) ToCertificateLocalPtrOutput() CertificateLocalPtrOutput {
-	return o
-}
-
-func (o CertificateLocalPtrOutput) ToCertificateLocalPtrOutputWithContext(ctx context.Context) CertificateLocalPtrOutput {
-	return o
-}
-
 type CertificateLocalArrayOutput struct{ *pulumi.OutputState }
 
 func (CertificateLocalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CertificateLocal)(nil))
+	return reflect.TypeOf((*[]*CertificateLocal)(nil)).Elem()
 }
 
 func (o CertificateLocalArrayOutput) ToCertificateLocalArrayOutput() CertificateLocalArrayOutput {
@@ -381,15 +350,15 @@ func (o CertificateLocalArrayOutput) ToCertificateLocalArrayOutputWithContext(ct
 }
 
 func (o CertificateLocalArrayOutput) Index(i pulumi.IntInput) CertificateLocalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CertificateLocal {
-		return vs[0].([]CertificateLocal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CertificateLocal {
+		return vs[0].([]*CertificateLocal)[vs[1].(int)]
 	}).(CertificateLocalOutput)
 }
 
 type CertificateLocalMapOutput struct{ *pulumi.OutputState }
 
 func (CertificateLocalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CertificateLocal)(nil))
+	return reflect.TypeOf((*map[string]*CertificateLocal)(nil)).Elem()
 }
 
 func (o CertificateLocalMapOutput) ToCertificateLocalMapOutput() CertificateLocalMapOutput {
@@ -401,14 +370,16 @@ func (o CertificateLocalMapOutput) ToCertificateLocalMapOutputWithContext(ctx co
 }
 
 func (o CertificateLocalMapOutput) MapIndex(k pulumi.StringInput) CertificateLocalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CertificateLocal {
-		return vs[0].(map[string]CertificateLocal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CertificateLocal {
+		return vs[0].(map[string]*CertificateLocal)[vs[1].(string)]
 	}).(CertificateLocalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateLocalInput)(nil)).Elem(), &CertificateLocal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateLocalArrayInput)(nil)).Elem(), CertificateLocalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CertificateLocalMapInput)(nil)).Elem(), CertificateLocalMap{})
 	pulumi.RegisterOutputType(CertificateLocalOutput{})
-	pulumi.RegisterOutputType(CertificateLocalPtrOutput{})
 	pulumi.RegisterOutputType(CertificateLocalArrayOutput{})
 	pulumi.RegisterOutputType(CertificateLocalMapOutput{})
 }

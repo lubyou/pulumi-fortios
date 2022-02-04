@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure wireless controller event log filters.
+// Configure wireless controller event log filters. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -59,6 +59,7 @@ func NewWirelessControllerLog(ctx *pulumi.Context,
 		args = &WirelessControllerLogArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerLog
 	err := ctx.RegisterResource("fortios:index/wirelessControllerLog:WirelessControllerLog", name, args, &resource, opts...)
 	if err != nil {
@@ -213,7 +214,7 @@ type WirelessControllerLogInput interface {
 }
 
 func (*WirelessControllerLog) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerLog)(nil))
+	return reflect.TypeOf((**WirelessControllerLog)(nil)).Elem()
 }
 
 func (i *WirelessControllerLog) ToWirelessControllerLogOutput() WirelessControllerLogOutput {
@@ -222,35 +223,6 @@ func (i *WirelessControllerLog) ToWirelessControllerLogOutput() WirelessControll
 
 func (i *WirelessControllerLog) ToWirelessControllerLogOutputWithContext(ctx context.Context) WirelessControllerLogOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerLogOutput)
-}
-
-func (i *WirelessControllerLog) ToWirelessControllerLogPtrOutput() WirelessControllerLogPtrOutput {
-	return i.ToWirelessControllerLogPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerLog) ToWirelessControllerLogPtrOutputWithContext(ctx context.Context) WirelessControllerLogPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerLogPtrOutput)
-}
-
-type WirelessControllerLogPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerLogPtrOutput() WirelessControllerLogPtrOutput
-	ToWirelessControllerLogPtrOutputWithContext(ctx context.Context) WirelessControllerLogPtrOutput
-}
-
-type wirelessControllerLogPtrType WirelessControllerLogArgs
-
-func (*wirelessControllerLogPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerLog)(nil))
-}
-
-func (i *wirelessControllerLogPtrType) ToWirelessControllerLogPtrOutput() WirelessControllerLogPtrOutput {
-	return i.ToWirelessControllerLogPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerLogPtrType) ToWirelessControllerLogPtrOutputWithContext(ctx context.Context) WirelessControllerLogPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerLogPtrOutput)
 }
 
 // WirelessControllerLogArrayInput is an input type that accepts WirelessControllerLogArray and WirelessControllerLogArrayOutput values.
@@ -267,7 +239,7 @@ type WirelessControllerLogArrayInput interface {
 type WirelessControllerLogArray []WirelessControllerLogInput
 
 func (WirelessControllerLogArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerLog)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerLog)(nil)).Elem()
 }
 
 func (i WirelessControllerLogArray) ToWirelessControllerLogArrayOutput() WirelessControllerLogArrayOutput {
@@ -292,7 +264,7 @@ type WirelessControllerLogMapInput interface {
 type WirelessControllerLogMap map[string]WirelessControllerLogInput
 
 func (WirelessControllerLogMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerLog)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerLog)(nil)).Elem()
 }
 
 func (i WirelessControllerLogMap) ToWirelessControllerLogMapOutput() WirelessControllerLogMapOutput {
@@ -303,12 +275,10 @@ func (i WirelessControllerLogMap) ToWirelessControllerLogMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerLogMapOutput)
 }
 
-type WirelessControllerLogOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerLogOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerLogOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerLog)(nil))
+	return reflect.TypeOf((**WirelessControllerLog)(nil)).Elem()
 }
 
 func (o WirelessControllerLogOutput) ToWirelessControllerLogOutput() WirelessControllerLogOutput {
@@ -319,36 +289,10 @@ func (o WirelessControllerLogOutput) ToWirelessControllerLogOutputWithContext(ct
 	return o
 }
 
-func (o WirelessControllerLogOutput) ToWirelessControllerLogPtrOutput() WirelessControllerLogPtrOutput {
-	return o.ToWirelessControllerLogPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerLogOutput) ToWirelessControllerLogPtrOutputWithContext(ctx context.Context) WirelessControllerLogPtrOutput {
-	return o.ApplyT(func(v WirelessControllerLog) *WirelessControllerLog {
-		return &v
-	}).(WirelessControllerLogPtrOutput)
-}
-
-type WirelessControllerLogPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerLogPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerLog)(nil))
-}
-
-func (o WirelessControllerLogPtrOutput) ToWirelessControllerLogPtrOutput() WirelessControllerLogPtrOutput {
-	return o
-}
-
-func (o WirelessControllerLogPtrOutput) ToWirelessControllerLogPtrOutputWithContext(ctx context.Context) WirelessControllerLogPtrOutput {
-	return o
-}
-
 type WirelessControllerLogArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerLogArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerLog)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerLog)(nil)).Elem()
 }
 
 func (o WirelessControllerLogArrayOutput) ToWirelessControllerLogArrayOutput() WirelessControllerLogArrayOutput {
@@ -360,15 +304,15 @@ func (o WirelessControllerLogArrayOutput) ToWirelessControllerLogArrayOutputWith
 }
 
 func (o WirelessControllerLogArrayOutput) Index(i pulumi.IntInput) WirelessControllerLogOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerLog {
-		return vs[0].([]WirelessControllerLog)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerLog {
+		return vs[0].([]*WirelessControllerLog)[vs[1].(int)]
 	}).(WirelessControllerLogOutput)
 }
 
 type WirelessControllerLogMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerLogMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerLog)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerLog)(nil)).Elem()
 }
 
 func (o WirelessControllerLogMapOutput) ToWirelessControllerLogMapOutput() WirelessControllerLogMapOutput {
@@ -380,14 +324,16 @@ func (o WirelessControllerLogMapOutput) ToWirelessControllerLogMapOutputWithCont
 }
 
 func (o WirelessControllerLogMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerLogOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerLog {
-		return vs[0].(map[string]WirelessControllerLog)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerLog {
+		return vs[0].(map[string]*WirelessControllerLog)[vs[1].(string)]
 	}).(WirelessControllerLogOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerLogInput)(nil)).Elem(), &WirelessControllerLog{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerLogArrayInput)(nil)).Elem(), WirelessControllerLogArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerLogMapInput)(nil)).Elem(), WirelessControllerLogMap{})
 	pulumi.RegisterOutputType(WirelessControllerLogOutput{})
-	pulumi.RegisterOutputType(WirelessControllerLogPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerLogArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerLogMapOutput{})
 }

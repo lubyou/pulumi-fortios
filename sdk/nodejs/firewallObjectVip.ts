@@ -102,19 +102,19 @@ export class FirewallObjectVip extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallObjectVipArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectVipArgs | FirewallObjectVipState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectVipState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["extintf"] = state ? state.extintf : undefined;
-            inputs["extip"] = state ? state.extip : undefined;
-            inputs["extport"] = state ? state.extport : undefined;
-            inputs["mappedips"] = state ? state.mappedips : undefined;
-            inputs["mappedport"] = state ? state.mappedport : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["portforward"] = state ? state.portforward : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["extintf"] = state ? state.extintf : undefined;
+            resourceInputs["extip"] = state ? state.extip : undefined;
+            resourceInputs["extport"] = state ? state.extport : undefined;
+            resourceInputs["mappedips"] = state ? state.mappedips : undefined;
+            resourceInputs["mappedport"] = state ? state.mappedport : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["portforward"] = state ? state.portforward : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
         } else {
             const args = argsOrState as FirewallObjectVipArgs | undefined;
             if ((!args || args.extip === undefined) && !opts.urn) {
@@ -123,20 +123,18 @@ export class FirewallObjectVip extends pulumi.CustomResource {
             if ((!args || args.mappedips === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'mappedips'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["extintf"] = args ? args.extintf : undefined;
-            inputs["extip"] = args ? args.extip : undefined;
-            inputs["extport"] = args ? args.extport : undefined;
-            inputs["mappedips"] = args ? args.mappedips : undefined;
-            inputs["mappedport"] = args ? args.mappedport : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["portforward"] = args ? args.portforward : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["extintf"] = args ? args.extintf : undefined;
+            resourceInputs["extip"] = args ? args.extip : undefined;
+            resourceInputs["extport"] = args ? args.extport : undefined;
+            resourceInputs["mappedips"] = args ? args.mappedips : undefined;
+            resourceInputs["mappedport"] = args ? args.mappedport : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["portforward"] = args ? args.portforward : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectVip.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectVip.__pulumiType, name, resourceInputs, opts);
     }
 }
 

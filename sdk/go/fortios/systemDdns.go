@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,8 +37,8 @@ import (
 // 			DdnsTtl:      pulumi.Int(300),
 // 			DdnsUsername: pulumi.String("sie2ae"),
 // 			Ddnsid:       pulumi.Int(1),
-// 			MonitorInterfaces: fortios.SystemDdnsMonitorInterfaceArray{
-// 				&fortios.SystemDdnsMonitorInterfaceArgs{
+// 			MonitorInterfaces: SystemDdnsMonitorInterfaceArray{
+// 				&SystemDdnsMonitorInterfaceArgs{
 // 					InterfaceName: pulumi.String("port2"),
 // 				},
 // 			},
@@ -65,6 +66,8 @@ import (
 type SystemDdns struct {
 	pulumi.CustomResourceState
 
+	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+	AddrType pulumi.StringOutput `pulumi:"addrType"`
 	// Bound IP address.
 	BoundIp pulumi.StringOutput `pulumi:"boundIp"`
 	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
@@ -81,6 +84,8 @@ type SystemDdns struct {
 	DdnsPassword pulumi.StringPtrOutput `pulumi:"ddnsPassword"`
 	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
 	DdnsServer pulumi.StringOutput `pulumi:"ddnsServer"`
+	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+	DdnsServerAddrs SystemDdnsDdnsServerAddrArrayOutput `pulumi:"ddnsServerAddrs"`
 	// Generic DDNS server IP.
 	DdnsServerIp pulumi.StringOutput `pulumi:"ddnsServerIp"`
 	// DDNS Serial Number.
@@ -97,6 +102,8 @@ type SystemDdns struct {
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces SystemDdnsMonitorInterfaceArrayOutput `pulumi:"monitorInterfaces"`
+	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+	ServerType pulumi.StringOutput `pulumi:"serverType"`
 	// Name of local certificate for SSL connections.
 	SslCertificate pulumi.StringOutput `pulumi:"sslCertificate"`
 	// DDNS update interval (60 - 2592000 sec, default = 300).
@@ -120,6 +127,7 @@ func NewSystemDdns(ctx *pulumi.Context,
 	if args.MonitorInterfaces == nil {
 		return nil, errors.New("invalid value for required argument 'MonitorInterfaces'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDdns
 	err := ctx.RegisterResource("fortios:index/systemDdns:SystemDdns", name, args, &resource, opts...)
 	if err != nil {
@@ -142,6 +150,8 @@ func GetSystemDdns(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemDdns resources.
 type systemDdnsState struct {
+	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+	AddrType *string `pulumi:"addrType"`
 	// Bound IP address.
 	BoundIp *string `pulumi:"boundIp"`
 	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
@@ -158,6 +168,8 @@ type systemDdnsState struct {
 	DdnsPassword *string `pulumi:"ddnsPassword"`
 	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
 	DdnsServer *string `pulumi:"ddnsServer"`
+	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+	DdnsServerAddrs []SystemDdnsDdnsServerAddr `pulumi:"ddnsServerAddrs"`
 	// Generic DDNS server IP.
 	DdnsServerIp *string `pulumi:"ddnsServerIp"`
 	// DDNS Serial Number.
@@ -174,6 +186,8 @@ type systemDdnsState struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
+	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+	ServerType *string `pulumi:"serverType"`
 	// Name of local certificate for SSL connections.
 	SslCertificate *string `pulumi:"sslCertificate"`
 	// DDNS update interval (60 - 2592000 sec, default = 300).
@@ -185,6 +199,8 @@ type systemDdnsState struct {
 }
 
 type SystemDdnsState struct {
+	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+	AddrType pulumi.StringPtrInput
 	// Bound IP address.
 	BoundIp pulumi.StringPtrInput
 	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
@@ -201,6 +217,8 @@ type SystemDdnsState struct {
 	DdnsPassword pulumi.StringPtrInput
 	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
 	DdnsServer pulumi.StringPtrInput
+	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+	DdnsServerAddrs SystemDdnsDdnsServerAddrArrayInput
 	// Generic DDNS server IP.
 	DdnsServerIp pulumi.StringPtrInput
 	// DDNS Serial Number.
@@ -217,6 +235,8 @@ type SystemDdnsState struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces SystemDdnsMonitorInterfaceArrayInput
+	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+	ServerType pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
 	SslCertificate pulumi.StringPtrInput
 	// DDNS update interval (60 - 2592000 sec, default = 300).
@@ -232,6 +252,8 @@ func (SystemDdnsState) ElementType() reflect.Type {
 }
 
 type systemDdnsArgs struct {
+	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+	AddrType *string `pulumi:"addrType"`
 	// Bound IP address.
 	BoundIp *string `pulumi:"boundIp"`
 	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
@@ -248,6 +270,8 @@ type systemDdnsArgs struct {
 	DdnsPassword *string `pulumi:"ddnsPassword"`
 	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
 	DdnsServer string `pulumi:"ddnsServer"`
+	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+	DdnsServerAddrs []SystemDdnsDdnsServerAddr `pulumi:"ddnsServerAddrs"`
 	// Generic DDNS server IP.
 	DdnsServerIp *string `pulumi:"ddnsServerIp"`
 	// DDNS Serial Number.
@@ -264,6 +288,8 @@ type systemDdnsArgs struct {
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces []SystemDdnsMonitorInterface `pulumi:"monitorInterfaces"`
+	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+	ServerType *string `pulumi:"serverType"`
 	// Name of local certificate for SSL connections.
 	SslCertificate *string `pulumi:"sslCertificate"`
 	// DDNS update interval (60 - 2592000 sec, default = 300).
@@ -276,6 +302,8 @@ type systemDdnsArgs struct {
 
 // The set of arguments for constructing a SystemDdns resource.
 type SystemDdnsArgs struct {
+	// Address type of interface address in DDNS update. Valid values: `ipv4`, `ipv6`.
+	AddrType pulumi.StringPtrInput
 	// Bound IP address.
 	BoundIp pulumi.StringPtrInput
 	// Enable/disable use of clear text connections. Valid values: `disable`, `enable`.
@@ -292,6 +320,8 @@ type SystemDdnsArgs struct {
 	DdnsPassword pulumi.StringPtrInput
 	// Select a DDNS service provider. Valid values: `dyndns.org`, `dyns.net`, `tzo.com`, `vavic.com`, `dipdns.net`, `now.net.cn`, `dhs.org`, `easydns.com`, `genericDDNS`, `FortiGuardDDNS`, `noip.com`.
 	DdnsServer pulumi.StringInput
+	// Generic DDNS server IP/FQDN list. The structure of `ddnsServerAddr` block is documented below.
+	DdnsServerAddrs SystemDdnsDdnsServerAddrArrayInput
 	// Generic DDNS server IP.
 	DdnsServerIp pulumi.StringPtrInput
 	// DDNS Serial Number.
@@ -308,6 +338,8 @@ type SystemDdnsArgs struct {
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Monitored interface. The structure of `monitorInterface` block is documented below.
 	MonitorInterfaces SystemDdnsMonitorInterfaceArrayInput
+	// Address type of the DDNS server. Valid values: `ipv4`, `ipv6`.
+	ServerType pulumi.StringPtrInput
 	// Name of local certificate for SSL connections.
 	SslCertificate pulumi.StringPtrInput
 	// DDNS update interval (60 - 2592000 sec, default = 300).
@@ -330,7 +362,7 @@ type SystemDdnsInput interface {
 }
 
 func (*SystemDdns) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDdns)(nil))
+	return reflect.TypeOf((**SystemDdns)(nil)).Elem()
 }
 
 func (i *SystemDdns) ToSystemDdnsOutput() SystemDdnsOutput {
@@ -339,35 +371,6 @@ func (i *SystemDdns) ToSystemDdnsOutput() SystemDdnsOutput {
 
 func (i *SystemDdns) ToSystemDdnsOutputWithContext(ctx context.Context) SystemDdnsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsOutput)
-}
-
-func (i *SystemDdns) ToSystemDdnsPtrOutput() SystemDdnsPtrOutput {
-	return i.ToSystemDdnsPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDdns) ToSystemDdnsPtrOutputWithContext(ctx context.Context) SystemDdnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsPtrOutput)
-}
-
-type SystemDdnsPtrInput interface {
-	pulumi.Input
-
-	ToSystemDdnsPtrOutput() SystemDdnsPtrOutput
-	ToSystemDdnsPtrOutputWithContext(ctx context.Context) SystemDdnsPtrOutput
-}
-
-type systemDdnsPtrType SystemDdnsArgs
-
-func (*systemDdnsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDdns)(nil))
-}
-
-func (i *systemDdnsPtrType) ToSystemDdnsPtrOutput() SystemDdnsPtrOutput {
-	return i.ToSystemDdnsPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDdnsPtrType) ToSystemDdnsPtrOutputWithContext(ctx context.Context) SystemDdnsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsPtrOutput)
 }
 
 // SystemDdnsArrayInput is an input type that accepts SystemDdnsArray and SystemDdnsArrayOutput values.
@@ -384,7 +387,7 @@ type SystemDdnsArrayInput interface {
 type SystemDdnsArray []SystemDdnsInput
 
 func (SystemDdnsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDdns)(nil))
+	return reflect.TypeOf((*[]*SystemDdns)(nil)).Elem()
 }
 
 func (i SystemDdnsArray) ToSystemDdnsArrayOutput() SystemDdnsArrayOutput {
@@ -409,7 +412,7 @@ type SystemDdnsMapInput interface {
 type SystemDdnsMap map[string]SystemDdnsInput
 
 func (SystemDdnsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDdns)(nil))
+	return reflect.TypeOf((*map[string]*SystemDdns)(nil)).Elem()
 }
 
 func (i SystemDdnsMap) ToSystemDdnsMapOutput() SystemDdnsMapOutput {
@@ -420,12 +423,10 @@ func (i SystemDdnsMap) ToSystemDdnsMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDdnsMapOutput)
 }
 
-type SystemDdnsOutput struct {
-	*pulumi.OutputState
-}
+type SystemDdnsOutput struct{ *pulumi.OutputState }
 
 func (SystemDdnsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDdns)(nil))
+	return reflect.TypeOf((**SystemDdns)(nil)).Elem()
 }
 
 func (o SystemDdnsOutput) ToSystemDdnsOutput() SystemDdnsOutput {
@@ -436,36 +437,10 @@ func (o SystemDdnsOutput) ToSystemDdnsOutputWithContext(ctx context.Context) Sys
 	return o
 }
 
-func (o SystemDdnsOutput) ToSystemDdnsPtrOutput() SystemDdnsPtrOutput {
-	return o.ToSystemDdnsPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDdnsOutput) ToSystemDdnsPtrOutputWithContext(ctx context.Context) SystemDdnsPtrOutput {
-	return o.ApplyT(func(v SystemDdns) *SystemDdns {
-		return &v
-	}).(SystemDdnsPtrOutput)
-}
-
-type SystemDdnsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDdnsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDdns)(nil))
-}
-
-func (o SystemDdnsPtrOutput) ToSystemDdnsPtrOutput() SystemDdnsPtrOutput {
-	return o
-}
-
-func (o SystemDdnsPtrOutput) ToSystemDdnsPtrOutputWithContext(ctx context.Context) SystemDdnsPtrOutput {
-	return o
-}
-
 type SystemDdnsArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDdnsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDdns)(nil))
+	return reflect.TypeOf((*[]*SystemDdns)(nil)).Elem()
 }
 
 func (o SystemDdnsArrayOutput) ToSystemDdnsArrayOutput() SystemDdnsArrayOutput {
@@ -477,15 +452,15 @@ func (o SystemDdnsArrayOutput) ToSystemDdnsArrayOutputWithContext(ctx context.Co
 }
 
 func (o SystemDdnsArrayOutput) Index(i pulumi.IntInput) SystemDdnsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDdns {
-		return vs[0].([]SystemDdns)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDdns {
+		return vs[0].([]*SystemDdns)[vs[1].(int)]
 	}).(SystemDdnsOutput)
 }
 
 type SystemDdnsMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDdnsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDdns)(nil))
+	return reflect.TypeOf((*map[string]*SystemDdns)(nil)).Elem()
 }
 
 func (o SystemDdnsMapOutput) ToSystemDdnsMapOutput() SystemDdnsMapOutput {
@@ -497,14 +472,16 @@ func (o SystemDdnsMapOutput) ToSystemDdnsMapOutputWithContext(ctx context.Contex
 }
 
 func (o SystemDdnsMapOutput) MapIndex(k pulumi.StringInput) SystemDdnsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDdns {
-		return vs[0].(map[string]SystemDdns)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDdns {
+		return vs[0].(map[string]*SystemDdns)[vs[1].(string)]
 	}).(SystemDdnsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDdnsInput)(nil)).Elem(), &SystemDdns{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDdnsArrayInput)(nil)).Elem(), SystemDdnsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDdnsMapInput)(nil)).Elem(), SystemDdnsMap{})
 	pulumi.RegisterOutputType(SystemDdnsOutput{})
-	pulumi.RegisterOutputType(SystemDdnsPtrOutput{})
 	pulumi.RegisterOutputType(SystemDdnsArrayOutput{})
 	pulumi.RegisterOutputType(SystemDdnsMapOutput{})
 }

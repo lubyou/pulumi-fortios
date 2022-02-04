@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -30,21 +31,21 @@ import (
 // 			Authgrp:              pulumi.String("read-write"),
 // 			Ftviewgrp:            pulumi.String("read-write"),
 // 			Fwgrp:                pulumi.String("custom"),
-// 			FwgrpPermission: &fortios.SystemAccprofileFwgrpPermissionArgs{
+// 			FwgrpPermission: &SystemAccprofileFwgrpPermissionArgs{
 // 				Address:  pulumi.String("read-write"),
 // 				Policy:   pulumi.String("read-write"),
 // 				Schedule: pulumi.String("none"),
 // 				Service:  pulumi.String("none"),
 // 			},
 // 			Loggrp: pulumi.String("read-write"),
-// 			LoggrpPermission: &fortios.SystemAccprofileLoggrpPermissionArgs{
+// 			LoggrpPermission: &SystemAccprofileLoggrpPermissionArgs{
 // 				Config:       pulumi.String("none"),
 // 				DataAccess:   pulumi.String("none"),
 // 				ReportAccess: pulumi.String("none"),
 // 				ThreatWeight: pulumi.String("none"),
 // 			},
 // 			Netgrp: pulumi.String("read-write"),
-// 			NetgrpPermission: &fortios.SystemAccprofileNetgrpPermissionArgs{
+// 			NetgrpPermission: &SystemAccprofileNetgrpPermissionArgs{
 // 				Cfg:           pulumi.String("none"),
 // 				PacketCapture: pulumi.String("none"),
 // 				RouteCfg:      pulumi.String("none"),
@@ -52,14 +53,14 @@ import (
 // 			Scope:     pulumi.String("vdom"),
 // 			Secfabgrp: pulumi.String("read-write"),
 // 			Sysgrp:    pulumi.String("read-write"),
-// 			SysgrpPermission: &fortios.SystemAccprofileSysgrpPermissionArgs{
+// 			SysgrpPermission: &SystemAccprofileSysgrpPermissionArgs{
 // 				Admin: pulumi.String("none"),
 // 				Cfg:   pulumi.String("none"),
 // 				Mnt:   pulumi.String("none"),
 // 				Upd:   pulumi.String("none"),
 // 			},
 // 			Utmgrp: pulumi.String("custom"),
-// 			UtmgrpPermission: &fortios.SystemAccprofileUtmgrpPermissionArgs{
+// 			UtmgrpPermission: &SystemAccprofileUtmgrpPermissionArgs{
 // 				Antivirus:          pulumi.String("read-write"),
 // 				ApplicationControl: pulumi.String("none"),
 // 				DataLossPrevention: pulumi.String("none"),
@@ -150,6 +151,7 @@ func NewSystemAccprofile(ctx *pulumi.Context,
 		args = &SystemAccprofileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAccprofile
 	err := ctx.RegisterResource("fortios:index/systemAccprofile:SystemAccprofile", name, args, &resource, opts...)
 	if err != nil {
@@ -384,7 +386,7 @@ type SystemAccprofileInput interface {
 }
 
 func (*SystemAccprofile) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAccprofile)(nil))
+	return reflect.TypeOf((**SystemAccprofile)(nil)).Elem()
 }
 
 func (i *SystemAccprofile) ToSystemAccprofileOutput() SystemAccprofileOutput {
@@ -393,35 +395,6 @@ func (i *SystemAccprofile) ToSystemAccprofileOutput() SystemAccprofileOutput {
 
 func (i *SystemAccprofile) ToSystemAccprofileOutputWithContext(ctx context.Context) SystemAccprofileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofileOutput)
-}
-
-func (i *SystemAccprofile) ToSystemAccprofilePtrOutput() SystemAccprofilePtrOutput {
-	return i.ToSystemAccprofilePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAccprofile) ToSystemAccprofilePtrOutputWithContext(ctx context.Context) SystemAccprofilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofilePtrOutput)
-}
-
-type SystemAccprofilePtrInput interface {
-	pulumi.Input
-
-	ToSystemAccprofilePtrOutput() SystemAccprofilePtrOutput
-	ToSystemAccprofilePtrOutputWithContext(ctx context.Context) SystemAccprofilePtrOutput
-}
-
-type systemAccprofilePtrType SystemAccprofileArgs
-
-func (*systemAccprofilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAccprofile)(nil))
-}
-
-func (i *systemAccprofilePtrType) ToSystemAccprofilePtrOutput() SystemAccprofilePtrOutput {
-	return i.ToSystemAccprofilePtrOutputWithContext(context.Background())
-}
-
-func (i *systemAccprofilePtrType) ToSystemAccprofilePtrOutputWithContext(ctx context.Context) SystemAccprofilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofilePtrOutput)
 }
 
 // SystemAccprofileArrayInput is an input type that accepts SystemAccprofileArray and SystemAccprofileArrayOutput values.
@@ -438,7 +411,7 @@ type SystemAccprofileArrayInput interface {
 type SystemAccprofileArray []SystemAccprofileInput
 
 func (SystemAccprofileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAccprofile)(nil))
+	return reflect.TypeOf((*[]*SystemAccprofile)(nil)).Elem()
 }
 
 func (i SystemAccprofileArray) ToSystemAccprofileArrayOutput() SystemAccprofileArrayOutput {
@@ -463,7 +436,7 @@ type SystemAccprofileMapInput interface {
 type SystemAccprofileMap map[string]SystemAccprofileInput
 
 func (SystemAccprofileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAccprofile)(nil))
+	return reflect.TypeOf((*map[string]*SystemAccprofile)(nil)).Elem()
 }
 
 func (i SystemAccprofileMap) ToSystemAccprofileMapOutput() SystemAccprofileMapOutput {
@@ -474,12 +447,10 @@ func (i SystemAccprofileMap) ToSystemAccprofileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAccprofileMapOutput)
 }
 
-type SystemAccprofileOutput struct {
-	*pulumi.OutputState
-}
+type SystemAccprofileOutput struct{ *pulumi.OutputState }
 
 func (SystemAccprofileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAccprofile)(nil))
+	return reflect.TypeOf((**SystemAccprofile)(nil)).Elem()
 }
 
 func (o SystemAccprofileOutput) ToSystemAccprofileOutput() SystemAccprofileOutput {
@@ -490,36 +461,10 @@ func (o SystemAccprofileOutput) ToSystemAccprofileOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemAccprofileOutput) ToSystemAccprofilePtrOutput() SystemAccprofilePtrOutput {
-	return o.ToSystemAccprofilePtrOutputWithContext(context.Background())
-}
-
-func (o SystemAccprofileOutput) ToSystemAccprofilePtrOutputWithContext(ctx context.Context) SystemAccprofilePtrOutput {
-	return o.ApplyT(func(v SystemAccprofile) *SystemAccprofile {
-		return &v
-	}).(SystemAccprofilePtrOutput)
-}
-
-type SystemAccprofilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAccprofilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAccprofile)(nil))
-}
-
-func (o SystemAccprofilePtrOutput) ToSystemAccprofilePtrOutput() SystemAccprofilePtrOutput {
-	return o
-}
-
-func (o SystemAccprofilePtrOutput) ToSystemAccprofilePtrOutputWithContext(ctx context.Context) SystemAccprofilePtrOutput {
-	return o
-}
-
 type SystemAccprofileArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAccprofileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAccprofile)(nil))
+	return reflect.TypeOf((*[]*SystemAccprofile)(nil)).Elem()
 }
 
 func (o SystemAccprofileArrayOutput) ToSystemAccprofileArrayOutput() SystemAccprofileArrayOutput {
@@ -531,15 +476,15 @@ func (o SystemAccprofileArrayOutput) ToSystemAccprofileArrayOutputWithContext(ct
 }
 
 func (o SystemAccprofileArrayOutput) Index(i pulumi.IntInput) SystemAccprofileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAccprofile {
-		return vs[0].([]SystemAccprofile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAccprofile {
+		return vs[0].([]*SystemAccprofile)[vs[1].(int)]
 	}).(SystemAccprofileOutput)
 }
 
 type SystemAccprofileMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAccprofileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAccprofile)(nil))
+	return reflect.TypeOf((*map[string]*SystemAccprofile)(nil)).Elem()
 }
 
 func (o SystemAccprofileMapOutput) ToSystemAccprofileMapOutput() SystemAccprofileMapOutput {
@@ -551,14 +496,16 @@ func (o SystemAccprofileMapOutput) ToSystemAccprofileMapOutputWithContext(ctx co
 }
 
 func (o SystemAccprofileMapOutput) MapIndex(k pulumi.StringInput) SystemAccprofileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAccprofile {
-		return vs[0].(map[string]SystemAccprofile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAccprofile {
+		return vs[0].(map[string]*SystemAccprofile)[vs[1].(string)]
 	}).(SystemAccprofileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAccprofileInput)(nil)).Elem(), &SystemAccprofile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAccprofileArrayInput)(nil)).Elem(), SystemAccprofileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAccprofileMapInput)(nil)).Elem(), SystemAccprofileMap{})
 	pulumi.RegisterOutputType(SystemAccprofileOutput{})
-	pulumi.RegisterOutputType(SystemAccprofilePtrOutput{})
 	pulumi.RegisterOutputType(SystemAccprofileArrayOutput{})
 	pulumi.RegisterOutputType(SystemAccprofileMapOutput{})
 }

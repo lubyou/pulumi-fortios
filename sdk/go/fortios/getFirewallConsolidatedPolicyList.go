@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `FirewallConsolidatedPolicy`.
 func GetFirewallConsolidatedPolicyList(ctx *pulumi.Context, args *GetFirewallConsolidatedPolicyListArgs, opts ...pulumi.InvokeOption) (*GetFirewallConsolidatedPolicyListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetFirewallConsolidatedPolicyListResult
 	err := ctx.Invoke("fortios:index/getFirewallConsolidatedPolicyList:GetFirewallConsolidatedPolicyList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetFirewallConsolidatedPolicyListResult struct {
 	// A list of the `FirewallConsolidatedPolicy`.
 	Policyidlists []int   `pulumi:"policyidlists"`
 	Vdomparam     *string `pulumi:"vdomparam"`
+}
+
+func GetFirewallConsolidatedPolicyListOutput(ctx *pulumi.Context, args GetFirewallConsolidatedPolicyListOutputArgs, opts ...pulumi.InvokeOption) GetFirewallConsolidatedPolicyListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetFirewallConsolidatedPolicyListResult, error) {
+			args := v.(GetFirewallConsolidatedPolicyListArgs)
+			r, err := GetFirewallConsolidatedPolicyList(ctx, &args, opts...)
+			return *r, err
+		}).(GetFirewallConsolidatedPolicyListResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallConsolidatedPolicyList.
+type GetFirewallConsolidatedPolicyListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetFirewallConsolidatedPolicyListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallConsolidatedPolicyListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallConsolidatedPolicyList.
+type GetFirewallConsolidatedPolicyListResultOutput struct{ *pulumi.OutputState }
+
+func (GetFirewallConsolidatedPolicyListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFirewallConsolidatedPolicyListResult)(nil)).Elem()
+}
+
+func (o GetFirewallConsolidatedPolicyListResultOutput) ToGetFirewallConsolidatedPolicyListResultOutput() GetFirewallConsolidatedPolicyListResultOutput {
+	return o
+}
+
+func (o GetFirewallConsolidatedPolicyListResultOutput) ToGetFirewallConsolidatedPolicyListResultOutputWithContext(ctx context.Context) GetFirewallConsolidatedPolicyListResultOutput {
+	return o
+}
+
+func (o GetFirewallConsolidatedPolicyListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallConsolidatedPolicyListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetFirewallConsolidatedPolicyListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFirewallConsolidatedPolicyListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `FirewallConsolidatedPolicy`.
+func (o GetFirewallConsolidatedPolicyListResultOutput) Policyidlists() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v GetFirewallConsolidatedPolicyListResult) []int { return v.Policyidlists }).(pulumi.IntArrayOutput)
+}
+
+func (o GetFirewallConsolidatedPolicyListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetFirewallConsolidatedPolicyListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetFirewallConsolidatedPolicyListResultOutput{})
 }

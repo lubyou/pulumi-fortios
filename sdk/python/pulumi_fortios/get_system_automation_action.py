@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemAutomationActionResult',
     'AwaitableGetSystemAutomationActionResult',
     'get_system_automation_action',
+    'get_system_automation_action_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetSystemAutomationActionResult:
     """
     A collection of values returned by GetSystemAutomationAction.
     """
-    def __init__(__self__, accprofile=None, action_type=None, alicloud_access_key_id=None, alicloud_access_key_secret=None, alicloud_account_id=None, alicloud_function=None, alicloud_function_authorization=None, alicloud_function_domain=None, alicloud_region=None, alicloud_service=None, alicloud_version=None, aws_api_id=None, aws_api_key=None, aws_api_path=None, aws_api_stage=None, aws_domain=None, aws_region=None, azure_api_key=None, azure_app=None, azure_domain=None, azure_function=None, azure_function_authorization=None, delay=None, email_body=None, email_from=None, email_subject=None, email_tos=None, gcp_function=None, gcp_function_domain=None, gcp_function_region=None, gcp_project=None, headers=None, http_body=None, id=None, message=None, method=None, minimum_interval=None, name=None, port=None, protocol=None, replacement_message=None, required=None, script=None, sdn_connectors=None, security_tag=None, tls_certificate=None, uri=None, vdomparam=None):
+    def __init__(__self__, accprofile=None, action_type=None, alicloud_access_key_id=None, alicloud_access_key_secret=None, alicloud_account_id=None, alicloud_function=None, alicloud_function_authorization=None, alicloud_function_domain=None, alicloud_region=None, alicloud_service=None, alicloud_version=None, aws_api_id=None, aws_api_key=None, aws_api_path=None, aws_api_stage=None, aws_domain=None, aws_region=None, azure_api_key=None, azure_app=None, azure_domain=None, azure_function=None, azure_function_authorization=None, delay=None, description=None, email_body=None, email_from=None, email_subject=None, email_tos=None, execute_security_fabric=None, gcp_function=None, gcp_function_domain=None, gcp_function_region=None, gcp_project=None, headers=None, http_body=None, id=None, message=None, message_type=None, method=None, minimum_interval=None, name=None, port=None, protocol=None, replacement_message=None, replacemsg_group=None, required=None, script=None, sdn_connectors=None, security_tag=None, tls_certificate=None, uri=None, vdomparam=None, verify_host_cert=None):
         if accprofile and not isinstance(accprofile, str):
             raise TypeError("Expected argument 'accprofile' to be a str")
         pulumi.set(__self__, "accprofile", accprofile)
@@ -90,6 +91,9 @@ class GetSystemAutomationActionResult:
         if delay and not isinstance(delay, int):
             raise TypeError("Expected argument 'delay' to be a int")
         pulumi.set(__self__, "delay", delay)
+        if description and not isinstance(description, str):
+            raise TypeError("Expected argument 'description' to be a str")
+        pulumi.set(__self__, "description", description)
         if email_body and not isinstance(email_body, str):
             raise TypeError("Expected argument 'email_body' to be a str")
         pulumi.set(__self__, "email_body", email_body)
@@ -102,6 +106,9 @@ class GetSystemAutomationActionResult:
         if email_tos and not isinstance(email_tos, list):
             raise TypeError("Expected argument 'email_tos' to be a list")
         pulumi.set(__self__, "email_tos", email_tos)
+        if execute_security_fabric and not isinstance(execute_security_fabric, str):
+            raise TypeError("Expected argument 'execute_security_fabric' to be a str")
+        pulumi.set(__self__, "execute_security_fabric", execute_security_fabric)
         if gcp_function and not isinstance(gcp_function, str):
             raise TypeError("Expected argument 'gcp_function' to be a str")
         pulumi.set(__self__, "gcp_function", gcp_function)
@@ -126,6 +133,9 @@ class GetSystemAutomationActionResult:
         if message and not isinstance(message, str):
             raise TypeError("Expected argument 'message' to be a str")
         pulumi.set(__self__, "message", message)
+        if message_type and not isinstance(message_type, str):
+            raise TypeError("Expected argument 'message_type' to be a str")
+        pulumi.set(__self__, "message_type", message_type)
         if method and not isinstance(method, str):
             raise TypeError("Expected argument 'method' to be a str")
         pulumi.set(__self__, "method", method)
@@ -144,6 +154,9 @@ class GetSystemAutomationActionResult:
         if replacement_message and not isinstance(replacement_message, str):
             raise TypeError("Expected argument 'replacement_message' to be a str")
         pulumi.set(__self__, "replacement_message", replacement_message)
+        if replacemsg_group and not isinstance(replacemsg_group, str):
+            raise TypeError("Expected argument 'replacemsg_group' to be a str")
+        pulumi.set(__self__, "replacemsg_group", replacemsg_group)
         if required and not isinstance(required, str):
             raise TypeError("Expected argument 'required' to be a str")
         pulumi.set(__self__, "required", required)
@@ -165,6 +178,9 @@ class GetSystemAutomationActionResult:
         if vdomparam and not isinstance(vdomparam, str):
             raise TypeError("Expected argument 'vdomparam' to be a str")
         pulumi.set(__self__, "vdomparam", vdomparam)
+        if verify_host_cert and not isinstance(verify_host_cert, str):
+            raise TypeError("Expected argument 'verify_host_cert' to be a str")
+        pulumi.set(__self__, "verify_host_cert", verify_host_cert)
 
     @property
     @pulumi.getter
@@ -351,6 +367,14 @@ class GetSystemAutomationActionResult:
         return pulumi.get(self, "delay")
 
     @property
+    @pulumi.getter
+    def description(self) -> str:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @property
     @pulumi.getter(name="emailBody")
     def email_body(self) -> str:
         """
@@ -381,6 +405,14 @@ class GetSystemAutomationActionResult:
         Email addresses. The structure of `email_to` block is documented below.
         """
         return pulumi.get(self, "email_tos")
+
+    @property
+    @pulumi.getter(name="executeSecurityFabric")
+    def execute_security_fabric(self) -> str:
+        """
+        Enable/disable execution of CLI script on all or only one FortiGate unit in the Security Fabric.
+        """
+        return pulumi.get(self, "execute_security_fabric")
 
     @property
     @pulumi.getter(name="gcpFunction")
@@ -447,6 +479,14 @@ class GetSystemAutomationActionResult:
         return pulumi.get(self, "message")
 
     @property
+    @pulumi.getter(name="messageType")
+    def message_type(self) -> str:
+        """
+        Message type.
+        """
+        return pulumi.get(self, "message_type")
+
+    @property
     @pulumi.getter
     def method(self) -> str:
         """
@@ -493,6 +533,14 @@ class GetSystemAutomationActionResult:
         Enable/disable replacement message.
         """
         return pulumi.get(self, "replacement_message")
+
+    @property
+    @pulumi.getter(name="replacemsgGroup")
+    def replacemsg_group(self) -> str:
+        """
+        Replacement message group.
+        """
+        return pulumi.get(self, "replacemsg_group")
 
     @property
     @pulumi.getter
@@ -547,6 +595,14 @@ class GetSystemAutomationActionResult:
     def vdomparam(self) -> Optional[str]:
         return pulumi.get(self, "vdomparam")
 
+    @property
+    @pulumi.getter(name="verifyHostCert")
+    def verify_host_cert(self) -> str:
+        """
+        Enable/disable verification of the remote host certificate.
+        """
+        return pulumi.get(self, "verify_host_cert")
+
 
 class AwaitableGetSystemAutomationActionResult(GetSystemAutomationActionResult):
     # pylint: disable=using-constant-test
@@ -577,10 +633,12 @@ class AwaitableGetSystemAutomationActionResult(GetSystemAutomationActionResult):
             azure_function=self.azure_function,
             azure_function_authorization=self.azure_function_authorization,
             delay=self.delay,
+            description=self.description,
             email_body=self.email_body,
             email_from=self.email_from,
             email_subject=self.email_subject,
             email_tos=self.email_tos,
+            execute_security_fabric=self.execute_security_fabric,
             gcp_function=self.gcp_function,
             gcp_function_domain=self.gcp_function_domain,
             gcp_function_region=self.gcp_function_region,
@@ -589,19 +647,22 @@ class AwaitableGetSystemAutomationActionResult(GetSystemAutomationActionResult):
             http_body=self.http_body,
             id=self.id,
             message=self.message,
+            message_type=self.message_type,
             method=self.method,
             minimum_interval=self.minimum_interval,
             name=self.name,
             port=self.port,
             protocol=self.protocol,
             replacement_message=self.replacement_message,
+            replacemsg_group=self.replacemsg_group,
             required=self.required,
             script=self.script,
             sdn_connectors=self.sdn_connectors,
             security_tag=self.security_tag,
             tls_certificate=self.tls_certificate,
             uri=self.uri,
-            vdomparam=self.vdomparam)
+            vdomparam=self.vdomparam,
+            verify_host_cert=self.verify_host_cert)
 
 
 def get_system_automation_action(name: Optional[str] = None,
@@ -621,6 +682,8 @@ def get_system_automation_action(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemAutomationAction:GetSystemAutomationAction', __args__, opts=opts, typ=GetSystemAutomationActionResult).value
 
     return AwaitableGetSystemAutomationActionResult(
@@ -647,10 +710,12 @@ def get_system_automation_action(name: Optional[str] = None,
         azure_function=__ret__.azure_function,
         azure_function_authorization=__ret__.azure_function_authorization,
         delay=__ret__.delay,
+        description=__ret__.description,
         email_body=__ret__.email_body,
         email_from=__ret__.email_from,
         email_subject=__ret__.email_subject,
         email_tos=__ret__.email_tos,
+        execute_security_fabric=__ret__.execute_security_fabric,
         gcp_function=__ret__.gcp_function,
         gcp_function_domain=__ret__.gcp_function_domain,
         gcp_function_region=__ret__.gcp_function_region,
@@ -659,16 +724,33 @@ def get_system_automation_action(name: Optional[str] = None,
         http_body=__ret__.http_body,
         id=__ret__.id,
         message=__ret__.message,
+        message_type=__ret__.message_type,
         method=__ret__.method,
         minimum_interval=__ret__.minimum_interval,
         name=__ret__.name,
         port=__ret__.port,
         protocol=__ret__.protocol,
         replacement_message=__ret__.replacement_message,
+        replacemsg_group=__ret__.replacemsg_group,
         required=__ret__.required,
         script=__ret__.script,
         sdn_connectors=__ret__.sdn_connectors,
         security_tag=__ret__.security_tag,
         tls_certificate=__ret__.tls_certificate,
         uri=__ret__.uri,
-        vdomparam=__ret__.vdomparam)
+        vdomparam=__ret__.vdomparam,
+        verify_host_cert=__ret__.verify_host_cert)
+
+
+@_utilities.lift_output_func(get_system_automation_action)
+def get_system_automation_action_output(name: Optional[pulumi.Input[str]] = None,
+                                        vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                        opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemAutomationActionResult]:
+    """
+    Use this data source to get information on an fortios system automationaction
+
+
+    :param str name: Specify the name of the desired system automationaction.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

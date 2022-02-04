@@ -18,6 +18,7 @@ class SystemAutomationStitchArgs:
                  status: pulumi.Input[str],
                  trigger: pulumi.Input[str],
                  actions: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  destinations: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchDestinationArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -26,7 +27,8 @@ class SystemAutomationStitchArgs:
         The set of arguments for constructing a SystemAutomationStitch resource.
         :param pulumi.Input[str] status: Enable/disable this stitch. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] trigger: Trigger name.
-        :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]] actions: Action names. The structure of `action` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]] actions: Configure stitch actions. The structure of `actions` block is documented below.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchDestinationArgs']]] destinations: Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] name: Destination name.
@@ -36,6 +38,8 @@ class SystemAutomationStitchArgs:
         pulumi.set(__self__, "trigger", trigger)
         if actions is not None:
             pulumi.set(__self__, "actions", actions)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if destinations is not None:
             pulumi.set(__self__, "destinations", destinations)
         if dynamic_sort_subtable is not None:
@@ -73,13 +77,25 @@ class SystemAutomationStitchArgs:
     @pulumi.getter
     def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]]]:
         """
-        Action names. The structure of `action` block is documented below.
+        Configure stitch actions. The structure of `actions` block is documented below.
         """
         return pulumi.get(self, "actions")
 
     @actions.setter
     def actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]]]):
         pulumi.set(self, "actions", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -134,6 +150,7 @@ class SystemAutomationStitchArgs:
 class _SystemAutomationStitchState:
     def __init__(__self__, *,
                  actions: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  destinations: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchDestinationArgs']]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -142,7 +159,8 @@ class _SystemAutomationStitchState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemAutomationStitch resources.
-        :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]] actions: Action names. The structure of `action` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]] actions: Configure stitch actions. The structure of `actions` block is documented below.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchDestinationArgs']]] destinations: Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] name: Destination name.
@@ -152,6 +170,8 @@ class _SystemAutomationStitchState:
         """
         if actions is not None:
             pulumi.set(__self__, "actions", actions)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
         if destinations is not None:
             pulumi.set(__self__, "destinations", destinations)
         if dynamic_sort_subtable is not None:
@@ -169,13 +189,25 @@ class _SystemAutomationStitchState:
     @pulumi.getter
     def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]]]:
         """
-        Action names. The structure of `action` block is documented below.
+        Configure stitch actions. The structure of `actions` block is documented below.
         """
         return pulumi.get(self, "actions")
 
     @actions.setter
     def actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SystemAutomationStitchActionArgs']]]]):
         pulumi.set(self, "actions", value)
+
+    @property
+    @pulumi.getter
+    def description(self) -> Optional[pulumi.Input[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "description", value)
 
     @property
     @pulumi.getter
@@ -256,6 +288,7 @@ class SystemAutomationStitch(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  destinations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchDestinationArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -278,7 +311,8 @@ class SystemAutomationStitch(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]] actions: Action names. The structure of `action` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]] actions: Configure stitch actions. The structure of `actions` block is documented below.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchDestinationArgs']]]] destinations: Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] name: Destination name.
@@ -321,6 +355,7 @@ class SystemAutomationStitch(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]]] = None,
+                 description: Optional[pulumi.Input[str]] = None,
                  destinations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchDestinationArgs']]]]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
@@ -334,12 +369,15 @@ class SystemAutomationStitch(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemAutomationStitchArgs.__new__(SystemAutomationStitchArgs)
 
             __props__.__dict__["actions"] = actions
+            __props__.__dict__["description"] = description
             __props__.__dict__["destinations"] = destinations
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["name"] = name
@@ -361,6 +399,7 @@ class SystemAutomationStitch(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             actions: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]]] = None,
+            description: Optional[pulumi.Input[str]] = None,
             destinations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchDestinationArgs']]]]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
@@ -374,7 +413,8 @@ class SystemAutomationStitch(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]] actions: Action names. The structure of `action` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchActionArgs']]]] actions: Configure stitch actions. The structure of `actions` block is documented below.
+        :param pulumi.Input[str] description: Description.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['SystemAutomationStitchDestinationArgs']]]] destinations: Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] name: Destination name.
@@ -387,6 +427,7 @@ class SystemAutomationStitch(pulumi.CustomResource):
         __props__ = _SystemAutomationStitchState.__new__(_SystemAutomationStitchState)
 
         __props__.__dict__["actions"] = actions
+        __props__.__dict__["description"] = description
         __props__.__dict__["destinations"] = destinations
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["name"] = name
@@ -399,9 +440,17 @@ class SystemAutomationStitch(pulumi.CustomResource):
     @pulumi.getter
     def actions(self) -> pulumi.Output[Optional[Sequence['outputs.SystemAutomationStitchAction']]]:
         """
-        Action names. The structure of `action` block is documented below.
+        Configure stitch actions. The structure of `actions` block is documented below.
         """
         return pulumi.get(self, "actions")
+
+    @property
+    @pulumi.getter
+    def description(self) -> pulumi.Output[Optional[str]]:
+        """
+        Description.
+        """
+        return pulumi.get(self, "description")
 
     @property
     @pulumi.getter

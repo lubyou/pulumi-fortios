@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -26,10 +27,10 @@ import (
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewWebfilterProfile(ctx, "trname", &fortios.WebfilterProfileArgs{
 // 			ExtendedLog: pulumi.String("disable"),
-// 			FtgdWf: &fortios.WebfilterProfileFtgdWfArgs{
+// 			FtgdWf: &WebfilterProfileFtgdWfArgs{
 // 				ExemptQuota: pulumi.String("17"),
-// 				Filters: fortios.WebfilterProfileFtgdWfFilterArray{
-// 					&fortios.WebfilterProfileFtgdWfFilterArgs{
+// 				Filters: WebfilterProfileFtgdWfFilterArray{
+// 					&WebfilterProfileFtgdWfFilterArgs{
 // 						Action:              pulumi.String("warning"),
 // 						Category:            pulumi.Int(2),
 // 						Id:                  pulumi.Int(1),
@@ -38,7 +39,7 @@ import (
 // 						WarningDurationType: pulumi.String("timeout"),
 // 						WarningPrompt:       pulumi.String("per-category"),
 // 					},
-// 					&fortios.WebfilterProfileFtgdWfFilterArgs{
+// 					&WebfilterProfileFtgdWfFilterArgs{
 // 						Action:              pulumi.String("warning"),
 // 						Category:            pulumi.Int(7),
 // 						Id:                  pulumi.Int(2),
@@ -57,7 +58,7 @@ import (
 // 			HttpsReplacemsg: pulumi.String("enable"),
 // 			InspectionMode:  pulumi.String("flow-based"),
 // 			LogAllUrl:       pulumi.String("disable"),
-// 			Override: &fortios.WebfilterProfileOverrideArgs{
+// 			Override: &WebfilterProfileOverrideArgs{
 // 				OvrdCookie:       pulumi.String("deny"),
 // 				OvrdDur:          pulumi.String("15m"),
 // 				OvrdDurMode:      pulumi.String("constant"),
@@ -66,7 +67,7 @@ import (
 // 				ProfileType:      pulumi.String("list"),
 // 			},
 // 			PostAction: pulumi.String("normal"),
-// 			Web: &fortios.WebfilterProfileWebArgs{
+// 			Web: &WebfilterProfileWebArgs{
 // 				Blacklist:         pulumi.String("disable"),
 // 				BwordTable:        pulumi.Int(0),
 // 				BwordThreshold:    pulumi.Int(10),
@@ -204,6 +205,7 @@ func NewWebfilterProfile(ctx *pulumi.Context,
 		args = &WebfilterProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterProfile
 	err := ctx.RegisterResource("fortios:index/webfilterProfile:WebfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -574,7 +576,7 @@ type WebfilterProfileInput interface {
 }
 
 func (*WebfilterProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterProfile)(nil))
+	return reflect.TypeOf((**WebfilterProfile)(nil)).Elem()
 }
 
 func (i *WebfilterProfile) ToWebfilterProfileOutput() WebfilterProfileOutput {
@@ -583,35 +585,6 @@ func (i *WebfilterProfile) ToWebfilterProfileOutput() WebfilterProfileOutput {
 
 func (i *WebfilterProfile) ToWebfilterProfileOutputWithContext(ctx context.Context) WebfilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileOutput)
-}
-
-func (i *WebfilterProfile) ToWebfilterProfilePtrOutput() WebfilterProfilePtrOutput {
-	return i.ToWebfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterProfile) ToWebfilterProfilePtrOutputWithContext(ctx context.Context) WebfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfilePtrOutput)
-}
-
-type WebfilterProfilePtrInput interface {
-	pulumi.Input
-
-	ToWebfilterProfilePtrOutput() WebfilterProfilePtrOutput
-	ToWebfilterProfilePtrOutputWithContext(ctx context.Context) WebfilterProfilePtrOutput
-}
-
-type webfilterProfilePtrType WebfilterProfileArgs
-
-func (*webfilterProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterProfile)(nil))
-}
-
-func (i *webfilterProfilePtrType) ToWebfilterProfilePtrOutput() WebfilterProfilePtrOutput {
-	return i.ToWebfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterProfilePtrType) ToWebfilterProfilePtrOutputWithContext(ctx context.Context) WebfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfilePtrOutput)
 }
 
 // WebfilterProfileArrayInput is an input type that accepts WebfilterProfileArray and WebfilterProfileArrayOutput values.
@@ -628,7 +601,7 @@ type WebfilterProfileArrayInput interface {
 type WebfilterProfileArray []WebfilterProfileInput
 
 func (WebfilterProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterProfile)(nil))
+	return reflect.TypeOf((*[]*WebfilterProfile)(nil)).Elem()
 }
 
 func (i WebfilterProfileArray) ToWebfilterProfileArrayOutput() WebfilterProfileArrayOutput {
@@ -653,7 +626,7 @@ type WebfilterProfileMapInput interface {
 type WebfilterProfileMap map[string]WebfilterProfileInput
 
 func (WebfilterProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterProfile)(nil)).Elem()
 }
 
 func (i WebfilterProfileMap) ToWebfilterProfileMapOutput() WebfilterProfileMapOutput {
@@ -664,12 +637,10 @@ func (i WebfilterProfileMap) ToWebfilterProfileMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterProfileMapOutput)
 }
 
-type WebfilterProfileOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterProfile)(nil))
+	return reflect.TypeOf((**WebfilterProfile)(nil)).Elem()
 }
 
 func (o WebfilterProfileOutput) ToWebfilterProfileOutput() WebfilterProfileOutput {
@@ -680,36 +651,10 @@ func (o WebfilterProfileOutput) ToWebfilterProfileOutputWithContext(ctx context.
 	return o
 }
 
-func (o WebfilterProfileOutput) ToWebfilterProfilePtrOutput() WebfilterProfilePtrOutput {
-	return o.ToWebfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterProfileOutput) ToWebfilterProfilePtrOutputWithContext(ctx context.Context) WebfilterProfilePtrOutput {
-	return o.ApplyT(func(v WebfilterProfile) *WebfilterProfile {
-		return &v
-	}).(WebfilterProfilePtrOutput)
-}
-
-type WebfilterProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterProfile)(nil))
-}
-
-func (o WebfilterProfilePtrOutput) ToWebfilterProfilePtrOutput() WebfilterProfilePtrOutput {
-	return o
-}
-
-func (o WebfilterProfilePtrOutput) ToWebfilterProfilePtrOutputWithContext(ctx context.Context) WebfilterProfilePtrOutput {
-	return o
-}
-
 type WebfilterProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterProfile)(nil))
+	return reflect.TypeOf((*[]*WebfilterProfile)(nil)).Elem()
 }
 
 func (o WebfilterProfileArrayOutput) ToWebfilterProfileArrayOutput() WebfilterProfileArrayOutput {
@@ -721,15 +666,15 @@ func (o WebfilterProfileArrayOutput) ToWebfilterProfileArrayOutputWithContext(ct
 }
 
 func (o WebfilterProfileArrayOutput) Index(i pulumi.IntInput) WebfilterProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterProfile {
-		return vs[0].([]WebfilterProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterProfile {
+		return vs[0].([]*WebfilterProfile)[vs[1].(int)]
 	}).(WebfilterProfileOutput)
 }
 
 type WebfilterProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterProfile)(nil)).Elem()
 }
 
 func (o WebfilterProfileMapOutput) ToWebfilterProfileMapOutput() WebfilterProfileMapOutput {
@@ -741,14 +686,16 @@ func (o WebfilterProfileMapOutput) ToWebfilterProfileMapOutputWithContext(ctx co
 }
 
 func (o WebfilterProfileMapOutput) MapIndex(k pulumi.StringInput) WebfilterProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterProfile {
-		return vs[0].(map[string]WebfilterProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterProfile {
+		return vs[0].(map[string]*WebfilterProfile)[vs[1].(string)]
 	}).(WebfilterProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterProfileInput)(nil)).Elem(), &WebfilterProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterProfileArrayInput)(nil)).Elem(), WebfilterProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterProfileMapInput)(nil)).Elem(), WebfilterProfileMap{})
 	pulumi.RegisterOutputType(WebfilterProfileOutput{})
-	pulumi.RegisterOutputType(WebfilterProfilePtrOutput{})
 	pulumi.RegisterOutputType(WebfilterProfileArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterProfileMapOutput{})
 }

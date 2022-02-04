@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -51,6 +51,7 @@ func NewFortimanagerSystemDNS(ctx *pulumi.Context,
 		args = &FortimanagerSystemDNSArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemDNS
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemDNS:FortimanagerSystemDNS", name, args, &resource, opts...)
 	if err != nil {
@@ -117,7 +118,7 @@ type FortimanagerSystemDNSInput interface {
 }
 
 func (*FortimanagerSystemDNS) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemDNS)(nil))
+	return reflect.TypeOf((**FortimanagerSystemDNS)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemDNS) ToFortimanagerSystemDNSOutput() FortimanagerSystemDNSOutput {
@@ -126,35 +127,6 @@ func (i *FortimanagerSystemDNS) ToFortimanagerSystemDNSOutput() FortimanagerSyst
 
 func (i *FortimanagerSystemDNS) ToFortimanagerSystemDNSOutputWithContext(ctx context.Context) FortimanagerSystemDNSOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemDNSOutput)
-}
-
-func (i *FortimanagerSystemDNS) ToFortimanagerSystemDNSPtrOutput() FortimanagerSystemDNSPtrOutput {
-	return i.ToFortimanagerSystemDNSPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemDNS) ToFortimanagerSystemDNSPtrOutputWithContext(ctx context.Context) FortimanagerSystemDNSPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemDNSPtrOutput)
-}
-
-type FortimanagerSystemDNSPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemDNSPtrOutput() FortimanagerSystemDNSPtrOutput
-	ToFortimanagerSystemDNSPtrOutputWithContext(ctx context.Context) FortimanagerSystemDNSPtrOutput
-}
-
-type fortimanagerSystemDNSPtrType FortimanagerSystemDNSArgs
-
-func (*fortimanagerSystemDNSPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemDNS)(nil))
-}
-
-func (i *fortimanagerSystemDNSPtrType) ToFortimanagerSystemDNSPtrOutput() FortimanagerSystemDNSPtrOutput {
-	return i.ToFortimanagerSystemDNSPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemDNSPtrType) ToFortimanagerSystemDNSPtrOutputWithContext(ctx context.Context) FortimanagerSystemDNSPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemDNSPtrOutput)
 }
 
 // FortimanagerSystemDNSArrayInput is an input type that accepts FortimanagerSystemDNSArray and FortimanagerSystemDNSArrayOutput values.
@@ -171,7 +143,7 @@ type FortimanagerSystemDNSArrayInput interface {
 type FortimanagerSystemDNSArray []FortimanagerSystemDNSInput
 
 func (FortimanagerSystemDNSArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemDNS)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemDNS)(nil)).Elem()
 }
 
 func (i FortimanagerSystemDNSArray) ToFortimanagerSystemDNSArrayOutput() FortimanagerSystemDNSArrayOutput {
@@ -196,7 +168,7 @@ type FortimanagerSystemDNSMapInput interface {
 type FortimanagerSystemDNSMap map[string]FortimanagerSystemDNSInput
 
 func (FortimanagerSystemDNSMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemDNS)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemDNS)(nil)).Elem()
 }
 
 func (i FortimanagerSystemDNSMap) ToFortimanagerSystemDNSMapOutput() FortimanagerSystemDNSMapOutput {
@@ -207,12 +179,10 @@ func (i FortimanagerSystemDNSMap) ToFortimanagerSystemDNSMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemDNSMapOutput)
 }
 
-type FortimanagerSystemDNSOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemDNSOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemDNSOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemDNS)(nil))
+	return reflect.TypeOf((**FortimanagerSystemDNS)(nil)).Elem()
 }
 
 func (o FortimanagerSystemDNSOutput) ToFortimanagerSystemDNSOutput() FortimanagerSystemDNSOutput {
@@ -223,36 +193,10 @@ func (o FortimanagerSystemDNSOutput) ToFortimanagerSystemDNSOutputWithContext(ct
 	return o
 }
 
-func (o FortimanagerSystemDNSOutput) ToFortimanagerSystemDNSPtrOutput() FortimanagerSystemDNSPtrOutput {
-	return o.ToFortimanagerSystemDNSPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemDNSOutput) ToFortimanagerSystemDNSPtrOutputWithContext(ctx context.Context) FortimanagerSystemDNSPtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemDNS) *FortimanagerSystemDNS {
-		return &v
-	}).(FortimanagerSystemDNSPtrOutput)
-}
-
-type FortimanagerSystemDNSPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemDNSPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemDNS)(nil))
-}
-
-func (o FortimanagerSystemDNSPtrOutput) ToFortimanagerSystemDNSPtrOutput() FortimanagerSystemDNSPtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemDNSPtrOutput) ToFortimanagerSystemDNSPtrOutputWithContext(ctx context.Context) FortimanagerSystemDNSPtrOutput {
-	return o
-}
-
 type FortimanagerSystemDNSArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemDNSArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemDNS)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemDNS)(nil)).Elem()
 }
 
 func (o FortimanagerSystemDNSArrayOutput) ToFortimanagerSystemDNSArrayOutput() FortimanagerSystemDNSArrayOutput {
@@ -264,15 +208,15 @@ func (o FortimanagerSystemDNSArrayOutput) ToFortimanagerSystemDNSArrayOutputWith
 }
 
 func (o FortimanagerSystemDNSArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemDNSOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemDNS {
-		return vs[0].([]FortimanagerSystemDNS)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemDNS {
+		return vs[0].([]*FortimanagerSystemDNS)[vs[1].(int)]
 	}).(FortimanagerSystemDNSOutput)
 }
 
 type FortimanagerSystemDNSMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemDNSMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemDNS)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemDNS)(nil)).Elem()
 }
 
 func (o FortimanagerSystemDNSMapOutput) ToFortimanagerSystemDNSMapOutput() FortimanagerSystemDNSMapOutput {
@@ -284,14 +228,16 @@ func (o FortimanagerSystemDNSMapOutput) ToFortimanagerSystemDNSMapOutputWithCont
 }
 
 func (o FortimanagerSystemDNSMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemDNSOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemDNS {
-		return vs[0].(map[string]FortimanagerSystemDNS)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemDNS {
+		return vs[0].(map[string]*FortimanagerSystemDNS)[vs[1].(string)]
 	}).(FortimanagerSystemDNSOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemDNSInput)(nil)).Elem(), &FortimanagerSystemDNS{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemDNSArrayInput)(nil)).Elem(), FortimanagerSystemDNSArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemDNSMapInput)(nil)).Elem(), FortimanagerSystemDNSMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemDNSOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemDNSPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemDNSArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemDNSMapOutput{})
 }

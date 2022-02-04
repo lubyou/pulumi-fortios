@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -67,6 +67,7 @@ func NewWebfilterIpsUrlfilterSetting6(ctx *pulumi.Context,
 		args = &WebfilterIpsUrlfilterSetting6Args{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterIpsUrlfilterSetting6
 	err := ctx.RegisterResource("fortios:index/webfilterIpsUrlfilterSetting6:WebfilterIpsUrlfilterSetting6", name, args, &resource, opts...)
 	if err != nil {
@@ -157,7 +158,7 @@ type WebfilterIpsUrlfilterSetting6Input interface {
 }
 
 func (*WebfilterIpsUrlfilterSetting6) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterIpsUrlfilterSetting6)(nil))
+	return reflect.TypeOf((**WebfilterIpsUrlfilterSetting6)(nil)).Elem()
 }
 
 func (i *WebfilterIpsUrlfilterSetting6) ToWebfilterIpsUrlfilterSetting6Output() WebfilterIpsUrlfilterSetting6Output {
@@ -166,35 +167,6 @@ func (i *WebfilterIpsUrlfilterSetting6) ToWebfilterIpsUrlfilterSetting6Output() 
 
 func (i *WebfilterIpsUrlfilterSetting6) ToWebfilterIpsUrlfilterSetting6OutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6Output)
-}
-
-func (i *WebfilterIpsUrlfilterSetting6) ToWebfilterIpsUrlfilterSetting6PtrOutput() WebfilterIpsUrlfilterSetting6PtrOutput {
-	return i.ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterIpsUrlfilterSetting6) ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6PtrOutput)
-}
-
-type WebfilterIpsUrlfilterSetting6PtrInput interface {
-	pulumi.Input
-
-	ToWebfilterIpsUrlfilterSetting6PtrOutput() WebfilterIpsUrlfilterSetting6PtrOutput
-	ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6PtrOutput
-}
-
-type webfilterIpsUrlfilterSetting6PtrType WebfilterIpsUrlfilterSetting6Args
-
-func (*webfilterIpsUrlfilterSetting6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterIpsUrlfilterSetting6)(nil))
-}
-
-func (i *webfilterIpsUrlfilterSetting6PtrType) ToWebfilterIpsUrlfilterSetting6PtrOutput() WebfilterIpsUrlfilterSetting6PtrOutput {
-	return i.ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterIpsUrlfilterSetting6PtrType) ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6PtrOutput)
 }
 
 // WebfilterIpsUrlfilterSetting6ArrayInput is an input type that accepts WebfilterIpsUrlfilterSetting6Array and WebfilterIpsUrlfilterSetting6ArrayOutput values.
@@ -211,7 +183,7 @@ type WebfilterIpsUrlfilterSetting6ArrayInput interface {
 type WebfilterIpsUrlfilterSetting6Array []WebfilterIpsUrlfilterSetting6Input
 
 func (WebfilterIpsUrlfilterSetting6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterIpsUrlfilterSetting6)(nil))
+	return reflect.TypeOf((*[]*WebfilterIpsUrlfilterSetting6)(nil)).Elem()
 }
 
 func (i WebfilterIpsUrlfilterSetting6Array) ToWebfilterIpsUrlfilterSetting6ArrayOutput() WebfilterIpsUrlfilterSetting6ArrayOutput {
@@ -236,7 +208,7 @@ type WebfilterIpsUrlfilterSetting6MapInput interface {
 type WebfilterIpsUrlfilterSetting6Map map[string]WebfilterIpsUrlfilterSetting6Input
 
 func (WebfilterIpsUrlfilterSetting6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterIpsUrlfilterSetting6)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterIpsUrlfilterSetting6)(nil)).Elem()
 }
 
 func (i WebfilterIpsUrlfilterSetting6Map) ToWebfilterIpsUrlfilterSetting6MapOutput() WebfilterIpsUrlfilterSetting6MapOutput {
@@ -247,12 +219,10 @@ func (i WebfilterIpsUrlfilterSetting6Map) ToWebfilterIpsUrlfilterSetting6MapOutp
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterIpsUrlfilterSetting6MapOutput)
 }
 
-type WebfilterIpsUrlfilterSetting6Output struct {
-	*pulumi.OutputState
-}
+type WebfilterIpsUrlfilterSetting6Output struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterSetting6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterIpsUrlfilterSetting6)(nil))
+	return reflect.TypeOf((**WebfilterIpsUrlfilterSetting6)(nil)).Elem()
 }
 
 func (o WebfilterIpsUrlfilterSetting6Output) ToWebfilterIpsUrlfilterSetting6Output() WebfilterIpsUrlfilterSetting6Output {
@@ -263,36 +233,10 @@ func (o WebfilterIpsUrlfilterSetting6Output) ToWebfilterIpsUrlfilterSetting6Outp
 	return o
 }
 
-func (o WebfilterIpsUrlfilterSetting6Output) ToWebfilterIpsUrlfilterSetting6PtrOutput() WebfilterIpsUrlfilterSetting6PtrOutput {
-	return o.ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterIpsUrlfilterSetting6Output) ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6PtrOutput {
-	return o.ApplyT(func(v WebfilterIpsUrlfilterSetting6) *WebfilterIpsUrlfilterSetting6 {
-		return &v
-	}).(WebfilterIpsUrlfilterSetting6PtrOutput)
-}
-
-type WebfilterIpsUrlfilterSetting6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterIpsUrlfilterSetting6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterIpsUrlfilterSetting6)(nil))
-}
-
-func (o WebfilterIpsUrlfilterSetting6PtrOutput) ToWebfilterIpsUrlfilterSetting6PtrOutput() WebfilterIpsUrlfilterSetting6PtrOutput {
-	return o
-}
-
-func (o WebfilterIpsUrlfilterSetting6PtrOutput) ToWebfilterIpsUrlfilterSetting6PtrOutputWithContext(ctx context.Context) WebfilterIpsUrlfilterSetting6PtrOutput {
-	return o
-}
-
 type WebfilterIpsUrlfilterSetting6ArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterSetting6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterIpsUrlfilterSetting6)(nil))
+	return reflect.TypeOf((*[]*WebfilterIpsUrlfilterSetting6)(nil)).Elem()
 }
 
 func (o WebfilterIpsUrlfilterSetting6ArrayOutput) ToWebfilterIpsUrlfilterSetting6ArrayOutput() WebfilterIpsUrlfilterSetting6ArrayOutput {
@@ -304,15 +248,15 @@ func (o WebfilterIpsUrlfilterSetting6ArrayOutput) ToWebfilterIpsUrlfilterSetting
 }
 
 func (o WebfilterIpsUrlfilterSetting6ArrayOutput) Index(i pulumi.IntInput) WebfilterIpsUrlfilterSetting6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterIpsUrlfilterSetting6 {
-		return vs[0].([]WebfilterIpsUrlfilterSetting6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterIpsUrlfilterSetting6 {
+		return vs[0].([]*WebfilterIpsUrlfilterSetting6)[vs[1].(int)]
 	}).(WebfilterIpsUrlfilterSetting6Output)
 }
 
 type WebfilterIpsUrlfilterSetting6MapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterIpsUrlfilterSetting6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterIpsUrlfilterSetting6)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterIpsUrlfilterSetting6)(nil)).Elem()
 }
 
 func (o WebfilterIpsUrlfilterSetting6MapOutput) ToWebfilterIpsUrlfilterSetting6MapOutput() WebfilterIpsUrlfilterSetting6MapOutput {
@@ -324,14 +268,16 @@ func (o WebfilterIpsUrlfilterSetting6MapOutput) ToWebfilterIpsUrlfilterSetting6M
 }
 
 func (o WebfilterIpsUrlfilterSetting6MapOutput) MapIndex(k pulumi.StringInput) WebfilterIpsUrlfilterSetting6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterIpsUrlfilterSetting6 {
-		return vs[0].(map[string]WebfilterIpsUrlfilterSetting6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterIpsUrlfilterSetting6 {
+		return vs[0].(map[string]*WebfilterIpsUrlfilterSetting6)[vs[1].(string)]
 	}).(WebfilterIpsUrlfilterSetting6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterIpsUrlfilterSetting6Input)(nil)).Elem(), &WebfilterIpsUrlfilterSetting6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterIpsUrlfilterSetting6ArrayInput)(nil)).Elem(), WebfilterIpsUrlfilterSetting6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterIpsUrlfilterSetting6MapInput)(nil)).Elem(), WebfilterIpsUrlfilterSetting6Map{})
 	pulumi.RegisterOutputType(WebfilterIpsUrlfilterSetting6Output{})
-	pulumi.RegisterOutputType(WebfilterIpsUrlfilterSetting6PtrOutput{})
 	pulumi.RegisterOutputType(WebfilterIpsUrlfilterSetting6ArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterIpsUrlfilterSetting6MapOutput{})
 }

@@ -79,6 +79,7 @@ func NewRouterospf6Ospf6Interface(ctx *pulumi.Context,
 		args = &Routerospf6Ospf6InterfaceArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource Routerospf6Ospf6Interface
 	err := ctx.RegisterResource("fortios:index/routerospf6Ospf6Interface:Routerospf6Ospf6Interface", name, args, &resource, opts...)
 	if err != nil {
@@ -305,7 +306,7 @@ type Routerospf6Ospf6InterfaceInput interface {
 }
 
 func (*Routerospf6Ospf6Interface) ElementType() reflect.Type {
-	return reflect.TypeOf((*Routerospf6Ospf6Interface)(nil))
+	return reflect.TypeOf((**Routerospf6Ospf6Interface)(nil)).Elem()
 }
 
 func (i *Routerospf6Ospf6Interface) ToRouterospf6Ospf6InterfaceOutput() Routerospf6Ospf6InterfaceOutput {
@@ -314,35 +315,6 @@ func (i *Routerospf6Ospf6Interface) ToRouterospf6Ospf6InterfaceOutput() Routeros
 
 func (i *Routerospf6Ospf6Interface) ToRouterospf6Ospf6InterfaceOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfaceOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(Routerospf6Ospf6InterfaceOutput)
-}
-
-func (i *Routerospf6Ospf6Interface) ToRouterospf6Ospf6InterfacePtrOutput() Routerospf6Ospf6InterfacePtrOutput {
-	return i.ToRouterospf6Ospf6InterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *Routerospf6Ospf6Interface) ToRouterospf6Ospf6InterfacePtrOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Routerospf6Ospf6InterfacePtrOutput)
-}
-
-type Routerospf6Ospf6InterfacePtrInput interface {
-	pulumi.Input
-
-	ToRouterospf6Ospf6InterfacePtrOutput() Routerospf6Ospf6InterfacePtrOutput
-	ToRouterospf6Ospf6InterfacePtrOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfacePtrOutput
-}
-
-type routerospf6Ospf6InterfacePtrType Routerospf6Ospf6InterfaceArgs
-
-func (*routerospf6Ospf6InterfacePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**Routerospf6Ospf6Interface)(nil))
-}
-
-func (i *routerospf6Ospf6InterfacePtrType) ToRouterospf6Ospf6InterfacePtrOutput() Routerospf6Ospf6InterfacePtrOutput {
-	return i.ToRouterospf6Ospf6InterfacePtrOutputWithContext(context.Background())
-}
-
-func (i *routerospf6Ospf6InterfacePtrType) ToRouterospf6Ospf6InterfacePtrOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfacePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(Routerospf6Ospf6InterfacePtrOutput)
 }
 
 // Routerospf6Ospf6InterfaceArrayInput is an input type that accepts Routerospf6Ospf6InterfaceArray and Routerospf6Ospf6InterfaceArrayOutput values.
@@ -359,7 +331,7 @@ type Routerospf6Ospf6InterfaceArrayInput interface {
 type Routerospf6Ospf6InterfaceArray []Routerospf6Ospf6InterfaceInput
 
 func (Routerospf6Ospf6InterfaceArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*Routerospf6Ospf6Interface)(nil))
+	return reflect.TypeOf((*[]*Routerospf6Ospf6Interface)(nil)).Elem()
 }
 
 func (i Routerospf6Ospf6InterfaceArray) ToRouterospf6Ospf6InterfaceArrayOutput() Routerospf6Ospf6InterfaceArrayOutput {
@@ -384,7 +356,7 @@ type Routerospf6Ospf6InterfaceMapInput interface {
 type Routerospf6Ospf6InterfaceMap map[string]Routerospf6Ospf6InterfaceInput
 
 func (Routerospf6Ospf6InterfaceMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*Routerospf6Ospf6Interface)(nil))
+	return reflect.TypeOf((*map[string]*Routerospf6Ospf6Interface)(nil)).Elem()
 }
 
 func (i Routerospf6Ospf6InterfaceMap) ToRouterospf6Ospf6InterfaceMapOutput() Routerospf6Ospf6InterfaceMapOutput {
@@ -395,12 +367,10 @@ func (i Routerospf6Ospf6InterfaceMap) ToRouterospf6Ospf6InterfaceMapOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(Routerospf6Ospf6InterfaceMapOutput)
 }
 
-type Routerospf6Ospf6InterfaceOutput struct {
-	*pulumi.OutputState
-}
+type Routerospf6Ospf6InterfaceOutput struct{ *pulumi.OutputState }
 
 func (Routerospf6Ospf6InterfaceOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*Routerospf6Ospf6Interface)(nil))
+	return reflect.TypeOf((**Routerospf6Ospf6Interface)(nil)).Elem()
 }
 
 func (o Routerospf6Ospf6InterfaceOutput) ToRouterospf6Ospf6InterfaceOutput() Routerospf6Ospf6InterfaceOutput {
@@ -411,36 +381,10 @@ func (o Routerospf6Ospf6InterfaceOutput) ToRouterospf6Ospf6InterfaceOutputWithCo
 	return o
 }
 
-func (o Routerospf6Ospf6InterfaceOutput) ToRouterospf6Ospf6InterfacePtrOutput() Routerospf6Ospf6InterfacePtrOutput {
-	return o.ToRouterospf6Ospf6InterfacePtrOutputWithContext(context.Background())
-}
-
-func (o Routerospf6Ospf6InterfaceOutput) ToRouterospf6Ospf6InterfacePtrOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfacePtrOutput {
-	return o.ApplyT(func(v Routerospf6Ospf6Interface) *Routerospf6Ospf6Interface {
-		return &v
-	}).(Routerospf6Ospf6InterfacePtrOutput)
-}
-
-type Routerospf6Ospf6InterfacePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (Routerospf6Ospf6InterfacePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**Routerospf6Ospf6Interface)(nil))
-}
-
-func (o Routerospf6Ospf6InterfacePtrOutput) ToRouterospf6Ospf6InterfacePtrOutput() Routerospf6Ospf6InterfacePtrOutput {
-	return o
-}
-
-func (o Routerospf6Ospf6InterfacePtrOutput) ToRouterospf6Ospf6InterfacePtrOutputWithContext(ctx context.Context) Routerospf6Ospf6InterfacePtrOutput {
-	return o
-}
-
 type Routerospf6Ospf6InterfaceArrayOutput struct{ *pulumi.OutputState }
 
 func (Routerospf6Ospf6InterfaceArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]Routerospf6Ospf6Interface)(nil))
+	return reflect.TypeOf((*[]*Routerospf6Ospf6Interface)(nil)).Elem()
 }
 
 func (o Routerospf6Ospf6InterfaceArrayOutput) ToRouterospf6Ospf6InterfaceArrayOutput() Routerospf6Ospf6InterfaceArrayOutput {
@@ -452,15 +396,15 @@ func (o Routerospf6Ospf6InterfaceArrayOutput) ToRouterospf6Ospf6InterfaceArrayOu
 }
 
 func (o Routerospf6Ospf6InterfaceArrayOutput) Index(i pulumi.IntInput) Routerospf6Ospf6InterfaceOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) Routerospf6Ospf6Interface {
-		return vs[0].([]Routerospf6Ospf6Interface)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *Routerospf6Ospf6Interface {
+		return vs[0].([]*Routerospf6Ospf6Interface)[vs[1].(int)]
 	}).(Routerospf6Ospf6InterfaceOutput)
 }
 
 type Routerospf6Ospf6InterfaceMapOutput struct{ *pulumi.OutputState }
 
 func (Routerospf6Ospf6InterfaceMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]Routerospf6Ospf6Interface)(nil))
+	return reflect.TypeOf((*map[string]*Routerospf6Ospf6Interface)(nil)).Elem()
 }
 
 func (o Routerospf6Ospf6InterfaceMapOutput) ToRouterospf6Ospf6InterfaceMapOutput() Routerospf6Ospf6InterfaceMapOutput {
@@ -472,14 +416,16 @@ func (o Routerospf6Ospf6InterfaceMapOutput) ToRouterospf6Ospf6InterfaceMapOutput
 }
 
 func (o Routerospf6Ospf6InterfaceMapOutput) MapIndex(k pulumi.StringInput) Routerospf6Ospf6InterfaceOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) Routerospf6Ospf6Interface {
-		return vs[0].(map[string]Routerospf6Ospf6Interface)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *Routerospf6Ospf6Interface {
+		return vs[0].(map[string]*Routerospf6Ospf6Interface)[vs[1].(string)]
 	}).(Routerospf6Ospf6InterfaceOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*Routerospf6Ospf6InterfaceInput)(nil)).Elem(), &Routerospf6Ospf6Interface{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Routerospf6Ospf6InterfaceArrayInput)(nil)).Elem(), Routerospf6Ospf6InterfaceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*Routerospf6Ospf6InterfaceMapInput)(nil)).Elem(), Routerospf6Ospf6InterfaceMap{})
 	pulumi.RegisterOutputType(Routerospf6Ospf6InterfaceOutput{})
-	pulumi.RegisterOutputType(Routerospf6Ospf6InterfacePtrOutput{})
 	pulumi.RegisterOutputType(Routerospf6Ospf6InterfaceArrayOutput{})
 	pulumi.RegisterOutputType(Routerospf6Ospf6InterfaceMapOutput{})
 }

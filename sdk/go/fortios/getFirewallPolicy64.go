@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall policy64
 func LookupFirewallPolicy64(ctx *pulumi.Context, args *LookupFirewallPolicy64Args, opts ...pulumi.InvokeOption) (*LookupFirewallPolicy64Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallPolicy64Result
 	err := ctx.Invoke("fortios:index/getFirewallPolicy64:GetFirewallPolicy64", args, &rv, opts...)
 	if err != nil {
@@ -76,4 +80,168 @@ type LookupFirewallPolicy64Result struct {
 	// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 	Uuid      string  `pulumi:"uuid"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallPolicy64Output(ctx *pulumi.Context, args LookupFirewallPolicy64OutputArgs, opts ...pulumi.InvokeOption) LookupFirewallPolicy64ResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallPolicy64Result, error) {
+			args := v.(LookupFirewallPolicy64Args)
+			r, err := LookupFirewallPolicy64(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallPolicy64ResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallPolicy64.
+type LookupFirewallPolicy64OutputArgs struct {
+	// Specify the policyid of the desired firewall policy64.
+	Policyid pulumi.IntInput `pulumi:"policyid"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallPolicy64OutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallPolicy64Args)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallPolicy64.
+type LookupFirewallPolicy64ResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallPolicy64ResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallPolicy64Result)(nil)).Elem()
+}
+
+func (o LookupFirewallPolicy64ResultOutput) ToLookupFirewallPolicy64ResultOutput() LookupFirewallPolicy64ResultOutput {
+	return o
+}
+
+func (o LookupFirewallPolicy64ResultOutput) ToLookupFirewallPolicy64ResultOutputWithContext(ctx context.Context) LookupFirewallPolicy64ResultOutput {
+	return o
+}
+
+// Policy action.
+func (o LookupFirewallPolicy64ResultOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// Comment.
+func (o LookupFirewallPolicy64ResultOutput) Comments() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Comments }).(pulumi.StringOutput)
+}
+
+// Destination address name. The structure of `dstaddr` block is documented below.
+func (o LookupFirewallPolicy64ResultOutput) Dstaddrs() GetFirewallPolicy64DstaddrArrayOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) []GetFirewallPolicy64Dstaddr { return v.Dstaddrs }).(GetFirewallPolicy64DstaddrArrayOutput)
+}
+
+// Destination interface name.
+func (o LookupFirewallPolicy64ResultOutput) Dstintf() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Dstintf }).(pulumi.StringOutput)
+}
+
+// Enable/disable policy fixed port.
+func (o LookupFirewallPolicy64ResultOutput) Fixedport() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Fixedport }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallPolicy64ResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable/disable policy64 IP pool.
+func (o LookupFirewallPolicy64ResultOutput) Ippool() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Ippool }).(pulumi.StringOutput)
+}
+
+// Enable/disable policy log traffic.
+func (o LookupFirewallPolicy64ResultOutput) Logtraffic() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Logtraffic }).(pulumi.StringOutput)
+}
+
+// Record logs when a session starts and ends.
+func (o LookupFirewallPolicy64ResultOutput) LogtrafficStart() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.LogtrafficStart }).(pulumi.StringOutput)
+}
+
+// IP pool name.
+func (o LookupFirewallPolicy64ResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Per-IP traffic shaper.
+func (o LookupFirewallPolicy64ResultOutput) PerIpShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.PerIpShaper }).(pulumi.StringOutput)
+}
+
+// Enable/disable permit any host in.
+func (o LookupFirewallPolicy64ResultOutput) PermitAnyHost() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.PermitAnyHost }).(pulumi.StringOutput)
+}
+
+// Policy ID.
+func (o LookupFirewallPolicy64ResultOutput) Policyid() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) int { return v.Policyid }).(pulumi.IntOutput)
+}
+
+// Policy IP pool names. The structure of `poolname` block is documented below.
+func (o LookupFirewallPolicy64ResultOutput) Poolnames() GetFirewallPolicy64PoolnameArrayOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) []GetFirewallPolicy64Poolname { return v.Poolnames }).(GetFirewallPolicy64PoolnameArrayOutput)
+}
+
+// Schedule name.
+func (o LookupFirewallPolicy64ResultOutput) Schedule() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Schedule }).(pulumi.StringOutput)
+}
+
+// Service name. The structure of `service` block is documented below.
+func (o LookupFirewallPolicy64ResultOutput) Services() GetFirewallPolicy64ServiceArrayOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) []GetFirewallPolicy64Service { return v.Services }).(GetFirewallPolicy64ServiceArrayOutput)
+}
+
+// Source address name. The structure of `srcaddr` block is documented below.
+func (o LookupFirewallPolicy64ResultOutput) Srcaddrs() GetFirewallPolicy64SrcaddrArrayOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) []GetFirewallPolicy64Srcaddr { return v.Srcaddrs }).(GetFirewallPolicy64SrcaddrArrayOutput)
+}
+
+// Source interface name.
+func (o LookupFirewallPolicy64ResultOutput) Srcintf() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Srcintf }).(pulumi.StringOutput)
+}
+
+// Enable/disable policy status.
+func (o LookupFirewallPolicy64ResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// TCP MSS value of receiver.
+func (o LookupFirewallPolicy64ResultOutput) TcpMssReceiver() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) int { return v.TcpMssReceiver }).(pulumi.IntOutput)
+}
+
+// TCP MSS value of sender.
+func (o LookupFirewallPolicy64ResultOutput) TcpMssSender() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) int { return v.TcpMssSender }).(pulumi.IntOutput)
+}
+
+// Traffic shaper.
+func (o LookupFirewallPolicy64ResultOutput) TrafficShaper() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.TrafficShaper }).(pulumi.StringOutput)
+}
+
+// Reverse traffic shaper.
+func (o LookupFirewallPolicy64ResultOutput) TrafficShaperReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.TrafficShaperReverse }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallPolicy64ResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallPolicy64ResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallPolicy64Result) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallPolicy64ResultOutput{})
 }

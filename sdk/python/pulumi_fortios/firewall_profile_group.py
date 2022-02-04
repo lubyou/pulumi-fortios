@@ -24,10 +24,12 @@ class FirewallProfileGroupArgs:
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  ssh_filter_profile: Optional[pulumi.Input[str]] = None,
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
@@ -44,10 +46,12 @@ class FirewallProfileGroupArgs:
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
@@ -74,6 +78,8 @@ class FirewallProfileGroupArgs:
             pulumi.set(__self__, "name", name)
         if profile_protocol_options is not None:
             pulumi.set(__self__, "profile_protocol_options", profile_protocol_options)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if spamfilter_profile is not None:
             pulumi.set(__self__, "spamfilter_profile", spamfilter_profile)
         if ssh_filter_profile is not None:
@@ -82,6 +88,8 @@ class FirewallProfileGroupArgs:
             pulumi.set(__self__, "ssl_ssh_profile", ssl_ssh_profile)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -222,6 +230,18 @@ class FirewallProfileGroupArgs:
         pulumi.set(self, "profile_protocol_options", value)
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
+
+    @property
     @pulumi.getter(name="spamfilterProfile")
     def spamfilter_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -268,6 +288,18 @@ class FirewallProfileGroupArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -320,10 +352,12 @@ class _FirewallProfileGroupState:
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  ssh_filter_profile: Optional[pulumi.Input[str]] = None,
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None):
@@ -340,10 +374,12 @@ class _FirewallProfileGroupState:
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
@@ -370,6 +406,8 @@ class _FirewallProfileGroupState:
             pulumi.set(__self__, "name", name)
         if profile_protocol_options is not None:
             pulumi.set(__self__, "profile_protocol_options", profile_protocol_options)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if spamfilter_profile is not None:
             pulumi.set(__self__, "spamfilter_profile", spamfilter_profile)
         if ssh_filter_profile is not None:
@@ -378,6 +416,8 @@ class _FirewallProfileGroupState:
             pulumi.set(__self__, "ssl_ssh_profile", ssl_ssh_profile)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if voip_profile is not None:
             pulumi.set(__self__, "voip_profile", voip_profile)
         if waf_profile is not None:
@@ -518,6 +558,18 @@ class _FirewallProfileGroupState:
         pulumi.set(self, "profile_protocol_options", value)
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
+
+    @property
     @pulumi.getter(name="spamfilterProfile")
     def spamfilter_profile(self) -> Optional[pulumi.Input[str]]:
         """
@@ -564,6 +616,18 @@ class _FirewallProfileGroupState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
 
     @property
     @pulumi.getter(name="voipProfile")
@@ -618,10 +682,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  ssh_filter_profile: Optional[pulumi.Input[str]] = None,
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -663,10 +729,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
@@ -727,10 +795,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
                  ips_sensor: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  profile_protocol_options: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  ssh_filter_profile: Optional[pulumi.Input[str]] = None,
                  ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  voip_profile: Optional[pulumi.Input[str]] = None,
                  waf_profile: Optional[pulumi.Input[str]] = None,
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
@@ -741,6 +811,8 @@ class FirewallProfileGroup(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -757,10 +829,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
             __props__.__dict__["ips_sensor"] = ips_sensor
             __props__.__dict__["name"] = name
             __props__.__dict__["profile_protocol_options"] = profile_protocol_options
+            __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
             __props__.__dict__["spamfilter_profile"] = spamfilter_profile
             __props__.__dict__["ssh_filter_profile"] = ssh_filter_profile
             __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["videofilter_profile"] = videofilter_profile
             __props__.__dict__["voip_profile"] = voip_profile
             __props__.__dict__["waf_profile"] = waf_profile
             __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -785,10 +859,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
             ips_sensor: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             profile_protocol_options: Optional[pulumi.Input[str]] = None,
+            sctp_filter_profile: Optional[pulumi.Input[str]] = None,
             spamfilter_profile: Optional[pulumi.Input[str]] = None,
             ssh_filter_profile: Optional[pulumi.Input[str]] = None,
             ssl_ssh_profile: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            videofilter_profile: Optional[pulumi.Input[str]] = None,
             voip_profile: Optional[pulumi.Input[str]] = None,
             waf_profile: Optional[pulumi.Input[str]] = None,
             webfilter_profile: Optional[pulumi.Input[str]] = None) -> 'FirewallProfileGroup':
@@ -810,10 +886,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
         :param pulumi.Input[str] ips_sensor: Name of an existing IPS sensor.
         :param pulumi.Input[str] name: Profile group name.
         :param pulumi.Input[str] profile_protocol_options: Name of an existing Protocol options profile.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[str] ssh_filter_profile: Name of an existing SSH filter profile.
         :param pulumi.Input[str] ssl_ssh_profile: Name of an existing SSL SSH profile.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[str] voip_profile: Name of an existing VoIP profile.
         :param pulumi.Input[str] waf_profile: Name of an existing Web application firewall profile.
         :param pulumi.Input[str] webfilter_profile: Name of an existing Web filter profile.
@@ -833,10 +911,12 @@ class FirewallProfileGroup(pulumi.CustomResource):
         __props__.__dict__["ips_sensor"] = ips_sensor
         __props__.__dict__["name"] = name
         __props__.__dict__["profile_protocol_options"] = profile_protocol_options
+        __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
         __props__.__dict__["spamfilter_profile"] = spamfilter_profile
         __props__.__dict__["ssh_filter_profile"] = ssh_filter_profile
         __props__.__dict__["ssl_ssh_profile"] = ssl_ssh_profile
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["videofilter_profile"] = videofilter_profile
         __props__.__dict__["voip_profile"] = voip_profile
         __props__.__dict__["waf_profile"] = waf_profile
         __props__.__dict__["webfilter_profile"] = webfilter_profile
@@ -931,6 +1011,14 @@ class FirewallProfileGroup(pulumi.CustomResource):
         return pulumi.get(self, "profile_protocol_options")
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @property
     @pulumi.getter(name="spamfilterProfile")
     def spamfilter_profile(self) -> pulumi.Output[str]:
         """
@@ -961,6 +1049,14 @@ class FirewallProfileGroup(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
 
     @property
     @pulumi.getter(name="voipProfile")

@@ -2,6 +2,7 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -104,6 +105,10 @@ export class RouterStatic extends pulumi.CustomResource {
      */
     public readonly dynamicGateway!: pulumi.Output<string>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    public readonly dynamicSortSubtable!: pulumi.Output<string | undefined>;
+    /**
      * Gateway IP for this route.
      */
     public readonly gateway!: pulumi.Output<string>;
@@ -127,6 +132,10 @@ export class RouterStatic extends pulumi.CustomResource {
      * Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
      */
     public readonly sdwan!: pulumi.Output<string>;
+    /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    public readonly sdwanZones!: pulumi.Output<outputs.RouterStaticSdwanZone[] | undefined>;
     /**
      * Sequence number.
      */
@@ -165,59 +174,61 @@ export class RouterStatic extends pulumi.CustomResource {
      */
     constructor(name: string, args?: RouterStaticArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: RouterStaticArgs | RouterStaticState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as RouterStaticState | undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["blackhole"] = state ? state.blackhole : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["device"] = state ? state.device : undefined;
-            inputs["distance"] = state ? state.distance : undefined;
-            inputs["dst"] = state ? state.dst : undefined;
-            inputs["dstaddr"] = state ? state.dstaddr : undefined;
-            inputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
-            inputs["gateway"] = state ? state.gateway : undefined;
-            inputs["internetService"] = state ? state.internetService : undefined;
-            inputs["internetServiceCustom"] = state ? state.internetServiceCustom : undefined;
-            inputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["sdwan"] = state ? state.sdwan : undefined;
-            inputs["seqNum"] = state ? state.seqNum : undefined;
-            inputs["src"] = state ? state.src : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["virtualWanLink"] = state ? state.virtualWanLink : undefined;
-            inputs["vrf"] = state ? state.vrf : undefined;
-            inputs["weight"] = state ? state.weight : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["blackhole"] = state ? state.blackhole : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["device"] = state ? state.device : undefined;
+            resourceInputs["distance"] = state ? state.distance : undefined;
+            resourceInputs["dst"] = state ? state.dst : undefined;
+            resourceInputs["dstaddr"] = state ? state.dstaddr : undefined;
+            resourceInputs["dynamicGateway"] = state ? state.dynamicGateway : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["gateway"] = state ? state.gateway : undefined;
+            resourceInputs["internetService"] = state ? state.internetService : undefined;
+            resourceInputs["internetServiceCustom"] = state ? state.internetServiceCustom : undefined;
+            resourceInputs["linkMonitorExempt"] = state ? state.linkMonitorExempt : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["sdwan"] = state ? state.sdwan : undefined;
+            resourceInputs["sdwanZones"] = state ? state.sdwanZones : undefined;
+            resourceInputs["seqNum"] = state ? state.seqNum : undefined;
+            resourceInputs["src"] = state ? state.src : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["virtualWanLink"] = state ? state.virtualWanLink : undefined;
+            resourceInputs["vrf"] = state ? state.vrf : undefined;
+            resourceInputs["weight"] = state ? state.weight : undefined;
         } else {
             const args = argsOrState as RouterStaticArgs | undefined;
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["blackhole"] = args ? args.blackhole : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["device"] = args ? args.device : undefined;
-            inputs["distance"] = args ? args.distance : undefined;
-            inputs["dst"] = args ? args.dst : undefined;
-            inputs["dstaddr"] = args ? args.dstaddr : undefined;
-            inputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
-            inputs["gateway"] = args ? args.gateway : undefined;
-            inputs["internetService"] = args ? args.internetService : undefined;
-            inputs["internetServiceCustom"] = args ? args.internetServiceCustom : undefined;
-            inputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["sdwan"] = args ? args.sdwan : undefined;
-            inputs["seqNum"] = args ? args.seqNum : undefined;
-            inputs["src"] = args ? args.src : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["virtualWanLink"] = args ? args.virtualWanLink : undefined;
-            inputs["vrf"] = args ? args.vrf : undefined;
-            inputs["weight"] = args ? args.weight : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["blackhole"] = args ? args.blackhole : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["device"] = args ? args.device : undefined;
+            resourceInputs["distance"] = args ? args.distance : undefined;
+            resourceInputs["dst"] = args ? args.dst : undefined;
+            resourceInputs["dstaddr"] = args ? args.dstaddr : undefined;
+            resourceInputs["dynamicGateway"] = args ? args.dynamicGateway : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["gateway"] = args ? args.gateway : undefined;
+            resourceInputs["internetService"] = args ? args.internetService : undefined;
+            resourceInputs["internetServiceCustom"] = args ? args.internetServiceCustom : undefined;
+            resourceInputs["linkMonitorExempt"] = args ? args.linkMonitorExempt : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["sdwan"] = args ? args.sdwan : undefined;
+            resourceInputs["sdwanZones"] = args ? args.sdwanZones : undefined;
+            resourceInputs["seqNum"] = args ? args.seqNum : undefined;
+            resourceInputs["src"] = args ? args.src : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["virtualWanLink"] = args ? args.virtualWanLink : undefined;
+            resourceInputs["vrf"] = args ? args.vrf : undefined;
+            resourceInputs["weight"] = args ? args.weight : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(RouterStatic.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(RouterStatic.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -258,6 +269,10 @@ export interface RouterStaticState {
      */
     dynamicGateway?: pulumi.Input<string>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * Gateway IP for this route.
      */
     gateway?: pulumi.Input<string>;
@@ -281,6 +296,10 @@ export interface RouterStaticState {
      * Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
      */
     sdwan?: pulumi.Input<string>;
+    /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    sdwanZones?: pulumi.Input<pulumi.Input<inputs.RouterStaticSdwanZone>[]>;
     /**
      * Sequence number.
      */
@@ -348,6 +367,10 @@ export interface RouterStaticArgs {
      */
     dynamicGateway?: pulumi.Input<string>;
     /**
+     * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+     */
+    dynamicSortSubtable?: pulumi.Input<string>;
+    /**
      * Gateway IP for this route.
      */
     gateway?: pulumi.Input<string>;
@@ -371,6 +394,10 @@ export interface RouterStaticArgs {
      * Enable/disable egress through SD-WAN. Valid values: `enable`, `disable`.
      */
     sdwan?: pulumi.Input<string>;
+    /**
+     * Choose SD-WAN Zone. The structure of `sdwanZone` block is documented below.
+     */
+    sdwanZones?: pulumi.Input<pulumi.Input<inputs.RouterStaticSdwanZone>[]>;
     /**
      * Sequence number.
      */

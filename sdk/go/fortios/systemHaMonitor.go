@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -66,6 +66,7 @@ func NewSystemHaMonitor(ctx *pulumi.Context,
 		args = &SystemHaMonitorArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemHaMonitor
 	err := ctx.RegisterResource("fortios:index/systemHaMonitor:SystemHaMonitor", name, args, &resource, opts...)
 	if err != nil {
@@ -148,7 +149,7 @@ type SystemHaMonitorInput interface {
 }
 
 func (*SystemHaMonitor) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemHaMonitor)(nil))
+	return reflect.TypeOf((**SystemHaMonitor)(nil)).Elem()
 }
 
 func (i *SystemHaMonitor) ToSystemHaMonitorOutput() SystemHaMonitorOutput {
@@ -157,35 +158,6 @@ func (i *SystemHaMonitor) ToSystemHaMonitorOutput() SystemHaMonitorOutput {
 
 func (i *SystemHaMonitor) ToSystemHaMonitorOutputWithContext(ctx context.Context) SystemHaMonitorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorOutput)
-}
-
-func (i *SystemHaMonitor) ToSystemHaMonitorPtrOutput() SystemHaMonitorPtrOutput {
-	return i.ToSystemHaMonitorPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemHaMonitor) ToSystemHaMonitorPtrOutputWithContext(ctx context.Context) SystemHaMonitorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorPtrOutput)
-}
-
-type SystemHaMonitorPtrInput interface {
-	pulumi.Input
-
-	ToSystemHaMonitorPtrOutput() SystemHaMonitorPtrOutput
-	ToSystemHaMonitorPtrOutputWithContext(ctx context.Context) SystemHaMonitorPtrOutput
-}
-
-type systemHaMonitorPtrType SystemHaMonitorArgs
-
-func (*systemHaMonitorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemHaMonitor)(nil))
-}
-
-func (i *systemHaMonitorPtrType) ToSystemHaMonitorPtrOutput() SystemHaMonitorPtrOutput {
-	return i.ToSystemHaMonitorPtrOutputWithContext(context.Background())
-}
-
-func (i *systemHaMonitorPtrType) ToSystemHaMonitorPtrOutputWithContext(ctx context.Context) SystemHaMonitorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorPtrOutput)
 }
 
 // SystemHaMonitorArrayInput is an input type that accepts SystemHaMonitorArray and SystemHaMonitorArrayOutput values.
@@ -202,7 +174,7 @@ type SystemHaMonitorArrayInput interface {
 type SystemHaMonitorArray []SystemHaMonitorInput
 
 func (SystemHaMonitorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemHaMonitor)(nil))
+	return reflect.TypeOf((*[]*SystemHaMonitor)(nil)).Elem()
 }
 
 func (i SystemHaMonitorArray) ToSystemHaMonitorArrayOutput() SystemHaMonitorArrayOutput {
@@ -227,7 +199,7 @@ type SystemHaMonitorMapInput interface {
 type SystemHaMonitorMap map[string]SystemHaMonitorInput
 
 func (SystemHaMonitorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemHaMonitor)(nil))
+	return reflect.TypeOf((*map[string]*SystemHaMonitor)(nil)).Elem()
 }
 
 func (i SystemHaMonitorMap) ToSystemHaMonitorMapOutput() SystemHaMonitorMapOutput {
@@ -238,12 +210,10 @@ func (i SystemHaMonitorMap) ToSystemHaMonitorMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemHaMonitorMapOutput)
 }
 
-type SystemHaMonitorOutput struct {
-	*pulumi.OutputState
-}
+type SystemHaMonitorOutput struct{ *pulumi.OutputState }
 
 func (SystemHaMonitorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemHaMonitor)(nil))
+	return reflect.TypeOf((**SystemHaMonitor)(nil)).Elem()
 }
 
 func (o SystemHaMonitorOutput) ToSystemHaMonitorOutput() SystemHaMonitorOutput {
@@ -254,36 +224,10 @@ func (o SystemHaMonitorOutput) ToSystemHaMonitorOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemHaMonitorOutput) ToSystemHaMonitorPtrOutput() SystemHaMonitorPtrOutput {
-	return o.ToSystemHaMonitorPtrOutputWithContext(context.Background())
-}
-
-func (o SystemHaMonitorOutput) ToSystemHaMonitorPtrOutputWithContext(ctx context.Context) SystemHaMonitorPtrOutput {
-	return o.ApplyT(func(v SystemHaMonitor) *SystemHaMonitor {
-		return &v
-	}).(SystemHaMonitorPtrOutput)
-}
-
-type SystemHaMonitorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemHaMonitorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemHaMonitor)(nil))
-}
-
-func (o SystemHaMonitorPtrOutput) ToSystemHaMonitorPtrOutput() SystemHaMonitorPtrOutput {
-	return o
-}
-
-func (o SystemHaMonitorPtrOutput) ToSystemHaMonitorPtrOutputWithContext(ctx context.Context) SystemHaMonitorPtrOutput {
-	return o
-}
-
 type SystemHaMonitorArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemHaMonitorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemHaMonitor)(nil))
+	return reflect.TypeOf((*[]*SystemHaMonitor)(nil)).Elem()
 }
 
 func (o SystemHaMonitorArrayOutput) ToSystemHaMonitorArrayOutput() SystemHaMonitorArrayOutput {
@@ -295,15 +239,15 @@ func (o SystemHaMonitorArrayOutput) ToSystemHaMonitorArrayOutputWithContext(ctx 
 }
 
 func (o SystemHaMonitorArrayOutput) Index(i pulumi.IntInput) SystemHaMonitorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemHaMonitor {
-		return vs[0].([]SystemHaMonitor)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemHaMonitor {
+		return vs[0].([]*SystemHaMonitor)[vs[1].(int)]
 	}).(SystemHaMonitorOutput)
 }
 
 type SystemHaMonitorMapOutput struct{ *pulumi.OutputState }
 
 func (SystemHaMonitorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemHaMonitor)(nil))
+	return reflect.TypeOf((*map[string]*SystemHaMonitor)(nil)).Elem()
 }
 
 func (o SystemHaMonitorMapOutput) ToSystemHaMonitorMapOutput() SystemHaMonitorMapOutput {
@@ -315,14 +259,16 @@ func (o SystemHaMonitorMapOutput) ToSystemHaMonitorMapOutputWithContext(ctx cont
 }
 
 func (o SystemHaMonitorMapOutput) MapIndex(k pulumi.StringInput) SystemHaMonitorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemHaMonitor {
-		return vs[0].(map[string]SystemHaMonitor)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemHaMonitor {
+		return vs[0].(map[string]*SystemHaMonitor)[vs[1].(string)]
 	}).(SystemHaMonitorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemHaMonitorInput)(nil)).Elem(), &SystemHaMonitor{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemHaMonitorArrayInput)(nil)).Elem(), SystemHaMonitorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemHaMonitorMapInput)(nil)).Elem(), SystemHaMonitorMap{})
 	pulumi.RegisterOutputType(SystemHaMonitorOutput{})
-	pulumi.RegisterOutputType(SystemHaMonitorPtrOutput{})
 	pulumi.RegisterOutputType(SystemHaMonitorArrayOutput{})
 	pulumi.RegisterOutputType(SystemHaMonitorMapOutput{})
 }

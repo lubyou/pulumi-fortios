@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -28,8 +29,8 @@ import (
 // 		_, err := fortios.NewSystemDnsDatabase(ctx, "trname", &fortios.SystemDnsDatabaseArgs{
 // 			Authoritative: pulumi.String("enable"),
 // 			Contact:       pulumi.String("hostmaster"),
-// 			DnsEntries: fortios.SystemDnsDatabaseDnsEntryArray{
-// 				&fortios.SystemDnsDatabaseDnsEntryArgs{
+// 			DnsEntries: SystemDnsDatabaseDnsEntryArray{
+// 				&SystemDnsDatabaseDnsEntryArgs{
 // 					Hostname: pulumi.String("sghsgh.com"),
 // 					Ttl:      pulumi.Int(3),
 // 					Type:     pulumi.String("MX"),
@@ -127,6 +128,7 @@ func NewSystemDnsDatabase(ctx *pulumi.Context,
 	if args.View == nil {
 		return nil, errors.New("invalid value for required argument 'View'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDnsDatabase
 	err := ctx.RegisterResource("fortios:index/systemDnsDatabase:SystemDnsDatabase", name, args, &resource, opts...)
 	if err != nil {
@@ -329,7 +331,7 @@ type SystemDnsDatabaseInput interface {
 }
 
 func (*SystemDnsDatabase) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDnsDatabase)(nil))
+	return reflect.TypeOf((**SystemDnsDatabase)(nil)).Elem()
 }
 
 func (i *SystemDnsDatabase) ToSystemDnsDatabaseOutput() SystemDnsDatabaseOutput {
@@ -338,35 +340,6 @@ func (i *SystemDnsDatabase) ToSystemDnsDatabaseOutput() SystemDnsDatabaseOutput 
 
 func (i *SystemDnsDatabase) ToSystemDnsDatabaseOutputWithContext(ctx context.Context) SystemDnsDatabaseOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabaseOutput)
-}
-
-func (i *SystemDnsDatabase) ToSystemDnsDatabasePtrOutput() SystemDnsDatabasePtrOutput {
-	return i.ToSystemDnsDatabasePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDnsDatabase) ToSystemDnsDatabasePtrOutputWithContext(ctx context.Context) SystemDnsDatabasePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabasePtrOutput)
-}
-
-type SystemDnsDatabasePtrInput interface {
-	pulumi.Input
-
-	ToSystemDnsDatabasePtrOutput() SystemDnsDatabasePtrOutput
-	ToSystemDnsDatabasePtrOutputWithContext(ctx context.Context) SystemDnsDatabasePtrOutput
-}
-
-type systemDnsDatabasePtrType SystemDnsDatabaseArgs
-
-func (*systemDnsDatabasePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDnsDatabase)(nil))
-}
-
-func (i *systemDnsDatabasePtrType) ToSystemDnsDatabasePtrOutput() SystemDnsDatabasePtrOutput {
-	return i.ToSystemDnsDatabasePtrOutputWithContext(context.Background())
-}
-
-func (i *systemDnsDatabasePtrType) ToSystemDnsDatabasePtrOutputWithContext(ctx context.Context) SystemDnsDatabasePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabasePtrOutput)
 }
 
 // SystemDnsDatabaseArrayInput is an input type that accepts SystemDnsDatabaseArray and SystemDnsDatabaseArrayOutput values.
@@ -383,7 +356,7 @@ type SystemDnsDatabaseArrayInput interface {
 type SystemDnsDatabaseArray []SystemDnsDatabaseInput
 
 func (SystemDnsDatabaseArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDnsDatabase)(nil))
+	return reflect.TypeOf((*[]*SystemDnsDatabase)(nil)).Elem()
 }
 
 func (i SystemDnsDatabaseArray) ToSystemDnsDatabaseArrayOutput() SystemDnsDatabaseArrayOutput {
@@ -408,7 +381,7 @@ type SystemDnsDatabaseMapInput interface {
 type SystemDnsDatabaseMap map[string]SystemDnsDatabaseInput
 
 func (SystemDnsDatabaseMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDnsDatabase)(nil))
+	return reflect.TypeOf((*map[string]*SystemDnsDatabase)(nil)).Elem()
 }
 
 func (i SystemDnsDatabaseMap) ToSystemDnsDatabaseMapOutput() SystemDnsDatabaseMapOutput {
@@ -419,12 +392,10 @@ func (i SystemDnsDatabaseMap) ToSystemDnsDatabaseMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsDatabaseMapOutput)
 }
 
-type SystemDnsDatabaseOutput struct {
-	*pulumi.OutputState
-}
+type SystemDnsDatabaseOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsDatabaseOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDnsDatabase)(nil))
+	return reflect.TypeOf((**SystemDnsDatabase)(nil)).Elem()
 }
 
 func (o SystemDnsDatabaseOutput) ToSystemDnsDatabaseOutput() SystemDnsDatabaseOutput {
@@ -435,36 +406,10 @@ func (o SystemDnsDatabaseOutput) ToSystemDnsDatabaseOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemDnsDatabaseOutput) ToSystemDnsDatabasePtrOutput() SystemDnsDatabasePtrOutput {
-	return o.ToSystemDnsDatabasePtrOutputWithContext(context.Background())
-}
-
-func (o SystemDnsDatabaseOutput) ToSystemDnsDatabasePtrOutputWithContext(ctx context.Context) SystemDnsDatabasePtrOutput {
-	return o.ApplyT(func(v SystemDnsDatabase) *SystemDnsDatabase {
-		return &v
-	}).(SystemDnsDatabasePtrOutput)
-}
-
-type SystemDnsDatabasePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDnsDatabasePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDnsDatabase)(nil))
-}
-
-func (o SystemDnsDatabasePtrOutput) ToSystemDnsDatabasePtrOutput() SystemDnsDatabasePtrOutput {
-	return o
-}
-
-func (o SystemDnsDatabasePtrOutput) ToSystemDnsDatabasePtrOutputWithContext(ctx context.Context) SystemDnsDatabasePtrOutput {
-	return o
-}
-
 type SystemDnsDatabaseArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsDatabaseArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDnsDatabase)(nil))
+	return reflect.TypeOf((*[]*SystemDnsDatabase)(nil)).Elem()
 }
 
 func (o SystemDnsDatabaseArrayOutput) ToSystemDnsDatabaseArrayOutput() SystemDnsDatabaseArrayOutput {
@@ -476,15 +421,15 @@ func (o SystemDnsDatabaseArrayOutput) ToSystemDnsDatabaseArrayOutputWithContext(
 }
 
 func (o SystemDnsDatabaseArrayOutput) Index(i pulumi.IntInput) SystemDnsDatabaseOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDnsDatabase {
-		return vs[0].([]SystemDnsDatabase)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDnsDatabase {
+		return vs[0].([]*SystemDnsDatabase)[vs[1].(int)]
 	}).(SystemDnsDatabaseOutput)
 }
 
 type SystemDnsDatabaseMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsDatabaseMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDnsDatabase)(nil))
+	return reflect.TypeOf((*map[string]*SystemDnsDatabase)(nil)).Elem()
 }
 
 func (o SystemDnsDatabaseMapOutput) ToSystemDnsDatabaseMapOutput() SystemDnsDatabaseMapOutput {
@@ -496,14 +441,16 @@ func (o SystemDnsDatabaseMapOutput) ToSystemDnsDatabaseMapOutputWithContext(ctx 
 }
 
 func (o SystemDnsDatabaseMapOutput) MapIndex(k pulumi.StringInput) SystemDnsDatabaseOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDnsDatabase {
-		return vs[0].(map[string]SystemDnsDatabase)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDnsDatabase {
+		return vs[0].(map[string]*SystemDnsDatabase)[vs[1].(string)]
 	}).(SystemDnsDatabaseOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsDatabaseInput)(nil)).Elem(), &SystemDnsDatabase{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsDatabaseArrayInput)(nil)).Elem(), SystemDnsDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsDatabaseMapInput)(nil)).Elem(), SystemDnsDatabaseMap{})
 	pulumi.RegisterOutputType(SystemDnsDatabaseOutput{})
-	pulumi.RegisterOutputType(SystemDnsDatabasePtrOutput{})
 	pulumi.RegisterOutputType(SystemDnsDatabaseArrayOutput{})
 	pulumi.RegisterOutputType(SystemDnsDatabaseMapOutput{})
 }

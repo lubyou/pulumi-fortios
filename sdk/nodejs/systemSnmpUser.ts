@@ -154,55 +154,53 @@ export class SystemSnmpUser extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSnmpUserArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSnmpUserArgs | SystemSnmpUserState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSnmpUserState | undefined;
-            inputs["authProto"] = state ? state.authProto : undefined;
-            inputs["authPwd"] = state ? state.authPwd : undefined;
-            inputs["events"] = state ? state.events : undefined;
-            inputs["haDirect"] = state ? state.haDirect : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["notifyHosts"] = state ? state.notifyHosts : undefined;
-            inputs["notifyHosts6"] = state ? state.notifyHosts6 : undefined;
-            inputs["privProto"] = state ? state.privProto : undefined;
-            inputs["privPwd"] = state ? state.privPwd : undefined;
-            inputs["queries"] = state ? state.queries : undefined;
-            inputs["queryPort"] = state ? state.queryPort : undefined;
-            inputs["securityLevel"] = state ? state.securityLevel : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sourceIpv6"] = state ? state.sourceIpv6 : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["trapLport"] = state ? state.trapLport : undefined;
-            inputs["trapRport"] = state ? state.trapRport : undefined;
-            inputs["trapStatus"] = state ? state.trapStatus : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authProto"] = state ? state.authProto : undefined;
+            resourceInputs["authPwd"] = state ? state.authPwd : undefined;
+            resourceInputs["events"] = state ? state.events : undefined;
+            resourceInputs["haDirect"] = state ? state.haDirect : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["notifyHosts"] = state ? state.notifyHosts : undefined;
+            resourceInputs["notifyHosts6"] = state ? state.notifyHosts6 : undefined;
+            resourceInputs["privProto"] = state ? state.privProto : undefined;
+            resourceInputs["privPwd"] = state ? state.privPwd : undefined;
+            resourceInputs["queries"] = state ? state.queries : undefined;
+            resourceInputs["queryPort"] = state ? state.queryPort : undefined;
+            resourceInputs["securityLevel"] = state ? state.securityLevel : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIpv6"] = state ? state.sourceIpv6 : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["trapLport"] = state ? state.trapLport : undefined;
+            resourceInputs["trapRport"] = state ? state.trapRport : undefined;
+            resourceInputs["trapStatus"] = state ? state.trapStatus : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemSnmpUserArgs | undefined;
-            inputs["authProto"] = args ? args.authProto : undefined;
-            inputs["authPwd"] = args ? args.authPwd : undefined;
-            inputs["events"] = args ? args.events : undefined;
-            inputs["haDirect"] = args ? args.haDirect : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["notifyHosts"] = args ? args.notifyHosts : undefined;
-            inputs["notifyHosts6"] = args ? args.notifyHosts6 : undefined;
-            inputs["privProto"] = args ? args.privProto : undefined;
-            inputs["privPwd"] = args ? args.privPwd : undefined;
-            inputs["queries"] = args ? args.queries : undefined;
-            inputs["queryPort"] = args ? args.queryPort : undefined;
-            inputs["securityLevel"] = args ? args.securityLevel : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sourceIpv6"] = args ? args.sourceIpv6 : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["trapLport"] = args ? args.trapLport : undefined;
-            inputs["trapRport"] = args ? args.trapRport : undefined;
-            inputs["trapStatus"] = args ? args.trapStatus : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authProto"] = args ? args.authProto : undefined;
+            resourceInputs["authPwd"] = args ? args.authPwd : undefined;
+            resourceInputs["events"] = args ? args.events : undefined;
+            resourceInputs["haDirect"] = args ? args.haDirect : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["notifyHosts"] = args ? args.notifyHosts : undefined;
+            resourceInputs["notifyHosts6"] = args ? args.notifyHosts6 : undefined;
+            resourceInputs["privProto"] = args ? args.privProto : undefined;
+            resourceInputs["privPwd"] = args ? args.privPwd : undefined;
+            resourceInputs["queries"] = args ? args.queries : undefined;
+            resourceInputs["queryPort"] = args ? args.queryPort : undefined;
+            resourceInputs["securityLevel"] = args ? args.securityLevel : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIpv6"] = args ? args.sourceIpv6 : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["trapLport"] = args ? args.trapLport : undefined;
+            resourceInputs["trapRport"] = args ? args.trapRport : undefined;
+            resourceInputs["trapStatus"] = args ? args.trapStatus : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSnmpUser.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSnmpUser.__pulumiType, name, resourceInputs, opts);
     }
 }
 

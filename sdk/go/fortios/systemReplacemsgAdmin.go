@@ -47,6 +47,7 @@ func NewSystemReplacemsgAdmin(ctx *pulumi.Context,
 	if args.MsgType == nil {
 		return nil, errors.New("invalid value for required argument 'MsgType'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemReplacemsgAdmin
 	err := ctx.RegisterResource("fortios:index/systemReplacemsgAdmin:SystemReplacemsgAdmin", name, args, &resource, opts...)
 	if err != nil {
@@ -137,7 +138,7 @@ type SystemReplacemsgAdminInput interface {
 }
 
 func (*SystemReplacemsgAdmin) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAdmin)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAdmin)(nil)).Elem()
 }
 
 func (i *SystemReplacemsgAdmin) ToSystemReplacemsgAdminOutput() SystemReplacemsgAdminOutput {
@@ -146,35 +147,6 @@ func (i *SystemReplacemsgAdmin) ToSystemReplacemsgAdminOutput() SystemReplacemsg
 
 func (i *SystemReplacemsgAdmin) ToSystemReplacemsgAdminOutputWithContext(ctx context.Context) SystemReplacemsgAdminOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminOutput)
-}
-
-func (i *SystemReplacemsgAdmin) ToSystemReplacemsgAdminPtrOutput() SystemReplacemsgAdminPtrOutput {
-	return i.ToSystemReplacemsgAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemReplacemsgAdmin) ToSystemReplacemsgAdminPtrOutputWithContext(ctx context.Context) SystemReplacemsgAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminPtrOutput)
-}
-
-type SystemReplacemsgAdminPtrInput interface {
-	pulumi.Input
-
-	ToSystemReplacemsgAdminPtrOutput() SystemReplacemsgAdminPtrOutput
-	ToSystemReplacemsgAdminPtrOutputWithContext(ctx context.Context) SystemReplacemsgAdminPtrOutput
-}
-
-type systemReplacemsgAdminPtrType SystemReplacemsgAdminArgs
-
-func (*systemReplacemsgAdminPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAdmin)(nil))
-}
-
-func (i *systemReplacemsgAdminPtrType) ToSystemReplacemsgAdminPtrOutput() SystemReplacemsgAdminPtrOutput {
-	return i.ToSystemReplacemsgAdminPtrOutputWithContext(context.Background())
-}
-
-func (i *systemReplacemsgAdminPtrType) ToSystemReplacemsgAdminPtrOutputWithContext(ctx context.Context) SystemReplacemsgAdminPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminPtrOutput)
 }
 
 // SystemReplacemsgAdminArrayInput is an input type that accepts SystemReplacemsgAdminArray and SystemReplacemsgAdminArrayOutput values.
@@ -191,7 +163,7 @@ type SystemReplacemsgAdminArrayInput interface {
 type SystemReplacemsgAdminArray []SystemReplacemsgAdminInput
 
 func (SystemReplacemsgAdminArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemReplacemsgAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAdmin)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAdminArray) ToSystemReplacemsgAdminArrayOutput() SystemReplacemsgAdminArrayOutput {
@@ -216,7 +188,7 @@ type SystemReplacemsgAdminMapInput interface {
 type SystemReplacemsgAdminMap map[string]SystemReplacemsgAdminInput
 
 func (SystemReplacemsgAdminMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemReplacemsgAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAdmin)(nil)).Elem()
 }
 
 func (i SystemReplacemsgAdminMap) ToSystemReplacemsgAdminMapOutput() SystemReplacemsgAdminMapOutput {
@@ -227,12 +199,10 @@ func (i SystemReplacemsgAdminMap) ToSystemReplacemsgAdminMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemReplacemsgAdminMapOutput)
 }
 
-type SystemReplacemsgAdminOutput struct {
-	*pulumi.OutputState
-}
+type SystemReplacemsgAdminOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAdminOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemReplacemsgAdmin)(nil))
+	return reflect.TypeOf((**SystemReplacemsgAdmin)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAdminOutput) ToSystemReplacemsgAdminOutput() SystemReplacemsgAdminOutput {
@@ -243,36 +213,10 @@ func (o SystemReplacemsgAdminOutput) ToSystemReplacemsgAdminOutputWithContext(ct
 	return o
 }
 
-func (o SystemReplacemsgAdminOutput) ToSystemReplacemsgAdminPtrOutput() SystemReplacemsgAdminPtrOutput {
-	return o.ToSystemReplacemsgAdminPtrOutputWithContext(context.Background())
-}
-
-func (o SystemReplacemsgAdminOutput) ToSystemReplacemsgAdminPtrOutputWithContext(ctx context.Context) SystemReplacemsgAdminPtrOutput {
-	return o.ApplyT(func(v SystemReplacemsgAdmin) *SystemReplacemsgAdmin {
-		return &v
-	}).(SystemReplacemsgAdminPtrOutput)
-}
-
-type SystemReplacemsgAdminPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemReplacemsgAdminPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemReplacemsgAdmin)(nil))
-}
-
-func (o SystemReplacemsgAdminPtrOutput) ToSystemReplacemsgAdminPtrOutput() SystemReplacemsgAdminPtrOutput {
-	return o
-}
-
-func (o SystemReplacemsgAdminPtrOutput) ToSystemReplacemsgAdminPtrOutputWithContext(ctx context.Context) SystemReplacemsgAdminPtrOutput {
-	return o
-}
-
 type SystemReplacemsgAdminArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAdminArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemReplacemsgAdmin)(nil))
+	return reflect.TypeOf((*[]*SystemReplacemsgAdmin)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAdminArrayOutput) ToSystemReplacemsgAdminArrayOutput() SystemReplacemsgAdminArrayOutput {
@@ -284,15 +228,15 @@ func (o SystemReplacemsgAdminArrayOutput) ToSystemReplacemsgAdminArrayOutputWith
 }
 
 func (o SystemReplacemsgAdminArrayOutput) Index(i pulumi.IntInput) SystemReplacemsgAdminOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemReplacemsgAdmin {
-		return vs[0].([]SystemReplacemsgAdmin)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemReplacemsgAdmin {
+		return vs[0].([]*SystemReplacemsgAdmin)[vs[1].(int)]
 	}).(SystemReplacemsgAdminOutput)
 }
 
 type SystemReplacemsgAdminMapOutput struct{ *pulumi.OutputState }
 
 func (SystemReplacemsgAdminMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemReplacemsgAdmin)(nil))
+	return reflect.TypeOf((*map[string]*SystemReplacemsgAdmin)(nil)).Elem()
 }
 
 func (o SystemReplacemsgAdminMapOutput) ToSystemReplacemsgAdminMapOutput() SystemReplacemsgAdminMapOutput {
@@ -304,14 +248,16 @@ func (o SystemReplacemsgAdminMapOutput) ToSystemReplacemsgAdminMapOutputWithCont
 }
 
 func (o SystemReplacemsgAdminMapOutput) MapIndex(k pulumi.StringInput) SystemReplacemsgAdminOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemReplacemsgAdmin {
-		return vs[0].(map[string]SystemReplacemsgAdmin)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemReplacemsgAdmin {
+		return vs[0].(map[string]*SystemReplacemsgAdmin)[vs[1].(string)]
 	}).(SystemReplacemsgAdminOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAdminInput)(nil)).Elem(), &SystemReplacemsgAdmin{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAdminArrayInput)(nil)).Elem(), SystemReplacemsgAdminArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemReplacemsgAdminMapInput)(nil)).Elem(), SystemReplacemsgAdminMap{})
 	pulumi.RegisterOutputType(SystemReplacemsgAdminOutput{})
-	pulumi.RegisterOutputType(SystemReplacemsgAdminPtrOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAdminArrayOutput{})
 	pulumi.RegisterOutputType(SystemReplacemsgAdminMapOutput{})
 }

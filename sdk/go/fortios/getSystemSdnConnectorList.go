@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Provides a list of `SystemSdnConnector`.
 func GetSystemSdnConnectorList(ctx *pulumi.Context, args *GetSystemSdnConnectorListArgs, opts ...pulumi.InvokeOption) (*GetSystemSdnConnectorListResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSystemSdnConnectorListResult
 	err := ctx.Invoke("fortios:index/getSystemSdnConnectorList:GetSystemSdnConnectorList", args, &rv, opts...)
 	if err != nil {
@@ -32,4 +36,61 @@ type GetSystemSdnConnectorListResult struct {
 	// A list of the `SystemSdnConnector`.
 	Namelists []string `pulumi:"namelists"`
 	Vdomparam *string  `pulumi:"vdomparam"`
+}
+
+func GetSystemSdnConnectorListOutput(ctx *pulumi.Context, args GetSystemSdnConnectorListOutputArgs, opts ...pulumi.InvokeOption) GetSystemSdnConnectorListResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (GetSystemSdnConnectorListResult, error) {
+			args := v.(GetSystemSdnConnectorListArgs)
+			r, err := GetSystemSdnConnectorList(ctx, &args, opts...)
+			return *r, err
+		}).(GetSystemSdnConnectorListResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemSdnConnectorList.
+type GetSystemSdnConnectorListOutputArgs struct {
+	Filter pulumi.StringPtrInput `pulumi:"filter"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (GetSystemSdnConnectorListOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSdnConnectorListArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemSdnConnectorList.
+type GetSystemSdnConnectorListResultOutput struct{ *pulumi.OutputState }
+
+func (GetSystemSdnConnectorListResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSystemSdnConnectorListResult)(nil)).Elem()
+}
+
+func (o GetSystemSdnConnectorListResultOutput) ToGetSystemSdnConnectorListResultOutput() GetSystemSdnConnectorListResultOutput {
+	return o
+}
+
+func (o GetSystemSdnConnectorListResultOutput) ToGetSystemSdnConnectorListResultOutputWithContext(ctx context.Context) GetSystemSdnConnectorListResultOutput {
+	return o
+}
+
+func (o GetSystemSdnConnectorListResultOutput) Filter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSdnConnectorListResult) *string { return v.Filter }).(pulumi.StringPtrOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o GetSystemSdnConnectorListResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetSystemSdnConnectorListResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// A list of the `SystemSdnConnector`.
+func (o GetSystemSdnConnectorListResultOutput) Namelists() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetSystemSdnConnectorListResult) []string { return v.Namelists }).(pulumi.StringArrayOutput)
+}
+
+func (o GetSystemSdnConnectorListResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetSystemSdnConnectorListResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(GetSystemSdnConnectorListResultOutput{})
 }

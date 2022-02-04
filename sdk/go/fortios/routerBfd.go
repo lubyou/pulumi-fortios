@@ -39,6 +39,7 @@ func NewRouterBfd(ctx *pulumi.Context,
 		args = &RouterBfdArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterBfd
 	err := ctx.RegisterResource("fortios:index/routerBfd:RouterBfd", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type RouterBfdInput interface {
 }
 
 func (*RouterBfd) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterBfd)(nil))
+	return reflect.TypeOf((**RouterBfd)(nil)).Elem()
 }
 
 func (i *RouterBfd) ToRouterBfdOutput() RouterBfdOutput {
@@ -122,35 +123,6 @@ func (i *RouterBfd) ToRouterBfdOutput() RouterBfdOutput {
 
 func (i *RouterBfd) ToRouterBfdOutputWithContext(ctx context.Context) RouterBfdOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdOutput)
-}
-
-func (i *RouterBfd) ToRouterBfdPtrOutput() RouterBfdPtrOutput {
-	return i.ToRouterBfdPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterBfd) ToRouterBfdPtrOutputWithContext(ctx context.Context) RouterBfdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdPtrOutput)
-}
-
-type RouterBfdPtrInput interface {
-	pulumi.Input
-
-	ToRouterBfdPtrOutput() RouterBfdPtrOutput
-	ToRouterBfdPtrOutputWithContext(ctx context.Context) RouterBfdPtrOutput
-}
-
-type routerBfdPtrType RouterBfdArgs
-
-func (*routerBfdPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterBfd)(nil))
-}
-
-func (i *routerBfdPtrType) ToRouterBfdPtrOutput() RouterBfdPtrOutput {
-	return i.ToRouterBfdPtrOutputWithContext(context.Background())
-}
-
-func (i *routerBfdPtrType) ToRouterBfdPtrOutputWithContext(ctx context.Context) RouterBfdPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdPtrOutput)
 }
 
 // RouterBfdArrayInput is an input type that accepts RouterBfdArray and RouterBfdArrayOutput values.
@@ -167,7 +139,7 @@ type RouterBfdArrayInput interface {
 type RouterBfdArray []RouterBfdInput
 
 func (RouterBfdArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterBfd)(nil))
+	return reflect.TypeOf((*[]*RouterBfd)(nil)).Elem()
 }
 
 func (i RouterBfdArray) ToRouterBfdArrayOutput() RouterBfdArrayOutput {
@@ -192,7 +164,7 @@ type RouterBfdMapInput interface {
 type RouterBfdMap map[string]RouterBfdInput
 
 func (RouterBfdMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterBfd)(nil))
+	return reflect.TypeOf((*map[string]*RouterBfd)(nil)).Elem()
 }
 
 func (i RouterBfdMap) ToRouterBfdMapOutput() RouterBfdMapOutput {
@@ -203,12 +175,10 @@ func (i RouterBfdMap) ToRouterBfdMapOutputWithContext(ctx context.Context) Route
 	return pulumi.ToOutputWithContext(ctx, i).(RouterBfdMapOutput)
 }
 
-type RouterBfdOutput struct {
-	*pulumi.OutputState
-}
+type RouterBfdOutput struct{ *pulumi.OutputState }
 
 func (RouterBfdOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterBfd)(nil))
+	return reflect.TypeOf((**RouterBfd)(nil)).Elem()
 }
 
 func (o RouterBfdOutput) ToRouterBfdOutput() RouterBfdOutput {
@@ -219,36 +189,10 @@ func (o RouterBfdOutput) ToRouterBfdOutputWithContext(ctx context.Context) Route
 	return o
 }
 
-func (o RouterBfdOutput) ToRouterBfdPtrOutput() RouterBfdPtrOutput {
-	return o.ToRouterBfdPtrOutputWithContext(context.Background())
-}
-
-func (o RouterBfdOutput) ToRouterBfdPtrOutputWithContext(ctx context.Context) RouterBfdPtrOutput {
-	return o.ApplyT(func(v RouterBfd) *RouterBfd {
-		return &v
-	}).(RouterBfdPtrOutput)
-}
-
-type RouterBfdPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterBfdPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterBfd)(nil))
-}
-
-func (o RouterBfdPtrOutput) ToRouterBfdPtrOutput() RouterBfdPtrOutput {
-	return o
-}
-
-func (o RouterBfdPtrOutput) ToRouterBfdPtrOutputWithContext(ctx context.Context) RouterBfdPtrOutput {
-	return o
-}
-
 type RouterBfdArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterBfdArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterBfd)(nil))
+	return reflect.TypeOf((*[]*RouterBfd)(nil)).Elem()
 }
 
 func (o RouterBfdArrayOutput) ToRouterBfdArrayOutput() RouterBfdArrayOutput {
@@ -260,15 +204,15 @@ func (o RouterBfdArrayOutput) ToRouterBfdArrayOutputWithContext(ctx context.Cont
 }
 
 func (o RouterBfdArrayOutput) Index(i pulumi.IntInput) RouterBfdOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterBfd {
-		return vs[0].([]RouterBfd)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterBfd {
+		return vs[0].([]*RouterBfd)[vs[1].(int)]
 	}).(RouterBfdOutput)
 }
 
 type RouterBfdMapOutput struct{ *pulumi.OutputState }
 
 func (RouterBfdMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterBfd)(nil))
+	return reflect.TypeOf((*map[string]*RouterBfd)(nil)).Elem()
 }
 
 func (o RouterBfdMapOutput) ToRouterBfdMapOutput() RouterBfdMapOutput {
@@ -280,14 +224,16 @@ func (o RouterBfdMapOutput) ToRouterBfdMapOutputWithContext(ctx context.Context)
 }
 
 func (o RouterBfdMapOutput) MapIndex(k pulumi.StringInput) RouterBfdOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterBfd {
-		return vs[0].(map[string]RouterBfd)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterBfd {
+		return vs[0].(map[string]*RouterBfd)[vs[1].(string)]
 	}).(RouterBfdOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterBfdInput)(nil)).Elem(), &RouterBfd{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterBfdArrayInput)(nil)).Elem(), RouterBfdArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterBfdMapInput)(nil)).Elem(), RouterBfdMap{})
 	pulumi.RegisterOutputType(RouterBfdOutput{})
-	pulumi.RegisterOutputType(RouterBfdPtrOutput{})
 	pulumi.RegisterOutputType(RouterBfdArrayOutput{})
 	pulumi.RegisterOutputType(RouterBfdMapOutput{})
 }

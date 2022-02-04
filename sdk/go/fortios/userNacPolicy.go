@@ -34,6 +34,8 @@ type UserNacPolicy struct {
 	EmsTag pulumi.StringOutput `pulumi:"emsTag"`
 	// NAC policy matching family.
 	Family pulumi.StringOutput `pulumi:"family"`
+	// Dynamic firewall address to associate MAC which match this policy.
+	FirewallAddress pulumi.StringOutput `pulumi:"firewallAddress"`
 	// NAC policy matching host.
 	Host pulumi.StringOutput `pulumi:"host"`
 	// NAC policy matching hardware vendor.
@@ -42,12 +44,14 @@ type UserNacPolicy struct {
 	HwVersion pulumi.StringOutput `pulumi:"hwVersion"`
 	// NAC policy matching MAC address.
 	Mac pulumi.StringOutput `pulumi:"mac"`
-	// NAC policy name.
+	// Managed FortiSwitch group name from available options.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// NAC policy matching operating system.
 	Os pulumi.StringOutput `pulumi:"os"`
 	// NAC policy matching source.
 	Src pulumi.StringOutput `pulumi:"src"`
+	// SSID policy to be applied on the matched NAC policy.
+	SsidPolicy pulumi.StringOutput `pulumi:"ssidPolicy"`
 	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringOutput `pulumi:"status"`
 	// NAC policy matching software version.
@@ -56,6 +60,8 @@ type UserNacPolicy struct {
 	SwitchAutoAuth pulumi.StringOutput `pulumi:"switchAutoAuth"`
 	// FortiLink interface for which this NAC policy belongs to.
 	SwitchFortilink pulumi.StringOutput `pulumi:"switchFortilink"`
+	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+	SwitchGroups UserNacPolicySwitchGroupArrayOutput `pulumi:"switchGroups"`
 	// switch-mac-policy to be applied on the matched NAC policy.
 	SwitchMacPolicy pulumi.StringOutput `pulumi:"switchMacPolicy"`
 	// switch-port-policy to be applied on the matched NAC policy.
@@ -79,6 +85,7 @@ func NewUserNacPolicy(ctx *pulumi.Context,
 		args = &UserNacPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserNacPolicy
 	err := ctx.RegisterResource("fortios:index/userNacPolicy:UserNacPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -111,6 +118,8 @@ type userNacPolicyState struct {
 	EmsTag *string `pulumi:"emsTag"`
 	// NAC policy matching family.
 	Family *string `pulumi:"family"`
+	// Dynamic firewall address to associate MAC which match this policy.
+	FirewallAddress *string `pulumi:"firewallAddress"`
 	// NAC policy matching host.
 	Host *string `pulumi:"host"`
 	// NAC policy matching hardware vendor.
@@ -119,12 +128,14 @@ type userNacPolicyState struct {
 	HwVersion *string `pulumi:"hwVersion"`
 	// NAC policy matching MAC address.
 	Mac *string `pulumi:"mac"`
-	// NAC policy name.
+	// Managed FortiSwitch group name from available options.
 	Name *string `pulumi:"name"`
 	// NAC policy matching operating system.
 	Os *string `pulumi:"os"`
 	// NAC policy matching source.
 	Src *string `pulumi:"src"`
+	// SSID policy to be applied on the matched NAC policy.
+	SsidPolicy *string `pulumi:"ssidPolicy"`
 	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// NAC policy matching software version.
@@ -133,6 +144,8 @@ type userNacPolicyState struct {
 	SwitchAutoAuth *string `pulumi:"switchAutoAuth"`
 	// FortiLink interface for which this NAC policy belongs to.
 	SwitchFortilink *string `pulumi:"switchFortilink"`
+	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+	SwitchGroups []UserNacPolicySwitchGroup `pulumi:"switchGroups"`
 	// switch-mac-policy to be applied on the matched NAC policy.
 	SwitchMacPolicy *string `pulumi:"switchMacPolicy"`
 	// switch-port-policy to be applied on the matched NAC policy.
@@ -160,6 +173,8 @@ type UserNacPolicyState struct {
 	EmsTag pulumi.StringPtrInput
 	// NAC policy matching family.
 	Family pulumi.StringPtrInput
+	// Dynamic firewall address to associate MAC which match this policy.
+	FirewallAddress pulumi.StringPtrInput
 	// NAC policy matching host.
 	Host pulumi.StringPtrInput
 	// NAC policy matching hardware vendor.
@@ -168,12 +183,14 @@ type UserNacPolicyState struct {
 	HwVersion pulumi.StringPtrInput
 	// NAC policy matching MAC address.
 	Mac pulumi.StringPtrInput
-	// NAC policy name.
+	// Managed FortiSwitch group name from available options.
 	Name pulumi.StringPtrInput
 	// NAC policy matching operating system.
 	Os pulumi.StringPtrInput
 	// NAC policy matching source.
 	Src pulumi.StringPtrInput
+	// SSID policy to be applied on the matched NAC policy.
+	SsidPolicy pulumi.StringPtrInput
 	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// NAC policy matching software version.
@@ -182,6 +199,8 @@ type UserNacPolicyState struct {
 	SwitchAutoAuth pulumi.StringPtrInput
 	// FortiLink interface for which this NAC policy belongs to.
 	SwitchFortilink pulumi.StringPtrInput
+	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+	SwitchGroups UserNacPolicySwitchGroupArrayInput
 	// switch-mac-policy to be applied on the matched NAC policy.
 	SwitchMacPolicy pulumi.StringPtrInput
 	// switch-port-policy to be applied on the matched NAC policy.
@@ -213,6 +232,8 @@ type userNacPolicyArgs struct {
 	EmsTag *string `pulumi:"emsTag"`
 	// NAC policy matching family.
 	Family *string `pulumi:"family"`
+	// Dynamic firewall address to associate MAC which match this policy.
+	FirewallAddress *string `pulumi:"firewallAddress"`
 	// NAC policy matching host.
 	Host *string `pulumi:"host"`
 	// NAC policy matching hardware vendor.
@@ -221,12 +242,14 @@ type userNacPolicyArgs struct {
 	HwVersion *string `pulumi:"hwVersion"`
 	// NAC policy matching MAC address.
 	Mac *string `pulumi:"mac"`
-	// NAC policy name.
+	// Managed FortiSwitch group name from available options.
 	Name *string `pulumi:"name"`
 	// NAC policy matching operating system.
 	Os *string `pulumi:"os"`
 	// NAC policy matching source.
 	Src *string `pulumi:"src"`
+	// SSID policy to be applied on the matched NAC policy.
+	SsidPolicy *string `pulumi:"ssidPolicy"`
 	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
 	Status *string `pulumi:"status"`
 	// NAC policy matching software version.
@@ -235,6 +258,8 @@ type userNacPolicyArgs struct {
 	SwitchAutoAuth *string `pulumi:"switchAutoAuth"`
 	// FortiLink interface for which this NAC policy belongs to.
 	SwitchFortilink *string `pulumi:"switchFortilink"`
+	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+	SwitchGroups []UserNacPolicySwitchGroup `pulumi:"switchGroups"`
 	// switch-mac-policy to be applied on the matched NAC policy.
 	SwitchMacPolicy *string `pulumi:"switchMacPolicy"`
 	// switch-port-policy to be applied on the matched NAC policy.
@@ -263,6 +288,8 @@ type UserNacPolicyArgs struct {
 	EmsTag pulumi.StringPtrInput
 	// NAC policy matching family.
 	Family pulumi.StringPtrInput
+	// Dynamic firewall address to associate MAC which match this policy.
+	FirewallAddress pulumi.StringPtrInput
 	// NAC policy matching host.
 	Host pulumi.StringPtrInput
 	// NAC policy matching hardware vendor.
@@ -271,12 +298,14 @@ type UserNacPolicyArgs struct {
 	HwVersion pulumi.StringPtrInput
 	// NAC policy matching MAC address.
 	Mac pulumi.StringPtrInput
-	// NAC policy name.
+	// Managed FortiSwitch group name from available options.
 	Name pulumi.StringPtrInput
 	// NAC policy matching operating system.
 	Os pulumi.StringPtrInput
 	// NAC policy matching source.
 	Src pulumi.StringPtrInput
+	// SSID policy to be applied on the matched NAC policy.
+	SsidPolicy pulumi.StringPtrInput
 	// Enable/disable NAC policy. Valid values: `enable`, `disable`.
 	Status pulumi.StringPtrInput
 	// NAC policy matching software version.
@@ -285,6 +314,8 @@ type UserNacPolicyArgs struct {
 	SwitchAutoAuth pulumi.StringPtrInput
 	// FortiLink interface for which this NAC policy belongs to.
 	SwitchFortilink pulumi.StringPtrInput
+	// List of managed FortiSwitch groups on which NAC policy can be applied. The structure of `switchGroup` block is documented below.
+	SwitchGroups UserNacPolicySwitchGroupArrayInput
 	// switch-mac-policy to be applied on the matched NAC policy.
 	SwitchMacPolicy pulumi.StringPtrInput
 	// switch-port-policy to be applied on the matched NAC policy.
@@ -313,7 +344,7 @@ type UserNacPolicyInput interface {
 }
 
 func (*UserNacPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserNacPolicy)(nil))
+	return reflect.TypeOf((**UserNacPolicy)(nil)).Elem()
 }
 
 func (i *UserNacPolicy) ToUserNacPolicyOutput() UserNacPolicyOutput {
@@ -322,35 +353,6 @@ func (i *UserNacPolicy) ToUserNacPolicyOutput() UserNacPolicyOutput {
 
 func (i *UserNacPolicy) ToUserNacPolicyOutputWithContext(ctx context.Context) UserNacPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyOutput)
-}
-
-func (i *UserNacPolicy) ToUserNacPolicyPtrOutput() UserNacPolicyPtrOutput {
-	return i.ToUserNacPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *UserNacPolicy) ToUserNacPolicyPtrOutputWithContext(ctx context.Context) UserNacPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyPtrOutput)
-}
-
-type UserNacPolicyPtrInput interface {
-	pulumi.Input
-
-	ToUserNacPolicyPtrOutput() UserNacPolicyPtrOutput
-	ToUserNacPolicyPtrOutputWithContext(ctx context.Context) UserNacPolicyPtrOutput
-}
-
-type userNacPolicyPtrType UserNacPolicyArgs
-
-func (*userNacPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserNacPolicy)(nil))
-}
-
-func (i *userNacPolicyPtrType) ToUserNacPolicyPtrOutput() UserNacPolicyPtrOutput {
-	return i.ToUserNacPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *userNacPolicyPtrType) ToUserNacPolicyPtrOutputWithContext(ctx context.Context) UserNacPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyPtrOutput)
 }
 
 // UserNacPolicyArrayInput is an input type that accepts UserNacPolicyArray and UserNacPolicyArrayOutput values.
@@ -367,7 +369,7 @@ type UserNacPolicyArrayInput interface {
 type UserNacPolicyArray []UserNacPolicyInput
 
 func (UserNacPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserNacPolicy)(nil))
+	return reflect.TypeOf((*[]*UserNacPolicy)(nil)).Elem()
 }
 
 func (i UserNacPolicyArray) ToUserNacPolicyArrayOutput() UserNacPolicyArrayOutput {
@@ -392,7 +394,7 @@ type UserNacPolicyMapInput interface {
 type UserNacPolicyMap map[string]UserNacPolicyInput
 
 func (UserNacPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserNacPolicy)(nil))
+	return reflect.TypeOf((*map[string]*UserNacPolicy)(nil)).Elem()
 }
 
 func (i UserNacPolicyMap) ToUserNacPolicyMapOutput() UserNacPolicyMapOutput {
@@ -403,12 +405,10 @@ func (i UserNacPolicyMap) ToUserNacPolicyMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(UserNacPolicyMapOutput)
 }
 
-type UserNacPolicyOutput struct {
-	*pulumi.OutputState
-}
+type UserNacPolicyOutput struct{ *pulumi.OutputState }
 
 func (UserNacPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserNacPolicy)(nil))
+	return reflect.TypeOf((**UserNacPolicy)(nil)).Elem()
 }
 
 func (o UserNacPolicyOutput) ToUserNacPolicyOutput() UserNacPolicyOutput {
@@ -419,36 +419,10 @@ func (o UserNacPolicyOutput) ToUserNacPolicyOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o UserNacPolicyOutput) ToUserNacPolicyPtrOutput() UserNacPolicyPtrOutput {
-	return o.ToUserNacPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o UserNacPolicyOutput) ToUserNacPolicyPtrOutputWithContext(ctx context.Context) UserNacPolicyPtrOutput {
-	return o.ApplyT(func(v UserNacPolicy) *UserNacPolicy {
-		return &v
-	}).(UserNacPolicyPtrOutput)
-}
-
-type UserNacPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserNacPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserNacPolicy)(nil))
-}
-
-func (o UserNacPolicyPtrOutput) ToUserNacPolicyPtrOutput() UserNacPolicyPtrOutput {
-	return o
-}
-
-func (o UserNacPolicyPtrOutput) ToUserNacPolicyPtrOutputWithContext(ctx context.Context) UserNacPolicyPtrOutput {
-	return o
-}
-
 type UserNacPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (UserNacPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserNacPolicy)(nil))
+	return reflect.TypeOf((*[]*UserNacPolicy)(nil)).Elem()
 }
 
 func (o UserNacPolicyArrayOutput) ToUserNacPolicyArrayOutput() UserNacPolicyArrayOutput {
@@ -460,15 +434,15 @@ func (o UserNacPolicyArrayOutput) ToUserNacPolicyArrayOutputWithContext(ctx cont
 }
 
 func (o UserNacPolicyArrayOutput) Index(i pulumi.IntInput) UserNacPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserNacPolicy {
-		return vs[0].([]UserNacPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserNacPolicy {
+		return vs[0].([]*UserNacPolicy)[vs[1].(int)]
 	}).(UserNacPolicyOutput)
 }
 
 type UserNacPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (UserNacPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserNacPolicy)(nil))
+	return reflect.TypeOf((*map[string]*UserNacPolicy)(nil)).Elem()
 }
 
 func (o UserNacPolicyMapOutput) ToUserNacPolicyMapOutput() UserNacPolicyMapOutput {
@@ -480,14 +454,16 @@ func (o UserNacPolicyMapOutput) ToUserNacPolicyMapOutputWithContext(ctx context.
 }
 
 func (o UserNacPolicyMapOutput) MapIndex(k pulumi.StringInput) UserNacPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserNacPolicy {
-		return vs[0].(map[string]UserNacPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserNacPolicy {
+		return vs[0].(map[string]*UserNacPolicy)[vs[1].(string)]
 	}).(UserNacPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicyInput)(nil)).Elem(), &UserNacPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicyArrayInput)(nil)).Elem(), UserNacPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserNacPolicyMapInput)(nil)).Elem(), UserNacPolicyMap{})
 	pulumi.RegisterOutputType(UserNacPolicyOutput{})
-	pulumi.RegisterOutputType(UserNacPolicyPtrOutput{})
 	pulumi.RegisterOutputType(UserNacPolicyArrayOutput{})
 	pulumi.RegisterOutputType(UserNacPolicyMapOutput{})
 }

@@ -20,7 +20,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -56,6 +56,7 @@ func NewSystemSettingDNS(ctx *pulumi.Context,
 		args = &SystemSettingDNSArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSettingDNS
 	err := ctx.RegisterResource("fortios:index/systemSettingDNS:SystemSettingDNS", name, args, &resource, opts...)
 	if err != nil {
@@ -130,7 +131,7 @@ type SystemSettingDNSInput interface {
 }
 
 func (*SystemSettingDNS) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettingDNS)(nil))
+	return reflect.TypeOf((**SystemSettingDNS)(nil)).Elem()
 }
 
 func (i *SystemSettingDNS) ToSystemSettingDNSOutput() SystemSettingDNSOutput {
@@ -139,35 +140,6 @@ func (i *SystemSettingDNS) ToSystemSettingDNSOutput() SystemSettingDNSOutput {
 
 func (i *SystemSettingDNS) ToSystemSettingDNSOutputWithContext(ctx context.Context) SystemSettingDNSOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSOutput)
-}
-
-func (i *SystemSettingDNS) ToSystemSettingDNSPtrOutput() SystemSettingDNSPtrOutput {
-	return i.ToSystemSettingDNSPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSettingDNS) ToSystemSettingDNSPtrOutputWithContext(ctx context.Context) SystemSettingDNSPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSPtrOutput)
-}
-
-type SystemSettingDNSPtrInput interface {
-	pulumi.Input
-
-	ToSystemSettingDNSPtrOutput() SystemSettingDNSPtrOutput
-	ToSystemSettingDNSPtrOutputWithContext(ctx context.Context) SystemSettingDNSPtrOutput
-}
-
-type systemSettingDNSPtrType SystemSettingDNSArgs
-
-func (*systemSettingDNSPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettingDNS)(nil))
-}
-
-func (i *systemSettingDNSPtrType) ToSystemSettingDNSPtrOutput() SystemSettingDNSPtrOutput {
-	return i.ToSystemSettingDNSPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSettingDNSPtrType) ToSystemSettingDNSPtrOutputWithContext(ctx context.Context) SystemSettingDNSPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSPtrOutput)
 }
 
 // SystemSettingDNSArrayInput is an input type that accepts SystemSettingDNSArray and SystemSettingDNSArrayOutput values.
@@ -184,7 +156,7 @@ type SystemSettingDNSArrayInput interface {
 type SystemSettingDNSArray []SystemSettingDNSInput
 
 func (SystemSettingDNSArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSettingDNS)(nil))
+	return reflect.TypeOf((*[]*SystemSettingDNS)(nil)).Elem()
 }
 
 func (i SystemSettingDNSArray) ToSystemSettingDNSArrayOutput() SystemSettingDNSArrayOutput {
@@ -209,7 +181,7 @@ type SystemSettingDNSMapInput interface {
 type SystemSettingDNSMap map[string]SystemSettingDNSInput
 
 func (SystemSettingDNSMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSettingDNS)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettingDNS)(nil)).Elem()
 }
 
 func (i SystemSettingDNSMap) ToSystemSettingDNSMapOutput() SystemSettingDNSMapOutput {
@@ -220,12 +192,10 @@ func (i SystemSettingDNSMap) ToSystemSettingDNSMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingDNSMapOutput)
 }
 
-type SystemSettingDNSOutput struct {
-	*pulumi.OutputState
-}
+type SystemSettingDNSOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingDNSOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettingDNS)(nil))
+	return reflect.TypeOf((**SystemSettingDNS)(nil)).Elem()
 }
 
 func (o SystemSettingDNSOutput) ToSystemSettingDNSOutput() SystemSettingDNSOutput {
@@ -236,36 +206,10 @@ func (o SystemSettingDNSOutput) ToSystemSettingDNSOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemSettingDNSOutput) ToSystemSettingDNSPtrOutput() SystemSettingDNSPtrOutput {
-	return o.ToSystemSettingDNSPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSettingDNSOutput) ToSystemSettingDNSPtrOutputWithContext(ctx context.Context) SystemSettingDNSPtrOutput {
-	return o.ApplyT(func(v SystemSettingDNS) *SystemSettingDNS {
-		return &v
-	}).(SystemSettingDNSPtrOutput)
-}
-
-type SystemSettingDNSPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSettingDNSPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettingDNS)(nil))
-}
-
-func (o SystemSettingDNSPtrOutput) ToSystemSettingDNSPtrOutput() SystemSettingDNSPtrOutput {
-	return o
-}
-
-func (o SystemSettingDNSPtrOutput) ToSystemSettingDNSPtrOutputWithContext(ctx context.Context) SystemSettingDNSPtrOutput {
-	return o
-}
-
 type SystemSettingDNSArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingDNSArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSettingDNS)(nil))
+	return reflect.TypeOf((*[]*SystemSettingDNS)(nil)).Elem()
 }
 
 func (o SystemSettingDNSArrayOutput) ToSystemSettingDNSArrayOutput() SystemSettingDNSArrayOutput {
@@ -277,15 +221,15 @@ func (o SystemSettingDNSArrayOutput) ToSystemSettingDNSArrayOutputWithContext(ct
 }
 
 func (o SystemSettingDNSArrayOutput) Index(i pulumi.IntInput) SystemSettingDNSOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSettingDNS {
-		return vs[0].([]SystemSettingDNS)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettingDNS {
+		return vs[0].([]*SystemSettingDNS)[vs[1].(int)]
 	}).(SystemSettingDNSOutput)
 }
 
 type SystemSettingDNSMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingDNSMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSettingDNS)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettingDNS)(nil)).Elem()
 }
 
 func (o SystemSettingDNSMapOutput) ToSystemSettingDNSMapOutput() SystemSettingDNSMapOutput {
@@ -297,14 +241,16 @@ func (o SystemSettingDNSMapOutput) ToSystemSettingDNSMapOutputWithContext(ctx co
 }
 
 func (o SystemSettingDNSMapOutput) MapIndex(k pulumi.StringInput) SystemSettingDNSOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSettingDNS {
-		return vs[0].(map[string]SystemSettingDNS)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSettingDNS {
+		return vs[0].(map[string]*SystemSettingDNS)[vs[1].(string)]
 	}).(SystemSettingDNSOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingDNSInput)(nil)).Elem(), &SystemSettingDNS{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingDNSArrayInput)(nil)).Elem(), SystemSettingDNSArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingDNSMapInput)(nil)).Elem(), SystemSettingDNSMap{})
 	pulumi.RegisterOutputType(SystemSettingDNSOutput{})
-	pulumi.RegisterOutputType(SystemSettingDNSPtrOutput{})
 	pulumi.RegisterOutputType(SystemSettingDNSArrayOutput{})
 	pulumi.RegisterOutputType(SystemSettingDNSMapOutput{})
 }

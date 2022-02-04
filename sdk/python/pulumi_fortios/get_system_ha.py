@@ -13,6 +13,7 @@ __all__ = [
     'GetSystemHaResult',
     'AwaitableGetSystemHaResult',
     'get_system_ha',
+    'get_system_ha_output',
 ]
 
 @pulumi.output_type
@@ -20,7 +21,7 @@ class GetSystemHaResult:
     """
     A collection of values returned by GetSystemHa.
     """
-    def __init__(__self__, arps=None, arps_interval=None, authentication=None, cpu_threshold=None, encryption=None, ftp_proxy_threshold=None, gratuitous_arps=None, group_id=None, group_name=None, ha_direct=None, ha_eth_type=None, ha_mgmt_interfaces=None, ha_mgmt_status=None, ha_uptime_diff_margin=None, hb_interval=None, hb_lost_threshold=None, hbdev=None, hc_eth_type=None, hello_holddown=None, http_proxy_threshold=None, id=None, imap_proxy_threshold=None, inter_cluster_session_sync=None, key=None, l2ep_eth_type=None, link_failed_signal=None, load_balance_all=None, logical_sn=None, memory_compatible_mode=None, memory_threshold=None, mode=None, monitor=None, multicast_ttl=None, nntp_proxy_threshold=None, override=None, override_wait_time=None, password=None, pingserver_failover_threshold=None, pingserver_flip_timeout=None, pingserver_monitor_interface=None, pingserver_secondary_force_reset=None, pingserver_slave_force_reset=None, pop3_proxy_threshold=None, priority=None, route_hold=None, route_ttl=None, route_wait=None, schedule=None, secondary_vcluster=None, session_pickup=None, session_pickup_connectionless=None, session_pickup_delay=None, session_pickup_expectation=None, session_pickup_nat=None, session_sync_dev=None, smtp_proxy_threshold=None, ssd_failover=None, standalone_config_sync=None, standalone_mgmt_vdom=None, sync_config=None, sync_packet_balance=None, unicast_hb=None, unicast_hb_netmask=None, unicast_hb_peerip=None, uninterruptible_upgrade=None, vcluster2=None, vcluster_id=None, vdom=None, vdomparam=None, weight=None):
+    def __init__(__self__, arps=None, arps_interval=None, authentication=None, cpu_threshold=None, encryption=None, failover_hold_time=None, ftp_proxy_threshold=None, gratuitous_arps=None, group_id=None, group_name=None, ha_direct=None, ha_eth_type=None, ha_mgmt_interfaces=None, ha_mgmt_status=None, ha_uptime_diff_margin=None, hb_interval=None, hb_interval_in_milliseconds=None, hb_lost_threshold=None, hbdev=None, hc_eth_type=None, hello_holddown=None, http_proxy_threshold=None, id=None, imap_proxy_threshold=None, inter_cluster_session_sync=None, key=None, l2ep_eth_type=None, link_failed_signal=None, load_balance_all=None, logical_sn=None, memory_based_failover=None, memory_compatible_mode=None, memory_failover_flip_timeout=None, memory_failover_monitor_period=None, memory_failover_sample_rate=None, memory_failover_threshold=None, memory_threshold=None, mode=None, monitor=None, multicast_ttl=None, nntp_proxy_threshold=None, override=None, override_wait_time=None, password=None, pingserver_failover_threshold=None, pingserver_flip_timeout=None, pingserver_monitor_interface=None, pingserver_secondary_force_reset=None, pingserver_slave_force_reset=None, pop3_proxy_threshold=None, priority=None, route_hold=None, route_ttl=None, route_wait=None, schedule=None, secondary_vcluster=None, session_pickup=None, session_pickup_connectionless=None, session_pickup_delay=None, session_pickup_expectation=None, session_pickup_nat=None, session_sync_dev=None, smtp_proxy_threshold=None, ssd_failover=None, standalone_config_sync=None, standalone_mgmt_vdom=None, sync_config=None, sync_packet_balance=None, unicast_gateway=None, unicast_hb=None, unicast_hb_netmask=None, unicast_hb_peerip=None, unicast_peers=None, unicast_status=None, uninterruptible_primary_wait=None, uninterruptible_upgrade=None, vcluster2=None, vcluster_id=None, vdom=None, vdomparam=None, weight=None):
         if arps and not isinstance(arps, int):
             raise TypeError("Expected argument 'arps' to be a int")
         pulumi.set(__self__, "arps", arps)
@@ -36,6 +37,9 @@ class GetSystemHaResult:
         if encryption and not isinstance(encryption, str):
             raise TypeError("Expected argument 'encryption' to be a str")
         pulumi.set(__self__, "encryption", encryption)
+        if failover_hold_time and not isinstance(failover_hold_time, int):
+            raise TypeError("Expected argument 'failover_hold_time' to be a int")
+        pulumi.set(__self__, "failover_hold_time", failover_hold_time)
         if ftp_proxy_threshold and not isinstance(ftp_proxy_threshold, str):
             raise TypeError("Expected argument 'ftp_proxy_threshold' to be a str")
         pulumi.set(__self__, "ftp_proxy_threshold", ftp_proxy_threshold)
@@ -66,6 +70,9 @@ class GetSystemHaResult:
         if hb_interval and not isinstance(hb_interval, int):
             raise TypeError("Expected argument 'hb_interval' to be a int")
         pulumi.set(__self__, "hb_interval", hb_interval)
+        if hb_interval_in_milliseconds and not isinstance(hb_interval_in_milliseconds, str):
+            raise TypeError("Expected argument 'hb_interval_in_milliseconds' to be a str")
+        pulumi.set(__self__, "hb_interval_in_milliseconds", hb_interval_in_milliseconds)
         if hb_lost_threshold and not isinstance(hb_lost_threshold, int):
             raise TypeError("Expected argument 'hb_lost_threshold' to be a int")
         pulumi.set(__self__, "hb_lost_threshold", hb_lost_threshold)
@@ -105,9 +112,24 @@ class GetSystemHaResult:
         if logical_sn and not isinstance(logical_sn, str):
             raise TypeError("Expected argument 'logical_sn' to be a str")
         pulumi.set(__self__, "logical_sn", logical_sn)
+        if memory_based_failover and not isinstance(memory_based_failover, str):
+            raise TypeError("Expected argument 'memory_based_failover' to be a str")
+        pulumi.set(__self__, "memory_based_failover", memory_based_failover)
         if memory_compatible_mode and not isinstance(memory_compatible_mode, str):
             raise TypeError("Expected argument 'memory_compatible_mode' to be a str")
         pulumi.set(__self__, "memory_compatible_mode", memory_compatible_mode)
+        if memory_failover_flip_timeout and not isinstance(memory_failover_flip_timeout, int):
+            raise TypeError("Expected argument 'memory_failover_flip_timeout' to be a int")
+        pulumi.set(__self__, "memory_failover_flip_timeout", memory_failover_flip_timeout)
+        if memory_failover_monitor_period and not isinstance(memory_failover_monitor_period, int):
+            raise TypeError("Expected argument 'memory_failover_monitor_period' to be a int")
+        pulumi.set(__self__, "memory_failover_monitor_period", memory_failover_monitor_period)
+        if memory_failover_sample_rate and not isinstance(memory_failover_sample_rate, int):
+            raise TypeError("Expected argument 'memory_failover_sample_rate' to be a int")
+        pulumi.set(__self__, "memory_failover_sample_rate", memory_failover_sample_rate)
+        if memory_failover_threshold and not isinstance(memory_failover_threshold, int):
+            raise TypeError("Expected argument 'memory_failover_threshold' to be a int")
+        pulumi.set(__self__, "memory_failover_threshold", memory_failover_threshold)
         if memory_threshold and not isinstance(memory_threshold, str):
             raise TypeError("Expected argument 'memory_threshold' to be a str")
         pulumi.set(__self__, "memory_threshold", memory_threshold)
@@ -204,6 +226,9 @@ class GetSystemHaResult:
         if sync_packet_balance and not isinstance(sync_packet_balance, str):
             raise TypeError("Expected argument 'sync_packet_balance' to be a str")
         pulumi.set(__self__, "sync_packet_balance", sync_packet_balance)
+        if unicast_gateway and not isinstance(unicast_gateway, str):
+            raise TypeError("Expected argument 'unicast_gateway' to be a str")
+        pulumi.set(__self__, "unicast_gateway", unicast_gateway)
         if unicast_hb and not isinstance(unicast_hb, str):
             raise TypeError("Expected argument 'unicast_hb' to be a str")
         pulumi.set(__self__, "unicast_hb", unicast_hb)
@@ -213,6 +238,15 @@ class GetSystemHaResult:
         if unicast_hb_peerip and not isinstance(unicast_hb_peerip, str):
             raise TypeError("Expected argument 'unicast_hb_peerip' to be a str")
         pulumi.set(__self__, "unicast_hb_peerip", unicast_hb_peerip)
+        if unicast_peers and not isinstance(unicast_peers, list):
+            raise TypeError("Expected argument 'unicast_peers' to be a list")
+        pulumi.set(__self__, "unicast_peers", unicast_peers)
+        if unicast_status and not isinstance(unicast_status, str):
+            raise TypeError("Expected argument 'unicast_status' to be a str")
+        pulumi.set(__self__, "unicast_status", unicast_status)
+        if uninterruptible_primary_wait and not isinstance(uninterruptible_primary_wait, int):
+            raise TypeError("Expected argument 'uninterruptible_primary_wait' to be a int")
+        pulumi.set(__self__, "uninterruptible_primary_wait", uninterruptible_primary_wait)
         if uninterruptible_upgrade and not isinstance(uninterruptible_upgrade, str):
             raise TypeError("Expected argument 'uninterruptible_upgrade' to be a str")
         pulumi.set(__self__, "uninterruptible_upgrade", uninterruptible_upgrade)
@@ -271,6 +305,14 @@ class GetSystemHaResult:
         Enable/disable heartbeat message encryption.
         """
         return pulumi.get(self, "encryption")
+
+    @property
+    @pulumi.getter(name="failoverHoldTime")
+    def failover_hold_time(self) -> int:
+        """
+        Time to wait before failover (0 - 300 sec, default = 0), to avoid flip.
+        """
+        return pulumi.get(self, "failover_hold_time")
 
     @property
     @pulumi.getter(name="ftpProxyThreshold")
@@ -351,6 +393,14 @@ class GetSystemHaResult:
         Time between sending heartbeat packets (1 - 20 (100*ms)). Increase to reduce false positives.
         """
         return pulumi.get(self, "hb_interval")
+
+    @property
+    @pulumi.getter(name="hbIntervalInMilliseconds")
+    def hb_interval_in_milliseconds(self) -> str:
+        """
+        Number of milliseconds for each heartbeat interval: 100ms or 10ms.
+        """
+        return pulumi.get(self, "hb_interval_in_milliseconds")
 
     @property
     @pulumi.getter(name="hbLostThreshold")
@@ -457,12 +507,52 @@ class GetSystemHaResult:
         return pulumi.get(self, "logical_sn")
 
     @property
+    @pulumi.getter(name="memoryBasedFailover")
+    def memory_based_failover(self) -> str:
+        """
+        Enable/disable memory based failover.
+        """
+        return pulumi.get(self, "memory_based_failover")
+
+    @property
     @pulumi.getter(name="memoryCompatibleMode")
     def memory_compatible_mode(self) -> str:
         """
         Enable/disable memory compatible mode.
         """
         return pulumi.get(self, "memory_compatible_mode")
+
+    @property
+    @pulumi.getter(name="memoryFailoverFlipTimeout")
+    def memory_failover_flip_timeout(self) -> int:
+        """
+        Time to wait between subsequent memory based failovers in minutes (6 - 2147483647, default = 6).
+        """
+        return pulumi.get(self, "memory_failover_flip_timeout")
+
+    @property
+    @pulumi.getter(name="memoryFailoverMonitorPeriod")
+    def memory_failover_monitor_period(self) -> int:
+        """
+        Duration of high memory usage before memory based failover is triggered in seconds (1 - 300, default = 60).
+        """
+        return pulumi.get(self, "memory_failover_monitor_period")
+
+    @property
+    @pulumi.getter(name="memoryFailoverSampleRate")
+    def memory_failover_sample_rate(self) -> int:
+        """
+        Rate at which memory usage is sampled in order to measure memory usage in seconds (1 - 60, default = 1).
+        """
+        return pulumi.get(self, "memory_failover_sample_rate")
+
+    @property
+    @pulumi.getter(name="memoryFailoverThreshold")
+    def memory_failover_threshold(self) -> int:
+        """
+        Memory usage threshold to trigger memory based failover (0 means using conserve mode threshold in system.global).
+        """
+        return pulumi.get(self, "memory_failover_threshold")
 
     @property
     @pulumi.getter(name="memoryThreshold")
@@ -721,6 +811,14 @@ class GetSystemHaResult:
         return pulumi.get(self, "sync_packet_balance")
 
     @property
+    @pulumi.getter(name="unicastGateway")
+    def unicast_gateway(self) -> str:
+        """
+        Default route gateway for unicast interface.
+        """
+        return pulumi.get(self, "unicast_gateway")
+
+    @property
     @pulumi.getter(name="unicastHb")
     def unicast_hb(self) -> str:
         """
@@ -743,6 +841,30 @@ class GetSystemHaResult:
         Unicast heartbeat peer IP.
         """
         return pulumi.get(self, "unicast_hb_peerip")
+
+    @property
+    @pulumi.getter(name="unicastPeers")
+    def unicast_peers(self) -> Sequence['outputs.GetSystemHaUnicastPeerResult']:
+        """
+        Number of unicast peers. The structure of `unicast_peers` block is documented below.
+        """
+        return pulumi.get(self, "unicast_peers")
+
+    @property
+    @pulumi.getter(name="unicastStatus")
+    def unicast_status(self) -> str:
+        """
+        Enable/disable unicast connection.
+        """
+        return pulumi.get(self, "unicast_status")
+
+    @property
+    @pulumi.getter(name="uninterruptiblePrimaryWait")
+    def uninterruptible_primary_wait(self) -> int:
+        """
+        Number of minutes the primary HA unit waits before the secondary HA unit is considered upgraded and the system is started before starting its own upgrade (1 - 300, default = 30).
+        """
+        return pulumi.get(self, "uninterruptible_primary_wait")
 
     @property
     @pulumi.getter(name="uninterruptibleUpgrade")
@@ -801,6 +923,7 @@ class AwaitableGetSystemHaResult(GetSystemHaResult):
             authentication=self.authentication,
             cpu_threshold=self.cpu_threshold,
             encryption=self.encryption,
+            failover_hold_time=self.failover_hold_time,
             ftp_proxy_threshold=self.ftp_proxy_threshold,
             gratuitous_arps=self.gratuitous_arps,
             group_id=self.group_id,
@@ -811,6 +934,7 @@ class AwaitableGetSystemHaResult(GetSystemHaResult):
             ha_mgmt_status=self.ha_mgmt_status,
             ha_uptime_diff_margin=self.ha_uptime_diff_margin,
             hb_interval=self.hb_interval,
+            hb_interval_in_milliseconds=self.hb_interval_in_milliseconds,
             hb_lost_threshold=self.hb_lost_threshold,
             hbdev=self.hbdev,
             hc_eth_type=self.hc_eth_type,
@@ -824,7 +948,12 @@ class AwaitableGetSystemHaResult(GetSystemHaResult):
             link_failed_signal=self.link_failed_signal,
             load_balance_all=self.load_balance_all,
             logical_sn=self.logical_sn,
+            memory_based_failover=self.memory_based_failover,
             memory_compatible_mode=self.memory_compatible_mode,
+            memory_failover_flip_timeout=self.memory_failover_flip_timeout,
+            memory_failover_monitor_period=self.memory_failover_monitor_period,
+            memory_failover_sample_rate=self.memory_failover_sample_rate,
+            memory_failover_threshold=self.memory_failover_threshold,
             memory_threshold=self.memory_threshold,
             mode=self.mode,
             monitor=self.monitor,
@@ -857,9 +986,13 @@ class AwaitableGetSystemHaResult(GetSystemHaResult):
             standalone_mgmt_vdom=self.standalone_mgmt_vdom,
             sync_config=self.sync_config,
             sync_packet_balance=self.sync_packet_balance,
+            unicast_gateway=self.unicast_gateway,
             unicast_hb=self.unicast_hb,
             unicast_hb_netmask=self.unicast_hb_netmask,
             unicast_hb_peerip=self.unicast_hb_peerip,
+            unicast_peers=self.unicast_peers,
+            unicast_status=self.unicast_status,
+            uninterruptible_primary_wait=self.uninterruptible_primary_wait,
             uninterruptible_upgrade=self.uninterruptible_upgrade,
             vcluster2=self.vcluster2,
             vcluster_id=self.vcluster_id,
@@ -882,6 +1015,8 @@ def get_system_ha(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemHa:GetSystemHa', __args__, opts=opts, typ=GetSystemHaResult).value
 
     return AwaitableGetSystemHaResult(
@@ -890,6 +1025,7 @@ def get_system_ha(vdomparam: Optional[str] = None,
         authentication=__ret__.authentication,
         cpu_threshold=__ret__.cpu_threshold,
         encryption=__ret__.encryption,
+        failover_hold_time=__ret__.failover_hold_time,
         ftp_proxy_threshold=__ret__.ftp_proxy_threshold,
         gratuitous_arps=__ret__.gratuitous_arps,
         group_id=__ret__.group_id,
@@ -900,6 +1036,7 @@ def get_system_ha(vdomparam: Optional[str] = None,
         ha_mgmt_status=__ret__.ha_mgmt_status,
         ha_uptime_diff_margin=__ret__.ha_uptime_diff_margin,
         hb_interval=__ret__.hb_interval,
+        hb_interval_in_milliseconds=__ret__.hb_interval_in_milliseconds,
         hb_lost_threshold=__ret__.hb_lost_threshold,
         hbdev=__ret__.hbdev,
         hc_eth_type=__ret__.hc_eth_type,
@@ -913,7 +1050,12 @@ def get_system_ha(vdomparam: Optional[str] = None,
         link_failed_signal=__ret__.link_failed_signal,
         load_balance_all=__ret__.load_balance_all,
         logical_sn=__ret__.logical_sn,
+        memory_based_failover=__ret__.memory_based_failover,
         memory_compatible_mode=__ret__.memory_compatible_mode,
+        memory_failover_flip_timeout=__ret__.memory_failover_flip_timeout,
+        memory_failover_monitor_period=__ret__.memory_failover_monitor_period,
+        memory_failover_sample_rate=__ret__.memory_failover_sample_rate,
+        memory_failover_threshold=__ret__.memory_failover_threshold,
         memory_threshold=__ret__.memory_threshold,
         mode=__ret__.mode,
         monitor=__ret__.monitor,
@@ -946,12 +1088,28 @@ def get_system_ha(vdomparam: Optional[str] = None,
         standalone_mgmt_vdom=__ret__.standalone_mgmt_vdom,
         sync_config=__ret__.sync_config,
         sync_packet_balance=__ret__.sync_packet_balance,
+        unicast_gateway=__ret__.unicast_gateway,
         unicast_hb=__ret__.unicast_hb,
         unicast_hb_netmask=__ret__.unicast_hb_netmask,
         unicast_hb_peerip=__ret__.unicast_hb_peerip,
+        unicast_peers=__ret__.unicast_peers,
+        unicast_status=__ret__.unicast_status,
+        uninterruptible_primary_wait=__ret__.uninterruptible_primary_wait,
         uninterruptible_upgrade=__ret__.uninterruptible_upgrade,
         vcluster2=__ret__.vcluster2,
         vcluster_id=__ret__.vcluster_id,
         vdom=__ret__.vdom,
         vdomparam=__ret__.vdomparam,
         weight=__ret__.weight)
+
+
+@_utilities.lift_output_func(get_system_ha)
+def get_system_ha_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                         opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemHaResult]:
+    """
+    Use this data source to get information on fortios system ha
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

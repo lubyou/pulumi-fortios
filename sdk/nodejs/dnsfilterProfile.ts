@@ -96,7 +96,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
     }
 
     /**
-     * Action to take for blocked domains. Valid values: `block`, `redirect`.
+     * Action to take for blocked domains.
      */
     public readonly blockAction!: pulumi.Output<string>;
     /**
@@ -173,51 +173,49 @@ export class DnsfilterProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: DnsfilterProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: DnsfilterProfileArgs | DnsfilterProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DnsfilterProfileState | undefined;
-            inputs["blockAction"] = state ? state.blockAction : undefined;
-            inputs["blockBotnet"] = state ? state.blockBotnet : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dnsTranslations"] = state ? state.dnsTranslations : undefined;
-            inputs["domainFilter"] = state ? state.domainFilter : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["externalIpBlocklists"] = state ? state.externalIpBlocklists : undefined;
-            inputs["ftgdDns"] = state ? state.ftgdDns : undefined;
-            inputs["logAllDomain"] = state ? state.logAllDomain : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["redirectPortal"] = state ? state.redirectPortal : undefined;
-            inputs["redirectPortal6"] = state ? state.redirectPortal6 : undefined;
-            inputs["safeSearch"] = state ? state.safeSearch : undefined;
-            inputs["sdnsDomainLog"] = state ? state.sdnsDomainLog : undefined;
-            inputs["sdnsFtgdErrLog"] = state ? state.sdnsFtgdErrLog : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["youtubeRestrict"] = state ? state.youtubeRestrict : undefined;
+            resourceInputs["blockAction"] = state ? state.blockAction : undefined;
+            resourceInputs["blockBotnet"] = state ? state.blockBotnet : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dnsTranslations"] = state ? state.dnsTranslations : undefined;
+            resourceInputs["domainFilter"] = state ? state.domainFilter : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["externalIpBlocklists"] = state ? state.externalIpBlocklists : undefined;
+            resourceInputs["ftgdDns"] = state ? state.ftgdDns : undefined;
+            resourceInputs["logAllDomain"] = state ? state.logAllDomain : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["redirectPortal"] = state ? state.redirectPortal : undefined;
+            resourceInputs["redirectPortal6"] = state ? state.redirectPortal6 : undefined;
+            resourceInputs["safeSearch"] = state ? state.safeSearch : undefined;
+            resourceInputs["sdnsDomainLog"] = state ? state.sdnsDomainLog : undefined;
+            resourceInputs["sdnsFtgdErrLog"] = state ? state.sdnsFtgdErrLog : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["youtubeRestrict"] = state ? state.youtubeRestrict : undefined;
         } else {
             const args = argsOrState as DnsfilterProfileArgs | undefined;
-            inputs["blockAction"] = args ? args.blockAction : undefined;
-            inputs["blockBotnet"] = args ? args.blockBotnet : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dnsTranslations"] = args ? args.dnsTranslations : undefined;
-            inputs["domainFilter"] = args ? args.domainFilter : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["externalIpBlocklists"] = args ? args.externalIpBlocklists : undefined;
-            inputs["ftgdDns"] = args ? args.ftgdDns : undefined;
-            inputs["logAllDomain"] = args ? args.logAllDomain : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["redirectPortal"] = args ? args.redirectPortal : undefined;
-            inputs["redirectPortal6"] = args ? args.redirectPortal6 : undefined;
-            inputs["safeSearch"] = args ? args.safeSearch : undefined;
-            inputs["sdnsDomainLog"] = args ? args.sdnsDomainLog : undefined;
-            inputs["sdnsFtgdErrLog"] = args ? args.sdnsFtgdErrLog : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["youtubeRestrict"] = args ? args.youtubeRestrict : undefined;
+            resourceInputs["blockAction"] = args ? args.blockAction : undefined;
+            resourceInputs["blockBotnet"] = args ? args.blockBotnet : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dnsTranslations"] = args ? args.dnsTranslations : undefined;
+            resourceInputs["domainFilter"] = args ? args.domainFilter : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["externalIpBlocklists"] = args ? args.externalIpBlocklists : undefined;
+            resourceInputs["ftgdDns"] = args ? args.ftgdDns : undefined;
+            resourceInputs["logAllDomain"] = args ? args.logAllDomain : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["redirectPortal"] = args ? args.redirectPortal : undefined;
+            resourceInputs["redirectPortal6"] = args ? args.redirectPortal6 : undefined;
+            resourceInputs["safeSearch"] = args ? args.safeSearch : undefined;
+            resourceInputs["sdnsDomainLog"] = args ? args.sdnsDomainLog : undefined;
+            resourceInputs["sdnsFtgdErrLog"] = args ? args.sdnsFtgdErrLog : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["youtubeRestrict"] = args ? args.youtubeRestrict : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(DnsfilterProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(DnsfilterProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -226,7 +224,7 @@ export class DnsfilterProfile extends pulumi.CustomResource {
  */
 export interface DnsfilterProfileState {
     /**
-     * Action to take for blocked domains. Valid values: `block`, `redirect`.
+     * Action to take for blocked domains.
      */
     blockAction?: pulumi.Input<string>;
     /**
@@ -300,7 +298,7 @@ export interface DnsfilterProfileState {
  */
 export interface DnsfilterProfileArgs {
     /**
-     * Action to take for blocked domains. Valid values: `block`, `redirect`.
+     * Action to take for blocked domains.
      */
     blockAction?: pulumi.Input<string>;
     /**

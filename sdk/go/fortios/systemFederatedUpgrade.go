@@ -26,10 +26,18 @@ type SystemFederatedUpgrade struct {
 
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Serial number of the node to include.
+	FailureDevice pulumi.StringOutput `pulumi:"failureDevice"`
+	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	FailureReason pulumi.StringOutput `pulumi:"failureReason"`
+	// The index of the next image to upgrade to.
+	NextPathIndex pulumi.IntOutput `pulumi:"nextPathIndex"`
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
 	NodeLists SystemFederatedUpgradeNodeListArrayOutput `pulumi:"nodeLists"`
-	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+	// Current status of the upgrade.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// Unique identifier for this upgrade.
+	UpgradeId pulumi.IntOutput `pulumi:"upgradeId"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -41,6 +49,7 @@ func NewSystemFederatedUpgrade(ctx *pulumi.Context,
 		args = &SystemFederatedUpgradeArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemFederatedUpgrade
 	err := ctx.RegisterResource("fortios:index/systemFederatedUpgrade:SystemFederatedUpgrade", name, args, &resource, opts...)
 	if err != nil {
@@ -65,10 +74,18 @@ func GetSystemFederatedUpgrade(ctx *pulumi.Context,
 type systemFederatedUpgradeState struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Serial number of the node to include.
+	FailureDevice *string `pulumi:"failureDevice"`
+	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	FailureReason *string `pulumi:"failureReason"`
+	// The index of the next image to upgrade to.
+	NextPathIndex *int `pulumi:"nextPathIndex"`
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
 	NodeLists []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
-	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+	// Current status of the upgrade.
 	Status *string `pulumi:"status"`
+	// Unique identifier for this upgrade.
+	UpgradeId *int `pulumi:"upgradeId"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -76,10 +93,18 @@ type systemFederatedUpgradeState struct {
 type SystemFederatedUpgradeState struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Serial number of the node to include.
+	FailureDevice pulumi.StringPtrInput
+	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	FailureReason pulumi.StringPtrInput
+	// The index of the next image to upgrade to.
+	NextPathIndex pulumi.IntPtrInput
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
 	NodeLists SystemFederatedUpgradeNodeListArrayInput
-	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+	// Current status of the upgrade.
 	Status pulumi.StringPtrInput
+	// Unique identifier for this upgrade.
+	UpgradeId pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -91,10 +116,18 @@ func (SystemFederatedUpgradeState) ElementType() reflect.Type {
 type systemFederatedUpgradeArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Serial number of the node to include.
+	FailureDevice *string `pulumi:"failureDevice"`
+	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	FailureReason *string `pulumi:"failureReason"`
+	// The index of the next image to upgrade to.
+	NextPathIndex *int `pulumi:"nextPathIndex"`
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
 	NodeLists []SystemFederatedUpgradeNodeList `pulumi:"nodeLists"`
-	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+	// Current status of the upgrade.
 	Status *string `pulumi:"status"`
+	// Unique identifier for this upgrade.
+	UpgradeId *int `pulumi:"upgradeId"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -103,10 +136,18 @@ type systemFederatedUpgradeArgs struct {
 type SystemFederatedUpgradeArgs struct {
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Serial number of the node to include.
+	FailureDevice pulumi.StringPtrInput
+	// Reason for upgrade failure. Valid values: `none`, `internal`, `timeout`, `device-type-unsupported`, `download-failed`, `device-missing`, `version-unavailable`, `staging-failed`, `reboot-failed`, `device-not-reconnected`, `node-not-ready`, `no-final-confirmation`, `no-confirmation-query`.
+	FailureReason pulumi.StringPtrInput
+	// The index of the next image to upgrade to.
+	NextPathIndex pulumi.IntPtrInput
 	// Nodes which will be included in the upgrade. The structure of `nodeList` block is documented below.
 	NodeLists SystemFederatedUpgradeNodeListArrayInput
-	// Current status of the upgrade. Valid values: `disabled`, `initialized`, `downloading`, `download-failed`, `ready`, `cancelled`, `confirmed`, `done`, `failed`.
+	// Current status of the upgrade.
 	Status pulumi.StringPtrInput
+	// Unique identifier for this upgrade.
+	UpgradeId pulumi.IntPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -123,7 +164,7 @@ type SystemFederatedUpgradeInput interface {
 }
 
 func (*SystemFederatedUpgrade) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFederatedUpgrade)(nil))
+	return reflect.TypeOf((**SystemFederatedUpgrade)(nil)).Elem()
 }
 
 func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradeOutput() SystemFederatedUpgradeOutput {
@@ -132,35 +173,6 @@ func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradeOutput() SystemFederate
 
 func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradeOutputWithContext(ctx context.Context) SystemFederatedUpgradeOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradeOutput)
-}
-
-func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradePtrOutput() SystemFederatedUpgradePtrOutput {
-	return i.ToSystemFederatedUpgradePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemFederatedUpgrade) ToSystemFederatedUpgradePtrOutputWithContext(ctx context.Context) SystemFederatedUpgradePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradePtrOutput)
-}
-
-type SystemFederatedUpgradePtrInput interface {
-	pulumi.Input
-
-	ToSystemFederatedUpgradePtrOutput() SystemFederatedUpgradePtrOutput
-	ToSystemFederatedUpgradePtrOutputWithContext(ctx context.Context) SystemFederatedUpgradePtrOutput
-}
-
-type systemFederatedUpgradePtrType SystemFederatedUpgradeArgs
-
-func (*systemFederatedUpgradePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFederatedUpgrade)(nil))
-}
-
-func (i *systemFederatedUpgradePtrType) ToSystemFederatedUpgradePtrOutput() SystemFederatedUpgradePtrOutput {
-	return i.ToSystemFederatedUpgradePtrOutputWithContext(context.Background())
-}
-
-func (i *systemFederatedUpgradePtrType) ToSystemFederatedUpgradePtrOutputWithContext(ctx context.Context) SystemFederatedUpgradePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradePtrOutput)
 }
 
 // SystemFederatedUpgradeArrayInput is an input type that accepts SystemFederatedUpgradeArray and SystemFederatedUpgradeArrayOutput values.
@@ -177,7 +189,7 @@ type SystemFederatedUpgradeArrayInput interface {
 type SystemFederatedUpgradeArray []SystemFederatedUpgradeInput
 
 func (SystemFederatedUpgradeArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemFederatedUpgrade)(nil))
+	return reflect.TypeOf((*[]*SystemFederatedUpgrade)(nil)).Elem()
 }
 
 func (i SystemFederatedUpgradeArray) ToSystemFederatedUpgradeArrayOutput() SystemFederatedUpgradeArrayOutput {
@@ -202,7 +214,7 @@ type SystemFederatedUpgradeMapInput interface {
 type SystemFederatedUpgradeMap map[string]SystemFederatedUpgradeInput
 
 func (SystemFederatedUpgradeMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemFederatedUpgrade)(nil))
+	return reflect.TypeOf((*map[string]*SystemFederatedUpgrade)(nil)).Elem()
 }
 
 func (i SystemFederatedUpgradeMap) ToSystemFederatedUpgradeMapOutput() SystemFederatedUpgradeMapOutput {
@@ -213,12 +225,10 @@ func (i SystemFederatedUpgradeMap) ToSystemFederatedUpgradeMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemFederatedUpgradeMapOutput)
 }
 
-type SystemFederatedUpgradeOutput struct {
-	*pulumi.OutputState
-}
+type SystemFederatedUpgradeOutput struct{ *pulumi.OutputState }
 
 func (SystemFederatedUpgradeOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemFederatedUpgrade)(nil))
+	return reflect.TypeOf((**SystemFederatedUpgrade)(nil)).Elem()
 }
 
 func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradeOutput() SystemFederatedUpgradeOutput {
@@ -229,36 +239,10 @@ func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradeOutputWithContext(
 	return o
 }
 
-func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradePtrOutput() SystemFederatedUpgradePtrOutput {
-	return o.ToSystemFederatedUpgradePtrOutputWithContext(context.Background())
-}
-
-func (o SystemFederatedUpgradeOutput) ToSystemFederatedUpgradePtrOutputWithContext(ctx context.Context) SystemFederatedUpgradePtrOutput {
-	return o.ApplyT(func(v SystemFederatedUpgrade) *SystemFederatedUpgrade {
-		return &v
-	}).(SystemFederatedUpgradePtrOutput)
-}
-
-type SystemFederatedUpgradePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemFederatedUpgradePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemFederatedUpgrade)(nil))
-}
-
-func (o SystemFederatedUpgradePtrOutput) ToSystemFederatedUpgradePtrOutput() SystemFederatedUpgradePtrOutput {
-	return o
-}
-
-func (o SystemFederatedUpgradePtrOutput) ToSystemFederatedUpgradePtrOutputWithContext(ctx context.Context) SystemFederatedUpgradePtrOutput {
-	return o
-}
-
 type SystemFederatedUpgradeArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemFederatedUpgradeArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemFederatedUpgrade)(nil))
+	return reflect.TypeOf((*[]*SystemFederatedUpgrade)(nil)).Elem()
 }
 
 func (o SystemFederatedUpgradeArrayOutput) ToSystemFederatedUpgradeArrayOutput() SystemFederatedUpgradeArrayOutput {
@@ -270,15 +254,15 @@ func (o SystemFederatedUpgradeArrayOutput) ToSystemFederatedUpgradeArrayOutputWi
 }
 
 func (o SystemFederatedUpgradeArrayOutput) Index(i pulumi.IntInput) SystemFederatedUpgradeOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemFederatedUpgrade {
-		return vs[0].([]SystemFederatedUpgrade)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemFederatedUpgrade {
+		return vs[0].([]*SystemFederatedUpgrade)[vs[1].(int)]
 	}).(SystemFederatedUpgradeOutput)
 }
 
 type SystemFederatedUpgradeMapOutput struct{ *pulumi.OutputState }
 
 func (SystemFederatedUpgradeMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemFederatedUpgrade)(nil))
+	return reflect.TypeOf((*map[string]*SystemFederatedUpgrade)(nil)).Elem()
 }
 
 func (o SystemFederatedUpgradeMapOutput) ToSystemFederatedUpgradeMapOutput() SystemFederatedUpgradeMapOutput {
@@ -290,14 +274,16 @@ func (o SystemFederatedUpgradeMapOutput) ToSystemFederatedUpgradeMapOutputWithCo
 }
 
 func (o SystemFederatedUpgradeMapOutput) MapIndex(k pulumi.StringInput) SystemFederatedUpgradeOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemFederatedUpgrade {
-		return vs[0].(map[string]SystemFederatedUpgrade)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemFederatedUpgrade {
+		return vs[0].(map[string]*SystemFederatedUpgrade)[vs[1].(string)]
 	}).(SystemFederatedUpgradeOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFederatedUpgradeInput)(nil)).Elem(), &SystemFederatedUpgrade{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFederatedUpgradeArrayInput)(nil)).Elem(), SystemFederatedUpgradeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemFederatedUpgradeMapInput)(nil)).Elem(), SystemFederatedUpgradeMap{})
 	pulumi.RegisterOutputType(SystemFederatedUpgradeOutput{})
-	pulumi.RegisterOutputType(SystemFederatedUpgradePtrOutput{})
 	pulumi.RegisterOutputType(SystemFederatedUpgradeArrayOutput{})
 	pulumi.RegisterOutputType(SystemFederatedUpgradeMapOutput{})
 }

@@ -148,51 +148,49 @@ export class IpsRule extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IpsRuleArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IpsRuleArgs | IpsRuleState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpsRuleState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["application"] = state ? state.application : undefined;
-            inputs["date"] = state ? state.date : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["group"] = state ? state.group : undefined;
-            inputs["location"] = state ? state.location : undefined;
-            inputs["log"] = state ? state.log : undefined;
-            inputs["logPacket"] = state ? state.logPacket : undefined;
-            inputs["metadatas"] = state ? state.metadatas : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["os"] = state ? state.os : undefined;
-            inputs["rev"] = state ? state.rev : undefined;
-            inputs["ruleId"] = state ? state.ruleId : undefined;
-            inputs["service"] = state ? state.service : undefined;
-            inputs["severity"] = state ? state.severity : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["application"] = state ? state.application : undefined;
+            resourceInputs["date"] = state ? state.date : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["group"] = state ? state.group : undefined;
+            resourceInputs["location"] = state ? state.location : undefined;
+            resourceInputs["log"] = state ? state.log : undefined;
+            resourceInputs["logPacket"] = state ? state.logPacket : undefined;
+            resourceInputs["metadatas"] = state ? state.metadatas : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["os"] = state ? state.os : undefined;
+            resourceInputs["rev"] = state ? state.rev : undefined;
+            resourceInputs["ruleId"] = state ? state.ruleId : undefined;
+            resourceInputs["service"] = state ? state.service : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpsRuleArgs | undefined;
-            inputs["action"] = args ? args.action : undefined;
-            inputs["application"] = args ? args.application : undefined;
-            inputs["date"] = args ? args.date : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["group"] = args ? args.group : undefined;
-            inputs["location"] = args ? args.location : undefined;
-            inputs["log"] = args ? args.log : undefined;
-            inputs["logPacket"] = args ? args.logPacket : undefined;
-            inputs["metadatas"] = args ? args.metadatas : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["os"] = args ? args.os : undefined;
-            inputs["rev"] = args ? args.rev : undefined;
-            inputs["ruleId"] = args ? args.ruleId : undefined;
-            inputs["service"] = args ? args.service : undefined;
-            inputs["severity"] = args ? args.severity : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["application"] = args ? args.application : undefined;
+            resourceInputs["date"] = args ? args.date : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["group"] = args ? args.group : undefined;
+            resourceInputs["location"] = args ? args.location : undefined;
+            resourceInputs["log"] = args ? args.log : undefined;
+            resourceInputs["logPacket"] = args ? args.logPacket : undefined;
+            resourceInputs["metadatas"] = args ? args.metadatas : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["os"] = args ? args.os : undefined;
+            resourceInputs["rev"] = args ? args.rev : undefined;
+            resourceInputs["ruleId"] = args ? args.ruleId : undefined;
+            resourceInputs["service"] = args ? args.service : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IpsRule.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IpsRule.__pulumiType, name, resourceInputs, opts);
     }
 }
 

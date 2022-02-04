@@ -19,6 +19,7 @@ class FirewallAddrgrp6Args:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6TaggingArgs']]]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
@@ -30,6 +31,7 @@ class FirewallAddrgrp6Args:
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6TaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -43,6 +45,8 @@ class FirewallAddrgrp6Args:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if taggings is not None:
@@ -101,6 +105,18 @@ class FirewallAddrgrp6Args:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -169,6 +185,7 @@ class _FirewallAddrgrp6State:
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6MemberArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6TaggingArgs']]]] = None,
@@ -180,6 +197,7 @@ class _FirewallAddrgrp6State:
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6MemberArgs']]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddrgrp6TaggingArgs']]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -193,6 +211,8 @@ class _FirewallAddrgrp6State:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if members is not None:
             pulumi.set(__self__, "members", members)
         if name is not None:
@@ -241,6 +261,18 @@ class _FirewallAddrgrp6State:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -323,6 +355,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]]] = None,
@@ -372,6 +405,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -440,6 +474,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]]] = None,
@@ -453,6 +488,8 @@ class FirewallAddrgrp6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -461,6 +498,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fabric_object"] = fabric_object
             if members is None and not opts.urn:
                 raise TypeError("Missing required property 'members'")
             __props__.__dict__["members"] = members
@@ -482,6 +520,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             members: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             taggings: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]]] = None,
@@ -498,6 +537,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
         :param pulumi.Input[int] color: Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6MemberArgs']]]] members: Address objects contained within the group. The structure of `member` block is documented below.
         :param pulumi.Input[str] name: Tag name.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallAddrgrp6TaggingArgs']]]] taggings: Config object tagging. The structure of `tagging` block is documented below.
@@ -512,6 +552,7 @@ class FirewallAddrgrp6(pulumi.CustomResource):
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["members"] = members
         __props__.__dict__["name"] = name
         __props__.__dict__["taggings"] = taggings
@@ -543,6 +584,14 @@ class FirewallAddrgrp6(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter

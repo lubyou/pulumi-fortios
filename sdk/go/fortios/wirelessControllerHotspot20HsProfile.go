@@ -34,6 +34,8 @@ type WirelessControllerHotspot20HsProfile struct {
 	AccessNetworkType pulumi.StringOutput `pulumi:"accessNetworkType"`
 	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
 	AccessNetworkUesa pulumi.StringOutput `pulumi:"accessNetworkUesa"`
+	// Advice of charge.
+	AdviceOfCharge pulumi.StringOutput `pulumi:"adviceOfCharge"`
 	// ANQP Domain ID (0-65535).
 	AnqpDomainId pulumi.IntOutput `pulumi:"anqpDomainId"`
 	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
@@ -68,6 +70,10 @@ type WirelessControllerHotspot20HsProfile struct {
 	NetworkAuth pulumi.StringOutput `pulumi:"networkAuth"`
 	// Operator friendly name.
 	OperFriendlyName pulumi.StringOutput `pulumi:"operFriendlyName"`
+	// Operator icon.
+	OperIcon pulumi.StringOutput `pulumi:"operIcon"`
+	// OSU Provider NAI.
+	OsuProviderNai pulumi.StringOutput `pulumi:"osuProviderNai"`
 	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
 	OsuProviders WirelessControllerHotspot20HsProfileOsuProviderArrayOutput `pulumi:"osuProviders"`
 	// Online sign up (OSU) SSID.
@@ -78,8 +84,12 @@ type WirelessControllerHotspot20HsProfile struct {
 	ProxyArp pulumi.StringOutput `pulumi:"proxyArp"`
 	// QoS MAP set ID.
 	QosMap pulumi.StringOutput `pulumi:"qosMap"`
+	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
+	Release pulumi.IntOutput `pulumi:"release"`
 	// Roaming consortium list name.
 	RoamingConsortium pulumi.StringOutput `pulumi:"roamingConsortium"`
+	// Terms and conditions.
+	TermsAndConditions pulumi.StringOutput `pulumi:"termsAndConditions"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
@@ -88,6 +98,8 @@ type WirelessControllerHotspot20HsProfile struct {
 	VenueName pulumi.StringOutput `pulumi:"venueName"`
 	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
 	VenueType pulumi.StringOutput `pulumi:"venueType"`
+	// Venue name.
+	VenueUrl pulumi.StringOutput `pulumi:"venueUrl"`
 	// WAN metric name.
 	WanMetrics pulumi.StringOutput `pulumi:"wanMetrics"`
 	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
@@ -101,6 +113,7 @@ func NewWirelessControllerHotspot20HsProfile(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20HsProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20HsProfile
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -133,6 +146,8 @@ type wirelessControllerHotspot20HsProfileState struct {
 	AccessNetworkType *string `pulumi:"accessNetworkType"`
 	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
 	AccessNetworkUesa *string `pulumi:"accessNetworkUesa"`
+	// Advice of charge.
+	AdviceOfCharge *string `pulumi:"adviceOfCharge"`
 	// ANQP Domain ID (0-65535).
 	AnqpDomainId *int `pulumi:"anqpDomainId"`
 	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
@@ -167,6 +182,10 @@ type wirelessControllerHotspot20HsProfileState struct {
 	NetworkAuth *string `pulumi:"networkAuth"`
 	// Operator friendly name.
 	OperFriendlyName *string `pulumi:"operFriendlyName"`
+	// Operator icon.
+	OperIcon *string `pulumi:"operIcon"`
+	// OSU Provider NAI.
+	OsuProviderNai *string `pulumi:"osuProviderNai"`
 	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
 	OsuProviders []WirelessControllerHotspot20HsProfileOsuProvider `pulumi:"osuProviders"`
 	// Online sign up (OSU) SSID.
@@ -177,8 +196,12 @@ type wirelessControllerHotspot20HsProfileState struct {
 	ProxyArp *string `pulumi:"proxyArp"`
 	// QoS MAP set ID.
 	QosMap *string `pulumi:"qosMap"`
+	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
+	Release *int `pulumi:"release"`
 	// Roaming consortium list name.
 	RoamingConsortium *string `pulumi:"roamingConsortium"`
+	// Terms and conditions.
+	TermsAndConditions *string `pulumi:"termsAndConditions"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
@@ -187,6 +210,8 @@ type wirelessControllerHotspot20HsProfileState struct {
 	VenueName *string `pulumi:"venueName"`
 	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
 	VenueType *string `pulumi:"venueType"`
+	// Venue name.
+	VenueUrl *string `pulumi:"venueUrl"`
 	// WAN metric name.
 	WanMetrics *string `pulumi:"wanMetrics"`
 	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
@@ -204,6 +229,8 @@ type WirelessControllerHotspot20HsProfileState struct {
 	AccessNetworkType pulumi.StringPtrInput
 	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
 	AccessNetworkUesa pulumi.StringPtrInput
+	// Advice of charge.
+	AdviceOfCharge pulumi.StringPtrInput
 	// ANQP Domain ID (0-65535).
 	AnqpDomainId pulumi.IntPtrInput
 	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
@@ -238,6 +265,10 @@ type WirelessControllerHotspot20HsProfileState struct {
 	NetworkAuth pulumi.StringPtrInput
 	// Operator friendly name.
 	OperFriendlyName pulumi.StringPtrInput
+	// Operator icon.
+	OperIcon pulumi.StringPtrInput
+	// OSU Provider NAI.
+	OsuProviderNai pulumi.StringPtrInput
 	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
 	OsuProviders WirelessControllerHotspot20HsProfileOsuProviderArrayInput
 	// Online sign up (OSU) SSID.
@@ -248,8 +279,12 @@ type WirelessControllerHotspot20HsProfileState struct {
 	ProxyArp pulumi.StringPtrInput
 	// QoS MAP set ID.
 	QosMap pulumi.StringPtrInput
+	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
+	Release pulumi.IntPtrInput
 	// Roaming consortium list name.
 	RoamingConsortium pulumi.StringPtrInput
+	// Terms and conditions.
+	TermsAndConditions pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
@@ -258,6 +293,8 @@ type WirelessControllerHotspot20HsProfileState struct {
 	VenueName pulumi.StringPtrInput
 	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
 	VenueType pulumi.StringPtrInput
+	// Venue name.
+	VenueUrl pulumi.StringPtrInput
 	// WAN metric name.
 	WanMetrics pulumi.StringPtrInput
 	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
@@ -279,6 +316,8 @@ type wirelessControllerHotspot20HsProfileArgs struct {
 	AccessNetworkType *string `pulumi:"accessNetworkType"`
 	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
 	AccessNetworkUesa *string `pulumi:"accessNetworkUesa"`
+	// Advice of charge.
+	AdviceOfCharge *string `pulumi:"adviceOfCharge"`
 	// ANQP Domain ID (0-65535).
 	AnqpDomainId *int `pulumi:"anqpDomainId"`
 	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
@@ -313,6 +352,10 @@ type wirelessControllerHotspot20HsProfileArgs struct {
 	NetworkAuth *string `pulumi:"networkAuth"`
 	// Operator friendly name.
 	OperFriendlyName *string `pulumi:"operFriendlyName"`
+	// Operator icon.
+	OperIcon *string `pulumi:"operIcon"`
+	// OSU Provider NAI.
+	OsuProviderNai *string `pulumi:"osuProviderNai"`
 	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
 	OsuProviders []WirelessControllerHotspot20HsProfileOsuProvider `pulumi:"osuProviders"`
 	// Online sign up (OSU) SSID.
@@ -323,8 +366,12 @@ type wirelessControllerHotspot20HsProfileArgs struct {
 	ProxyArp *string `pulumi:"proxyArp"`
 	// QoS MAP set ID.
 	QosMap *string `pulumi:"qosMap"`
+	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
+	Release *int `pulumi:"release"`
 	// Roaming consortium list name.
 	RoamingConsortium *string `pulumi:"roamingConsortium"`
+	// Terms and conditions.
+	TermsAndConditions *string `pulumi:"termsAndConditions"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
@@ -333,6 +380,8 @@ type wirelessControllerHotspot20HsProfileArgs struct {
 	VenueName *string `pulumi:"venueName"`
 	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
 	VenueType *string `pulumi:"venueType"`
+	// Venue name.
+	VenueUrl *string `pulumi:"venueUrl"`
 	// WAN metric name.
 	WanMetrics *string `pulumi:"wanMetrics"`
 	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
@@ -351,6 +400,8 @@ type WirelessControllerHotspot20HsProfileArgs struct {
 	AccessNetworkType pulumi.StringPtrInput
 	// Enable/disable unauthenticated emergency service accessible (UESA). Valid values: `enable`, `disable`.
 	AccessNetworkUesa pulumi.StringPtrInput
+	// Advice of charge.
+	AdviceOfCharge pulumi.StringPtrInput
 	// ANQP Domain ID (0-65535).
 	AnqpDomainId pulumi.IntPtrInput
 	// Enable/disable basic service set (BSS) transition Support. Valid values: `enable`, `disable`.
@@ -385,6 +436,10 @@ type WirelessControllerHotspot20HsProfileArgs struct {
 	NetworkAuth pulumi.StringPtrInput
 	// Operator friendly name.
 	OperFriendlyName pulumi.StringPtrInput
+	// Operator icon.
+	OperIcon pulumi.StringPtrInput
+	// OSU Provider NAI.
+	OsuProviderNai pulumi.StringPtrInput
 	// Manually selected list of OSU provider(s). The structure of `osuProvider` block is documented below.
 	OsuProviders WirelessControllerHotspot20HsProfileOsuProviderArrayInput
 	// Online sign up (OSU) SSID.
@@ -395,8 +450,12 @@ type WirelessControllerHotspot20HsProfileArgs struct {
 	ProxyArp pulumi.StringPtrInput
 	// QoS MAP set ID.
 	QosMap pulumi.StringPtrInput
+	// Hotspot 2.0 Release number (1, 2, 3, default = 2).
+	Release pulumi.IntPtrInput
 	// Roaming consortium list name.
 	RoamingConsortium pulumi.StringPtrInput
+	// Terms and conditions.
+	TermsAndConditions pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Venue group. Valid values: `unspecified`, `assembly`, `business`, `educational`, `factory`, `institutional`, `mercantile`, `residential`, `storage`, `utility`, `vehicular`, `outdoor`.
@@ -405,6 +464,8 @@ type WirelessControllerHotspot20HsProfileArgs struct {
 	VenueName pulumi.StringPtrInput
 	// Venue type. Valid values: `unspecified`, `arena`, `stadium`, `passenger-terminal`, `amphitheater`, `amusement-park`, `place-of-worship`, `convention-center`, `library`, `museum`, `restaurant`, `theater`, `bar`, `coffee-shop`, `zoo-or-aquarium`, `emergency-center`, `doctor-office`, `bank`, `fire-station`, `police-station`, `post-office`, `professional-office`, `research-facility`, `attorney-office`, `primary-school`, `secondary-school`, `university-or-college`, `factory`, `hospital`, `long-term-care-facility`, `rehab-center`, `group-home`, `prison-or-jail`, `retail-store`, `grocery-market`, `auto-service-station`, `shopping-mall`, `gas-station`, `private`, `hotel-or-motel`, `dormitory`, `boarding-house`, `automobile`, `airplane`, `bus`, `ferry`, `ship-or-boat`, `train`, `motor-bike`, `muni-mesh-network`, `city-park`, `rest-area`, `traffic-control`, `bus-stop`, `kiosk`.
 	VenueType pulumi.StringPtrInput
+	// Venue name.
+	VenueUrl pulumi.StringPtrInput
 	// WAN metric name.
 	WanMetrics pulumi.StringPtrInput
 	// Enable/disable wireless network management (WNM) sleep mode. Valid values: `enable`, `disable`.
@@ -423,7 +484,7 @@ type WirelessControllerHotspot20HsProfileInput interface {
 }
 
 func (*WirelessControllerHotspot20HsProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20HsProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20HsProfile)(nil)).Elem()
 }
 
 func (i *WirelessControllerHotspot20HsProfile) ToWirelessControllerHotspot20HsProfileOutput() WirelessControllerHotspot20HsProfileOutput {
@@ -432,35 +493,6 @@ func (i *WirelessControllerHotspot20HsProfile) ToWirelessControllerHotspot20HsPr
 
 func (i *WirelessControllerHotspot20HsProfile) ToWirelessControllerHotspot20HsProfileOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20HsProfileOutput)
-}
-
-func (i *WirelessControllerHotspot20HsProfile) ToWirelessControllerHotspot20HsProfilePtrOutput() WirelessControllerHotspot20HsProfilePtrOutput {
-	return i.ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerHotspot20HsProfile) ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20HsProfilePtrOutput)
-}
-
-type WirelessControllerHotspot20HsProfilePtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerHotspot20HsProfilePtrOutput() WirelessControllerHotspot20HsProfilePtrOutput
-	ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfilePtrOutput
-}
-
-type wirelessControllerHotspot20HsProfilePtrType WirelessControllerHotspot20HsProfileArgs
-
-func (*wirelessControllerHotspot20HsProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20HsProfile)(nil))
-}
-
-func (i *wirelessControllerHotspot20HsProfilePtrType) ToWirelessControllerHotspot20HsProfilePtrOutput() WirelessControllerHotspot20HsProfilePtrOutput {
-	return i.ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerHotspot20HsProfilePtrType) ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20HsProfilePtrOutput)
 }
 
 // WirelessControllerHotspot20HsProfileArrayInput is an input type that accepts WirelessControllerHotspot20HsProfileArray and WirelessControllerHotspot20HsProfileArrayOutput values.
@@ -477,7 +509,7 @@ type WirelessControllerHotspot20HsProfileArrayInput interface {
 type WirelessControllerHotspot20HsProfileArray []WirelessControllerHotspot20HsProfileInput
 
 func (WirelessControllerHotspot20HsProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerHotspot20HsProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20HsProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20HsProfileArray) ToWirelessControllerHotspot20HsProfileArrayOutput() WirelessControllerHotspot20HsProfileArrayOutput {
@@ -502,7 +534,7 @@ type WirelessControllerHotspot20HsProfileMapInput interface {
 type WirelessControllerHotspot20HsProfileMap map[string]WirelessControllerHotspot20HsProfileInput
 
 func (WirelessControllerHotspot20HsProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerHotspot20HsProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20HsProfile)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20HsProfileMap) ToWirelessControllerHotspot20HsProfileMapOutput() WirelessControllerHotspot20HsProfileMapOutput {
@@ -513,12 +545,10 @@ func (i WirelessControllerHotspot20HsProfileMap) ToWirelessControllerHotspot20Hs
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20HsProfileMapOutput)
 }
 
-type WirelessControllerHotspot20HsProfileOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerHotspot20HsProfileOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20HsProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20HsProfile)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20HsProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20HsProfileOutput) ToWirelessControllerHotspot20HsProfileOutput() WirelessControllerHotspot20HsProfileOutput {
@@ -529,36 +559,10 @@ func (o WirelessControllerHotspot20HsProfileOutput) ToWirelessControllerHotspot2
 	return o
 }
 
-func (o WirelessControllerHotspot20HsProfileOutput) ToWirelessControllerHotspot20HsProfilePtrOutput() WirelessControllerHotspot20HsProfilePtrOutput {
-	return o.ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerHotspot20HsProfileOutput) ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfilePtrOutput {
-	return o.ApplyT(func(v WirelessControllerHotspot20HsProfile) *WirelessControllerHotspot20HsProfile {
-		return &v
-	}).(WirelessControllerHotspot20HsProfilePtrOutput)
-}
-
-type WirelessControllerHotspot20HsProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerHotspot20HsProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20HsProfile)(nil))
-}
-
-func (o WirelessControllerHotspot20HsProfilePtrOutput) ToWirelessControllerHotspot20HsProfilePtrOutput() WirelessControllerHotspot20HsProfilePtrOutput {
-	return o
-}
-
-func (o WirelessControllerHotspot20HsProfilePtrOutput) ToWirelessControllerHotspot20HsProfilePtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20HsProfilePtrOutput {
-	return o
-}
-
 type WirelessControllerHotspot20HsProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20HsProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerHotspot20HsProfile)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20HsProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20HsProfileArrayOutput) ToWirelessControllerHotspot20HsProfileArrayOutput() WirelessControllerHotspot20HsProfileArrayOutput {
@@ -570,15 +574,15 @@ func (o WirelessControllerHotspot20HsProfileArrayOutput) ToWirelessControllerHot
 }
 
 func (o WirelessControllerHotspot20HsProfileArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20HsProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerHotspot20HsProfile {
-		return vs[0].([]WirelessControllerHotspot20HsProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20HsProfile {
+		return vs[0].([]*WirelessControllerHotspot20HsProfile)[vs[1].(int)]
 	}).(WirelessControllerHotspot20HsProfileOutput)
 }
 
 type WirelessControllerHotspot20HsProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20HsProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerHotspot20HsProfile)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20HsProfile)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20HsProfileMapOutput) ToWirelessControllerHotspot20HsProfileMapOutput() WirelessControllerHotspot20HsProfileMapOutput {
@@ -590,14 +594,16 @@ func (o WirelessControllerHotspot20HsProfileMapOutput) ToWirelessControllerHotsp
 }
 
 func (o WirelessControllerHotspot20HsProfileMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20HsProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerHotspot20HsProfile {
-		return vs[0].(map[string]WirelessControllerHotspot20HsProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20HsProfile {
+		return vs[0].(map[string]*WirelessControllerHotspot20HsProfile)[vs[1].(string)]
 	}).(WirelessControllerHotspot20HsProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20HsProfileInput)(nil)).Elem(), &WirelessControllerHotspot20HsProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20HsProfileArrayInput)(nil)).Elem(), WirelessControllerHotspot20HsProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20HsProfileMapInput)(nil)).Elem(), WirelessControllerHotspot20HsProfileMap{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20HsProfileOutput{})
-	pulumi.RegisterOutputType(WirelessControllerHotspot20HsProfilePtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20HsProfileArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20HsProfileMapOutput{})
 }

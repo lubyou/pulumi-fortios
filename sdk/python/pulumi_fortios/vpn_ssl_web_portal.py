@@ -18,6 +18,7 @@ class VpnSslWebPortalArgs:
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]]] = None,
+                 clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
@@ -58,7 +59,9 @@ class VpnSslWebPortalArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  os_check: Optional[pulumi.Input[str]] = None,
                  os_check_lists: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalOsCheckListArgs']]]] = None,
+                 prefer_ipv6_dns: Optional[pulumi.Input[str]] = None,
                  redir_url: Optional[pulumi.Input[str]] = None,
+                 rewrite_ip_uri_ui: Optional[pulumi.Input[str]] = None,
                  save_password: Optional[pulumi.Input[str]] = None,
                  service_restriction: Optional[pulumi.Input[str]] = None,
                  skip_check_for_browser: Optional[pulumi.Input[str]] = None,
@@ -84,9 +87,10 @@ class VpnSslWebPortalArgs:
                  wins_server2: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a VpnSslWebPortal resource.
-        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -127,7 +131,9 @@ class VpnSslWebPortalArgs:
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] os_check: Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalOsCheckListArgs']]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
+        :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -158,6 +164,8 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "auto_connect", auto_connect)
         if bookmark_groups is not None:
             pulumi.set(__self__, "bookmark_groups", bookmark_groups)
+        if clipboard is not None:
+            pulumi.set(__self__, "clipboard", clipboard)
         if custom_lang is not None:
             pulumi.set(__self__, "custom_lang", custom_lang)
         if customize_forticlient_download_url is not None:
@@ -238,8 +246,12 @@ class VpnSslWebPortalArgs:
             pulumi.set(__self__, "os_check", os_check)
         if os_check_lists is not None:
             pulumi.set(__self__, "os_check_lists", os_check_lists)
+        if prefer_ipv6_dns is not None:
+            pulumi.set(__self__, "prefer_ipv6_dns", prefer_ipv6_dns)
         if redir_url is not None:
             pulumi.set(__self__, "redir_url", redir_url)
+        if rewrite_ip_uri_ui is not None:
+            pulumi.set(__self__, "rewrite_ip_uri_ui", rewrite_ip_uri_ui)
         if save_password is not None:
             pulumi.set(__self__, "save_password", save_password)
         if service_restriction is not None:
@@ -291,7 +303,7 @@ class VpnSslWebPortalArgs:
     @pulumi.getter(name="allowUserAccess")
     def allow_user_access(self) -> Optional[pulumi.Input[str]]:
         """
-        Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        Allow user access to SSL-VPN applications.
         """
         return pulumi.get(self, "allow_user_access")
 
@@ -322,6 +334,18 @@ class VpnSslWebPortalArgs:
     @bookmark_groups.setter
     def bookmark_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]]]):
         pulumi.set(self, "bookmark_groups", value)
+
+    @property
+    @pulumi.getter
+    def clipboard(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "clipboard")
+
+    @clipboard.setter
+    def clipboard(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "clipboard", value)
 
     @property
     @pulumi.getter(name="customLang")
@@ -804,6 +828,18 @@ class VpnSslWebPortalArgs:
         pulumi.set(self, "os_check_lists", value)
 
     @property
+    @pulumi.getter(name="preferIpv6Dns")
+    def prefer_ipv6_dns(self) -> Optional[pulumi.Input[str]]:
+        """
+        prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "prefer_ipv6_dns")
+
+    @prefer_ipv6_dns.setter
+    def prefer_ipv6_dns(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefer_ipv6_dns", value)
+
+    @property
     @pulumi.getter(name="redirUrl")
     def redir_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -814,6 +850,18 @@ class VpnSslWebPortalArgs:
     @redir_url.setter
     def redir_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "redir_url", value)
+
+    @property
+    @pulumi.getter(name="rewriteIpUriUi")
+    def rewrite_ip_uri_ui(self) -> Optional[pulumi.Input[str]]:
+        """
+        Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rewrite_ip_uri_ui")
+
+    @rewrite_ip_uri_ui.setter
+    def rewrite_ip_uri_ui(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rewrite_ip_uri_ui", value)
 
     @property
     @pulumi.getter(name="savePassword")
@@ -1098,6 +1146,7 @@ class _VpnSslWebPortalState:
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]]] = None,
+                 clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
@@ -1138,7 +1187,9 @@ class _VpnSslWebPortalState:
                  name: Optional[pulumi.Input[str]] = None,
                  os_check: Optional[pulumi.Input[str]] = None,
                  os_check_lists: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalOsCheckListArgs']]]] = None,
+                 prefer_ipv6_dns: Optional[pulumi.Input[str]] = None,
                  redir_url: Optional[pulumi.Input[str]] = None,
+                 rewrite_ip_uri_ui: Optional[pulumi.Input[str]] = None,
                  save_password: Optional[pulumi.Input[str]] = None,
                  service_restriction: Optional[pulumi.Input[str]] = None,
                  skip_check_for_browser: Optional[pulumi.Input[str]] = None,
@@ -1164,9 +1215,10 @@ class _VpnSslWebPortalState:
                  wins_server2: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering VpnSslWebPortal resources.
-        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -1207,7 +1259,9 @@ class _VpnSslWebPortalState:
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] os_check: Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalOsCheckListArgs']]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
+        :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -1238,6 +1292,8 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "auto_connect", auto_connect)
         if bookmark_groups is not None:
             pulumi.set(__self__, "bookmark_groups", bookmark_groups)
+        if clipboard is not None:
+            pulumi.set(__self__, "clipboard", clipboard)
         if custom_lang is not None:
             pulumi.set(__self__, "custom_lang", custom_lang)
         if customize_forticlient_download_url is not None:
@@ -1318,8 +1374,12 @@ class _VpnSslWebPortalState:
             pulumi.set(__self__, "os_check", os_check)
         if os_check_lists is not None:
             pulumi.set(__self__, "os_check_lists", os_check_lists)
+        if prefer_ipv6_dns is not None:
+            pulumi.set(__self__, "prefer_ipv6_dns", prefer_ipv6_dns)
         if redir_url is not None:
             pulumi.set(__self__, "redir_url", redir_url)
+        if rewrite_ip_uri_ui is not None:
+            pulumi.set(__self__, "rewrite_ip_uri_ui", rewrite_ip_uri_ui)
         if save_password is not None:
             pulumi.set(__self__, "save_password", save_password)
         if service_restriction is not None:
@@ -1371,7 +1431,7 @@ class _VpnSslWebPortalState:
     @pulumi.getter(name="allowUserAccess")
     def allow_user_access(self) -> Optional[pulumi.Input[str]]:
         """
-        Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        Allow user access to SSL-VPN applications.
         """
         return pulumi.get(self, "allow_user_access")
 
@@ -1402,6 +1462,18 @@ class _VpnSslWebPortalState:
     @bookmark_groups.setter
     def bookmark_groups(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['VpnSslWebPortalBookmarkGroupArgs']]]]):
         pulumi.set(self, "bookmark_groups", value)
+
+    @property
+    @pulumi.getter
+    def clipboard(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "clipboard")
+
+    @clipboard.setter
+    def clipboard(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "clipboard", value)
 
     @property
     @pulumi.getter(name="customLang")
@@ -1884,6 +1956,18 @@ class _VpnSslWebPortalState:
         pulumi.set(self, "os_check_lists", value)
 
     @property
+    @pulumi.getter(name="preferIpv6Dns")
+    def prefer_ipv6_dns(self) -> Optional[pulumi.Input[str]]:
+        """
+        prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "prefer_ipv6_dns")
+
+    @prefer_ipv6_dns.setter
+    def prefer_ipv6_dns(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "prefer_ipv6_dns", value)
+
+    @property
     @pulumi.getter(name="redirUrl")
     def redir_url(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1894,6 +1978,18 @@ class _VpnSslWebPortalState:
     @redir_url.setter
     def redir_url(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "redir_url", value)
+
+    @property
+    @pulumi.getter(name="rewriteIpUriUi")
+    def rewrite_ip_uri_ui(self) -> Optional[pulumi.Input[str]]:
+        """
+        Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rewrite_ip_uri_ui")
+
+    @rewrite_ip_uri_ui.setter
+    def rewrite_ip_uri_ui(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rewrite_ip_uri_ui", value)
 
     @property
     @pulumi.getter(name="savePassword")
@@ -2180,6 +2276,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]]] = None,
+                 clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
@@ -2220,7 +2317,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  os_check: Optional[pulumi.Input[str]] = None,
                  os_check_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalOsCheckListArgs']]]]] = None,
+                 prefer_ipv6_dns: Optional[pulumi.Input[str]] = None,
                  redir_url: Optional[pulumi.Input[str]] = None,
+                 rewrite_ip_uri_ui: Optional[pulumi.Input[str]] = None,
                  save_password: Optional[pulumi.Input[str]] = None,
                  service_restriction: Optional[pulumi.Input[str]] = None,
                  skip_check_for_browser: Optional[pulumi.Input[str]] = None,
@@ -2318,9 +2417,10 @@ class VpnSslWebPortal(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -2361,7 +2461,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] os_check: Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalOsCheckListArgs']]]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
+        :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -2481,6 +2583,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  allow_user_access: Optional[pulumi.Input[str]] = None,
                  auto_connect: Optional[pulumi.Input[str]] = None,
                  bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]]] = None,
+                 clipboard: Optional[pulumi.Input[str]] = None,
                  custom_lang: Optional[pulumi.Input[str]] = None,
                  customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
                  display_bookmark: Optional[pulumi.Input[str]] = None,
@@ -2521,7 +2624,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  os_check: Optional[pulumi.Input[str]] = None,
                  os_check_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalOsCheckListArgs']]]]] = None,
+                 prefer_ipv6_dns: Optional[pulumi.Input[str]] = None,
                  redir_url: Optional[pulumi.Input[str]] = None,
+                 rewrite_ip_uri_ui: Optional[pulumi.Input[str]] = None,
                  save_password: Optional[pulumi.Input[str]] = None,
                  service_restriction: Optional[pulumi.Input[str]] = None,
                  skip_check_for_browser: Optional[pulumi.Input[str]] = None,
@@ -2552,6 +2657,8 @@ class VpnSslWebPortal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -2560,6 +2667,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["allow_user_access"] = allow_user_access
             __props__.__dict__["auto_connect"] = auto_connect
             __props__.__dict__["bookmark_groups"] = bookmark_groups
+            __props__.__dict__["clipboard"] = clipboard
             __props__.__dict__["custom_lang"] = custom_lang
             __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
             __props__.__dict__["display_bookmark"] = display_bookmark
@@ -2600,7 +2708,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["os_check"] = os_check
             __props__.__dict__["os_check_lists"] = os_check_lists
+            __props__.__dict__["prefer_ipv6_dns"] = prefer_ipv6_dns
             __props__.__dict__["redir_url"] = redir_url
+            __props__.__dict__["rewrite_ip_uri_ui"] = rewrite_ip_uri_ui
             __props__.__dict__["save_password"] = save_password
             __props__.__dict__["service_restriction"] = service_restriction
             __props__.__dict__["skip_check_for_browser"] = skip_check_for_browser
@@ -2637,6 +2747,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
             allow_user_access: Optional[pulumi.Input[str]] = None,
             auto_connect: Optional[pulumi.Input[str]] = None,
             bookmark_groups: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]]] = None,
+            clipboard: Optional[pulumi.Input[str]] = None,
             custom_lang: Optional[pulumi.Input[str]] = None,
             customize_forticlient_download_url: Optional[pulumi.Input[str]] = None,
             display_bookmark: Optional[pulumi.Input[str]] = None,
@@ -2677,7 +2788,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             os_check: Optional[pulumi.Input[str]] = None,
             os_check_lists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalOsCheckListArgs']]]]] = None,
+            prefer_ipv6_dns: Optional[pulumi.Input[str]] = None,
             redir_url: Optional[pulumi.Input[str]] = None,
+            rewrite_ip_uri_ui: Optional[pulumi.Input[str]] = None,
             save_password: Optional[pulumi.Input[str]] = None,
             service_restriction: Optional[pulumi.Input[str]] = None,
             skip_check_for_browser: Optional[pulumi.Input[str]] = None,
@@ -2708,9 +2821,10 @@ class VpnSslWebPortal(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        :param pulumi.Input[str] allow_user_access: Allow user access to SSL-VPN applications.
         :param pulumi.Input[str] auto_connect: Enable/disable automatic connect by client when system is up. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalBookmarkGroupArgs']]]] bookmark_groups: Portal bookmark group. The structure of `bookmark_group` block is documented below.
+        :param pulumi.Input[str] clipboard: Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] custom_lang: Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
         :param pulumi.Input[str] customize_forticlient_download_url: Enable support of customized download URL for FortiClient. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] display_bookmark: Enable to display the web portal bookmark widget. Valid values: `enable`, `disable`.
@@ -2751,7 +2865,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
         :param pulumi.Input[str] name: Name.
         :param pulumi.Input[str] os_check: Enable to let the FortiGate decide action based on client OS. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VpnSslWebPortalOsCheckListArgs']]]] os_check_lists: SSL VPN OS checks. The structure of `os_check_list` block is documented below.
+        :param pulumi.Input[str] prefer_ipv6_dns: prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] redir_url: Client login redirect URL.
+        :param pulumi.Input[str] rewrite_ip_uri_ui: Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
         :param pulumi.Input[str] save_password: Enable/disable FortiClient saving the user's password. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] service_restriction: Enable/disable tunnel service restriction. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] skip_check_for_browser: Enable to skip host check for browser support. Valid values: `enable`, `disable`.
@@ -2783,6 +2899,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["allow_user_access"] = allow_user_access
         __props__.__dict__["auto_connect"] = auto_connect
         __props__.__dict__["bookmark_groups"] = bookmark_groups
+        __props__.__dict__["clipboard"] = clipboard
         __props__.__dict__["custom_lang"] = custom_lang
         __props__.__dict__["customize_forticlient_download_url"] = customize_forticlient_download_url
         __props__.__dict__["display_bookmark"] = display_bookmark
@@ -2823,7 +2940,9 @@ class VpnSslWebPortal(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["os_check"] = os_check
         __props__.__dict__["os_check_lists"] = os_check_lists
+        __props__.__dict__["prefer_ipv6_dns"] = prefer_ipv6_dns
         __props__.__dict__["redir_url"] = redir_url
+        __props__.__dict__["rewrite_ip_uri_ui"] = rewrite_ip_uri_ui
         __props__.__dict__["save_password"] = save_password
         __props__.__dict__["service_restriction"] = service_restriction
         __props__.__dict__["skip_check_for_browser"] = skip_check_for_browser
@@ -2853,7 +2972,7 @@ class VpnSslWebPortal(pulumi.CustomResource):
     @pulumi.getter(name="allowUserAccess")
     def allow_user_access(self) -> pulumi.Output[str]:
         """
-        Allow user access to SSL-VPN applications. Valid values: `web`, `ftp`, `smb`, `sftp`, `telnet`, `ssh`, `vnc`, `rdp`, `ping`, `citrix`, `portforward`.
+        Allow user access to SSL-VPN applications.
         """
         return pulumi.get(self, "allow_user_access")
 
@@ -2872,6 +2991,14 @@ class VpnSslWebPortal(pulumi.CustomResource):
         Portal bookmark group. The structure of `bookmark_group` block is documented below.
         """
         return pulumi.get(self, "bookmark_groups")
+
+    @property
+    @pulumi.getter
+    def clipboard(self) -> pulumi.Output[str]:
+        """
+        Enable to support RDP/VPC clipboard functionality. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "clipboard")
 
     @property
     @pulumi.getter(name="customLang")
@@ -3194,12 +3321,28 @@ class VpnSslWebPortal(pulumi.CustomResource):
         return pulumi.get(self, "os_check_lists")
 
     @property
+    @pulumi.getter(name="preferIpv6Dns")
+    def prefer_ipv6_dns(self) -> pulumi.Output[str]:
+        """
+        prefer to query IPv6 dns first if enabled. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "prefer_ipv6_dns")
+
+    @property
     @pulumi.getter(name="redirUrl")
     def redir_url(self) -> pulumi.Output[Optional[str]]:
         """
         Client login redirect URL.
         """
         return pulumi.get(self, "redir_url")
+
+    @property
+    @pulumi.getter(name="rewriteIpUriUi")
+    def rewrite_ip_uri_ui(self) -> pulumi.Output[str]:
+        """
+        Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rewrite_ip_uri_ui")
 
     @property
     @pulumi.getter(name="savePassword")

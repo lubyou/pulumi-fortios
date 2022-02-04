@@ -13,29 +13,65 @@ __all__ = ['AntivirusSettingsArgs', 'AntivirusSettings']
 @pulumi.input_type
 class AntivirusSettingsArgs:
     def __init__(__self__, *,
+                 cache_clean_result: Optional[pulumi.Input[str]] = None,
+                 cache_infected_result: Optional[pulumi.Input[str]] = None,
                  default_db: Optional[pulumi.Input[str]] = None,
                  grayware: Optional[pulumi.Input[str]] = None,
+                 machine_learning_detection: Optional[pulumi.Input[str]] = None,
                  override_timeout: Optional[pulumi.Input[int]] = None,
                  use_extreme_db: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AntivirusSettings resource.
+        :param pulumi.Input[str] cache_clean_result: Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cache_infected_result: Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_db: Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
         :param pulumi.Input[str] grayware: Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] machine_learning_detection: Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
         :param pulumi.Input[int] override_timeout: Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
         :param pulumi.Input[str] use_extreme_db: Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if cache_clean_result is not None:
+            pulumi.set(__self__, "cache_clean_result", cache_clean_result)
+        if cache_infected_result is not None:
+            pulumi.set(__self__, "cache_infected_result", cache_infected_result)
         if default_db is not None:
             pulumi.set(__self__, "default_db", default_db)
         if grayware is not None:
             pulumi.set(__self__, "grayware", grayware)
+        if machine_learning_detection is not None:
+            pulumi.set(__self__, "machine_learning_detection", machine_learning_detection)
         if override_timeout is not None:
             pulumi.set(__self__, "override_timeout", override_timeout)
         if use_extreme_db is not None:
             pulumi.set(__self__, "use_extreme_db", use_extreme_db)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="cacheCleanResult")
+    def cache_clean_result(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cache_clean_result")
+
+    @cache_clean_result.setter
+    def cache_clean_result(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cache_clean_result", value)
+
+    @property
+    @pulumi.getter(name="cacheInfectedResult")
+    def cache_infected_result(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cache_infected_result")
+
+    @cache_infected_result.setter
+    def cache_infected_result(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cache_infected_result", value)
 
     @property
     @pulumi.getter(name="defaultDb")
@@ -60,6 +96,18 @@ class AntivirusSettingsArgs:
     @grayware.setter
     def grayware(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "grayware", value)
+
+    @property
+    @pulumi.getter(name="machineLearningDetection")
+    def machine_learning_detection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+        """
+        return pulumi.get(self, "machine_learning_detection")
+
+    @machine_learning_detection.setter
+    def machine_learning_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "machine_learning_detection", value)
 
     @property
     @pulumi.getter(name="overrideTimeout")
@@ -101,29 +149,65 @@ class AntivirusSettingsArgs:
 @pulumi.input_type
 class _AntivirusSettingsState:
     def __init__(__self__, *,
+                 cache_clean_result: Optional[pulumi.Input[str]] = None,
+                 cache_infected_result: Optional[pulumi.Input[str]] = None,
                  default_db: Optional[pulumi.Input[str]] = None,
                  grayware: Optional[pulumi.Input[str]] = None,
+                 machine_learning_detection: Optional[pulumi.Input[str]] = None,
                  override_timeout: Optional[pulumi.Input[int]] = None,
                  use_extreme_db: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AntivirusSettings resources.
+        :param pulumi.Input[str] cache_clean_result: Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cache_infected_result: Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_db: Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
         :param pulumi.Input[str] grayware: Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] machine_learning_detection: Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
         :param pulumi.Input[int] override_timeout: Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
         :param pulumi.Input[str] use_extreme_db: Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if cache_clean_result is not None:
+            pulumi.set(__self__, "cache_clean_result", cache_clean_result)
+        if cache_infected_result is not None:
+            pulumi.set(__self__, "cache_infected_result", cache_infected_result)
         if default_db is not None:
             pulumi.set(__self__, "default_db", default_db)
         if grayware is not None:
             pulumi.set(__self__, "grayware", grayware)
+        if machine_learning_detection is not None:
+            pulumi.set(__self__, "machine_learning_detection", machine_learning_detection)
         if override_timeout is not None:
             pulumi.set(__self__, "override_timeout", override_timeout)
         if use_extreme_db is not None:
             pulumi.set(__self__, "use_extreme_db", use_extreme_db)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="cacheCleanResult")
+    def cache_clean_result(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cache_clean_result")
+
+    @cache_clean_result.setter
+    def cache_clean_result(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cache_clean_result", value)
+
+    @property
+    @pulumi.getter(name="cacheInfectedResult")
+    def cache_infected_result(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cache_infected_result")
+
+    @cache_infected_result.setter
+    def cache_infected_result(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cache_infected_result", value)
 
     @property
     @pulumi.getter(name="defaultDb")
@@ -148,6 +232,18 @@ class _AntivirusSettingsState:
     @grayware.setter
     def grayware(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "grayware", value)
+
+    @property
+    @pulumi.getter(name="machineLearningDetection")
+    def machine_learning_detection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+        """
+        return pulumi.get(self, "machine_learning_detection")
+
+    @machine_learning_detection.setter
+    def machine_learning_detection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "machine_learning_detection", value)
 
     @property
     @pulumi.getter(name="overrideTimeout")
@@ -191,8 +287,11 @@ class AntivirusSettings(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cache_clean_result: Optional[pulumi.Input[str]] = None,
+                 cache_infected_result: Optional[pulumi.Input[str]] = None,
                  default_db: Optional[pulumi.Input[str]] = None,
                  grayware: Optional[pulumi.Input[str]] = None,
+                 machine_learning_detection: Optional[pulumi.Input[str]] = None,
                  override_timeout: Optional[pulumi.Input[int]] = None,
                  use_extreme_db: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -223,8 +322,11 @@ class AntivirusSettings(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cache_clean_result: Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cache_infected_result: Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_db: Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
         :param pulumi.Input[str] grayware: Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] machine_learning_detection: Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
         :param pulumi.Input[int] override_timeout: Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
         :param pulumi.Input[str] use_extreme_db: Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -274,8 +376,11 @@ class AntivirusSettings(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 cache_clean_result: Optional[pulumi.Input[str]] = None,
+                 cache_infected_result: Optional[pulumi.Input[str]] = None,
                  default_db: Optional[pulumi.Input[str]] = None,
                  grayware: Optional[pulumi.Input[str]] = None,
+                 machine_learning_detection: Optional[pulumi.Input[str]] = None,
                  override_timeout: Optional[pulumi.Input[int]] = None,
                  use_extreme_db: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -286,13 +391,18 @@ class AntivirusSettings(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = AntivirusSettingsArgs.__new__(AntivirusSettingsArgs)
 
+            __props__.__dict__["cache_clean_result"] = cache_clean_result
+            __props__.__dict__["cache_infected_result"] = cache_infected_result
             __props__.__dict__["default_db"] = default_db
             __props__.__dict__["grayware"] = grayware
+            __props__.__dict__["machine_learning_detection"] = machine_learning_detection
             __props__.__dict__["override_timeout"] = override_timeout
             __props__.__dict__["use_extreme_db"] = use_extreme_db
             __props__.__dict__["vdomparam"] = vdomparam
@@ -306,8 +416,11 @@ class AntivirusSettings(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            cache_clean_result: Optional[pulumi.Input[str]] = None,
+            cache_infected_result: Optional[pulumi.Input[str]] = None,
             default_db: Optional[pulumi.Input[str]] = None,
             grayware: Optional[pulumi.Input[str]] = None,
+            machine_learning_detection: Optional[pulumi.Input[str]] = None,
             override_timeout: Optional[pulumi.Input[int]] = None,
             use_extreme_db: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'AntivirusSettings':
@@ -318,8 +431,11 @@ class AntivirusSettings(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] cache_clean_result: Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] cache_infected_result: Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
         :param pulumi.Input[str] default_db: Select the AV database to be used for AV scanning. Valid values: `normal`, `extended`, `extreme`.
         :param pulumi.Input[str] grayware: Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] machine_learning_detection: Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
         :param pulumi.Input[int] override_timeout: Override the large file scan timeout value in seconds (30 - 3600). Zero is the default value and is used to disable this command. When disabled, the daemon adjusts the large file scan timeout based on the file size.
         :param pulumi.Input[str] use_extreme_db: Enable/disable the use of Extreme AVDB. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -328,12 +444,31 @@ class AntivirusSettings(pulumi.CustomResource):
 
         __props__ = _AntivirusSettingsState.__new__(_AntivirusSettingsState)
 
+        __props__.__dict__["cache_clean_result"] = cache_clean_result
+        __props__.__dict__["cache_infected_result"] = cache_infected_result
         __props__.__dict__["default_db"] = default_db
         __props__.__dict__["grayware"] = grayware
+        __props__.__dict__["machine_learning_detection"] = machine_learning_detection
         __props__.__dict__["override_timeout"] = override_timeout
         __props__.__dict__["use_extreme_db"] = use_extreme_db
         __props__.__dict__["vdomparam"] = vdomparam
         return AntivirusSettings(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="cacheCleanResult")
+    def cache_clean_result(self) -> pulumi.Output[str]:
+        """
+        Enable/disable cache of clean scan results (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cache_clean_result")
+
+    @property
+    @pulumi.getter(name="cacheInfectedResult")
+    def cache_infected_result(self) -> pulumi.Output[str]:
+        """
+        Enable/disable cache of infected scan results (default = enable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "cache_infected_result")
 
     @property
     @pulumi.getter(name="defaultDb")
@@ -350,6 +485,14 @@ class AntivirusSettings(pulumi.CustomResource):
         Enable/disable grayware detection when an AntiVirus profile is applied to traffic. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "grayware")
+
+    @property
+    @pulumi.getter(name="machineLearningDetection")
+    def machine_learning_detection(self) -> pulumi.Output[str]:
+        """
+        Use machine learning based malware detection. Valid values: `enable`, `monitor`, `disable`.
+        """
+        return pulumi.get(self, "machine_learning_detection")
 
     @property
     @pulumi.getter(name="overrideTimeout")

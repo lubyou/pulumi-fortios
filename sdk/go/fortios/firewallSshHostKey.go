@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -67,6 +67,8 @@ type FirewallSshHostKey struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
 	Type pulumi.StringOutput `pulumi:"type"`
+	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+	Usage pulumi.StringOutput `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -78,6 +80,7 @@ func NewFirewallSshHostKey(ctx *pulumi.Context,
 		args = &FirewallSshHostKeyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSshHostKey
 	err := ctx.RegisterResource("fortios:index/firewallSshHostKey:FirewallSshHostKey", name, args, &resource, opts...)
 	if err != nil {
@@ -116,6 +119,8 @@ type firewallSshHostKeyState struct {
 	Status *string `pulumi:"status"`
 	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
 	Type *string `pulumi:"type"`
+	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+	Usage *string `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -137,6 +142,8 @@ type FirewallSshHostKeyState struct {
 	Status pulumi.StringPtrInput
 	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
 	Type pulumi.StringPtrInput
+	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+	Usage pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -162,6 +169,8 @@ type firewallSshHostKeyArgs struct {
 	Status *string `pulumi:"status"`
 	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
 	Type *string `pulumi:"type"`
+	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+	Usage *string `pulumi:"usage"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -184,6 +193,8 @@ type FirewallSshHostKeyArgs struct {
 	Status pulumi.StringPtrInput
 	// Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
 	Type pulumi.StringPtrInput
+	// Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+	Usage pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -200,7 +211,7 @@ type FirewallSshHostKeyInput interface {
 }
 
 func (*FirewallSshHostKey) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSshHostKey)(nil))
+	return reflect.TypeOf((**FirewallSshHostKey)(nil)).Elem()
 }
 
 func (i *FirewallSshHostKey) ToFirewallSshHostKeyOutput() FirewallSshHostKeyOutput {
@@ -209,35 +220,6 @@ func (i *FirewallSshHostKey) ToFirewallSshHostKeyOutput() FirewallSshHostKeyOutp
 
 func (i *FirewallSshHostKey) ToFirewallSshHostKeyOutputWithContext(ctx context.Context) FirewallSshHostKeyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyOutput)
-}
-
-func (i *FirewallSshHostKey) ToFirewallSshHostKeyPtrOutput() FirewallSshHostKeyPtrOutput {
-	return i.ToFirewallSshHostKeyPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSshHostKey) ToFirewallSshHostKeyPtrOutputWithContext(ctx context.Context) FirewallSshHostKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyPtrOutput)
-}
-
-type FirewallSshHostKeyPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSshHostKeyPtrOutput() FirewallSshHostKeyPtrOutput
-	ToFirewallSshHostKeyPtrOutputWithContext(ctx context.Context) FirewallSshHostKeyPtrOutput
-}
-
-type firewallSshHostKeyPtrType FirewallSshHostKeyArgs
-
-func (*firewallSshHostKeyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSshHostKey)(nil))
-}
-
-func (i *firewallSshHostKeyPtrType) ToFirewallSshHostKeyPtrOutput() FirewallSshHostKeyPtrOutput {
-	return i.ToFirewallSshHostKeyPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSshHostKeyPtrType) ToFirewallSshHostKeyPtrOutputWithContext(ctx context.Context) FirewallSshHostKeyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyPtrOutput)
 }
 
 // FirewallSshHostKeyArrayInput is an input type that accepts FirewallSshHostKeyArray and FirewallSshHostKeyArrayOutput values.
@@ -254,7 +236,7 @@ type FirewallSshHostKeyArrayInput interface {
 type FirewallSshHostKeyArray []FirewallSshHostKeyInput
 
 func (FirewallSshHostKeyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSshHostKey)(nil))
+	return reflect.TypeOf((*[]*FirewallSshHostKey)(nil)).Elem()
 }
 
 func (i FirewallSshHostKeyArray) ToFirewallSshHostKeyArrayOutput() FirewallSshHostKeyArrayOutput {
@@ -279,7 +261,7 @@ type FirewallSshHostKeyMapInput interface {
 type FirewallSshHostKeyMap map[string]FirewallSshHostKeyInput
 
 func (FirewallSshHostKeyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSshHostKey)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSshHostKey)(nil)).Elem()
 }
 
 func (i FirewallSshHostKeyMap) ToFirewallSshHostKeyMapOutput() FirewallSshHostKeyMapOutput {
@@ -290,12 +272,10 @@ func (i FirewallSshHostKeyMap) ToFirewallSshHostKeyMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSshHostKeyMapOutput)
 }
 
-type FirewallSshHostKeyOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSshHostKeyOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshHostKeyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSshHostKey)(nil))
+	return reflect.TypeOf((**FirewallSshHostKey)(nil)).Elem()
 }
 
 func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyOutput() FirewallSshHostKeyOutput {
@@ -306,36 +286,10 @@ func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyOutputWithContext(ctx cont
 	return o
 }
 
-func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyPtrOutput() FirewallSshHostKeyPtrOutput {
-	return o.ToFirewallSshHostKeyPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSshHostKeyOutput) ToFirewallSshHostKeyPtrOutputWithContext(ctx context.Context) FirewallSshHostKeyPtrOutput {
-	return o.ApplyT(func(v FirewallSshHostKey) *FirewallSshHostKey {
-		return &v
-	}).(FirewallSshHostKeyPtrOutput)
-}
-
-type FirewallSshHostKeyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSshHostKeyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSshHostKey)(nil))
-}
-
-func (o FirewallSshHostKeyPtrOutput) ToFirewallSshHostKeyPtrOutput() FirewallSshHostKeyPtrOutput {
-	return o
-}
-
-func (o FirewallSshHostKeyPtrOutput) ToFirewallSshHostKeyPtrOutputWithContext(ctx context.Context) FirewallSshHostKeyPtrOutput {
-	return o
-}
-
 type FirewallSshHostKeyArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshHostKeyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSshHostKey)(nil))
+	return reflect.TypeOf((*[]*FirewallSshHostKey)(nil)).Elem()
 }
 
 func (o FirewallSshHostKeyArrayOutput) ToFirewallSshHostKeyArrayOutput() FirewallSshHostKeyArrayOutput {
@@ -347,15 +301,15 @@ func (o FirewallSshHostKeyArrayOutput) ToFirewallSshHostKeyArrayOutputWithContex
 }
 
 func (o FirewallSshHostKeyArrayOutput) Index(i pulumi.IntInput) FirewallSshHostKeyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSshHostKey {
-		return vs[0].([]FirewallSshHostKey)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSshHostKey {
+		return vs[0].([]*FirewallSshHostKey)[vs[1].(int)]
 	}).(FirewallSshHostKeyOutput)
 }
 
 type FirewallSshHostKeyMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSshHostKeyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSshHostKey)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSshHostKey)(nil)).Elem()
 }
 
 func (o FirewallSshHostKeyMapOutput) ToFirewallSshHostKeyMapOutput() FirewallSshHostKeyMapOutput {
@@ -367,14 +321,16 @@ func (o FirewallSshHostKeyMapOutput) ToFirewallSshHostKeyMapOutputWithContext(ct
 }
 
 func (o FirewallSshHostKeyMapOutput) MapIndex(k pulumi.StringInput) FirewallSshHostKeyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSshHostKey {
-		return vs[0].(map[string]FirewallSshHostKey)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSshHostKey {
+		return vs[0].(map[string]*FirewallSshHostKey)[vs[1].(string)]
 	}).(FirewallSshHostKeyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshHostKeyInput)(nil)).Elem(), &FirewallSshHostKey{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshHostKeyArrayInput)(nil)).Elem(), FirewallSshHostKeyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSshHostKeyMapInput)(nil)).Elem(), FirewallSshHostKeyMap{})
 	pulumi.RegisterOutputType(FirewallSshHostKeyOutput{})
-	pulumi.RegisterOutputType(FirewallSshHostKeyPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSshHostKeyArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSshHostKeyMapOutput{})
 }

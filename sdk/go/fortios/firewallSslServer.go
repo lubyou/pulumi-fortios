@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,9 +78,9 @@ type FirewallSslServer struct {
 	SslClientRenegotiation pulumi.StringOutput `pulumi:"sslClientRenegotiation"`
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits pulumi.StringOutput `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Highest SSL/TLS version to negotiate.
 	SslMaxVersion pulumi.StringOutput `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Lowest SSL/TLS version to negotiate.
 	SslMinVersion pulumi.StringOutput `pulumi:"sslMinVersion"`
 	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
 	SslMode pulumi.StringOutput `pulumi:"sslMode"`
@@ -108,6 +108,7 @@ func NewFirewallSslServer(ctx *pulumi.Context,
 	if args.SslCert == nil {
 		return nil, errors.New("invalid value for required argument 'SslCert'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallSslServer
 	err := ctx.RegisterResource("fortios:index/firewallSslServer:FirewallSslServer", name, args, &resource, opts...)
 	if err != nil {
@@ -148,9 +149,9 @@ type firewallSslServerState struct {
 	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits *string `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Highest SSL/TLS version to negotiate.
 	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Lowest SSL/TLS version to negotiate.
 	SslMinVersion *string `pulumi:"sslMinVersion"`
 	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
 	SslMode *string `pulumi:"sslMode"`
@@ -181,9 +182,9 @@ type FirewallSslServerState struct {
 	SslClientRenegotiation pulumi.StringPtrInput
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits pulumi.StringPtrInput
-	// Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Highest SSL/TLS version to negotiate.
 	SslMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Lowest SSL/TLS version to negotiate.
 	SslMinVersion pulumi.StringPtrInput
 	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
 	SslMode pulumi.StringPtrInput
@@ -218,9 +219,9 @@ type firewallSslServerArgs struct {
 	SslClientRenegotiation *string `pulumi:"sslClientRenegotiation"`
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits *string `pulumi:"sslDhBits"`
-	// Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Highest SSL/TLS version to negotiate.
 	SslMaxVersion *string `pulumi:"sslMaxVersion"`
-	// Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Lowest SSL/TLS version to negotiate.
 	SslMinVersion *string `pulumi:"sslMinVersion"`
 	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
 	SslMode *string `pulumi:"sslMode"`
@@ -252,9 +253,9 @@ type FirewallSslServerArgs struct {
 	SslClientRenegotiation pulumi.StringPtrInput
 	// Bit-size of Diffie-Hellman (DH) prime used in DHE-RSA negotiation (default = 2048). Valid values: `768`, `1024`, `1536`, `2048`.
 	SslDhBits pulumi.StringPtrInput
-	// Highest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Highest SSL/TLS version to negotiate.
 	SslMaxVersion pulumi.StringPtrInput
-	// Lowest SSL/TLS version to negotiate. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`.
+	// Lowest SSL/TLS version to negotiate.
 	SslMinVersion pulumi.StringPtrInput
 	// SSL/TLS mode for encryption and decryption of traffic. Valid values: `half`, `full`.
 	SslMode pulumi.StringPtrInput
@@ -278,7 +279,7 @@ type FirewallSslServerInput interface {
 }
 
 func (*FirewallSslServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSslServer)(nil))
+	return reflect.TypeOf((**FirewallSslServer)(nil)).Elem()
 }
 
 func (i *FirewallSslServer) ToFirewallSslServerOutput() FirewallSslServerOutput {
@@ -287,35 +288,6 @@ func (i *FirewallSslServer) ToFirewallSslServerOutput() FirewallSslServerOutput 
 
 func (i *FirewallSslServer) ToFirewallSslServerOutputWithContext(ctx context.Context) FirewallSslServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerOutput)
-}
-
-func (i *FirewallSslServer) ToFirewallSslServerPtrOutput() FirewallSslServerPtrOutput {
-	return i.ToFirewallSslServerPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallSslServer) ToFirewallSslServerPtrOutputWithContext(ctx context.Context) FirewallSslServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerPtrOutput)
-}
-
-type FirewallSslServerPtrInput interface {
-	pulumi.Input
-
-	ToFirewallSslServerPtrOutput() FirewallSslServerPtrOutput
-	ToFirewallSslServerPtrOutputWithContext(ctx context.Context) FirewallSslServerPtrOutput
-}
-
-type firewallSslServerPtrType FirewallSslServerArgs
-
-func (*firewallSslServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSslServer)(nil))
-}
-
-func (i *firewallSslServerPtrType) ToFirewallSslServerPtrOutput() FirewallSslServerPtrOutput {
-	return i.ToFirewallSslServerPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallSslServerPtrType) ToFirewallSslServerPtrOutputWithContext(ctx context.Context) FirewallSslServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerPtrOutput)
 }
 
 // FirewallSslServerArrayInput is an input type that accepts FirewallSslServerArray and FirewallSslServerArrayOutput values.
@@ -332,7 +304,7 @@ type FirewallSslServerArrayInput interface {
 type FirewallSslServerArray []FirewallSslServerInput
 
 func (FirewallSslServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallSslServer)(nil))
+	return reflect.TypeOf((*[]*FirewallSslServer)(nil)).Elem()
 }
 
 func (i FirewallSslServerArray) ToFirewallSslServerArrayOutput() FirewallSslServerArrayOutput {
@@ -357,7 +329,7 @@ type FirewallSslServerMapInput interface {
 type FirewallSslServerMap map[string]FirewallSslServerInput
 
 func (FirewallSslServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallSslServer)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSslServer)(nil)).Elem()
 }
 
 func (i FirewallSslServerMap) ToFirewallSslServerMapOutput() FirewallSslServerMapOutput {
@@ -368,12 +340,10 @@ func (i FirewallSslServerMap) ToFirewallSslServerMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallSslServerMapOutput)
 }
 
-type FirewallSslServerOutput struct {
-	*pulumi.OutputState
-}
+type FirewallSslServerOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallSslServer)(nil))
+	return reflect.TypeOf((**FirewallSslServer)(nil)).Elem()
 }
 
 func (o FirewallSslServerOutput) ToFirewallSslServerOutput() FirewallSslServerOutput {
@@ -384,36 +354,10 @@ func (o FirewallSslServerOutput) ToFirewallSslServerOutputWithContext(ctx contex
 	return o
 }
 
-func (o FirewallSslServerOutput) ToFirewallSslServerPtrOutput() FirewallSslServerPtrOutput {
-	return o.ToFirewallSslServerPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallSslServerOutput) ToFirewallSslServerPtrOutputWithContext(ctx context.Context) FirewallSslServerPtrOutput {
-	return o.ApplyT(func(v FirewallSslServer) *FirewallSslServer {
-		return &v
-	}).(FirewallSslServerPtrOutput)
-}
-
-type FirewallSslServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallSslServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallSslServer)(nil))
-}
-
-func (o FirewallSslServerPtrOutput) ToFirewallSslServerPtrOutput() FirewallSslServerPtrOutput {
-	return o
-}
-
-func (o FirewallSslServerPtrOutput) ToFirewallSslServerPtrOutputWithContext(ctx context.Context) FirewallSslServerPtrOutput {
-	return o
-}
-
 type FirewallSslServerArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallSslServer)(nil))
+	return reflect.TypeOf((*[]*FirewallSslServer)(nil)).Elem()
 }
 
 func (o FirewallSslServerArrayOutput) ToFirewallSslServerArrayOutput() FirewallSslServerArrayOutput {
@@ -425,15 +369,15 @@ func (o FirewallSslServerArrayOutput) ToFirewallSslServerArrayOutputWithContext(
 }
 
 func (o FirewallSslServerArrayOutput) Index(i pulumi.IntInput) FirewallSslServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallSslServer {
-		return vs[0].([]FirewallSslServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallSslServer {
+		return vs[0].([]*FirewallSslServer)[vs[1].(int)]
 	}).(FirewallSslServerOutput)
 }
 
 type FirewallSslServerMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallSslServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallSslServer)(nil))
+	return reflect.TypeOf((*map[string]*FirewallSslServer)(nil)).Elem()
 }
 
 func (o FirewallSslServerMapOutput) ToFirewallSslServerMapOutput() FirewallSslServerMapOutput {
@@ -445,14 +389,16 @@ func (o FirewallSslServerMapOutput) ToFirewallSslServerMapOutputWithContext(ctx 
 }
 
 func (o FirewallSslServerMapOutput) MapIndex(k pulumi.StringInput) FirewallSslServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallSslServer {
-		return vs[0].(map[string]FirewallSslServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallSslServer {
+		return vs[0].(map[string]*FirewallSslServer)[vs[1].(string)]
 	}).(FirewallSslServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslServerInput)(nil)).Elem(), &FirewallSslServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslServerArrayInput)(nil)).Elem(), FirewallSslServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallSslServerMapInput)(nil)).Elem(), FirewallSslServerMap{})
 	pulumi.RegisterOutputType(FirewallSslServerOutput{})
-	pulumi.RegisterOutputType(FirewallSslServerPtrOutput{})
 	pulumi.RegisterOutputType(FirewallSslServerArrayOutput{})
 	pulumi.RegisterOutputType(FirewallSslServerMapOutput{})
 }

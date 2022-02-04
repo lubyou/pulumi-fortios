@@ -43,6 +43,7 @@ func NewWirelessControllerHotspot20QosMap(ctx *pulumi.Context,
 		args = &WirelessControllerHotspot20QosMapArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerHotspot20QosMap
 	err := ctx.RegisterResource("fortios:index/wirelessControllerHotspot20QosMap:WirelessControllerHotspot20QosMap", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type WirelessControllerHotspot20QosMapInput interface {
 }
 
 func (*WirelessControllerHotspot20QosMap) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20QosMap)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20QosMap)(nil)).Elem()
 }
 
 func (i *WirelessControllerHotspot20QosMap) ToWirelessControllerHotspot20QosMapOutput() WirelessControllerHotspot20QosMapOutput {
@@ -142,35 +143,6 @@ func (i *WirelessControllerHotspot20QosMap) ToWirelessControllerHotspot20QosMapO
 
 func (i *WirelessControllerHotspot20QosMap) ToWirelessControllerHotspot20QosMapOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapOutput)
-}
-
-func (i *WirelessControllerHotspot20QosMap) ToWirelessControllerHotspot20QosMapPtrOutput() WirelessControllerHotspot20QosMapPtrOutput {
-	return i.ToWirelessControllerHotspot20QosMapPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerHotspot20QosMap) ToWirelessControllerHotspot20QosMapPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapPtrOutput)
-}
-
-type WirelessControllerHotspot20QosMapPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerHotspot20QosMapPtrOutput() WirelessControllerHotspot20QosMapPtrOutput
-	ToWirelessControllerHotspot20QosMapPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapPtrOutput
-}
-
-type wirelessControllerHotspot20QosMapPtrType WirelessControllerHotspot20QosMapArgs
-
-func (*wirelessControllerHotspot20QosMapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20QosMap)(nil))
-}
-
-func (i *wirelessControllerHotspot20QosMapPtrType) ToWirelessControllerHotspot20QosMapPtrOutput() WirelessControllerHotspot20QosMapPtrOutput {
-	return i.ToWirelessControllerHotspot20QosMapPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerHotspot20QosMapPtrType) ToWirelessControllerHotspot20QosMapPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapPtrOutput)
 }
 
 // WirelessControllerHotspot20QosMapArrayInput is an input type that accepts WirelessControllerHotspot20QosMapArray and WirelessControllerHotspot20QosMapArrayOutput values.
@@ -187,7 +159,7 @@ type WirelessControllerHotspot20QosMapArrayInput interface {
 type WirelessControllerHotspot20QosMapArray []WirelessControllerHotspot20QosMapInput
 
 func (WirelessControllerHotspot20QosMapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerHotspot20QosMap)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20QosMap)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20QosMapArray) ToWirelessControllerHotspot20QosMapArrayOutput() WirelessControllerHotspot20QosMapArrayOutput {
@@ -212,7 +184,7 @@ type WirelessControllerHotspot20QosMapMapInput interface {
 type WirelessControllerHotspot20QosMapMap map[string]WirelessControllerHotspot20QosMapInput
 
 func (WirelessControllerHotspot20QosMapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerHotspot20QosMap)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20QosMap)(nil)).Elem()
 }
 
 func (i WirelessControllerHotspot20QosMapMap) ToWirelessControllerHotspot20QosMapMapOutput() WirelessControllerHotspot20QosMapMapOutput {
@@ -223,12 +195,10 @@ func (i WirelessControllerHotspot20QosMapMap) ToWirelessControllerHotspot20QosMa
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerHotspot20QosMapMapOutput)
 }
 
-type WirelessControllerHotspot20QosMapOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerHotspot20QosMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20QosMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerHotspot20QosMap)(nil))
+	return reflect.TypeOf((**WirelessControllerHotspot20QosMap)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20QosMapOutput) ToWirelessControllerHotspot20QosMapOutput() WirelessControllerHotspot20QosMapOutput {
@@ -239,36 +209,10 @@ func (o WirelessControllerHotspot20QosMapOutput) ToWirelessControllerHotspot20Qo
 	return o
 }
 
-func (o WirelessControllerHotspot20QosMapOutput) ToWirelessControllerHotspot20QosMapPtrOutput() WirelessControllerHotspot20QosMapPtrOutput {
-	return o.ToWirelessControllerHotspot20QosMapPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerHotspot20QosMapOutput) ToWirelessControllerHotspot20QosMapPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapPtrOutput {
-	return o.ApplyT(func(v WirelessControllerHotspot20QosMap) *WirelessControllerHotspot20QosMap {
-		return &v
-	}).(WirelessControllerHotspot20QosMapPtrOutput)
-}
-
-type WirelessControllerHotspot20QosMapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerHotspot20QosMapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerHotspot20QosMap)(nil))
-}
-
-func (o WirelessControllerHotspot20QosMapPtrOutput) ToWirelessControllerHotspot20QosMapPtrOutput() WirelessControllerHotspot20QosMapPtrOutput {
-	return o
-}
-
-func (o WirelessControllerHotspot20QosMapPtrOutput) ToWirelessControllerHotspot20QosMapPtrOutputWithContext(ctx context.Context) WirelessControllerHotspot20QosMapPtrOutput {
-	return o
-}
-
 type WirelessControllerHotspot20QosMapArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20QosMapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerHotspot20QosMap)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerHotspot20QosMap)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20QosMapArrayOutput) ToWirelessControllerHotspot20QosMapArrayOutput() WirelessControllerHotspot20QosMapArrayOutput {
@@ -280,15 +224,15 @@ func (o WirelessControllerHotspot20QosMapArrayOutput) ToWirelessControllerHotspo
 }
 
 func (o WirelessControllerHotspot20QosMapArrayOutput) Index(i pulumi.IntInput) WirelessControllerHotspot20QosMapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerHotspot20QosMap {
-		return vs[0].([]WirelessControllerHotspot20QosMap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20QosMap {
+		return vs[0].([]*WirelessControllerHotspot20QosMap)[vs[1].(int)]
 	}).(WirelessControllerHotspot20QosMapOutput)
 }
 
 type WirelessControllerHotspot20QosMapMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerHotspot20QosMapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerHotspot20QosMap)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerHotspot20QosMap)(nil)).Elem()
 }
 
 func (o WirelessControllerHotspot20QosMapMapOutput) ToWirelessControllerHotspot20QosMapMapOutput() WirelessControllerHotspot20QosMapMapOutput {
@@ -300,14 +244,16 @@ func (o WirelessControllerHotspot20QosMapMapOutput) ToWirelessControllerHotspot2
 }
 
 func (o WirelessControllerHotspot20QosMapMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerHotspot20QosMapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerHotspot20QosMap {
-		return vs[0].(map[string]WirelessControllerHotspot20QosMap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerHotspot20QosMap {
+		return vs[0].(map[string]*WirelessControllerHotspot20QosMap)[vs[1].(string)]
 	}).(WirelessControllerHotspot20QosMapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20QosMapInput)(nil)).Elem(), &WirelessControllerHotspot20QosMap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20QosMapArrayInput)(nil)).Elem(), WirelessControllerHotspot20QosMapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerHotspot20QosMapMapInput)(nil)).Elem(), WirelessControllerHotspot20QosMapMap{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20QosMapOutput{})
-	pulumi.RegisterOutputType(WirelessControllerHotspot20QosMapPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20QosMapArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerHotspot20QosMapMapOutput{})
 }

@@ -125,45 +125,43 @@ export class SystemVirtualWanLink extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemVirtualWanLinkArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemVirtualWanLinkArgs | SystemVirtualWanLinkState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemVirtualWanLinkState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
-            inputs["failDetect"] = state ? state.failDetect : undefined;
-            inputs["healthChecks"] = state ? state.healthChecks : undefined;
-            inputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
-            inputs["members"] = state ? state.members : undefined;
-            inputs["neighborHoldBootTime"] = state ? state.neighborHoldBootTime : undefined;
-            inputs["neighborHoldDown"] = state ? state.neighborHoldDown : undefined;
-            inputs["neighborHoldDownTime"] = state ? state.neighborHoldDownTime : undefined;
-            inputs["neighbors"] = state ? state.neighbors : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["zones"] = state ? state.zones : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["failAlertInterfaces"] = state ? state.failAlertInterfaces : undefined;
+            resourceInputs["failDetect"] = state ? state.failDetect : undefined;
+            resourceInputs["healthChecks"] = state ? state.healthChecks : undefined;
+            resourceInputs["loadBalanceMode"] = state ? state.loadBalanceMode : undefined;
+            resourceInputs["members"] = state ? state.members : undefined;
+            resourceInputs["neighborHoldBootTime"] = state ? state.neighborHoldBootTime : undefined;
+            resourceInputs["neighborHoldDown"] = state ? state.neighborHoldDown : undefined;
+            resourceInputs["neighborHoldDownTime"] = state ? state.neighborHoldDownTime : undefined;
+            resourceInputs["neighbors"] = state ? state.neighbors : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["zones"] = state ? state.zones : undefined;
         } else {
             const args = argsOrState as SystemVirtualWanLinkArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
-            inputs["failDetect"] = args ? args.failDetect : undefined;
-            inputs["healthChecks"] = args ? args.healthChecks : undefined;
-            inputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
-            inputs["members"] = args ? args.members : undefined;
-            inputs["neighborHoldBootTime"] = args ? args.neighborHoldBootTime : undefined;
-            inputs["neighborHoldDown"] = args ? args.neighborHoldDown : undefined;
-            inputs["neighborHoldDownTime"] = args ? args.neighborHoldDownTime : undefined;
-            inputs["neighbors"] = args ? args.neighbors : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["zones"] = args ? args.zones : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["failAlertInterfaces"] = args ? args.failAlertInterfaces : undefined;
+            resourceInputs["failDetect"] = args ? args.failDetect : undefined;
+            resourceInputs["healthChecks"] = args ? args.healthChecks : undefined;
+            resourceInputs["loadBalanceMode"] = args ? args.loadBalanceMode : undefined;
+            resourceInputs["members"] = args ? args.members : undefined;
+            resourceInputs["neighborHoldBootTime"] = args ? args.neighborHoldBootTime : undefined;
+            resourceInputs["neighborHoldDown"] = args ? args.neighborHoldDown : undefined;
+            resourceInputs["neighborHoldDownTime"] = args ? args.neighborHoldDownTime : undefined;
+            resourceInputs["neighbors"] = args ? args.neighbors : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["zones"] = args ? args.zones : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemVirtualWanLink.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemVirtualWanLink.__pulumiType, name, resourceInputs, opts);
     }
 }
 

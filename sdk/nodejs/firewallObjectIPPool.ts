@@ -99,16 +99,16 @@ export class FirewallObjectIPPool extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallObjectIPPoolArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallObjectIPPoolArgs | FirewallObjectIPPoolState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallObjectIPPoolState | undefined;
-            inputs["arpReply"] = state ? state.arpReply : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["endip"] = state ? state.endip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["startip"] = state ? state.startip : undefined;
-            inputs["type"] = state ? state.type : undefined;
+            resourceInputs["arpReply"] = state ? state.arpReply : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["endip"] = state ? state.endip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["startip"] = state ? state.startip : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
         } else {
             const args = argsOrState as FirewallObjectIPPoolArgs | undefined;
             if ((!args || args.endip === undefined) && !opts.urn) {
@@ -120,17 +120,15 @@ export class FirewallObjectIPPool extends pulumi.CustomResource {
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["arpReply"] = args ? args.arpReply : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["endip"] = args ? args.endip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["startip"] = args ? args.startip : undefined;
-            inputs["type"] = args ? args.type : undefined;
+            resourceInputs["arpReply"] = args ? args.arpReply : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["endip"] = args ? args.endip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["startip"] = args ? args.startip : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallObjectIPPool.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallObjectIPPool.__pulumiType, name, resourceInputs, opts);
     }
 }
 

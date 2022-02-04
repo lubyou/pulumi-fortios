@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -60,6 +60,7 @@ func NewFortimanagerSystemGlobal(ctx *pulumi.Context,
 		args = &FortimanagerSystemGlobalArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FortimanagerSystemGlobal
 	err := ctx.RegisterResource("fortios:index/fortimanagerSystemGlobal:FortimanagerSystemGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -150,7 +151,7 @@ type FortimanagerSystemGlobalInput interface {
 }
 
 func (*FortimanagerSystemGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemGlobal)(nil))
+	return reflect.TypeOf((**FortimanagerSystemGlobal)(nil)).Elem()
 }
 
 func (i *FortimanagerSystemGlobal) ToFortimanagerSystemGlobalOutput() FortimanagerSystemGlobalOutput {
@@ -159,35 +160,6 @@ func (i *FortimanagerSystemGlobal) ToFortimanagerSystemGlobalOutput() Fortimanag
 
 func (i *FortimanagerSystemGlobal) ToFortimanagerSystemGlobalOutputWithContext(ctx context.Context) FortimanagerSystemGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalOutput)
-}
-
-func (i *FortimanagerSystemGlobal) ToFortimanagerSystemGlobalPtrOutput() FortimanagerSystemGlobalPtrOutput {
-	return i.ToFortimanagerSystemGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *FortimanagerSystemGlobal) ToFortimanagerSystemGlobalPtrOutputWithContext(ctx context.Context) FortimanagerSystemGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalPtrOutput)
-}
-
-type FortimanagerSystemGlobalPtrInput interface {
-	pulumi.Input
-
-	ToFortimanagerSystemGlobalPtrOutput() FortimanagerSystemGlobalPtrOutput
-	ToFortimanagerSystemGlobalPtrOutputWithContext(ctx context.Context) FortimanagerSystemGlobalPtrOutput
-}
-
-type fortimanagerSystemGlobalPtrType FortimanagerSystemGlobalArgs
-
-func (*fortimanagerSystemGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemGlobal)(nil))
-}
-
-func (i *fortimanagerSystemGlobalPtrType) ToFortimanagerSystemGlobalPtrOutput() FortimanagerSystemGlobalPtrOutput {
-	return i.ToFortimanagerSystemGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *fortimanagerSystemGlobalPtrType) ToFortimanagerSystemGlobalPtrOutputWithContext(ctx context.Context) FortimanagerSystemGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalPtrOutput)
 }
 
 // FortimanagerSystemGlobalArrayInput is an input type that accepts FortimanagerSystemGlobalArray and FortimanagerSystemGlobalArrayOutput values.
@@ -204,7 +176,7 @@ type FortimanagerSystemGlobalArrayInput interface {
 type FortimanagerSystemGlobalArray []FortimanagerSystemGlobalInput
 
 func (FortimanagerSystemGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FortimanagerSystemGlobal)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemGlobal)(nil)).Elem()
 }
 
 func (i FortimanagerSystemGlobalArray) ToFortimanagerSystemGlobalArrayOutput() FortimanagerSystemGlobalArrayOutput {
@@ -229,7 +201,7 @@ type FortimanagerSystemGlobalMapInput interface {
 type FortimanagerSystemGlobalMap map[string]FortimanagerSystemGlobalInput
 
 func (FortimanagerSystemGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FortimanagerSystemGlobal)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemGlobal)(nil)).Elem()
 }
 
 func (i FortimanagerSystemGlobalMap) ToFortimanagerSystemGlobalMapOutput() FortimanagerSystemGlobalMapOutput {
@@ -240,12 +212,10 @@ func (i FortimanagerSystemGlobalMap) ToFortimanagerSystemGlobalMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(FortimanagerSystemGlobalMapOutput)
 }
 
-type FortimanagerSystemGlobalOutput struct {
-	*pulumi.OutputState
-}
+type FortimanagerSystemGlobalOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FortimanagerSystemGlobal)(nil))
+	return reflect.TypeOf((**FortimanagerSystemGlobal)(nil)).Elem()
 }
 
 func (o FortimanagerSystemGlobalOutput) ToFortimanagerSystemGlobalOutput() FortimanagerSystemGlobalOutput {
@@ -256,36 +226,10 @@ func (o FortimanagerSystemGlobalOutput) ToFortimanagerSystemGlobalOutputWithCont
 	return o
 }
 
-func (o FortimanagerSystemGlobalOutput) ToFortimanagerSystemGlobalPtrOutput() FortimanagerSystemGlobalPtrOutput {
-	return o.ToFortimanagerSystemGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o FortimanagerSystemGlobalOutput) ToFortimanagerSystemGlobalPtrOutputWithContext(ctx context.Context) FortimanagerSystemGlobalPtrOutput {
-	return o.ApplyT(func(v FortimanagerSystemGlobal) *FortimanagerSystemGlobal {
-		return &v
-	}).(FortimanagerSystemGlobalPtrOutput)
-}
-
-type FortimanagerSystemGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FortimanagerSystemGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FortimanagerSystemGlobal)(nil))
-}
-
-func (o FortimanagerSystemGlobalPtrOutput) ToFortimanagerSystemGlobalPtrOutput() FortimanagerSystemGlobalPtrOutput {
-	return o
-}
-
-func (o FortimanagerSystemGlobalPtrOutput) ToFortimanagerSystemGlobalPtrOutputWithContext(ctx context.Context) FortimanagerSystemGlobalPtrOutput {
-	return o
-}
-
 type FortimanagerSystemGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FortimanagerSystemGlobal)(nil))
+	return reflect.TypeOf((*[]*FortimanagerSystemGlobal)(nil)).Elem()
 }
 
 func (o FortimanagerSystemGlobalArrayOutput) ToFortimanagerSystemGlobalArrayOutput() FortimanagerSystemGlobalArrayOutput {
@@ -297,15 +241,15 @@ func (o FortimanagerSystemGlobalArrayOutput) ToFortimanagerSystemGlobalArrayOutp
 }
 
 func (o FortimanagerSystemGlobalArrayOutput) Index(i pulumi.IntInput) FortimanagerSystemGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FortimanagerSystemGlobal {
-		return vs[0].([]FortimanagerSystemGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FortimanagerSystemGlobal {
+		return vs[0].([]*FortimanagerSystemGlobal)[vs[1].(int)]
 	}).(FortimanagerSystemGlobalOutput)
 }
 
 type FortimanagerSystemGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (FortimanagerSystemGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FortimanagerSystemGlobal)(nil))
+	return reflect.TypeOf((*map[string]*FortimanagerSystemGlobal)(nil)).Elem()
 }
 
 func (o FortimanagerSystemGlobalMapOutput) ToFortimanagerSystemGlobalMapOutput() FortimanagerSystemGlobalMapOutput {
@@ -317,14 +261,16 @@ func (o FortimanagerSystemGlobalMapOutput) ToFortimanagerSystemGlobalMapOutputWi
 }
 
 func (o FortimanagerSystemGlobalMapOutput) MapIndex(k pulumi.StringInput) FortimanagerSystemGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FortimanagerSystemGlobal {
-		return vs[0].(map[string]FortimanagerSystemGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FortimanagerSystemGlobal {
+		return vs[0].(map[string]*FortimanagerSystemGlobal)[vs[1].(string)]
 	}).(FortimanagerSystemGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemGlobalInput)(nil)).Elem(), &FortimanagerSystemGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemGlobalArrayInput)(nil)).Elem(), FortimanagerSystemGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FortimanagerSystemGlobalMapInput)(nil)).Elem(), FortimanagerSystemGlobalMap{})
 	pulumi.RegisterOutputType(FortimanagerSystemGlobalOutput{})
-	pulumi.RegisterOutputType(FortimanagerSystemGlobalPtrOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemGlobalArrayOutput{})
 	pulumi.RegisterOutputType(FortimanagerSystemGlobalMapOutput{})
 }

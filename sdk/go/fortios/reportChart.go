@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Report chart widget configuration.
+// Report chart widget configuration. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -125,6 +125,7 @@ func NewReportChart(ctx *pulumi.Context,
 	if args.Dataset == nil {
 		return nil, errors.New("invalid value for required argument 'Dataset'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ReportChart
 	err := ctx.RegisterResource("fortios:index/reportChart:ReportChart", name, args, &resource, opts...)
 	if err != nil {
@@ -375,7 +376,7 @@ type ReportChartInput interface {
 }
 
 func (*ReportChart) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportChart)(nil))
+	return reflect.TypeOf((**ReportChart)(nil)).Elem()
 }
 
 func (i *ReportChart) ToReportChartOutput() ReportChartOutput {
@@ -384,35 +385,6 @@ func (i *ReportChart) ToReportChartOutput() ReportChartOutput {
 
 func (i *ReportChart) ToReportChartOutputWithContext(ctx context.Context) ReportChartOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ReportChartOutput)
-}
-
-func (i *ReportChart) ToReportChartPtrOutput() ReportChartPtrOutput {
-	return i.ToReportChartPtrOutputWithContext(context.Background())
-}
-
-func (i *ReportChart) ToReportChartPtrOutputWithContext(ctx context.Context) ReportChartPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportChartPtrOutput)
-}
-
-type ReportChartPtrInput interface {
-	pulumi.Input
-
-	ToReportChartPtrOutput() ReportChartPtrOutput
-	ToReportChartPtrOutputWithContext(ctx context.Context) ReportChartPtrOutput
-}
-
-type reportChartPtrType ReportChartArgs
-
-func (*reportChartPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportChart)(nil))
-}
-
-func (i *reportChartPtrType) ToReportChartPtrOutput() ReportChartPtrOutput {
-	return i.ToReportChartPtrOutputWithContext(context.Background())
-}
-
-func (i *reportChartPtrType) ToReportChartPtrOutputWithContext(ctx context.Context) ReportChartPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ReportChartPtrOutput)
 }
 
 // ReportChartArrayInput is an input type that accepts ReportChartArray and ReportChartArrayOutput values.
@@ -429,7 +401,7 @@ type ReportChartArrayInput interface {
 type ReportChartArray []ReportChartInput
 
 func (ReportChartArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ReportChart)(nil))
+	return reflect.TypeOf((*[]*ReportChart)(nil)).Elem()
 }
 
 func (i ReportChartArray) ToReportChartArrayOutput() ReportChartArrayOutput {
@@ -454,7 +426,7 @@ type ReportChartMapInput interface {
 type ReportChartMap map[string]ReportChartInput
 
 func (ReportChartMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ReportChart)(nil))
+	return reflect.TypeOf((*map[string]*ReportChart)(nil)).Elem()
 }
 
 func (i ReportChartMap) ToReportChartMapOutput() ReportChartMapOutput {
@@ -465,12 +437,10 @@ func (i ReportChartMap) ToReportChartMapOutputWithContext(ctx context.Context) R
 	return pulumi.ToOutputWithContext(ctx, i).(ReportChartMapOutput)
 }
 
-type ReportChartOutput struct {
-	*pulumi.OutputState
-}
+type ReportChartOutput struct{ *pulumi.OutputState }
 
 func (ReportChartOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ReportChart)(nil))
+	return reflect.TypeOf((**ReportChart)(nil)).Elem()
 }
 
 func (o ReportChartOutput) ToReportChartOutput() ReportChartOutput {
@@ -481,36 +451,10 @@ func (o ReportChartOutput) ToReportChartOutputWithContext(ctx context.Context) R
 	return o
 }
 
-func (o ReportChartOutput) ToReportChartPtrOutput() ReportChartPtrOutput {
-	return o.ToReportChartPtrOutputWithContext(context.Background())
-}
-
-func (o ReportChartOutput) ToReportChartPtrOutputWithContext(ctx context.Context) ReportChartPtrOutput {
-	return o.ApplyT(func(v ReportChart) *ReportChart {
-		return &v
-	}).(ReportChartPtrOutput)
-}
-
-type ReportChartPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ReportChartPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ReportChart)(nil))
-}
-
-func (o ReportChartPtrOutput) ToReportChartPtrOutput() ReportChartPtrOutput {
-	return o
-}
-
-func (o ReportChartPtrOutput) ToReportChartPtrOutputWithContext(ctx context.Context) ReportChartPtrOutput {
-	return o
-}
-
 type ReportChartArrayOutput struct{ *pulumi.OutputState }
 
 func (ReportChartArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ReportChart)(nil))
+	return reflect.TypeOf((*[]*ReportChart)(nil)).Elem()
 }
 
 func (o ReportChartArrayOutput) ToReportChartArrayOutput() ReportChartArrayOutput {
@@ -522,15 +466,15 @@ func (o ReportChartArrayOutput) ToReportChartArrayOutputWithContext(ctx context.
 }
 
 func (o ReportChartArrayOutput) Index(i pulumi.IntInput) ReportChartOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ReportChart {
-		return vs[0].([]ReportChart)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ReportChart {
+		return vs[0].([]*ReportChart)[vs[1].(int)]
 	}).(ReportChartOutput)
 }
 
 type ReportChartMapOutput struct{ *pulumi.OutputState }
 
 func (ReportChartMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ReportChart)(nil))
+	return reflect.TypeOf((*map[string]*ReportChart)(nil)).Elem()
 }
 
 func (o ReportChartMapOutput) ToReportChartMapOutput() ReportChartMapOutput {
@@ -542,14 +486,16 @@ func (o ReportChartMapOutput) ToReportChartMapOutputWithContext(ctx context.Cont
 }
 
 func (o ReportChartMapOutput) MapIndex(k pulumi.StringInput) ReportChartOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ReportChart {
-		return vs[0].(map[string]ReportChart)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ReportChart {
+		return vs[0].(map[string]*ReportChart)[vs[1].(string)]
 	}).(ReportChartOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportChartInput)(nil)).Elem(), &ReportChart{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportChartArrayInput)(nil)).Elem(), ReportChartArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ReportChartMapInput)(nil)).Elem(), ReportChartMap{})
 	pulumi.RegisterOutputType(ReportChartOutput{})
-	pulumi.RegisterOutputType(ReportChartPtrOutput{})
 	pulumi.RegisterOutputType(ReportChartArrayOutput{})
 	pulumi.RegisterOutputType(ReportChartMapOutput{})
 }

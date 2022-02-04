@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewRouterAuthPath(ctx *pulumi.Context,
 	if args.Device == nil {
 		return nil, errors.New("invalid value for required argument 'Device'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource RouterAuthPath
 	err := ctx.RegisterResource("fortios:index/routerAuthPath:RouterAuthPath", name, args, &resource, opts...)
 	if err != nil {
@@ -151,7 +152,7 @@ type RouterAuthPathInput interface {
 }
 
 func (*RouterAuthPath) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterAuthPath)(nil))
+	return reflect.TypeOf((**RouterAuthPath)(nil)).Elem()
 }
 
 func (i *RouterAuthPath) ToRouterAuthPathOutput() RouterAuthPathOutput {
@@ -160,35 +161,6 @@ func (i *RouterAuthPath) ToRouterAuthPathOutput() RouterAuthPathOutput {
 
 func (i *RouterAuthPath) ToRouterAuthPathOutputWithContext(ctx context.Context) RouterAuthPathOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAuthPathOutput)
-}
-
-func (i *RouterAuthPath) ToRouterAuthPathPtrOutput() RouterAuthPathPtrOutput {
-	return i.ToRouterAuthPathPtrOutputWithContext(context.Background())
-}
-
-func (i *RouterAuthPath) ToRouterAuthPathPtrOutputWithContext(ctx context.Context) RouterAuthPathPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterAuthPathPtrOutput)
-}
-
-type RouterAuthPathPtrInput interface {
-	pulumi.Input
-
-	ToRouterAuthPathPtrOutput() RouterAuthPathPtrOutput
-	ToRouterAuthPathPtrOutputWithContext(ctx context.Context) RouterAuthPathPtrOutput
-}
-
-type routerAuthPathPtrType RouterAuthPathArgs
-
-func (*routerAuthPathPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterAuthPath)(nil))
-}
-
-func (i *routerAuthPathPtrType) ToRouterAuthPathPtrOutput() RouterAuthPathPtrOutput {
-	return i.ToRouterAuthPathPtrOutputWithContext(context.Background())
-}
-
-func (i *routerAuthPathPtrType) ToRouterAuthPathPtrOutputWithContext(ctx context.Context) RouterAuthPathPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(RouterAuthPathPtrOutput)
 }
 
 // RouterAuthPathArrayInput is an input type that accepts RouterAuthPathArray and RouterAuthPathArrayOutput values.
@@ -205,7 +177,7 @@ type RouterAuthPathArrayInput interface {
 type RouterAuthPathArray []RouterAuthPathInput
 
 func (RouterAuthPathArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*RouterAuthPath)(nil))
+	return reflect.TypeOf((*[]*RouterAuthPath)(nil)).Elem()
 }
 
 func (i RouterAuthPathArray) ToRouterAuthPathArrayOutput() RouterAuthPathArrayOutput {
@@ -230,7 +202,7 @@ type RouterAuthPathMapInput interface {
 type RouterAuthPathMap map[string]RouterAuthPathInput
 
 func (RouterAuthPathMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*RouterAuthPath)(nil))
+	return reflect.TypeOf((*map[string]*RouterAuthPath)(nil)).Elem()
 }
 
 func (i RouterAuthPathMap) ToRouterAuthPathMapOutput() RouterAuthPathMapOutput {
@@ -241,12 +213,10 @@ func (i RouterAuthPathMap) ToRouterAuthPathMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(RouterAuthPathMapOutput)
 }
 
-type RouterAuthPathOutput struct {
-	*pulumi.OutputState
-}
+type RouterAuthPathOutput struct{ *pulumi.OutputState }
 
 func (RouterAuthPathOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*RouterAuthPath)(nil))
+	return reflect.TypeOf((**RouterAuthPath)(nil)).Elem()
 }
 
 func (o RouterAuthPathOutput) ToRouterAuthPathOutput() RouterAuthPathOutput {
@@ -257,36 +227,10 @@ func (o RouterAuthPathOutput) ToRouterAuthPathOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o RouterAuthPathOutput) ToRouterAuthPathPtrOutput() RouterAuthPathPtrOutput {
-	return o.ToRouterAuthPathPtrOutputWithContext(context.Background())
-}
-
-func (o RouterAuthPathOutput) ToRouterAuthPathPtrOutputWithContext(ctx context.Context) RouterAuthPathPtrOutput {
-	return o.ApplyT(func(v RouterAuthPath) *RouterAuthPath {
-		return &v
-	}).(RouterAuthPathPtrOutput)
-}
-
-type RouterAuthPathPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (RouterAuthPathPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**RouterAuthPath)(nil))
-}
-
-func (o RouterAuthPathPtrOutput) ToRouterAuthPathPtrOutput() RouterAuthPathPtrOutput {
-	return o
-}
-
-func (o RouterAuthPathPtrOutput) ToRouterAuthPathPtrOutputWithContext(ctx context.Context) RouterAuthPathPtrOutput {
-	return o
-}
-
 type RouterAuthPathArrayOutput struct{ *pulumi.OutputState }
 
 func (RouterAuthPathArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]RouterAuthPath)(nil))
+	return reflect.TypeOf((*[]*RouterAuthPath)(nil)).Elem()
 }
 
 func (o RouterAuthPathArrayOutput) ToRouterAuthPathArrayOutput() RouterAuthPathArrayOutput {
@@ -298,15 +242,15 @@ func (o RouterAuthPathArrayOutput) ToRouterAuthPathArrayOutputWithContext(ctx co
 }
 
 func (o RouterAuthPathArrayOutput) Index(i pulumi.IntInput) RouterAuthPathOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) RouterAuthPath {
-		return vs[0].([]RouterAuthPath)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *RouterAuthPath {
+		return vs[0].([]*RouterAuthPath)[vs[1].(int)]
 	}).(RouterAuthPathOutput)
 }
 
 type RouterAuthPathMapOutput struct{ *pulumi.OutputState }
 
 func (RouterAuthPathMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]RouterAuthPath)(nil))
+	return reflect.TypeOf((*map[string]*RouterAuthPath)(nil)).Elem()
 }
 
 func (o RouterAuthPathMapOutput) ToRouterAuthPathMapOutput() RouterAuthPathMapOutput {
@@ -318,14 +262,16 @@ func (o RouterAuthPathMapOutput) ToRouterAuthPathMapOutputWithContext(ctx contex
 }
 
 func (o RouterAuthPathMapOutput) MapIndex(k pulumi.StringInput) RouterAuthPathOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) RouterAuthPath {
-		return vs[0].(map[string]RouterAuthPath)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *RouterAuthPath {
+		return vs[0].(map[string]*RouterAuthPath)[vs[1].(string)]
 	}).(RouterAuthPathOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterAuthPathInput)(nil)).Elem(), &RouterAuthPath{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterAuthPathArrayInput)(nil)).Elem(), RouterAuthPathArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouterAuthPathMapInput)(nil)).Elem(), RouterAuthPathMap{})
 	pulumi.RegisterOutputType(RouterAuthPathOutput{})
-	pulumi.RegisterOutputType(RouterAuthPathPtrOutput{})
 	pulumi.RegisterOutputType(RouterAuthPathArrayOutput{})
 	pulumi.RegisterOutputType(RouterAuthPathMapOutput{})
 }

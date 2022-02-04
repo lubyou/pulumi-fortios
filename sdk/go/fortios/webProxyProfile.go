@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,8 @@ type WebProxyProfile struct {
 	HeaderXAuthenticatedGroups pulumi.StringOutput `pulumi:"headerXAuthenticatedGroups"`
 	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXAuthenticatedUser pulumi.StringOutput `pulumi:"headerXAuthenticatedUser"`
+	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXForwardedClientCert pulumi.StringOutput `pulumi:"headerXForwardedClientCert"`
 	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringOutput `pulumi:"headerXForwardedFor"`
 	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
@@ -90,6 +92,7 @@ func NewWebProxyProfile(ctx *pulumi.Context,
 		args = &WebProxyProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebProxyProfile
 	err := ctx.RegisterResource("fortios:index/webProxyProfile:WebProxyProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -126,6 +129,8 @@ type webProxyProfileState struct {
 	HeaderXAuthenticatedGroups *string `pulumi:"headerXAuthenticatedGroups"`
 	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXAuthenticatedUser *string `pulumi:"headerXAuthenticatedUser"`
+	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXForwardedClientCert *string `pulumi:"headerXForwardedClientCert"`
 	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
 	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
@@ -155,6 +160,8 @@ type WebProxyProfileState struct {
 	HeaderXAuthenticatedGroups pulumi.StringPtrInput
 	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXAuthenticatedUser pulumi.StringPtrInput
+	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXForwardedClientCert pulumi.StringPtrInput
 	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringPtrInput
 	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
@@ -188,6 +195,8 @@ type webProxyProfileArgs struct {
 	HeaderXAuthenticatedGroups *string `pulumi:"headerXAuthenticatedGroups"`
 	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXAuthenticatedUser *string `pulumi:"headerXAuthenticatedUser"`
+	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXForwardedClientCert *string `pulumi:"headerXForwardedClientCert"`
 	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor *string `pulumi:"headerXForwardedFor"`
 	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
@@ -218,6 +227,8 @@ type WebProxyProfileArgs struct {
 	HeaderXAuthenticatedGroups pulumi.StringPtrInput
 	// Action to take on the HTTP x-authenticated-user header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXAuthenticatedUser pulumi.StringPtrInput
+	// Action to take on the HTTP x-forwarded-client-cert header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
+	HeaderXForwardedClientCert pulumi.StringPtrInput
 	// Action to take on the HTTP x-forwarded-for header in forwarded requests: forwards (pass), adds, or removes the HTTP header. Valid values: `pass`, `add`, `remove`.
 	HeaderXForwardedFor pulumi.StringPtrInput
 	// Configure HTTP forwarded requests headers. The structure of `headers` block is documented below.
@@ -244,7 +255,7 @@ type WebProxyProfileInput interface {
 }
 
 func (*WebProxyProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyProfile)(nil))
+	return reflect.TypeOf((**WebProxyProfile)(nil)).Elem()
 }
 
 func (i *WebProxyProfile) ToWebProxyProfileOutput() WebProxyProfileOutput {
@@ -253,35 +264,6 @@ func (i *WebProxyProfile) ToWebProxyProfileOutput() WebProxyProfileOutput {
 
 func (i *WebProxyProfile) ToWebProxyProfileOutputWithContext(ctx context.Context) WebProxyProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileOutput)
-}
-
-func (i *WebProxyProfile) ToWebProxyProfilePtrOutput() WebProxyProfilePtrOutput {
-	return i.ToWebProxyProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *WebProxyProfile) ToWebProxyProfilePtrOutputWithContext(ctx context.Context) WebProxyProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfilePtrOutput)
-}
-
-type WebProxyProfilePtrInput interface {
-	pulumi.Input
-
-	ToWebProxyProfilePtrOutput() WebProxyProfilePtrOutput
-	ToWebProxyProfilePtrOutputWithContext(ctx context.Context) WebProxyProfilePtrOutput
-}
-
-type webProxyProfilePtrType WebProxyProfileArgs
-
-func (*webProxyProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyProfile)(nil))
-}
-
-func (i *webProxyProfilePtrType) ToWebProxyProfilePtrOutput() WebProxyProfilePtrOutput {
-	return i.ToWebProxyProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *webProxyProfilePtrType) ToWebProxyProfilePtrOutputWithContext(ctx context.Context) WebProxyProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfilePtrOutput)
 }
 
 // WebProxyProfileArrayInput is an input type that accepts WebProxyProfileArray and WebProxyProfileArrayOutput values.
@@ -298,7 +280,7 @@ type WebProxyProfileArrayInput interface {
 type WebProxyProfileArray []WebProxyProfileInput
 
 func (WebProxyProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebProxyProfile)(nil))
+	return reflect.TypeOf((*[]*WebProxyProfile)(nil)).Elem()
 }
 
 func (i WebProxyProfileArray) ToWebProxyProfileArrayOutput() WebProxyProfileArrayOutput {
@@ -323,7 +305,7 @@ type WebProxyProfileMapInput interface {
 type WebProxyProfileMap map[string]WebProxyProfileInput
 
 func (WebProxyProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebProxyProfile)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyProfile)(nil)).Elem()
 }
 
 func (i WebProxyProfileMap) ToWebProxyProfileMapOutput() WebProxyProfileMapOutput {
@@ -334,12 +316,10 @@ func (i WebProxyProfileMap) ToWebProxyProfileMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyProfileMapOutput)
 }
 
-type WebProxyProfileOutput struct {
-	*pulumi.OutputState
-}
+type WebProxyProfileOutput struct{ *pulumi.OutputState }
 
 func (WebProxyProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyProfile)(nil))
+	return reflect.TypeOf((**WebProxyProfile)(nil)).Elem()
 }
 
 func (o WebProxyProfileOutput) ToWebProxyProfileOutput() WebProxyProfileOutput {
@@ -350,36 +330,10 @@ func (o WebProxyProfileOutput) ToWebProxyProfileOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o WebProxyProfileOutput) ToWebProxyProfilePtrOutput() WebProxyProfilePtrOutput {
-	return o.ToWebProxyProfilePtrOutputWithContext(context.Background())
-}
-
-func (o WebProxyProfileOutput) ToWebProxyProfilePtrOutputWithContext(ctx context.Context) WebProxyProfilePtrOutput {
-	return o.ApplyT(func(v WebProxyProfile) *WebProxyProfile {
-		return &v
-	}).(WebProxyProfilePtrOutput)
-}
-
-type WebProxyProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebProxyProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyProfile)(nil))
-}
-
-func (o WebProxyProfilePtrOutput) ToWebProxyProfilePtrOutput() WebProxyProfilePtrOutput {
-	return o
-}
-
-func (o WebProxyProfilePtrOutput) ToWebProxyProfilePtrOutputWithContext(ctx context.Context) WebProxyProfilePtrOutput {
-	return o
-}
-
 type WebProxyProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (WebProxyProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebProxyProfile)(nil))
+	return reflect.TypeOf((*[]*WebProxyProfile)(nil)).Elem()
 }
 
 func (o WebProxyProfileArrayOutput) ToWebProxyProfileArrayOutput() WebProxyProfileArrayOutput {
@@ -391,15 +345,15 @@ func (o WebProxyProfileArrayOutput) ToWebProxyProfileArrayOutputWithContext(ctx 
 }
 
 func (o WebProxyProfileArrayOutput) Index(i pulumi.IntInput) WebProxyProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyProfile {
-		return vs[0].([]WebProxyProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyProfile {
+		return vs[0].([]*WebProxyProfile)[vs[1].(int)]
 	}).(WebProxyProfileOutput)
 }
 
 type WebProxyProfileMapOutput struct{ *pulumi.OutputState }
 
 func (WebProxyProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebProxyProfile)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyProfile)(nil)).Elem()
 }
 
 func (o WebProxyProfileMapOutput) ToWebProxyProfileMapOutput() WebProxyProfileMapOutput {
@@ -411,14 +365,16 @@ func (o WebProxyProfileMapOutput) ToWebProxyProfileMapOutputWithContext(ctx cont
 }
 
 func (o WebProxyProfileMapOutput) MapIndex(k pulumi.StringInput) WebProxyProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebProxyProfile {
-		return vs[0].(map[string]WebProxyProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebProxyProfile {
+		return vs[0].(map[string]*WebProxyProfile)[vs[1].(string)]
 	}).(WebProxyProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyProfileInput)(nil)).Elem(), &WebProxyProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyProfileArrayInput)(nil)).Elem(), WebProxyProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyProfileMapInput)(nil)).Elem(), WebProxyProfileMap{})
 	pulumi.RegisterOutputType(WebProxyProfileOutput{})
-	pulumi.RegisterOutputType(WebProxyProfilePtrOutput{})
 	pulumi.RegisterOutputType(WebProxyProfileArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyProfileMapOutput{})
 }

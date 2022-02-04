@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure logging by FortiSwitch device to a remote syslog server.
+ * Configure logging by FortiSwitch device to a remote syslog server. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -87,33 +87,31 @@ export class SwitchControllerRemoteLog extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerRemoteLogArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerRemoteLogArgs | SwitchControllerRemoteLogState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerRemoteLogState | undefined;
-            inputs["csv"] = state ? state.csv : undefined;
-            inputs["facility"] = state ? state.facility : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["severity"] = state ? state.severity : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["csv"] = state ? state.csv : undefined;
+            resourceInputs["facility"] = state ? state.facility : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerRemoteLogArgs | undefined;
-            inputs["csv"] = args ? args.csv : undefined;
-            inputs["facility"] = args ? args.facility : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["severity"] = args ? args.severity : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["csv"] = args ? args.csv : undefined;
+            resourceInputs["facility"] = args ? args.facility : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerRemoteLog.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerRemoteLog.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -52,10 +52,13 @@ class VpnIpsecPhase1Args:
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
+                 esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
+                 fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
+                 fec_mapping_profile: Optional[pulumi.Input[str]] = None,
                  fec_receive_timeout: Optional[pulumi.Input[int]] = None,
                  fec_redundant: Optional[pulumi.Input[int]] = None,
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
@@ -69,6 +72,7 @@ class VpnIpsecPhase1Args:
                  idle_timeoutinterval: Optional[pulumi.Input[int]] = None,
                  ike_version: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
+                 ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server3: Optional[pulumi.Input[str]] = None,
@@ -96,6 +100,7 @@ class VpnIpsecPhase1Args:
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localid: Optional[pulumi.Input[str]] = None,
                  localid_type: Optional[pulumi.Input[str]] = None,
+                 loopback_asymroute: Optional[pulumi.Input[str]] = None,
                  mesh_selector_type: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mode_cfg: Optional[pulumi.Input[str]] = None,
@@ -104,6 +109,7 @@ class VpnIpsecPhase1Args:
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
                  network_id: Optional[pulumi.Input[int]] = None,
                  network_overlay: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  peergrp: Optional[pulumi.Input[str]] = None,
                  peerid: Optional[pulumi.Input[str]] = None,
@@ -168,10 +174,13 @@ class VpnIpsecPhase1Args:
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
+        :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_mapping_profile: Forward Error Correction (FEC) mapping profile.
         :param pulumi.Input[int] fec_receive_timeout: Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
         :param pulumi.Input[int] fec_redundant: Number of redundant Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
@@ -185,6 +194,7 @@ class VpnIpsecPhase1Args:
         :param pulumi.Input[int] idle_timeoutinterval: IPsec tunnel idle timeout in minutes (5 - 43200).
         :param pulumi.Input[str] ike_version: IKE protocol version. Valid values: `1`, `2`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
+        :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ipv4_dns_server1: IPv4 DNS server 1.
         :param pulumi.Input[str] ipv4_dns_server2: IPv4 DNS server 2.
         :param pulumi.Input[str] ipv4_dns_server3: IPv4 DNS server 3.
@@ -212,6 +222,7 @@ class VpnIpsecPhase1Args:
         :param pulumi.Input[str] local_gw: Local VPN gateway.
         :param pulumi.Input[str] localid: Local ID.
         :param pulumi.Input[str] localid_type: Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
+        :param pulumi.Input[str] loopback_asymroute: Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mesh_selector_type: Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
         :param pulumi.Input[str] mode: ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
         :param pulumi.Input[str] mode_cfg: Enable/disable configuration method. Valid values: `disable`, `enable`.
@@ -220,6 +231,7 @@ class VpnIpsecPhase1Args:
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
         :param pulumi.Input[int] network_id: VPN gateway network ID.
         :param pulumi.Input[str] network_overlay: Enable/disable network overlays. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading NPU. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer: Accept this peer certificate.
         :param pulumi.Input[str] peergrp: Accept this peer certificate group.
         :param pulumi.Input[str] peerid: Accept this peer identity.
@@ -317,14 +329,20 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "eap_identity", eap_identity)
         if enforce_unique_id is not None:
             pulumi.set(__self__, "enforce_unique_id", enforce_unique_id)
+        if esn is not None:
+            pulumi.set(__self__, "esn", esn)
         if fec_base is not None:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
+        if fec_health_check is not None:
+            pulumi.set(__self__, "fec_health_check", fec_health_check)
         if fec_ingress is not None:
             pulumi.set(__self__, "fec_ingress", fec_ingress)
+        if fec_mapping_profile is not None:
+            pulumi.set(__self__, "fec_mapping_profile", fec_mapping_profile)
         if fec_receive_timeout is not None:
             pulumi.set(__self__, "fec_receive_timeout", fec_receive_timeout)
         if fec_redundant is not None:
@@ -351,6 +369,8 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "ike_version", ike_version)
         if include_local_lan is not None:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
+        if ip_delay_interval is not None:
+            pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ipv4_dns_server1 is not None:
             pulumi.set(__self__, "ipv4_dns_server1", ipv4_dns_server1)
         if ipv4_dns_server2 is not None:
@@ -405,6 +425,8 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "localid", localid)
         if localid_type is not None:
             pulumi.set(__self__, "localid_type", localid_type)
+        if loopback_asymroute is not None:
+            pulumi.set(__self__, "loopback_asymroute", loopback_asymroute)
         if mesh_selector_type is not None:
             pulumi.set(__self__, "mesh_selector_type", mesh_selector_type)
         if mode is not None:
@@ -421,6 +443,8 @@ class VpnIpsecPhase1Args:
             pulumi.set(__self__, "network_id", network_id)
         if network_overlay is not None:
             pulumi.set(__self__, "network_overlay", network_overlay)
+        if npu_offload is not None:
+            pulumi.set(__self__, "npu_offload", npu_offload)
         if peer is not None:
             pulumi.set(__self__, "peer", peer)
         if peergrp is not None:
@@ -917,6 +941,18 @@ class VpnIpsecPhase1Args:
         pulumi.set(self, "enforce_unique_id", value)
 
     @property
+    @pulumi.getter
+    def esn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        """
+        return pulumi.get(self, "esn")
+
+    @esn.setter
+    def esn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "esn", value)
+
+    @property
     @pulumi.getter(name="fecBase")
     def fec_base(self) -> Optional[pulumi.Input[int]]:
         """
@@ -953,6 +989,18 @@ class VpnIpsecPhase1Args:
         pulumi.set(self, "fec_egress", value)
 
     @property
+    @pulumi.getter(name="fecHealthCheck")
+    def fec_health_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        SD-WAN health check.
+        """
+        return pulumi.get(self, "fec_health_check")
+
+    @fec_health_check.setter
+    def fec_health_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_health_check", value)
+
+    @property
     @pulumi.getter(name="fecIngress")
     def fec_ingress(self) -> Optional[pulumi.Input[str]]:
         """
@@ -963,6 +1011,18 @@ class VpnIpsecPhase1Args:
     @fec_ingress.setter
     def fec_ingress(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fec_ingress", value)
+
+    @property
+    @pulumi.getter(name="fecMappingProfile")
+    def fec_mapping_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forward Error Correction (FEC) mapping profile.
+        """
+        return pulumi.get(self, "fec_mapping_profile")
+
+    @fec_mapping_profile.setter
+    def fec_mapping_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_mapping_profile", value)
 
     @property
     @pulumi.getter(name="fecReceiveTimeout")
@@ -1119,6 +1179,18 @@ class VpnIpsecPhase1Args:
     @include_local_lan.setter
     def include_local_lan(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "include_local_lan", value)
+
+    @property
+    @pulumi.getter(name="ipDelayInterval")
+    def ip_delay_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        IP address reuse delay interval in seconds (0 - 28800).
+        """
+        return pulumi.get(self, "ip_delay_interval")
+
+    @ip_delay_interval.setter
+    def ip_delay_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ip_delay_interval", value)
 
     @property
     @pulumi.getter(name="ipv4DnsServer1")
@@ -1445,6 +1517,18 @@ class VpnIpsecPhase1Args:
         pulumi.set(self, "localid_type", value)
 
     @property
+    @pulumi.getter(name="loopbackAsymroute")
+    def loopback_asymroute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "loopback_asymroute")
+
+    @loopback_asymroute.setter
+    def loopback_asymroute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "loopback_asymroute", value)
+
+    @property
     @pulumi.getter(name="meshSelectorType")
     def mesh_selector_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1539,6 +1623,18 @@ class VpnIpsecPhase1Args:
     @network_overlay.setter
     def network_overlay(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "network_overlay", value)
+
+    @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
+
+    @npu_offload.setter
+    def npu_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_offload", value)
 
     @property
     @pulumi.getter
@@ -1878,10 +1974,13 @@ class _VpnIpsecPhase1State:
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
+                 esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
+                 fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
+                 fec_mapping_profile: Optional[pulumi.Input[str]] = None,
                  fec_receive_timeout: Optional[pulumi.Input[int]] = None,
                  fec_redundant: Optional[pulumi.Input[int]] = None,
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
@@ -1896,6 +1995,7 @@ class _VpnIpsecPhase1State:
                  ike_version: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server3: Optional[pulumi.Input[str]] = None,
@@ -1923,6 +2023,7 @@ class _VpnIpsecPhase1State:
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localid: Optional[pulumi.Input[str]] = None,
                  localid_type: Optional[pulumi.Input[str]] = None,
+                 loopback_asymroute: Optional[pulumi.Input[str]] = None,
                  mesh_selector_type: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mode_cfg: Optional[pulumi.Input[str]] = None,
@@ -1931,6 +2032,7 @@ class _VpnIpsecPhase1State:
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
                  network_id: Optional[pulumi.Input[int]] = None,
                  network_overlay: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  peergrp: Optional[pulumi.Input[str]] = None,
                  peerid: Optional[pulumi.Input[str]] = None,
@@ -1994,10 +2096,13 @@ class _VpnIpsecPhase1State:
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
+        :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_mapping_profile: Forward Error Correction (FEC) mapping profile.
         :param pulumi.Input[int] fec_receive_timeout: Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
         :param pulumi.Input[int] fec_redundant: Number of redundant Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
@@ -2012,6 +2117,7 @@ class _VpnIpsecPhase1State:
         :param pulumi.Input[str] ike_version: IKE protocol version. Valid values: `1`, `2`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] interface: Local physical, aggregate, or VLAN outgoing interface.
+        :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ipv4_dns_server1: IPv4 DNS server 1.
         :param pulumi.Input[str] ipv4_dns_server2: IPv4 DNS server 2.
         :param pulumi.Input[str] ipv4_dns_server3: IPv4 DNS server 3.
@@ -2039,6 +2145,7 @@ class _VpnIpsecPhase1State:
         :param pulumi.Input[str] local_gw: Local VPN gateway.
         :param pulumi.Input[str] localid: Local ID.
         :param pulumi.Input[str] localid_type: Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
+        :param pulumi.Input[str] loopback_asymroute: Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mesh_selector_type: Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
         :param pulumi.Input[str] mode: ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
         :param pulumi.Input[str] mode_cfg: Enable/disable configuration method. Valid values: `disable`, `enable`.
@@ -2047,6 +2154,7 @@ class _VpnIpsecPhase1State:
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
         :param pulumi.Input[int] network_id: VPN gateway network ID.
         :param pulumi.Input[str] network_overlay: Enable/disable network overlays. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading NPU. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer: Accept this peer certificate.
         :param pulumi.Input[str] peergrp: Accept this peer certificate group.
         :param pulumi.Input[str] peerid: Accept this peer identity.
@@ -2143,14 +2251,20 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "eap_identity", eap_identity)
         if enforce_unique_id is not None:
             pulumi.set(__self__, "enforce_unique_id", enforce_unique_id)
+        if esn is not None:
+            pulumi.set(__self__, "esn", esn)
         if fec_base is not None:
             pulumi.set(__self__, "fec_base", fec_base)
         if fec_codec is not None:
             pulumi.set(__self__, "fec_codec", fec_codec)
         if fec_egress is not None:
             pulumi.set(__self__, "fec_egress", fec_egress)
+        if fec_health_check is not None:
+            pulumi.set(__self__, "fec_health_check", fec_health_check)
         if fec_ingress is not None:
             pulumi.set(__self__, "fec_ingress", fec_ingress)
+        if fec_mapping_profile is not None:
+            pulumi.set(__self__, "fec_mapping_profile", fec_mapping_profile)
         if fec_receive_timeout is not None:
             pulumi.set(__self__, "fec_receive_timeout", fec_receive_timeout)
         if fec_redundant is not None:
@@ -2179,6 +2293,8 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "include_local_lan", include_local_lan)
         if interface is not None:
             pulumi.set(__self__, "interface", interface)
+        if ip_delay_interval is not None:
+            pulumi.set(__self__, "ip_delay_interval", ip_delay_interval)
         if ipv4_dns_server1 is not None:
             pulumi.set(__self__, "ipv4_dns_server1", ipv4_dns_server1)
         if ipv4_dns_server2 is not None:
@@ -2233,6 +2349,8 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "localid", localid)
         if localid_type is not None:
             pulumi.set(__self__, "localid_type", localid_type)
+        if loopback_asymroute is not None:
+            pulumi.set(__self__, "loopback_asymroute", loopback_asymroute)
         if mesh_selector_type is not None:
             pulumi.set(__self__, "mesh_selector_type", mesh_selector_type)
         if mode is not None:
@@ -2249,6 +2367,8 @@ class _VpnIpsecPhase1State:
             pulumi.set(__self__, "network_id", network_id)
         if network_overlay is not None:
             pulumi.set(__self__, "network_overlay", network_overlay)
+        if npu_offload is not None:
+            pulumi.set(__self__, "npu_offload", npu_offload)
         if peer is not None:
             pulumi.set(__self__, "peer", peer)
         if peergrp is not None:
@@ -2713,6 +2833,18 @@ class _VpnIpsecPhase1State:
         pulumi.set(self, "enforce_unique_id", value)
 
     @property
+    @pulumi.getter
+    def esn(self) -> Optional[pulumi.Input[str]]:
+        """
+        Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        """
+        return pulumi.get(self, "esn")
+
+    @esn.setter
+    def esn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "esn", value)
+
+    @property
     @pulumi.getter(name="fecBase")
     def fec_base(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2749,6 +2881,18 @@ class _VpnIpsecPhase1State:
         pulumi.set(self, "fec_egress", value)
 
     @property
+    @pulumi.getter(name="fecHealthCheck")
+    def fec_health_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        SD-WAN health check.
+        """
+        return pulumi.get(self, "fec_health_check")
+
+    @fec_health_check.setter
+    def fec_health_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_health_check", value)
+
+    @property
     @pulumi.getter(name="fecIngress")
     def fec_ingress(self) -> Optional[pulumi.Input[str]]:
         """
@@ -2759,6 +2903,18 @@ class _VpnIpsecPhase1State:
     @fec_ingress.setter
     def fec_ingress(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "fec_ingress", value)
+
+    @property
+    @pulumi.getter(name="fecMappingProfile")
+    def fec_mapping_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Forward Error Correction (FEC) mapping profile.
+        """
+        return pulumi.get(self, "fec_mapping_profile")
+
+    @fec_mapping_profile.setter
+    def fec_mapping_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec_mapping_profile", value)
 
     @property
     @pulumi.getter(name="fecReceiveTimeout")
@@ -2927,6 +3083,18 @@ class _VpnIpsecPhase1State:
     @interface.setter
     def interface(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="ipDelayInterval")
+    def ip_delay_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        IP address reuse delay interval in seconds (0 - 28800).
+        """
+        return pulumi.get(self, "ip_delay_interval")
+
+    @ip_delay_interval.setter
+    def ip_delay_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "ip_delay_interval", value)
 
     @property
     @pulumi.getter(name="ipv4DnsServer1")
@@ -3253,6 +3421,18 @@ class _VpnIpsecPhase1State:
         pulumi.set(self, "localid_type", value)
 
     @property
+    @pulumi.getter(name="loopbackAsymroute")
+    def loopback_asymroute(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "loopback_asymroute")
+
+    @loopback_asymroute.setter
+    def loopback_asymroute(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "loopback_asymroute", value)
+
+    @property
     @pulumi.getter(name="meshSelectorType")
     def mesh_selector_type(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3347,6 +3527,18 @@ class _VpnIpsecPhase1State:
     @network_overlay.setter
     def network_overlay(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "network_overlay", value)
+
+    @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
+
+    @npu_offload.setter
+    def npu_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "npu_offload", value)
 
     @property
     @pulumi.getter
@@ -3712,10 +3904,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
+                 esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
+                 fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
+                 fec_mapping_profile: Optional[pulumi.Input[str]] = None,
                  fec_receive_timeout: Optional[pulumi.Input[int]] = None,
                  fec_redundant: Optional[pulumi.Input[int]] = None,
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
@@ -3730,6 +3925,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  ike_version: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server3: Optional[pulumi.Input[str]] = None,
@@ -3757,6 +3953,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localid: Optional[pulumi.Input[str]] = None,
                  localid_type: Optional[pulumi.Input[str]] = None,
+                 loopback_asymroute: Optional[pulumi.Input[str]] = None,
                  mesh_selector_type: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mode_cfg: Optional[pulumi.Input[str]] = None,
@@ -3765,6 +3962,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
                  network_id: Optional[pulumi.Input[int]] = None,
                  network_overlay: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  peergrp: Optional[pulumi.Input[str]] = None,
                  peerid: Optional[pulumi.Input[str]] = None,
@@ -3922,10 +4120,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
+        :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_mapping_profile: Forward Error Correction (FEC) mapping profile.
         :param pulumi.Input[int] fec_receive_timeout: Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
         :param pulumi.Input[int] fec_redundant: Number of redundant Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
@@ -3940,6 +4141,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[str] ike_version: IKE protocol version. Valid values: `1`, `2`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] interface: Local physical, aggregate, or VLAN outgoing interface.
+        :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ipv4_dns_server1: IPv4 DNS server 1.
         :param pulumi.Input[str] ipv4_dns_server2: IPv4 DNS server 2.
         :param pulumi.Input[str] ipv4_dns_server3: IPv4 DNS server 3.
@@ -3967,6 +4169,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[str] local_gw: Local VPN gateway.
         :param pulumi.Input[str] localid: Local ID.
         :param pulumi.Input[str] localid_type: Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
+        :param pulumi.Input[str] loopback_asymroute: Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mesh_selector_type: Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
         :param pulumi.Input[str] mode: ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
         :param pulumi.Input[str] mode_cfg: Enable/disable configuration method. Valid values: `disable`, `enable`.
@@ -3975,6 +4178,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
         :param pulumi.Input[int] network_id: VPN gateway network ID.
         :param pulumi.Input[str] network_overlay: Enable/disable network overlays. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading NPU. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer: Accept this peer certificate.
         :param pulumi.Input[str] peergrp: Accept this peer certificate group.
         :param pulumi.Input[str] peerid: Accept this peer identity.
@@ -4151,10 +4355,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
                  eap_identity: Optional[pulumi.Input[str]] = None,
                  enforce_unique_id: Optional[pulumi.Input[str]] = None,
+                 esn: Optional[pulumi.Input[str]] = None,
                  fec_base: Optional[pulumi.Input[int]] = None,
                  fec_codec: Optional[pulumi.Input[int]] = None,
                  fec_egress: Optional[pulumi.Input[str]] = None,
+                 fec_health_check: Optional[pulumi.Input[str]] = None,
                  fec_ingress: Optional[pulumi.Input[str]] = None,
+                 fec_mapping_profile: Optional[pulumi.Input[str]] = None,
                  fec_receive_timeout: Optional[pulumi.Input[int]] = None,
                  fec_redundant: Optional[pulumi.Input[int]] = None,
                  fec_send_timeout: Optional[pulumi.Input[int]] = None,
@@ -4169,6 +4376,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  ike_version: Optional[pulumi.Input[str]] = None,
                  include_local_lan: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
+                 ip_delay_interval: Optional[pulumi.Input[int]] = None,
                  ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
                  ipv4_dns_server3: Optional[pulumi.Input[str]] = None,
@@ -4196,6 +4404,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  local_gw: Optional[pulumi.Input[str]] = None,
                  localid: Optional[pulumi.Input[str]] = None,
                  localid_type: Optional[pulumi.Input[str]] = None,
+                 loopback_asymroute: Optional[pulumi.Input[str]] = None,
                  mesh_selector_type: Optional[pulumi.Input[str]] = None,
                  mode: Optional[pulumi.Input[str]] = None,
                  mode_cfg: Optional[pulumi.Input[str]] = None,
@@ -4204,6 +4413,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
                  negotiate_timeout: Optional[pulumi.Input[int]] = None,
                  network_id: Optional[pulumi.Input[int]] = None,
                  network_overlay: Optional[pulumi.Input[str]] = None,
+                 npu_offload: Optional[pulumi.Input[str]] = None,
                  peer: Optional[pulumi.Input[str]] = None,
                  peergrp: Optional[pulumi.Input[str]] = None,
                  peerid: Optional[pulumi.Input[str]] = None,
@@ -4238,6 +4448,8 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -4277,10 +4489,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             __props__.__dict__["eap_exclude_peergrp"] = eap_exclude_peergrp
             __props__.__dict__["eap_identity"] = eap_identity
             __props__.__dict__["enforce_unique_id"] = enforce_unique_id
+            __props__.__dict__["esn"] = esn
             __props__.__dict__["fec_base"] = fec_base
             __props__.__dict__["fec_codec"] = fec_codec
             __props__.__dict__["fec_egress"] = fec_egress
+            __props__.__dict__["fec_health_check"] = fec_health_check
             __props__.__dict__["fec_ingress"] = fec_ingress
+            __props__.__dict__["fec_mapping_profile"] = fec_mapping_profile
             __props__.__dict__["fec_receive_timeout"] = fec_receive_timeout
             __props__.__dict__["fec_redundant"] = fec_redundant
             __props__.__dict__["fec_send_timeout"] = fec_send_timeout
@@ -4297,6 +4512,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             if interface is None and not opts.urn:
                 raise TypeError("Missing required property 'interface'")
             __props__.__dict__["interface"] = interface
+            __props__.__dict__["ip_delay_interval"] = ip_delay_interval
             __props__.__dict__["ipv4_dns_server1"] = ipv4_dns_server1
             __props__.__dict__["ipv4_dns_server2"] = ipv4_dns_server2
             __props__.__dict__["ipv4_dns_server3"] = ipv4_dns_server3
@@ -4324,6 +4540,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             __props__.__dict__["local_gw"] = local_gw
             __props__.__dict__["localid"] = localid
             __props__.__dict__["localid_type"] = localid_type
+            __props__.__dict__["loopback_asymroute"] = loopback_asymroute
             __props__.__dict__["mesh_selector_type"] = mesh_selector_type
             __props__.__dict__["mode"] = mode
             __props__.__dict__["mode_cfg"] = mode_cfg
@@ -4332,6 +4549,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             __props__.__dict__["negotiate_timeout"] = negotiate_timeout
             __props__.__dict__["network_id"] = network_id
             __props__.__dict__["network_overlay"] = network_overlay
+            __props__.__dict__["npu_offload"] = npu_offload
             __props__.__dict__["peer"] = peer
             __props__.__dict__["peergrp"] = peergrp
             __props__.__dict__["peerid"] = peerid
@@ -4407,10 +4625,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             eap_exclude_peergrp: Optional[pulumi.Input[str]] = None,
             eap_identity: Optional[pulumi.Input[str]] = None,
             enforce_unique_id: Optional[pulumi.Input[str]] = None,
+            esn: Optional[pulumi.Input[str]] = None,
             fec_base: Optional[pulumi.Input[int]] = None,
             fec_codec: Optional[pulumi.Input[int]] = None,
             fec_egress: Optional[pulumi.Input[str]] = None,
+            fec_health_check: Optional[pulumi.Input[str]] = None,
             fec_ingress: Optional[pulumi.Input[str]] = None,
+            fec_mapping_profile: Optional[pulumi.Input[str]] = None,
             fec_receive_timeout: Optional[pulumi.Input[int]] = None,
             fec_redundant: Optional[pulumi.Input[int]] = None,
             fec_send_timeout: Optional[pulumi.Input[int]] = None,
@@ -4425,6 +4646,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             ike_version: Optional[pulumi.Input[str]] = None,
             include_local_lan: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
+            ip_delay_interval: Optional[pulumi.Input[int]] = None,
             ipv4_dns_server1: Optional[pulumi.Input[str]] = None,
             ipv4_dns_server2: Optional[pulumi.Input[str]] = None,
             ipv4_dns_server3: Optional[pulumi.Input[str]] = None,
@@ -4452,6 +4674,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             local_gw: Optional[pulumi.Input[str]] = None,
             localid: Optional[pulumi.Input[str]] = None,
             localid_type: Optional[pulumi.Input[str]] = None,
+            loopback_asymroute: Optional[pulumi.Input[str]] = None,
             mesh_selector_type: Optional[pulumi.Input[str]] = None,
             mode: Optional[pulumi.Input[str]] = None,
             mode_cfg: Optional[pulumi.Input[str]] = None,
@@ -4460,6 +4683,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
             negotiate_timeout: Optional[pulumi.Input[int]] = None,
             network_id: Optional[pulumi.Input[int]] = None,
             network_overlay: Optional[pulumi.Input[str]] = None,
+            npu_offload: Optional[pulumi.Input[str]] = None,
             peer: Optional[pulumi.Input[str]] = None,
             peergrp: Optional[pulumi.Input[str]] = None,
             peerid: Optional[pulumi.Input[str]] = None,
@@ -4528,10 +4752,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[str] eap_exclude_peergrp: Peer group excluded from EAP authentication.
         :param pulumi.Input[str] eap_identity: IKEv2 EAP peer identity type. Valid values: `use-id-payload`, `send-request`.
         :param pulumi.Input[str] enforce_unique_id: Enable/disable peer ID uniqueness check. Valid values: `disable`, `keep-new`, `keep-old`.
+        :param pulumi.Input[str] esn: Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
         :param pulumi.Input[int] fec_base: Number of base Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_codec: ipsec fec encoding/decoding algorithm (0: reed-solomon, 1: xor).
         :param pulumi.Input[str] fec_egress: Enable/disable Forward Error Correction for egress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_health_check: SD-WAN health check.
         :param pulumi.Input[str] fec_ingress: Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] fec_mapping_profile: Forward Error Correction (FEC) mapping profile.
         :param pulumi.Input[int] fec_receive_timeout: Timeout in milliseconds before dropping Forward Error Correction packets (1 - 10000).
         :param pulumi.Input[int] fec_redundant: Number of redundant Forward Error Correction packets (1 - 100).
         :param pulumi.Input[int] fec_send_timeout: Timeout in milliseconds before sending Forward Error Correction packets (1 - 1000).
@@ -4546,6 +4773,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[str] ike_version: IKE protocol version. Valid values: `1`, `2`.
         :param pulumi.Input[str] include_local_lan: Enable/disable allow local LAN access on unity clients. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] interface: Local physical, aggregate, or VLAN outgoing interface.
+        :param pulumi.Input[int] ip_delay_interval: IP address reuse delay interval in seconds (0 - 28800).
         :param pulumi.Input[str] ipv4_dns_server1: IPv4 DNS server 1.
         :param pulumi.Input[str] ipv4_dns_server2: IPv4 DNS server 2.
         :param pulumi.Input[str] ipv4_dns_server3: IPv4 DNS server 3.
@@ -4573,6 +4801,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[str] local_gw: Local VPN gateway.
         :param pulumi.Input[str] localid: Local ID.
         :param pulumi.Input[str] localid_type: Local ID type. Valid values: `auto`, `fqdn`, `user-fqdn`, `keyid`, `address`, `asn1dn`.
+        :param pulumi.Input[str] loopback_asymroute: Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] mesh_selector_type: Add selectors containing subsets of the configuration depending on traffic. Valid values: `disable`, `subnet`, `host`.
         :param pulumi.Input[str] mode: ID protection mode used to establish a secure channel. Valid values: `aggressive`, `main`.
         :param pulumi.Input[str] mode_cfg: Enable/disable configuration method. Valid values: `disable`, `enable`.
@@ -4581,6 +4810,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         :param pulumi.Input[int] negotiate_timeout: IKE SA negotiation timeout in seconds (1 - 300).
         :param pulumi.Input[int] network_id: VPN gateway network ID.
         :param pulumi.Input[str] network_overlay: Enable/disable network overlays. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] npu_offload: Enable/disable offloading NPU. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] peer: Accept this peer certificate.
         :param pulumi.Input[str] peergrp: Accept this peer certificate group.
         :param pulumi.Input[str] peerid: Accept this peer identity.
@@ -4647,10 +4877,13 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["eap_exclude_peergrp"] = eap_exclude_peergrp
         __props__.__dict__["eap_identity"] = eap_identity
         __props__.__dict__["enforce_unique_id"] = enforce_unique_id
+        __props__.__dict__["esn"] = esn
         __props__.__dict__["fec_base"] = fec_base
         __props__.__dict__["fec_codec"] = fec_codec
         __props__.__dict__["fec_egress"] = fec_egress
+        __props__.__dict__["fec_health_check"] = fec_health_check
         __props__.__dict__["fec_ingress"] = fec_ingress
+        __props__.__dict__["fec_mapping_profile"] = fec_mapping_profile
         __props__.__dict__["fec_receive_timeout"] = fec_receive_timeout
         __props__.__dict__["fec_redundant"] = fec_redundant
         __props__.__dict__["fec_send_timeout"] = fec_send_timeout
@@ -4665,6 +4898,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["ike_version"] = ike_version
         __props__.__dict__["include_local_lan"] = include_local_lan
         __props__.__dict__["interface"] = interface
+        __props__.__dict__["ip_delay_interval"] = ip_delay_interval
         __props__.__dict__["ipv4_dns_server1"] = ipv4_dns_server1
         __props__.__dict__["ipv4_dns_server2"] = ipv4_dns_server2
         __props__.__dict__["ipv4_dns_server3"] = ipv4_dns_server3
@@ -4692,6 +4926,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["local_gw"] = local_gw
         __props__.__dict__["localid"] = localid
         __props__.__dict__["localid_type"] = localid_type
+        __props__.__dict__["loopback_asymroute"] = loopback_asymroute
         __props__.__dict__["mesh_selector_type"] = mesh_selector_type
         __props__.__dict__["mode"] = mode
         __props__.__dict__["mode_cfg"] = mode_cfg
@@ -4700,6 +4935,7 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         __props__.__dict__["negotiate_timeout"] = negotiate_timeout
         __props__.__dict__["network_id"] = network_id
         __props__.__dict__["network_overlay"] = network_overlay
+        __props__.__dict__["npu_offload"] = npu_offload
         __props__.__dict__["peer"] = peer
         __props__.__dict__["peergrp"] = peergrp
         __props__.__dict__["peerid"] = peerid
@@ -5002,6 +5238,14 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         return pulumi.get(self, "enforce_unique_id")
 
     @property
+    @pulumi.getter
+    def esn(self) -> pulumi.Output[str]:
+        """
+        Extended sequence number (ESN) negotiation. Valid values: `require`, `allow`, `disable`.
+        """
+        return pulumi.get(self, "esn")
+
+    @property
     @pulumi.getter(name="fecBase")
     def fec_base(self) -> pulumi.Output[int]:
         """
@@ -5026,12 +5270,28 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         return pulumi.get(self, "fec_egress")
 
     @property
+    @pulumi.getter(name="fecHealthCheck")
+    def fec_health_check(self) -> pulumi.Output[str]:
+        """
+        SD-WAN health check.
+        """
+        return pulumi.get(self, "fec_health_check")
+
+    @property
     @pulumi.getter(name="fecIngress")
     def fec_ingress(self) -> pulumi.Output[str]:
         """
         Enable/disable Forward Error Correction for ingress IPsec traffic. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "fec_ingress")
+
+    @property
+    @pulumi.getter(name="fecMappingProfile")
+    def fec_mapping_profile(self) -> pulumi.Output[str]:
+        """
+        Forward Error Correction (FEC) mapping profile.
+        """
+        return pulumi.get(self, "fec_mapping_profile")
 
     @property
     @pulumi.getter(name="fecReceiveTimeout")
@@ -5144,6 +5404,14 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         Local physical, aggregate, or VLAN outgoing interface.
         """
         return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="ipDelayInterval")
+    def ip_delay_interval(self) -> pulumi.Output[int]:
+        """
+        IP address reuse delay interval in seconds (0 - 28800).
+        """
+        return pulumi.get(self, "ip_delay_interval")
 
     @property
     @pulumi.getter(name="ipv4DnsServer1")
@@ -5362,6 +5630,14 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         return pulumi.get(self, "localid_type")
 
     @property
+    @pulumi.getter(name="loopbackAsymroute")
+    def loopback_asymroute(self) -> pulumi.Output[str]:
+        """
+        Enable/disable asymmetric routing for IKE traffic on loopback interface. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "loopback_asymroute")
+
+    @property
     @pulumi.getter(name="meshSelectorType")
     def mesh_selector_type(self) -> pulumi.Output[str]:
         """
@@ -5424,6 +5700,14 @@ class VpnIpsecPhase1(pulumi.CustomResource):
         Enable/disable network overlays. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "network_overlay")
+
+    @property
+    @pulumi.getter(name="npuOffload")
+    def npu_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable offloading NPU. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "npu_offload")
 
     @property
     @pulumi.getter

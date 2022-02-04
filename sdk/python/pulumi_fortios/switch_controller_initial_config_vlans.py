@@ -15,6 +15,7 @@ class SwitchControllerInitialConfigVlansArgs:
     def __init__(__self__, *,
                  default_vlan: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
+                 nac_segment: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  rspan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -24,6 +25,7 @@ class SwitchControllerInitialConfigVlansArgs:
         The set of arguments for constructing a SwitchControllerInitialConfigVlans resource.
         :param pulumi.Input[str] default_vlan: Default VLAN (native) assigned to all switch ports upon discovery.
         :param pulumi.Input[str] nac: VLAN for NAC onboarding devices.
+        :param pulumi.Input[str] nac_segment: VLAN for NAC segemnt primary interface.
         :param pulumi.Input[str] quarantine: VLAN for quarantined traffic.
         :param pulumi.Input[str] rspan: VLAN for RSPAN/ERSPAN mirrored traffic.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -34,6 +36,8 @@ class SwitchControllerInitialConfigVlansArgs:
             pulumi.set(__self__, "default_vlan", default_vlan)
         if nac is not None:
             pulumi.set(__self__, "nac", nac)
+        if nac_segment is not None:
+            pulumi.set(__self__, "nac_segment", nac_segment)
         if quarantine is not None:
             pulumi.set(__self__, "quarantine", quarantine)
         if rspan is not None:
@@ -68,6 +72,18 @@ class SwitchControllerInitialConfigVlansArgs:
     @nac.setter
     def nac(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nac", value)
+
+    @property
+    @pulumi.getter(name="nacSegment")
+    def nac_segment(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN for NAC segemnt primary interface.
+        """
+        return pulumi.get(self, "nac_segment")
+
+    @nac_segment.setter
+    def nac_segment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nac_segment", value)
 
     @property
     @pulumi.getter
@@ -135,6 +151,7 @@ class _SwitchControllerInitialConfigVlansState:
     def __init__(__self__, *,
                  default_vlan: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
+                 nac_segment: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  rspan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -144,6 +161,7 @@ class _SwitchControllerInitialConfigVlansState:
         Input properties used for looking up and filtering SwitchControllerInitialConfigVlans resources.
         :param pulumi.Input[str] default_vlan: Default VLAN (native) assigned to all switch ports upon discovery.
         :param pulumi.Input[str] nac: VLAN for NAC onboarding devices.
+        :param pulumi.Input[str] nac_segment: VLAN for NAC segemnt primary interface.
         :param pulumi.Input[str] quarantine: VLAN for quarantined traffic.
         :param pulumi.Input[str] rspan: VLAN for RSPAN/ERSPAN mirrored traffic.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -154,6 +172,8 @@ class _SwitchControllerInitialConfigVlansState:
             pulumi.set(__self__, "default_vlan", default_vlan)
         if nac is not None:
             pulumi.set(__self__, "nac", nac)
+        if nac_segment is not None:
+            pulumi.set(__self__, "nac_segment", nac_segment)
         if quarantine is not None:
             pulumi.set(__self__, "quarantine", quarantine)
         if rspan is not None:
@@ -188,6 +208,18 @@ class _SwitchControllerInitialConfigVlansState:
     @nac.setter
     def nac(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "nac", value)
+
+    @property
+    @pulumi.getter(name="nacSegment")
+    def nac_segment(self) -> Optional[pulumi.Input[str]]:
+        """
+        VLAN for NAC segemnt primary interface.
+        """
+        return pulumi.get(self, "nac_segment")
+
+    @nac_segment.setter
+    def nac_segment(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nac_segment", value)
 
     @property
     @pulumi.getter
@@ -257,6 +289,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_vlan: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
+                 nac_segment: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  rspan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -280,6 +313,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_vlan: Default VLAN (native) assigned to all switch ports upon discovery.
         :param pulumi.Input[str] nac: VLAN for NAC onboarding devices.
+        :param pulumi.Input[str] nac_segment: VLAN for NAC segemnt primary interface.
         :param pulumi.Input[str] quarantine: VLAN for quarantined traffic.
         :param pulumi.Input[str] rspan: VLAN for RSPAN/ERSPAN mirrored traffic.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -322,6 +356,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  default_vlan: Optional[pulumi.Input[str]] = None,
                  nac: Optional[pulumi.Input[str]] = None,
+                 nac_segment: Optional[pulumi.Input[str]] = None,
                  quarantine: Optional[pulumi.Input[str]] = None,
                  rspan: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -334,6 +369,8 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -341,6 +378,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
 
             __props__.__dict__["default_vlan"] = default_vlan
             __props__.__dict__["nac"] = nac
+            __props__.__dict__["nac_segment"] = nac_segment
             __props__.__dict__["quarantine"] = quarantine
             __props__.__dict__["rspan"] = rspan
             __props__.__dict__["vdomparam"] = vdomparam
@@ -358,6 +396,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             default_vlan: Optional[pulumi.Input[str]] = None,
             nac: Optional[pulumi.Input[str]] = None,
+            nac_segment: Optional[pulumi.Input[str]] = None,
             quarantine: Optional[pulumi.Input[str]] = None,
             rspan: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
@@ -372,6 +411,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] default_vlan: Default VLAN (native) assigned to all switch ports upon discovery.
         :param pulumi.Input[str] nac: VLAN for NAC onboarding devices.
+        :param pulumi.Input[str] nac_segment: VLAN for NAC segemnt primary interface.
         :param pulumi.Input[str] quarantine: VLAN for quarantined traffic.
         :param pulumi.Input[str] rspan: VLAN for RSPAN/ERSPAN mirrored traffic.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -384,6 +424,7 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
 
         __props__.__dict__["default_vlan"] = default_vlan
         __props__.__dict__["nac"] = nac
+        __props__.__dict__["nac_segment"] = nac_segment
         __props__.__dict__["quarantine"] = quarantine
         __props__.__dict__["rspan"] = rspan
         __props__.__dict__["vdomparam"] = vdomparam
@@ -406,6 +447,14 @@ class SwitchControllerInitialConfigVlans(pulumi.CustomResource):
         VLAN for NAC onboarding devices.
         """
         return pulumi.get(self, "nac")
+
+    @property
+    @pulumi.getter(name="nacSegment")
+    def nac_segment(self) -> pulumi.Output[str]:
+        """
+        VLAN for NAC segemnt primary interface.
+        """
+        return pulumi.get(self, "nac_segment")
 
     @property
     @pulumi.getter

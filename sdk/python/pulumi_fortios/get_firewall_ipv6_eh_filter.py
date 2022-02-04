@@ -12,6 +12,7 @@ __all__ = [
     'GetFirewallIpv6EhFilterResult',
     'AwaitableGetFirewallIpv6EhFilterResult',
     'get_firewall_ipv6_eh_filter',
+    'get_firewall_ipv6_eh_filter_output',
 ]
 
 @pulumi.output_type
@@ -161,6 +162,8 @@ def get_firewall_ipv6_eh_filter(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallIpv6EhFilter:GetFirewallIpv6EhFilter', __args__, opts=opts, typ=GetFirewallIpv6EhFilterResult).value
 
     return AwaitableGetFirewallIpv6EhFilterResult(
@@ -174,3 +177,15 @@ def get_firewall_ipv6_eh_filter(vdomparam: Optional[str] = None,
         routing=__ret__.routing,
         routing_type=__ret__.routing_type,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_firewall_ipv6_eh_filter)
+def get_firewall_ipv6_eh_filter_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallIpv6EhFilterResult]:
+    """
+    Use this data source to get information on fortios firewall ipv6ehfilter
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

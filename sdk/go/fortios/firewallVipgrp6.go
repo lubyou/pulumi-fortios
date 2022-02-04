@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -81,8 +82,8 @@ import (
 // 		}
 // 		_, err = fortios.NewFirewallVipgrp6(ctx, "trname", &fortios.FirewallVipgrp6Args{
 // 			Color: pulumi.Int(0),
-// 			Members: fortios.FirewallVipgrp6MemberArray{
-// 				&fortios.FirewallVipgrp6MemberArgs{
+// 			Members: FirewallVipgrp6MemberArray{
+// 				&FirewallVipgrp6MemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -133,6 +134,7 @@ func NewFirewallVipgrp6(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallVipgrp6
 	err := ctx.RegisterResource("fortios:index/firewallVipgrp6:FirewallVipgrp6", name, args, &resource, opts...)
 	if err != nil {
@@ -239,7 +241,7 @@ type FirewallVipgrp6Input interface {
 }
 
 func (*FirewallVipgrp6) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVipgrp6)(nil))
+	return reflect.TypeOf((**FirewallVipgrp6)(nil)).Elem()
 }
 
 func (i *FirewallVipgrp6) ToFirewallVipgrp6Output() FirewallVipgrp6Output {
@@ -248,35 +250,6 @@ func (i *FirewallVipgrp6) ToFirewallVipgrp6Output() FirewallVipgrp6Output {
 
 func (i *FirewallVipgrp6) ToFirewallVipgrp6OutputWithContext(ctx context.Context) FirewallVipgrp6Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp6Output)
-}
-
-func (i *FirewallVipgrp6) ToFirewallVipgrp6PtrOutput() FirewallVipgrp6PtrOutput {
-	return i.ToFirewallVipgrp6PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallVipgrp6) ToFirewallVipgrp6PtrOutputWithContext(ctx context.Context) FirewallVipgrp6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp6PtrOutput)
-}
-
-type FirewallVipgrp6PtrInput interface {
-	pulumi.Input
-
-	ToFirewallVipgrp6PtrOutput() FirewallVipgrp6PtrOutput
-	ToFirewallVipgrp6PtrOutputWithContext(ctx context.Context) FirewallVipgrp6PtrOutput
-}
-
-type firewallVipgrp6PtrType FirewallVipgrp6Args
-
-func (*firewallVipgrp6PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVipgrp6)(nil))
-}
-
-func (i *firewallVipgrp6PtrType) ToFirewallVipgrp6PtrOutput() FirewallVipgrp6PtrOutput {
-	return i.ToFirewallVipgrp6PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallVipgrp6PtrType) ToFirewallVipgrp6PtrOutputWithContext(ctx context.Context) FirewallVipgrp6PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp6PtrOutput)
 }
 
 // FirewallVipgrp6ArrayInput is an input type that accepts FirewallVipgrp6Array and FirewallVipgrp6ArrayOutput values.
@@ -293,7 +266,7 @@ type FirewallVipgrp6ArrayInput interface {
 type FirewallVipgrp6Array []FirewallVipgrp6Input
 
 func (FirewallVipgrp6Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallVipgrp6)(nil))
+	return reflect.TypeOf((*[]*FirewallVipgrp6)(nil)).Elem()
 }
 
 func (i FirewallVipgrp6Array) ToFirewallVipgrp6ArrayOutput() FirewallVipgrp6ArrayOutput {
@@ -318,7 +291,7 @@ type FirewallVipgrp6MapInput interface {
 type FirewallVipgrp6Map map[string]FirewallVipgrp6Input
 
 func (FirewallVipgrp6Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallVipgrp6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVipgrp6)(nil)).Elem()
 }
 
 func (i FirewallVipgrp6Map) ToFirewallVipgrp6MapOutput() FirewallVipgrp6MapOutput {
@@ -329,12 +302,10 @@ func (i FirewallVipgrp6Map) ToFirewallVipgrp6MapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp6MapOutput)
 }
 
-type FirewallVipgrp6Output struct {
-	*pulumi.OutputState
-}
+type FirewallVipgrp6Output struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp6Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVipgrp6)(nil))
+	return reflect.TypeOf((**FirewallVipgrp6)(nil)).Elem()
 }
 
 func (o FirewallVipgrp6Output) ToFirewallVipgrp6Output() FirewallVipgrp6Output {
@@ -345,36 +316,10 @@ func (o FirewallVipgrp6Output) ToFirewallVipgrp6OutputWithContext(ctx context.Co
 	return o
 }
 
-func (o FirewallVipgrp6Output) ToFirewallVipgrp6PtrOutput() FirewallVipgrp6PtrOutput {
-	return o.ToFirewallVipgrp6PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallVipgrp6Output) ToFirewallVipgrp6PtrOutputWithContext(ctx context.Context) FirewallVipgrp6PtrOutput {
-	return o.ApplyT(func(v FirewallVipgrp6) *FirewallVipgrp6 {
-		return &v
-	}).(FirewallVipgrp6PtrOutput)
-}
-
-type FirewallVipgrp6PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallVipgrp6PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVipgrp6)(nil))
-}
-
-func (o FirewallVipgrp6PtrOutput) ToFirewallVipgrp6PtrOutput() FirewallVipgrp6PtrOutput {
-	return o
-}
-
-func (o FirewallVipgrp6PtrOutput) ToFirewallVipgrp6PtrOutputWithContext(ctx context.Context) FirewallVipgrp6PtrOutput {
-	return o
-}
-
 type FirewallVipgrp6ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp6ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallVipgrp6)(nil))
+	return reflect.TypeOf((*[]*FirewallVipgrp6)(nil)).Elem()
 }
 
 func (o FirewallVipgrp6ArrayOutput) ToFirewallVipgrp6ArrayOutput() FirewallVipgrp6ArrayOutput {
@@ -386,15 +331,15 @@ func (o FirewallVipgrp6ArrayOutput) ToFirewallVipgrp6ArrayOutputWithContext(ctx 
 }
 
 func (o FirewallVipgrp6ArrayOutput) Index(i pulumi.IntInput) FirewallVipgrp6Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallVipgrp6 {
-		return vs[0].([]FirewallVipgrp6)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVipgrp6 {
+		return vs[0].([]*FirewallVipgrp6)[vs[1].(int)]
 	}).(FirewallVipgrp6Output)
 }
 
 type FirewallVipgrp6MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp6MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallVipgrp6)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVipgrp6)(nil)).Elem()
 }
 
 func (o FirewallVipgrp6MapOutput) ToFirewallVipgrp6MapOutput() FirewallVipgrp6MapOutput {
@@ -406,14 +351,16 @@ func (o FirewallVipgrp6MapOutput) ToFirewallVipgrp6MapOutputWithContext(ctx cont
 }
 
 func (o FirewallVipgrp6MapOutput) MapIndex(k pulumi.StringInput) FirewallVipgrp6Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallVipgrp6 {
-		return vs[0].(map[string]FirewallVipgrp6)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallVipgrp6 {
+		return vs[0].(map[string]*FirewallVipgrp6)[vs[1].(string)]
 	}).(FirewallVipgrp6Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVipgrp6Input)(nil)).Elem(), &FirewallVipgrp6{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVipgrp6ArrayInput)(nil)).Elem(), FirewallVipgrp6Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVipgrp6MapInput)(nil)).Elem(), FirewallVipgrp6Map{})
 	pulumi.RegisterOutputType(FirewallVipgrp6Output{})
-	pulumi.RegisterOutputType(FirewallVipgrp6PtrOutput{})
 	pulumi.RegisterOutputType(FirewallVipgrp6ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallVipgrp6MapOutput{})
 }

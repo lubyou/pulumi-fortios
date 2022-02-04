@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure virtual hardware switch interfaces.
+// Configure virtual hardware switch interfaces. Applies to FortiOS Version `>= 7.0.4`.
 //
 // ## Import
 //
@@ -38,10 +38,12 @@ type SystemVirtualSwitch struct {
 	SpanDestPort pulumi.StringOutput `pulumi:"spanDestPort"`
 	// SPAN direction. Valid values: `rx`, `tx`, `both`.
 	SpanDirection pulumi.StringOutput `pulumi:"spanDirection"`
-	// SPAN source ports.
+	// SPAN source port.
 	SpanSourcePort pulumi.StringOutput `pulumi:"spanSourcePort"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// VLAN.
+	Vlan pulumi.IntOutput `pulumi:"vlan"`
 }
 
 // NewSystemVirtualSwitch registers a new resource with the given unique name, arguments, and options.
@@ -51,6 +53,7 @@ func NewSystemVirtualSwitch(ctx *pulumi.Context,
 		args = &SystemVirtualSwitchArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVirtualSwitch
 	err := ctx.RegisterResource("fortios:index/systemVirtualSwitch:SystemVirtualSwitch", name, args, &resource, opts...)
 	if err != nil {
@@ -87,10 +90,12 @@ type systemVirtualSwitchState struct {
 	SpanDestPort *string `pulumi:"spanDestPort"`
 	// SPAN direction. Valid values: `rx`, `tx`, `both`.
 	SpanDirection *string `pulumi:"spanDirection"`
-	// SPAN source ports.
+	// SPAN source port.
 	SpanSourcePort *string `pulumi:"spanSourcePort"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// VLAN.
+	Vlan *int `pulumi:"vlan"`
 }
 
 type SystemVirtualSwitchState struct {
@@ -108,10 +113,12 @@ type SystemVirtualSwitchState struct {
 	SpanDestPort pulumi.StringPtrInput
 	// SPAN direction. Valid values: `rx`, `tx`, `both`.
 	SpanDirection pulumi.StringPtrInput
-	// SPAN source ports.
+	// SPAN source port.
 	SpanSourcePort pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// VLAN.
+	Vlan pulumi.IntPtrInput
 }
 
 func (SystemVirtualSwitchState) ElementType() reflect.Type {
@@ -133,10 +140,12 @@ type systemVirtualSwitchArgs struct {
 	SpanDestPort *string `pulumi:"spanDestPort"`
 	// SPAN direction. Valid values: `rx`, `tx`, `both`.
 	SpanDirection *string `pulumi:"spanDirection"`
-	// SPAN source ports.
+	// SPAN source port.
 	SpanSourcePort *string `pulumi:"spanSourcePort"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// VLAN.
+	Vlan *int `pulumi:"vlan"`
 }
 
 // The set of arguments for constructing a SystemVirtualSwitch resource.
@@ -155,10 +164,12 @@ type SystemVirtualSwitchArgs struct {
 	SpanDestPort pulumi.StringPtrInput
 	// SPAN direction. Valid values: `rx`, `tx`, `both`.
 	SpanDirection pulumi.StringPtrInput
-	// SPAN source ports.
+	// SPAN source port.
 	SpanSourcePort pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// VLAN.
+	Vlan pulumi.IntPtrInput
 }
 
 func (SystemVirtualSwitchArgs) ElementType() reflect.Type {
@@ -173,7 +184,7 @@ type SystemVirtualSwitchInput interface {
 }
 
 func (*SystemVirtualSwitch) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVirtualSwitch)(nil))
+	return reflect.TypeOf((**SystemVirtualSwitch)(nil)).Elem()
 }
 
 func (i *SystemVirtualSwitch) ToSystemVirtualSwitchOutput() SystemVirtualSwitchOutput {
@@ -182,35 +193,6 @@ func (i *SystemVirtualSwitch) ToSystemVirtualSwitchOutput() SystemVirtualSwitchO
 
 func (i *SystemVirtualSwitch) ToSystemVirtualSwitchOutputWithContext(ctx context.Context) SystemVirtualSwitchOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchOutput)
-}
-
-func (i *SystemVirtualSwitch) ToSystemVirtualSwitchPtrOutput() SystemVirtualSwitchPtrOutput {
-	return i.ToSystemVirtualSwitchPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVirtualSwitch) ToSystemVirtualSwitchPtrOutputWithContext(ctx context.Context) SystemVirtualSwitchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchPtrOutput)
-}
-
-type SystemVirtualSwitchPtrInput interface {
-	pulumi.Input
-
-	ToSystemVirtualSwitchPtrOutput() SystemVirtualSwitchPtrOutput
-	ToSystemVirtualSwitchPtrOutputWithContext(ctx context.Context) SystemVirtualSwitchPtrOutput
-}
-
-type systemVirtualSwitchPtrType SystemVirtualSwitchArgs
-
-func (*systemVirtualSwitchPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVirtualSwitch)(nil))
-}
-
-func (i *systemVirtualSwitchPtrType) ToSystemVirtualSwitchPtrOutput() SystemVirtualSwitchPtrOutput {
-	return i.ToSystemVirtualSwitchPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVirtualSwitchPtrType) ToSystemVirtualSwitchPtrOutputWithContext(ctx context.Context) SystemVirtualSwitchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchPtrOutput)
 }
 
 // SystemVirtualSwitchArrayInput is an input type that accepts SystemVirtualSwitchArray and SystemVirtualSwitchArrayOutput values.
@@ -227,7 +209,7 @@ type SystemVirtualSwitchArrayInput interface {
 type SystemVirtualSwitchArray []SystemVirtualSwitchInput
 
 func (SystemVirtualSwitchArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVirtualSwitch)(nil))
+	return reflect.TypeOf((*[]*SystemVirtualSwitch)(nil)).Elem()
 }
 
 func (i SystemVirtualSwitchArray) ToSystemVirtualSwitchArrayOutput() SystemVirtualSwitchArrayOutput {
@@ -252,7 +234,7 @@ type SystemVirtualSwitchMapInput interface {
 type SystemVirtualSwitchMap map[string]SystemVirtualSwitchInput
 
 func (SystemVirtualSwitchMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVirtualSwitch)(nil))
+	return reflect.TypeOf((*map[string]*SystemVirtualSwitch)(nil)).Elem()
 }
 
 func (i SystemVirtualSwitchMap) ToSystemVirtualSwitchMapOutput() SystemVirtualSwitchMapOutput {
@@ -263,12 +245,10 @@ func (i SystemVirtualSwitchMap) ToSystemVirtualSwitchMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualSwitchMapOutput)
 }
 
-type SystemVirtualSwitchOutput struct {
-	*pulumi.OutputState
-}
+type SystemVirtualSwitchOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualSwitchOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVirtualSwitch)(nil))
+	return reflect.TypeOf((**SystemVirtualSwitch)(nil)).Elem()
 }
 
 func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutput() SystemVirtualSwitchOutput {
@@ -279,36 +259,10 @@ func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchPtrOutput() SystemVirtualSwitchPtrOutput {
-	return o.ToSystemVirtualSwitchPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVirtualSwitchOutput) ToSystemVirtualSwitchPtrOutputWithContext(ctx context.Context) SystemVirtualSwitchPtrOutput {
-	return o.ApplyT(func(v SystemVirtualSwitch) *SystemVirtualSwitch {
-		return &v
-	}).(SystemVirtualSwitchPtrOutput)
-}
-
-type SystemVirtualSwitchPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVirtualSwitchPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVirtualSwitch)(nil))
-}
-
-func (o SystemVirtualSwitchPtrOutput) ToSystemVirtualSwitchPtrOutput() SystemVirtualSwitchPtrOutput {
-	return o
-}
-
-func (o SystemVirtualSwitchPtrOutput) ToSystemVirtualSwitchPtrOutputWithContext(ctx context.Context) SystemVirtualSwitchPtrOutput {
-	return o
-}
-
 type SystemVirtualSwitchArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualSwitchArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVirtualSwitch)(nil))
+	return reflect.TypeOf((*[]*SystemVirtualSwitch)(nil)).Elem()
 }
 
 func (o SystemVirtualSwitchArrayOutput) ToSystemVirtualSwitchArrayOutput() SystemVirtualSwitchArrayOutput {
@@ -320,15 +274,15 @@ func (o SystemVirtualSwitchArrayOutput) ToSystemVirtualSwitchArrayOutputWithCont
 }
 
 func (o SystemVirtualSwitchArrayOutput) Index(i pulumi.IntInput) SystemVirtualSwitchOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualSwitch {
-		return vs[0].([]SystemVirtualSwitch)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVirtualSwitch {
+		return vs[0].([]*SystemVirtualSwitch)[vs[1].(int)]
 	}).(SystemVirtualSwitchOutput)
 }
 
 type SystemVirtualSwitchMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualSwitchMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVirtualSwitch)(nil))
+	return reflect.TypeOf((*map[string]*SystemVirtualSwitch)(nil)).Elem()
 }
 
 func (o SystemVirtualSwitchMapOutput) ToSystemVirtualSwitchMapOutput() SystemVirtualSwitchMapOutput {
@@ -340,14 +294,16 @@ func (o SystemVirtualSwitchMapOutput) ToSystemVirtualSwitchMapOutputWithContext(
 }
 
 func (o SystemVirtualSwitchMapOutput) MapIndex(k pulumi.StringInput) SystemVirtualSwitchOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVirtualSwitch {
-		return vs[0].(map[string]SystemVirtualSwitch)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVirtualSwitch {
+		return vs[0].(map[string]*SystemVirtualSwitch)[vs[1].(string)]
 	}).(SystemVirtualSwitchOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualSwitchInput)(nil)).Elem(), &SystemVirtualSwitch{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualSwitchArrayInput)(nil)).Elem(), SystemVirtualSwitchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualSwitchMapInput)(nil)).Elem(), SystemVirtualSwitchMap{})
 	pulumi.RegisterOutputType(SystemVirtualSwitchOutput{})
-	pulumi.RegisterOutputType(SystemVirtualSwitchPtrOutput{})
 	pulumi.RegisterOutputType(SystemVirtualSwitchArrayOutput{})
 	pulumi.RegisterOutputType(SystemVirtualSwitchMapOutput{})
 }

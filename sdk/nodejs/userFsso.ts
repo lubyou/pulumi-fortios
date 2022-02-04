@@ -92,6 +92,10 @@ export class UserFsso extends pulumi.CustomResource {
      */
     public readonly ldapServer!: pulumi.Output<string>;
     /**
+     * Interval in minutes to keep logons after FSSO server down.
+     */
+    public readonly logonTimeout!: pulumi.Output<number>;
+    /**
      * Name.
      */
     public readonly name!: pulumi.Output<string>;
@@ -168,6 +172,10 @@ export class UserFsso extends pulumi.CustomResource {
      */
     public readonly ssl!: pulumi.Output<string>;
     /**
+     * Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+     */
+    public readonly sslServerHostIpCheck!: pulumi.Output<string>;
+    /**
      * Trusted server certificate or CA certificate.
      */
     public readonly sslTrustedCert!: pulumi.Output<string>;
@@ -193,80 +201,82 @@ export class UserFsso extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserFssoArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserFssoArgs | UserFssoState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserFssoState | undefined;
-            inputs["groupPollInterval"] = state ? state.groupPollInterval : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ldapPoll"] = state ? state.ldapPoll : undefined;
-            inputs["ldapPollFilter"] = state ? state.ldapPollFilter : undefined;
-            inputs["ldapPollInterval"] = state ? state.ldapPollInterval : undefined;
-            inputs["ldapServer"] = state ? state.ldapServer : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["password2"] = state ? state.password2 : undefined;
-            inputs["password3"] = state ? state.password3 : undefined;
-            inputs["password4"] = state ? state.password4 : undefined;
-            inputs["password5"] = state ? state.password5 : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["port2"] = state ? state.port2 : undefined;
-            inputs["port3"] = state ? state.port3 : undefined;
-            inputs["port4"] = state ? state.port4 : undefined;
-            inputs["port5"] = state ? state.port5 : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["server2"] = state ? state.server2 : undefined;
-            inputs["server3"] = state ? state.server3 : undefined;
-            inputs["server4"] = state ? state.server4 : undefined;
-            inputs["server5"] = state ? state.server5 : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
-            inputs["ssl"] = state ? state.ssl : undefined;
-            inputs["sslTrustedCert"] = state ? state.sslTrustedCert : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["userInfoServer"] = state ? state.userInfoServer : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["groupPollInterval"] = state ? state.groupPollInterval : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ldapPoll"] = state ? state.ldapPoll : undefined;
+            resourceInputs["ldapPollFilter"] = state ? state.ldapPollFilter : undefined;
+            resourceInputs["ldapPollInterval"] = state ? state.ldapPollInterval : undefined;
+            resourceInputs["ldapServer"] = state ? state.ldapServer : undefined;
+            resourceInputs["logonTimeout"] = state ? state.logonTimeout : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["password2"] = state ? state.password2 : undefined;
+            resourceInputs["password3"] = state ? state.password3 : undefined;
+            resourceInputs["password4"] = state ? state.password4 : undefined;
+            resourceInputs["password5"] = state ? state.password5 : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["port2"] = state ? state.port2 : undefined;
+            resourceInputs["port3"] = state ? state.port3 : undefined;
+            resourceInputs["port4"] = state ? state.port4 : undefined;
+            resourceInputs["port5"] = state ? state.port5 : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["server2"] = state ? state.server2 : undefined;
+            resourceInputs["server3"] = state ? state.server3 : undefined;
+            resourceInputs["server4"] = state ? state.server4 : undefined;
+            resourceInputs["server5"] = state ? state.server5 : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = state ? state.sourceIp6 : undefined;
+            resourceInputs["ssl"] = state ? state.ssl : undefined;
+            resourceInputs["sslServerHostIpCheck"] = state ? state.sslServerHostIpCheck : undefined;
+            resourceInputs["sslTrustedCert"] = state ? state.sslTrustedCert : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["userInfoServer"] = state ? state.userInfoServer : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserFssoArgs | undefined;
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
-            inputs["groupPollInterval"] = args ? args.groupPollInterval : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ldapPoll"] = args ? args.ldapPoll : undefined;
-            inputs["ldapPollFilter"] = args ? args.ldapPollFilter : undefined;
-            inputs["ldapPollInterval"] = args ? args.ldapPollInterval : undefined;
-            inputs["ldapServer"] = args ? args.ldapServer : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["password2"] = args ? args.password2 : undefined;
-            inputs["password3"] = args ? args.password3 : undefined;
-            inputs["password4"] = args ? args.password4 : undefined;
-            inputs["password5"] = args ? args.password5 : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["port2"] = args ? args.port2 : undefined;
-            inputs["port3"] = args ? args.port3 : undefined;
-            inputs["port4"] = args ? args.port4 : undefined;
-            inputs["port5"] = args ? args.port5 : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["server2"] = args ? args.server2 : undefined;
-            inputs["server3"] = args ? args.server3 : undefined;
-            inputs["server4"] = args ? args.server4 : undefined;
-            inputs["server5"] = args ? args.server5 : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
-            inputs["ssl"] = args ? args.ssl : undefined;
-            inputs["sslTrustedCert"] = args ? args.sslTrustedCert : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["userInfoServer"] = args ? args.userInfoServer : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["groupPollInterval"] = args ? args.groupPollInterval : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ldapPoll"] = args ? args.ldapPoll : undefined;
+            resourceInputs["ldapPollFilter"] = args ? args.ldapPollFilter : undefined;
+            resourceInputs["ldapPollInterval"] = args ? args.ldapPollInterval : undefined;
+            resourceInputs["ldapServer"] = args ? args.ldapServer : undefined;
+            resourceInputs["logonTimeout"] = args ? args.logonTimeout : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["password2"] = args ? args.password2 : undefined;
+            resourceInputs["password3"] = args ? args.password3 : undefined;
+            resourceInputs["password4"] = args ? args.password4 : undefined;
+            resourceInputs["password5"] = args ? args.password5 : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["port2"] = args ? args.port2 : undefined;
+            resourceInputs["port3"] = args ? args.port3 : undefined;
+            resourceInputs["port4"] = args ? args.port4 : undefined;
+            resourceInputs["port5"] = args ? args.port5 : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["server2"] = args ? args.server2 : undefined;
+            resourceInputs["server3"] = args ? args.server3 : undefined;
+            resourceInputs["server4"] = args ? args.server4 : undefined;
+            resourceInputs["server5"] = args ? args.server5 : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourceIp6"] = args ? args.sourceIp6 : undefined;
+            resourceInputs["ssl"] = args ? args.ssl : undefined;
+            resourceInputs["sslServerHostIpCheck"] = args ? args.sslServerHostIpCheck : undefined;
+            resourceInputs["sslTrustedCert"] = args ? args.sslTrustedCert : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["userInfoServer"] = args ? args.userInfoServer : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserFsso.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserFsso.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -302,6 +312,10 @@ export interface UserFssoState {
      * LDAP server to get group information.
      */
     ldapServer?: pulumi.Input<string>;
+    /**
+     * Interval in minutes to keep logons after FSSO server down.
+     */
+    logonTimeout?: pulumi.Input<number>;
     /**
      * Name.
      */
@@ -379,6 +393,10 @@ export interface UserFssoState {
      */
     ssl?: pulumi.Input<string>;
     /**
+     * Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+     */
+    sslServerHostIpCheck?: pulumi.Input<string>;
+    /**
      * Trusted server certificate or CA certificate.
      */
     sslTrustedCert?: pulumi.Input<string>;
@@ -428,6 +446,10 @@ export interface UserFssoArgs {
      * LDAP server to get group information.
      */
     ldapServer?: pulumi.Input<string>;
+    /**
+     * Interval in minutes to keep logons after FSSO server down.
+     */
+    logonTimeout?: pulumi.Input<number>;
     /**
      * Name.
      */
@@ -504,6 +526,10 @@ export interface UserFssoArgs {
      * Enable/disable use of SSL. Valid values: `enable`, `disable`.
      */
     ssl?: pulumi.Input<string>;
+    /**
+     * Enable/disable server host/IP verification. Valid values: `enable`, `disable`.
+     */
+    sslServerHostIpCheck?: pulumi.Input<string>;
     /**
      * Trusted server certificate or CA certificate.
      */

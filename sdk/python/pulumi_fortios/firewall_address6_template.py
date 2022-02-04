@@ -18,6 +18,7 @@ class FirewallAddress6TemplateArgs:
                  ip6: pulumi.Input[str],
                  subnet_segment_count: pulumi.Input[int],
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segments: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallAddress6TemplateSubnetSegmentArgs']]]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -26,6 +27,7 @@ class FirewallAddress6TemplateArgs:
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Subnet segment value name.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallAddress6TemplateSubnetSegmentArgs']]] subnet_segments: IPv6 subnet segments. The structure of `subnet_segment` block is documented below.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -34,6 +36,8 @@ class FirewallAddress6TemplateArgs:
         pulumi.set(__self__, "subnet_segment_count", subnet_segment_count)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if subnet_segments is not None:
@@ -78,6 +82,18 @@ class FirewallAddress6TemplateArgs:
         pulumi.set(self, "dynamic_sort_subtable", value)
 
     @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
+
+    @property
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
@@ -118,6 +134,7 @@ class FirewallAddress6TemplateArgs:
 class _FirewallAddress6TemplateState:
     def __init__(__self__, *,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -126,6 +143,7 @@ class _FirewallAddress6TemplateState:
         """
         Input properties used for looking up and filtering FirewallAddress6Template resources.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[str] name: Subnet segment value name.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
@@ -134,6 +152,8 @@ class _FirewallAddress6TemplateState:
         """
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if fabric_object is not None:
+            pulumi.set(__self__, "fabric_object", fabric_object)
         if ip6 is not None:
             pulumi.set(__self__, "ip6", ip6)
         if name is not None:
@@ -156,6 +176,18 @@ class _FirewallAddress6TemplateState:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> Optional[pulumi.Input[str]]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
+
+    @fabric_object.setter
+    def fabric_object(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fabric_object", value)
 
     @property
     @pulumi.getter
@@ -224,6 +256,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -271,6 +304,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[str] name: Subnet segment value name.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
@@ -337,6 +371,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 fabric_object: Optional[pulumi.Input[str]] = None,
                  ip6: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -349,12 +384,15 @@ class FirewallAddress6Template(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallAddress6TemplateArgs.__new__(FirewallAddress6TemplateArgs)
 
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["fabric_object"] = fabric_object
             if ip6 is None and not opts.urn:
                 raise TypeError("Missing required property 'ip6'")
             __props__.__dict__["ip6"] = ip6
@@ -375,6 +413,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            fabric_object: Optional[pulumi.Input[str]] = None,
             ip6: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             subnet_segment_count: Optional[pulumi.Input[int]] = None,
@@ -388,6 +427,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] fabric_object: Security Fabric global object setting. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ip6: IPv6 address prefix.
         :param pulumi.Input[str] name: Subnet segment value name.
         :param pulumi.Input[int] subnet_segment_count: Number of IPv6 subnet segments.
@@ -399,6 +439,7 @@ class FirewallAddress6Template(pulumi.CustomResource):
         __props__ = _FirewallAddress6TemplateState.__new__(_FirewallAddress6TemplateState)
 
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["fabric_object"] = fabric_object
         __props__.__dict__["ip6"] = ip6
         __props__.__dict__["name"] = name
         __props__.__dict__["subnet_segment_count"] = subnet_segment_count
@@ -413,6 +454,14 @@ class FirewallAddress6Template(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> pulumi.Output[str]:
+        """
+        Security Fabric global object setting. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter

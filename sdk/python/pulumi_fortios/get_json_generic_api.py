@@ -12,6 +12,7 @@ __all__ = [
     'GetJSONGenericAPIResult',
     'AwaitableGetJSONGenericAPIResult',
     'get_json_generic_api',
+    'get_json_generic_api_output',
 ]
 
 @pulumi.output_type
@@ -106,6 +107,8 @@ def get_json_generic_api(path: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getJSONGenericAPI:GetJSONGenericAPI', __args__, opts=opts, typ=GetJSONGenericAPIResult).value
 
     return AwaitableGetJSONGenericAPIResult(
@@ -114,3 +117,18 @@ def get_json_generic_api(path: Optional[str] = None,
         response=__ret__.response,
         specialparams=__ret__.specialparams,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_json_generic_api)
+def get_json_generic_api_output(path: Optional[pulumi.Input[str]] = None,
+                                specialparams: Optional[pulumi.Input[Optional[str]]] = None,
+                                vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetJSONGenericAPIResult]:
+    """
+    Provides a FortiAPI Generic Interface data source.
+
+
+    :param str path: FortiAPI URL path.
+    :param str specialparams: URL parameters, in addition to the URL path, user can specify URL parameters which are appended to the URL path..
+    """
+    ...

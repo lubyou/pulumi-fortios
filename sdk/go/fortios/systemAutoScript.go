@@ -20,7 +20,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -78,6 +78,7 @@ func NewSystemAutoScript(ctx *pulumi.Context,
 		args = &SystemAutoScriptArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutoScript
 	err := ctx.RegisterResource("fortios:index/systemAutoScript:SystemAutoScript", name, args, &resource, opts...)
 	if err != nil {
@@ -192,7 +193,7 @@ type SystemAutoScriptInput interface {
 }
 
 func (*SystemAutoScript) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoScript)(nil))
+	return reflect.TypeOf((**SystemAutoScript)(nil)).Elem()
 }
 
 func (i *SystemAutoScript) ToSystemAutoScriptOutput() SystemAutoScriptOutput {
@@ -201,35 +202,6 @@ func (i *SystemAutoScript) ToSystemAutoScriptOutput() SystemAutoScriptOutput {
 
 func (i *SystemAutoScript) ToSystemAutoScriptOutputWithContext(ctx context.Context) SystemAutoScriptOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptOutput)
-}
-
-func (i *SystemAutoScript) ToSystemAutoScriptPtrOutput() SystemAutoScriptPtrOutput {
-	return i.ToSystemAutoScriptPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutoScript) ToSystemAutoScriptPtrOutputWithContext(ctx context.Context) SystemAutoScriptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptPtrOutput)
-}
-
-type SystemAutoScriptPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutoScriptPtrOutput() SystemAutoScriptPtrOutput
-	ToSystemAutoScriptPtrOutputWithContext(ctx context.Context) SystemAutoScriptPtrOutput
-}
-
-type systemAutoScriptPtrType SystemAutoScriptArgs
-
-func (*systemAutoScriptPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoScript)(nil))
-}
-
-func (i *systemAutoScriptPtrType) ToSystemAutoScriptPtrOutput() SystemAutoScriptPtrOutput {
-	return i.ToSystemAutoScriptPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutoScriptPtrType) ToSystemAutoScriptPtrOutputWithContext(ctx context.Context) SystemAutoScriptPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptPtrOutput)
 }
 
 // SystemAutoScriptArrayInput is an input type that accepts SystemAutoScriptArray and SystemAutoScriptArrayOutput values.
@@ -246,7 +218,7 @@ type SystemAutoScriptArrayInput interface {
 type SystemAutoScriptArray []SystemAutoScriptInput
 
 func (SystemAutoScriptArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutoScript)(nil))
+	return reflect.TypeOf((*[]*SystemAutoScript)(nil)).Elem()
 }
 
 func (i SystemAutoScriptArray) ToSystemAutoScriptArrayOutput() SystemAutoScriptArrayOutput {
@@ -271,7 +243,7 @@ type SystemAutoScriptMapInput interface {
 type SystemAutoScriptMap map[string]SystemAutoScriptInput
 
 func (SystemAutoScriptMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutoScript)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoScript)(nil)).Elem()
 }
 
 func (i SystemAutoScriptMap) ToSystemAutoScriptMapOutput() SystemAutoScriptMapOutput {
@@ -282,12 +254,10 @@ func (i SystemAutoScriptMap) ToSystemAutoScriptMapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutoScriptMapOutput)
 }
 
-type SystemAutoScriptOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutoScriptOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoScriptOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutoScript)(nil))
+	return reflect.TypeOf((**SystemAutoScript)(nil)).Elem()
 }
 
 func (o SystemAutoScriptOutput) ToSystemAutoScriptOutput() SystemAutoScriptOutput {
@@ -298,36 +268,10 @@ func (o SystemAutoScriptOutput) ToSystemAutoScriptOutputWithContext(ctx context.
 	return o
 }
 
-func (o SystemAutoScriptOutput) ToSystemAutoScriptPtrOutput() SystemAutoScriptPtrOutput {
-	return o.ToSystemAutoScriptPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutoScriptOutput) ToSystemAutoScriptPtrOutputWithContext(ctx context.Context) SystemAutoScriptPtrOutput {
-	return o.ApplyT(func(v SystemAutoScript) *SystemAutoScript {
-		return &v
-	}).(SystemAutoScriptPtrOutput)
-}
-
-type SystemAutoScriptPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutoScriptPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutoScript)(nil))
-}
-
-func (o SystemAutoScriptPtrOutput) ToSystemAutoScriptPtrOutput() SystemAutoScriptPtrOutput {
-	return o
-}
-
-func (o SystemAutoScriptPtrOutput) ToSystemAutoScriptPtrOutputWithContext(ctx context.Context) SystemAutoScriptPtrOutput {
-	return o
-}
-
 type SystemAutoScriptArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoScriptArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutoScript)(nil))
+	return reflect.TypeOf((*[]*SystemAutoScript)(nil)).Elem()
 }
 
 func (o SystemAutoScriptArrayOutput) ToSystemAutoScriptArrayOutput() SystemAutoScriptArrayOutput {
@@ -339,15 +283,15 @@ func (o SystemAutoScriptArrayOutput) ToSystemAutoScriptArrayOutputWithContext(ct
 }
 
 func (o SystemAutoScriptArrayOutput) Index(i pulumi.IntInput) SystemAutoScriptOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutoScript {
-		return vs[0].([]SystemAutoScript)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutoScript {
+		return vs[0].([]*SystemAutoScript)[vs[1].(int)]
 	}).(SystemAutoScriptOutput)
 }
 
 type SystemAutoScriptMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutoScriptMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutoScript)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutoScript)(nil)).Elem()
 }
 
 func (o SystemAutoScriptMapOutput) ToSystemAutoScriptMapOutput() SystemAutoScriptMapOutput {
@@ -359,14 +303,16 @@ func (o SystemAutoScriptMapOutput) ToSystemAutoScriptMapOutputWithContext(ctx co
 }
 
 func (o SystemAutoScriptMapOutput) MapIndex(k pulumi.StringInput) SystemAutoScriptOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutoScript {
-		return vs[0].(map[string]SystemAutoScript)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutoScript {
+		return vs[0].(map[string]*SystemAutoScript)[vs[1].(string)]
 	}).(SystemAutoScriptOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoScriptInput)(nil)).Elem(), &SystemAutoScript{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoScriptArrayInput)(nil)).Elem(), SystemAutoScriptArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutoScriptMapInput)(nil)).Elem(), SystemAutoScriptMap{})
 	pulumi.RegisterOutputType(SystemAutoScriptOutput{})
-	pulumi.RegisterOutputType(SystemAutoScriptPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutoScriptArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutoScriptMapOutput{})
 }

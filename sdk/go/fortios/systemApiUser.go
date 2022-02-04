@@ -59,6 +59,7 @@ func NewSystemApiUser(ctx *pulumi.Context,
 	if args.Accprofile == nil {
 		return nil, errors.New("invalid value for required argument 'Accprofile'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemApiUser
 	err := ctx.RegisterResource("fortios:index/systemApiUser:SystemApiUser", name, args, &resource, opts...)
 	if err != nil {
@@ -205,7 +206,7 @@ type SystemApiUserInput interface {
 }
 
 func (*SystemApiUser) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemApiUser)(nil))
+	return reflect.TypeOf((**SystemApiUser)(nil)).Elem()
 }
 
 func (i *SystemApiUser) ToSystemApiUserOutput() SystemApiUserOutput {
@@ -214,35 +215,6 @@ func (i *SystemApiUser) ToSystemApiUserOutput() SystemApiUserOutput {
 
 func (i *SystemApiUser) ToSystemApiUserOutputWithContext(ctx context.Context) SystemApiUserOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemApiUserOutput)
-}
-
-func (i *SystemApiUser) ToSystemApiUserPtrOutput() SystemApiUserPtrOutput {
-	return i.ToSystemApiUserPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemApiUser) ToSystemApiUserPtrOutputWithContext(ctx context.Context) SystemApiUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemApiUserPtrOutput)
-}
-
-type SystemApiUserPtrInput interface {
-	pulumi.Input
-
-	ToSystemApiUserPtrOutput() SystemApiUserPtrOutput
-	ToSystemApiUserPtrOutputWithContext(ctx context.Context) SystemApiUserPtrOutput
-}
-
-type systemApiUserPtrType SystemApiUserArgs
-
-func (*systemApiUserPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemApiUser)(nil))
-}
-
-func (i *systemApiUserPtrType) ToSystemApiUserPtrOutput() SystemApiUserPtrOutput {
-	return i.ToSystemApiUserPtrOutputWithContext(context.Background())
-}
-
-func (i *systemApiUserPtrType) ToSystemApiUserPtrOutputWithContext(ctx context.Context) SystemApiUserPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemApiUserPtrOutput)
 }
 
 // SystemApiUserArrayInput is an input type that accepts SystemApiUserArray and SystemApiUserArrayOutput values.
@@ -259,7 +231,7 @@ type SystemApiUserArrayInput interface {
 type SystemApiUserArray []SystemApiUserInput
 
 func (SystemApiUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemApiUser)(nil))
+	return reflect.TypeOf((*[]*SystemApiUser)(nil)).Elem()
 }
 
 func (i SystemApiUserArray) ToSystemApiUserArrayOutput() SystemApiUserArrayOutput {
@@ -284,7 +256,7 @@ type SystemApiUserMapInput interface {
 type SystemApiUserMap map[string]SystemApiUserInput
 
 func (SystemApiUserMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemApiUser)(nil))
+	return reflect.TypeOf((*map[string]*SystemApiUser)(nil)).Elem()
 }
 
 func (i SystemApiUserMap) ToSystemApiUserMapOutput() SystemApiUserMapOutput {
@@ -295,12 +267,10 @@ func (i SystemApiUserMap) ToSystemApiUserMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemApiUserMapOutput)
 }
 
-type SystemApiUserOutput struct {
-	*pulumi.OutputState
-}
+type SystemApiUserOutput struct{ *pulumi.OutputState }
 
 func (SystemApiUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemApiUser)(nil))
+	return reflect.TypeOf((**SystemApiUser)(nil)).Elem()
 }
 
 func (o SystemApiUserOutput) ToSystemApiUserOutput() SystemApiUserOutput {
@@ -311,36 +281,10 @@ func (o SystemApiUserOutput) ToSystemApiUserOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o SystemApiUserOutput) ToSystemApiUserPtrOutput() SystemApiUserPtrOutput {
-	return o.ToSystemApiUserPtrOutputWithContext(context.Background())
-}
-
-func (o SystemApiUserOutput) ToSystemApiUserPtrOutputWithContext(ctx context.Context) SystemApiUserPtrOutput {
-	return o.ApplyT(func(v SystemApiUser) *SystemApiUser {
-		return &v
-	}).(SystemApiUserPtrOutput)
-}
-
-type SystemApiUserPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemApiUserPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemApiUser)(nil))
-}
-
-func (o SystemApiUserPtrOutput) ToSystemApiUserPtrOutput() SystemApiUserPtrOutput {
-	return o
-}
-
-func (o SystemApiUserPtrOutput) ToSystemApiUserPtrOutputWithContext(ctx context.Context) SystemApiUserPtrOutput {
-	return o
-}
-
 type SystemApiUserArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemApiUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemApiUser)(nil))
+	return reflect.TypeOf((*[]*SystemApiUser)(nil)).Elem()
 }
 
 func (o SystemApiUserArrayOutput) ToSystemApiUserArrayOutput() SystemApiUserArrayOutput {
@@ -352,15 +296,15 @@ func (o SystemApiUserArrayOutput) ToSystemApiUserArrayOutputWithContext(ctx cont
 }
 
 func (o SystemApiUserArrayOutput) Index(i pulumi.IntInput) SystemApiUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemApiUser {
-		return vs[0].([]SystemApiUser)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemApiUser {
+		return vs[0].([]*SystemApiUser)[vs[1].(int)]
 	}).(SystemApiUserOutput)
 }
 
 type SystemApiUserMapOutput struct{ *pulumi.OutputState }
 
 func (SystemApiUserMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemApiUser)(nil))
+	return reflect.TypeOf((*map[string]*SystemApiUser)(nil)).Elem()
 }
 
 func (o SystemApiUserMapOutput) ToSystemApiUserMapOutput() SystemApiUserMapOutput {
@@ -372,14 +316,16 @@ func (o SystemApiUserMapOutput) ToSystemApiUserMapOutputWithContext(ctx context.
 }
 
 func (o SystemApiUserMapOutput) MapIndex(k pulumi.StringInput) SystemApiUserOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemApiUser {
-		return vs[0].(map[string]SystemApiUser)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemApiUser {
+		return vs[0].(map[string]*SystemApiUser)[vs[1].(string)]
 	}).(SystemApiUserOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemApiUserInput)(nil)).Elem(), &SystemApiUser{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemApiUserArrayInput)(nil)).Elem(), SystemApiUserArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemApiUserMapInput)(nil)).Elem(), SystemApiUserMap{})
 	pulumi.RegisterOutputType(SystemApiUserOutput{})
-	pulumi.RegisterOutputType(SystemApiUserPtrOutput{})
 	pulumi.RegisterOutputType(SystemApiUserArrayOutput{})
 	pulumi.RegisterOutputType(SystemApiUserMapOutput{})
 }

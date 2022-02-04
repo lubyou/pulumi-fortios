@@ -117,6 +117,14 @@ export class FirewallSniffer extends pulumi.CustomResource {
      */
     public readonly emailfilterProfileStatus!: pulumi.Output<string>;
     /**
+     * Name of an existing file-filter profile.
+     */
+    public readonly fileFilterProfile!: pulumi.Output<string>;
+    /**
+     * Enable/disable file filter. Valid values: `enable`, `disable`.
+     */
+    public readonly fileFilterProfileStatus!: pulumi.Output<string>;
+    /**
      * Sniffer ID.
      */
     public readonly fosid!: pulumi.Output<number>;
@@ -214,86 +222,88 @@ export class FirewallSniffer extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallSnifferArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSnifferArgs | FirewallSnifferState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSnifferState | undefined;
-            inputs["anomalies"] = state ? state.anomalies : undefined;
-            inputs["applicationList"] = state ? state.applicationList : undefined;
-            inputs["applicationListStatus"] = state ? state.applicationListStatus : undefined;
-            inputs["avProfile"] = state ? state.avProfile : undefined;
-            inputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
-            inputs["dlpSensor"] = state ? state.dlpSensor : undefined;
-            inputs["dlpSensorStatus"] = state ? state.dlpSensorStatus : undefined;
-            inputs["dsri"] = state ? state.dsri : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
-            inputs["emailfilterProfileStatus"] = state ? state.emailfilterProfileStatus : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["host"] = state ? state.host : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipThreatfeedStatus"] = state ? state.ipThreatfeedStatus : undefined;
-            inputs["ipThreatfeeds"] = state ? state.ipThreatfeeds : undefined;
-            inputs["ipsDosStatus"] = state ? state.ipsDosStatus : undefined;
-            inputs["ipsSensor"] = state ? state.ipsSensor : undefined;
-            inputs["ipsSensorStatus"] = state ? state.ipsSensorStatus : undefined;
-            inputs["ipv6"] = state ? state.ipv6 : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["maxPacketCount"] = state ? state.maxPacketCount : undefined;
-            inputs["nonIp"] = state ? state.nonIp : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
-            inputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
-            inputs["spamfilterProfileStatus"] = state ? state.spamfilterProfileStatus : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlan"] = state ? state.vlan : undefined;
-            inputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
-            inputs["webfilterProfileStatus"] = state ? state.webfilterProfileStatus : undefined;
+            resourceInputs["anomalies"] = state ? state.anomalies : undefined;
+            resourceInputs["applicationList"] = state ? state.applicationList : undefined;
+            resourceInputs["applicationListStatus"] = state ? state.applicationListStatus : undefined;
+            resourceInputs["avProfile"] = state ? state.avProfile : undefined;
+            resourceInputs["avProfileStatus"] = state ? state.avProfileStatus : undefined;
+            resourceInputs["dlpSensor"] = state ? state.dlpSensor : undefined;
+            resourceInputs["dlpSensorStatus"] = state ? state.dlpSensorStatus : undefined;
+            resourceInputs["dsri"] = state ? state.dsri : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["emailfilterProfile"] = state ? state.emailfilterProfile : undefined;
+            resourceInputs["emailfilterProfileStatus"] = state ? state.emailfilterProfileStatus : undefined;
+            resourceInputs["fileFilterProfile"] = state ? state.fileFilterProfile : undefined;
+            resourceInputs["fileFilterProfileStatus"] = state ? state.fileFilterProfileStatus : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipThreatfeedStatus"] = state ? state.ipThreatfeedStatus : undefined;
+            resourceInputs["ipThreatfeeds"] = state ? state.ipThreatfeeds : undefined;
+            resourceInputs["ipsDosStatus"] = state ? state.ipsDosStatus : undefined;
+            resourceInputs["ipsSensor"] = state ? state.ipsSensor : undefined;
+            resourceInputs["ipsSensorStatus"] = state ? state.ipsSensorStatus : undefined;
+            resourceInputs["ipv6"] = state ? state.ipv6 : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["maxPacketCount"] = state ? state.maxPacketCount : undefined;
+            resourceInputs["nonIp"] = state ? state.nonIp : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["scanBotnetConnections"] = state ? state.scanBotnetConnections : undefined;
+            resourceInputs["spamfilterProfile"] = state ? state.spamfilterProfile : undefined;
+            resourceInputs["spamfilterProfileStatus"] = state ? state.spamfilterProfileStatus : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlan"] = state ? state.vlan : undefined;
+            resourceInputs["webfilterProfile"] = state ? state.webfilterProfile : undefined;
+            resourceInputs["webfilterProfileStatus"] = state ? state.webfilterProfileStatus : undefined;
         } else {
             const args = argsOrState as FirewallSnifferArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'interface'");
             }
-            inputs["anomalies"] = args ? args.anomalies : undefined;
-            inputs["applicationList"] = args ? args.applicationList : undefined;
-            inputs["applicationListStatus"] = args ? args.applicationListStatus : undefined;
-            inputs["avProfile"] = args ? args.avProfile : undefined;
-            inputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
-            inputs["dlpSensor"] = args ? args.dlpSensor : undefined;
-            inputs["dlpSensorStatus"] = args ? args.dlpSensorStatus : undefined;
-            inputs["dsri"] = args ? args.dsri : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
-            inputs["emailfilterProfileStatus"] = args ? args.emailfilterProfileStatus : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["host"] = args ? args.host : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipThreatfeedStatus"] = args ? args.ipThreatfeedStatus : undefined;
-            inputs["ipThreatfeeds"] = args ? args.ipThreatfeeds : undefined;
-            inputs["ipsDosStatus"] = args ? args.ipsDosStatus : undefined;
-            inputs["ipsSensor"] = args ? args.ipsSensor : undefined;
-            inputs["ipsSensorStatus"] = args ? args.ipsSensorStatus : undefined;
-            inputs["ipv6"] = args ? args.ipv6 : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["maxPacketCount"] = args ? args.maxPacketCount : undefined;
-            inputs["nonIp"] = args ? args.nonIp : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
-            inputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
-            inputs["spamfilterProfileStatus"] = args ? args.spamfilterProfileStatus : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlan"] = args ? args.vlan : undefined;
-            inputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
-            inputs["webfilterProfileStatus"] = args ? args.webfilterProfileStatus : undefined;
+            resourceInputs["anomalies"] = args ? args.anomalies : undefined;
+            resourceInputs["applicationList"] = args ? args.applicationList : undefined;
+            resourceInputs["applicationListStatus"] = args ? args.applicationListStatus : undefined;
+            resourceInputs["avProfile"] = args ? args.avProfile : undefined;
+            resourceInputs["avProfileStatus"] = args ? args.avProfileStatus : undefined;
+            resourceInputs["dlpSensor"] = args ? args.dlpSensor : undefined;
+            resourceInputs["dlpSensorStatus"] = args ? args.dlpSensorStatus : undefined;
+            resourceInputs["dsri"] = args ? args.dsri : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["emailfilterProfile"] = args ? args.emailfilterProfile : undefined;
+            resourceInputs["emailfilterProfileStatus"] = args ? args.emailfilterProfileStatus : undefined;
+            resourceInputs["fileFilterProfile"] = args ? args.fileFilterProfile : undefined;
+            resourceInputs["fileFilterProfileStatus"] = args ? args.fileFilterProfileStatus : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["host"] = args ? args.host : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipThreatfeedStatus"] = args ? args.ipThreatfeedStatus : undefined;
+            resourceInputs["ipThreatfeeds"] = args ? args.ipThreatfeeds : undefined;
+            resourceInputs["ipsDosStatus"] = args ? args.ipsDosStatus : undefined;
+            resourceInputs["ipsSensor"] = args ? args.ipsSensor : undefined;
+            resourceInputs["ipsSensorStatus"] = args ? args.ipsSensorStatus : undefined;
+            resourceInputs["ipv6"] = args ? args.ipv6 : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["maxPacketCount"] = args ? args.maxPacketCount : undefined;
+            resourceInputs["nonIp"] = args ? args.nonIp : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["scanBotnetConnections"] = args ? args.scanBotnetConnections : undefined;
+            resourceInputs["spamfilterProfile"] = args ? args.spamfilterProfile : undefined;
+            resourceInputs["spamfilterProfileStatus"] = args ? args.spamfilterProfileStatus : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlan"] = args ? args.vlan : undefined;
+            resourceInputs["webfilterProfile"] = args ? args.webfilterProfile : undefined;
+            resourceInputs["webfilterProfileStatus"] = args ? args.webfilterProfileStatus : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSniffer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSniffer.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -345,6 +355,14 @@ export interface FirewallSnifferState {
      * Enable/disable emailfilter. Valid values: `enable`, `disable`.
      */
     emailfilterProfileStatus?: pulumi.Input<string>;
+    /**
+     * Name of an existing file-filter profile.
+     */
+    fileFilterProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable file filter. Valid values: `enable`, `disable`.
+     */
+    fileFilterProfileStatus?: pulumi.Input<string>;
     /**
      * Sniffer ID.
      */
@@ -483,6 +501,14 @@ export interface FirewallSnifferArgs {
      * Enable/disable emailfilter. Valid values: `enable`, `disable`.
      */
     emailfilterProfileStatus?: pulumi.Input<string>;
+    /**
+     * Name of an existing file-filter profile.
+     */
+    fileFilterProfile?: pulumi.Input<string>;
+    /**
+     * Enable/disable file filter. Valid values: `enable`, `disable`.
+     */
+    fileFilterProfileStatus?: pulumi.Input<string>;
     /**
      * Sniffer ID.
      */

@@ -73,6 +73,10 @@ export class IpsGlobal extends pulumi.CustomResource {
      */
     public readonly anomalyMode!: pulumi.Output<string>;
     /**
+     * IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+     */
+    public readonly cpAccelMode!: pulumi.Output<string>;
+    /**
      * Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
      */
     public readonly database!: pulumi.Output<string>;
@@ -101,9 +105,17 @@ export class IpsGlobal extends pulumi.CustomResource {
      */
     public readonly intelligentMode!: pulumi.Output<string>;
     /**
+     * Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+     */
+    public readonly ipsReserveCpu!: pulumi.Output<string>;
+    /**
      * NGFW policy-mode app detection threshold.
      */
     public readonly ngfwMaxScanRange!: pulumi.Output<number>;
+    /**
+     * Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+     */
+    public readonly npAccelMode!: pulumi.Output<string>;
     /**
      * Packet/pcap log queue depth per IPS engine.
      */
@@ -146,51 +158,55 @@ export class IpsGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: IpsGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: IpsGlobalArgs | IpsGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as IpsGlobalState | undefined;
-            inputs["anomalyMode"] = state ? state.anomalyMode : undefined;
-            inputs["database"] = state ? state.database : undefined;
-            inputs["deepAppInspDbLimit"] = state ? state.deepAppInspDbLimit : undefined;
-            inputs["deepAppInspTimeout"] = state ? state.deepAppInspTimeout : undefined;
-            inputs["engineCount"] = state ? state.engineCount : undefined;
-            inputs["excludeSignatures"] = state ? state.excludeSignatures : undefined;
-            inputs["failOpen"] = state ? state.failOpen : undefined;
-            inputs["intelligentMode"] = state ? state.intelligentMode : undefined;
-            inputs["ngfwMaxScanRange"] = state ? state.ngfwMaxScanRange : undefined;
-            inputs["packetLogQueueDepth"] = state ? state.packetLogQueueDepth : undefined;
-            inputs["sessionLimitMode"] = state ? state.sessionLimitMode : undefined;
-            inputs["skypeClientPublicIpaddr"] = state ? state.skypeClientPublicIpaddr : undefined;
-            inputs["socketSize"] = state ? state.socketSize : undefined;
-            inputs["syncSessionTtl"] = state ? state.syncSessionTtl : undefined;
-            inputs["tlsActiveProbe"] = state ? state.tlsActiveProbe : undefined;
-            inputs["trafficSubmit"] = state ? state.trafficSubmit : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["anomalyMode"] = state ? state.anomalyMode : undefined;
+            resourceInputs["cpAccelMode"] = state ? state.cpAccelMode : undefined;
+            resourceInputs["database"] = state ? state.database : undefined;
+            resourceInputs["deepAppInspDbLimit"] = state ? state.deepAppInspDbLimit : undefined;
+            resourceInputs["deepAppInspTimeout"] = state ? state.deepAppInspTimeout : undefined;
+            resourceInputs["engineCount"] = state ? state.engineCount : undefined;
+            resourceInputs["excludeSignatures"] = state ? state.excludeSignatures : undefined;
+            resourceInputs["failOpen"] = state ? state.failOpen : undefined;
+            resourceInputs["intelligentMode"] = state ? state.intelligentMode : undefined;
+            resourceInputs["ipsReserveCpu"] = state ? state.ipsReserveCpu : undefined;
+            resourceInputs["ngfwMaxScanRange"] = state ? state.ngfwMaxScanRange : undefined;
+            resourceInputs["npAccelMode"] = state ? state.npAccelMode : undefined;
+            resourceInputs["packetLogQueueDepth"] = state ? state.packetLogQueueDepth : undefined;
+            resourceInputs["sessionLimitMode"] = state ? state.sessionLimitMode : undefined;
+            resourceInputs["skypeClientPublicIpaddr"] = state ? state.skypeClientPublicIpaddr : undefined;
+            resourceInputs["socketSize"] = state ? state.socketSize : undefined;
+            resourceInputs["syncSessionTtl"] = state ? state.syncSessionTtl : undefined;
+            resourceInputs["tlsActiveProbe"] = state ? state.tlsActiveProbe : undefined;
+            resourceInputs["trafficSubmit"] = state ? state.trafficSubmit : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as IpsGlobalArgs | undefined;
-            inputs["anomalyMode"] = args ? args.anomalyMode : undefined;
-            inputs["database"] = args ? args.database : undefined;
-            inputs["deepAppInspDbLimit"] = args ? args.deepAppInspDbLimit : undefined;
-            inputs["deepAppInspTimeout"] = args ? args.deepAppInspTimeout : undefined;
-            inputs["engineCount"] = args ? args.engineCount : undefined;
-            inputs["excludeSignatures"] = args ? args.excludeSignatures : undefined;
-            inputs["failOpen"] = args ? args.failOpen : undefined;
-            inputs["intelligentMode"] = args ? args.intelligentMode : undefined;
-            inputs["ngfwMaxScanRange"] = args ? args.ngfwMaxScanRange : undefined;
-            inputs["packetLogQueueDepth"] = args ? args.packetLogQueueDepth : undefined;
-            inputs["sessionLimitMode"] = args ? args.sessionLimitMode : undefined;
-            inputs["skypeClientPublicIpaddr"] = args ? args.skypeClientPublicIpaddr : undefined;
-            inputs["socketSize"] = args ? args.socketSize : undefined;
-            inputs["syncSessionTtl"] = args ? args.syncSessionTtl : undefined;
-            inputs["tlsActiveProbe"] = args ? args.tlsActiveProbe : undefined;
-            inputs["trafficSubmit"] = args ? args.trafficSubmit : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["anomalyMode"] = args ? args.anomalyMode : undefined;
+            resourceInputs["cpAccelMode"] = args ? args.cpAccelMode : undefined;
+            resourceInputs["database"] = args ? args.database : undefined;
+            resourceInputs["deepAppInspDbLimit"] = args ? args.deepAppInspDbLimit : undefined;
+            resourceInputs["deepAppInspTimeout"] = args ? args.deepAppInspTimeout : undefined;
+            resourceInputs["engineCount"] = args ? args.engineCount : undefined;
+            resourceInputs["excludeSignatures"] = args ? args.excludeSignatures : undefined;
+            resourceInputs["failOpen"] = args ? args.failOpen : undefined;
+            resourceInputs["intelligentMode"] = args ? args.intelligentMode : undefined;
+            resourceInputs["ipsReserveCpu"] = args ? args.ipsReserveCpu : undefined;
+            resourceInputs["ngfwMaxScanRange"] = args ? args.ngfwMaxScanRange : undefined;
+            resourceInputs["npAccelMode"] = args ? args.npAccelMode : undefined;
+            resourceInputs["packetLogQueueDepth"] = args ? args.packetLogQueueDepth : undefined;
+            resourceInputs["sessionLimitMode"] = args ? args.sessionLimitMode : undefined;
+            resourceInputs["skypeClientPublicIpaddr"] = args ? args.skypeClientPublicIpaddr : undefined;
+            resourceInputs["socketSize"] = args ? args.socketSize : undefined;
+            resourceInputs["syncSessionTtl"] = args ? args.syncSessionTtl : undefined;
+            resourceInputs["tlsActiveProbe"] = args ? args.tlsActiveProbe : undefined;
+            resourceInputs["trafficSubmit"] = args ? args.trafficSubmit : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(IpsGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(IpsGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -202,6 +218,10 @@ export interface IpsGlobalState {
      * Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
      */
     anomalyMode?: pulumi.Input<string>;
+    /**
+     * IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+     */
+    cpAccelMode?: pulumi.Input<string>;
     /**
      * Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
      */
@@ -231,9 +251,17 @@ export interface IpsGlobalState {
      */
     intelligentMode?: pulumi.Input<string>;
     /**
+     * Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+     */
+    ipsReserveCpu?: pulumi.Input<string>;
+    /**
      * NGFW policy-mode app detection threshold.
      */
     ngfwMaxScanRange?: pulumi.Input<number>;
+    /**
+     * Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+     */
+    npAccelMode?: pulumi.Input<string>;
     /**
      * Packet/pcap log queue depth per IPS engine.
      */
@@ -277,6 +305,10 @@ export interface IpsGlobalArgs {
      */
     anomalyMode?: pulumi.Input<string>;
     /**
+     * IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+     */
+    cpAccelMode?: pulumi.Input<string>;
+    /**
      * Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
      */
     database?: pulumi.Input<string>;
@@ -305,9 +337,17 @@ export interface IpsGlobalArgs {
      */
     intelligentMode?: pulumi.Input<string>;
     /**
+     * Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+     */
+    ipsReserveCpu?: pulumi.Input<string>;
+    /**
      * NGFW policy-mode app detection threshold.
      */
     ngfwMaxScanRange?: pulumi.Input<number>;
+    /**
+     * Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+     */
+    npAccelMode?: pulumi.Input<string>;
     /**
      * Packet/pcap log queue depth per IPS engine.
      */

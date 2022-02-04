@@ -34,16 +34,32 @@ type WirelessControllerVap struct {
 	AddressGroup pulumi.StringOutput `pulumi:"addressGroup"`
 	// Alias.
 	Alias pulumi.StringOutput `pulumi:"alias"`
+	// AntiVirus profile name.
+	AntivirusProfile pulumi.StringOutput `pulumi:"antivirusProfile"`
+	// Application control list name.
+	ApplicationList pulumi.StringOutput `pulumi:"applicationList"`
 	// Airtime weight in percentage (default = 20).
 	AtfWeight pulumi.IntOutput `pulumi:"atfWeight"`
 	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
 	Auth pulumi.StringOutput `pulumi:"auth"`
+	// HTTPS server certificate.
+	AuthCert pulumi.StringOutput `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr pulumi.StringOutput `pulumi:"authPortalAddr"`
+	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+	BeaconAdvertising pulumi.StringOutput `pulumi:"beaconAdvertising"`
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid pulumi.StringOutput `pulumi:"broadcastSsid"`
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
 	BroadcastSuppression pulumi.StringOutput `pulumi:"broadcastSuppression"`
 	// Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
 	BssColorPartial pulumi.StringOutput `pulumi:"bssColorPartial"`
+	// Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+	BstmDisassociationImminent pulumi.StringOutput `pulumi:"bstmDisassociationImminent"`
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+	BstmLoadBalancingDisassocTimer pulumi.IntOutput `pulumi:"bstmLoadBalancingDisassocTimer"`
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+	BstmRssiDisassocTimer pulumi.IntOutput `pulumi:"bstmRssiDisassocTimer"`
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName pulumi.StringOutput `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -58,6 +74,8 @@ type WirelessControllerVap struct {
 	CaptivePortalRadiusServer pulumi.StringOutput `pulumi:"captivePortalRadiusServer"`
 	// Session timeout interval (0 - 864000 sec, default = 0).
 	CaptivePortalSessionTimeoutInterval pulumi.IntOutput `pulumi:"captivePortalSessionTimeoutInterval"`
+	// Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+	DhcpAddressEnforcement pulumi.StringOutput `pulumi:"dhcpAddressEnforcement"`
 	// DHCP lease time in seconds for NAT IP address.
 	DhcpLeaseTime pulumi.IntOutput `pulumi:"dhcpLeaseTime"`
 	// Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
@@ -98,6 +116,10 @@ type WirelessControllerVap struct {
 	FtOverDs pulumi.StringOutput `pulumi:"ftOverDs"`
 	// Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
 	FtR0KeyLifetime pulumi.IntOutput `pulumi:"ftR0KeyLifetime"`
+	// GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+	GasComebackDelay pulumi.IntOutput `pulumi:"gasComebackDelay"`
+	// GAS fragmentation limit (512 - 4096, default = 1024).
+	GasFragmentationLimit pulumi.IntOutput `pulumi:"gasFragmentationLimit"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringOutput `pulumi:"gtkRekey"`
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -112,6 +134,8 @@ type WirelessControllerVap struct {
 	IntraVapPrivacy pulumi.StringOutput `pulumi:"intraVapPrivacy"`
 	// IP address and subnet mask for the local standalone NAT subnet.
 	Ip pulumi.StringOutput `pulumi:"ip"`
+	// IPS sensor name.
+	IpsSensor pulumi.StringOutput `pulumi:"ipsSensor"`
 	// Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 	Ipv6Rules pulumi.StringOutput `pulumi:"ipv6Rules"`
 	// WEP Key.
@@ -128,20 +152,38 @@ type WirelessControllerVap struct {
 	LocalLan pulumi.StringOutput `pulumi:"localLan"`
 	// Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
 	LocalStandalone pulumi.StringOutput `pulumi:"localStandalone"`
+	// Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+	LocalStandaloneDns pulumi.StringOutput `pulumi:"localStandaloneDns"`
+	// IPv4 addresses for the local standalone DNS.
+	LocalStandaloneDnsIp pulumi.StringOutput `pulumi:"localStandaloneDnsIp"`
 	// Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
 	LocalStandaloneNat pulumi.StringOutput `pulumi:"localStandaloneNat"`
 	// Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
 	MacAuthBypass pulumi.StringOutput `pulumi:"macAuthBypass"`
+	// MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCalledStationDelimiter pulumi.StringOutput `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCallingStationDelimiter pulumi.StringOutput `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+	MacCase pulumi.StringOutput `pulumi:"macCase"`
 	// Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
 	MacFilter pulumi.StringOutput `pulumi:"macFilter"`
 	// Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
 	MacFilterLists WirelessControllerVapMacFilterListArrayOutput `pulumi:"macFilterLists"`
 	// Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
 	MacFilterPolicyOther pulumi.StringOutput `pulumi:"macFilterPolicyOther"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacPasswordDelimiter pulumi.StringOutput `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacUsernameDelimiter pulumi.StringOutput `pulumi:"macUsernameDelimiter"`
 	// Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 	MaxClients pulumi.IntOutput `pulumi:"maxClients"`
 	// Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
 	MaxClientsAp pulumi.IntOutput `pulumi:"maxClientsAp"`
+	// Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+	Mbo pulumi.StringOutput `pulumi:"mbo"`
+	// MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+	MboCellDataConnPref pulumi.StringOutput `pulumi:"mboCellDataConnPref"`
 	// Disable multicast enhancement when this many clients are receiving multicast traffic.
 	MeDisableThresh pulumi.IntOutput `pulumi:"meDisableThresh"`
 	// Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
@@ -160,10 +202,18 @@ type WirelessControllerVap struct {
 	MulticastEnhance pulumi.StringOutput `pulumi:"multicastEnhance"`
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate pulumi.StringOutput `pulumi:"multicastRate"`
-	// Schedule name.
+	// Enable/disable network access control. Valid values: `enable`, `disable`.
+	Nac pulumi.StringOutput `pulumi:"nac"`
+	// NAC profile name.
+	NacProfile pulumi.StringOutput `pulumi:"nacProfile"`
+	// VLAN name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+	NeighborReportDualBand pulumi.StringOutput `pulumi:"neighborReportDualBand"`
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 	Okc pulumi.StringOutput `pulumi:"okc"`
+	// Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+	Osen pulumi.StringOutput `pulumi:"osen"`
 	// OWE-Groups. Valid values: `19`, `20`, `21`.
 	OweGroups pulumi.StringOutput `pulumi:"oweGroups"`
 	// Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -216,6 +266,10 @@ type WirelessControllerVap struct {
 	RadiusMacAuthServer pulumi.StringOutput `pulumi:"radiusMacAuthServer"`
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
 	RadiusMacAuthUsergroups WirelessControllerVapRadiusMacAuthUsergroupArrayOutput `pulumi:"radiusMacAuthUsergroups"`
+	// Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+	RadiusMacMpskAuth pulumi.StringOutput `pulumi:"radiusMacMpskAuth"`
+	// RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+	RadiusMacMpskTimeout pulumi.IntOutput `pulumi:"radiusMacMpskTimeout"`
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer pulumi.StringOutput `pulumi:"radiusServer"`
 	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
@@ -224,6 +278,10 @@ type WirelessControllerVap struct {
 	Rates11acSs12 pulumi.StringOutput `pulumi:"rates11acSs12"`
 	// Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11acSs34 pulumi.StringOutput `pulumi:"rates11acSs34"`
+	// Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+	Rates11axSs12 pulumi.StringOutput `pulumi:"rates11axSs12"`
+	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+	Rates11axSs34 pulumi.StringOutput `pulumi:"rates11axSs34"`
 	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
 	Rates11bg pulumi.StringOutput `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -234,6 +292,8 @@ type WirelessControllerVap struct {
 	SaeGroups pulumi.StringOutput `pulumi:"saeGroups"`
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword pulumi.StringPtrOutput `pulumi:"saePassword"`
+	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+	ScanBotnetConnections pulumi.StringOutput `pulumi:"scanBotnetConnections"`
 	// VAP schedule name.
 	Schedule pulumi.StringOutput `pulumi:"schedule"`
 	// Secondary wireless access gateway profile name.
@@ -268,12 +328,18 @@ type WirelessControllerVap struct {
 	TunnelFallbackInterval pulumi.IntOutput `pulumi:"tunnelFallbackInterval"`
 	// Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
 	Usergroups WirelessControllerVapUsergroupArrayOutput `pulumi:"usergroups"`
+	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
+	UtmLog pulumi.StringOutput `pulumi:"utmLog"`
 	// UTM profile name.
 	UtmProfile pulumi.StringOutput `pulumi:"utmProfile"`
+	// Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+	UtmStatus pulumi.StringOutput `pulumi:"utmStatus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
 	VlanAuto pulumi.StringOutput `pulumi:"vlanAuto"`
+	// Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+	VlanNames WirelessControllerVapVlanNameArrayOutput `pulumi:"vlanNames"`
 	// Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
 	VlanPooling pulumi.StringOutput `pulumi:"vlanPooling"`
 	// VLAN pool. The structure of `vlanPool` block is documented below.
@@ -282,6 +348,8 @@ type WirelessControllerVap struct {
 	Vlanid pulumi.IntOutput `pulumi:"vlanid"`
 	// Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 	VoiceEnterprise pulumi.StringOutput `pulumi:"voiceEnterprise"`
+	// WebFilter profile name.
+	WebfilterProfile pulumi.StringOutput `pulumi:"webfilterProfile"`
 }
 
 // NewWirelessControllerVap registers a new resource with the given unique name, arguments, and options.
@@ -291,6 +359,7 @@ func NewWirelessControllerVap(ctx *pulumi.Context,
 		args = &WirelessControllerVapArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerVap
 	err := ctx.RegisterResource("fortios:index/wirelessControllerVap:WirelessControllerVap", name, args, &resource, opts...)
 	if err != nil {
@@ -323,16 +392,32 @@ type wirelessControllerVapState struct {
 	AddressGroup *string `pulumi:"addressGroup"`
 	// Alias.
 	Alias *string `pulumi:"alias"`
+	// AntiVirus profile name.
+	AntivirusProfile *string `pulumi:"antivirusProfile"`
+	// Application control list name.
+	ApplicationList *string `pulumi:"applicationList"`
 	// Airtime weight in percentage (default = 20).
 	AtfWeight *int `pulumi:"atfWeight"`
 	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
 	Auth *string `pulumi:"auth"`
+	// HTTPS server certificate.
+	AuthCert *string `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr *string `pulumi:"authPortalAddr"`
+	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+	BeaconAdvertising *string `pulumi:"beaconAdvertising"`
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid *string `pulumi:"broadcastSsid"`
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
 	BroadcastSuppression *string `pulumi:"broadcastSuppression"`
 	// Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
 	BssColorPartial *string `pulumi:"bssColorPartial"`
+	// Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+	BstmDisassociationImminent *string `pulumi:"bstmDisassociationImminent"`
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+	BstmLoadBalancingDisassocTimer *int `pulumi:"bstmLoadBalancingDisassocTimer"`
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+	BstmRssiDisassocTimer *int `pulumi:"bstmRssiDisassocTimer"`
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName *string `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -347,6 +432,8 @@ type wirelessControllerVapState struct {
 	CaptivePortalRadiusServer *string `pulumi:"captivePortalRadiusServer"`
 	// Session timeout interval (0 - 864000 sec, default = 0).
 	CaptivePortalSessionTimeoutInterval *int `pulumi:"captivePortalSessionTimeoutInterval"`
+	// Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+	DhcpAddressEnforcement *string `pulumi:"dhcpAddressEnforcement"`
 	// DHCP lease time in seconds for NAT IP address.
 	DhcpLeaseTime *int `pulumi:"dhcpLeaseTime"`
 	// Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
@@ -387,6 +474,10 @@ type wirelessControllerVapState struct {
 	FtOverDs *string `pulumi:"ftOverDs"`
 	// Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
 	FtR0KeyLifetime *int `pulumi:"ftR0KeyLifetime"`
+	// GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+	GasComebackDelay *int `pulumi:"gasComebackDelay"`
+	// GAS fragmentation limit (512 - 4096, default = 1024).
+	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey *string `pulumi:"gtkRekey"`
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -401,6 +492,8 @@ type wirelessControllerVapState struct {
 	IntraVapPrivacy *string `pulumi:"intraVapPrivacy"`
 	// IP address and subnet mask for the local standalone NAT subnet.
 	Ip *string `pulumi:"ip"`
+	// IPS sensor name.
+	IpsSensor *string `pulumi:"ipsSensor"`
 	// Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 	Ipv6Rules *string `pulumi:"ipv6Rules"`
 	// WEP Key.
@@ -417,20 +510,38 @@ type wirelessControllerVapState struct {
 	LocalLan *string `pulumi:"localLan"`
 	// Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
 	LocalStandalone *string `pulumi:"localStandalone"`
+	// Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+	LocalStandaloneDns *string `pulumi:"localStandaloneDns"`
+	// IPv4 addresses for the local standalone DNS.
+	LocalStandaloneDnsIp *string `pulumi:"localStandaloneDnsIp"`
 	// Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
 	LocalStandaloneNat *string `pulumi:"localStandaloneNat"`
 	// Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
 	MacAuthBypass *string `pulumi:"macAuthBypass"`
+	// MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCalledStationDelimiter *string `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCallingStationDelimiter *string `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+	MacCase *string `pulumi:"macCase"`
 	// Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
 	MacFilter *string `pulumi:"macFilter"`
 	// Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
 	MacFilterLists []WirelessControllerVapMacFilterList `pulumi:"macFilterLists"`
 	// Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
 	MacFilterPolicyOther *string `pulumi:"macFilterPolicyOther"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacPasswordDelimiter *string `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
 	MaxClientsAp *int `pulumi:"maxClientsAp"`
+	// Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+	Mbo *string `pulumi:"mbo"`
+	// MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+	MboCellDataConnPref *string `pulumi:"mboCellDataConnPref"`
 	// Disable multicast enhancement when this many clients are receiving multicast traffic.
 	MeDisableThresh *int `pulumi:"meDisableThresh"`
 	// Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
@@ -449,10 +560,18 @@ type wirelessControllerVapState struct {
 	MulticastEnhance *string `pulumi:"multicastEnhance"`
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate *string `pulumi:"multicastRate"`
-	// Schedule name.
+	// Enable/disable network access control. Valid values: `enable`, `disable`.
+	Nac *string `pulumi:"nac"`
+	// NAC profile name.
+	NacProfile *string `pulumi:"nacProfile"`
+	// VLAN name.
 	Name *string `pulumi:"name"`
+	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+	NeighborReportDualBand *string `pulumi:"neighborReportDualBand"`
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 	Okc *string `pulumi:"okc"`
+	// Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+	Osen *string `pulumi:"osen"`
 	// OWE-Groups. Valid values: `19`, `20`, `21`.
 	OweGroups *string `pulumi:"oweGroups"`
 	// Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -505,6 +624,10 @@ type wirelessControllerVapState struct {
 	RadiusMacAuthServer *string `pulumi:"radiusMacAuthServer"`
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
 	RadiusMacAuthUsergroups []WirelessControllerVapRadiusMacAuthUsergroup `pulumi:"radiusMacAuthUsergroups"`
+	// Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+	RadiusMacMpskAuth *string `pulumi:"radiusMacMpskAuth"`
+	// RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+	RadiusMacMpskTimeout *int `pulumi:"radiusMacMpskTimeout"`
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer *string `pulumi:"radiusServer"`
 	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
@@ -513,6 +636,10 @@ type wirelessControllerVapState struct {
 	Rates11acSs12 *string `pulumi:"rates11acSs12"`
 	// Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11acSs34 *string `pulumi:"rates11acSs34"`
+	// Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+	Rates11axSs12 *string `pulumi:"rates11axSs12"`
+	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+	Rates11axSs34 *string `pulumi:"rates11axSs34"`
 	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
 	Rates11bg *string `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -523,6 +650,8 @@ type wirelessControllerVapState struct {
 	SaeGroups *string `pulumi:"saeGroups"`
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword *string `pulumi:"saePassword"`
+	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
 	// VAP schedule name.
 	Schedule *string `pulumi:"schedule"`
 	// Secondary wireless access gateway profile name.
@@ -557,12 +686,18 @@ type wirelessControllerVapState struct {
 	TunnelFallbackInterval *int `pulumi:"tunnelFallbackInterval"`
 	// Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
 	Usergroups []WirelessControllerVapUsergroup `pulumi:"usergroups"`
+	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
+	UtmLog *string `pulumi:"utmLog"`
 	// UTM profile name.
 	UtmProfile *string `pulumi:"utmProfile"`
+	// Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+	UtmStatus *string `pulumi:"utmStatus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
 	VlanAuto *string `pulumi:"vlanAuto"`
+	// Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+	VlanNames []WirelessControllerVapVlanName `pulumi:"vlanNames"`
 	// Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
 	VlanPooling *string `pulumi:"vlanPooling"`
 	// VLAN pool. The structure of `vlanPool` block is documented below.
@@ -571,6 +706,8 @@ type wirelessControllerVapState struct {
 	Vlanid *int `pulumi:"vlanid"`
 	// Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 	VoiceEnterprise *string `pulumi:"voiceEnterprise"`
+	// WebFilter profile name.
+	WebfilterProfile *string `pulumi:"webfilterProfile"`
 }
 
 type WirelessControllerVapState struct {
@@ -584,16 +721,32 @@ type WirelessControllerVapState struct {
 	AddressGroup pulumi.StringPtrInput
 	// Alias.
 	Alias pulumi.StringPtrInput
+	// AntiVirus profile name.
+	AntivirusProfile pulumi.StringPtrInput
+	// Application control list name.
+	ApplicationList pulumi.StringPtrInput
 	// Airtime weight in percentage (default = 20).
 	AtfWeight pulumi.IntPtrInput
 	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
 	Auth pulumi.StringPtrInput
+	// HTTPS server certificate.
+	AuthCert pulumi.StringPtrInput
+	// Address of captive portal.
+	AuthPortalAddr pulumi.StringPtrInput
+	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+	BeaconAdvertising pulumi.StringPtrInput
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid pulumi.StringPtrInput
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
 	BroadcastSuppression pulumi.StringPtrInput
 	// Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
 	BssColorPartial pulumi.StringPtrInput
+	// Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+	BstmDisassociationImminent pulumi.StringPtrInput
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+	BstmLoadBalancingDisassocTimer pulumi.IntPtrInput
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+	BstmRssiDisassocTimer pulumi.IntPtrInput
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName pulumi.StringPtrInput
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -608,6 +761,8 @@ type WirelessControllerVapState struct {
 	CaptivePortalRadiusServer pulumi.StringPtrInput
 	// Session timeout interval (0 - 864000 sec, default = 0).
 	CaptivePortalSessionTimeoutInterval pulumi.IntPtrInput
+	// Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+	DhcpAddressEnforcement pulumi.StringPtrInput
 	// DHCP lease time in seconds for NAT IP address.
 	DhcpLeaseTime pulumi.IntPtrInput
 	// Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
@@ -648,6 +803,10 @@ type WirelessControllerVapState struct {
 	FtOverDs pulumi.StringPtrInput
 	// Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
 	FtR0KeyLifetime pulumi.IntPtrInput
+	// GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+	GasComebackDelay pulumi.IntPtrInput
+	// GAS fragmentation limit (512 - 4096, default = 1024).
+	GasFragmentationLimit pulumi.IntPtrInput
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringPtrInput
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -662,6 +821,8 @@ type WirelessControllerVapState struct {
 	IntraVapPrivacy pulumi.StringPtrInput
 	// IP address and subnet mask for the local standalone NAT subnet.
 	Ip pulumi.StringPtrInput
+	// IPS sensor name.
+	IpsSensor pulumi.StringPtrInput
 	// Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 	Ipv6Rules pulumi.StringPtrInput
 	// WEP Key.
@@ -678,20 +839,38 @@ type WirelessControllerVapState struct {
 	LocalLan pulumi.StringPtrInput
 	// Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
 	LocalStandalone pulumi.StringPtrInput
+	// Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+	LocalStandaloneDns pulumi.StringPtrInput
+	// IPv4 addresses for the local standalone DNS.
+	LocalStandaloneDnsIp pulumi.StringPtrInput
 	// Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
 	LocalStandaloneNat pulumi.StringPtrInput
 	// Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
 	MacAuthBypass pulumi.StringPtrInput
+	// MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCalledStationDelimiter pulumi.StringPtrInput
+	// MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCallingStationDelimiter pulumi.StringPtrInput
+	// MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+	MacCase pulumi.StringPtrInput
 	// Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
 	MacFilter pulumi.StringPtrInput
 	// Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
 	MacFilterLists WirelessControllerVapMacFilterListArrayInput
 	// Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
 	MacFilterPolicyOther pulumi.StringPtrInput
+	// MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacPasswordDelimiter pulumi.StringPtrInput
+	// MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacUsernameDelimiter pulumi.StringPtrInput
 	// Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 	MaxClients pulumi.IntPtrInput
 	// Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
 	MaxClientsAp pulumi.IntPtrInput
+	// Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+	Mbo pulumi.StringPtrInput
+	// MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+	MboCellDataConnPref pulumi.StringPtrInput
 	// Disable multicast enhancement when this many clients are receiving multicast traffic.
 	MeDisableThresh pulumi.IntPtrInput
 	// Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
@@ -710,10 +889,18 @@ type WirelessControllerVapState struct {
 	MulticastEnhance pulumi.StringPtrInput
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate pulumi.StringPtrInput
-	// Schedule name.
+	// Enable/disable network access control. Valid values: `enable`, `disable`.
+	Nac pulumi.StringPtrInput
+	// NAC profile name.
+	NacProfile pulumi.StringPtrInput
+	// VLAN name.
 	Name pulumi.StringPtrInput
+	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+	NeighborReportDualBand pulumi.StringPtrInput
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 	Okc pulumi.StringPtrInput
+	// Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+	Osen pulumi.StringPtrInput
 	// OWE-Groups. Valid values: `19`, `20`, `21`.
 	OweGroups pulumi.StringPtrInput
 	// Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -766,6 +953,10 @@ type WirelessControllerVapState struct {
 	RadiusMacAuthServer pulumi.StringPtrInput
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
 	RadiusMacAuthUsergroups WirelessControllerVapRadiusMacAuthUsergroupArrayInput
+	// Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+	RadiusMacMpskAuth pulumi.StringPtrInput
+	// RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+	RadiusMacMpskTimeout pulumi.IntPtrInput
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer pulumi.StringPtrInput
 	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
@@ -774,6 +965,10 @@ type WirelessControllerVapState struct {
 	Rates11acSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11acSs34 pulumi.StringPtrInput
+	// Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+	Rates11axSs12 pulumi.StringPtrInput
+	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+	Rates11axSs34 pulumi.StringPtrInput
 	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
 	Rates11bg pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -784,6 +979,8 @@ type WirelessControllerVapState struct {
 	SaeGroups pulumi.StringPtrInput
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword pulumi.StringPtrInput
+	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+	ScanBotnetConnections pulumi.StringPtrInput
 	// VAP schedule name.
 	Schedule pulumi.StringPtrInput
 	// Secondary wireless access gateway profile name.
@@ -818,12 +1015,18 @@ type WirelessControllerVapState struct {
 	TunnelFallbackInterval pulumi.IntPtrInput
 	// Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
 	Usergroups WirelessControllerVapUsergroupArrayInput
+	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
+	UtmLog pulumi.StringPtrInput
 	// UTM profile name.
 	UtmProfile pulumi.StringPtrInput
+	// Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+	UtmStatus pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
 	VlanAuto pulumi.StringPtrInput
+	// Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+	VlanNames WirelessControllerVapVlanNameArrayInput
 	// Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
 	VlanPooling pulumi.StringPtrInput
 	// VLAN pool. The structure of `vlanPool` block is documented below.
@@ -832,6 +1035,8 @@ type WirelessControllerVapState struct {
 	Vlanid pulumi.IntPtrInput
 	// Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 	VoiceEnterprise pulumi.StringPtrInput
+	// WebFilter profile name.
+	WebfilterProfile pulumi.StringPtrInput
 }
 
 func (WirelessControllerVapState) ElementType() reflect.Type {
@@ -849,16 +1054,32 @@ type wirelessControllerVapArgs struct {
 	AddressGroup *string `pulumi:"addressGroup"`
 	// Alias.
 	Alias *string `pulumi:"alias"`
+	// AntiVirus profile name.
+	AntivirusProfile *string `pulumi:"antivirusProfile"`
+	// Application control list name.
+	ApplicationList *string `pulumi:"applicationList"`
 	// Airtime weight in percentage (default = 20).
 	AtfWeight *int `pulumi:"atfWeight"`
 	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
 	Auth *string `pulumi:"auth"`
+	// HTTPS server certificate.
+	AuthCert *string `pulumi:"authCert"`
+	// Address of captive portal.
+	AuthPortalAddr *string `pulumi:"authPortalAddr"`
+	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+	BeaconAdvertising *string `pulumi:"beaconAdvertising"`
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid *string `pulumi:"broadcastSsid"`
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
 	BroadcastSuppression *string `pulumi:"broadcastSuppression"`
 	// Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
 	BssColorPartial *string `pulumi:"bssColorPartial"`
+	// Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+	BstmDisassociationImminent *string `pulumi:"bstmDisassociationImminent"`
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+	BstmLoadBalancingDisassocTimer *int `pulumi:"bstmLoadBalancingDisassocTimer"`
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+	BstmRssiDisassocTimer *int `pulumi:"bstmRssiDisassocTimer"`
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName *string `pulumi:"captivePortalAcName"`
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -873,6 +1094,8 @@ type wirelessControllerVapArgs struct {
 	CaptivePortalRadiusServer *string `pulumi:"captivePortalRadiusServer"`
 	// Session timeout interval (0 - 864000 sec, default = 0).
 	CaptivePortalSessionTimeoutInterval *int `pulumi:"captivePortalSessionTimeoutInterval"`
+	// Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+	DhcpAddressEnforcement *string `pulumi:"dhcpAddressEnforcement"`
 	// DHCP lease time in seconds for NAT IP address.
 	DhcpLeaseTime *int `pulumi:"dhcpLeaseTime"`
 	// Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
@@ -913,6 +1136,10 @@ type wirelessControllerVapArgs struct {
 	FtOverDs *string `pulumi:"ftOverDs"`
 	// Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
 	FtR0KeyLifetime *int `pulumi:"ftR0KeyLifetime"`
+	// GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+	GasComebackDelay *int `pulumi:"gasComebackDelay"`
+	// GAS fragmentation limit (512 - 4096, default = 1024).
+	GasFragmentationLimit *int `pulumi:"gasFragmentationLimit"`
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey *string `pulumi:"gtkRekey"`
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -927,6 +1154,8 @@ type wirelessControllerVapArgs struct {
 	IntraVapPrivacy *string `pulumi:"intraVapPrivacy"`
 	// IP address and subnet mask for the local standalone NAT subnet.
 	Ip *string `pulumi:"ip"`
+	// IPS sensor name.
+	IpsSensor *string `pulumi:"ipsSensor"`
 	// Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 	Ipv6Rules *string `pulumi:"ipv6Rules"`
 	// WEP Key.
@@ -943,20 +1172,38 @@ type wirelessControllerVapArgs struct {
 	LocalLan *string `pulumi:"localLan"`
 	// Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
 	LocalStandalone *string `pulumi:"localStandalone"`
+	// Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+	LocalStandaloneDns *string `pulumi:"localStandaloneDns"`
+	// IPv4 addresses for the local standalone DNS.
+	LocalStandaloneDnsIp *string `pulumi:"localStandaloneDnsIp"`
 	// Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
 	LocalStandaloneNat *string `pulumi:"localStandaloneNat"`
 	// Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
 	MacAuthBypass *string `pulumi:"macAuthBypass"`
+	// MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCalledStationDelimiter *string `pulumi:"macCalledStationDelimiter"`
+	// MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCallingStationDelimiter *string `pulumi:"macCallingStationDelimiter"`
+	// MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+	MacCase *string `pulumi:"macCase"`
 	// Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
 	MacFilter *string `pulumi:"macFilter"`
 	// Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
 	MacFilterLists []WirelessControllerVapMacFilterList `pulumi:"macFilterLists"`
 	// Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
 	MacFilterPolicyOther *string `pulumi:"macFilterPolicyOther"`
+	// MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacPasswordDelimiter *string `pulumi:"macPasswordDelimiter"`
+	// MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacUsernameDelimiter *string `pulumi:"macUsernameDelimiter"`
 	// Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 	MaxClients *int `pulumi:"maxClients"`
 	// Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
 	MaxClientsAp *int `pulumi:"maxClientsAp"`
+	// Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+	Mbo *string `pulumi:"mbo"`
+	// MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+	MboCellDataConnPref *string `pulumi:"mboCellDataConnPref"`
 	// Disable multicast enhancement when this many clients are receiving multicast traffic.
 	MeDisableThresh *int `pulumi:"meDisableThresh"`
 	// Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
@@ -975,10 +1222,18 @@ type wirelessControllerVapArgs struct {
 	MulticastEnhance *string `pulumi:"multicastEnhance"`
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate *string `pulumi:"multicastRate"`
-	// Schedule name.
+	// Enable/disable network access control. Valid values: `enable`, `disable`.
+	Nac *string `pulumi:"nac"`
+	// NAC profile name.
+	NacProfile *string `pulumi:"nacProfile"`
+	// VLAN name.
 	Name *string `pulumi:"name"`
+	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+	NeighborReportDualBand *string `pulumi:"neighborReportDualBand"`
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 	Okc *string `pulumi:"okc"`
+	// Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+	Osen *string `pulumi:"osen"`
 	// OWE-Groups. Valid values: `19`, `20`, `21`.
 	OweGroups *string `pulumi:"oweGroups"`
 	// Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -1031,6 +1286,10 @@ type wirelessControllerVapArgs struct {
 	RadiusMacAuthServer *string `pulumi:"radiusMacAuthServer"`
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
 	RadiusMacAuthUsergroups []WirelessControllerVapRadiusMacAuthUsergroup `pulumi:"radiusMacAuthUsergroups"`
+	// Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+	RadiusMacMpskAuth *string `pulumi:"radiusMacMpskAuth"`
+	// RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+	RadiusMacMpskTimeout *int `pulumi:"radiusMacMpskTimeout"`
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer *string `pulumi:"radiusServer"`
 	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
@@ -1039,6 +1298,10 @@ type wirelessControllerVapArgs struct {
 	Rates11acSs12 *string `pulumi:"rates11acSs12"`
 	// Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11acSs34 *string `pulumi:"rates11acSs34"`
+	// Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+	Rates11axSs12 *string `pulumi:"rates11axSs12"`
+	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+	Rates11axSs34 *string `pulumi:"rates11axSs34"`
 	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
 	Rates11bg *string `pulumi:"rates11bg"`
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -1049,6 +1312,8 @@ type wirelessControllerVapArgs struct {
 	SaeGroups *string `pulumi:"saeGroups"`
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword *string `pulumi:"saePassword"`
+	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+	ScanBotnetConnections *string `pulumi:"scanBotnetConnections"`
 	// VAP schedule name.
 	Schedule *string `pulumi:"schedule"`
 	// Secondary wireless access gateway profile name.
@@ -1083,12 +1348,18 @@ type wirelessControllerVapArgs struct {
 	TunnelFallbackInterval *int `pulumi:"tunnelFallbackInterval"`
 	// Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
 	Usergroups []WirelessControllerVapUsergroup `pulumi:"usergroups"`
+	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
+	UtmLog *string `pulumi:"utmLog"`
 	// UTM profile name.
 	UtmProfile *string `pulumi:"utmProfile"`
+	// Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+	UtmStatus *string `pulumi:"utmStatus"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
 	VlanAuto *string `pulumi:"vlanAuto"`
+	// Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+	VlanNames []WirelessControllerVapVlanName `pulumi:"vlanNames"`
 	// Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
 	VlanPooling *string `pulumi:"vlanPooling"`
 	// VLAN pool. The structure of `vlanPool` block is documented below.
@@ -1097,6 +1368,8 @@ type wirelessControllerVapArgs struct {
 	Vlanid *int `pulumi:"vlanid"`
 	// Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 	VoiceEnterprise *string `pulumi:"voiceEnterprise"`
+	// WebFilter profile name.
+	WebfilterProfile *string `pulumi:"webfilterProfile"`
 }
 
 // The set of arguments for constructing a WirelessControllerVap resource.
@@ -1111,16 +1384,32 @@ type WirelessControllerVapArgs struct {
 	AddressGroup pulumi.StringPtrInput
 	// Alias.
 	Alias pulumi.StringPtrInput
+	// AntiVirus profile name.
+	AntivirusProfile pulumi.StringPtrInput
+	// Application control list name.
+	ApplicationList pulumi.StringPtrInput
 	// Airtime weight in percentage (default = 20).
 	AtfWeight pulumi.IntPtrInput
 	// Authentication protocol. Valid values: `psk`, `radius`, `usergroup`.
 	Auth pulumi.StringPtrInput
+	// HTTPS server certificate.
+	AuthCert pulumi.StringPtrInput
+	// Address of captive portal.
+	AuthPortalAddr pulumi.StringPtrInput
+	// Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
+	BeaconAdvertising pulumi.StringPtrInput
 	// Enable/disable broadcasting the SSID (default = enable). Valid values: `enable`, `disable`.
 	BroadcastSsid pulumi.StringPtrInput
 	// Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network.
 	BroadcastSuppression pulumi.StringPtrInput
 	// Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `enable`, `disable`.
 	BssColorPartial pulumi.StringPtrInput
+	// Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `enable`, `disable`.
+	BstmDisassociationImminent pulumi.StringPtrInput
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+	BstmLoadBalancingDisassocTimer pulumi.IntPtrInput
+	// Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
+	BstmRssiDisassocTimer pulumi.IntPtrInput
 	// Local-bridging captive portal ac-name.
 	CaptivePortalAcName pulumi.StringPtrInput
 	// Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
@@ -1135,6 +1424,8 @@ type WirelessControllerVapArgs struct {
 	CaptivePortalRadiusServer pulumi.StringPtrInput
 	// Session timeout interval (0 - 864000 sec, default = 0).
 	CaptivePortalSessionTimeoutInterval pulumi.IntPtrInput
+	// Enable/disable DHCP address enforcement (default = disable). Valid values: `enable`, `disable`.
+	DhcpAddressEnforcement pulumi.StringPtrInput
 	// DHCP lease time in seconds for NAT IP address.
 	DhcpLeaseTime pulumi.IntPtrInput
 	// Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `enable`, `disable`.
@@ -1175,6 +1466,10 @@ type WirelessControllerVapArgs struct {
 	FtOverDs pulumi.StringPtrInput
 	// Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
 	FtR0KeyLifetime pulumi.IntPtrInput
+	// GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+	GasComebackDelay pulumi.IntPtrInput
+	// GAS fragmentation limit (512 - 4096, default = 1024).
+	GasFragmentationLimit pulumi.IntPtrInput
 	// Enable/disable GTK rekey for WPA security. Valid values: `enable`, `disable`.
 	GtkRekey pulumi.StringPtrInput
 	// GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -1189,6 +1484,8 @@ type WirelessControllerVapArgs struct {
 	IntraVapPrivacy pulumi.StringPtrInput
 	// IP address and subnet mask for the local standalone NAT subnet.
 	Ip pulumi.StringPtrInput
+	// IPS sensor name.
+	IpsSensor pulumi.StringPtrInput
 	// Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 	Ipv6Rules pulumi.StringPtrInput
 	// WEP Key.
@@ -1205,20 +1502,38 @@ type WirelessControllerVapArgs struct {
 	LocalLan pulumi.StringPtrInput
 	// Enable/disable AP local standalone (default = disable). Valid values: `enable`, `disable`.
 	LocalStandalone pulumi.StringPtrInput
+	// Enable/disable AP local standalone DNS. Valid values: `enable`, `disable`.
+	LocalStandaloneDns pulumi.StringPtrInput
+	// IPv4 addresses for the local standalone DNS.
+	LocalStandaloneDnsIp pulumi.StringPtrInput
 	// Enable/disable AP local standalone NAT mode. Valid values: `enable`, `disable`.
 	LocalStandaloneNat pulumi.StringPtrInput
 	// Enable/disable MAC authentication bypass. Valid values: `enable`, `disable`.
 	MacAuthBypass pulumi.StringPtrInput
+	// MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCalledStationDelimiter pulumi.StringPtrInput
+	// MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacCallingStationDelimiter pulumi.StringPtrInput
+	// MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+	MacCase pulumi.StringPtrInput
 	// Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `enable`, `disable`.
 	MacFilter pulumi.StringPtrInput
 	// Create a list of MAC addresses for MAC address filtering. The structure of `macFilterList` block is documented below.
 	MacFilterLists WirelessControllerVapMacFilterListArrayInput
 	// Allow or block clients with MAC addresses that are not in the filter list. Valid values: `allow`, `deny`.
 	MacFilterPolicyOther pulumi.StringPtrInput
+	// MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacPasswordDelimiter pulumi.StringPtrInput
+	// MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+	MacUsernameDelimiter pulumi.StringPtrInput
 	// Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 	MaxClients pulumi.IntPtrInput
 	// Maximum number of clients that can connect simultaneously to each radio (default = 0, meaning no limitation).
 	MaxClientsAp pulumi.IntPtrInput
+	// Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+	Mbo pulumi.StringPtrInput
+	// MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+	MboCellDataConnPref pulumi.StringPtrInput
 	// Disable multicast enhancement when this many clients are receiving multicast traffic.
 	MeDisableThresh pulumi.IntPtrInput
 	// Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `enable`, `disable`.
@@ -1237,10 +1552,18 @@ type WirelessControllerVapArgs struct {
 	MulticastEnhance pulumi.StringPtrInput
 	// Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 	MulticastRate pulumi.StringPtrInput
-	// Schedule name.
+	// Enable/disable network access control. Valid values: `enable`, `disable`.
+	Nac pulumi.StringPtrInput
+	// NAC profile name.
+	NacProfile pulumi.StringPtrInput
+	// VLAN name.
 	Name pulumi.StringPtrInput
+	// Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+	NeighborReportDualBand pulumi.StringPtrInput
 	// Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 	Okc pulumi.StringPtrInput
+	// Enable/disable OSEN as part of key management (default = disable). Valid values: `enable`, `disable`.
+	Osen pulumi.StringPtrInput
 	// OWE-Groups. Valid values: `19`, `20`, `21`.
 	OweGroups pulumi.StringPtrInput
 	// Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -1293,6 +1616,10 @@ type WirelessControllerVapArgs struct {
 	RadiusMacAuthServer pulumi.StringPtrInput
 	// Selective user groups that are permitted for RADIUS mac authentication. The structure of `radiusMacAuthUsergroups` block is documented below.
 	RadiusMacAuthUsergroups WirelessControllerVapRadiusMacAuthUsergroupArrayInput
+	// Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `enable`, `disable`.
+	RadiusMacMpskAuth pulumi.StringPtrInput
+	// RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
+	RadiusMacMpskTimeout pulumi.IntPtrInput
 	// RADIUS server to be used to authenticate WiFi users.
 	RadiusServer pulumi.StringPtrInput
 	// Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
@@ -1301,6 +1628,10 @@ type WirelessControllerVapArgs struct {
 	Rates11acSs12 pulumi.StringPtrInput
 	// Allowed data rates for 802.11ac with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 	Rates11acSs34 pulumi.StringPtrInput
+	// Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+	Rates11axSs12 pulumi.StringPtrInput
+	// Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
+	Rates11axSs34 pulumi.StringPtrInput
 	// Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `11`, `11-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`.
 	Rates11bg pulumi.StringPtrInput
 	// Allowed data rates for 802.11n with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`, `mcs12/2`, `mcs13/2`, `mcs14/2`, `mcs15/2`.
@@ -1311,6 +1642,8 @@ type WirelessControllerVapArgs struct {
 	SaeGroups pulumi.StringPtrInput
 	// WPA3 SAE password to be used to authenticate WiFi users.
 	SaePassword pulumi.StringPtrInput
+	// Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `monitor`, `block`.
+	ScanBotnetConnections pulumi.StringPtrInput
 	// VAP schedule name.
 	Schedule pulumi.StringPtrInput
 	// Secondary wireless access gateway profile name.
@@ -1345,12 +1678,18 @@ type WirelessControllerVapArgs struct {
 	TunnelFallbackInterval pulumi.IntPtrInput
 	// Firewall user group to be used to authenticate WiFi users. The structure of `usergroup` block is documented below.
 	Usergroups WirelessControllerVapUsergroupArrayInput
+	// Enable/disable UTM logging. Valid values: `enable`, `disable`.
+	UtmLog pulumi.StringPtrInput
 	// UTM profile name.
 	UtmProfile pulumi.StringPtrInput
+	// Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `enable`, `disable`.
+	UtmStatus pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable automatic management of SSID VLAN interface. Valid values: `enable`, `disable`.
 	VlanAuto pulumi.StringPtrInput
+	// Table for mapping VLAN name to VLAN ID. The structure of `vlanName` block is documented below.
+	VlanNames WirelessControllerVapVlanNameArrayInput
 	// Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
 	VlanPooling pulumi.StringPtrInput
 	// VLAN pool. The structure of `vlanPool` block is documented below.
@@ -1359,6 +1698,8 @@ type WirelessControllerVapArgs struct {
 	Vlanid pulumi.IntPtrInput
 	// Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 	VoiceEnterprise pulumi.StringPtrInput
+	// WebFilter profile name.
+	WebfilterProfile pulumi.StringPtrInput
 }
 
 func (WirelessControllerVapArgs) ElementType() reflect.Type {
@@ -1373,7 +1714,7 @@ type WirelessControllerVapInput interface {
 }
 
 func (*WirelessControllerVap) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerVap)(nil))
+	return reflect.TypeOf((**WirelessControllerVap)(nil)).Elem()
 }
 
 func (i *WirelessControllerVap) ToWirelessControllerVapOutput() WirelessControllerVapOutput {
@@ -1382,35 +1723,6 @@ func (i *WirelessControllerVap) ToWirelessControllerVapOutput() WirelessControll
 
 func (i *WirelessControllerVap) ToWirelessControllerVapOutputWithContext(ctx context.Context) WirelessControllerVapOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapOutput)
-}
-
-func (i *WirelessControllerVap) ToWirelessControllerVapPtrOutput() WirelessControllerVapPtrOutput {
-	return i.ToWirelessControllerVapPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerVap) ToWirelessControllerVapPtrOutputWithContext(ctx context.Context) WirelessControllerVapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapPtrOutput)
-}
-
-type WirelessControllerVapPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerVapPtrOutput() WirelessControllerVapPtrOutput
-	ToWirelessControllerVapPtrOutputWithContext(ctx context.Context) WirelessControllerVapPtrOutput
-}
-
-type wirelessControllerVapPtrType WirelessControllerVapArgs
-
-func (*wirelessControllerVapPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerVap)(nil))
-}
-
-func (i *wirelessControllerVapPtrType) ToWirelessControllerVapPtrOutput() WirelessControllerVapPtrOutput {
-	return i.ToWirelessControllerVapPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerVapPtrType) ToWirelessControllerVapPtrOutputWithContext(ctx context.Context) WirelessControllerVapPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapPtrOutput)
 }
 
 // WirelessControllerVapArrayInput is an input type that accepts WirelessControllerVapArray and WirelessControllerVapArrayOutput values.
@@ -1427,7 +1739,7 @@ type WirelessControllerVapArrayInput interface {
 type WirelessControllerVapArray []WirelessControllerVapInput
 
 func (WirelessControllerVapArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerVap)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerVap)(nil)).Elem()
 }
 
 func (i WirelessControllerVapArray) ToWirelessControllerVapArrayOutput() WirelessControllerVapArrayOutput {
@@ -1452,7 +1764,7 @@ type WirelessControllerVapMapInput interface {
 type WirelessControllerVapMap map[string]WirelessControllerVapInput
 
 func (WirelessControllerVapMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerVap)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerVap)(nil)).Elem()
 }
 
 func (i WirelessControllerVapMap) ToWirelessControllerVapMapOutput() WirelessControllerVapMapOutput {
@@ -1463,12 +1775,10 @@ func (i WirelessControllerVapMap) ToWirelessControllerVapMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerVapMapOutput)
 }
 
-type WirelessControllerVapOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerVapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerVap)(nil))
+	return reflect.TypeOf((**WirelessControllerVap)(nil)).Elem()
 }
 
 func (o WirelessControllerVapOutput) ToWirelessControllerVapOutput() WirelessControllerVapOutput {
@@ -1479,36 +1789,10 @@ func (o WirelessControllerVapOutput) ToWirelessControllerVapOutputWithContext(ct
 	return o
 }
 
-func (o WirelessControllerVapOutput) ToWirelessControllerVapPtrOutput() WirelessControllerVapPtrOutput {
-	return o.ToWirelessControllerVapPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerVapOutput) ToWirelessControllerVapPtrOutputWithContext(ctx context.Context) WirelessControllerVapPtrOutput {
-	return o.ApplyT(func(v WirelessControllerVap) *WirelessControllerVap {
-		return &v
-	}).(WirelessControllerVapPtrOutput)
-}
-
-type WirelessControllerVapPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerVapPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerVap)(nil))
-}
-
-func (o WirelessControllerVapPtrOutput) ToWirelessControllerVapPtrOutput() WirelessControllerVapPtrOutput {
-	return o
-}
-
-func (o WirelessControllerVapPtrOutput) ToWirelessControllerVapPtrOutputWithContext(ctx context.Context) WirelessControllerVapPtrOutput {
-	return o
-}
-
 type WirelessControllerVapArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerVap)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerVap)(nil)).Elem()
 }
 
 func (o WirelessControllerVapArrayOutput) ToWirelessControllerVapArrayOutput() WirelessControllerVapArrayOutput {
@@ -1520,15 +1804,15 @@ func (o WirelessControllerVapArrayOutput) ToWirelessControllerVapArrayOutputWith
 }
 
 func (o WirelessControllerVapArrayOutput) Index(i pulumi.IntInput) WirelessControllerVapOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerVap {
-		return vs[0].([]WirelessControllerVap)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerVap {
+		return vs[0].([]*WirelessControllerVap)[vs[1].(int)]
 	}).(WirelessControllerVapOutput)
 }
 
 type WirelessControllerVapMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerVapMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerVap)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerVap)(nil)).Elem()
 }
 
 func (o WirelessControllerVapMapOutput) ToWirelessControllerVapMapOutput() WirelessControllerVapMapOutput {
@@ -1540,14 +1824,16 @@ func (o WirelessControllerVapMapOutput) ToWirelessControllerVapMapOutputWithCont
 }
 
 func (o WirelessControllerVapMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerVapOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerVap {
-		return vs[0].(map[string]WirelessControllerVap)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerVap {
+		return vs[0].(map[string]*WirelessControllerVap)[vs[1].(string)]
 	}).(WirelessControllerVapOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapInput)(nil)).Elem(), &WirelessControllerVap{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapArrayInput)(nil)).Elem(), WirelessControllerVapArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerVapMapInput)(nil)).Elem(), WirelessControllerVapMap{})
 	pulumi.RegisterOutputType(WirelessControllerVapOutput{})
-	pulumi.RegisterOutputType(WirelessControllerVapPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerVapArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerVapMapOutput{})
 }

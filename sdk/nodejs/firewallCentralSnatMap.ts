@@ -99,6 +99,14 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
      */
     public readonly nat!: pulumi.Output<string>;
     /**
+     * Enable/disable NAT46. Valid values: `enable`, `disable`.
+     */
+    public readonly nat46!: pulumi.Output<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `enable`, `disable`.
+     */
+    public readonly nat64!: pulumi.Output<string>;
+    /**
      * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
      */
     public readonly natIppool6s!: pulumi.Output<outputs.FirewallCentralSnatMapNatIppool6[] | undefined>;
@@ -160,29 +168,31 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallCentralSnatMapArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallCentralSnatMapArgs | FirewallCentralSnatMapState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallCentralSnatMapState | undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstAddr6s"] = state ? state.dstAddr6s : undefined;
-            inputs["dstAddrs"] = state ? state.dstAddrs : undefined;
-            inputs["dstintfs"] = state ? state.dstintfs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["nat"] = state ? state.nat : undefined;
-            inputs["natIppool6s"] = state ? state.natIppool6s : undefined;
-            inputs["natIppools"] = state ? state.natIppools : undefined;
-            inputs["natPort"] = state ? state.natPort : undefined;
-            inputs["origAddr6s"] = state ? state.origAddr6s : undefined;
-            inputs["origAddrs"] = state ? state.origAddrs : undefined;
-            inputs["origPort"] = state ? state.origPort : undefined;
-            inputs["policyid"] = state ? state.policyid : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["srcintfs"] = state ? state.srcintfs : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstAddr6s"] = state ? state.dstAddr6s : undefined;
+            resourceInputs["dstAddrs"] = state ? state.dstAddrs : undefined;
+            resourceInputs["dstintfs"] = state ? state.dstintfs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["nat"] = state ? state.nat : undefined;
+            resourceInputs["nat46"] = state ? state.nat46 : undefined;
+            resourceInputs["nat64"] = state ? state.nat64 : undefined;
+            resourceInputs["natIppool6s"] = state ? state.natIppool6s : undefined;
+            resourceInputs["natIppools"] = state ? state.natIppools : undefined;
+            resourceInputs["natPort"] = state ? state.natPort : undefined;
+            resourceInputs["origAddr6s"] = state ? state.origAddr6s : undefined;
+            resourceInputs["origAddrs"] = state ? state.origAddrs : undefined;
+            resourceInputs["origPort"] = state ? state.origPort : undefined;
+            resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["srcintfs"] = state ? state.srcintfs : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallCentralSnatMapArgs | undefined;
             if ((!args || args.dstAddrs === undefined) && !opts.urn) {
@@ -206,30 +216,30 @@ export class FirewallCentralSnatMap extends pulumi.CustomResource {
             if ((!args || args.srcintfs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcintfs'");
             }
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstAddr6s"] = args ? args.dstAddr6s : undefined;
-            inputs["dstAddrs"] = args ? args.dstAddrs : undefined;
-            inputs["dstintfs"] = args ? args.dstintfs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["nat"] = args ? args.nat : undefined;
-            inputs["natIppool6s"] = args ? args.natIppool6s : undefined;
-            inputs["natIppools"] = args ? args.natIppools : undefined;
-            inputs["natPort"] = args ? args.natPort : undefined;
-            inputs["origAddr6s"] = args ? args.origAddr6s : undefined;
-            inputs["origAddrs"] = args ? args.origAddrs : undefined;
-            inputs["origPort"] = args ? args.origPort : undefined;
-            inputs["policyid"] = args ? args.policyid : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["srcintfs"] = args ? args.srcintfs : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstAddr6s"] = args ? args.dstAddr6s : undefined;
+            resourceInputs["dstAddrs"] = args ? args.dstAddrs : undefined;
+            resourceInputs["dstintfs"] = args ? args.dstintfs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["nat"] = args ? args.nat : undefined;
+            resourceInputs["nat46"] = args ? args.nat46 : undefined;
+            resourceInputs["nat64"] = args ? args.nat64 : undefined;
+            resourceInputs["natIppool6s"] = args ? args.natIppool6s : undefined;
+            resourceInputs["natIppools"] = args ? args.natIppools : undefined;
+            resourceInputs["natPort"] = args ? args.natPort : undefined;
+            resourceInputs["origAddr6s"] = args ? args.origAddr6s : undefined;
+            resourceInputs["origAddrs"] = args ? args.origAddrs : undefined;
+            resourceInputs["origPort"] = args ? args.origPort : undefined;
+            resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["srcintfs"] = args ? args.srcintfs : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallCentralSnatMap.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallCentralSnatMap.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -261,6 +271,14 @@ export interface FirewallCentralSnatMapState {
      * Enable/disable source NAT. Valid values: `disable`, `enable`.
      */
     nat?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `enable`, `disable`.
+     */
+    nat46?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `enable`, `disable`.
+     */
+    nat64?: pulumi.Input<string>;
     /**
      * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
      */
@@ -343,6 +361,14 @@ export interface FirewallCentralSnatMapArgs {
      * Enable/disable source NAT. Valid values: `disable`, `enable`.
      */
     nat: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT46. Valid values: `enable`, `disable`.
+     */
+    nat46?: pulumi.Input<string>;
+    /**
+     * Enable/disable NAT64. Valid values: `enable`, `disable`.
+     */
+    nat64?: pulumi.Input<string>;
     /**
      * IPv6 pools to be used for source NAT. The structure of `natIppool6` block is documented below.
      */

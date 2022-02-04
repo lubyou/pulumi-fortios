@@ -26,6 +26,7 @@ class SystemFortiguardArgs:
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
+                 ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
@@ -38,6 +39,7 @@ class SystemFortiguardArgs:
                  outbreak_prevention_expiration: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_license: Optional[pulumi.Input[int]] = None,
+                 persistent_connection: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  proxy_password: Optional[pulumi.Input[str]] = None,
@@ -51,8 +53,14 @@ class SystemFortiguardArgs:
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_extdb: Optional[pulumi.Input[str]] = None,
+                 update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
+                 update_uwdb: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_expiration: Optional[pulumi.Input[int]] = None,
+                 videofilter_license: Optional[pulumi.Input[int]] = None,
                  webfilter_cache: Optional[pulumi.Input[str]] = None,
                  webfilter_cache_ttl: Optional[pulumi.Input[int]] = None,
                  webfilter_expiration: Optional[pulumi.Input[int]] = None,
@@ -73,6 +81,7 @@ class SystemFortiguardArgs:
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
+        :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
@@ -85,6 +94,7 @@ class SystemFortiguardArgs:
         :param pulumi.Input[int] outbreak_prevention_expiration: Expiration date of FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_license: Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
+        :param pulumi.Input[str] persistent_connection: Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Port used to communicate with the FortiGuard servers.
         :param pulumi.Input[str] protocol: Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
         :param pulumi.Input[str] proxy_password: Proxy user password.
@@ -98,8 +108,14 @@ class SystemFortiguardArgs:
         :param pulumi.Input[str] service_account_id: Service account ID.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
-        :param pulumi.Input[str] update_server_location: Signature update server location. Valid values: `usa`, `any`.
+        :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_server_location: Signature update server location.
+        :param pulumi.Input[str] update_uwdb: Enable/disable allowlist update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] videofilter_expiration: Expiration date of the FortiGuard video filter contract.
+        :param pulumi.Input[int] videofilter_license: Interval of time between license checks for the FortiGuard video filter contract.
         :param pulumi.Input[str] webfilter_cache: Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_cache_ttl: Time-to-live for web filter cache entries in seconds (300 - 86400).
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
@@ -129,6 +145,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "auto_join_forticloud", auto_join_forticloud)
         if ddns_server_ip is not None:
             pulumi.set(__self__, "ddns_server_ip", ddns_server_ip)
+        if ddns_server_ip6 is not None:
+            pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port is not None:
             pulumi.set(__self__, "ddns_server_port", ddns_server_port)
         if fortiguard_anycast is not None:
@@ -153,6 +171,8 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "outbreak_prevention_force_off", outbreak_prevention_force_off)
         if outbreak_prevention_license is not None:
             pulumi.set(__self__, "outbreak_prevention_license", outbreak_prevention_license)
+        if persistent_connection is not None:
+            pulumi.set(__self__, "persistent_connection", persistent_connection)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if protocol is not None:
@@ -179,10 +199,22 @@ class SystemFortiguardArgs:
             pulumi.set(__self__, "source_ip", source_ip)
         if source_ip6 is not None:
             pulumi.set(__self__, "source_ip6", source_ip6)
+        if update_build_proxy is not None:
+            pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_extdb is not None:
+            pulumi.set(__self__, "update_extdb", update_extdb)
+        if update_ffdb is not None:
+            pulumi.set(__self__, "update_ffdb", update_ffdb)
         if update_server_location is not None:
             pulumi.set(__self__, "update_server_location", update_server_location)
+        if update_uwdb is not None:
+            pulumi.set(__self__, "update_uwdb", update_uwdb)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_expiration is not None:
+            pulumi.set(__self__, "videofilter_expiration", videofilter_expiration)
+        if videofilter_license is not None:
+            pulumi.set(__self__, "videofilter_license", videofilter_license)
         if webfilter_cache is not None:
             pulumi.set(__self__, "webfilter_cache", webfilter_cache)
         if webfilter_cache_ttl is not None:
@@ -351,6 +383,18 @@ class SystemFortiguardArgs:
         pulumi.set(self, "ddns_server_ip", value)
 
     @property
+    @pulumi.getter(name="ddnsServerIp6")
+    def ddns_server_ip6(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 address of the FortiDDNS server.
+        """
+        return pulumi.get(self, "ddns_server_ip6")
+
+    @ddns_server_ip6.setter
+    def ddns_server_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ddns_server_ip6", value)
+
+    @property
     @pulumi.getter(name="ddnsServerPort")
     def ddns_server_port(self) -> Optional[pulumi.Input[int]]:
         """
@@ -493,6 +537,18 @@ class SystemFortiguardArgs:
     @outbreak_prevention_license.setter
     def outbreak_prevention_license(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "outbreak_prevention_license", value)
+
+    @property
+    @pulumi.getter(name="persistentConnection")
+    def persistent_connection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "persistent_connection")
+
+    @persistent_connection.setter
+    def persistent_connection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "persistent_connection", value)
 
     @property
     @pulumi.getter
@@ -651,16 +707,64 @@ class SystemFortiguardArgs:
         pulumi.set(self, "source_ip6", value)
 
     @property
+    @pulumi.getter(name="updateBuildProxy")
+    def update_build_proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_build_proxy")
+
+    @update_build_proxy.setter
+    def update_build_proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_build_proxy", value)
+
+    @property
+    @pulumi.getter(name="updateExtdb")
+    def update_extdb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable external resource update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_extdb")
+
+    @update_extdb.setter
+    def update_extdb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_extdb", value)
+
+    @property
+    @pulumi.getter(name="updateFfdb")
+    def update_ffdb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_ffdb")
+
+    @update_ffdb.setter
+    def update_ffdb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_ffdb", value)
+
+    @property
     @pulumi.getter(name="updateServerLocation")
     def update_server_location(self) -> Optional[pulumi.Input[str]]:
         """
-        Signature update server location. Valid values: `usa`, `any`.
+        Signature update server location.
         """
         return pulumi.get(self, "update_server_location")
 
     @update_server_location.setter
     def update_server_location(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "update_server_location", value)
+
+    @property
+    @pulumi.getter(name="updateUwdb")
+    def update_uwdb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable allowlist update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_uwdb")
+
+    @update_uwdb.setter
+    def update_uwdb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_uwdb", value)
 
     @property
     @pulumi.getter
@@ -673,6 +777,30 @@ class SystemFortiguardArgs:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="videofilterExpiration")
+    def videofilter_expiration(self) -> Optional[pulumi.Input[int]]:
+        """
+        Expiration date of the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_expiration")
+
+    @videofilter_expiration.setter
+    def videofilter_expiration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "videofilter_expiration", value)
+
+    @property
+    @pulumi.getter(name="videofilterLicense")
+    def videofilter_license(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval of time between license checks for the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_license")
+
+    @videofilter_license.setter
+    def videofilter_license(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "videofilter_license", value)
 
     @property
     @pulumi.getter(name="webfilterCache")
@@ -749,6 +877,7 @@ class _SystemFortiguardState:
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
+                 ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
@@ -762,6 +891,7 @@ class _SystemFortiguardState:
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_license: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_timeout: Optional[pulumi.Input[int]] = None,
+                 persistent_connection: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  proxy_password: Optional[pulumi.Input[str]] = None,
@@ -775,8 +905,14 @@ class _SystemFortiguardState:
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_extdb: Optional[pulumi.Input[str]] = None,
+                 update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
+                 update_uwdb: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_expiration: Optional[pulumi.Input[int]] = None,
+                 videofilter_license: Optional[pulumi.Input[int]] = None,
                  webfilter_cache: Optional[pulumi.Input[str]] = None,
                  webfilter_cache_ttl: Optional[pulumi.Input[int]] = None,
                  webfilter_expiration: Optional[pulumi.Input[int]] = None,
@@ -796,6 +932,7 @@ class _SystemFortiguardState:
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
+        :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
@@ -809,6 +946,7 @@ class _SystemFortiguardState:
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_license: Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[int] outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[str] persistent_connection: Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Port used to communicate with the FortiGuard servers.
         :param pulumi.Input[str] protocol: Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
         :param pulumi.Input[str] proxy_password: Proxy user password.
@@ -822,8 +960,14 @@ class _SystemFortiguardState:
         :param pulumi.Input[str] service_account_id: Service account ID.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
-        :param pulumi.Input[str] update_server_location: Signature update server location. Valid values: `usa`, `any`.
+        :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_server_location: Signature update server location.
+        :param pulumi.Input[str] update_uwdb: Enable/disable allowlist update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] videofilter_expiration: Expiration date of the FortiGuard video filter contract.
+        :param pulumi.Input[int] videofilter_license: Interval of time between license checks for the FortiGuard video filter contract.
         :param pulumi.Input[str] webfilter_cache: Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_cache_ttl: Time-to-live for web filter cache entries in seconds (300 - 86400).
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
@@ -853,6 +997,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "auto_join_forticloud", auto_join_forticloud)
         if ddns_server_ip is not None:
             pulumi.set(__self__, "ddns_server_ip", ddns_server_ip)
+        if ddns_server_ip6 is not None:
+            pulumi.set(__self__, "ddns_server_ip6", ddns_server_ip6)
         if ddns_server_port is not None:
             pulumi.set(__self__, "ddns_server_port", ddns_server_port)
         if fortiguard_anycast is not None:
@@ -879,6 +1025,8 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "outbreak_prevention_license", outbreak_prevention_license)
         if outbreak_prevention_timeout is not None:
             pulumi.set(__self__, "outbreak_prevention_timeout", outbreak_prevention_timeout)
+        if persistent_connection is not None:
+            pulumi.set(__self__, "persistent_connection", persistent_connection)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if protocol is not None:
@@ -905,10 +1053,22 @@ class _SystemFortiguardState:
             pulumi.set(__self__, "source_ip", source_ip)
         if source_ip6 is not None:
             pulumi.set(__self__, "source_ip6", source_ip6)
+        if update_build_proxy is not None:
+            pulumi.set(__self__, "update_build_proxy", update_build_proxy)
+        if update_extdb is not None:
+            pulumi.set(__self__, "update_extdb", update_extdb)
+        if update_ffdb is not None:
+            pulumi.set(__self__, "update_ffdb", update_ffdb)
         if update_server_location is not None:
             pulumi.set(__self__, "update_server_location", update_server_location)
+        if update_uwdb is not None:
+            pulumi.set(__self__, "update_uwdb", update_uwdb)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_expiration is not None:
+            pulumi.set(__self__, "videofilter_expiration", videofilter_expiration)
+        if videofilter_license is not None:
+            pulumi.set(__self__, "videofilter_license", videofilter_license)
         if webfilter_cache is not None:
             pulumi.set(__self__, "webfilter_cache", webfilter_cache)
         if webfilter_cache_ttl is not None:
@@ -1053,6 +1213,18 @@ class _SystemFortiguardState:
     @ddns_server_ip.setter
     def ddns_server_ip(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ddns_server_ip", value)
+
+    @property
+    @pulumi.getter(name="ddnsServerIp6")
+    def ddns_server_ip6(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv6 address of the FortiDDNS server.
+        """
+        return pulumi.get(self, "ddns_server_ip6")
+
+    @ddns_server_ip6.setter
+    def ddns_server_ip6(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ddns_server_ip6", value)
 
     @property
     @pulumi.getter(name="ddnsServerPort")
@@ -1211,6 +1383,18 @@ class _SystemFortiguardState:
         pulumi.set(self, "outbreak_prevention_timeout", value)
 
     @property
+    @pulumi.getter(name="persistentConnection")
+    def persistent_connection(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "persistent_connection")
+
+    @persistent_connection.setter
+    def persistent_connection(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "persistent_connection", value)
+
+    @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1367,16 +1551,64 @@ class _SystemFortiguardState:
         pulumi.set(self, "source_ip6", value)
 
     @property
+    @pulumi.getter(name="updateBuildProxy")
+    def update_build_proxy(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_build_proxy")
+
+    @update_build_proxy.setter
+    def update_build_proxy(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_build_proxy", value)
+
+    @property
+    @pulumi.getter(name="updateExtdb")
+    def update_extdb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable external resource update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_extdb")
+
+    @update_extdb.setter
+    def update_extdb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_extdb", value)
+
+    @property
+    @pulumi.getter(name="updateFfdb")
+    def update_ffdb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_ffdb")
+
+    @update_ffdb.setter
+    def update_ffdb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_ffdb", value)
+
+    @property
     @pulumi.getter(name="updateServerLocation")
     def update_server_location(self) -> Optional[pulumi.Input[str]]:
         """
-        Signature update server location. Valid values: `usa`, `any`.
+        Signature update server location.
         """
         return pulumi.get(self, "update_server_location")
 
     @update_server_location.setter
     def update_server_location(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "update_server_location", value)
+
+    @property
+    @pulumi.getter(name="updateUwdb")
+    def update_uwdb(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable allowlist update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_uwdb")
+
+    @update_uwdb.setter
+    def update_uwdb(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "update_uwdb", value)
 
     @property
     @pulumi.getter
@@ -1389,6 +1621,30 @@ class _SystemFortiguardState:
     @vdomparam.setter
     def vdomparam(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "vdomparam", value)
+
+    @property
+    @pulumi.getter(name="videofilterExpiration")
+    def videofilter_expiration(self) -> Optional[pulumi.Input[int]]:
+        """
+        Expiration date of the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_expiration")
+
+    @videofilter_expiration.setter
+    def videofilter_expiration(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "videofilter_expiration", value)
+
+    @property
+    @pulumi.getter(name="videofilterLicense")
+    def videofilter_license(self) -> Optional[pulumi.Input[int]]:
+        """
+        Interval of time between license checks for the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_license")
+
+    @videofilter_license.setter
+    def videofilter_license(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "videofilter_license", value)
 
     @property
     @pulumi.getter(name="webfilterCache")
@@ -1479,6 +1735,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
+                 ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
@@ -1492,6 +1749,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_license: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_timeout: Optional[pulumi.Input[int]] = None,
+                 persistent_connection: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  proxy_password: Optional[pulumi.Input[str]] = None,
@@ -1505,8 +1763,14 @@ class SystemFortiguard(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_extdb: Optional[pulumi.Input[str]] = None,
+                 update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
+                 update_uwdb: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_expiration: Optional[pulumi.Input[int]] = None,
+                 videofilter_license: Optional[pulumi.Input[int]] = None,
                  webfilter_cache: Optional[pulumi.Input[str]] = None,
                  webfilter_cache_ttl: Optional[pulumi.Input[int]] = None,
                  webfilter_expiration: Optional[pulumi.Input[int]] = None,
@@ -1579,6 +1843,7 @@ class SystemFortiguard(pulumi.CustomResource):
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
+        :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
@@ -1592,6 +1857,7 @@ class SystemFortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_license: Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[int] outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[str] persistent_connection: Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Port used to communicate with the FortiGuard servers.
         :param pulumi.Input[str] protocol: Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
         :param pulumi.Input[str] proxy_password: Proxy user password.
@@ -1605,8 +1871,14 @@ class SystemFortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] service_account_id: Service account ID.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
-        :param pulumi.Input[str] update_server_location: Signature update server location. Valid values: `usa`, `any`.
+        :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_server_location: Signature update server location.
+        :param pulumi.Input[str] update_uwdb: Enable/disable allowlist update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] videofilter_expiration: Expiration date of the FortiGuard video filter contract.
+        :param pulumi.Input[int] videofilter_license: Interval of time between license checks for the FortiGuard video filter contract.
         :param pulumi.Input[str] webfilter_cache: Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_cache_ttl: Time-to-live for web filter cache entries in seconds (300 - 86400).
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
@@ -1698,6 +1970,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
                  auto_join_forticloud: Optional[pulumi.Input[str]] = None,
                  ddns_server_ip: Optional[pulumi.Input[str]] = None,
+                 ddns_server_ip6: Optional[pulumi.Input[str]] = None,
                  ddns_server_port: Optional[pulumi.Input[int]] = None,
                  fortiguard_anycast: Optional[pulumi.Input[str]] = None,
                  fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
@@ -1711,6 +1984,7 @@ class SystemFortiguard(pulumi.CustomResource):
                  outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
                  outbreak_prevention_license: Optional[pulumi.Input[int]] = None,
                  outbreak_prevention_timeout: Optional[pulumi.Input[int]] = None,
+                 persistent_connection: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  protocol: Optional[pulumi.Input[str]] = None,
                  proxy_password: Optional[pulumi.Input[str]] = None,
@@ -1724,8 +1998,14 @@ class SystemFortiguard(pulumi.CustomResource):
                  service_account_id: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  source_ip6: Optional[pulumi.Input[str]] = None,
+                 update_build_proxy: Optional[pulumi.Input[str]] = None,
+                 update_extdb: Optional[pulumi.Input[str]] = None,
+                 update_ffdb: Optional[pulumi.Input[str]] = None,
                  update_server_location: Optional[pulumi.Input[str]] = None,
+                 update_uwdb: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_expiration: Optional[pulumi.Input[int]] = None,
+                 videofilter_license: Optional[pulumi.Input[int]] = None,
                  webfilter_cache: Optional[pulumi.Input[str]] = None,
                  webfilter_cache_ttl: Optional[pulumi.Input[int]] = None,
                  webfilter_expiration: Optional[pulumi.Input[int]] = None,
@@ -1739,6 +2019,8 @@ class SystemFortiguard(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1757,6 +2039,7 @@ class SystemFortiguard(pulumi.CustomResource):
             __props__.__dict__["anycast_sdns_server_port"] = anycast_sdns_server_port
             __props__.__dict__["auto_join_forticloud"] = auto_join_forticloud
             __props__.__dict__["ddns_server_ip"] = ddns_server_ip
+            __props__.__dict__["ddns_server_ip6"] = ddns_server_ip6
             __props__.__dict__["ddns_server_port"] = ddns_server_port
             __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
             __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
@@ -1772,6 +2055,7 @@ class SystemFortiguard(pulumi.CustomResource):
             if outbreak_prevention_timeout is None and not opts.urn:
                 raise TypeError("Missing required property 'outbreak_prevention_timeout'")
             __props__.__dict__["outbreak_prevention_timeout"] = outbreak_prevention_timeout
+            __props__.__dict__["persistent_connection"] = persistent_connection
             __props__.__dict__["port"] = port
             __props__.__dict__["protocol"] = protocol
             __props__.__dict__["proxy_password"] = proxy_password
@@ -1785,8 +2069,14 @@ class SystemFortiguard(pulumi.CustomResource):
             __props__.__dict__["service_account_id"] = service_account_id
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["source_ip6"] = source_ip6
+            __props__.__dict__["update_build_proxy"] = update_build_proxy
+            __props__.__dict__["update_extdb"] = update_extdb
+            __props__.__dict__["update_ffdb"] = update_ffdb
             __props__.__dict__["update_server_location"] = update_server_location
+            __props__.__dict__["update_uwdb"] = update_uwdb
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["videofilter_expiration"] = videofilter_expiration
+            __props__.__dict__["videofilter_license"] = videofilter_license
             __props__.__dict__["webfilter_cache"] = webfilter_cache
             __props__.__dict__["webfilter_cache_ttl"] = webfilter_cache_ttl
             __props__.__dict__["webfilter_expiration"] = webfilter_expiration
@@ -1816,6 +2106,7 @@ class SystemFortiguard(pulumi.CustomResource):
             anycast_sdns_server_port: Optional[pulumi.Input[int]] = None,
             auto_join_forticloud: Optional[pulumi.Input[str]] = None,
             ddns_server_ip: Optional[pulumi.Input[str]] = None,
+            ddns_server_ip6: Optional[pulumi.Input[str]] = None,
             ddns_server_port: Optional[pulumi.Input[int]] = None,
             fortiguard_anycast: Optional[pulumi.Input[str]] = None,
             fortiguard_anycast_source: Optional[pulumi.Input[str]] = None,
@@ -1829,6 +2120,7 @@ class SystemFortiguard(pulumi.CustomResource):
             outbreak_prevention_force_off: Optional[pulumi.Input[str]] = None,
             outbreak_prevention_license: Optional[pulumi.Input[int]] = None,
             outbreak_prevention_timeout: Optional[pulumi.Input[int]] = None,
+            persistent_connection: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[str]] = None,
             protocol: Optional[pulumi.Input[str]] = None,
             proxy_password: Optional[pulumi.Input[str]] = None,
@@ -1842,8 +2134,14 @@ class SystemFortiguard(pulumi.CustomResource):
             service_account_id: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             source_ip6: Optional[pulumi.Input[str]] = None,
+            update_build_proxy: Optional[pulumi.Input[str]] = None,
+            update_extdb: Optional[pulumi.Input[str]] = None,
+            update_ffdb: Optional[pulumi.Input[str]] = None,
             update_server_location: Optional[pulumi.Input[str]] = None,
+            update_uwdb: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            videofilter_expiration: Optional[pulumi.Input[int]] = None,
+            videofilter_license: Optional[pulumi.Input[int]] = None,
             webfilter_cache: Optional[pulumi.Input[str]] = None,
             webfilter_cache_ttl: Optional[pulumi.Input[int]] = None,
             webfilter_expiration: Optional[pulumi.Input[int]] = None,
@@ -1868,6 +2166,7 @@ class SystemFortiguard(pulumi.CustomResource):
         :param pulumi.Input[int] anycast_sdns_server_port: Port to connect to on the FortiGuard anycast DNS rating server.
         :param pulumi.Input[str] auto_join_forticloud: Automatically connect to and login to FortiCloud. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ddns_server_ip: IP address of the FortiDDNS server.
+        :param pulumi.Input[str] ddns_server_ip6: IPv6 address of the FortiDDNS server.
         :param pulumi.Input[int] ddns_server_port: Port used to communicate with FortiDDNS servers.
         :param pulumi.Input[str] fortiguard_anycast: Enable/disable use of FortiGuard's anycast network. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiguard_anycast_source: Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet. Valid values: `fortinet`, `aws`, `debug`.
@@ -1881,6 +2180,7 @@ class SystemFortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] outbreak_prevention_force_off: Turn off FortiGuard Virus Outbreak Prevention service. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] outbreak_prevention_license: Interval of time between license checks for FortiGuard Virus Outbreak Prevention contract.
         :param pulumi.Input[int] outbreak_prevention_timeout: FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
+        :param pulumi.Input[str] persistent_connection: Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] port: Port used to communicate with the FortiGuard servers.
         :param pulumi.Input[str] protocol: Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
         :param pulumi.Input[str] proxy_password: Proxy user password.
@@ -1894,8 +2194,14 @@ class SystemFortiguard(pulumi.CustomResource):
         :param pulumi.Input[str] service_account_id: Service account ID.
         :param pulumi.Input[str] source_ip: Source IPv4 address used to communicate with FortiGuard.
         :param pulumi.Input[str] source_ip6: Source IPv6 address used to communicate with FortiGuard.
-        :param pulumi.Input[str] update_server_location: Signature update server location. Valid values: `usa`, `any`.
+        :param pulumi.Input[str] update_build_proxy: Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_extdb: Enable/disable external resource update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_ffdb: Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] update_server_location: Signature update server location.
+        :param pulumi.Input[str] update_uwdb: Enable/disable allowlist update. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[int] videofilter_expiration: Expiration date of the FortiGuard video filter contract.
+        :param pulumi.Input[int] videofilter_license: Interval of time between license checks for the FortiGuard video filter contract.
         :param pulumi.Input[str] webfilter_cache: Enable/disable FortiGuard web filter caching. Valid values: `enable`, `disable`.
         :param pulumi.Input[int] webfilter_cache_ttl: Time-to-live for web filter cache entries in seconds (300 - 86400).
         :param pulumi.Input[int] webfilter_expiration: Expiration date of the FortiGuard web filter contract.
@@ -1918,6 +2224,7 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["anycast_sdns_server_port"] = anycast_sdns_server_port
         __props__.__dict__["auto_join_forticloud"] = auto_join_forticloud
         __props__.__dict__["ddns_server_ip"] = ddns_server_ip
+        __props__.__dict__["ddns_server_ip6"] = ddns_server_ip6
         __props__.__dict__["ddns_server_port"] = ddns_server_port
         __props__.__dict__["fortiguard_anycast"] = fortiguard_anycast
         __props__.__dict__["fortiguard_anycast_source"] = fortiguard_anycast_source
@@ -1931,6 +2238,7 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["outbreak_prevention_force_off"] = outbreak_prevention_force_off
         __props__.__dict__["outbreak_prevention_license"] = outbreak_prevention_license
         __props__.__dict__["outbreak_prevention_timeout"] = outbreak_prevention_timeout
+        __props__.__dict__["persistent_connection"] = persistent_connection
         __props__.__dict__["port"] = port
         __props__.__dict__["protocol"] = protocol
         __props__.__dict__["proxy_password"] = proxy_password
@@ -1944,8 +2252,14 @@ class SystemFortiguard(pulumi.CustomResource):
         __props__.__dict__["service_account_id"] = service_account_id
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["source_ip6"] = source_ip6
+        __props__.__dict__["update_build_proxy"] = update_build_proxy
+        __props__.__dict__["update_extdb"] = update_extdb
+        __props__.__dict__["update_ffdb"] = update_ffdb
         __props__.__dict__["update_server_location"] = update_server_location
+        __props__.__dict__["update_uwdb"] = update_uwdb
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["videofilter_expiration"] = videofilter_expiration
+        __props__.__dict__["videofilter_license"] = videofilter_license
         __props__.__dict__["webfilter_cache"] = webfilter_cache
         __props__.__dict__["webfilter_cache_ttl"] = webfilter_cache_ttl
         __props__.__dict__["webfilter_expiration"] = webfilter_expiration
@@ -2041,6 +2355,14 @@ class SystemFortiguard(pulumi.CustomResource):
         IP address of the FortiDDNS server.
         """
         return pulumi.get(self, "ddns_server_ip")
+
+    @property
+    @pulumi.getter(name="ddnsServerIp6")
+    def ddns_server_ip6(self) -> pulumi.Output[str]:
+        """
+        IPv6 address of the FortiDDNS server.
+        """
+        return pulumi.get(self, "ddns_server_ip6")
 
     @property
     @pulumi.getter(name="ddnsServerPort")
@@ -2147,6 +2469,14 @@ class SystemFortiguard(pulumi.CustomResource):
         return pulumi.get(self, "outbreak_prevention_timeout")
 
     @property
+    @pulumi.getter(name="persistentConnection")
+    def persistent_connection(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "persistent_connection")
+
+    @property
     @pulumi.getter
     def port(self) -> pulumi.Output[str]:
         """
@@ -2251,12 +2581,44 @@ class SystemFortiguard(pulumi.CustomResource):
         return pulumi.get(self, "source_ip6")
 
     @property
+    @pulumi.getter(name="updateBuildProxy")
+    def update_build_proxy(self) -> pulumi.Output[str]:
+        """
+        Enable/disable proxy dictionary rebuild. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_build_proxy")
+
+    @property
+    @pulumi.getter(name="updateExtdb")
+    def update_extdb(self) -> pulumi.Output[str]:
+        """
+        Enable/disable external resource update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_extdb")
+
+    @property
+    @pulumi.getter(name="updateFfdb")
+    def update_ffdb(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Internet Service Database update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_ffdb")
+
+    @property
     @pulumi.getter(name="updateServerLocation")
     def update_server_location(self) -> pulumi.Output[str]:
         """
-        Signature update server location. Valid values: `usa`, `any`.
+        Signature update server location.
         """
         return pulumi.get(self, "update_server_location")
+
+    @property
+    @pulumi.getter(name="updateUwdb")
+    def update_uwdb(self) -> pulumi.Output[str]:
+        """
+        Enable/disable allowlist update. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "update_uwdb")
 
     @property
     @pulumi.getter
@@ -2265,6 +2627,22 @@ class SystemFortiguard(pulumi.CustomResource):
         Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         return pulumi.get(self, "vdomparam")
+
+    @property
+    @pulumi.getter(name="videofilterExpiration")
+    def videofilter_expiration(self) -> pulumi.Output[int]:
+        """
+        Expiration date of the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_expiration")
+
+    @property
+    @pulumi.getter(name="videofilterLicense")
+    def videofilter_license(self) -> pulumi.Output[int]:
+        """
+        Interval of time between license checks for the FortiGuard video filter contract.
+        """
+        return pulumi.get(self, "videofilter_license")
 
     @property
     @pulumi.getter(name="webfilterCache")

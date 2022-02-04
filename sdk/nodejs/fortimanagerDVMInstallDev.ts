@@ -73,28 +73,26 @@ export class FortimanagerDVMInstallDev extends pulumi.CustomResource {
      */
     constructor(name: string, args: FortimanagerDVMInstallDevArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerDVMInstallDevArgs | FortimanagerDVMInstallDevState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerDVMInstallDevState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["targetDevname"] = state ? state.targetDevname : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["targetDevname"] = state ? state.targetDevname : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
         } else {
             const args = argsOrState as FortimanagerDVMInstallDevArgs | undefined;
             if ((!args || args.targetDevname === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'targetDevname'");
             }
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["targetDevname"] = args ? args.targetDevname : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["targetDevname"] = args ? args.targetDevname : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerDVMInstallDev.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerDVMInstallDev.__pulumiType, name, resourceInputs, opts);
     }
 }
 

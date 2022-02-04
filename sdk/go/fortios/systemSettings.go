@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -55,6 +55,8 @@ type SystemSettings struct {
 	AllowLinkdownPath pulumi.StringOutput `pulumi:"allowLinkdownPath"`
 	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
 	AllowSubnetOverlap pulumi.StringOutput `pulumi:"allowSubnetOverlap"`
+	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+	ApplicationBandwidthTracking pulumi.StringOutput `pulumi:"applicationBandwidthTracking"`
 	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
 	Asymroute pulumi.StringOutput `pulumi:"asymroute"`
 	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
@@ -205,6 +207,8 @@ type SystemSettings struct {
 	GuiThreatWeight pulumi.StringOutput `pulumi:"guiThreatWeight"`
 	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
 	GuiTrafficShaping pulumi.StringOutput `pulumi:"guiTrafficShaping"`
+	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+	GuiVideofilter pulumi.StringOutput `pulumi:"guiVideofilter"`
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile pulumi.StringOutput `pulumi:"guiVoipProfile"`
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -221,12 +225,18 @@ type SystemSettings struct {
 	GuiWebfilterAdvanced pulumi.StringOutput `pulumi:"guiWebfilterAdvanced"`
 	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
 	GuiWirelessController pulumi.StringOutput `pulumi:"guiWirelessController"`
+	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+	GuiZtna pulumi.StringOutput `pulumi:"guiZtna"`
+	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+	H323DirectModel pulumi.StringOutput `pulumi:"h323DirectModel"`
 	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
 	HttpExternalDest pulumi.StringOutput `pulumi:"httpExternalDest"`
 	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
 	IkeDnFormat pulumi.StringOutput `pulumi:"ikeDnFormat"`
 	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
 	IkeNattPort pulumi.IntOutput `pulumi:"ikeNattPort"`
+	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+	IkePolicyRoute pulumi.StringOutput `pulumi:"ikePolicyRoute"`
 	// UDP port for IKE/IPsec traffic (default 500).
 	IkePort pulumi.IntOutput `pulumi:"ikePort"`
 	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
@@ -247,6 +257,8 @@ type SystemSettings struct {
 	LldpReception pulumi.StringOutput `pulumi:"lldpReception"`
 	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
 	LldpTransmission pulumi.StringOutput `pulumi:"lldpTransmission"`
+	// Local location ID in the form of an IPv4 address.
+	LocationId pulumi.StringOutput `pulumi:"locationId"`
 	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
 	MacTtl pulumi.IntOutput `pulumi:"macTtl"`
 	// Transparent mode IPv4 management IP address and netmask.
@@ -314,6 +326,7 @@ func NewSystemSettings(ctx *pulumi.Context,
 		args = &SystemSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSettings
 	err := ctx.RegisterResource("fortios:index/systemSettings:SystemSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -340,6 +353,8 @@ type systemSettingsState struct {
 	AllowLinkdownPath *string `pulumi:"allowLinkdownPath"`
 	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
 	AllowSubnetOverlap *string `pulumi:"allowSubnetOverlap"`
+	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+	ApplicationBandwidthTracking *string `pulumi:"applicationBandwidthTracking"`
 	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
 	Asymroute *string `pulumi:"asymroute"`
 	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
@@ -490,6 +505,8 @@ type systemSettingsState struct {
 	GuiThreatWeight *string `pulumi:"guiThreatWeight"`
 	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
 	GuiTrafficShaping *string `pulumi:"guiTrafficShaping"`
+	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+	GuiVideofilter *string `pulumi:"guiVideofilter"`
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile *string `pulumi:"guiVoipProfile"`
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -506,12 +523,18 @@ type systemSettingsState struct {
 	GuiWebfilterAdvanced *string `pulumi:"guiWebfilterAdvanced"`
 	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
 	GuiWirelessController *string `pulumi:"guiWirelessController"`
+	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+	GuiZtna *string `pulumi:"guiZtna"`
+	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+	H323DirectModel *string `pulumi:"h323DirectModel"`
 	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
 	HttpExternalDest *string `pulumi:"httpExternalDest"`
 	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
 	IkeDnFormat *string `pulumi:"ikeDnFormat"`
 	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
 	IkeNattPort *int `pulumi:"ikeNattPort"`
+	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+	IkePolicyRoute *string `pulumi:"ikePolicyRoute"`
 	// UDP port for IKE/IPsec traffic (default 500).
 	IkePort *int `pulumi:"ikePort"`
 	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
@@ -532,6 +555,8 @@ type systemSettingsState struct {
 	LldpReception *string `pulumi:"lldpReception"`
 	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
 	LldpTransmission *string `pulumi:"lldpTransmission"`
+	// Local location ID in the form of an IPv4 address.
+	LocationId *string `pulumi:"locationId"`
 	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
 	MacTtl *int `pulumi:"macTtl"`
 	// Transparent mode IPv4 management IP address and netmask.
@@ -597,6 +622,8 @@ type SystemSettingsState struct {
 	AllowLinkdownPath pulumi.StringPtrInput
 	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
 	AllowSubnetOverlap pulumi.StringPtrInput
+	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+	ApplicationBandwidthTracking pulumi.StringPtrInput
 	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
 	Asymroute pulumi.StringPtrInput
 	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
@@ -747,6 +774,8 @@ type SystemSettingsState struct {
 	GuiThreatWeight pulumi.StringPtrInput
 	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
 	GuiTrafficShaping pulumi.StringPtrInput
+	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+	GuiVideofilter pulumi.StringPtrInput
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile pulumi.StringPtrInput
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -763,12 +792,18 @@ type SystemSettingsState struct {
 	GuiWebfilterAdvanced pulumi.StringPtrInput
 	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
 	GuiWirelessController pulumi.StringPtrInput
+	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+	GuiZtna pulumi.StringPtrInput
+	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+	H323DirectModel pulumi.StringPtrInput
 	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
 	HttpExternalDest pulumi.StringPtrInput
 	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
 	IkeDnFormat pulumi.StringPtrInput
 	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
 	IkeNattPort pulumi.IntPtrInput
+	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+	IkePolicyRoute pulumi.StringPtrInput
 	// UDP port for IKE/IPsec traffic (default 500).
 	IkePort pulumi.IntPtrInput
 	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
@@ -789,6 +824,8 @@ type SystemSettingsState struct {
 	LldpReception pulumi.StringPtrInput
 	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
 	LldpTransmission pulumi.StringPtrInput
+	// Local location ID in the form of an IPv4 address.
+	LocationId pulumi.StringPtrInput
 	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
 	MacTtl pulumi.IntPtrInput
 	// Transparent mode IPv4 management IP address and netmask.
@@ -858,6 +895,8 @@ type systemSettingsArgs struct {
 	AllowLinkdownPath *string `pulumi:"allowLinkdownPath"`
 	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
 	AllowSubnetOverlap *string `pulumi:"allowSubnetOverlap"`
+	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+	ApplicationBandwidthTracking *string `pulumi:"applicationBandwidthTracking"`
 	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
 	Asymroute *string `pulumi:"asymroute"`
 	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
@@ -1008,6 +1047,8 @@ type systemSettingsArgs struct {
 	GuiThreatWeight *string `pulumi:"guiThreatWeight"`
 	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
 	GuiTrafficShaping *string `pulumi:"guiTrafficShaping"`
+	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+	GuiVideofilter *string `pulumi:"guiVideofilter"`
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile *string `pulumi:"guiVoipProfile"`
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -1024,12 +1065,18 @@ type systemSettingsArgs struct {
 	GuiWebfilterAdvanced *string `pulumi:"guiWebfilterAdvanced"`
 	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
 	GuiWirelessController *string `pulumi:"guiWirelessController"`
+	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+	GuiZtna *string `pulumi:"guiZtna"`
+	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+	H323DirectModel *string `pulumi:"h323DirectModel"`
 	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
 	HttpExternalDest *string `pulumi:"httpExternalDest"`
 	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
 	IkeDnFormat *string `pulumi:"ikeDnFormat"`
 	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
 	IkeNattPort *int `pulumi:"ikeNattPort"`
+	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+	IkePolicyRoute *string `pulumi:"ikePolicyRoute"`
 	// UDP port for IKE/IPsec traffic (default 500).
 	IkePort *int `pulumi:"ikePort"`
 	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
@@ -1050,6 +1097,8 @@ type systemSettingsArgs struct {
 	LldpReception *string `pulumi:"lldpReception"`
 	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
 	LldpTransmission *string `pulumi:"lldpTransmission"`
+	// Local location ID in the form of an IPv4 address.
+	LocationId *string `pulumi:"locationId"`
 	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
 	MacTtl *int `pulumi:"macTtl"`
 	// Transparent mode IPv4 management IP address and netmask.
@@ -1116,6 +1165,8 @@ type SystemSettingsArgs struct {
 	AllowLinkdownPath pulumi.StringPtrInput
 	// Enable/disable allowing interface subnets to use overlapping IP addresses. Valid values: `enable`, `disable`.
 	AllowSubnetOverlap pulumi.StringPtrInput
+	// Enable/disable application bandwidth tracking. Valid values: `disable`, `enable`.
+	ApplicationBandwidthTracking pulumi.StringPtrInput
 	// Enable/disable IPv4 asymmetric routing. Valid values: `enable`, `disable`.
 	Asymroute pulumi.StringPtrInput
 	// Enable/disable asymmetric IPv6 routing. Valid values: `enable`, `disable`.
@@ -1266,6 +1317,8 @@ type SystemSettingsArgs struct {
 	GuiThreatWeight pulumi.StringPtrInput
 	// Enable/disable traffic shaping on the GUI. Valid values: `enable`, `disable`.
 	GuiTrafficShaping pulumi.StringPtrInput
+	// Enable/disable Video filtering on the GUI. Valid values: `enable`, `disable`.
+	GuiVideofilter pulumi.StringPtrInput
 	// Enable/disable VoIP profiles on the GUI. Valid values: `enable`, `disable`.
 	GuiVoipProfile pulumi.StringPtrInput
 	// Enable/disable VPN tunnels on the GUI. Valid values: `enable`, `disable`.
@@ -1282,12 +1335,18 @@ type SystemSettingsArgs struct {
 	GuiWebfilterAdvanced pulumi.StringPtrInput
 	// Enable/disable the wireless controller on the GUI. Valid values: `enable`, `disable`.
 	GuiWirelessController pulumi.StringPtrInput
+	// Enable/disable Zero Trust Network Access features on the GUI. Valid values: `enable`, `disable`.
+	GuiZtna pulumi.StringPtrInput
+	// Enable/disable H323 direct model. Valid values: `disable`, `enable`.
+	H323DirectModel pulumi.StringPtrInput
 	// Offload HTTP traffic to FortiWeb or FortiCache. Valid values: `fortiweb`, `forticache`.
 	HttpExternalDest pulumi.StringPtrInput
 	// Configure IKE ASN.1 Distinguished Name format conventions. Valid values: `with-space`, `no-space`.
 	IkeDnFormat pulumi.StringPtrInput
 	// UDP port for IKE/IPsec traffic in NAT-T mode (default 4500).
 	IkeNattPort pulumi.IntPtrInput
+	// Enable/disable IKE Policy Based Routing (PBR). Valid values: `enable`, `disable`.
+	IkePolicyRoute pulumi.StringPtrInput
 	// UDP port for IKE/IPsec traffic (default 500).
 	IkePort pulumi.IntPtrInput
 	// Enable/disable IKE quick crash detection (RFC 6290). Valid values: `enable`, `disable`.
@@ -1308,6 +1367,8 @@ type SystemSettingsArgs struct {
 	LldpReception pulumi.StringPtrInput
 	// Enable/disable Link Layer Discovery Protocol (LLDP) transmission for this VDOM or apply global settings to this VDOM. Valid values: `enable`, `disable`, `global`.
 	LldpTransmission pulumi.StringPtrInput
+	// Local location ID in the form of an IPv4 address.
+	LocationId pulumi.StringPtrInput
 	// Duration of MAC addresses in Transparent mode (300 - 8640000 sec, default = 300).
 	MacTtl pulumi.IntPtrInput
 	// Transparent mode IPv4 management IP address and netmask.
@@ -1380,7 +1441,7 @@ type SystemSettingsInput interface {
 }
 
 func (*SystemSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettings)(nil))
+	return reflect.TypeOf((**SystemSettings)(nil)).Elem()
 }
 
 func (i *SystemSettings) ToSystemSettingsOutput() SystemSettingsOutput {
@@ -1389,35 +1450,6 @@ func (i *SystemSettings) ToSystemSettingsOutput() SystemSettingsOutput {
 
 func (i *SystemSettings) ToSystemSettingsOutputWithContext(ctx context.Context) SystemSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsOutput)
-}
-
-func (i *SystemSettings) ToSystemSettingsPtrOutput() SystemSettingsPtrOutput {
-	return i.ToSystemSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSettings) ToSystemSettingsPtrOutputWithContext(ctx context.Context) SystemSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsPtrOutput)
-}
-
-type SystemSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSystemSettingsPtrOutput() SystemSettingsPtrOutput
-	ToSystemSettingsPtrOutputWithContext(ctx context.Context) SystemSettingsPtrOutput
-}
-
-type systemSettingsPtrType SystemSettingsArgs
-
-func (*systemSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettings)(nil))
-}
-
-func (i *systemSettingsPtrType) ToSystemSettingsPtrOutput() SystemSettingsPtrOutput {
-	return i.ToSystemSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSettingsPtrType) ToSystemSettingsPtrOutputWithContext(ctx context.Context) SystemSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsPtrOutput)
 }
 
 // SystemSettingsArrayInput is an input type that accepts SystemSettingsArray and SystemSettingsArrayOutput values.
@@ -1434,7 +1466,7 @@ type SystemSettingsArrayInput interface {
 type SystemSettingsArray []SystemSettingsInput
 
 func (SystemSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSettings)(nil))
+	return reflect.TypeOf((*[]*SystemSettings)(nil)).Elem()
 }
 
 func (i SystemSettingsArray) ToSystemSettingsArrayOutput() SystemSettingsArrayOutput {
@@ -1459,7 +1491,7 @@ type SystemSettingsMapInput interface {
 type SystemSettingsMap map[string]SystemSettingsInput
 
 func (SystemSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSettings)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettings)(nil)).Elem()
 }
 
 func (i SystemSettingsMap) ToSystemSettingsMapOutput() SystemSettingsMapOutput {
@@ -1470,12 +1502,10 @@ func (i SystemSettingsMap) ToSystemSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSettingsMapOutput)
 }
 
-type SystemSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SystemSettingsOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSettings)(nil))
+	return reflect.TypeOf((**SystemSettings)(nil)).Elem()
 }
 
 func (o SystemSettingsOutput) ToSystemSettingsOutput() SystemSettingsOutput {
@@ -1486,36 +1516,10 @@ func (o SystemSettingsOutput) ToSystemSettingsOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o SystemSettingsOutput) ToSystemSettingsPtrOutput() SystemSettingsPtrOutput {
-	return o.ToSystemSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSettingsOutput) ToSystemSettingsPtrOutputWithContext(ctx context.Context) SystemSettingsPtrOutput {
-	return o.ApplyT(func(v SystemSettings) *SystemSettings {
-		return &v
-	}).(SystemSettingsPtrOutput)
-}
-
-type SystemSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSettings)(nil))
-}
-
-func (o SystemSettingsPtrOutput) ToSystemSettingsPtrOutput() SystemSettingsPtrOutput {
-	return o
-}
-
-func (o SystemSettingsPtrOutput) ToSystemSettingsPtrOutputWithContext(ctx context.Context) SystemSettingsPtrOutput {
-	return o
-}
-
 type SystemSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSettings)(nil))
+	return reflect.TypeOf((*[]*SystemSettings)(nil)).Elem()
 }
 
 func (o SystemSettingsArrayOutput) ToSystemSettingsArrayOutput() SystemSettingsArrayOutput {
@@ -1527,15 +1531,15 @@ func (o SystemSettingsArrayOutput) ToSystemSettingsArrayOutputWithContext(ctx co
 }
 
 func (o SystemSettingsArrayOutput) Index(i pulumi.IntInput) SystemSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSettings {
-		return vs[0].([]SystemSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSettings {
+		return vs[0].([]*SystemSettings)[vs[1].(int)]
 	}).(SystemSettingsOutput)
 }
 
 type SystemSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSettings)(nil))
+	return reflect.TypeOf((*map[string]*SystemSettings)(nil)).Elem()
 }
 
 func (o SystemSettingsMapOutput) ToSystemSettingsMapOutput() SystemSettingsMapOutput {
@@ -1547,14 +1551,16 @@ func (o SystemSettingsMapOutput) ToSystemSettingsMapOutputWithContext(ctx contex
 }
 
 func (o SystemSettingsMapOutput) MapIndex(k pulumi.StringInput) SystemSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSettings {
-		return vs[0].(map[string]SystemSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSettings {
+		return vs[0].(map[string]*SystemSettings)[vs[1].(string)]
 	}).(SystemSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingsInput)(nil)).Elem(), &SystemSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingsArrayInput)(nil)).Elem(), SystemSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSettingsMapInput)(nil)).Elem(), SystemSettingsMap{})
 	pulumi.RegisterOutputType(SystemSettingsOutput{})
-	pulumi.RegisterOutputType(SystemSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SystemSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SystemSettingsMapOutput{})
 }

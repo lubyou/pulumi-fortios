@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemFortisandboxResult',
     'AwaitableGetSystemFortisandboxResult',
     'get_system_fortisandbox',
+    'get_system_fortisandbox_output',
 ]
 
 @pulumi.output_type
@@ -173,6 +174,8 @@ def get_system_fortisandbox(vdomparam: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemFortisandbox:GetSystemFortisandbox', __args__, opts=opts, typ=GetSystemFortisandboxResult).value
 
     return AwaitableGetSystemFortisandboxResult(
@@ -187,3 +190,15 @@ def get_system_fortisandbox(vdomparam: Optional[str] = None,
         ssl_min_proto_version=__ret__.ssl_min_proto_version,
         status=__ret__.status,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_fortisandbox)
+def get_system_fortisandbox_output(vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemFortisandboxResult]:
+    """
+    Use this data source to get information on fortios system fortisandbox
+
+
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

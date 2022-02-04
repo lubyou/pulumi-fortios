@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure global heuristic options.
+ * Configure global heuristic options. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -74,21 +74,19 @@ export class AntivirusHeuristic extends pulumi.CustomResource {
      */
     constructor(name: string, args?: AntivirusHeuristicArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: AntivirusHeuristicArgs | AntivirusHeuristicState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as AntivirusHeuristicState | undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as AntivirusHeuristicArgs | undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(AntivirusHeuristic.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(AntivirusHeuristic.__pulumiType, name, resourceInputs, opts);
     }
 }
 

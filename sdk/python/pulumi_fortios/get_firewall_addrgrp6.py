@@ -13,6 +13,7 @@ __all__ = [
     'GetFirewallAddrgrp6Result',
     'AwaitableGetFirewallAddrgrp6Result',
     'get_firewall_addrgrp6',
+    'get_firewall_addrgrp6_output',
 ]
 
 @pulumi.output_type
@@ -20,13 +21,16 @@ class GetFirewallAddrgrp6Result:
     """
     A collection of values returned by GetFirewallAddrgrp6.
     """
-    def __init__(__self__, color=None, comment=None, id=None, members=None, name=None, taggings=None, uuid=None, vdomparam=None, visibility=None):
+    def __init__(__self__, color=None, comment=None, fabric_object=None, id=None, members=None, name=None, taggings=None, uuid=None, vdomparam=None, visibility=None):
         if color and not isinstance(color, int):
             raise TypeError("Expected argument 'color' to be a int")
         pulumi.set(__self__, "color", color)
         if comment and not isinstance(comment, str):
             raise TypeError("Expected argument 'comment' to be a str")
         pulumi.set(__self__, "comment", comment)
+        if fabric_object and not isinstance(fabric_object, str):
+            raise TypeError("Expected argument 'fabric_object' to be a str")
+        pulumi.set(__self__, "fabric_object", fabric_object)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -64,6 +68,14 @@ class GetFirewallAddrgrp6Result:
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="fabricObject")
+    def fabric_object(self) -> str:
+        """
+        Security Fabric global object setting.
+        """
+        return pulumi.get(self, "fabric_object")
 
     @property
     @pulumi.getter
@@ -127,6 +139,7 @@ class AwaitableGetFirewallAddrgrp6Result(GetFirewallAddrgrp6Result):
         return GetFirewallAddrgrp6Result(
             color=self.color,
             comment=self.comment,
+            fabric_object=self.fabric_object,
             id=self.id,
             members=self.members,
             name=self.name,
@@ -153,11 +166,14 @@ def get_firewall_addrgrp6(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getFirewallAddrgrp6:GetFirewallAddrgrp6', __args__, opts=opts, typ=GetFirewallAddrgrp6Result).value
 
     return AwaitableGetFirewallAddrgrp6Result(
         color=__ret__.color,
         comment=__ret__.comment,
+        fabric_object=__ret__.fabric_object,
         id=__ret__.id,
         members=__ret__.members,
         name=__ret__.name,
@@ -165,3 +181,17 @@ def get_firewall_addrgrp6(name: Optional[str] = None,
         uuid=__ret__.uuid,
         vdomparam=__ret__.vdomparam,
         visibility=__ret__.visibility)
+
+
+@_utilities.lift_output_func(get_firewall_addrgrp6)
+def get_firewall_addrgrp6_output(name: Optional[pulumi.Input[str]] = None,
+                                 vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                 opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFirewallAddrgrp6Result]:
+    """
+    Use this data source to get information on an fortios firewall addrgrp6
+
+
+    :param str name: Specify the name of the desired firewall addrgrp6.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

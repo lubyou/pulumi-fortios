@@ -66,18 +66,18 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallSecurityPolicySeqArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSecurityPolicySeqArgs | FirewallSecurityPolicySeqState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSecurityPolicySeqState | undefined;
-            inputs["alterPosition"] = state ? state.alterPosition : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["enableStateChecking"] = state ? state.enableStateChecking : undefined;
-            inputs["policyDstId"] = state ? state.policyDstId : undefined;
-            inputs["policySrcId"] = state ? state.policySrcId : undefined;
-            inputs["statePolicyLists"] = state ? state.statePolicyLists : undefined;
-            inputs["statePolicySrcdstPos"] = state ? state.statePolicySrcdstPos : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["alterPosition"] = state ? state.alterPosition : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["enableStateChecking"] = state ? state.enableStateChecking : undefined;
+            resourceInputs["policyDstId"] = state ? state.policyDstId : undefined;
+            resourceInputs["policySrcId"] = state ? state.policySrcId : undefined;
+            resourceInputs["statePolicyLists"] = state ? state.statePolicyLists : undefined;
+            resourceInputs["statePolicySrcdstPos"] = state ? state.statePolicySrcdstPos : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallSecurityPolicySeqArgs | undefined;
             if ((!args || args.alterPosition === undefined) && !opts.urn) {
@@ -89,19 +89,17 @@ export class FirewallSecurityPolicySeq extends pulumi.CustomResource {
             if ((!args || args.policySrcId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'policySrcId'");
             }
-            inputs["alterPosition"] = args ? args.alterPosition : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["enableStateChecking"] = args ? args.enableStateChecking : undefined;
-            inputs["policyDstId"] = args ? args.policyDstId : undefined;
-            inputs["policySrcId"] = args ? args.policySrcId : undefined;
-            inputs["statePolicySrcdstPos"] = args ? args.statePolicySrcdstPos : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["statePolicyLists"] = undefined /*out*/;
+            resourceInputs["alterPosition"] = args ? args.alterPosition : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["enableStateChecking"] = args ? args.enableStateChecking : undefined;
+            resourceInputs["policyDstId"] = args ? args.policyDstId : undefined;
+            resourceInputs["policySrcId"] = args ? args.policySrcId : undefined;
+            resourceInputs["statePolicySrcdstPos"] = args ? args.statePolicySrcdstPos : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["statePolicyLists"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSecurityPolicySeq.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSecurityPolicySeq.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -93,6 +93,8 @@ type LogFortianalyzer2Setting struct {
 	MonitorFailureRetryPeriod pulumi.IntOutput `pulumi:"monitorFailureRetryPeriod"`
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod pulumi.IntOutput `pulumi:"monitorKeepalivePeriod"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringOutput `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringOutput `pulumi:"priority"`
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -126,6 +128,7 @@ func NewLogFortianalyzer2Setting(ctx *pulumi.Context,
 		args = &LogFortianalyzer2SettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzer2Setting
 	err := ctx.RegisterResource("fortios:index/logFortianalyzer2Setting:LogFortianalyzer2Setting", name, args, &resource, opts...)
 	if err != nil {
@@ -180,6 +183,8 @@ type logFortianalyzer2SettingState struct {
 	MonitorFailureRetryPeriod *int `pulumi:"monitorFailureRetryPeriod"`
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey *string `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority *string `pulumi:"priority"`
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -239,6 +244,8 @@ type LogFortianalyzer2SettingState struct {
 	MonitorFailureRetryPeriod pulumi.IntPtrInput
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod pulumi.IntPtrInput
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringPtrInput
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringPtrInput
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -302,6 +309,8 @@ type logFortianalyzer2SettingArgs struct {
 	MonitorFailureRetryPeriod *int `pulumi:"monitorFailureRetryPeriod"`
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod *int `pulumi:"monitorKeepalivePeriod"`
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey *string `pulumi:"presharedKey"`
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority *string `pulumi:"priority"`
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -362,6 +371,8 @@ type LogFortianalyzer2SettingArgs struct {
 	MonitorFailureRetryPeriod pulumi.IntPtrInput
 	// Time between OFTP keepalives in seconds (for status and log buffer).
 	MonitorKeepalivePeriod pulumi.IntPtrInput
+	// Preshared-key used for auto-authorization on FortiAnalyzer.
+	PresharedKey pulumi.StringPtrInput
 	// Set log transmission priority. Valid values: `default`, `low`.
 	Priority pulumi.StringPtrInput
 	// Enable/disable reliable logging to FortiAnalyzer. Valid values: `enable`, `disable`.
@@ -400,7 +411,7 @@ type LogFortianalyzer2SettingInput interface {
 }
 
 func (*LogFortianalyzer2Setting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzer2Setting)(nil))
+	return reflect.TypeOf((**LogFortianalyzer2Setting)(nil)).Elem()
 }
 
 func (i *LogFortianalyzer2Setting) ToLogFortianalyzer2SettingOutput() LogFortianalyzer2SettingOutput {
@@ -409,35 +420,6 @@ func (i *LogFortianalyzer2Setting) ToLogFortianalyzer2SettingOutput() LogFortian
 
 func (i *LogFortianalyzer2Setting) ToLogFortianalyzer2SettingOutputWithContext(ctx context.Context) LogFortianalyzer2SettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2SettingOutput)
-}
-
-func (i *LogFortianalyzer2Setting) ToLogFortianalyzer2SettingPtrOutput() LogFortianalyzer2SettingPtrOutput {
-	return i.ToLogFortianalyzer2SettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortianalyzer2Setting) ToLogFortianalyzer2SettingPtrOutputWithContext(ctx context.Context) LogFortianalyzer2SettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2SettingPtrOutput)
-}
-
-type LogFortianalyzer2SettingPtrInput interface {
-	pulumi.Input
-
-	ToLogFortianalyzer2SettingPtrOutput() LogFortianalyzer2SettingPtrOutput
-	ToLogFortianalyzer2SettingPtrOutputWithContext(ctx context.Context) LogFortianalyzer2SettingPtrOutput
-}
-
-type logFortianalyzer2SettingPtrType LogFortianalyzer2SettingArgs
-
-func (*logFortianalyzer2SettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzer2Setting)(nil))
-}
-
-func (i *logFortianalyzer2SettingPtrType) ToLogFortianalyzer2SettingPtrOutput() LogFortianalyzer2SettingPtrOutput {
-	return i.ToLogFortianalyzer2SettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortianalyzer2SettingPtrType) ToLogFortianalyzer2SettingPtrOutputWithContext(ctx context.Context) LogFortianalyzer2SettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2SettingPtrOutput)
 }
 
 // LogFortianalyzer2SettingArrayInput is an input type that accepts LogFortianalyzer2SettingArray and LogFortianalyzer2SettingArrayOutput values.
@@ -454,7 +436,7 @@ type LogFortianalyzer2SettingArrayInput interface {
 type LogFortianalyzer2SettingArray []LogFortianalyzer2SettingInput
 
 func (LogFortianalyzer2SettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortianalyzer2Setting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzer2Setting)(nil)).Elem()
 }
 
 func (i LogFortianalyzer2SettingArray) ToLogFortianalyzer2SettingArrayOutput() LogFortianalyzer2SettingArrayOutput {
@@ -479,7 +461,7 @@ type LogFortianalyzer2SettingMapInput interface {
 type LogFortianalyzer2SettingMap map[string]LogFortianalyzer2SettingInput
 
 func (LogFortianalyzer2SettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortianalyzer2Setting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzer2Setting)(nil)).Elem()
 }
 
 func (i LogFortianalyzer2SettingMap) ToLogFortianalyzer2SettingMapOutput() LogFortianalyzer2SettingMapOutput {
@@ -490,12 +472,10 @@ func (i LogFortianalyzer2SettingMap) ToLogFortianalyzer2SettingMapOutputWithCont
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzer2SettingMapOutput)
 }
 
-type LogFortianalyzer2SettingOutput struct {
-	*pulumi.OutputState
-}
+type LogFortianalyzer2SettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzer2SettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzer2Setting)(nil))
+	return reflect.TypeOf((**LogFortianalyzer2Setting)(nil)).Elem()
 }
 
 func (o LogFortianalyzer2SettingOutput) ToLogFortianalyzer2SettingOutput() LogFortianalyzer2SettingOutput {
@@ -506,36 +486,10 @@ func (o LogFortianalyzer2SettingOutput) ToLogFortianalyzer2SettingOutputWithCont
 	return o
 }
 
-func (o LogFortianalyzer2SettingOutput) ToLogFortianalyzer2SettingPtrOutput() LogFortianalyzer2SettingPtrOutput {
-	return o.ToLogFortianalyzer2SettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortianalyzer2SettingOutput) ToLogFortianalyzer2SettingPtrOutputWithContext(ctx context.Context) LogFortianalyzer2SettingPtrOutput {
-	return o.ApplyT(func(v LogFortianalyzer2Setting) *LogFortianalyzer2Setting {
-		return &v
-	}).(LogFortianalyzer2SettingPtrOutput)
-}
-
-type LogFortianalyzer2SettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortianalyzer2SettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzer2Setting)(nil))
-}
-
-func (o LogFortianalyzer2SettingPtrOutput) ToLogFortianalyzer2SettingPtrOutput() LogFortianalyzer2SettingPtrOutput {
-	return o
-}
-
-func (o LogFortianalyzer2SettingPtrOutput) ToLogFortianalyzer2SettingPtrOutputWithContext(ctx context.Context) LogFortianalyzer2SettingPtrOutput {
-	return o
-}
-
 type LogFortianalyzer2SettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzer2SettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortianalyzer2Setting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzer2Setting)(nil)).Elem()
 }
 
 func (o LogFortianalyzer2SettingArrayOutput) ToLogFortianalyzer2SettingArrayOutput() LogFortianalyzer2SettingArrayOutput {
@@ -547,15 +501,15 @@ func (o LogFortianalyzer2SettingArrayOutput) ToLogFortianalyzer2SettingArrayOutp
 }
 
 func (o LogFortianalyzer2SettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzer2SettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortianalyzer2Setting {
-		return vs[0].([]LogFortianalyzer2Setting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzer2Setting {
+		return vs[0].([]*LogFortianalyzer2Setting)[vs[1].(int)]
 	}).(LogFortianalyzer2SettingOutput)
 }
 
 type LogFortianalyzer2SettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzer2SettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortianalyzer2Setting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzer2Setting)(nil)).Elem()
 }
 
 func (o LogFortianalyzer2SettingMapOutput) ToLogFortianalyzer2SettingMapOutput() LogFortianalyzer2SettingMapOutput {
@@ -567,14 +521,16 @@ func (o LogFortianalyzer2SettingMapOutput) ToLogFortianalyzer2SettingMapOutputWi
 }
 
 func (o LogFortianalyzer2SettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzer2SettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortianalyzer2Setting {
-		return vs[0].(map[string]LogFortianalyzer2Setting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortianalyzer2Setting {
+		return vs[0].(map[string]*LogFortianalyzer2Setting)[vs[1].(string)]
 	}).(LogFortianalyzer2SettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzer2SettingInput)(nil)).Elem(), &LogFortianalyzer2Setting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzer2SettingArrayInput)(nil)).Elem(), LogFortianalyzer2SettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzer2SettingMapInput)(nil)).Elem(), LogFortianalyzer2SettingMap{})
 	pulumi.RegisterOutputType(LogFortianalyzer2SettingOutput{})
-	pulumi.RegisterOutputType(LogFortianalyzer2SettingPtrOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzer2SettingArrayOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzer2SettingMapOutput{})
 }

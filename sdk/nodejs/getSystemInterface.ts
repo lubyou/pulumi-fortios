@@ -25,9 +25,7 @@ export function getSystemInterface(args: GetSystemInterfaceArgs, opts?: pulumi.I
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemInterface:GetSystemInterface", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -80,6 +78,14 @@ export interface GetSystemInterfaceResult {
      * Enable/disable ARP forwarding.
      */
     readonly arpforward: string;
+    /**
+     * HTTPS server certificate.
+     */
+    readonly authCert: string;
+    /**
+     * Address of captive portal.
+     */
+    readonly authPortalAddr: string;
     /**
      * PPP authentication type to use.
      */
@@ -181,6 +187,10 @@ export interface GetSystemInterfaceResult {
      */
     readonly devindex: number;
     /**
+     * Enable/disable addition of classless static routes retrieved from DHCP server.
+     */
+    readonly dhcpClasslessRouteAddition: string;
+    /**
      * DHCP client identifier.
      */
     readonly dhcpClientIdentifier: string;
@@ -201,6 +211,14 @@ export interface GetSystemInterfaceResult {
      */
     readonly dhcpRelayIp: string;
     /**
+     * DHCP relay link selection.
+     */
+    readonly dhcpRelayLinkSelection: string;
+    /**
+     * Enable/disable sending of DHCP requests to all servers.
+     */
+    readonly dhcpRelayRequestAllServer: string;
+    /**
      * Enable/disable allowing this interface to act as a DHCP relay.
      */
     readonly dhcpRelayService: string;
@@ -212,6 +230,10 @@ export interface GetSystemInterfaceResult {
      * DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
      */
     readonly dhcpRenewTime: number;
+    /**
+     * Configure DHCP server access list. The structure of `dhcpSnoopingServerList` block is documented below.
+     */
+    readonly dhcpSnoopingServerLists: outputs.GetSystemInterfaceDhcpSnoopingServerList[];
     /**
      * Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
      */
@@ -228,6 +250,10 @@ export interface GetSystemInterfaceResult {
      * Enable/disable use DNS acquired by DHCP or PPPoE.
      */
     readonly dnsServerOverride: string;
+    /**
+     * DNS transport protocols.
+     */
+    readonly dnsServerProtocol: string;
     /**
      * Enable/disable drop fragment packets.
      */
@@ -312,6 +338,10 @@ export interface GetSystemInterfaceResult {
      * Transparent mode forward domain.
      */
     readonly forwardDomain: number;
+    /**
+     * Configure forward error correction (FEC).
+     */
+    readonly forwardErrorCorrection: string;
     /**
      * Enable/disable detect gateway alive for first.
      */
@@ -449,6 +479,10 @@ export interface GetSystemInterfaceResult {
      */
     readonly measuredUpstreamBandwidth: number;
     /**
+     * Select SFP media interface type
+     */
+    readonly mediatype: string;
+    /**
      * Physical interfaces that belong to the aggregate or redundant interface. The structure of `member` block is documented below.
      */
     readonly members: outputs.GetSystemInterfaceMember[];
@@ -557,6 +591,10 @@ export interface GetSystemInterfaceResult {
      */
     readonly proxyCaptivePortal: string;
     /**
+     * IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
+     */
+    readonly reachableTime: number;
+    /**
      * Redundant interface.
      */
     readonly redundantInterface: string;
@@ -592,6 +630,9 @@ export interface GetSystemInterfaceResult {
      * Enable monitoring or blocking connections to Botnet servers through this interface.
      */
     readonly scanBotnetConnections: string;
+    /**
+     * Enable/disable adding a secondary IP to this interface.
+     */
     readonly secondaryIp: string;
     /**
      * Second IP address of interface. The structure of `secondaryip` block is documented below.
@@ -654,6 +695,14 @@ export interface GetSystemInterfaceResult {
      */
     readonly status: string;
     /**
+     * Enable/disable STP.
+     */
+    readonly stp: string;
+    /**
+     * Control STP behaviour on HA secondary.
+     */
+    readonly stpHaSecondary: string;
+    /**
      * Enable/disable STP forwarding.
      */
     readonly stpforward: string;
@@ -702,6 +751,10 @@ export interface GetSystemInterfaceResult {
      */
     readonly switchControllerDhcpSnoopingVerifyMac: string;
     /**
+     * Integrated FortiLink settings for managed FortiSwitch.
+     */
+    readonly switchControllerDynamic: string;
+    /**
      * Interface's purpose when assigning traffic (read only).
      */
     readonly switchControllerFeature: string;
@@ -746,6 +799,14 @@ export interface GetSystemInterfaceResult {
      */
     readonly switchControllerTrafficPolicy: string;
     /**
+     * Define a system ID for the aggregate interface.
+     */
+    readonly systemId: string;
+    /**
+     * Method in which system ID is generated.
+     */
+    readonly systemIdType: string;
+    /**
      * Config object tagging. The structure of `tagging` block is documented below.
      */
     readonly taggings: outputs.GetSystemInterfaceTagging[];
@@ -753,6 +814,10 @@ export interface GetSystemInterfaceResult {
      * TCP maximum segment size. 0 means do not change segment size.
      */
     readonly tcpMss: number;
+    /**
+     * Enable/disable VLAN trunk.
+     */
+    readonly trunk: string;
     /**
      * Trusted host for dedicated management traffic (0.0.0.0/24 for all hosts).
      */
@@ -830,4 +895,22 @@ export interface GetSystemInterfaceResult {
      * WINS server IP.
      */
     readonly winsIp: string;
+}
+
+export function getSystemInterfaceOutput(args: GetSystemInterfaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemInterfaceResult> {
+    return pulumi.output(args).apply(a => getSystemInterface(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemInterface.
+ */
+export interface GetSystemInterfaceOutputArgs {
+    /**
+     * Specify the name of the desired system interface.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

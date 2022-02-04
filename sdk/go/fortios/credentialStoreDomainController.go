@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Define known domain controller servers. Applies to FortiOS Version `>= 6.4.0`.
+// Define known domain controller servers. Applies to FortiOS Version `6.4.0,6.4.2,7.0.0`.
 //
 // ## Import
 //
@@ -51,6 +51,7 @@ func NewCredentialStoreDomainController(ctx *pulumi.Context,
 		args = &CredentialStoreDomainControllerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource CredentialStoreDomainController
 	err := ctx.RegisterResource("fortios:index/credentialStoreDomainController:CredentialStoreDomainController", name, args, &resource, opts...)
 	if err != nil {
@@ -173,7 +174,7 @@ type CredentialStoreDomainControllerInput interface {
 }
 
 func (*CredentialStoreDomainController) ElementType() reflect.Type {
-	return reflect.TypeOf((*CredentialStoreDomainController)(nil))
+	return reflect.TypeOf((**CredentialStoreDomainController)(nil)).Elem()
 }
 
 func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerOutput() CredentialStoreDomainControllerOutput {
@@ -182,35 +183,6 @@ func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerOutpu
 
 func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerOutputWithContext(ctx context.Context) CredentialStoreDomainControllerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerOutput)
-}
-
-func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerPtrOutput() CredentialStoreDomainControllerPtrOutput {
-	return i.ToCredentialStoreDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *CredentialStoreDomainController) ToCredentialStoreDomainControllerPtrOutputWithContext(ctx context.Context) CredentialStoreDomainControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerPtrOutput)
-}
-
-type CredentialStoreDomainControllerPtrInput interface {
-	pulumi.Input
-
-	ToCredentialStoreDomainControllerPtrOutput() CredentialStoreDomainControllerPtrOutput
-	ToCredentialStoreDomainControllerPtrOutputWithContext(ctx context.Context) CredentialStoreDomainControllerPtrOutput
-}
-
-type credentialStoreDomainControllerPtrType CredentialStoreDomainControllerArgs
-
-func (*credentialStoreDomainControllerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**CredentialStoreDomainController)(nil))
-}
-
-func (i *credentialStoreDomainControllerPtrType) ToCredentialStoreDomainControllerPtrOutput() CredentialStoreDomainControllerPtrOutput {
-	return i.ToCredentialStoreDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *credentialStoreDomainControllerPtrType) ToCredentialStoreDomainControllerPtrOutputWithContext(ctx context.Context) CredentialStoreDomainControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerPtrOutput)
 }
 
 // CredentialStoreDomainControllerArrayInput is an input type that accepts CredentialStoreDomainControllerArray and CredentialStoreDomainControllerArrayOutput values.
@@ -227,7 +199,7 @@ type CredentialStoreDomainControllerArrayInput interface {
 type CredentialStoreDomainControllerArray []CredentialStoreDomainControllerInput
 
 func (CredentialStoreDomainControllerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*CredentialStoreDomainController)(nil))
+	return reflect.TypeOf((*[]*CredentialStoreDomainController)(nil)).Elem()
 }
 
 func (i CredentialStoreDomainControllerArray) ToCredentialStoreDomainControllerArrayOutput() CredentialStoreDomainControllerArrayOutput {
@@ -252,7 +224,7 @@ type CredentialStoreDomainControllerMapInput interface {
 type CredentialStoreDomainControllerMap map[string]CredentialStoreDomainControllerInput
 
 func (CredentialStoreDomainControllerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*CredentialStoreDomainController)(nil))
+	return reflect.TypeOf((*map[string]*CredentialStoreDomainController)(nil)).Elem()
 }
 
 func (i CredentialStoreDomainControllerMap) ToCredentialStoreDomainControllerMapOutput() CredentialStoreDomainControllerMapOutput {
@@ -263,12 +235,10 @@ func (i CredentialStoreDomainControllerMap) ToCredentialStoreDomainControllerMap
 	return pulumi.ToOutputWithContext(ctx, i).(CredentialStoreDomainControllerMapOutput)
 }
 
-type CredentialStoreDomainControllerOutput struct {
-	*pulumi.OutputState
-}
+type CredentialStoreDomainControllerOutput struct{ *pulumi.OutputState }
 
 func (CredentialStoreDomainControllerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*CredentialStoreDomainController)(nil))
+	return reflect.TypeOf((**CredentialStoreDomainController)(nil)).Elem()
 }
 
 func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainControllerOutput() CredentialStoreDomainControllerOutput {
@@ -279,36 +249,10 @@ func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainController
 	return o
 }
 
-func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainControllerPtrOutput() CredentialStoreDomainControllerPtrOutput {
-	return o.ToCredentialStoreDomainControllerPtrOutputWithContext(context.Background())
-}
-
-func (o CredentialStoreDomainControllerOutput) ToCredentialStoreDomainControllerPtrOutputWithContext(ctx context.Context) CredentialStoreDomainControllerPtrOutput {
-	return o.ApplyT(func(v CredentialStoreDomainController) *CredentialStoreDomainController {
-		return &v
-	}).(CredentialStoreDomainControllerPtrOutput)
-}
-
-type CredentialStoreDomainControllerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (CredentialStoreDomainControllerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**CredentialStoreDomainController)(nil))
-}
-
-func (o CredentialStoreDomainControllerPtrOutput) ToCredentialStoreDomainControllerPtrOutput() CredentialStoreDomainControllerPtrOutput {
-	return o
-}
-
-func (o CredentialStoreDomainControllerPtrOutput) ToCredentialStoreDomainControllerPtrOutputWithContext(ctx context.Context) CredentialStoreDomainControllerPtrOutput {
-	return o
-}
-
 type CredentialStoreDomainControllerArrayOutput struct{ *pulumi.OutputState }
 
 func (CredentialStoreDomainControllerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]CredentialStoreDomainController)(nil))
+	return reflect.TypeOf((*[]*CredentialStoreDomainController)(nil)).Elem()
 }
 
 func (o CredentialStoreDomainControllerArrayOutput) ToCredentialStoreDomainControllerArrayOutput() CredentialStoreDomainControllerArrayOutput {
@@ -320,15 +264,15 @@ func (o CredentialStoreDomainControllerArrayOutput) ToCredentialStoreDomainContr
 }
 
 func (o CredentialStoreDomainControllerArrayOutput) Index(i pulumi.IntInput) CredentialStoreDomainControllerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CredentialStoreDomainController {
-		return vs[0].([]CredentialStoreDomainController)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *CredentialStoreDomainController {
+		return vs[0].([]*CredentialStoreDomainController)[vs[1].(int)]
 	}).(CredentialStoreDomainControllerOutput)
 }
 
 type CredentialStoreDomainControllerMapOutput struct{ *pulumi.OutputState }
 
 func (CredentialStoreDomainControllerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]CredentialStoreDomainController)(nil))
+	return reflect.TypeOf((*map[string]*CredentialStoreDomainController)(nil)).Elem()
 }
 
 func (o CredentialStoreDomainControllerMapOutput) ToCredentialStoreDomainControllerMapOutput() CredentialStoreDomainControllerMapOutput {
@@ -340,14 +284,16 @@ func (o CredentialStoreDomainControllerMapOutput) ToCredentialStoreDomainControl
 }
 
 func (o CredentialStoreDomainControllerMapOutput) MapIndex(k pulumi.StringInput) CredentialStoreDomainControllerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) CredentialStoreDomainController {
-		return vs[0].(map[string]CredentialStoreDomainController)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *CredentialStoreDomainController {
+		return vs[0].(map[string]*CredentialStoreDomainController)[vs[1].(string)]
 	}).(CredentialStoreDomainControllerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*CredentialStoreDomainControllerInput)(nil)).Elem(), &CredentialStoreDomainController{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CredentialStoreDomainControllerArrayInput)(nil)).Elem(), CredentialStoreDomainControllerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CredentialStoreDomainControllerMapInput)(nil)).Elem(), CredentialStoreDomainControllerMap{})
 	pulumi.RegisterOutputType(CredentialStoreDomainControllerOutput{})
-	pulumi.RegisterOutputType(CredentialStoreDomainControllerPtrOutput{})
 	pulumi.RegisterOutputType(CredentialStoreDomainControllerArrayOutput{})
 	pulumi.RegisterOutputType(CredentialStoreDomainControllerMapOutput{})
 }

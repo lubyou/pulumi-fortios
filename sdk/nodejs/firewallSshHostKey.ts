@@ -93,6 +93,10 @@ export class FirewallSshHostKey extends pulumi.CustomResource {
      */
     public readonly type!: pulumi.Output<string>;
     /**
+     * Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+     */
+    public readonly usage!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -106,35 +110,35 @@ export class FirewallSshHostKey extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallSshHostKeyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSshHostKeyArgs | FirewallSshHostKeyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSshHostKeyState | undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["nid"] = state ? state.nid : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["publicKey"] = state ? state.publicKey : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["nid"] = state ? state.nid : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["publicKey"] = state ? state.publicKey : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["usage"] = state ? state.usage : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallSshHostKeyArgs | undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["nid"] = args ? args.nid : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["publicKey"] = args ? args.publicKey : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["nid"] = args ? args.nid : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["publicKey"] = args ? args.publicKey : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["usage"] = args ? args.usage : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSshHostKey.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSshHostKey.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -174,6 +178,10 @@ export interface FirewallSshHostKeyState {
      * Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
      */
     type?: pulumi.Input<string>;
+    /**
+     * Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+     */
+    usage?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
@@ -216,6 +224,10 @@ export interface FirewallSshHostKeyArgs {
      * Set the type of the public key. Valid values: `RSA`, `DSA`, `ECDSA`, `ED25519`, `RSA-CA`, `DSA-CA`, `ECDSA-CA`, `ED25519-CA`.
      */
     type?: pulumi.Input<string>;
+    /**
+     * Usage for this public key. Valid values: `transparent-proxy`, `access-proxy`.
+     */
+    usage?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

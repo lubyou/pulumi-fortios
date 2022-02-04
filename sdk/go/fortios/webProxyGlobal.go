@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -68,6 +68,8 @@ type WebProxyGlobal struct {
 	ForwardProxyAuth pulumi.StringOutput `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntOutput `pulumi:"forwardServerAffinityTimeout"`
+	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+	LdapUserCache pulumi.StringOutput `pulumi:"ldapUserCache"`
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
 	LearnClientIp pulumi.StringOutput `pulumi:"learnClientIp"`
 	// Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -84,6 +86,10 @@ type WebProxyGlobal struct {
 	MaxWafBodyCacheLength pulumi.IntOutput `pulumi:"maxWafBodyCacheLength"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringOutput `pulumi:"proxyFqdn"`
+	// IPv4 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr pulumi.StringOutput `pulumi:"srcAffinityExemptAddr"`
+	// IPv6 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr6 pulumi.StringOutput `pulumi:"srcAffinityExemptAddr6"`
 	// SSL CA certificate for SSL interception.
 	SslCaCert pulumi.StringOutput `pulumi:"sslCaCert"`
 	// SSL certificate for SSL interception.
@@ -110,6 +116,7 @@ func NewWebProxyGlobal(ctx *pulumi.Context,
 	if args.ProxyFqdn == nil {
 		return nil, errors.New("invalid value for required argument 'ProxyFqdn'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebProxyGlobal
 	err := ctx.RegisterResource("fortios:index/webProxyGlobal:WebProxyGlobal", name, args, &resource, opts...)
 	if err != nil {
@@ -140,6 +147,8 @@ type webProxyGlobalState struct {
 	ForwardProxyAuth *string `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout *int `pulumi:"forwardServerAffinityTimeout"`
+	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+	LdapUserCache *string `pulumi:"ldapUserCache"`
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
 	LearnClientIp *string `pulumi:"learnClientIp"`
 	// Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -156,6 +165,10 @@ type webProxyGlobalState struct {
 	MaxWafBodyCacheLength *int `pulumi:"maxWafBodyCacheLength"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn *string `pulumi:"proxyFqdn"`
+	// IPv4 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr *string `pulumi:"srcAffinityExemptAddr"`
+	// IPv6 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr6 *string `pulumi:"srcAffinityExemptAddr6"`
 	// SSL CA certificate for SSL interception.
 	SslCaCert *string `pulumi:"sslCaCert"`
 	// SSL certificate for SSL interception.
@@ -181,6 +194,8 @@ type WebProxyGlobalState struct {
 	ForwardProxyAuth pulumi.StringPtrInput
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
+	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+	LdapUserCache pulumi.StringPtrInput
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
 	LearnClientIp pulumi.StringPtrInput
 	// Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -197,6 +212,10 @@ type WebProxyGlobalState struct {
 	MaxWafBodyCacheLength pulumi.IntPtrInput
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringPtrInput
+	// IPv4 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr pulumi.StringPtrInput
+	// IPv6 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr6 pulumi.StringPtrInput
 	// SSL CA certificate for SSL interception.
 	SslCaCert pulumi.StringPtrInput
 	// SSL certificate for SSL interception.
@@ -226,6 +245,8 @@ type webProxyGlobalArgs struct {
 	ForwardProxyAuth *string `pulumi:"forwardProxyAuth"`
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout *int `pulumi:"forwardServerAffinityTimeout"`
+	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+	LdapUserCache *string `pulumi:"ldapUserCache"`
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
 	LearnClientIp *string `pulumi:"learnClientIp"`
 	// Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -242,6 +263,10 @@ type webProxyGlobalArgs struct {
 	MaxWafBodyCacheLength *int `pulumi:"maxWafBodyCacheLength"`
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn string `pulumi:"proxyFqdn"`
+	// IPv4 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr *string `pulumi:"srcAffinityExemptAddr"`
+	// IPv6 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr6 *string `pulumi:"srcAffinityExemptAddr6"`
 	// SSL CA certificate for SSL interception.
 	SslCaCert *string `pulumi:"sslCaCert"`
 	// SSL certificate for SSL interception.
@@ -268,6 +293,8 @@ type WebProxyGlobalArgs struct {
 	ForwardProxyAuth pulumi.StringPtrInput
 	// Period of time before the source IP's traffic is no longer assigned to the forwarding server (6 - 60 min, default = 30).
 	ForwardServerAffinityTimeout pulumi.IntPtrInput
+	// Enable/disable LDAP user cache for explicit and transparent proxy user. Valid values: `enable`, `disable`.
+	LdapUserCache pulumi.StringPtrInput
 	// Enable/disable learning the client's IP address from headers. Valid values: `enable`, `disable`.
 	LearnClientIp pulumi.StringPtrInput
 	// Learn client IP address from the specified headers. Valid values: `true-client-ip`, `x-real-ip`, `x-forwarded-for`.
@@ -284,6 +311,10 @@ type WebProxyGlobalArgs struct {
 	MaxWafBodyCacheLength pulumi.IntPtrInput
 	// Fully Qualified Domain Name (FQDN) that clients connect to (default = default.fqdn) to connect to the explicit web proxy.
 	ProxyFqdn pulumi.StringInput
+	// IPv4 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr pulumi.StringPtrInput
+	// IPv6 source addresses to exempt proxy affinity.
+	SrcAffinityExemptAddr6 pulumi.StringPtrInput
 	// SSL CA certificate for SSL interception.
 	SslCaCert pulumi.StringPtrInput
 	// SSL certificate for SSL interception.
@@ -312,7 +343,7 @@ type WebProxyGlobalInput interface {
 }
 
 func (*WebProxyGlobal) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyGlobal)(nil))
+	return reflect.TypeOf((**WebProxyGlobal)(nil)).Elem()
 }
 
 func (i *WebProxyGlobal) ToWebProxyGlobalOutput() WebProxyGlobalOutput {
@@ -321,35 +352,6 @@ func (i *WebProxyGlobal) ToWebProxyGlobalOutput() WebProxyGlobalOutput {
 
 func (i *WebProxyGlobal) ToWebProxyGlobalOutputWithContext(ctx context.Context) WebProxyGlobalOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalOutput)
-}
-
-func (i *WebProxyGlobal) ToWebProxyGlobalPtrOutput() WebProxyGlobalPtrOutput {
-	return i.ToWebProxyGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *WebProxyGlobal) ToWebProxyGlobalPtrOutputWithContext(ctx context.Context) WebProxyGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalPtrOutput)
-}
-
-type WebProxyGlobalPtrInput interface {
-	pulumi.Input
-
-	ToWebProxyGlobalPtrOutput() WebProxyGlobalPtrOutput
-	ToWebProxyGlobalPtrOutputWithContext(ctx context.Context) WebProxyGlobalPtrOutput
-}
-
-type webProxyGlobalPtrType WebProxyGlobalArgs
-
-func (*webProxyGlobalPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyGlobal)(nil))
-}
-
-func (i *webProxyGlobalPtrType) ToWebProxyGlobalPtrOutput() WebProxyGlobalPtrOutput {
-	return i.ToWebProxyGlobalPtrOutputWithContext(context.Background())
-}
-
-func (i *webProxyGlobalPtrType) ToWebProxyGlobalPtrOutputWithContext(ctx context.Context) WebProxyGlobalPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalPtrOutput)
 }
 
 // WebProxyGlobalArrayInput is an input type that accepts WebProxyGlobalArray and WebProxyGlobalArrayOutput values.
@@ -366,7 +368,7 @@ type WebProxyGlobalArrayInput interface {
 type WebProxyGlobalArray []WebProxyGlobalInput
 
 func (WebProxyGlobalArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebProxyGlobal)(nil))
+	return reflect.TypeOf((*[]*WebProxyGlobal)(nil)).Elem()
 }
 
 func (i WebProxyGlobalArray) ToWebProxyGlobalArrayOutput() WebProxyGlobalArrayOutput {
@@ -391,7 +393,7 @@ type WebProxyGlobalMapInput interface {
 type WebProxyGlobalMap map[string]WebProxyGlobalInput
 
 func (WebProxyGlobalMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebProxyGlobal)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyGlobal)(nil)).Elem()
 }
 
 func (i WebProxyGlobalMap) ToWebProxyGlobalMapOutput() WebProxyGlobalMapOutput {
@@ -402,12 +404,10 @@ func (i WebProxyGlobalMap) ToWebProxyGlobalMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(WebProxyGlobalMapOutput)
 }
 
-type WebProxyGlobalOutput struct {
-	*pulumi.OutputState
-}
+type WebProxyGlobalOutput struct{ *pulumi.OutputState }
 
 func (WebProxyGlobalOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebProxyGlobal)(nil))
+	return reflect.TypeOf((**WebProxyGlobal)(nil)).Elem()
 }
 
 func (o WebProxyGlobalOutput) ToWebProxyGlobalOutput() WebProxyGlobalOutput {
@@ -418,36 +418,10 @@ func (o WebProxyGlobalOutput) ToWebProxyGlobalOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o WebProxyGlobalOutput) ToWebProxyGlobalPtrOutput() WebProxyGlobalPtrOutput {
-	return o.ToWebProxyGlobalPtrOutputWithContext(context.Background())
-}
-
-func (o WebProxyGlobalOutput) ToWebProxyGlobalPtrOutputWithContext(ctx context.Context) WebProxyGlobalPtrOutput {
-	return o.ApplyT(func(v WebProxyGlobal) *WebProxyGlobal {
-		return &v
-	}).(WebProxyGlobalPtrOutput)
-}
-
-type WebProxyGlobalPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebProxyGlobalPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebProxyGlobal)(nil))
-}
-
-func (o WebProxyGlobalPtrOutput) ToWebProxyGlobalPtrOutput() WebProxyGlobalPtrOutput {
-	return o
-}
-
-func (o WebProxyGlobalPtrOutput) ToWebProxyGlobalPtrOutputWithContext(ctx context.Context) WebProxyGlobalPtrOutput {
-	return o
-}
-
 type WebProxyGlobalArrayOutput struct{ *pulumi.OutputState }
 
 func (WebProxyGlobalArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebProxyGlobal)(nil))
+	return reflect.TypeOf((*[]*WebProxyGlobal)(nil)).Elem()
 }
 
 func (o WebProxyGlobalArrayOutput) ToWebProxyGlobalArrayOutput() WebProxyGlobalArrayOutput {
@@ -459,15 +433,15 @@ func (o WebProxyGlobalArrayOutput) ToWebProxyGlobalArrayOutputWithContext(ctx co
 }
 
 func (o WebProxyGlobalArrayOutput) Index(i pulumi.IntInput) WebProxyGlobalOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebProxyGlobal {
-		return vs[0].([]WebProxyGlobal)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebProxyGlobal {
+		return vs[0].([]*WebProxyGlobal)[vs[1].(int)]
 	}).(WebProxyGlobalOutput)
 }
 
 type WebProxyGlobalMapOutput struct{ *pulumi.OutputState }
 
 func (WebProxyGlobalMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebProxyGlobal)(nil))
+	return reflect.TypeOf((*map[string]*WebProxyGlobal)(nil)).Elem()
 }
 
 func (o WebProxyGlobalMapOutput) ToWebProxyGlobalMapOutput() WebProxyGlobalMapOutput {
@@ -479,14 +453,16 @@ func (o WebProxyGlobalMapOutput) ToWebProxyGlobalMapOutputWithContext(ctx contex
 }
 
 func (o WebProxyGlobalMapOutput) MapIndex(k pulumi.StringInput) WebProxyGlobalOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebProxyGlobal {
-		return vs[0].(map[string]WebProxyGlobal)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebProxyGlobal {
+		return vs[0].(map[string]*WebProxyGlobal)[vs[1].(string)]
 	}).(WebProxyGlobalOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyGlobalInput)(nil)).Elem(), &WebProxyGlobal{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyGlobalArrayInput)(nil)).Elem(), WebProxyGlobalArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebProxyGlobalMapInput)(nil)).Elem(), WebProxyGlobalMap{})
 	pulumi.RegisterOutputType(WebProxyGlobalOutput{})
-	pulumi.RegisterOutputType(WebProxyGlobalPtrOutput{})
 	pulumi.RegisterOutputType(WebProxyGlobalArrayOutput{})
 	pulumi.RegisterOutputType(WebProxyGlobalMapOutput{})
 }

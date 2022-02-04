@@ -18,6 +18,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -25,13 +26,13 @@ import (
 // func main() {
 // 	pulumi.Run(func(ctx *pulumi.Context) error {
 // 		_, err := fortios.NewLogThreatWeight(ctx, "trname", &fortios.LogThreatWeightArgs{
-// 			Applications: fortios.LogThreatWeightApplicationArray{
-// 				&fortios.LogThreatWeightApplicationArgs{
+// 			Applications: LogThreatWeightApplicationArray{
+// 				&LogThreatWeightApplicationArgs{
 // 					Category: pulumi.Int(2),
 // 					Id:       pulumi.Int(1),
 // 					Level:    pulumi.String("low"),
 // 				},
-// 				&fortios.LogThreatWeightApplicationArgs{
+// 				&LogThreatWeightApplicationArgs{
 // 					Category: pulumi.Int(6),
 // 					Id:       pulumi.Int(2),
 // 					Level:    pulumi.String("medium"),
@@ -39,20 +40,20 @@ import (
 // 			},
 // 			BlockedConnection: pulumi.String("high"),
 // 			FailedConnection:  pulumi.String("low"),
-// 			Ips: &fortios.LogThreatWeightIpsArgs{
+// 			Ips: &LogThreatWeightIpsArgs{
 // 				CriticalSeverity: pulumi.String("critical"),
 // 				HighSeverity:     pulumi.String("high"),
 // 				InfoSeverity:     pulumi.String("disable"),
 // 				LowSeverity:      pulumi.String("low"),
 // 				MediumSeverity:   pulumi.String("medium"),
 // 			},
-// 			Level: &fortios.LogThreatWeightLevelArgs{
+// 			Level: &LogThreatWeightLevelArgs{
 // 				Critical: pulumi.Int(50),
 // 				High:     pulumi.Int(30),
 // 				Low:      pulumi.Int(5),
 // 				Medium:   pulumi.Int(10),
 // 			},
-// 			Malware: &fortios.LogThreatWeightMalwareArgs{
+// 			Malware: &LogThreatWeightMalwareArgs{
 // 				BotnetConnection:        pulumi.String("critical"),
 // 				CommandBlocked:          pulumi.String("disable"),
 // 				ContentDisarm:           pulumi.String("medium"),
@@ -67,73 +68,73 @@ import (
 // 			},
 // 			Status:           pulumi.String("enable"),
 // 			UrlBlockDetected: pulumi.String("high"),
-// 			Webs: fortios.LogThreatWeightWebArray{
-// 				&fortios.LogThreatWeightWebArgs{
+// 			Webs: LogThreatWeightWebArray{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(26),
 // 					Id:       pulumi.Int(1),
 // 					Level:    pulumi.String("high"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(61),
 // 					Id:       pulumi.Int(2),
 // 					Level:    pulumi.String("high"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(86),
 // 					Id:       pulumi.Int(3),
 // 					Level:    pulumi.String("high"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(1),
 // 					Id:       pulumi.Int(4),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(3),
 // 					Id:       pulumi.Int(5),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(4),
 // 					Id:       pulumi.Int(6),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(5),
 // 					Id:       pulumi.Int(7),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(6),
 // 					Id:       pulumi.Int(8),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(12),
 // 					Id:       pulumi.Int(9),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(59),
 // 					Id:       pulumi.Int(10),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(62),
 // 					Id:       pulumi.Int(11),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(83),
 // 					Id:       pulumi.Int(12),
 // 					Level:    pulumi.String("medium"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(72),
 // 					Id:       pulumi.Int(13),
 // 					Level:    pulumi.String("low"),
 // 				},
-// 				&fortios.LogThreatWeightWebArgs{
+// 				&LogThreatWeightWebArgs{
 // 					Category: pulumi.Int(14),
 // 					Id:       pulumi.Int(14),
 // 					Level:    pulumi.String("low"),
@@ -195,6 +196,7 @@ func NewLogThreatWeight(ctx *pulumi.Context,
 		args = &LogThreatWeightArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogThreatWeight
 	err := ctx.RegisterResource("fortios:index/logThreatWeight:LogThreatWeight", name, args, &resource, opts...)
 	if err != nil {
@@ -349,7 +351,7 @@ type LogThreatWeightInput interface {
 }
 
 func (*LogThreatWeight) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogThreatWeight)(nil))
+	return reflect.TypeOf((**LogThreatWeight)(nil)).Elem()
 }
 
 func (i *LogThreatWeight) ToLogThreatWeightOutput() LogThreatWeightOutput {
@@ -358,35 +360,6 @@ func (i *LogThreatWeight) ToLogThreatWeightOutput() LogThreatWeightOutput {
 
 func (i *LogThreatWeight) ToLogThreatWeightOutputWithContext(ctx context.Context) LogThreatWeightOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightOutput)
-}
-
-func (i *LogThreatWeight) ToLogThreatWeightPtrOutput() LogThreatWeightPtrOutput {
-	return i.ToLogThreatWeightPtrOutputWithContext(context.Background())
-}
-
-func (i *LogThreatWeight) ToLogThreatWeightPtrOutputWithContext(ctx context.Context) LogThreatWeightPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightPtrOutput)
-}
-
-type LogThreatWeightPtrInput interface {
-	pulumi.Input
-
-	ToLogThreatWeightPtrOutput() LogThreatWeightPtrOutput
-	ToLogThreatWeightPtrOutputWithContext(ctx context.Context) LogThreatWeightPtrOutput
-}
-
-type logThreatWeightPtrType LogThreatWeightArgs
-
-func (*logThreatWeightPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogThreatWeight)(nil))
-}
-
-func (i *logThreatWeightPtrType) ToLogThreatWeightPtrOutput() LogThreatWeightPtrOutput {
-	return i.ToLogThreatWeightPtrOutputWithContext(context.Background())
-}
-
-func (i *logThreatWeightPtrType) ToLogThreatWeightPtrOutputWithContext(ctx context.Context) LogThreatWeightPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightPtrOutput)
 }
 
 // LogThreatWeightArrayInput is an input type that accepts LogThreatWeightArray and LogThreatWeightArrayOutput values.
@@ -403,7 +376,7 @@ type LogThreatWeightArrayInput interface {
 type LogThreatWeightArray []LogThreatWeightInput
 
 func (LogThreatWeightArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogThreatWeight)(nil))
+	return reflect.TypeOf((*[]*LogThreatWeight)(nil)).Elem()
 }
 
 func (i LogThreatWeightArray) ToLogThreatWeightArrayOutput() LogThreatWeightArrayOutput {
@@ -428,7 +401,7 @@ type LogThreatWeightMapInput interface {
 type LogThreatWeightMap map[string]LogThreatWeightInput
 
 func (LogThreatWeightMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogThreatWeight)(nil))
+	return reflect.TypeOf((*map[string]*LogThreatWeight)(nil)).Elem()
 }
 
 func (i LogThreatWeightMap) ToLogThreatWeightMapOutput() LogThreatWeightMapOutput {
@@ -439,12 +412,10 @@ func (i LogThreatWeightMap) ToLogThreatWeightMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(LogThreatWeightMapOutput)
 }
 
-type LogThreatWeightOutput struct {
-	*pulumi.OutputState
-}
+type LogThreatWeightOutput struct{ *pulumi.OutputState }
 
 func (LogThreatWeightOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogThreatWeight)(nil))
+	return reflect.TypeOf((**LogThreatWeight)(nil)).Elem()
 }
 
 func (o LogThreatWeightOutput) ToLogThreatWeightOutput() LogThreatWeightOutput {
@@ -455,36 +426,10 @@ func (o LogThreatWeightOutput) ToLogThreatWeightOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o LogThreatWeightOutput) ToLogThreatWeightPtrOutput() LogThreatWeightPtrOutput {
-	return o.ToLogThreatWeightPtrOutputWithContext(context.Background())
-}
-
-func (o LogThreatWeightOutput) ToLogThreatWeightPtrOutputWithContext(ctx context.Context) LogThreatWeightPtrOutput {
-	return o.ApplyT(func(v LogThreatWeight) *LogThreatWeight {
-		return &v
-	}).(LogThreatWeightPtrOutput)
-}
-
-type LogThreatWeightPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogThreatWeightPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogThreatWeight)(nil))
-}
-
-func (o LogThreatWeightPtrOutput) ToLogThreatWeightPtrOutput() LogThreatWeightPtrOutput {
-	return o
-}
-
-func (o LogThreatWeightPtrOutput) ToLogThreatWeightPtrOutputWithContext(ctx context.Context) LogThreatWeightPtrOutput {
-	return o
-}
-
 type LogThreatWeightArrayOutput struct{ *pulumi.OutputState }
 
 func (LogThreatWeightArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogThreatWeight)(nil))
+	return reflect.TypeOf((*[]*LogThreatWeight)(nil)).Elem()
 }
 
 func (o LogThreatWeightArrayOutput) ToLogThreatWeightArrayOutput() LogThreatWeightArrayOutput {
@@ -496,15 +441,15 @@ func (o LogThreatWeightArrayOutput) ToLogThreatWeightArrayOutputWithContext(ctx 
 }
 
 func (o LogThreatWeightArrayOutput) Index(i pulumi.IntInput) LogThreatWeightOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogThreatWeight {
-		return vs[0].([]LogThreatWeight)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogThreatWeight {
+		return vs[0].([]*LogThreatWeight)[vs[1].(int)]
 	}).(LogThreatWeightOutput)
 }
 
 type LogThreatWeightMapOutput struct{ *pulumi.OutputState }
 
 func (LogThreatWeightMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogThreatWeight)(nil))
+	return reflect.TypeOf((*map[string]*LogThreatWeight)(nil)).Elem()
 }
 
 func (o LogThreatWeightMapOutput) ToLogThreatWeightMapOutput() LogThreatWeightMapOutput {
@@ -516,14 +461,16 @@ func (o LogThreatWeightMapOutput) ToLogThreatWeightMapOutputWithContext(ctx cont
 }
 
 func (o LogThreatWeightMapOutput) MapIndex(k pulumi.StringInput) LogThreatWeightOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogThreatWeight {
-		return vs[0].(map[string]LogThreatWeight)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogThreatWeight {
+		return vs[0].(map[string]*LogThreatWeight)[vs[1].(string)]
 	}).(LogThreatWeightOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogThreatWeightInput)(nil)).Elem(), &LogThreatWeight{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogThreatWeightArrayInput)(nil)).Elem(), LogThreatWeightArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogThreatWeightMapInput)(nil)).Elem(), LogThreatWeightMap{})
 	pulumi.RegisterOutputType(LogThreatWeightOutput{})
-	pulumi.RegisterOutputType(LogThreatWeightPtrOutput{})
 	pulumi.RegisterOutputType(LogThreatWeightArrayOutput{})
 	pulumi.RegisterOutputType(LogThreatWeightMapOutput{})
 }

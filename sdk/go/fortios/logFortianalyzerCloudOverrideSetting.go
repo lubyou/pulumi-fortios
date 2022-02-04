@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Override FortiAnalyzer Cloud settings.
+// Override FortiAnalyzer Cloud settings. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -37,6 +37,7 @@ func NewLogFortianalyzerCloudOverrideSetting(ctx *pulumi.Context,
 		args = &LogFortianalyzerCloudOverrideSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerCloudOverrideSetting
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerCloudOverrideSetting:LogFortianalyzerCloudOverrideSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type LogFortianalyzerCloudOverrideSettingInput interface {
 }
 
 func (*LogFortianalyzerCloudOverrideSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudOverrideSetting)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudOverrideSetting)(nil)).Elem()
 }
 
 func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSettingOutput() LogFortianalyzerCloudOverrideSettingOutput {
@@ -112,35 +113,6 @@ func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSe
 
 func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSettingOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingOutput)
-}
-
-func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSettingPtrOutput() LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return i.ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortianalyzerCloudOverrideSetting) ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingPtrOutput)
-}
-
-type LogFortianalyzerCloudOverrideSettingPtrInput interface {
-	pulumi.Input
-
-	ToLogFortianalyzerCloudOverrideSettingPtrOutput() LogFortianalyzerCloudOverrideSettingPtrOutput
-	ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingPtrOutput
-}
-
-type logFortianalyzerCloudOverrideSettingPtrType LogFortianalyzerCloudOverrideSettingArgs
-
-func (*logFortianalyzerCloudOverrideSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudOverrideSetting)(nil))
-}
-
-func (i *logFortianalyzerCloudOverrideSettingPtrType) ToLogFortianalyzerCloudOverrideSettingPtrOutput() LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return i.ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortianalyzerCloudOverrideSettingPtrType) ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingPtrOutput)
 }
 
 // LogFortianalyzerCloudOverrideSettingArrayInput is an input type that accepts LogFortianalyzerCloudOverrideSettingArray and LogFortianalyzerCloudOverrideSettingArrayOutput values.
@@ -157,7 +129,7 @@ type LogFortianalyzerCloudOverrideSettingArrayInput interface {
 type LogFortianalyzerCloudOverrideSettingArray []LogFortianalyzerCloudOverrideSettingInput
 
 func (LogFortianalyzerCloudOverrideSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortianalyzerCloudOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudOverrideSetting)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudOverrideSettingArray) ToLogFortianalyzerCloudOverrideSettingArrayOutput() LogFortianalyzerCloudOverrideSettingArrayOutput {
@@ -182,7 +154,7 @@ type LogFortianalyzerCloudOverrideSettingMapInput interface {
 type LogFortianalyzerCloudOverrideSettingMap map[string]LogFortianalyzerCloudOverrideSettingInput
 
 func (LogFortianalyzerCloudOverrideSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortianalyzerCloudOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudOverrideSetting)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudOverrideSettingMap) ToLogFortianalyzerCloudOverrideSettingMapOutput() LogFortianalyzerCloudOverrideSettingMapOutput {
@@ -193,12 +165,10 @@ func (i LogFortianalyzerCloudOverrideSettingMap) ToLogFortianalyzerCloudOverride
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideSettingMapOutput)
 }
 
-type LogFortianalyzerCloudOverrideSettingOutput struct {
-	*pulumi.OutputState
-}
+type LogFortianalyzerCloudOverrideSettingOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudOverrideSetting)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverrideSettingOutput() LogFortianalyzerCloudOverrideSettingOutput {
@@ -209,36 +179,10 @@ func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverr
 	return o
 }
 
-func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverrideSettingPtrOutput() LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return o.ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortianalyzerCloudOverrideSettingOutput) ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return o.ApplyT(func(v LogFortianalyzerCloudOverrideSetting) *LogFortianalyzerCloudOverrideSetting {
-		return &v
-	}).(LogFortianalyzerCloudOverrideSettingPtrOutput)
-}
-
-type LogFortianalyzerCloudOverrideSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortianalyzerCloudOverrideSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudOverrideSetting)(nil))
-}
-
-func (o LogFortianalyzerCloudOverrideSettingPtrOutput) ToLogFortianalyzerCloudOverrideSettingPtrOutput() LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return o
-}
-
-func (o LogFortianalyzerCloudOverrideSettingPtrOutput) ToLogFortianalyzerCloudOverrideSettingPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideSettingPtrOutput {
-	return o
-}
-
 type LogFortianalyzerCloudOverrideSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortianalyzerCloudOverrideSetting)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudOverrideSettingArrayOutput) ToLogFortianalyzerCloudOverrideSettingArrayOutput() LogFortianalyzerCloudOverrideSettingArrayOutput {
@@ -250,15 +194,15 @@ func (o LogFortianalyzerCloudOverrideSettingArrayOutput) ToLogFortianalyzerCloud
 }
 
 func (o LogFortianalyzerCloudOverrideSettingArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudOverrideSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortianalyzerCloudOverrideSetting {
-		return vs[0].([]LogFortianalyzerCloudOverrideSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudOverrideSetting {
+		return vs[0].([]*LogFortianalyzerCloudOverrideSetting)[vs[1].(int)]
 	}).(LogFortianalyzerCloudOverrideSettingOutput)
 }
 
 type LogFortianalyzerCloudOverrideSettingMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortianalyzerCloudOverrideSetting)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudOverrideSetting)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudOverrideSettingMapOutput) ToLogFortianalyzerCloudOverrideSettingMapOutput() LogFortianalyzerCloudOverrideSettingMapOutput {
@@ -270,14 +214,16 @@ func (o LogFortianalyzerCloudOverrideSettingMapOutput) ToLogFortianalyzerCloudOv
 }
 
 func (o LogFortianalyzerCloudOverrideSettingMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudOverrideSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortianalyzerCloudOverrideSetting {
-		return vs[0].(map[string]LogFortianalyzerCloudOverrideSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudOverrideSetting {
+		return vs[0].(map[string]*LogFortianalyzerCloudOverrideSetting)[vs[1].(string)]
 	}).(LogFortianalyzerCloudOverrideSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudOverrideSettingInput)(nil)).Elem(), &LogFortianalyzerCloudOverrideSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudOverrideSettingArrayInput)(nil)).Elem(), LogFortianalyzerCloudOverrideSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudOverrideSettingMapInput)(nil)).Elem(), LogFortianalyzerCloudOverrideSettingMap{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideSettingOutput{})
-	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideSettingPtrOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideSettingArrayOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideSettingMapOutput{})
 }

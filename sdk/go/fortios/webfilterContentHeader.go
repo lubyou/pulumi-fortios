@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,7 @@ func NewWebfilterContentHeader(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WebfilterContentHeader
 	err := ctx.RegisterResource("fortios:index/webfilterContentHeader:WebfilterContentHeader", name, args, &resource, opts...)
 	if err != nil {
@@ -170,7 +171,7 @@ type WebfilterContentHeaderInput interface {
 }
 
 func (*WebfilterContentHeader) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterContentHeader)(nil))
+	return reflect.TypeOf((**WebfilterContentHeader)(nil)).Elem()
 }
 
 func (i *WebfilterContentHeader) ToWebfilterContentHeaderOutput() WebfilterContentHeaderOutput {
@@ -179,35 +180,6 @@ func (i *WebfilterContentHeader) ToWebfilterContentHeaderOutput() WebfilterConte
 
 func (i *WebfilterContentHeader) ToWebfilterContentHeaderOutputWithContext(ctx context.Context) WebfilterContentHeaderOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentHeaderOutput)
-}
-
-func (i *WebfilterContentHeader) ToWebfilterContentHeaderPtrOutput() WebfilterContentHeaderPtrOutput {
-	return i.ToWebfilterContentHeaderPtrOutputWithContext(context.Background())
-}
-
-func (i *WebfilterContentHeader) ToWebfilterContentHeaderPtrOutputWithContext(ctx context.Context) WebfilterContentHeaderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentHeaderPtrOutput)
-}
-
-type WebfilterContentHeaderPtrInput interface {
-	pulumi.Input
-
-	ToWebfilterContentHeaderPtrOutput() WebfilterContentHeaderPtrOutput
-	ToWebfilterContentHeaderPtrOutputWithContext(ctx context.Context) WebfilterContentHeaderPtrOutput
-}
-
-type webfilterContentHeaderPtrType WebfilterContentHeaderArgs
-
-func (*webfilterContentHeaderPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterContentHeader)(nil))
-}
-
-func (i *webfilterContentHeaderPtrType) ToWebfilterContentHeaderPtrOutput() WebfilterContentHeaderPtrOutput {
-	return i.ToWebfilterContentHeaderPtrOutputWithContext(context.Background())
-}
-
-func (i *webfilterContentHeaderPtrType) ToWebfilterContentHeaderPtrOutputWithContext(ctx context.Context) WebfilterContentHeaderPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentHeaderPtrOutput)
 }
 
 // WebfilterContentHeaderArrayInput is an input type that accepts WebfilterContentHeaderArray and WebfilterContentHeaderArrayOutput values.
@@ -224,7 +196,7 @@ type WebfilterContentHeaderArrayInput interface {
 type WebfilterContentHeaderArray []WebfilterContentHeaderInput
 
 func (WebfilterContentHeaderArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WebfilterContentHeader)(nil))
+	return reflect.TypeOf((*[]*WebfilterContentHeader)(nil)).Elem()
 }
 
 func (i WebfilterContentHeaderArray) ToWebfilterContentHeaderArrayOutput() WebfilterContentHeaderArrayOutput {
@@ -249,7 +221,7 @@ type WebfilterContentHeaderMapInput interface {
 type WebfilterContentHeaderMap map[string]WebfilterContentHeaderInput
 
 func (WebfilterContentHeaderMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WebfilterContentHeader)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterContentHeader)(nil)).Elem()
 }
 
 func (i WebfilterContentHeaderMap) ToWebfilterContentHeaderMapOutput() WebfilterContentHeaderMapOutput {
@@ -260,12 +232,10 @@ func (i WebfilterContentHeaderMap) ToWebfilterContentHeaderMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(WebfilterContentHeaderMapOutput)
 }
 
-type WebfilterContentHeaderOutput struct {
-	*pulumi.OutputState
-}
+type WebfilterContentHeaderOutput struct{ *pulumi.OutputState }
 
 func (WebfilterContentHeaderOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WebfilterContentHeader)(nil))
+	return reflect.TypeOf((**WebfilterContentHeader)(nil)).Elem()
 }
 
 func (o WebfilterContentHeaderOutput) ToWebfilterContentHeaderOutput() WebfilterContentHeaderOutput {
@@ -276,36 +246,10 @@ func (o WebfilterContentHeaderOutput) ToWebfilterContentHeaderOutputWithContext(
 	return o
 }
 
-func (o WebfilterContentHeaderOutput) ToWebfilterContentHeaderPtrOutput() WebfilterContentHeaderPtrOutput {
-	return o.ToWebfilterContentHeaderPtrOutputWithContext(context.Background())
-}
-
-func (o WebfilterContentHeaderOutput) ToWebfilterContentHeaderPtrOutputWithContext(ctx context.Context) WebfilterContentHeaderPtrOutput {
-	return o.ApplyT(func(v WebfilterContentHeader) *WebfilterContentHeader {
-		return &v
-	}).(WebfilterContentHeaderPtrOutput)
-}
-
-type WebfilterContentHeaderPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WebfilterContentHeaderPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WebfilterContentHeader)(nil))
-}
-
-func (o WebfilterContentHeaderPtrOutput) ToWebfilterContentHeaderPtrOutput() WebfilterContentHeaderPtrOutput {
-	return o
-}
-
-func (o WebfilterContentHeaderPtrOutput) ToWebfilterContentHeaderPtrOutputWithContext(ctx context.Context) WebfilterContentHeaderPtrOutput {
-	return o
-}
-
 type WebfilterContentHeaderArrayOutput struct{ *pulumi.OutputState }
 
 func (WebfilterContentHeaderArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WebfilterContentHeader)(nil))
+	return reflect.TypeOf((*[]*WebfilterContentHeader)(nil)).Elem()
 }
 
 func (o WebfilterContentHeaderArrayOutput) ToWebfilterContentHeaderArrayOutput() WebfilterContentHeaderArrayOutput {
@@ -317,15 +261,15 @@ func (o WebfilterContentHeaderArrayOutput) ToWebfilterContentHeaderArrayOutputWi
 }
 
 func (o WebfilterContentHeaderArrayOutput) Index(i pulumi.IntInput) WebfilterContentHeaderOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WebfilterContentHeader {
-		return vs[0].([]WebfilterContentHeader)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WebfilterContentHeader {
+		return vs[0].([]*WebfilterContentHeader)[vs[1].(int)]
 	}).(WebfilterContentHeaderOutput)
 }
 
 type WebfilterContentHeaderMapOutput struct{ *pulumi.OutputState }
 
 func (WebfilterContentHeaderMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WebfilterContentHeader)(nil))
+	return reflect.TypeOf((*map[string]*WebfilterContentHeader)(nil)).Elem()
 }
 
 func (o WebfilterContentHeaderMapOutput) ToWebfilterContentHeaderMapOutput() WebfilterContentHeaderMapOutput {
@@ -337,14 +281,16 @@ func (o WebfilterContentHeaderMapOutput) ToWebfilterContentHeaderMapOutputWithCo
 }
 
 func (o WebfilterContentHeaderMapOutput) MapIndex(k pulumi.StringInput) WebfilterContentHeaderOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WebfilterContentHeader {
-		return vs[0].(map[string]WebfilterContentHeader)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WebfilterContentHeader {
+		return vs[0].(map[string]*WebfilterContentHeader)[vs[1].(string)]
 	}).(WebfilterContentHeaderOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterContentHeaderInput)(nil)).Elem(), &WebfilterContentHeader{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterContentHeaderArrayInput)(nil)).Elem(), WebfilterContentHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebfilterContentHeaderMapInput)(nil)).Elem(), WebfilterContentHeaderMap{})
 	pulumi.RegisterOutputType(WebfilterContentHeaderOutput{})
-	pulumi.RegisterOutputType(WebfilterContentHeaderPtrOutput{})
 	pulumi.RegisterOutputType(WebfilterContentHeaderArrayOutput{})
 	pulumi.RegisterOutputType(WebfilterContentHeaderMapOutput{})
 }

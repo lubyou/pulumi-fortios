@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -36,8 +37,8 @@ import (
 // 		}
 // 		_, err = fortios.NewFirewallScheduleGroup(ctx, "trname", &fortios.FirewallScheduleGroupArgs{
 // 			Color: pulumi.Int(0),
-// 			Members: fortios.FirewallScheduleGroupMemberArray{
-// 				&fortios.FirewallScheduleGroupMemberArgs{
+// 			Members: FirewallScheduleGroupMemberArray{
+// 				&FirewallScheduleGroupMemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -66,6 +67,8 @@ type FirewallScheduleGroup struct {
 	Color pulumi.IntOutput `pulumi:"color"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringOutput `pulumi:"fabricObject"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members FirewallScheduleGroupMemberArrayOutput `pulumi:"members"`
 	// Schedule name.
@@ -84,6 +87,7 @@ func NewFirewallScheduleGroup(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallScheduleGroup
 	err := ctx.RegisterResource("fortios:index/firewallScheduleGroup:FirewallScheduleGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -110,6 +114,8 @@ type firewallScheduleGroupState struct {
 	Color *int `pulumi:"color"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members []FirewallScheduleGroupMember `pulumi:"members"`
 	// Schedule name.
@@ -123,6 +129,8 @@ type FirewallScheduleGroupState struct {
 	Color pulumi.IntPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members FirewallScheduleGroupMemberArrayInput
 	// Schedule name.
@@ -140,6 +148,8 @@ type firewallScheduleGroupArgs struct {
 	Color *int `pulumi:"color"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject *string `pulumi:"fabricObject"`
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members []FirewallScheduleGroupMember `pulumi:"members"`
 	// Schedule name.
@@ -154,6 +164,8 @@ type FirewallScheduleGroupArgs struct {
 	Color pulumi.IntPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Security Fabric global object setting. Valid values: `enable`, `disable`.
+	FabricObject pulumi.StringPtrInput
 	// Schedules added to the schedule group. The structure of `member` block is documented below.
 	Members FirewallScheduleGroupMemberArrayInput
 	// Schedule name.
@@ -174,7 +186,7 @@ type FirewallScheduleGroupInput interface {
 }
 
 func (*FirewallScheduleGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallScheduleGroup)(nil))
+	return reflect.TypeOf((**FirewallScheduleGroup)(nil)).Elem()
 }
 
 func (i *FirewallScheduleGroup) ToFirewallScheduleGroupOutput() FirewallScheduleGroupOutput {
@@ -183,35 +195,6 @@ func (i *FirewallScheduleGroup) ToFirewallScheduleGroupOutput() FirewallSchedule
 
 func (i *FirewallScheduleGroup) ToFirewallScheduleGroupOutputWithContext(ctx context.Context) FirewallScheduleGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupOutput)
-}
-
-func (i *FirewallScheduleGroup) ToFirewallScheduleGroupPtrOutput() FirewallScheduleGroupPtrOutput {
-	return i.ToFirewallScheduleGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallScheduleGroup) ToFirewallScheduleGroupPtrOutputWithContext(ctx context.Context) FirewallScheduleGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupPtrOutput)
-}
-
-type FirewallScheduleGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallScheduleGroupPtrOutput() FirewallScheduleGroupPtrOutput
-	ToFirewallScheduleGroupPtrOutputWithContext(ctx context.Context) FirewallScheduleGroupPtrOutput
-}
-
-type firewallScheduleGroupPtrType FirewallScheduleGroupArgs
-
-func (*firewallScheduleGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallScheduleGroup)(nil))
-}
-
-func (i *firewallScheduleGroupPtrType) ToFirewallScheduleGroupPtrOutput() FirewallScheduleGroupPtrOutput {
-	return i.ToFirewallScheduleGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallScheduleGroupPtrType) ToFirewallScheduleGroupPtrOutputWithContext(ctx context.Context) FirewallScheduleGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupPtrOutput)
 }
 
 // FirewallScheduleGroupArrayInput is an input type that accepts FirewallScheduleGroupArray and FirewallScheduleGroupArrayOutput values.
@@ -228,7 +211,7 @@ type FirewallScheduleGroupArrayInput interface {
 type FirewallScheduleGroupArray []FirewallScheduleGroupInput
 
 func (FirewallScheduleGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallScheduleGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallScheduleGroup)(nil)).Elem()
 }
 
 func (i FirewallScheduleGroupArray) ToFirewallScheduleGroupArrayOutput() FirewallScheduleGroupArrayOutput {
@@ -253,7 +236,7 @@ type FirewallScheduleGroupMapInput interface {
 type FirewallScheduleGroupMap map[string]FirewallScheduleGroupInput
 
 func (FirewallScheduleGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallScheduleGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallScheduleGroup)(nil)).Elem()
 }
 
 func (i FirewallScheduleGroupMap) ToFirewallScheduleGroupMapOutput() FirewallScheduleGroupMapOutput {
@@ -264,12 +247,10 @@ func (i FirewallScheduleGroupMap) ToFirewallScheduleGroupMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallScheduleGroupMapOutput)
 }
 
-type FirewallScheduleGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallScheduleGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallScheduleGroup)(nil))
+	return reflect.TypeOf((**FirewallScheduleGroup)(nil)).Elem()
 }
 
 func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupOutput() FirewallScheduleGroupOutput {
@@ -280,36 +261,10 @@ func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupOutputWithContext(ct
 	return o
 }
 
-func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupPtrOutput() FirewallScheduleGroupPtrOutput {
-	return o.ToFirewallScheduleGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallScheduleGroupOutput) ToFirewallScheduleGroupPtrOutputWithContext(ctx context.Context) FirewallScheduleGroupPtrOutput {
-	return o.ApplyT(func(v FirewallScheduleGroup) *FirewallScheduleGroup {
-		return &v
-	}).(FirewallScheduleGroupPtrOutput)
-}
-
-type FirewallScheduleGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallScheduleGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallScheduleGroup)(nil))
-}
-
-func (o FirewallScheduleGroupPtrOutput) ToFirewallScheduleGroupPtrOutput() FirewallScheduleGroupPtrOutput {
-	return o
-}
-
-func (o FirewallScheduleGroupPtrOutput) ToFirewallScheduleGroupPtrOutputWithContext(ctx context.Context) FirewallScheduleGroupPtrOutput {
-	return o
-}
-
 type FirewallScheduleGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallScheduleGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallScheduleGroup)(nil)).Elem()
 }
 
 func (o FirewallScheduleGroupArrayOutput) ToFirewallScheduleGroupArrayOutput() FirewallScheduleGroupArrayOutput {
@@ -321,15 +276,15 @@ func (o FirewallScheduleGroupArrayOutput) ToFirewallScheduleGroupArrayOutputWith
 }
 
 func (o FirewallScheduleGroupArrayOutput) Index(i pulumi.IntInput) FirewallScheduleGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallScheduleGroup {
-		return vs[0].([]FirewallScheduleGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallScheduleGroup {
+		return vs[0].([]*FirewallScheduleGroup)[vs[1].(int)]
 	}).(FirewallScheduleGroupOutput)
 }
 
 type FirewallScheduleGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallScheduleGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallScheduleGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallScheduleGroup)(nil)).Elem()
 }
 
 func (o FirewallScheduleGroupMapOutput) ToFirewallScheduleGroupMapOutput() FirewallScheduleGroupMapOutput {
@@ -341,14 +296,16 @@ func (o FirewallScheduleGroupMapOutput) ToFirewallScheduleGroupMapOutputWithCont
 }
 
 func (o FirewallScheduleGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallScheduleGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallScheduleGroup {
-		return vs[0].(map[string]FirewallScheduleGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallScheduleGroup {
+		return vs[0].(map[string]*FirewallScheduleGroup)[vs[1].(string)]
 	}).(FirewallScheduleGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleGroupInput)(nil)).Elem(), &FirewallScheduleGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleGroupArrayInput)(nil)).Elem(), FirewallScheduleGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallScheduleGroupMapInput)(nil)).Elem(), FirewallScheduleGroupMap{})
 	pulumi.RegisterOutputType(FirewallScheduleGroupOutput{})
-	pulumi.RegisterOutputType(FirewallScheduleGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallScheduleGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallScheduleGroupMapOutput{})
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure FortiClient Enterprise Management Server (EMS) entries.
+// Configure FortiClient Enterprise Management Server (EMS) entries. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -30,6 +30,8 @@ type EndpointControlFctems struct {
 	AdminUsername pulumi.StringOutput `pulumi:"adminUsername"`
 	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
 	CallTimeout pulumi.IntOutput `pulumi:"callTimeout"`
+	// List of EMS capabilities.
+	Capabilities pulumi.StringOutput `pulumi:"capabilities"`
 	// FortiClient EMS certificate.
 	Certificate pulumi.StringOutput `pulumi:"certificate"`
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
@@ -40,8 +42,12 @@ type EndpointControlFctems struct {
 	HttpsPort pulumi.IntOutput `pulumi:"httpsPort"`
 	// FortiClient Enterprise Management Server (EMS) name.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+	PreserveSslSession pulumi.StringOutput `pulumi:"preserveSslSession"`
 	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
 	PullAvatars pulumi.StringOutput `pulumi:"pullAvatars"`
+	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+	PullMalwareHash pulumi.StringOutput `pulumi:"pullMalwareHash"`
 	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
 	PullSysinfo pulumi.StringOutput `pulumi:"pullSysinfo"`
 	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
@@ -56,6 +62,8 @@ type EndpointControlFctems struct {
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+	WebsocketOverride pulumi.StringOutput `pulumi:"websocketOverride"`
 }
 
 // NewEndpointControlFctems registers a new resource with the given unique name, arguments, and options.
@@ -65,6 +73,7 @@ func NewEndpointControlFctems(ctx *pulumi.Context,
 		args = &EndpointControlFctemsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EndpointControlFctems
 	err := ctx.RegisterResource("fortios:index/endpointControlFctems:EndpointControlFctems", name, args, &resource, opts...)
 	if err != nil {
@@ -93,6 +102,8 @@ type endpointControlFctemsState struct {
 	AdminUsername *string `pulumi:"adminUsername"`
 	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
 	CallTimeout *int `pulumi:"callTimeout"`
+	// List of EMS capabilities.
+	Capabilities *string `pulumi:"capabilities"`
 	// FortiClient EMS certificate.
 	Certificate *string `pulumi:"certificate"`
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
@@ -103,8 +114,12 @@ type endpointControlFctemsState struct {
 	HttpsPort *int `pulumi:"httpsPort"`
 	// FortiClient Enterprise Management Server (EMS) name.
 	Name *string `pulumi:"name"`
+	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+	PreserveSslSession *string `pulumi:"preserveSslSession"`
 	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
 	PullAvatars *string `pulumi:"pullAvatars"`
+	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+	PullMalwareHash *string `pulumi:"pullMalwareHash"`
 	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
 	PullSysinfo *string `pulumi:"pullSysinfo"`
 	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
@@ -119,6 +134,8 @@ type endpointControlFctemsState struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+	WebsocketOverride *string `pulumi:"websocketOverride"`
 }
 
 type EndpointControlFctemsState struct {
@@ -128,6 +145,8 @@ type EndpointControlFctemsState struct {
 	AdminUsername pulumi.StringPtrInput
 	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
 	CallTimeout pulumi.IntPtrInput
+	// List of EMS capabilities.
+	Capabilities pulumi.StringPtrInput
 	// FortiClient EMS certificate.
 	Certificate pulumi.StringPtrInput
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
@@ -138,8 +157,12 @@ type EndpointControlFctemsState struct {
 	HttpsPort pulumi.IntPtrInput
 	// FortiClient Enterprise Management Server (EMS) name.
 	Name pulumi.StringPtrInput
+	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+	PreserveSslSession pulumi.StringPtrInput
 	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
 	PullAvatars pulumi.StringPtrInput
+	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+	PullMalwareHash pulumi.StringPtrInput
 	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
 	PullSysinfo pulumi.StringPtrInput
 	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
@@ -154,6 +177,8 @@ type EndpointControlFctemsState struct {
 	SourceIp pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+	WebsocketOverride pulumi.StringPtrInput
 }
 
 func (EndpointControlFctemsState) ElementType() reflect.Type {
@@ -167,6 +192,8 @@ type endpointControlFctemsArgs struct {
 	AdminUsername *string `pulumi:"adminUsername"`
 	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
 	CallTimeout *int `pulumi:"callTimeout"`
+	// List of EMS capabilities.
+	Capabilities *string `pulumi:"capabilities"`
 	// FortiClient EMS certificate.
 	Certificate *string `pulumi:"certificate"`
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
@@ -177,8 +204,12 @@ type endpointControlFctemsArgs struct {
 	HttpsPort *int `pulumi:"httpsPort"`
 	// FortiClient Enterprise Management Server (EMS) name.
 	Name *string `pulumi:"name"`
+	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+	PreserveSslSession *string `pulumi:"preserveSslSession"`
 	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
 	PullAvatars *string `pulumi:"pullAvatars"`
+	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+	PullMalwareHash *string `pulumi:"pullMalwareHash"`
 	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
 	PullSysinfo *string `pulumi:"pullSysinfo"`
 	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
@@ -193,6 +224,8 @@ type endpointControlFctemsArgs struct {
 	SourceIp *string `pulumi:"sourceIp"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+	WebsocketOverride *string `pulumi:"websocketOverride"`
 }
 
 // The set of arguments for constructing a EndpointControlFctems resource.
@@ -203,6 +236,8 @@ type EndpointControlFctemsArgs struct {
 	AdminUsername pulumi.StringPtrInput
 	// FortiClient EMS call timeout in milliseconds (500 - 30000 milliseconds, default = 5000).
 	CallTimeout pulumi.IntPtrInput
+	// List of EMS capabilities.
+	Capabilities pulumi.StringPtrInput
 	// FortiClient EMS certificate.
 	Certificate pulumi.StringPtrInput
 	// Cloud server type. Valid values: `production`, `alpha`, `beta`.
@@ -213,8 +248,12 @@ type EndpointControlFctemsArgs struct {
 	HttpsPort pulumi.IntPtrInput
 	// FortiClient Enterprise Management Server (EMS) name.
 	Name pulumi.StringPtrInput
+	// Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `enable`, `disable`.
+	PreserveSslSession pulumi.StringPtrInput
 	// Enable/disable pulling avatars from EMS. Valid values: `enable`, `disable`.
 	PullAvatars pulumi.StringPtrInput
+	// Enable/disable pulling FortiClient malware hash from EMS. Valid values: `enable`, `disable`.
+	PullMalwareHash pulumi.StringPtrInput
 	// Enable/disable pulling SysInfo from EMS. Valid values: `enable`, `disable`.
 	PullSysinfo pulumi.StringPtrInput
 	// Enable/disable pulling FortiClient user tags from EMS. Valid values: `enable`, `disable`.
@@ -229,6 +268,8 @@ type EndpointControlFctemsArgs struct {
 	SourceIp pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
+	WebsocketOverride pulumi.StringPtrInput
 }
 
 func (EndpointControlFctemsArgs) ElementType() reflect.Type {
@@ -243,7 +284,7 @@ type EndpointControlFctemsInput interface {
 }
 
 func (*EndpointControlFctems) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlFctems)(nil))
+	return reflect.TypeOf((**EndpointControlFctems)(nil)).Elem()
 }
 
 func (i *EndpointControlFctems) ToEndpointControlFctemsOutput() EndpointControlFctemsOutput {
@@ -252,35 +293,6 @@ func (i *EndpointControlFctems) ToEndpointControlFctemsOutput() EndpointControlF
 
 func (i *EndpointControlFctems) ToEndpointControlFctemsOutputWithContext(ctx context.Context) EndpointControlFctemsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsOutput)
-}
-
-func (i *EndpointControlFctems) ToEndpointControlFctemsPtrOutput() EndpointControlFctemsPtrOutput {
-	return i.ToEndpointControlFctemsPtrOutputWithContext(context.Background())
-}
-
-func (i *EndpointControlFctems) ToEndpointControlFctemsPtrOutputWithContext(ctx context.Context) EndpointControlFctemsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsPtrOutput)
-}
-
-type EndpointControlFctemsPtrInput interface {
-	pulumi.Input
-
-	ToEndpointControlFctemsPtrOutput() EndpointControlFctemsPtrOutput
-	ToEndpointControlFctemsPtrOutputWithContext(ctx context.Context) EndpointControlFctemsPtrOutput
-}
-
-type endpointControlFctemsPtrType EndpointControlFctemsArgs
-
-func (*endpointControlFctemsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlFctems)(nil))
-}
-
-func (i *endpointControlFctemsPtrType) ToEndpointControlFctemsPtrOutput() EndpointControlFctemsPtrOutput {
-	return i.ToEndpointControlFctemsPtrOutputWithContext(context.Background())
-}
-
-func (i *endpointControlFctemsPtrType) ToEndpointControlFctemsPtrOutputWithContext(ctx context.Context) EndpointControlFctemsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsPtrOutput)
 }
 
 // EndpointControlFctemsArrayInput is an input type that accepts EndpointControlFctemsArray and EndpointControlFctemsArrayOutput values.
@@ -297,7 +309,7 @@ type EndpointControlFctemsArrayInput interface {
 type EndpointControlFctemsArray []EndpointControlFctemsInput
 
 func (EndpointControlFctemsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EndpointControlFctems)(nil))
+	return reflect.TypeOf((*[]*EndpointControlFctems)(nil)).Elem()
 }
 
 func (i EndpointControlFctemsArray) ToEndpointControlFctemsArrayOutput() EndpointControlFctemsArrayOutput {
@@ -322,7 +334,7 @@ type EndpointControlFctemsMapInput interface {
 type EndpointControlFctemsMap map[string]EndpointControlFctemsInput
 
 func (EndpointControlFctemsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EndpointControlFctems)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlFctems)(nil)).Elem()
 }
 
 func (i EndpointControlFctemsMap) ToEndpointControlFctemsMapOutput() EndpointControlFctemsMapOutput {
@@ -333,12 +345,10 @@ func (i EndpointControlFctemsMap) ToEndpointControlFctemsMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(EndpointControlFctemsMapOutput)
 }
 
-type EndpointControlFctemsOutput struct {
-	*pulumi.OutputState
-}
+type EndpointControlFctemsOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlFctemsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EndpointControlFctems)(nil))
+	return reflect.TypeOf((**EndpointControlFctems)(nil)).Elem()
 }
 
 func (o EndpointControlFctemsOutput) ToEndpointControlFctemsOutput() EndpointControlFctemsOutput {
@@ -349,36 +359,10 @@ func (o EndpointControlFctemsOutput) ToEndpointControlFctemsOutputWithContext(ct
 	return o
 }
 
-func (o EndpointControlFctemsOutput) ToEndpointControlFctemsPtrOutput() EndpointControlFctemsPtrOutput {
-	return o.ToEndpointControlFctemsPtrOutputWithContext(context.Background())
-}
-
-func (o EndpointControlFctemsOutput) ToEndpointControlFctemsPtrOutputWithContext(ctx context.Context) EndpointControlFctemsPtrOutput {
-	return o.ApplyT(func(v EndpointControlFctems) *EndpointControlFctems {
-		return &v
-	}).(EndpointControlFctemsPtrOutput)
-}
-
-type EndpointControlFctemsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EndpointControlFctemsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EndpointControlFctems)(nil))
-}
-
-func (o EndpointControlFctemsPtrOutput) ToEndpointControlFctemsPtrOutput() EndpointControlFctemsPtrOutput {
-	return o
-}
-
-func (o EndpointControlFctemsPtrOutput) ToEndpointControlFctemsPtrOutputWithContext(ctx context.Context) EndpointControlFctemsPtrOutput {
-	return o
-}
-
 type EndpointControlFctemsArrayOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlFctemsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EndpointControlFctems)(nil))
+	return reflect.TypeOf((*[]*EndpointControlFctems)(nil)).Elem()
 }
 
 func (o EndpointControlFctemsArrayOutput) ToEndpointControlFctemsArrayOutput() EndpointControlFctemsArrayOutput {
@@ -390,15 +374,15 @@ func (o EndpointControlFctemsArrayOutput) ToEndpointControlFctemsArrayOutputWith
 }
 
 func (o EndpointControlFctemsArrayOutput) Index(i pulumi.IntInput) EndpointControlFctemsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EndpointControlFctems {
-		return vs[0].([]EndpointControlFctems)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EndpointControlFctems {
+		return vs[0].([]*EndpointControlFctems)[vs[1].(int)]
 	}).(EndpointControlFctemsOutput)
 }
 
 type EndpointControlFctemsMapOutput struct{ *pulumi.OutputState }
 
 func (EndpointControlFctemsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EndpointControlFctems)(nil))
+	return reflect.TypeOf((*map[string]*EndpointControlFctems)(nil)).Elem()
 }
 
 func (o EndpointControlFctemsMapOutput) ToEndpointControlFctemsMapOutput() EndpointControlFctemsMapOutput {
@@ -410,14 +394,16 @@ func (o EndpointControlFctemsMapOutput) ToEndpointControlFctemsMapOutputWithCont
 }
 
 func (o EndpointControlFctemsMapOutput) MapIndex(k pulumi.StringInput) EndpointControlFctemsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EndpointControlFctems {
-		return vs[0].(map[string]EndpointControlFctems)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EndpointControlFctems {
+		return vs[0].(map[string]*EndpointControlFctems)[vs[1].(string)]
 	}).(EndpointControlFctemsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlFctemsInput)(nil)).Elem(), &EndpointControlFctems{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlFctemsArrayInput)(nil)).Elem(), EndpointControlFctemsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EndpointControlFctemsMapInput)(nil)).Elem(), EndpointControlFctemsMap{})
 	pulumi.RegisterOutputType(EndpointControlFctemsOutput{})
-	pulumi.RegisterOutputType(EndpointControlFctemsPtrOutput{})
 	pulumi.RegisterOutputType(EndpointControlFctemsArrayOutput{})
 	pulumi.RegisterOutputType(EndpointControlFctemsMapOutput{})
 }

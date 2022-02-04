@@ -14,6 +14,7 @@ __all__ = ['SwitchControllerSystemArgs', 'SwitchControllerSystem']
 class SwitchControllerSystemArgs:
     def __init__(__self__, *,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
+                 dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
                  iot_mac_idle: Optional[pulumi.Input[int]] = None,
                  iot_scan_interval: Optional[pulumi.Input[int]] = None,
@@ -21,10 +22,12 @@ class SwitchControllerSystemArgs:
                  nac_periodic_interval: Optional[pulumi.Input[int]] = None,
                  parallel_process: Optional[pulumi.Input[int]] = None,
                  parallel_process_override: Optional[pulumi.Input[str]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SwitchControllerSystem resource.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
@@ -32,10 +35,13 @@ class SwitchControllerSystemArgs:
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if data_sync_interval is not None:
             pulumi.set(__self__, "data_sync_interval", data_sync_interval)
+        if dynamic_periodic_interval is not None:
+            pulumi.set(__self__, "dynamic_periodic_interval", dynamic_periodic_interval)
         if iot_holdoff is not None:
             pulumi.set(__self__, "iot_holdoff", iot_holdoff)
         if iot_mac_idle is not None:
@@ -50,6 +56,8 @@ class SwitchControllerSystemArgs:
             pulumi.set(__self__, "parallel_process", parallel_process)
         if parallel_process_override is not None:
             pulumi.set(__self__, "parallel_process_override", parallel_process_override)
+        if tunnel_mode is not None:
+            pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -64,6 +72,18 @@ class SwitchControllerSystemArgs:
     @data_sync_interval.setter
     def data_sync_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "data_sync_interval", value)
+
+    @property
+    @pulumi.getter(name="dynamicPeriodicInterval")
+    def dynamic_periodic_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        """
+        return pulumi.get(self, "dynamic_periodic_interval")
+
+    @dynamic_periodic_interval.setter
+    def dynamic_periodic_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dynamic_periodic_interval", value)
 
     @property
     @pulumi.getter(name="iotHoldoff")
@@ -148,6 +168,18 @@ class SwitchControllerSystemArgs:
     @parallel_process_override.setter
     def parallel_process_override(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "parallel_process_override", value)
+
+    @property
+    @pulumi.getter(name="tunnelMode")
+    def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        """
+        return pulumi.get(self, "tunnel_mode")
+
+    @tunnel_mode.setter
+    def tunnel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tunnel_mode", value)
 
     @property
     @pulumi.getter
@@ -166,6 +198,7 @@ class SwitchControllerSystemArgs:
 class _SwitchControllerSystemState:
     def __init__(__self__, *,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
+                 dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
                  iot_mac_idle: Optional[pulumi.Input[int]] = None,
                  iot_scan_interval: Optional[pulumi.Input[int]] = None,
@@ -173,10 +206,12 @@ class _SwitchControllerSystemState:
                  nac_periodic_interval: Optional[pulumi.Input[int]] = None,
                  parallel_process: Optional[pulumi.Input[int]] = None,
                  parallel_process_override: Optional[pulumi.Input[str]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SwitchControllerSystem resources.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
@@ -184,10 +219,13 @@ class _SwitchControllerSystemState:
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if data_sync_interval is not None:
             pulumi.set(__self__, "data_sync_interval", data_sync_interval)
+        if dynamic_periodic_interval is not None:
+            pulumi.set(__self__, "dynamic_periodic_interval", dynamic_periodic_interval)
         if iot_holdoff is not None:
             pulumi.set(__self__, "iot_holdoff", iot_holdoff)
         if iot_mac_idle is not None:
@@ -202,6 +240,8 @@ class _SwitchControllerSystemState:
             pulumi.set(__self__, "parallel_process", parallel_process)
         if parallel_process_override is not None:
             pulumi.set(__self__, "parallel_process_override", parallel_process_override)
+        if tunnel_mode is not None:
+            pulumi.set(__self__, "tunnel_mode", tunnel_mode)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -216,6 +256,18 @@ class _SwitchControllerSystemState:
     @data_sync_interval.setter
     def data_sync_interval(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "data_sync_interval", value)
+
+    @property
+    @pulumi.getter(name="dynamicPeriodicInterval")
+    def dynamic_periodic_interval(self) -> Optional[pulumi.Input[int]]:
+        """
+        Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        """
+        return pulumi.get(self, "dynamic_periodic_interval")
+
+    @dynamic_periodic_interval.setter
+    def dynamic_periodic_interval(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "dynamic_periodic_interval", value)
 
     @property
     @pulumi.getter(name="iotHoldoff")
@@ -300,6 +352,18 @@ class _SwitchControllerSystemState:
     @parallel_process_override.setter
     def parallel_process_override(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "parallel_process_override", value)
+
+    @property
+    @pulumi.getter(name="tunnelMode")
+    def tunnel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        """
+        return pulumi.get(self, "tunnel_mode")
+
+    @tunnel_mode.setter
+    def tunnel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "tunnel_mode", value)
 
     @property
     @pulumi.getter
@@ -320,6 +384,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
+                 dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
                  iot_mac_idle: Optional[pulumi.Input[int]] = None,
                  iot_scan_interval: Optional[pulumi.Input[int]] = None,
@@ -327,6 +392,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
                  nac_periodic_interval: Optional[pulumi.Input[int]] = None,
                  parallel_process: Optional[pulumi.Input[int]] = None,
                  parallel_process_override: Optional[pulumi.Input[str]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -345,6 +411,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
@@ -352,6 +419,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -389,6 +457,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  data_sync_interval: Optional[pulumi.Input[int]] = None,
+                 dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
                  iot_holdoff: Optional[pulumi.Input[int]] = None,
                  iot_mac_idle: Optional[pulumi.Input[int]] = None,
                  iot_scan_interval: Optional[pulumi.Input[int]] = None,
@@ -396,6 +465,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
                  nac_periodic_interval: Optional[pulumi.Input[int]] = None,
                  parallel_process: Optional[pulumi.Input[int]] = None,
                  parallel_process_override: Optional[pulumi.Input[str]] = None,
+                 tunnel_mode: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -404,12 +474,15 @@ class SwitchControllerSystem(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SwitchControllerSystemArgs.__new__(SwitchControllerSystemArgs)
 
             __props__.__dict__["data_sync_interval"] = data_sync_interval
+            __props__.__dict__["dynamic_periodic_interval"] = dynamic_periodic_interval
             __props__.__dict__["iot_holdoff"] = iot_holdoff
             __props__.__dict__["iot_mac_idle"] = iot_mac_idle
             __props__.__dict__["iot_scan_interval"] = iot_scan_interval
@@ -417,6 +490,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
             __props__.__dict__["nac_periodic_interval"] = nac_periodic_interval
             __props__.__dict__["parallel_process"] = parallel_process
             __props__.__dict__["parallel_process_override"] = parallel_process_override
+            __props__.__dict__["tunnel_mode"] = tunnel_mode
             __props__.__dict__["vdomparam"] = vdomparam
         super(SwitchControllerSystem, __self__).__init__(
             'fortios:index/switchControllerSystem:SwitchControllerSystem',
@@ -429,6 +503,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             data_sync_interval: Optional[pulumi.Input[int]] = None,
+            dynamic_periodic_interval: Optional[pulumi.Input[int]] = None,
             iot_holdoff: Optional[pulumi.Input[int]] = None,
             iot_mac_idle: Optional[pulumi.Input[int]] = None,
             iot_scan_interval: Optional[pulumi.Input[int]] = None,
@@ -436,6 +511,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
             nac_periodic_interval: Optional[pulumi.Input[int]] = None,
             parallel_process: Optional[pulumi.Input[int]] = None,
             parallel_process_override: Optional[pulumi.Input[str]] = None,
+            tunnel_mode: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SwitchControllerSystem':
         """
         Get an existing SwitchControllerSystem resource's state with the given name, id, and optional extra
@@ -445,6 +521,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] data_sync_interval: Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
+        :param pulumi.Input[int] dynamic_periodic_interval: Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] iot_holdoff: MAC entry's creation time. Time must be greater than this value for an entry to be created (default = 5 mins).
         :param pulumi.Input[int] iot_mac_idle: MAC entry's idle time. MAC entry is removed after this value (default = 1440 mins).
         :param pulumi.Input[int] iot_scan_interval: IoT scan interval (2 - 4294967295 mins, default = 60 mins, 0 = disable).
@@ -452,6 +529,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
         :param pulumi.Input[int] nac_periodic_interval: Periodic time interval to run NAC engine (5 - 60 sec, default = 15).
         :param pulumi.Input[int] parallel_process: Maximum number of parallel processes (1 - 300, default = 1).
         :param pulumi.Input[str] parallel_process_override: Enable/disable parallel process override. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] tunnel_mode: Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -459,6 +537,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
         __props__ = _SwitchControllerSystemState.__new__(_SwitchControllerSystemState)
 
         __props__.__dict__["data_sync_interval"] = data_sync_interval
+        __props__.__dict__["dynamic_periodic_interval"] = dynamic_periodic_interval
         __props__.__dict__["iot_holdoff"] = iot_holdoff
         __props__.__dict__["iot_mac_idle"] = iot_mac_idle
         __props__.__dict__["iot_scan_interval"] = iot_scan_interval
@@ -466,6 +545,7 @@ class SwitchControllerSystem(pulumi.CustomResource):
         __props__.__dict__["nac_periodic_interval"] = nac_periodic_interval
         __props__.__dict__["parallel_process"] = parallel_process
         __props__.__dict__["parallel_process_override"] = parallel_process_override
+        __props__.__dict__["tunnel_mode"] = tunnel_mode
         __props__.__dict__["vdomparam"] = vdomparam
         return SwitchControllerSystem(resource_name, opts=opts, __props__=__props__)
 
@@ -476,6 +556,14 @@ class SwitchControllerSystem(pulumi.CustomResource):
         Time interval between collection of switch data (30 - 1800 sec, default = 60, 0 = disable).
         """
         return pulumi.get(self, "data_sync_interval")
+
+    @property
+    @pulumi.getter(name="dynamicPeriodicInterval")
+    def dynamic_periodic_interval(self) -> pulumi.Output[int]:
+        """
+        Periodic time interval to run Dynamic port policy engine (5 - 60 sec, default = 15).
+        """
+        return pulumi.get(self, "dynamic_periodic_interval")
 
     @property
     @pulumi.getter(name="iotHoldoff")
@@ -532,6 +620,14 @@ class SwitchControllerSystem(pulumi.CustomResource):
         Enable/disable parallel process override. Valid values: `disable`, `enable`.
         """
         return pulumi.get(self, "parallel_process_override")
+
+    @property
+    @pulumi.getter(name="tunnelMode")
+    def tunnel_mode(self) -> pulumi.Output[str]:
+        """
+        Compatible/strict tunnel mode. Valid values: `compatible`, `strict`.
+        """
+        return pulumi.get(self, "tunnel_mode")
 
     @property
     @pulumi.getter

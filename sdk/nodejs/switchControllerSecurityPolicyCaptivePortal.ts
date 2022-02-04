@@ -71,25 +71,23 @@ export class SwitchControllerSecurityPolicyCaptivePortal extends pulumi.CustomRe
      */
     constructor(name: string, args?: SwitchControllerSecurityPolicyCaptivePortalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSecurityPolicyCaptivePortalArgs | SwitchControllerSecurityPolicyCaptivePortalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSecurityPolicyCaptivePortalState | undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["policyType"] = state ? state.policyType : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vlan"] = state ? state.vlan : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["policyType"] = state ? state.policyType : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vlan"] = state ? state.vlan : undefined;
         } else {
             const args = argsOrState as SwitchControllerSecurityPolicyCaptivePortalArgs | undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["policyType"] = args ? args.policyType : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vlan"] = args ? args.vlan : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["policyType"] = args ? args.policyType : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vlan"] = args ? args.vlan : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSecurityPolicyCaptivePortal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSecurityPolicyCaptivePortal.__pulumiType, name, resourceInputs, opts);
     }
 }
 

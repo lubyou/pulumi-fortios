@@ -12,6 +12,7 @@ __all__ = [
     'GetSystemReplacemsgImageResult',
     'AwaitableGetSystemReplacemsgImageResult',
     'get_system_replacemsg_image',
+    'get_system_replacemsg_image_output',
 ]
 
 @pulumi.output_type
@@ -104,6 +105,8 @@ def get_system_replacemsg_image(name: Optional[str] = None,
         opts = pulumi.InvokeOptions()
     if opts.version is None:
         opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
     __ret__ = pulumi.runtime.invoke('fortios:index/getSystemReplacemsgImage:GetSystemReplacemsgImage', __args__, opts=opts, typ=GetSystemReplacemsgImageResult).value
 
     return AwaitableGetSystemReplacemsgImageResult(
@@ -112,3 +115,17 @@ def get_system_replacemsg_image(name: Optional[str] = None,
         image_type=__ret__.image_type,
         name=__ret__.name,
         vdomparam=__ret__.vdomparam)
+
+
+@_utilities.lift_output_func(get_system_replacemsg_image)
+def get_system_replacemsg_image_output(name: Optional[pulumi.Input[str]] = None,
+                                       vdomparam: Optional[pulumi.Input[Optional[str]]] = None,
+                                       opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetSystemReplacemsgImageResult]:
+    """
+    Use this data source to get information on an fortios system replacemsgimage
+
+
+    :param str name: Specify the name of the desired system replacemsgimage.
+    :param str vdomparam: Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+    """
+    ...

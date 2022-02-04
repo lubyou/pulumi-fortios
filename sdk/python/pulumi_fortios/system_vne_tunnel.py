@@ -13,6 +13,7 @@ __all__ = ['SystemVneTunnelArgs', 'SystemVneTunnel']
 @pulumi.input_type
 class SystemVneTunnelArgs:
     def __init__(__self__, *,
+                 auto_asic_offload: Optional[pulumi.Input[str]] = None,
                  bmr_hostname: Optional[pulumi.Input[str]] = None,
                  br: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -24,6 +25,7 @@ class SystemVneTunnelArgs:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a SystemVneTunnel resource.
+        :param pulumi.Input[str] auto_asic_offload: Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bmr_hostname: BMR hostname.
         :param pulumi.Input[str] br: Border relay IPv6 address.
         :param pulumi.Input[str] interface: Interface name.
@@ -34,6 +36,8 @@ class SystemVneTunnelArgs:
         :param pulumi.Input[str] update_url: URL of provisioning server.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if auto_asic_offload is not None:
+            pulumi.set(__self__, "auto_asic_offload", auto_asic_offload)
         if bmr_hostname is not None:
             pulumi.set(__self__, "bmr_hostname", bmr_hostname)
         if br is not None:
@@ -52,6 +56,18 @@ class SystemVneTunnelArgs:
             pulumi.set(__self__, "update_url", update_url)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="autoAsicOffload")
+    def auto_asic_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "auto_asic_offload")
+
+    @auto_asic_offload.setter
+    def auto_asic_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_asic_offload", value)
 
     @property
     @pulumi.getter(name="bmrHostname")
@@ -165,6 +181,7 @@ class SystemVneTunnelArgs:
 @pulumi.input_type
 class _SystemVneTunnelState:
     def __init__(__self__, *,
+                 auto_asic_offload: Optional[pulumi.Input[str]] = None,
                  bmr_hostname: Optional[pulumi.Input[str]] = None,
                  br: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -176,6 +193,7 @@ class _SystemVneTunnelState:
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering SystemVneTunnel resources.
+        :param pulumi.Input[str] auto_asic_offload: Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bmr_hostname: BMR hostname.
         :param pulumi.Input[str] br: Border relay IPv6 address.
         :param pulumi.Input[str] interface: Interface name.
@@ -186,6 +204,8 @@ class _SystemVneTunnelState:
         :param pulumi.Input[str] update_url: URL of provisioning server.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
+        if auto_asic_offload is not None:
+            pulumi.set(__self__, "auto_asic_offload", auto_asic_offload)
         if bmr_hostname is not None:
             pulumi.set(__self__, "bmr_hostname", bmr_hostname)
         if br is not None:
@@ -204,6 +224,18 @@ class _SystemVneTunnelState:
             pulumi.set(__self__, "update_url", update_url)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+
+    @property
+    @pulumi.getter(name="autoAsicOffload")
+    def auto_asic_offload(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "auto_asic_offload")
+
+    @auto_asic_offload.setter
+    def auto_asic_offload(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "auto_asic_offload", value)
 
     @property
     @pulumi.getter(name="bmrHostname")
@@ -319,6 +351,7 @@ class SystemVneTunnel(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_asic_offload: Optional[pulumi.Input[str]] = None,
                  bmr_hostname: Optional[pulumi.Input[str]] = None,
                  br: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -344,6 +377,7 @@ class SystemVneTunnel(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] auto_asic_offload: Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bmr_hostname: BMR hostname.
         :param pulumi.Input[str] br: Border relay IPv6 address.
         :param pulumi.Input[str] interface: Interface name.
@@ -388,6 +422,7 @@ class SystemVneTunnel(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_asic_offload: Optional[pulumi.Input[str]] = None,
                  bmr_hostname: Optional[pulumi.Input[str]] = None,
                  br: Optional[pulumi.Input[str]] = None,
                  interface: Optional[pulumi.Input[str]] = None,
@@ -404,11 +439,14 @@ class SystemVneTunnel(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = SystemVneTunnelArgs.__new__(SystemVneTunnelArgs)
 
+            __props__.__dict__["auto_asic_offload"] = auto_asic_offload
             __props__.__dict__["bmr_hostname"] = bmr_hostname
             __props__.__dict__["br"] = br
             __props__.__dict__["interface"] = interface
@@ -428,6 +466,7 @@ class SystemVneTunnel(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_asic_offload: Optional[pulumi.Input[str]] = None,
             bmr_hostname: Optional[pulumi.Input[str]] = None,
             br: Optional[pulumi.Input[str]] = None,
             interface: Optional[pulumi.Input[str]] = None,
@@ -444,6 +483,7 @@ class SystemVneTunnel(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] auto_asic_offload: Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] bmr_hostname: BMR hostname.
         :param pulumi.Input[str] br: Border relay IPv6 address.
         :param pulumi.Input[str] interface: Interface name.
@@ -458,6 +498,7 @@ class SystemVneTunnel(pulumi.CustomResource):
 
         __props__ = _SystemVneTunnelState.__new__(_SystemVneTunnelState)
 
+        __props__.__dict__["auto_asic_offload"] = auto_asic_offload
         __props__.__dict__["bmr_hostname"] = bmr_hostname
         __props__.__dict__["br"] = br
         __props__.__dict__["interface"] = interface
@@ -468,6 +509,14 @@ class SystemVneTunnel(pulumi.CustomResource):
         __props__.__dict__["update_url"] = update_url
         __props__.__dict__["vdomparam"] = vdomparam
         return SystemVneTunnel(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="autoAsicOffload")
+    def auto_asic_offload(self) -> pulumi.Output[str]:
+        """
+        Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "auto_asic_offload")
 
     @property
     @pulumi.getter(name="bmrHostname")

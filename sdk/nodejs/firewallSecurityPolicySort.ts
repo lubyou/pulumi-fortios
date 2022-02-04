@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ### Example1
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as fortios from "@pulumi/fortios";
+ * import * as pulumi_fortios from "@lubyou/pulumi-fortios";
  *
  * const test = new fortios.FirewallSecurityPolicySort("test", {
  *     sortby: "policyid",
@@ -78,17 +78,17 @@ export class FirewallSecurityPolicySort extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallSecurityPolicySortArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallSecurityPolicySortArgs | FirewallSecurityPolicySortState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallSecurityPolicySortState | undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["forceRecreate"] = state ? state.forceRecreate : undefined;
-            inputs["sortby"] = state ? state.sortby : undefined;
-            inputs["sortdirection"] = state ? state.sortdirection : undefined;
-            inputs["statePolicyLists"] = state ? state.statePolicyLists : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["forceRecreate"] = state ? state.forceRecreate : undefined;
+            resourceInputs["sortby"] = state ? state.sortby : undefined;
+            resourceInputs["sortdirection"] = state ? state.sortdirection : undefined;
+            resourceInputs["statePolicyLists"] = state ? state.statePolicyLists : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallSecurityPolicySortArgs | undefined;
             if ((!args || args.sortby === undefined) && !opts.urn) {
@@ -97,18 +97,16 @@ export class FirewallSecurityPolicySort extends pulumi.CustomResource {
             if ((!args || args.sortdirection === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'sortdirection'");
             }
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["forceRecreate"] = args ? args.forceRecreate : undefined;
-            inputs["sortby"] = args ? args.sortby : undefined;
-            inputs["sortdirection"] = args ? args.sortdirection : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["statePolicyLists"] = undefined /*out*/;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["forceRecreate"] = args ? args.forceRecreate : undefined;
+            resourceInputs["sortby"] = args ? args.sortby : undefined;
+            resourceInputs["sortdirection"] = args ? args.sortdirection : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["statePolicyLists"] = undefined /*out*/;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallSecurityPolicySort.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallSecurityPolicySort.__pulumiType, name, resourceInputs, opts);
     }
 }
 

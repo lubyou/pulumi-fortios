@@ -7,6 +7,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from . import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['WirelessControllerArrpProfileArgs', 'WirelessControllerArrpProfile']
 
@@ -14,10 +16,14 @@ __all__ = ['WirelessControllerArrpProfileArgs', 'WirelessControllerArrpProfile']
 class WirelessControllerArrpProfileArgs:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 darrp_optimize: Optional[pulumi.Input[int]] = None,
+                 darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 override_darrp_optimize: Optional[pulumi.Input[str]] = None,
                  selection_period: Optional[pulumi.Input[int]] = None,
                  threshold_ap: Optional[pulumi.Input[int]] = None,
                  threshold_channel_load: Optional[pulumi.Input[int]] = None,
@@ -36,10 +42,14 @@ class WirelessControllerArrpProfileArgs:
         """
         The set of arguments for constructing a WirelessControllerArrpProfile resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] include_dfs_channel: Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[str] include_weather_channel: Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[int] monitor_period: Period in seconds to measure average transmit retries and receive errors (default = 300).
-        :param pulumi.Input[str] name: WiFi ARRP profile name.
+        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] override_darrp_optimize: Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] selection_period: Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
         :param pulumi.Input[int] threshold_ap: Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
         :param pulumi.Input[int] threshold_channel_load: Threshold in percentage to reject channel in DARRP channel selection phase 1 due to channel load (0 - 100, default = 60).
@@ -58,6 +68,12 @@ class WirelessControllerArrpProfileArgs:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if darrp_optimize is not None:
+            pulumi.set(__self__, "darrp_optimize", darrp_optimize)
+        if darrp_optimize_schedules is not None:
+            pulumi.set(__self__, "darrp_optimize_schedules", darrp_optimize_schedules)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if include_dfs_channel is not None:
             pulumi.set(__self__, "include_dfs_channel", include_dfs_channel)
         if include_weather_channel is not None:
@@ -66,6 +82,8 @@ class WirelessControllerArrpProfileArgs:
             pulumi.set(__self__, "monitor_period", monitor_period)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if override_darrp_optimize is not None:
+            pulumi.set(__self__, "override_darrp_optimize", override_darrp_optimize)
         if selection_period is not None:
             pulumi.set(__self__, "selection_period", selection_period)
         if threshold_ap is not None:
@@ -110,6 +128,42 @@ class WirelessControllerArrpProfileArgs:
         pulumi.set(self, "comment", value)
 
     @property
+    @pulumi.getter(name="darrpOptimize")
+    def darrp_optimize(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        """
+        return pulumi.get(self, "darrp_optimize")
+
+    @darrp_optimize.setter
+    def darrp_optimize(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "darrp_optimize", value)
+
+    @property
+    @pulumi.getter(name="darrpOptimizeSchedules")
+    def darrp_optimize_schedules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]:
+        """
+        Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        """
+        return pulumi.get(self, "darrp_optimize_schedules")
+
+    @darrp_optimize_schedules.setter
+    def darrp_optimize_schedules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]):
+        pulumi.set(self, "darrp_optimize_schedules", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter(name="includeDfsChannel")
     def include_dfs_channel(self) -> Optional[pulumi.Input[str]]:
         """
@@ -149,13 +203,25 @@ class WirelessControllerArrpProfileArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        WiFi ARRP profile name.
+        Schedule name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="overrideDarrpOptimize")
+    def override_darrp_optimize(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_darrp_optimize")
+
+    @override_darrp_optimize.setter
+    def override_darrp_optimize(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_darrp_optimize", value)
 
     @property
     @pulumi.getter(name="selectionPeriod")
@@ -342,10 +408,14 @@ class WirelessControllerArrpProfileArgs:
 class _WirelessControllerArrpProfileState:
     def __init__(__self__, *,
                  comment: Optional[pulumi.Input[str]] = None,
+                 darrp_optimize: Optional[pulumi.Input[int]] = None,
+                 darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 override_darrp_optimize: Optional[pulumi.Input[str]] = None,
                  selection_period: Optional[pulumi.Input[int]] = None,
                  threshold_ap: Optional[pulumi.Input[int]] = None,
                  threshold_channel_load: Optional[pulumi.Input[int]] = None,
@@ -364,10 +434,14 @@ class _WirelessControllerArrpProfileState:
         """
         Input properties used for looking up and filtering WirelessControllerArrpProfile resources.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] include_dfs_channel: Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[str] include_weather_channel: Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[int] monitor_period: Period in seconds to measure average transmit retries and receive errors (default = 300).
-        :param pulumi.Input[str] name: WiFi ARRP profile name.
+        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] override_darrp_optimize: Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] selection_period: Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
         :param pulumi.Input[int] threshold_ap: Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
         :param pulumi.Input[int] threshold_channel_load: Threshold in percentage to reject channel in DARRP channel selection phase 1 due to channel load (0 - 100, default = 60).
@@ -386,6 +460,12 @@ class _WirelessControllerArrpProfileState:
         """
         if comment is not None:
             pulumi.set(__self__, "comment", comment)
+        if darrp_optimize is not None:
+            pulumi.set(__self__, "darrp_optimize", darrp_optimize)
+        if darrp_optimize_schedules is not None:
+            pulumi.set(__self__, "darrp_optimize_schedules", darrp_optimize_schedules)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if include_dfs_channel is not None:
             pulumi.set(__self__, "include_dfs_channel", include_dfs_channel)
         if include_weather_channel is not None:
@@ -394,6 +474,8 @@ class _WirelessControllerArrpProfileState:
             pulumi.set(__self__, "monitor_period", monitor_period)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if override_darrp_optimize is not None:
+            pulumi.set(__self__, "override_darrp_optimize", override_darrp_optimize)
         if selection_period is not None:
             pulumi.set(__self__, "selection_period", selection_period)
         if threshold_ap is not None:
@@ -438,6 +520,42 @@ class _WirelessControllerArrpProfileState:
         pulumi.set(self, "comment", value)
 
     @property
+    @pulumi.getter(name="darrpOptimize")
+    def darrp_optimize(self) -> Optional[pulumi.Input[int]]:
+        """
+        Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        """
+        return pulumi.get(self, "darrp_optimize")
+
+    @darrp_optimize.setter
+    def darrp_optimize(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "darrp_optimize", value)
+
+    @property
+    @pulumi.getter(name="darrpOptimizeSchedules")
+    def darrp_optimize_schedules(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]:
+        """
+        Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        """
+        return pulumi.get(self, "darrp_optimize_schedules")
+
+    @darrp_optimize_schedules.setter
+    def darrp_optimize_schedules(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]):
+        pulumi.set(self, "darrp_optimize_schedules", value)
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
     @pulumi.getter(name="includeDfsChannel")
     def include_dfs_channel(self) -> Optional[pulumi.Input[str]]:
         """
@@ -477,13 +595,25 @@ class _WirelessControllerArrpProfileState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        WiFi ARRP profile name.
+        Schedule name.
         """
         return pulumi.get(self, "name")
 
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter(name="overrideDarrpOptimize")
+    def override_darrp_optimize(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_darrp_optimize")
+
+    @override_darrp_optimize.setter
+    def override_darrp_optimize(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "override_darrp_optimize", value)
 
     @property
     @pulumi.getter(name="selectionPeriod")
@@ -672,10 +802,14 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 darrp_optimize: Optional[pulumi.Input[int]] = None,
+                 darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 override_darrp_optimize: Optional[pulumi.Input[str]] = None,
                  selection_period: Optional[pulumi.Input[int]] = None,
                  threshold_ap: Optional[pulumi.Input[int]] = None,
                  threshold_channel_load: Optional[pulumi.Input[int]] = None,
@@ -708,10 +842,14 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] include_dfs_channel: Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[str] include_weather_channel: Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[int] monitor_period: Period in seconds to measure average transmit retries and receive errors (default = 300).
-        :param pulumi.Input[str] name: WiFi ARRP profile name.
+        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] override_darrp_optimize: Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] selection_period: Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
         :param pulumi.Input[int] threshold_ap: Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
         :param pulumi.Input[int] threshold_channel_load: Threshold in percentage to reject channel in DARRP channel selection phase 1 due to channel load (0 - 100, default = 60).
@@ -763,10 +901,14 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  comment: Optional[pulumi.Input[str]] = None,
+                 darrp_optimize: Optional[pulumi.Input[int]] = None,
+                 darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  include_dfs_channel: Optional[pulumi.Input[str]] = None,
                  include_weather_channel: Optional[pulumi.Input[str]] = None,
                  monitor_period: Optional[pulumi.Input[int]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 override_darrp_optimize: Optional[pulumi.Input[str]] = None,
                  selection_period: Optional[pulumi.Input[int]] = None,
                  threshold_ap: Optional[pulumi.Input[int]] = None,
                  threshold_channel_load: Optional[pulumi.Input[int]] = None,
@@ -789,16 +931,22 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = WirelessControllerArrpProfileArgs.__new__(WirelessControllerArrpProfileArgs)
 
             __props__.__dict__["comment"] = comment
+            __props__.__dict__["darrp_optimize"] = darrp_optimize
+            __props__.__dict__["darrp_optimize_schedules"] = darrp_optimize_schedules
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["include_dfs_channel"] = include_dfs_channel
             __props__.__dict__["include_weather_channel"] = include_weather_channel
             __props__.__dict__["monitor_period"] = monitor_period
             __props__.__dict__["name"] = name
+            __props__.__dict__["override_darrp_optimize"] = override_darrp_optimize
             __props__.__dict__["selection_period"] = selection_period
             __props__.__dict__["threshold_ap"] = threshold_ap
             __props__.__dict__["threshold_channel_load"] = threshold_channel_load
@@ -825,10 +973,14 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             comment: Optional[pulumi.Input[str]] = None,
+            darrp_optimize: Optional[pulumi.Input[int]] = None,
+            darrp_optimize_schedules: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             include_dfs_channel: Optional[pulumi.Input[str]] = None,
             include_weather_channel: Optional[pulumi.Input[str]] = None,
             monitor_period: Optional[pulumi.Input[int]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            override_darrp_optimize: Optional[pulumi.Input[str]] = None,
             selection_period: Optional[pulumi.Input[int]] = None,
             threshold_ap: Optional[pulumi.Input[int]] = None,
             threshold_channel_load: Optional[pulumi.Input[int]] = None,
@@ -852,10 +1004,14 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] comment: Comment.
+        :param pulumi.Input[int] darrp_optimize: Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['WirelessControllerArrpProfileDarrpOptimizeScheduleArgs']]]] darrp_optimize_schedules: Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] include_dfs_channel: Enable/disable use of DFS channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[str] include_weather_channel: Enable/disable use of weather channel in DARRP channel selection phase 1 (default = disable).
         :param pulumi.Input[int] monitor_period: Period in seconds to measure average transmit retries and receive errors (default = 300).
-        :param pulumi.Input[str] name: WiFi ARRP profile name.
+        :param pulumi.Input[str] name: Schedule name.
+        :param pulumi.Input[str] override_darrp_optimize: Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
         :param pulumi.Input[int] selection_period: Period in seconds to measure average channel load, noise floor, spectral RSSI (default = 3600).
         :param pulumi.Input[int] threshold_ap: Threshold to reject channel in DARRP channel selection phase 1 due to surrounding APs (0 - 500, default = 250).
         :param pulumi.Input[int] threshold_channel_load: Threshold in percentage to reject channel in DARRP channel selection phase 1 due to channel load (0 - 100, default = 60).
@@ -877,10 +1033,14 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
         __props__ = _WirelessControllerArrpProfileState.__new__(_WirelessControllerArrpProfileState)
 
         __props__.__dict__["comment"] = comment
+        __props__.__dict__["darrp_optimize"] = darrp_optimize
+        __props__.__dict__["darrp_optimize_schedules"] = darrp_optimize_schedules
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["include_dfs_channel"] = include_dfs_channel
         __props__.__dict__["include_weather_channel"] = include_weather_channel
         __props__.__dict__["monitor_period"] = monitor_period
         __props__.__dict__["name"] = name
+        __props__.__dict__["override_darrp_optimize"] = override_darrp_optimize
         __props__.__dict__["selection_period"] = selection_period
         __props__.__dict__["threshold_ap"] = threshold_ap
         __props__.__dict__["threshold_channel_load"] = threshold_channel_load
@@ -905,6 +1065,30 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
         Comment.
         """
         return pulumi.get(self, "comment")
+
+    @property
+    @pulumi.getter(name="darrpOptimize")
+    def darrp_optimize(self) -> pulumi.Output[int]:
+        """
+        Time for running Dynamic Automatic Radio Resource Provisioning (DARRP) optimizations (0 - 86400 sec, default = 86400, 0 = disable).
+        """
+        return pulumi.get(self, "darrp_optimize")
+
+    @property
+    @pulumi.getter(name="darrpOptimizeSchedules")
+    def darrp_optimize_schedules(self) -> pulumi.Output[Optional[Sequence['outputs.WirelessControllerArrpProfileDarrpOptimizeSchedule']]]:
+        """
+        Firewall schedules for DARRP running time. DARRP will run periodically based on darrp-optimize within the schedules. Separate multiple schedule names with a space. The structure of `darrp_optimize_schedules` block is documented below.
+        """
+        return pulumi.get(self, "darrp_optimize_schedules")
+
+    @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
 
     @property
     @pulumi.getter(name="includeDfsChannel")
@@ -934,9 +1118,17 @@ class WirelessControllerArrpProfile(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        WiFi ARRP profile name.
+        Schedule name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="overrideDarrpOptimize")
+    def override_darrp_optimize(self) -> pulumi.Output[str]:
+        """
+        Enable to override setting darrp-optimize and darrp-optimize-schedules (default = disable). Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "override_darrp_optimize")
 
     @property
     @pulumi.getter(name="selectionPeriod")

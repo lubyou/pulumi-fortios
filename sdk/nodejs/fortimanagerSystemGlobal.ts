@@ -80,27 +80,25 @@ export class FortimanagerSystemGlobal extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerSystemGlobalArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerSystemGlobalArgs | FortimanagerSystemGlobalState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerSystemGlobalState | undefined;
-            inputs["adomMode"] = state ? state.adomMode : undefined;
-            inputs["adomStatus"] = state ? state.adomStatus : undefined;
-            inputs["fortianalyzerStatus"] = state ? state.fortianalyzerStatus : undefined;
-            inputs["hostname"] = state ? state.hostname : undefined;
-            inputs["timezone"] = state ? state.timezone : undefined;
+            resourceInputs["adomMode"] = state ? state.adomMode : undefined;
+            resourceInputs["adomStatus"] = state ? state.adomStatus : undefined;
+            resourceInputs["fortianalyzerStatus"] = state ? state.fortianalyzerStatus : undefined;
+            resourceInputs["hostname"] = state ? state.hostname : undefined;
+            resourceInputs["timezone"] = state ? state.timezone : undefined;
         } else {
             const args = argsOrState as FortimanagerSystemGlobalArgs | undefined;
-            inputs["adomMode"] = args ? args.adomMode : undefined;
-            inputs["adomStatus"] = args ? args.adomStatus : undefined;
-            inputs["fortianalyzerStatus"] = args ? args.fortianalyzerStatus : undefined;
-            inputs["hostname"] = args ? args.hostname : undefined;
-            inputs["timezone"] = args ? args.timezone : undefined;
+            resourceInputs["adomMode"] = args ? args.adomMode : undefined;
+            resourceInputs["adomStatus"] = args ? args.adomStatus : undefined;
+            resourceInputs["fortianalyzerStatus"] = args ? args.fortianalyzerStatus : undefined;
+            resourceInputs["hostname"] = args ? args.hostname : undefined;
+            resourceInputs["timezone"] = args ? args.timezone : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerSystemGlobal.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerSystemGlobal.__pulumiType, name, resourceInputs, opts);
     }
 }
 

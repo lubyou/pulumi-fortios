@@ -128,45 +128,43 @@ export class FortimanagerFirewallObjectService extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FortimanagerFirewallObjectServiceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FortimanagerFirewallObjectServiceArgs | FortimanagerFirewallObjectServiceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FortimanagerFirewallObjectServiceState | undefined;
-            inputs["adom"] = state ? state.adom : undefined;
-            inputs["category"] = state ? state.category : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["fqdn"] = state ? state.fqdn : undefined;
-            inputs["icmpCode"] = state ? state.icmpCode : undefined;
-            inputs["icmpType"] = state ? state.icmpType : undefined;
-            inputs["iprange"] = state ? state.iprange : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["protocolNumber"] = state ? state.protocolNumber : undefined;
-            inputs["proxy"] = state ? state.proxy : undefined;
-            inputs["sctpPortranges"] = state ? state.sctpPortranges : undefined;
-            inputs["tcpPortranges"] = state ? state.tcpPortranges : undefined;
-            inputs["udpPortranges"] = state ? state.udpPortranges : undefined;
+            resourceInputs["adom"] = state ? state.adom : undefined;
+            resourceInputs["category"] = state ? state.category : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["fqdn"] = state ? state.fqdn : undefined;
+            resourceInputs["icmpCode"] = state ? state.icmpCode : undefined;
+            resourceInputs["icmpType"] = state ? state.icmpType : undefined;
+            resourceInputs["iprange"] = state ? state.iprange : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["protocolNumber"] = state ? state.protocolNumber : undefined;
+            resourceInputs["proxy"] = state ? state.proxy : undefined;
+            resourceInputs["sctpPortranges"] = state ? state.sctpPortranges : undefined;
+            resourceInputs["tcpPortranges"] = state ? state.tcpPortranges : undefined;
+            resourceInputs["udpPortranges"] = state ? state.udpPortranges : undefined;
         } else {
             const args = argsOrState as FortimanagerFirewallObjectServiceArgs | undefined;
-            inputs["adom"] = args ? args.adom : undefined;
-            inputs["category"] = args ? args.category : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["fqdn"] = args ? args.fqdn : undefined;
-            inputs["icmpCode"] = args ? args.icmpCode : undefined;
-            inputs["icmpType"] = args ? args.icmpType : undefined;
-            inputs["iprange"] = args ? args.iprange : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["protocolNumber"] = args ? args.protocolNumber : undefined;
-            inputs["proxy"] = args ? args.proxy : undefined;
-            inputs["sctpPortranges"] = args ? args.sctpPortranges : undefined;
-            inputs["tcpPortranges"] = args ? args.tcpPortranges : undefined;
-            inputs["udpPortranges"] = args ? args.udpPortranges : undefined;
+            resourceInputs["adom"] = args ? args.adom : undefined;
+            resourceInputs["category"] = args ? args.category : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["fqdn"] = args ? args.fqdn : undefined;
+            resourceInputs["icmpCode"] = args ? args.icmpCode : undefined;
+            resourceInputs["icmpType"] = args ? args.icmpType : undefined;
+            resourceInputs["iprange"] = args ? args.iprange : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["protocolNumber"] = args ? args.protocolNumber : undefined;
+            resourceInputs["proxy"] = args ? args.proxy : undefined;
+            resourceInputs["sctpPortranges"] = args ? args.sctpPortranges : undefined;
+            resourceInputs["tcpPortranges"] = args ? args.tcpPortranges : undefined;
+            resourceInputs["udpPortranges"] = args ? args.udpPortranges : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FortimanagerFirewallObjectService.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FortimanagerFirewallObjectService.__pulumiType, name, resourceInputs, opts);
     }
 }
 

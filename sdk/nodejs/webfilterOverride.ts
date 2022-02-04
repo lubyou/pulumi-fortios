@@ -122,22 +122,22 @@ export class WebfilterOverride extends pulumi.CustomResource {
      */
     constructor(name: string, args: WebfilterOverrideArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WebfilterOverrideArgs | WebfilterOverrideState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WebfilterOverrideState | undefined;
-            inputs["expires"] = state ? state.expires : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["initiator"] = state ? state.initiator : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["newProfile"] = state ? state.newProfile : undefined;
-            inputs["oldProfile"] = state ? state.oldProfile : undefined;
-            inputs["scope"] = state ? state.scope : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["user"] = state ? state.user : undefined;
-            inputs["userGroup"] = state ? state.userGroup : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["expires"] = state ? state.expires : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["initiator"] = state ? state.initiator : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["newProfile"] = state ? state.newProfile : undefined;
+            resourceInputs["oldProfile"] = state ? state.oldProfile : undefined;
+            resourceInputs["scope"] = state ? state.scope : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["user"] = state ? state.user : undefined;
+            resourceInputs["userGroup"] = state ? state.userGroup : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WebfilterOverrideArgs | undefined;
             if ((!args || args.expires === undefined) && !opts.urn) {
@@ -152,23 +152,21 @@ export class WebfilterOverride extends pulumi.CustomResource {
             if ((!args || args.user === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'user'");
             }
-            inputs["expires"] = args ? args.expires : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["initiator"] = args ? args.initiator : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["newProfile"] = args ? args.newProfile : undefined;
-            inputs["oldProfile"] = args ? args.oldProfile : undefined;
-            inputs["scope"] = args ? args.scope : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["user"] = args ? args.user : undefined;
-            inputs["userGroup"] = args ? args.userGroup : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["expires"] = args ? args.expires : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["initiator"] = args ? args.initiator : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["newProfile"] = args ? args.newProfile : undefined;
+            resourceInputs["oldProfile"] = args ? args.oldProfile : undefined;
+            resourceInputs["scope"] = args ? args.scope : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["user"] = args ? args.user : undefined;
+            resourceInputs["userGroup"] = args ? args.userGroup : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WebfilterOverride.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WebfilterOverride.__pulumiType, name, resourceInputs, opts);
     }
 }
 

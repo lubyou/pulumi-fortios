@@ -79,6 +79,14 @@ export class SystemNetflow extends pulumi.CustomResource {
      */
     public readonly inactiveFlowTimeout!: pulumi.Output<number>;
     /**
+     * Specify outgoing interface to reach server.
+     */
+    public readonly interface!: pulumi.Output<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    public readonly interfaceSelectMethod!: pulumi.Output<string>;
+    /**
      * Source IP address for communication with the NetFlow agent.
      */
     public readonly sourceIp!: pulumi.Output<string>;
@@ -104,33 +112,35 @@ export class SystemNetflow extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemNetflowArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemNetflowArgs | SystemNetflowState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemNetflowState | undefined;
-            inputs["activeFlowTimeout"] = state ? state.activeFlowTimeout : undefined;
-            inputs["collectorIp"] = state ? state.collectorIp : undefined;
-            inputs["collectorPort"] = state ? state.collectorPort : undefined;
-            inputs["inactiveFlowTimeout"] = state ? state.inactiveFlowTimeout : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["templateTxCounter"] = state ? state.templateTxCounter : undefined;
-            inputs["templateTxTimeout"] = state ? state.templateTxTimeout : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["activeFlowTimeout"] = state ? state.activeFlowTimeout : undefined;
+            resourceInputs["collectorIp"] = state ? state.collectorIp : undefined;
+            resourceInputs["collectorPort"] = state ? state.collectorPort : undefined;
+            resourceInputs["inactiveFlowTimeout"] = state ? state.inactiveFlowTimeout : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["templateTxCounter"] = state ? state.templateTxCounter : undefined;
+            resourceInputs["templateTxTimeout"] = state ? state.templateTxTimeout : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemNetflowArgs | undefined;
-            inputs["activeFlowTimeout"] = args ? args.activeFlowTimeout : undefined;
-            inputs["collectorIp"] = args ? args.collectorIp : undefined;
-            inputs["collectorPort"] = args ? args.collectorPort : undefined;
-            inputs["inactiveFlowTimeout"] = args ? args.inactiveFlowTimeout : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["templateTxCounter"] = args ? args.templateTxCounter : undefined;
-            inputs["templateTxTimeout"] = args ? args.templateTxTimeout : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["activeFlowTimeout"] = args ? args.activeFlowTimeout : undefined;
+            resourceInputs["collectorIp"] = args ? args.collectorIp : undefined;
+            resourceInputs["collectorPort"] = args ? args.collectorPort : undefined;
+            resourceInputs["inactiveFlowTimeout"] = args ? args.inactiveFlowTimeout : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["templateTxCounter"] = args ? args.templateTxCounter : undefined;
+            resourceInputs["templateTxTimeout"] = args ? args.templateTxTimeout : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemNetflow.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemNetflow.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -154,6 +164,14 @@ export interface SystemNetflowState {
      * Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
      */
     inactiveFlowTimeout?: pulumi.Input<number>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP address for communication with the NetFlow agent.
      */
@@ -192,6 +210,14 @@ export interface SystemNetflowArgs {
      * Timeout for periodic report of finished flows (10 - 600 sec, default = 15).
      */
     inactiveFlowTimeout?: pulumi.Input<number>;
+    /**
+     * Specify outgoing interface to reach server.
+     */
+    interface?: pulumi.Input<string>;
+    /**
+     * Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+     */
+    interfaceSelectMethod?: pulumi.Input<string>;
     /**
      * Source IP address for communication with the NetFlow agent.
      */

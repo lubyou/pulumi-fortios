@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure NAT64.
+ * Configure NAT64. Applies to FortiOS Version `<= 7.0.0`.
  *
  * ## Example Usage
  *
@@ -108,38 +108,36 @@ export class SystemNat64 extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemNat64Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemNat64Args | SystemNat64State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemNat64State | undefined;
-            inputs["alwaysSynthesizeAaaaRecord"] = state ? state.alwaysSynthesizeAaaaRecord : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["generateIpv6FragmentHeader"] = state ? state.generateIpv6FragmentHeader : undefined;
-            inputs["nat46ForceIpv4PacketForwarding"] = state ? state.nat46ForceIpv4PacketForwarding : undefined;
-            inputs["nat64Prefix"] = state ? state.nat64Prefix : undefined;
-            inputs["secondaryPrefixStatus"] = state ? state.secondaryPrefixStatus : undefined;
-            inputs["secondaryPrefixes"] = state ? state.secondaryPrefixes : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["alwaysSynthesizeAaaaRecord"] = state ? state.alwaysSynthesizeAaaaRecord : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["generateIpv6FragmentHeader"] = state ? state.generateIpv6FragmentHeader : undefined;
+            resourceInputs["nat46ForceIpv4PacketForwarding"] = state ? state.nat46ForceIpv4PacketForwarding : undefined;
+            resourceInputs["nat64Prefix"] = state ? state.nat64Prefix : undefined;
+            resourceInputs["secondaryPrefixStatus"] = state ? state.secondaryPrefixStatus : undefined;
+            resourceInputs["secondaryPrefixes"] = state ? state.secondaryPrefixes : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemNat64Args | undefined;
             if ((!args || args.nat64Prefix === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'nat64Prefix'");
             }
-            inputs["alwaysSynthesizeAaaaRecord"] = args ? args.alwaysSynthesizeAaaaRecord : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["generateIpv6FragmentHeader"] = args ? args.generateIpv6FragmentHeader : undefined;
-            inputs["nat46ForceIpv4PacketForwarding"] = args ? args.nat46ForceIpv4PacketForwarding : undefined;
-            inputs["nat64Prefix"] = args ? args.nat64Prefix : undefined;
-            inputs["secondaryPrefixStatus"] = args ? args.secondaryPrefixStatus : undefined;
-            inputs["secondaryPrefixes"] = args ? args.secondaryPrefixes : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["alwaysSynthesizeAaaaRecord"] = args ? args.alwaysSynthesizeAaaaRecord : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["generateIpv6FragmentHeader"] = args ? args.generateIpv6FragmentHeader : undefined;
+            resourceInputs["nat46ForceIpv4PacketForwarding"] = args ? args.nat46ForceIpv4PacketForwarding : undefined;
+            resourceInputs["nat64Prefix"] = args ? args.nat64Prefix : undefined;
+            resourceInputs["secondaryPrefixStatus"] = args ? args.secondaryPrefixStatus : undefined;
+            resourceInputs["secondaryPrefixes"] = args ? args.secondaryPrefixes : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemNat64.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemNat64.__pulumiType, name, resourceInputs, opts);
     }
 }
 

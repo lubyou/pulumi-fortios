@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -52,6 +52,7 @@ func NewSystemLicenseVM(ctx *pulumi.Context,
 	if args.FileContent == nil {
 		return nil, errors.New("invalid value for required argument 'FileContent'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemLicenseVM
 	err := ctx.RegisterResource("fortios:index/systemLicenseVM:SystemLicenseVM", name, args, &resource, opts...)
 	if err != nil {
@@ -110,7 +111,7 @@ type SystemLicenseVMInput interface {
 }
 
 func (*SystemLicenseVM) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLicenseVM)(nil))
+	return reflect.TypeOf((**SystemLicenseVM)(nil)).Elem()
 }
 
 func (i *SystemLicenseVM) ToSystemLicenseVMOutput() SystemLicenseVMOutput {
@@ -119,35 +120,6 @@ func (i *SystemLicenseVM) ToSystemLicenseVMOutput() SystemLicenseVMOutput {
 
 func (i *SystemLicenseVM) ToSystemLicenseVMOutputWithContext(ctx context.Context) SystemLicenseVMOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMOutput)
-}
-
-func (i *SystemLicenseVM) ToSystemLicenseVMPtrOutput() SystemLicenseVMPtrOutput {
-	return i.ToSystemLicenseVMPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemLicenseVM) ToSystemLicenseVMPtrOutputWithContext(ctx context.Context) SystemLicenseVMPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMPtrOutput)
-}
-
-type SystemLicenseVMPtrInput interface {
-	pulumi.Input
-
-	ToSystemLicenseVMPtrOutput() SystemLicenseVMPtrOutput
-	ToSystemLicenseVMPtrOutputWithContext(ctx context.Context) SystemLicenseVMPtrOutput
-}
-
-type systemLicenseVMPtrType SystemLicenseVMArgs
-
-func (*systemLicenseVMPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLicenseVM)(nil))
-}
-
-func (i *systemLicenseVMPtrType) ToSystemLicenseVMPtrOutput() SystemLicenseVMPtrOutput {
-	return i.ToSystemLicenseVMPtrOutputWithContext(context.Background())
-}
-
-func (i *systemLicenseVMPtrType) ToSystemLicenseVMPtrOutputWithContext(ctx context.Context) SystemLicenseVMPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMPtrOutput)
 }
 
 // SystemLicenseVMArrayInput is an input type that accepts SystemLicenseVMArray and SystemLicenseVMArrayOutput values.
@@ -164,7 +136,7 @@ type SystemLicenseVMArrayInput interface {
 type SystemLicenseVMArray []SystemLicenseVMInput
 
 func (SystemLicenseVMArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemLicenseVM)(nil))
+	return reflect.TypeOf((*[]*SystemLicenseVM)(nil)).Elem()
 }
 
 func (i SystemLicenseVMArray) ToSystemLicenseVMArrayOutput() SystemLicenseVMArrayOutput {
@@ -189,7 +161,7 @@ type SystemLicenseVMMapInput interface {
 type SystemLicenseVMMap map[string]SystemLicenseVMInput
 
 func (SystemLicenseVMMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemLicenseVM)(nil))
+	return reflect.TypeOf((*map[string]*SystemLicenseVM)(nil)).Elem()
 }
 
 func (i SystemLicenseVMMap) ToSystemLicenseVMMapOutput() SystemLicenseVMMapOutput {
@@ -200,12 +172,10 @@ func (i SystemLicenseVMMap) ToSystemLicenseVMMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLicenseVMMapOutput)
 }
 
-type SystemLicenseVMOutput struct {
-	*pulumi.OutputState
-}
+type SystemLicenseVMOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVMOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLicenseVM)(nil))
+	return reflect.TypeOf((**SystemLicenseVM)(nil)).Elem()
 }
 
 func (o SystemLicenseVMOutput) ToSystemLicenseVMOutput() SystemLicenseVMOutput {
@@ -216,36 +186,10 @@ func (o SystemLicenseVMOutput) ToSystemLicenseVMOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemLicenseVMOutput) ToSystemLicenseVMPtrOutput() SystemLicenseVMPtrOutput {
-	return o.ToSystemLicenseVMPtrOutputWithContext(context.Background())
-}
-
-func (o SystemLicenseVMOutput) ToSystemLicenseVMPtrOutputWithContext(ctx context.Context) SystemLicenseVMPtrOutput {
-	return o.ApplyT(func(v SystemLicenseVM) *SystemLicenseVM {
-		return &v
-	}).(SystemLicenseVMPtrOutput)
-}
-
-type SystemLicenseVMPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemLicenseVMPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLicenseVM)(nil))
-}
-
-func (o SystemLicenseVMPtrOutput) ToSystemLicenseVMPtrOutput() SystemLicenseVMPtrOutput {
-	return o
-}
-
-func (o SystemLicenseVMPtrOutput) ToSystemLicenseVMPtrOutputWithContext(ctx context.Context) SystemLicenseVMPtrOutput {
-	return o
-}
-
 type SystemLicenseVMArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVMArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemLicenseVM)(nil))
+	return reflect.TypeOf((*[]*SystemLicenseVM)(nil)).Elem()
 }
 
 func (o SystemLicenseVMArrayOutput) ToSystemLicenseVMArrayOutput() SystemLicenseVMArrayOutput {
@@ -257,15 +201,15 @@ func (o SystemLicenseVMArrayOutput) ToSystemLicenseVMArrayOutputWithContext(ctx 
 }
 
 func (o SystemLicenseVMArrayOutput) Index(i pulumi.IntInput) SystemLicenseVMOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemLicenseVM {
-		return vs[0].([]SystemLicenseVM)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLicenseVM {
+		return vs[0].([]*SystemLicenseVM)[vs[1].(int)]
 	}).(SystemLicenseVMOutput)
 }
 
 type SystemLicenseVMMapOutput struct{ *pulumi.OutputState }
 
 func (SystemLicenseVMMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemLicenseVM)(nil))
+	return reflect.TypeOf((*map[string]*SystemLicenseVM)(nil)).Elem()
 }
 
 func (o SystemLicenseVMMapOutput) ToSystemLicenseVMMapOutput() SystemLicenseVMMapOutput {
@@ -277,14 +221,16 @@ func (o SystemLicenseVMMapOutput) ToSystemLicenseVMMapOutputWithContext(ctx cont
 }
 
 func (o SystemLicenseVMMapOutput) MapIndex(k pulumi.StringInput) SystemLicenseVMOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemLicenseVM {
-		return vs[0].(map[string]SystemLicenseVM)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemLicenseVM {
+		return vs[0].(map[string]*SystemLicenseVM)[vs[1].(string)]
 	}).(SystemLicenseVMOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseVMInput)(nil)).Elem(), &SystemLicenseVM{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseVMArrayInput)(nil)).Elem(), SystemLicenseVMArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLicenseVMMapInput)(nil)).Elem(), SystemLicenseVMMap{})
 	pulumi.RegisterOutputType(SystemLicenseVMOutput{})
-	pulumi.RegisterOutputType(SystemLicenseVMPtrOutput{})
 	pulumi.RegisterOutputType(SystemLicenseVMArrayOutput{})
 	pulumi.RegisterOutputType(SystemLicenseVMMapOutput{})
 }

@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewallshaper peripshaper
 func LookupFirewallShaperPerIpShaper(ctx *pulumi.Context, args *LookupFirewallShaperPerIpShaperArgs, opts ...pulumi.InvokeOption) (*LookupFirewallShaperPerIpShaperResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallShaperPerIpShaperResult
 	err := ctx.Invoke("fortios:index/getFirewallShaperPerIpShaper:GetFirewallShaperPerIpShaper", args, &rv, opts...)
 	if err != nil {
@@ -50,4 +54,103 @@ type LookupFirewallShaperPerIpShaperResult struct {
 	// Traffic shaper name.
 	Name      string  `pulumi:"name"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupFirewallShaperPerIpShaperOutput(ctx *pulumi.Context, args LookupFirewallShaperPerIpShaperOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallShaperPerIpShaperResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallShaperPerIpShaperResult, error) {
+			args := v.(LookupFirewallShaperPerIpShaperArgs)
+			r, err := LookupFirewallShaperPerIpShaper(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallShaperPerIpShaperResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallShaperPerIpShaper.
+type LookupFirewallShaperPerIpShaperOutputArgs struct {
+	// Specify the name of the desired firewallshaper peripshaper.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallShaperPerIpShaperOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallShaperPerIpShaperArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallShaperPerIpShaper.
+type LookupFirewallShaperPerIpShaperResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallShaperPerIpShaperResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallShaperPerIpShaperResult)(nil)).Elem()
+}
+
+func (o LookupFirewallShaperPerIpShaperResultOutput) ToLookupFirewallShaperPerIpShaperResultOutput() LookupFirewallShaperPerIpShaperResultOutput {
+	return o
+}
+
+func (o LookupFirewallShaperPerIpShaperResultOutput) ToLookupFirewallShaperPerIpShaperResultOutputWithContext(ctx context.Context) LookupFirewallShaperPerIpShaperResultOutput {
+	return o
+}
+
+// Unit of measurement for maximum bandwidth for this shaper (Kbps, Mbps or Gbps).
+func (o LookupFirewallShaperPerIpShaperResultOutput) BandwidthUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.BandwidthUnit }).(pulumi.StringOutput)
+}
+
+// Enable/disable changing the Forward (original) DiffServ setting applied to traffic accepted by this shaper.
+func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservForward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservForward }).(pulumi.StringOutput)
+}
+
+// Enable/disable changing the Reverse (reply) DiffServ setting applied to traffic accepted by this shaper.
+func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservReverse() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservReverse }).(pulumi.StringOutput)
+}
+
+// Forward (original) DiffServ setting to be applied to traffic accepted by this shaper.
+func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservcodeForward() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservcodeForward }).(pulumi.StringOutput)
+}
+
+// Reverse (reply) DiffServ setting to be applied to traffic accepted by this shaper.
+func (o LookupFirewallShaperPerIpShaperResultOutput) DiffservcodeRev() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.DiffservcodeRev }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallShaperPerIpShaperResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+func (o LookupFirewallShaperPerIpShaperResultOutput) MaxBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxBandwidth }).(pulumi.IntOutput)
+}
+
+// Maximum number of concurrent sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+func (o LookupFirewallShaperPerIpShaperResultOutput) MaxConcurrentSession() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxConcurrentSession }).(pulumi.IntOutput)
+}
+
+// Maximum number of concurrent TCP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+func (o LookupFirewallShaperPerIpShaperResultOutput) MaxConcurrentTcpSession() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxConcurrentTcpSession }).(pulumi.IntOutput)
+}
+
+// Maximum number of concurrent UDP sessions allowed by this shaper (0 - 2097000). 0 means no limit.
+func (o LookupFirewallShaperPerIpShaperResultOutput) MaxConcurrentUdpSession() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) int { return v.MaxConcurrentUdpSession }).(pulumi.IntOutput)
+}
+
+// Traffic shaper name.
+func (o LookupFirewallShaperPerIpShaperResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallShaperPerIpShaperResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallShaperPerIpShaperResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallShaperPerIpShaperResultOutput{})
 }

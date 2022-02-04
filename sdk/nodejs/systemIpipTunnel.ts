@@ -59,6 +59,10 @@ export class SystemIpipTunnel extends pulumi.CustomResource {
     }
 
     /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    public readonly autoAsicOffload!: pulumi.Output<string>;
+    /**
      * Interface name that is associated with the incoming traffic from available options.
      */
     public readonly interface!: pulumi.Output<string>;
@@ -75,6 +79,10 @@ export class SystemIpipTunnel extends pulumi.CustomResource {
      */
     public readonly remoteGw!: pulumi.Output<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    public readonly useSdwan!: pulumi.Output<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     public readonly vdomparam!: pulumi.Output<string | undefined>;
@@ -88,15 +96,17 @@ export class SystemIpipTunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemIpipTunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemIpipTunnelArgs | SystemIpipTunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemIpipTunnelState | undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["localGw"] = state ? state.localGw : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["remoteGw"] = state ? state.remoteGw : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["localGw"] = state ? state.localGw : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["remoteGw"] = state ? state.remoteGw : undefined;
+            resourceInputs["useSdwan"] = state ? state.useSdwan : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemIpipTunnelArgs | undefined;
             if ((!args || args.interface === undefined) && !opts.urn) {
@@ -108,16 +118,16 @@ export class SystemIpipTunnel extends pulumi.CustomResource {
             if ((!args || args.remoteGw === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'remoteGw'");
             }
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["localGw"] = args ? args.localGw : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["remoteGw"] = args ? args.remoteGw : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["localGw"] = args ? args.localGw : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["remoteGw"] = args ? args.remoteGw : undefined;
+            resourceInputs["useSdwan"] = args ? args.useSdwan : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemIpipTunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemIpipTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -125,6 +135,10 @@ export class SystemIpipTunnel extends pulumi.CustomResource {
  * Input properties used for looking up and filtering SystemIpipTunnel resources.
  */
 export interface SystemIpipTunnelState {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * Interface name that is associated with the incoming traffic from available options.
      */
@@ -142,6 +156,10 @@ export interface SystemIpipTunnelState {
      */
     remoteGw?: pulumi.Input<string>;
     /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
+    /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */
     vdomparam?: pulumi.Input<string>;
@@ -151,6 +169,10 @@ export interface SystemIpipTunnelState {
  * The set of arguments for constructing a SystemIpipTunnel resource.
  */
 export interface SystemIpipTunnelArgs {
+    /**
+     * Enable/disable tunnel ASIC offloading. Valid values: `enable`, `disable`.
+     */
+    autoAsicOffload?: pulumi.Input<string>;
     /**
      * Interface name that is associated with the incoming traffic from available options.
      */
@@ -167,6 +189,10 @@ export interface SystemIpipTunnelArgs {
      * IPv4 address for the remote gateway.
      */
     remoteGw: pulumi.Input<string>;
+    /**
+     * Enable/disable use of SD-WAN to reach remote gateway. Valid values: `disable`, `enable`.
+     */
+    useSdwan?: pulumi.Input<string>;
     /**
      * Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
      */

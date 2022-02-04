@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -220,6 +220,7 @@ func NewVpnIpsecForticlient(ctx *pulumi.Context,
 	if args.Usergroupname == nil {
 		return nil, errors.New("invalid value for required argument 'Usergroupname'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource VpnIpsecForticlient
 	err := ctx.RegisterResource("fortios:index/vpnIpsecForticlient:VpnIpsecForticlient", name, args, &resource, opts...)
 	if err != nil {
@@ -310,7 +311,7 @@ type VpnIpsecForticlientInput interface {
 }
 
 func (*VpnIpsecForticlient) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecForticlient)(nil))
+	return reflect.TypeOf((**VpnIpsecForticlient)(nil)).Elem()
 }
 
 func (i *VpnIpsecForticlient) ToVpnIpsecForticlientOutput() VpnIpsecForticlientOutput {
@@ -319,35 +320,6 @@ func (i *VpnIpsecForticlient) ToVpnIpsecForticlientOutput() VpnIpsecForticlientO
 
 func (i *VpnIpsecForticlient) ToVpnIpsecForticlientOutputWithContext(ctx context.Context) VpnIpsecForticlientOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecForticlientOutput)
-}
-
-func (i *VpnIpsecForticlient) ToVpnIpsecForticlientPtrOutput() VpnIpsecForticlientPtrOutput {
-	return i.ToVpnIpsecForticlientPtrOutputWithContext(context.Background())
-}
-
-func (i *VpnIpsecForticlient) ToVpnIpsecForticlientPtrOutputWithContext(ctx context.Context) VpnIpsecForticlientPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecForticlientPtrOutput)
-}
-
-type VpnIpsecForticlientPtrInput interface {
-	pulumi.Input
-
-	ToVpnIpsecForticlientPtrOutput() VpnIpsecForticlientPtrOutput
-	ToVpnIpsecForticlientPtrOutputWithContext(ctx context.Context) VpnIpsecForticlientPtrOutput
-}
-
-type vpnIpsecForticlientPtrType VpnIpsecForticlientArgs
-
-func (*vpnIpsecForticlientPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecForticlient)(nil))
-}
-
-func (i *vpnIpsecForticlientPtrType) ToVpnIpsecForticlientPtrOutput() VpnIpsecForticlientPtrOutput {
-	return i.ToVpnIpsecForticlientPtrOutputWithContext(context.Background())
-}
-
-func (i *vpnIpsecForticlientPtrType) ToVpnIpsecForticlientPtrOutputWithContext(ctx context.Context) VpnIpsecForticlientPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecForticlientPtrOutput)
 }
 
 // VpnIpsecForticlientArrayInput is an input type that accepts VpnIpsecForticlientArray and VpnIpsecForticlientArrayOutput values.
@@ -364,7 +336,7 @@ type VpnIpsecForticlientArrayInput interface {
 type VpnIpsecForticlientArray []VpnIpsecForticlientInput
 
 func (VpnIpsecForticlientArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*VpnIpsecForticlient)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecForticlient)(nil)).Elem()
 }
 
 func (i VpnIpsecForticlientArray) ToVpnIpsecForticlientArrayOutput() VpnIpsecForticlientArrayOutput {
@@ -389,7 +361,7 @@ type VpnIpsecForticlientMapInput interface {
 type VpnIpsecForticlientMap map[string]VpnIpsecForticlientInput
 
 func (VpnIpsecForticlientMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*VpnIpsecForticlient)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecForticlient)(nil)).Elem()
 }
 
 func (i VpnIpsecForticlientMap) ToVpnIpsecForticlientMapOutput() VpnIpsecForticlientMapOutput {
@@ -400,12 +372,10 @@ func (i VpnIpsecForticlientMap) ToVpnIpsecForticlientMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(VpnIpsecForticlientMapOutput)
 }
 
-type VpnIpsecForticlientOutput struct {
-	*pulumi.OutputState
-}
+type VpnIpsecForticlientOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecForticlientOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*VpnIpsecForticlient)(nil))
+	return reflect.TypeOf((**VpnIpsecForticlient)(nil)).Elem()
 }
 
 func (o VpnIpsecForticlientOutput) ToVpnIpsecForticlientOutput() VpnIpsecForticlientOutput {
@@ -416,36 +386,10 @@ func (o VpnIpsecForticlientOutput) ToVpnIpsecForticlientOutputWithContext(ctx co
 	return o
 }
 
-func (o VpnIpsecForticlientOutput) ToVpnIpsecForticlientPtrOutput() VpnIpsecForticlientPtrOutput {
-	return o.ToVpnIpsecForticlientPtrOutputWithContext(context.Background())
-}
-
-func (o VpnIpsecForticlientOutput) ToVpnIpsecForticlientPtrOutputWithContext(ctx context.Context) VpnIpsecForticlientPtrOutput {
-	return o.ApplyT(func(v VpnIpsecForticlient) *VpnIpsecForticlient {
-		return &v
-	}).(VpnIpsecForticlientPtrOutput)
-}
-
-type VpnIpsecForticlientPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (VpnIpsecForticlientPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**VpnIpsecForticlient)(nil))
-}
-
-func (o VpnIpsecForticlientPtrOutput) ToVpnIpsecForticlientPtrOutput() VpnIpsecForticlientPtrOutput {
-	return o
-}
-
-func (o VpnIpsecForticlientPtrOutput) ToVpnIpsecForticlientPtrOutputWithContext(ctx context.Context) VpnIpsecForticlientPtrOutput {
-	return o
-}
-
 type VpnIpsecForticlientArrayOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecForticlientArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]VpnIpsecForticlient)(nil))
+	return reflect.TypeOf((*[]*VpnIpsecForticlient)(nil)).Elem()
 }
 
 func (o VpnIpsecForticlientArrayOutput) ToVpnIpsecForticlientArrayOutput() VpnIpsecForticlientArrayOutput {
@@ -457,15 +401,15 @@ func (o VpnIpsecForticlientArrayOutput) ToVpnIpsecForticlientArrayOutputWithCont
 }
 
 func (o VpnIpsecForticlientArrayOutput) Index(i pulumi.IntInput) VpnIpsecForticlientOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) VpnIpsecForticlient {
-		return vs[0].([]VpnIpsecForticlient)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *VpnIpsecForticlient {
+		return vs[0].([]*VpnIpsecForticlient)[vs[1].(int)]
 	}).(VpnIpsecForticlientOutput)
 }
 
 type VpnIpsecForticlientMapOutput struct{ *pulumi.OutputState }
 
 func (VpnIpsecForticlientMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]VpnIpsecForticlient)(nil))
+	return reflect.TypeOf((*map[string]*VpnIpsecForticlient)(nil)).Elem()
 }
 
 func (o VpnIpsecForticlientMapOutput) ToVpnIpsecForticlientMapOutput() VpnIpsecForticlientMapOutput {
@@ -477,14 +421,16 @@ func (o VpnIpsecForticlientMapOutput) ToVpnIpsecForticlientMapOutputWithContext(
 }
 
 func (o VpnIpsecForticlientMapOutput) MapIndex(k pulumi.StringInput) VpnIpsecForticlientOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) VpnIpsecForticlient {
-		return vs[0].(map[string]VpnIpsecForticlient)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *VpnIpsecForticlient {
+		return vs[0].(map[string]*VpnIpsecForticlient)[vs[1].(string)]
 	}).(VpnIpsecForticlientOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecForticlientInput)(nil)).Elem(), &VpnIpsecForticlient{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecForticlientArrayInput)(nil)).Elem(), VpnIpsecForticlientArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*VpnIpsecForticlientMapInput)(nil)).Elem(), VpnIpsecForticlientMap{})
 	pulumi.RegisterOutputType(VpnIpsecForticlientOutput{})
-	pulumi.RegisterOutputType(VpnIpsecForticlientPtrOutput{})
 	pulumi.RegisterOutputType(VpnIpsecForticlientArrayOutput{})
 	pulumi.RegisterOutputType(VpnIpsecForticlientMapOutput{})
 }

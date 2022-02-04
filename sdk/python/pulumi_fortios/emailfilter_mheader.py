@@ -233,7 +233,7 @@ class EmailfilterMheader(pulumi.CustomResource):
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Configure AntiSpam MIME header.
+        Configure AntiSpam MIME header. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -261,7 +261,7 @@ class EmailfilterMheader(pulumi.CustomResource):
                  args: Optional[EmailfilterMheaderArgs] = None,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Configure AntiSpam MIME header.
+        Configure AntiSpam MIME header. Applies to FortiOS Version `>= 6.2.4`.
 
         ## Import
 
@@ -301,6 +301,8 @@ class EmailfilterMheader(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')

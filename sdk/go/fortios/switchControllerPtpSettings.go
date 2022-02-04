@@ -37,6 +37,7 @@ func NewSwitchControllerPtpSettings(ctx *pulumi.Context,
 		args = &SwitchControllerPtpSettingsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerPtpSettings
 	err := ctx.RegisterResource("fortios:index/switchControllerPtpSettings:SwitchControllerPtpSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type SwitchControllerPtpSettingsInput interface {
 }
 
 func (*SwitchControllerPtpSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerPtpSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerPtpSettings)(nil)).Elem()
 }
 
 func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsOutput() SwitchControllerPtpSettingsOutput {
@@ -112,35 +113,6 @@ func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsOutput() Swit
 
 func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsOutput)
-}
-
-func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsPtrOutput() SwitchControllerPtpSettingsPtrOutput {
-	return i.ToSwitchControllerPtpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerPtpSettings) ToSwitchControllerPtpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsPtrOutput)
-}
-
-type SwitchControllerPtpSettingsPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerPtpSettingsPtrOutput() SwitchControllerPtpSettingsPtrOutput
-	ToSwitchControllerPtpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsPtrOutput
-}
-
-type switchControllerPtpSettingsPtrType SwitchControllerPtpSettingsArgs
-
-func (*switchControllerPtpSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerPtpSettings)(nil))
-}
-
-func (i *switchControllerPtpSettingsPtrType) ToSwitchControllerPtpSettingsPtrOutput() SwitchControllerPtpSettingsPtrOutput {
-	return i.ToSwitchControllerPtpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerPtpSettingsPtrType) ToSwitchControllerPtpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsPtrOutput)
 }
 
 // SwitchControllerPtpSettingsArrayInput is an input type that accepts SwitchControllerPtpSettingsArray and SwitchControllerPtpSettingsArrayOutput values.
@@ -157,7 +129,7 @@ type SwitchControllerPtpSettingsArrayInput interface {
 type SwitchControllerPtpSettingsArray []SwitchControllerPtpSettingsInput
 
 func (SwitchControllerPtpSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerPtpSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerPtpSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerPtpSettingsArray) ToSwitchControllerPtpSettingsArrayOutput() SwitchControllerPtpSettingsArrayOutput {
@@ -182,7 +154,7 @@ type SwitchControllerPtpSettingsMapInput interface {
 type SwitchControllerPtpSettingsMap map[string]SwitchControllerPtpSettingsInput
 
 func (SwitchControllerPtpSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerPtpSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerPtpSettings)(nil)).Elem()
 }
 
 func (i SwitchControllerPtpSettingsMap) ToSwitchControllerPtpSettingsMapOutput() SwitchControllerPtpSettingsMapOutput {
@@ -193,12 +165,10 @@ func (i SwitchControllerPtpSettingsMap) ToSwitchControllerPtpSettingsMapOutputWi
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerPtpSettingsMapOutput)
 }
 
-type SwitchControllerPtpSettingsOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerPtpSettingsOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerPtpSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerPtpSettings)(nil))
+	return reflect.TypeOf((**SwitchControllerPtpSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsOutput() SwitchControllerPtpSettingsOutput {
@@ -209,36 +179,10 @@ func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsOutputWi
 	return o
 }
 
-func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsPtrOutput() SwitchControllerPtpSettingsPtrOutput {
-	return o.ToSwitchControllerPtpSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerPtpSettingsOutput) ToSwitchControllerPtpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsPtrOutput {
-	return o.ApplyT(func(v SwitchControllerPtpSettings) *SwitchControllerPtpSettings {
-		return &v
-	}).(SwitchControllerPtpSettingsPtrOutput)
-}
-
-type SwitchControllerPtpSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerPtpSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerPtpSettings)(nil))
-}
-
-func (o SwitchControllerPtpSettingsPtrOutput) ToSwitchControllerPtpSettingsPtrOutput() SwitchControllerPtpSettingsPtrOutput {
-	return o
-}
-
-func (o SwitchControllerPtpSettingsPtrOutput) ToSwitchControllerPtpSettingsPtrOutputWithContext(ctx context.Context) SwitchControllerPtpSettingsPtrOutput {
-	return o
-}
-
 type SwitchControllerPtpSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerPtpSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerPtpSettings)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerPtpSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerPtpSettingsArrayOutput) ToSwitchControllerPtpSettingsArrayOutput() SwitchControllerPtpSettingsArrayOutput {
@@ -250,15 +194,15 @@ func (o SwitchControllerPtpSettingsArrayOutput) ToSwitchControllerPtpSettingsArr
 }
 
 func (o SwitchControllerPtpSettingsArrayOutput) Index(i pulumi.IntInput) SwitchControllerPtpSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerPtpSettings {
-		return vs[0].([]SwitchControllerPtpSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerPtpSettings {
+		return vs[0].([]*SwitchControllerPtpSettings)[vs[1].(int)]
 	}).(SwitchControllerPtpSettingsOutput)
 }
 
 type SwitchControllerPtpSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerPtpSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerPtpSettings)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerPtpSettings)(nil)).Elem()
 }
 
 func (o SwitchControllerPtpSettingsMapOutput) ToSwitchControllerPtpSettingsMapOutput() SwitchControllerPtpSettingsMapOutput {
@@ -270,14 +214,16 @@ func (o SwitchControllerPtpSettingsMapOutput) ToSwitchControllerPtpSettingsMapOu
 }
 
 func (o SwitchControllerPtpSettingsMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerPtpSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerPtpSettings {
-		return vs[0].(map[string]SwitchControllerPtpSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerPtpSettings {
+		return vs[0].(map[string]*SwitchControllerPtpSettings)[vs[1].(string)]
 	}).(SwitchControllerPtpSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerPtpSettingsInput)(nil)).Elem(), &SwitchControllerPtpSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerPtpSettingsArrayInput)(nil)).Elem(), SwitchControllerPtpSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerPtpSettingsMapInput)(nil)).Elem(), SwitchControllerPtpSettingsMap{})
 	pulumi.RegisterOutputType(SwitchControllerPtpSettingsOutput{})
-	pulumi.RegisterOutputType(SwitchControllerPtpSettingsPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerPtpSettingsArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerPtpSettingsMapOutput{})
 }

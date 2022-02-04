@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall address6template
 func LookupFirewallAddress6Template(ctx *pulumi.Context, args *LookupFirewallAddress6TemplateArgs, opts ...pulumi.InvokeOption) (*LookupFirewallAddress6TemplateResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddress6TemplateResult
 	err := ctx.Invoke("fortios:index/getFirewallAddress6Template:GetFirewallAddress6Template", args, &rv, opts...)
 	if err != nil {
@@ -27,6 +31,8 @@ type LookupFirewallAddress6TemplateArgs struct {
 
 // A collection of values returned by GetFirewallAddress6Template.
 type LookupFirewallAddress6TemplateResult struct {
+	// Security Fabric global object setting.
+	FabricObject string `pulumi:"fabricObject"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
 	// IPv6 address prefix.
@@ -38,4 +44,80 @@ type LookupFirewallAddress6TemplateResult struct {
 	// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
 	SubnetSegments []GetFirewallAddress6TemplateSubnetSegment `pulumi:"subnetSegments"`
 	Vdomparam      *string                                    `pulumi:"vdomparam"`
+}
+
+func LookupFirewallAddress6TemplateOutput(ctx *pulumi.Context, args LookupFirewallAddress6TemplateOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallAddress6TemplateResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallAddress6TemplateResult, error) {
+			args := v.(LookupFirewallAddress6TemplateArgs)
+			r, err := LookupFirewallAddress6Template(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallAddress6TemplateResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallAddress6Template.
+type LookupFirewallAddress6TemplateOutputArgs struct {
+	// Specify the name of the desired firewall address6template.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallAddress6TemplateOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddress6TemplateArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallAddress6Template.
+type LookupFirewallAddress6TemplateResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallAddress6TemplateResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddress6TemplateResult)(nil)).Elem()
+}
+
+func (o LookupFirewallAddress6TemplateResultOutput) ToLookupFirewallAddress6TemplateResultOutput() LookupFirewallAddress6TemplateResultOutput {
+	return o
+}
+
+func (o LookupFirewallAddress6TemplateResultOutput) ToLookupFirewallAddress6TemplateResultOutputWithContext(ctx context.Context) LookupFirewallAddress6TemplateResultOutput {
+	return o
+}
+
+// Security Fabric global object setting.
+func (o LookupFirewallAddress6TemplateResultOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) string { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallAddress6TemplateResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// IPv6 address prefix.
+func (o LookupFirewallAddress6TemplateResultOutput) Ip6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) string { return v.Ip6 }).(pulumi.StringOutput)
+}
+
+// Subnet segment value name.
+func (o LookupFirewallAddress6TemplateResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Number of IPv6 subnet segments.
+func (o LookupFirewallAddress6TemplateResultOutput) SubnetSegmentCount() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) int { return v.SubnetSegmentCount }).(pulumi.IntOutput)
+}
+
+// IPv6 subnet segments. The structure of `subnetSegment` block is documented below.
+func (o LookupFirewallAddress6TemplateResultOutput) SubnetSegments() GetFirewallAddress6TemplateSubnetSegmentArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) []GetFirewallAddress6TemplateSubnetSegment {
+		return v.SubnetSegments
+	}).(GetFirewallAddress6TemplateSubnetSegmentArrayOutput)
+}
+
+func (o LookupFirewallAddress6TemplateResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallAddress6TemplateResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallAddress6TemplateResultOutput{})
 }

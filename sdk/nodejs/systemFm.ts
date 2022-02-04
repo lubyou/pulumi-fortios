@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure FM.
+ * Configure FM. Applies to FortiOS Version `<= 7.0.1`.
  *
  * ## Example Usage
  *
@@ -103,33 +103,31 @@ export class SystemFm extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFmArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFmArgs | SystemFmState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFmState | undefined;
-            inputs["autoBackup"] = state ? state.autoBackup : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["ip"] = state ? state.ip : undefined;
-            inputs["ipsec"] = state ? state.ipsec : undefined;
-            inputs["scheduledConfigRestore"] = state ? state.scheduledConfigRestore : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["autoBackup"] = state ? state.autoBackup : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["ip"] = state ? state.ip : undefined;
+            resourceInputs["ipsec"] = state ? state.ipsec : undefined;
+            resourceInputs["scheduledConfigRestore"] = state ? state.scheduledConfigRestore : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFmArgs | undefined;
-            inputs["autoBackup"] = args ? args.autoBackup : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["ip"] = args ? args.ip : undefined;
-            inputs["ipsec"] = args ? args.ipsec : undefined;
-            inputs["scheduledConfigRestore"] = args ? args.scheduledConfigRestore : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["autoBackup"] = args ? args.autoBackup : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["ip"] = args ? args.ip : undefined;
+            resourceInputs["ipsec"] = args ? args.ipsec : undefined;
+            resourceInputs["scheduledConfigRestore"] = args ? args.scheduledConfigRestore : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFm.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFm.__pulumiType, name, resourceInputs, opts);
     }
 }
 

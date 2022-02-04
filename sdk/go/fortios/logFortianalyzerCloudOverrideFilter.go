@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Override filters for FortiAnalyzer Cloud.
+// Override filters for FortiAnalyzer Cloud. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -52,6 +52,8 @@ type LogFortianalyzerCloudOverrideFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogFortianalyzerCloudOverrideFilter registers a new resource with the given unique name, arguments, and options.
@@ -61,6 +63,7 @@ func NewLogFortianalyzerCloudOverrideFilter(ctx *pulumi.Context,
 		args = &LogFortianalyzerCloudOverrideFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortianalyzerCloudOverrideFilter
 	err := ctx.RegisterResource("fortios:index/logFortianalyzerCloudOverrideFilter:LogFortianalyzerCloudOverrideFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -111,6 +114,8 @@ type logFortianalyzerCloudOverrideFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogFortianalyzerCloudOverrideFilterState struct {
@@ -142,6 +147,8 @@ type LogFortianalyzerCloudOverrideFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerCloudOverrideFilterState) ElementType() reflect.Type {
@@ -177,6 +184,8 @@ type logFortianalyzerCloudOverrideFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogFortianalyzerCloudOverrideFilter resource.
@@ -209,6 +218,8 @@ type LogFortianalyzerCloudOverrideFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortianalyzerCloudOverrideFilterArgs) ElementType() reflect.Type {
@@ -223,7 +234,7 @@ type LogFortianalyzerCloudOverrideFilterInput interface {
 }
 
 func (*LogFortianalyzerCloudOverrideFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudOverrideFilter)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudOverrideFilter)(nil)).Elem()
 }
 
 func (i *LogFortianalyzerCloudOverrideFilter) ToLogFortianalyzerCloudOverrideFilterOutput() LogFortianalyzerCloudOverrideFilterOutput {
@@ -232,35 +243,6 @@ func (i *LogFortianalyzerCloudOverrideFilter) ToLogFortianalyzerCloudOverrideFil
 
 func (i *LogFortianalyzerCloudOverrideFilter) ToLogFortianalyzerCloudOverrideFilterOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideFilterOutput)
-}
-
-func (i *LogFortianalyzerCloudOverrideFilter) ToLogFortianalyzerCloudOverrideFilterPtrOutput() LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return i.ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortianalyzerCloudOverrideFilter) ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideFilterPtrOutput)
-}
-
-type LogFortianalyzerCloudOverrideFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogFortianalyzerCloudOverrideFilterPtrOutput() LogFortianalyzerCloudOverrideFilterPtrOutput
-	ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideFilterPtrOutput
-}
-
-type logFortianalyzerCloudOverrideFilterPtrType LogFortianalyzerCloudOverrideFilterArgs
-
-func (*logFortianalyzerCloudOverrideFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudOverrideFilter)(nil))
-}
-
-func (i *logFortianalyzerCloudOverrideFilterPtrType) ToLogFortianalyzerCloudOverrideFilterPtrOutput() LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return i.ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortianalyzerCloudOverrideFilterPtrType) ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideFilterPtrOutput)
 }
 
 // LogFortianalyzerCloudOverrideFilterArrayInput is an input type that accepts LogFortianalyzerCloudOverrideFilterArray and LogFortianalyzerCloudOverrideFilterArrayOutput values.
@@ -277,7 +259,7 @@ type LogFortianalyzerCloudOverrideFilterArrayInput interface {
 type LogFortianalyzerCloudOverrideFilterArray []LogFortianalyzerCloudOverrideFilterInput
 
 func (LogFortianalyzerCloudOverrideFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortianalyzerCloudOverrideFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudOverrideFilter)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudOverrideFilterArray) ToLogFortianalyzerCloudOverrideFilterArrayOutput() LogFortianalyzerCloudOverrideFilterArrayOutput {
@@ -302,7 +284,7 @@ type LogFortianalyzerCloudOverrideFilterMapInput interface {
 type LogFortianalyzerCloudOverrideFilterMap map[string]LogFortianalyzerCloudOverrideFilterInput
 
 func (LogFortianalyzerCloudOverrideFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortianalyzerCloudOverrideFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudOverrideFilter)(nil)).Elem()
 }
 
 func (i LogFortianalyzerCloudOverrideFilterMap) ToLogFortianalyzerCloudOverrideFilterMapOutput() LogFortianalyzerCloudOverrideFilterMapOutput {
@@ -313,12 +295,10 @@ func (i LogFortianalyzerCloudOverrideFilterMap) ToLogFortianalyzerCloudOverrideF
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortianalyzerCloudOverrideFilterMapOutput)
 }
 
-type LogFortianalyzerCloudOverrideFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogFortianalyzerCloudOverrideFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortianalyzerCloudOverrideFilter)(nil))
+	return reflect.TypeOf((**LogFortianalyzerCloudOverrideFilter)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudOverrideFilterOutput) ToLogFortianalyzerCloudOverrideFilterOutput() LogFortianalyzerCloudOverrideFilterOutput {
@@ -329,36 +309,10 @@ func (o LogFortianalyzerCloudOverrideFilterOutput) ToLogFortianalyzerCloudOverri
 	return o
 }
 
-func (o LogFortianalyzerCloudOverrideFilterOutput) ToLogFortianalyzerCloudOverrideFilterPtrOutput() LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return o.ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortianalyzerCloudOverrideFilterOutput) ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return o.ApplyT(func(v LogFortianalyzerCloudOverrideFilter) *LogFortianalyzerCloudOverrideFilter {
-		return &v
-	}).(LogFortianalyzerCloudOverrideFilterPtrOutput)
-}
-
-type LogFortianalyzerCloudOverrideFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortianalyzerCloudOverrideFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortianalyzerCloudOverrideFilter)(nil))
-}
-
-func (o LogFortianalyzerCloudOverrideFilterPtrOutput) ToLogFortianalyzerCloudOverrideFilterPtrOutput() LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return o
-}
-
-func (o LogFortianalyzerCloudOverrideFilterPtrOutput) ToLogFortianalyzerCloudOverrideFilterPtrOutputWithContext(ctx context.Context) LogFortianalyzerCloudOverrideFilterPtrOutput {
-	return o
-}
-
 type LogFortianalyzerCloudOverrideFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortianalyzerCloudOverrideFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortianalyzerCloudOverrideFilter)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudOverrideFilterArrayOutput) ToLogFortianalyzerCloudOverrideFilterArrayOutput() LogFortianalyzerCloudOverrideFilterArrayOutput {
@@ -370,15 +324,15 @@ func (o LogFortianalyzerCloudOverrideFilterArrayOutput) ToLogFortianalyzerCloudO
 }
 
 func (o LogFortianalyzerCloudOverrideFilterArrayOutput) Index(i pulumi.IntInput) LogFortianalyzerCloudOverrideFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortianalyzerCloudOverrideFilter {
-		return vs[0].([]LogFortianalyzerCloudOverrideFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudOverrideFilter {
+		return vs[0].([]*LogFortianalyzerCloudOverrideFilter)[vs[1].(int)]
 	}).(LogFortianalyzerCloudOverrideFilterOutput)
 }
 
 type LogFortianalyzerCloudOverrideFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortianalyzerCloudOverrideFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortianalyzerCloudOverrideFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortianalyzerCloudOverrideFilter)(nil)).Elem()
 }
 
 func (o LogFortianalyzerCloudOverrideFilterMapOutput) ToLogFortianalyzerCloudOverrideFilterMapOutput() LogFortianalyzerCloudOverrideFilterMapOutput {
@@ -390,14 +344,16 @@ func (o LogFortianalyzerCloudOverrideFilterMapOutput) ToLogFortianalyzerCloudOve
 }
 
 func (o LogFortianalyzerCloudOverrideFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortianalyzerCloudOverrideFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortianalyzerCloudOverrideFilter {
-		return vs[0].(map[string]LogFortianalyzerCloudOverrideFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortianalyzerCloudOverrideFilter {
+		return vs[0].(map[string]*LogFortianalyzerCloudOverrideFilter)[vs[1].(string)]
 	}).(LogFortianalyzerCloudOverrideFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudOverrideFilterInput)(nil)).Elem(), &LogFortianalyzerCloudOverrideFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudOverrideFilterArrayInput)(nil)).Elem(), LogFortianalyzerCloudOverrideFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortianalyzerCloudOverrideFilterMapInput)(nil)).Elem(), LogFortianalyzerCloudOverrideFilterMap{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideFilterOutput{})
-	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogFortianalyzerCloudOverrideFilterMapOutput{})
 }

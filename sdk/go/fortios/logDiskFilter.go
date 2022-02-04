@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -130,6 +130,8 @@ type LogDiskFilter struct {
 	WanOpt pulumi.StringOutput `pulumi:"wanOpt"`
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringOutput `pulumi:"wirelessActivity"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogDiskFilter registers a new resource with the given unique name, arguments, and options.
@@ -139,6 +141,7 @@ func NewLogDiskFilter(ctx *pulumi.Context,
 		args = &LogDiskFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogDiskFilter
 	err := ctx.RegisterResource("fortios:index/logDiskFilter:LogDiskFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -233,6 +236,8 @@ type logDiskFilterState struct {
 	WanOpt *string `pulumi:"wanOpt"`
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity *string `pulumi:"wirelessActivity"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogDiskFilterState struct {
@@ -308,6 +313,8 @@ type LogDiskFilterState struct {
 	WanOpt pulumi.StringPtrInput
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogDiskFilterState) ElementType() reflect.Type {
@@ -387,6 +394,8 @@ type logDiskFilterArgs struct {
 	WanOpt *string `pulumi:"wanOpt"`
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity *string `pulumi:"wirelessActivity"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogDiskFilter resource.
@@ -463,6 +472,8 @@ type LogDiskFilterArgs struct {
 	WanOpt pulumi.StringPtrInput
 	// Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
 	WirelessActivity pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogDiskFilterArgs) ElementType() reflect.Type {
@@ -477,7 +488,7 @@ type LogDiskFilterInput interface {
 }
 
 func (*LogDiskFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogDiskFilter)(nil))
+	return reflect.TypeOf((**LogDiskFilter)(nil)).Elem()
 }
 
 func (i *LogDiskFilter) ToLogDiskFilterOutput() LogDiskFilterOutput {
@@ -486,35 +497,6 @@ func (i *LogDiskFilter) ToLogDiskFilterOutput() LogDiskFilterOutput {
 
 func (i *LogDiskFilter) ToLogDiskFilterOutputWithContext(ctx context.Context) LogDiskFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterOutput)
-}
-
-func (i *LogDiskFilter) ToLogDiskFilterPtrOutput() LogDiskFilterPtrOutput {
-	return i.ToLogDiskFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogDiskFilter) ToLogDiskFilterPtrOutputWithContext(ctx context.Context) LogDiskFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterPtrOutput)
-}
-
-type LogDiskFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogDiskFilterPtrOutput() LogDiskFilterPtrOutput
-	ToLogDiskFilterPtrOutputWithContext(ctx context.Context) LogDiskFilterPtrOutput
-}
-
-type logDiskFilterPtrType LogDiskFilterArgs
-
-func (*logDiskFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogDiskFilter)(nil))
-}
-
-func (i *logDiskFilterPtrType) ToLogDiskFilterPtrOutput() LogDiskFilterPtrOutput {
-	return i.ToLogDiskFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logDiskFilterPtrType) ToLogDiskFilterPtrOutputWithContext(ctx context.Context) LogDiskFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterPtrOutput)
 }
 
 // LogDiskFilterArrayInput is an input type that accepts LogDiskFilterArray and LogDiskFilterArrayOutput values.
@@ -531,7 +513,7 @@ type LogDiskFilterArrayInput interface {
 type LogDiskFilterArray []LogDiskFilterInput
 
 func (LogDiskFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogDiskFilter)(nil))
+	return reflect.TypeOf((*[]*LogDiskFilter)(nil)).Elem()
 }
 
 func (i LogDiskFilterArray) ToLogDiskFilterArrayOutput() LogDiskFilterArrayOutput {
@@ -556,7 +538,7 @@ type LogDiskFilterMapInput interface {
 type LogDiskFilterMap map[string]LogDiskFilterInput
 
 func (LogDiskFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogDiskFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogDiskFilter)(nil)).Elem()
 }
 
 func (i LogDiskFilterMap) ToLogDiskFilterMapOutput() LogDiskFilterMapOutput {
@@ -567,12 +549,10 @@ func (i LogDiskFilterMap) ToLogDiskFilterMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(LogDiskFilterMapOutput)
 }
 
-type LogDiskFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogDiskFilterOutput struct{ *pulumi.OutputState }
 
 func (LogDiskFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogDiskFilter)(nil))
+	return reflect.TypeOf((**LogDiskFilter)(nil)).Elem()
 }
 
 func (o LogDiskFilterOutput) ToLogDiskFilterOutput() LogDiskFilterOutput {
@@ -583,36 +563,10 @@ func (o LogDiskFilterOutput) ToLogDiskFilterOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o LogDiskFilterOutput) ToLogDiskFilterPtrOutput() LogDiskFilterPtrOutput {
-	return o.ToLogDiskFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogDiskFilterOutput) ToLogDiskFilterPtrOutputWithContext(ctx context.Context) LogDiskFilterPtrOutput {
-	return o.ApplyT(func(v LogDiskFilter) *LogDiskFilter {
-		return &v
-	}).(LogDiskFilterPtrOutput)
-}
-
-type LogDiskFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogDiskFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogDiskFilter)(nil))
-}
-
-func (o LogDiskFilterPtrOutput) ToLogDiskFilterPtrOutput() LogDiskFilterPtrOutput {
-	return o
-}
-
-func (o LogDiskFilterPtrOutput) ToLogDiskFilterPtrOutputWithContext(ctx context.Context) LogDiskFilterPtrOutput {
-	return o
-}
-
 type LogDiskFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogDiskFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogDiskFilter)(nil))
+	return reflect.TypeOf((*[]*LogDiskFilter)(nil)).Elem()
 }
 
 func (o LogDiskFilterArrayOutput) ToLogDiskFilterArrayOutput() LogDiskFilterArrayOutput {
@@ -624,15 +578,15 @@ func (o LogDiskFilterArrayOutput) ToLogDiskFilterArrayOutputWithContext(ctx cont
 }
 
 func (o LogDiskFilterArrayOutput) Index(i pulumi.IntInput) LogDiskFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogDiskFilter {
-		return vs[0].([]LogDiskFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogDiskFilter {
+		return vs[0].([]*LogDiskFilter)[vs[1].(int)]
 	}).(LogDiskFilterOutput)
 }
 
 type LogDiskFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogDiskFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogDiskFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogDiskFilter)(nil)).Elem()
 }
 
 func (o LogDiskFilterMapOutput) ToLogDiskFilterMapOutput() LogDiskFilterMapOutput {
@@ -644,14 +598,16 @@ func (o LogDiskFilterMapOutput) ToLogDiskFilterMapOutputWithContext(ctx context.
 }
 
 func (o LogDiskFilterMapOutput) MapIndex(k pulumi.StringInput) LogDiskFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogDiskFilter {
-		return vs[0].(map[string]LogDiskFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogDiskFilter {
+		return vs[0].(map[string]*LogDiskFilter)[vs[1].(string)]
 	}).(LogDiskFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogDiskFilterInput)(nil)).Elem(), &LogDiskFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogDiskFilterArrayInput)(nil)).Elem(), LogDiskFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogDiskFilterMapInput)(nil)).Elem(), LogDiskFilterMap{})
 	pulumi.RegisterOutputType(LogDiskFilterOutput{})
-	pulumi.RegisterOutputType(LogDiskFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogDiskFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogDiskFilterMapOutput{})
 }

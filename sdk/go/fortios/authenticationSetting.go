@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -70,8 +70,22 @@ type AuthenticationSetting struct {
 	CaptivePortalSslPort pulumi.IntOutput `pulumi:"captivePortalSslPort"`
 	// Captive portal type. Valid values: `fqdn`, `ip`.
 	CaptivePortalType pulumi.StringOutput `pulumi:"captivePortalType"`
+	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+	CertAuth pulumi.StringOutput `pulumi:"certAuth"`
+	// Certificate captive portal host name.
+	CertCaptivePortal pulumi.StringOutput `pulumi:"certCaptivePortal"`
+	// Certificate captive portal IP address.
+	CertCaptivePortalIp pulumi.StringOutput `pulumi:"certCaptivePortalIp"`
+	// Certificate captive portal port number (1 - 65535, default = 7832).
+	CertCaptivePortalPort pulumi.IntOutput `pulumi:"certCaptivePortalPort"`
+	// Address range for the IP based device query. The structure of `devRange` block is documented below.
+	DevRanges AuthenticationSettingDevRangeArrayOutput `pulumi:"devRanges"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Single-Sign-On authentication method (scheme name).
 	SsoAuthScheme pulumi.StringOutput `pulumi:"ssoAuthScheme"`
+	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
+	UserCertCas AuthenticationSettingUserCertCaArrayOutput `pulumi:"userCertCas"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 }
@@ -83,6 +97,7 @@ func NewAuthenticationSetting(ctx *pulumi.Context,
 		args = &AuthenticationSettingArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AuthenticationSetting
 	err := ctx.RegisterResource("fortios:index/authenticationSetting:AuthenticationSetting", name, args, &resource, opts...)
 	if err != nil {
@@ -123,8 +138,22 @@ type authenticationSettingState struct {
 	CaptivePortalSslPort *int `pulumi:"captivePortalSslPort"`
 	// Captive portal type. Valid values: `fqdn`, `ip`.
 	CaptivePortalType *string `pulumi:"captivePortalType"`
+	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+	CertAuth *string `pulumi:"certAuth"`
+	// Certificate captive portal host name.
+	CertCaptivePortal *string `pulumi:"certCaptivePortal"`
+	// Certificate captive portal IP address.
+	CertCaptivePortalIp *string `pulumi:"certCaptivePortalIp"`
+	// Certificate captive portal port number (1 - 65535, default = 7832).
+	CertCaptivePortalPort *int `pulumi:"certCaptivePortalPort"`
+	// Address range for the IP based device query. The structure of `devRange` block is documented below.
+	DevRanges []AuthenticationSettingDevRange `pulumi:"devRanges"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Single-Sign-On authentication method (scheme name).
 	SsoAuthScheme *string `pulumi:"ssoAuthScheme"`
+	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
+	UserCertCas []AuthenticationSettingUserCertCa `pulumi:"userCertCas"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -148,8 +177,22 @@ type AuthenticationSettingState struct {
 	CaptivePortalSslPort pulumi.IntPtrInput
 	// Captive portal type. Valid values: `fqdn`, `ip`.
 	CaptivePortalType pulumi.StringPtrInput
+	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+	CertAuth pulumi.StringPtrInput
+	// Certificate captive portal host name.
+	CertCaptivePortal pulumi.StringPtrInput
+	// Certificate captive portal IP address.
+	CertCaptivePortalIp pulumi.StringPtrInput
+	// Certificate captive portal port number (1 - 65535, default = 7832).
+	CertCaptivePortalPort pulumi.IntPtrInput
+	// Address range for the IP based device query. The structure of `devRange` block is documented below.
+	DevRanges AuthenticationSettingDevRangeArrayInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Single-Sign-On authentication method (scheme name).
 	SsoAuthScheme pulumi.StringPtrInput
+	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
+	UserCertCas AuthenticationSettingUserCertCaArrayInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -177,8 +220,22 @@ type authenticationSettingArgs struct {
 	CaptivePortalSslPort *int `pulumi:"captivePortalSslPort"`
 	// Captive portal type. Valid values: `fqdn`, `ip`.
 	CaptivePortalType *string `pulumi:"captivePortalType"`
+	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+	CertAuth *string `pulumi:"certAuth"`
+	// Certificate captive portal host name.
+	CertCaptivePortal *string `pulumi:"certCaptivePortal"`
+	// Certificate captive portal IP address.
+	CertCaptivePortalIp *string `pulumi:"certCaptivePortalIp"`
+	// Certificate captive portal port number (1 - 65535, default = 7832).
+	CertCaptivePortalPort *int `pulumi:"certCaptivePortalPort"`
+	// Address range for the IP based device query. The structure of `devRange` block is documented below.
+	DevRanges []AuthenticationSettingDevRange `pulumi:"devRanges"`
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Single-Sign-On authentication method (scheme name).
 	SsoAuthScheme *string `pulumi:"ssoAuthScheme"`
+	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
+	UserCertCas []AuthenticationSettingUserCertCa `pulumi:"userCertCas"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
 }
@@ -203,8 +260,22 @@ type AuthenticationSettingArgs struct {
 	CaptivePortalSslPort pulumi.IntPtrInput
 	// Captive portal type. Valid values: `fqdn`, `ip`.
 	CaptivePortalType pulumi.StringPtrInput
+	// Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `enable`, `disable`.
+	CertAuth pulumi.StringPtrInput
+	// Certificate captive portal host name.
+	CertCaptivePortal pulumi.StringPtrInput
+	// Certificate captive portal IP address.
+	CertCaptivePortalIp pulumi.StringPtrInput
+	// Certificate captive portal port number (1 - 65535, default = 7832).
+	CertCaptivePortalPort pulumi.IntPtrInput
+	// Address range for the IP based device query. The structure of `devRange` block is documented below.
+	DevRanges AuthenticationSettingDevRangeArrayInput
+	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+	DynamicSortSubtable pulumi.StringPtrInput
 	// Single-Sign-On authentication method (scheme name).
 	SsoAuthScheme pulumi.StringPtrInput
+	// CA certificate used for client certificate verification. The structure of `userCertCa` block is documented below.
+	UserCertCas AuthenticationSettingUserCertCaArrayInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
 }
@@ -221,7 +292,7 @@ type AuthenticationSettingInput interface {
 }
 
 func (*AuthenticationSetting) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthenticationSetting)(nil))
+	return reflect.TypeOf((**AuthenticationSetting)(nil)).Elem()
 }
 
 func (i *AuthenticationSetting) ToAuthenticationSettingOutput() AuthenticationSettingOutput {
@@ -230,35 +301,6 @@ func (i *AuthenticationSetting) ToAuthenticationSettingOutput() AuthenticationSe
 
 func (i *AuthenticationSetting) ToAuthenticationSettingOutputWithContext(ctx context.Context) AuthenticationSettingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingOutput)
-}
-
-func (i *AuthenticationSetting) ToAuthenticationSettingPtrOutput() AuthenticationSettingPtrOutput {
-	return i.ToAuthenticationSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *AuthenticationSetting) ToAuthenticationSettingPtrOutputWithContext(ctx context.Context) AuthenticationSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingPtrOutput)
-}
-
-type AuthenticationSettingPtrInput interface {
-	pulumi.Input
-
-	ToAuthenticationSettingPtrOutput() AuthenticationSettingPtrOutput
-	ToAuthenticationSettingPtrOutputWithContext(ctx context.Context) AuthenticationSettingPtrOutput
-}
-
-type authenticationSettingPtrType AuthenticationSettingArgs
-
-func (*authenticationSettingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthenticationSetting)(nil))
-}
-
-func (i *authenticationSettingPtrType) ToAuthenticationSettingPtrOutput() AuthenticationSettingPtrOutput {
-	return i.ToAuthenticationSettingPtrOutputWithContext(context.Background())
-}
-
-func (i *authenticationSettingPtrType) ToAuthenticationSettingPtrOutputWithContext(ctx context.Context) AuthenticationSettingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingPtrOutput)
 }
 
 // AuthenticationSettingArrayInput is an input type that accepts AuthenticationSettingArray and AuthenticationSettingArrayOutput values.
@@ -275,7 +317,7 @@ type AuthenticationSettingArrayInput interface {
 type AuthenticationSettingArray []AuthenticationSettingInput
 
 func (AuthenticationSettingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AuthenticationSetting)(nil))
+	return reflect.TypeOf((*[]*AuthenticationSetting)(nil)).Elem()
 }
 
 func (i AuthenticationSettingArray) ToAuthenticationSettingArrayOutput() AuthenticationSettingArrayOutput {
@@ -300,7 +342,7 @@ type AuthenticationSettingMapInput interface {
 type AuthenticationSettingMap map[string]AuthenticationSettingInput
 
 func (AuthenticationSettingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AuthenticationSetting)(nil))
+	return reflect.TypeOf((*map[string]*AuthenticationSetting)(nil)).Elem()
 }
 
 func (i AuthenticationSettingMap) ToAuthenticationSettingMapOutput() AuthenticationSettingMapOutput {
@@ -311,12 +353,10 @@ func (i AuthenticationSettingMap) ToAuthenticationSettingMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationSettingMapOutput)
 }
 
-type AuthenticationSettingOutput struct {
-	*pulumi.OutputState
-}
+type AuthenticationSettingOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSettingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthenticationSetting)(nil))
+	return reflect.TypeOf((**AuthenticationSetting)(nil)).Elem()
 }
 
 func (o AuthenticationSettingOutput) ToAuthenticationSettingOutput() AuthenticationSettingOutput {
@@ -327,36 +367,10 @@ func (o AuthenticationSettingOutput) ToAuthenticationSettingOutputWithContext(ct
 	return o
 }
 
-func (o AuthenticationSettingOutput) ToAuthenticationSettingPtrOutput() AuthenticationSettingPtrOutput {
-	return o.ToAuthenticationSettingPtrOutputWithContext(context.Background())
-}
-
-func (o AuthenticationSettingOutput) ToAuthenticationSettingPtrOutputWithContext(ctx context.Context) AuthenticationSettingPtrOutput {
-	return o.ApplyT(func(v AuthenticationSetting) *AuthenticationSetting {
-		return &v
-	}).(AuthenticationSettingPtrOutput)
-}
-
-type AuthenticationSettingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AuthenticationSettingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthenticationSetting)(nil))
-}
-
-func (o AuthenticationSettingPtrOutput) ToAuthenticationSettingPtrOutput() AuthenticationSettingPtrOutput {
-	return o
-}
-
-func (o AuthenticationSettingPtrOutput) ToAuthenticationSettingPtrOutputWithContext(ctx context.Context) AuthenticationSettingPtrOutput {
-	return o
-}
-
 type AuthenticationSettingArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSettingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthenticationSetting)(nil))
+	return reflect.TypeOf((*[]*AuthenticationSetting)(nil)).Elem()
 }
 
 func (o AuthenticationSettingArrayOutput) ToAuthenticationSettingArrayOutput() AuthenticationSettingArrayOutput {
@@ -368,15 +382,15 @@ func (o AuthenticationSettingArrayOutput) ToAuthenticationSettingArrayOutputWith
 }
 
 func (o AuthenticationSettingArrayOutput) Index(i pulumi.IntInput) AuthenticationSettingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthenticationSetting {
-		return vs[0].([]AuthenticationSetting)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthenticationSetting {
+		return vs[0].([]*AuthenticationSetting)[vs[1].(int)]
 	}).(AuthenticationSettingOutput)
 }
 
 type AuthenticationSettingMapOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationSettingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AuthenticationSetting)(nil))
+	return reflect.TypeOf((*map[string]*AuthenticationSetting)(nil)).Elem()
 }
 
 func (o AuthenticationSettingMapOutput) ToAuthenticationSettingMapOutput() AuthenticationSettingMapOutput {
@@ -388,14 +402,16 @@ func (o AuthenticationSettingMapOutput) ToAuthenticationSettingMapOutputWithCont
 }
 
 func (o AuthenticationSettingMapOutput) MapIndex(k pulumi.StringInput) AuthenticationSettingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthenticationSetting {
-		return vs[0].(map[string]AuthenticationSetting)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthenticationSetting {
+		return vs[0].(map[string]*AuthenticationSetting)[vs[1].(string)]
 	}).(AuthenticationSettingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationSettingInput)(nil)).Elem(), &AuthenticationSetting{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationSettingArrayInput)(nil)).Elem(), AuthenticationSettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationSettingMapInput)(nil)).Elem(), AuthenticationSettingMap{})
 	pulumi.RegisterOutputType(AuthenticationSettingOutput{})
-	pulumi.RegisterOutputType(AuthenticationSettingPtrOutput{})
 	pulumi.RegisterOutputType(AuthenticationSettingArrayOutput{})
 	pulumi.RegisterOutputType(AuthenticationSettingMapOutput{})
 }

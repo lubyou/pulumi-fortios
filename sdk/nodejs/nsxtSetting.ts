@@ -67,23 +67,21 @@ export class NsxtSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: NsxtSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: NsxtSettingArgs | NsxtSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as NsxtSettingState | undefined;
-            inputs["liveness"] = state ? state.liveness : undefined;
-            inputs["service"] = state ? state.service : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["liveness"] = state ? state.liveness : undefined;
+            resourceInputs["service"] = state ? state.service : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as NsxtSettingArgs | undefined;
-            inputs["liveness"] = args ? args.liveness : undefined;
-            inputs["service"] = args ? args.service : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["liveness"] = args ? args.liveness : undefined;
+            resourceInputs["service"] = args ? args.service : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(NsxtSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(NsxtSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 

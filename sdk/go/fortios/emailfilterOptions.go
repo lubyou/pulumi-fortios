@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure AntiSpam options.
+// Configure AntiSpam options. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -37,6 +37,7 @@ func NewEmailfilterOptions(ctx *pulumi.Context,
 		args = &EmailfilterOptionsArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EmailfilterOptions
 	err := ctx.RegisterResource("fortios:index/emailfilterOptions:EmailfilterOptions", name, args, &resource, opts...)
 	if err != nil {
@@ -103,7 +104,7 @@ type EmailfilterOptionsInput interface {
 }
 
 func (*EmailfilterOptions) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterOptions)(nil))
+	return reflect.TypeOf((**EmailfilterOptions)(nil)).Elem()
 }
 
 func (i *EmailfilterOptions) ToEmailfilterOptionsOutput() EmailfilterOptionsOutput {
@@ -112,35 +113,6 @@ func (i *EmailfilterOptions) ToEmailfilterOptionsOutput() EmailfilterOptionsOutp
 
 func (i *EmailfilterOptions) ToEmailfilterOptionsOutputWithContext(ctx context.Context) EmailfilterOptionsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsOutput)
-}
-
-func (i *EmailfilterOptions) ToEmailfilterOptionsPtrOutput() EmailfilterOptionsPtrOutput {
-	return i.ToEmailfilterOptionsPtrOutputWithContext(context.Background())
-}
-
-func (i *EmailfilterOptions) ToEmailfilterOptionsPtrOutputWithContext(ctx context.Context) EmailfilterOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsPtrOutput)
-}
-
-type EmailfilterOptionsPtrInput interface {
-	pulumi.Input
-
-	ToEmailfilterOptionsPtrOutput() EmailfilterOptionsPtrOutput
-	ToEmailfilterOptionsPtrOutputWithContext(ctx context.Context) EmailfilterOptionsPtrOutput
-}
-
-type emailfilterOptionsPtrType EmailfilterOptionsArgs
-
-func (*emailfilterOptionsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterOptions)(nil))
-}
-
-func (i *emailfilterOptionsPtrType) ToEmailfilterOptionsPtrOutput() EmailfilterOptionsPtrOutput {
-	return i.ToEmailfilterOptionsPtrOutputWithContext(context.Background())
-}
-
-func (i *emailfilterOptionsPtrType) ToEmailfilterOptionsPtrOutputWithContext(ctx context.Context) EmailfilterOptionsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsPtrOutput)
 }
 
 // EmailfilterOptionsArrayInput is an input type that accepts EmailfilterOptionsArray and EmailfilterOptionsArrayOutput values.
@@ -157,7 +129,7 @@ type EmailfilterOptionsArrayInput interface {
 type EmailfilterOptionsArray []EmailfilterOptionsInput
 
 func (EmailfilterOptionsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EmailfilterOptions)(nil))
+	return reflect.TypeOf((*[]*EmailfilterOptions)(nil)).Elem()
 }
 
 func (i EmailfilterOptionsArray) ToEmailfilterOptionsArrayOutput() EmailfilterOptionsArrayOutput {
@@ -182,7 +154,7 @@ type EmailfilterOptionsMapInput interface {
 type EmailfilterOptionsMap map[string]EmailfilterOptionsInput
 
 func (EmailfilterOptionsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EmailfilterOptions)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterOptions)(nil)).Elem()
 }
 
 func (i EmailfilterOptionsMap) ToEmailfilterOptionsMapOutput() EmailfilterOptionsMapOutput {
@@ -193,12 +165,10 @@ func (i EmailfilterOptionsMap) ToEmailfilterOptionsMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterOptionsMapOutput)
 }
 
-type EmailfilterOptionsOutput struct {
-	*pulumi.OutputState
-}
+type EmailfilterOptionsOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterOptionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterOptions)(nil))
+	return reflect.TypeOf((**EmailfilterOptions)(nil)).Elem()
 }
 
 func (o EmailfilterOptionsOutput) ToEmailfilterOptionsOutput() EmailfilterOptionsOutput {
@@ -209,36 +179,10 @@ func (o EmailfilterOptionsOutput) ToEmailfilterOptionsOutputWithContext(ctx cont
 	return o
 }
 
-func (o EmailfilterOptionsOutput) ToEmailfilterOptionsPtrOutput() EmailfilterOptionsPtrOutput {
-	return o.ToEmailfilterOptionsPtrOutputWithContext(context.Background())
-}
-
-func (o EmailfilterOptionsOutput) ToEmailfilterOptionsPtrOutputWithContext(ctx context.Context) EmailfilterOptionsPtrOutput {
-	return o.ApplyT(func(v EmailfilterOptions) *EmailfilterOptions {
-		return &v
-	}).(EmailfilterOptionsPtrOutput)
-}
-
-type EmailfilterOptionsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EmailfilterOptionsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterOptions)(nil))
-}
-
-func (o EmailfilterOptionsPtrOutput) ToEmailfilterOptionsPtrOutput() EmailfilterOptionsPtrOutput {
-	return o
-}
-
-func (o EmailfilterOptionsPtrOutput) ToEmailfilterOptionsPtrOutputWithContext(ctx context.Context) EmailfilterOptionsPtrOutput {
-	return o
-}
-
 type EmailfilterOptionsArrayOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterOptionsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EmailfilterOptions)(nil))
+	return reflect.TypeOf((*[]*EmailfilterOptions)(nil)).Elem()
 }
 
 func (o EmailfilterOptionsArrayOutput) ToEmailfilterOptionsArrayOutput() EmailfilterOptionsArrayOutput {
@@ -250,15 +194,15 @@ func (o EmailfilterOptionsArrayOutput) ToEmailfilterOptionsArrayOutputWithContex
 }
 
 func (o EmailfilterOptionsArrayOutput) Index(i pulumi.IntInput) EmailfilterOptionsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EmailfilterOptions {
-		return vs[0].([]EmailfilterOptions)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterOptions {
+		return vs[0].([]*EmailfilterOptions)[vs[1].(int)]
 	}).(EmailfilterOptionsOutput)
 }
 
 type EmailfilterOptionsMapOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterOptionsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EmailfilterOptions)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterOptions)(nil)).Elem()
 }
 
 func (o EmailfilterOptionsMapOutput) ToEmailfilterOptionsMapOutput() EmailfilterOptionsMapOutput {
@@ -270,14 +214,16 @@ func (o EmailfilterOptionsMapOutput) ToEmailfilterOptionsMapOutputWithContext(ct
 }
 
 func (o EmailfilterOptionsMapOutput) MapIndex(k pulumi.StringInput) EmailfilterOptionsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EmailfilterOptions {
-		return vs[0].(map[string]EmailfilterOptions)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EmailfilterOptions {
+		return vs[0].(map[string]*EmailfilterOptions)[vs[1].(string)]
 	}).(EmailfilterOptionsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterOptionsInput)(nil)).Elem(), &EmailfilterOptions{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterOptionsArrayInput)(nil)).Elem(), EmailfilterOptionsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterOptionsMapInput)(nil)).Elem(), EmailfilterOptionsMap{})
 	pulumi.RegisterOutputType(EmailfilterOptionsOutput{})
-	pulumi.RegisterOutputType(EmailfilterOptionsPtrOutput{})
 	pulumi.RegisterOutputType(EmailfilterOptionsArrayOutput{})
 	pulumi.RegisterOutputType(EmailfilterOptionsMapOutput{})
 }

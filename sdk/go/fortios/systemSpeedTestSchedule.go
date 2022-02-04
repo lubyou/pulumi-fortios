@@ -26,6 +26,8 @@ type SystemSpeedTestSchedule struct {
 
 	// DSCP used for speed test.
 	Diffserv pulumi.StringOutput `pulumi:"diffserv"`
+	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+	DynamicServer pulumi.StringOutput `pulumi:"dynamicServer"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
 	// Interface name.
@@ -59,6 +61,7 @@ func NewSystemSpeedTestSchedule(ctx *pulumi.Context,
 		args = &SystemSpeedTestScheduleArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSpeedTestSchedule
 	err := ctx.RegisterResource("fortios:index/systemSpeedTestSchedule:SystemSpeedTestSchedule", name, args, &resource, opts...)
 	if err != nil {
@@ -83,6 +86,8 @@ func GetSystemSpeedTestSchedule(ctx *pulumi.Context,
 type systemSpeedTestScheduleState struct {
 	// DSCP used for speed test.
 	Diffserv *string `pulumi:"diffserv"`
+	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+	DynamicServer *string `pulumi:"dynamicServer"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Interface name.
@@ -112,6 +117,8 @@ type systemSpeedTestScheduleState struct {
 type SystemSpeedTestScheduleState struct {
 	// DSCP used for speed test.
 	Diffserv pulumi.StringPtrInput
+	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+	DynamicServer pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Interface name.
@@ -145,6 +152,8 @@ func (SystemSpeedTestScheduleState) ElementType() reflect.Type {
 type systemSpeedTestScheduleArgs struct {
 	// DSCP used for speed test.
 	Diffserv *string `pulumi:"diffserv"`
+	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+	DynamicServer *string `pulumi:"dynamicServer"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
 	// Interface name.
@@ -175,6 +184,8 @@ type systemSpeedTestScheduleArgs struct {
 type SystemSpeedTestScheduleArgs struct {
 	// DSCP used for speed test.
 	Diffserv pulumi.StringPtrInput
+	// Enable/disable dynamic server option. Valid values: `disable`, `enable`.
+	DynamicServer pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
 	// Interface name.
@@ -213,7 +224,7 @@ type SystemSpeedTestScheduleInput interface {
 }
 
 func (*SystemSpeedTestSchedule) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSpeedTestSchedule)(nil))
+	return reflect.TypeOf((**SystemSpeedTestSchedule)(nil)).Elem()
 }
 
 func (i *SystemSpeedTestSchedule) ToSystemSpeedTestScheduleOutput() SystemSpeedTestScheduleOutput {
@@ -222,35 +233,6 @@ func (i *SystemSpeedTestSchedule) ToSystemSpeedTestScheduleOutput() SystemSpeedT
 
 func (i *SystemSpeedTestSchedule) ToSystemSpeedTestScheduleOutputWithContext(ctx context.Context) SystemSpeedTestScheduleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestScheduleOutput)
-}
-
-func (i *SystemSpeedTestSchedule) ToSystemSpeedTestSchedulePtrOutput() SystemSpeedTestSchedulePtrOutput {
-	return i.ToSystemSpeedTestSchedulePtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSpeedTestSchedule) ToSystemSpeedTestSchedulePtrOutputWithContext(ctx context.Context) SystemSpeedTestSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestSchedulePtrOutput)
-}
-
-type SystemSpeedTestSchedulePtrInput interface {
-	pulumi.Input
-
-	ToSystemSpeedTestSchedulePtrOutput() SystemSpeedTestSchedulePtrOutput
-	ToSystemSpeedTestSchedulePtrOutputWithContext(ctx context.Context) SystemSpeedTestSchedulePtrOutput
-}
-
-type systemSpeedTestSchedulePtrType SystemSpeedTestScheduleArgs
-
-func (*systemSpeedTestSchedulePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSpeedTestSchedule)(nil))
-}
-
-func (i *systemSpeedTestSchedulePtrType) ToSystemSpeedTestSchedulePtrOutput() SystemSpeedTestSchedulePtrOutput {
-	return i.ToSystemSpeedTestSchedulePtrOutputWithContext(context.Background())
-}
-
-func (i *systemSpeedTestSchedulePtrType) ToSystemSpeedTestSchedulePtrOutputWithContext(ctx context.Context) SystemSpeedTestSchedulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestSchedulePtrOutput)
 }
 
 // SystemSpeedTestScheduleArrayInput is an input type that accepts SystemSpeedTestScheduleArray and SystemSpeedTestScheduleArrayOutput values.
@@ -267,7 +249,7 @@ type SystemSpeedTestScheduleArrayInput interface {
 type SystemSpeedTestScheduleArray []SystemSpeedTestScheduleInput
 
 func (SystemSpeedTestScheduleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSpeedTestSchedule)(nil))
+	return reflect.TypeOf((*[]*SystemSpeedTestSchedule)(nil)).Elem()
 }
 
 func (i SystemSpeedTestScheduleArray) ToSystemSpeedTestScheduleArrayOutput() SystemSpeedTestScheduleArrayOutput {
@@ -292,7 +274,7 @@ type SystemSpeedTestScheduleMapInput interface {
 type SystemSpeedTestScheduleMap map[string]SystemSpeedTestScheduleInput
 
 func (SystemSpeedTestScheduleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSpeedTestSchedule)(nil))
+	return reflect.TypeOf((*map[string]*SystemSpeedTestSchedule)(nil)).Elem()
 }
 
 func (i SystemSpeedTestScheduleMap) ToSystemSpeedTestScheduleMapOutput() SystemSpeedTestScheduleMapOutput {
@@ -303,12 +285,10 @@ func (i SystemSpeedTestScheduleMap) ToSystemSpeedTestScheduleMapOutputWithContex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSpeedTestScheduleMapOutput)
 }
 
-type SystemSpeedTestScheduleOutput struct {
-	*pulumi.OutputState
-}
+type SystemSpeedTestScheduleOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestScheduleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSpeedTestSchedule)(nil))
+	return reflect.TypeOf((**SystemSpeedTestSchedule)(nil)).Elem()
 }
 
 func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestScheduleOutput() SystemSpeedTestScheduleOutput {
@@ -319,36 +299,10 @@ func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestScheduleOutputWithContex
 	return o
 }
 
-func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestSchedulePtrOutput() SystemSpeedTestSchedulePtrOutput {
-	return o.ToSystemSpeedTestSchedulePtrOutputWithContext(context.Background())
-}
-
-func (o SystemSpeedTestScheduleOutput) ToSystemSpeedTestSchedulePtrOutputWithContext(ctx context.Context) SystemSpeedTestSchedulePtrOutput {
-	return o.ApplyT(func(v SystemSpeedTestSchedule) *SystemSpeedTestSchedule {
-		return &v
-	}).(SystemSpeedTestSchedulePtrOutput)
-}
-
-type SystemSpeedTestSchedulePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSpeedTestSchedulePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSpeedTestSchedule)(nil))
-}
-
-func (o SystemSpeedTestSchedulePtrOutput) ToSystemSpeedTestSchedulePtrOutput() SystemSpeedTestSchedulePtrOutput {
-	return o
-}
-
-func (o SystemSpeedTestSchedulePtrOutput) ToSystemSpeedTestSchedulePtrOutputWithContext(ctx context.Context) SystemSpeedTestSchedulePtrOutput {
-	return o
-}
-
 type SystemSpeedTestScheduleArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestScheduleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSpeedTestSchedule)(nil))
+	return reflect.TypeOf((*[]*SystemSpeedTestSchedule)(nil)).Elem()
 }
 
 func (o SystemSpeedTestScheduleArrayOutput) ToSystemSpeedTestScheduleArrayOutput() SystemSpeedTestScheduleArrayOutput {
@@ -360,15 +314,15 @@ func (o SystemSpeedTestScheduleArrayOutput) ToSystemSpeedTestScheduleArrayOutput
 }
 
 func (o SystemSpeedTestScheduleArrayOutput) Index(i pulumi.IntInput) SystemSpeedTestScheduleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSpeedTestSchedule {
-		return vs[0].([]SystemSpeedTestSchedule)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSpeedTestSchedule {
+		return vs[0].([]*SystemSpeedTestSchedule)[vs[1].(int)]
 	}).(SystemSpeedTestScheduleOutput)
 }
 
 type SystemSpeedTestScheduleMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSpeedTestScheduleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSpeedTestSchedule)(nil))
+	return reflect.TypeOf((*map[string]*SystemSpeedTestSchedule)(nil)).Elem()
 }
 
 func (o SystemSpeedTestScheduleMapOutput) ToSystemSpeedTestScheduleMapOutput() SystemSpeedTestScheduleMapOutput {
@@ -380,14 +334,16 @@ func (o SystemSpeedTestScheduleMapOutput) ToSystemSpeedTestScheduleMapOutputWith
 }
 
 func (o SystemSpeedTestScheduleMapOutput) MapIndex(k pulumi.StringInput) SystemSpeedTestScheduleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSpeedTestSchedule {
-		return vs[0].(map[string]SystemSpeedTestSchedule)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSpeedTestSchedule {
+		return vs[0].(map[string]*SystemSpeedTestSchedule)[vs[1].(string)]
 	}).(SystemSpeedTestScheduleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSpeedTestScheduleInput)(nil)).Elem(), &SystemSpeedTestSchedule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSpeedTestScheduleArrayInput)(nil)).Elem(), SystemSpeedTestScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSpeedTestScheduleMapInput)(nil)).Elem(), SystemSpeedTestScheduleMap{})
 	pulumi.RegisterOutputType(SystemSpeedTestScheduleOutput{})
-	pulumi.RegisterOutputType(SystemSpeedTestSchedulePtrOutput{})
 	pulumi.RegisterOutputType(SystemSpeedTestScheduleArrayOutput{})
 	pulumi.RegisterOutputType(SystemSpeedTestScheduleMapOutput{})
 }

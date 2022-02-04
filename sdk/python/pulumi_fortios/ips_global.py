@@ -16,6 +16,7 @@ __all__ = ['IpsGlobalArgs', 'IpsGlobal']
 class IpsGlobalArgs:
     def __init__(__self__, *,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
                  deep_app_insp_timeout: Optional[pulumi.Input[int]] = None,
@@ -23,7 +24,9 @@ class IpsGlobalArgs:
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
+                 ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
+                 np_accel_mode: Optional[pulumi.Input[str]] = None,
                  packet_log_queue_depth: Optional[pulumi.Input[int]] = None,
                  session_limit_mode: Optional[pulumi.Input[str]] = None,
                  skype_client_public_ipaddr: Optional[pulumi.Input[str]] = None,
@@ -35,6 +38,7 @@ class IpsGlobalArgs:
         """
         The set of arguments for constructing a IpsGlobal resource.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
         :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
@@ -42,7 +46,9 @@ class IpsGlobalArgs:
         :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
+        :param pulumi.Input[str] np_accel_mode: Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
@@ -54,6 +60,8 @@ class IpsGlobalArgs:
         """
         if anomaly_mode is not None:
             pulumi.set(__self__, "anomaly_mode", anomaly_mode)
+        if cp_accel_mode is not None:
+            pulumi.set(__self__, "cp_accel_mode", cp_accel_mode)
         if database is not None:
             pulumi.set(__self__, "database", database)
         if deep_app_insp_db_limit is not None:
@@ -68,8 +76,12 @@ class IpsGlobalArgs:
             pulumi.set(__self__, "fail_open", fail_open)
         if intelligent_mode is not None:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
+        if ips_reserve_cpu is not None:
+            pulumi.set(__self__, "ips_reserve_cpu", ips_reserve_cpu)
         if ngfw_max_scan_range is not None:
             pulumi.set(__self__, "ngfw_max_scan_range", ngfw_max_scan_range)
+        if np_accel_mode is not None:
+            pulumi.set(__self__, "np_accel_mode", np_accel_mode)
         if packet_log_queue_depth is not None:
             pulumi.set(__self__, "packet_log_queue_depth", packet_log_queue_depth)
         if session_limit_mode is not None:
@@ -98,6 +110,18 @@ class IpsGlobalArgs:
     @anomaly_mode.setter
     def anomaly_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "anomaly_mode", value)
+
+    @property
+    @pulumi.getter(name="cpAccelMode")
+    def cp_accel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+        """
+        return pulumi.get(self, "cp_accel_mode")
+
+    @cp_accel_mode.setter
+    def cp_accel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cp_accel_mode", value)
 
     @property
     @pulumi.getter
@@ -184,6 +208,18 @@ class IpsGlobalArgs:
         pulumi.set(self, "intelligent_mode", value)
 
     @property
+    @pulumi.getter(name="ipsReserveCpu")
+    def ips_reserve_cpu(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ips_reserve_cpu")
+
+    @ips_reserve_cpu.setter
+    def ips_reserve_cpu(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_reserve_cpu", value)
+
+    @property
     @pulumi.getter(name="ngfwMaxScanRange")
     def ngfw_max_scan_range(self) -> Optional[pulumi.Input[int]]:
         """
@@ -194,6 +230,18 @@ class IpsGlobalArgs:
     @ngfw_max_scan_range.setter
     def ngfw_max_scan_range(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ngfw_max_scan_range", value)
+
+    @property
+    @pulumi.getter(name="npAccelMode")
+    def np_accel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+        """
+        return pulumi.get(self, "np_accel_mode")
+
+    @np_accel_mode.setter
+    def np_accel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "np_accel_mode", value)
 
     @property
     @pulumi.getter(name="packetLogQueueDepth")
@@ -296,6 +344,7 @@ class IpsGlobalArgs:
 class _IpsGlobalState:
     def __init__(__self__, *,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
                  deep_app_insp_timeout: Optional[pulumi.Input[int]] = None,
@@ -303,7 +352,9 @@ class _IpsGlobalState:
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
+                 ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
+                 np_accel_mode: Optional[pulumi.Input[str]] = None,
                  packet_log_queue_depth: Optional[pulumi.Input[int]] = None,
                  session_limit_mode: Optional[pulumi.Input[str]] = None,
                  skype_client_public_ipaddr: Optional[pulumi.Input[str]] = None,
@@ -315,6 +366,7 @@ class _IpsGlobalState:
         """
         Input properties used for looking up and filtering IpsGlobal resources.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
         :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
@@ -322,7 +374,9 @@ class _IpsGlobalState:
         :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
+        :param pulumi.Input[str] np_accel_mode: Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
@@ -334,6 +388,8 @@ class _IpsGlobalState:
         """
         if anomaly_mode is not None:
             pulumi.set(__self__, "anomaly_mode", anomaly_mode)
+        if cp_accel_mode is not None:
+            pulumi.set(__self__, "cp_accel_mode", cp_accel_mode)
         if database is not None:
             pulumi.set(__self__, "database", database)
         if deep_app_insp_db_limit is not None:
@@ -348,8 +404,12 @@ class _IpsGlobalState:
             pulumi.set(__self__, "fail_open", fail_open)
         if intelligent_mode is not None:
             pulumi.set(__self__, "intelligent_mode", intelligent_mode)
+        if ips_reserve_cpu is not None:
+            pulumi.set(__self__, "ips_reserve_cpu", ips_reserve_cpu)
         if ngfw_max_scan_range is not None:
             pulumi.set(__self__, "ngfw_max_scan_range", ngfw_max_scan_range)
+        if np_accel_mode is not None:
+            pulumi.set(__self__, "np_accel_mode", np_accel_mode)
         if packet_log_queue_depth is not None:
             pulumi.set(__self__, "packet_log_queue_depth", packet_log_queue_depth)
         if session_limit_mode is not None:
@@ -378,6 +438,18 @@ class _IpsGlobalState:
     @anomaly_mode.setter
     def anomaly_mode(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "anomaly_mode", value)
+
+    @property
+    @pulumi.getter(name="cpAccelMode")
+    def cp_accel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+        """
+        return pulumi.get(self, "cp_accel_mode")
+
+    @cp_accel_mode.setter
+    def cp_accel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "cp_accel_mode", value)
 
     @property
     @pulumi.getter
@@ -464,6 +536,18 @@ class _IpsGlobalState:
         pulumi.set(self, "intelligent_mode", value)
 
     @property
+    @pulumi.getter(name="ipsReserveCpu")
+    def ips_reserve_cpu(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ips_reserve_cpu")
+
+    @ips_reserve_cpu.setter
+    def ips_reserve_cpu(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ips_reserve_cpu", value)
+
+    @property
     @pulumi.getter(name="ngfwMaxScanRange")
     def ngfw_max_scan_range(self) -> Optional[pulumi.Input[int]]:
         """
@@ -474,6 +558,18 @@ class _IpsGlobalState:
     @ngfw_max_scan_range.setter
     def ngfw_max_scan_range(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "ngfw_max_scan_range", value)
+
+    @property
+    @pulumi.getter(name="npAccelMode")
+    def np_accel_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+        """
+        return pulumi.get(self, "np_accel_mode")
+
+    @np_accel_mode.setter
+    def np_accel_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "np_accel_mode", value)
 
     @property
     @pulumi.getter(name="packetLogQueueDepth")
@@ -578,6 +674,7 @@ class IpsGlobal(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
                  deep_app_insp_timeout: Optional[pulumi.Input[int]] = None,
@@ -585,7 +682,9 @@ class IpsGlobal(pulumi.CustomResource):
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
+                 ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
+                 np_accel_mode: Optional[pulumi.Input[str]] = None,
                  packet_log_queue_depth: Optional[pulumi.Input[int]] = None,
                  session_limit_mode: Optional[pulumi.Input[str]] = None,
                  skype_client_public_ipaddr: Optional[pulumi.Input[str]] = None,
@@ -632,6 +731,7 @@ class IpsGlobal(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
         :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
@@ -639,7 +739,9 @@ class IpsGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
+        :param pulumi.Input[str] np_accel_mode: Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
@@ -705,6 +807,7 @@ class IpsGlobal(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  anomaly_mode: Optional[pulumi.Input[str]] = None,
+                 cp_accel_mode: Optional[pulumi.Input[str]] = None,
                  database: Optional[pulumi.Input[str]] = None,
                  deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
                  deep_app_insp_timeout: Optional[pulumi.Input[int]] = None,
@@ -712,7 +815,9 @@ class IpsGlobal(pulumi.CustomResource):
                  exclude_signatures: Optional[pulumi.Input[str]] = None,
                  fail_open: Optional[pulumi.Input[str]] = None,
                  intelligent_mode: Optional[pulumi.Input[str]] = None,
+                 ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
                  ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
+                 np_accel_mode: Optional[pulumi.Input[str]] = None,
                  packet_log_queue_depth: Optional[pulumi.Input[int]] = None,
                  session_limit_mode: Optional[pulumi.Input[str]] = None,
                  skype_client_public_ipaddr: Optional[pulumi.Input[str]] = None,
@@ -728,12 +833,15 @@ class IpsGlobal(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = IpsGlobalArgs.__new__(IpsGlobalArgs)
 
             __props__.__dict__["anomaly_mode"] = anomaly_mode
+            __props__.__dict__["cp_accel_mode"] = cp_accel_mode
             __props__.__dict__["database"] = database
             __props__.__dict__["deep_app_insp_db_limit"] = deep_app_insp_db_limit
             __props__.__dict__["deep_app_insp_timeout"] = deep_app_insp_timeout
@@ -741,7 +849,9 @@ class IpsGlobal(pulumi.CustomResource):
             __props__.__dict__["exclude_signatures"] = exclude_signatures
             __props__.__dict__["fail_open"] = fail_open
             __props__.__dict__["intelligent_mode"] = intelligent_mode
+            __props__.__dict__["ips_reserve_cpu"] = ips_reserve_cpu
             __props__.__dict__["ngfw_max_scan_range"] = ngfw_max_scan_range
+            __props__.__dict__["np_accel_mode"] = np_accel_mode
             __props__.__dict__["packet_log_queue_depth"] = packet_log_queue_depth
             __props__.__dict__["session_limit_mode"] = session_limit_mode
             __props__.__dict__["skype_client_public_ipaddr"] = skype_client_public_ipaddr
@@ -761,6 +871,7 @@ class IpsGlobal(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             anomaly_mode: Optional[pulumi.Input[str]] = None,
+            cp_accel_mode: Optional[pulumi.Input[str]] = None,
             database: Optional[pulumi.Input[str]] = None,
             deep_app_insp_db_limit: Optional[pulumi.Input[int]] = None,
             deep_app_insp_timeout: Optional[pulumi.Input[int]] = None,
@@ -768,7 +879,9 @@ class IpsGlobal(pulumi.CustomResource):
             exclude_signatures: Optional[pulumi.Input[str]] = None,
             fail_open: Optional[pulumi.Input[str]] = None,
             intelligent_mode: Optional[pulumi.Input[str]] = None,
+            ips_reserve_cpu: Optional[pulumi.Input[str]] = None,
             ngfw_max_scan_range: Optional[pulumi.Input[int]] = None,
+            np_accel_mode: Optional[pulumi.Input[str]] = None,
             packet_log_queue_depth: Optional[pulumi.Input[int]] = None,
             session_limit_mode: Optional[pulumi.Input[str]] = None,
             skype_client_public_ipaddr: Optional[pulumi.Input[str]] = None,
@@ -785,6 +898,7 @@ class IpsGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] anomaly_mode: Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
+        :param pulumi.Input[str] cp_accel_mode: IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
         :param pulumi.Input[str] database: Regular or extended IPS database. Regular protects against the latest common and in-the-wild attacks. Extended includes protection from legacy attacks. Valid values: `regular`, `extended`.
         :param pulumi.Input[int] deep_app_insp_db_limit: Limit on number of entries in deep application inspection database (1 - 2147483647, 0 = use recommended setting)
         :param pulumi.Input[int] deep_app_insp_timeout: Timeout for Deep application inspection (1 - 2147483647 sec., 0 = use recommended setting).
@@ -792,7 +906,9 @@ class IpsGlobal(pulumi.CustomResource):
         :param pulumi.Input[str] exclude_signatures: Excluded signatures. Valid values: `none`, `industrial`.
         :param pulumi.Input[str] fail_open: Enable to allow traffic if the IPS process crashes. Default is disable and IPS traffic is blocked when the IPS process crashes. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] intelligent_mode: Enable/disable IPS adaptive scanning (intelligent mode). Intelligent mode optimizes the scanning method for the type of traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] ips_reserve_cpu: Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
         :param pulumi.Input[int] ngfw_max_scan_range: NGFW policy-mode app detection threshold.
+        :param pulumi.Input[str] np_accel_mode: Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
         :param pulumi.Input[int] packet_log_queue_depth: Packet/pcap log queue depth per IPS engine.
         :param pulumi.Input[str] session_limit_mode: Method of counting concurrent sessions used by session limit anomalies. Choose between greater accuracy (accurate) or improved performance (heuristics). Valid values: `accurate`, `heuristic`.
         :param pulumi.Input[str] skype_client_public_ipaddr: Public IP addresses of your network that receive Skype sessions. Helps identify Skype sessions. Separate IP addresses with commas.
@@ -807,6 +923,7 @@ class IpsGlobal(pulumi.CustomResource):
         __props__ = _IpsGlobalState.__new__(_IpsGlobalState)
 
         __props__.__dict__["anomaly_mode"] = anomaly_mode
+        __props__.__dict__["cp_accel_mode"] = cp_accel_mode
         __props__.__dict__["database"] = database
         __props__.__dict__["deep_app_insp_db_limit"] = deep_app_insp_db_limit
         __props__.__dict__["deep_app_insp_timeout"] = deep_app_insp_timeout
@@ -814,7 +931,9 @@ class IpsGlobal(pulumi.CustomResource):
         __props__.__dict__["exclude_signatures"] = exclude_signatures
         __props__.__dict__["fail_open"] = fail_open
         __props__.__dict__["intelligent_mode"] = intelligent_mode
+        __props__.__dict__["ips_reserve_cpu"] = ips_reserve_cpu
         __props__.__dict__["ngfw_max_scan_range"] = ngfw_max_scan_range
+        __props__.__dict__["np_accel_mode"] = np_accel_mode
         __props__.__dict__["packet_log_queue_depth"] = packet_log_queue_depth
         __props__.__dict__["session_limit_mode"] = session_limit_mode
         __props__.__dict__["skype_client_public_ipaddr"] = skype_client_public_ipaddr
@@ -832,6 +951,14 @@ class IpsGlobal(pulumi.CustomResource):
         Global blocking mode for rate-based anomalies. Valid values: `periodical`, `continuous`.
         """
         return pulumi.get(self, "anomaly_mode")
+
+    @property
+    @pulumi.getter(name="cpAccelMode")
+    def cp_accel_mode(self) -> pulumi.Output[str]:
+        """
+        IPS Pattern matching acceleration/offloading to CPx processors. Valid values: `none`, `basic`, `advanced`.
+        """
+        return pulumi.get(self, "cp_accel_mode")
 
     @property
     @pulumi.getter
@@ -890,12 +1017,28 @@ class IpsGlobal(pulumi.CustomResource):
         return pulumi.get(self, "intelligent_mode")
 
     @property
+    @pulumi.getter(name="ipsReserveCpu")
+    def ips_reserve_cpu(self) -> pulumi.Output[str]:
+        """
+        Enable/disable IPS daemon's use of CPUs other than CPU 0 Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ips_reserve_cpu")
+
+    @property
     @pulumi.getter(name="ngfwMaxScanRange")
     def ngfw_max_scan_range(self) -> pulumi.Output[int]:
         """
         NGFW policy-mode app detection threshold.
         """
         return pulumi.get(self, "ngfw_max_scan_range")
+
+    @property
+    @pulumi.getter(name="npAccelMode")
+    def np_accel_mode(self) -> pulumi.Output[str]:
+        """
+        Acceleration mode for IPS processing by NPx processors. Valid values: `none`, `basic`.
+        """
+        return pulumi.get(self, "np_accel_mode")
 
     @property
     @pulumi.getter(name="packetLogQueueDepth")

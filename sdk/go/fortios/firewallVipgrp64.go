@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure IPv6 to IPv4 virtual IP groups.
+// Configure IPv6 to IPv4 virtual IP groups. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -43,8 +44,8 @@ import (
 // 		}
 // 		_, err = fortios.NewFirewallVipgrp64(ctx, "trname", &fortios.FirewallVipgrp64Args{
 // 			Color: pulumi.Int(0),
-// 			Members: fortios.FirewallVipgrp64MemberArray{
-// 				&fortios.FirewallVipgrp64MemberArgs{
+// 			Members: FirewallVipgrp64MemberArray{
+// 				&FirewallVipgrp64MemberArgs{
 // 					Name: trname1.Name,
 // 				},
 // 			},
@@ -95,6 +96,7 @@ func NewFirewallVipgrp64(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallVipgrp64
 	err := ctx.RegisterResource("fortios:index/firewallVipgrp64:FirewallVipgrp64", name, args, &resource, opts...)
 	if err != nil {
@@ -201,7 +203,7 @@ type FirewallVipgrp64Input interface {
 }
 
 func (*FirewallVipgrp64) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVipgrp64)(nil))
+	return reflect.TypeOf((**FirewallVipgrp64)(nil)).Elem()
 }
 
 func (i *FirewallVipgrp64) ToFirewallVipgrp64Output() FirewallVipgrp64Output {
@@ -210,35 +212,6 @@ func (i *FirewallVipgrp64) ToFirewallVipgrp64Output() FirewallVipgrp64Output {
 
 func (i *FirewallVipgrp64) ToFirewallVipgrp64OutputWithContext(ctx context.Context) FirewallVipgrp64Output {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp64Output)
-}
-
-func (i *FirewallVipgrp64) ToFirewallVipgrp64PtrOutput() FirewallVipgrp64PtrOutput {
-	return i.ToFirewallVipgrp64PtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallVipgrp64) ToFirewallVipgrp64PtrOutputWithContext(ctx context.Context) FirewallVipgrp64PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp64PtrOutput)
-}
-
-type FirewallVipgrp64PtrInput interface {
-	pulumi.Input
-
-	ToFirewallVipgrp64PtrOutput() FirewallVipgrp64PtrOutput
-	ToFirewallVipgrp64PtrOutputWithContext(ctx context.Context) FirewallVipgrp64PtrOutput
-}
-
-type firewallVipgrp64PtrType FirewallVipgrp64Args
-
-func (*firewallVipgrp64PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVipgrp64)(nil))
-}
-
-func (i *firewallVipgrp64PtrType) ToFirewallVipgrp64PtrOutput() FirewallVipgrp64PtrOutput {
-	return i.ToFirewallVipgrp64PtrOutputWithContext(context.Background())
-}
-
-func (i *firewallVipgrp64PtrType) ToFirewallVipgrp64PtrOutputWithContext(ctx context.Context) FirewallVipgrp64PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp64PtrOutput)
 }
 
 // FirewallVipgrp64ArrayInput is an input type that accepts FirewallVipgrp64Array and FirewallVipgrp64ArrayOutput values.
@@ -255,7 +228,7 @@ type FirewallVipgrp64ArrayInput interface {
 type FirewallVipgrp64Array []FirewallVipgrp64Input
 
 func (FirewallVipgrp64Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallVipgrp64)(nil))
+	return reflect.TypeOf((*[]*FirewallVipgrp64)(nil)).Elem()
 }
 
 func (i FirewallVipgrp64Array) ToFirewallVipgrp64ArrayOutput() FirewallVipgrp64ArrayOutput {
@@ -280,7 +253,7 @@ type FirewallVipgrp64MapInput interface {
 type FirewallVipgrp64Map map[string]FirewallVipgrp64Input
 
 func (FirewallVipgrp64Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallVipgrp64)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVipgrp64)(nil)).Elem()
 }
 
 func (i FirewallVipgrp64Map) ToFirewallVipgrp64MapOutput() FirewallVipgrp64MapOutput {
@@ -291,12 +264,10 @@ func (i FirewallVipgrp64Map) ToFirewallVipgrp64MapOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallVipgrp64MapOutput)
 }
 
-type FirewallVipgrp64Output struct {
-	*pulumi.OutputState
-}
+type FirewallVipgrp64Output struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp64Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallVipgrp64)(nil))
+	return reflect.TypeOf((**FirewallVipgrp64)(nil)).Elem()
 }
 
 func (o FirewallVipgrp64Output) ToFirewallVipgrp64Output() FirewallVipgrp64Output {
@@ -307,36 +278,10 @@ func (o FirewallVipgrp64Output) ToFirewallVipgrp64OutputWithContext(ctx context.
 	return o
 }
 
-func (o FirewallVipgrp64Output) ToFirewallVipgrp64PtrOutput() FirewallVipgrp64PtrOutput {
-	return o.ToFirewallVipgrp64PtrOutputWithContext(context.Background())
-}
-
-func (o FirewallVipgrp64Output) ToFirewallVipgrp64PtrOutputWithContext(ctx context.Context) FirewallVipgrp64PtrOutput {
-	return o.ApplyT(func(v FirewallVipgrp64) *FirewallVipgrp64 {
-		return &v
-	}).(FirewallVipgrp64PtrOutput)
-}
-
-type FirewallVipgrp64PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallVipgrp64PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallVipgrp64)(nil))
-}
-
-func (o FirewallVipgrp64PtrOutput) ToFirewallVipgrp64PtrOutput() FirewallVipgrp64PtrOutput {
-	return o
-}
-
-func (o FirewallVipgrp64PtrOutput) ToFirewallVipgrp64PtrOutputWithContext(ctx context.Context) FirewallVipgrp64PtrOutput {
-	return o
-}
-
 type FirewallVipgrp64ArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp64ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallVipgrp64)(nil))
+	return reflect.TypeOf((*[]*FirewallVipgrp64)(nil)).Elem()
 }
 
 func (o FirewallVipgrp64ArrayOutput) ToFirewallVipgrp64ArrayOutput() FirewallVipgrp64ArrayOutput {
@@ -348,15 +293,15 @@ func (o FirewallVipgrp64ArrayOutput) ToFirewallVipgrp64ArrayOutputWithContext(ct
 }
 
 func (o FirewallVipgrp64ArrayOutput) Index(i pulumi.IntInput) FirewallVipgrp64Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallVipgrp64 {
-		return vs[0].([]FirewallVipgrp64)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallVipgrp64 {
+		return vs[0].([]*FirewallVipgrp64)[vs[1].(int)]
 	}).(FirewallVipgrp64Output)
 }
 
 type FirewallVipgrp64MapOutput struct{ *pulumi.OutputState }
 
 func (FirewallVipgrp64MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallVipgrp64)(nil))
+	return reflect.TypeOf((*map[string]*FirewallVipgrp64)(nil)).Elem()
 }
 
 func (o FirewallVipgrp64MapOutput) ToFirewallVipgrp64MapOutput() FirewallVipgrp64MapOutput {
@@ -368,14 +313,16 @@ func (o FirewallVipgrp64MapOutput) ToFirewallVipgrp64MapOutputWithContext(ctx co
 }
 
 func (o FirewallVipgrp64MapOutput) MapIndex(k pulumi.StringInput) FirewallVipgrp64Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallVipgrp64 {
-		return vs[0].(map[string]FirewallVipgrp64)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallVipgrp64 {
+		return vs[0].(map[string]*FirewallVipgrp64)[vs[1].(string)]
 	}).(FirewallVipgrp64Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVipgrp64Input)(nil)).Elem(), &FirewallVipgrp64{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVipgrp64ArrayInput)(nil)).Elem(), FirewallVipgrp64Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallVipgrp64MapInput)(nil)).Elem(), FirewallVipgrp64Map{})
 	pulumi.RegisterOutputType(FirewallVipgrp64Output{})
-	pulumi.RegisterOutputType(FirewallVipgrp64PtrOutput{})
 	pulumi.RegisterOutputType(FirewallVipgrp64ArrayOutput{})
 	pulumi.RegisterOutputType(FirewallVipgrp64MapOutput{})
 }

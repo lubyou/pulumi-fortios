@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -50,6 +50,8 @@ type SystemDnsServer struct {
 
 	// DNS filter profile.
 	DnsfilterProfile pulumi.StringOutput `pulumi:"dnsfilterProfile"`
+	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	Doh pulumi.StringOutput `pulumi:"doh"`
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode pulumi.StringOutput `pulumi:"mode"`
 	// DNS server name.
@@ -65,6 +67,7 @@ func NewSystemDnsServer(ctx *pulumi.Context,
 		args = &SystemDnsServerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemDnsServer
 	err := ctx.RegisterResource("fortios:index/systemDnsServer:SystemDnsServer", name, args, &resource, opts...)
 	if err != nil {
@@ -89,6 +92,8 @@ func GetSystemDnsServer(ctx *pulumi.Context,
 type systemDnsServerState struct {
 	// DNS filter profile.
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
+	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	Doh *string `pulumi:"doh"`
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode *string `pulumi:"mode"`
 	// DNS server name.
@@ -100,6 +105,8 @@ type systemDnsServerState struct {
 type SystemDnsServerState struct {
 	// DNS filter profile.
 	DnsfilterProfile pulumi.StringPtrInput
+	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	Doh pulumi.StringPtrInput
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode pulumi.StringPtrInput
 	// DNS server name.
@@ -115,6 +122,8 @@ func (SystemDnsServerState) ElementType() reflect.Type {
 type systemDnsServerArgs struct {
 	// DNS filter profile.
 	DnsfilterProfile *string `pulumi:"dnsfilterProfile"`
+	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	Doh *string `pulumi:"doh"`
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode *string `pulumi:"mode"`
 	// DNS server name.
@@ -127,6 +136,8 @@ type systemDnsServerArgs struct {
 type SystemDnsServerArgs struct {
 	// DNS filter profile.
 	DnsfilterProfile pulumi.StringPtrInput
+	// DNS over HTTPS. Valid values: `enable`, `disable`.
+	Doh pulumi.StringPtrInput
 	// DNS server mode. Valid values: `recursive`, `non-recursive`, `forward-only`.
 	Mode pulumi.StringPtrInput
 	// DNS server name.
@@ -147,7 +158,7 @@ type SystemDnsServerInput interface {
 }
 
 func (*SystemDnsServer) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDnsServer)(nil))
+	return reflect.TypeOf((**SystemDnsServer)(nil)).Elem()
 }
 
 func (i *SystemDnsServer) ToSystemDnsServerOutput() SystemDnsServerOutput {
@@ -156,35 +167,6 @@ func (i *SystemDnsServer) ToSystemDnsServerOutput() SystemDnsServerOutput {
 
 func (i *SystemDnsServer) ToSystemDnsServerOutputWithContext(ctx context.Context) SystemDnsServerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsServerOutput)
-}
-
-func (i *SystemDnsServer) ToSystemDnsServerPtrOutput() SystemDnsServerPtrOutput {
-	return i.ToSystemDnsServerPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemDnsServer) ToSystemDnsServerPtrOutputWithContext(ctx context.Context) SystemDnsServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsServerPtrOutput)
-}
-
-type SystemDnsServerPtrInput interface {
-	pulumi.Input
-
-	ToSystemDnsServerPtrOutput() SystemDnsServerPtrOutput
-	ToSystemDnsServerPtrOutputWithContext(ctx context.Context) SystemDnsServerPtrOutput
-}
-
-type systemDnsServerPtrType SystemDnsServerArgs
-
-func (*systemDnsServerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDnsServer)(nil))
-}
-
-func (i *systemDnsServerPtrType) ToSystemDnsServerPtrOutput() SystemDnsServerPtrOutput {
-	return i.ToSystemDnsServerPtrOutputWithContext(context.Background())
-}
-
-func (i *systemDnsServerPtrType) ToSystemDnsServerPtrOutputWithContext(ctx context.Context) SystemDnsServerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsServerPtrOutput)
 }
 
 // SystemDnsServerArrayInput is an input type that accepts SystemDnsServerArray and SystemDnsServerArrayOutput values.
@@ -201,7 +183,7 @@ type SystemDnsServerArrayInput interface {
 type SystemDnsServerArray []SystemDnsServerInput
 
 func (SystemDnsServerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemDnsServer)(nil))
+	return reflect.TypeOf((*[]*SystemDnsServer)(nil)).Elem()
 }
 
 func (i SystemDnsServerArray) ToSystemDnsServerArrayOutput() SystemDnsServerArrayOutput {
@@ -226,7 +208,7 @@ type SystemDnsServerMapInput interface {
 type SystemDnsServerMap map[string]SystemDnsServerInput
 
 func (SystemDnsServerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemDnsServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemDnsServer)(nil)).Elem()
 }
 
 func (i SystemDnsServerMap) ToSystemDnsServerMapOutput() SystemDnsServerMapOutput {
@@ -237,12 +219,10 @@ func (i SystemDnsServerMap) ToSystemDnsServerMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemDnsServerMapOutput)
 }
 
-type SystemDnsServerOutput struct {
-	*pulumi.OutputState
-}
+type SystemDnsServerOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsServerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemDnsServer)(nil))
+	return reflect.TypeOf((**SystemDnsServer)(nil)).Elem()
 }
 
 func (o SystemDnsServerOutput) ToSystemDnsServerOutput() SystemDnsServerOutput {
@@ -253,36 +233,10 @@ func (o SystemDnsServerOutput) ToSystemDnsServerOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o SystemDnsServerOutput) ToSystemDnsServerPtrOutput() SystemDnsServerPtrOutput {
-	return o.ToSystemDnsServerPtrOutputWithContext(context.Background())
-}
-
-func (o SystemDnsServerOutput) ToSystemDnsServerPtrOutputWithContext(ctx context.Context) SystemDnsServerPtrOutput {
-	return o.ApplyT(func(v SystemDnsServer) *SystemDnsServer {
-		return &v
-	}).(SystemDnsServerPtrOutput)
-}
-
-type SystemDnsServerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemDnsServerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemDnsServer)(nil))
-}
-
-func (o SystemDnsServerPtrOutput) ToSystemDnsServerPtrOutput() SystemDnsServerPtrOutput {
-	return o
-}
-
-func (o SystemDnsServerPtrOutput) ToSystemDnsServerPtrOutputWithContext(ctx context.Context) SystemDnsServerPtrOutput {
-	return o
-}
-
 type SystemDnsServerArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsServerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemDnsServer)(nil))
+	return reflect.TypeOf((*[]*SystemDnsServer)(nil)).Elem()
 }
 
 func (o SystemDnsServerArrayOutput) ToSystemDnsServerArrayOutput() SystemDnsServerArrayOutput {
@@ -294,15 +248,15 @@ func (o SystemDnsServerArrayOutput) ToSystemDnsServerArrayOutputWithContext(ctx 
 }
 
 func (o SystemDnsServerArrayOutput) Index(i pulumi.IntInput) SystemDnsServerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemDnsServer {
-		return vs[0].([]SystemDnsServer)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemDnsServer {
+		return vs[0].([]*SystemDnsServer)[vs[1].(int)]
 	}).(SystemDnsServerOutput)
 }
 
 type SystemDnsServerMapOutput struct{ *pulumi.OutputState }
 
 func (SystemDnsServerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemDnsServer)(nil))
+	return reflect.TypeOf((*map[string]*SystemDnsServer)(nil)).Elem()
 }
 
 func (o SystemDnsServerMapOutput) ToSystemDnsServerMapOutput() SystemDnsServerMapOutput {
@@ -314,14 +268,16 @@ func (o SystemDnsServerMapOutput) ToSystemDnsServerMapOutputWithContext(ctx cont
 }
 
 func (o SystemDnsServerMapOutput) MapIndex(k pulumi.StringInput) SystemDnsServerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemDnsServer {
-		return vs[0].(map[string]SystemDnsServer)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemDnsServer {
+		return vs[0].(map[string]*SystemDnsServer)[vs[1].(string)]
 	}).(SystemDnsServerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsServerInput)(nil)).Elem(), &SystemDnsServer{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsServerArrayInput)(nil)).Elem(), SystemDnsServerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemDnsServerMapInput)(nil)).Elem(), SystemDnsServerMap{})
 	pulumi.RegisterOutputType(SystemDnsServerOutput{})
-	pulumi.RegisterOutputType(SystemDnsServerPtrOutput{})
 	pulumi.RegisterOutputType(SystemDnsServerArrayOutput{})
 	pulumi.RegisterOutputType(SystemDnsServerMapOutput{})
 }

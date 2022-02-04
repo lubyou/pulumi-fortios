@@ -90,6 +90,14 @@ export class VpnSslSettings extends pulumi.CustomResource {
      */
     public readonly checkReferer!: pulumi.Output<string>;
     /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+     */
+    public readonly ciphersuite!: pulumi.Output<string>;
+    /**
+     * Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+     */
+    public readonly clientSigalgs!: pulumi.Output<string>;
+    /**
      * Default SSL VPN portal.
      */
     public readonly defaultPortal!: pulumi.Output<string>;
@@ -129,6 +137,10 @@ export class VpnSslSettings extends pulumi.CustomResource {
      * Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
      */
     public readonly dtlsTunnel!: pulumi.Output<string>;
+    /**
+     * Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+     */
+    public readonly dualStackMode!: pulumi.Output<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -222,6 +234,10 @@ export class VpnSslSettings extends pulumi.CustomResource {
      */
     public readonly routeSourceInterface!: pulumi.Output<string>;
     /**
+     * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+     */
+    public readonly samlRedirectPort!: pulumi.Output<number>;
+    /**
      * Name of the server certificate to be used for SSL-VPNs.
      */
     public readonly servercert!: pulumi.Output<string>;
@@ -262,6 +278,10 @@ export class VpnSslSettings extends pulumi.CustomResource {
      */
     public readonly sslMinProtoVer!: pulumi.Output<string>;
     /**
+     * Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+     */
+    public readonly status!: pulumi.Output<string>;
+    /**
      * Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
      */
     public readonly tlsv10!: pulumi.Output<string>;
@@ -281,6 +301,10 @@ export class VpnSslSettings extends pulumi.CustomResource {
      * Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
      */
     public readonly transformBackwardSlashes!: pulumi.Output<string>;
+    /**
+     * Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+     */
+    public readonly tunnelAddrAssignedMethod!: pulumi.Output<string>;
     /**
      * Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
      */
@@ -335,149 +359,159 @@ export class VpnSslSettings extends pulumi.CustomResource {
      */
     constructor(name: string, args?: VpnSslSettingsArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: VpnSslSettingsArgs | VpnSslSettingsState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as VpnSslSettingsState | undefined;
-            inputs["algorithm"] = state ? state.algorithm : undefined;
-            inputs["authSessionCheckSourceIp"] = state ? state.authSessionCheckSourceIp : undefined;
-            inputs["authTimeout"] = state ? state.authTimeout : undefined;
-            inputs["authenticationRules"] = state ? state.authenticationRules : undefined;
-            inputs["autoTunnelStaticRoute"] = state ? state.autoTunnelStaticRoute : undefined;
-            inputs["bannedCipher"] = state ? state.bannedCipher : undefined;
-            inputs["checkReferer"] = state ? state.checkReferer : undefined;
-            inputs["defaultPortal"] = state ? state.defaultPortal : undefined;
-            inputs["deflateCompressionLevel"] = state ? state.deflateCompressionLevel : undefined;
-            inputs["deflateMinDataSize"] = state ? state.deflateMinDataSize : undefined;
-            inputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
-            inputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
-            inputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
-            inputs["dtlsHelloTimeout"] = state ? state.dtlsHelloTimeout : undefined;
-            inputs["dtlsMaxProtoVer"] = state ? state.dtlsMaxProtoVer : undefined;
-            inputs["dtlsMinProtoVer"] = state ? state.dtlsMinProtoVer : undefined;
-            inputs["dtlsTunnel"] = state ? state.dtlsTunnel : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["encode2fSequence"] = state ? state.encode2fSequence : undefined;
-            inputs["encryptAndStorePassword"] = state ? state.encryptAndStorePassword : undefined;
-            inputs["forceTwoFactorAuth"] = state ? state.forceTwoFactorAuth : undefined;
-            inputs["headerXForwardedFor"] = state ? state.headerXForwardedFor : undefined;
-            inputs["hstsIncludeSubdomains"] = state ? state.hstsIncludeSubdomains : undefined;
-            inputs["httpCompression"] = state ? state.httpCompression : undefined;
-            inputs["httpOnlyCookie"] = state ? state.httpOnlyCookie : undefined;
-            inputs["httpRequestBodyTimeout"] = state ? state.httpRequestBodyTimeout : undefined;
-            inputs["httpRequestHeaderTimeout"] = state ? state.httpRequestHeaderTimeout : undefined;
-            inputs["httpsRedirect"] = state ? state.httpsRedirect : undefined;
-            inputs["idleTimeout"] = state ? state.idleTimeout : undefined;
-            inputs["ipv6DnsServer1"] = state ? state.ipv6DnsServer1 : undefined;
-            inputs["ipv6DnsServer2"] = state ? state.ipv6DnsServer2 : undefined;
-            inputs["ipv6WinsServer1"] = state ? state.ipv6WinsServer1 : undefined;
-            inputs["ipv6WinsServer2"] = state ? state.ipv6WinsServer2 : undefined;
-            inputs["loginAttemptLimit"] = state ? state.loginAttemptLimit : undefined;
-            inputs["loginBlockTime"] = state ? state.loginBlockTime : undefined;
-            inputs["loginTimeout"] = state ? state.loginTimeout : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["portPrecedence"] = state ? state.portPrecedence : undefined;
-            inputs["reqclientcert"] = state ? state.reqclientcert : undefined;
-            inputs["routeSourceInterface"] = state ? state.routeSourceInterface : undefined;
-            inputs["servercert"] = state ? state.servercert : undefined;
-            inputs["sourceAddress6Negate"] = state ? state.sourceAddress6Negate : undefined;
-            inputs["sourceAddress6s"] = state ? state.sourceAddress6s : undefined;
-            inputs["sourceAddressNegate"] = state ? state.sourceAddressNegate : undefined;
-            inputs["sourceAddresses"] = state ? state.sourceAddresses : undefined;
-            inputs["sourceInterfaces"] = state ? state.sourceInterfaces : undefined;
-            inputs["sslClientRenegotiation"] = state ? state.sslClientRenegotiation : undefined;
-            inputs["sslInsertEmptyFragment"] = state ? state.sslInsertEmptyFragment : undefined;
-            inputs["sslMaxProtoVer"] = state ? state.sslMaxProtoVer : undefined;
-            inputs["sslMinProtoVer"] = state ? state.sslMinProtoVer : undefined;
-            inputs["tlsv10"] = state ? state.tlsv10 : undefined;
-            inputs["tlsv11"] = state ? state.tlsv11 : undefined;
-            inputs["tlsv12"] = state ? state.tlsv12 : undefined;
-            inputs["tlsv13"] = state ? state.tlsv13 : undefined;
-            inputs["transformBackwardSlashes"] = state ? state.transformBackwardSlashes : undefined;
-            inputs["tunnelConnectWithoutReauth"] = state ? state.tunnelConnectWithoutReauth : undefined;
-            inputs["tunnelIpPools"] = state ? state.tunnelIpPools : undefined;
-            inputs["tunnelIpv6Pools"] = state ? state.tunnelIpv6Pools : undefined;
-            inputs["tunnelUserSessionTimeout"] = state ? state.tunnelUserSessionTimeout : undefined;
-            inputs["unsafeLegacyRenegotiation"] = state ? state.unsafeLegacyRenegotiation : undefined;
-            inputs["urlObscuration"] = state ? state.urlObscuration : undefined;
-            inputs["userPeer"] = state ? state.userPeer : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["winsServer1"] = state ? state.winsServer1 : undefined;
-            inputs["winsServer2"] = state ? state.winsServer2 : undefined;
-            inputs["xContentTypeOptions"] = state ? state.xContentTypeOptions : undefined;
+            resourceInputs["algorithm"] = state ? state.algorithm : undefined;
+            resourceInputs["authSessionCheckSourceIp"] = state ? state.authSessionCheckSourceIp : undefined;
+            resourceInputs["authTimeout"] = state ? state.authTimeout : undefined;
+            resourceInputs["authenticationRules"] = state ? state.authenticationRules : undefined;
+            resourceInputs["autoTunnelStaticRoute"] = state ? state.autoTunnelStaticRoute : undefined;
+            resourceInputs["bannedCipher"] = state ? state.bannedCipher : undefined;
+            resourceInputs["checkReferer"] = state ? state.checkReferer : undefined;
+            resourceInputs["ciphersuite"] = state ? state.ciphersuite : undefined;
+            resourceInputs["clientSigalgs"] = state ? state.clientSigalgs : undefined;
+            resourceInputs["defaultPortal"] = state ? state.defaultPortal : undefined;
+            resourceInputs["deflateCompressionLevel"] = state ? state.deflateCompressionLevel : undefined;
+            resourceInputs["deflateMinDataSize"] = state ? state.deflateMinDataSize : undefined;
+            resourceInputs["dnsServer1"] = state ? state.dnsServer1 : undefined;
+            resourceInputs["dnsServer2"] = state ? state.dnsServer2 : undefined;
+            resourceInputs["dnsSuffix"] = state ? state.dnsSuffix : undefined;
+            resourceInputs["dtlsHelloTimeout"] = state ? state.dtlsHelloTimeout : undefined;
+            resourceInputs["dtlsMaxProtoVer"] = state ? state.dtlsMaxProtoVer : undefined;
+            resourceInputs["dtlsMinProtoVer"] = state ? state.dtlsMinProtoVer : undefined;
+            resourceInputs["dtlsTunnel"] = state ? state.dtlsTunnel : undefined;
+            resourceInputs["dualStackMode"] = state ? state.dualStackMode : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["encode2fSequence"] = state ? state.encode2fSequence : undefined;
+            resourceInputs["encryptAndStorePassword"] = state ? state.encryptAndStorePassword : undefined;
+            resourceInputs["forceTwoFactorAuth"] = state ? state.forceTwoFactorAuth : undefined;
+            resourceInputs["headerXForwardedFor"] = state ? state.headerXForwardedFor : undefined;
+            resourceInputs["hstsIncludeSubdomains"] = state ? state.hstsIncludeSubdomains : undefined;
+            resourceInputs["httpCompression"] = state ? state.httpCompression : undefined;
+            resourceInputs["httpOnlyCookie"] = state ? state.httpOnlyCookie : undefined;
+            resourceInputs["httpRequestBodyTimeout"] = state ? state.httpRequestBodyTimeout : undefined;
+            resourceInputs["httpRequestHeaderTimeout"] = state ? state.httpRequestHeaderTimeout : undefined;
+            resourceInputs["httpsRedirect"] = state ? state.httpsRedirect : undefined;
+            resourceInputs["idleTimeout"] = state ? state.idleTimeout : undefined;
+            resourceInputs["ipv6DnsServer1"] = state ? state.ipv6DnsServer1 : undefined;
+            resourceInputs["ipv6DnsServer2"] = state ? state.ipv6DnsServer2 : undefined;
+            resourceInputs["ipv6WinsServer1"] = state ? state.ipv6WinsServer1 : undefined;
+            resourceInputs["ipv6WinsServer2"] = state ? state.ipv6WinsServer2 : undefined;
+            resourceInputs["loginAttemptLimit"] = state ? state.loginAttemptLimit : undefined;
+            resourceInputs["loginBlockTime"] = state ? state.loginBlockTime : undefined;
+            resourceInputs["loginTimeout"] = state ? state.loginTimeout : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["portPrecedence"] = state ? state.portPrecedence : undefined;
+            resourceInputs["reqclientcert"] = state ? state.reqclientcert : undefined;
+            resourceInputs["routeSourceInterface"] = state ? state.routeSourceInterface : undefined;
+            resourceInputs["samlRedirectPort"] = state ? state.samlRedirectPort : undefined;
+            resourceInputs["servercert"] = state ? state.servercert : undefined;
+            resourceInputs["sourceAddress6Negate"] = state ? state.sourceAddress6Negate : undefined;
+            resourceInputs["sourceAddress6s"] = state ? state.sourceAddress6s : undefined;
+            resourceInputs["sourceAddressNegate"] = state ? state.sourceAddressNegate : undefined;
+            resourceInputs["sourceAddresses"] = state ? state.sourceAddresses : undefined;
+            resourceInputs["sourceInterfaces"] = state ? state.sourceInterfaces : undefined;
+            resourceInputs["sslClientRenegotiation"] = state ? state.sslClientRenegotiation : undefined;
+            resourceInputs["sslInsertEmptyFragment"] = state ? state.sslInsertEmptyFragment : undefined;
+            resourceInputs["sslMaxProtoVer"] = state ? state.sslMaxProtoVer : undefined;
+            resourceInputs["sslMinProtoVer"] = state ? state.sslMinProtoVer : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["tlsv10"] = state ? state.tlsv10 : undefined;
+            resourceInputs["tlsv11"] = state ? state.tlsv11 : undefined;
+            resourceInputs["tlsv12"] = state ? state.tlsv12 : undefined;
+            resourceInputs["tlsv13"] = state ? state.tlsv13 : undefined;
+            resourceInputs["transformBackwardSlashes"] = state ? state.transformBackwardSlashes : undefined;
+            resourceInputs["tunnelAddrAssignedMethod"] = state ? state.tunnelAddrAssignedMethod : undefined;
+            resourceInputs["tunnelConnectWithoutReauth"] = state ? state.tunnelConnectWithoutReauth : undefined;
+            resourceInputs["tunnelIpPools"] = state ? state.tunnelIpPools : undefined;
+            resourceInputs["tunnelIpv6Pools"] = state ? state.tunnelIpv6Pools : undefined;
+            resourceInputs["tunnelUserSessionTimeout"] = state ? state.tunnelUserSessionTimeout : undefined;
+            resourceInputs["unsafeLegacyRenegotiation"] = state ? state.unsafeLegacyRenegotiation : undefined;
+            resourceInputs["urlObscuration"] = state ? state.urlObscuration : undefined;
+            resourceInputs["userPeer"] = state ? state.userPeer : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["winsServer1"] = state ? state.winsServer1 : undefined;
+            resourceInputs["winsServer2"] = state ? state.winsServer2 : undefined;
+            resourceInputs["xContentTypeOptions"] = state ? state.xContentTypeOptions : undefined;
         } else {
             const args = argsOrState as VpnSslSettingsArgs | undefined;
-            inputs["algorithm"] = args ? args.algorithm : undefined;
-            inputs["authSessionCheckSourceIp"] = args ? args.authSessionCheckSourceIp : undefined;
-            inputs["authTimeout"] = args ? args.authTimeout : undefined;
-            inputs["authenticationRules"] = args ? args.authenticationRules : undefined;
-            inputs["autoTunnelStaticRoute"] = args ? args.autoTunnelStaticRoute : undefined;
-            inputs["bannedCipher"] = args ? args.bannedCipher : undefined;
-            inputs["checkReferer"] = args ? args.checkReferer : undefined;
-            inputs["defaultPortal"] = args ? args.defaultPortal : undefined;
-            inputs["deflateCompressionLevel"] = args ? args.deflateCompressionLevel : undefined;
-            inputs["deflateMinDataSize"] = args ? args.deflateMinDataSize : undefined;
-            inputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
-            inputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
-            inputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
-            inputs["dtlsHelloTimeout"] = args ? args.dtlsHelloTimeout : undefined;
-            inputs["dtlsMaxProtoVer"] = args ? args.dtlsMaxProtoVer : undefined;
-            inputs["dtlsMinProtoVer"] = args ? args.dtlsMinProtoVer : undefined;
-            inputs["dtlsTunnel"] = args ? args.dtlsTunnel : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["encode2fSequence"] = args ? args.encode2fSequence : undefined;
-            inputs["encryptAndStorePassword"] = args ? args.encryptAndStorePassword : undefined;
-            inputs["forceTwoFactorAuth"] = args ? args.forceTwoFactorAuth : undefined;
-            inputs["headerXForwardedFor"] = args ? args.headerXForwardedFor : undefined;
-            inputs["hstsIncludeSubdomains"] = args ? args.hstsIncludeSubdomains : undefined;
-            inputs["httpCompression"] = args ? args.httpCompression : undefined;
-            inputs["httpOnlyCookie"] = args ? args.httpOnlyCookie : undefined;
-            inputs["httpRequestBodyTimeout"] = args ? args.httpRequestBodyTimeout : undefined;
-            inputs["httpRequestHeaderTimeout"] = args ? args.httpRequestHeaderTimeout : undefined;
-            inputs["httpsRedirect"] = args ? args.httpsRedirect : undefined;
-            inputs["idleTimeout"] = args ? args.idleTimeout : undefined;
-            inputs["ipv6DnsServer1"] = args ? args.ipv6DnsServer1 : undefined;
-            inputs["ipv6DnsServer2"] = args ? args.ipv6DnsServer2 : undefined;
-            inputs["ipv6WinsServer1"] = args ? args.ipv6WinsServer1 : undefined;
-            inputs["ipv6WinsServer2"] = args ? args.ipv6WinsServer2 : undefined;
-            inputs["loginAttemptLimit"] = args ? args.loginAttemptLimit : undefined;
-            inputs["loginBlockTime"] = args ? args.loginBlockTime : undefined;
-            inputs["loginTimeout"] = args ? args.loginTimeout : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["portPrecedence"] = args ? args.portPrecedence : undefined;
-            inputs["reqclientcert"] = args ? args.reqclientcert : undefined;
-            inputs["routeSourceInterface"] = args ? args.routeSourceInterface : undefined;
-            inputs["servercert"] = args ? args.servercert : undefined;
-            inputs["sourceAddress6Negate"] = args ? args.sourceAddress6Negate : undefined;
-            inputs["sourceAddress6s"] = args ? args.sourceAddress6s : undefined;
-            inputs["sourceAddressNegate"] = args ? args.sourceAddressNegate : undefined;
-            inputs["sourceAddresses"] = args ? args.sourceAddresses : undefined;
-            inputs["sourceInterfaces"] = args ? args.sourceInterfaces : undefined;
-            inputs["sslClientRenegotiation"] = args ? args.sslClientRenegotiation : undefined;
-            inputs["sslInsertEmptyFragment"] = args ? args.sslInsertEmptyFragment : undefined;
-            inputs["sslMaxProtoVer"] = args ? args.sslMaxProtoVer : undefined;
-            inputs["sslMinProtoVer"] = args ? args.sslMinProtoVer : undefined;
-            inputs["tlsv10"] = args ? args.tlsv10 : undefined;
-            inputs["tlsv11"] = args ? args.tlsv11 : undefined;
-            inputs["tlsv12"] = args ? args.tlsv12 : undefined;
-            inputs["tlsv13"] = args ? args.tlsv13 : undefined;
-            inputs["transformBackwardSlashes"] = args ? args.transformBackwardSlashes : undefined;
-            inputs["tunnelConnectWithoutReauth"] = args ? args.tunnelConnectWithoutReauth : undefined;
-            inputs["tunnelIpPools"] = args ? args.tunnelIpPools : undefined;
-            inputs["tunnelIpv6Pools"] = args ? args.tunnelIpv6Pools : undefined;
-            inputs["tunnelUserSessionTimeout"] = args ? args.tunnelUserSessionTimeout : undefined;
-            inputs["unsafeLegacyRenegotiation"] = args ? args.unsafeLegacyRenegotiation : undefined;
-            inputs["urlObscuration"] = args ? args.urlObscuration : undefined;
-            inputs["userPeer"] = args ? args.userPeer : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["winsServer1"] = args ? args.winsServer1 : undefined;
-            inputs["winsServer2"] = args ? args.winsServer2 : undefined;
-            inputs["xContentTypeOptions"] = args ? args.xContentTypeOptions : undefined;
+            resourceInputs["algorithm"] = args ? args.algorithm : undefined;
+            resourceInputs["authSessionCheckSourceIp"] = args ? args.authSessionCheckSourceIp : undefined;
+            resourceInputs["authTimeout"] = args ? args.authTimeout : undefined;
+            resourceInputs["authenticationRules"] = args ? args.authenticationRules : undefined;
+            resourceInputs["autoTunnelStaticRoute"] = args ? args.autoTunnelStaticRoute : undefined;
+            resourceInputs["bannedCipher"] = args ? args.bannedCipher : undefined;
+            resourceInputs["checkReferer"] = args ? args.checkReferer : undefined;
+            resourceInputs["ciphersuite"] = args ? args.ciphersuite : undefined;
+            resourceInputs["clientSigalgs"] = args ? args.clientSigalgs : undefined;
+            resourceInputs["defaultPortal"] = args ? args.defaultPortal : undefined;
+            resourceInputs["deflateCompressionLevel"] = args ? args.deflateCompressionLevel : undefined;
+            resourceInputs["deflateMinDataSize"] = args ? args.deflateMinDataSize : undefined;
+            resourceInputs["dnsServer1"] = args ? args.dnsServer1 : undefined;
+            resourceInputs["dnsServer2"] = args ? args.dnsServer2 : undefined;
+            resourceInputs["dnsSuffix"] = args ? args.dnsSuffix : undefined;
+            resourceInputs["dtlsHelloTimeout"] = args ? args.dtlsHelloTimeout : undefined;
+            resourceInputs["dtlsMaxProtoVer"] = args ? args.dtlsMaxProtoVer : undefined;
+            resourceInputs["dtlsMinProtoVer"] = args ? args.dtlsMinProtoVer : undefined;
+            resourceInputs["dtlsTunnel"] = args ? args.dtlsTunnel : undefined;
+            resourceInputs["dualStackMode"] = args ? args.dualStackMode : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["encode2fSequence"] = args ? args.encode2fSequence : undefined;
+            resourceInputs["encryptAndStorePassword"] = args ? args.encryptAndStorePassword : undefined;
+            resourceInputs["forceTwoFactorAuth"] = args ? args.forceTwoFactorAuth : undefined;
+            resourceInputs["headerXForwardedFor"] = args ? args.headerXForwardedFor : undefined;
+            resourceInputs["hstsIncludeSubdomains"] = args ? args.hstsIncludeSubdomains : undefined;
+            resourceInputs["httpCompression"] = args ? args.httpCompression : undefined;
+            resourceInputs["httpOnlyCookie"] = args ? args.httpOnlyCookie : undefined;
+            resourceInputs["httpRequestBodyTimeout"] = args ? args.httpRequestBodyTimeout : undefined;
+            resourceInputs["httpRequestHeaderTimeout"] = args ? args.httpRequestHeaderTimeout : undefined;
+            resourceInputs["httpsRedirect"] = args ? args.httpsRedirect : undefined;
+            resourceInputs["idleTimeout"] = args ? args.idleTimeout : undefined;
+            resourceInputs["ipv6DnsServer1"] = args ? args.ipv6DnsServer1 : undefined;
+            resourceInputs["ipv6DnsServer2"] = args ? args.ipv6DnsServer2 : undefined;
+            resourceInputs["ipv6WinsServer1"] = args ? args.ipv6WinsServer1 : undefined;
+            resourceInputs["ipv6WinsServer2"] = args ? args.ipv6WinsServer2 : undefined;
+            resourceInputs["loginAttemptLimit"] = args ? args.loginAttemptLimit : undefined;
+            resourceInputs["loginBlockTime"] = args ? args.loginBlockTime : undefined;
+            resourceInputs["loginTimeout"] = args ? args.loginTimeout : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["portPrecedence"] = args ? args.portPrecedence : undefined;
+            resourceInputs["reqclientcert"] = args ? args.reqclientcert : undefined;
+            resourceInputs["routeSourceInterface"] = args ? args.routeSourceInterface : undefined;
+            resourceInputs["samlRedirectPort"] = args ? args.samlRedirectPort : undefined;
+            resourceInputs["servercert"] = args ? args.servercert : undefined;
+            resourceInputs["sourceAddress6Negate"] = args ? args.sourceAddress6Negate : undefined;
+            resourceInputs["sourceAddress6s"] = args ? args.sourceAddress6s : undefined;
+            resourceInputs["sourceAddressNegate"] = args ? args.sourceAddressNegate : undefined;
+            resourceInputs["sourceAddresses"] = args ? args.sourceAddresses : undefined;
+            resourceInputs["sourceInterfaces"] = args ? args.sourceInterfaces : undefined;
+            resourceInputs["sslClientRenegotiation"] = args ? args.sslClientRenegotiation : undefined;
+            resourceInputs["sslInsertEmptyFragment"] = args ? args.sslInsertEmptyFragment : undefined;
+            resourceInputs["sslMaxProtoVer"] = args ? args.sslMaxProtoVer : undefined;
+            resourceInputs["sslMinProtoVer"] = args ? args.sslMinProtoVer : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["tlsv10"] = args ? args.tlsv10 : undefined;
+            resourceInputs["tlsv11"] = args ? args.tlsv11 : undefined;
+            resourceInputs["tlsv12"] = args ? args.tlsv12 : undefined;
+            resourceInputs["tlsv13"] = args ? args.tlsv13 : undefined;
+            resourceInputs["transformBackwardSlashes"] = args ? args.transformBackwardSlashes : undefined;
+            resourceInputs["tunnelAddrAssignedMethod"] = args ? args.tunnelAddrAssignedMethod : undefined;
+            resourceInputs["tunnelConnectWithoutReauth"] = args ? args.tunnelConnectWithoutReauth : undefined;
+            resourceInputs["tunnelIpPools"] = args ? args.tunnelIpPools : undefined;
+            resourceInputs["tunnelIpv6Pools"] = args ? args.tunnelIpv6Pools : undefined;
+            resourceInputs["tunnelUserSessionTimeout"] = args ? args.tunnelUserSessionTimeout : undefined;
+            resourceInputs["unsafeLegacyRenegotiation"] = args ? args.unsafeLegacyRenegotiation : undefined;
+            resourceInputs["urlObscuration"] = args ? args.urlObscuration : undefined;
+            resourceInputs["userPeer"] = args ? args.userPeer : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["winsServer1"] = args ? args.winsServer1 : undefined;
+            resourceInputs["winsServer2"] = args ? args.winsServer2 : undefined;
+            resourceInputs["xContentTypeOptions"] = args ? args.xContentTypeOptions : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(VpnSslSettings.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(VpnSslSettings.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -513,6 +547,14 @@ export interface VpnSslSettingsState {
      * Enable/disable verification of referer field in HTTP request header. Valid values: `enable`, `disable`.
      */
     checkReferer?: pulumi.Input<string>;
+    /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+     */
+    ciphersuite?: pulumi.Input<string>;
+    /**
+     * Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+     */
+    clientSigalgs?: pulumi.Input<string>;
     /**
      * Default SSL VPN portal.
      */
@@ -553,6 +595,10 @@ export interface VpnSslSettingsState {
      * Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
      */
     dtlsTunnel?: pulumi.Input<string>;
+    /**
+     * Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+     */
+    dualStackMode?: pulumi.Input<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -646,6 +692,10 @@ export interface VpnSslSettingsState {
      */
     routeSourceInterface?: pulumi.Input<string>;
     /**
+     * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+     */
+    samlRedirectPort?: pulumi.Input<number>;
+    /**
      * Name of the server certificate to be used for SSL-VPNs.
      */
     servercert?: pulumi.Input<string>;
@@ -686,6 +736,10 @@ export interface VpnSslSettingsState {
      */
     sslMinProtoVer?: pulumi.Input<string>;
     /**
+     * Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+     */
+    status?: pulumi.Input<string>;
+    /**
      * Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
      */
     tlsv10?: pulumi.Input<string>;
@@ -705,6 +759,10 @@ export interface VpnSslSettingsState {
      * Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
      */
     transformBackwardSlashes?: pulumi.Input<string>;
+    /**
+     * Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+     */
+    tunnelAddrAssignedMethod?: pulumi.Input<string>;
     /**
      * Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
      */
@@ -784,6 +842,14 @@ export interface VpnSslSettingsArgs {
      */
     checkReferer?: pulumi.Input<string>;
     /**
+     * Select one or more TLS 1.3 ciphersuites to enable. Does not affect ciphers in TLS 1.2 and below. At least one must be enabled. To disable all, set ssl-max-proto-ver to tls1-2 or below. Valid values: `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-AES-128-CCM-SHA256`, `TLS-AES-128-CCM-8-SHA256`.
+     */
+    ciphersuite?: pulumi.Input<string>;
+    /**
+     * Set signature algorithms related to client authentication. Affects TLS version <= 1.2 only. Valid values: `no-rsa-pss`, `all`.
+     */
+    clientSigalgs?: pulumi.Input<string>;
+    /**
      * Default SSL VPN portal.
      */
     defaultPortal?: pulumi.Input<string>;
@@ -823,6 +889,10 @@ export interface VpnSslSettingsArgs {
      * Enable DTLS to prevent eavesdropping, tampering, or message forgery. Valid values: `enable`, `disable`.
      */
     dtlsTunnel?: pulumi.Input<string>;
+    /**
+     * Tunnel mode: enable parallel IPv4 and IPv6 tunnel. Web mode: support IPv4 and IPv6 bookmarks in the portal. Valid values: `enable`, `disable`.
+     */
+    dualStackMode?: pulumi.Input<string>;
     /**
      * true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
      */
@@ -916,6 +986,10 @@ export interface VpnSslSettingsArgs {
      */
     routeSourceInterface?: pulumi.Input<string>;
     /**
+     * SAML local redirect port in the machine running FCT (0 - 65535). 0 is to disable redirection on FGT side.
+     */
+    samlRedirectPort?: pulumi.Input<number>;
+    /**
      * Name of the server certificate to be used for SSL-VPNs.
      */
     servercert?: pulumi.Input<string>;
@@ -956,6 +1030,10 @@ export interface VpnSslSettingsArgs {
      */
     sslMinProtoVer?: pulumi.Input<string>;
     /**
+     * Enable/disable SSL-VPN. Valid values: `enable`, `disable`.
+     */
+    status?: pulumi.Input<string>;
+    /**
      * Enable/disable TLSv1.0. Valid values: `enable`, `disable`.
      */
     tlsv10?: pulumi.Input<string>;
@@ -975,6 +1053,10 @@ export interface VpnSslSettingsArgs {
      * Transform backward slashes to forward slashes in URLs. Valid values: `enable`, `disable`.
      */
     transformBackwardSlashes?: pulumi.Input<string>;
+    /**
+     * Method used for assigning address for tunnel. Valid values: `first-available`, `round-robin`.
+     */
+    tunnelAddrAssignedMethod?: pulumi.Input<string>;
     /**
      * Enable/disable tunnel connection without re-authorization if previous connection dropped. Valid values: `enable`, `disable`.
      */

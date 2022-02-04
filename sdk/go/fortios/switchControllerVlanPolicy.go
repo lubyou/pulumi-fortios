@@ -53,6 +53,7 @@ func NewSwitchControllerVlanPolicy(ctx *pulumi.Context,
 		args = &SwitchControllerVlanPolicyArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerVlanPolicy
 	err := ctx.RegisterResource("fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy", name, args, &resource, opts...)
 	if err != nil {
@@ -183,7 +184,7 @@ type SwitchControllerVlanPolicyInput interface {
 }
 
 func (*SwitchControllerVlanPolicy) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerVlanPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerVlanPolicy)(nil)).Elem()
 }
 
 func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyOutput() SwitchControllerVlanPolicyOutput {
@@ -192,35 +193,6 @@ func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyOutput() Switch
 
 func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyOutput)
-}
-
-func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyPtrOutput() SwitchControllerVlanPolicyPtrOutput {
-	return i.ToSwitchControllerVlanPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerVlanPolicy) ToSwitchControllerVlanPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyPtrOutput)
-}
-
-type SwitchControllerVlanPolicyPtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerVlanPolicyPtrOutput() SwitchControllerVlanPolicyPtrOutput
-	ToSwitchControllerVlanPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyPtrOutput
-}
-
-type switchControllerVlanPolicyPtrType SwitchControllerVlanPolicyArgs
-
-func (*switchControllerVlanPolicyPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerVlanPolicy)(nil))
-}
-
-func (i *switchControllerVlanPolicyPtrType) ToSwitchControllerVlanPolicyPtrOutput() SwitchControllerVlanPolicyPtrOutput {
-	return i.ToSwitchControllerVlanPolicyPtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerVlanPolicyPtrType) ToSwitchControllerVlanPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyPtrOutput)
 }
 
 // SwitchControllerVlanPolicyArrayInput is an input type that accepts SwitchControllerVlanPolicyArray and SwitchControllerVlanPolicyArrayOutput values.
@@ -237,7 +209,7 @@ type SwitchControllerVlanPolicyArrayInput interface {
 type SwitchControllerVlanPolicyArray []SwitchControllerVlanPolicyInput
 
 func (SwitchControllerVlanPolicyArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerVlanPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerVlanPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerVlanPolicyArray) ToSwitchControllerVlanPolicyArrayOutput() SwitchControllerVlanPolicyArrayOutput {
@@ -262,7 +234,7 @@ type SwitchControllerVlanPolicyMapInput interface {
 type SwitchControllerVlanPolicyMap map[string]SwitchControllerVlanPolicyInput
 
 func (SwitchControllerVlanPolicyMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerVlanPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerVlanPolicy)(nil)).Elem()
 }
 
 func (i SwitchControllerVlanPolicyMap) ToSwitchControllerVlanPolicyMapOutput() SwitchControllerVlanPolicyMapOutput {
@@ -273,12 +245,10 @@ func (i SwitchControllerVlanPolicyMap) ToSwitchControllerVlanPolicyMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerVlanPolicyMapOutput)
 }
 
-type SwitchControllerVlanPolicyOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerVlanPolicyOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanPolicyOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerVlanPolicy)(nil))
+	return reflect.TypeOf((**SwitchControllerVlanPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyOutput() SwitchControllerVlanPolicyOutput {
@@ -289,36 +259,10 @@ func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyOutputWith
 	return o
 }
 
-func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyPtrOutput() SwitchControllerVlanPolicyPtrOutput {
-	return o.ToSwitchControllerVlanPolicyPtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerVlanPolicyOutput) ToSwitchControllerVlanPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyPtrOutput {
-	return o.ApplyT(func(v SwitchControllerVlanPolicy) *SwitchControllerVlanPolicy {
-		return &v
-	}).(SwitchControllerVlanPolicyPtrOutput)
-}
-
-type SwitchControllerVlanPolicyPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerVlanPolicyPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerVlanPolicy)(nil))
-}
-
-func (o SwitchControllerVlanPolicyPtrOutput) ToSwitchControllerVlanPolicyPtrOutput() SwitchControllerVlanPolicyPtrOutput {
-	return o
-}
-
-func (o SwitchControllerVlanPolicyPtrOutput) ToSwitchControllerVlanPolicyPtrOutputWithContext(ctx context.Context) SwitchControllerVlanPolicyPtrOutput {
-	return o
-}
-
 type SwitchControllerVlanPolicyArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanPolicyArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerVlanPolicy)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerVlanPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerVlanPolicyArrayOutput) ToSwitchControllerVlanPolicyArrayOutput() SwitchControllerVlanPolicyArrayOutput {
@@ -330,15 +274,15 @@ func (o SwitchControllerVlanPolicyArrayOutput) ToSwitchControllerVlanPolicyArray
 }
 
 func (o SwitchControllerVlanPolicyArrayOutput) Index(i pulumi.IntInput) SwitchControllerVlanPolicyOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerVlanPolicy {
-		return vs[0].([]SwitchControllerVlanPolicy)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerVlanPolicy {
+		return vs[0].([]*SwitchControllerVlanPolicy)[vs[1].(int)]
 	}).(SwitchControllerVlanPolicyOutput)
 }
 
 type SwitchControllerVlanPolicyMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerVlanPolicyMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerVlanPolicy)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerVlanPolicy)(nil)).Elem()
 }
 
 func (o SwitchControllerVlanPolicyMapOutput) ToSwitchControllerVlanPolicyMapOutput() SwitchControllerVlanPolicyMapOutput {
@@ -350,14 +294,16 @@ func (o SwitchControllerVlanPolicyMapOutput) ToSwitchControllerVlanPolicyMapOutp
 }
 
 func (o SwitchControllerVlanPolicyMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerVlanPolicyOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerVlanPolicy {
-		return vs[0].(map[string]SwitchControllerVlanPolicy)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerVlanPolicy {
+		return vs[0].(map[string]*SwitchControllerVlanPolicy)[vs[1].(string)]
 	}).(SwitchControllerVlanPolicyOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVlanPolicyInput)(nil)).Elem(), &SwitchControllerVlanPolicy{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVlanPolicyArrayInput)(nil)).Elem(), SwitchControllerVlanPolicyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerVlanPolicyMapInput)(nil)).Elem(), SwitchControllerVlanPolicyMap{})
 	pulumi.RegisterOutputType(SwitchControllerVlanPolicyOutput{})
-	pulumi.RegisterOutputType(SwitchControllerVlanPolicyPtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerVlanPolicyArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerVlanPolicyMapOutput{})
 }

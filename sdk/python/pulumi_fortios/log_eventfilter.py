@@ -20,6 +20,7 @@ class LogEventfilterArgs:
                  event: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
+                 rest_api: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  security_rating: Optional[pulumi.Input[str]] = None,
@@ -39,6 +40,7 @@ class LogEventfilterArgs:
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable ha event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api: Enable/disable REST API logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] router: Enable/disable router event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdwan: Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] security_rating: Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
@@ -64,6 +66,8 @@ class LogEventfilterArgs:
             pulumi.set(__self__, "fortiextender", fortiextender)
         if ha is not None:
             pulumi.set(__self__, "ha", ha)
+        if rest_api is not None:
+            pulumi.set(__self__, "rest_api", rest_api)
         if router is not None:
             pulumi.set(__self__, "router", router)
         if sdwan is not None:
@@ -168,6 +172,18 @@ class LogEventfilterArgs:
     @ha.setter
     def ha(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ha", value)
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api")
+
+    @rest_api.setter
+    def rest_api(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rest_api", value)
 
     @property
     @pulumi.getter
@@ -300,6 +316,7 @@ class _LogEventfilterState:
                  event: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
+                 rest_api: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  security_rating: Optional[pulumi.Input[str]] = None,
@@ -319,6 +336,7 @@ class _LogEventfilterState:
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable ha event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api: Enable/disable REST API logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] router: Enable/disable router event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdwan: Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] security_rating: Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
@@ -344,6 +362,8 @@ class _LogEventfilterState:
             pulumi.set(__self__, "fortiextender", fortiextender)
         if ha is not None:
             pulumi.set(__self__, "ha", ha)
+        if rest_api is not None:
+            pulumi.set(__self__, "rest_api", rest_api)
         if router is not None:
             pulumi.set(__self__, "router", router)
         if sdwan is not None:
@@ -448,6 +468,18 @@ class _LogEventfilterState:
     @ha.setter
     def ha(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "ha", value)
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable REST API logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api")
+
+    @rest_api.setter
+    def rest_api(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "rest_api", value)
 
     @property
     @pulumi.getter
@@ -582,6 +614,7 @@ class LogEventfilter(pulumi.CustomResource):
                  event: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
+                 rest_api: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  security_rating: Optional[pulumi.Input[str]] = None,
@@ -635,6 +668,7 @@ class LogEventfilter(pulumi.CustomResource):
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable ha event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api: Enable/disable REST API logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] router: Enable/disable router event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdwan: Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] security_rating: Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
@@ -707,6 +741,7 @@ class LogEventfilter(pulumi.CustomResource):
                  event: Optional[pulumi.Input[str]] = None,
                  fortiextender: Optional[pulumi.Input[str]] = None,
                  ha: Optional[pulumi.Input[str]] = None,
+                 rest_api: Optional[pulumi.Input[str]] = None,
                  router: Optional[pulumi.Input[str]] = None,
                  sdwan: Optional[pulumi.Input[str]] = None,
                  security_rating: Optional[pulumi.Input[str]] = None,
@@ -724,6 +759,8 @@ class LogEventfilter(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -736,6 +773,7 @@ class LogEventfilter(pulumi.CustomResource):
             __props__.__dict__["event"] = event
             __props__.__dict__["fortiextender"] = fortiextender
             __props__.__dict__["ha"] = ha
+            __props__.__dict__["rest_api"] = rest_api
             __props__.__dict__["router"] = router
             __props__.__dict__["sdwan"] = sdwan
             __props__.__dict__["security_rating"] = security_rating
@@ -763,6 +801,7 @@ class LogEventfilter(pulumi.CustomResource):
             event: Optional[pulumi.Input[str]] = None,
             fortiextender: Optional[pulumi.Input[str]] = None,
             ha: Optional[pulumi.Input[str]] = None,
+            rest_api: Optional[pulumi.Input[str]] = None,
             router: Optional[pulumi.Input[str]] = None,
             sdwan: Optional[pulumi.Input[str]] = None,
             security_rating: Optional[pulumi.Input[str]] = None,
@@ -787,6 +826,7 @@ class LogEventfilter(pulumi.CustomResource):
         :param pulumi.Input[str] event: Enable/disable event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] fortiextender: Enable/disable FortiExtender logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ha: Enable/disable ha event logging. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] rest_api: Enable/disable REST API logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] router: Enable/disable router event logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] sdwan: Enable/disable SD-WAN logging. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] security_rating: Enable/disable Security Rating result logging. Valid values: `enable`, `disable`.
@@ -809,6 +849,7 @@ class LogEventfilter(pulumi.CustomResource):
         __props__.__dict__["event"] = event
         __props__.__dict__["fortiextender"] = fortiextender
         __props__.__dict__["ha"] = ha
+        __props__.__dict__["rest_api"] = rest_api
         __props__.__dict__["router"] = router
         __props__.__dict__["sdwan"] = sdwan
         __props__.__dict__["security_rating"] = security_rating
@@ -876,6 +917,14 @@ class LogEventfilter(pulumi.CustomResource):
         Enable/disable ha event logging. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "ha")
+
+    @property
+    @pulumi.getter(name="restApi")
+    def rest_api(self) -> pulumi.Output[str]:
+        """
+        Enable/disable REST API logging. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "rest_api")
 
     @property
     @pulumi.getter

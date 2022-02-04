@@ -48,9 +48,11 @@ class FirewallPolicyArgs:
                  dstaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstaddr6Args']]]] = None,
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstaddrArgs']]]] = None,
+                 dynamic_shaping: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_collect: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
+                 fec: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
@@ -90,13 +92,17 @@ class FirewallPolicyArgs:
                  match_vip_only: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  natinbound: Optional[pulumi.Input[str]] = None,
                  natip: Optional[pulumi.Input[str]] = None,
                  natoutbound: Optional[pulumi.Input[str]] = None,
+                 np_acceleration: Optional[pulumi.Input[str]] = None,
                  ntlm: Optional[pulumi.Input[str]] = None,
                  ntlm_enabled_browsers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyNtlmEnabledBrowserArgs']]]] = None,
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
+                 passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
@@ -117,10 +123,13 @@ class FirewallPolicyArgs:
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  schedule_timeout: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyServiceArgs']]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
+                 sgt_check: Optional[pulumi.Input[str]] = None,
+                 sgts: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  src_vendor_macs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcVendorMacArgs']]]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcaddr6Args']]]] = None,
@@ -146,6 +155,7 @@ class FirewallPolicyArgs:
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -163,7 +173,10 @@ class FirewallPolicyArgs:
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
-                 wsso: Optional[pulumi.Input[str]] = None):
+                 wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]] = None,
+                 ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a FirewallPolicy resource.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstintfArgs']]] dstintfs: Outgoing (egress) interface. The structure of `dstintf` block is documented below.
@@ -199,9 +212,11 @@ class FirewallPolicyArgs:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstaddr6Args']]] dstaddr6s: Destination IPv6 address name and address group names. The structure of `dstaddr6` block is documented below.
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstaddrArgs']]] dstaddrs: Destination address and address group names. The structure of `dstaddr` block is documented below.
+        :param pulumi.Input[str] dynamic_shaping: Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_collect: Enable/disable email collection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
+        :param pulumi.Input[str] fec: Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
@@ -241,13 +256,17 @@ class FirewallPolicyArgs:
         :param pulumi.Input[str] match_vip_only: Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Mirror Interface name.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natinbound: Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natip: Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
         :param pulumi.Input[str] natoutbound: Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] np_acceleration: Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ntlm: Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyNtlmEnabledBrowserArgs']]] ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers. The structure of `ntlm_enabled_browsers` block is documented below.
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
@@ -268,10 +287,13 @@ class FirewallPolicyArgs:
         :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Schedule name.(Default is `always`)
         :param pulumi.Input[str] schedule_timeout: Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+        :param pulumi.Input[str] sgt_check: Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]] sgts: Security group tags. The structure of `sgt` block is documented below.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcVendorMacArgs']]] src_vendor_macs: Vendor MAC source ID. The structure of `src_vendor_mac` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcaddr6Args']]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
@@ -297,6 +319,7 @@ class FirewallPolicyArgs:
         :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
@@ -315,6 +338,9 @@ class FirewallPolicyArgs:
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
         """
         pulumi.set(__self__, "dstintfs", dstintfs)
         pulumi.set(__self__, "srcintfs", srcintfs)
@@ -380,12 +406,16 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "dstaddr_negate", dstaddr_negate)
         if dstaddrs is not None:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
+        if dynamic_shaping is not None:
+            pulumi.set(__self__, "dynamic_shaping", dynamic_shaping)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if email_collect is not None:
             pulumi.set(__self__, "email_collect", email_collect)
         if emailfilter_profile is not None:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
+        if fec is not None:
+            pulumi.set(__self__, "fec", fec)
         if file_filter_profile is not None:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
         if firewall_session_dirty is not None:
@@ -464,12 +494,18 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "name", name)
         if nat is not None:
             pulumi.set(__self__, "nat", nat)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if natinbound is not None:
             pulumi.set(__self__, "natinbound", natinbound)
         if natip is not None:
             pulumi.set(__self__, "natip", natip)
         if natoutbound is not None:
             pulumi.set(__self__, "natoutbound", natoutbound)
+        if np_acceleration is not None:
+            pulumi.set(__self__, "np_acceleration", np_acceleration)
         if ntlm is not None:
             pulumi.set(__self__, "ntlm", ntlm)
         if ntlm_enabled_browsers is not None:
@@ -478,6 +514,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "ntlm_guest", ntlm_guest)
         if outbound is not None:
             pulumi.set(__self__, "outbound", outbound)
+        if passive_wan_health_measurement is not None:
+            pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
         if per_ip_shaper is not None:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if permit_any_host is not None:
@@ -518,6 +556,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "schedule", schedule)
         if schedule_timeout is not None:
             pulumi.set(__self__, "schedule_timeout", schedule_timeout)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if send_deny_packet is not None:
             pulumi.set(__self__, "send_deny_packet", send_deny_packet)
         if service_negate is not None:
@@ -526,6 +566,10 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "services", services)
         if session_ttl is not None:
             pulumi.set(__self__, "session_ttl", session_ttl)
+        if sgt_check is not None:
+            pulumi.set(__self__, "sgt_check", sgt_check)
+        if sgts is not None:
+            pulumi.set(__self__, "sgts", sgts)
         if spamfilter_profile is not None:
             pulumi.set(__self__, "spamfilter_profile", spamfilter_profile)
         if src_vendor_macs is not None:
@@ -576,6 +620,8 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if vlan_cos_fwd is not None:
             pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
         if vlan_cos_rev is not None:
@@ -612,6 +658,12 @@ class FirewallPolicyArgs:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
         if wsso is not None:
             pulumi.set(__self__, "wsso", wsso)
+        if ztna_ems_tags is not None:
+            pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
+        if ztna_geo_tags is not None:
+            pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_status is not None:
+            pulumi.set(__self__, "ztna_status", ztna_status)
 
     @property
     @pulumi.getter
@@ -1010,6 +1062,18 @@ class FirewallPolicyArgs:
         pulumi.set(self, "dstaddrs", value)
 
     @property
+    @pulumi.getter(name="dynamicShaping")
+    def dynamic_shaping(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dynamic_shaping")
+
+    @dynamic_shaping.setter
+    def dynamic_shaping(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_shaping", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1044,6 +1108,18 @@ class FirewallPolicyArgs:
     @emailfilter_profile.setter
     def emailfilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "emailfilter_profile", value)
+
+    @property
+    @pulumi.getter
+    def fec(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fec")
+
+    @fec.setter
+    def fec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec", value)
 
     @property
     @pulumi.getter(name="fileFilterProfile")
@@ -1515,6 +1591,30 @@ class FirewallPolicyArgs:
 
     @property
     @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
+
+    @property
+    @pulumi.getter
     def natinbound(self) -> Optional[pulumi.Input[str]]:
         """
         Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
@@ -1548,6 +1648,18 @@ class FirewallPolicyArgs:
     @natoutbound.setter
     def natoutbound(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "natoutbound", value)
+
+    @property
+    @pulumi.getter(name="npAcceleration")
+    def np_acceleration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "np_acceleration")
+
+    @np_acceleration.setter
+    def np_acceleration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "np_acceleration", value)
 
     @property
     @pulumi.getter
@@ -1596,6 +1708,18 @@ class FirewallPolicyArgs:
     @outbound.setter
     def outbound(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "outbound", value)
+
+    @property
+    @pulumi.getter(name="passiveWanHealthMeasurement")
+    def passive_wan_health_measurement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "passive_wan_health_measurement")
+
+    @passive_wan_health_measurement.setter
+    def passive_wan_health_measurement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "passive_wan_health_measurement", value)
 
     @property
     @pulumi.getter(name="perIpShaper")
@@ -1838,6 +1962,18 @@ class FirewallPolicyArgs:
         pulumi.set(self, "schedule_timeout", value)
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
+
+    @property
     @pulumi.getter(name="sendDenyPacket")
     def send_deny_packet(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1884,6 +2020,30 @@ class FirewallPolicyArgs:
     @session_ttl.setter
     def session_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "session_ttl", value)
+
+    @property
+    @pulumi.getter(name="sgtCheck")
+    def sgt_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sgt_check")
+
+    @sgt_check.setter
+    def sgt_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sgt_check", value)
+
+    @property
+    @pulumi.getter
+    def sgts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]]]:
+        """
+        Security group tags. The structure of `sgt` block is documented below.
+        """
+        return pulumi.get(self, "sgts")
+
+    @sgts.setter
+    def sgts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]]]):
+        pulumi.set(self, "sgts", value)
 
     @property
     @pulumi.getter(name="spamfilterProfile")
@@ -2186,6 +2346,18 @@ class FirewallPolicyArgs:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> Optional[pulumi.Input[int]]:
         """
@@ -2401,6 +2573,42 @@ class FirewallPolicyArgs:
     def wsso(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wsso", value)
 
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]]:
+        """
+        Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @ztna_ems_tags.setter
+    def ztna_ems_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]]):
+        pulumi.set(self, "ztna_ems_tags", value)
+
+    @property
+    @pulumi.getter(name="ztnaGeoTags")
+    def ztna_geo_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]]:
+        """
+        Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_geo_tags")
+
+    @ztna_geo_tags.setter
+    def ztna_geo_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]]):
+        pulumi.set(self, "ztna_geo_tags", value)
+
+    @property
+    @pulumi.getter(name="ztnaStatus")
+    def ztna_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_status")
+
+    @ztna_status.setter
+    def ztna_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_status", value)
+
 
 @pulumi.input_type
 class _FirewallPolicyState:
@@ -2437,9 +2645,11 @@ class _FirewallPolicyState:
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstaddrArgs']]]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstintfArgs']]]] = None,
+                 dynamic_shaping: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_collect: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
+                 fec: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
@@ -2479,13 +2689,17 @@ class _FirewallPolicyState:
                  match_vip_only: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  natinbound: Optional[pulumi.Input[str]] = None,
                  natip: Optional[pulumi.Input[str]] = None,
                  natoutbound: Optional[pulumi.Input[str]] = None,
+                 np_acceleration: Optional[pulumi.Input[str]] = None,
                  ntlm: Optional[pulumi.Input[str]] = None,
                  ntlm_enabled_browsers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyNtlmEnabledBrowserArgs']]]] = None,
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
+                 passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
@@ -2506,10 +2720,13 @@ class _FirewallPolicyState:
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  schedule_timeout: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyServiceArgs']]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
+                 sgt_check: Optional[pulumi.Input[str]] = None,
+                 sgts: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  src_vendor_macs: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcVendorMacArgs']]]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcaddr6Args']]]] = None,
@@ -2536,6 +2753,7 @@ class _FirewallPolicyState:
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -2553,7 +2771,10 @@ class _FirewallPolicyState:
                  webfilter_profile: Optional[pulumi.Input[str]] = None,
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
-                 wsso: Optional[pulumi.Input[str]] = None):
+                 wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]] = None,
+                 ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallPolicy resources.
         :param pulumi.Input[str] action: Policy action (allow/deny/ipsec). Valid values: `accept`, `deny`, `ipsec`.
@@ -2588,9 +2809,11 @@ class _FirewallPolicyState:
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstaddrArgs']]] dstaddrs: Destination address and address group names. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyDstintfArgs']]] dstintfs: Outgoing (egress) interface. The structure of `dstintf` block is documented below.
+        :param pulumi.Input[str] dynamic_shaping: Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_collect: Enable/disable email collection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
+        :param pulumi.Input[str] fec: Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
@@ -2630,13 +2853,17 @@ class _FirewallPolicyState:
         :param pulumi.Input[str] match_vip_only: Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Mirror Interface name.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natinbound: Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natip: Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
         :param pulumi.Input[str] natoutbound: Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] np_acceleration: Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ntlm: Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyNtlmEnabledBrowserArgs']]] ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers. The structure of `ntlm_enabled_browsers` block is documented below.
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
@@ -2657,10 +2884,13 @@ class _FirewallPolicyState:
         :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Schedule name.(Default is `always`)
         :param pulumi.Input[str] schedule_timeout: Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyServiceArgs']]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+        :param pulumi.Input[str] sgt_check: Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]] sgts: Security group tags. The structure of `sgt` block is documented below.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcVendorMacArgs']]] src_vendor_macs: Vendor MAC source ID. The structure of `src_vendor_mac` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicySrcaddr6Args']]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
@@ -2687,6 +2917,7 @@ class _FirewallPolicyState:
         :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
@@ -2705,6 +2936,9 @@ class _FirewallPolicyState:
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
         """
         if action is not None:
             pulumi.set(__self__, "action", action)
@@ -2770,12 +3004,16 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "dstaddrs", dstaddrs)
         if dstintfs is not None:
             pulumi.set(__self__, "dstintfs", dstintfs)
+        if dynamic_shaping is not None:
+            pulumi.set(__self__, "dynamic_shaping", dynamic_shaping)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
         if email_collect is not None:
             pulumi.set(__self__, "email_collect", email_collect)
         if emailfilter_profile is not None:
             pulumi.set(__self__, "emailfilter_profile", emailfilter_profile)
+        if fec is not None:
+            pulumi.set(__self__, "fec", fec)
         if file_filter_profile is not None:
             pulumi.set(__self__, "file_filter_profile", file_filter_profile)
         if firewall_session_dirty is not None:
@@ -2854,12 +3092,18 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "name", name)
         if nat is not None:
             pulumi.set(__self__, "nat", nat)
+        if nat46 is not None:
+            pulumi.set(__self__, "nat46", nat46)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
         if natinbound is not None:
             pulumi.set(__self__, "natinbound", natinbound)
         if natip is not None:
             pulumi.set(__self__, "natip", natip)
         if natoutbound is not None:
             pulumi.set(__self__, "natoutbound", natoutbound)
+        if np_acceleration is not None:
+            pulumi.set(__self__, "np_acceleration", np_acceleration)
         if ntlm is not None:
             pulumi.set(__self__, "ntlm", ntlm)
         if ntlm_enabled_browsers is not None:
@@ -2868,6 +3112,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "ntlm_guest", ntlm_guest)
         if outbound is not None:
             pulumi.set(__self__, "outbound", outbound)
+        if passive_wan_health_measurement is not None:
+            pulumi.set(__self__, "passive_wan_health_measurement", passive_wan_health_measurement)
         if per_ip_shaper is not None:
             pulumi.set(__self__, "per_ip_shaper", per_ip_shaper)
         if permit_any_host is not None:
@@ -2908,6 +3154,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "schedule", schedule)
         if schedule_timeout is not None:
             pulumi.set(__self__, "schedule_timeout", schedule_timeout)
+        if sctp_filter_profile is not None:
+            pulumi.set(__self__, "sctp_filter_profile", sctp_filter_profile)
         if send_deny_packet is not None:
             pulumi.set(__self__, "send_deny_packet", send_deny_packet)
         if service_negate is not None:
@@ -2916,6 +3164,10 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "services", services)
         if session_ttl is not None:
             pulumi.set(__self__, "session_ttl", session_ttl)
+        if sgt_check is not None:
+            pulumi.set(__self__, "sgt_check", sgt_check)
+        if sgts is not None:
+            pulumi.set(__self__, "sgts", sgts)
         if spamfilter_profile is not None:
             pulumi.set(__self__, "spamfilter_profile", spamfilter_profile)
         if src_vendor_macs is not None:
@@ -2968,6 +3220,8 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "uuid", uuid)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
+        if videofilter_profile is not None:
+            pulumi.set(__self__, "videofilter_profile", videofilter_profile)
         if vlan_cos_fwd is not None:
             pulumi.set(__self__, "vlan_cos_fwd", vlan_cos_fwd)
         if vlan_cos_rev is not None:
@@ -3004,6 +3258,12 @@ class _FirewallPolicyState:
             pulumi.set(__self__, "webproxy_profile", webproxy_profile)
         if wsso is not None:
             pulumi.set(__self__, "wsso", wsso)
+        if ztna_ems_tags is not None:
+            pulumi.set(__self__, "ztna_ems_tags", ztna_ems_tags)
+        if ztna_geo_tags is not None:
+            pulumi.set(__self__, "ztna_geo_tags", ztna_geo_tags)
+        if ztna_status is not None:
+            pulumi.set(__self__, "ztna_status", ztna_status)
 
     @property
     @pulumi.getter
@@ -3390,6 +3650,18 @@ class _FirewallPolicyState:
         pulumi.set(self, "dstintfs", value)
 
     @property
+    @pulumi.getter(name="dynamicShaping")
+    def dynamic_shaping(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dynamic_shaping")
+
+    @dynamic_shaping.setter
+    def dynamic_shaping(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_shaping", value)
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
         """
@@ -3424,6 +3696,18 @@ class _FirewallPolicyState:
     @emailfilter_profile.setter
     def emailfilter_profile(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "emailfilter_profile", value)
+
+    @property
+    @pulumi.getter
+    def fec(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fec")
+
+    @fec.setter
+    def fec(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fec", value)
 
     @property
     @pulumi.getter(name="fileFilterProfile")
@@ -3895,6 +4179,30 @@ class _FirewallPolicyState:
 
     @property
     @pulumi.getter
+    def nat46(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @nat46.setter
+    def nat46(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat46", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
+
+    @property
+    @pulumi.getter
     def natinbound(self) -> Optional[pulumi.Input[str]]:
         """
         Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
@@ -3928,6 +4236,18 @@ class _FirewallPolicyState:
     @natoutbound.setter
     def natoutbound(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "natoutbound", value)
+
+    @property
+    @pulumi.getter(name="npAcceleration")
+    def np_acceleration(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "np_acceleration")
+
+    @np_acceleration.setter
+    def np_acceleration(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "np_acceleration", value)
 
     @property
     @pulumi.getter
@@ -3976,6 +4296,18 @@ class _FirewallPolicyState:
     @outbound.setter
     def outbound(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "outbound", value)
+
+    @property
+    @pulumi.getter(name="passiveWanHealthMeasurement")
+    def passive_wan_health_measurement(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "passive_wan_health_measurement")
+
+    @passive_wan_health_measurement.setter
+    def passive_wan_health_measurement(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "passive_wan_health_measurement", value)
 
     @property
     @pulumi.getter(name="perIpShaper")
@@ -4218,6 +4550,18 @@ class _FirewallPolicyState:
         pulumi.set(self, "schedule_timeout", value)
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @sctp_filter_profile.setter
+    def sctp_filter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sctp_filter_profile", value)
+
+    @property
     @pulumi.getter(name="sendDenyPacket")
     def send_deny_packet(self) -> Optional[pulumi.Input[str]]:
         """
@@ -4264,6 +4608,30 @@ class _FirewallPolicyState:
     @session_ttl.setter
     def session_ttl(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "session_ttl", value)
+
+    @property
+    @pulumi.getter(name="sgtCheck")
+    def sgt_check(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sgt_check")
+
+    @sgt_check.setter
+    def sgt_check(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "sgt_check", value)
+
+    @property
+    @pulumi.getter
+    def sgts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]]]:
+        """
+        Security group tags. The structure of `sgt` block is documented below.
+        """
+        return pulumi.get(self, "sgts")
+
+    @sgts.setter
+    def sgts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicySgtArgs']]]]):
+        pulumi.set(self, "sgts", value)
 
     @property
     @pulumi.getter(name="spamfilterProfile")
@@ -4578,6 +4946,18 @@ class _FirewallPolicyState:
         pulumi.set(self, "vdomparam", value)
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> Optional[pulumi.Input[str]]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @videofilter_profile.setter
+    def videofilter_profile(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "videofilter_profile", value)
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> Optional[pulumi.Input[int]]:
         """
@@ -4793,6 +5173,42 @@ class _FirewallPolicyState:
     def wsso(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "wsso", value)
 
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]]:
+        """
+        Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @ztna_ems_tags.setter
+    def ztna_ems_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaEmsTagArgs']]]]):
+        pulumi.set(self, "ztna_ems_tags", value)
+
+    @property
+    @pulumi.getter(name="ztnaGeoTags")
+    def ztna_geo_tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]]:
+        """
+        Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_geo_tags")
+
+    @ztna_geo_tags.setter
+    def ztna_geo_tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallPolicyZtnaGeoTagArgs']]]]):
+        pulumi.set(self, "ztna_geo_tags", value)
+
+    @property
+    @pulumi.getter(name="ztnaStatus")
+    def ztna_status(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_status")
+
+    @ztna_status.setter
+    def ztna_status(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ztna_status", value)
+
 
 class FirewallPolicy(pulumi.CustomResource):
     @overload
@@ -4831,9 +5247,11 @@ class FirewallPolicy(pulumi.CustomResource):
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstaddrArgs']]]]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstintfArgs']]]]] = None,
+                 dynamic_shaping: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_collect: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
+                 fec: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
@@ -4873,13 +5291,17 @@ class FirewallPolicy(pulumi.CustomResource):
                  match_vip_only: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  natinbound: Optional[pulumi.Input[str]] = None,
                  natip: Optional[pulumi.Input[str]] = None,
                  natoutbound: Optional[pulumi.Input[str]] = None,
+                 np_acceleration: Optional[pulumi.Input[str]] = None,
                  ntlm: Optional[pulumi.Input[str]] = None,
                  ntlm_enabled_browsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyNtlmEnabledBrowserArgs']]]]] = None,
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
+                 passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
@@ -4900,10 +5322,13 @@ class FirewallPolicy(pulumi.CustomResource):
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  schedule_timeout: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyServiceArgs']]]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
+                 sgt_check: Optional[pulumi.Input[str]] = None,
+                 sgts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySgtArgs']]]]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  src_vendor_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcVendorMacArgs']]]]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcaddr6Args']]]]] = None,
@@ -4930,6 +5355,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -4948,6 +5374,9 @@ class FirewallPolicy(pulumi.CustomResource):
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]]] = None,
+                 ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
         Configure IPv4 policies.
@@ -5063,9 +5492,11 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstaddrArgs']]]] dstaddrs: Destination address and address group names. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstintfArgs']]]] dstintfs: Outgoing (egress) interface. The structure of `dstintf` block is documented below.
+        :param pulumi.Input[str] dynamic_shaping: Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_collect: Enable/disable email collection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
+        :param pulumi.Input[str] fec: Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
@@ -5105,13 +5536,17 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] match_vip_only: Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Mirror Interface name.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natinbound: Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natip: Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
         :param pulumi.Input[str] natoutbound: Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] np_acceleration: Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ntlm: Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyNtlmEnabledBrowserArgs']]]] ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers. The structure of `ntlm_enabled_browsers` block is documented below.
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
@@ -5132,10 +5567,13 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Schedule name.(Default is `always`)
         :param pulumi.Input[str] schedule_timeout: Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyServiceArgs']]]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+        :param pulumi.Input[str] sgt_check: Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySgtArgs']]]] sgts: Security group tags. The structure of `sgt` block is documented below.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcVendorMacArgs']]]] src_vendor_macs: Vendor MAC source ID. The structure of `src_vendor_mac` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcaddr6Args']]]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
@@ -5162,6 +5600,7 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
@@ -5180,6 +5619,9 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
         """
         ...
     @overload
@@ -5314,9 +5756,11 @@ class FirewallPolicy(pulumi.CustomResource):
                  dstaddr_negate: Optional[pulumi.Input[str]] = None,
                  dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstaddrArgs']]]]] = None,
                  dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstintfArgs']]]]] = None,
+                 dynamic_shaping: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
                  email_collect: Optional[pulumi.Input[str]] = None,
                  emailfilter_profile: Optional[pulumi.Input[str]] = None,
+                 fec: Optional[pulumi.Input[str]] = None,
                  file_filter_profile: Optional[pulumi.Input[str]] = None,
                  firewall_session_dirty: Optional[pulumi.Input[str]] = None,
                  fixedport: Optional[pulumi.Input[str]] = None,
@@ -5356,13 +5800,17 @@ class FirewallPolicy(pulumi.CustomResource):
                  match_vip_only: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  nat: Optional[pulumi.Input[str]] = None,
+                 nat46: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
                  natinbound: Optional[pulumi.Input[str]] = None,
                  natip: Optional[pulumi.Input[str]] = None,
                  natoutbound: Optional[pulumi.Input[str]] = None,
+                 np_acceleration: Optional[pulumi.Input[str]] = None,
                  ntlm: Optional[pulumi.Input[str]] = None,
                  ntlm_enabled_browsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyNtlmEnabledBrowserArgs']]]]] = None,
                  ntlm_guest: Optional[pulumi.Input[str]] = None,
                  outbound: Optional[pulumi.Input[str]] = None,
+                 passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
                  per_ip_shaper: Optional[pulumi.Input[str]] = None,
                  permit_any_host: Optional[pulumi.Input[str]] = None,
                  permit_stun_host: Optional[pulumi.Input[str]] = None,
@@ -5383,10 +5831,13 @@ class FirewallPolicy(pulumi.CustomResource):
                  scan_botnet_connections: Optional[pulumi.Input[str]] = None,
                  schedule: Optional[pulumi.Input[str]] = None,
                  schedule_timeout: Optional[pulumi.Input[str]] = None,
+                 sctp_filter_profile: Optional[pulumi.Input[str]] = None,
                  send_deny_packet: Optional[pulumi.Input[str]] = None,
                  service_negate: Optional[pulumi.Input[str]] = None,
                  services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyServiceArgs']]]]] = None,
                  session_ttl: Optional[pulumi.Input[int]] = None,
+                 sgt_check: Optional[pulumi.Input[str]] = None,
+                 sgts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySgtArgs']]]]] = None,
                  spamfilter_profile: Optional[pulumi.Input[str]] = None,
                  src_vendor_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcVendorMacArgs']]]]] = None,
                  srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcaddr6Args']]]]] = None,
@@ -5413,6 +5864,7 @@ class FirewallPolicy(pulumi.CustomResource):
                  utm_status: Optional[pulumi.Input[str]] = None,
                  uuid: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
+                 videofilter_profile: Optional[pulumi.Input[str]] = None,
                  vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
                  vlan_cos_rev: Optional[pulumi.Input[int]] = None,
                  vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -5431,6 +5883,9 @@ class FirewallPolicy(pulumi.CustomResource):
                  webproxy_forward_server: Optional[pulumi.Input[str]] = None,
                  webproxy_profile: Optional[pulumi.Input[str]] = None,
                  wsso: Optional[pulumi.Input[str]] = None,
+                 ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]]] = None,
+                 ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]]] = None,
+                 ztna_status: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
             opts = pulumi.ResourceOptions()
@@ -5438,6 +5893,8 @@ class FirewallPolicy(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -5477,9 +5934,11 @@ class FirewallPolicy(pulumi.CustomResource):
             if dstintfs is None and not opts.urn:
                 raise TypeError("Missing required property 'dstintfs'")
             __props__.__dict__["dstintfs"] = dstintfs
+            __props__.__dict__["dynamic_shaping"] = dynamic_shaping
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
             __props__.__dict__["email_collect"] = email_collect
             __props__.__dict__["emailfilter_profile"] = emailfilter_profile
+            __props__.__dict__["fec"] = fec
             __props__.__dict__["file_filter_profile"] = file_filter_profile
             __props__.__dict__["firewall_session_dirty"] = firewall_session_dirty
             __props__.__dict__["fixedport"] = fixedport
@@ -5519,13 +5978,17 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["match_vip_only"] = match_vip_only
             __props__.__dict__["name"] = name
             __props__.__dict__["nat"] = nat
+            __props__.__dict__["nat46"] = nat46
+            __props__.__dict__["nat64"] = nat64
             __props__.__dict__["natinbound"] = natinbound
             __props__.__dict__["natip"] = natip
             __props__.__dict__["natoutbound"] = natoutbound
+            __props__.__dict__["np_acceleration"] = np_acceleration
             __props__.__dict__["ntlm"] = ntlm
             __props__.__dict__["ntlm_enabled_browsers"] = ntlm_enabled_browsers
             __props__.__dict__["ntlm_guest"] = ntlm_guest
             __props__.__dict__["outbound"] = outbound
+            __props__.__dict__["passive_wan_health_measurement"] = passive_wan_health_measurement
             __props__.__dict__["per_ip_shaper"] = per_ip_shaper
             __props__.__dict__["permit_any_host"] = permit_any_host
             __props__.__dict__["permit_stun_host"] = permit_stun_host
@@ -5546,10 +6009,13 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["scan_botnet_connections"] = scan_botnet_connections
             __props__.__dict__["schedule"] = schedule
             __props__.__dict__["schedule_timeout"] = schedule_timeout
+            __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
             __props__.__dict__["send_deny_packet"] = send_deny_packet
             __props__.__dict__["service_negate"] = service_negate
             __props__.__dict__["services"] = services
             __props__.__dict__["session_ttl"] = session_ttl
+            __props__.__dict__["sgt_check"] = sgt_check
+            __props__.__dict__["sgts"] = sgts
             __props__.__dict__["spamfilter_profile"] = spamfilter_profile
             __props__.__dict__["src_vendor_macs"] = src_vendor_macs
             __props__.__dict__["srcaddr6s"] = srcaddr6s
@@ -5578,6 +6044,7 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["utm_status"] = utm_status
             __props__.__dict__["uuid"] = uuid
             __props__.__dict__["vdomparam"] = vdomparam
+            __props__.__dict__["videofilter_profile"] = videofilter_profile
             __props__.__dict__["vlan_cos_fwd"] = vlan_cos_fwd
             __props__.__dict__["vlan_cos_rev"] = vlan_cos_rev
             __props__.__dict__["vlan_filter"] = vlan_filter
@@ -5596,6 +6063,9 @@ class FirewallPolicy(pulumi.CustomResource):
             __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
             __props__.__dict__["webproxy_profile"] = webproxy_profile
             __props__.__dict__["wsso"] = wsso
+            __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
+            __props__.__dict__["ztna_geo_tags"] = ztna_geo_tags
+            __props__.__dict__["ztna_status"] = ztna_status
         super(FirewallPolicy, __self__).__init__(
             'fortios:index/firewallPolicy:FirewallPolicy',
             resource_name,
@@ -5638,9 +6108,11 @@ class FirewallPolicy(pulumi.CustomResource):
             dstaddr_negate: Optional[pulumi.Input[str]] = None,
             dstaddrs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstaddrArgs']]]]] = None,
             dstintfs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstintfArgs']]]]] = None,
+            dynamic_shaping: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
             email_collect: Optional[pulumi.Input[str]] = None,
             emailfilter_profile: Optional[pulumi.Input[str]] = None,
+            fec: Optional[pulumi.Input[str]] = None,
             file_filter_profile: Optional[pulumi.Input[str]] = None,
             firewall_session_dirty: Optional[pulumi.Input[str]] = None,
             fixedport: Optional[pulumi.Input[str]] = None,
@@ -5680,13 +6152,17 @@ class FirewallPolicy(pulumi.CustomResource):
             match_vip_only: Optional[pulumi.Input[str]] = None,
             name: Optional[pulumi.Input[str]] = None,
             nat: Optional[pulumi.Input[str]] = None,
+            nat46: Optional[pulumi.Input[str]] = None,
+            nat64: Optional[pulumi.Input[str]] = None,
             natinbound: Optional[pulumi.Input[str]] = None,
             natip: Optional[pulumi.Input[str]] = None,
             natoutbound: Optional[pulumi.Input[str]] = None,
+            np_acceleration: Optional[pulumi.Input[str]] = None,
             ntlm: Optional[pulumi.Input[str]] = None,
             ntlm_enabled_browsers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyNtlmEnabledBrowserArgs']]]]] = None,
             ntlm_guest: Optional[pulumi.Input[str]] = None,
             outbound: Optional[pulumi.Input[str]] = None,
+            passive_wan_health_measurement: Optional[pulumi.Input[str]] = None,
             per_ip_shaper: Optional[pulumi.Input[str]] = None,
             permit_any_host: Optional[pulumi.Input[str]] = None,
             permit_stun_host: Optional[pulumi.Input[str]] = None,
@@ -5707,10 +6183,13 @@ class FirewallPolicy(pulumi.CustomResource):
             scan_botnet_connections: Optional[pulumi.Input[str]] = None,
             schedule: Optional[pulumi.Input[str]] = None,
             schedule_timeout: Optional[pulumi.Input[str]] = None,
+            sctp_filter_profile: Optional[pulumi.Input[str]] = None,
             send_deny_packet: Optional[pulumi.Input[str]] = None,
             service_negate: Optional[pulumi.Input[str]] = None,
             services: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyServiceArgs']]]]] = None,
             session_ttl: Optional[pulumi.Input[int]] = None,
+            sgt_check: Optional[pulumi.Input[str]] = None,
+            sgts: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySgtArgs']]]]] = None,
             spamfilter_profile: Optional[pulumi.Input[str]] = None,
             src_vendor_macs: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcVendorMacArgs']]]]] = None,
             srcaddr6s: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcaddr6Args']]]]] = None,
@@ -5737,6 +6216,7 @@ class FirewallPolicy(pulumi.CustomResource):
             utm_status: Optional[pulumi.Input[str]] = None,
             uuid: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None,
+            videofilter_profile: Optional[pulumi.Input[str]] = None,
             vlan_cos_fwd: Optional[pulumi.Input[int]] = None,
             vlan_cos_rev: Optional[pulumi.Input[int]] = None,
             vlan_filter: Optional[pulumi.Input[str]] = None,
@@ -5754,7 +6234,10 @@ class FirewallPolicy(pulumi.CustomResource):
             webfilter_profile: Optional[pulumi.Input[str]] = None,
             webproxy_forward_server: Optional[pulumi.Input[str]] = None,
             webproxy_profile: Optional[pulumi.Input[str]] = None,
-            wsso: Optional[pulumi.Input[str]] = None) -> 'FirewallPolicy':
+            wsso: Optional[pulumi.Input[str]] = None,
+            ztna_ems_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]]] = None,
+            ztna_geo_tags: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]]] = None,
+            ztna_status: Optional[pulumi.Input[str]] = None) -> 'FirewallPolicy':
         """
         Get an existing FirewallPolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -5794,9 +6277,11 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] dstaddr_negate: When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstaddrArgs']]]] dstaddrs: Destination address and address group names. The structure of `dstaddr` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyDstintfArgs']]]] dstintfs: Outgoing (egress) interface. The structure of `dstintf` block is documented below.
+        :param pulumi.Input[str] dynamic_shaping: Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         :param pulumi.Input[str] email_collect: Enable/disable email collection. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] emailfilter_profile: Name of an existing email filter profile.
+        :param pulumi.Input[str] fec: Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] file_filter_profile: Name of an existing file-filter profile.
         :param pulumi.Input[str] firewall_session_dirty: How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
         :param pulumi.Input[str] fixedport: Enable to prevent source NAT from changing a session's source port. Valid values: `enable`, `disable`.
@@ -5836,13 +6321,17 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] match_vip_only: Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] name: Mirror Interface name.
         :param pulumi.Input[str] nat: Enable/disable source NAT. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat46: Enable/disable NAT46. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] nat64: Enable/disable NAT64. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natinbound: Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] natip: Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
         :param pulumi.Input[str] natoutbound: Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] np_acceleration: Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ntlm: Enable/disable NTLM authentication. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyNtlmEnabledBrowserArgs']]]] ntlm_enabled_browsers: HTTP-User-Agent value of supported browsers. The structure of `ntlm_enabled_browsers` block is documented below.
         :param pulumi.Input[str] ntlm_guest: Enable/disable NTLM guest user access. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] outbound: Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] passive_wan_health_measurement: Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] per_ip_shaper: Per-IP traffic shaper.
         :param pulumi.Input[str] permit_any_host: Accept UDP packets from any host. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] permit_stun_host: Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `enable`, `disable`.
@@ -5863,10 +6352,13 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] scan_botnet_connections: Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
         :param pulumi.Input[str] schedule: Schedule name.(Default is `always`)
         :param pulumi.Input[str] schedule_timeout: Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] sctp_filter_profile: Name of an existing SCTP filter profile.
         :param pulumi.Input[str] send_deny_packet: Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] service_negate: When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyServiceArgs']]]] services: Service and service group names. The structure of `service` block is documented below.
         :param pulumi.Input[int] session_ttl: TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+        :param pulumi.Input[str] sgt_check: Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySgtArgs']]]] sgts: Security group tags. The structure of `sgt` block is documented below.
         :param pulumi.Input[str] spamfilter_profile: Name of an existing Spam filter profile.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcVendorMacArgs']]]] src_vendor_macs: Vendor MAC source ID. The structure of `src_vendor_mac` block is documented below.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicySrcaddr6Args']]]] srcaddr6s: Source IPv6 address name and address group names. The structure of `srcaddr6` block is documented below.
@@ -5893,6 +6385,7 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] utm_status: Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+        :param pulumi.Input[str] videofilter_profile: Name of an existing VideoFilter profile.
         :param pulumi.Input[int] vlan_cos_fwd: VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[int] vlan_cos_rev: VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
         :param pulumi.Input[str] vlan_filter: Set VLAN filters.
@@ -5911,6 +6404,9 @@ class FirewallPolicy(pulumi.CustomResource):
         :param pulumi.Input[str] webproxy_forward_server: Web proxy forward server name.
         :param pulumi.Input[str] webproxy_profile: Webproxy profile name.
         :param pulumi.Input[str] wsso: Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaEmsTagArgs']]]] ztna_ems_tags: Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallPolicyZtnaGeoTagArgs']]]] ztna_geo_tags: Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        :param pulumi.Input[str] ztna_status: Enable/disable zero trust access. Valid values: `enable`, `disable`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -5948,9 +6444,11 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["dstaddr_negate"] = dstaddr_negate
         __props__.__dict__["dstaddrs"] = dstaddrs
         __props__.__dict__["dstintfs"] = dstintfs
+        __props__.__dict__["dynamic_shaping"] = dynamic_shaping
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
         __props__.__dict__["email_collect"] = email_collect
         __props__.__dict__["emailfilter_profile"] = emailfilter_profile
+        __props__.__dict__["fec"] = fec
         __props__.__dict__["file_filter_profile"] = file_filter_profile
         __props__.__dict__["firewall_session_dirty"] = firewall_session_dirty
         __props__.__dict__["fixedport"] = fixedport
@@ -5990,13 +6488,17 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["match_vip_only"] = match_vip_only
         __props__.__dict__["name"] = name
         __props__.__dict__["nat"] = nat
+        __props__.__dict__["nat46"] = nat46
+        __props__.__dict__["nat64"] = nat64
         __props__.__dict__["natinbound"] = natinbound
         __props__.__dict__["natip"] = natip
         __props__.__dict__["natoutbound"] = natoutbound
+        __props__.__dict__["np_acceleration"] = np_acceleration
         __props__.__dict__["ntlm"] = ntlm
         __props__.__dict__["ntlm_enabled_browsers"] = ntlm_enabled_browsers
         __props__.__dict__["ntlm_guest"] = ntlm_guest
         __props__.__dict__["outbound"] = outbound
+        __props__.__dict__["passive_wan_health_measurement"] = passive_wan_health_measurement
         __props__.__dict__["per_ip_shaper"] = per_ip_shaper
         __props__.__dict__["permit_any_host"] = permit_any_host
         __props__.__dict__["permit_stun_host"] = permit_stun_host
@@ -6017,10 +6519,13 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["scan_botnet_connections"] = scan_botnet_connections
         __props__.__dict__["schedule"] = schedule
         __props__.__dict__["schedule_timeout"] = schedule_timeout
+        __props__.__dict__["sctp_filter_profile"] = sctp_filter_profile
         __props__.__dict__["send_deny_packet"] = send_deny_packet
         __props__.__dict__["service_negate"] = service_negate
         __props__.__dict__["services"] = services
         __props__.__dict__["session_ttl"] = session_ttl
+        __props__.__dict__["sgt_check"] = sgt_check
+        __props__.__dict__["sgts"] = sgts
         __props__.__dict__["spamfilter_profile"] = spamfilter_profile
         __props__.__dict__["src_vendor_macs"] = src_vendor_macs
         __props__.__dict__["srcaddr6s"] = srcaddr6s
@@ -6047,6 +6552,7 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["utm_status"] = utm_status
         __props__.__dict__["uuid"] = uuid
         __props__.__dict__["vdomparam"] = vdomparam
+        __props__.__dict__["videofilter_profile"] = videofilter_profile
         __props__.__dict__["vlan_cos_fwd"] = vlan_cos_fwd
         __props__.__dict__["vlan_cos_rev"] = vlan_cos_rev
         __props__.__dict__["vlan_filter"] = vlan_filter
@@ -6065,6 +6571,9 @@ class FirewallPolicy(pulumi.CustomResource):
         __props__.__dict__["webproxy_forward_server"] = webproxy_forward_server
         __props__.__dict__["webproxy_profile"] = webproxy_profile
         __props__.__dict__["wsso"] = wsso
+        __props__.__dict__["ztna_ems_tags"] = ztna_ems_tags
+        __props__.__dict__["ztna_geo_tags"] = ztna_geo_tags
+        __props__.__dict__["ztna_status"] = ztna_status
         return FirewallPolicy(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -6324,6 +6833,14 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "dstintfs")
 
     @property
+    @pulumi.getter(name="dynamicShaping")
+    def dynamic_shaping(self) -> pulumi.Output[str]:
+        """
+        Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "dynamic_shaping")
+
+    @property
     @pulumi.getter(name="dynamicSortSubtable")
     def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
         """
@@ -6346,6 +6863,14 @@ class FirewallPolicy(pulumi.CustomResource):
         Name of an existing email filter profile.
         """
         return pulumi.get(self, "emailfilter_profile")
+
+    @property
+    @pulumi.getter
+    def fec(self) -> pulumi.Output[str]:
+        """
+        Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "fec")
 
     @property
     @pulumi.getter(name="fileFilterProfile")
@@ -6661,6 +7186,22 @@ class FirewallPolicy(pulumi.CustomResource):
 
     @property
     @pulumi.getter
+    def nat46(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT46. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat46")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> pulumi.Output[str]:
+        """
+        Enable/disable NAT64. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @property
+    @pulumi.getter
     def natinbound(self) -> pulumi.Output[str]:
         """
         Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `enable`, `disable`.
@@ -6682,6 +7223,14 @@ class FirewallPolicy(pulumi.CustomResource):
         Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "natoutbound")
+
+    @property
+    @pulumi.getter(name="npAcceleration")
+    def np_acceleration(self) -> pulumi.Output[str]:
+        """
+        Enable/disable UTM Network Processor acceleration. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "np_acceleration")
 
     @property
     @pulumi.getter
@@ -6714,6 +7263,14 @@ class FirewallPolicy(pulumi.CustomResource):
         Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "outbound")
+
+    @property
+    @pulumi.getter(name="passiveWanHealthMeasurement")
+    def passive_wan_health_measurement(self) -> pulumi.Output[str]:
+        """
+        Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "passive_wan_health_measurement")
 
     @property
     @pulumi.getter(name="perIpShaper")
@@ -6876,6 +7433,14 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "schedule_timeout")
 
     @property
+    @pulumi.getter(name="sctpFilterProfile")
+    def sctp_filter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing SCTP filter profile.
+        """
+        return pulumi.get(self, "sctp_filter_profile")
+
+    @property
     @pulumi.getter(name="sendDenyPacket")
     def send_deny_packet(self) -> pulumi.Output[str]:
         """
@@ -6906,6 +7471,22 @@ class FirewallPolicy(pulumi.CustomResource):
         TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
         """
         return pulumi.get(self, "session_ttl")
+
+    @property
+    @pulumi.getter(name="sgtCheck")
+    def sgt_check(self) -> pulumi.Output[str]:
+        """
+        Enable/disable security group tags (SGT) check. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "sgt_check")
+
+    @property
+    @pulumi.getter
+    def sgts(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicySgt']]]:
+        """
+        Security group tags. The structure of `sgt` block is documented below.
+        """
+        return pulumi.get(self, "sgts")
 
     @property
     @pulumi.getter(name="spamfilterProfile")
@@ -7116,6 +7697,14 @@ class FirewallPolicy(pulumi.CustomResource):
         return pulumi.get(self, "vdomparam")
 
     @property
+    @pulumi.getter(name="videofilterProfile")
+    def videofilter_profile(self) -> pulumi.Output[str]:
+        """
+        Name of an existing VideoFilter profile.
+        """
+        return pulumi.get(self, "videofilter_profile")
+
+    @property
     @pulumi.getter(name="vlanCosFwd")
     def vlan_cos_fwd(self) -> pulumi.Output[int]:
         """
@@ -7258,4 +7847,28 @@ class FirewallPolicy(pulumi.CustomResource):
         Enable/disable WiFi Single Sign On (WSSO). Valid values: `enable`, `disable`.
         """
         return pulumi.get(self, "wsso")
+
+    @property
+    @pulumi.getter(name="ztnaEmsTags")
+    def ztna_ems_tags(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicyZtnaEmsTag']]]:
+        """
+        Source ztna-ems-tag names. The structure of `ztna_ems_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_ems_tags")
+
+    @property
+    @pulumi.getter(name="ztnaGeoTags")
+    def ztna_geo_tags(self) -> pulumi.Output[Optional[Sequence['outputs.FirewallPolicyZtnaGeoTag']]]:
+        """
+        Source ztna-geo-tag names. The structure of `ztna_geo_tag` block is documented below.
+        """
+        return pulumi.get(self, "ztna_geo_tags")
+
+    @property
+    @pulumi.getter(name="ztnaStatus")
+    def ztna_status(self) -> pulumi.Output[str]:
+        """
+        Enable/disable zero trust access. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ztna_status")
 

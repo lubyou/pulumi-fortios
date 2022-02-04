@@ -101,36 +101,34 @@ export class FirewallMulticastAddress6 extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallMulticastAddress6Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallMulticastAddress6Args | FirewallMulticastAddress6State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallMulticastAddress6State | undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["ip6"] = state ? state.ip6 : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["ip6"] = state ? state.ip6 : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallMulticastAddress6Args | undefined;
             if ((!args || args.ip6 === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ip6'");
             }
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["ip6"] = args ? args.ip6 : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["ip6"] = args ? args.ip6 : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallMulticastAddress6.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallMulticastAddress6.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -26,8 +26,14 @@ class AntivirusProfileArgs:
                  cifs: Optional[pulumi.Input['AntivirusProfileCifsArgs']] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  content_disarm: Optional[pulumi.Input['AntivirusProfileContentDisarmArgs']] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 ems_threat_feed: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
+                 external_blocklist_enable_all: Optional[pulumi.Input[str]] = None,
+                 external_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 fortiai_error_action: Optional[pulumi.Input[str]] = None,
+                 fortiai_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['AntivirusProfileFtpArgs']] = None,
                  http: Optional[pulumi.Input['AntivirusProfileHttpArgs']] = None,
@@ -39,6 +45,7 @@ class AntivirusProfileArgs:
                  name: Optional[pulumi.Input[str]] = None,
                  nntp: Optional[pulumi.Input['AntivirusProfileNntpArgs']] = None,
                  outbreak_prevention: Optional[pulumi.Input['AntivirusProfileOutbreakPreventionArgs']] = None,
+                 outbreak_prevention_archive_scan: Optional[pulumi.Input[str]] = None,
                  pop3: Optional[pulumi.Input['AntivirusProfilePop3Args']] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  scan_mode: Optional[pulumi.Input[str]] = None,
@@ -59,8 +66,14 @@ class AntivirusProfileArgs:
         :param pulumi.Input['AntivirusProfileCifsArgs'] cifs: Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input['AntivirusProfileContentDisarmArgs'] content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] ems_threat_feed: Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] external_blocklist_enable_all: Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]] external_blocklists: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] fortiai_error_action: Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        :param pulumi.Input[str] fortiai_timeout_action: Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input['AntivirusProfileFtpArgs'] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
         :param pulumi.Input['AntivirusProfileHttpArgs'] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
@@ -69,9 +82,10 @@ class AntivirusProfileArgs:
         :param pulumi.Input['AntivirusProfileMapiArgs'] mapi: Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] mobile_malware_db: Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
         :param pulumi.Input['AntivirusProfileNacQuarArgs'] nac_quar: Configure AntiVirus quarantine settings. The structure of `nac_quar` block is documented below.
-        :param pulumi.Input[str] name: Profile name.
+        :param pulumi.Input[str] name: External blocklist.
         :param pulumi.Input['AntivirusProfileNntpArgs'] nntp: Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
         :param pulumi.Input['AntivirusProfileOutbreakPreventionArgs'] outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input['AntivirusProfilePop3Args'] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
         :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
@@ -102,10 +116,22 @@ class AntivirusProfileArgs:
             pulumi.set(__self__, "comment", comment)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if ems_threat_feed is not None:
+            pulumi.set(__self__, "ems_threat_feed", ems_threat_feed)
         if extended_log is not None:
             pulumi.set(__self__, "extended_log", extended_log)
+        if external_blocklist_enable_all is not None:
+            pulumi.set(__self__, "external_blocklist_enable_all", external_blocklist_enable_all)
+        if external_blocklists is not None:
+            pulumi.set(__self__, "external_blocklists", external_blocklists)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if fortiai_error_action is not None:
+            pulumi.set(__self__, "fortiai_error_action", fortiai_error_action)
+        if fortiai_timeout_action is not None:
+            pulumi.set(__self__, "fortiai_timeout_action", fortiai_timeout_action)
         if ftgd_analytics is not None:
             pulumi.set(__self__, "ftgd_analytics", ftgd_analytics)
         if ftp is not None:
@@ -128,6 +154,8 @@ class AntivirusProfileArgs:
             pulumi.set(__self__, "nntp", nntp)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if outbreak_prevention_archive_scan is not None:
+            pulumi.set(__self__, "outbreak_prevention_archive_scan", outbreak_prevention_archive_scan)
         if pop3 is not None:
             pulumi.set(__self__, "pop3", pop3)
         if replacemsg_group is not None:
@@ -276,6 +304,30 @@ class AntivirusProfileArgs:
         pulumi.set(self, "content_disarm", value)
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="emsThreatFeed")
+    def ems_threat_feed(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ems_threat_feed")
+
+    @ems_threat_feed.setter
+    def ems_threat_feed(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ems_threat_feed", value)
+
+    @property
     @pulumi.getter(name="extendedLog")
     def extended_log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -288,6 +340,30 @@ class AntivirusProfileArgs:
         pulumi.set(self, "extended_log", value)
 
     @property
+    @pulumi.getter(name="externalBlocklistEnableAll")
+    def external_blocklist_enable_all(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist_enable_all")
+
+    @external_blocklist_enable_all.setter
+    def external_blocklist_enable_all(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_blocklist_enable_all", value)
+
+    @property
+    @pulumi.getter(name="externalBlocklists")
+    def external_blocklists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]]]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklists")
+
+    @external_blocklists.setter
+    def external_blocklists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]]]):
+        pulumi.set(self, "external_blocklists", value)
+
+    @property
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> Optional[pulumi.Input[str]]:
         """
@@ -298,6 +374,30 @@ class AntivirusProfileArgs:
     @feature_set.setter
     def feature_set(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter(name="fortiaiErrorAction")
+    def fortiai_error_action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "fortiai_error_action")
+
+    @fortiai_error_action.setter
+    def fortiai_error_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiai_error_action", value)
+
+    @property
+    @pulumi.getter(name="fortiaiTimeoutAction")
+    def fortiai_timeout_action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "fortiai_timeout_action")
+
+    @fortiai_timeout_action.setter
+    def fortiai_timeout_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiai_timeout_action", value)
 
     @property
     @pulumi.getter(name="ftgdAnalytics")
@@ -399,7 +499,7 @@ class AntivirusProfileArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Profile name.
+        External blocklist.
         """
         return pulumi.get(self, "name")
 
@@ -430,6 +530,18 @@ class AntivirusProfileArgs:
     @outbreak_prevention.setter
     def outbreak_prevention(self, value: Optional[pulumi.Input['AntivirusProfileOutbreakPreventionArgs']]):
         pulumi.set(self, "outbreak_prevention", value)
+
+    @property
+    @pulumi.getter(name="outbreakPreventionArchiveScan")
+    def outbreak_prevention_archive_scan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "outbreak_prevention_archive_scan")
+
+    @outbreak_prevention_archive_scan.setter
+    def outbreak_prevention_archive_scan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "outbreak_prevention_archive_scan", value)
 
     @property
     @pulumi.getter
@@ -530,8 +642,14 @@ class _AntivirusProfileState:
                  cifs: Optional[pulumi.Input['AntivirusProfileCifsArgs']] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  content_disarm: Optional[pulumi.Input['AntivirusProfileContentDisarmArgs']] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 ems_threat_feed: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
+                 external_blocklist_enable_all: Optional[pulumi.Input[str]] = None,
+                 external_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 fortiai_error_action: Optional[pulumi.Input[str]] = None,
+                 fortiai_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input['AntivirusProfileFtpArgs']] = None,
                  http: Optional[pulumi.Input['AntivirusProfileHttpArgs']] = None,
@@ -543,6 +661,7 @@ class _AntivirusProfileState:
                  name: Optional[pulumi.Input[str]] = None,
                  nntp: Optional[pulumi.Input['AntivirusProfileNntpArgs']] = None,
                  outbreak_prevention: Optional[pulumi.Input['AntivirusProfileOutbreakPreventionArgs']] = None,
+                 outbreak_prevention_archive_scan: Optional[pulumi.Input[str]] = None,
                  pop3: Optional[pulumi.Input['AntivirusProfilePop3Args']] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  scan_mode: Optional[pulumi.Input[str]] = None,
@@ -563,8 +682,14 @@ class _AntivirusProfileState:
         :param pulumi.Input['AntivirusProfileCifsArgs'] cifs: Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input['AntivirusProfileContentDisarmArgs'] content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] ems_threat_feed: Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] external_blocklist_enable_all: Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]] external_blocklists: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] fortiai_error_action: Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        :param pulumi.Input[str] fortiai_timeout_action: Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input['AntivirusProfileFtpArgs'] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
         :param pulumi.Input['AntivirusProfileHttpArgs'] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
@@ -573,9 +698,10 @@ class _AntivirusProfileState:
         :param pulumi.Input['AntivirusProfileMapiArgs'] mapi: Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] mobile_malware_db: Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
         :param pulumi.Input['AntivirusProfileNacQuarArgs'] nac_quar: Configure AntiVirus quarantine settings. The structure of `nac_quar` block is documented below.
-        :param pulumi.Input[str] name: Profile name.
+        :param pulumi.Input[str] name: External blocklist.
         :param pulumi.Input['AntivirusProfileNntpArgs'] nntp: Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
         :param pulumi.Input['AntivirusProfileOutbreakPreventionArgs'] outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input['AntivirusProfilePop3Args'] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
         :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
@@ -606,10 +732,22 @@ class _AntivirusProfileState:
             pulumi.set(__self__, "comment", comment)
         if content_disarm is not None:
             pulumi.set(__self__, "content_disarm", content_disarm)
+        if dynamic_sort_subtable is not None:
+            pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if ems_threat_feed is not None:
+            pulumi.set(__self__, "ems_threat_feed", ems_threat_feed)
         if extended_log is not None:
             pulumi.set(__self__, "extended_log", extended_log)
+        if external_blocklist_enable_all is not None:
+            pulumi.set(__self__, "external_blocklist_enable_all", external_blocklist_enable_all)
+        if external_blocklists is not None:
+            pulumi.set(__self__, "external_blocklists", external_blocklists)
         if feature_set is not None:
             pulumi.set(__self__, "feature_set", feature_set)
+        if fortiai_error_action is not None:
+            pulumi.set(__self__, "fortiai_error_action", fortiai_error_action)
+        if fortiai_timeout_action is not None:
+            pulumi.set(__self__, "fortiai_timeout_action", fortiai_timeout_action)
         if ftgd_analytics is not None:
             pulumi.set(__self__, "ftgd_analytics", ftgd_analytics)
         if ftp is not None:
@@ -632,6 +770,8 @@ class _AntivirusProfileState:
             pulumi.set(__self__, "nntp", nntp)
         if outbreak_prevention is not None:
             pulumi.set(__self__, "outbreak_prevention", outbreak_prevention)
+        if outbreak_prevention_archive_scan is not None:
+            pulumi.set(__self__, "outbreak_prevention_archive_scan", outbreak_prevention_archive_scan)
         if pop3 is not None:
             pulumi.set(__self__, "pop3", pop3)
         if replacemsg_group is not None:
@@ -780,6 +920,30 @@ class _AntivirusProfileState:
         pulumi.set(self, "content_disarm", value)
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> Optional[pulumi.Input[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @dynamic_sort_subtable.setter
+    def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="emsThreatFeed")
+    def ems_threat_feed(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ems_threat_feed")
+
+    @ems_threat_feed.setter
+    def ems_threat_feed(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ems_threat_feed", value)
+
+    @property
     @pulumi.getter(name="extendedLog")
     def extended_log(self) -> Optional[pulumi.Input[str]]:
         """
@@ -792,6 +956,30 @@ class _AntivirusProfileState:
         pulumi.set(self, "extended_log", value)
 
     @property
+    @pulumi.getter(name="externalBlocklistEnableAll")
+    def external_blocklist_enable_all(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist_enable_all")
+
+    @external_blocklist_enable_all.setter
+    def external_blocklist_enable_all(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "external_blocklist_enable_all", value)
+
+    @property
+    @pulumi.getter(name="externalBlocklists")
+    def external_blocklists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]]]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklists")
+
+    @external_blocklists.setter
+    def external_blocklists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AntivirusProfileExternalBlocklistArgs']]]]):
+        pulumi.set(self, "external_blocklists", value)
+
+    @property
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> Optional[pulumi.Input[str]]:
         """
@@ -802,6 +990,30 @@ class _AntivirusProfileState:
     @feature_set.setter
     def feature_set(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "feature_set", value)
+
+    @property
+    @pulumi.getter(name="fortiaiErrorAction")
+    def fortiai_error_action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "fortiai_error_action")
+
+    @fortiai_error_action.setter
+    def fortiai_error_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiai_error_action", value)
+
+    @property
+    @pulumi.getter(name="fortiaiTimeoutAction")
+    def fortiai_timeout_action(self) -> Optional[pulumi.Input[str]]:
+        """
+        Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "fortiai_timeout_action")
+
+    @fortiai_timeout_action.setter
+    def fortiai_timeout_action(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "fortiai_timeout_action", value)
 
     @property
     @pulumi.getter(name="ftgdAnalytics")
@@ -903,7 +1115,7 @@ class _AntivirusProfileState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Profile name.
+        External blocklist.
         """
         return pulumi.get(self, "name")
 
@@ -934,6 +1146,18 @@ class _AntivirusProfileState:
     @outbreak_prevention.setter
     def outbreak_prevention(self, value: Optional[pulumi.Input['AntivirusProfileOutbreakPreventionArgs']]):
         pulumi.set(self, "outbreak_prevention", value)
+
+    @property
+    @pulumi.getter(name="outbreakPreventionArchiveScan")
+    def outbreak_prevention_archive_scan(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "outbreak_prevention_archive_scan")
+
+    @outbreak_prevention_archive_scan.setter
+    def outbreak_prevention_archive_scan(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "outbreak_prevention_archive_scan", value)
 
     @property
     @pulumi.getter
@@ -1036,8 +1260,14 @@ class AntivirusProfile(pulumi.CustomResource):
                  cifs: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileCifsArgs']]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  content_disarm: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileContentDisarmArgs']]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 ems_threat_feed: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
+                 external_blocklist_enable_all: Optional[pulumi.Input[str]] = None,
+                 external_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AntivirusProfileExternalBlocklistArgs']]]]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 fortiai_error_action: Optional[pulumi.Input[str]] = None,
+                 fortiai_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileFtpArgs']]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileHttpArgs']]] = None,
@@ -1049,6 +1279,7 @@ class AntivirusProfile(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  nntp: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileNntpArgs']]] = None,
                  outbreak_prevention: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileOutbreakPreventionArgs']]] = None,
+                 outbreak_prevention_archive_scan: Optional[pulumi.Input[str]] = None,
                  pop3: Optional[pulumi.Input[pulumi.InputType['AntivirusProfilePop3Args']]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  scan_mode: Optional[pulumi.Input[str]] = None,
@@ -1103,8 +1334,14 @@ class AntivirusProfile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['AntivirusProfileCifsArgs']] cifs: Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileContentDisarmArgs']] content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] ems_threat_feed: Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] external_blocklist_enable_all: Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AntivirusProfileExternalBlocklistArgs']]]] external_blocklists: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] fortiai_error_action: Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        :param pulumi.Input[str] fortiai_timeout_action: Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileFtpArgs']] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileHttpArgs']] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
@@ -1113,9 +1350,10 @@ class AntivirusProfile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['AntivirusProfileMapiArgs']] mapi: Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] mobile_malware_db: Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileNacQuarArgs']] nac_quar: Configure AntiVirus quarantine settings. The structure of `nac_quar` block is documented below.
-        :param pulumi.Input[str] name: Profile name.
+        :param pulumi.Input[str] name: External blocklist.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileNntpArgs']] nntp: Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileOutbreakPreventionArgs']] outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['AntivirusProfilePop3Args']] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
         :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
@@ -1189,8 +1427,14 @@ class AntivirusProfile(pulumi.CustomResource):
                  cifs: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileCifsArgs']]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  content_disarm: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileContentDisarmArgs']]] = None,
+                 dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 ems_threat_feed: Optional[pulumi.Input[str]] = None,
                  extended_log: Optional[pulumi.Input[str]] = None,
+                 external_blocklist_enable_all: Optional[pulumi.Input[str]] = None,
+                 external_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AntivirusProfileExternalBlocklistArgs']]]]] = None,
                  feature_set: Optional[pulumi.Input[str]] = None,
+                 fortiai_error_action: Optional[pulumi.Input[str]] = None,
+                 fortiai_timeout_action: Optional[pulumi.Input[str]] = None,
                  ftgd_analytics: Optional[pulumi.Input[str]] = None,
                  ftp: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileFtpArgs']]] = None,
                  http: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileHttpArgs']]] = None,
@@ -1202,6 +1446,7 @@ class AntivirusProfile(pulumi.CustomResource):
                  name: Optional[pulumi.Input[str]] = None,
                  nntp: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileNntpArgs']]] = None,
                  outbreak_prevention: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileOutbreakPreventionArgs']]] = None,
+                 outbreak_prevention_archive_scan: Optional[pulumi.Input[str]] = None,
                  pop3: Optional[pulumi.Input[pulumi.InputType['AntivirusProfilePop3Args']]] = None,
                  replacemsg_group: Optional[pulumi.Input[str]] = None,
                  scan_mode: Optional[pulumi.Input[str]] = None,
@@ -1216,6 +1461,8 @@ class AntivirusProfile(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -1232,8 +1479,14 @@ class AntivirusProfile(pulumi.CustomResource):
             __props__.__dict__["cifs"] = cifs
             __props__.__dict__["comment"] = comment
             __props__.__dict__["content_disarm"] = content_disarm
+            __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["ems_threat_feed"] = ems_threat_feed
             __props__.__dict__["extended_log"] = extended_log
+            __props__.__dict__["external_blocklist_enable_all"] = external_blocklist_enable_all
+            __props__.__dict__["external_blocklists"] = external_blocklists
             __props__.__dict__["feature_set"] = feature_set
+            __props__.__dict__["fortiai_error_action"] = fortiai_error_action
+            __props__.__dict__["fortiai_timeout_action"] = fortiai_timeout_action
             __props__.__dict__["ftgd_analytics"] = ftgd_analytics
             __props__.__dict__["ftp"] = ftp
             __props__.__dict__["http"] = http
@@ -1245,6 +1498,7 @@ class AntivirusProfile(pulumi.CustomResource):
             __props__.__dict__["name"] = name
             __props__.__dict__["nntp"] = nntp
             __props__.__dict__["outbreak_prevention"] = outbreak_prevention
+            __props__.__dict__["outbreak_prevention_archive_scan"] = outbreak_prevention_archive_scan
             __props__.__dict__["pop3"] = pop3
             __props__.__dict__["replacemsg_group"] = replacemsg_group
             __props__.__dict__["scan_mode"] = scan_mode
@@ -1273,8 +1527,14 @@ class AntivirusProfile(pulumi.CustomResource):
             cifs: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileCifsArgs']]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             content_disarm: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileContentDisarmArgs']]] = None,
+            dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            ems_threat_feed: Optional[pulumi.Input[str]] = None,
             extended_log: Optional[pulumi.Input[str]] = None,
+            external_blocklist_enable_all: Optional[pulumi.Input[str]] = None,
+            external_blocklists: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AntivirusProfileExternalBlocklistArgs']]]]] = None,
             feature_set: Optional[pulumi.Input[str]] = None,
+            fortiai_error_action: Optional[pulumi.Input[str]] = None,
+            fortiai_timeout_action: Optional[pulumi.Input[str]] = None,
             ftgd_analytics: Optional[pulumi.Input[str]] = None,
             ftp: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileFtpArgs']]] = None,
             http: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileHttpArgs']]] = None,
@@ -1286,6 +1546,7 @@ class AntivirusProfile(pulumi.CustomResource):
             name: Optional[pulumi.Input[str]] = None,
             nntp: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileNntpArgs']]] = None,
             outbreak_prevention: Optional[pulumi.Input[pulumi.InputType['AntivirusProfileOutbreakPreventionArgs']]] = None,
+            outbreak_prevention_archive_scan: Optional[pulumi.Input[str]] = None,
             pop3: Optional[pulumi.Input[pulumi.InputType['AntivirusProfilePop3Args']]] = None,
             replacemsg_group: Optional[pulumi.Input[str]] = None,
             scan_mode: Optional[pulumi.Input[str]] = None,
@@ -1311,8 +1572,14 @@ class AntivirusProfile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['AntivirusProfileCifsArgs']] cifs: Configure CIFS AntiVirus options. The structure of `cifs` block is documented below.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileContentDisarmArgs']] content_disarm: Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] ems_threat_feed: Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extended_log: Enable/disable extended logging for antivirus. Valid values: `enable`, `disable`.
+        :param pulumi.Input[str] external_blocklist_enable_all: Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['AntivirusProfileExternalBlocklistArgs']]]] external_blocklists: Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] feature_set: Flow/proxy feature set. Valid values: `flow`, `proxy`.
+        :param pulumi.Input[str] fortiai_error_action: Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        :param pulumi.Input[str] fortiai_timeout_action: Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
         :param pulumi.Input[str] ftgd_analytics: Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileFtpArgs']] ftp: Configure FTP AntiVirus options. The structure of `ftp` block is documented below.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileHttpArgs']] http: Configure HTTP AntiVirus options. The structure of `http` block is documented below.
@@ -1321,9 +1588,10 @@ class AntivirusProfile(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['AntivirusProfileMapiArgs']] mapi: Configure MAPI AntiVirus options. The structure of `mapi` block is documented below.
         :param pulumi.Input[str] mobile_malware_db: Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileNacQuarArgs']] nac_quar: Configure AntiVirus quarantine settings. The structure of `nac_quar` block is documented below.
-        :param pulumi.Input[str] name: Profile name.
+        :param pulumi.Input[str] name: External blocklist.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileNntpArgs']] nntp: Configure NNTP AntiVirus options. The structure of `nntp` block is documented below.
         :param pulumi.Input[pulumi.InputType['AntivirusProfileOutbreakPreventionArgs']] outbreak_prevention: Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
+        :param pulumi.Input[str] outbreak_prevention_archive_scan: Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
         :param pulumi.Input[pulumi.InputType['AntivirusProfilePop3Args']] pop3: Configure POP3 AntiVirus options. The structure of `pop3` block is documented below.
         :param pulumi.Input[str] replacemsg_group: Replacement message group customized for this profile.
         :param pulumi.Input[str] scan_mode: Choose between full scan mode and quick scan mode.
@@ -1347,8 +1615,14 @@ class AntivirusProfile(pulumi.CustomResource):
         __props__.__dict__["cifs"] = cifs
         __props__.__dict__["comment"] = comment
         __props__.__dict__["content_disarm"] = content_disarm
+        __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["ems_threat_feed"] = ems_threat_feed
         __props__.__dict__["extended_log"] = extended_log
+        __props__.__dict__["external_blocklist_enable_all"] = external_blocklist_enable_all
+        __props__.__dict__["external_blocklists"] = external_blocklists
         __props__.__dict__["feature_set"] = feature_set
+        __props__.__dict__["fortiai_error_action"] = fortiai_error_action
+        __props__.__dict__["fortiai_timeout_action"] = fortiai_timeout_action
         __props__.__dict__["ftgd_analytics"] = ftgd_analytics
         __props__.__dict__["ftp"] = ftp
         __props__.__dict__["http"] = http
@@ -1360,6 +1634,7 @@ class AntivirusProfile(pulumi.CustomResource):
         __props__.__dict__["name"] = name
         __props__.__dict__["nntp"] = nntp
         __props__.__dict__["outbreak_prevention"] = outbreak_prevention
+        __props__.__dict__["outbreak_prevention_archive_scan"] = outbreak_prevention_archive_scan
         __props__.__dict__["pop3"] = pop3
         __props__.__dict__["replacemsg_group"] = replacemsg_group
         __props__.__dict__["scan_mode"] = scan_mode
@@ -1458,6 +1733,22 @@ class AntivirusProfile(pulumi.CustomResource):
         return pulumi.get(self, "content_disarm")
 
     @property
+    @pulumi.getter(name="dynamicSortSubtable")
+    def dynamic_sort_subtable(self) -> pulumi.Output[Optional[str]]:
+        """
+        true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        """
+        return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="emsThreatFeed")
+    def ems_threat_feed(self) -> pulumi.Output[str]:
+        """
+        Enable/disable use of EMS threat feed when performing AntiVirus scan. Analyzes files including the content of archives. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "ems_threat_feed")
+
+    @property
     @pulumi.getter(name="extendedLog")
     def extended_log(self) -> pulumi.Output[str]:
         """
@@ -1466,12 +1757,44 @@ class AntivirusProfile(pulumi.CustomResource):
         return pulumi.get(self, "extended_log")
 
     @property
+    @pulumi.getter(name="externalBlocklistEnableAll")
+    def external_blocklist_enable_all(self) -> pulumi.Output[str]:
+        """
+        Enable/disable all external blocklists. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklist_enable_all")
+
+    @property
+    @pulumi.getter(name="externalBlocklists")
+    def external_blocklists(self) -> pulumi.Output[Optional[Sequence['outputs.AntivirusProfileExternalBlocklist']]]:
+        """
+        Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "external_blocklists")
+
+    @property
     @pulumi.getter(name="featureSet")
     def feature_set(self) -> pulumi.Output[str]:
         """
         Flow/proxy feature set. Valid values: `flow`, `proxy`.
         """
         return pulumi.get(self, "feature_set")
+
+    @property
+    @pulumi.getter(name="fortiaiErrorAction")
+    def fortiai_error_action(self) -> pulumi.Output[str]:
+        """
+        Action to take if FortiAI encounters an error. Valid values: `log-only`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "fortiai_error_action")
+
+    @property
+    @pulumi.getter(name="fortiaiTimeoutAction")
+    def fortiai_timeout_action(self) -> pulumi.Output[str]:
+        """
+        Action to take if FortiAI encounters a scan timeout. Valid values: `log-only`, `block`, `ignore`.
+        """
+        return pulumi.get(self, "fortiai_timeout_action")
 
     @property
     @pulumi.getter(name="ftgdAnalytics")
@@ -1541,7 +1864,7 @@ class AntivirusProfile(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Profile name.
+        External blocklist.
         """
         return pulumi.get(self, "name")
 
@@ -1560,6 +1883,14 @@ class AntivirusProfile(pulumi.CustomResource):
         Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
         """
         return pulumi.get(self, "outbreak_prevention")
+
+    @property
+    @pulumi.getter(name="outbreakPreventionArchiveScan")
+    def outbreak_prevention_archive_scan(self) -> pulumi.Output[str]:
+        """
+        Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "outbreak_prevention_archive_scan")
 
     @property
     @pulumi.getter

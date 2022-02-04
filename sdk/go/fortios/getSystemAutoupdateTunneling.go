@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios systemautoupdate tunneling
 func LookupSystemAutoupdateTunneling(ctx *pulumi.Context, args *LookupSystemAutoupdateTunnelingArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutoupdateTunnelingResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutoupdateTunnelingResult
 	err := ctx.Invoke("fortios:index/getSystemAutoupdateTunneling:GetSystemAutoupdateTunneling", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,76 @@ type LookupSystemAutoupdateTunnelingResult struct {
 	// Web proxy username.
 	Username  string  `pulumi:"username"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemAutoupdateTunnelingOutput(ctx *pulumi.Context, args LookupSystemAutoupdateTunnelingOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutoupdateTunnelingResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemAutoupdateTunnelingResult, error) {
+			args := v.(LookupSystemAutoupdateTunnelingArgs)
+			r, err := LookupSystemAutoupdateTunneling(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemAutoupdateTunnelingResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutoupdateTunneling.
+type LookupSystemAutoupdateTunnelingOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemAutoupdateTunnelingOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoupdateTunnelingArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutoupdateTunneling.
+type LookupSystemAutoupdateTunnelingResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemAutoupdateTunnelingResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutoupdateTunnelingResult)(nil)).Elem()
+}
+
+func (o LookupSystemAutoupdateTunnelingResultOutput) ToLookupSystemAutoupdateTunnelingResultOutput() LookupSystemAutoupdateTunnelingResultOutput {
+	return o
+}
+
+func (o LookupSystemAutoupdateTunnelingResultOutput) ToLookupSystemAutoupdateTunnelingResultOutputWithContext(ctx context.Context) LookupSystemAutoupdateTunnelingResultOutput {
+	return o
+}
+
+// Web proxy IP address or FQDN.
+func (o LookupSystemAutoupdateTunnelingResultOutput) Address() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) string { return v.Address }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemAutoupdateTunnelingResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Web proxy password.
+func (o LookupSystemAutoupdateTunnelingResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Web proxy port.
+func (o LookupSystemAutoupdateTunnelingResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Enable/disable web proxy tunnelling.
+func (o LookupSystemAutoupdateTunnelingResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Web proxy username.
+func (o LookupSystemAutoupdateTunnelingResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAutoupdateTunnelingResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemAutoupdateTunnelingResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemAutoupdateTunnelingResultOutput{})
 }

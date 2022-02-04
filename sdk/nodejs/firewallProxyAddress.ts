@@ -155,59 +155,57 @@ export class FirewallProxyAddress extends pulumi.CustomResource {
      */
     constructor(name: string, args?: FirewallProxyAddressArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallProxyAddressArgs | FirewallProxyAddressState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallProxyAddressState | undefined;
-            inputs["caseSensitivity"] = state ? state.caseSensitivity : undefined;
-            inputs["categories"] = state ? state.categories : undefined;
-            inputs["color"] = state ? state.color : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["header"] = state ? state.header : undefined;
-            inputs["headerGroups"] = state ? state.headerGroups : undefined;
-            inputs["headerName"] = state ? state.headerName : undefined;
-            inputs["host"] = state ? state.host : undefined;
-            inputs["hostRegex"] = state ? state.hostRegex : undefined;
-            inputs["method"] = state ? state.method : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["path"] = state ? state.path : undefined;
-            inputs["query"] = state ? state.query : undefined;
-            inputs["referrer"] = state ? state.referrer : undefined;
-            inputs["taggings"] = state ? state.taggings : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["ua"] = state ? state.ua : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["visibility"] = state ? state.visibility : undefined;
+            resourceInputs["caseSensitivity"] = state ? state.caseSensitivity : undefined;
+            resourceInputs["categories"] = state ? state.categories : undefined;
+            resourceInputs["color"] = state ? state.color : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["header"] = state ? state.header : undefined;
+            resourceInputs["headerGroups"] = state ? state.headerGroups : undefined;
+            resourceInputs["headerName"] = state ? state.headerName : undefined;
+            resourceInputs["host"] = state ? state.host : undefined;
+            resourceInputs["hostRegex"] = state ? state.hostRegex : undefined;
+            resourceInputs["method"] = state ? state.method : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["path"] = state ? state.path : undefined;
+            resourceInputs["query"] = state ? state.query : undefined;
+            resourceInputs["referrer"] = state ? state.referrer : undefined;
+            resourceInputs["taggings"] = state ? state.taggings : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["ua"] = state ? state.ua : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["visibility"] = state ? state.visibility : undefined;
         } else {
             const args = argsOrState as FirewallProxyAddressArgs | undefined;
-            inputs["caseSensitivity"] = args ? args.caseSensitivity : undefined;
-            inputs["categories"] = args ? args.categories : undefined;
-            inputs["color"] = args ? args.color : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["header"] = args ? args.header : undefined;
-            inputs["headerGroups"] = args ? args.headerGroups : undefined;
-            inputs["headerName"] = args ? args.headerName : undefined;
-            inputs["host"] = args ? args.host : undefined;
-            inputs["hostRegex"] = args ? args.hostRegex : undefined;
-            inputs["method"] = args ? args.method : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["path"] = args ? args.path : undefined;
-            inputs["query"] = args ? args.query : undefined;
-            inputs["referrer"] = args ? args.referrer : undefined;
-            inputs["taggings"] = args ? args.taggings : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["ua"] = args ? args.ua : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["visibility"] = args ? args.visibility : undefined;
+            resourceInputs["caseSensitivity"] = args ? args.caseSensitivity : undefined;
+            resourceInputs["categories"] = args ? args.categories : undefined;
+            resourceInputs["color"] = args ? args.color : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["header"] = args ? args.header : undefined;
+            resourceInputs["headerGroups"] = args ? args.headerGroups : undefined;
+            resourceInputs["headerName"] = args ? args.headerName : undefined;
+            resourceInputs["host"] = args ? args.host : undefined;
+            resourceInputs["hostRegex"] = args ? args.hostRegex : undefined;
+            resourceInputs["method"] = args ? args.method : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["path"] = args ? args.path : undefined;
+            resourceInputs["query"] = args ? args.query : undefined;
+            resourceInputs["referrer"] = args ? args.referrer : undefined;
+            resourceInputs["taggings"] = args ? args.taggings : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["ua"] = args ? args.ua : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["visibility"] = args ? args.visibility : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallProxyAddress.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallProxyAddress.__pulumiType, name, resourceInputs, opts);
     }
 }
 

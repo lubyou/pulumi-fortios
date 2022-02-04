@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -72,6 +72,7 @@ func NewFirewallWildcardFqdnCustom(ctx *pulumi.Context,
 		args = &FirewallWildcardFqdnCustomArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallWildcardFqdnCustom
 	err := ctx.RegisterResource("fortios:index/firewallWildcardFqdnCustom:FirewallWildcardFqdnCustom", name, args, &resource, opts...)
 	if err != nil {
@@ -178,7 +179,7 @@ type FirewallWildcardFqdnCustomInput interface {
 }
 
 func (*FirewallWildcardFqdnCustom) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallWildcardFqdnCustom)(nil))
+	return reflect.TypeOf((**FirewallWildcardFqdnCustom)(nil)).Elem()
 }
 
 func (i *FirewallWildcardFqdnCustom) ToFirewallWildcardFqdnCustomOutput() FirewallWildcardFqdnCustomOutput {
@@ -187,35 +188,6 @@ func (i *FirewallWildcardFqdnCustom) ToFirewallWildcardFqdnCustomOutput() Firewa
 
 func (i *FirewallWildcardFqdnCustom) ToFirewallWildcardFqdnCustomOutputWithContext(ctx context.Context) FirewallWildcardFqdnCustomOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnCustomOutput)
-}
-
-func (i *FirewallWildcardFqdnCustom) ToFirewallWildcardFqdnCustomPtrOutput() FirewallWildcardFqdnCustomPtrOutput {
-	return i.ToFirewallWildcardFqdnCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallWildcardFqdnCustom) ToFirewallWildcardFqdnCustomPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnCustomPtrOutput)
-}
-
-type FirewallWildcardFqdnCustomPtrInput interface {
-	pulumi.Input
-
-	ToFirewallWildcardFqdnCustomPtrOutput() FirewallWildcardFqdnCustomPtrOutput
-	ToFirewallWildcardFqdnCustomPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnCustomPtrOutput
-}
-
-type firewallWildcardFqdnCustomPtrType FirewallWildcardFqdnCustomArgs
-
-func (*firewallWildcardFqdnCustomPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallWildcardFqdnCustom)(nil))
-}
-
-func (i *firewallWildcardFqdnCustomPtrType) ToFirewallWildcardFqdnCustomPtrOutput() FirewallWildcardFqdnCustomPtrOutput {
-	return i.ToFirewallWildcardFqdnCustomPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallWildcardFqdnCustomPtrType) ToFirewallWildcardFqdnCustomPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnCustomPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnCustomPtrOutput)
 }
 
 // FirewallWildcardFqdnCustomArrayInput is an input type that accepts FirewallWildcardFqdnCustomArray and FirewallWildcardFqdnCustomArrayOutput values.
@@ -232,7 +204,7 @@ type FirewallWildcardFqdnCustomArrayInput interface {
 type FirewallWildcardFqdnCustomArray []FirewallWildcardFqdnCustomInput
 
 func (FirewallWildcardFqdnCustomArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallWildcardFqdnCustom)(nil))
+	return reflect.TypeOf((*[]*FirewallWildcardFqdnCustom)(nil)).Elem()
 }
 
 func (i FirewallWildcardFqdnCustomArray) ToFirewallWildcardFqdnCustomArrayOutput() FirewallWildcardFqdnCustomArrayOutput {
@@ -257,7 +229,7 @@ type FirewallWildcardFqdnCustomMapInput interface {
 type FirewallWildcardFqdnCustomMap map[string]FirewallWildcardFqdnCustomInput
 
 func (FirewallWildcardFqdnCustomMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallWildcardFqdnCustom)(nil))
+	return reflect.TypeOf((*map[string]*FirewallWildcardFqdnCustom)(nil)).Elem()
 }
 
 func (i FirewallWildcardFqdnCustomMap) ToFirewallWildcardFqdnCustomMapOutput() FirewallWildcardFqdnCustomMapOutput {
@@ -268,12 +240,10 @@ func (i FirewallWildcardFqdnCustomMap) ToFirewallWildcardFqdnCustomMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallWildcardFqdnCustomMapOutput)
 }
 
-type FirewallWildcardFqdnCustomOutput struct {
-	*pulumi.OutputState
-}
+type FirewallWildcardFqdnCustomOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnCustomOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallWildcardFqdnCustom)(nil))
+	return reflect.TypeOf((**FirewallWildcardFqdnCustom)(nil)).Elem()
 }
 
 func (o FirewallWildcardFqdnCustomOutput) ToFirewallWildcardFqdnCustomOutput() FirewallWildcardFqdnCustomOutput {
@@ -284,36 +254,10 @@ func (o FirewallWildcardFqdnCustomOutput) ToFirewallWildcardFqdnCustomOutputWith
 	return o
 }
 
-func (o FirewallWildcardFqdnCustomOutput) ToFirewallWildcardFqdnCustomPtrOutput() FirewallWildcardFqdnCustomPtrOutput {
-	return o.ToFirewallWildcardFqdnCustomPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallWildcardFqdnCustomOutput) ToFirewallWildcardFqdnCustomPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnCustomPtrOutput {
-	return o.ApplyT(func(v FirewallWildcardFqdnCustom) *FirewallWildcardFqdnCustom {
-		return &v
-	}).(FirewallWildcardFqdnCustomPtrOutput)
-}
-
-type FirewallWildcardFqdnCustomPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallWildcardFqdnCustomPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallWildcardFqdnCustom)(nil))
-}
-
-func (o FirewallWildcardFqdnCustomPtrOutput) ToFirewallWildcardFqdnCustomPtrOutput() FirewallWildcardFqdnCustomPtrOutput {
-	return o
-}
-
-func (o FirewallWildcardFqdnCustomPtrOutput) ToFirewallWildcardFqdnCustomPtrOutputWithContext(ctx context.Context) FirewallWildcardFqdnCustomPtrOutput {
-	return o
-}
-
 type FirewallWildcardFqdnCustomArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnCustomArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallWildcardFqdnCustom)(nil))
+	return reflect.TypeOf((*[]*FirewallWildcardFqdnCustom)(nil)).Elem()
 }
 
 func (o FirewallWildcardFqdnCustomArrayOutput) ToFirewallWildcardFqdnCustomArrayOutput() FirewallWildcardFqdnCustomArrayOutput {
@@ -325,15 +269,15 @@ func (o FirewallWildcardFqdnCustomArrayOutput) ToFirewallWildcardFqdnCustomArray
 }
 
 func (o FirewallWildcardFqdnCustomArrayOutput) Index(i pulumi.IntInput) FirewallWildcardFqdnCustomOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallWildcardFqdnCustom {
-		return vs[0].([]FirewallWildcardFqdnCustom)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallWildcardFqdnCustom {
+		return vs[0].([]*FirewallWildcardFqdnCustom)[vs[1].(int)]
 	}).(FirewallWildcardFqdnCustomOutput)
 }
 
 type FirewallWildcardFqdnCustomMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallWildcardFqdnCustomMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallWildcardFqdnCustom)(nil))
+	return reflect.TypeOf((*map[string]*FirewallWildcardFqdnCustom)(nil)).Elem()
 }
 
 func (o FirewallWildcardFqdnCustomMapOutput) ToFirewallWildcardFqdnCustomMapOutput() FirewallWildcardFqdnCustomMapOutput {
@@ -345,14 +289,16 @@ func (o FirewallWildcardFqdnCustomMapOutput) ToFirewallWildcardFqdnCustomMapOutp
 }
 
 func (o FirewallWildcardFqdnCustomMapOutput) MapIndex(k pulumi.StringInput) FirewallWildcardFqdnCustomOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallWildcardFqdnCustom {
-		return vs[0].(map[string]FirewallWildcardFqdnCustom)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallWildcardFqdnCustom {
+		return vs[0].(map[string]*FirewallWildcardFqdnCustom)[vs[1].(string)]
 	}).(FirewallWildcardFqdnCustomOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallWildcardFqdnCustomInput)(nil)).Elem(), &FirewallWildcardFqdnCustom{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallWildcardFqdnCustomArrayInput)(nil)).Elem(), FirewallWildcardFqdnCustomArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallWildcardFqdnCustomMapInput)(nil)).Elem(), FirewallWildcardFqdnCustomMap{})
 	pulumi.RegisterOutputType(FirewallWildcardFqdnCustomOutput{})
-	pulumi.RegisterOutputType(FirewallWildcardFqdnCustomPtrOutput{})
 	pulumi.RegisterOutputType(FirewallWildcardFqdnCustomArrayOutput{})
 	pulumi.RegisterOutputType(FirewallWildcardFqdnCustomMapOutput{})
 }

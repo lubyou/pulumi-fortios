@@ -83,31 +83,29 @@ export class SwitchControllerAutoConfigPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerAutoConfigPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerAutoConfigPolicyArgs | SwitchControllerAutoConfigPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerAutoConfigPolicyState | undefined;
-            inputs["igmpFloodReport"] = state ? state.igmpFloodReport : undefined;
-            inputs["igmpFloodTraffic"] = state ? state.igmpFloodTraffic : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["poeStatus"] = state ? state.poeStatus : undefined;
-            inputs["qosPolicy"] = state ? state.qosPolicy : undefined;
-            inputs["stormControlPolicy"] = state ? state.stormControlPolicy : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["igmpFloodReport"] = state ? state.igmpFloodReport : undefined;
+            resourceInputs["igmpFloodTraffic"] = state ? state.igmpFloodTraffic : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["poeStatus"] = state ? state.poeStatus : undefined;
+            resourceInputs["qosPolicy"] = state ? state.qosPolicy : undefined;
+            resourceInputs["stormControlPolicy"] = state ? state.stormControlPolicy : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerAutoConfigPolicyArgs | undefined;
-            inputs["igmpFloodReport"] = args ? args.igmpFloodReport : undefined;
-            inputs["igmpFloodTraffic"] = args ? args.igmpFloodTraffic : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["poeStatus"] = args ? args.poeStatus : undefined;
-            inputs["qosPolicy"] = args ? args.qosPolicy : undefined;
-            inputs["stormControlPolicy"] = args ? args.stormControlPolicy : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["igmpFloodReport"] = args ? args.igmpFloodReport : undefined;
+            resourceInputs["igmpFloodTraffic"] = args ? args.igmpFloodTraffic : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["poeStatus"] = args ? args.poeStatus : undefined;
+            resourceInputs["qosPolicy"] = args ? args.qosPolicy : undefined;
+            resourceInputs["stormControlPolicy"] = args ? args.stormControlPolicy : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerAutoConfigPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerAutoConfigPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

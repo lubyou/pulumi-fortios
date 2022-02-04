@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch SNMP v1/v2c communities globally.
+ * Configure FortiSwitch SNMP v1/v2c communities globally. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -124,51 +124,49 @@ export class SwitchControllerSnmpCommunity extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerSnmpCommunityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSnmpCommunityArgs | SwitchControllerSnmpCommunityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSnmpCommunityState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["events"] = state ? state.events : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["hosts"] = state ? state.hosts : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["queryV1Port"] = state ? state.queryV1Port : undefined;
-            inputs["queryV1Status"] = state ? state.queryV1Status : undefined;
-            inputs["queryV2cPort"] = state ? state.queryV2cPort : undefined;
-            inputs["queryV2cStatus"] = state ? state.queryV2cStatus : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["trapV1Lport"] = state ? state.trapV1Lport : undefined;
-            inputs["trapV1Rport"] = state ? state.trapV1Rport : undefined;
-            inputs["trapV1Status"] = state ? state.trapV1Status : undefined;
-            inputs["trapV2cLport"] = state ? state.trapV2cLport : undefined;
-            inputs["trapV2cRport"] = state ? state.trapV2cRport : undefined;
-            inputs["trapV2cStatus"] = state ? state.trapV2cStatus : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["events"] = state ? state.events : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["hosts"] = state ? state.hosts : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["queryV1Port"] = state ? state.queryV1Port : undefined;
+            resourceInputs["queryV1Status"] = state ? state.queryV1Status : undefined;
+            resourceInputs["queryV2cPort"] = state ? state.queryV2cPort : undefined;
+            resourceInputs["queryV2cStatus"] = state ? state.queryV2cStatus : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["trapV1Lport"] = state ? state.trapV1Lport : undefined;
+            resourceInputs["trapV1Rport"] = state ? state.trapV1Rport : undefined;
+            resourceInputs["trapV1Status"] = state ? state.trapV1Status : undefined;
+            resourceInputs["trapV2cLport"] = state ? state.trapV2cLport : undefined;
+            resourceInputs["trapV2cRport"] = state ? state.trapV2cRport : undefined;
+            resourceInputs["trapV2cStatus"] = state ? state.trapV2cStatus : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSnmpCommunityArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["events"] = args ? args.events : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["hosts"] = args ? args.hosts : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["queryV1Port"] = args ? args.queryV1Port : undefined;
-            inputs["queryV1Status"] = args ? args.queryV1Status : undefined;
-            inputs["queryV2cPort"] = args ? args.queryV2cPort : undefined;
-            inputs["queryV2cStatus"] = args ? args.queryV2cStatus : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["trapV1Lport"] = args ? args.trapV1Lport : undefined;
-            inputs["trapV1Rport"] = args ? args.trapV1Rport : undefined;
-            inputs["trapV1Status"] = args ? args.trapV1Status : undefined;
-            inputs["trapV2cLport"] = args ? args.trapV2cLport : undefined;
-            inputs["trapV2cRport"] = args ? args.trapV2cRport : undefined;
-            inputs["trapV2cStatus"] = args ? args.trapV2cStatus : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["events"] = args ? args.events : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["hosts"] = args ? args.hosts : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["queryV1Port"] = args ? args.queryV1Port : undefined;
+            resourceInputs["queryV1Status"] = args ? args.queryV1Status : undefined;
+            resourceInputs["queryV2cPort"] = args ? args.queryV2cPort : undefined;
+            resourceInputs["queryV2cStatus"] = args ? args.queryV2cStatus : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["trapV1Lport"] = args ? args.trapV1Lport : undefined;
+            resourceInputs["trapV1Rport"] = args ? args.trapV1Rport : undefined;
+            resourceInputs["trapV1Status"] = args ? args.trapV1Status : undefined;
+            resourceInputs["trapV2cLport"] = args ? args.trapV2cLport : undefined;
+            resourceInputs["trapV2cRport"] = args ? args.trapV2cRport : undefined;
+            resourceInputs["trapV2cStatus"] = args ? args.trapV2cStatus : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSnmpCommunity.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSnmpCommunity.__pulumiType, name, resourceInputs, opts);
     }
 }
 

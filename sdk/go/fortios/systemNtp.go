@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -89,6 +89,7 @@ func NewSystemNtp(ctx *pulumi.Context,
 		args = &SystemNtpArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemNtp
 	err := ctx.RegisterResource("fortios:index/systemNtp:SystemNtp", name, args, &resource, opts...)
 	if err != nil {
@@ -251,7 +252,7 @@ type SystemNtpInput interface {
 }
 
 func (*SystemNtp) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNtp)(nil))
+	return reflect.TypeOf((**SystemNtp)(nil)).Elem()
 }
 
 func (i *SystemNtp) ToSystemNtpOutput() SystemNtpOutput {
@@ -260,35 +261,6 @@ func (i *SystemNtp) ToSystemNtpOutput() SystemNtpOutput {
 
 func (i *SystemNtp) ToSystemNtpOutputWithContext(ctx context.Context) SystemNtpOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpOutput)
-}
-
-func (i *SystemNtp) ToSystemNtpPtrOutput() SystemNtpPtrOutput {
-	return i.ToSystemNtpPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemNtp) ToSystemNtpPtrOutputWithContext(ctx context.Context) SystemNtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpPtrOutput)
-}
-
-type SystemNtpPtrInput interface {
-	pulumi.Input
-
-	ToSystemNtpPtrOutput() SystemNtpPtrOutput
-	ToSystemNtpPtrOutputWithContext(ctx context.Context) SystemNtpPtrOutput
-}
-
-type systemNtpPtrType SystemNtpArgs
-
-func (*systemNtpPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNtp)(nil))
-}
-
-func (i *systemNtpPtrType) ToSystemNtpPtrOutput() SystemNtpPtrOutput {
-	return i.ToSystemNtpPtrOutputWithContext(context.Background())
-}
-
-func (i *systemNtpPtrType) ToSystemNtpPtrOutputWithContext(ctx context.Context) SystemNtpPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpPtrOutput)
 }
 
 // SystemNtpArrayInput is an input type that accepts SystemNtpArray and SystemNtpArrayOutput values.
@@ -305,7 +277,7 @@ type SystemNtpArrayInput interface {
 type SystemNtpArray []SystemNtpInput
 
 func (SystemNtpArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemNtp)(nil))
+	return reflect.TypeOf((*[]*SystemNtp)(nil)).Elem()
 }
 
 func (i SystemNtpArray) ToSystemNtpArrayOutput() SystemNtpArrayOutput {
@@ -330,7 +302,7 @@ type SystemNtpMapInput interface {
 type SystemNtpMap map[string]SystemNtpInput
 
 func (SystemNtpMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemNtp)(nil))
+	return reflect.TypeOf((*map[string]*SystemNtp)(nil)).Elem()
 }
 
 func (i SystemNtpMap) ToSystemNtpMapOutput() SystemNtpMapOutput {
@@ -341,12 +313,10 @@ func (i SystemNtpMap) ToSystemNtpMapOutputWithContext(ctx context.Context) Syste
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNtpMapOutput)
 }
 
-type SystemNtpOutput struct {
-	*pulumi.OutputState
-}
+type SystemNtpOutput struct{ *pulumi.OutputState }
 
 func (SystemNtpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNtp)(nil))
+	return reflect.TypeOf((**SystemNtp)(nil)).Elem()
 }
 
 func (o SystemNtpOutput) ToSystemNtpOutput() SystemNtpOutput {
@@ -357,36 +327,10 @@ func (o SystemNtpOutput) ToSystemNtpOutputWithContext(ctx context.Context) Syste
 	return o
 }
 
-func (o SystemNtpOutput) ToSystemNtpPtrOutput() SystemNtpPtrOutput {
-	return o.ToSystemNtpPtrOutputWithContext(context.Background())
-}
-
-func (o SystemNtpOutput) ToSystemNtpPtrOutputWithContext(ctx context.Context) SystemNtpPtrOutput {
-	return o.ApplyT(func(v SystemNtp) *SystemNtp {
-		return &v
-	}).(SystemNtpPtrOutput)
-}
-
-type SystemNtpPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemNtpPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNtp)(nil))
-}
-
-func (o SystemNtpPtrOutput) ToSystemNtpPtrOutput() SystemNtpPtrOutput {
-	return o
-}
-
-func (o SystemNtpPtrOutput) ToSystemNtpPtrOutputWithContext(ctx context.Context) SystemNtpPtrOutput {
-	return o
-}
-
 type SystemNtpArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemNtpArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemNtp)(nil))
+	return reflect.TypeOf((*[]*SystemNtp)(nil)).Elem()
 }
 
 func (o SystemNtpArrayOutput) ToSystemNtpArrayOutput() SystemNtpArrayOutput {
@@ -398,15 +342,15 @@ func (o SystemNtpArrayOutput) ToSystemNtpArrayOutputWithContext(ctx context.Cont
 }
 
 func (o SystemNtpArrayOutput) Index(i pulumi.IntInput) SystemNtpOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemNtp {
-		return vs[0].([]SystemNtp)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNtp {
+		return vs[0].([]*SystemNtp)[vs[1].(int)]
 	}).(SystemNtpOutput)
 }
 
 type SystemNtpMapOutput struct{ *pulumi.OutputState }
 
 func (SystemNtpMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemNtp)(nil))
+	return reflect.TypeOf((*map[string]*SystemNtp)(nil)).Elem()
 }
 
 func (o SystemNtpMapOutput) ToSystemNtpMapOutput() SystemNtpMapOutput {
@@ -418,14 +362,16 @@ func (o SystemNtpMapOutput) ToSystemNtpMapOutputWithContext(ctx context.Context)
 }
 
 func (o SystemNtpMapOutput) MapIndex(k pulumi.StringInput) SystemNtpOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemNtp {
-		return vs[0].(map[string]SystemNtp)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemNtp {
+		return vs[0].(map[string]*SystemNtp)[vs[1].(string)]
 	}).(SystemNtpOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNtpInput)(nil)).Elem(), &SystemNtp{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNtpArrayInput)(nil)).Elem(), SystemNtpArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNtpMapInput)(nil)).Elem(), SystemNtpMap{})
 	pulumi.RegisterOutputType(SystemNtpOutput{})
-	pulumi.RegisterOutputType(SystemNtpPtrOutput{})
 	pulumi.RegisterOutputType(SystemNtpArrayOutput{})
 	pulumi.RegisterOutputType(SystemNtpMapOutput{})
 }

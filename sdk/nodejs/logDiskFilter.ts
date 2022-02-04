@@ -212,6 +212,10 @@ export class LogDiskFilter extends pulumi.CustomResource {
      * Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
      */
     public readonly wirelessActivity!: pulumi.Output<string>;
+    /**
+     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+     */
+    public readonly ztnaTraffic!: pulumi.Output<string>;
 
     /**
      * Create a LogDiskFilter resource with the given unique name, arguments, and options.
@@ -222,89 +226,89 @@ export class LogDiskFilter extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogDiskFilterArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogDiskFilterArgs | LogDiskFilterState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogDiskFilterState | undefined;
-            inputs["admin"] = state ? state.admin : undefined;
-            inputs["anomaly"] = state ? state.anomaly : undefined;
-            inputs["auth"] = state ? state.auth : undefined;
-            inputs["cpuMemoryUsage"] = state ? state.cpuMemoryUsage : undefined;
-            inputs["dhcp"] = state ? state.dhcp : undefined;
-            inputs["dlpArchive"] = state ? state.dlpArchive : undefined;
-            inputs["dns"] = state ? state.dns : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["event"] = state ? state.event : undefined;
-            inputs["filter"] = state ? state.filter : undefined;
-            inputs["filterType"] = state ? state.filterType : undefined;
-            inputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
-            inputs["freeStyles"] = state ? state.freeStyles : undefined;
-            inputs["gtp"] = state ? state.gtp : undefined;
-            inputs["ha"] = state ? state.ha : undefined;
-            inputs["ipsec"] = state ? state.ipsec : undefined;
-            inputs["ldbMonitor"] = state ? state.ldbMonitor : undefined;
-            inputs["localTraffic"] = state ? state.localTraffic : undefined;
-            inputs["multicastTraffic"] = state ? state.multicastTraffic : undefined;
-            inputs["netscanDiscovery"] = state ? state.netscanDiscovery : undefined;
-            inputs["netscanVulnerability"] = state ? state.netscanVulnerability : undefined;
-            inputs["pattern"] = state ? state.pattern : undefined;
-            inputs["ppp"] = state ? state.ppp : undefined;
-            inputs["radius"] = state ? state.radius : undefined;
-            inputs["severity"] = state ? state.severity : undefined;
-            inputs["snifferTraffic"] = state ? state.snifferTraffic : undefined;
-            inputs["ssh"] = state ? state.ssh : undefined;
-            inputs["sslvpnLogAdm"] = state ? state.sslvpnLogAdm : undefined;
-            inputs["sslvpnLogAuth"] = state ? state.sslvpnLogAuth : undefined;
-            inputs["sslvpnLogSession"] = state ? state.sslvpnLogSession : undefined;
-            inputs["system"] = state ? state.system : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["vipSsl"] = state ? state.vipSsl : undefined;
-            inputs["voip"] = state ? state.voip : undefined;
-            inputs["wanOpt"] = state ? state.wanOpt : undefined;
-            inputs["wirelessActivity"] = state ? state.wirelessActivity : undefined;
+            resourceInputs["admin"] = state ? state.admin : undefined;
+            resourceInputs["anomaly"] = state ? state.anomaly : undefined;
+            resourceInputs["auth"] = state ? state.auth : undefined;
+            resourceInputs["cpuMemoryUsage"] = state ? state.cpuMemoryUsage : undefined;
+            resourceInputs["dhcp"] = state ? state.dhcp : undefined;
+            resourceInputs["dlpArchive"] = state ? state.dlpArchive : undefined;
+            resourceInputs["dns"] = state ? state.dns : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["event"] = state ? state.event : undefined;
+            resourceInputs["filter"] = state ? state.filter : undefined;
+            resourceInputs["filterType"] = state ? state.filterType : undefined;
+            resourceInputs["forwardTraffic"] = state ? state.forwardTraffic : undefined;
+            resourceInputs["freeStyles"] = state ? state.freeStyles : undefined;
+            resourceInputs["gtp"] = state ? state.gtp : undefined;
+            resourceInputs["ha"] = state ? state.ha : undefined;
+            resourceInputs["ipsec"] = state ? state.ipsec : undefined;
+            resourceInputs["ldbMonitor"] = state ? state.ldbMonitor : undefined;
+            resourceInputs["localTraffic"] = state ? state.localTraffic : undefined;
+            resourceInputs["multicastTraffic"] = state ? state.multicastTraffic : undefined;
+            resourceInputs["netscanDiscovery"] = state ? state.netscanDiscovery : undefined;
+            resourceInputs["netscanVulnerability"] = state ? state.netscanVulnerability : undefined;
+            resourceInputs["pattern"] = state ? state.pattern : undefined;
+            resourceInputs["ppp"] = state ? state.ppp : undefined;
+            resourceInputs["radius"] = state ? state.radius : undefined;
+            resourceInputs["severity"] = state ? state.severity : undefined;
+            resourceInputs["snifferTraffic"] = state ? state.snifferTraffic : undefined;
+            resourceInputs["ssh"] = state ? state.ssh : undefined;
+            resourceInputs["sslvpnLogAdm"] = state ? state.sslvpnLogAdm : undefined;
+            resourceInputs["sslvpnLogAuth"] = state ? state.sslvpnLogAuth : undefined;
+            resourceInputs["sslvpnLogSession"] = state ? state.sslvpnLogSession : undefined;
+            resourceInputs["system"] = state ? state.system : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["vipSsl"] = state ? state.vipSsl : undefined;
+            resourceInputs["voip"] = state ? state.voip : undefined;
+            resourceInputs["wanOpt"] = state ? state.wanOpt : undefined;
+            resourceInputs["wirelessActivity"] = state ? state.wirelessActivity : undefined;
+            resourceInputs["ztnaTraffic"] = state ? state.ztnaTraffic : undefined;
         } else {
             const args = argsOrState as LogDiskFilterArgs | undefined;
-            inputs["admin"] = args ? args.admin : undefined;
-            inputs["anomaly"] = args ? args.anomaly : undefined;
-            inputs["auth"] = args ? args.auth : undefined;
-            inputs["cpuMemoryUsage"] = args ? args.cpuMemoryUsage : undefined;
-            inputs["dhcp"] = args ? args.dhcp : undefined;
-            inputs["dlpArchive"] = args ? args.dlpArchive : undefined;
-            inputs["dns"] = args ? args.dns : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["event"] = args ? args.event : undefined;
-            inputs["filter"] = args ? args.filter : undefined;
-            inputs["filterType"] = args ? args.filterType : undefined;
-            inputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
-            inputs["freeStyles"] = args ? args.freeStyles : undefined;
-            inputs["gtp"] = args ? args.gtp : undefined;
-            inputs["ha"] = args ? args.ha : undefined;
-            inputs["ipsec"] = args ? args.ipsec : undefined;
-            inputs["ldbMonitor"] = args ? args.ldbMonitor : undefined;
-            inputs["localTraffic"] = args ? args.localTraffic : undefined;
-            inputs["multicastTraffic"] = args ? args.multicastTraffic : undefined;
-            inputs["netscanDiscovery"] = args ? args.netscanDiscovery : undefined;
-            inputs["netscanVulnerability"] = args ? args.netscanVulnerability : undefined;
-            inputs["pattern"] = args ? args.pattern : undefined;
-            inputs["ppp"] = args ? args.ppp : undefined;
-            inputs["radius"] = args ? args.radius : undefined;
-            inputs["severity"] = args ? args.severity : undefined;
-            inputs["snifferTraffic"] = args ? args.snifferTraffic : undefined;
-            inputs["ssh"] = args ? args.ssh : undefined;
-            inputs["sslvpnLogAdm"] = args ? args.sslvpnLogAdm : undefined;
-            inputs["sslvpnLogAuth"] = args ? args.sslvpnLogAuth : undefined;
-            inputs["sslvpnLogSession"] = args ? args.sslvpnLogSession : undefined;
-            inputs["system"] = args ? args.system : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["vipSsl"] = args ? args.vipSsl : undefined;
-            inputs["voip"] = args ? args.voip : undefined;
-            inputs["wanOpt"] = args ? args.wanOpt : undefined;
-            inputs["wirelessActivity"] = args ? args.wirelessActivity : undefined;
+            resourceInputs["admin"] = args ? args.admin : undefined;
+            resourceInputs["anomaly"] = args ? args.anomaly : undefined;
+            resourceInputs["auth"] = args ? args.auth : undefined;
+            resourceInputs["cpuMemoryUsage"] = args ? args.cpuMemoryUsage : undefined;
+            resourceInputs["dhcp"] = args ? args.dhcp : undefined;
+            resourceInputs["dlpArchive"] = args ? args.dlpArchive : undefined;
+            resourceInputs["dns"] = args ? args.dns : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["event"] = args ? args.event : undefined;
+            resourceInputs["filter"] = args ? args.filter : undefined;
+            resourceInputs["filterType"] = args ? args.filterType : undefined;
+            resourceInputs["forwardTraffic"] = args ? args.forwardTraffic : undefined;
+            resourceInputs["freeStyles"] = args ? args.freeStyles : undefined;
+            resourceInputs["gtp"] = args ? args.gtp : undefined;
+            resourceInputs["ha"] = args ? args.ha : undefined;
+            resourceInputs["ipsec"] = args ? args.ipsec : undefined;
+            resourceInputs["ldbMonitor"] = args ? args.ldbMonitor : undefined;
+            resourceInputs["localTraffic"] = args ? args.localTraffic : undefined;
+            resourceInputs["multicastTraffic"] = args ? args.multicastTraffic : undefined;
+            resourceInputs["netscanDiscovery"] = args ? args.netscanDiscovery : undefined;
+            resourceInputs["netscanVulnerability"] = args ? args.netscanVulnerability : undefined;
+            resourceInputs["pattern"] = args ? args.pattern : undefined;
+            resourceInputs["ppp"] = args ? args.ppp : undefined;
+            resourceInputs["radius"] = args ? args.radius : undefined;
+            resourceInputs["severity"] = args ? args.severity : undefined;
+            resourceInputs["snifferTraffic"] = args ? args.snifferTraffic : undefined;
+            resourceInputs["ssh"] = args ? args.ssh : undefined;
+            resourceInputs["sslvpnLogAdm"] = args ? args.sslvpnLogAdm : undefined;
+            resourceInputs["sslvpnLogAuth"] = args ? args.sslvpnLogAuth : undefined;
+            resourceInputs["sslvpnLogSession"] = args ? args.sslvpnLogSession : undefined;
+            resourceInputs["system"] = args ? args.system : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["vipSsl"] = args ? args.vipSsl : undefined;
+            resourceInputs["voip"] = args ? args.voip : undefined;
+            resourceInputs["wanOpt"] = args ? args.wanOpt : undefined;
+            resourceInputs["wirelessActivity"] = args ? args.wirelessActivity : undefined;
+            resourceInputs["ztnaTraffic"] = args ? args.ztnaTraffic : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogDiskFilter.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogDiskFilter.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -456,6 +460,10 @@ export interface LogDiskFilterState {
      * Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
      */
     wirelessActivity?: pulumi.Input<string>;
+    /**
+     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+     */
+    ztnaTraffic?: pulumi.Input<string>;
 }
 
 /**
@@ -606,4 +614,8 @@ export interface LogDiskFilterArgs {
      * Enable/disable wireless activity event logging. Valid values: `enable`, `disable`.
      */
     wirelessActivity?: pulumi.Input<string>;
+    /**
+     * Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+     */
+    ztnaTraffic?: pulumi.Input<string>;
 }

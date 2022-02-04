@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -94,6 +94,8 @@ type LogFortiguardFilter struct {
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringOutput `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringOutput `pulumi:"ztnaTraffic"`
 }
 
 // NewLogFortiguardFilter registers a new resource with the given unique name, arguments, and options.
@@ -103,6 +105,7 @@ func NewLogFortiguardFilter(ctx *pulumi.Context,
 		args = &LogFortiguardFilterArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogFortiguardFilter
 	err := ctx.RegisterResource("fortios:index/logFortiguardFilter:LogFortiguardFilter", name, args, &resource, opts...)
 	if err != nil {
@@ -161,6 +164,8 @@ type logFortiguardFilterState struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 type LogFortiguardFilterState struct {
@@ -200,6 +205,8 @@ type LogFortiguardFilterState struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortiguardFilterState) ElementType() reflect.Type {
@@ -243,6 +250,8 @@ type logFortiguardFilterArgs struct {
 	Vdomparam *string `pulumi:"vdomparam"`
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip *string `pulumi:"voip"`
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic *string `pulumi:"ztnaTraffic"`
 }
 
 // The set of arguments for constructing a LogFortiguardFilter resource.
@@ -283,6 +292,8 @@ type LogFortiguardFilterArgs struct {
 	Vdomparam pulumi.StringPtrInput
 	// Enable/disable VoIP logging. Valid values: `enable`, `disable`.
 	Voip pulumi.StringPtrInput
+	// Enable/disable ztna traffic logging. Valid values: `enable`, `disable`.
+	ZtnaTraffic pulumi.StringPtrInput
 }
 
 func (LogFortiguardFilterArgs) ElementType() reflect.Type {
@@ -297,7 +308,7 @@ type LogFortiguardFilterInput interface {
 }
 
 func (*LogFortiguardFilter) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardFilter)(nil))
+	return reflect.TypeOf((**LogFortiguardFilter)(nil)).Elem()
 }
 
 func (i *LogFortiguardFilter) ToLogFortiguardFilterOutput() LogFortiguardFilterOutput {
@@ -306,35 +317,6 @@ func (i *LogFortiguardFilter) ToLogFortiguardFilterOutput() LogFortiguardFilterO
 
 func (i *LogFortiguardFilter) ToLogFortiguardFilterOutputWithContext(ctx context.Context) LogFortiguardFilterOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterOutput)
-}
-
-func (i *LogFortiguardFilter) ToLogFortiguardFilterPtrOutput() LogFortiguardFilterPtrOutput {
-	return i.ToLogFortiguardFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *LogFortiguardFilter) ToLogFortiguardFilterPtrOutputWithContext(ctx context.Context) LogFortiguardFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterPtrOutput)
-}
-
-type LogFortiguardFilterPtrInput interface {
-	pulumi.Input
-
-	ToLogFortiguardFilterPtrOutput() LogFortiguardFilterPtrOutput
-	ToLogFortiguardFilterPtrOutputWithContext(ctx context.Context) LogFortiguardFilterPtrOutput
-}
-
-type logFortiguardFilterPtrType LogFortiguardFilterArgs
-
-func (*logFortiguardFilterPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardFilter)(nil))
-}
-
-func (i *logFortiguardFilterPtrType) ToLogFortiguardFilterPtrOutput() LogFortiguardFilterPtrOutput {
-	return i.ToLogFortiguardFilterPtrOutputWithContext(context.Background())
-}
-
-func (i *logFortiguardFilterPtrType) ToLogFortiguardFilterPtrOutputWithContext(ctx context.Context) LogFortiguardFilterPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterPtrOutput)
 }
 
 // LogFortiguardFilterArrayInput is an input type that accepts LogFortiguardFilterArray and LogFortiguardFilterArrayOutput values.
@@ -351,7 +333,7 @@ type LogFortiguardFilterArrayInput interface {
 type LogFortiguardFilterArray []LogFortiguardFilterInput
 
 func (LogFortiguardFilterArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogFortiguardFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardFilter)(nil)).Elem()
 }
 
 func (i LogFortiguardFilterArray) ToLogFortiguardFilterArrayOutput() LogFortiguardFilterArrayOutput {
@@ -376,7 +358,7 @@ type LogFortiguardFilterMapInput interface {
 type LogFortiguardFilterMap map[string]LogFortiguardFilterInput
 
 func (LogFortiguardFilterMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogFortiguardFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardFilter)(nil)).Elem()
 }
 
 func (i LogFortiguardFilterMap) ToLogFortiguardFilterMapOutput() LogFortiguardFilterMapOutput {
@@ -387,12 +369,10 @@ func (i LogFortiguardFilterMap) ToLogFortiguardFilterMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(LogFortiguardFilterMapOutput)
 }
 
-type LogFortiguardFilterOutput struct {
-	*pulumi.OutputState
-}
+type LogFortiguardFilterOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardFilterOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogFortiguardFilter)(nil))
+	return reflect.TypeOf((**LogFortiguardFilter)(nil)).Elem()
 }
 
 func (o LogFortiguardFilterOutput) ToLogFortiguardFilterOutput() LogFortiguardFilterOutput {
@@ -403,36 +383,10 @@ func (o LogFortiguardFilterOutput) ToLogFortiguardFilterOutputWithContext(ctx co
 	return o
 }
 
-func (o LogFortiguardFilterOutput) ToLogFortiguardFilterPtrOutput() LogFortiguardFilterPtrOutput {
-	return o.ToLogFortiguardFilterPtrOutputWithContext(context.Background())
-}
-
-func (o LogFortiguardFilterOutput) ToLogFortiguardFilterPtrOutputWithContext(ctx context.Context) LogFortiguardFilterPtrOutput {
-	return o.ApplyT(func(v LogFortiguardFilter) *LogFortiguardFilter {
-		return &v
-	}).(LogFortiguardFilterPtrOutput)
-}
-
-type LogFortiguardFilterPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogFortiguardFilterPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogFortiguardFilter)(nil))
-}
-
-func (o LogFortiguardFilterPtrOutput) ToLogFortiguardFilterPtrOutput() LogFortiguardFilterPtrOutput {
-	return o
-}
-
-func (o LogFortiguardFilterPtrOutput) ToLogFortiguardFilterPtrOutputWithContext(ctx context.Context) LogFortiguardFilterPtrOutput {
-	return o
-}
-
 type LogFortiguardFilterArrayOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardFilterArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogFortiguardFilter)(nil))
+	return reflect.TypeOf((*[]*LogFortiguardFilter)(nil)).Elem()
 }
 
 func (o LogFortiguardFilterArrayOutput) ToLogFortiguardFilterArrayOutput() LogFortiguardFilterArrayOutput {
@@ -444,15 +398,15 @@ func (o LogFortiguardFilterArrayOutput) ToLogFortiguardFilterArrayOutputWithCont
 }
 
 func (o LogFortiguardFilterArrayOutput) Index(i pulumi.IntInput) LogFortiguardFilterOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogFortiguardFilter {
-		return vs[0].([]LogFortiguardFilter)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogFortiguardFilter {
+		return vs[0].([]*LogFortiguardFilter)[vs[1].(int)]
 	}).(LogFortiguardFilterOutput)
 }
 
 type LogFortiguardFilterMapOutput struct{ *pulumi.OutputState }
 
 func (LogFortiguardFilterMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogFortiguardFilter)(nil))
+	return reflect.TypeOf((*map[string]*LogFortiguardFilter)(nil)).Elem()
 }
 
 func (o LogFortiguardFilterMapOutput) ToLogFortiguardFilterMapOutput() LogFortiguardFilterMapOutput {
@@ -464,14 +418,16 @@ func (o LogFortiguardFilterMapOutput) ToLogFortiguardFilterMapOutputWithContext(
 }
 
 func (o LogFortiguardFilterMapOutput) MapIndex(k pulumi.StringInput) LogFortiguardFilterOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogFortiguardFilter {
-		return vs[0].(map[string]LogFortiguardFilter)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogFortiguardFilter {
+		return vs[0].(map[string]*LogFortiguardFilter)[vs[1].(string)]
 	}).(LogFortiguardFilterOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardFilterInput)(nil)).Elem(), &LogFortiguardFilter{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardFilterArrayInput)(nil)).Elem(), LogFortiguardFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogFortiguardFilterMapInput)(nil)).Elem(), LogFortiguardFilterMap{})
 	pulumi.RegisterOutputType(LogFortiguardFilterOutput{})
-	pulumi.RegisterOutputType(LogFortiguardFilterPtrOutput{})
 	pulumi.RegisterOutputType(LogFortiguardFilterArrayOutput{})
 	pulumi.RegisterOutputType(LogFortiguardFilterMapOutput{})
 }

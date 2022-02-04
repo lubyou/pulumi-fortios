@@ -103,33 +103,31 @@ export class SystemManagementTunnel extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemManagementTunnelArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemManagementTunnelArgs | SystemManagementTunnelState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemManagementTunnelState | undefined;
-            inputs["allowCollectStatistics"] = state ? state.allowCollectStatistics : undefined;
-            inputs["allowConfigRestore"] = state ? state.allowConfigRestore : undefined;
-            inputs["allowPushConfiguration"] = state ? state.allowPushConfiguration : undefined;
-            inputs["allowPushFirmware"] = state ? state.allowPushFirmware : undefined;
-            inputs["authorizedManagerOnly"] = state ? state.authorizedManagerOnly : undefined;
-            inputs["serialNumber"] = state ? state.serialNumber : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["allowCollectStatistics"] = state ? state.allowCollectStatistics : undefined;
+            resourceInputs["allowConfigRestore"] = state ? state.allowConfigRestore : undefined;
+            resourceInputs["allowPushConfiguration"] = state ? state.allowPushConfiguration : undefined;
+            resourceInputs["allowPushFirmware"] = state ? state.allowPushFirmware : undefined;
+            resourceInputs["authorizedManagerOnly"] = state ? state.authorizedManagerOnly : undefined;
+            resourceInputs["serialNumber"] = state ? state.serialNumber : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemManagementTunnelArgs | undefined;
-            inputs["allowCollectStatistics"] = args ? args.allowCollectStatistics : undefined;
-            inputs["allowConfigRestore"] = args ? args.allowConfigRestore : undefined;
-            inputs["allowPushConfiguration"] = args ? args.allowPushConfiguration : undefined;
-            inputs["allowPushFirmware"] = args ? args.allowPushFirmware : undefined;
-            inputs["authorizedManagerOnly"] = args ? args.authorizedManagerOnly : undefined;
-            inputs["serialNumber"] = args ? args.serialNumber : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["allowCollectStatistics"] = args ? args.allowCollectStatistics : undefined;
+            resourceInputs["allowConfigRestore"] = args ? args.allowConfigRestore : undefined;
+            resourceInputs["allowPushConfiguration"] = args ? args.allowPushConfiguration : undefined;
+            resourceInputs["allowPushFirmware"] = args ? args.allowPushFirmware : undefined;
+            resourceInputs["authorizedManagerOnly"] = args ? args.authorizedManagerOnly : undefined;
+            resourceInputs["serialNumber"] = args ? args.serialNumber : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemManagementTunnel.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemManagementTunnel.__pulumiType, name, resourceInputs, opts);
     }
 }
 

@@ -6,7 +6,7 @@ import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
- * Configure FortiSwitch RSPAN/ERSPAN traffic sniffing parameters.
+ * Configure FortiSwitch RSPAN/ERSPAN traffic sniffing parameters. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -84,31 +84,29 @@ export class SwitchControllerTrafficSniffer extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SwitchControllerTrafficSnifferArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerTrafficSnifferArgs | SwitchControllerTrafficSnifferState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerTrafficSnifferState | undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["erspanIp"] = state ? state.erspanIp : undefined;
-            inputs["mode"] = state ? state.mode : undefined;
-            inputs["targetIps"] = state ? state.targetIps : undefined;
-            inputs["targetMacs"] = state ? state.targetMacs : undefined;
-            inputs["targetPorts"] = state ? state.targetPorts : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["erspanIp"] = state ? state.erspanIp : undefined;
+            resourceInputs["mode"] = state ? state.mode : undefined;
+            resourceInputs["targetIps"] = state ? state.targetIps : undefined;
+            resourceInputs["targetMacs"] = state ? state.targetMacs : undefined;
+            resourceInputs["targetPorts"] = state ? state.targetPorts : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerTrafficSnifferArgs | undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["erspanIp"] = args ? args.erspanIp : undefined;
-            inputs["mode"] = args ? args.mode : undefined;
-            inputs["targetIps"] = args ? args.targetIps : undefined;
-            inputs["targetMacs"] = args ? args.targetMacs : undefined;
-            inputs["targetPorts"] = args ? args.targetPorts : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["erspanIp"] = args ? args.erspanIp : undefined;
+            resourceInputs["mode"] = args ? args.mode : undefined;
+            resourceInputs["targetIps"] = args ? args.targetIps : undefined;
+            resourceInputs["targetMacs"] = args ? args.targetMacs : undefined;
+            resourceInputs["targetPorts"] = args ? args.targetPorts : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerTrafficSniffer.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerTrafficSniffer.__pulumiType, name, resourceInputs, opts);
     }
 }
 

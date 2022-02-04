@@ -2,7 +2,6 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "./types";
 import * as utilities from "./utilities";
 
 /**
@@ -14,9 +13,7 @@ export function getSystemFtmPush(args?: GetSystemFtmPushArgs, opts?: pulumi.Invo
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemFtmPush:GetSystemFtmPush", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -41,6 +38,10 @@ export interface GetSystemFtmPushResult {
      */
     readonly id: string;
     /**
+     * IPv4 address or domain name of FortiToken Mobile push services server.
+     */
+    readonly server: string;
+    /**
      * Name of the server certificate to be used for SSL (default = Fortinet_Factory).
      */
     readonly serverCert: string;
@@ -57,4 +58,18 @@ export interface GetSystemFtmPushResult {
      */
     readonly status: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemFtmPushOutput(args?: GetSystemFtmPushOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemFtmPushResult> {
+    return pulumi.output(args).apply(a => getSystemFtmPush(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemFtmPush.
+ */
+export interface GetSystemFtmPushOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

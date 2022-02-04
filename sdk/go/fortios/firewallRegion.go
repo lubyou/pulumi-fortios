@@ -43,6 +43,7 @@ func NewFirewallRegion(ctx *pulumi.Context,
 		args = &FirewallRegionArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallRegion
 	err := ctx.RegisterResource("fortios:index/firewallRegion:FirewallRegion", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type FirewallRegionInput interface {
 }
 
 func (*FirewallRegion) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallRegion)(nil))
+	return reflect.TypeOf((**FirewallRegion)(nil)).Elem()
 }
 
 func (i *FirewallRegion) ToFirewallRegionOutput() FirewallRegionOutput {
@@ -142,35 +143,6 @@ func (i *FirewallRegion) ToFirewallRegionOutput() FirewallRegionOutput {
 
 func (i *FirewallRegion) ToFirewallRegionOutputWithContext(ctx context.Context) FirewallRegionOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionOutput)
-}
-
-func (i *FirewallRegion) ToFirewallRegionPtrOutput() FirewallRegionPtrOutput {
-	return i.ToFirewallRegionPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallRegion) ToFirewallRegionPtrOutputWithContext(ctx context.Context) FirewallRegionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionPtrOutput)
-}
-
-type FirewallRegionPtrInput interface {
-	pulumi.Input
-
-	ToFirewallRegionPtrOutput() FirewallRegionPtrOutput
-	ToFirewallRegionPtrOutputWithContext(ctx context.Context) FirewallRegionPtrOutput
-}
-
-type firewallRegionPtrType FirewallRegionArgs
-
-func (*firewallRegionPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallRegion)(nil))
-}
-
-func (i *firewallRegionPtrType) ToFirewallRegionPtrOutput() FirewallRegionPtrOutput {
-	return i.ToFirewallRegionPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallRegionPtrType) ToFirewallRegionPtrOutputWithContext(ctx context.Context) FirewallRegionPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionPtrOutput)
 }
 
 // FirewallRegionArrayInput is an input type that accepts FirewallRegionArray and FirewallRegionArrayOutput values.
@@ -187,7 +159,7 @@ type FirewallRegionArrayInput interface {
 type FirewallRegionArray []FirewallRegionInput
 
 func (FirewallRegionArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallRegion)(nil))
+	return reflect.TypeOf((*[]*FirewallRegion)(nil)).Elem()
 }
 
 func (i FirewallRegionArray) ToFirewallRegionArrayOutput() FirewallRegionArrayOutput {
@@ -212,7 +184,7 @@ type FirewallRegionMapInput interface {
 type FirewallRegionMap map[string]FirewallRegionInput
 
 func (FirewallRegionMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallRegion)(nil))
+	return reflect.TypeOf((*map[string]*FirewallRegion)(nil)).Elem()
 }
 
 func (i FirewallRegionMap) ToFirewallRegionMapOutput() FirewallRegionMapOutput {
@@ -223,12 +195,10 @@ func (i FirewallRegionMap) ToFirewallRegionMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallRegionMapOutput)
 }
 
-type FirewallRegionOutput struct {
-	*pulumi.OutputState
-}
+type FirewallRegionOutput struct{ *pulumi.OutputState }
 
 func (FirewallRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallRegion)(nil))
+	return reflect.TypeOf((**FirewallRegion)(nil)).Elem()
 }
 
 func (o FirewallRegionOutput) ToFirewallRegionOutput() FirewallRegionOutput {
@@ -239,36 +209,10 @@ func (o FirewallRegionOutput) ToFirewallRegionOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o FirewallRegionOutput) ToFirewallRegionPtrOutput() FirewallRegionPtrOutput {
-	return o.ToFirewallRegionPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallRegionOutput) ToFirewallRegionPtrOutputWithContext(ctx context.Context) FirewallRegionPtrOutput {
-	return o.ApplyT(func(v FirewallRegion) *FirewallRegion {
-		return &v
-	}).(FirewallRegionPtrOutput)
-}
-
-type FirewallRegionPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallRegionPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallRegion)(nil))
-}
-
-func (o FirewallRegionPtrOutput) ToFirewallRegionPtrOutput() FirewallRegionPtrOutput {
-	return o
-}
-
-func (o FirewallRegionPtrOutput) ToFirewallRegionPtrOutputWithContext(ctx context.Context) FirewallRegionPtrOutput {
-	return o
-}
-
 type FirewallRegionArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallRegionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallRegion)(nil))
+	return reflect.TypeOf((*[]*FirewallRegion)(nil)).Elem()
 }
 
 func (o FirewallRegionArrayOutput) ToFirewallRegionArrayOutput() FirewallRegionArrayOutput {
@@ -280,15 +224,15 @@ func (o FirewallRegionArrayOutput) ToFirewallRegionArrayOutputWithContext(ctx co
 }
 
 func (o FirewallRegionArrayOutput) Index(i pulumi.IntInput) FirewallRegionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallRegion {
-		return vs[0].([]FirewallRegion)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallRegion {
+		return vs[0].([]*FirewallRegion)[vs[1].(int)]
 	}).(FirewallRegionOutput)
 }
 
 type FirewallRegionMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallRegionMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallRegion)(nil))
+	return reflect.TypeOf((*map[string]*FirewallRegion)(nil)).Elem()
 }
 
 func (o FirewallRegionMapOutput) ToFirewallRegionMapOutput() FirewallRegionMapOutput {
@@ -300,14 +244,16 @@ func (o FirewallRegionMapOutput) ToFirewallRegionMapOutputWithContext(ctx contex
 }
 
 func (o FirewallRegionMapOutput) MapIndex(k pulumi.StringInput) FirewallRegionOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallRegion {
-		return vs[0].(map[string]FirewallRegion)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallRegion {
+		return vs[0].(map[string]*FirewallRegion)[vs[1].(string)]
 	}).(FirewallRegionOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRegionInput)(nil)).Elem(), &FirewallRegion{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRegionArrayInput)(nil)).Elem(), FirewallRegionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallRegionMapInput)(nil)).Elem(), FirewallRegionMap{})
 	pulumi.RegisterOutputType(FirewallRegionOutput{})
-	pulumi.RegisterOutputType(FirewallRegionPtrOutput{})
 	pulumi.RegisterOutputType(FirewallRegionArrayOutput{})
 	pulumi.RegisterOutputType(FirewallRegionMapOutput{})
 }

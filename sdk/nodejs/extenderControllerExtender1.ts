@@ -158,42 +158,40 @@ export class ExtenderControllerExtender1 extends pulumi.CustomResource {
      */
     constructor(name: string, args: ExtenderControllerExtender1Args, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: ExtenderControllerExtender1Args | ExtenderControllerExtender1State, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as ExtenderControllerExtender1State | undefined;
-            inputs["authorized"] = state ? state.authorized : undefined;
-            inputs["controllerReport"] = state ? state.controllerReport : undefined;
-            inputs["description"] = state ? state.description : undefined;
-            inputs["extName"] = state ? state.extName : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["loginPassword"] = state ? state.loginPassword : undefined;
-            inputs["modem1"] = state ? state.modem1 : undefined;
-            inputs["modem2"] = state ? state.modem2 : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdom"] = state ? state.vdom : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["authorized"] = state ? state.authorized : undefined;
+            resourceInputs["controllerReport"] = state ? state.controllerReport : undefined;
+            resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["extName"] = state ? state.extName : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["loginPassword"] = state ? state.loginPassword : undefined;
+            resourceInputs["modem1"] = state ? state.modem1 : undefined;
+            resourceInputs["modem2"] = state ? state.modem2 : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdom"] = state ? state.vdom : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as ExtenderControllerExtender1Args | undefined;
             if ((!args || args.authorized === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'authorized'");
             }
-            inputs["authorized"] = args ? args.authorized : undefined;
-            inputs["controllerReport"] = args ? args.controllerReport : undefined;
-            inputs["description"] = args ? args.description : undefined;
-            inputs["extName"] = args ? args.extName : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["loginPassword"] = args ? args.loginPassword : undefined;
-            inputs["modem1"] = args ? args.modem1 : undefined;
-            inputs["modem2"] = args ? args.modem2 : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdom"] = args ? args.vdom : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["authorized"] = args ? args.authorized : undefined;
+            resourceInputs["controllerReport"] = args ? args.controllerReport : undefined;
+            resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["extName"] = args ? args.extName : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["loginPassword"] = args ? args.loginPassword : undefined;
+            resourceInputs["modem1"] = args ? args.modem1 : undefined;
+            resourceInputs["modem2"] = args ? args.modem2 : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdom"] = args ? args.vdom : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(ExtenderControllerExtender1.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(ExtenderControllerExtender1.__pulumiType, name, resourceInputs, opts);
     }
 }
 

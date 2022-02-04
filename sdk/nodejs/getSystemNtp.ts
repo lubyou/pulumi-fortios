@@ -14,9 +14,7 @@ export function getSystemNtp(args?: GetSystemNtpArgs, opts?: pulumi.InvokeOption
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemNtp:GetSystemNtp", {
         "vdomparam": args.vdomparam,
     }, opts);
@@ -89,4 +87,18 @@ export interface GetSystemNtpResult {
      */
     readonly type: string;
     readonly vdomparam?: string;
+}
+
+export function getSystemNtpOutput(args?: GetSystemNtpOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemNtpResult> {
+    return pulumi.output(args).apply(a => getSystemNtp(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemNtp.
+ */
+export interface GetSystemNtpOutputArgs {
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

@@ -54,7 +54,12 @@ export * from "./endpointControlSettings";
 export * from "./extenderControllerDataplan";
 export * from "./extenderControllerExtender";
 export * from "./extenderControllerExtender1";
+export * from "./extenderControllerExtenderProfile";
 export * from "./fileFilterProfile";
+export * from "./firewallAccessProxy";
+export * from "./firewallAccessProxy6";
+export * from "./firewallAccessProxySshClientCert";
+export * from "./firewallAccessProxyVirtualHost";
 export * from "./firewallAddress";
 export * from "./firewallAddress6";
 export * from "./firewallAddress6Template";
@@ -474,6 +479,12 @@ export * from "./logSyslogdFilter";
 export * from "./logSyslogdOverrideFilter";
 export * from "./logSyslogdOverrideSetting";
 export * from "./logSyslogdSetting";
+export * from "./logTacacsAccounting2Filter";
+export * from "./logTacacsAccounting2Setting";
+export * from "./logTacacsAccounting3Filter";
+export * from "./logTacacsAccounting3Setting";
+export * from "./logTacacsAccountingFilter";
+export * from "./logTacacsAccountingSetting";
 export * from "./logThreatWeight";
 export * from "./logWebtrendsFilter";
 export * from "./logWebtrendsSetting";
@@ -520,6 +531,7 @@ export * from "./routerospf6Ospf6Interface";
 export * from "./routerospfNeighbor";
 export * from "./routerospfNetwork";
 export * from "./routerospfOspfInterface";
+export * from "./sctpFilterProfile";
 export * from "./spamfilterBwl";
 export * from "./spamfilterBword";
 export * from "./spamfilterDnsbl";
@@ -534,7 +546,9 @@ export * from "./switchControllerAutoConfigCustom";
 export * from "./switchControllerAutoConfigDefault";
 export * from "./switchControllerAutoConfigPolicy";
 export * from "./switchControllerCustomCommand";
+export * from "./switchControllerDynamicPortPolicy";
 export * from "./switchControllerFlowTracking";
+export * from "./switchControllerFortilinkSettings";
 export * from "./switchControllerGlobal";
 export * from "./switchControllerIgmpSnooping";
 export * from "./switchControllerInitialConfigTemplate";
@@ -578,8 +592,10 @@ export * from "./switchControllerTrafficSniffer";
 export * from "./switchControllerVirtualPortPool";
 export * from "./switchControllerVlan";
 export * from "./switchControllerVlanPolicy";
+export * from "./system3GModemCustom";
 export * from "./systemAPIUserSetting";
 export * from "./systemAccprofile";
+export * from "./systemAcme";
 export * from "./systemAdmin";
 export * from "./systemAdminAdministrator";
 export * from "./systemAdminProfiles";
@@ -608,6 +624,7 @@ export * from "./systemDedicatedMgmt";
 export * from "./systemDhcp6Server";
 export * from "./systemDhcpServer";
 export * from "./systemDns";
+export * from "./systemDns64";
 export * from "./systemDnsDatabase";
 export * from "./systemDnsServer";
 export * from "./systemDscpBasedPriority";
@@ -616,6 +633,7 @@ export * from "./systemExternalResource";
 export * from "./systemFederatedUpgrade";
 export * from "./systemFipsCc";
 export * from "./systemFm";
+export * from "./systemFortiai";
 export * from "./systemFortiguard";
 export * from "./systemFortimanager";
 export * from "./systemFortisandbox";
@@ -628,7 +646,9 @@ export * from "./systemGlobal";
 export * from "./systemGreTunnel";
 export * from "./systemHa";
 export * from "./systemHaMonitor";
+export * from "./systemIke";
 export * from "./systemInterface";
+export * from "./systemIpam";
 export * from "./systemIpipTunnel";
 export * from "./systemIps";
 export * from "./systemIpsUrlfilterDns";
@@ -641,17 +661,21 @@ export * from "./systemLicenseVDOM";
 export * from "./systemLicenseVM";
 export * from "./systemLinkMonitor";
 export * from "./systemLldpNetworkPolicy";
+export * from "./systemLteModem";
 export * from "./systemMacAddressTable";
 export * from "./systemManagementTunnel";
 export * from "./systemMobileTunnel";
+export * from "./systemModem";
 export * from "./systemNat64";
 export * from "./systemNdProxy";
 export * from "./systemNetflow";
 export * from "./systemNetworkVisibility";
+export * from "./systemNpu";
 export * from "./systemNtp";
 export * from "./systemObjectTagging";
 export * from "./systemPasswordPolicy";
 export * from "./systemPasswordPolicyGuestAdmin";
+export * from "./systemPhysicalSwitch";
 export * from "./systemPppoeInterface";
 export * from "./systemProbeResponse";
 export * from "./systemProxyArp";
@@ -695,8 +719,10 @@ export * from "./systemSnmpUser";
 export * from "./systemSpeedTestSchedule";
 export * from "./systemSpeedTestServer";
 export * from "./systemSsoAdmin";
+export * from "./systemSsoForticloudAdmin";
 export * from "./systemStandaloneCluster";
 export * from "./systemStorage";
+export * from "./systemStp";
 export * from "./systemSwitchInterface";
 export * from "./systemTosBasedPriority";
 export * from "./systemVdom";
@@ -716,6 +742,7 @@ export * from "./systemVxlan";
 export * from "./systemWccp";
 export * from "./systemZone";
 export * from "./userAdgrp";
+export * from "./userCertificate";
 export * from "./userDevice";
 export * from "./userDeviceAccessList";
 export * from "./userDeviceCategory";
@@ -740,6 +767,9 @@ export * from "./userSaml";
 export * from "./userSecurityExemptList";
 export * from "./userSetting";
 export * from "./userTacacs";
+export * from "./videofilterProfile";
+export * from "./videofilterYoutubeChannelFilter";
+export * from "./videofilterYoutubeKey";
 export * from "./voipProfile";
 export * from "./vpnCertificateCa";
 export * from "./vpnCertificateCrl";
@@ -748,6 +778,7 @@ export * from "./vpnCertificateOcspServer";
 export * from "./vpnCertificateRemote";
 export * from "./vpnCertificateSetting";
 export * from "./vpnIpsecConcentrator";
+export * from "./vpnIpsecFec";
 export * from "./vpnIpsecForticlient";
 export * from "./vpnIpsecManualkey";
 export * from "./vpnIpsecManualkeyInterface";
@@ -758,6 +789,7 @@ export * from "./vpnIpsecPhase2Interface";
 export * from "./vpnL2Tp";
 export * from "./vpnOcvpn";
 export * from "./vpnPptp";
+export * from "./vpnSslClient";
 export * from "./vpnSslSettings";
 export * from "./vpnSslWebHostCheckSoftware";
 export * from "./vpnSslWebPortal";
@@ -813,9 +845,13 @@ export * from "./wirelessControllerHotspot20AnqpNaiRealm";
 export * from "./wirelessControllerHotspot20AnqpNetworkAuthType";
 export * from "./wirelessControllerHotspot20AnqpRoamingConsortium";
 export * from "./wirelessControllerHotspot20AnqpVenueName";
+export * from "./wirelessControllerHotspot20AnqpVenueUrl";
+export * from "./wirelessControllerHotspot20H2QpAdviceOfCharge";
 export * from "./wirelessControllerHotspot20H2QpConnCapability";
 export * from "./wirelessControllerHotspot20H2QpOperatorName";
 export * from "./wirelessControllerHotspot20H2QpOsuProvider";
+export * from "./wirelessControllerHotspot20H2QpOsuProviderNai";
+export * from "./wirelessControllerHotspot20H2QpTermsAndConditions";
 export * from "./wirelessControllerHotspot20H2QpWanMetric";
 export * from "./wirelessControllerHotspot20HsProfile";
 export * from "./wirelessControllerHotspot20Icon";
@@ -823,10 +859,13 @@ export * from "./wirelessControllerHotspot20QosMap";
 export * from "./wirelessControllerInterController";
 export * from "./wirelessControllerLog";
 export * from "./wirelessControllerMpskProfile";
+export * from "./wirelessControllerNacProfile";
 export * from "./wirelessControllerQosProfile";
 export * from "./wirelessControllerRegion";
 export * from "./wirelessControllerSetting";
 export * from "./wirelessControllerSnmp";
+export * from "./wirelessControllerSsidPolicy";
+export * from "./wirelessControllerSyslogProfile";
 export * from "./wirelessControllerTimers";
 export * from "./wirelessControllerUtmProfile";
 export * from "./wirelessControllerVap";
@@ -896,7 +935,12 @@ import { EndpointControlSettings } from "./endpointControlSettings";
 import { ExtenderControllerDataplan } from "./extenderControllerDataplan";
 import { ExtenderControllerExtender1 } from "./extenderControllerExtender1";
 import { ExtenderControllerExtender } from "./extenderControllerExtender";
+import { ExtenderControllerExtenderProfile } from "./extenderControllerExtenderProfile";
 import { FileFilterProfile } from "./fileFilterProfile";
+import { FirewallAccessProxy6 } from "./firewallAccessProxy6";
+import { FirewallAccessProxy } from "./firewallAccessProxy";
+import { FirewallAccessProxySshClientCert } from "./firewallAccessProxySshClientCert";
+import { FirewallAccessProxyVirtualHost } from "./firewallAccessProxyVirtualHost";
 import { FirewallAddress6 } from "./firewallAddress6";
 import { FirewallAddress6Template } from "./firewallAddress6Template";
 import { FirewallAddress } from "./firewallAddress";
@@ -1085,6 +1129,12 @@ import { LogSyslogdFilter } from "./logSyslogdFilter";
 import { LogSyslogdOverrideFilter } from "./logSyslogdOverrideFilter";
 import { LogSyslogdOverrideSetting } from "./logSyslogdOverrideSetting";
 import { LogSyslogdSetting } from "./logSyslogdSetting";
+import { LogTacacsAccounting2Filter } from "./logTacacsAccounting2Filter";
+import { LogTacacsAccounting2Setting } from "./logTacacsAccounting2Setting";
+import { LogTacacsAccounting3Filter } from "./logTacacsAccounting3Filter";
+import { LogTacacsAccounting3Setting } from "./logTacacsAccounting3Setting";
+import { LogTacacsAccountingFilter } from "./logTacacsAccountingFilter";
+import { LogTacacsAccountingSetting } from "./logTacacsAccountingSetting";
 import { LogThreatWeight } from "./logThreatWeight";
 import { LogWebtrendsFilter } from "./logWebtrendsFilter";
 import { LogWebtrendsSetting } from "./logWebtrendsSetting";
@@ -1130,6 +1180,7 @@ import { Routerospf6Ospf6Interface } from "./routerospf6Ospf6Interface";
 import { RouterospfNeighbor } from "./routerospfNeighbor";
 import { RouterospfNetwork } from "./routerospfNetwork";
 import { RouterospfOspfInterface } from "./routerospfOspfInterface";
+import { SctpFilterProfile } from "./sctpFilterProfile";
 import { SpamfilterBwl } from "./spamfilterBwl";
 import { SpamfilterBword } from "./spamfilterBword";
 import { SpamfilterDnsbl } from "./spamfilterDnsbl";
@@ -1144,7 +1195,9 @@ import { SwitchControllerAutoConfigCustom } from "./switchControllerAutoConfigCu
 import { SwitchControllerAutoConfigDefault } from "./switchControllerAutoConfigDefault";
 import { SwitchControllerAutoConfigPolicy } from "./switchControllerAutoConfigPolicy";
 import { SwitchControllerCustomCommand } from "./switchControllerCustomCommand";
+import { SwitchControllerDynamicPortPolicy } from "./switchControllerDynamicPortPolicy";
 import { SwitchControllerFlowTracking } from "./switchControllerFlowTracking";
+import { SwitchControllerFortilinkSettings } from "./switchControllerFortilinkSettings";
 import { SwitchControllerGlobal } from "./switchControllerGlobal";
 import { SwitchControllerIgmpSnooping } from "./switchControllerIgmpSnooping";
 import { SwitchControllerInitialConfigTemplate } from "./switchControllerInitialConfigTemplate";
@@ -1188,8 +1241,10 @@ import { SwitchControllerTrafficSniffer } from "./switchControllerTrafficSniffer
 import { SwitchControllerVirtualPortPool } from "./switchControllerVirtualPortPool";
 import { SwitchControllerVlan } from "./switchControllerVlan";
 import { SwitchControllerVlanPolicy } from "./switchControllerVlanPolicy";
+import { System3GModemCustom } from "./system3GModemCustom";
 import { SystemAPIUserSetting } from "./systemAPIUserSetting";
 import { SystemAccprofile } from "./systemAccprofile";
+import { SystemAcme } from "./systemAcme";
 import { SystemAdmin } from "./systemAdmin";
 import { SystemAdminAdministrator } from "./systemAdminAdministrator";
 import { SystemAdminProfiles } from "./systemAdminProfiles";
@@ -1217,6 +1272,7 @@ import { SystemDdns } from "./systemDdns";
 import { SystemDedicatedMgmt } from "./systemDedicatedMgmt";
 import { SystemDhcp6Server } from "./systemDhcp6Server";
 import { SystemDhcpServer } from "./systemDhcpServer";
+import { SystemDns64 } from "./systemDns64";
 import { SystemDns } from "./systemDns";
 import { SystemDnsDatabase } from "./systemDnsDatabase";
 import { SystemDnsServer } from "./systemDnsServer";
@@ -1226,6 +1282,7 @@ import { SystemExternalResource } from "./systemExternalResource";
 import { SystemFederatedUpgrade } from "./systemFederatedUpgrade";
 import { SystemFipsCc } from "./systemFipsCc";
 import { SystemFm } from "./systemFm";
+import { SystemFortiai } from "./systemFortiai";
 import { SystemFortiguard } from "./systemFortiguard";
 import { SystemFortimanager } from "./systemFortimanager";
 import { SystemFortisandbox } from "./systemFortisandbox";
@@ -1238,7 +1295,9 @@ import { SystemGlobal } from "./systemGlobal";
 import { SystemGreTunnel } from "./systemGreTunnel";
 import { SystemHa } from "./systemHa";
 import { SystemHaMonitor } from "./systemHaMonitor";
+import { SystemIke } from "./systemIke";
 import { SystemInterface } from "./systemInterface";
+import { SystemIpam } from "./systemIpam";
 import { SystemIpipTunnel } from "./systemIpipTunnel";
 import { SystemIps } from "./systemIps";
 import { SystemIpsUrlfilterDns6 } from "./systemIpsUrlfilterDns6";
@@ -1251,17 +1310,21 @@ import { SystemLicenseVDOM } from "./systemLicenseVDOM";
 import { SystemLicenseVM } from "./systemLicenseVM";
 import { SystemLinkMonitor } from "./systemLinkMonitor";
 import { SystemLldpNetworkPolicy } from "./systemLldpNetworkPolicy";
+import { SystemLteModem } from "./systemLteModem";
 import { SystemMacAddressTable } from "./systemMacAddressTable";
 import { SystemManagementTunnel } from "./systemManagementTunnel";
 import { SystemMobileTunnel } from "./systemMobileTunnel";
+import { SystemModem } from "./systemModem";
 import { SystemNat64 } from "./systemNat64";
 import { SystemNdProxy } from "./systemNdProxy";
 import { SystemNetflow } from "./systemNetflow";
 import { SystemNetworkVisibility } from "./systemNetworkVisibility";
+import { SystemNpu } from "./systemNpu";
 import { SystemNtp } from "./systemNtp";
 import { SystemObjectTagging } from "./systemObjectTagging";
 import { SystemPasswordPolicy } from "./systemPasswordPolicy";
 import { SystemPasswordPolicyGuestAdmin } from "./systemPasswordPolicyGuestAdmin";
+import { SystemPhysicalSwitch } from "./systemPhysicalSwitch";
 import { SystemPppoeInterface } from "./systemPppoeInterface";
 import { SystemProbeResponse } from "./systemProbeResponse";
 import { SystemProxyArp } from "./systemProxyArp";
@@ -1305,8 +1368,10 @@ import { SystemSnmpUser } from "./systemSnmpUser";
 import { SystemSpeedTestSchedule } from "./systemSpeedTestSchedule";
 import { SystemSpeedTestServer } from "./systemSpeedTestServer";
 import { SystemSsoAdmin } from "./systemSsoAdmin";
+import { SystemSsoForticloudAdmin } from "./systemSsoForticloudAdmin";
 import { SystemStandaloneCluster } from "./systemStandaloneCluster";
 import { SystemStorage } from "./systemStorage";
+import { SystemStp } from "./systemStp";
 import { SystemSwitchInterface } from "./systemSwitchInterface";
 import { SystemTosBasedPriority } from "./systemTosBasedPriority";
 import { SystemVdom } from "./systemVdom";
@@ -1326,6 +1391,7 @@ import { SystemVxlan } from "./systemVxlan";
 import { SystemWccp } from "./systemWccp";
 import { SystemZone } from "./systemZone";
 import { UserAdgrp } from "./userAdgrp";
+import { UserCertificate } from "./userCertificate";
 import { UserDevice } from "./userDevice";
 import { UserDeviceAccessList } from "./userDeviceAccessList";
 import { UserDeviceCategory } from "./userDeviceCategory";
@@ -1352,6 +1418,9 @@ import { UserSetting } from "./userSetting";
 import { UserTacacs } from "./userTacacs";
 import { VPNIPsecPhase1InterfaceLegacy } from "./vpnipsecPhase1InterfaceLegacy";
 import { VPNIPsecPhase2InterfaceLegacy } from "./vpnipsecPhase2InterfaceLegacy";
+import { VideofilterProfile } from "./videofilterProfile";
+import { VideofilterYoutubeChannelFilter } from "./videofilterYoutubeChannelFilter";
+import { VideofilterYoutubeKey } from "./videofilterYoutubeKey";
 import { VoipProfile } from "./voipProfile";
 import { VpnCertificateCa } from "./vpnCertificateCa";
 import { VpnCertificateCrl } from "./vpnCertificateCrl";
@@ -1360,6 +1429,7 @@ import { VpnCertificateOcspServer } from "./vpnCertificateOcspServer";
 import { VpnCertificateRemote } from "./vpnCertificateRemote";
 import { VpnCertificateSetting } from "./vpnCertificateSetting";
 import { VpnIpsecConcentrator } from "./vpnIpsecConcentrator";
+import { VpnIpsecFec } from "./vpnIpsecFec";
 import { VpnIpsecForticlient } from "./vpnIpsecForticlient";
 import { VpnIpsecManualkey } from "./vpnIpsecManualkey";
 import { VpnIpsecManualkeyInterface } from "./vpnIpsecManualkeyInterface";
@@ -1370,6 +1440,7 @@ import { VpnIpsecPhase2Interface } from "./vpnIpsecPhase2Interface";
 import { VpnL2Tp } from "./vpnL2Tp";
 import { VpnOcvpn } from "./vpnOcvpn";
 import { VpnPptp } from "./vpnPptp";
+import { VpnSslClient } from "./vpnSslClient";
 import { VpnSslSettings } from "./vpnSslSettings";
 import { VpnSslWebHostCheckSoftware } from "./vpnSslWebHostCheckSoftware";
 import { VpnSslWebPortal } from "./vpnSslWebPortal";
@@ -1423,9 +1494,13 @@ import { WirelessControllerHotspot20AnqpNaiRealm } from "./wirelessControllerHot
 import { WirelessControllerHotspot20AnqpNetworkAuthType } from "./wirelessControllerHotspot20AnqpNetworkAuthType";
 import { WirelessControllerHotspot20AnqpRoamingConsortium } from "./wirelessControllerHotspot20AnqpRoamingConsortium";
 import { WirelessControllerHotspot20AnqpVenueName } from "./wirelessControllerHotspot20AnqpVenueName";
+import { WirelessControllerHotspot20AnqpVenueUrl } from "./wirelessControllerHotspot20AnqpVenueUrl";
+import { WirelessControllerHotspot20H2QpAdviceOfCharge } from "./wirelessControllerHotspot20H2QpAdviceOfCharge";
 import { WirelessControllerHotspot20H2QpConnCapability } from "./wirelessControllerHotspot20H2QpConnCapability";
 import { WirelessControllerHotspot20H2QpOperatorName } from "./wirelessControllerHotspot20H2QpOperatorName";
 import { WirelessControllerHotspot20H2QpOsuProvider } from "./wirelessControllerHotspot20H2QpOsuProvider";
+import { WirelessControllerHotspot20H2QpOsuProviderNai } from "./wirelessControllerHotspot20H2QpOsuProviderNai";
+import { WirelessControllerHotspot20H2QpTermsAndConditions } from "./wirelessControllerHotspot20H2QpTermsAndConditions";
 import { WirelessControllerHotspot20H2QpWanMetric } from "./wirelessControllerHotspot20H2QpWanMetric";
 import { WirelessControllerHotspot20HsProfile } from "./wirelessControllerHotspot20HsProfile";
 import { WirelessControllerHotspot20Icon } from "./wirelessControllerHotspot20Icon";
@@ -1433,10 +1508,13 @@ import { WirelessControllerHotspot20QosMap } from "./wirelessControllerHotspot20
 import { WirelessControllerInterController } from "./wirelessControllerInterController";
 import { WirelessControllerLog } from "./wirelessControllerLog";
 import { WirelessControllerMpskProfile } from "./wirelessControllerMpskProfile";
+import { WirelessControllerNacProfile } from "./wirelessControllerNacProfile";
 import { WirelessControllerQosProfile } from "./wirelessControllerQosProfile";
 import { WirelessControllerRegion } from "./wirelessControllerRegion";
 import { WirelessControllerSetting } from "./wirelessControllerSetting";
 import { WirelessControllerSnmp } from "./wirelessControllerSnmp";
+import { WirelessControllerSsidPolicy } from "./wirelessControllerSsidPolicy";
+import { WirelessControllerSyslogProfile } from "./wirelessControllerSyslogProfile";
 import { WirelessControllerTimers } from "./wirelessControllerTimers";
 import { WirelessControllerUtmProfile } from "./wirelessControllerUtmProfile";
 import { WirelessControllerVap } from "./wirelessControllerVap";
@@ -1549,8 +1627,18 @@ const _module = {
                 return new ExtenderControllerExtender1(name, <any>undefined, { urn })
             case "fortios:index/extenderControllerExtender:ExtenderControllerExtender":
                 return new ExtenderControllerExtender(name, <any>undefined, { urn })
+            case "fortios:index/extenderControllerExtenderProfile:ExtenderControllerExtenderProfile":
+                return new ExtenderControllerExtenderProfile(name, <any>undefined, { urn })
             case "fortios:index/fileFilterProfile:FileFilterProfile":
                 return new FileFilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessProxy6:FirewallAccessProxy6":
+                return new FirewallAccessProxy6(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessProxy:FirewallAccessProxy":
+                return new FirewallAccessProxy(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessProxySshClientCert:FirewallAccessProxySshClientCert":
+                return new FirewallAccessProxySshClientCert(name, <any>undefined, { urn })
+            case "fortios:index/firewallAccessProxyVirtualHost:FirewallAccessProxyVirtualHost":
+                return new FirewallAccessProxyVirtualHost(name, <any>undefined, { urn })
             case "fortios:index/firewallAddress6:FirewallAddress6":
                 return new FirewallAddress6(name, <any>undefined, { urn })
             case "fortios:index/firewallAddress6Template:FirewallAddress6Template":
@@ -1927,6 +2015,18 @@ const _module = {
                 return new LogSyslogdOverrideSetting(name, <any>undefined, { urn })
             case "fortios:index/logSyslogdSetting:LogSyslogdSetting":
                 return new LogSyslogdSetting(name, <any>undefined, { urn })
+            case "fortios:index/logTacacsAccounting2Filter:LogTacacsAccounting2Filter":
+                return new LogTacacsAccounting2Filter(name, <any>undefined, { urn })
+            case "fortios:index/logTacacsAccounting2Setting:LogTacacsAccounting2Setting":
+                return new LogTacacsAccounting2Setting(name, <any>undefined, { urn })
+            case "fortios:index/logTacacsAccounting3Filter:LogTacacsAccounting3Filter":
+                return new LogTacacsAccounting3Filter(name, <any>undefined, { urn })
+            case "fortios:index/logTacacsAccounting3Setting:LogTacacsAccounting3Setting":
+                return new LogTacacsAccounting3Setting(name, <any>undefined, { urn })
+            case "fortios:index/logTacacsAccountingFilter:LogTacacsAccountingFilter":
+                return new LogTacacsAccountingFilter(name, <any>undefined, { urn })
+            case "fortios:index/logTacacsAccountingSetting:LogTacacsAccountingSetting":
+                return new LogTacacsAccountingSetting(name, <any>undefined, { urn })
             case "fortios:index/logThreatWeight:LogThreatWeight":
                 return new LogThreatWeight(name, <any>undefined, { urn })
             case "fortios:index/logWebtrendsFilter:LogWebtrendsFilter":
@@ -2017,6 +2117,8 @@ const _module = {
                 return new RouterospfNetwork(name, <any>undefined, { urn })
             case "fortios:index/routerospfOspfInterface:RouterospfOspfInterface":
                 return new RouterospfOspfInterface(name, <any>undefined, { urn })
+            case "fortios:index/sctpFilterProfile:SctpFilterProfile":
+                return new SctpFilterProfile(name, <any>undefined, { urn })
             case "fortios:index/spamfilterBwl:SpamfilterBwl":
                 return new SpamfilterBwl(name, <any>undefined, { urn })
             case "fortios:index/spamfilterBword:SpamfilterBword":
@@ -2045,8 +2147,12 @@ const _module = {
                 return new SwitchControllerAutoConfigPolicy(name, <any>undefined, { urn })
             case "fortios:index/switchControllerCustomCommand:SwitchControllerCustomCommand":
                 return new SwitchControllerCustomCommand(name, <any>undefined, { urn })
+            case "fortios:index/switchControllerDynamicPortPolicy:SwitchControllerDynamicPortPolicy":
+                return new SwitchControllerDynamicPortPolicy(name, <any>undefined, { urn })
             case "fortios:index/switchControllerFlowTracking:SwitchControllerFlowTracking":
                 return new SwitchControllerFlowTracking(name, <any>undefined, { urn })
+            case "fortios:index/switchControllerFortilinkSettings:SwitchControllerFortilinkSettings":
+                return new SwitchControllerFortilinkSettings(name, <any>undefined, { urn })
             case "fortios:index/switchControllerGlobal:SwitchControllerGlobal":
                 return new SwitchControllerGlobal(name, <any>undefined, { urn })
             case "fortios:index/switchControllerIgmpSnooping:SwitchControllerIgmpSnooping":
@@ -2133,10 +2239,14 @@ const _module = {
                 return new SwitchControllerVlan(name, <any>undefined, { urn })
             case "fortios:index/switchControllerVlanPolicy:SwitchControllerVlanPolicy":
                 return new SwitchControllerVlanPolicy(name, <any>undefined, { urn })
+            case "fortios:index/system3GModemCustom:System3GModemCustom":
+                return new System3GModemCustom(name, <any>undefined, { urn })
             case "fortios:index/systemAPIUserSetting:SystemAPIUserSetting":
                 return new SystemAPIUserSetting(name, <any>undefined, { urn })
             case "fortios:index/systemAccprofile:SystemAccprofile":
                 return new SystemAccprofile(name, <any>undefined, { urn })
+            case "fortios:index/systemAcme:SystemAcme":
+                return new SystemAcme(name, <any>undefined, { urn })
             case "fortios:index/systemAdmin:SystemAdmin":
                 return new SystemAdmin(name, <any>undefined, { urn })
             case "fortios:index/systemAdminAdministrator:SystemAdminAdministrator":
@@ -2191,6 +2301,8 @@ const _module = {
                 return new SystemDhcp6Server(name, <any>undefined, { urn })
             case "fortios:index/systemDhcpServer:SystemDhcpServer":
                 return new SystemDhcpServer(name, <any>undefined, { urn })
+            case "fortios:index/systemDns64:SystemDns64":
+                return new SystemDns64(name, <any>undefined, { urn })
             case "fortios:index/systemDns:SystemDns":
                 return new SystemDns(name, <any>undefined, { urn })
             case "fortios:index/systemDnsDatabase:SystemDnsDatabase":
@@ -2209,6 +2321,8 @@ const _module = {
                 return new SystemFipsCc(name, <any>undefined, { urn })
             case "fortios:index/systemFm:SystemFm":
                 return new SystemFm(name, <any>undefined, { urn })
+            case "fortios:index/systemFortiai:SystemFortiai":
+                return new SystemFortiai(name, <any>undefined, { urn })
             case "fortios:index/systemFortiguard:SystemFortiguard":
                 return new SystemFortiguard(name, <any>undefined, { urn })
             case "fortios:index/systemFortimanager:SystemFortimanager":
@@ -2233,8 +2347,12 @@ const _module = {
                 return new SystemHa(name, <any>undefined, { urn })
             case "fortios:index/systemHaMonitor:SystemHaMonitor":
                 return new SystemHaMonitor(name, <any>undefined, { urn })
+            case "fortios:index/systemIke:SystemIke":
+                return new SystemIke(name, <any>undefined, { urn })
             case "fortios:index/systemInterface:SystemInterface":
                 return new SystemInterface(name, <any>undefined, { urn })
+            case "fortios:index/systemIpam:SystemIpam":
+                return new SystemIpam(name, <any>undefined, { urn })
             case "fortios:index/systemIpipTunnel:SystemIpipTunnel":
                 return new SystemIpipTunnel(name, <any>undefined, { urn })
             case "fortios:index/systemIps:SystemIps":
@@ -2259,12 +2377,16 @@ const _module = {
                 return new SystemLinkMonitor(name, <any>undefined, { urn })
             case "fortios:index/systemLldpNetworkPolicy:SystemLldpNetworkPolicy":
                 return new SystemLldpNetworkPolicy(name, <any>undefined, { urn })
+            case "fortios:index/systemLteModem:SystemLteModem":
+                return new SystemLteModem(name, <any>undefined, { urn })
             case "fortios:index/systemMacAddressTable:SystemMacAddressTable":
                 return new SystemMacAddressTable(name, <any>undefined, { urn })
             case "fortios:index/systemManagementTunnel:SystemManagementTunnel":
                 return new SystemManagementTunnel(name, <any>undefined, { urn })
             case "fortios:index/systemMobileTunnel:SystemMobileTunnel":
                 return new SystemMobileTunnel(name, <any>undefined, { urn })
+            case "fortios:index/systemModem:SystemModem":
+                return new SystemModem(name, <any>undefined, { urn })
             case "fortios:index/systemNat64:SystemNat64":
                 return new SystemNat64(name, <any>undefined, { urn })
             case "fortios:index/systemNdProxy:SystemNdProxy":
@@ -2273,6 +2395,8 @@ const _module = {
                 return new SystemNetflow(name, <any>undefined, { urn })
             case "fortios:index/systemNetworkVisibility:SystemNetworkVisibility":
                 return new SystemNetworkVisibility(name, <any>undefined, { urn })
+            case "fortios:index/systemNpu:SystemNpu":
+                return new SystemNpu(name, <any>undefined, { urn })
             case "fortios:index/systemNtp:SystemNtp":
                 return new SystemNtp(name, <any>undefined, { urn })
             case "fortios:index/systemObjectTagging:SystemObjectTagging":
@@ -2281,6 +2405,8 @@ const _module = {
                 return new SystemPasswordPolicy(name, <any>undefined, { urn })
             case "fortios:index/systemPasswordPolicyGuestAdmin:SystemPasswordPolicyGuestAdmin":
                 return new SystemPasswordPolicyGuestAdmin(name, <any>undefined, { urn })
+            case "fortios:index/systemPhysicalSwitch:SystemPhysicalSwitch":
+                return new SystemPhysicalSwitch(name, <any>undefined, { urn })
             case "fortios:index/systemPppoeInterface:SystemPppoeInterface":
                 return new SystemPppoeInterface(name, <any>undefined, { urn })
             case "fortios:index/systemProbeResponse:SystemProbeResponse":
@@ -2367,10 +2493,14 @@ const _module = {
                 return new SystemSpeedTestServer(name, <any>undefined, { urn })
             case "fortios:index/systemSsoAdmin:SystemSsoAdmin":
                 return new SystemSsoAdmin(name, <any>undefined, { urn })
+            case "fortios:index/systemSsoForticloudAdmin:SystemSsoForticloudAdmin":
+                return new SystemSsoForticloudAdmin(name, <any>undefined, { urn })
             case "fortios:index/systemStandaloneCluster:SystemStandaloneCluster":
                 return new SystemStandaloneCluster(name, <any>undefined, { urn })
             case "fortios:index/systemStorage:SystemStorage":
                 return new SystemStorage(name, <any>undefined, { urn })
+            case "fortios:index/systemStp:SystemStp":
+                return new SystemStp(name, <any>undefined, { urn })
             case "fortios:index/systemSwitchInterface:SystemSwitchInterface":
                 return new SystemSwitchInterface(name, <any>undefined, { urn })
             case "fortios:index/systemTosBasedPriority:SystemTosBasedPriority":
@@ -2409,6 +2539,8 @@ const _module = {
                 return new SystemZone(name, <any>undefined, { urn })
             case "fortios:index/userAdgrp:UserAdgrp":
                 return new UserAdgrp(name, <any>undefined, { urn })
+            case "fortios:index/userCertificate:UserCertificate":
+                return new UserCertificate(name, <any>undefined, { urn })
             case "fortios:index/userDevice:UserDevice":
                 return new UserDevice(name, <any>undefined, { urn })
             case "fortios:index/userDeviceAccessList:UserDeviceAccessList":
@@ -2461,6 +2593,12 @@ const _module = {
                 return new VPNIPsecPhase1InterfaceLegacy(name, <any>undefined, { urn })
             case "fortios:index/vPNIPsecPhase2InterfaceLegacy:VPNIPsecPhase2InterfaceLegacy":
                 return new VPNIPsecPhase2InterfaceLegacy(name, <any>undefined, { urn })
+            case "fortios:index/videofilterProfile:VideofilterProfile":
+                return new VideofilterProfile(name, <any>undefined, { urn })
+            case "fortios:index/videofilterYoutubeChannelFilter:VideofilterYoutubeChannelFilter":
+                return new VideofilterYoutubeChannelFilter(name, <any>undefined, { urn })
+            case "fortios:index/videofilterYoutubeKey:VideofilterYoutubeKey":
+                return new VideofilterYoutubeKey(name, <any>undefined, { urn })
             case "fortios:index/voipProfile:VoipProfile":
                 return new VoipProfile(name, <any>undefined, { urn })
             case "fortios:index/vpnCertificateCa:VpnCertificateCa":
@@ -2477,6 +2615,8 @@ const _module = {
                 return new VpnCertificateSetting(name, <any>undefined, { urn })
             case "fortios:index/vpnIpsecConcentrator:VpnIpsecConcentrator":
                 return new VpnIpsecConcentrator(name, <any>undefined, { urn })
+            case "fortios:index/vpnIpsecFec:VpnIpsecFec":
+                return new VpnIpsecFec(name, <any>undefined, { urn })
             case "fortios:index/vpnIpsecForticlient:VpnIpsecForticlient":
                 return new VpnIpsecForticlient(name, <any>undefined, { urn })
             case "fortios:index/vpnIpsecManualkey:VpnIpsecManualkey":
@@ -2497,6 +2637,8 @@ const _module = {
                 return new VpnOcvpn(name, <any>undefined, { urn })
             case "fortios:index/vpnPptp:VpnPptp":
                 return new VpnPptp(name, <any>undefined, { urn })
+            case "fortios:index/vpnSslClient:VpnSslClient":
+                return new VpnSslClient(name, <any>undefined, { urn })
             case "fortios:index/vpnSslSettings:VpnSslSettings":
                 return new VpnSslSettings(name, <any>undefined, { urn })
             case "fortios:index/vpnSslWebHostCheckSoftware:VpnSslWebHostCheckSoftware":
@@ -2603,12 +2745,20 @@ const _module = {
                 return new WirelessControllerHotspot20AnqpRoamingConsortium(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerHotspot20AnqpVenueName:WirelessControllerHotspot20AnqpVenueName":
                 return new WirelessControllerHotspot20AnqpVenueName(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerHotspot20AnqpVenueUrl:WirelessControllerHotspot20AnqpVenueUrl":
+                return new WirelessControllerHotspot20AnqpVenueUrl(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerHotspot20H2QpAdviceOfCharge:WirelessControllerHotspot20H2QpAdviceOfCharge":
+                return new WirelessControllerHotspot20H2QpAdviceOfCharge(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerHotspot20H2QpConnCapability:WirelessControllerHotspot20H2QpConnCapability":
                 return new WirelessControllerHotspot20H2QpConnCapability(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerHotspot20H2QpOperatorName:WirelessControllerHotspot20H2QpOperatorName":
                 return new WirelessControllerHotspot20H2QpOperatorName(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerHotspot20H2QpOsuProvider:WirelessControllerHotspot20H2QpOsuProvider":
                 return new WirelessControllerHotspot20H2QpOsuProvider(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerHotspot20H2QpOsuProviderNai:WirelessControllerHotspot20H2QpOsuProviderNai":
+                return new WirelessControllerHotspot20H2QpOsuProviderNai(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerHotspot20H2QpTermsAndConditions:WirelessControllerHotspot20H2QpTermsAndConditions":
+                return new WirelessControllerHotspot20H2QpTermsAndConditions(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerHotspot20H2QpWanMetric:WirelessControllerHotspot20H2QpWanMetric":
                 return new WirelessControllerHotspot20H2QpWanMetric(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerHotspot20HsProfile:WirelessControllerHotspot20HsProfile":
@@ -2623,6 +2773,8 @@ const _module = {
                 return new WirelessControllerLog(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerMpskProfile:WirelessControllerMpskProfile":
                 return new WirelessControllerMpskProfile(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerNacProfile:WirelessControllerNacProfile":
+                return new WirelessControllerNacProfile(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerQosProfile:WirelessControllerQosProfile":
                 return new WirelessControllerQosProfile(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerRegion:WirelessControllerRegion":
@@ -2631,6 +2783,10 @@ const _module = {
                 return new WirelessControllerSetting(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerSnmp:WirelessControllerSnmp":
                 return new WirelessControllerSnmp(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerSsidPolicy:WirelessControllerSsidPolicy":
+                return new WirelessControllerSsidPolicy(name, <any>undefined, { urn })
+            case "fortios:index/wirelessControllerSyslogProfile:WirelessControllerSyslogProfile":
+                return new WirelessControllerSyslogProfile(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerTimers:WirelessControllerTimers":
                 return new WirelessControllerTimers(name, <any>undefined, { urn })
             case "fortios:index/wirelessControllerUtmProfile:WirelessControllerUtmProfile":
@@ -2703,7 +2859,12 @@ pulumi.runtime.registerResourceModule("fortios", "index/endpointControlSettings"
 pulumi.runtime.registerResourceModule("fortios", "index/extenderControllerDataplan", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/extenderControllerExtender", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/extenderControllerExtender1", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/extenderControllerExtenderProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/fileFilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessProxy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessProxy6", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessProxySshClientCert", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/firewallAccessProxyVirtualHost", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallAddress", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallAddress6", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/firewallAddress6Template", _module)
@@ -2892,6 +3053,12 @@ pulumi.runtime.registerResourceModule("fortios", "index/logSyslogdFilter", _modu
 pulumi.runtime.registerResourceModule("fortios", "index/logSyslogdOverrideFilter", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/logSyslogdOverrideSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/logSyslogdSetting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logTacacsAccounting2Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logTacacsAccounting2Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logTacacsAccounting3Filter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logTacacsAccounting3Setting", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logTacacsAccountingFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/logTacacsAccountingSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/logThreatWeight", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/logWebtrendsFilter", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/logWebtrendsSetting", _module)
@@ -2937,6 +3104,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/routerospf6Ospf6Interfac
 pulumi.runtime.registerResourceModule("fortios", "index/routerospfNeighbor", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerospfNetwork", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/routerospfOspfInterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/sctpFilterProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/spamfilterBwl", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/spamfilterBword", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/spamfilterDnsbl", _module)
@@ -2951,7 +3119,9 @@ pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAutoConf
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAutoConfigDefault", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerAutoConfigPolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerCustomCommand", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchControllerDynamicPortPolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerFlowTracking", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/switchControllerFortilinkSettings", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerGlobal", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerIgmpSnooping", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerInitialConfigTemplate", _module)
@@ -2995,8 +3165,10 @@ pulumi.runtime.registerResourceModule("fortios", "index/switchControllerTrafficS
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerVirtualPortPool", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerVlan", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/switchControllerVlanPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/system3GModemCustom", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemAPIUserSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemAccprofile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemAcme", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemAdmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemAdminAdministrator", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemAdminProfiles", _module)
@@ -3025,6 +3197,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemDedicatedMgmt", _m
 pulumi.runtime.registerResourceModule("fortios", "index/systemDhcp6Server", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDhcpServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDns", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemDns64", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDnsDatabase", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDnsServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemDscpBasedPriority", _module)
@@ -3033,6 +3206,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemExternalResource",
 pulumi.runtime.registerResourceModule("fortios", "index/systemFederatedUpgrade", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFipsCc", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFm", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemFortiai", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFortiguard", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFortimanager", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemFortisandbox", _module)
@@ -3045,7 +3219,9 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemGlobal", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemGreTunnel", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemHa", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemHaMonitor", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIke", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemInterface", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemIpam", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemIpipTunnel", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemIps", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemIpsUrlfilterDns", _module)
@@ -3058,17 +3234,21 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemLicenseVDOM", _mod
 pulumi.runtime.registerResourceModule("fortios", "index/systemLicenseVM", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemLinkMonitor", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemLldpNetworkPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemLteModem", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemMacAddressTable", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemManagementTunnel", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemMobileTunnel", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemModem", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemNat64", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemNdProxy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemNetflow", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemNetworkVisibility", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemNpu", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemNtp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemObjectTagging", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPasswordPolicy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPasswordPolicyGuestAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemPhysicalSwitch", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemPppoeInterface", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemProbeResponse", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemProxyArp", _module)
@@ -3112,8 +3292,10 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemSnmpUser", _module
 pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestSchedule", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSpeedTestServer", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSsoAdmin", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemSsoForticloudAdmin", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemStandaloneCluster", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemStorage", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/systemStp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemSwitchInterface", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemTosBasedPriority", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemVdom", _module)
@@ -3133,6 +3315,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/systemVxlan", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemWccp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/systemZone", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/userAdgrp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/userCertificate", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/userDevice", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/userDeviceAccessList", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/userDeviceCategory", _module)
@@ -3159,6 +3342,9 @@ pulumi.runtime.registerResourceModule("fortios", "index/userSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/userTacacs", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vPNIPsecPhase1InterfaceLegacy", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vPNIPsecPhase2InterfaceLegacy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/videofilterProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/videofilterYoutubeChannelFilter", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/videofilterYoutubeKey", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/voipProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateCa", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateCrl", _module)
@@ -3167,6 +3353,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateOcspServer
 pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateRemote", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnCertificateSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecConcentrator", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecFec", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecForticlient", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecManualkey", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecManualkeyInterface", _module)
@@ -3177,6 +3364,7 @@ pulumi.runtime.registerResourceModule("fortios", "index/vpnIpsecPhase2Interface"
 pulumi.runtime.registerResourceModule("fortios", "index/vpnL2Tp", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnOcvpn", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnPptp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/vpnSslClient", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnSslSettings", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnSslWebHostCheckSoftware", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/vpnSslWebPortal", _module)
@@ -3230,9 +3418,13 @@ pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspo
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20AnqpNetworkAuthType", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20AnqpRoamingConsortium", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20AnqpVenueName", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20AnqpVenueUrl", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpAdviceOfCharge", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpConnCapability", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpOperatorName", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpOsuProvider", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpOsuProviderNai", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpTermsAndConditions", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20H2QpWanMetric", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20HsProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspot20Icon", _module)
@@ -3240,10 +3432,13 @@ pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerHotspo
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerInterController", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerLog", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerMpskProfile", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerNacProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerQosProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerRegion", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerSetting", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerSnmp", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerSsidPolicy", _module)
+pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerSyslogProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerTimers", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerUtmProfile", _module)
 pulumi.runtime.registerResourceModule("fortios", "index/wirelessControllerVap", _module)

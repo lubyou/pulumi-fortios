@@ -43,6 +43,7 @@ func NewWirelessControllerApStatus(ctx *pulumi.Context,
 		args = &WirelessControllerApStatusArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerApStatus
 	err := ctx.RegisterResource("fortios:index/wirelessControllerApStatus:WirelessControllerApStatus", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type WirelessControllerApStatusInput interface {
 }
 
 func (*WirelessControllerApStatus) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerApStatus)(nil))
+	return reflect.TypeOf((**WirelessControllerApStatus)(nil)).Elem()
 }
 
 func (i *WirelessControllerApStatus) ToWirelessControllerApStatusOutput() WirelessControllerApStatusOutput {
@@ -142,35 +143,6 @@ func (i *WirelessControllerApStatus) ToWirelessControllerApStatusOutput() Wirele
 
 func (i *WirelessControllerApStatus) ToWirelessControllerApStatusOutputWithContext(ctx context.Context) WirelessControllerApStatusOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusOutput)
-}
-
-func (i *WirelessControllerApStatus) ToWirelessControllerApStatusPtrOutput() WirelessControllerApStatusPtrOutput {
-	return i.ToWirelessControllerApStatusPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerApStatus) ToWirelessControllerApStatusPtrOutputWithContext(ctx context.Context) WirelessControllerApStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusPtrOutput)
-}
-
-type WirelessControllerApStatusPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerApStatusPtrOutput() WirelessControllerApStatusPtrOutput
-	ToWirelessControllerApStatusPtrOutputWithContext(ctx context.Context) WirelessControllerApStatusPtrOutput
-}
-
-type wirelessControllerApStatusPtrType WirelessControllerApStatusArgs
-
-func (*wirelessControllerApStatusPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerApStatus)(nil))
-}
-
-func (i *wirelessControllerApStatusPtrType) ToWirelessControllerApStatusPtrOutput() WirelessControllerApStatusPtrOutput {
-	return i.ToWirelessControllerApStatusPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerApStatusPtrType) ToWirelessControllerApStatusPtrOutputWithContext(ctx context.Context) WirelessControllerApStatusPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusPtrOutput)
 }
 
 // WirelessControllerApStatusArrayInput is an input type that accepts WirelessControllerApStatusArray and WirelessControllerApStatusArrayOutput values.
@@ -187,7 +159,7 @@ type WirelessControllerApStatusArrayInput interface {
 type WirelessControllerApStatusArray []WirelessControllerApStatusInput
 
 func (WirelessControllerApStatusArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerApStatus)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerApStatus)(nil)).Elem()
 }
 
 func (i WirelessControllerApStatusArray) ToWirelessControllerApStatusArrayOutput() WirelessControllerApStatusArrayOutput {
@@ -212,7 +184,7 @@ type WirelessControllerApStatusMapInput interface {
 type WirelessControllerApStatusMap map[string]WirelessControllerApStatusInput
 
 func (WirelessControllerApStatusMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerApStatus)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerApStatus)(nil)).Elem()
 }
 
 func (i WirelessControllerApStatusMap) ToWirelessControllerApStatusMapOutput() WirelessControllerApStatusMapOutput {
@@ -223,12 +195,10 @@ func (i WirelessControllerApStatusMap) ToWirelessControllerApStatusMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerApStatusMapOutput)
 }
 
-type WirelessControllerApStatusOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerApStatusOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerApStatusOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerApStatus)(nil))
+	return reflect.TypeOf((**WirelessControllerApStatus)(nil)).Elem()
 }
 
 func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusOutput() WirelessControllerApStatusOutput {
@@ -239,36 +209,10 @@ func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusOutputWith
 	return o
 }
 
-func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusPtrOutput() WirelessControllerApStatusPtrOutput {
-	return o.ToWirelessControllerApStatusPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerApStatusOutput) ToWirelessControllerApStatusPtrOutputWithContext(ctx context.Context) WirelessControllerApStatusPtrOutput {
-	return o.ApplyT(func(v WirelessControllerApStatus) *WirelessControllerApStatus {
-		return &v
-	}).(WirelessControllerApStatusPtrOutput)
-}
-
-type WirelessControllerApStatusPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerApStatusPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerApStatus)(nil))
-}
-
-func (o WirelessControllerApStatusPtrOutput) ToWirelessControllerApStatusPtrOutput() WirelessControllerApStatusPtrOutput {
-	return o
-}
-
-func (o WirelessControllerApStatusPtrOutput) ToWirelessControllerApStatusPtrOutputWithContext(ctx context.Context) WirelessControllerApStatusPtrOutput {
-	return o
-}
-
 type WirelessControllerApStatusArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerApStatusArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerApStatus)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerApStatus)(nil)).Elem()
 }
 
 func (o WirelessControllerApStatusArrayOutput) ToWirelessControllerApStatusArrayOutput() WirelessControllerApStatusArrayOutput {
@@ -280,15 +224,15 @@ func (o WirelessControllerApStatusArrayOutput) ToWirelessControllerApStatusArray
 }
 
 func (o WirelessControllerApStatusArrayOutput) Index(i pulumi.IntInput) WirelessControllerApStatusOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerApStatus {
-		return vs[0].([]WirelessControllerApStatus)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerApStatus {
+		return vs[0].([]*WirelessControllerApStatus)[vs[1].(int)]
 	}).(WirelessControllerApStatusOutput)
 }
 
 type WirelessControllerApStatusMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerApStatusMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerApStatus)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerApStatus)(nil)).Elem()
 }
 
 func (o WirelessControllerApStatusMapOutput) ToWirelessControllerApStatusMapOutput() WirelessControllerApStatusMapOutput {
@@ -300,14 +244,16 @@ func (o WirelessControllerApStatusMapOutput) ToWirelessControllerApStatusMapOutp
 }
 
 func (o WirelessControllerApStatusMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerApStatusOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerApStatus {
-		return vs[0].(map[string]WirelessControllerApStatus)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerApStatus {
+		return vs[0].(map[string]*WirelessControllerApStatus)[vs[1].(string)]
 	}).(WirelessControllerApStatusOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerApStatusInput)(nil)).Elem(), &WirelessControllerApStatus{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerApStatusArrayInput)(nil)).Elem(), WirelessControllerApStatusArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerApStatusMapInput)(nil)).Elem(), WirelessControllerApStatusMap{})
 	pulumi.RegisterOutputType(WirelessControllerApStatusOutput{})
-	pulumi.RegisterOutputType(WirelessControllerApStatusPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerApStatusArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerApStatusMapOutput{})
 }

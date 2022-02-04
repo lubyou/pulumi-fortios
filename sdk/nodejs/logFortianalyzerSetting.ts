@@ -136,6 +136,10 @@ export class LogFortianalyzerSetting extends pulumi.CustomResource {
      */
     public readonly monitorKeepalivePeriod!: pulumi.Output<number>;
     /**
+     * Preshared-key used for auto-authorization on FortiAnalyzer.
+     */
+    public readonly presharedKey!: pulumi.Output<string>;
+    /**
      * Set log transmission priority. Valid values: `default`, `low`.
      */
     public readonly priority!: pulumi.Output<string>;
@@ -193,73 +197,73 @@ export class LogFortianalyzerSetting extends pulumi.CustomResource {
      */
     constructor(name: string, args?: LogFortianalyzerSettingArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: LogFortianalyzerSettingArgs | LogFortianalyzerSettingState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as LogFortianalyzerSettingState | undefined;
-            inputs["__changeIp"] = state ? state.__changeIp : undefined;
-            inputs["accessConfig"] = state ? state.accessConfig : undefined;
-            inputs["certificate"] = state ? state.certificate : undefined;
-            inputs["certificateVerification"] = state ? state.certificateVerification : undefined;
-            inputs["connTimeout"] = state ? state.connTimeout : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
-            inputs["fazType"] = state ? state.fazType : undefined;
-            inputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["ipsArchive"] = state ? state.ipsArchive : undefined;
-            inputs["maxLogRate"] = state ? state.maxLogRate : undefined;
-            inputs["mgmtName"] = state ? state.mgmtName : undefined;
-            inputs["monitorFailureRetryPeriod"] = state ? state.monitorFailureRetryPeriod : undefined;
-            inputs["monitorKeepalivePeriod"] = state ? state.monitorKeepalivePeriod : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["reliable"] = state ? state.reliable : undefined;
-            inputs["serials"] = state ? state.serials : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uploadDay"] = state ? state.uploadDay : undefined;
-            inputs["uploadInterval"] = state ? state.uploadInterval : undefined;
-            inputs["uploadOption"] = state ? state.uploadOption : undefined;
-            inputs["uploadTime"] = state ? state.uploadTime : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["__changeIp"] = state ? state.__changeIp : undefined;
+            resourceInputs["accessConfig"] = state ? state.accessConfig : undefined;
+            resourceInputs["certificate"] = state ? state.certificate : undefined;
+            resourceInputs["certificateVerification"] = state ? state.certificateVerification : undefined;
+            resourceInputs["connTimeout"] = state ? state.connTimeout : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = state ? state.encAlgorithm : undefined;
+            resourceInputs["fazType"] = state ? state.fazType : undefined;
+            resourceInputs["hmacAlgorithm"] = state ? state.hmacAlgorithm : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["ipsArchive"] = state ? state.ipsArchive : undefined;
+            resourceInputs["maxLogRate"] = state ? state.maxLogRate : undefined;
+            resourceInputs["mgmtName"] = state ? state.mgmtName : undefined;
+            resourceInputs["monitorFailureRetryPeriod"] = state ? state.monitorFailureRetryPeriod : undefined;
+            resourceInputs["monitorKeepalivePeriod"] = state ? state.monitorKeepalivePeriod : undefined;
+            resourceInputs["presharedKey"] = state ? state.presharedKey : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["reliable"] = state ? state.reliable : undefined;
+            resourceInputs["serials"] = state ? state.serials : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uploadDay"] = state ? state.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = state ? state.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = state ? state.uploadOption : undefined;
+            resourceInputs["uploadTime"] = state ? state.uploadTime : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as LogFortianalyzerSettingArgs | undefined;
-            inputs["__changeIp"] = args ? args.__changeIp : undefined;
-            inputs["accessConfig"] = args ? args.accessConfig : undefined;
-            inputs["certificate"] = args ? args.certificate : undefined;
-            inputs["certificateVerification"] = args ? args.certificateVerification : undefined;
-            inputs["connTimeout"] = args ? args.connTimeout : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
-            inputs["fazType"] = args ? args.fazType : undefined;
-            inputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["ipsArchive"] = args ? args.ipsArchive : undefined;
-            inputs["maxLogRate"] = args ? args.maxLogRate : undefined;
-            inputs["mgmtName"] = args ? args.mgmtName : undefined;
-            inputs["monitorFailureRetryPeriod"] = args ? args.monitorFailureRetryPeriod : undefined;
-            inputs["monitorKeepalivePeriod"] = args ? args.monitorKeepalivePeriod : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["reliable"] = args ? args.reliable : undefined;
-            inputs["serials"] = args ? args.serials : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uploadDay"] = args ? args.uploadDay : undefined;
-            inputs["uploadInterval"] = args ? args.uploadInterval : undefined;
-            inputs["uploadOption"] = args ? args.uploadOption : undefined;
-            inputs["uploadTime"] = args ? args.uploadTime : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["__changeIp"] = args ? args.__changeIp : undefined;
+            resourceInputs["accessConfig"] = args ? args.accessConfig : undefined;
+            resourceInputs["certificate"] = args ? args.certificate : undefined;
+            resourceInputs["certificateVerification"] = args ? args.certificateVerification : undefined;
+            resourceInputs["connTimeout"] = args ? args.connTimeout : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["encAlgorithm"] = args ? args.encAlgorithm : undefined;
+            resourceInputs["fazType"] = args ? args.fazType : undefined;
+            resourceInputs["hmacAlgorithm"] = args ? args.hmacAlgorithm : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["ipsArchive"] = args ? args.ipsArchive : undefined;
+            resourceInputs["maxLogRate"] = args ? args.maxLogRate : undefined;
+            resourceInputs["mgmtName"] = args ? args.mgmtName : undefined;
+            resourceInputs["monitorFailureRetryPeriod"] = args ? args.monitorFailureRetryPeriod : undefined;
+            resourceInputs["monitorKeepalivePeriod"] = args ? args.monitorKeepalivePeriod : undefined;
+            resourceInputs["presharedKey"] = args ? args.presharedKey : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["reliable"] = args ? args.reliable : undefined;
+            resourceInputs["serials"] = args ? args.serials : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uploadDay"] = args ? args.uploadDay : undefined;
+            resourceInputs["uploadInterval"] = args ? args.uploadInterval : undefined;
+            resourceInputs["uploadOption"] = args ? args.uploadOption : undefined;
+            resourceInputs["uploadTime"] = args ? args.uploadTime : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(LogFortianalyzerSetting.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(LogFortianalyzerSetting.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -331,6 +335,10 @@ export interface LogFortianalyzerSettingState {
      * Time between OFTP keepalives in seconds (for status and log buffer).
      */
     monitorKeepalivePeriod?: pulumi.Input<number>;
+    /**
+     * Preshared-key used for auto-authorization on FortiAnalyzer.
+     */
+    presharedKey?: pulumi.Input<string>;
     /**
      * Set log transmission priority. Valid values: `default`, `low`.
      */
@@ -449,6 +457,10 @@ export interface LogFortianalyzerSettingArgs {
      * Time between OFTP keepalives in seconds (for status and log buffer).
      */
     monitorKeepalivePeriod?: pulumi.Input<number>;
+    /**
+     * Preshared-key used for auto-authorization on FortiAnalyzer.
+     */
+    presharedKey?: pulumi.Input<string>;
     /**
      * Set log transmission priority. Valid values: `default`, `low`.
      */

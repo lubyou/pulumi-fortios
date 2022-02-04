@@ -128,43 +128,41 @@ export class WirelessControllerHotspot20H2QpConnCapability extends pulumi.Custom
      */
     constructor(name: string, args?: WirelessControllerHotspot20H2QpConnCapabilityArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerHotspot20H2QpConnCapabilityArgs | WirelessControllerHotspot20H2QpConnCapabilityState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerHotspot20H2QpConnCapabilityState | undefined;
-            inputs["espPort"] = state ? state.espPort : undefined;
-            inputs["ftpPort"] = state ? state.ftpPort : undefined;
-            inputs["httpPort"] = state ? state.httpPort : undefined;
-            inputs["icmpPort"] = state ? state.icmpPort : undefined;
-            inputs["ikev2Port"] = state ? state.ikev2Port : undefined;
-            inputs["ikev2XxPort"] = state ? state.ikev2XxPort : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["pptpVpnPort"] = state ? state.pptpVpnPort : undefined;
-            inputs["sshPort"] = state ? state.sshPort : undefined;
-            inputs["tlsPort"] = state ? state.tlsPort : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["voipTcpPort"] = state ? state.voipTcpPort : undefined;
-            inputs["voipUdpPort"] = state ? state.voipUdpPort : undefined;
+            resourceInputs["espPort"] = state ? state.espPort : undefined;
+            resourceInputs["ftpPort"] = state ? state.ftpPort : undefined;
+            resourceInputs["httpPort"] = state ? state.httpPort : undefined;
+            resourceInputs["icmpPort"] = state ? state.icmpPort : undefined;
+            resourceInputs["ikev2Port"] = state ? state.ikev2Port : undefined;
+            resourceInputs["ikev2XxPort"] = state ? state.ikev2XxPort : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["pptpVpnPort"] = state ? state.pptpVpnPort : undefined;
+            resourceInputs["sshPort"] = state ? state.sshPort : undefined;
+            resourceInputs["tlsPort"] = state ? state.tlsPort : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["voipTcpPort"] = state ? state.voipTcpPort : undefined;
+            resourceInputs["voipUdpPort"] = state ? state.voipUdpPort : undefined;
         } else {
             const args = argsOrState as WirelessControllerHotspot20H2QpConnCapabilityArgs | undefined;
-            inputs["espPort"] = args ? args.espPort : undefined;
-            inputs["ftpPort"] = args ? args.ftpPort : undefined;
-            inputs["httpPort"] = args ? args.httpPort : undefined;
-            inputs["icmpPort"] = args ? args.icmpPort : undefined;
-            inputs["ikev2Port"] = args ? args.ikev2Port : undefined;
-            inputs["ikev2XxPort"] = args ? args.ikev2XxPort : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["pptpVpnPort"] = args ? args.pptpVpnPort : undefined;
-            inputs["sshPort"] = args ? args.sshPort : undefined;
-            inputs["tlsPort"] = args ? args.tlsPort : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["voipTcpPort"] = args ? args.voipTcpPort : undefined;
-            inputs["voipUdpPort"] = args ? args.voipUdpPort : undefined;
+            resourceInputs["espPort"] = args ? args.espPort : undefined;
+            resourceInputs["ftpPort"] = args ? args.ftpPort : undefined;
+            resourceInputs["httpPort"] = args ? args.httpPort : undefined;
+            resourceInputs["icmpPort"] = args ? args.icmpPort : undefined;
+            resourceInputs["ikev2Port"] = args ? args.ikev2Port : undefined;
+            resourceInputs["ikev2XxPort"] = args ? args.ikev2XxPort : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["pptpVpnPort"] = args ? args.pptpVpnPort : undefined;
+            resourceInputs["sshPort"] = args ? args.sshPort : undefined;
+            resourceInputs["tlsPort"] = args ? args.tlsPort : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["voipTcpPort"] = args ? args.voipTcpPort : undefined;
+            resourceInputs["voipUdpPort"] = args ? args.voipUdpPort : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerHotspot20H2QpConnCapability.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerHotspot20H2QpConnCapability.__pulumiType, name, resourceInputs, opts);
     }
 }
 

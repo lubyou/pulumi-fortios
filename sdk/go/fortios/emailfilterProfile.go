@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure Email Filter profiles.
+// Configure Email Filter profiles. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -85,6 +85,7 @@ func NewEmailfilterProfile(ctx *pulumi.Context,
 		args = &EmailfilterProfileArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource EmailfilterProfile
 	err := ctx.RegisterResource("fortios:index/emailfilterProfile:EmailfilterProfile", name, args, &resource, opts...)
 	if err != nil {
@@ -343,7 +344,7 @@ type EmailfilterProfileInput interface {
 }
 
 func (*EmailfilterProfile) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterProfile)(nil))
+	return reflect.TypeOf((**EmailfilterProfile)(nil)).Elem()
 }
 
 func (i *EmailfilterProfile) ToEmailfilterProfileOutput() EmailfilterProfileOutput {
@@ -352,35 +353,6 @@ func (i *EmailfilterProfile) ToEmailfilterProfileOutput() EmailfilterProfileOutp
 
 func (i *EmailfilterProfile) ToEmailfilterProfileOutputWithContext(ctx context.Context) EmailfilterProfileOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterProfileOutput)
-}
-
-func (i *EmailfilterProfile) ToEmailfilterProfilePtrOutput() EmailfilterProfilePtrOutput {
-	return i.ToEmailfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *EmailfilterProfile) ToEmailfilterProfilePtrOutputWithContext(ctx context.Context) EmailfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterProfilePtrOutput)
-}
-
-type EmailfilterProfilePtrInput interface {
-	pulumi.Input
-
-	ToEmailfilterProfilePtrOutput() EmailfilterProfilePtrOutput
-	ToEmailfilterProfilePtrOutputWithContext(ctx context.Context) EmailfilterProfilePtrOutput
-}
-
-type emailfilterProfilePtrType EmailfilterProfileArgs
-
-func (*emailfilterProfilePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterProfile)(nil))
-}
-
-func (i *emailfilterProfilePtrType) ToEmailfilterProfilePtrOutput() EmailfilterProfilePtrOutput {
-	return i.ToEmailfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (i *emailfilterProfilePtrType) ToEmailfilterProfilePtrOutputWithContext(ctx context.Context) EmailfilterProfilePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterProfilePtrOutput)
 }
 
 // EmailfilterProfileArrayInput is an input type that accepts EmailfilterProfileArray and EmailfilterProfileArrayOutput values.
@@ -397,7 +369,7 @@ type EmailfilterProfileArrayInput interface {
 type EmailfilterProfileArray []EmailfilterProfileInput
 
 func (EmailfilterProfileArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*EmailfilterProfile)(nil))
+	return reflect.TypeOf((*[]*EmailfilterProfile)(nil)).Elem()
 }
 
 func (i EmailfilterProfileArray) ToEmailfilterProfileArrayOutput() EmailfilterProfileArrayOutput {
@@ -422,7 +394,7 @@ type EmailfilterProfileMapInput interface {
 type EmailfilterProfileMap map[string]EmailfilterProfileInput
 
 func (EmailfilterProfileMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*EmailfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterProfile)(nil)).Elem()
 }
 
 func (i EmailfilterProfileMap) ToEmailfilterProfileMapOutput() EmailfilterProfileMapOutput {
@@ -433,12 +405,10 @@ func (i EmailfilterProfileMap) ToEmailfilterProfileMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(EmailfilterProfileMapOutput)
 }
 
-type EmailfilterProfileOutput struct {
-	*pulumi.OutputState
-}
+type EmailfilterProfileOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterProfileOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*EmailfilterProfile)(nil))
+	return reflect.TypeOf((**EmailfilterProfile)(nil)).Elem()
 }
 
 func (o EmailfilterProfileOutput) ToEmailfilterProfileOutput() EmailfilterProfileOutput {
@@ -449,36 +419,10 @@ func (o EmailfilterProfileOutput) ToEmailfilterProfileOutputWithContext(ctx cont
 	return o
 }
 
-func (o EmailfilterProfileOutput) ToEmailfilterProfilePtrOutput() EmailfilterProfilePtrOutput {
-	return o.ToEmailfilterProfilePtrOutputWithContext(context.Background())
-}
-
-func (o EmailfilterProfileOutput) ToEmailfilterProfilePtrOutputWithContext(ctx context.Context) EmailfilterProfilePtrOutput {
-	return o.ApplyT(func(v EmailfilterProfile) *EmailfilterProfile {
-		return &v
-	}).(EmailfilterProfilePtrOutput)
-}
-
-type EmailfilterProfilePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (EmailfilterProfilePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**EmailfilterProfile)(nil))
-}
-
-func (o EmailfilterProfilePtrOutput) ToEmailfilterProfilePtrOutput() EmailfilterProfilePtrOutput {
-	return o
-}
-
-func (o EmailfilterProfilePtrOutput) ToEmailfilterProfilePtrOutputWithContext(ctx context.Context) EmailfilterProfilePtrOutput {
-	return o
-}
-
 type EmailfilterProfileArrayOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterProfileArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]EmailfilterProfile)(nil))
+	return reflect.TypeOf((*[]*EmailfilterProfile)(nil)).Elem()
 }
 
 func (o EmailfilterProfileArrayOutput) ToEmailfilterProfileArrayOutput() EmailfilterProfileArrayOutput {
@@ -490,15 +434,15 @@ func (o EmailfilterProfileArrayOutput) ToEmailfilterProfileArrayOutputWithContex
 }
 
 func (o EmailfilterProfileArrayOutput) Index(i pulumi.IntInput) EmailfilterProfileOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EmailfilterProfile {
-		return vs[0].([]EmailfilterProfile)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *EmailfilterProfile {
+		return vs[0].([]*EmailfilterProfile)[vs[1].(int)]
 	}).(EmailfilterProfileOutput)
 }
 
 type EmailfilterProfileMapOutput struct{ *pulumi.OutputState }
 
 func (EmailfilterProfileMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]EmailfilterProfile)(nil))
+	return reflect.TypeOf((*map[string]*EmailfilterProfile)(nil)).Elem()
 }
 
 func (o EmailfilterProfileMapOutput) ToEmailfilterProfileMapOutput() EmailfilterProfileMapOutput {
@@ -510,14 +454,16 @@ func (o EmailfilterProfileMapOutput) ToEmailfilterProfileMapOutputWithContext(ct
 }
 
 func (o EmailfilterProfileMapOutput) MapIndex(k pulumi.StringInput) EmailfilterProfileOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) EmailfilterProfile {
-		return vs[0].(map[string]EmailfilterProfile)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *EmailfilterProfile {
+		return vs[0].(map[string]*EmailfilterProfile)[vs[1].(string)]
 	}).(EmailfilterProfileOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterProfileInput)(nil)).Elem(), &EmailfilterProfile{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterProfileArrayInput)(nil)).Elem(), EmailfilterProfileArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EmailfilterProfileMapInput)(nil)).Elem(), EmailfilterProfileMap{})
 	pulumi.RegisterOutputType(EmailfilterProfileOutput{})
-	pulumi.RegisterOutputType(EmailfilterProfilePtrOutput{})
 	pulumi.RegisterOutputType(EmailfilterProfileArrayOutput{})
 	pulumi.RegisterOutputType(EmailfilterProfileMapOutput{})
 }

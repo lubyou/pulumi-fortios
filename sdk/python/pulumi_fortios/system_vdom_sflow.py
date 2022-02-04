@@ -15,6 +15,8 @@ class SystemVdomSflowArgs:
     def __init__(__self__, *,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  vdom_sflow: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -22,6 +24,8 @@ class SystemVdomSflowArgs:
         The set of arguments for constructing a SystemVdomSflow resource.
         :param pulumi.Input[str] collector_ip: IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
         :param pulumi.Input[int] collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for sFlow agent.
         :param pulumi.Input[str] vdom_sflow: Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -30,6 +34,10 @@ class SystemVdomSflowArgs:
             pulumi.set(__self__, "collector_ip", collector_ip)
         if collector_port is not None:
             pulumi.set(__self__, "collector_port", collector_port)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if vdom_sflow is not None:
@@ -60,6 +68,30 @@ class SystemVdomSflowArgs:
     @collector_port.setter
     def collector_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "collector_port", value)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @interface_select_method.setter
+    def interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -103,6 +135,8 @@ class _SystemVdomSflowState:
     def __init__(__self__, *,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  vdom_sflow: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
@@ -110,6 +144,8 @@ class _SystemVdomSflowState:
         Input properties used for looking up and filtering SystemVdomSflow resources.
         :param pulumi.Input[str] collector_ip: IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
         :param pulumi.Input[int] collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for sFlow agent.
         :param pulumi.Input[str] vdom_sflow: Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -118,6 +154,10 @@ class _SystemVdomSflowState:
             pulumi.set(__self__, "collector_ip", collector_ip)
         if collector_port is not None:
             pulumi.set(__self__, "collector_port", collector_port)
+        if interface is not None:
+            pulumi.set(__self__, "interface", interface)
+        if interface_select_method is not None:
+            pulumi.set(__self__, "interface_select_method", interface_select_method)
         if source_ip is not None:
             pulumi.set(__self__, "source_ip", source_ip)
         if vdom_sflow is not None:
@@ -148,6 +188,30 @@ class _SystemVdomSflowState:
     @collector_port.setter
     def collector_port(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "collector_port", value)
+
+    @property
+    @pulumi.getter
+    def interface(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @interface.setter
+    def interface(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface", value)
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> Optional[pulumi.Input[str]]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
+
+    @interface_select_method.setter
+    def interface_select_method(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "interface_select_method", value)
 
     @property
     @pulumi.getter(name="sourceIp")
@@ -193,6 +257,8 @@ class SystemVdomSflow(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  vdom_sflow: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -227,6 +293,8 @@ class SystemVdomSflow(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] collector_ip: IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
         :param pulumi.Input[int] collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for sFlow agent.
         :param pulumi.Input[str] vdom_sflow: Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -280,6 +348,8 @@ class SystemVdomSflow(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  collector_ip: Optional[pulumi.Input[str]] = None,
                  collector_port: Optional[pulumi.Input[int]] = None,
+                 interface: Optional[pulumi.Input[str]] = None,
+                 interface_select_method: Optional[pulumi.Input[str]] = None,
                  source_ip: Optional[pulumi.Input[str]] = None,
                  vdom_sflow: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
@@ -290,6 +360,8 @@ class SystemVdomSflow(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -297,6 +369,8 @@ class SystemVdomSflow(pulumi.CustomResource):
 
             __props__.__dict__["collector_ip"] = collector_ip
             __props__.__dict__["collector_port"] = collector_port
+            __props__.__dict__["interface"] = interface
+            __props__.__dict__["interface_select_method"] = interface_select_method
             __props__.__dict__["source_ip"] = source_ip
             __props__.__dict__["vdom_sflow"] = vdom_sflow
             __props__.__dict__["vdomparam"] = vdomparam
@@ -312,6 +386,8 @@ class SystemVdomSflow(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             collector_ip: Optional[pulumi.Input[str]] = None,
             collector_port: Optional[pulumi.Input[int]] = None,
+            interface: Optional[pulumi.Input[str]] = None,
+            interface_select_method: Optional[pulumi.Input[str]] = None,
             source_ip: Optional[pulumi.Input[str]] = None,
             vdom_sflow: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'SystemVdomSflow':
@@ -324,6 +400,8 @@ class SystemVdomSflow(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] collector_ip: IP address of the sFlow collector that sFlow agents added to interfaces in this VDOM send sFlow datagrams to (default = 0.0.0.0).
         :param pulumi.Input[int] collector_port: UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
+        :param pulumi.Input[str] interface: Specify outgoing interface to reach server.
+        :param pulumi.Input[str] interface_select_method: Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
         :param pulumi.Input[str] source_ip: Source IP address for sFlow agent.
         :param pulumi.Input[str] vdom_sflow: Enable/disable the sFlow configuration for the current VDOM. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -334,6 +412,8 @@ class SystemVdomSflow(pulumi.CustomResource):
 
         __props__.__dict__["collector_ip"] = collector_ip
         __props__.__dict__["collector_port"] = collector_port
+        __props__.__dict__["interface"] = interface
+        __props__.__dict__["interface_select_method"] = interface_select_method
         __props__.__dict__["source_ip"] = source_ip
         __props__.__dict__["vdom_sflow"] = vdom_sflow
         __props__.__dict__["vdomparam"] = vdomparam
@@ -354,6 +434,22 @@ class SystemVdomSflow(pulumi.CustomResource):
         UDP port number used for sending sFlow datagrams (configure only if required by your sFlow collector or your network configuration) (0 - 65535, default = 6343).
         """
         return pulumi.get(self, "collector_port")
+
+    @property
+    @pulumi.getter
+    def interface(self) -> pulumi.Output[str]:
+        """
+        Specify outgoing interface to reach server.
+        """
+        return pulumi.get(self, "interface")
+
+    @property
+    @pulumi.getter(name="interfaceSelectMethod")
+    def interface_select_method(self) -> pulumi.Output[str]:
+        """
+        Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+        """
+        return pulumi.get(self, "interface_select_method")
 
     @property
     @pulumi.getter(name="sourceIp")

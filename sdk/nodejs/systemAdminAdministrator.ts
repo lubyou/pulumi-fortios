@@ -93,25 +93,25 @@ export class SystemAdminAdministrator extends pulumi.CustomResource {
      */
     constructor(name: string, args: SystemAdminAdministratorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemAdminAdministratorArgs | SystemAdminAdministratorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemAdminAdministratorState | undefined;
-            inputs["accprofile"] = state ? state.accprofile : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["trusthost1"] = state ? state.trusthost1 : undefined;
-            inputs["trusthost10"] = state ? state.trusthost10 : undefined;
-            inputs["trusthost2"] = state ? state.trusthost2 : undefined;
-            inputs["trusthost3"] = state ? state.trusthost3 : undefined;
-            inputs["trusthost4"] = state ? state.trusthost4 : undefined;
-            inputs["trusthost5"] = state ? state.trusthost5 : undefined;
-            inputs["trusthost6"] = state ? state.trusthost6 : undefined;
-            inputs["trusthost7"] = state ? state.trusthost7 : undefined;
-            inputs["trusthost8"] = state ? state.trusthost8 : undefined;
-            inputs["trusthost9"] = state ? state.trusthost9 : undefined;
-            inputs["vdoms"] = state ? state.vdoms : undefined;
+            resourceInputs["accprofile"] = state ? state.accprofile : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["trusthost1"] = state ? state.trusthost1 : undefined;
+            resourceInputs["trusthost10"] = state ? state.trusthost10 : undefined;
+            resourceInputs["trusthost2"] = state ? state.trusthost2 : undefined;
+            resourceInputs["trusthost3"] = state ? state.trusthost3 : undefined;
+            resourceInputs["trusthost4"] = state ? state.trusthost4 : undefined;
+            resourceInputs["trusthost5"] = state ? state.trusthost5 : undefined;
+            resourceInputs["trusthost6"] = state ? state.trusthost6 : undefined;
+            resourceInputs["trusthost7"] = state ? state.trusthost7 : undefined;
+            resourceInputs["trusthost8"] = state ? state.trusthost8 : undefined;
+            resourceInputs["trusthost9"] = state ? state.trusthost9 : undefined;
+            resourceInputs["vdoms"] = state ? state.vdoms : undefined;
         } else {
             const args = argsOrState as SystemAdminAdministratorArgs | undefined;
             if ((!args || args.accprofile === undefined) && !opts.urn) {
@@ -120,26 +120,24 @@ export class SystemAdminAdministrator extends pulumi.CustomResource {
             if ((!args || args.password === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'password'");
             }
-            inputs["accprofile"] = args ? args.accprofile : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["trusthost1"] = args ? args.trusthost1 : undefined;
-            inputs["trusthost10"] = args ? args.trusthost10 : undefined;
-            inputs["trusthost2"] = args ? args.trusthost2 : undefined;
-            inputs["trusthost3"] = args ? args.trusthost3 : undefined;
-            inputs["trusthost4"] = args ? args.trusthost4 : undefined;
-            inputs["trusthost5"] = args ? args.trusthost5 : undefined;
-            inputs["trusthost6"] = args ? args.trusthost6 : undefined;
-            inputs["trusthost7"] = args ? args.trusthost7 : undefined;
-            inputs["trusthost8"] = args ? args.trusthost8 : undefined;
-            inputs["trusthost9"] = args ? args.trusthost9 : undefined;
-            inputs["vdoms"] = args ? args.vdoms : undefined;
+            resourceInputs["accprofile"] = args ? args.accprofile : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["trusthost1"] = args ? args.trusthost1 : undefined;
+            resourceInputs["trusthost10"] = args ? args.trusthost10 : undefined;
+            resourceInputs["trusthost2"] = args ? args.trusthost2 : undefined;
+            resourceInputs["trusthost3"] = args ? args.trusthost3 : undefined;
+            resourceInputs["trusthost4"] = args ? args.trusthost4 : undefined;
+            resourceInputs["trusthost5"] = args ? args.trusthost5 : undefined;
+            resourceInputs["trusthost6"] = args ? args.trusthost6 : undefined;
+            resourceInputs["trusthost7"] = args ? args.trusthost7 : undefined;
+            resourceInputs["trusthost8"] = args ? args.trusthost8 : undefined;
+            resourceInputs["trusthost9"] = args ? args.trusthost9 : undefined;
+            resourceInputs["vdoms"] = args ? args.vdoms : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemAdminAdministrator.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemAdminAdministrator.__pulumiType, name, resourceInputs, opts);
     }
 }
 

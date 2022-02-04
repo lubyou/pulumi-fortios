@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios system automationdestination
 func LookupSystemAutomationDestination(ctx *pulumi.Context, args *LookupSystemAutomationDestinationArgs, opts ...pulumi.InvokeOption) (*LookupSystemAutomationDestinationResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemAutomationDestinationResult
 	err := ctx.Invoke("fortios:index/getSystemAutomationDestination:GetSystemAutomationDestination", args, &rv, opts...)
 	if err != nil {
@@ -38,4 +42,75 @@ type LookupSystemAutomationDestinationResult struct {
 	// Destination type.
 	Type      string  `pulumi:"type"`
 	Vdomparam *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemAutomationDestinationOutput(ctx *pulumi.Context, args LookupSystemAutomationDestinationOutputArgs, opts ...pulumi.InvokeOption) LookupSystemAutomationDestinationResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemAutomationDestinationResult, error) {
+			args := v.(LookupSystemAutomationDestinationArgs)
+			r, err := LookupSystemAutomationDestination(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemAutomationDestinationResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemAutomationDestination.
+type LookupSystemAutomationDestinationOutputArgs struct {
+	// Specify the name of the desired system automationdestination.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemAutomationDestinationOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutomationDestinationArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemAutomationDestination.
+type LookupSystemAutomationDestinationResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemAutomationDestinationResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemAutomationDestinationResult)(nil)).Elem()
+}
+
+func (o LookupSystemAutomationDestinationResultOutput) ToLookupSystemAutomationDestinationResultOutput() LookupSystemAutomationDestinationResultOutput {
+	return o
+}
+
+func (o LookupSystemAutomationDestinationResultOutput) ToLookupSystemAutomationDestinationResultOutputWithContext(ctx context.Context) LookupSystemAutomationDestinationResultOutput {
+	return o
+}
+
+// Destinations. The structure of `destination` block is documented below.
+func (o LookupSystemAutomationDestinationResultOutput) Destinations() GetSystemAutomationDestinationDestinationArrayOutput {
+	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) []GetSystemAutomationDestinationDestination {
+		return v.Destinations
+	}).(GetSystemAutomationDestinationDestinationArrayOutput)
+}
+
+// Cluster group ID set for this destination (default = 0).
+func (o LookupSystemAutomationDestinationResultOutput) HaGroupId() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) int { return v.HaGroupId }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemAutomationDestinationResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Destination.
+func (o LookupSystemAutomationDestinationResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Destination type.
+func (o LookupSystemAutomationDestinationResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemAutomationDestinationResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemAutomationDestinationResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemAutomationDestinationResultOutput{})
 }

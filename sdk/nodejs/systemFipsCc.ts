@@ -89,27 +89,25 @@ export class SystemFipsCc extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemFipsCcArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemFipsCcArgs | SystemFipsCcState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemFipsCcState | undefined;
-            inputs["entropyToken"] = state ? state.entropyToken : undefined;
-            inputs["keyGenerationSelfTest"] = state ? state.keyGenerationSelfTest : undefined;
-            inputs["selfTestPeriod"] = state ? state.selfTestPeriod : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["entropyToken"] = state ? state.entropyToken : undefined;
+            resourceInputs["keyGenerationSelfTest"] = state ? state.keyGenerationSelfTest : undefined;
+            resourceInputs["selfTestPeriod"] = state ? state.selfTestPeriod : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SystemFipsCcArgs | undefined;
-            inputs["entropyToken"] = args ? args.entropyToken : undefined;
-            inputs["keyGenerationSelfTest"] = args ? args.keyGenerationSelfTest : undefined;
-            inputs["selfTestPeriod"] = args ? args.selfTestPeriod : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["entropyToken"] = args ? args.entropyToken : undefined;
+            resourceInputs["keyGenerationSelfTest"] = args ? args.keyGenerationSelfTest : undefined;
+            resourceInputs["selfTestPeriod"] = args ? args.selfTestPeriod : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemFipsCc.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemFipsCc.__pulumiType, name, resourceInputs, opts);
     }
 }
 

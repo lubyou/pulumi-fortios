@@ -27,7 +27,7 @@ class WebfilterSearchEngineArgs:
         :param pulumi.Input[str] hostname: Hostname (regular expression).
         :param pulumi.Input[str] name: Search engine name.
         :param pulumi.Input[str] query: Code used to prefix a query (must end with an equals character).
-        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         :param pulumi.Input[str] safesearch_str: Safe search parameter used in the URL.
         :param pulumi.Input[str] url: URL (regular expression).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -101,7 +101,7 @@ class WebfilterSearchEngineArgs:
     @pulumi.getter
     def safesearch(self) -> Optional[pulumi.Input[str]]:
         """
-        Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         """
         return pulumi.get(self, "safesearch")
 
@@ -163,7 +163,7 @@ class _WebfilterSearchEngineState:
         :param pulumi.Input[str] hostname: Hostname (regular expression).
         :param pulumi.Input[str] name: Search engine name.
         :param pulumi.Input[str] query: Code used to prefix a query (must end with an equals character).
-        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         :param pulumi.Input[str] safesearch_str: Safe search parameter used in the URL.
         :param pulumi.Input[str] url: URL (regular expression).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -237,7 +237,7 @@ class _WebfilterSearchEngineState:
     @pulumi.getter
     def safesearch(self) -> Optional[pulumi.Input[str]]:
         """
-        Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         """
         return pulumi.get(self, "safesearch")
 
@@ -329,7 +329,7 @@ class WebfilterSearchEngine(pulumi.CustomResource):
         :param pulumi.Input[str] hostname: Hostname (regular expression).
         :param pulumi.Input[str] name: Search engine name.
         :param pulumi.Input[str] query: Code used to prefix a query (must end with an equals character).
-        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         :param pulumi.Input[str] safesearch_str: Safe search parameter used in the URL.
         :param pulumi.Input[str] url: URL (regular expression).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -397,6 +397,8 @@ class WebfilterSearchEngine(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -439,7 +441,7 @@ class WebfilterSearchEngine(pulumi.CustomResource):
         :param pulumi.Input[str] hostname: Hostname (regular expression).
         :param pulumi.Input[str] name: Search engine name.
         :param pulumi.Input[str] query: Code used to prefix a query (must end with an equals character).
-        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        :param pulumi.Input[str] safesearch: Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         :param pulumi.Input[str] safesearch_str: Safe search parameter used in the URL.
         :param pulumi.Input[str] url: URL (regular expression).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -494,7 +496,7 @@ class WebfilterSearchEngine(pulumi.CustomResource):
     @pulumi.getter
     def safesearch(self) -> pulumi.Output[str]:
         """
-        Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header. Valid values: `disable`, `url`, `header`.
+        Safe search method. You can disable safe search, add the safe search string to URLs, or insert a safe search header.
         """
         return pulumi.get(self, "safesearch")
 

@@ -49,6 +49,7 @@ func NewSystemVirtualWirePair(ctx *pulumi.Context,
 	if args.Members == nil {
 		return nil, errors.New("invalid value for required argument 'Members'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemVirtualWirePair
 	err := ctx.RegisterResource("fortios:index/systemVirtualWirePair:SystemVirtualWirePair", name, args, &resource, opts...)
 	if err != nil {
@@ -147,7 +148,7 @@ type SystemVirtualWirePairInput interface {
 }
 
 func (*SystemVirtualWirePair) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVirtualWirePair)(nil))
+	return reflect.TypeOf((**SystemVirtualWirePair)(nil)).Elem()
 }
 
 func (i *SystemVirtualWirePair) ToSystemVirtualWirePairOutput() SystemVirtualWirePairOutput {
@@ -156,35 +157,6 @@ func (i *SystemVirtualWirePair) ToSystemVirtualWirePairOutput() SystemVirtualWir
 
 func (i *SystemVirtualWirePair) ToSystemVirtualWirePairOutputWithContext(ctx context.Context) SystemVirtualWirePairOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairOutput)
-}
-
-func (i *SystemVirtualWirePair) ToSystemVirtualWirePairPtrOutput() SystemVirtualWirePairPtrOutput {
-	return i.ToSystemVirtualWirePairPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemVirtualWirePair) ToSystemVirtualWirePairPtrOutputWithContext(ctx context.Context) SystemVirtualWirePairPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairPtrOutput)
-}
-
-type SystemVirtualWirePairPtrInput interface {
-	pulumi.Input
-
-	ToSystemVirtualWirePairPtrOutput() SystemVirtualWirePairPtrOutput
-	ToSystemVirtualWirePairPtrOutputWithContext(ctx context.Context) SystemVirtualWirePairPtrOutput
-}
-
-type systemVirtualWirePairPtrType SystemVirtualWirePairArgs
-
-func (*systemVirtualWirePairPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVirtualWirePair)(nil))
-}
-
-func (i *systemVirtualWirePairPtrType) ToSystemVirtualWirePairPtrOutput() SystemVirtualWirePairPtrOutput {
-	return i.ToSystemVirtualWirePairPtrOutputWithContext(context.Background())
-}
-
-func (i *systemVirtualWirePairPtrType) ToSystemVirtualWirePairPtrOutputWithContext(ctx context.Context) SystemVirtualWirePairPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairPtrOutput)
 }
 
 // SystemVirtualWirePairArrayInput is an input type that accepts SystemVirtualWirePairArray and SystemVirtualWirePairArrayOutput values.
@@ -201,7 +173,7 @@ type SystemVirtualWirePairArrayInput interface {
 type SystemVirtualWirePairArray []SystemVirtualWirePairInput
 
 func (SystemVirtualWirePairArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemVirtualWirePair)(nil))
+	return reflect.TypeOf((*[]*SystemVirtualWirePair)(nil)).Elem()
 }
 
 func (i SystemVirtualWirePairArray) ToSystemVirtualWirePairArrayOutput() SystemVirtualWirePairArrayOutput {
@@ -226,7 +198,7 @@ type SystemVirtualWirePairMapInput interface {
 type SystemVirtualWirePairMap map[string]SystemVirtualWirePairInput
 
 func (SystemVirtualWirePairMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemVirtualWirePair)(nil))
+	return reflect.TypeOf((*map[string]*SystemVirtualWirePair)(nil)).Elem()
 }
 
 func (i SystemVirtualWirePairMap) ToSystemVirtualWirePairMapOutput() SystemVirtualWirePairMapOutput {
@@ -237,12 +209,10 @@ func (i SystemVirtualWirePairMap) ToSystemVirtualWirePairMapOutputWithContext(ct
 	return pulumi.ToOutputWithContext(ctx, i).(SystemVirtualWirePairMapOutput)
 }
 
-type SystemVirtualWirePairOutput struct {
-	*pulumi.OutputState
-}
+type SystemVirtualWirePairOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWirePairOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemVirtualWirePair)(nil))
+	return reflect.TypeOf((**SystemVirtualWirePair)(nil)).Elem()
 }
 
 func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutput() SystemVirtualWirePairOutput {
@@ -253,36 +223,10 @@ func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairOutputWithContext(ct
 	return o
 }
 
-func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairPtrOutput() SystemVirtualWirePairPtrOutput {
-	return o.ToSystemVirtualWirePairPtrOutputWithContext(context.Background())
-}
-
-func (o SystemVirtualWirePairOutput) ToSystemVirtualWirePairPtrOutputWithContext(ctx context.Context) SystemVirtualWirePairPtrOutput {
-	return o.ApplyT(func(v SystemVirtualWirePair) *SystemVirtualWirePair {
-		return &v
-	}).(SystemVirtualWirePairPtrOutput)
-}
-
-type SystemVirtualWirePairPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemVirtualWirePairPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemVirtualWirePair)(nil))
-}
-
-func (o SystemVirtualWirePairPtrOutput) ToSystemVirtualWirePairPtrOutput() SystemVirtualWirePairPtrOutput {
-	return o
-}
-
-func (o SystemVirtualWirePairPtrOutput) ToSystemVirtualWirePairPtrOutputWithContext(ctx context.Context) SystemVirtualWirePairPtrOutput {
-	return o
-}
-
 type SystemVirtualWirePairArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWirePairArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemVirtualWirePair)(nil))
+	return reflect.TypeOf((*[]*SystemVirtualWirePair)(nil)).Elem()
 }
 
 func (o SystemVirtualWirePairArrayOutput) ToSystemVirtualWirePairArrayOutput() SystemVirtualWirePairArrayOutput {
@@ -294,15 +238,15 @@ func (o SystemVirtualWirePairArrayOutput) ToSystemVirtualWirePairArrayOutputWith
 }
 
 func (o SystemVirtualWirePairArrayOutput) Index(i pulumi.IntInput) SystemVirtualWirePairOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemVirtualWirePair {
-		return vs[0].([]SystemVirtualWirePair)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemVirtualWirePair {
+		return vs[0].([]*SystemVirtualWirePair)[vs[1].(int)]
 	}).(SystemVirtualWirePairOutput)
 }
 
 type SystemVirtualWirePairMapOutput struct{ *pulumi.OutputState }
 
 func (SystemVirtualWirePairMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemVirtualWirePair)(nil))
+	return reflect.TypeOf((*map[string]*SystemVirtualWirePair)(nil)).Elem()
 }
 
 func (o SystemVirtualWirePairMapOutput) ToSystemVirtualWirePairMapOutput() SystemVirtualWirePairMapOutput {
@@ -314,14 +258,16 @@ func (o SystemVirtualWirePairMapOutput) ToSystemVirtualWirePairMapOutputWithCont
 }
 
 func (o SystemVirtualWirePairMapOutput) MapIndex(k pulumi.StringInput) SystemVirtualWirePairOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemVirtualWirePair {
-		return vs[0].(map[string]SystemVirtualWirePair)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemVirtualWirePair {
+		return vs[0].(map[string]*SystemVirtualWirePair)[vs[1].(string)]
 	}).(SystemVirtualWirePairOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWirePairInput)(nil)).Elem(), &SystemVirtualWirePair{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWirePairArrayInput)(nil)).Elem(), SystemVirtualWirePairArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemVirtualWirePairMapInput)(nil)).Elem(), SystemVirtualWirePairMap{})
 	pulumi.RegisterOutputType(SystemVirtualWirePairOutput{})
-	pulumi.RegisterOutputType(SystemVirtualWirePairPtrOutput{})
 	pulumi.RegisterOutputType(SystemVirtualWirePairArrayOutput{})
 	pulumi.RegisterOutputType(SystemVirtualWirePairMapOutput{})
 }

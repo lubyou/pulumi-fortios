@@ -13,9 +13,7 @@ export function getSystemReplacemsgGroup(args: GetSystemReplacemsgGroupArgs, opt
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getSystemReplacemsgGroup:GetSystemReplacemsgGroup", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -133,4 +131,22 @@ export interface GetSystemReplacemsgGroupResult {
      * Replacement message table entries. The structure of `webproxy` block is documented below.
      */
     readonly webproxies: outputs.GetSystemReplacemsgGroupWebproxy[];
+}
+
+export function getSystemReplacemsgGroupOutput(args: GetSystemReplacemsgGroupOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSystemReplacemsgGroupResult> {
+    return pulumi.output(args).apply(a => getSystemReplacemsgGroup(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetSystemReplacemsgGroup.
+ */
+export interface GetSystemReplacemsgGroupOutputArgs {
+    /**
+     * Specify the name of the desired system replacemsggroup.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

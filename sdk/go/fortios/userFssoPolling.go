@@ -73,6 +73,7 @@ func NewUserFssoPolling(ctx *pulumi.Context,
 	if args.User == nil {
 		return nil, errors.New("invalid value for required argument 'User'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserFssoPolling
 	err := ctx.RegisterResource("fortios:index/userFssoPolling:UserFssoPolling", name, args, &resource, opts...)
 	if err != nil {
@@ -243,7 +244,7 @@ type UserFssoPollingInput interface {
 }
 
 func (*UserFssoPolling) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFssoPolling)(nil))
+	return reflect.TypeOf((**UserFssoPolling)(nil)).Elem()
 }
 
 func (i *UserFssoPolling) ToUserFssoPollingOutput() UserFssoPollingOutput {
@@ -252,35 +253,6 @@ func (i *UserFssoPolling) ToUserFssoPollingOutput() UserFssoPollingOutput {
 
 func (i *UserFssoPolling) ToUserFssoPollingOutputWithContext(ctx context.Context) UserFssoPollingOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingOutput)
-}
-
-func (i *UserFssoPolling) ToUserFssoPollingPtrOutput() UserFssoPollingPtrOutput {
-	return i.ToUserFssoPollingPtrOutputWithContext(context.Background())
-}
-
-func (i *UserFssoPolling) ToUserFssoPollingPtrOutputWithContext(ctx context.Context) UserFssoPollingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingPtrOutput)
-}
-
-type UserFssoPollingPtrInput interface {
-	pulumi.Input
-
-	ToUserFssoPollingPtrOutput() UserFssoPollingPtrOutput
-	ToUserFssoPollingPtrOutputWithContext(ctx context.Context) UserFssoPollingPtrOutput
-}
-
-type userFssoPollingPtrType UserFssoPollingArgs
-
-func (*userFssoPollingPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFssoPolling)(nil))
-}
-
-func (i *userFssoPollingPtrType) ToUserFssoPollingPtrOutput() UserFssoPollingPtrOutput {
-	return i.ToUserFssoPollingPtrOutputWithContext(context.Background())
-}
-
-func (i *userFssoPollingPtrType) ToUserFssoPollingPtrOutputWithContext(ctx context.Context) UserFssoPollingPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingPtrOutput)
 }
 
 // UserFssoPollingArrayInput is an input type that accepts UserFssoPollingArray and UserFssoPollingArrayOutput values.
@@ -297,7 +269,7 @@ type UserFssoPollingArrayInput interface {
 type UserFssoPollingArray []UserFssoPollingInput
 
 func (UserFssoPollingArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserFssoPolling)(nil))
+	return reflect.TypeOf((*[]*UserFssoPolling)(nil)).Elem()
 }
 
 func (i UserFssoPollingArray) ToUserFssoPollingArrayOutput() UserFssoPollingArrayOutput {
@@ -322,7 +294,7 @@ type UserFssoPollingMapInput interface {
 type UserFssoPollingMap map[string]UserFssoPollingInput
 
 func (UserFssoPollingMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserFssoPolling)(nil))
+	return reflect.TypeOf((*map[string]*UserFssoPolling)(nil)).Elem()
 }
 
 func (i UserFssoPollingMap) ToUserFssoPollingMapOutput() UserFssoPollingMapOutput {
@@ -333,12 +305,10 @@ func (i UserFssoPollingMap) ToUserFssoPollingMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(UserFssoPollingMapOutput)
 }
 
-type UserFssoPollingOutput struct {
-	*pulumi.OutputState
-}
+type UserFssoPollingOutput struct{ *pulumi.OutputState }
 
 func (UserFssoPollingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserFssoPolling)(nil))
+	return reflect.TypeOf((**UserFssoPolling)(nil)).Elem()
 }
 
 func (o UserFssoPollingOutput) ToUserFssoPollingOutput() UserFssoPollingOutput {
@@ -349,36 +319,10 @@ func (o UserFssoPollingOutput) ToUserFssoPollingOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o UserFssoPollingOutput) ToUserFssoPollingPtrOutput() UserFssoPollingPtrOutput {
-	return o.ToUserFssoPollingPtrOutputWithContext(context.Background())
-}
-
-func (o UserFssoPollingOutput) ToUserFssoPollingPtrOutputWithContext(ctx context.Context) UserFssoPollingPtrOutput {
-	return o.ApplyT(func(v UserFssoPolling) *UserFssoPolling {
-		return &v
-	}).(UserFssoPollingPtrOutput)
-}
-
-type UserFssoPollingPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserFssoPollingPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserFssoPolling)(nil))
-}
-
-func (o UserFssoPollingPtrOutput) ToUserFssoPollingPtrOutput() UserFssoPollingPtrOutput {
-	return o
-}
-
-func (o UserFssoPollingPtrOutput) ToUserFssoPollingPtrOutputWithContext(ctx context.Context) UserFssoPollingPtrOutput {
-	return o
-}
-
 type UserFssoPollingArrayOutput struct{ *pulumi.OutputState }
 
 func (UserFssoPollingArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserFssoPolling)(nil))
+	return reflect.TypeOf((*[]*UserFssoPolling)(nil)).Elem()
 }
 
 func (o UserFssoPollingArrayOutput) ToUserFssoPollingArrayOutput() UserFssoPollingArrayOutput {
@@ -390,15 +334,15 @@ func (o UserFssoPollingArrayOutput) ToUserFssoPollingArrayOutputWithContext(ctx 
 }
 
 func (o UserFssoPollingArrayOutput) Index(i pulumi.IntInput) UserFssoPollingOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserFssoPolling {
-		return vs[0].([]UserFssoPolling)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserFssoPolling {
+		return vs[0].([]*UserFssoPolling)[vs[1].(int)]
 	}).(UserFssoPollingOutput)
 }
 
 type UserFssoPollingMapOutput struct{ *pulumi.OutputState }
 
 func (UserFssoPollingMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserFssoPolling)(nil))
+	return reflect.TypeOf((*map[string]*UserFssoPolling)(nil)).Elem()
 }
 
 func (o UserFssoPollingMapOutput) ToUserFssoPollingMapOutput() UserFssoPollingMapOutput {
@@ -410,14 +354,16 @@ func (o UserFssoPollingMapOutput) ToUserFssoPollingMapOutputWithContext(ctx cont
 }
 
 func (o UserFssoPollingMapOutput) MapIndex(k pulumi.StringInput) UserFssoPollingOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserFssoPolling {
-		return vs[0].(map[string]UserFssoPolling)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserFssoPolling {
+		return vs[0].(map[string]*UserFssoPolling)[vs[1].(string)]
 	}).(UserFssoPollingOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoPollingInput)(nil)).Elem(), &UserFssoPolling{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoPollingArrayInput)(nil)).Elem(), UserFssoPollingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserFssoPollingMapInput)(nil)).Elem(), UserFssoPollingMap{})
 	pulumi.RegisterOutputType(UserFssoPollingOutput{})
-	pulumi.RegisterOutputType(UserFssoPollingPtrOutput{})
 	pulumi.RegisterOutputType(UserFssoPollingArrayOutput{})
 	pulumi.RegisterOutputType(UserFssoPollingMapOutput{})
 }

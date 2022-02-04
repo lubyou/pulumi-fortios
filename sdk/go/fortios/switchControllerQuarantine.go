@@ -41,6 +41,7 @@ func NewSwitchControllerQuarantine(ctx *pulumi.Context,
 		args = &SwitchControllerQuarantineArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SwitchControllerQuarantine
 	err := ctx.RegisterResource("fortios:index/switchControllerQuarantine:SwitchControllerQuarantine", name, args, &resource, opts...)
 	if err != nil {
@@ -123,7 +124,7 @@ type SwitchControllerQuarantineInput interface {
 }
 
 func (*SwitchControllerQuarantine) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQuarantine)(nil))
+	return reflect.TypeOf((**SwitchControllerQuarantine)(nil)).Elem()
 }
 
 func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantineOutput() SwitchControllerQuarantineOutput {
@@ -132,35 +133,6 @@ func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantineOutput() Switch
 
 func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantineOutputWithContext(ctx context.Context) SwitchControllerQuarantineOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantineOutput)
-}
-
-func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantinePtrOutput() SwitchControllerQuarantinePtrOutput {
-	return i.ToSwitchControllerQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (i *SwitchControllerQuarantine) ToSwitchControllerQuarantinePtrOutputWithContext(ctx context.Context) SwitchControllerQuarantinePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantinePtrOutput)
-}
-
-type SwitchControllerQuarantinePtrInput interface {
-	pulumi.Input
-
-	ToSwitchControllerQuarantinePtrOutput() SwitchControllerQuarantinePtrOutput
-	ToSwitchControllerQuarantinePtrOutputWithContext(ctx context.Context) SwitchControllerQuarantinePtrOutput
-}
-
-type switchControllerQuarantinePtrType SwitchControllerQuarantineArgs
-
-func (*switchControllerQuarantinePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQuarantine)(nil))
-}
-
-func (i *switchControllerQuarantinePtrType) ToSwitchControllerQuarantinePtrOutput() SwitchControllerQuarantinePtrOutput {
-	return i.ToSwitchControllerQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (i *switchControllerQuarantinePtrType) ToSwitchControllerQuarantinePtrOutputWithContext(ctx context.Context) SwitchControllerQuarantinePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantinePtrOutput)
 }
 
 // SwitchControllerQuarantineArrayInput is an input type that accepts SwitchControllerQuarantineArray and SwitchControllerQuarantineArrayOutput values.
@@ -177,7 +149,7 @@ type SwitchControllerQuarantineArrayInput interface {
 type SwitchControllerQuarantineArray []SwitchControllerQuarantineInput
 
 func (SwitchControllerQuarantineArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SwitchControllerQuarantine)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQuarantine)(nil)).Elem()
 }
 
 func (i SwitchControllerQuarantineArray) ToSwitchControllerQuarantineArrayOutput() SwitchControllerQuarantineArrayOutput {
@@ -202,7 +174,7 @@ type SwitchControllerQuarantineMapInput interface {
 type SwitchControllerQuarantineMap map[string]SwitchControllerQuarantineInput
 
 func (SwitchControllerQuarantineMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SwitchControllerQuarantine)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQuarantine)(nil)).Elem()
 }
 
 func (i SwitchControllerQuarantineMap) ToSwitchControllerQuarantineMapOutput() SwitchControllerQuarantineMapOutput {
@@ -213,12 +185,10 @@ func (i SwitchControllerQuarantineMap) ToSwitchControllerQuarantineMapOutputWith
 	return pulumi.ToOutputWithContext(ctx, i).(SwitchControllerQuarantineMapOutput)
 }
 
-type SwitchControllerQuarantineOutput struct {
-	*pulumi.OutputState
-}
+type SwitchControllerQuarantineOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQuarantineOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SwitchControllerQuarantine)(nil))
+	return reflect.TypeOf((**SwitchControllerQuarantine)(nil)).Elem()
 }
 
 func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutput() SwitchControllerQuarantineOutput {
@@ -229,36 +199,10 @@ func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantineOutputWith
 	return o
 }
 
-func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantinePtrOutput() SwitchControllerQuarantinePtrOutput {
-	return o.ToSwitchControllerQuarantinePtrOutputWithContext(context.Background())
-}
-
-func (o SwitchControllerQuarantineOutput) ToSwitchControllerQuarantinePtrOutputWithContext(ctx context.Context) SwitchControllerQuarantinePtrOutput {
-	return o.ApplyT(func(v SwitchControllerQuarantine) *SwitchControllerQuarantine {
-		return &v
-	}).(SwitchControllerQuarantinePtrOutput)
-}
-
-type SwitchControllerQuarantinePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SwitchControllerQuarantinePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SwitchControllerQuarantine)(nil))
-}
-
-func (o SwitchControllerQuarantinePtrOutput) ToSwitchControllerQuarantinePtrOutput() SwitchControllerQuarantinePtrOutput {
-	return o
-}
-
-func (o SwitchControllerQuarantinePtrOutput) ToSwitchControllerQuarantinePtrOutputWithContext(ctx context.Context) SwitchControllerQuarantinePtrOutput {
-	return o
-}
-
 type SwitchControllerQuarantineArrayOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQuarantineArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SwitchControllerQuarantine)(nil))
+	return reflect.TypeOf((*[]*SwitchControllerQuarantine)(nil)).Elem()
 }
 
 func (o SwitchControllerQuarantineArrayOutput) ToSwitchControllerQuarantineArrayOutput() SwitchControllerQuarantineArrayOutput {
@@ -270,15 +214,15 @@ func (o SwitchControllerQuarantineArrayOutput) ToSwitchControllerQuarantineArray
 }
 
 func (o SwitchControllerQuarantineArrayOutput) Index(i pulumi.IntInput) SwitchControllerQuarantineOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SwitchControllerQuarantine {
-		return vs[0].([]SwitchControllerQuarantine)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SwitchControllerQuarantine {
+		return vs[0].([]*SwitchControllerQuarantine)[vs[1].(int)]
 	}).(SwitchControllerQuarantineOutput)
 }
 
 type SwitchControllerQuarantineMapOutput struct{ *pulumi.OutputState }
 
 func (SwitchControllerQuarantineMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SwitchControllerQuarantine)(nil))
+	return reflect.TypeOf((*map[string]*SwitchControllerQuarantine)(nil)).Elem()
 }
 
 func (o SwitchControllerQuarantineMapOutput) ToSwitchControllerQuarantineMapOutput() SwitchControllerQuarantineMapOutput {
@@ -290,14 +234,16 @@ func (o SwitchControllerQuarantineMapOutput) ToSwitchControllerQuarantineMapOutp
 }
 
 func (o SwitchControllerQuarantineMapOutput) MapIndex(k pulumi.StringInput) SwitchControllerQuarantineOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SwitchControllerQuarantine {
-		return vs[0].(map[string]SwitchControllerQuarantine)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SwitchControllerQuarantine {
+		return vs[0].(map[string]*SwitchControllerQuarantine)[vs[1].(string)]
 	}).(SwitchControllerQuarantineOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQuarantineInput)(nil)).Elem(), &SwitchControllerQuarantine{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQuarantineArrayInput)(nil)).Elem(), SwitchControllerQuarantineArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SwitchControllerQuarantineMapInput)(nil)).Elem(), SwitchControllerQuarantineMap{})
 	pulumi.RegisterOutputType(SwitchControllerQuarantineOutput{})
-	pulumi.RegisterOutputType(SwitchControllerQuarantinePtrOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQuarantineArrayOutput{})
 	pulumi.RegisterOutputType(SwitchControllerQuarantineMapOutput{})
 }

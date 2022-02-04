@@ -18,12 +18,14 @@ class AntivirusQuarantineArgs:
                  drop_blocked: Optional[pulumi.Input[str]] = None,
                  drop_heuristic: Optional[pulumi.Input[str]] = None,
                  drop_infected: Optional[pulumi.Input[str]] = None,
+                 drop_machine_learning: Optional[pulumi.Input[str]] = None,
                  lowspace: Optional[pulumi.Input[str]] = None,
                  maxfilesize: Optional[pulumi.Input[int]] = None,
                  quarantine_quota: Optional[pulumi.Input[int]] = None,
                  store_blocked: Optional[pulumi.Input[str]] = None,
                  store_heuristic: Optional[pulumi.Input[str]] = None,
                  store_infected: Optional[pulumi.Input[str]] = None,
+                 store_machine_learning: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a AntivirusQuarantine resource.
@@ -32,12 +34,14 @@ class AntivirusQuarantineArgs:
         :param pulumi.Input[str] drop_blocked: Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_heuristic: Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_infected: Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
+        :param pulumi.Input[str] drop_machine_learning: Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] lowspace: Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
         :param pulumi.Input[int] maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
         :param pulumi.Input[int] quarantine_quota: The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
         :param pulumi.Input[str] store_blocked: Quarantine blocked files found in sessions using the selected protocols.
         :param pulumi.Input[str] store_heuristic: Quarantine files detected by heuristics found in sessions using the selected protocols.
         :param pulumi.Input[str] store_infected: Quarantine infected files found in sessions using the selected protocols.
+        :param pulumi.Input[str] store_machine_learning: Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if agelimit is not None:
@@ -50,6 +54,8 @@ class AntivirusQuarantineArgs:
             pulumi.set(__self__, "drop_heuristic", drop_heuristic)
         if drop_infected is not None:
             pulumi.set(__self__, "drop_infected", drop_infected)
+        if drop_machine_learning is not None:
+            pulumi.set(__self__, "drop_machine_learning", drop_machine_learning)
         if lowspace is not None:
             pulumi.set(__self__, "lowspace", lowspace)
         if maxfilesize is not None:
@@ -62,6 +68,8 @@ class AntivirusQuarantineArgs:
             pulumi.set(__self__, "store_heuristic", store_heuristic)
         if store_infected is not None:
             pulumi.set(__self__, "store_infected", store_infected)
+        if store_machine_learning is not None:
+            pulumi.set(__self__, "store_machine_learning", store_machine_learning)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -124,6 +132,18 @@ class AntivirusQuarantineArgs:
     @drop_infected.setter
     def drop_infected(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "drop_infected", value)
+
+    @property
+    @pulumi.getter(name="dropMachineLearning")
+    def drop_machine_learning(self) -> Optional[pulumi.Input[str]]:
+        """
+        Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+        """
+        return pulumi.get(self, "drop_machine_learning")
+
+    @drop_machine_learning.setter
+    def drop_machine_learning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "drop_machine_learning", value)
 
     @property
     @pulumi.getter
@@ -196,6 +216,18 @@ class AntivirusQuarantineArgs:
     @store_infected.setter
     def store_infected(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "store_infected", value)
+
+    @property
+    @pulumi.getter(name="storeMachineLearning")
+    def store_machine_learning(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+        """
+        return pulumi.get(self, "store_machine_learning")
+
+    @store_machine_learning.setter
+    def store_machine_learning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "store_machine_learning", value)
 
     @property
     @pulumi.getter
@@ -218,12 +250,14 @@ class _AntivirusQuarantineState:
                  drop_blocked: Optional[pulumi.Input[str]] = None,
                  drop_heuristic: Optional[pulumi.Input[str]] = None,
                  drop_infected: Optional[pulumi.Input[str]] = None,
+                 drop_machine_learning: Optional[pulumi.Input[str]] = None,
                  lowspace: Optional[pulumi.Input[str]] = None,
                  maxfilesize: Optional[pulumi.Input[int]] = None,
                  quarantine_quota: Optional[pulumi.Input[int]] = None,
                  store_blocked: Optional[pulumi.Input[str]] = None,
                  store_heuristic: Optional[pulumi.Input[str]] = None,
                  store_infected: Optional[pulumi.Input[str]] = None,
+                 store_machine_learning: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering AntivirusQuarantine resources.
@@ -232,12 +266,14 @@ class _AntivirusQuarantineState:
         :param pulumi.Input[str] drop_blocked: Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_heuristic: Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_infected: Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
+        :param pulumi.Input[str] drop_machine_learning: Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] lowspace: Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
         :param pulumi.Input[int] maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
         :param pulumi.Input[int] quarantine_quota: The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
         :param pulumi.Input[str] store_blocked: Quarantine blocked files found in sessions using the selected protocols.
         :param pulumi.Input[str] store_heuristic: Quarantine files detected by heuristics found in sessions using the selected protocols.
         :param pulumi.Input[str] store_infected: Quarantine infected files found in sessions using the selected protocols.
+        :param pulumi.Input[str] store_machine_learning: Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         if agelimit is not None:
@@ -250,6 +286,8 @@ class _AntivirusQuarantineState:
             pulumi.set(__self__, "drop_heuristic", drop_heuristic)
         if drop_infected is not None:
             pulumi.set(__self__, "drop_infected", drop_infected)
+        if drop_machine_learning is not None:
+            pulumi.set(__self__, "drop_machine_learning", drop_machine_learning)
         if lowspace is not None:
             pulumi.set(__self__, "lowspace", lowspace)
         if maxfilesize is not None:
@@ -262,6 +300,8 @@ class _AntivirusQuarantineState:
             pulumi.set(__self__, "store_heuristic", store_heuristic)
         if store_infected is not None:
             pulumi.set(__self__, "store_infected", store_infected)
+        if store_machine_learning is not None:
+            pulumi.set(__self__, "store_machine_learning", store_machine_learning)
         if vdomparam is not None:
             pulumi.set(__self__, "vdomparam", vdomparam)
 
@@ -324,6 +364,18 @@ class _AntivirusQuarantineState:
     @drop_infected.setter
     def drop_infected(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "drop_infected", value)
+
+    @property
+    @pulumi.getter(name="dropMachineLearning")
+    def drop_machine_learning(self) -> Optional[pulumi.Input[str]]:
+        """
+        Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+        """
+        return pulumi.get(self, "drop_machine_learning")
+
+    @drop_machine_learning.setter
+    def drop_machine_learning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "drop_machine_learning", value)
 
     @property
     @pulumi.getter
@@ -396,6 +448,18 @@ class _AntivirusQuarantineState:
     @store_infected.setter
     def store_infected(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "store_infected", value)
+
+    @property
+    @pulumi.getter(name="storeMachineLearning")
+    def store_machine_learning(self) -> Optional[pulumi.Input[str]]:
+        """
+        Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+        """
+        return pulumi.get(self, "store_machine_learning")
+
+    @store_machine_learning.setter
+    def store_machine_learning(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "store_machine_learning", value)
 
     @property
     @pulumi.getter
@@ -420,12 +484,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
                  drop_blocked: Optional[pulumi.Input[str]] = None,
                  drop_heuristic: Optional[pulumi.Input[str]] = None,
                  drop_infected: Optional[pulumi.Input[str]] = None,
+                 drop_machine_learning: Optional[pulumi.Input[str]] = None,
                  lowspace: Optional[pulumi.Input[str]] = None,
                  maxfilesize: Optional[pulumi.Input[int]] = None,
                  quarantine_quota: Optional[pulumi.Input[int]] = None,
                  store_blocked: Optional[pulumi.Input[str]] = None,
                  store_heuristic: Optional[pulumi.Input[str]] = None,
                  store_infected: Optional[pulumi.Input[str]] = None,
+                 store_machine_learning: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
@@ -465,12 +531,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
         :param pulumi.Input[str] drop_blocked: Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_heuristic: Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_infected: Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
+        :param pulumi.Input[str] drop_machine_learning: Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] lowspace: Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
         :param pulumi.Input[int] maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
         :param pulumi.Input[int] quarantine_quota: The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
         :param pulumi.Input[str] store_blocked: Quarantine blocked files found in sessions using the selected protocols.
         :param pulumi.Input[str] store_heuristic: Quarantine files detected by heuristics found in sessions using the selected protocols.
         :param pulumi.Input[str] store_infected: Quarantine infected files found in sessions using the selected protocols.
+        :param pulumi.Input[str] store_machine_learning: Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         ...
@@ -529,12 +597,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
                  drop_blocked: Optional[pulumi.Input[str]] = None,
                  drop_heuristic: Optional[pulumi.Input[str]] = None,
                  drop_infected: Optional[pulumi.Input[str]] = None,
+                 drop_machine_learning: Optional[pulumi.Input[str]] = None,
                  lowspace: Optional[pulumi.Input[str]] = None,
                  maxfilesize: Optional[pulumi.Input[int]] = None,
                  quarantine_quota: Optional[pulumi.Input[int]] = None,
                  store_blocked: Optional[pulumi.Input[str]] = None,
                  store_heuristic: Optional[pulumi.Input[str]] = None,
                  store_infected: Optional[pulumi.Input[str]] = None,
+                 store_machine_learning: Optional[pulumi.Input[str]] = None,
                  vdomparam: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         if opts is None:
@@ -543,6 +613,8 @@ class AntivirusQuarantine(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
@@ -553,12 +625,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
             __props__.__dict__["drop_blocked"] = drop_blocked
             __props__.__dict__["drop_heuristic"] = drop_heuristic
             __props__.__dict__["drop_infected"] = drop_infected
+            __props__.__dict__["drop_machine_learning"] = drop_machine_learning
             __props__.__dict__["lowspace"] = lowspace
             __props__.__dict__["maxfilesize"] = maxfilesize
             __props__.__dict__["quarantine_quota"] = quarantine_quota
             __props__.__dict__["store_blocked"] = store_blocked
             __props__.__dict__["store_heuristic"] = store_heuristic
             __props__.__dict__["store_infected"] = store_infected
+            __props__.__dict__["store_machine_learning"] = store_machine_learning
             __props__.__dict__["vdomparam"] = vdomparam
         super(AntivirusQuarantine, __self__).__init__(
             'fortios:index/antivirusQuarantine:AntivirusQuarantine',
@@ -575,12 +649,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
             drop_blocked: Optional[pulumi.Input[str]] = None,
             drop_heuristic: Optional[pulumi.Input[str]] = None,
             drop_infected: Optional[pulumi.Input[str]] = None,
+            drop_machine_learning: Optional[pulumi.Input[str]] = None,
             lowspace: Optional[pulumi.Input[str]] = None,
             maxfilesize: Optional[pulumi.Input[int]] = None,
             quarantine_quota: Optional[pulumi.Input[int]] = None,
             store_blocked: Optional[pulumi.Input[str]] = None,
             store_heuristic: Optional[pulumi.Input[str]] = None,
             store_infected: Optional[pulumi.Input[str]] = None,
+            store_machine_learning: Optional[pulumi.Input[str]] = None,
             vdomparam: Optional[pulumi.Input[str]] = None) -> 'AntivirusQuarantine':
         """
         Get an existing AntivirusQuarantine resource's state with the given name, id, and optional extra
@@ -594,12 +670,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
         :param pulumi.Input[str] drop_blocked: Do not quarantine dropped files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_heuristic: Do not quarantine files detected by heuristics found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         :param pulumi.Input[str] drop_infected: Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
+        :param pulumi.Input[str] drop_machine_learning: Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] lowspace: Select the method for handling additional files when running low on disk space. Valid values: `drop-new`, `ovrw-old`.
         :param pulumi.Input[int] maxfilesize: Maximum file size to quarantine (0 - 500 Mbytes, 0 means unlimited).
         :param pulumi.Input[int] quarantine_quota: The amount of disk space to reserve for quarantining files (0 - 4294967295 Mbytes, depends on disk space).
         :param pulumi.Input[str] store_blocked: Quarantine blocked files found in sessions using the selected protocols.
         :param pulumi.Input[str] store_heuristic: Quarantine files detected by heuristics found in sessions using the selected protocols.
         :param pulumi.Input[str] store_infected: Quarantine infected files found in sessions using the selected protocols.
+        :param pulumi.Input[str] store_machine_learning: Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -611,12 +689,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
         __props__.__dict__["drop_blocked"] = drop_blocked
         __props__.__dict__["drop_heuristic"] = drop_heuristic
         __props__.__dict__["drop_infected"] = drop_infected
+        __props__.__dict__["drop_machine_learning"] = drop_machine_learning
         __props__.__dict__["lowspace"] = lowspace
         __props__.__dict__["maxfilesize"] = maxfilesize
         __props__.__dict__["quarantine_quota"] = quarantine_quota
         __props__.__dict__["store_blocked"] = store_blocked
         __props__.__dict__["store_heuristic"] = store_heuristic
         __props__.__dict__["store_infected"] = store_infected
+        __props__.__dict__["store_machine_learning"] = store_machine_learning
         __props__.__dict__["vdomparam"] = vdomparam
         return AntivirusQuarantine(resource_name, opts=opts, __props__=__props__)
 
@@ -659,6 +739,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
         Do not quarantine infected files found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined.
         """
         return pulumi.get(self, "drop_infected")
+
+    @property
+    @pulumi.getter(name="dropMachineLearning")
+    def drop_machine_learning(self) -> pulumi.Output[str]:
+        """
+        Do not quarantine files detected by machine learning found in sessions using the selected protocols. Dropped files are deleted instead of being quarantined. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+        """
+        return pulumi.get(self, "drop_machine_learning")
 
     @property
     @pulumi.getter
@@ -707,6 +795,14 @@ class AntivirusQuarantine(pulumi.CustomResource):
         Quarantine infected files found in sessions using the selected protocols.
         """
         return pulumi.get(self, "store_infected")
+
+    @property
+    @pulumi.getter(name="storeMachineLearning")
+    def store_machine_learning(self) -> pulumi.Output[str]:
+        """
+        Quarantine files detected by machine learning found in sessions using the selected protocols. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `mapi`, `cifs`, `ssh`.
+        """
+        return pulumi.get(self, "store_machine_learning")
 
     @property
     @pulumi.getter

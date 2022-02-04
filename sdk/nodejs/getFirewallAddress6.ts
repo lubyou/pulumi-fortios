@@ -13,9 +13,7 @@ export function getFirewallAddress6(args: GetFirewallAddress6Args, opts?: pulumi
         opts = {}
     }
 
-    if (!opts.version) {
-        opts.version = utilities.getVersion();
-    }
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("fortios:index/getFirewallAddress6:GetFirewallAddress6", {
         "name": args.name,
         "vdomparam": args.vdomparam,
@@ -65,6 +63,10 @@ export interface GetFirewallAddress6Result {
      */
     readonly endMac: string;
     /**
+     * Security Fabric global object setting.
+     */
+    readonly fabricObject: string;
+    /**
      * Fully qualified domain name.
      */
     readonly fqdn: string;
@@ -88,6 +90,10 @@ export interface GetFirewallAddress6Result {
      * IP address list. The structure of `list` block is documented below.
      */
     readonly lists: outputs.GetFirewallAddress6List[];
+    /**
+     * MAC address ranges <start>[-<end>] separated by space.
+     */
+    readonly macaddrs: outputs.GetFirewallAddress6Macaddr[];
     /**
      * Name.
      */
@@ -133,4 +139,22 @@ export interface GetFirewallAddress6Result {
      * Enable/disable the visibility of the object in the GUI.
      */
     readonly visibility: string;
+}
+
+export function getFirewallAddress6Output(args: GetFirewallAddress6OutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFirewallAddress6Result> {
+    return pulumi.output(args).apply(a => getFirewallAddress6(a, opts))
+}
+
+/**
+ * A collection of arguments for invoking GetFirewallAddress6.
+ */
+export interface GetFirewallAddress6OutputArgs {
+    /**
+     * Specify the name of the desired firewall address6.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+     */
+    vdomparam?: pulumi.Input<string>;
 }

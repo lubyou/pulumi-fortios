@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Global settings for SAML authentication.
+// Global settings for SAML authentication. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Example Usage
 //
@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -52,6 +52,8 @@ import (
 type SystemSaml struct {
 	pulumi.CustomResourceState
 
+	// IdP Binding protocol. Valid values: `post`, `redirect`.
+	BindingProtocol pulumi.StringOutput `pulumi:"bindingProtocol"`
 	// Certificate to sign SAML messages.
 	Cert pulumi.StringOutput `pulumi:"cert"`
 	// Choose default login page. Valid values: `normal`, `sso`.
@@ -99,6 +101,7 @@ func NewSystemSaml(ctx *pulumi.Context,
 		args = &SystemSamlArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSaml
 	err := ctx.RegisterResource("fortios:index/systemSaml:SystemSaml", name, args, &resource, opts...)
 	if err != nil {
@@ -121,6 +124,8 @@ func GetSystemSaml(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemSaml resources.
 type systemSamlState struct {
+	// IdP Binding protocol. Valid values: `post`, `redirect`.
+	BindingProtocol *string `pulumi:"bindingProtocol"`
 	// Certificate to sign SAML messages.
 	Cert *string `pulumi:"cert"`
 	// Choose default login page. Valid values: `normal`, `sso`.
@@ -162,6 +167,8 @@ type systemSamlState struct {
 }
 
 type SystemSamlState struct {
+	// IdP Binding protocol. Valid values: `post`, `redirect`.
+	BindingProtocol pulumi.StringPtrInput
 	// Certificate to sign SAML messages.
 	Cert pulumi.StringPtrInput
 	// Choose default login page. Valid values: `normal`, `sso`.
@@ -207,6 +214,8 @@ func (SystemSamlState) ElementType() reflect.Type {
 }
 
 type systemSamlArgs struct {
+	// IdP Binding protocol. Valid values: `post`, `redirect`.
+	BindingProtocol *string `pulumi:"bindingProtocol"`
 	// Certificate to sign SAML messages.
 	Cert *string `pulumi:"cert"`
 	// Choose default login page. Valid values: `normal`, `sso`.
@@ -249,6 +258,8 @@ type systemSamlArgs struct {
 
 // The set of arguments for constructing a SystemSaml resource.
 type SystemSamlArgs struct {
+	// IdP Binding protocol. Valid values: `post`, `redirect`.
+	BindingProtocol pulumi.StringPtrInput
 	// Certificate to sign SAML messages.
 	Cert pulumi.StringPtrInput
 	// Choose default login page. Valid values: `normal`, `sso`.
@@ -301,7 +312,7 @@ type SystemSamlInput interface {
 }
 
 func (*SystemSaml) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSaml)(nil))
+	return reflect.TypeOf((**SystemSaml)(nil)).Elem()
 }
 
 func (i *SystemSaml) ToSystemSamlOutput() SystemSamlOutput {
@@ -310,35 +321,6 @@ func (i *SystemSaml) ToSystemSamlOutput() SystemSamlOutput {
 
 func (i *SystemSaml) ToSystemSamlOutputWithContext(ctx context.Context) SystemSamlOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlOutput)
-}
-
-func (i *SystemSaml) ToSystemSamlPtrOutput() SystemSamlPtrOutput {
-	return i.ToSystemSamlPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSaml) ToSystemSamlPtrOutputWithContext(ctx context.Context) SystemSamlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlPtrOutput)
-}
-
-type SystemSamlPtrInput interface {
-	pulumi.Input
-
-	ToSystemSamlPtrOutput() SystemSamlPtrOutput
-	ToSystemSamlPtrOutputWithContext(ctx context.Context) SystemSamlPtrOutput
-}
-
-type systemSamlPtrType SystemSamlArgs
-
-func (*systemSamlPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSaml)(nil))
-}
-
-func (i *systemSamlPtrType) ToSystemSamlPtrOutput() SystemSamlPtrOutput {
-	return i.ToSystemSamlPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSamlPtrType) ToSystemSamlPtrOutputWithContext(ctx context.Context) SystemSamlPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlPtrOutput)
 }
 
 // SystemSamlArrayInput is an input type that accepts SystemSamlArray and SystemSamlArrayOutput values.
@@ -355,7 +337,7 @@ type SystemSamlArrayInput interface {
 type SystemSamlArray []SystemSamlInput
 
 func (SystemSamlArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSaml)(nil))
+	return reflect.TypeOf((*[]*SystemSaml)(nil)).Elem()
 }
 
 func (i SystemSamlArray) ToSystemSamlArrayOutput() SystemSamlArrayOutput {
@@ -380,7 +362,7 @@ type SystemSamlMapInput interface {
 type SystemSamlMap map[string]SystemSamlInput
 
 func (SystemSamlMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSaml)(nil))
+	return reflect.TypeOf((*map[string]*SystemSaml)(nil)).Elem()
 }
 
 func (i SystemSamlMap) ToSystemSamlMapOutput() SystemSamlMapOutput {
@@ -391,12 +373,10 @@ func (i SystemSamlMap) ToSystemSamlMapOutputWithContext(ctx context.Context) Sys
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSamlMapOutput)
 }
 
-type SystemSamlOutput struct {
-	*pulumi.OutputState
-}
+type SystemSamlOutput struct{ *pulumi.OutputState }
 
 func (SystemSamlOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSaml)(nil))
+	return reflect.TypeOf((**SystemSaml)(nil)).Elem()
 }
 
 func (o SystemSamlOutput) ToSystemSamlOutput() SystemSamlOutput {
@@ -407,36 +387,10 @@ func (o SystemSamlOutput) ToSystemSamlOutputWithContext(ctx context.Context) Sys
 	return o
 }
 
-func (o SystemSamlOutput) ToSystemSamlPtrOutput() SystemSamlPtrOutput {
-	return o.ToSystemSamlPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSamlOutput) ToSystemSamlPtrOutputWithContext(ctx context.Context) SystemSamlPtrOutput {
-	return o.ApplyT(func(v SystemSaml) *SystemSaml {
-		return &v
-	}).(SystemSamlPtrOutput)
-}
-
-type SystemSamlPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSamlPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSaml)(nil))
-}
-
-func (o SystemSamlPtrOutput) ToSystemSamlPtrOutput() SystemSamlPtrOutput {
-	return o
-}
-
-func (o SystemSamlPtrOutput) ToSystemSamlPtrOutputWithContext(ctx context.Context) SystemSamlPtrOutput {
-	return o
-}
-
 type SystemSamlArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSamlArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSaml)(nil))
+	return reflect.TypeOf((*[]*SystemSaml)(nil)).Elem()
 }
 
 func (o SystemSamlArrayOutput) ToSystemSamlArrayOutput() SystemSamlArrayOutput {
@@ -448,15 +402,15 @@ func (o SystemSamlArrayOutput) ToSystemSamlArrayOutputWithContext(ctx context.Co
 }
 
 func (o SystemSamlArrayOutput) Index(i pulumi.IntInput) SystemSamlOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSaml {
-		return vs[0].([]SystemSaml)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSaml {
+		return vs[0].([]*SystemSaml)[vs[1].(int)]
 	}).(SystemSamlOutput)
 }
 
 type SystemSamlMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSamlMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSaml)(nil))
+	return reflect.TypeOf((*map[string]*SystemSaml)(nil)).Elem()
 }
 
 func (o SystemSamlMapOutput) ToSystemSamlMapOutput() SystemSamlMapOutput {
@@ -468,14 +422,16 @@ func (o SystemSamlMapOutput) ToSystemSamlMapOutputWithContext(ctx context.Contex
 }
 
 func (o SystemSamlMapOutput) MapIndex(k pulumi.StringInput) SystemSamlOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSaml {
-		return vs[0].(map[string]SystemSaml)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSaml {
+		return vs[0].(map[string]*SystemSaml)[vs[1].(string)]
 	}).(SystemSamlOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSamlInput)(nil)).Elem(), &SystemSaml{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSamlArrayInput)(nil)).Elem(), SystemSamlArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSamlMapInput)(nil)).Elem(), SystemSamlMap{})
 	pulumi.RegisterOutputType(SystemSamlOutput{})
-	pulumi.RegisterOutputType(SystemSamlPtrOutput{})
 	pulumi.RegisterOutputType(SystemSamlArrayOutput{})
 	pulumi.RegisterOutputType(SystemSamlMapOutput{})
 }

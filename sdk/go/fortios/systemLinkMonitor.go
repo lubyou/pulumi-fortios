@@ -19,6 +19,7 @@ import (
 // package main
 //
 // import (
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
@@ -39,8 +40,8 @@ import (
 // 			Protocol:     pulumi.String("ping"),
 // 			Recoverytime: pulumi.Int(5),
 // 			SecurityMode: pulumi.String("none"),
-// 			Servers: fortios.SystemLinkMonitorServerArray{
-// 				&fortios.SystemLinkMonitorServerArgs{
+// 			Servers: SystemLinkMonitorServerArray{
+// 				&SystemLinkMonitorServerArgs{
 // 					Address: pulumi.String("3.3.3.3"),
 // 				},
 // 			},
@@ -73,8 +74,14 @@ type SystemLinkMonitor struct {
 
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode pulumi.StringOutput `pulumi:"addrMode"`
+	// Traffic class ID.
+	ClassId pulumi.IntOutput `pulumi:"classId"`
+	// Differentiated services code point (DSCP) in the IP header of the probe packet.
+	Diffservcode pulumi.StringOutput `pulumi:"diffservcode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrOutput `pulumi:"dynamicSortSubtable"`
+	// Threshold weight to trigger link failure alert.
+	FailWeight pulumi.IntOutput `pulumi:"failWeight"`
 	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
 	Failtime pulumi.IntOutput `pulumi:"failtime"`
 	// Gateway IP address used to probe the server.
@@ -103,14 +110,22 @@ type SystemLinkMonitor struct {
 	ProbeCount pulumi.IntOutput `pulumi:"probeCount"`
 	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
 	ProbeTimeout pulumi.IntOutput `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server.
+	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
 	Protocol pulumi.StringOutput `pulumi:"protocol"`
 	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
 	Recoverytime pulumi.IntOutput `pulumi:"recoverytime"`
+	// Subnet to monitor. The structure of `route` block is documented below.
+	Routes SystemLinkMonitorRouteArrayOutput `pulumi:"routes"`
 	// Twamp controller security mode. Valid values: `none`, `authentication`.
 	SecurityMode pulumi.StringOutput `pulumi:"securityMode"`
+	// Mode of server configuration. Valid values: `default`, `individual`.
+	ServerConfig pulumi.StringOutput `pulumi:"serverConfig"`
+	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+	ServerLists SystemLinkMonitorServerListArrayOutput `pulumi:"serverLists"`
 	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
 	Servers SystemLinkMonitorServerArrayOutput `pulumi:"servers"`
+	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+	ServiceDetection pulumi.StringOutput `pulumi:"serviceDetection"`
 	// Source IP address used in packet to the server.
 	SourceIp pulumi.StringOutput `pulumi:"sourceIp"`
 	// Source IPv6 address used in packet to the server.
@@ -121,6 +136,8 @@ type SystemLinkMonitor struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
 	UpdateCascadeInterface pulumi.StringOutput `pulumi:"updateCascadeInterface"`
+	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+	UpdatePolicyRoute pulumi.StringOutput `pulumi:"updatePolicyRoute"`
 	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
 	UpdateStaticRoute pulumi.StringOutput `pulumi:"updateStaticRoute"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -137,6 +154,7 @@ func NewSystemLinkMonitor(ctx *pulumi.Context,
 	if args.Servers == nil {
 		return nil, errors.New("invalid value for required argument 'Servers'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemLinkMonitor
 	err := ctx.RegisterResource("fortios:index/systemLinkMonitor:SystemLinkMonitor", name, args, &resource, opts...)
 	if err != nil {
@@ -161,8 +179,14 @@ func GetSystemLinkMonitor(ctx *pulumi.Context,
 type systemLinkMonitorState struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode *string `pulumi:"addrMode"`
+	// Traffic class ID.
+	ClassId *int `pulumi:"classId"`
+	// Differentiated services code point (DSCP) in the IP header of the probe packet.
+	Diffservcode *string `pulumi:"diffservcode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Threshold weight to trigger link failure alert.
+	FailWeight *int `pulumi:"failWeight"`
 	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
 	Failtime *int `pulumi:"failtime"`
 	// Gateway IP address used to probe the server.
@@ -191,14 +215,22 @@ type systemLinkMonitorState struct {
 	ProbeCount *int `pulumi:"probeCount"`
 	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
 	ProbeTimeout *int `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server.
+	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
 	Protocol *string `pulumi:"protocol"`
 	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
 	Recoverytime *int `pulumi:"recoverytime"`
+	// Subnet to monitor. The structure of `route` block is documented below.
+	Routes []SystemLinkMonitorRoute `pulumi:"routes"`
 	// Twamp controller security mode. Valid values: `none`, `authentication`.
 	SecurityMode *string `pulumi:"securityMode"`
+	// Mode of server configuration. Valid values: `default`, `individual`.
+	ServerConfig *string `pulumi:"serverConfig"`
+	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+	ServerLists []SystemLinkMonitorServerList `pulumi:"serverLists"`
 	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
 	Servers []SystemLinkMonitorServer `pulumi:"servers"`
+	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+	ServiceDetection *string `pulumi:"serviceDetection"`
 	// Source IP address used in packet to the server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source IPv6 address used in packet to the server.
@@ -209,6 +241,8 @@ type systemLinkMonitorState struct {
 	Status *string `pulumi:"status"`
 	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
 	UpdateCascadeInterface *string `pulumi:"updateCascadeInterface"`
+	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+	UpdatePolicyRoute *string `pulumi:"updatePolicyRoute"`
 	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
 	UpdateStaticRoute *string `pulumi:"updateStaticRoute"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -218,8 +252,14 @@ type systemLinkMonitorState struct {
 type SystemLinkMonitorState struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode pulumi.StringPtrInput
+	// Traffic class ID.
+	ClassId pulumi.IntPtrInput
+	// Differentiated services code point (DSCP) in the IP header of the probe packet.
+	Diffservcode pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Threshold weight to trigger link failure alert.
+	FailWeight pulumi.IntPtrInput
 	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
 	Failtime pulumi.IntPtrInput
 	// Gateway IP address used to probe the server.
@@ -248,14 +288,22 @@ type SystemLinkMonitorState struct {
 	ProbeCount pulumi.IntPtrInput
 	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
 	ProbeTimeout pulumi.IntPtrInput
-	// Protocols used to monitor the server.
+	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
 	Protocol pulumi.StringPtrInput
 	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
 	Recoverytime pulumi.IntPtrInput
+	// Subnet to monitor. The structure of `route` block is documented below.
+	Routes SystemLinkMonitorRouteArrayInput
 	// Twamp controller security mode. Valid values: `none`, `authentication`.
 	SecurityMode pulumi.StringPtrInput
+	// Mode of server configuration. Valid values: `default`, `individual`.
+	ServerConfig pulumi.StringPtrInput
+	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+	ServerLists SystemLinkMonitorServerListArrayInput
 	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
 	Servers SystemLinkMonitorServerArrayInput
+	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+	ServiceDetection pulumi.StringPtrInput
 	// Source IP address used in packet to the server.
 	SourceIp pulumi.StringPtrInput
 	// Source IPv6 address used in packet to the server.
@@ -266,6 +314,8 @@ type SystemLinkMonitorState struct {
 	Status pulumi.StringPtrInput
 	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
 	UpdateCascadeInterface pulumi.StringPtrInput
+	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+	UpdatePolicyRoute pulumi.StringPtrInput
 	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
 	UpdateStaticRoute pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -279,8 +329,14 @@ func (SystemLinkMonitorState) ElementType() reflect.Type {
 type systemLinkMonitorArgs struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode *string `pulumi:"addrMode"`
+	// Traffic class ID.
+	ClassId *int `pulumi:"classId"`
+	// Differentiated services code point (DSCP) in the IP header of the probe packet.
+	Diffservcode *string `pulumi:"diffservcode"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable *string `pulumi:"dynamicSortSubtable"`
+	// Threshold weight to trigger link failure alert.
+	FailWeight *int `pulumi:"failWeight"`
 	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
 	Failtime *int `pulumi:"failtime"`
 	// Gateway IP address used to probe the server.
@@ -309,14 +365,22 @@ type systemLinkMonitorArgs struct {
 	ProbeCount *int `pulumi:"probeCount"`
 	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
 	ProbeTimeout *int `pulumi:"probeTimeout"`
-	// Protocols used to monitor the server.
+	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
 	Protocol *string `pulumi:"protocol"`
 	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
 	Recoverytime *int `pulumi:"recoverytime"`
+	// Subnet to monitor. The structure of `route` block is documented below.
+	Routes []SystemLinkMonitorRoute `pulumi:"routes"`
 	// Twamp controller security mode. Valid values: `none`, `authentication`.
 	SecurityMode *string `pulumi:"securityMode"`
+	// Mode of server configuration. Valid values: `default`, `individual`.
+	ServerConfig *string `pulumi:"serverConfig"`
+	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+	ServerLists []SystemLinkMonitorServerList `pulumi:"serverLists"`
 	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
 	Servers []SystemLinkMonitorServer `pulumi:"servers"`
+	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+	ServiceDetection *string `pulumi:"serviceDetection"`
 	// Source IP address used in packet to the server.
 	SourceIp *string `pulumi:"sourceIp"`
 	// Source IPv6 address used in packet to the server.
@@ -327,6 +391,8 @@ type systemLinkMonitorArgs struct {
 	Status *string `pulumi:"status"`
 	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
 	UpdateCascadeInterface *string `pulumi:"updateCascadeInterface"`
+	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+	UpdatePolicyRoute *string `pulumi:"updatePolicyRoute"`
 	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
 	UpdateStaticRoute *string `pulumi:"updateStaticRoute"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -337,8 +403,14 @@ type systemLinkMonitorArgs struct {
 type SystemLinkMonitorArgs struct {
 	// Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 	AddrMode pulumi.StringPtrInput
+	// Traffic class ID.
+	ClassId pulumi.IntPtrInput
+	// Differentiated services code point (DSCP) in the IP header of the probe packet.
+	Diffservcode pulumi.StringPtrInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 	DynamicSortSubtable pulumi.StringPtrInput
+	// Threshold weight to trigger link failure alert.
+	FailWeight pulumi.IntPtrInput
 	// Number of retry attempts before the server is considered down (1 - 10, default = 5)
 	Failtime pulumi.IntPtrInput
 	// Gateway IP address used to probe the server.
@@ -367,14 +439,22 @@ type SystemLinkMonitorArgs struct {
 	ProbeCount pulumi.IntPtrInput
 	// Time to wait before a probe packet is considered lost (500 - 5000 msec, default = 500).
 	ProbeTimeout pulumi.IntPtrInput
-	// Protocols used to monitor the server.
+	// Protocols used to monitor the server. Valid values: `ping`, `tcp-echo`, `udp-echo`, `http`, `twamp`.
 	Protocol pulumi.StringPtrInput
 	// Number of successful responses received before server is considered recovered (1 - 10, default = 5).
 	Recoverytime pulumi.IntPtrInput
+	// Subnet to monitor. The structure of `route` block is documented below.
+	Routes SystemLinkMonitorRouteArrayInput
 	// Twamp controller security mode. Valid values: `none`, `authentication`.
 	SecurityMode pulumi.StringPtrInput
+	// Mode of server configuration. Valid values: `default`, `individual`.
+	ServerConfig pulumi.StringPtrInput
+	// Servers for link-monitor to monitor. The structure of `serverList` block is documented below.
+	ServerLists SystemLinkMonitorServerListArrayInput
 	// IP address of the server(s) to be monitored. The structure of `server` block is documented below.
 	Servers SystemLinkMonitorServerArrayInput
+	// Only use monitor to read quality values. If enabled, static routes and cascade interfaces will not be updated. Valid values: `enable`, `disable`.
+	ServiceDetection pulumi.StringPtrInput
 	// Source IP address used in packet to the server.
 	SourceIp pulumi.StringPtrInput
 	// Source IPv6 address used in packet to the server.
@@ -385,6 +465,8 @@ type SystemLinkMonitorArgs struct {
 	Status pulumi.StringPtrInput
 	// Enable/disable update cascade interface. Valid values: `enable`, `disable`.
 	UpdateCascadeInterface pulumi.StringPtrInput
+	// Enable/disable updating the policy route. Valid values: `enable`, `disable`.
+	UpdatePolicyRoute pulumi.StringPtrInput
 	// Enable/disable updating the static route. Valid values: `enable`, `disable`.
 	UpdateStaticRoute pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
@@ -403,7 +485,7 @@ type SystemLinkMonitorInput interface {
 }
 
 func (*SystemLinkMonitor) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLinkMonitor)(nil))
+	return reflect.TypeOf((**SystemLinkMonitor)(nil)).Elem()
 }
 
 func (i *SystemLinkMonitor) ToSystemLinkMonitorOutput() SystemLinkMonitorOutput {
@@ -412,35 +494,6 @@ func (i *SystemLinkMonitor) ToSystemLinkMonitorOutput() SystemLinkMonitorOutput 
 
 func (i *SystemLinkMonitor) ToSystemLinkMonitorOutputWithContext(ctx context.Context) SystemLinkMonitorOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorOutput)
-}
-
-func (i *SystemLinkMonitor) ToSystemLinkMonitorPtrOutput() SystemLinkMonitorPtrOutput {
-	return i.ToSystemLinkMonitorPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemLinkMonitor) ToSystemLinkMonitorPtrOutputWithContext(ctx context.Context) SystemLinkMonitorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorPtrOutput)
-}
-
-type SystemLinkMonitorPtrInput interface {
-	pulumi.Input
-
-	ToSystemLinkMonitorPtrOutput() SystemLinkMonitorPtrOutput
-	ToSystemLinkMonitorPtrOutputWithContext(ctx context.Context) SystemLinkMonitorPtrOutput
-}
-
-type systemLinkMonitorPtrType SystemLinkMonitorArgs
-
-func (*systemLinkMonitorPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLinkMonitor)(nil))
-}
-
-func (i *systemLinkMonitorPtrType) ToSystemLinkMonitorPtrOutput() SystemLinkMonitorPtrOutput {
-	return i.ToSystemLinkMonitorPtrOutputWithContext(context.Background())
-}
-
-func (i *systemLinkMonitorPtrType) ToSystemLinkMonitorPtrOutputWithContext(ctx context.Context) SystemLinkMonitorPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorPtrOutput)
 }
 
 // SystemLinkMonitorArrayInput is an input type that accepts SystemLinkMonitorArray and SystemLinkMonitorArrayOutput values.
@@ -457,7 +510,7 @@ type SystemLinkMonitorArrayInput interface {
 type SystemLinkMonitorArray []SystemLinkMonitorInput
 
 func (SystemLinkMonitorArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemLinkMonitor)(nil))
+	return reflect.TypeOf((*[]*SystemLinkMonitor)(nil)).Elem()
 }
 
 func (i SystemLinkMonitorArray) ToSystemLinkMonitorArrayOutput() SystemLinkMonitorArrayOutput {
@@ -482,7 +535,7 @@ type SystemLinkMonitorMapInput interface {
 type SystemLinkMonitorMap map[string]SystemLinkMonitorInput
 
 func (SystemLinkMonitorMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemLinkMonitor)(nil))
+	return reflect.TypeOf((*map[string]*SystemLinkMonitor)(nil)).Elem()
 }
 
 func (i SystemLinkMonitorMap) ToSystemLinkMonitorMapOutput() SystemLinkMonitorMapOutput {
@@ -493,12 +546,10 @@ func (i SystemLinkMonitorMap) ToSystemLinkMonitorMapOutputWithContext(ctx contex
 	return pulumi.ToOutputWithContext(ctx, i).(SystemLinkMonitorMapOutput)
 }
 
-type SystemLinkMonitorOutput struct {
-	*pulumi.OutputState
-}
+type SystemLinkMonitorOutput struct{ *pulumi.OutputState }
 
 func (SystemLinkMonitorOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemLinkMonitor)(nil))
+	return reflect.TypeOf((**SystemLinkMonitor)(nil)).Elem()
 }
 
 func (o SystemLinkMonitorOutput) ToSystemLinkMonitorOutput() SystemLinkMonitorOutput {
@@ -509,36 +560,10 @@ func (o SystemLinkMonitorOutput) ToSystemLinkMonitorOutputWithContext(ctx contex
 	return o
 }
 
-func (o SystemLinkMonitorOutput) ToSystemLinkMonitorPtrOutput() SystemLinkMonitorPtrOutput {
-	return o.ToSystemLinkMonitorPtrOutputWithContext(context.Background())
-}
-
-func (o SystemLinkMonitorOutput) ToSystemLinkMonitorPtrOutputWithContext(ctx context.Context) SystemLinkMonitorPtrOutput {
-	return o.ApplyT(func(v SystemLinkMonitor) *SystemLinkMonitor {
-		return &v
-	}).(SystemLinkMonitorPtrOutput)
-}
-
-type SystemLinkMonitorPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemLinkMonitorPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemLinkMonitor)(nil))
-}
-
-func (o SystemLinkMonitorPtrOutput) ToSystemLinkMonitorPtrOutput() SystemLinkMonitorPtrOutput {
-	return o
-}
-
-func (o SystemLinkMonitorPtrOutput) ToSystemLinkMonitorPtrOutputWithContext(ctx context.Context) SystemLinkMonitorPtrOutput {
-	return o
-}
-
 type SystemLinkMonitorArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemLinkMonitorArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemLinkMonitor)(nil))
+	return reflect.TypeOf((*[]*SystemLinkMonitor)(nil)).Elem()
 }
 
 func (o SystemLinkMonitorArrayOutput) ToSystemLinkMonitorArrayOutput() SystemLinkMonitorArrayOutput {
@@ -550,15 +575,15 @@ func (o SystemLinkMonitorArrayOutput) ToSystemLinkMonitorArrayOutputWithContext(
 }
 
 func (o SystemLinkMonitorArrayOutput) Index(i pulumi.IntInput) SystemLinkMonitorOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemLinkMonitor {
-		return vs[0].([]SystemLinkMonitor)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemLinkMonitor {
+		return vs[0].([]*SystemLinkMonitor)[vs[1].(int)]
 	}).(SystemLinkMonitorOutput)
 }
 
 type SystemLinkMonitorMapOutput struct{ *pulumi.OutputState }
 
 func (SystemLinkMonitorMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemLinkMonitor)(nil))
+	return reflect.TypeOf((*map[string]*SystemLinkMonitor)(nil)).Elem()
 }
 
 func (o SystemLinkMonitorMapOutput) ToSystemLinkMonitorMapOutput() SystemLinkMonitorMapOutput {
@@ -570,14 +595,16 @@ func (o SystemLinkMonitorMapOutput) ToSystemLinkMonitorMapOutputWithContext(ctx 
 }
 
 func (o SystemLinkMonitorMapOutput) MapIndex(k pulumi.StringInput) SystemLinkMonitorOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemLinkMonitor {
-		return vs[0].(map[string]SystemLinkMonitor)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemLinkMonitor {
+		return vs[0].(map[string]*SystemLinkMonitor)[vs[1].(string)]
 	}).(SystemLinkMonitorOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLinkMonitorInput)(nil)).Elem(), &SystemLinkMonitor{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLinkMonitorArrayInput)(nil)).Elem(), SystemLinkMonitorArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemLinkMonitorMapInput)(nil)).Elem(), SystemLinkMonitorMap{})
 	pulumi.RegisterOutputType(SystemLinkMonitorOutput{})
-	pulumi.RegisterOutputType(SystemLinkMonitorPtrOutput{})
 	pulumi.RegisterOutputType(SystemLinkMonitorArrayOutput{})
 	pulumi.RegisterOutputType(SystemLinkMonitorMapOutput{})
 }

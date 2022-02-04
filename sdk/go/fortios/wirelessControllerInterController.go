@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -76,6 +76,7 @@ func NewWirelessControllerInterController(ctx *pulumi.Context,
 		args = &WirelessControllerInterControllerArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WirelessControllerInterController
 	err := ctx.RegisterResource("fortios:index/wirelessControllerInterController:WirelessControllerInterController", name, args, &resource, opts...)
 	if err != nil {
@@ -190,7 +191,7 @@ type WirelessControllerInterControllerInput interface {
 }
 
 func (*WirelessControllerInterController) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerInterController)(nil))
+	return reflect.TypeOf((**WirelessControllerInterController)(nil)).Elem()
 }
 
 func (i *WirelessControllerInterController) ToWirelessControllerInterControllerOutput() WirelessControllerInterControllerOutput {
@@ -199,35 +200,6 @@ func (i *WirelessControllerInterController) ToWirelessControllerInterControllerO
 
 func (i *WirelessControllerInterController) ToWirelessControllerInterControllerOutputWithContext(ctx context.Context) WirelessControllerInterControllerOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerOutput)
-}
-
-func (i *WirelessControllerInterController) ToWirelessControllerInterControllerPtrOutput() WirelessControllerInterControllerPtrOutput {
-	return i.ToWirelessControllerInterControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *WirelessControllerInterController) ToWirelessControllerInterControllerPtrOutputWithContext(ctx context.Context) WirelessControllerInterControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerPtrOutput)
-}
-
-type WirelessControllerInterControllerPtrInput interface {
-	pulumi.Input
-
-	ToWirelessControllerInterControllerPtrOutput() WirelessControllerInterControllerPtrOutput
-	ToWirelessControllerInterControllerPtrOutputWithContext(ctx context.Context) WirelessControllerInterControllerPtrOutput
-}
-
-type wirelessControllerInterControllerPtrType WirelessControllerInterControllerArgs
-
-func (*wirelessControllerInterControllerPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerInterController)(nil))
-}
-
-func (i *wirelessControllerInterControllerPtrType) ToWirelessControllerInterControllerPtrOutput() WirelessControllerInterControllerPtrOutput {
-	return i.ToWirelessControllerInterControllerPtrOutputWithContext(context.Background())
-}
-
-func (i *wirelessControllerInterControllerPtrType) ToWirelessControllerInterControllerPtrOutputWithContext(ctx context.Context) WirelessControllerInterControllerPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerPtrOutput)
 }
 
 // WirelessControllerInterControllerArrayInput is an input type that accepts WirelessControllerInterControllerArray and WirelessControllerInterControllerArrayOutput values.
@@ -244,7 +216,7 @@ type WirelessControllerInterControllerArrayInput interface {
 type WirelessControllerInterControllerArray []WirelessControllerInterControllerInput
 
 func (WirelessControllerInterControllerArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WirelessControllerInterController)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerInterController)(nil)).Elem()
 }
 
 func (i WirelessControllerInterControllerArray) ToWirelessControllerInterControllerArrayOutput() WirelessControllerInterControllerArrayOutput {
@@ -269,7 +241,7 @@ type WirelessControllerInterControllerMapInput interface {
 type WirelessControllerInterControllerMap map[string]WirelessControllerInterControllerInput
 
 func (WirelessControllerInterControllerMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WirelessControllerInterController)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerInterController)(nil)).Elem()
 }
 
 func (i WirelessControllerInterControllerMap) ToWirelessControllerInterControllerMapOutput() WirelessControllerInterControllerMapOutput {
@@ -280,12 +252,10 @@ func (i WirelessControllerInterControllerMap) ToWirelessControllerInterControlle
 	return pulumi.ToOutputWithContext(ctx, i).(WirelessControllerInterControllerMapOutput)
 }
 
-type WirelessControllerInterControllerOutput struct {
-	*pulumi.OutputState
-}
+type WirelessControllerInterControllerOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerInterControllerOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WirelessControllerInterController)(nil))
+	return reflect.TypeOf((**WirelessControllerInterController)(nil)).Elem()
 }
 
 func (o WirelessControllerInterControllerOutput) ToWirelessControllerInterControllerOutput() WirelessControllerInterControllerOutput {
@@ -296,36 +266,10 @@ func (o WirelessControllerInterControllerOutput) ToWirelessControllerInterContro
 	return o
 }
 
-func (o WirelessControllerInterControllerOutput) ToWirelessControllerInterControllerPtrOutput() WirelessControllerInterControllerPtrOutput {
-	return o.ToWirelessControllerInterControllerPtrOutputWithContext(context.Background())
-}
-
-func (o WirelessControllerInterControllerOutput) ToWirelessControllerInterControllerPtrOutputWithContext(ctx context.Context) WirelessControllerInterControllerPtrOutput {
-	return o.ApplyT(func(v WirelessControllerInterController) *WirelessControllerInterController {
-		return &v
-	}).(WirelessControllerInterControllerPtrOutput)
-}
-
-type WirelessControllerInterControllerPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WirelessControllerInterControllerPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WirelessControllerInterController)(nil))
-}
-
-func (o WirelessControllerInterControllerPtrOutput) ToWirelessControllerInterControllerPtrOutput() WirelessControllerInterControllerPtrOutput {
-	return o
-}
-
-func (o WirelessControllerInterControllerPtrOutput) ToWirelessControllerInterControllerPtrOutputWithContext(ctx context.Context) WirelessControllerInterControllerPtrOutput {
-	return o
-}
-
 type WirelessControllerInterControllerArrayOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerInterControllerArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WirelessControllerInterController)(nil))
+	return reflect.TypeOf((*[]*WirelessControllerInterController)(nil)).Elem()
 }
 
 func (o WirelessControllerInterControllerArrayOutput) ToWirelessControllerInterControllerArrayOutput() WirelessControllerInterControllerArrayOutput {
@@ -337,15 +281,15 @@ func (o WirelessControllerInterControllerArrayOutput) ToWirelessControllerInterC
 }
 
 func (o WirelessControllerInterControllerArrayOutput) Index(i pulumi.IntInput) WirelessControllerInterControllerOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WirelessControllerInterController {
-		return vs[0].([]WirelessControllerInterController)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WirelessControllerInterController {
+		return vs[0].([]*WirelessControllerInterController)[vs[1].(int)]
 	}).(WirelessControllerInterControllerOutput)
 }
 
 type WirelessControllerInterControllerMapOutput struct{ *pulumi.OutputState }
 
 func (WirelessControllerInterControllerMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WirelessControllerInterController)(nil))
+	return reflect.TypeOf((*map[string]*WirelessControllerInterController)(nil)).Elem()
 }
 
 func (o WirelessControllerInterControllerMapOutput) ToWirelessControllerInterControllerMapOutput() WirelessControllerInterControllerMapOutput {
@@ -357,14 +301,16 @@ func (o WirelessControllerInterControllerMapOutput) ToWirelessControllerInterCon
 }
 
 func (o WirelessControllerInterControllerMapOutput) MapIndex(k pulumi.StringInput) WirelessControllerInterControllerOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WirelessControllerInterController {
-		return vs[0].(map[string]WirelessControllerInterController)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WirelessControllerInterController {
+		return vs[0].(map[string]*WirelessControllerInterController)[vs[1].(string)]
 	}).(WirelessControllerInterControllerOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerInterControllerInput)(nil)).Elem(), &WirelessControllerInterController{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerInterControllerArrayInput)(nil)).Elem(), WirelessControllerInterControllerArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WirelessControllerInterControllerMapInput)(nil)).Elem(), WirelessControllerInterControllerMap{})
 	pulumi.RegisterOutputType(WirelessControllerInterControllerOutput{})
-	pulumi.RegisterOutputType(WirelessControllerInterControllerPtrOutput{})
 	pulumi.RegisterOutputType(WirelessControllerInterControllerArrayOutput{})
 	pulumi.RegisterOutputType(WirelessControllerInterControllerMapOutput{})
 }

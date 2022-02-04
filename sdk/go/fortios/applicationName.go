@@ -69,6 +69,7 @@ func NewApplicationName(ctx *pulumi.Context,
 	if args.Category == nil {
 		return nil, errors.New("invalid value for required argument 'Category'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource ApplicationName
 	err := ctx.RegisterResource("fortios:index/applicationName:ApplicationName", name, args, &resource, opts...)
 	if err != nil {
@@ -247,7 +248,7 @@ type ApplicationNameInput interface {
 }
 
 func (*ApplicationName) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationName)(nil))
+	return reflect.TypeOf((**ApplicationName)(nil)).Elem()
 }
 
 func (i *ApplicationName) ToApplicationNameOutput() ApplicationNameOutput {
@@ -256,35 +257,6 @@ func (i *ApplicationName) ToApplicationNameOutput() ApplicationNameOutput {
 
 func (i *ApplicationName) ToApplicationNameOutputWithContext(ctx context.Context) ApplicationNameOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNameOutput)
-}
-
-func (i *ApplicationName) ToApplicationNamePtrOutput() ApplicationNamePtrOutput {
-	return i.ToApplicationNamePtrOutputWithContext(context.Background())
-}
-
-func (i *ApplicationName) ToApplicationNamePtrOutputWithContext(ctx context.Context) ApplicationNamePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNamePtrOutput)
-}
-
-type ApplicationNamePtrInput interface {
-	pulumi.Input
-
-	ToApplicationNamePtrOutput() ApplicationNamePtrOutput
-	ToApplicationNamePtrOutputWithContext(ctx context.Context) ApplicationNamePtrOutput
-}
-
-type applicationNamePtrType ApplicationNameArgs
-
-func (*applicationNamePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationName)(nil))
-}
-
-func (i *applicationNamePtrType) ToApplicationNamePtrOutput() ApplicationNamePtrOutput {
-	return i.ToApplicationNamePtrOutputWithContext(context.Background())
-}
-
-func (i *applicationNamePtrType) ToApplicationNamePtrOutputWithContext(ctx context.Context) ApplicationNamePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNamePtrOutput)
 }
 
 // ApplicationNameArrayInput is an input type that accepts ApplicationNameArray and ApplicationNameArrayOutput values.
@@ -301,7 +273,7 @@ type ApplicationNameArrayInput interface {
 type ApplicationNameArray []ApplicationNameInput
 
 func (ApplicationNameArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*ApplicationName)(nil))
+	return reflect.TypeOf((*[]*ApplicationName)(nil)).Elem()
 }
 
 func (i ApplicationNameArray) ToApplicationNameArrayOutput() ApplicationNameArrayOutput {
@@ -326,7 +298,7 @@ type ApplicationNameMapInput interface {
 type ApplicationNameMap map[string]ApplicationNameInput
 
 func (ApplicationNameMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*ApplicationName)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationName)(nil)).Elem()
 }
 
 func (i ApplicationNameMap) ToApplicationNameMapOutput() ApplicationNameMapOutput {
@@ -337,12 +309,10 @@ func (i ApplicationNameMap) ToApplicationNameMapOutputWithContext(ctx context.Co
 	return pulumi.ToOutputWithContext(ctx, i).(ApplicationNameMapOutput)
 }
 
-type ApplicationNameOutput struct {
-	*pulumi.OutputState
-}
+type ApplicationNameOutput struct{ *pulumi.OutputState }
 
 func (ApplicationNameOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ApplicationName)(nil))
+	return reflect.TypeOf((**ApplicationName)(nil)).Elem()
 }
 
 func (o ApplicationNameOutput) ToApplicationNameOutput() ApplicationNameOutput {
@@ -353,36 +323,10 @@ func (o ApplicationNameOutput) ToApplicationNameOutputWithContext(ctx context.Co
 	return o
 }
 
-func (o ApplicationNameOutput) ToApplicationNamePtrOutput() ApplicationNamePtrOutput {
-	return o.ToApplicationNamePtrOutputWithContext(context.Background())
-}
-
-func (o ApplicationNameOutput) ToApplicationNamePtrOutputWithContext(ctx context.Context) ApplicationNamePtrOutput {
-	return o.ApplyT(func(v ApplicationName) *ApplicationName {
-		return &v
-	}).(ApplicationNamePtrOutput)
-}
-
-type ApplicationNamePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (ApplicationNamePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ApplicationName)(nil))
-}
-
-func (o ApplicationNamePtrOutput) ToApplicationNamePtrOutput() ApplicationNamePtrOutput {
-	return o
-}
-
-func (o ApplicationNamePtrOutput) ToApplicationNamePtrOutputWithContext(ctx context.Context) ApplicationNamePtrOutput {
-	return o
-}
-
 type ApplicationNameArrayOutput struct{ *pulumi.OutputState }
 
 func (ApplicationNameArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]ApplicationName)(nil))
+	return reflect.TypeOf((*[]*ApplicationName)(nil)).Elem()
 }
 
 func (o ApplicationNameArrayOutput) ToApplicationNameArrayOutput() ApplicationNameArrayOutput {
@@ -394,15 +338,15 @@ func (o ApplicationNameArrayOutput) ToApplicationNameArrayOutputWithContext(ctx 
 }
 
 func (o ApplicationNameArrayOutput) Index(i pulumi.IntInput) ApplicationNameOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ApplicationName {
-		return vs[0].([]ApplicationName)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *ApplicationName {
+		return vs[0].([]*ApplicationName)[vs[1].(int)]
 	}).(ApplicationNameOutput)
 }
 
 type ApplicationNameMapOutput struct{ *pulumi.OutputState }
 
 func (ApplicationNameMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]ApplicationName)(nil))
+	return reflect.TypeOf((*map[string]*ApplicationName)(nil)).Elem()
 }
 
 func (o ApplicationNameMapOutput) ToApplicationNameMapOutput() ApplicationNameMapOutput {
@@ -414,14 +358,16 @@ func (o ApplicationNameMapOutput) ToApplicationNameMapOutputWithContext(ctx cont
 }
 
 func (o ApplicationNameMapOutput) MapIndex(k pulumi.StringInput) ApplicationNameOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) ApplicationName {
-		return vs[0].(map[string]ApplicationName)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *ApplicationName {
+		return vs[0].(map[string]*ApplicationName)[vs[1].(string)]
 	}).(ApplicationNameOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationNameInput)(nil)).Elem(), &ApplicationName{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationNameArrayInput)(nil)).Elem(), ApplicationNameArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ApplicationNameMapInput)(nil)).Elem(), ApplicationNameMap{})
 	pulumi.RegisterOutputType(ApplicationNameOutput{})
-	pulumi.RegisterOutputType(ApplicationNamePtrOutput{})
 	pulumi.RegisterOutputType(ApplicationNameArrayOutput{})
 	pulumi.RegisterOutputType(ApplicationNameMapOutput{})
 }

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -70,6 +70,7 @@ func NewWanoptSettings(ctx *pulumi.Context,
 	if args.HostId == nil {
 		return nil, errors.New("invalid value for required argument 'HostId'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource WanoptSettings
 	err := ctx.RegisterResource("fortios:index/wanoptSettings:WanoptSettings", name, args, &resource, opts...)
 	if err != nil {
@@ -152,7 +153,7 @@ type WanoptSettingsInput interface {
 }
 
 func (*WanoptSettings) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptSettings)(nil))
+	return reflect.TypeOf((**WanoptSettings)(nil)).Elem()
 }
 
 func (i *WanoptSettings) ToWanoptSettingsOutput() WanoptSettingsOutput {
@@ -161,35 +162,6 @@ func (i *WanoptSettings) ToWanoptSettingsOutput() WanoptSettingsOutput {
 
 func (i *WanoptSettings) ToWanoptSettingsOutputWithContext(ctx context.Context) WanoptSettingsOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsOutput)
-}
-
-func (i *WanoptSettings) ToWanoptSettingsPtrOutput() WanoptSettingsPtrOutput {
-	return i.ToWanoptSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *WanoptSettings) ToWanoptSettingsPtrOutputWithContext(ctx context.Context) WanoptSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsPtrOutput)
-}
-
-type WanoptSettingsPtrInput interface {
-	pulumi.Input
-
-	ToWanoptSettingsPtrOutput() WanoptSettingsPtrOutput
-	ToWanoptSettingsPtrOutputWithContext(ctx context.Context) WanoptSettingsPtrOutput
-}
-
-type wanoptSettingsPtrType WanoptSettingsArgs
-
-func (*wanoptSettingsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptSettings)(nil))
-}
-
-func (i *wanoptSettingsPtrType) ToWanoptSettingsPtrOutput() WanoptSettingsPtrOutput {
-	return i.ToWanoptSettingsPtrOutputWithContext(context.Background())
-}
-
-func (i *wanoptSettingsPtrType) ToWanoptSettingsPtrOutputWithContext(ctx context.Context) WanoptSettingsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsPtrOutput)
 }
 
 // WanoptSettingsArrayInput is an input type that accepts WanoptSettingsArray and WanoptSettingsArrayOutput values.
@@ -206,7 +178,7 @@ type WanoptSettingsArrayInput interface {
 type WanoptSettingsArray []WanoptSettingsInput
 
 func (WanoptSettingsArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*WanoptSettings)(nil))
+	return reflect.TypeOf((*[]*WanoptSettings)(nil)).Elem()
 }
 
 func (i WanoptSettingsArray) ToWanoptSettingsArrayOutput() WanoptSettingsArrayOutput {
@@ -231,7 +203,7 @@ type WanoptSettingsMapInput interface {
 type WanoptSettingsMap map[string]WanoptSettingsInput
 
 func (WanoptSettingsMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*WanoptSettings)(nil))
+	return reflect.TypeOf((*map[string]*WanoptSettings)(nil)).Elem()
 }
 
 func (i WanoptSettingsMap) ToWanoptSettingsMapOutput() WanoptSettingsMapOutput {
@@ -242,12 +214,10 @@ func (i WanoptSettingsMap) ToWanoptSettingsMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(WanoptSettingsMapOutput)
 }
 
-type WanoptSettingsOutput struct {
-	*pulumi.OutputState
-}
+type WanoptSettingsOutput struct{ *pulumi.OutputState }
 
 func (WanoptSettingsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*WanoptSettings)(nil))
+	return reflect.TypeOf((**WanoptSettings)(nil)).Elem()
 }
 
 func (o WanoptSettingsOutput) ToWanoptSettingsOutput() WanoptSettingsOutput {
@@ -258,36 +228,10 @@ func (o WanoptSettingsOutput) ToWanoptSettingsOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o WanoptSettingsOutput) ToWanoptSettingsPtrOutput() WanoptSettingsPtrOutput {
-	return o.ToWanoptSettingsPtrOutputWithContext(context.Background())
-}
-
-func (o WanoptSettingsOutput) ToWanoptSettingsPtrOutputWithContext(ctx context.Context) WanoptSettingsPtrOutput {
-	return o.ApplyT(func(v WanoptSettings) *WanoptSettings {
-		return &v
-	}).(WanoptSettingsPtrOutput)
-}
-
-type WanoptSettingsPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (WanoptSettingsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**WanoptSettings)(nil))
-}
-
-func (o WanoptSettingsPtrOutput) ToWanoptSettingsPtrOutput() WanoptSettingsPtrOutput {
-	return o
-}
-
-func (o WanoptSettingsPtrOutput) ToWanoptSettingsPtrOutputWithContext(ctx context.Context) WanoptSettingsPtrOutput {
-	return o
-}
-
 type WanoptSettingsArrayOutput struct{ *pulumi.OutputState }
 
 func (WanoptSettingsArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]WanoptSettings)(nil))
+	return reflect.TypeOf((*[]*WanoptSettings)(nil)).Elem()
 }
 
 func (o WanoptSettingsArrayOutput) ToWanoptSettingsArrayOutput() WanoptSettingsArrayOutput {
@@ -299,15 +243,15 @@ func (o WanoptSettingsArrayOutput) ToWanoptSettingsArrayOutputWithContext(ctx co
 }
 
 func (o WanoptSettingsArrayOutput) Index(i pulumi.IntInput) WanoptSettingsOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) WanoptSettings {
-		return vs[0].([]WanoptSettings)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *WanoptSettings {
+		return vs[0].([]*WanoptSettings)[vs[1].(int)]
 	}).(WanoptSettingsOutput)
 }
 
 type WanoptSettingsMapOutput struct{ *pulumi.OutputState }
 
 func (WanoptSettingsMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]WanoptSettings)(nil))
+	return reflect.TypeOf((*map[string]*WanoptSettings)(nil)).Elem()
 }
 
 func (o WanoptSettingsMapOutput) ToWanoptSettingsMapOutput() WanoptSettingsMapOutput {
@@ -319,14 +263,16 @@ func (o WanoptSettingsMapOutput) ToWanoptSettingsMapOutputWithContext(ctx contex
 }
 
 func (o WanoptSettingsMapOutput) MapIndex(k pulumi.StringInput) WanoptSettingsOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) WanoptSettings {
-		return vs[0].(map[string]WanoptSettings)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *WanoptSettings {
+		return vs[0].(map[string]*WanoptSettings)[vs[1].(string)]
 	}).(WanoptSettingsOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptSettingsInput)(nil)).Elem(), &WanoptSettings{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptSettingsArrayInput)(nil)).Elem(), WanoptSettingsArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WanoptSettingsMapInput)(nil)).Elem(), WanoptSettingsMap{})
 	pulumi.RegisterOutputType(WanoptSettingsOutput{})
-	pulumi.RegisterOutputType(WanoptSettingsPtrOutput{})
 	pulumi.RegisterOutputType(WanoptSettingsArrayOutput{})
 	pulumi.RegisterOutputType(WanoptSettingsMapOutput{})
 }

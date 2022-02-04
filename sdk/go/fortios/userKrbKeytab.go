@@ -21,7 +21,7 @@ import (
 // import (
 // 	"fmt"
 //
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -103,6 +103,7 @@ func NewUserKrbKeytab(ctx *pulumi.Context,
 	if args.Principal == nil {
 		return nil, errors.New("invalid value for required argument 'Principal'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource UserKrbKeytab
 	err := ctx.RegisterResource("fortios:index/userKrbKeytab:UserKrbKeytab", name, args, &resource, opts...)
 	if err != nil {
@@ -201,7 +202,7 @@ type UserKrbKeytabInput interface {
 }
 
 func (*UserKrbKeytab) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserKrbKeytab)(nil))
+	return reflect.TypeOf((**UserKrbKeytab)(nil)).Elem()
 }
 
 func (i *UserKrbKeytab) ToUserKrbKeytabOutput() UserKrbKeytabOutput {
@@ -210,35 +211,6 @@ func (i *UserKrbKeytab) ToUserKrbKeytabOutput() UserKrbKeytabOutput {
 
 func (i *UserKrbKeytab) ToUserKrbKeytabOutputWithContext(ctx context.Context) UserKrbKeytabOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabOutput)
-}
-
-func (i *UserKrbKeytab) ToUserKrbKeytabPtrOutput() UserKrbKeytabPtrOutput {
-	return i.ToUserKrbKeytabPtrOutputWithContext(context.Background())
-}
-
-func (i *UserKrbKeytab) ToUserKrbKeytabPtrOutputWithContext(ctx context.Context) UserKrbKeytabPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabPtrOutput)
-}
-
-type UserKrbKeytabPtrInput interface {
-	pulumi.Input
-
-	ToUserKrbKeytabPtrOutput() UserKrbKeytabPtrOutput
-	ToUserKrbKeytabPtrOutputWithContext(ctx context.Context) UserKrbKeytabPtrOutput
-}
-
-type userKrbKeytabPtrType UserKrbKeytabArgs
-
-func (*userKrbKeytabPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserKrbKeytab)(nil))
-}
-
-func (i *userKrbKeytabPtrType) ToUserKrbKeytabPtrOutput() UserKrbKeytabPtrOutput {
-	return i.ToUserKrbKeytabPtrOutputWithContext(context.Background())
-}
-
-func (i *userKrbKeytabPtrType) ToUserKrbKeytabPtrOutputWithContext(ctx context.Context) UserKrbKeytabPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabPtrOutput)
 }
 
 // UserKrbKeytabArrayInput is an input type that accepts UserKrbKeytabArray and UserKrbKeytabArrayOutput values.
@@ -255,7 +227,7 @@ type UserKrbKeytabArrayInput interface {
 type UserKrbKeytabArray []UserKrbKeytabInput
 
 func (UserKrbKeytabArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*UserKrbKeytab)(nil))
+	return reflect.TypeOf((*[]*UserKrbKeytab)(nil)).Elem()
 }
 
 func (i UserKrbKeytabArray) ToUserKrbKeytabArrayOutput() UserKrbKeytabArrayOutput {
@@ -280,7 +252,7 @@ type UserKrbKeytabMapInput interface {
 type UserKrbKeytabMap map[string]UserKrbKeytabInput
 
 func (UserKrbKeytabMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*UserKrbKeytab)(nil))
+	return reflect.TypeOf((*map[string]*UserKrbKeytab)(nil)).Elem()
 }
 
 func (i UserKrbKeytabMap) ToUserKrbKeytabMapOutput() UserKrbKeytabMapOutput {
@@ -291,12 +263,10 @@ func (i UserKrbKeytabMap) ToUserKrbKeytabMapOutputWithContext(ctx context.Contex
 	return pulumi.ToOutputWithContext(ctx, i).(UserKrbKeytabMapOutput)
 }
 
-type UserKrbKeytabOutput struct {
-	*pulumi.OutputState
-}
+type UserKrbKeytabOutput struct{ *pulumi.OutputState }
 
 func (UserKrbKeytabOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*UserKrbKeytab)(nil))
+	return reflect.TypeOf((**UserKrbKeytab)(nil)).Elem()
 }
 
 func (o UserKrbKeytabOutput) ToUserKrbKeytabOutput() UserKrbKeytabOutput {
@@ -307,36 +277,10 @@ func (o UserKrbKeytabOutput) ToUserKrbKeytabOutputWithContext(ctx context.Contex
 	return o
 }
 
-func (o UserKrbKeytabOutput) ToUserKrbKeytabPtrOutput() UserKrbKeytabPtrOutput {
-	return o.ToUserKrbKeytabPtrOutputWithContext(context.Background())
-}
-
-func (o UserKrbKeytabOutput) ToUserKrbKeytabPtrOutputWithContext(ctx context.Context) UserKrbKeytabPtrOutput {
-	return o.ApplyT(func(v UserKrbKeytab) *UserKrbKeytab {
-		return &v
-	}).(UserKrbKeytabPtrOutput)
-}
-
-type UserKrbKeytabPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (UserKrbKeytabPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**UserKrbKeytab)(nil))
-}
-
-func (o UserKrbKeytabPtrOutput) ToUserKrbKeytabPtrOutput() UserKrbKeytabPtrOutput {
-	return o
-}
-
-func (o UserKrbKeytabPtrOutput) ToUserKrbKeytabPtrOutputWithContext(ctx context.Context) UserKrbKeytabPtrOutput {
-	return o
-}
-
 type UserKrbKeytabArrayOutput struct{ *pulumi.OutputState }
 
 func (UserKrbKeytabArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]UserKrbKeytab)(nil))
+	return reflect.TypeOf((*[]*UserKrbKeytab)(nil)).Elem()
 }
 
 func (o UserKrbKeytabArrayOutput) ToUserKrbKeytabArrayOutput() UserKrbKeytabArrayOutput {
@@ -348,15 +292,15 @@ func (o UserKrbKeytabArrayOutput) ToUserKrbKeytabArrayOutputWithContext(ctx cont
 }
 
 func (o UserKrbKeytabArrayOutput) Index(i pulumi.IntInput) UserKrbKeytabOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) UserKrbKeytab {
-		return vs[0].([]UserKrbKeytab)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *UserKrbKeytab {
+		return vs[0].([]*UserKrbKeytab)[vs[1].(int)]
 	}).(UserKrbKeytabOutput)
 }
 
 type UserKrbKeytabMapOutput struct{ *pulumi.OutputState }
 
 func (UserKrbKeytabMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]UserKrbKeytab)(nil))
+	return reflect.TypeOf((*map[string]*UserKrbKeytab)(nil)).Elem()
 }
 
 func (o UserKrbKeytabMapOutput) ToUserKrbKeytabMapOutput() UserKrbKeytabMapOutput {
@@ -368,14 +312,16 @@ func (o UserKrbKeytabMapOutput) ToUserKrbKeytabMapOutputWithContext(ctx context.
 }
 
 func (o UserKrbKeytabMapOutput) MapIndex(k pulumi.StringInput) UserKrbKeytabOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) UserKrbKeytab {
-		return vs[0].(map[string]UserKrbKeytab)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *UserKrbKeytab {
+		return vs[0].(map[string]*UserKrbKeytab)[vs[1].(string)]
 	}).(UserKrbKeytabOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*UserKrbKeytabInput)(nil)).Elem(), &UserKrbKeytab{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserKrbKeytabArrayInput)(nil)).Elem(), UserKrbKeytabArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*UserKrbKeytabMapInput)(nil)).Elem(), UserKrbKeytabMap{})
 	pulumi.RegisterOutputType(UserKrbKeytabOutput{})
-	pulumi.RegisterOutputType(UserKrbKeytabPtrOutput{})
 	pulumi.RegisterOutputType(UserKrbKeytabArrayOutput{})
 	pulumi.RegisterOutputType(UserKrbKeytabMapOutput{})
 }

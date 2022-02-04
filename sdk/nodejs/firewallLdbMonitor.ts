@@ -62,6 +62,18 @@ export class FirewallLdbMonitor extends pulumi.CustomResource {
     }
 
     /**
+     * Response IP expected from DNS server.
+     */
+    public readonly dnsMatchIp!: pulumi.Output<string>;
+    /**
+     * Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+     */
+    public readonly dnsProtocol!: pulumi.Output<string>;
+    /**
+     * Fully qualified domain name to resolve for the DNS probe.
+     */
+    public readonly dnsRequestDomain!: pulumi.Output<string>;
+    /**
      * URL used to send a GET request to check the health of an HTTP server.
      */
     public readonly httpGet!: pulumi.Output<string>;
@@ -115,42 +127,46 @@ export class FirewallLdbMonitor extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallLdbMonitorArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallLdbMonitorArgs | FirewallLdbMonitorState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallLdbMonitorState | undefined;
-            inputs["httpGet"] = state ? state.httpGet : undefined;
-            inputs["httpMatch"] = state ? state.httpMatch : undefined;
-            inputs["httpMaxRedirects"] = state ? state.httpMaxRedirects : undefined;
-            inputs["interval"] = state ? state.interval : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["retry"] = state ? state.retry : undefined;
-            inputs["srcIp"] = state ? state.srcIp : undefined;
-            inputs["timeout"] = state ? state.timeout : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["dnsMatchIp"] = state ? state.dnsMatchIp : undefined;
+            resourceInputs["dnsProtocol"] = state ? state.dnsProtocol : undefined;
+            resourceInputs["dnsRequestDomain"] = state ? state.dnsRequestDomain : undefined;
+            resourceInputs["httpGet"] = state ? state.httpGet : undefined;
+            resourceInputs["httpMatch"] = state ? state.httpMatch : undefined;
+            resourceInputs["httpMaxRedirects"] = state ? state.httpMaxRedirects : undefined;
+            resourceInputs["interval"] = state ? state.interval : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["retry"] = state ? state.retry : undefined;
+            resourceInputs["srcIp"] = state ? state.srcIp : undefined;
+            resourceInputs["timeout"] = state ? state.timeout : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallLdbMonitorArgs | undefined;
             if ((!args || args.type === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'type'");
             }
-            inputs["httpGet"] = args ? args.httpGet : undefined;
-            inputs["httpMatch"] = args ? args.httpMatch : undefined;
-            inputs["httpMaxRedirects"] = args ? args.httpMaxRedirects : undefined;
-            inputs["interval"] = args ? args.interval : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["retry"] = args ? args.retry : undefined;
-            inputs["srcIp"] = args ? args.srcIp : undefined;
-            inputs["timeout"] = args ? args.timeout : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["dnsMatchIp"] = args ? args.dnsMatchIp : undefined;
+            resourceInputs["dnsProtocol"] = args ? args.dnsProtocol : undefined;
+            resourceInputs["dnsRequestDomain"] = args ? args.dnsRequestDomain : undefined;
+            resourceInputs["httpGet"] = args ? args.httpGet : undefined;
+            resourceInputs["httpMatch"] = args ? args.httpMatch : undefined;
+            resourceInputs["httpMaxRedirects"] = args ? args.httpMaxRedirects : undefined;
+            resourceInputs["interval"] = args ? args.interval : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["retry"] = args ? args.retry : undefined;
+            resourceInputs["srcIp"] = args ? args.srcIp : undefined;
+            resourceInputs["timeout"] = args ? args.timeout : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallLdbMonitor.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallLdbMonitor.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -158,6 +174,18 @@ export class FirewallLdbMonitor extends pulumi.CustomResource {
  * Input properties used for looking up and filtering FirewallLdbMonitor resources.
  */
 export interface FirewallLdbMonitorState {
+    /**
+     * Response IP expected from DNS server.
+     */
+    dnsMatchIp?: pulumi.Input<string>;
+    /**
+     * Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+     */
+    dnsProtocol?: pulumi.Input<string>;
+    /**
+     * Fully qualified domain name to resolve for the DNS probe.
+     */
+    dnsRequestDomain?: pulumi.Input<string>;
     /**
      * URL used to send a GET request to check the health of an HTTP server.
      */
@@ -208,6 +236,18 @@ export interface FirewallLdbMonitorState {
  * The set of arguments for constructing a FirewallLdbMonitor resource.
  */
 export interface FirewallLdbMonitorArgs {
+    /**
+     * Response IP expected from DNS server.
+     */
+    dnsMatchIp?: pulumi.Input<string>;
+    /**
+     * Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+     */
+    dnsProtocol?: pulumi.Input<string>;
+    /**
+     * Fully qualified domain name to resolve for the DNS probe.
+     */
+    dnsRequestDomain?: pulumi.Input<string>;
     /**
      * URL used to send a GET request to check the health of an HTTP server.
      */

@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -75,6 +75,7 @@ func NewSystemSessionHelper(ctx *pulumi.Context,
 	if args.Protocol == nil {
 		return nil, errors.New("invalid value for required argument 'Protocol'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSessionHelper
 	err := ctx.RegisterResource("fortios:index/systemSessionHelper:SystemSessionHelper", name, args, &resource, opts...)
 	if err != nil {
@@ -165,7 +166,7 @@ type SystemSessionHelperInput interface {
 }
 
 func (*SystemSessionHelper) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSessionHelper)(nil))
+	return reflect.TypeOf((**SystemSessionHelper)(nil)).Elem()
 }
 
 func (i *SystemSessionHelper) ToSystemSessionHelperOutput() SystemSessionHelperOutput {
@@ -174,35 +175,6 @@ func (i *SystemSessionHelper) ToSystemSessionHelperOutput() SystemSessionHelperO
 
 func (i *SystemSessionHelper) ToSystemSessionHelperOutputWithContext(ctx context.Context) SystemSessionHelperOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperOutput)
-}
-
-func (i *SystemSessionHelper) ToSystemSessionHelperPtrOutput() SystemSessionHelperPtrOutput {
-	return i.ToSystemSessionHelperPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSessionHelper) ToSystemSessionHelperPtrOutputWithContext(ctx context.Context) SystemSessionHelperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperPtrOutput)
-}
-
-type SystemSessionHelperPtrInput interface {
-	pulumi.Input
-
-	ToSystemSessionHelperPtrOutput() SystemSessionHelperPtrOutput
-	ToSystemSessionHelperPtrOutputWithContext(ctx context.Context) SystemSessionHelperPtrOutput
-}
-
-type systemSessionHelperPtrType SystemSessionHelperArgs
-
-func (*systemSessionHelperPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSessionHelper)(nil))
-}
-
-func (i *systemSessionHelperPtrType) ToSystemSessionHelperPtrOutput() SystemSessionHelperPtrOutput {
-	return i.ToSystemSessionHelperPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSessionHelperPtrType) ToSystemSessionHelperPtrOutputWithContext(ctx context.Context) SystemSessionHelperPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperPtrOutput)
 }
 
 // SystemSessionHelperArrayInput is an input type that accepts SystemSessionHelperArray and SystemSessionHelperArrayOutput values.
@@ -219,7 +191,7 @@ type SystemSessionHelperArrayInput interface {
 type SystemSessionHelperArray []SystemSessionHelperInput
 
 func (SystemSessionHelperArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSessionHelper)(nil))
+	return reflect.TypeOf((*[]*SystemSessionHelper)(nil)).Elem()
 }
 
 func (i SystemSessionHelperArray) ToSystemSessionHelperArrayOutput() SystemSessionHelperArrayOutput {
@@ -244,7 +216,7 @@ type SystemSessionHelperMapInput interface {
 type SystemSessionHelperMap map[string]SystemSessionHelperInput
 
 func (SystemSessionHelperMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSessionHelper)(nil))
+	return reflect.TypeOf((*map[string]*SystemSessionHelper)(nil)).Elem()
 }
 
 func (i SystemSessionHelperMap) ToSystemSessionHelperMapOutput() SystemSessionHelperMapOutput {
@@ -255,12 +227,10 @@ func (i SystemSessionHelperMap) ToSystemSessionHelperMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSessionHelperMapOutput)
 }
 
-type SystemSessionHelperOutput struct {
-	*pulumi.OutputState
-}
+type SystemSessionHelperOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionHelperOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSessionHelper)(nil))
+	return reflect.TypeOf((**SystemSessionHelper)(nil)).Elem()
 }
 
 func (o SystemSessionHelperOutput) ToSystemSessionHelperOutput() SystemSessionHelperOutput {
@@ -271,36 +241,10 @@ func (o SystemSessionHelperOutput) ToSystemSessionHelperOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemSessionHelperOutput) ToSystemSessionHelperPtrOutput() SystemSessionHelperPtrOutput {
-	return o.ToSystemSessionHelperPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSessionHelperOutput) ToSystemSessionHelperPtrOutputWithContext(ctx context.Context) SystemSessionHelperPtrOutput {
-	return o.ApplyT(func(v SystemSessionHelper) *SystemSessionHelper {
-		return &v
-	}).(SystemSessionHelperPtrOutput)
-}
-
-type SystemSessionHelperPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSessionHelperPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSessionHelper)(nil))
-}
-
-func (o SystemSessionHelperPtrOutput) ToSystemSessionHelperPtrOutput() SystemSessionHelperPtrOutput {
-	return o
-}
-
-func (o SystemSessionHelperPtrOutput) ToSystemSessionHelperPtrOutputWithContext(ctx context.Context) SystemSessionHelperPtrOutput {
-	return o
-}
-
 type SystemSessionHelperArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionHelperArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSessionHelper)(nil))
+	return reflect.TypeOf((*[]*SystemSessionHelper)(nil)).Elem()
 }
 
 func (o SystemSessionHelperArrayOutput) ToSystemSessionHelperArrayOutput() SystemSessionHelperArrayOutput {
@@ -312,15 +256,15 @@ func (o SystemSessionHelperArrayOutput) ToSystemSessionHelperArrayOutputWithCont
 }
 
 func (o SystemSessionHelperArrayOutput) Index(i pulumi.IntInput) SystemSessionHelperOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSessionHelper {
-		return vs[0].([]SystemSessionHelper)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSessionHelper {
+		return vs[0].([]*SystemSessionHelper)[vs[1].(int)]
 	}).(SystemSessionHelperOutput)
 }
 
 type SystemSessionHelperMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSessionHelperMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSessionHelper)(nil))
+	return reflect.TypeOf((*map[string]*SystemSessionHelper)(nil)).Elem()
 }
 
 func (o SystemSessionHelperMapOutput) ToSystemSessionHelperMapOutput() SystemSessionHelperMapOutput {
@@ -332,14 +276,16 @@ func (o SystemSessionHelperMapOutput) ToSystemSessionHelperMapOutputWithContext(
 }
 
 func (o SystemSessionHelperMapOutput) MapIndex(k pulumi.StringInput) SystemSessionHelperOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSessionHelper {
-		return vs[0].(map[string]SystemSessionHelper)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSessionHelper {
+		return vs[0].(map[string]*SystemSessionHelper)[vs[1].(string)]
 	}).(SystemSessionHelperOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSessionHelperInput)(nil)).Elem(), &SystemSessionHelper{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSessionHelperArrayInput)(nil)).Elem(), SystemSessionHelperArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSessionHelperMapInput)(nil)).Elem(), SystemSessionHelperMap{})
 	pulumi.RegisterOutputType(SystemSessionHelperOutput{})
-	pulumi.RegisterOutputType(SystemSessionHelperPtrOutput{})
 	pulumi.RegisterOutputType(SystemSessionHelperArrayOutput{})
 	pulumi.RegisterOutputType(SystemSessionHelperMapOutput{})
 }

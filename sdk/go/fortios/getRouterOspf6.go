@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios router ospf6
 func LookupRouterOspf6(ctx *pulumi.Context, args *LookupRouterOspf6Args, opts ...pulumi.InvokeOption) (*LookupRouterOspf6Result, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupRouterOspf6Result
 	err := ctx.Invoke("fortios:index/getRouterOspf6:GetRouterOspf6", args, &rv, opts...)
 	if err != nil {
@@ -60,4 +64,131 @@ type LookupRouterOspf6Result struct {
 	// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
 	SummaryAddresses []GetRouterOspf6SummaryAddress `pulumi:"summaryAddresses"`
 	Vdomparam        *string                        `pulumi:"vdomparam"`
+}
+
+func LookupRouterOspf6Output(ctx *pulumi.Context, args LookupRouterOspf6OutputArgs, opts ...pulumi.InvokeOption) LookupRouterOspf6ResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupRouterOspf6Result, error) {
+			args := v.(LookupRouterOspf6Args)
+			r, err := LookupRouterOspf6(ctx, &args, opts...)
+			return *r, err
+		}).(LookupRouterOspf6ResultOutput)
+}
+
+// A collection of arguments for invoking GetRouterOspf6.
+type LookupRouterOspf6OutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupRouterOspf6OutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterOspf6Args)(nil)).Elem()
+}
+
+// A collection of values returned by GetRouterOspf6.
+type LookupRouterOspf6ResultOutput struct{ *pulumi.OutputState }
+
+func (LookupRouterOspf6ResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupRouterOspf6Result)(nil)).Elem()
+}
+
+func (o LookupRouterOspf6ResultOutput) ToLookupRouterOspf6ResultOutput() LookupRouterOspf6ResultOutput {
+	return o
+}
+
+func (o LookupRouterOspf6ResultOutput) ToLookupRouterOspf6ResultOutputWithContext(ctx context.Context) LookupRouterOspf6ResultOutput {
+	return o
+}
+
+// Area border router type.
+func (o LookupRouterOspf6ResultOutput) AbrType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.AbrType }).(pulumi.StringOutput)
+}
+
+// OSPF6 area configuration. The structure of `area` block is documented below.
+func (o LookupRouterOspf6ResultOutput) Areas() GetRouterOspf6AreaArrayOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) []GetRouterOspf6Area { return v.Areas }).(GetRouterOspf6AreaArrayOutput)
+}
+
+// Reference bandwidth in terms of megabits per second.
+func (o LookupRouterOspf6ResultOutput) AutoCostRefBandwidth() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) int { return v.AutoCostRefBandwidth }).(pulumi.IntOutput)
+}
+
+// Enable/disable Bidirectional Forwarding Detection (BFD).
+func (o LookupRouterOspf6ResultOutput) Bfd() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.Bfd }).(pulumi.StringOutput)
+}
+
+// Default information metric.
+func (o LookupRouterOspf6ResultOutput) DefaultInformationMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) int { return v.DefaultInformationMetric }).(pulumi.IntOutput)
+}
+
+// Default information metric type.
+func (o LookupRouterOspf6ResultOutput) DefaultInformationMetricType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.DefaultInformationMetricType }).(pulumi.StringOutput)
+}
+
+// Enable/disable generation of default route.
+func (o LookupRouterOspf6ResultOutput) DefaultInformationOriginate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.DefaultInformationOriginate }).(pulumi.StringOutput)
+}
+
+// Default information route map.
+func (o LookupRouterOspf6ResultOutput) DefaultInformationRouteMap() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.DefaultInformationRouteMap }).(pulumi.StringOutput)
+}
+
+// Default metric of redistribute routes.
+func (o LookupRouterOspf6ResultOutput) DefaultMetric() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) int { return v.DefaultMetric }).(pulumi.IntOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupRouterOspf6ResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Enable logging of OSPFv3 neighbour's changes
+func (o LookupRouterOspf6ResultOutput) LogNeighbourChanges() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.LogNeighbourChanges }).(pulumi.StringOutput)
+}
+
+// OSPF6 interface configuration. The structure of `ospf6Interface` block is documented below.
+func (o LookupRouterOspf6ResultOutput) Ospf6Interfaces() GetRouterOspf6Ospf6InterfaceArrayOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) []GetRouterOspf6Ospf6Interface { return v.Ospf6Interfaces }).(GetRouterOspf6Ospf6InterfaceArrayOutput)
+}
+
+// Passive interface configuration. The structure of `passiveInterface` block is documented below.
+func (o LookupRouterOspf6ResultOutput) PassiveInterfaces() GetRouterOspf6PassiveInterfaceArrayOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) []GetRouterOspf6PassiveInterface { return v.PassiveInterfaces }).(GetRouterOspf6PassiveInterfaceArrayOutput)
+}
+
+// Redistribute configuration. The structure of `redistribute` block is documented below.
+func (o LookupRouterOspf6ResultOutput) Redistributes() GetRouterOspf6RedistributeArrayOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) []GetRouterOspf6Redistribute { return v.Redistributes }).(GetRouterOspf6RedistributeArrayOutput)
+}
+
+// A.B.C.D, in IPv4 address format.
+func (o LookupRouterOspf6ResultOutput) RouterId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.RouterId }).(pulumi.StringOutput)
+}
+
+// SPF calculation frequency.
+func (o LookupRouterOspf6ResultOutput) SpfTimers() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) string { return v.SpfTimers }).(pulumi.StringOutput)
+}
+
+// IPv6 address summary configuration. The structure of `summaryAddress` block is documented below.
+func (o LookupRouterOspf6ResultOutput) SummaryAddresses() GetRouterOspf6SummaryAddressArrayOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) []GetRouterOspf6SummaryAddress { return v.SummaryAddresses }).(GetRouterOspf6SummaryAddressArrayOutput)
+}
+
+func (o LookupRouterOspf6ResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupRouterOspf6Result) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupRouterOspf6ResultOutput{})
 }

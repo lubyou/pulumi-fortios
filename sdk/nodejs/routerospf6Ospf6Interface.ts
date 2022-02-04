@@ -146,61 +146,59 @@ export class Routerospf6Ospf6Interface extends pulumi.CustomResource {
      */
     constructor(name: string, args?: Routerospf6Ospf6InterfaceArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: Routerospf6Ospf6InterfaceArgs | Routerospf6Ospf6InterfaceState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as Routerospf6Ospf6InterfaceState | undefined;
-            inputs["areaId"] = state ? state.areaId : undefined;
-            inputs["authentication"] = state ? state.authentication : undefined;
-            inputs["bfd"] = state ? state.bfd : undefined;
-            inputs["cost"] = state ? state.cost : undefined;
-            inputs["deadInterval"] = state ? state.deadInterval : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["helloInterval"] = state ? state.helloInterval : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["ipsecAuthAlg"] = state ? state.ipsecAuthAlg : undefined;
-            inputs["ipsecEncAlg"] = state ? state.ipsecEncAlg : undefined;
-            inputs["ipsecKeys"] = state ? state.ipsecKeys : undefined;
-            inputs["keyRolloverInterval"] = state ? state.keyRolloverInterval : undefined;
-            inputs["mtu"] = state ? state.mtu : undefined;
-            inputs["mtuIgnore"] = state ? state.mtuIgnore : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["neighbors"] = state ? state.neighbors : undefined;
-            inputs["networkType"] = state ? state.networkType : undefined;
-            inputs["priority"] = state ? state.priority : undefined;
-            inputs["retransmitInterval"] = state ? state.retransmitInterval : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["transmitDelay"] = state ? state.transmitDelay : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["areaId"] = state ? state.areaId : undefined;
+            resourceInputs["authentication"] = state ? state.authentication : undefined;
+            resourceInputs["bfd"] = state ? state.bfd : undefined;
+            resourceInputs["cost"] = state ? state.cost : undefined;
+            resourceInputs["deadInterval"] = state ? state.deadInterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["helloInterval"] = state ? state.helloInterval : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["ipsecAuthAlg"] = state ? state.ipsecAuthAlg : undefined;
+            resourceInputs["ipsecEncAlg"] = state ? state.ipsecEncAlg : undefined;
+            resourceInputs["ipsecKeys"] = state ? state.ipsecKeys : undefined;
+            resourceInputs["keyRolloverInterval"] = state ? state.keyRolloverInterval : undefined;
+            resourceInputs["mtu"] = state ? state.mtu : undefined;
+            resourceInputs["mtuIgnore"] = state ? state.mtuIgnore : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["neighbors"] = state ? state.neighbors : undefined;
+            resourceInputs["networkType"] = state ? state.networkType : undefined;
+            resourceInputs["priority"] = state ? state.priority : undefined;
+            resourceInputs["retransmitInterval"] = state ? state.retransmitInterval : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["transmitDelay"] = state ? state.transmitDelay : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as Routerospf6Ospf6InterfaceArgs | undefined;
-            inputs["areaId"] = args ? args.areaId : undefined;
-            inputs["authentication"] = args ? args.authentication : undefined;
-            inputs["bfd"] = args ? args.bfd : undefined;
-            inputs["cost"] = args ? args.cost : undefined;
-            inputs["deadInterval"] = args ? args.deadInterval : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["helloInterval"] = args ? args.helloInterval : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["ipsecAuthAlg"] = args ? args.ipsecAuthAlg : undefined;
-            inputs["ipsecEncAlg"] = args ? args.ipsecEncAlg : undefined;
-            inputs["ipsecKeys"] = args ? args.ipsecKeys : undefined;
-            inputs["keyRolloverInterval"] = args ? args.keyRolloverInterval : undefined;
-            inputs["mtu"] = args ? args.mtu : undefined;
-            inputs["mtuIgnore"] = args ? args.mtuIgnore : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["neighbors"] = args ? args.neighbors : undefined;
-            inputs["networkType"] = args ? args.networkType : undefined;
-            inputs["priority"] = args ? args.priority : undefined;
-            inputs["retransmitInterval"] = args ? args.retransmitInterval : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["transmitDelay"] = args ? args.transmitDelay : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["areaId"] = args ? args.areaId : undefined;
+            resourceInputs["authentication"] = args ? args.authentication : undefined;
+            resourceInputs["bfd"] = args ? args.bfd : undefined;
+            resourceInputs["cost"] = args ? args.cost : undefined;
+            resourceInputs["deadInterval"] = args ? args.deadInterval : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["helloInterval"] = args ? args.helloInterval : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["ipsecAuthAlg"] = args ? args.ipsecAuthAlg : undefined;
+            resourceInputs["ipsecEncAlg"] = args ? args.ipsecEncAlg : undefined;
+            resourceInputs["ipsecKeys"] = args ? args.ipsecKeys : undefined;
+            resourceInputs["keyRolloverInterval"] = args ? args.keyRolloverInterval : undefined;
+            resourceInputs["mtu"] = args ? args.mtu : undefined;
+            resourceInputs["mtuIgnore"] = args ? args.mtuIgnore : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["neighbors"] = args ? args.neighbors : undefined;
+            resourceInputs["networkType"] = args ? args.networkType : undefined;
+            resourceInputs["priority"] = args ? args.priority : undefined;
+            resourceInputs["retransmitInterval"] = args ? args.retransmitInterval : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["transmitDelay"] = args ? args.transmitDelay : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(Routerospf6Ospf6Interface.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(Routerospf6Ospf6Interface.__pulumiType, name, resourceInputs, opts);
     }
 }
 

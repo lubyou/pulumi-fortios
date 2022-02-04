@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -55,6 +55,8 @@ type AuthenticationRule struct {
 	ActiveAuthMethod pulumi.StringOutput `pulumi:"activeAuthMethod"`
 	// Comment.
 	Comments pulumi.StringPtrOutput `pulumi:"comments"`
+	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+	Dstaddr6s AuthenticationRuleDstaddr6ArrayOutput `pulumi:"dstaddr6s"`
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs AuthenticationRuleDstaddrArrayOutput `pulumi:"dstaddrs"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -92,6 +94,7 @@ func NewAuthenticationRule(ctx *pulumi.Context,
 		args = &AuthenticationRuleArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource AuthenticationRule
 	err := ctx.RegisterResource("fortios:index/authenticationRule:AuthenticationRule", name, args, &resource, opts...)
 	if err != nil {
@@ -118,6 +121,8 @@ type authenticationRuleState struct {
 	ActiveAuthMethod *string `pulumi:"activeAuthMethod"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+	Dstaddr6s []AuthenticationRuleDstaddr6 `pulumi:"dstaddr6s"`
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs []AuthenticationRuleDstaddr `pulumi:"dstaddrs"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -153,6 +158,8 @@ type AuthenticationRuleState struct {
 	ActiveAuthMethod pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+	Dstaddr6s AuthenticationRuleDstaddr6ArrayInput
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs AuthenticationRuleDstaddrArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -192,6 +199,8 @@ type authenticationRuleArgs struct {
 	ActiveAuthMethod *string `pulumi:"activeAuthMethod"`
 	// Comment.
 	Comments *string `pulumi:"comments"`
+	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+	Dstaddr6s []AuthenticationRuleDstaddr6 `pulumi:"dstaddr6s"`
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs []AuthenticationRuleDstaddr `pulumi:"dstaddrs"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -228,6 +237,8 @@ type AuthenticationRuleArgs struct {
 	ActiveAuthMethod pulumi.StringPtrInput
 	// Comment.
 	Comments pulumi.StringPtrInput
+	// Select an IPv6 destination address from available options. Required for web proxy authentication. The structure of `dstaddr6` block is documented below.
+	Dstaddr6s AuthenticationRuleDstaddr6ArrayInput
 	// Select an IPv4 destination address from available options. Required for web proxy authentication. The structure of `dstaddr` block is documented below.
 	Dstaddrs AuthenticationRuleDstaddrArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -270,7 +281,7 @@ type AuthenticationRuleInput interface {
 }
 
 func (*AuthenticationRule) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthenticationRule)(nil))
+	return reflect.TypeOf((**AuthenticationRule)(nil)).Elem()
 }
 
 func (i *AuthenticationRule) ToAuthenticationRuleOutput() AuthenticationRuleOutput {
@@ -279,35 +290,6 @@ func (i *AuthenticationRule) ToAuthenticationRuleOutput() AuthenticationRuleOutp
 
 func (i *AuthenticationRule) ToAuthenticationRuleOutputWithContext(ctx context.Context) AuthenticationRuleOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRuleOutput)
-}
-
-func (i *AuthenticationRule) ToAuthenticationRulePtrOutput() AuthenticationRulePtrOutput {
-	return i.ToAuthenticationRulePtrOutputWithContext(context.Background())
-}
-
-func (i *AuthenticationRule) ToAuthenticationRulePtrOutputWithContext(ctx context.Context) AuthenticationRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRulePtrOutput)
-}
-
-type AuthenticationRulePtrInput interface {
-	pulumi.Input
-
-	ToAuthenticationRulePtrOutput() AuthenticationRulePtrOutput
-	ToAuthenticationRulePtrOutputWithContext(ctx context.Context) AuthenticationRulePtrOutput
-}
-
-type authenticationRulePtrType AuthenticationRuleArgs
-
-func (*authenticationRulePtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthenticationRule)(nil))
-}
-
-func (i *authenticationRulePtrType) ToAuthenticationRulePtrOutput() AuthenticationRulePtrOutput {
-	return i.ToAuthenticationRulePtrOutputWithContext(context.Background())
-}
-
-func (i *authenticationRulePtrType) ToAuthenticationRulePtrOutputWithContext(ctx context.Context) AuthenticationRulePtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRulePtrOutput)
 }
 
 // AuthenticationRuleArrayInput is an input type that accepts AuthenticationRuleArray and AuthenticationRuleArrayOutput values.
@@ -324,7 +306,7 @@ type AuthenticationRuleArrayInput interface {
 type AuthenticationRuleArray []AuthenticationRuleInput
 
 func (AuthenticationRuleArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*AuthenticationRule)(nil))
+	return reflect.TypeOf((*[]*AuthenticationRule)(nil)).Elem()
 }
 
 func (i AuthenticationRuleArray) ToAuthenticationRuleArrayOutput() AuthenticationRuleArrayOutput {
@@ -349,7 +331,7 @@ type AuthenticationRuleMapInput interface {
 type AuthenticationRuleMap map[string]AuthenticationRuleInput
 
 func (AuthenticationRuleMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*AuthenticationRule)(nil))
+	return reflect.TypeOf((*map[string]*AuthenticationRule)(nil)).Elem()
 }
 
 func (i AuthenticationRuleMap) ToAuthenticationRuleMapOutput() AuthenticationRuleMapOutput {
@@ -360,12 +342,10 @@ func (i AuthenticationRuleMap) ToAuthenticationRuleMapOutputWithContext(ctx cont
 	return pulumi.ToOutputWithContext(ctx, i).(AuthenticationRuleMapOutput)
 }
 
-type AuthenticationRuleOutput struct {
-	*pulumi.OutputState
-}
+type AuthenticationRuleOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationRuleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*AuthenticationRule)(nil))
+	return reflect.TypeOf((**AuthenticationRule)(nil)).Elem()
 }
 
 func (o AuthenticationRuleOutput) ToAuthenticationRuleOutput() AuthenticationRuleOutput {
@@ -376,36 +356,10 @@ func (o AuthenticationRuleOutput) ToAuthenticationRuleOutputWithContext(ctx cont
 	return o
 }
 
-func (o AuthenticationRuleOutput) ToAuthenticationRulePtrOutput() AuthenticationRulePtrOutput {
-	return o.ToAuthenticationRulePtrOutputWithContext(context.Background())
-}
-
-func (o AuthenticationRuleOutput) ToAuthenticationRulePtrOutputWithContext(ctx context.Context) AuthenticationRulePtrOutput {
-	return o.ApplyT(func(v AuthenticationRule) *AuthenticationRule {
-		return &v
-	}).(AuthenticationRulePtrOutput)
-}
-
-type AuthenticationRulePtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (AuthenticationRulePtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**AuthenticationRule)(nil))
-}
-
-func (o AuthenticationRulePtrOutput) ToAuthenticationRulePtrOutput() AuthenticationRulePtrOutput {
-	return o
-}
-
-func (o AuthenticationRulePtrOutput) ToAuthenticationRulePtrOutputWithContext(ctx context.Context) AuthenticationRulePtrOutput {
-	return o
-}
-
 type AuthenticationRuleArrayOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationRuleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]AuthenticationRule)(nil))
+	return reflect.TypeOf((*[]*AuthenticationRule)(nil)).Elem()
 }
 
 func (o AuthenticationRuleArrayOutput) ToAuthenticationRuleArrayOutput() AuthenticationRuleArrayOutput {
@@ -417,15 +371,15 @@ func (o AuthenticationRuleArrayOutput) ToAuthenticationRuleArrayOutputWithContex
 }
 
 func (o AuthenticationRuleArrayOutput) Index(i pulumi.IntInput) AuthenticationRuleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) AuthenticationRule {
-		return vs[0].([]AuthenticationRule)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *AuthenticationRule {
+		return vs[0].([]*AuthenticationRule)[vs[1].(int)]
 	}).(AuthenticationRuleOutput)
 }
 
 type AuthenticationRuleMapOutput struct{ *pulumi.OutputState }
 
 func (AuthenticationRuleMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]AuthenticationRule)(nil))
+	return reflect.TypeOf((*map[string]*AuthenticationRule)(nil)).Elem()
 }
 
 func (o AuthenticationRuleMapOutput) ToAuthenticationRuleMapOutput() AuthenticationRuleMapOutput {
@@ -437,14 +391,16 @@ func (o AuthenticationRuleMapOutput) ToAuthenticationRuleMapOutputWithContext(ct
 }
 
 func (o AuthenticationRuleMapOutput) MapIndex(k pulumi.StringInput) AuthenticationRuleOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) AuthenticationRule {
-		return vs[0].(map[string]AuthenticationRule)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *AuthenticationRule {
+		return vs[0].(map[string]*AuthenticationRule)[vs[1].(string)]
 	}).(AuthenticationRuleOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationRuleInput)(nil)).Elem(), &AuthenticationRule{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationRuleArrayInput)(nil)).Elem(), AuthenticationRuleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AuthenticationRuleMapInput)(nil)).Elem(), AuthenticationRuleMap{})
 	pulumi.RegisterOutputType(AuthenticationRuleOutput{})
-	pulumi.RegisterOutputType(AuthenticationRulePtrOutput{})
 	pulumi.RegisterOutputType(AuthenticationRuleArrayOutput{})
 	pulumi.RegisterOutputType(AuthenticationRuleMapOutput{})
 }

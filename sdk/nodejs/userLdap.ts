@@ -80,6 +80,10 @@ export class UserLdap extends pulumi.CustomResource {
      */
     public readonly accountKeyProcessing!: pulumi.Output<string>;
     /**
+     * Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+     */
+    public readonly antiphish!: pulumi.Output<string>;
+    /**
      * CA certificate name.
      */
     public readonly caCert!: pulumi.Output<string>;
@@ -132,6 +136,10 @@ export class UserLdap extends pulumi.CustomResource {
      */
     public readonly password!: pulumi.Output<string | undefined>;
     /**
+     * Name of attribute to get password hash.
+     */
+    public readonly passwordAttr!: pulumi.Output<string>;
+    /**
      * Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
      */
     public readonly passwordExpiryWarning!: pulumi.Output<string>;
@@ -167,6 +175,10 @@ export class UserLdap extends pulumi.CustomResource {
      * Source IP for communications to LDAP server.
      */
     public readonly sourceIp!: pulumi.Output<string>;
+    /**
+     * Source port to be used for communication with the LDAP server.
+     */
+    public readonly sourcePort!: pulumi.Output<number>;
     /**
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
      */
@@ -213,43 +225,46 @@ export class UserLdap extends pulumi.CustomResource {
      */
     constructor(name: string, args: UserLdapArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserLdapArgs | UserLdapState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserLdapState | undefined;
-            inputs["accountKeyFilter"] = state ? state.accountKeyFilter : undefined;
-            inputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
-            inputs["caCert"] = state ? state.caCert : undefined;
-            inputs["cnid"] = state ? state.cnid : undefined;
-            inputs["dn"] = state ? state.dn : undefined;
-            inputs["groupFilter"] = state ? state.groupFilter : undefined;
-            inputs["groupMemberCheck"] = state ? state.groupMemberCheck : undefined;
-            inputs["groupObjectFilter"] = state ? state.groupObjectFilter : undefined;
-            inputs["groupSearchBase"] = state ? state.groupSearchBase : undefined;
-            inputs["interface"] = state ? state.interface : undefined;
-            inputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
-            inputs["memberAttr"] = state ? state.memberAttr : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["obtainUserInfo"] = state ? state.obtainUserInfo : undefined;
-            inputs["password"] = state ? state.password : undefined;
-            inputs["passwordExpiryWarning"] = state ? state.passwordExpiryWarning : undefined;
-            inputs["passwordRenewal"] = state ? state.passwordRenewal : undefined;
-            inputs["port"] = state ? state.port : undefined;
-            inputs["searchType"] = state ? state.searchType : undefined;
-            inputs["secondaryServer"] = state ? state.secondaryServer : undefined;
-            inputs["secure"] = state ? state.secure : undefined;
-            inputs["server"] = state ? state.server : undefined;
-            inputs["serverIdentityCheck"] = state ? state.serverIdentityCheck : undefined;
-            inputs["sourceIp"] = state ? state.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
-            inputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
-            inputs["twoFactor"] = state ? state.twoFactor : undefined;
-            inputs["twoFactorAuthentication"] = state ? state.twoFactorAuthentication : undefined;
-            inputs["twoFactorNotification"] = state ? state.twoFactorNotification : undefined;
-            inputs["type"] = state ? state.type : undefined;
-            inputs["userInfoExchangeServer"] = state ? state.userInfoExchangeServer : undefined;
-            inputs["username"] = state ? state.username : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["accountKeyFilter"] = state ? state.accountKeyFilter : undefined;
+            resourceInputs["accountKeyProcessing"] = state ? state.accountKeyProcessing : undefined;
+            resourceInputs["antiphish"] = state ? state.antiphish : undefined;
+            resourceInputs["caCert"] = state ? state.caCert : undefined;
+            resourceInputs["cnid"] = state ? state.cnid : undefined;
+            resourceInputs["dn"] = state ? state.dn : undefined;
+            resourceInputs["groupFilter"] = state ? state.groupFilter : undefined;
+            resourceInputs["groupMemberCheck"] = state ? state.groupMemberCheck : undefined;
+            resourceInputs["groupObjectFilter"] = state ? state.groupObjectFilter : undefined;
+            resourceInputs["groupSearchBase"] = state ? state.groupSearchBase : undefined;
+            resourceInputs["interface"] = state ? state.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = state ? state.interfaceSelectMethod : undefined;
+            resourceInputs["memberAttr"] = state ? state.memberAttr : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["obtainUserInfo"] = state ? state.obtainUserInfo : undefined;
+            resourceInputs["password"] = state ? state.password : undefined;
+            resourceInputs["passwordAttr"] = state ? state.passwordAttr : undefined;
+            resourceInputs["passwordExpiryWarning"] = state ? state.passwordExpiryWarning : undefined;
+            resourceInputs["passwordRenewal"] = state ? state.passwordRenewal : undefined;
+            resourceInputs["port"] = state ? state.port : undefined;
+            resourceInputs["searchType"] = state ? state.searchType : undefined;
+            resourceInputs["secondaryServer"] = state ? state.secondaryServer : undefined;
+            resourceInputs["secure"] = state ? state.secure : undefined;
+            resourceInputs["server"] = state ? state.server : undefined;
+            resourceInputs["serverIdentityCheck"] = state ? state.serverIdentityCheck : undefined;
+            resourceInputs["sourceIp"] = state ? state.sourceIp : undefined;
+            resourceInputs["sourcePort"] = state ? state.sourcePort : undefined;
+            resourceInputs["sslMinProtoVersion"] = state ? state.sslMinProtoVersion : undefined;
+            resourceInputs["tertiaryServer"] = state ? state.tertiaryServer : undefined;
+            resourceInputs["twoFactor"] = state ? state.twoFactor : undefined;
+            resourceInputs["twoFactorAuthentication"] = state ? state.twoFactorAuthentication : undefined;
+            resourceInputs["twoFactorNotification"] = state ? state.twoFactorNotification : undefined;
+            resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["userInfoExchangeServer"] = state ? state.userInfoExchangeServer : undefined;
+            resourceInputs["username"] = state ? state.username : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as UserLdapArgs | undefined;
             if ((!args || args.dn === undefined) && !opts.urn) {
@@ -258,44 +273,45 @@ export class UserLdap extends pulumi.CustomResource {
             if ((!args || args.server === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'server'");
             }
-            inputs["accountKeyFilter"] = args ? args.accountKeyFilter : undefined;
-            inputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
-            inputs["caCert"] = args ? args.caCert : undefined;
-            inputs["cnid"] = args ? args.cnid : undefined;
-            inputs["dn"] = args ? args.dn : undefined;
-            inputs["groupFilter"] = args ? args.groupFilter : undefined;
-            inputs["groupMemberCheck"] = args ? args.groupMemberCheck : undefined;
-            inputs["groupObjectFilter"] = args ? args.groupObjectFilter : undefined;
-            inputs["groupSearchBase"] = args ? args.groupSearchBase : undefined;
-            inputs["interface"] = args ? args.interface : undefined;
-            inputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
-            inputs["memberAttr"] = args ? args.memberAttr : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["obtainUserInfo"] = args ? args.obtainUserInfo : undefined;
-            inputs["password"] = args ? args.password : undefined;
-            inputs["passwordExpiryWarning"] = args ? args.passwordExpiryWarning : undefined;
-            inputs["passwordRenewal"] = args ? args.passwordRenewal : undefined;
-            inputs["port"] = args ? args.port : undefined;
-            inputs["searchType"] = args ? args.searchType : undefined;
-            inputs["secondaryServer"] = args ? args.secondaryServer : undefined;
-            inputs["secure"] = args ? args.secure : undefined;
-            inputs["server"] = args ? args.server : undefined;
-            inputs["serverIdentityCheck"] = args ? args.serverIdentityCheck : undefined;
-            inputs["sourceIp"] = args ? args.sourceIp : undefined;
-            inputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
-            inputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
-            inputs["twoFactor"] = args ? args.twoFactor : undefined;
-            inputs["twoFactorAuthentication"] = args ? args.twoFactorAuthentication : undefined;
-            inputs["twoFactorNotification"] = args ? args.twoFactorNotification : undefined;
-            inputs["type"] = args ? args.type : undefined;
-            inputs["userInfoExchangeServer"] = args ? args.userInfoExchangeServer : undefined;
-            inputs["username"] = args ? args.username : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["accountKeyFilter"] = args ? args.accountKeyFilter : undefined;
+            resourceInputs["accountKeyProcessing"] = args ? args.accountKeyProcessing : undefined;
+            resourceInputs["antiphish"] = args ? args.antiphish : undefined;
+            resourceInputs["caCert"] = args ? args.caCert : undefined;
+            resourceInputs["cnid"] = args ? args.cnid : undefined;
+            resourceInputs["dn"] = args ? args.dn : undefined;
+            resourceInputs["groupFilter"] = args ? args.groupFilter : undefined;
+            resourceInputs["groupMemberCheck"] = args ? args.groupMemberCheck : undefined;
+            resourceInputs["groupObjectFilter"] = args ? args.groupObjectFilter : undefined;
+            resourceInputs["groupSearchBase"] = args ? args.groupSearchBase : undefined;
+            resourceInputs["interface"] = args ? args.interface : undefined;
+            resourceInputs["interfaceSelectMethod"] = args ? args.interfaceSelectMethod : undefined;
+            resourceInputs["memberAttr"] = args ? args.memberAttr : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["obtainUserInfo"] = args ? args.obtainUserInfo : undefined;
+            resourceInputs["password"] = args ? args.password : undefined;
+            resourceInputs["passwordAttr"] = args ? args.passwordAttr : undefined;
+            resourceInputs["passwordExpiryWarning"] = args ? args.passwordExpiryWarning : undefined;
+            resourceInputs["passwordRenewal"] = args ? args.passwordRenewal : undefined;
+            resourceInputs["port"] = args ? args.port : undefined;
+            resourceInputs["searchType"] = args ? args.searchType : undefined;
+            resourceInputs["secondaryServer"] = args ? args.secondaryServer : undefined;
+            resourceInputs["secure"] = args ? args.secure : undefined;
+            resourceInputs["server"] = args ? args.server : undefined;
+            resourceInputs["serverIdentityCheck"] = args ? args.serverIdentityCheck : undefined;
+            resourceInputs["sourceIp"] = args ? args.sourceIp : undefined;
+            resourceInputs["sourcePort"] = args ? args.sourcePort : undefined;
+            resourceInputs["sslMinProtoVersion"] = args ? args.sslMinProtoVersion : undefined;
+            resourceInputs["tertiaryServer"] = args ? args.tertiaryServer : undefined;
+            resourceInputs["twoFactor"] = args ? args.twoFactor : undefined;
+            resourceInputs["twoFactorAuthentication"] = args ? args.twoFactorAuthentication : undefined;
+            resourceInputs["twoFactorNotification"] = args ? args.twoFactorNotification : undefined;
+            resourceInputs["type"] = args ? args.type : undefined;
+            resourceInputs["userInfoExchangeServer"] = args ? args.userInfoExchangeServer : undefined;
+            resourceInputs["username"] = args ? args.username : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserLdap.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserLdap.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -311,6 +327,10 @@ export interface UserLdapState {
      * Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
      */
     accountKeyProcessing?: pulumi.Input<string>;
+    /**
+     * Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+     */
+    antiphish?: pulumi.Input<string>;
     /**
      * CA certificate name.
      */
@@ -364,6 +384,10 @@ export interface UserLdapState {
      */
     password?: pulumi.Input<string>;
     /**
+     * Name of attribute to get password hash.
+     */
+    passwordAttr?: pulumi.Input<string>;
+    /**
      * Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
      */
     passwordExpiryWarning?: pulumi.Input<string>;
@@ -399,6 +423,10 @@ export interface UserLdapState {
      * Source IP for communications to LDAP server.
      */
     sourceIp?: pulumi.Input<string>;
+    /**
+     * Source port to be used for communication with the LDAP server.
+     */
+    sourcePort?: pulumi.Input<number>;
     /**
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
      */
@@ -449,6 +477,10 @@ export interface UserLdapArgs {
      * Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
      */
     accountKeyProcessing?: pulumi.Input<string>;
+    /**
+     * Enable/disable AntiPhishing credential backend. Valid values: `enable`, `disable`.
+     */
+    antiphish?: pulumi.Input<string>;
     /**
      * CA certificate name.
      */
@@ -502,6 +534,10 @@ export interface UserLdapArgs {
      */
     password?: pulumi.Input<string>;
     /**
+     * Name of attribute to get password hash.
+     */
+    passwordAttr?: pulumi.Input<string>;
+    /**
      * Enable/disable password expiry warnings. Valid values: `enable`, `disable`.
      */
     passwordExpiryWarning?: pulumi.Input<string>;
@@ -537,6 +573,10 @@ export interface UserLdapArgs {
      * Source IP for communications to LDAP server.
      */
     sourceIp?: pulumi.Input<string>;
+    /**
+     * Source port to be used for communication with the LDAP server.
+     */
+    sourcePort?: pulumi.Input<number>;
     /**
      * Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `SSLv3`, `TLSv1`, `TLSv1-1`, `TLSv1-2`.
      */

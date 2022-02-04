@@ -43,6 +43,7 @@ func NewFirewallInternetServiceCustomGroup(ctx *pulumi.Context,
 		args = &FirewallInternetServiceCustomGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceCustomGroup
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceCustomGroup:FirewallInternetServiceCustomGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -133,7 +134,7 @@ type FirewallInternetServiceCustomGroupInput interface {
 }
 
 func (*FirewallInternetServiceCustomGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceCustomGroup)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceCustomGroup)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGroupOutput() FirewallInternetServiceCustomGroupOutput {
@@ -142,35 +143,6 @@ func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGrou
 
 func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGroupOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupOutput)
-}
-
-func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGroupPtrOutput() FirewallInternetServiceCustomGroupPtrOutput {
-	return i.ToFirewallInternetServiceCustomGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceCustomGroup) ToFirewallInternetServiceCustomGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupPtrOutput)
-}
-
-type FirewallInternetServiceCustomGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceCustomGroupPtrOutput() FirewallInternetServiceCustomGroupPtrOutput
-	ToFirewallInternetServiceCustomGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupPtrOutput
-}
-
-type firewallInternetServiceCustomGroupPtrType FirewallInternetServiceCustomGroupArgs
-
-func (*firewallInternetServiceCustomGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceCustomGroup)(nil))
-}
-
-func (i *firewallInternetServiceCustomGroupPtrType) ToFirewallInternetServiceCustomGroupPtrOutput() FirewallInternetServiceCustomGroupPtrOutput {
-	return i.ToFirewallInternetServiceCustomGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceCustomGroupPtrType) ToFirewallInternetServiceCustomGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupPtrOutput)
 }
 
 // FirewallInternetServiceCustomGroupArrayInput is an input type that accepts FirewallInternetServiceCustomGroupArray and FirewallInternetServiceCustomGroupArrayOutput values.
@@ -187,7 +159,7 @@ type FirewallInternetServiceCustomGroupArrayInput interface {
 type FirewallInternetServiceCustomGroupArray []FirewallInternetServiceCustomGroupInput
 
 func (FirewallInternetServiceCustomGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceCustomGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceCustomGroup)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceCustomGroupArray) ToFirewallInternetServiceCustomGroupArrayOutput() FirewallInternetServiceCustomGroupArrayOutput {
@@ -212,7 +184,7 @@ type FirewallInternetServiceCustomGroupMapInput interface {
 type FirewallInternetServiceCustomGroupMap map[string]FirewallInternetServiceCustomGroupInput
 
 func (FirewallInternetServiceCustomGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceCustomGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceCustomGroup)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceCustomGroupMap) ToFirewallInternetServiceCustomGroupMapOutput() FirewallInternetServiceCustomGroupMapOutput {
@@ -223,12 +195,10 @@ func (i FirewallInternetServiceCustomGroupMap) ToFirewallInternetServiceCustomGr
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceCustomGroupMapOutput)
 }
 
-type FirewallInternetServiceCustomGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceCustomGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceCustomGroup)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceCustomGroup)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCustomGroupOutput() FirewallInternetServiceCustomGroupOutput {
@@ -239,36 +209,10 @@ func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCusto
 	return o
 }
 
-func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCustomGroupPtrOutput() FirewallInternetServiceCustomGroupPtrOutput {
-	return o.ToFirewallInternetServiceCustomGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceCustomGroupOutput) ToFirewallInternetServiceCustomGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceCustomGroup) *FirewallInternetServiceCustomGroup {
-		return &v
-	}).(FirewallInternetServiceCustomGroupPtrOutput)
-}
-
-type FirewallInternetServiceCustomGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceCustomGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceCustomGroup)(nil))
-}
-
-func (o FirewallInternetServiceCustomGroupPtrOutput) ToFirewallInternetServiceCustomGroupPtrOutput() FirewallInternetServiceCustomGroupPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceCustomGroupPtrOutput) ToFirewallInternetServiceCustomGroupPtrOutputWithContext(ctx context.Context) FirewallInternetServiceCustomGroupPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceCustomGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceCustomGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceCustomGroup)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceCustomGroupArrayOutput) ToFirewallInternetServiceCustomGroupArrayOutput() FirewallInternetServiceCustomGroupArrayOutput {
@@ -280,15 +224,15 @@ func (o FirewallInternetServiceCustomGroupArrayOutput) ToFirewallInternetService
 }
 
 func (o FirewallInternetServiceCustomGroupArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceCustomGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceCustomGroup {
-		return vs[0].([]FirewallInternetServiceCustomGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceCustomGroup {
+		return vs[0].([]*FirewallInternetServiceCustomGroup)[vs[1].(int)]
 	}).(FirewallInternetServiceCustomGroupOutput)
 }
 
 type FirewallInternetServiceCustomGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceCustomGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceCustomGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceCustomGroup)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceCustomGroupMapOutput) ToFirewallInternetServiceCustomGroupMapOutput() FirewallInternetServiceCustomGroupMapOutput {
@@ -300,14 +244,16 @@ func (o FirewallInternetServiceCustomGroupMapOutput) ToFirewallInternetServiceCu
 }
 
 func (o FirewallInternetServiceCustomGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceCustomGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceCustomGroup {
-		return vs[0].(map[string]FirewallInternetServiceCustomGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceCustomGroup {
+		return vs[0].(map[string]*FirewallInternetServiceCustomGroup)[vs[1].(string)]
 	}).(FirewallInternetServiceCustomGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceCustomGroupInput)(nil)).Elem(), &FirewallInternetServiceCustomGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceCustomGroupArrayInput)(nil)).Elem(), FirewallInternetServiceCustomGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceCustomGroupMapInput)(nil)).Elem(), FirewallInternetServiceCustomGroupMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceCustomGroupOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceCustomGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceCustomGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceCustomGroupMapOutput{})
 }

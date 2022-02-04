@@ -164,30 +164,30 @@ export class FirewallMulticastPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallMulticastPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallMulticastPolicyArgs | FirewallMulticastPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallMulticastPolicyState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dnat"] = state ? state.dnat : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dstintf"] = state ? state.dstintf : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["endPort"] = state ? state.endPort : undefined;
-            inputs["fosid"] = state ? state.fosid : undefined;
-            inputs["logtraffic"] = state ? state.logtraffic : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["protocol"] = state ? state.protocol : undefined;
-            inputs["snat"] = state ? state.snat : undefined;
-            inputs["snatIp"] = state ? state.snatIp : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["srcintf"] = state ? state.srcintf : undefined;
-            inputs["startPort"] = state ? state.startPort : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["autoAsicOffload"] = state ? state.autoAsicOffload : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dnat"] = state ? state.dnat : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dstintf"] = state ? state.dstintf : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["endPort"] = state ? state.endPort : undefined;
+            resourceInputs["fosid"] = state ? state.fosid : undefined;
+            resourceInputs["logtraffic"] = state ? state.logtraffic : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["protocol"] = state ? state.protocol : undefined;
+            resourceInputs["snat"] = state ? state.snat : undefined;
+            resourceInputs["snatIp"] = state ? state.snatIp : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["srcintf"] = state ? state.srcintf : undefined;
+            resourceInputs["startPort"] = state ? state.startPort : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallMulticastPolicyArgs | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -202,31 +202,29 @@ export class FirewallMulticastPolicy extends pulumi.CustomResource {
             if ((!args || args.srcintf === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcintf'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dnat"] = args ? args.dnat : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dstintf"] = args ? args.dstintf : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["endPort"] = args ? args.endPort : undefined;
-            inputs["fosid"] = args ? args.fosid : undefined;
-            inputs["logtraffic"] = args ? args.logtraffic : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["protocol"] = args ? args.protocol : undefined;
-            inputs["snat"] = args ? args.snat : undefined;
-            inputs["snatIp"] = args ? args.snatIp : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["srcintf"] = args ? args.srcintf : undefined;
-            inputs["startPort"] = args ? args.startPort : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["autoAsicOffload"] = args ? args.autoAsicOffload : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dnat"] = args ? args.dnat : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dstintf"] = args ? args.dstintf : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["endPort"] = args ? args.endPort : undefined;
+            resourceInputs["fosid"] = args ? args.fosid : undefined;
+            resourceInputs["logtraffic"] = args ? args.logtraffic : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["protocol"] = args ? args.protocol : undefined;
+            resourceInputs["snat"] = args ? args.snat : undefined;
+            resourceInputs["snatIp"] = args ? args.snatIp : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["srcintf"] = args ? args.srcintf : undefined;
+            resourceInputs["startPort"] = args ? args.startPort : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallMulticastPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallMulticastPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

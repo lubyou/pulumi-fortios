@@ -17,10 +17,12 @@ class FirewallVip6Args:
     def __init__(__self__, *,
                  extip: pulumi.Input[str],
                  mappedip: pulumi.Input[str],
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
                  http_cookie_age: Optional[pulumi.Input[int]] = None,
@@ -34,11 +36,15 @@ class FirewallVip6Args:
                  http_multiplex: Optional[pulumi.Input[str]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedip: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedport: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
                  max_embryonic_connections: Optional[pulumi.Input[int]] = None,
                  monitors: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6MonitorArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
+                 nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
@@ -47,6 +53,7 @@ class FirewallVip6Args:
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6RealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SrcFilterArgs']]]] = None,
+                 ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  ssl_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SslCipherSuiteArgs']]]] = None,
@@ -89,10 +96,12 @@ class FirewallVip6Args:
         The set of arguments for constructing a FirewallVip6 resource.
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] mappedip: Mapped IP address range in the format startIP-endIP.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_reply: Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] embedded_ipv4_address: Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
         :param pulumi.Input[int] http_cookie_age: Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -106,11 +115,15 @@ class FirewallVip6Args:
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ipv4_mappedip: Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        :param pulumi.Input[str] ipv4_mappedport: IPv4 port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[str] ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
         :param pulumi.Input[str] mappedport: Port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[int] max_embryonic_connections: Maximum number of incomplete connections.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6MonitorArgs']]] monitors: Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
         :param pulumi.Input[str] name: Health monitor name.
+        :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -119,6 +132,7 @@ class FirewallVip6Args:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6RealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6SrcFilterArgs']]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6SslCipherSuiteArgs']]] ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
@@ -152,7 +166,7 @@ class FirewallVip6Args:
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
@@ -160,6 +174,8 @@ class FirewallVip6Args:
         """
         pulumi.set(__self__, "extip", extip)
         pulumi.set(__self__, "mappedip", mappedip)
+        if add_nat64_route is not None:
+            pulumi.set(__self__, "add_nat64_route", add_nat64_route)
         if arp_reply is not None:
             pulumi.set(__self__, "arp_reply", arp_reply)
         if color is not None:
@@ -168,6 +184,8 @@ class FirewallVip6Args:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if embedded_ipv4_address is not None:
+            pulumi.set(__self__, "embedded_ipv4_address", embedded_ipv4_address)
         if extport is not None:
             pulumi.set(__self__, "extport", extport)
         if fosid is not None:
@@ -194,6 +212,10 @@ class FirewallVip6Args:
             pulumi.set(__self__, "http_redirect", http_redirect)
         if https_cookie_secure is not None:
             pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
+        if ipv4_mappedip is not None:
+            pulumi.set(__self__, "ipv4_mappedip", ipv4_mappedip)
+        if ipv4_mappedport is not None:
+            pulumi.set(__self__, "ipv4_mappedport", ipv4_mappedport)
         if ldb_method is not None:
             pulumi.set(__self__, "ldb_method", ldb_method)
         if mappedport is not None:
@@ -204,6 +226,10 @@ class FirewallVip6Args:
             pulumi.set(__self__, "monitors", monitors)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
+        if nat66 is not None:
+            pulumi.set(__self__, "nat66", nat66)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
         if outlook_web_access is not None:
@@ -220,6 +246,8 @@ class FirewallVip6Args:
             pulumi.set(__self__, "server_type", server_type)
         if src_filters is not None:
             pulumi.set(__self__, "src_filters", src_filters)
+        if ssl_accept_ffdhe_groups is not None:
+            pulumi.set(__self__, "ssl_accept_ffdhe_groups", ssl_accept_ffdhe_groups)
         if ssl_algorithm is not None:
             pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
         if ssl_certificate is not None:
@@ -322,6 +350,18 @@ class FirewallVip6Args:
         pulumi.set(self, "mappedip", value)
 
     @property
+    @pulumi.getter(name="addNat64Route")
+    def add_nat64_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat64_route")
+
+    @add_nat64_route.setter
+    def add_nat64_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "add_nat64_route", value)
+
+    @property
     @pulumi.getter(name="arpReply")
     def arp_reply(self) -> Optional[pulumi.Input[str]]:
         """
@@ -368,6 +408,18 @@ class FirewallVip6Args:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="embeddedIpv4Address")
+    def embedded_ipv4_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "embedded_ipv4_address")
+
+    @embedded_ipv4_address.setter
+    def embedded_ipv4_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "embedded_ipv4_address", value)
 
     @property
     @pulumi.getter
@@ -526,6 +578,30 @@ class FirewallVip6Args:
         pulumi.set(self, "https_cookie_secure", value)
 
     @property
+    @pulumi.getter(name="ipv4Mappedip")
+    def ipv4_mappedip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        """
+        return pulumi.get(self, "ipv4_mappedip")
+
+    @ipv4_mappedip.setter
+    def ipv4_mappedip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_mappedip", value)
+
+    @property
+    @pulumi.getter(name="ipv4Mappedport")
+    def ipv4_mappedport(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 port number range on the destination network to which the external port number range is mapped.
+        """
+        return pulumi.get(self, "ipv4_mappedport")
+
+    @ipv4_mappedport.setter
+    def ipv4_mappedport(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_mappedport", value)
+
+    @property
     @pulumi.getter(name="ldbMethod")
     def ldb_method(self) -> Optional[pulumi.Input[str]]:
         """
@@ -584,6 +660,30 @@ class FirewallVip6Args:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
+
+    @property
+    @pulumi.getter
+    def nat66(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNAT66. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat66")
+
+    @nat66.setter
+    def nat66(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat66", value)
 
     @property
     @pulumi.getter(name="natSourceVip")
@@ -680,6 +780,18 @@ class FirewallVip6Args:
     @src_filters.setter
     def src_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SrcFilterArgs']]]]):
         pulumi.set(self, "src_filters", value)
+
+    @property
+    @pulumi.getter(name="sslAcceptFfdheGroups")
+    def ssl_accept_ffdhe_groups(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_accept_ffdhe_groups")
+
+    @ssl_accept_ffdhe_groups.setter
+    def ssl_accept_ffdhe_groups(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_accept_ffdhe_groups", value)
 
     @property
     @pulumi.getter(name="sslAlgorithm")
@@ -1081,7 +1193,7 @@ class FirewallVip6Args:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        Configure a static NAT or server load balance VIP.
         """
         return pulumi.get(self, "type")
 
@@ -1141,10 +1253,12 @@ class FirewallVip6Args:
 @pulumi.input_type
 class _FirewallVip6State:
     def __init__(__self__, *,
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
@@ -1159,12 +1273,16 @@ class _FirewallVip6State:
                  http_multiplex: Optional[pulumi.Input[str]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedip: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedport: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
                  max_embryonic_connections: Optional[pulumi.Input[int]] = None,
                  monitors: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6MonitorArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
+                 nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
@@ -1173,6 +1291,7 @@ class _FirewallVip6State:
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6RealserverArgs']]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SrcFilterArgs']]]] = None,
+                 ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  ssl_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SslCipherSuiteArgs']]]] = None,
@@ -1213,10 +1332,12 @@ class _FirewallVip6State:
                  websphere_server: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering FirewallVip6 resources.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_reply: Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] embedded_ipv4_address: Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
@@ -1231,12 +1352,16 @@ class _FirewallVip6State:
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ipv4_mappedip: Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        :param pulumi.Input[str] ipv4_mappedport: IPv4 port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[str] ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
         :param pulumi.Input[str] mappedip: Mapped IP address range in the format startIP-endIP.
         :param pulumi.Input[str] mappedport: Port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[int] max_embryonic_connections: Maximum number of incomplete connections.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6MonitorArgs']]] monitors: Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
         :param pulumi.Input[str] name: Health monitor name.
+        :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -1245,6 +1370,7 @@ class _FirewallVip6State:
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6RealserverArgs']]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6SrcFilterArgs']]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
         :param pulumi.Input[Sequence[pulumi.Input['FirewallVip6SslCipherSuiteArgs']]] ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
@@ -1278,12 +1404,14 @@ class _FirewallVip6State:
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] websphere_server: Enable to add an HTTP header to indicate SSL offloading for a WebSphere server. Valid values: `disable`, `enable`.
         """
+        if add_nat64_route is not None:
+            pulumi.set(__self__, "add_nat64_route", add_nat64_route)
         if arp_reply is not None:
             pulumi.set(__self__, "arp_reply", arp_reply)
         if color is not None:
@@ -1292,6 +1420,8 @@ class _FirewallVip6State:
             pulumi.set(__self__, "comment", comment)
         if dynamic_sort_subtable is not None:
             pulumi.set(__self__, "dynamic_sort_subtable", dynamic_sort_subtable)
+        if embedded_ipv4_address is not None:
+            pulumi.set(__self__, "embedded_ipv4_address", embedded_ipv4_address)
         if extip is not None:
             pulumi.set(__self__, "extip", extip)
         if extport is not None:
@@ -1320,6 +1450,10 @@ class _FirewallVip6State:
             pulumi.set(__self__, "http_redirect", http_redirect)
         if https_cookie_secure is not None:
             pulumi.set(__self__, "https_cookie_secure", https_cookie_secure)
+        if ipv4_mappedip is not None:
+            pulumi.set(__self__, "ipv4_mappedip", ipv4_mappedip)
+        if ipv4_mappedport is not None:
+            pulumi.set(__self__, "ipv4_mappedport", ipv4_mappedport)
         if ldb_method is not None:
             pulumi.set(__self__, "ldb_method", ldb_method)
         if mappedip is not None:
@@ -1332,6 +1466,10 @@ class _FirewallVip6State:
             pulumi.set(__self__, "monitors", monitors)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if nat64 is not None:
+            pulumi.set(__self__, "nat64", nat64)
+        if nat66 is not None:
+            pulumi.set(__self__, "nat66", nat66)
         if nat_source_vip is not None:
             pulumi.set(__self__, "nat_source_vip", nat_source_vip)
         if outlook_web_access is not None:
@@ -1348,6 +1486,8 @@ class _FirewallVip6State:
             pulumi.set(__self__, "server_type", server_type)
         if src_filters is not None:
             pulumi.set(__self__, "src_filters", src_filters)
+        if ssl_accept_ffdhe_groups is not None:
+            pulumi.set(__self__, "ssl_accept_ffdhe_groups", ssl_accept_ffdhe_groups)
         if ssl_algorithm is not None:
             pulumi.set(__self__, "ssl_algorithm", ssl_algorithm)
         if ssl_certificate is not None:
@@ -1426,6 +1566,18 @@ class _FirewallVip6State:
             pulumi.set(__self__, "websphere_server", websphere_server)
 
     @property
+    @pulumi.getter(name="addNat64Route")
+    def add_nat64_route(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat64_route")
+
+    @add_nat64_route.setter
+    def add_nat64_route(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "add_nat64_route", value)
+
+    @property
     @pulumi.getter(name="arpReply")
     def arp_reply(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1472,6 +1624,18 @@ class _FirewallVip6State:
     @dynamic_sort_subtable.setter
     def dynamic_sort_subtable(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "dynamic_sort_subtable", value)
+
+    @property
+    @pulumi.getter(name="embeddedIpv4Address")
+    def embedded_ipv4_address(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "embedded_ipv4_address")
+
+    @embedded_ipv4_address.setter
+    def embedded_ipv4_address(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "embedded_ipv4_address", value)
 
     @property
     @pulumi.getter
@@ -1642,6 +1806,30 @@ class _FirewallVip6State:
         pulumi.set(self, "https_cookie_secure", value)
 
     @property
+    @pulumi.getter(name="ipv4Mappedip")
+    def ipv4_mappedip(self) -> Optional[pulumi.Input[str]]:
+        """
+        Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        """
+        return pulumi.get(self, "ipv4_mappedip")
+
+    @ipv4_mappedip.setter
+    def ipv4_mappedip(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_mappedip", value)
+
+    @property
+    @pulumi.getter(name="ipv4Mappedport")
+    def ipv4_mappedport(self) -> Optional[pulumi.Input[str]]:
+        """
+        IPv4 port number range on the destination network to which the external port number range is mapped.
+        """
+        return pulumi.get(self, "ipv4_mappedport")
+
+    @ipv4_mappedport.setter
+    def ipv4_mappedport(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ipv4_mappedport", value)
+
+    @property
     @pulumi.getter(name="ldbMethod")
     def ldb_method(self) -> Optional[pulumi.Input[str]]:
         """
@@ -1712,6 +1900,30 @@ class _FirewallVip6State:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @nat64.setter
+    def nat64(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat64", value)
+
+    @property
+    @pulumi.getter
+    def nat66(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable DNAT66. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat66")
+
+    @nat66.setter
+    def nat66(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "nat66", value)
 
     @property
     @pulumi.getter(name="natSourceVip")
@@ -1808,6 +2020,18 @@ class _FirewallVip6State:
     @src_filters.setter
     def src_filters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FirewallVip6SrcFilterArgs']]]]):
         pulumi.set(self, "src_filters", value)
+
+    @property
+    @pulumi.getter(name="sslAcceptFfdheGroups")
+    def ssl_accept_ffdhe_groups(self) -> Optional[pulumi.Input[str]]:
+        """
+        Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_accept_ffdhe_groups")
+
+    @ssl_accept_ffdhe_groups.setter
+    def ssl_accept_ffdhe_groups(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "ssl_accept_ffdhe_groups", value)
 
     @property
     @pulumi.getter(name="sslAlgorithm")
@@ -2209,7 +2433,7 @@ class _FirewallVip6State:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        Configure a static NAT or server load balance VIP.
         """
         return pulumi.get(self, "type")
 
@@ -2271,10 +2495,12 @@ class FirewallVip6(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
@@ -2289,12 +2515,16 @@ class FirewallVip6(pulumi.CustomResource):
                  http_multiplex: Optional[pulumi.Input[str]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedip: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedport: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
                  max_embryonic_connections: Optional[pulumi.Input[int]] = None,
                  monitors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6MonitorArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
+                 nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
@@ -2303,6 +2533,7 @@ class FirewallVip6(pulumi.CustomResource):
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6RealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SrcFilterArgs']]]]] = None,
+                 ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  ssl_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslCipherSuiteArgs']]]]] = None,
@@ -2415,10 +2646,12 @@ class FirewallVip6(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_reply: Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] embedded_ipv4_address: Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
@@ -2433,12 +2666,16 @@ class FirewallVip6(pulumi.CustomResource):
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ipv4_mappedip: Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        :param pulumi.Input[str] ipv4_mappedport: IPv4 port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[str] ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
         :param pulumi.Input[str] mappedip: Mapped IP address range in the format startIP-endIP.
         :param pulumi.Input[str] mappedport: Port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[int] max_embryonic_connections: Maximum number of incomplete connections.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6MonitorArgs']]]] monitors: Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
         :param pulumi.Input[str] name: Health monitor name.
+        :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -2447,6 +2684,7 @@ class FirewallVip6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6RealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SrcFilterArgs']]]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslCipherSuiteArgs']]]] ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
@@ -2480,7 +2718,7 @@ class FirewallVip6(pulumi.CustomResource):
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
@@ -2578,10 +2816,12 @@ class FirewallVip6(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 add_nat64_route: Optional[pulumi.Input[str]] = None,
                  arp_reply: Optional[pulumi.Input[str]] = None,
                  color: Optional[pulumi.Input[int]] = None,
                  comment: Optional[pulumi.Input[str]] = None,
                  dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+                 embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
                  extip: Optional[pulumi.Input[str]] = None,
                  extport: Optional[pulumi.Input[str]] = None,
                  fosid: Optional[pulumi.Input[int]] = None,
@@ -2596,12 +2836,16 @@ class FirewallVip6(pulumi.CustomResource):
                  http_multiplex: Optional[pulumi.Input[str]] = None,
                  http_redirect: Optional[pulumi.Input[str]] = None,
                  https_cookie_secure: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedip: Optional[pulumi.Input[str]] = None,
+                 ipv4_mappedport: Optional[pulumi.Input[str]] = None,
                  ldb_method: Optional[pulumi.Input[str]] = None,
                  mappedip: Optional[pulumi.Input[str]] = None,
                  mappedport: Optional[pulumi.Input[str]] = None,
                  max_embryonic_connections: Optional[pulumi.Input[int]] = None,
                  monitors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6MonitorArgs']]]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 nat64: Optional[pulumi.Input[str]] = None,
+                 nat66: Optional[pulumi.Input[str]] = None,
                  nat_source_vip: Optional[pulumi.Input[str]] = None,
                  outlook_web_access: Optional[pulumi.Input[str]] = None,
                  persistence: Optional[pulumi.Input[str]] = None,
@@ -2610,6 +2854,7 @@ class FirewallVip6(pulumi.CustomResource):
                  realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6RealserverArgs']]]]] = None,
                  server_type: Optional[pulumi.Input[str]] = None,
                  src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SrcFilterArgs']]]]] = None,
+                 ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
                  ssl_algorithm: Optional[pulumi.Input[str]] = None,
                  ssl_certificate: Optional[pulumi.Input[str]] = None,
                  ssl_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslCipherSuiteArgs']]]]] = None,
@@ -2655,15 +2900,19 @@ class FirewallVip6(pulumi.CustomResource):
             raise TypeError('Expected resource options to be a ResourceOptions instance')
         if opts.version is None:
             opts.version = _utilities.get_version()
+        if opts.plugin_download_url is None:
+            opts.plugin_download_url = _utilities.get_plugin_download_url()
         if opts.id is None:
             if __props__ is not None:
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = FirewallVip6Args.__new__(FirewallVip6Args)
 
+            __props__.__dict__["add_nat64_route"] = add_nat64_route
             __props__.__dict__["arp_reply"] = arp_reply
             __props__.__dict__["color"] = color
             __props__.__dict__["comment"] = comment
             __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+            __props__.__dict__["embedded_ipv4_address"] = embedded_ipv4_address
             if extip is None and not opts.urn:
                 raise TypeError("Missing required property 'extip'")
             __props__.__dict__["extip"] = extip
@@ -2680,6 +2929,8 @@ class FirewallVip6(pulumi.CustomResource):
             __props__.__dict__["http_multiplex"] = http_multiplex
             __props__.__dict__["http_redirect"] = http_redirect
             __props__.__dict__["https_cookie_secure"] = https_cookie_secure
+            __props__.__dict__["ipv4_mappedip"] = ipv4_mappedip
+            __props__.__dict__["ipv4_mappedport"] = ipv4_mappedport
             __props__.__dict__["ldb_method"] = ldb_method
             if mappedip is None and not opts.urn:
                 raise TypeError("Missing required property 'mappedip'")
@@ -2688,6 +2939,8 @@ class FirewallVip6(pulumi.CustomResource):
             __props__.__dict__["max_embryonic_connections"] = max_embryonic_connections
             __props__.__dict__["monitors"] = monitors
             __props__.__dict__["name"] = name
+            __props__.__dict__["nat64"] = nat64
+            __props__.__dict__["nat66"] = nat66
             __props__.__dict__["nat_source_vip"] = nat_source_vip
             __props__.__dict__["outlook_web_access"] = outlook_web_access
             __props__.__dict__["persistence"] = persistence
@@ -2696,6 +2949,7 @@ class FirewallVip6(pulumi.CustomResource):
             __props__.__dict__["realservers"] = realservers
             __props__.__dict__["server_type"] = server_type
             __props__.__dict__["src_filters"] = src_filters
+            __props__.__dict__["ssl_accept_ffdhe_groups"] = ssl_accept_ffdhe_groups
             __props__.__dict__["ssl_algorithm"] = ssl_algorithm
             __props__.__dict__["ssl_certificate"] = ssl_certificate
             __props__.__dict__["ssl_cipher_suites"] = ssl_cipher_suites
@@ -2744,10 +2998,12 @@ class FirewallVip6(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            add_nat64_route: Optional[pulumi.Input[str]] = None,
             arp_reply: Optional[pulumi.Input[str]] = None,
             color: Optional[pulumi.Input[int]] = None,
             comment: Optional[pulumi.Input[str]] = None,
             dynamic_sort_subtable: Optional[pulumi.Input[str]] = None,
+            embedded_ipv4_address: Optional[pulumi.Input[str]] = None,
             extip: Optional[pulumi.Input[str]] = None,
             extport: Optional[pulumi.Input[str]] = None,
             fosid: Optional[pulumi.Input[int]] = None,
@@ -2762,12 +3018,16 @@ class FirewallVip6(pulumi.CustomResource):
             http_multiplex: Optional[pulumi.Input[str]] = None,
             http_redirect: Optional[pulumi.Input[str]] = None,
             https_cookie_secure: Optional[pulumi.Input[str]] = None,
+            ipv4_mappedip: Optional[pulumi.Input[str]] = None,
+            ipv4_mappedport: Optional[pulumi.Input[str]] = None,
             ldb_method: Optional[pulumi.Input[str]] = None,
             mappedip: Optional[pulumi.Input[str]] = None,
             mappedport: Optional[pulumi.Input[str]] = None,
             max_embryonic_connections: Optional[pulumi.Input[int]] = None,
             monitors: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6MonitorArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
+            nat64: Optional[pulumi.Input[str]] = None,
+            nat66: Optional[pulumi.Input[str]] = None,
             nat_source_vip: Optional[pulumi.Input[str]] = None,
             outlook_web_access: Optional[pulumi.Input[str]] = None,
             persistence: Optional[pulumi.Input[str]] = None,
@@ -2776,6 +3036,7 @@ class FirewallVip6(pulumi.CustomResource):
             realservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6RealserverArgs']]]]] = None,
             server_type: Optional[pulumi.Input[str]] = None,
             src_filters: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SrcFilterArgs']]]]] = None,
+            ssl_accept_ffdhe_groups: Optional[pulumi.Input[str]] = None,
             ssl_algorithm: Optional[pulumi.Input[str]] = None,
             ssl_certificate: Optional[pulumi.Input[str]] = None,
             ssl_cipher_suites: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslCipherSuiteArgs']]]]] = None,
@@ -2821,10 +3082,12 @@ class FirewallVip6(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[str] add_nat64_route: Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] arp_reply: Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
         :param pulumi.Input[int] color: Color of icon on the GUI.
         :param pulumi.Input[str] comment: Comment.
         :param pulumi.Input[str] dynamic_sort_subtable: true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+        :param pulumi.Input[str] embedded_ipv4_address: Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] extip: IP address or address range on the external interface that you want to map to an address or address range on the destination network.
         :param pulumi.Input[str] extport: Incoming port number range that you want to map to a port number range on the destination network.
         :param pulumi.Input[int] fosid: Custom defined ID.
@@ -2839,12 +3102,16 @@ class FirewallVip6(pulumi.CustomResource):
         :param pulumi.Input[str] http_multiplex: Enable/disable HTTP multiplexing. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] http_redirect: Enable/disable redirection of HTTP to HTTPS Valid values: `enable`, `disable`.
         :param pulumi.Input[str] https_cookie_secure: Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] ipv4_mappedip: Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        :param pulumi.Input[str] ipv4_mappedport: IPv4 port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[str] ldb_method: Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
         :param pulumi.Input[str] mappedip: Mapped IP address range in the format startIP-endIP.
         :param pulumi.Input[str] mappedport: Port number range on the destination network to which the external port number range is mapped.
         :param pulumi.Input[int] max_embryonic_connections: Maximum number of incomplete connections.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6MonitorArgs']]]] monitors: Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
         :param pulumi.Input[str] name: Health monitor name.
+        :param pulumi.Input[str] nat64: Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        :param pulumi.Input[str] nat66: Enable/disable DNAT66. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] nat_source_vip: Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] outlook_web_access: Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
         :param pulumi.Input[str] persistence: Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -2853,6 +3120,7 @@ class FirewallVip6(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6RealserverArgs']]]] realservers: Select the real servers that this server load balancing VIP will distribute traffic to. The structure of `realservers` block is documented below.
         :param pulumi.Input[str] server_type: Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `imaps`, `pop3s`, `smtps`, `ssl`, `tcp`, `udp`, `ip`.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SrcFilterArgs']]]] src_filters: Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
+        :param pulumi.Input[str] ssl_accept_ffdhe_groups: Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
         :param pulumi.Input[str] ssl_algorithm: Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
         :param pulumi.Input[str] ssl_certificate: The name of the SSL certificate to use for SSL acceleration.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['FirewallVip6SslCipherSuiteArgs']]]] ssl_cipher_suites: SSL/TLS cipher suites acceptable from a client, ordered by priority. The structure of `ssl_cipher_suites` block is documented below.
@@ -2886,7 +3154,7 @@ class FirewallVip6(pulumi.CustomResource):
         :param pulumi.Input[int] ssl_server_session_state_max: Maximum number of FortiGate to Server SSL session states to keep.
         :param pulumi.Input[int] ssl_server_session_state_timeout: Number of minutes to keep FortiGate to Server SSL session state.
         :param pulumi.Input[str] ssl_server_session_state_type: How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
-        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        :param pulumi.Input[str] type: Configure a static NAT or server load balance VIP.
         :param pulumi.Input[str] uuid: Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
         :param pulumi.Input[str] vdomparam: Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
         :param pulumi.Input[str] weblogic_server: Enable to add an HTTP header to indicate SSL offloading for a WebLogic server. Valid values: `disable`, `enable`.
@@ -2896,10 +3164,12 @@ class FirewallVip6(pulumi.CustomResource):
 
         __props__ = _FirewallVip6State.__new__(_FirewallVip6State)
 
+        __props__.__dict__["add_nat64_route"] = add_nat64_route
         __props__.__dict__["arp_reply"] = arp_reply
         __props__.__dict__["color"] = color
         __props__.__dict__["comment"] = comment
         __props__.__dict__["dynamic_sort_subtable"] = dynamic_sort_subtable
+        __props__.__dict__["embedded_ipv4_address"] = embedded_ipv4_address
         __props__.__dict__["extip"] = extip
         __props__.__dict__["extport"] = extport
         __props__.__dict__["fosid"] = fosid
@@ -2914,12 +3184,16 @@ class FirewallVip6(pulumi.CustomResource):
         __props__.__dict__["http_multiplex"] = http_multiplex
         __props__.__dict__["http_redirect"] = http_redirect
         __props__.__dict__["https_cookie_secure"] = https_cookie_secure
+        __props__.__dict__["ipv4_mappedip"] = ipv4_mappedip
+        __props__.__dict__["ipv4_mappedport"] = ipv4_mappedport
         __props__.__dict__["ldb_method"] = ldb_method
         __props__.__dict__["mappedip"] = mappedip
         __props__.__dict__["mappedport"] = mappedport
         __props__.__dict__["max_embryonic_connections"] = max_embryonic_connections
         __props__.__dict__["monitors"] = monitors
         __props__.__dict__["name"] = name
+        __props__.__dict__["nat64"] = nat64
+        __props__.__dict__["nat66"] = nat66
         __props__.__dict__["nat_source_vip"] = nat_source_vip
         __props__.__dict__["outlook_web_access"] = outlook_web_access
         __props__.__dict__["persistence"] = persistence
@@ -2928,6 +3202,7 @@ class FirewallVip6(pulumi.CustomResource):
         __props__.__dict__["realservers"] = realservers
         __props__.__dict__["server_type"] = server_type
         __props__.__dict__["src_filters"] = src_filters
+        __props__.__dict__["ssl_accept_ffdhe_groups"] = ssl_accept_ffdhe_groups
         __props__.__dict__["ssl_algorithm"] = ssl_algorithm
         __props__.__dict__["ssl_certificate"] = ssl_certificate
         __props__.__dict__["ssl_cipher_suites"] = ssl_cipher_suites
@@ -2969,6 +3244,14 @@ class FirewallVip6(pulumi.CustomResource):
         return FirewallVip6(resource_name, opts=opts, __props__=__props__)
 
     @property
+    @pulumi.getter(name="addNat64Route")
+    def add_nat64_route(self) -> pulumi.Output[str]:
+        """
+        Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "add_nat64_route")
+
+    @property
     @pulumi.getter(name="arpReply")
     def arp_reply(self) -> pulumi.Output[str]:
         """
@@ -2999,6 +3282,14 @@ class FirewallVip6(pulumi.CustomResource):
         true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
         """
         return pulumi.get(self, "dynamic_sort_subtable")
+
+    @property
+    @pulumi.getter(name="embeddedIpv4Address")
+    def embedded_ipv4_address(self) -> pulumi.Output[str]:
+        """
+        Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "embedded_ipv4_address")
 
     @property
     @pulumi.getter
@@ -3113,6 +3404,22 @@ class FirewallVip6(pulumi.CustomResource):
         return pulumi.get(self, "https_cookie_secure")
 
     @property
+    @pulumi.getter(name="ipv4Mappedip")
+    def ipv4_mappedip(self) -> pulumi.Output[str]:
+        """
+        Start-mapped-IPv4-address [-end mapped-IPv4-address].
+        """
+        return pulumi.get(self, "ipv4_mappedip")
+
+    @property
+    @pulumi.getter(name="ipv4Mappedport")
+    def ipv4_mappedport(self) -> pulumi.Output[str]:
+        """
+        IPv4 port number range on the destination network to which the external port number range is mapped.
+        """
+        return pulumi.get(self, "ipv4_mappedport")
+
+    @property
     @pulumi.getter(name="ldbMethod")
     def ldb_method(self) -> pulumi.Output[str]:
         """
@@ -3159,6 +3466,22 @@ class FirewallVip6(pulumi.CustomResource):
         Health monitor name.
         """
         return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter
+    def nat64(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DNAT64. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat64")
+
+    @property
+    @pulumi.getter
+    def nat66(self) -> pulumi.Output[str]:
+        """
+        Enable/disable DNAT66. Valid values: `disable`, `enable`.
+        """
+        return pulumi.get(self, "nat66")
 
     @property
     @pulumi.getter(name="natSourceVip")
@@ -3223,6 +3546,14 @@ class FirewallVip6(pulumi.CustomResource):
         Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces. The structure of `src_filter` block is documented below.
         """
         return pulumi.get(self, "src_filters")
+
+    @property
+    @pulumi.getter(name="sslAcceptFfdheGroups")
+    def ssl_accept_ffdhe_groups(self) -> pulumi.Output[str]:
+        """
+        Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `enable`, `disable`.
+        """
+        return pulumi.get(self, "ssl_accept_ffdhe_groups")
 
     @property
     @pulumi.getter(name="sslAlgorithm")
@@ -3492,7 +3823,7 @@ class FirewallVip6(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        Configure a static NAT or server load balance VIP. Valid values: `static-nat`, `server-load-balance`.
+        Configure a static NAT or server load balance VIP.
         """
         return pulumi.get(self, "type")
 

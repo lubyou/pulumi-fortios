@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -70,6 +70,8 @@ type FirewallProfileGroup struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Name of an existing Protocol options profile.
 	ProfileProtocolOptions pulumi.StringOutput `pulumi:"profileProtocolOptions"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringOutput `pulumi:"sctpFilterProfile"`
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile pulumi.StringOutput `pulumi:"spamfilterProfile"`
 	// Name of an existing SSH filter profile.
@@ -78,6 +80,8 @@ type FirewallProfileGroup struct {
 	SslSshProfile pulumi.StringOutput `pulumi:"sslSshProfile"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrOutput `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringOutput `pulumi:"videofilterProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringOutput `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -93,6 +97,7 @@ func NewFirewallProfileGroup(ctx *pulumi.Context,
 		args = &FirewallProfileGroupArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallProfileGroup
 	err := ctx.RegisterResource("fortios:index/firewallProfileGroup:FirewallProfileGroup", name, args, &resource, opts...)
 	if err != nil {
@@ -137,6 +142,8 @@ type firewallProfileGroupState struct {
 	Name *string `pulumi:"name"`
 	// Name of an existing Protocol options profile.
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
 	// Name of an existing SSH filter profile.
@@ -145,6 +152,8 @@ type firewallProfileGroupState struct {
 	SslSshProfile *string `pulumi:"sslSshProfile"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -176,6 +185,8 @@ type FirewallProfileGroupState struct {
 	Name pulumi.StringPtrInput
 	// Name of an existing Protocol options profile.
 	ProfileProtocolOptions pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile pulumi.StringPtrInput
 	// Name of an existing SSH filter profile.
@@ -184,6 +195,8 @@ type FirewallProfileGroupState struct {
 	SslSshProfile pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
@@ -219,6 +232,8 @@ type firewallProfileGroupArgs struct {
 	Name *string `pulumi:"name"`
 	// Name of an existing Protocol options profile.
 	ProfileProtocolOptions *string `pulumi:"profileProtocolOptions"`
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile *string `pulumi:"sctpFilterProfile"`
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile *string `pulumi:"spamfilterProfile"`
 	// Name of an existing SSH filter profile.
@@ -227,6 +242,8 @@ type firewallProfileGroupArgs struct {
 	SslSshProfile *string `pulumi:"sslSshProfile"`
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam *string `pulumi:"vdomparam"`
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile *string `pulumi:"videofilterProfile"`
 	// Name of an existing VoIP profile.
 	VoipProfile *string `pulumi:"voipProfile"`
 	// Name of an existing Web application firewall profile.
@@ -259,6 +276,8 @@ type FirewallProfileGroupArgs struct {
 	Name pulumi.StringPtrInput
 	// Name of an existing Protocol options profile.
 	ProfileProtocolOptions pulumi.StringPtrInput
+	// Name of an existing SCTP filter profile.
+	SctpFilterProfile pulumi.StringPtrInput
 	// Name of an existing Spam filter profile.
 	SpamfilterProfile pulumi.StringPtrInput
 	// Name of an existing SSH filter profile.
@@ -267,6 +286,8 @@ type FirewallProfileGroupArgs struct {
 	SslSshProfile pulumi.StringPtrInput
 	// Specifies the vdom to which the resource will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
 	Vdomparam pulumi.StringPtrInput
+	// Name of an existing VideoFilter profile.
+	VideofilterProfile pulumi.StringPtrInput
 	// Name of an existing VoIP profile.
 	VoipProfile pulumi.StringPtrInput
 	// Name of an existing Web application firewall profile.
@@ -287,7 +308,7 @@ type FirewallProfileGroupInput interface {
 }
 
 func (*FirewallProfileGroup) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProfileGroup)(nil))
+	return reflect.TypeOf((**FirewallProfileGroup)(nil)).Elem()
 }
 
 func (i *FirewallProfileGroup) ToFirewallProfileGroupOutput() FirewallProfileGroupOutput {
@@ -296,35 +317,6 @@ func (i *FirewallProfileGroup) ToFirewallProfileGroupOutput() FirewallProfileGro
 
 func (i *FirewallProfileGroup) ToFirewallProfileGroupOutputWithContext(ctx context.Context) FirewallProfileGroupOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupOutput)
-}
-
-func (i *FirewallProfileGroup) ToFirewallProfileGroupPtrOutput() FirewallProfileGroupPtrOutput {
-	return i.ToFirewallProfileGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallProfileGroup) ToFirewallProfileGroupPtrOutputWithContext(ctx context.Context) FirewallProfileGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupPtrOutput)
-}
-
-type FirewallProfileGroupPtrInput interface {
-	pulumi.Input
-
-	ToFirewallProfileGroupPtrOutput() FirewallProfileGroupPtrOutput
-	ToFirewallProfileGroupPtrOutputWithContext(ctx context.Context) FirewallProfileGroupPtrOutput
-}
-
-type firewallProfileGroupPtrType FirewallProfileGroupArgs
-
-func (*firewallProfileGroupPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProfileGroup)(nil))
-}
-
-func (i *firewallProfileGroupPtrType) ToFirewallProfileGroupPtrOutput() FirewallProfileGroupPtrOutput {
-	return i.ToFirewallProfileGroupPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallProfileGroupPtrType) ToFirewallProfileGroupPtrOutputWithContext(ctx context.Context) FirewallProfileGroupPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupPtrOutput)
 }
 
 // FirewallProfileGroupArrayInput is an input type that accepts FirewallProfileGroupArray and FirewallProfileGroupArrayOutput values.
@@ -341,7 +333,7 @@ type FirewallProfileGroupArrayInput interface {
 type FirewallProfileGroupArray []FirewallProfileGroupInput
 
 func (FirewallProfileGroupArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallProfileGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallProfileGroup)(nil)).Elem()
 }
 
 func (i FirewallProfileGroupArray) ToFirewallProfileGroupArrayOutput() FirewallProfileGroupArrayOutput {
@@ -366,7 +358,7 @@ type FirewallProfileGroupMapInput interface {
 type FirewallProfileGroupMap map[string]FirewallProfileGroupInput
 
 func (FirewallProfileGroupMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallProfileGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProfileGroup)(nil)).Elem()
 }
 
 func (i FirewallProfileGroupMap) ToFirewallProfileGroupMapOutput() FirewallProfileGroupMapOutput {
@@ -377,12 +369,10 @@ func (i FirewallProfileGroupMap) ToFirewallProfileGroupMapOutputWithContext(ctx 
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallProfileGroupMapOutput)
 }
 
-type FirewallProfileGroupOutput struct {
-	*pulumi.OutputState
-}
+type FirewallProfileGroupOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileGroupOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallProfileGroup)(nil))
+	return reflect.TypeOf((**FirewallProfileGroup)(nil)).Elem()
 }
 
 func (o FirewallProfileGroupOutput) ToFirewallProfileGroupOutput() FirewallProfileGroupOutput {
@@ -393,36 +383,10 @@ func (o FirewallProfileGroupOutput) ToFirewallProfileGroupOutputWithContext(ctx 
 	return o
 }
 
-func (o FirewallProfileGroupOutput) ToFirewallProfileGroupPtrOutput() FirewallProfileGroupPtrOutput {
-	return o.ToFirewallProfileGroupPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallProfileGroupOutput) ToFirewallProfileGroupPtrOutputWithContext(ctx context.Context) FirewallProfileGroupPtrOutput {
-	return o.ApplyT(func(v FirewallProfileGroup) *FirewallProfileGroup {
-		return &v
-	}).(FirewallProfileGroupPtrOutput)
-}
-
-type FirewallProfileGroupPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallProfileGroupPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallProfileGroup)(nil))
-}
-
-func (o FirewallProfileGroupPtrOutput) ToFirewallProfileGroupPtrOutput() FirewallProfileGroupPtrOutput {
-	return o
-}
-
-func (o FirewallProfileGroupPtrOutput) ToFirewallProfileGroupPtrOutputWithContext(ctx context.Context) FirewallProfileGroupPtrOutput {
-	return o
-}
-
 type FirewallProfileGroupArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileGroupArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallProfileGroup)(nil))
+	return reflect.TypeOf((*[]*FirewallProfileGroup)(nil)).Elem()
 }
 
 func (o FirewallProfileGroupArrayOutput) ToFirewallProfileGroupArrayOutput() FirewallProfileGroupArrayOutput {
@@ -434,15 +398,15 @@ func (o FirewallProfileGroupArrayOutput) ToFirewallProfileGroupArrayOutputWithCo
 }
 
 func (o FirewallProfileGroupArrayOutput) Index(i pulumi.IntInput) FirewallProfileGroupOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallProfileGroup {
-		return vs[0].([]FirewallProfileGroup)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallProfileGroup {
+		return vs[0].([]*FirewallProfileGroup)[vs[1].(int)]
 	}).(FirewallProfileGroupOutput)
 }
 
 type FirewallProfileGroupMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallProfileGroupMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallProfileGroup)(nil))
+	return reflect.TypeOf((*map[string]*FirewallProfileGroup)(nil)).Elem()
 }
 
 func (o FirewallProfileGroupMapOutput) ToFirewallProfileGroupMapOutput() FirewallProfileGroupMapOutput {
@@ -454,14 +418,16 @@ func (o FirewallProfileGroupMapOutput) ToFirewallProfileGroupMapOutputWithContex
 }
 
 func (o FirewallProfileGroupMapOutput) MapIndex(k pulumi.StringInput) FirewallProfileGroupOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallProfileGroup {
-		return vs[0].(map[string]FirewallProfileGroup)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallProfileGroup {
+		return vs[0].(map[string]*FirewallProfileGroup)[vs[1].(string)]
 	}).(FirewallProfileGroupOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileGroupInput)(nil)).Elem(), &FirewallProfileGroup{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileGroupArrayInput)(nil)).Elem(), FirewallProfileGroupArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallProfileGroupMapInput)(nil)).Elem(), FirewallProfileGroupMap{})
 	pulumi.RegisterOutputType(FirewallProfileGroupOutput{})
-	pulumi.RegisterOutputType(FirewallProfileGroupPtrOutput{})
 	pulumi.RegisterOutputType(FirewallProfileGroupArrayOutput{})
 	pulumi.RegisterOutputType(FirewallProfileGroupMapOutput{})
 }

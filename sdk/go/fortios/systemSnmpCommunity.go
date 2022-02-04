@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -108,6 +108,7 @@ func NewSystemSnmpCommunity(ctx *pulumi.Context,
 	if args.Fosid == nil {
 		return nil, errors.New("invalid value for required argument 'Fosid'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemSnmpCommunity
 	err := ctx.RegisterResource("fortios:index/systemSnmpCommunity:SystemSnmpCommunity", name, args, &resource, opts...)
 	if err != nil {
@@ -302,7 +303,7 @@ type SystemSnmpCommunityInput interface {
 }
 
 func (*SystemSnmpCommunity) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSnmpCommunity)(nil))
+	return reflect.TypeOf((**SystemSnmpCommunity)(nil)).Elem()
 }
 
 func (i *SystemSnmpCommunity) ToSystemSnmpCommunityOutput() SystemSnmpCommunityOutput {
@@ -311,35 +312,6 @@ func (i *SystemSnmpCommunity) ToSystemSnmpCommunityOutput() SystemSnmpCommunityO
 
 func (i *SystemSnmpCommunity) ToSystemSnmpCommunityOutputWithContext(ctx context.Context) SystemSnmpCommunityOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityOutput)
-}
-
-func (i *SystemSnmpCommunity) ToSystemSnmpCommunityPtrOutput() SystemSnmpCommunityPtrOutput {
-	return i.ToSystemSnmpCommunityPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemSnmpCommunity) ToSystemSnmpCommunityPtrOutputWithContext(ctx context.Context) SystemSnmpCommunityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityPtrOutput)
-}
-
-type SystemSnmpCommunityPtrInput interface {
-	pulumi.Input
-
-	ToSystemSnmpCommunityPtrOutput() SystemSnmpCommunityPtrOutput
-	ToSystemSnmpCommunityPtrOutputWithContext(ctx context.Context) SystemSnmpCommunityPtrOutput
-}
-
-type systemSnmpCommunityPtrType SystemSnmpCommunityArgs
-
-func (*systemSnmpCommunityPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSnmpCommunity)(nil))
-}
-
-func (i *systemSnmpCommunityPtrType) ToSystemSnmpCommunityPtrOutput() SystemSnmpCommunityPtrOutput {
-	return i.ToSystemSnmpCommunityPtrOutputWithContext(context.Background())
-}
-
-func (i *systemSnmpCommunityPtrType) ToSystemSnmpCommunityPtrOutputWithContext(ctx context.Context) SystemSnmpCommunityPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityPtrOutput)
 }
 
 // SystemSnmpCommunityArrayInput is an input type that accepts SystemSnmpCommunityArray and SystemSnmpCommunityArrayOutput values.
@@ -356,7 +328,7 @@ type SystemSnmpCommunityArrayInput interface {
 type SystemSnmpCommunityArray []SystemSnmpCommunityInput
 
 func (SystemSnmpCommunityArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemSnmpCommunity)(nil))
+	return reflect.TypeOf((*[]*SystemSnmpCommunity)(nil)).Elem()
 }
 
 func (i SystemSnmpCommunityArray) ToSystemSnmpCommunityArrayOutput() SystemSnmpCommunityArrayOutput {
@@ -381,7 +353,7 @@ type SystemSnmpCommunityMapInput interface {
 type SystemSnmpCommunityMap map[string]SystemSnmpCommunityInput
 
 func (SystemSnmpCommunityMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemSnmpCommunity)(nil))
+	return reflect.TypeOf((*map[string]*SystemSnmpCommunity)(nil)).Elem()
 }
 
 func (i SystemSnmpCommunityMap) ToSystemSnmpCommunityMapOutput() SystemSnmpCommunityMapOutput {
@@ -392,12 +364,10 @@ func (i SystemSnmpCommunityMap) ToSystemSnmpCommunityMapOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(SystemSnmpCommunityMapOutput)
 }
 
-type SystemSnmpCommunityOutput struct {
-	*pulumi.OutputState
-}
+type SystemSnmpCommunityOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpCommunityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemSnmpCommunity)(nil))
+	return reflect.TypeOf((**SystemSnmpCommunity)(nil)).Elem()
 }
 
 func (o SystemSnmpCommunityOutput) ToSystemSnmpCommunityOutput() SystemSnmpCommunityOutput {
@@ -408,36 +378,10 @@ func (o SystemSnmpCommunityOutput) ToSystemSnmpCommunityOutputWithContext(ctx co
 	return o
 }
 
-func (o SystemSnmpCommunityOutput) ToSystemSnmpCommunityPtrOutput() SystemSnmpCommunityPtrOutput {
-	return o.ToSystemSnmpCommunityPtrOutputWithContext(context.Background())
-}
-
-func (o SystemSnmpCommunityOutput) ToSystemSnmpCommunityPtrOutputWithContext(ctx context.Context) SystemSnmpCommunityPtrOutput {
-	return o.ApplyT(func(v SystemSnmpCommunity) *SystemSnmpCommunity {
-		return &v
-	}).(SystemSnmpCommunityPtrOutput)
-}
-
-type SystemSnmpCommunityPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemSnmpCommunityPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemSnmpCommunity)(nil))
-}
-
-func (o SystemSnmpCommunityPtrOutput) ToSystemSnmpCommunityPtrOutput() SystemSnmpCommunityPtrOutput {
-	return o
-}
-
-func (o SystemSnmpCommunityPtrOutput) ToSystemSnmpCommunityPtrOutputWithContext(ctx context.Context) SystemSnmpCommunityPtrOutput {
-	return o
-}
-
 type SystemSnmpCommunityArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpCommunityArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemSnmpCommunity)(nil))
+	return reflect.TypeOf((*[]*SystemSnmpCommunity)(nil)).Elem()
 }
 
 func (o SystemSnmpCommunityArrayOutput) ToSystemSnmpCommunityArrayOutput() SystemSnmpCommunityArrayOutput {
@@ -449,15 +393,15 @@ func (o SystemSnmpCommunityArrayOutput) ToSystemSnmpCommunityArrayOutputWithCont
 }
 
 func (o SystemSnmpCommunityArrayOutput) Index(i pulumi.IntInput) SystemSnmpCommunityOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemSnmpCommunity {
-		return vs[0].([]SystemSnmpCommunity)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemSnmpCommunity {
+		return vs[0].([]*SystemSnmpCommunity)[vs[1].(int)]
 	}).(SystemSnmpCommunityOutput)
 }
 
 type SystemSnmpCommunityMapOutput struct{ *pulumi.OutputState }
 
 func (SystemSnmpCommunityMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemSnmpCommunity)(nil))
+	return reflect.TypeOf((*map[string]*SystemSnmpCommunity)(nil)).Elem()
 }
 
 func (o SystemSnmpCommunityMapOutput) ToSystemSnmpCommunityMapOutput() SystemSnmpCommunityMapOutput {
@@ -469,14 +413,16 @@ func (o SystemSnmpCommunityMapOutput) ToSystemSnmpCommunityMapOutputWithContext(
 }
 
 func (o SystemSnmpCommunityMapOutput) MapIndex(k pulumi.StringInput) SystemSnmpCommunityOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemSnmpCommunity {
-		return vs[0].(map[string]SystemSnmpCommunity)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemSnmpCommunity {
+		return vs[0].(map[string]*SystemSnmpCommunity)[vs[1].(string)]
 	}).(SystemSnmpCommunityOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpCommunityInput)(nil)).Elem(), &SystemSnmpCommunity{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpCommunityArrayInput)(nil)).Elem(), SystemSnmpCommunityArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemSnmpCommunityMapInput)(nil)).Elem(), SystemSnmpCommunityMap{})
 	pulumi.RegisterOutputType(SystemSnmpCommunityOutput{})
-	pulumi.RegisterOutputType(SystemSnmpCommunityPtrOutput{})
 	pulumi.RegisterOutputType(SystemSnmpCommunityArrayOutput{})
 	pulumi.RegisterOutputType(SystemSnmpCommunityMapOutput{})
 }

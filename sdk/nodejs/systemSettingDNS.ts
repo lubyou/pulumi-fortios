@@ -72,23 +72,21 @@ export class SystemSettingDNS extends pulumi.CustomResource {
      */
     constructor(name: string, args?: SystemSettingDNSArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SystemSettingDNSArgs | SystemSettingDNSState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SystemSettingDNSState | undefined;
-            inputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
-            inputs["primary"] = state ? state.primary : undefined;
-            inputs["secondary"] = state ? state.secondary : undefined;
+            resourceInputs["dnsOverTls"] = state ? state.dnsOverTls : undefined;
+            resourceInputs["primary"] = state ? state.primary : undefined;
+            resourceInputs["secondary"] = state ? state.secondary : undefined;
         } else {
             const args = argsOrState as SystemSettingDNSArgs | undefined;
-            inputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
-            inputs["primary"] = args ? args.primary : undefined;
-            inputs["secondary"] = args ? args.secondary : undefined;
+            resourceInputs["dnsOverTls"] = args ? args.dnsOverTls : undefined;
+            resourceInputs["primary"] = args ? args.primary : undefined;
+            resourceInputs["secondary"] = args ? args.secondary : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SystemSettingDNS.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SystemSettingDNS.__pulumiType, name, resourceInputs, opts);
     }
 }
 

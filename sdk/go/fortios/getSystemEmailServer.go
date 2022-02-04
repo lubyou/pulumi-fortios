@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on fortios system emailserver
 func LookupSystemEmailServer(ctx *pulumi.Context, args *LookupSystemEmailServerArgs, opts ...pulumi.InvokeOption) (*LookupSystemEmailServerResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupSystemEmailServerResult
 	err := ctx.Invoke("fortios:index/getSystemEmailServer:GetSystemEmailServer", args, &rv, opts...)
 	if err != nil {
@@ -29,6 +33,10 @@ type LookupSystemEmailServerResult struct {
 	Authenticate string `pulumi:"authenticate"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
+	// Specify outgoing interface to reach server.
+	Interface string `pulumi:"interface"`
+	// Specify how to select outgoing interface to reach server.
+	InterfaceSelectMethod string `pulumi:"interfaceSelectMethod"`
 	// SMTP server user password for authentication.
 	Password string `pulumi:"password"`
 	// SMTP server port.
@@ -52,4 +60,121 @@ type LookupSystemEmailServerResult struct {
 	// Enable/disable validation of server certificate.
 	ValidateServer string  `pulumi:"validateServer"`
 	Vdomparam      *string `pulumi:"vdomparam"`
+}
+
+func LookupSystemEmailServerOutput(ctx *pulumi.Context, args LookupSystemEmailServerOutputArgs, opts ...pulumi.InvokeOption) LookupSystemEmailServerResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupSystemEmailServerResult, error) {
+			args := v.(LookupSystemEmailServerArgs)
+			r, err := LookupSystemEmailServer(ctx, &args, opts...)
+			return *r, err
+		}).(LookupSystemEmailServerResultOutput)
+}
+
+// A collection of arguments for invoking GetSystemEmailServer.
+type LookupSystemEmailServerOutputArgs struct {
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupSystemEmailServerOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemEmailServerArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetSystemEmailServer.
+type LookupSystemEmailServerResultOutput struct{ *pulumi.OutputState }
+
+func (LookupSystemEmailServerResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupSystemEmailServerResult)(nil)).Elem()
+}
+
+func (o LookupSystemEmailServerResultOutput) ToLookupSystemEmailServerResultOutput() LookupSystemEmailServerResultOutput {
+	return o
+}
+
+func (o LookupSystemEmailServerResultOutput) ToLookupSystemEmailServerResultOutputWithContext(ctx context.Context) LookupSystemEmailServerResultOutput {
+	return o
+}
+
+// Enable/disable authentication.
+func (o LookupSystemEmailServerResultOutput) Authenticate() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Authenticate }).(pulumi.StringOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupSystemEmailServerResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Specify outgoing interface to reach server.
+func (o LookupSystemEmailServerResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// Specify how to select outgoing interface to reach server.
+func (o LookupSystemEmailServerResultOutput) InterfaceSelectMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.InterfaceSelectMethod }).(pulumi.StringOutput)
+}
+
+// SMTP server user password for authentication.
+func (o LookupSystemEmailServerResultOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// SMTP server port.
+func (o LookupSystemEmailServerResultOutput) Port() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) int { return v.Port }).(pulumi.IntOutput)
+}
+
+// Reply-To email address.
+func (o LookupSystemEmailServerResultOutput) ReplyTo() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.ReplyTo }).(pulumi.StringOutput)
+}
+
+// Connection security used by the email server.
+func (o LookupSystemEmailServerResultOutput) Security() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Security }).(pulumi.StringOutput)
+}
+
+// SMTP server IP address or hostname.
+func (o LookupSystemEmailServerResultOutput) Server() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Server }).(pulumi.StringOutput)
+}
+
+// SMTP server IPv4 source IP.
+func (o LookupSystemEmailServerResultOutput) SourceIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.SourceIp }).(pulumi.StringOutput)
+}
+
+// SMTP server IPv6 source IP.
+func (o LookupSystemEmailServerResultOutput) SourceIp6() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.SourceIp6 }).(pulumi.StringOutput)
+}
+
+// Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting).
+func (o LookupSystemEmailServerResultOutput) SslMinProtoVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.SslMinProtoVersion }).(pulumi.StringOutput)
+}
+
+// Use FortiGuard Message service or custom email server.
+func (o LookupSystemEmailServerResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// SMTP server user name for authentication.
+func (o LookupSystemEmailServerResultOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.Username }).(pulumi.StringOutput)
+}
+
+// Enable/disable validation of server certificate.
+func (o LookupSystemEmailServerResultOutput) ValidateServer() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) string { return v.ValidateServer }).(pulumi.StringOutput)
+}
+
+func (o LookupSystemEmailServerResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupSystemEmailServerResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupSystemEmailServerResultOutput{})
 }

@@ -25,8 +25,10 @@ import (
 type SystemAutomationStitch struct {
 	pulumi.CustomResourceState
 
-	// Action names. The structure of `action` block is documented below.
+	// Configure stitch actions. The structure of `actions` block is documented below.
 	Actions SystemAutomationStitchActionArrayOutput `pulumi:"actions"`
+	// Description.
+	Description pulumi.StringPtrOutput `pulumi:"description"`
 	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
 	Destinations SystemAutomationStitchDestinationArrayOutput `pulumi:"destinations"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -54,6 +56,7 @@ func NewSystemAutomationStitch(ctx *pulumi.Context,
 	if args.Trigger == nil {
 		return nil, errors.New("invalid value for required argument 'Trigger'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemAutomationStitch
 	err := ctx.RegisterResource("fortios:index/systemAutomationStitch:SystemAutomationStitch", name, args, &resource, opts...)
 	if err != nil {
@@ -76,8 +79,10 @@ func GetSystemAutomationStitch(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SystemAutomationStitch resources.
 type systemAutomationStitchState struct {
-	// Action names. The structure of `action` block is documented below.
+	// Configure stitch actions. The structure of `actions` block is documented below.
 	Actions []SystemAutomationStitchAction `pulumi:"actions"`
+	// Description.
+	Description *string `pulumi:"description"`
 	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
 	Destinations []SystemAutomationStitchDestination `pulumi:"destinations"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -93,8 +98,10 @@ type systemAutomationStitchState struct {
 }
 
 type SystemAutomationStitchState struct {
-	// Action names. The structure of `action` block is documented below.
+	// Configure stitch actions. The structure of `actions` block is documented below.
 	Actions SystemAutomationStitchActionArrayInput
+	// Description.
+	Description pulumi.StringPtrInput
 	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
 	Destinations SystemAutomationStitchDestinationArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -114,8 +121,10 @@ func (SystemAutomationStitchState) ElementType() reflect.Type {
 }
 
 type systemAutomationStitchArgs struct {
-	// Action names. The structure of `action` block is documented below.
+	// Configure stitch actions. The structure of `actions` block is documented below.
 	Actions []SystemAutomationStitchAction `pulumi:"actions"`
+	// Description.
+	Description *string `pulumi:"description"`
 	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
 	Destinations []SystemAutomationStitchDestination `pulumi:"destinations"`
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -132,8 +141,10 @@ type systemAutomationStitchArgs struct {
 
 // The set of arguments for constructing a SystemAutomationStitch resource.
 type SystemAutomationStitchArgs struct {
-	// Action names. The structure of `action` block is documented below.
+	// Configure stitch actions. The structure of `actions` block is documented below.
 	Actions SystemAutomationStitchActionArrayInput
+	// Description.
+	Description pulumi.StringPtrInput
 	// Serial number/HA group-name of destination devices. The structure of `destination` block is documented below.
 	Destinations SystemAutomationStitchDestinationArrayInput
 	// true or false, set this parameter to true when using dynamic forEach + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -160,7 +171,7 @@ type SystemAutomationStitchInput interface {
 }
 
 func (*SystemAutomationStitch) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationStitch)(nil))
+	return reflect.TypeOf((**SystemAutomationStitch)(nil)).Elem()
 }
 
 func (i *SystemAutomationStitch) ToSystemAutomationStitchOutput() SystemAutomationStitchOutput {
@@ -169,35 +180,6 @@ func (i *SystemAutomationStitch) ToSystemAutomationStitchOutput() SystemAutomati
 
 func (i *SystemAutomationStitch) ToSystemAutomationStitchOutputWithContext(ctx context.Context) SystemAutomationStitchOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchOutput)
-}
-
-func (i *SystemAutomationStitch) ToSystemAutomationStitchPtrOutput() SystemAutomationStitchPtrOutput {
-	return i.ToSystemAutomationStitchPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemAutomationStitch) ToSystemAutomationStitchPtrOutputWithContext(ctx context.Context) SystemAutomationStitchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchPtrOutput)
-}
-
-type SystemAutomationStitchPtrInput interface {
-	pulumi.Input
-
-	ToSystemAutomationStitchPtrOutput() SystemAutomationStitchPtrOutput
-	ToSystemAutomationStitchPtrOutputWithContext(ctx context.Context) SystemAutomationStitchPtrOutput
-}
-
-type systemAutomationStitchPtrType SystemAutomationStitchArgs
-
-func (*systemAutomationStitchPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationStitch)(nil))
-}
-
-func (i *systemAutomationStitchPtrType) ToSystemAutomationStitchPtrOutput() SystemAutomationStitchPtrOutput {
-	return i.ToSystemAutomationStitchPtrOutputWithContext(context.Background())
-}
-
-func (i *systemAutomationStitchPtrType) ToSystemAutomationStitchPtrOutputWithContext(ctx context.Context) SystemAutomationStitchPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchPtrOutput)
 }
 
 // SystemAutomationStitchArrayInput is an input type that accepts SystemAutomationStitchArray and SystemAutomationStitchArrayOutput values.
@@ -214,7 +196,7 @@ type SystemAutomationStitchArrayInput interface {
 type SystemAutomationStitchArray []SystemAutomationStitchInput
 
 func (SystemAutomationStitchArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemAutomationStitch)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationStitch)(nil)).Elem()
 }
 
 func (i SystemAutomationStitchArray) ToSystemAutomationStitchArrayOutput() SystemAutomationStitchArrayOutput {
@@ -239,7 +221,7 @@ type SystemAutomationStitchMapInput interface {
 type SystemAutomationStitchMap map[string]SystemAutomationStitchInput
 
 func (SystemAutomationStitchMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemAutomationStitch)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationStitch)(nil)).Elem()
 }
 
 func (i SystemAutomationStitchMap) ToSystemAutomationStitchMapOutput() SystemAutomationStitchMapOutput {
@@ -250,12 +232,10 @@ func (i SystemAutomationStitchMap) ToSystemAutomationStitchMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemAutomationStitchMapOutput)
 }
 
-type SystemAutomationStitchOutput struct {
-	*pulumi.OutputState
-}
+type SystemAutomationStitchOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationStitchOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemAutomationStitch)(nil))
+	return reflect.TypeOf((**SystemAutomationStitch)(nil)).Elem()
 }
 
 func (o SystemAutomationStitchOutput) ToSystemAutomationStitchOutput() SystemAutomationStitchOutput {
@@ -266,36 +246,10 @@ func (o SystemAutomationStitchOutput) ToSystemAutomationStitchOutputWithContext(
 	return o
 }
 
-func (o SystemAutomationStitchOutput) ToSystemAutomationStitchPtrOutput() SystemAutomationStitchPtrOutput {
-	return o.ToSystemAutomationStitchPtrOutputWithContext(context.Background())
-}
-
-func (o SystemAutomationStitchOutput) ToSystemAutomationStitchPtrOutputWithContext(ctx context.Context) SystemAutomationStitchPtrOutput {
-	return o.ApplyT(func(v SystemAutomationStitch) *SystemAutomationStitch {
-		return &v
-	}).(SystemAutomationStitchPtrOutput)
-}
-
-type SystemAutomationStitchPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemAutomationStitchPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemAutomationStitch)(nil))
-}
-
-func (o SystemAutomationStitchPtrOutput) ToSystemAutomationStitchPtrOutput() SystemAutomationStitchPtrOutput {
-	return o
-}
-
-func (o SystemAutomationStitchPtrOutput) ToSystemAutomationStitchPtrOutputWithContext(ctx context.Context) SystemAutomationStitchPtrOutput {
-	return o
-}
-
 type SystemAutomationStitchArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationStitchArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemAutomationStitch)(nil))
+	return reflect.TypeOf((*[]*SystemAutomationStitch)(nil)).Elem()
 }
 
 func (o SystemAutomationStitchArrayOutput) ToSystemAutomationStitchArrayOutput() SystemAutomationStitchArrayOutput {
@@ -307,15 +261,15 @@ func (o SystemAutomationStitchArrayOutput) ToSystemAutomationStitchArrayOutputWi
 }
 
 func (o SystemAutomationStitchArrayOutput) Index(i pulumi.IntInput) SystemAutomationStitchOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemAutomationStitch {
-		return vs[0].([]SystemAutomationStitch)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemAutomationStitch {
+		return vs[0].([]*SystemAutomationStitch)[vs[1].(int)]
 	}).(SystemAutomationStitchOutput)
 }
 
 type SystemAutomationStitchMapOutput struct{ *pulumi.OutputState }
 
 func (SystemAutomationStitchMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemAutomationStitch)(nil))
+	return reflect.TypeOf((*map[string]*SystemAutomationStitch)(nil)).Elem()
 }
 
 func (o SystemAutomationStitchMapOutput) ToSystemAutomationStitchMapOutput() SystemAutomationStitchMapOutput {
@@ -327,14 +281,16 @@ func (o SystemAutomationStitchMapOutput) ToSystemAutomationStitchMapOutputWithCo
 }
 
 func (o SystemAutomationStitchMapOutput) MapIndex(k pulumi.StringInput) SystemAutomationStitchOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemAutomationStitch {
-		return vs[0].(map[string]SystemAutomationStitch)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemAutomationStitch {
+		return vs[0].(map[string]*SystemAutomationStitch)[vs[1].(string)]
 	}).(SystemAutomationStitchOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationStitchInput)(nil)).Elem(), &SystemAutomationStitch{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationStitchArrayInput)(nil)).Elem(), SystemAutomationStitchArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemAutomationStitchMapInput)(nil)).Elem(), SystemAutomationStitchMap{})
 	pulumi.RegisterOutputType(SystemAutomationStitchOutput{})
-	pulumi.RegisterOutputType(SystemAutomationStitchPtrOutput{})
 	pulumi.RegisterOutputType(SystemAutomationStitchArrayOutput{})
 	pulumi.RegisterOutputType(SystemAutomationStitchMapOutput{})
 }

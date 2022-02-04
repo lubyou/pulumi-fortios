@@ -18,7 +18,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -77,6 +77,7 @@ func NewSystemManagementTunnel(ctx *pulumi.Context,
 		args = &SystemManagementTunnelArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemManagementTunnel
 	err := ctx.RegisterResource("fortios:index/systemManagementTunnel:SystemManagementTunnel", name, args, &resource, opts...)
 	if err != nil {
@@ -191,7 +192,7 @@ type SystemManagementTunnelInput interface {
 }
 
 func (*SystemManagementTunnel) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemManagementTunnel)(nil))
+	return reflect.TypeOf((**SystemManagementTunnel)(nil)).Elem()
 }
 
 func (i *SystemManagementTunnel) ToSystemManagementTunnelOutput() SystemManagementTunnelOutput {
@@ -200,35 +201,6 @@ func (i *SystemManagementTunnel) ToSystemManagementTunnelOutput() SystemManageme
 
 func (i *SystemManagementTunnel) ToSystemManagementTunnelOutputWithContext(ctx context.Context) SystemManagementTunnelOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelOutput)
-}
-
-func (i *SystemManagementTunnel) ToSystemManagementTunnelPtrOutput() SystemManagementTunnelPtrOutput {
-	return i.ToSystemManagementTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *SystemManagementTunnel) ToSystemManagementTunnelPtrOutputWithContext(ctx context.Context) SystemManagementTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelPtrOutput)
-}
-
-type SystemManagementTunnelPtrInput interface {
-	pulumi.Input
-
-	ToSystemManagementTunnelPtrOutput() SystemManagementTunnelPtrOutput
-	ToSystemManagementTunnelPtrOutputWithContext(ctx context.Context) SystemManagementTunnelPtrOutput
-}
-
-type systemManagementTunnelPtrType SystemManagementTunnelArgs
-
-func (*systemManagementTunnelPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemManagementTunnel)(nil))
-}
-
-func (i *systemManagementTunnelPtrType) ToSystemManagementTunnelPtrOutput() SystemManagementTunnelPtrOutput {
-	return i.ToSystemManagementTunnelPtrOutputWithContext(context.Background())
-}
-
-func (i *systemManagementTunnelPtrType) ToSystemManagementTunnelPtrOutputWithContext(ctx context.Context) SystemManagementTunnelPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelPtrOutput)
 }
 
 // SystemManagementTunnelArrayInput is an input type that accepts SystemManagementTunnelArray and SystemManagementTunnelArrayOutput values.
@@ -245,7 +217,7 @@ type SystemManagementTunnelArrayInput interface {
 type SystemManagementTunnelArray []SystemManagementTunnelInput
 
 func (SystemManagementTunnelArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemManagementTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemManagementTunnel)(nil)).Elem()
 }
 
 func (i SystemManagementTunnelArray) ToSystemManagementTunnelArrayOutput() SystemManagementTunnelArrayOutput {
@@ -270,7 +242,7 @@ type SystemManagementTunnelMapInput interface {
 type SystemManagementTunnelMap map[string]SystemManagementTunnelInput
 
 func (SystemManagementTunnelMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemManagementTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemManagementTunnel)(nil)).Elem()
 }
 
 func (i SystemManagementTunnelMap) ToSystemManagementTunnelMapOutput() SystemManagementTunnelMapOutput {
@@ -281,12 +253,10 @@ func (i SystemManagementTunnelMap) ToSystemManagementTunnelMapOutputWithContext(
 	return pulumi.ToOutputWithContext(ctx, i).(SystemManagementTunnelMapOutput)
 }
 
-type SystemManagementTunnelOutput struct {
-	*pulumi.OutputState
-}
+type SystemManagementTunnelOutput struct{ *pulumi.OutputState }
 
 func (SystemManagementTunnelOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemManagementTunnel)(nil))
+	return reflect.TypeOf((**SystemManagementTunnel)(nil)).Elem()
 }
 
 func (o SystemManagementTunnelOutput) ToSystemManagementTunnelOutput() SystemManagementTunnelOutput {
@@ -297,36 +267,10 @@ func (o SystemManagementTunnelOutput) ToSystemManagementTunnelOutputWithContext(
 	return o
 }
 
-func (o SystemManagementTunnelOutput) ToSystemManagementTunnelPtrOutput() SystemManagementTunnelPtrOutput {
-	return o.ToSystemManagementTunnelPtrOutputWithContext(context.Background())
-}
-
-func (o SystemManagementTunnelOutput) ToSystemManagementTunnelPtrOutputWithContext(ctx context.Context) SystemManagementTunnelPtrOutput {
-	return o.ApplyT(func(v SystemManagementTunnel) *SystemManagementTunnel {
-		return &v
-	}).(SystemManagementTunnelPtrOutput)
-}
-
-type SystemManagementTunnelPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemManagementTunnelPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemManagementTunnel)(nil))
-}
-
-func (o SystemManagementTunnelPtrOutput) ToSystemManagementTunnelPtrOutput() SystemManagementTunnelPtrOutput {
-	return o
-}
-
-func (o SystemManagementTunnelPtrOutput) ToSystemManagementTunnelPtrOutputWithContext(ctx context.Context) SystemManagementTunnelPtrOutput {
-	return o
-}
-
 type SystemManagementTunnelArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemManagementTunnelArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemManagementTunnel)(nil))
+	return reflect.TypeOf((*[]*SystemManagementTunnel)(nil)).Elem()
 }
 
 func (o SystemManagementTunnelArrayOutput) ToSystemManagementTunnelArrayOutput() SystemManagementTunnelArrayOutput {
@@ -338,15 +282,15 @@ func (o SystemManagementTunnelArrayOutput) ToSystemManagementTunnelArrayOutputWi
 }
 
 func (o SystemManagementTunnelArrayOutput) Index(i pulumi.IntInput) SystemManagementTunnelOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemManagementTunnel {
-		return vs[0].([]SystemManagementTunnel)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemManagementTunnel {
+		return vs[0].([]*SystemManagementTunnel)[vs[1].(int)]
 	}).(SystemManagementTunnelOutput)
 }
 
 type SystemManagementTunnelMapOutput struct{ *pulumi.OutputState }
 
 func (SystemManagementTunnelMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemManagementTunnel)(nil))
+	return reflect.TypeOf((*map[string]*SystemManagementTunnel)(nil)).Elem()
 }
 
 func (o SystemManagementTunnelMapOutput) ToSystemManagementTunnelMapOutput() SystemManagementTunnelMapOutput {
@@ -358,14 +302,16 @@ func (o SystemManagementTunnelMapOutput) ToSystemManagementTunnelMapOutputWithCo
 }
 
 func (o SystemManagementTunnelMapOutput) MapIndex(k pulumi.StringInput) SystemManagementTunnelOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemManagementTunnel {
-		return vs[0].(map[string]SystemManagementTunnel)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemManagementTunnel {
+		return vs[0].(map[string]*SystemManagementTunnel)[vs[1].(string)]
 	}).(SystemManagementTunnelOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemManagementTunnelInput)(nil)).Elem(), &SystemManagementTunnel{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemManagementTunnelArrayInput)(nil)).Elem(), SystemManagementTunnelArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemManagementTunnelMapInput)(nil)).Elem(), SystemManagementTunnelMap{})
 	pulumi.RegisterOutputType(SystemManagementTunnelOutput{})
-	pulumi.RegisterOutputType(SystemManagementTunnelPtrOutput{})
 	pulumi.RegisterOutputType(SystemManagementTunnelArrayOutput{})
 	pulumi.RegisterOutputType(SystemManagementTunnelMapOutput{})
 }

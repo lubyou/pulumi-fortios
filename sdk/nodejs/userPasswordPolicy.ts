@@ -87,27 +87,25 @@ export class UserPasswordPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args?: UserPasswordPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: UserPasswordPolicyArgs | UserPasswordPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as UserPasswordPolicyState | undefined;
-            inputs["expireDays"] = state ? state.expireDays : undefined;
-            inputs["expiredPasswordRenewal"] = state ? state.expiredPasswordRenewal : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
-            inputs["warnDays"] = state ? state.warnDays : undefined;
+            resourceInputs["expireDays"] = state ? state.expireDays : undefined;
+            resourceInputs["expiredPasswordRenewal"] = state ? state.expiredPasswordRenewal : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["warnDays"] = state ? state.warnDays : undefined;
         } else {
             const args = argsOrState as UserPasswordPolicyArgs | undefined;
-            inputs["expireDays"] = args ? args.expireDays : undefined;
-            inputs["expiredPasswordRenewal"] = args ? args.expiredPasswordRenewal : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
-            inputs["warnDays"] = args ? args.warnDays : undefined;
+            resourceInputs["expireDays"] = args ? args.expireDays : undefined;
+            resourceInputs["expiredPasswordRenewal"] = args ? args.expiredPasswordRenewal : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["warnDays"] = args ? args.warnDays : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(UserPasswordPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(UserPasswordPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 

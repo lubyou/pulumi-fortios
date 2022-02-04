@@ -80,6 +80,10 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
      */
     public readonly comments!: pulumi.Output<string | undefined>;
     /**
+     * When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+     */
+    public readonly dstaddrNegate!: pulumi.Output<string>;
+    /**
      * Destination address object from available options. The structure of `dstaddr` block is documented below.
      */
     public readonly dstaddrs!: pulumi.Output<outputs.FirewallLocalInPolicyDstaddr[]>;
@@ -104,9 +108,17 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
      */
     public readonly schedule!: pulumi.Output<string>;
     /**
+     * When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+     */
+    public readonly serviceNegate!: pulumi.Output<string>;
+    /**
      * Service object from available options. The structure of `service` block is documented below.
      */
     public readonly services!: pulumi.Output<outputs.FirewallLocalInPolicyService[] | undefined>;
+    /**
+     * When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+     */
+    public readonly srcaddrNegate!: pulumi.Output<string>;
     /**
      * Source address object from available options. The structure of `srcaddr` block is documented below.
      */
@@ -133,23 +145,26 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
      */
     constructor(name: string, args: FirewallLocalInPolicyArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: FirewallLocalInPolicyArgs | FirewallLocalInPolicyState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as FirewallLocalInPolicyState | undefined;
-            inputs["action"] = state ? state.action : undefined;
-            inputs["comments"] = state ? state.comments : undefined;
-            inputs["dstaddrs"] = state ? state.dstaddrs : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["haMgmtIntfOnly"] = state ? state.haMgmtIntfOnly : undefined;
-            inputs["intf"] = state ? state.intf : undefined;
-            inputs["policyid"] = state ? state.policyid : undefined;
-            inputs["schedule"] = state ? state.schedule : undefined;
-            inputs["services"] = state ? state.services : undefined;
-            inputs["srcaddrs"] = state ? state.srcaddrs : undefined;
-            inputs["status"] = state ? state.status : undefined;
-            inputs["uuid"] = state ? state.uuid : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["action"] = state ? state.action : undefined;
+            resourceInputs["comments"] = state ? state.comments : undefined;
+            resourceInputs["dstaddrNegate"] = state ? state.dstaddrNegate : undefined;
+            resourceInputs["dstaddrs"] = state ? state.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["haMgmtIntfOnly"] = state ? state.haMgmtIntfOnly : undefined;
+            resourceInputs["intf"] = state ? state.intf : undefined;
+            resourceInputs["policyid"] = state ? state.policyid : undefined;
+            resourceInputs["schedule"] = state ? state.schedule : undefined;
+            resourceInputs["serviceNegate"] = state ? state.serviceNegate : undefined;
+            resourceInputs["services"] = state ? state.services : undefined;
+            resourceInputs["srcaddrNegate"] = state ? state.srcaddrNegate : undefined;
+            resourceInputs["srcaddrs"] = state ? state.srcaddrs : undefined;
+            resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["uuid"] = state ? state.uuid : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as FirewallLocalInPolicyArgs | undefined;
             if ((!args || args.dstaddrs === undefined) && !opts.urn) {
@@ -161,24 +176,25 @@ export class FirewallLocalInPolicy extends pulumi.CustomResource {
             if ((!args || args.srcaddrs === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'srcaddrs'");
             }
-            inputs["action"] = args ? args.action : undefined;
-            inputs["comments"] = args ? args.comments : undefined;
-            inputs["dstaddrs"] = args ? args.dstaddrs : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["haMgmtIntfOnly"] = args ? args.haMgmtIntfOnly : undefined;
-            inputs["intf"] = args ? args.intf : undefined;
-            inputs["policyid"] = args ? args.policyid : undefined;
-            inputs["schedule"] = args ? args.schedule : undefined;
-            inputs["services"] = args ? args.services : undefined;
-            inputs["srcaddrs"] = args ? args.srcaddrs : undefined;
-            inputs["status"] = args ? args.status : undefined;
-            inputs["uuid"] = args ? args.uuid : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["action"] = args ? args.action : undefined;
+            resourceInputs["comments"] = args ? args.comments : undefined;
+            resourceInputs["dstaddrNegate"] = args ? args.dstaddrNegate : undefined;
+            resourceInputs["dstaddrs"] = args ? args.dstaddrs : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["haMgmtIntfOnly"] = args ? args.haMgmtIntfOnly : undefined;
+            resourceInputs["intf"] = args ? args.intf : undefined;
+            resourceInputs["policyid"] = args ? args.policyid : undefined;
+            resourceInputs["schedule"] = args ? args.schedule : undefined;
+            resourceInputs["serviceNegate"] = args ? args.serviceNegate : undefined;
+            resourceInputs["services"] = args ? args.services : undefined;
+            resourceInputs["srcaddrNegate"] = args ? args.srcaddrNegate : undefined;
+            resourceInputs["srcaddrs"] = args ? args.srcaddrs : undefined;
+            resourceInputs["status"] = args ? args.status : undefined;
+            resourceInputs["uuid"] = args ? args.uuid : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(FirewallLocalInPolicy.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(FirewallLocalInPolicy.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -194,6 +210,10 @@ export interface FirewallLocalInPolicyState {
      * Comment.
      */
     comments?: pulumi.Input<string>;
+    /**
+     * When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+     */
+    dstaddrNegate?: pulumi.Input<string>;
     /**
      * Destination address object from available options. The structure of `dstaddr` block is documented below.
      */
@@ -219,9 +239,17 @@ export interface FirewallLocalInPolicyState {
      */
     schedule?: pulumi.Input<string>;
     /**
+     * When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+     */
+    serviceNegate?: pulumi.Input<string>;
+    /**
      * Service object from available options. The structure of `service` block is documented below.
      */
     services?: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicyService>[]>;
+    /**
+     * When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+     */
+    srcaddrNegate?: pulumi.Input<string>;
     /**
      * Source address object from available options. The structure of `srcaddr` block is documented below.
      */
@@ -253,6 +281,10 @@ export interface FirewallLocalInPolicyArgs {
      */
     comments?: pulumi.Input<string>;
     /**
+     * When enabled dstaddr specifies what the destination address must NOT be. Valid values: `enable`, `disable`.
+     */
+    dstaddrNegate?: pulumi.Input<string>;
+    /**
      * Destination address object from available options. The structure of `dstaddr` block is documented below.
      */
     dstaddrs: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicyDstaddr>[]>;
@@ -277,9 +309,17 @@ export interface FirewallLocalInPolicyArgs {
      */
     schedule: pulumi.Input<string>;
     /**
+     * When enabled service specifies what the service must NOT be. Valid values: `enable`, `disable`.
+     */
+    serviceNegate?: pulumi.Input<string>;
+    /**
      * Service object from available options. The structure of `service` block is documented below.
      */
     services?: pulumi.Input<pulumi.Input<inputs.FirewallLocalInPolicyService>[]>;
+    /**
+     * When enabled srcaddr specifies what the source address must NOT be. Valid values: `enable`, `disable`.
+     */
+    srcaddrNegate?: pulumi.Input<string>;
     /**
      * Source address object from available options. The structure of `srcaddr` block is documented below.
      */

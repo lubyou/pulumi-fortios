@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// IP blacklist reason.
+// IP blacklist reason. Applies to FortiOS Version `>= 6.2.4`.
 //
 // ## Import
 //
@@ -39,6 +39,7 @@ func NewFirewallInternetServiceIpblReason(ctx *pulumi.Context,
 		args = &FirewallInternetServiceIpblReasonArgs{}
 	}
 
+	opts = pkgResourceDefaultOpts(opts)
 	var resource FirewallInternetServiceIpblReason
 	err := ctx.RegisterResource("fortios:index/firewallInternetServiceIpblReason:FirewallInternetServiceIpblReason", name, args, &resource, opts...)
 	if err != nil {
@@ -113,7 +114,7 @@ type FirewallInternetServiceIpblReasonInput interface {
 }
 
 func (*FirewallInternetServiceIpblReason) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceIpblReason)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceIpblReason)(nil)).Elem()
 }
 
 func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonOutput() FirewallInternetServiceIpblReasonOutput {
@@ -122,35 +123,6 @@ func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonO
 
 func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonOutput)
-}
-
-func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonPtrOutput() FirewallInternetServiceIpblReasonPtrOutput {
-	return i.ToFirewallInternetServiceIpblReasonPtrOutputWithContext(context.Background())
-}
-
-func (i *FirewallInternetServiceIpblReason) ToFirewallInternetServiceIpblReasonPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonPtrOutput)
-}
-
-type FirewallInternetServiceIpblReasonPtrInput interface {
-	pulumi.Input
-
-	ToFirewallInternetServiceIpblReasonPtrOutput() FirewallInternetServiceIpblReasonPtrOutput
-	ToFirewallInternetServiceIpblReasonPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonPtrOutput
-}
-
-type firewallInternetServiceIpblReasonPtrType FirewallInternetServiceIpblReasonArgs
-
-func (*firewallInternetServiceIpblReasonPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceIpblReason)(nil))
-}
-
-func (i *firewallInternetServiceIpblReasonPtrType) ToFirewallInternetServiceIpblReasonPtrOutput() FirewallInternetServiceIpblReasonPtrOutput {
-	return i.ToFirewallInternetServiceIpblReasonPtrOutputWithContext(context.Background())
-}
-
-func (i *firewallInternetServiceIpblReasonPtrType) ToFirewallInternetServiceIpblReasonPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonPtrOutput)
 }
 
 // FirewallInternetServiceIpblReasonArrayInput is an input type that accepts FirewallInternetServiceIpblReasonArray and FirewallInternetServiceIpblReasonArrayOutput values.
@@ -167,7 +139,7 @@ type FirewallInternetServiceIpblReasonArrayInput interface {
 type FirewallInternetServiceIpblReasonArray []FirewallInternetServiceIpblReasonInput
 
 func (FirewallInternetServiceIpblReasonArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*FirewallInternetServiceIpblReason)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceIpblReason)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceIpblReasonArray) ToFirewallInternetServiceIpblReasonArrayOutput() FirewallInternetServiceIpblReasonArrayOutput {
@@ -192,7 +164,7 @@ type FirewallInternetServiceIpblReasonMapInput interface {
 type FirewallInternetServiceIpblReasonMap map[string]FirewallInternetServiceIpblReasonInput
 
 func (FirewallInternetServiceIpblReasonMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*FirewallInternetServiceIpblReason)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceIpblReason)(nil)).Elem()
 }
 
 func (i FirewallInternetServiceIpblReasonMap) ToFirewallInternetServiceIpblReasonMapOutput() FirewallInternetServiceIpblReasonMapOutput {
@@ -203,12 +175,10 @@ func (i FirewallInternetServiceIpblReasonMap) ToFirewallInternetServiceIpblReaso
 	return pulumi.ToOutputWithContext(ctx, i).(FirewallInternetServiceIpblReasonMapOutput)
 }
 
-type FirewallInternetServiceIpblReasonOutput struct {
-	*pulumi.OutputState
-}
+type FirewallInternetServiceIpblReasonOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblReasonOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*FirewallInternetServiceIpblReason)(nil))
+	return reflect.TypeOf((**FirewallInternetServiceIpblReason)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblReasonOutput() FirewallInternetServiceIpblReasonOutput {
@@ -219,36 +189,10 @@ func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblRe
 	return o
 }
 
-func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblReasonPtrOutput() FirewallInternetServiceIpblReasonPtrOutput {
-	return o.ToFirewallInternetServiceIpblReasonPtrOutputWithContext(context.Background())
-}
-
-func (o FirewallInternetServiceIpblReasonOutput) ToFirewallInternetServiceIpblReasonPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonPtrOutput {
-	return o.ApplyT(func(v FirewallInternetServiceIpblReason) *FirewallInternetServiceIpblReason {
-		return &v
-	}).(FirewallInternetServiceIpblReasonPtrOutput)
-}
-
-type FirewallInternetServiceIpblReasonPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (FirewallInternetServiceIpblReasonPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**FirewallInternetServiceIpblReason)(nil))
-}
-
-func (o FirewallInternetServiceIpblReasonPtrOutput) ToFirewallInternetServiceIpblReasonPtrOutput() FirewallInternetServiceIpblReasonPtrOutput {
-	return o
-}
-
-func (o FirewallInternetServiceIpblReasonPtrOutput) ToFirewallInternetServiceIpblReasonPtrOutputWithContext(ctx context.Context) FirewallInternetServiceIpblReasonPtrOutput {
-	return o
-}
-
 type FirewallInternetServiceIpblReasonArrayOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblReasonArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]FirewallInternetServiceIpblReason)(nil))
+	return reflect.TypeOf((*[]*FirewallInternetServiceIpblReason)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceIpblReasonArrayOutput) ToFirewallInternetServiceIpblReasonArrayOutput() FirewallInternetServiceIpblReasonArrayOutput {
@@ -260,15 +204,15 @@ func (o FirewallInternetServiceIpblReasonArrayOutput) ToFirewallInternetServiceI
 }
 
 func (o FirewallInternetServiceIpblReasonArrayOutput) Index(i pulumi.IntInput) FirewallInternetServiceIpblReasonOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) FirewallInternetServiceIpblReason {
-		return vs[0].([]FirewallInternetServiceIpblReason)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *FirewallInternetServiceIpblReason {
+		return vs[0].([]*FirewallInternetServiceIpblReason)[vs[1].(int)]
 	}).(FirewallInternetServiceIpblReasonOutput)
 }
 
 type FirewallInternetServiceIpblReasonMapOutput struct{ *pulumi.OutputState }
 
 func (FirewallInternetServiceIpblReasonMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]FirewallInternetServiceIpblReason)(nil))
+	return reflect.TypeOf((*map[string]*FirewallInternetServiceIpblReason)(nil)).Elem()
 }
 
 func (o FirewallInternetServiceIpblReasonMapOutput) ToFirewallInternetServiceIpblReasonMapOutput() FirewallInternetServiceIpblReasonMapOutput {
@@ -280,14 +224,16 @@ func (o FirewallInternetServiceIpblReasonMapOutput) ToFirewallInternetServiceIpb
 }
 
 func (o FirewallInternetServiceIpblReasonMapOutput) MapIndex(k pulumi.StringInput) FirewallInternetServiceIpblReasonOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) FirewallInternetServiceIpblReason {
-		return vs[0].(map[string]FirewallInternetServiceIpblReason)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *FirewallInternetServiceIpblReason {
+		return vs[0].(map[string]*FirewallInternetServiceIpblReason)[vs[1].(string)]
 	}).(FirewallInternetServiceIpblReasonOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceIpblReasonInput)(nil)).Elem(), &FirewallInternetServiceIpblReason{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceIpblReasonArrayInput)(nil)).Elem(), FirewallInternetServiceIpblReasonArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FirewallInternetServiceIpblReasonMapInput)(nil)).Elem(), FirewallInternetServiceIpblReasonMap{})
 	pulumi.RegisterOutputType(FirewallInternetServiceIpblReasonOutput{})
-	pulumi.RegisterOutputType(FirewallInternetServiceIpblReasonPtrOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceIpblReasonArrayOutput{})
 	pulumi.RegisterOutputType(FirewallInternetServiceIpblReasonMapOutput{})
 }

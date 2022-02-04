@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch.
+ * Configure allowaccess list for mgmt and internal interfaces on managed FortiSwitch. Applies to FortiOS Version `>= 6.2.4`.
  *
  * ## Import
  *
@@ -71,25 +71,23 @@ export class SwitchControllerSecurityPolicyLocalAccess extends pulumi.CustomReso
      */
     constructor(name: string, args?: SwitchControllerSecurityPolicyLocalAccessArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: SwitchControllerSecurityPolicyLocalAccessArgs | SwitchControllerSecurityPolicyLocalAccessState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as SwitchControllerSecurityPolicyLocalAccessState | undefined;
-            inputs["internalAllowaccess"] = state ? state.internalAllowaccess : undefined;
-            inputs["mgmtAllowaccess"] = state ? state.mgmtAllowaccess : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["internalAllowaccess"] = state ? state.internalAllowaccess : undefined;
+            resourceInputs["mgmtAllowaccess"] = state ? state.mgmtAllowaccess : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as SwitchControllerSecurityPolicyLocalAccessArgs | undefined;
-            inputs["internalAllowaccess"] = args ? args.internalAllowaccess : undefined;
-            inputs["mgmtAllowaccess"] = args ? args.mgmtAllowaccess : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["internalAllowaccess"] = args ? args.internalAllowaccess : undefined;
+            resourceInputs["mgmtAllowaccess"] = args ? args.mgmtAllowaccess : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(SwitchControllerSecurityPolicyLocalAccess.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(SwitchControllerSecurityPolicyLocalAccess.__pulumiType, name, resourceInputs, opts);
     }
 }
 

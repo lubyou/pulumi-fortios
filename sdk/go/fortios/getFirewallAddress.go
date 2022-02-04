@@ -4,11 +4,15 @@
 package fortios
 
 import (
+	"context"
+	"reflect"
+
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information on an fortios firewall address
 func LookupFirewallAddress(ctx *pulumi.Context, args *LookupFirewallAddressArgs, opts ...pulumi.InvokeOption) (*LookupFirewallAddressResult, error) {
+	opts = pkgInvokeDefaultOpts(opts)
 	var rv LookupFirewallAddressResult
 	err := ctx.Invoke("fortios:index/getFirewallAddress:GetFirewallAddress", args, &rv, opts...)
 	if err != nil {
@@ -47,6 +51,8 @@ type LookupFirewallAddressResult struct {
 	EndMac string `pulumi:"endMac"`
 	// Endpoint group name.
 	EpgName string `pulumi:"epgName"`
+	// Security Fabric global object setting.
+	FabricObject string `pulumi:"fabricObject"`
 	// Match criteria filter.
 	Filter string `pulumi:"filter"`
 	// Fully Qualified Domain Name address.
@@ -58,7 +64,9 @@ type LookupFirewallAddressResult struct {
 	// Name of interface whose IP address is to be used.
 	Interface string `pulumi:"interface"`
 	// IP address list. The structure of `list` block is documented below.
-	Lists []GetFirewallAddressListType `pulumi:"lists"`
+	Lists []GetFirewallAddressList `pulumi:"lists"`
+	// MAC address ranges <start>[-<end>] separated by space.
+	Macaddrs []GetFirewallAddressMacaddr `pulumi:"macaddrs"`
 	// Tag name.
 	Name string `pulumi:"name"`
 	// Enable/disable collection of node addresses only in Kubernetes.
@@ -89,6 +97,10 @@ type LookupFirewallAddressResult struct {
 	Subnet string `pulumi:"subnet"`
 	// Subnet name.
 	SubnetName string `pulumi:"subnetName"`
+	// Tag detection level of dynamic address object.
+	TagDetectionLevel string `pulumi:"tagDetectionLevel"`
+	// Tag type of dynamic address object.
+	TagType string `pulumi:"tagType"`
 	// Config object tagging. The structure of `tagging` block is documented below.
 	Taggings []GetFirewallAddressTagging `pulumi:"taggings"`
 	// Tenant.
@@ -104,4 +116,258 @@ type LookupFirewallAddressResult struct {
 	Wildcard string `pulumi:"wildcard"`
 	// Fully Qualified Domain Name with wildcard characters.
 	WildcardFqdn string `pulumi:"wildcardFqdn"`
+}
+
+func LookupFirewallAddressOutput(ctx *pulumi.Context, args LookupFirewallAddressOutputArgs, opts ...pulumi.InvokeOption) LookupFirewallAddressResultOutput {
+	return pulumi.ToOutputWithContext(context.Background(), args).
+		ApplyT(func(v interface{}) (LookupFirewallAddressResult, error) {
+			args := v.(LookupFirewallAddressArgs)
+			r, err := LookupFirewallAddress(ctx, &args, opts...)
+			return *r, err
+		}).(LookupFirewallAddressResultOutput)
+}
+
+// A collection of arguments for invoking GetFirewallAddress.
+type LookupFirewallAddressOutputArgs struct {
+	// Specify the name of the desired firewall address.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the vdom to which the data source will be applied when the FortiGate unit is running in VDOM mode. Only one vdom can be specified. If you want to inherit the vdom configuration of the provider, please do not set this parameter.
+	Vdomparam pulumi.StringPtrInput `pulumi:"vdomparam"`
+}
+
+func (LookupFirewallAddressOutputArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddressArgs)(nil)).Elem()
+}
+
+// A collection of values returned by GetFirewallAddress.
+type LookupFirewallAddressResultOutput struct{ *pulumi.OutputState }
+
+func (LookupFirewallAddressResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LookupFirewallAddressResult)(nil)).Elem()
+}
+
+func (o LookupFirewallAddressResultOutput) ToLookupFirewallAddressResultOutput() LookupFirewallAddressResultOutput {
+	return o
+}
+
+func (o LookupFirewallAddressResultOutput) ToLookupFirewallAddressResultOutputWithContext(ctx context.Context) LookupFirewallAddressResultOutput {
+	return o
+}
+
+// Enable/disable use of this address in the static route configuration.
+func (o LookupFirewallAddressResultOutput) AllowRouting() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.AllowRouting }).(pulumi.StringOutput)
+}
+
+// Network interface associated with address.
+func (o LookupFirewallAddressResultOutput) AssociatedInterface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.AssociatedInterface }).(pulumi.StringOutput)
+}
+
+// Defines the minimal TTL of individual IP addresses in FQDN cache measured in seconds.
+func (o LookupFirewallAddressResultOutput) CacheTtl() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) int { return v.CacheTtl }).(pulumi.IntOutput)
+}
+
+// SPT (System Posture Token) value.
+func (o LookupFirewallAddressResultOutput) ClearpassSpt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.ClearpassSpt }).(pulumi.StringOutput)
+}
+
+// Color of icon on the GUI.
+func (o LookupFirewallAddressResultOutput) Color() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) int { return v.Color }).(pulumi.IntOutput)
+}
+
+// Comment.
+func (o LookupFirewallAddressResultOutput) Comment() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Comment }).(pulumi.StringOutput)
+}
+
+// IP addresses associated to a specific country.
+func (o LookupFirewallAddressResultOutput) Country() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Country }).(pulumi.StringOutput)
+}
+
+// Final IP address (inclusive) in the range for the address.
+func (o LookupFirewallAddressResultOutput) EndIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.EndIp }).(pulumi.StringOutput)
+}
+
+// Last MAC address in the range.
+func (o LookupFirewallAddressResultOutput) EndMac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.EndMac }).(pulumi.StringOutput)
+}
+
+// Endpoint group name.
+func (o LookupFirewallAddressResultOutput) EpgName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.EpgName }).(pulumi.StringOutput)
+}
+
+// Security Fabric global object setting.
+func (o LookupFirewallAddressResultOutput) FabricObject() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.FabricObject }).(pulumi.StringOutput)
+}
+
+// Match criteria filter.
+func (o LookupFirewallAddressResultOutput) Filter() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Filter }).(pulumi.StringOutput)
+}
+
+// Fully Qualified Domain Name address.
+func (o LookupFirewallAddressResultOutput) Fqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Fqdn }).(pulumi.StringOutput)
+}
+
+// FSSO group(s). The structure of `fssoGroup` block is documented below.
+func (o LookupFirewallAddressResultOutput) FssoGroups() GetFirewallAddressFssoGroupArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) []GetFirewallAddressFssoGroup { return v.FssoGroups }).(GetFirewallAddressFssoGroupArrayOutput)
+}
+
+// The provider-assigned unique ID for this managed resource.
+func (o LookupFirewallAddressResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Name of interface whose IP address is to be used.
+func (o LookupFirewallAddressResultOutput) Interface() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Interface }).(pulumi.StringOutput)
+}
+
+// IP address list. The structure of `list` block is documented below.
+func (o LookupFirewallAddressResultOutput) Lists() GetFirewallAddressListArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) []GetFirewallAddressList { return v.Lists }).(GetFirewallAddressListArrayOutput)
+}
+
+// MAC address ranges <start>[-<end>] separated by space.
+func (o LookupFirewallAddressResultOutput) Macaddrs() GetFirewallAddressMacaddrArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) []GetFirewallAddressMacaddr { return v.Macaddrs }).(GetFirewallAddressMacaddrArrayOutput)
+}
+
+// Tag name.
+func (o LookupFirewallAddressResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Enable/disable collection of node addresses only in Kubernetes.
+func (o LookupFirewallAddressResultOutput) NodeIpOnly() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.NodeIpOnly }).(pulumi.StringOutput)
+}
+
+// Object ID for NSX.
+func (o LookupFirewallAddressResultOutput) ObjId() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.ObjId }).(pulumi.StringOutput)
+}
+
+// Tag of dynamic address object.
+func (o LookupFirewallAddressResultOutput) ObjTag() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.ObjTag }).(pulumi.StringOutput)
+}
+
+// Object type.
+func (o LookupFirewallAddressResultOutput) ObjType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.ObjType }).(pulumi.StringOutput)
+}
+
+// Organization domain name (Syntax: organization/domain).
+func (o LookupFirewallAddressResultOutput) Organization() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Organization }).(pulumi.StringOutput)
+}
+
+// Policy group name.
+func (o LookupFirewallAddressResultOutput) PolicyGroup() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.PolicyGroup }).(pulumi.StringOutput)
+}
+
+// SDN.
+func (o LookupFirewallAddressResultOutput) Sdn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Sdn }).(pulumi.StringOutput)
+}
+
+// Type of addresses to collect.
+func (o LookupFirewallAddressResultOutput) SdnAddrType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.SdnAddrType }).(pulumi.StringOutput)
+}
+
+// SDN Tag.
+func (o LookupFirewallAddressResultOutput) SdnTag() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.SdnTag }).(pulumi.StringOutput)
+}
+
+// First IP address (inclusive) in the range for the address.
+func (o LookupFirewallAddressResultOutput) StartIp() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.StartIp }).(pulumi.StringOutput)
+}
+
+// First MAC address in the range.
+func (o LookupFirewallAddressResultOutput) StartMac() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.StartMac }).(pulumi.StringOutput)
+}
+
+// Sub-type of address.
+func (o LookupFirewallAddressResultOutput) SubType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.SubType }).(pulumi.StringOutput)
+}
+
+// IP address and subnet mask of address.
+func (o LookupFirewallAddressResultOutput) Subnet() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Subnet }).(pulumi.StringOutput)
+}
+
+// Subnet name.
+func (o LookupFirewallAddressResultOutput) SubnetName() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.SubnetName }).(pulumi.StringOutput)
+}
+
+// Tag detection level of dynamic address object.
+func (o LookupFirewallAddressResultOutput) TagDetectionLevel() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.TagDetectionLevel }).(pulumi.StringOutput)
+}
+
+// Tag type of dynamic address object.
+func (o LookupFirewallAddressResultOutput) TagType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.TagType }).(pulumi.StringOutput)
+}
+
+// Config object tagging. The structure of `tagging` block is documented below.
+func (o LookupFirewallAddressResultOutput) Taggings() GetFirewallAddressTaggingArrayOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) []GetFirewallAddressTagging { return v.Taggings }).(GetFirewallAddressTaggingArrayOutput)
+}
+
+// Tenant.
+func (o LookupFirewallAddressResultOutput) Tenant() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Tenant }).(pulumi.StringOutput)
+}
+
+// Type of address.
+func (o LookupFirewallAddressResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+func (o LookupFirewallAddressResultOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o LookupFirewallAddressResultOutput) Vdomparam() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) *string { return v.Vdomparam }).(pulumi.StringPtrOutput)
+}
+
+// Enable/disable address visibility in the GUI.
+func (o LookupFirewallAddressResultOutput) Visibility() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Visibility }).(pulumi.StringOutput)
+}
+
+// IP address and wildcard netmask.
+func (o LookupFirewallAddressResultOutput) Wildcard() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.Wildcard }).(pulumi.StringOutput)
+}
+
+// Fully Qualified Domain Name with wildcard characters.
+func (o LookupFirewallAddressResultOutput) WildcardFqdn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupFirewallAddressResult) string { return v.WildcardFqdn }).(pulumi.StringOutput)
+}
+
+func init() {
+	pulumi.RegisterOutputType(LookupFirewallAddressResultOutput{})
 }

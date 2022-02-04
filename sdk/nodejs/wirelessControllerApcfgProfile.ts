@@ -63,6 +63,10 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
      */
     public readonly acType!: pulumi.Output<string>;
     /**
+     * FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
+     */
+    public readonly apFamily!: pulumi.Output<string>;
+    /**
      * AP local configuration command list. The structure of `commandList` block is documented below.
      */
     public readonly commandLists!: pulumi.Output<outputs.WirelessControllerApcfgProfileCommandList[] | undefined>;
@@ -92,35 +96,35 @@ export class WirelessControllerApcfgProfile extends pulumi.CustomResource {
      */
     constructor(name: string, args?: WirelessControllerApcfgProfileArgs, opts?: pulumi.CustomResourceOptions)
     constructor(name: string, argsOrState?: WirelessControllerApcfgProfileArgs | WirelessControllerApcfgProfileState, opts?: pulumi.CustomResourceOptions) {
-        let inputs: pulumi.Inputs = {};
+        let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as WirelessControllerApcfgProfileState | undefined;
-            inputs["acIp"] = state ? state.acIp : undefined;
-            inputs["acPort"] = state ? state.acPort : undefined;
-            inputs["acTimer"] = state ? state.acTimer : undefined;
-            inputs["acType"] = state ? state.acType : undefined;
-            inputs["commandLists"] = state ? state.commandLists : undefined;
-            inputs["comment"] = state ? state.comment : undefined;
-            inputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
-            inputs["name"] = state ? state.name : undefined;
-            inputs["vdomparam"] = state ? state.vdomparam : undefined;
+            resourceInputs["acIp"] = state ? state.acIp : undefined;
+            resourceInputs["acPort"] = state ? state.acPort : undefined;
+            resourceInputs["acTimer"] = state ? state.acTimer : undefined;
+            resourceInputs["acType"] = state ? state.acType : undefined;
+            resourceInputs["apFamily"] = state ? state.apFamily : undefined;
+            resourceInputs["commandLists"] = state ? state.commandLists : undefined;
+            resourceInputs["comment"] = state ? state.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = state ? state.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = state ? state.name : undefined;
+            resourceInputs["vdomparam"] = state ? state.vdomparam : undefined;
         } else {
             const args = argsOrState as WirelessControllerApcfgProfileArgs | undefined;
-            inputs["acIp"] = args ? args.acIp : undefined;
-            inputs["acPort"] = args ? args.acPort : undefined;
-            inputs["acTimer"] = args ? args.acTimer : undefined;
-            inputs["acType"] = args ? args.acType : undefined;
-            inputs["commandLists"] = args ? args.commandLists : undefined;
-            inputs["comment"] = args ? args.comment : undefined;
-            inputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
-            inputs["name"] = args ? args.name : undefined;
-            inputs["vdomparam"] = args ? args.vdomparam : undefined;
+            resourceInputs["acIp"] = args ? args.acIp : undefined;
+            resourceInputs["acPort"] = args ? args.acPort : undefined;
+            resourceInputs["acTimer"] = args ? args.acTimer : undefined;
+            resourceInputs["acType"] = args ? args.acType : undefined;
+            resourceInputs["apFamily"] = args ? args.apFamily : undefined;
+            resourceInputs["commandLists"] = args ? args.commandLists : undefined;
+            resourceInputs["comment"] = args ? args.comment : undefined;
+            resourceInputs["dynamicSortSubtable"] = args ? args.dynamicSortSubtable : undefined;
+            resourceInputs["name"] = args ? args.name : undefined;
+            resourceInputs["vdomparam"] = args ? args.vdomparam : undefined;
         }
-        if (!opts.version) {
-            opts = pulumi.mergeOptions(opts, { version: utilities.getVersion()});
-        }
-        super(WirelessControllerApcfgProfile.__pulumiType, name, inputs, opts);
+        opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        super(WirelessControllerApcfgProfile.__pulumiType, name, resourceInputs, opts);
     }
 }
 
@@ -144,6 +148,10 @@ export interface WirelessControllerApcfgProfileState {
      * Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
      */
     acType?: pulumi.Input<string>;
+    /**
+     * FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
+     */
+    apFamily?: pulumi.Input<string>;
     /**
      * AP local configuration command list. The structure of `commandList` block is documented below.
      */
@@ -186,6 +194,10 @@ export interface WirelessControllerApcfgProfileArgs {
      * Validation controller type (default = default). Valid values: `default`, `specify`, `apcfg`.
      */
     acType?: pulumi.Input<string>;
+    /**
+     * FortiAP family type (default = fap). Valid values: `fap`, `fap-u`, `fap-c`.
+     */
+    apFamily?: pulumi.Input<string>;
     /**
      * AP local configuration command list. The structure of `commandList` block is documented below.
      */

@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Configure NAT64.
+// Configure NAT64. Applies to FortiOS Version `<= 7.0.0`.
 //
 // ## Example Usage
 //
@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -83,6 +83,7 @@ func NewSystemNat64(ctx *pulumi.Context,
 	if args.Nat64Prefix == nil {
 		return nil, errors.New("invalid value for required argument 'Nat64Prefix'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource SystemNat64
 	err := ctx.RegisterResource("fortios:index/systemNat64:SystemNat64", name, args, &resource, opts...)
 	if err != nil {
@@ -205,7 +206,7 @@ type SystemNat64Input interface {
 }
 
 func (*SystemNat64) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNat64)(nil))
+	return reflect.TypeOf((**SystemNat64)(nil)).Elem()
 }
 
 func (i *SystemNat64) ToSystemNat64Output() SystemNat64Output {
@@ -214,35 +215,6 @@ func (i *SystemNat64) ToSystemNat64Output() SystemNat64Output {
 
 func (i *SystemNat64) ToSystemNat64OutputWithContext(ctx context.Context) SystemNat64Output {
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64Output)
-}
-
-func (i *SystemNat64) ToSystemNat64PtrOutput() SystemNat64PtrOutput {
-	return i.ToSystemNat64PtrOutputWithContext(context.Background())
-}
-
-func (i *SystemNat64) ToSystemNat64PtrOutputWithContext(ctx context.Context) SystemNat64PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64PtrOutput)
-}
-
-type SystemNat64PtrInput interface {
-	pulumi.Input
-
-	ToSystemNat64PtrOutput() SystemNat64PtrOutput
-	ToSystemNat64PtrOutputWithContext(ctx context.Context) SystemNat64PtrOutput
-}
-
-type systemNat64PtrType SystemNat64Args
-
-func (*systemNat64PtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNat64)(nil))
-}
-
-func (i *systemNat64PtrType) ToSystemNat64PtrOutput() SystemNat64PtrOutput {
-	return i.ToSystemNat64PtrOutputWithContext(context.Background())
-}
-
-func (i *systemNat64PtrType) ToSystemNat64PtrOutputWithContext(ctx context.Context) SystemNat64PtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64PtrOutput)
 }
 
 // SystemNat64ArrayInput is an input type that accepts SystemNat64Array and SystemNat64ArrayOutput values.
@@ -259,7 +231,7 @@ type SystemNat64ArrayInput interface {
 type SystemNat64Array []SystemNat64Input
 
 func (SystemNat64Array) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*SystemNat64)(nil))
+	return reflect.TypeOf((*[]*SystemNat64)(nil)).Elem()
 }
 
 func (i SystemNat64Array) ToSystemNat64ArrayOutput() SystemNat64ArrayOutput {
@@ -284,7 +256,7 @@ type SystemNat64MapInput interface {
 type SystemNat64Map map[string]SystemNat64Input
 
 func (SystemNat64Map) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*SystemNat64)(nil))
+	return reflect.TypeOf((*map[string]*SystemNat64)(nil)).Elem()
 }
 
 func (i SystemNat64Map) ToSystemNat64MapOutput() SystemNat64MapOutput {
@@ -295,12 +267,10 @@ func (i SystemNat64Map) ToSystemNat64MapOutputWithContext(ctx context.Context) S
 	return pulumi.ToOutputWithContext(ctx, i).(SystemNat64MapOutput)
 }
 
-type SystemNat64Output struct {
-	*pulumi.OutputState
-}
+type SystemNat64Output struct{ *pulumi.OutputState }
 
 func (SystemNat64Output) ElementType() reflect.Type {
-	return reflect.TypeOf((*SystemNat64)(nil))
+	return reflect.TypeOf((**SystemNat64)(nil)).Elem()
 }
 
 func (o SystemNat64Output) ToSystemNat64Output() SystemNat64Output {
@@ -311,36 +281,10 @@ func (o SystemNat64Output) ToSystemNat64OutputWithContext(ctx context.Context) S
 	return o
 }
 
-func (o SystemNat64Output) ToSystemNat64PtrOutput() SystemNat64PtrOutput {
-	return o.ToSystemNat64PtrOutputWithContext(context.Background())
-}
-
-func (o SystemNat64Output) ToSystemNat64PtrOutputWithContext(ctx context.Context) SystemNat64PtrOutput {
-	return o.ApplyT(func(v SystemNat64) *SystemNat64 {
-		return &v
-	}).(SystemNat64PtrOutput)
-}
-
-type SystemNat64PtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (SystemNat64PtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**SystemNat64)(nil))
-}
-
-func (o SystemNat64PtrOutput) ToSystemNat64PtrOutput() SystemNat64PtrOutput {
-	return o
-}
-
-func (o SystemNat64PtrOutput) ToSystemNat64PtrOutputWithContext(ctx context.Context) SystemNat64PtrOutput {
-	return o
-}
-
 type SystemNat64ArrayOutput struct{ *pulumi.OutputState }
 
 func (SystemNat64ArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]SystemNat64)(nil))
+	return reflect.TypeOf((*[]*SystemNat64)(nil)).Elem()
 }
 
 func (o SystemNat64ArrayOutput) ToSystemNat64ArrayOutput() SystemNat64ArrayOutput {
@@ -352,15 +296,15 @@ func (o SystemNat64ArrayOutput) ToSystemNat64ArrayOutputWithContext(ctx context.
 }
 
 func (o SystemNat64ArrayOutput) Index(i pulumi.IntInput) SystemNat64Output {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SystemNat64 {
-		return vs[0].([]SystemNat64)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *SystemNat64 {
+		return vs[0].([]*SystemNat64)[vs[1].(int)]
 	}).(SystemNat64Output)
 }
 
 type SystemNat64MapOutput struct{ *pulumi.OutputState }
 
 func (SystemNat64MapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]SystemNat64)(nil))
+	return reflect.TypeOf((*map[string]*SystemNat64)(nil)).Elem()
 }
 
 func (o SystemNat64MapOutput) ToSystemNat64MapOutput() SystemNat64MapOutput {
@@ -372,14 +316,16 @@ func (o SystemNat64MapOutput) ToSystemNat64MapOutputWithContext(ctx context.Cont
 }
 
 func (o SystemNat64MapOutput) MapIndex(k pulumi.StringInput) SystemNat64Output {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) SystemNat64 {
-		return vs[0].(map[string]SystemNat64)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *SystemNat64 {
+		return vs[0].(map[string]*SystemNat64)[vs[1].(string)]
 	}).(SystemNat64Output)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNat64Input)(nil)).Elem(), &SystemNat64{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNat64ArrayInput)(nil)).Elem(), SystemNat64Array{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SystemNat64MapInput)(nil)).Elem(), SystemNat64Map{})
 	pulumi.RegisterOutputType(SystemNat64Output{})
-	pulumi.RegisterOutputType(SystemNat64PtrOutput{})
 	pulumi.RegisterOutputType(SystemNat64ArrayOutput{})
 	pulumi.RegisterOutputType(SystemNat64MapOutput{})
 }

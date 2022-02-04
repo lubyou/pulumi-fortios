@@ -19,7 +19,7 @@ import (
 // package main
 //
 // import (
-// 	"github.com/pulumi/pulumi-fortios/sdk/go/fortios"
+// 	"github.com/lubyou/pulumi-fortios/sdk/go/fortios"
 // 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 // )
 //
@@ -69,6 +69,7 @@ func NewLogCustomField(ctx *pulumi.Context,
 	if args.Value == nil {
 		return nil, errors.New("invalid value for required argument 'Value'")
 	}
+	opts = pkgResourceDefaultOpts(opts)
 	var resource LogCustomField
 	err := ctx.RegisterResource("fortios:index/logCustomField:LogCustomField", name, args, &resource, opts...)
 	if err != nil {
@@ -151,7 +152,7 @@ type LogCustomFieldInput interface {
 }
 
 func (*LogCustomField) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogCustomField)(nil))
+	return reflect.TypeOf((**LogCustomField)(nil)).Elem()
 }
 
 func (i *LogCustomField) ToLogCustomFieldOutput() LogCustomFieldOutput {
@@ -160,35 +161,6 @@ func (i *LogCustomField) ToLogCustomFieldOutput() LogCustomFieldOutput {
 
 func (i *LogCustomField) ToLogCustomFieldOutputWithContext(ctx context.Context) LogCustomFieldOutput {
 	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldOutput)
-}
-
-func (i *LogCustomField) ToLogCustomFieldPtrOutput() LogCustomFieldPtrOutput {
-	return i.ToLogCustomFieldPtrOutputWithContext(context.Background())
-}
-
-func (i *LogCustomField) ToLogCustomFieldPtrOutputWithContext(ctx context.Context) LogCustomFieldPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldPtrOutput)
-}
-
-type LogCustomFieldPtrInput interface {
-	pulumi.Input
-
-	ToLogCustomFieldPtrOutput() LogCustomFieldPtrOutput
-	ToLogCustomFieldPtrOutputWithContext(ctx context.Context) LogCustomFieldPtrOutput
-}
-
-type logCustomFieldPtrType LogCustomFieldArgs
-
-func (*logCustomFieldPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogCustomField)(nil))
-}
-
-func (i *logCustomFieldPtrType) ToLogCustomFieldPtrOutput() LogCustomFieldPtrOutput {
-	return i.ToLogCustomFieldPtrOutputWithContext(context.Background())
-}
-
-func (i *logCustomFieldPtrType) ToLogCustomFieldPtrOutputWithContext(ctx context.Context) LogCustomFieldPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldPtrOutput)
 }
 
 // LogCustomFieldArrayInput is an input type that accepts LogCustomFieldArray and LogCustomFieldArrayOutput values.
@@ -205,7 +177,7 @@ type LogCustomFieldArrayInput interface {
 type LogCustomFieldArray []LogCustomFieldInput
 
 func (LogCustomFieldArray) ElementType() reflect.Type {
-	return reflect.TypeOf(([]*LogCustomField)(nil))
+	return reflect.TypeOf((*[]*LogCustomField)(nil)).Elem()
 }
 
 func (i LogCustomFieldArray) ToLogCustomFieldArrayOutput() LogCustomFieldArrayOutput {
@@ -230,7 +202,7 @@ type LogCustomFieldMapInput interface {
 type LogCustomFieldMap map[string]LogCustomFieldInput
 
 func (LogCustomFieldMap) ElementType() reflect.Type {
-	return reflect.TypeOf((map[string]*LogCustomField)(nil))
+	return reflect.TypeOf((*map[string]*LogCustomField)(nil)).Elem()
 }
 
 func (i LogCustomFieldMap) ToLogCustomFieldMapOutput() LogCustomFieldMapOutput {
@@ -241,12 +213,10 @@ func (i LogCustomFieldMap) ToLogCustomFieldMapOutputWithContext(ctx context.Cont
 	return pulumi.ToOutputWithContext(ctx, i).(LogCustomFieldMapOutput)
 }
 
-type LogCustomFieldOutput struct {
-	*pulumi.OutputState
-}
+type LogCustomFieldOutput struct{ *pulumi.OutputState }
 
 func (LogCustomFieldOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*LogCustomField)(nil))
+	return reflect.TypeOf((**LogCustomField)(nil)).Elem()
 }
 
 func (o LogCustomFieldOutput) ToLogCustomFieldOutput() LogCustomFieldOutput {
@@ -257,36 +227,10 @@ func (o LogCustomFieldOutput) ToLogCustomFieldOutputWithContext(ctx context.Cont
 	return o
 }
 
-func (o LogCustomFieldOutput) ToLogCustomFieldPtrOutput() LogCustomFieldPtrOutput {
-	return o.ToLogCustomFieldPtrOutputWithContext(context.Background())
-}
-
-func (o LogCustomFieldOutput) ToLogCustomFieldPtrOutputWithContext(ctx context.Context) LogCustomFieldPtrOutput {
-	return o.ApplyT(func(v LogCustomField) *LogCustomField {
-		return &v
-	}).(LogCustomFieldPtrOutput)
-}
-
-type LogCustomFieldPtrOutput struct {
-	*pulumi.OutputState
-}
-
-func (LogCustomFieldPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**LogCustomField)(nil))
-}
-
-func (o LogCustomFieldPtrOutput) ToLogCustomFieldPtrOutput() LogCustomFieldPtrOutput {
-	return o
-}
-
-func (o LogCustomFieldPtrOutput) ToLogCustomFieldPtrOutputWithContext(ctx context.Context) LogCustomFieldPtrOutput {
-	return o
-}
-
 type LogCustomFieldArrayOutput struct{ *pulumi.OutputState }
 
 func (LogCustomFieldArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]LogCustomField)(nil))
+	return reflect.TypeOf((*[]*LogCustomField)(nil)).Elem()
 }
 
 func (o LogCustomFieldArrayOutput) ToLogCustomFieldArrayOutput() LogCustomFieldArrayOutput {
@@ -298,15 +242,15 @@ func (o LogCustomFieldArrayOutput) ToLogCustomFieldArrayOutputWithContext(ctx co
 }
 
 func (o LogCustomFieldArrayOutput) Index(i pulumi.IntInput) LogCustomFieldOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) LogCustomField {
-		return vs[0].([]LogCustomField)[vs[1].(int)]
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) *LogCustomField {
+		return vs[0].([]*LogCustomField)[vs[1].(int)]
 	}).(LogCustomFieldOutput)
 }
 
 type LogCustomFieldMapOutput struct{ *pulumi.OutputState }
 
 func (LogCustomFieldMapOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*map[string]LogCustomField)(nil))
+	return reflect.TypeOf((*map[string]*LogCustomField)(nil)).Elem()
 }
 
 func (o LogCustomFieldMapOutput) ToLogCustomFieldMapOutput() LogCustomFieldMapOutput {
@@ -318,14 +262,16 @@ func (o LogCustomFieldMapOutput) ToLogCustomFieldMapOutputWithContext(ctx contex
 }
 
 func (o LogCustomFieldMapOutput) MapIndex(k pulumi.StringInput) LogCustomFieldOutput {
-	return pulumi.All(o, k).ApplyT(func(vs []interface{}) LogCustomField {
-		return vs[0].(map[string]LogCustomField)[vs[1].(string)]
+	return pulumi.All(o, k).ApplyT(func(vs []interface{}) *LogCustomField {
+		return vs[0].(map[string]*LogCustomField)[vs[1].(string)]
 	}).(LogCustomFieldOutput)
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*LogCustomFieldInput)(nil)).Elem(), &LogCustomField{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogCustomFieldArrayInput)(nil)).Elem(), LogCustomFieldArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LogCustomFieldMapInput)(nil)).Elem(), LogCustomFieldMap{})
 	pulumi.RegisterOutputType(LogCustomFieldOutput{})
-	pulumi.RegisterOutputType(LogCustomFieldPtrOutput{})
 	pulumi.RegisterOutputType(LogCustomFieldArrayOutput{})
 	pulumi.RegisterOutputType(LogCustomFieldMapOutput{})
 }
